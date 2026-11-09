@@ -457,12 +457,12 @@
       "attempts": 1,
       "run_id": "42539607853",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:25:21.716Z",
-      "stage": "script",
-      "topic": "The collapse of the historic Stari Most bridge in Mostar",
-      "score": 61.3,
-      "pillar": "Events that changed the modern world",
-      "hook": "For 427 years, this iconic 16th-century stone bridge stood proud—until modern warfare shattered it in seconds."
+      "updated_at": "2026-11-09T00:27:46.275Z",
+      "stage": "research",
+      "topic": "The 1965 Northeast blackout plunging North America into darkness",
+      "score": 60.2,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "When a tiny relay switch failure plunged the entire U.S. Northeast and parts of Canada into darkness for 13 hours."
     }
   },
   "uploads": [],
@@ -808,6 +808,15 @@
       "at_ms": 1794183819630,
       "score": 61.3,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1965 Northeast blackout plunging North America into darkness",
+      "slug": "the-1965-northeast-blackout-plunging-north-america-into-dark",
+      "slot": "kick-08cf67133b-ch1",
+      "at_ms": 1794184066275,
+      "score": 60.2,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
