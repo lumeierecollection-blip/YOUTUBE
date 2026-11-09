@@ -2,9 +2,9 @@
   "channel": "dopamine-loop",
   "production_run": "run-42696481254-1",
   "agent": "agent-dopamine-loop",
-  "stage": "render_complete",
+  "stage": "qa_passed",
   "status": "ok",
-  "timestamp": "2026-11-09T20:53:04.913Z",
+  "timestamp": "2026-11-09T20:53:10.812Z",
   "branch": "preview/dopamine-loop-2",
   "commit": "ab6bfa61a0a7b39c166d671340a2c9b09c863f4e",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42696481254#artifacts"
