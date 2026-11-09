@@ -1,12 +1,12 @@
 {
-  "channel": "hidden-past",
+  "channel": "red-space-facts",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
-  "stage": "blocked",
-  "status": "failed",
-  "timestamp": "2026-11-09T13:01:31.992Z",
+  "stage": "research_complete",
+  "status": "ok",
+  "timestamp": "2026-11-09T13:01:42.797Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "issues": "rejected_blueprint: blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not"
+  "claims": 6
 }
