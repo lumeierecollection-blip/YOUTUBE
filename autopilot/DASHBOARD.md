@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:50 SAST
+Updated 2026-11-09 11:59 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -18,13 +18,13 @@ Updated 2026-11-09 11:50 SAST
 ## AI Tested
 | | |
 |---|---|
-| Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Drugmaker CEOs Doubt Silicon Valley's Promises That AI Will Cure Disease (64.3/100) |
-| QA | n/a |
-| Upload | n/a |
-| Performance | n/a |
-| Analytics | not checked |
+| Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
+| Latest production | delivered at delivered, attempts 1 |
+| Selected topic and score | AI-Powered Smart Glasses Used for School Exam Cheating (72.2/100) |
+| QA | all gates passed |
+| Upload | IIdYdKKUiRM, privacy verified: private |
+| Performance | 0 views, 0 likes, 0 comments (private) |
+| Analytics | available |
 
 ## Needs your attention
 - Telegram is not configured: add the TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID repository secrets.
