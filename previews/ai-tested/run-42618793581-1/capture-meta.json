@@ -1,0 +1,19 @@
+{
+  "url": "https://code.claude.com/docs/en/cli-reference",
+  "title": "CLI reference - Claude Code Docs",
+  "fetchedAt": "2026-11-09T12:40:37.202Z",
+  "cells": {
+    "print": {
+      "cellText": "--print, -p",
+      "rowText": "--print, -pPrint response without interactive mode (see Agent SDK documentation for programmatic usage details). For --resume on a background session that is still running, see Resume a running background sessionclaude -p \"query\""
+    },
+    "format": {
+      "cellText": "--output-format",
+      "rowText": "--output-formatSpecify output format for print mode (options: text, json, stream-json)claude -p \"query\" --output-format json"
+    },
+    "turns": {
+      "cellText": "--max-turns",
+      "rowText": "--max-turnsLimit the number of agentic turns (print mode only). No limit by default. With --input-format stream-json, a message still queued when the limit ends a turn stays queued and starts a new turn with its own limitclaude -p --max-turns 3 \"query\""
+    }
+  }
+}
