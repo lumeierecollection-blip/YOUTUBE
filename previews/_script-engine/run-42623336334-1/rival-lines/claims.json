@@ -1,0 +1,125 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "ok": true,
+      "chars": 26046,
+      "sha256": "1d550d37add75352",
+      "title": "2005 UEFA Champions League final",
+      "published": "2026-10-27",
+      "fetched_at": "2026-11-09T13:20:14.725Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The 2005 UEFA Champions League final was contested between Milan of Italy and Liverpool of England at the Atatürk Olympic Stadium in Istanbul on 25 May 2005.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "The showpiece event was contested between Milan of Italy and Liverpool of England at the Atatürk Olympic Stadium in Istanbul on 25 May 2005.",
+      "confidence": "high",
+      "context": "The final match of the 2004-05 UEFA Champions League took place in Istanbul.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Liverpool reached the final by finishing second in their group behind Monaco and beating Bayer Leverkusen, Juventus, and Chelsea.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool finished second in their group behind 2004 runners-up Monaco and subsequently beat Bayer Leverkusen, Juventus and Chelsea to progress to the final.",
+      "confidence": "high",
+      "context": "Liverpool's path to the 2005 Champions League final involved navigating the group stage and knockout rounds.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Milan won their group ahead of Barcelona and faced Manchester United, Inter Milan, and PSV Eindhoven before reaching the final.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Milan won their group ahead of Barcelona and faced Manchester United, Inter Milan and PSV Eindhoven before reaching the final.",
+      "confidence": "high",
+      "context": "Milan's progression to the 2005 Champions League final included matches against several major European clubs.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Prior to the game, Milan were assured of entering the Champions League the following season after finishing second in Serie A.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Prior to the game, Milan were assured of entering the Champions League the following season after finishing second in Serie A.",
+      "confidence": "high",
+      "context": "Milan had already secured their qualification for the next iteration of the tournament through their domestic league finish.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Liverpool failed to finish in the top four in the Premier League and had to win the final to enter the competition the following season.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool meanwhile had failed to finish in the top four in the Premier League, and had to win the final to enter the competition the following season.",
+      "confidence": "high",
+      "context": "Liverpool's qualification for the subsequent Champions League season depended heavily on the outcome of the final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Milan were regarded as favourites and their team included many players who had experienced success in the competition.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Milan were regarded as favourites and their team included many players who had experienced success in the competition.",
+      "confidence": "high",
+      "context": "Milan entered the match carrying expectations as the stronger side with experienced winners in their squad.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Liverpool had been considered underdogs throughout the competition, but had beaten more favoured opposition to reach the final.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool had been considered underdogs throughout the competition, but had beaten more favoured opposition, including Juventus and Chelsea, to reach the final.",
+      "confidence": "high",
+      "context": "Liverpool's journey to the final was marked by overcoming teams that were favored against them.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Arsenal manager Arsène Wenger felt Liverpool would win the match because Milan looked jaded physically and mentally by losing the Serie A title.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Arsenal manager Arsène Wenger felt Liverpool would win the match: \"I fancy Liverpool as Milan look jaded physically and certainly mentally, by losing the [Serie A] title, I think they have never had a better chance than now to beat Milan.\"",
+      "confidence": "medium",
+      "context": "External opinions on the matchup included Arsène Wenger's assessment of Milan's condition.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [
+    {
+      "claim": "Liverpool defender Jamie Carragher stated that the Liverpool side were not as good as the one that had won the 2001 UEFA Cup final.",
+      "reason": "excerpt is not verbatim in the fetched source"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27"
+    }
+  ]
+}
