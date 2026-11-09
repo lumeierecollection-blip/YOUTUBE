@@ -1,0 +1,120 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "ok": true,
+      "chars": 25590,
+      "sha256": "cc58c3b6648ddf63",
+      "title": "Martha Stewart",
+      "published": "2026-11-08",
+      "fetched_at": "2026-11-09T13:24:48.040Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Martha Stewart was convicted of felony charges related to the ImClone stock trading case.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "Stewart was convicted of felony charges related to the ImClone stock trading case; she served five months in federal prison for fraud and was released in March 2005.",
+      "confidence": "high",
+      "context": "Martha Stewart is an American retail businesswoman, writer, and television personality involved in the ImClone stock trading case.",
+      "contradictory_evidence": [],
+      "editorial_status": "conviction"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Martha Stewart served five months in federal prison for fraud and was released in March 2005.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "Stewart was convicted of felony charges related to the ImClone stock trading case; she served five months in federal prison for fraud and was released in March 2005.",
+      "confidence": "high",
+      "context": "Martha Stewart was convicted of felony charges related to the ImClone stock trading case.",
+      "contradictory_evidence": [],
+      "editorial_status": "conviction"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "There was speculation that the incident would effectively end her media empire.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "There was speculation that the incident would effectively end her media empire, but in 2005, Stewart began a comeback campaign, and her company returned to profitability in 2006.",
+      "confidence": "high",
+      "context": "The incident refers to Martha Stewart serving five months in federal prison for fraud following her conviction related to the ImClone stock trading case.",
+      "contradictory_evidence": [],
+      "editorial_status": "speculation"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Stewart began a comeback campaign in 2005 after serving five months in federal prison.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "There was speculation that the incident would effectively end her media empire, but in 2005, Stewart began a comeback campaign, and her company returned to profitability in 2006.",
+      "confidence": "high",
+      "context": "Martha Stewart launched a comeback campaign following her release from federal prison in March 2005.",
+      "contradictory_evidence": [],
+      "editorial_status": "proven_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Her company returned to profitability in 2006.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "There was speculation that the incident would effectively end her media empire, but in 2005, Stewart began a comeback campaign, and her company returned to profitability in 2006.",
+      "confidence": "high",
+      "context": "Stewart began a comeback campaign in 2005 after her release from federal prison.",
+      "contradictory_evidence": [],
+      "editorial_status": "proven_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Stewart rejoined the board of directors of Martha Stewart Living Omnimedia in 2011.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "Stewart rejoined the board of directors of Martha Stewart Living Omnimedia in 2011 and became chairwoman of her namesake company again in 2012.",
+      "confidence": "high",
+      "context": "Martha Stewart is the founder of Martha Stewart Living Omnimedia, which focuses on home and hospitality.",
+      "contradictory_evidence": [],
+      "editorial_status": "proven_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Stewart became chairwoman of her namesake company again in 2012.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "Stewart rejoined the board of directors of Martha Stewart Living Omnimedia in 2011 and became chairwoman of her namesake company again in 2012.",
+      "confidence": "high",
+      "context": "Martha Stewart Living Omnimedia is Martha Stewart's namesake company.",
+      "contradictory_evidence": [],
+      "editorial_status": "proven_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "The company was acquired by Sequential Brands in 2015.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08",
+      "excerpt": "The company was acquired by Sequential Brands in 2015.",
+      "confidence": "high",
+      "context": "The company refers to Martha Stewart Living Omnimedia.",
+      "contradictory_evidence": [],
+      "editorial_status": "proven_fact"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "published": "2026-11-08"
+    }
+  ]
+}
