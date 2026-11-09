@@ -1,0 +1,48 @@
+{
+  "channel_id": "4",
+  "topic_slug": "atletico-madrid-barcelona-fermin-lopez-tactics",
+  "format": "shorts",
+  "hook": "Atletico Madrid used a 4-4-2 defensive wall of eight players, but failed to stop Barcelona.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Atletico Madrid used a 4-4-2 defensive wall of eight players, but failed to stop Barcelona.",
+      "text_overlay": {
+        "text": "BARCELONA 2-1 ATLETICO MADRID"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At the Riyadh Air Metropolitano, Giuliano Simeone scored early for Atletico Madrid. How did Hansi Flick break down that 4-4-2 defensive wall of eight players at the stadium?",
+      "text_overlay": {
+        "text": "DEFENSIVE BLOCK IN ZONE 14"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Flick shifted Barcelona into a 4-4-1 formation to overload the midfield and create attacking space.",
+      "text_overlay": {
+        "text": "TACTICAL SHIFT: 4-4-1"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Barcelona substitutes Gavi and Fermin Lopez combined to dismantle the Atletico Madrid defensive block with energy. Barcelona scored 2 goals to secure the 2-1 victory.",
+      "text_overlay": {
+        "text": "FERMIN LOPEZ BREAKS THE BLOCK"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Tactical flexibility dismantled Atletico Madrid's 4-4-2 block.",
+      "text_overlay": {
+        "text": "4-4-2 BLOCK DISMANTLED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64",
+    "https://totalfootballanalysis.com/match-analysis/atletico-madrid-barcelona-la-liga-2025-2026-tactical-analysis-tactics",
+    "https://en.as.com/soccer/flick-and-simeone-a-champions-league-tactical-masterclass-f202604-n"
+  ]
+}
