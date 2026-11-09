@@ -52,9 +52,10 @@ export function makeTools({ key, runId, outDir, agent, publish }) {
       run("node", ["render-channel-composition.mjs", job], { cwd: REMOTION });
       rmSync(job, { force: true });
       if (audio) {
-        // The bundle does not carry per-render audio, so the voice track is added here.
+        // The bundle does not carry per-render audio, so the voice track is added here. The picture sets the
+        // length: silence pads the voice to the end, so the timeline's closing hold is not cut off.
         const withAudio = `${file}.audio.mp4`;
-        run("ffmpeg", ["-y", "-v", "error", "-i", file, "-i", audio, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", withAudio]);
+        run("ffmpeg", ["-y", "-v", "error", "-i", file, "-i", audio, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-af", "apad", "-t", String(durationOf(file)), withAudio]);
         copyFileSync(withAudio, file);
         rmSync(withAudio, { force: true });
       }

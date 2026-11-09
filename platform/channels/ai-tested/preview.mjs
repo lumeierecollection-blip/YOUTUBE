@@ -87,7 +87,7 @@ export default async function preview({ key, runId, outDir, tools }) {
     if (narration.seconds <= 29.3 && narration.seconds >= 23.5) break;
     // Too long or short at natural speed: the script changes, never the voice.
     wpm = { wpm: narration.wpm, source: "measured-from-narration", voice: narration.engine };
-    if (attempt >= 3) throw new Error(`narration is ${narration.seconds}s after ${attempt} rewrites`);
+    if (USE_FIXED || attempt >= 3) throw new Error(`narration is ${narration.seconds}s after ${attempt} rewrites`);
   }
   tools.write("narration.json", { engine: narration.engine, seconds: narration.seconds, wpm: narration.wpm, playback_speed: narration.playback_speed, notes: narration.notes });
   tools.stage("voice_complete", "ok", { narration_s: narration.seconds, engine: narration.engine });
