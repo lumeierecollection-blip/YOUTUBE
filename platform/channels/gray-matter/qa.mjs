@@ -37,7 +37,7 @@ export async function runQa(outDir, extra = {}) {
   check("audio", Boolean(audio), audio || "no audio stream");
   // Codec alone proved nothing: the first version shipped a silent track. The voice must be audible in the MP4 itself.
   const vol = existsSync(video) ? spawnSync("ffmpeg", ["-i", video, "-af", "volumedetect", "-vn", "-f", "null", "-"], { encoding: "utf8" }).stderr : "";
-  const mean = Number((vol.match(/mean_volume: (-?[d.]+)/) || [])[1]);
+  const mean = Number((vol.match(/mean_volume: (-?[0-9.]+)/) || [])[1]);
   check("voice-audible", Number.isFinite(mean) && mean > -40, `mean volume ${mean} dB in the MP4 (silence is about -91 dB)`);
   check("voice-preview", existsSync(join(outDir, "voice-preview.mp3")), "voice-preview.mp3");
 
