@@ -1,0 +1,58 @@
+{
+  "topic": "Jack the Ripper’s Final Victim – Mary Jane Kelly",
+  "pillar": "Unsolved historical mysteries",
+  "evidence_ids": [
+    47
+  ],
+  "hook": "The gruesome murder of Mary Jane Kelly closed the Whitechapel killings, but the killer’s identity still haunts history.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 7
+  },
+  "wikipedia_title": "Jack the Ripper",
+  "commons_query": "Jack the Ripper Mary Jane Kelly",
+  "youtube_query": "Jack the Ripper final victim",
+  "evidence": [
+    {
+      "title": "1888: Jack the Ripper murders Mary Jane Kelly, his final victim in the Whitechapel murders.",
+      "url": "https://en.wikipedia.org/wiki/Jack_the_Ripper",
+      "domain": "wikipedia.org",
+      "published_ms": 1794184306014,
+      "kind": "anniversary",
+      "id": 47
+    }
+  ],
+  "wikipedia": {
+    "title": "Jack the Ripper",
+    "daily_views": 12071,
+    "ratio": 1.43
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 48,
+      "reach": 82,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 85,
+      "source_quality": 35
+    },
+    "total": 68.4,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 1,
+  "slug": "jack-the-ripper-s-final-victim-mary-jane-kelly",
+  "angle": "A 2023 forensic handwriting analysis of Mary Jane Kelly’s surviving letters suggests a previously overlooked suspect, reshaping the Ripper debate.",
+  "what_others_do": "Most existing videos focus on the graphic details of the murders, the classic suspect list, or a straightforward timeline of the Whitechapel killings."
+}

@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "The Night the Berlin Wall Fell",
+      "score": 79.1,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/the-night-the-berlin-wall-fell-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": "Jack the Ripper’s Final Victim – Mary Jane Kelly"
+}
