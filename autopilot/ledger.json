@@ -651,11 +651,12 @@
     },
     "kick-bc3e074b1c-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "42546518011",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:37:45.269Z"
+      "updated_at": "2026-11-09T01:37:45.269Z",
+      "error": "run 42546518011 ended without reporting a result (last stage: start)"
     },
     "kick-9eefa2545a-ch1": {
       "channel": "1",
@@ -792,6 +793,14 @@
       "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f",
       "video_id": "ZFhtdVwK2zQ",
       "privacy_status": "private"
+    },
+    "kick-aab00134a5-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42563470278",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:44:55.081Z"
     }
   },
   "uploads": [
@@ -1540,5 +1549,5 @@
     "AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or d",
     "YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data."
   ],
-  "last_poll_at": "2026-11-09T04:30:15.590Z"
+  "last_poll_at": "2026-11-09T04:44:55.079Z"
 }
