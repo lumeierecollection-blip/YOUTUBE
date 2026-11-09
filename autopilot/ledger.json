@@ -998,12 +998,12 @@
       "attempts": 1,
       "run_id": "42590636988",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:09:25.096Z",
-      "stage": "script",
-      "topic": "Albert Hofmann's accidental synthesis of LSD in Basel",
-      "score": 72.1,
-      "pillar": "Unbelievable true historical events",
-      "hook": "A routine pharmaceutical experiment in 1938 accidentally birthed history's most notorious mind-altering chemical."
+      "updated_at": "2026-11-09T09:11:22.135Z",
+      "stage": "research",
+      "topic": "D.B. Cooper's legendary 1971 airplane hijacking and parachute escape",
+      "score": 71.7,
+      "pillar": "Unsolved historical mysteries",
+      "hook": "He extorted $200,000, jumped out of a Boeing 727 into a freezing thunderstorm, and vanished forever."
     }
   },
   "uploads": [
@@ -1823,6 +1823,15 @@
       "at_ms": 1794215356561,
       "score": 72.1,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "D.B. Cooper's legendary 1971 airplane hijacking and parachute escape",
+      "slug": "d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute",
+      "slot": "kick-e8859da190-ch1",
+      "at_ms": 1794215482135,
+      "score": 71.7,
+      "pillar": "Unsolved historical mysteries"
     }
   ],
   "attention": [
