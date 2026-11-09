@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T19:49:46.512Z",
+  "rebuilt_at": "2026-11-09T19:53:04.578Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,21 +61,21 @@
     {
       "key": "gray-matter",
       "agent": "agent-gray-matter",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T19:49:46.126Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T19:52:59.187Z",
       "branch": "preview/gray-matter-2",
-      "commit": "0cdbde68",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42686185220#artifacts)",
-      "sheet": "[contact-sheet.jpg](gray-matter/run-42686185220-1/contact-sheet.jpg)",
-      "scenes": "[scene-1.jpg](gray-matter/run-42686185220-1/scene-1.jpg) [scene-2.jpg](gray-matter/run-42686185220-1/scene-2.jpg) [scene-3.jpg](gray-matter/run-42686185220-1/scene-3.jpg) [scene-4.jpg](gray-matter/run-42686185220-1/scene-4.jpg)",
-      "voice": "[voice-preview.mp3](gray-matter/run-42686185220-1/voice-preview.mp3)",
-      "script": "[script-draft.md](gray-matter/run-42686185220-1/script-draft.md)",
-      "plan": "[scene-plan.json](gray-matter/run-42686185220-1/scene-plan.json)",
-      "qa": "[qa-report.json](gray-matter/run-42686185220-1/qa-report.json)",
-      "blocker": "QA failed: voice-audible: mean volume NaN dB in the MP4 (silence is about -91 dB)",
+      "commit": "ed71631f",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42687384266#artifacts)",
+      "sheet": "",
+      "scenes": "",
+      "voice": "",
+      "script": "",
+      "plan": "",
+      "qa": "",
+      "blocker": "",
       "lastOk": "2026-11-09T19:31:32.850Z",
-      "run": "run-42686185220-1"
+      "run": "run-42687384266-1"
     },
     {
       "key": "hidden-past",
