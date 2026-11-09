@@ -1,0 +1,434 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "question",
+      "treatment": "two-cutouts-and-two-numbers",
+      "objective": "State the question with both artists as large cut-outs beside their two numbers",
+      "background": "light editorial page",
+      "from": 0,
+      "to": 163,
+      "start_s": 0,
+      "end_s": 5.433333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "chart",
+      "treatment": "zero-baseline-bar-chart",
+      "objective": "Compare the two totals on one zero-based axis in US dollars, the Eras bar open-topped because the figure was reported as 'more than'",
+      "background": "light editorial page",
+      "from": 163,
+      "to": 330,
+      "start_s": 5.433333333333334,
+      "end_s": 11
+    },
+    {
+      "id": "s3",
+      "kind": "oldrecord",
+      "treatment": "record-card-with-cutout",
+      "objective": "Name the old record holder, the tour and the figure beside a large cut-out portrait",
+      "background": "light editorial page",
+      "from": 330,
+      "to": 489,
+      "start_s": 11,
+      "end_s": 16.3
+    },
+    {
+      "id": "s4",
+      "kind": "fiveyears",
+      "treatment": "five-year-ruler",
+      "objective": "Show the old record's span as a five-year ruler filling in, labelled with the reason for the length",
+      "background": "light editorial page",
+      "from": 489,
+      "to": 616,
+      "start_s": 16.3,
+      "end_s": 20.533333333333335
+    },
+    {
+      "id": "s5",
+      "kind": "moreshows",
+      "treatment": "two-column-comparison",
+      "objective": "Compare earlier record tours (many more performances) with the Eras Tour (a bigger gross) in two labelled columns",
+      "background": "light editorial page",
+      "from": 616,
+      "to": 683,
+      "start_s": 20.533333333333335,
+      "end_s": 22.766666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "answer",
+      "treatment": "split-answer",
+      "objective": "Close the argument with both artists side by side: the same record, reached by different routes",
+      "background": "light editorial page",
+      "from": 683,
+      "to": 804,
+      "start_s": 22.766666666666666,
+      "end_s": 26.8
+    }
+  ],
+  "captions": [
+    {
+      "text": "A billion-dollar",
+      "from": 0,
+      "to": 29,
+      "words": [
+        {
+          "text": "A",
+          "from": 0
+        },
+        {
+          "text": "billion-dollar",
+          "from": 11
+        }
+      ]
+    },
+    {
+      "text": "tour just beat a record",
+      "from": 40,
+      "to": 85,
+      "words": [
+        {
+          "text": "tour",
+          "from": 40
+        },
+        {
+          "text": "just",
+          "from": 49
+        },
+        {
+          "text": "beat",
+          "from": 64
+        },
+        {
+          "text": "a",
+          "from": 73
+        },
+        {
+          "text": "record",
+          "from": 77
+        }
+      ]
+    },
+    {
+      "text": "Elton John spent five years",
+      "from": 85,
+      "to": 148,
+      "words": [
+        {
+          "text": "Elton",
+          "from": 85
+        },
+        {
+          "text": "John",
+          "from": 100
+        },
+        {
+          "text": "spent",
+          "from": 107
+        },
+        {
+          "text": "five",
+          "from": 120
+        },
+        {
+          "text": "years",
+          "from": 136
+        }
+      ]
+    },
+    {
+      "text": "setting Pollstar",
+      "from": 148,
+      "to": 182,
+      "words": [
+        {
+          "text": "setting",
+          "from": 148
+        },
+        {
+          "text": "Pollstar",
+          "from": 163
+        }
+      ]
+    },
+    {
+      "text": "says Taylor Swift's Eras Tour",
+      "from": 194,
+      "to": 255,
+      "words": [
+        {
+          "text": "says",
+          "from": 194
+        },
+        {
+          "text": "Taylor",
+          "from": 204
+        },
+        {
+          "text": "Swift's",
+          "from": 214
+        },
+        {
+          "text": "Eras",
+          "from": 232
+        },
+        {
+          "text": "Tour",
+          "from": 248
+        }
+      ]
+    },
+    {
+      "text": "passed one billion dollars",
+      "from": 255,
+      "to": 317,
+      "words": [
+        {
+          "text": "passed",
+          "from": 255
+        },
+        {
+          "text": "one",
+          "from": 269
+        },
+        {
+          "text": "billion",
+          "from": 284
+        },
+        {
+          "text": "dollars",
+          "from": 298
+        }
+      ]
+    },
+    {
+      "text": "Elton John's farewell tour held",
+      "from": 330,
+      "to": 379,
+      "words": [
+        {
+          "text": "Elton",
+          "from": 330
+        },
+        {
+          "text": "John's",
+          "from": 341
+        },
+        {
+          "text": "farewell",
+          "from": 351
+        },
+        {
+          "text": "tour",
+          "from": 355
+        },
+        {
+          "text": "held",
+          "from": 371
+        }
+      ]
+    },
+    {
+      "text": "the old record nine hundred",
+      "from": 379,
+      "to": 418,
+      "words": [
+        {
+          "text": "the",
+          "from": 379
+        },
+        {
+          "text": "old",
+          "from": 384
+        },
+        {
+          "text": "record",
+          "from": 388
+        },
+        {
+          "text": "nine",
+          "from": 395
+        },
+        {
+          "text": "hundred",
+          "from": 407
+        }
+      ]
+    },
+    {
+      "text": "thirty-nine",
+      "from": 418,
+      "to": 432,
+      "words": [
+        {
+          "text": "thirty-nine",
+          "from": 418
+        }
+      ]
+    },
+    {
+      "text": "million dollars",
+      "from": 440,
+      "to": 478,
+      "words": [
+        {
+          "text": "million",
+          "from": 440
+        },
+        {
+          "text": "dollars",
+          "from": 461
+        }
+      ]
+    },
+    {
+      "text": "His total was built over",
+      "from": 489,
+      "to": 526,
+      "words": [
+        {
+          "text": "His",
+          "from": 489
+        },
+        {
+          "text": "total",
+          "from": 496
+        },
+        {
+          "text": "was",
+          "from": 503
+        },
+        {
+          "text": "built",
+          "from": 511
+        },
+        {
+          "text": "over",
+          "from": 517
+        }
+      ]
+    },
+    {
+      "text": "five years with pandemic delays",
+      "from": 526,
+      "to": 586,
+      "words": [
+        {
+          "text": "five",
+          "from": 526
+        },
+        {
+          "text": "years",
+          "from": 538
+        },
+        {
+          "text": "with",
+          "from": 548
+        },
+        {
+          "text": "pandemic",
+          "from": 559
+        },
+        {
+          "text": "delays",
+          "from": 577
+        }
+      ]
+    },
+    {
+      "text": "Earlier record tours also played",
+      "from": 616,
+      "to": 659,
+      "words": [
+        {
+          "text": "Earlier",
+          "from": 616
+        },
+        {
+          "text": "record",
+          "from": 616
+        },
+        {
+          "text": "tours",
+          "from": 624
+        },
+        {
+          "text": "also",
+          "from": 634
+        },
+        {
+          "text": "played",
+          "from": 647
+        }
+      ]
+    },
+    {
+      "text": "many more shows Same record",
+      "from": 659,
+      "to": 720,
+      "words": [
+        {
+          "text": "many",
+          "from": 659
+        },
+        {
+          "text": "more",
+          "from": 666
+        },
+        {
+          "text": "shows",
+          "from": 676
+        },
+        {
+          "text": "Same",
+          "from": 683
+        },
+        {
+          "text": "record",
+          "from": 708
+        }
+      ]
+    },
+    {
+      "text": "very different routes to get",
+      "from": 729,
+      "to": 769,
+      "words": [
+        {
+          "text": "very",
+          "from": 729
+        },
+        {
+          "text": "different",
+          "from": 736
+        },
+        {
+          "text": "routes",
+          "from": 752
+        },
+        {
+          "text": "to",
+          "from": 758
+        },
+        {
+          "text": "get",
+          "from": 766
+        }
+      ]
+    },
+    {
+      "text": "there",
+      "from": 769,
+      "to": 778,
+      "words": [
+        {
+          "text": "there",
+          "from": 769
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 804,
+  "duration_s": 26.8
+}
