@@ -500,7 +500,12 @@
       "attempts": 1,
       "run_id": "42541387898",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:46:17.408Z"
+      "updated_at": "2026-11-09T00:48:16.681Z",
+      "stage": "research",
+      "topic": "Kristallnacht: The Night the Nazis Unleashed Violence",
+      "score": 68.6,
+      "pillar": "Events that changed the modern world",
+      "hook": "A coordinated pogrom that marked the start of the Holocaust."
     }
   },
   "uploads": [],
@@ -909,6 +914,15 @@
       "at_ms": 1794185063511,
       "score": 66.7,
       "pillar": "AI tools ordinary people can use"
+    },
+    {
+      "channel": "1",
+      "topic": "Kristallnacht: The Night the Nazis Unleashed Violence",
+      "slug": "kristallnacht-the-night-the-nazis-unleashed-violence",
+      "slot": "kick-312d03eb14-ch1",
+      "at_ms": 1794185296681,
+      "score": 68.6,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [

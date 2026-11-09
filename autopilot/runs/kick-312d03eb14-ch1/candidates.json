@@ -1,0 +1,1596 @@
+{
+  "generated_at": "2026-11-09T00:47:27.222Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 85
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 52
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 42
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Jack the Ripper’s final victim – the mystery that still haunts Whitechapel",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        47
+      ],
+      "hook": "The last murder that sealed the legend of the world’s most infamous killer.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Jack the Ripper",
+      "commons_query": "Jack the Ripper Whitechapel",
+      "youtube_query": "Jack the Ripper final victim short",
+      "evidence": [
+        {
+          "title": "1888: Jack the Ripper murders Mary Jane Kelly, his final victim in the Whitechapel murders.",
+          "url": "https://en.wikipedia.org/wiki/Jack_the_Ripper",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 47
+        }
+      ],
+      "wikipedia": {
+        "title": "Jack the Ripper",
+        "daily_views": 12071,
+        "ratio": 1.43
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 82,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 74.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Jack the Ripper’s Final Victim – Mary Jane Kelly"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Berlin Wall opens: the night the city fell apart",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        15
+      ],
+      "hook": "When East Germany opened the checkpoints, the Wall fell in hours.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 10
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Berlin Wall 1989",
+      "youtube_query": "Berlin Wall fall 1989 short",
+      "evidence": [
+        {
+          "title": "1989: Cold War: Fall of the Berlin Wall: East Germany opens checkpoints in the Berlin Wall, allowing its citizens to travel to West Berlin.",
+          "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 15
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 59,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 100,
+          "source_quality": 35
+        },
+        "total": 70.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Kristallnacht: The Night the Nazis Unleashed Violence",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        31
+      ],
+      "hook": "A coordinated pogrom that marked the start of the Holocaust.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Kristallnacht",
+      "commons_query": "Kristallnacht 1938",
+      "youtube_query": "Kristallnacht 1938 short",
+      "evidence": [
+        {
+          "title": "1938: Kristallnacht occurs, instigated by the Nazis using the killing of German diplomat Ernst vom Rath by Herschel Grynszpan as justification.",
+          "url": "https://en.wikipedia.org/wiki/Kristallnacht",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 31
+        }
+      ],
+      "wikipedia": {
+        "title": "Kristallnacht",
+        "daily_views": 1435,
+        "ratio": 1.36
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 63,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 68.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Stalingrad’s Turning Point: German Troops Reach the Volga",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Battle of Stalingrad",
+      "commons_query": "Stalingrad 1942 Volga",
+      "youtube_query": "Stalingrad Volga 1942 short",
+      "evidence": [
+        {
+          "title": "1942: Battle of Stalingrad: German forces of the 6th Army under general Friedrich Paulus reach the river bank of the Volga, capturing 90% of the ruined city of Stalingrad and splitting the remaining Soviet forces into two narrow pockets.",
+          "url": "https://en.wikipedia.org/wiki/Battle_of_Stalingrad",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 29
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Stalingrad",
+        "daily_views": 3167,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 70,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 65.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Lost Viking Age church found in Greenland by a skeleton",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "A single bone led researchers to a forgotten Norse chapel in the Arctic.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "Viking Age Greenland",
+      "commons_query": "Viking church Greenland",
+      "youtube_query": "lost Viking church Greenland short",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 92
+        },
+        {
+          "title": "Archaeologists In Greenland Just Uncovered The Ruins Of A Medieval Norse Church With A Skeleton Buried On The Grounds - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5Uc2ZXVjEtR3VndjVpejlJQk1mMEp0Y1QtTEpRZTdQclJCUUxUeW9OODhnMnNnS0l6aUZHaXphMHlXdmpLWDNWdGtCTnF3UFZuZHNkQjI0WlVrTXdvVGRUaFl1djlTOVVPbjNsWG15X0o?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1793919027000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 62,
+        "newest_hours": 4,
+        "domains": [
+          "heritagedaily.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Skeleton confirms lost Viking church in Greenland"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Roman jewellery workshop hidden under a Welsh housing estate",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        91
+      ],
+      "hook": "A modern suburb sits atop a 2,000‑year‑old Roman craft centre.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 8
+      },
+      "wikipedia_title": "Roman Wales",
+      "commons_query": "Roman settlement Wales",
+      "youtube_query": "Roman jewellery workshop Wales short",
+      "evidence": [
+        {
+          "title": "2,000-year-old Roman settlement and jewellery workshop discovered beneath Welsh housing estate - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd1NUQ1JpNWw1bG9CMWlLZ201NWtsN2xfcm52SEd3ekZTTmNZd1pRb29pOVNMLVNnSERtRHY4aGV2eFBwV2ZoVlNXYUtXQzhDanpPVjEwbGIyV0xPb2ZEM2pwbkQ1RlBYYV92Q0pYNlhmRU5sV1ZpN3loUnEyTTYxUXNDVURHbU43aFNiNzRSRk9fQ0VUWDc5cHRmRnlxTnJWdFFBMXVmM2wtVlpjOW96WWc0aG0zb0htSEt6MkdGLXFfeTU1SlNFaVNyYW5GZllnaHA4Yg?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794173488000,
+          "kind": "news",
+          "id": 91
+        },
+        {
+          "title": "Roman village found under Flintshire housing estate in Mancot - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmb3J3TFprUzhaMUFfZmRoamFBcTNMc2xwc2ZhanNsNUlXc0N3SC1LTzhEQUU1MTVVZW4wRDl2eE1xVms5SzFuOG5PajhJYnhLeDZ6blJHaEV1cUpyV2c?oc=5",
+          "domain": "bbc.co.uk",
+          "published_ms": 1794049612000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Roman Wales",
+        "daily_views": 1,
+        "ratio": 0.95
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 6,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 60.9,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "bbc.co.uk"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "bbc.co.uk"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: 2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Old Dongola’s Hidden Cathedral: A Medieval Marvel Unearthed",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        89
+      ],
+      "hook": "Archaeologists uncovered a massive cathedral buried beneath Sudan’s desert sands.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola cathedral",
+      "youtube_query": "Old Dongola cathedral discovery short",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 89
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 36,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 60.2,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1965 Northeast Blackout: 13 Hours of Darkness",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        21
+      ],
+      "hook": "Imagine an entire region plunged into darkness for half a day—this happened in 1965.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Northeast blackout of 1965",
+      "commons_query": "1965 blackout New York",
+      "youtube_query": "1965 northeast blackout short",
+      "evidence": [
+        {
+          "title": "1965: Several U.S. states and parts of Canada are hit by a series of blackouts lasting up to 13 hours in the Northeast blackout of 1965.",
+          "url": "https://en.wikipedia.org/wiki/Power_outage",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 21
+        }
+      ],
+      "wikipedia": {
+        "title": "Northeast blackout of 1965",
+        "daily_views": 134,
+        "ratio": 1.16
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 43,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 59.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 1965 Northeast blackout plunging North America into darkness"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Egypt’s New 200 Billion‑Cubic‑Foot Gas Find",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        104,
+        105,
+        106,
+        108,
+        109
+      ],
+      "hook": "A massive gas reservoir off Egypt could reshape global energy markets.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Natural gas in Egypt",
+      "commons_query": "Egypt gas field 2023",
+      "youtube_query": "Egypt gas discovery 200bcf short",
+      "evidence": [
+        {
+          "title": "Egypt announces the discovery of a 15-meter gas-bearing layer at the Taiba well and is preparing to connect it to the existing infrastructure - Informat.ro",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZWhvRndpODRDTGd3aFZxTTZzY0xGNDdwYVV6V2N1bHRQSjR2Vm15eTR3bC0tbDZMUVhtOGd1Z251RDk2bGM5Mzc3M1hPUVlKX2RSdEl4cWNRRkhxQUp3bGhDZnE2RHREQ05KV1NwQTduZVZjOWxoeTBjd0t5dGJtYkd4Nnc0OUFrdUo4cXNEOGdVclZhNzlTQlBNRG8xSWxBTmpvM3luM0RVYlVTN0pz?oc=5",
+          "domain": "informat.ro",
+          "published_ms": 1794153064000,
+          "kind": "news",
+          "id": 104
+        },
+        {
+          "title": "Egypt announces gas discovery estimated at 200 billion cubic feet — Euronews - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQanBJLTdGOXY1NURoU19WallUeHJOSHp2NVNiR24tQTVYRVg0Yi1Na3VGYXVaSWJ1RGVjdDVGaktxZ1pmWkxGZGRPMnRjbTFXNzNVNzBEaWZMbnJTX3VhQk95NHlWMGRieVFsUEszYzRZTDJlXy0xV25UWmpCYUEyQnBBYno1X1FBRFRvSkdGZTFyN3ZWN1NlWEF1WUI5amZXeGVIVl9UTmJnYkVRZTRYZWFDcGgzS1N5?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794149827000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "Egypt: a gas discovery estimated at 200 billion cubic feet in the Mediterranean - beninwebtv.com",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPeU1Nd2h5aXlDNzQxV0traU1SaTdzR2txUEprb1h2WlR6b2FLc2lGd0FNMFJUcDJNc0oyZy1jQVZEMUJSeUFHOHdZTUItTEdvOTdfNTFrX3RFb2ZKeUY3QXRZYUg0MWs5dFRfWUxiNWptZEhOR1JsWFZQbmJfQWlhMkpzb1JIM3FCNDZpZm5SNTdDb0RSRTNYZWE4bWN1TlRMb3FYb0tVbEU?oc=5",
+          "domain": "beninwebtv.com",
+          "published_ms": 1794147051000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "Egypt unearths 2,600-year-old structure buried beneath Nile Delta - Gulf News",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOQl9LRkRISmRoM05ncXQzNE9BRlcwVkxzYmloRUlCTDlWSHdOSUFNbjFwSGgwTHJJVmJuUVBlTkZyZHZRc1pvNm9ra3RyQ0M5RFh6MGFINjVoejJEcTdlc3BJZGdseVRqMkg1TGt0YTdvUkU4ZktQS25PNDM1YmdMMTZ3dXR4ZmFhOXVzcko4V3ZtMmZidlc0RHNEbXIwb291YWpnZ2V3SEcyWVZn0gG_AUFVX3lxTFBoa3R4a2Y4VndZc0hfanExX2xtQm5WLW14SGtySG91WVZaSXZwVWR3UjlRUFhTRkpzNWlVbWtVdmNwZ2RIdWhNa1lBcWhJamVVZlYzZ0dPTnhvSkJLMVEtX045V0Q3VzhvSHRRbUpneVZiZ1djMlhSNl9kU2JiRjZqTk90OWZFVU5KeGN3WUxycl85TDhTRjcwZXR2MTl2OG9JdWFrdDRZT3Bra1VybXdSUmt5ekdwUlk3bHpBY29R?oc=5",
+          "domain": "gulfnews.com",
+          "published_ms": 1794144345000,
+          "kind": "news",
+          "id": 108
+        },
+        {
+          "title": "Gas Discovery in Egypt: New Mediterranean Reserve Estimated at 200 Billion Cubic Meters in the “Nasim-1X” Well - KOHA JONË",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBZTDZ0ZGRmX2VRZVpZRWRCSnpVdml1a19yQXVKb1BpcUFfVk5tX3NXMWE2T193LWRSSkJTdW5UNmxWVjFnd2RjUmFUNTQxRFdtaHRhdnhpUk5ZUjJZUFctOEFVRFZGUVZRLVRPenNieUVpZHN0T0hZazNYbVg?oc=5",
+          "domain": "kohajone.com",
+          "published_ms": 1794142906000,
+          "kind": "news",
+          "id": 109
+        }
+      ],
+      "wikipedia": {
+        "title": "Natural gas in Egypt",
+        "daily_views": 0,
+        "ratio": 0.39
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 59.1,
+        "newest_hours": 9,
+        "domains": [
+          "informat.ro",
+          "ua.news",
+          "beninwebtv.com",
+          "gulfnews.com",
+          "kohajone.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "7,000‑Year‑Old Leather DNA Links Ancient Goats to Today",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        77
+      ],
+      "hook": "Scientists pulled DNA from a 7,000‑year‑old leather shoe and found living relatives.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Ancient DNA",
+      "commons_query": "ancient DNA leather",
+      "youtube_query": "7,000 year old leather DNA short",
+      "evidence": [
+        {
+          "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1794184608000,
+          "kind": "news",
+          "id": 77
+        }
+      ],
+      "wikipedia": {
+        "title": "Ancient DNA",
+        "daily_views": 88,
+        "ratio": 1.12
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 39,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 0
+        },
+        "total": 58.4,
+        "newest_hours": 0,
+        "domains": [
+          "scitechdaily.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Cullinan Diamond: From Mine to Royal Crown",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        42
+      ],
+      "hook": "The world’s largest gem was cut into the Crown Jewels we still see today.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 9
+      },
+      "wikipedia_title": "Cullinan Diamond",
+      "commons_query": "Cullinan diamond 1907",
+      "youtube_query": "Cullinan diamond story short",
+      "evidence": [
+        {
+          "title": "1907: The Cullinan Diamond is presented to King Edward VII on his birthday.",
+          "url": "https://en.wikipedia.org/wiki/Cullinan_Diamond",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 42
+        }
+      ],
+      "wikipedia": {
+        "title": "Cullinan Diamond",
+        "daily_views": 519,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 58.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Cullinan Diamond"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Europe’s oldest gold treasure discovered – a 3,000‑year‑old hoard",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        90
+      ],
+      "hook": "A cache of pristine gold bars and jewelry pushes back the timeline of wealth in Europe.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Gold hoard",
+      "commons_query": "ancient gold treasure Europe",
+      "youtube_query": "oldest gold treasure Europe short",
+      "evidence": [
+        {
+          "title": "World’s Oldest Gold Treasure Discovered in Europe - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRWlpvU0Z0V0hJMHA0QWRRUDZzcU4yM0t1ejY5RlN6V1I4UzRBRjJaVFBFbTRSRjZLckEybm9rR1ZURURSSTM1NEEtdm51VW1oN0VvM2NZN2I3Q1dfS25uRk4xX3RMQ0NtZmM1cHRhdFlIV0FjeW9KNFQtTQ?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794174221000,
+          "kind": "news",
+          "id": 90
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 57,
+        "newest_hours": 3,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "2020 Nagorno‑Karabakh armistice – a fragile peace brokered by Russia",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        1
+      ],
+      "hook": "Three nations signed a cease‑fire that reshaped the South Caucasus.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "2020 Nagorno-Karabakh war",
+      "commons_query": "Nagorno-Karabakh 2020 ceasefire",
+      "youtube_query": "2020 Nagorno Karabakh armistice short",
+      "evidence": [
+        {
+          "title": "2020: Second Nagorno-Karabakh War: An armistice agreement is signed by Armenia, Azerbaijan and Russia.",
+          "url": "https://en.wikipedia.org/wiki/Second_Nagorno-Karabakh_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 1
+        }
+      ],
+      "wikipedia": {
+        "title": "2020 Nagorno-Karabakh war",
+        "daily_views": 43,
+        "ratio": 0.82
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 33,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 56.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "World’s first whole eye transplant performed",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "Scientists actually swapped a whole human eye – the first ever!",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Whole eye transplantation",
+      "commons_query": "eye transplant surgery",
+      "youtube_query": "first whole eye transplant 2023",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 56,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A 90‑Year‑Old Mosaic Resurfaces in North Macedonia",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "A forgotten floor art piece emerges after nine decades, shedding light on ancient cultures.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 6,
+        "visual": 7
+      },
+      "wikipedia_title": "Mosaic",
+      "commons_query": "North Macedonia mosaic 2023",
+      "youtube_query": "North Macedonia mosaic discovery short",
+      "evidence": [
+        {
+          "title": "Ancient Mosaic Discovered After 90 Years in North Macedonia - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTzRpVHpRemRVblhucnBONXFyWnR1UTlyZEYyVnZOZ19maTlnOWR0QVp5QzU5VEhPOUtMekdIT2NnNTFacGdvMXR6cmVOa0VkY0NpaHVmNWg4MnNZRmVOQlNhTm1uSnZEdEpOVzN6Q1paLVRhcjNUWjgwcVhySDQ1OGJoaUtCSWhFLUE?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794170021000,
+          "kind": "news",
+          "id": 92
+        }
+      ],
+      "wikipedia": {
+        "title": "Mosaic",
+        "daily_views": 308,
+        "ratio": 1.06
+      },
+      "youtube": null,
+      "commons_hits": 3,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 50,
+          "curiosity": 60,
+          "relevance": 60,
+          "visual": 54,
+          "source_quality": 35
+        },
+        "total": 55.4,
+        "newest_hours": 4,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too few freely licensed images (3 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Ancient ocean teeming with giant predators rewrites evolution",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        87
+      ],
+      "hook": "Fossils reveal a prehistoric sea ruled by monsters bigger than T‑rex.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Marine reptiles",
+      "commons_query": "giant marine predators fossil",
+      "youtube_query": "ancient ocean giant predators short",
+      "evidence": [
+        {
+          "title": "An ancient ocean full of giant predators reveals a surprising twist in evolution - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02YUY1dG5qSE9kX2pXb2ZJVndkWW53V0xLRW5XRmJkbTNkNkR2M2N0ZThob2VuWDVHYzVNT25tYTJ3aGdvMURqcGljcDRBYlF0alZyRDFybkhHRjQ3XzI4cEJfY3B1WHVPS0ZzaFFR?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794178058000,
+          "kind": "news",
+          "id": 87
+        }
+      ],
+      "wikipedia": {
+        "title": "Marine reptiles",
+        "daily_views": 2,
+        "ratio": 0.61
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 10,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 55.3,
+        "newest_hours": 2,
+        "domains": [
+          "sciencedaily.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5th‑century warrior burials unearthed in France – armor, swords and mystery",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        88
+      ],
+      "hook": "Archaeologists uncovered elite warriors frozen in time, complete with dazzling gear.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 6,
+        "visual": 8
+      },
+      "wikipedia_title": "Viking burial",
+      "commons_query": "5th century burial France",
+      "youtube_query": "5th century warrior burials France short",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 60,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 55,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The element that didn’t exist until 1994 – darmstadtium",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        13
+      ],
+      "hook": "Scientists created a brand‑new metal and gave it a name from a German town.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 7
+      },
+      "wikipedia_title": "Darmstadtium",
+      "commons_query": "darmstadtium element",
+      "youtube_query": "darmstadtium discovery 1994 short",
+      "evidence": [
+        {
+          "title": "1994: The chemical element darmstadtium is discovered.",
+          "url": "https://en.wikipedia.org/wiki/Chemical_element",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 13
+        }
+      ],
+      "wikipedia": {
+        "title": "Darmstadtium",
+        "daily_views": 126,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 54.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Mummified Crocodiles Reveal 2,500‑Year‑Old Egyptian Rituals",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        94
+      ],
+      "hook": "A burial pit full of perfectly preserved crocodiles tells a story of ancient magic.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 6,
+        "visual": 9
+      },
+      "wikipedia_title": "Mummified crocodile",
+      "commons_query": "mummified crocodile Egypt",
+      "youtube_query": "ancient Egyptian crocodile mummies short",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 94
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 60,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 52,
+        "newest_hours": 5,
+        "domains": [
+          "ua.news"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "1979 NORAD nuclear false alarm – the world almost went nuclear",
+      "pillar": "Secret operations and evidence‑backed conspiracies",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "A computer glitch made the U.S. think the USSR launched a massive strike.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "NORAD computer incident",
+      "commons_query": "NORAD 1979 false alarm",
+      "youtube_query": "1979 NORAD false alarm short",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 46,
+          "source_quality": 35
+        },
+        "total": 51.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (1 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Ruth Harkness and the First Live Panda in America",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "A daring fashion designer smuggled a baby panda onto a US plane in 1936.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 6,
+        "visual": 9
+      },
+      "wikipedia_title": "Su Lin (panda)",
+      "commons_query": "Su Lin panda 1936",
+      "youtube_query": "first panda su lin short",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 60,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 51,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Ruth Harkness capturing and smuggling the first live giant panda to America"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "19th‑century shipwreck discovered near Tierra del Fuego – a frozen time capsule",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        96
+      ],
+      "hook": "A wreck on a remote island tells the tale of a doomed voyage in the stormy southern seas.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 8
+      },
+      "wikipedia_title": "Shipwrecks of the 19th century",
+      "commons_query": "Estates Island shipwreck",
+      "youtube_query": "19th century shipwreck Tierra del Fuego short",
+      "evidence": [
+        {
+          "title": "19th-Century Shipwreck and Camp Discovered on Estados Island near Tierra del Fuego - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOWjVtd3ZrYlVpUTk4ZFlxcERIRkFVbjZWWmVwekJjbTBGTHYxdkp5SzUzUnN4SExiMUdUX2huU1NvTG9VUkw5ZjFIT04xcFhuZmZRcUktOWU5MUNUZWlCMHVKTEZqU1NCSldrcGhOVkVOTGZzaTQtSm5QMGRnZktXX0JfQkVEd1E0bGV0OHZZb2NVcjhXS3FtZk12VGhQTFozVHgtUkczcHBhSnI4MWpMX2RQQ2E3dlYyVG9DV2xaSUXSAcABQVVfeXFMTlo1bXd2a2JVaVE5OGRZcXBESEZBVW42VlplcHpCY20wRkx2MXZKeUs1M1JzeEhMYjFHVF9oblNTb0xvVVJMOWYxSE9OMXBYbmZmUXFJLTllOTFDVGVpQjB1SkxGalNTQkpXa3BoTlZFTkxmc2k0LUpuUDBkZ2ZLV19CX0JFRHdRNGxldDh2WW9jVXI4V0txbWZNdlRoUExaM1R4LVJHM3BwYUpyODFqTF9kUENhN3ZWMlRvQ1dsWklF?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1794159165000,
+          "kind": "news",
+          "id": 96
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 49.5,
+        "newest_hours": 7,
+        "domains": [
+          "inkorr.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "score 49.5 below 50"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Japan’s Deadliest Mine Disaster: The 1963 Miike Explosion",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        23
+      ],
+      "hook": "A single spark killed nearly 500 miners in one of Japan’s worst tragedies.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "Miike coal mine disaster",
+      "commons_query": "Miike mine explosion 1963",
+      "youtube_query": "Miike mine disaster short",
+      "evidence": [
+        {
+          "title": "1963: At a coal mine in Miike, Japan, an explosion kills 458 and hospitalises 839 with carbon monoxide poisoning.",
+          "url": "https://en.wikipedia.org/wiki/Miike_coal_mine",
+          "domain": "wikipedia.org",
+          "published_ms": 1794185247222,
+          "kind": "anniversary",
+          "id": 23
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 40,
+          "source_quality": 35
+        },
+        "total": 45,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "score 45 below 50"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Vernon’s First Burial Ground: Stories of Forgotten Pioneers",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        95
+      ],
+      "hook": "Unearthed graves in Oregon reveal the lives of the town’s earliest settlers.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 5,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "Vernon Oregon historic cemetery",
+      "youtube_query": "Vernon first burial ground short",
+      "evidence": [
+        {
+          "title": "Forgotten souls of Vernon’s first burial ground explored - Vernon Morning Star",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPREwzN21xdWkxNC1Yd3poQ0JLV2NXb1p3LTBPSGluaHktcWxQaVZNUjdLWEprREd5WXNpT01PY1RxQ3R2Y09oYk1PTnoyX09mR213RGNMOEJnQlpKRTJpTVZXQVVhSjhrcHdrb3l1bHd2NUh1N1lRcDM4MmV6X0tpMkt5aWQwOTZYNnBWVlg2UWtVS0lGd0hQbHYxdlFXZw?oc=5",
+          "domain": "vernonmorningstar.com",
+          "published_ms": 1794166378000,
+          "kind": "news",
+          "id": 95
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 60,
+          "relevance": 50,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 45,
+        "newest_hours": 5,
+        "domains": [
+          "vernonmorningstar.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "score 45 below 50"
+      ],
+      "wave": 2
+    }
+  ]
+}
