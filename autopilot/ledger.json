@@ -824,7 +824,12 @@
       "attempts": 1,
       "run_id": "42564303115",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:54:33.925Z"
+      "updated_at": "2026-11-09T04:56:03.087Z",
+      "stage": "research",
+      "topic": "The Opening of the Holland Tunnel",
+      "score": 61.6,
+      "pillar": "Unbelievable true historical events",
+      "hook": "Before this underwater engineering marvel was built, crossing the Hudson meant risking your life on a ferry."
     }
   },
   "uploads": [
@@ -1527,6 +1532,15 @@
       "at_ms": 1794199829737,
       "score": 65,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The Opening of the Holland Tunnel",
+      "slug": "the-opening-of-the-holland-tunnel",
+      "slot": "kick-cf5c10e282-ch1",
+      "at_ms": 1794200163086,
+      "score": 61.6,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
