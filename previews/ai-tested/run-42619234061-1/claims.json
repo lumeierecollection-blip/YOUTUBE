@@ -1,0 +1,64 @@
+[
+  {
+    "claim_id": "c1",
+    "claim": "The CLI reference describes `claude -p \"query\"` as \"Query via SDK, then exit\" and `claude` as \"Start interactive session\".",
+    "source_id": "s1",
+    "source_url": "https://code.claude.com/docs/en/cli-reference",
+    "published": null,
+    "excerpt": "claude -p \"query\" | Query via SDK, then exit | claude -p \"explain this function\"",
+    "confidence": "high",
+    "editorial_status": "documented_not_run",
+    "context": "Docs wording, not executed here: running a query needs an authenticated account."
+  },
+  {
+    "claim_id": "c2",
+    "claim": "--print / -p prints the response without interactive mode.",
+    "source_id": "s1",
+    "source_url": "https://code.claude.com/docs/en/cli-reference",
+    "published": null,
+    "excerpt": "--print, -pPrint response without interactive mode (see Agent SDK documentation for programmatic usage details). For --resume on a background session that is st",
+    "confidence": "high",
+    "editorial_status": "documented_not_run"
+  },
+  {
+    "claim_id": "c3",
+    "claim": "The installed Claude Code CLI lists --print and --output-format in its --help output (--max-turns is not in that output, so it stays documented-only).",
+    "source_id": "s2",
+    "source_url": "https://www.npmjs.com/package/@anthropic-ai/claude-code",
+    "published": null,
+    "excerpt": "                                        --output-format=stream-json)\n                                        --output-format=stream-json)\n  --output-format <format>              Output format (only works with --print):\n  -p, --print                           Print response and exit (useful for\n                                        --output-format=stream-json)",
+    "confidence": "high",
+    "editorial_status": "demonstrated_feature",
+    "context": "Captured by running the displayed command on the GitHub runner during this render (see terminal-raw.txt)."
+  },
+  {
+    "claim_id": "c4",
+    "claim": "The CLI reference shows `cat logs.txt | claude -p \"explain\"` as the example for processing piped content.",
+    "source_id": "s1",
+    "source_url": "https://code.claude.com/docs/en/cli-reference",
+    "published": null,
+    "excerpt": "Process piped content | cat logs.txt | claude -p \"explain\"",
+    "confidence": "high",
+    "editorial_status": "documented_not_run"
+  },
+  {
+    "claim_id": "c5",
+    "claim": "--output-format specifies the output format for print mode: text, json or stream-json.",
+    "source_id": "s1",
+    "source_url": "https://code.claude.com/docs/en/cli-reference",
+    "published": null,
+    "excerpt": "--output-formatSpecify output format for print mode (options: text, json, stream-json)claude -p \"query\" --output-format json",
+    "confidence": "high",
+    "editorial_status": "documented_not_run"
+  },
+  {
+    "claim_id": "c6",
+    "claim": "--max-turns limits the number of agentic turns, print mode only.",
+    "source_id": "s1",
+    "source_url": "https://code.claude.com/docs/en/cli-reference",
+    "published": null,
+    "excerpt": "--max-turnsLimit the number of agentic turns (print mode only). No limit by default. With --input-format stream-json, a message still queued when the limit ends",
+    "confidence": "high",
+    "editorial_status": "documented_not_run"
+  }
+]
