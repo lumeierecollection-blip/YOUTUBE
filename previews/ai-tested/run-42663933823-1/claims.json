@@ -1,0 +1,90 @@
+[
+  {
+    "claim_id": "design",
+    "claim": "On 2026-11-09, an automated test sent 20 letter-counting questions to each of 2 AI models: GPT-OSS 120B, Gemini 3.5 Flash-Lite. Ten questions used real English words and ten used random strings of 24 letters.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "On 2026-11-09, an automated test sent 20 letter-counting questions to each of 2 AI models: GPT-OSS 120B, Gemini 3.5 Flash-Lite. Ten questions used real English words and ten used random strings of 24 letters.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "demonstrated_feature"
+  },
+  {
+    "claim_id": "check",
+    "claim": "Each model was told to reply with only the number, and code that counted the letters marked every reply right or wrong.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "Each model was told to reply with only the number, and code that counted the letters marked every reply right or wrong.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "demonstrated_feature"
+  },
+  {
+    "claim_id": "example",
+    "claim": "Asked how many times the letter \"r\" appears in \"strawberry\", where the correct answer is 3, GPT-OSS 120B answered 3 and Gemini 3.5 Flash-Lite answered 3.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "Asked how many times the letter \"r\" appears in \"strawberry\", where the correct answer is 3, GPT-OSS 120B answered 3 and Gemini 3.5 Flash-Lite answered 3.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "score0",
+    "claim": "GPT-OSS 120B got 20 of 20 questions right.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "GPT-OSS 120B got 20 of 20 questions right.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "score1",
+    "claim": "Gemini 3.5 Flash-Lite got 11 of 20 questions right.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "Gemini 3.5 Flash-Lite got 11 of 20 questions right.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "split0",
+    "claim": "GPT-OSS 120B scored 10 of 10 on real words and 10 of 10 on random letter strings.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "GPT-OSS 120B scored 10 of 10 on real words and 10 of 10 on random letter strings.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "split1",
+    "claim": "Gemini 3.5 Flash-Lite scored 8 of 10 on real words and 3 of 10 on random letter strings.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "Gemini 3.5 Flash-Lite scored 8 of 10 on real words and 3 of 10 on random letter strings.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "miss",
+    "claim": "The widest miss came from Gemini 3.5 Flash-Lite: asked to count the letter \"o\" in the random string \"onomatopoeia\", it answered 5, and the correct answer is 4.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+    "published": "2026-11-09",
+    "excerpt": "The widest miss came from Gemini 3.5 Flash-Lite: asked to count the letter \"o\" in the random string \"onomatopoeia\", it answered 5, and the correct answer is 4.",
+    "confidence": "high",
+    "context": "Measured in this production's own test; results can differ between runs and the models change over time.",
+    "editorial_status": "measured_statistic"
+  }
+]
