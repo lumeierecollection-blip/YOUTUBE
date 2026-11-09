@@ -2,11 +2,10 @@
   "channel": "gray-matter",
   "production_run": "run-42619884909-1",
   "agent": "agent-gray-matter",
-  "stage": "preview_ready",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-09T12:54:52.866Z",
+  "timestamp": "2026-11-09T12:54:54.502Z",
   "branch": "preview/gray-matter",
   "commit": "26bcb94734bc9412046c7f93c7fdfc611012abce",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619884909#artifacts",
-  "duration_s": 29.733333
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619884909#artifacts"
 }
