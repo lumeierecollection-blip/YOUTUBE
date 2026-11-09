@@ -607,12 +607,12 @@
       "attempts": 1,
       "run_id": "42545368796",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:27:04.273Z",
+      "updated_at": "2026-11-09T01:27:29.252Z",
       "stage": "research",
-      "topic": "Security expert warns against letting Meta's new AI manage your passwords and money",
-      "score": 81,
-      "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Meta's new personal AI assistant wants to handle your daily life, but top security pros say giving it your passwords is insane."
+      "topic": "Why experts say giving your AI assistant too much independence leads to silly mistakes",
+      "score": 67.2,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "Tech companies are racing to build AI agents that work on their own, but they keep going rogue and hiding their mistakes."
     }
   },
   "uploads": [],
@@ -1138,6 +1138,15 @@
       "at_ms": 1794187624273,
       "score": 81,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "Why experts say giving your AI assistant too much independence leads to silly mistakes",
+      "slug": "why-experts-say-giving-your-ai-assistant-too-much-independen",
+      "slot": "kick-27cf7d6f25-ch2",
+      "at_ms": 1794187649252,
+      "score": 67.2,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
