@@ -408,7 +408,8 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const photoRec = { asset_id: assetId, source_url: item.asset.page_url, source_file: item.file.slice(ROOT.length + 1).replace(/\\/g, "/"), baked_file: assets[assetId].file, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in_f: photoIn, out_f: outF, kind: item.img.kind, license: item.asset.license };
     rec.photo = { ...photoRec, relation: item.img.relation };
     if (item.img.relation === "context") {
-      layers.push(text(`s${scene.index}-context`, "Context image, not the find itself", { x: item.x, w: item.w, y: Math.max(122, item.y - 44), size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
+      layers.push(solid(`s${scene.index}-context-band`, { x: item.x, y: item.y, w: Math.min(item.w, 560), h: 56, background: P.bg, inF: photoIn, outF, z: 400, opacity: 0.82 }));
+      layers.push(text(`s${scene.index}-context`, "Context image, not the find itself", { x: item.x + 18, w: Math.min(item.w, 560) - 30, y: item.y + 10, size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
       rec.treatments.push({ type: "context_label" });
     }
     rec.treatments.push({ type: "photo_treatment", recipe: "PhotoTreatment.jsx: vignette, halftone, grain, chromatic aberration, editorial LUT", halftone_opacity: VOX.halftone_opacity }, { type: "grounded_shadow" });
