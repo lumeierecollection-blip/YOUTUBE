@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T18:19:35.909Z",
+  "rebuilt_at": "2026-11-09T18:20:19.428Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -80,9 +80,9 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "research_complete",
+      "stage": "blueprint_complete",
       "status": "ok",
-      "at": "2026-11-09T18:19:35.275Z",
+      "at": "2026-11-09T18:20:18.957Z",
       "branch": "preview/hidden-past",
       "commit": "7e52df8c",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42672760670#artifacts)",
@@ -93,7 +93,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-09T18:19:35.275Z",
+      "lastOk": "2026-11-09T18:20:18.957Z",
       "run": "run-42672760670-1"
     },
     {

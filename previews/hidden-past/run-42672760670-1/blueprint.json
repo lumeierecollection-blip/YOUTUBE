@@ -1,0 +1,59 @@
+{
+  "central_question": "Does the famous Sarajevo arrest photograph actually show Gavrilo Princip?",
+  "thesis": "The photograph does not show Gavrilo Princip; scholars identify the man as Ferdinand Behr, and no authentic arrest picture of Princip exists.",
+  "why_it_matters": "Accurate identification prevents spreading a false detail about the event that sparked World War I.",
+  "viewer_start": "They assume the arrest photo is of Gavrilo Princip.",
+  "viewer_end": "They know the photo is of a bystander, Ferdinand Behr, and that no arrest photo of Princip is known.",
+  "key_evidence": [
+    "c5",
+    "c6"
+  ],
+  "beats": [
+    {
+      "beat_id": "b1",
+      "role": "opening",
+      "purpose": "Introduce the day of the assassination with the Archduke’s photograph",
+      "claim_ids": [
+        "c1"
+      ],
+      "link_from_previous": "none"
+    },
+    {
+      "beat_id": "b2",
+      "role": "development",
+      "purpose": "Present the common claim that the arrest photo shows Princip and note scholarly dispute",
+      "claim_ids": [
+        "c5"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "beat_id": "b3",
+      "role": "payoff",
+      "purpose": "Provide scholarly evidence that no arrest photo of Princip exists and the man is identified as Ferdinand Behr",
+      "claim_ids": [
+        "c6"
+      ],
+      "link_from_previous": "evidence"
+    },
+    {
+      "beat_id": "b4",
+      "role": "ending",
+      "purpose": "Summarize the answer for the viewer",
+      "claim_ids": [],
+      "link_from_previous": "consequence"
+    }
+  ],
+  "questions_raised": [
+    {
+      "question": "Does the photograph show Gavrilo Princip?",
+      "raised_in": "b2",
+      "answered_in": "b3"
+    }
+  ],
+  "conclusion": "The image does not depict Gavrilo Princip; it is Ferdinand Behr, and no authentic arrest photograph of Princip is known.",
+  "explain_in_script": [
+    "Ferdinand Behr",
+    "David James Smith"
+  ]
+}
