@@ -1,0 +1,150 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42675599926-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s0",
+      "narration": "Whose arrest does a famous Sarajevo photograph really show? In June 1914, the archduke left city hall and was soon killed.",
+      "claim_ids": [
+        "c5",
+        "c1"
+      ],
+      "start_s": 0,
+      "end_s": 9.866666666666667,
+      "transition": "cut",
+      "main_point": "Open on the evidence itself.",
+      "visual_objective": "Show the named place and moment before explaining it.",
+      "treatment": "archival-photo-ledger",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "couple",
+          "origin": "Wikimedia Commons (Imperial War Museums)",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg"
+        }
+      ],
+      "animation": "headline slides in; accent circle draws on; photograph never moves",
+      "on_screen_text": [
+        "28 June 1914",
+        "Circled: the couple at the car"
+      ]
+    },
+    {
+      "scene_id": "s1",
+      "narration": "Sarajevo is now in Bosnia and Herzegovina.",
+      "claim_ids": [
+        "c2"
+      ],
+      "start_s": 9.866666666666667,
+      "end_s": 13.366666666666667,
+      "transition": "cut",
+      "main_point": "Where Sarajevo is today.",
+      "visual_objective": "Show the country and today's borders, so the 1914 map next reads as a change.",
+      "treatment": "modern-map-locator",
+      "background": "light archival paper",
+      "skill": "scripts/autopilot/map-vox.mjs buildMapLayers",
+      "assets": [
+        {
+          "id": "natural-earth",
+          "origin": "Natural Earth (public domain)",
+          "licence": "Public domain"
+        }
+      ],
+      "animation": "country tints, pin and ring draw on, labels slide in",
+      "on_screen_text": [
+        "Sarajevo today",
+        "Sarajevo"
+      ]
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Then, Austria-Hungary ruled it.",
+      "claim_ids": [
+        "c3"
+      ],
+      "start_s": 13.366666666666667,
+      "end_s": 15.533333333333333,
+      "transition": "cut",
+      "main_point": "In 1914 the borders were not today's.",
+      "visual_objective": "A dated map where the 1914 empire border differs from today's, with the date on screen.",
+      "treatment": "dated-historical-map",
+      "background": "light archival paper",
+      "skill": "document treatment (platform/channels/hidden-past) + PhotoTreatment",
+      "assets": [
+        {
+          "id": "map1914",
+          "origin": "Wikimedia Commons",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Austria-Hungary_(ethnic_1890,_with_red_1914_and_blue_1920_borders).jpg"
+        }
+      ],
+      "animation": "map fades in unmoving; accent circle draws on Sarajevo; evidence lines arrive in turn",
+      "on_screen_text": [
+        "Same city, 1914",
+        "DATED MAP: 1895 BASE, 1914 BORDER IN RED"
+      ]
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Next day, The New York Times reported it.",
+      "claim_ids": [
+        "c4"
+      ],
+      "start_s": 15.533333333333333,
+      "end_s": 18.3,
+      "transition": "cut",
+      "main_point": "The primary report of the day.",
+      "visual_objective": "Show the actual front page headline.",
+      "treatment": "newspaper-scan",
+      "background": "light archival paper",
+      "skill": "document treatment (platform/channels/hidden-past) + PhotoTreatment",
+      "assets": [
+        {
+          "id": "nyt",
+          "origin": "Wikimedia Commons / Internet Archive",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf"
+        }
+      ],
+      "animation": "page fades in unmoving; evidence lines arrive in turn",
+      "on_screen_text": [
+        "Next-day front page",
+        "The New York Times, Monday 29 June 1914, page 1"
+      ]
+    },
+    {
+      "scene_id": "s4",
+      "narration": "The photo is often called Gavrilo Princip's arrest. Scholars say it shows a bystander, Ferdinand Behr. The picture is real. The caption is in doubt.",
+      "claim_ids": [
+        "c5",
+        "c6"
+      ],
+      "start_s": 18.3,
+      "end_s": 29.133333333333333,
+      "transition": "chapter opener (book-section page)",
+      "main_point": "The famous caption is a later claim scholars dispute.",
+      "visual_objective": "Show the photograph, then separate what it was captioned from what scholars say.",
+      "treatment": "archival-photo-card-with-claim-ladder",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "behr",
+          "origin": "Wikimedia Commons",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg"
+        }
+      ],
+      "animation": "chapter opener, then photograph holds still; circle draws on; claim lines arrive in turn",
+      "on_screen_text": [
+        "CHAPTER I",
+        "The Caption",
+        "A caption in doubt",
+        "LATER INTERPRETATION"
+      ]
+    }
+  ]
+}
