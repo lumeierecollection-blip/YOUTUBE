@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The collapse of the historic Stari Most bridge in Mostar",
+      "score": 61.3,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The closing line confusingly frames the 16th-century architect as personally losing the bridge in 1993, which is historically impossible and baffling to a first-time viewer."
+    },
+    {
+      "topic": "The 1965 Northeast blackout plunging North America into darkness",
+      "score": 60.2,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: CLOSE 2 sentences (must be one). Rewrite the close beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: CLOSE no specific action or number. Rewrite the close beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sentence 1 \"Did 30 m"
+    },
+    {
+      "topic": "Ruth Harkness capturing and smuggling the first live giant panda to America",
+      "score": 58.8,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts:\n  - SCR-16: 60 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 5 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55.\n  - SCR-14: sources_used references URL(s) not present in the research file"
+    }
+  ],
+  "selected": null
+}
