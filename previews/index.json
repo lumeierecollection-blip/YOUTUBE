@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:27:00.663Z",
+  "rebuilt_at": "2026-11-09T13:27:05.100Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "blocked",
-      "status": "failed",
-      "at": "2026-11-09T13:27:00.205Z",
+      "stage": "preview_ready",
+      "status": "ok",
+      "at": "2026-11-09T13:27:04.825Z",
       "branch": "preview/_script-engine",
       "commit": "ddf327a8",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "rejected_blueprint: blueprint rejected: a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.; the beats do not answer the central question from the claims; the beats do not answer the central question from the claims; does not fit t",
-      "lastOk": "2026-11-09T13:04:34.302Z",
+      "blocker": "0 of 8 channels approved",
+      "lastOk": "2026-11-09T13:27:04.825Z",
       "run": "run-42623336334-1"
     },
     {
