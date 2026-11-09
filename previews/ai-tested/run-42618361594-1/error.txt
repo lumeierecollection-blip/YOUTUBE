@@ -1,0 +1,3 @@
+Error: help output lacks flags (found --print,--output-format); see terminal-raw.txt
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/preview.mjs:38:44)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

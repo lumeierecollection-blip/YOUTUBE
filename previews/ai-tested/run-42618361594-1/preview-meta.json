@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42618361594-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "page captured",
-  "timestamp": "2026-11-09T12:37:25.567Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T12:37:31.216Z",
   "branch": "preview/ai-tested",
   "commit": "d73378b2b14b3670b68445857c8946cbe1aec0c7",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618361594#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618361594#artifacts",
+  "error": "help output lacks flags (found --print,--output-format); see terminal-raw.txt"
 }

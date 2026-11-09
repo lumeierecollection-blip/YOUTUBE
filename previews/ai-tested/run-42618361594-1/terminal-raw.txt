@@ -1,0 +1,18 @@
+$ npx -y @anthropic-ai/claude-code --help | grep -E -- '--print|--output-format|--max-turns'
+Claude Code - starts an interactive session by default, use -p/--print for
+                                        with --print the path to a file that
+                                        --print and --output-format=stream-json)
+                                        --output-format=stream-json)
+                                        arrive (only works with --print and
+                                        --output-format=stream-json)
+  --input-format <format>               Input format (only works with --print):
+                                        validation (only works with --print).
+                                        calls (only works with --print)
+                                        resumed (only works with --print)
+  --output-format <format>              Output format (only works with --print):
+                                        --print: "host" (the SDK host or
+  -p, --print                           Print response and exit (useful for
+                                        --output-format=stream-json)
+--- stderr ---
+
+--- exit 0 ---
