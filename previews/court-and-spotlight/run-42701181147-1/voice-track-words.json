@@ -1,0 +1,375 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (54/56 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.0,
+   "end": 0.4,
+   "sentence": 0
+  },
+  {
+   "text": "one",
+   "start": 0.4,
+   "end": 0.7,
+   "sentence": 0
+  },
+  {
+   "text": "night",
+   "start": 0.7,
+   "end": 1.08,
+   "sentence": 0
+  },
+  {
+   "text": "Beyonc\u00e9",
+   "start": 1.46,
+   "end": 1.92,
+   "sentence": 0
+  },
+  {
+   "text": "became",
+   "start": 1.92,
+   "end": 2.22,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 2.22,
+   "end": 2.5,
+   "sentence": 0
+  },
+  {
+   "text": "most-awarded",
+   "start": 2.5,
+   "end": 2.95,
+   "sentence": 0
+  },
+  {
+   "text": "artist",
+   "start": 3.4,
+   "end": 3.8,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 3.8,
+   "end": 4.12,
+   "sentence": 0
+  },
+  {
+   "text": "Grammy",
+   "start": 4.12,
+   "end": 4.44,
+   "sentence": 0
+  },
+  {
+   "text": "history",
+   "start": 4.44,
+   "end": 5.0,
+   "sentence": 0
+  },
+  {
+   "text": "She",
+   "start": 5.88,
+   "end": 5.94,
+   "sentence": 1
+  },
+  {
+   "text": "arrived",
+   "start": 5.94,
+   "end": 6.22,
+   "sentence": 1
+  },
+  {
+   "text": "with",
+   "start": 6.22,
+   "end": 6.58,
+   "sentence": 1
+  },
+  {
+   "text": "nine",
+   "start": 6.58,
+   "end": 6.92,
+   "sentence": 1
+  },
+  {
+   "text": "nominations",
+   "start": 6.92,
+   "end": 7.48,
+   "sentence": 1
+  },
+  {
+   "text": "Her",
+   "start": 8.32,
+   "end": 8.38,
+   "sentence": 2
+  },
+  {
+   "text": "fourth",
+   "start": 8.38,
+   "end": 8.64,
+   "sentence": 2
+  },
+  {
+   "text": "win",
+   "start": 8.64,
+   "end": 8.96,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 8.96,
+   "end": 9.24,
+   "sentence": 2
+  },
+  {
+   "text": "best",
+   "start": 9.24,
+   "end": 9.56,
+   "sentence": 2
+  },
+  {
+   "text": "dance",
+   "start": 9.56,
+   "end": 9.96,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 9.96,
+   "end": 10.22,
+   "sentence": 2
+  },
+  {
+   "text": "electronic",
+   "start": 10.22,
+   "end": 10.42,
+   "sentence": 2
+  },
+  {
+   "text": "music",
+   "start": 10.42,
+   "end": 11.14,
+   "sentence": 2
+  },
+  {
+   "text": "album",
+   "start": 11.14,
+   "end": 11.48,
+   "sentence": 2
+  },
+  {
+   "text": "for",
+   "start": 11.48,
+   "end": 11.82,
+   "sentence": 2
+  },
+  {
+   "text": "Renaissance",
+   "start": 11.82,
+   "end": 12.04,
+   "sentence": 2
+  },
+  {
+   "text": "On",
+   "start": 13.08,
+   "end": 13.2,
+   "sentence": 3
+  },
+  {
+   "text": "stage",
+   "start": 13.2,
+   "end": 13.5,
+   "sentence": 3
+  },
+  {
+   "text": "she",
+   "start": 13.5,
+   "end": 13.84,
+   "sentence": 3
+  },
+  {
+   "text": "said",
+   "start": 13.84,
+   "end": 14.08,
+   "sentence": 3
+  },
+  {
+   "text": "she",
+   "start": 14.08,
+   "end": 14.22,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 14.22,
+   "end": 14.34,
+   "sentence": 3
+  },
+  {
+   "text": "just",
+   "start": 14.34,
+   "end": 14.68,
+   "sentence": 3
+  },
+  {
+   "text": "trying",
+   "start": 14.68,
+   "end": 14.98,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 14.98,
+   "end": 15.14,
+   "sentence": 3
+  },
+  {
+   "text": "receive",
+   "start": 15.14,
+   "end": 15.52,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 15.52,
+   "end": 15.88,
+   "sentence": 3
+  },
+  {
+   "text": "night",
+   "start": 15.88,
+   "end": 16.08,
+   "sentence": 3
+  },
+  {
+   "text": "That",
+   "start": 16.76,
+   "end": 16.88,
+   "sentence": 4
+  },
+  {
+   "text": "made",
+   "start": 16.88,
+   "end": 17.06,
+   "sentence": 4
+  },
+  {
+   "text": "thirty-two",
+   "start": 17.06,
+   "end": 17.34,
+   "sentence": 4
+  },
+  {
+   "text": "Grammys",
+   "start": 17.62,
+   "end": 18.36,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 18.36,
+   "end": 18.5,
+   "sentence": 4
+  },
+  {
+   "text": "her",
+   "start": 18.5,
+   "end": 18.62,
+   "sentence": 4
+  },
+  {
+   "text": "career",
+   "start": 18.62,
+   "end": 18.92,
+   "sentence": 4
+  },
+  {
+   "text": "More",
+   "start": 19.34,
+   "end": 19.44,
+   "sentence": 5
+  },
+  {
+   "text": "than",
+   "start": 19.44,
+   "end": 19.58,
+   "sentence": 5
+  },
+  {
+   "text": "any",
+   "start": 19.58,
+   "end": 19.96,
+   "sentence": 5
+  },
+  {
+   "text": "other",
+   "start": 19.96,
+   "end": 20.26,
+   "sentence": 5
+  },
+  {
+   "text": "artist",
+   "start": 20.26,
+   "end": 20.56,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 20.56,
+   "end": 20.8,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 20.8,
+   "end": 20.88,
+   "sentence": 5
+  },
+  {
+   "text": "awards'",
+   "start": 20.88,
+   "end": 21.18,
+   "sentence": 5
+  },
+  {
+   "text": "history",
+   "start": 21.18,
+   "end": 21.7,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "In one night, Beyonc\u00e9 became the most-awarded artist in Grammy history.",
+   "start": 0.0,
+   "end": 5.0
+  },
+  {
+   "text": "She arrived with nine nominations.",
+   "start": 5.88,
+   "end": 7.48
+  },
+  {
+   "text": "Her fourth win was best dance and electronic music album, for Renaissance.",
+   "start": 8.32,
+   "end": 12.04
+  },
+  {
+   "text": "On stage she said she was just trying to receive the night.",
+   "start": 13.08,
+   "end": 16.08
+  },
+  {
+   "text": "That made thirty-two Grammys in her career.",
+   "start": 16.76,
+   "end": 18.92
+  },
+  {
+   "text": "More than any other artist in the awards' history.",
+   "start": 19.34,
+   "end": 21.7
+  }
+ ]
+}
