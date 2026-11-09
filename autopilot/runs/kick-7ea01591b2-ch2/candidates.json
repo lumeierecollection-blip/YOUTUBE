@@ -1,0 +1,958 @@
+{
+  "generated_at": "2026-11-09T00:39:23.483Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1368
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": true,
+          "items": 27
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 41
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 52
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "ChatGPT now turns photos and sketches into animated GIFs",
+      "pillar": "Viral AI demos and experiments",
+      "evidence_ids": [
+        105
+      ],
+      "hook": "Snap a picture, watch it loop – create GIFs instantly with ChatGPT.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "ChatGPT",
+      "commons_query": "ChatGPT logo",
+      "youtube_query": "ChatGPT GIF creator short",
+      "evidence": [
+        {
+          "title": "ChatGPT Now Lets Users Turn Photos And Sketches Into Animated GIFs - The Hans India",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZV8yU2FRQ1UyVE5pcTM0aXFlLWFKelNFdlUxZGlpcFlQY2QxcTd0U1NiTENTZkZnbXB4WFpWSHRza2tjWUtibHJlU3FUaFh3SzQzN25mVWh3c3pYOGRVMnpPMDczNDk1cGY4ZVNMU01XeWV3S3FhT0RTUzc2cFRKZ2pWQ2J1MVhteFRfSUlESjgyNjNuTkdlTFBCS1JRc29fVDVQSlVVT08yUjVG?oc=5",
+          "domain": "thehansindia.com",
+          "published_ms": 1794036938000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "ChatGPT Can Now Generate Animated GIFs From Text or Photos, With Speed and Frame Editing - XenoSpectrum",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84UnYzZEpEelZ3MjZwd0Y2Y2Q2UVdFUDRHcEJOVEprcERkdlpPamN0NGtlU2dsNVczeGRBT0F0ZDQxSkR2c0tYWnVPYWNlcnctUE5ucUJtUzMxZVdKUXQtM2hMMm0tUQ?oc=5",
+          "domain": "xenospectrum.com",
+          "published_ms": 1793837608000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT GIF trend: How to turn photos, sketches and ideas into animated GIFs | prompts included - Moneycontrol.com",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPaFE2SHhNUUFoUVZ3MjBrdlNkMGZTMTVPSktJTjlnVkpGX0x3QWRLYzBfemxnZjk2MXVuSWFNeVBhYnk1UWluOGpyWWtHcUJsUU00MGtHajJoc0h4bWNodVYySTB6akdxcDhYOUR3VWctdU85Rk1qYjJlVTNsUVNFbnFmZlFtcnBhUlg2dG1zWDJXNHMxRUdybzMzUEZIR1lCZzEtb1V2V2pnNWp1V09oZmJyN2ZnaHB4Zi1hc2tLcmctRjM5MWJScmsySHFNaGRvdFU3SnVaNjRKUmlFTkR0XzJaNVJSekdtTGgtRUVPVmkta0xoQzc4ZmpiU1VZRGvSAYQCQVVfeXFMTjNfMm9RNURKY3ZmNElXWkhDWEQzZ3l3cnFzU1hudlZyTk1jbk92NUVWeE5TTUg5SS1UMWt3SWZSY3ZpNklfNmprclZROWJjZ2ZxLU1sdUJmUjEtdmtkYllQVm0wbkRyNnFLOGpwWnA1SVRrU0ViajFNdDZ4SU5yMlYyaEw2bjJSaWs3TG5tWnVlVXdLUExLSXZIUnJCMGc0dmFnZmRyQjUza1V4ZG1HLUdyNVdqMmhNRDJBbG9vajRzRFQyczM1THpqdUVSUTlNM1pHb3NrZUlEdjN2di1KbnJQSTBUam9WQngyTlNXbUpQNmpXNWJzVy1GX1NCY3kzY01qems?oc=5",
+          "domain": "moneycontrol.com",
+          "published_ms": 1793867205000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT can now turn your photos into animated GIFs, here's how it works - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOMmRZQ3hsLVNSc2tiYmplY1kzY0hiYXFXTjNQZDBXNmFjbTVlcEVaNDJoVmFHS1BuYnN6cjNRRnRPMkt1X295UThmbDFZdXg1aXBlanpReFdvSTdoOU5ZUklpTV9oalY4b01TMVNSTUtrT1ZqM3ZLVjJwR1dBTHVMSnFlMWp1b1RveS1mUEF5UVlnaW03dW9adm9uVktOVUdvY2VpQUhEU216RlQ1WFNZbHh3T1d5cEZiTVdxenJxVzBVdEl5ODFOeDl5TDhkVXJTeS1N0gHYAUFVX3lxTE5NV1hwdVVXazlKc2czQWZVQ2M4SW1Fb1Y2RWpoYUxFZHNZREpZM2oxbUkzblBTcHhuMzU1NkdZOXlDOUJ4dWRRX29RQ3c0WndaaE1xRmQwUzRmR0xhWEJHSjExNERpaUtPZUFyQ2dtYXFRMVZLLUVwcUZGdkU4MTl0Zk9faE5aeXJWQXpsLXhIR2stb2V6OVl1STFZa3FJM1pQS1B1aExLXzFmMFktZC1ueEpoZ2ZrMDRUNFZKSldIc2pyV2ZPeEJvdkFDZ1pZX0x6dkRNVDUxcg?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1793856982000,
+          "kind": "news"
+        },
+        {
+          "title": "How To Turn Your Favourite Photos Into Animated GIFs, Diwali Greetings And More With ChatGPT - News18",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQbmxTa0pTVHR1VDVHbEwxZjVlTjZCQlNCczJLLUg1eEU1OHJuQmJJN3lNSk4zdTJpMHJiN2c2RzdHWk9xRE9uOHBRSUg0LTU3UU44eTd2Z3pFTDVQUlBfZkpMQ1lXX2wwaEdlbmVnMWdsUi15SVFCNUxUNDRqYlNwdEVCc1dYWHQwM1lvZHFZS2xJSm9wamZQcTR3T3I5cEtTSFhkOU5JN0hLN2lXcnhwd3NmbktxY0drTkRuSEpUb0wxQk15WkRvQ0I2RkdDZ9IB0wFBVV95cUxOZkhmVkJnSWJOc2paRndJeDV3WDR6MFlTbDhzQU5ieDFIM3pCMUZ4TE1VNi1GcjFkU0hVMW4wY1NtajN5aWFhem84dU1QTGFabkc3X054Nm5oTlpXdUU0aTFRYkhVcGl0dDFUNUJsVWFwUXFMVnZCcGEyTDB4Wm1TZ2lxYVpSYnNsYll1S3RVQWJuTk9XeHJWV1h4TXpVUWZNNTFXY0VyVE5XalNsMmVlQkZpblpBTHRnVzg5MDFIX1NWTnZTY0ZlMGRXaGJWTFlhSC1F?oc=5",
+          "domain": "news18.com",
+          "published_ms": 1793880900000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Can Now Turn Your Photos Into GIFs: OpenAI Rolls Out New Images 2.6 Model - Gizbot",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOd1hOTEN5SjY4VTlVRUd6d1FuejZSMUh5S1VJN3BEb09XOXR0cUNDd0RuUkhfbnozSEVHSHVqeHkxbDJJY2hDbVNTU1dDT3VGTC1zSUVYVUpNVFBQamFubkttSTdnSWtzWTBCQXNySHczS2t4UjlHMnVrenRTcVFvRlpqbzhmWDZRbU5oaE1laEQ1dGZmUUtBcFNZTFpsV1NXNXczam9lX2w0T05vZGtQVWxHTkNLa242S3VFTDZWNlJqTUp2WF9XRldDczBPaExZZzlwUUh3?oc=5",
+          "domain": "gizbot.com",
+          "published_ms": 1793856630000,
+          "kind": "news"
+        },
+        {
+          "title": "How to Turn Your Photos, Sketches and Ideas Into Animated GIFs Using ChatGPT: Prompts Inside - Mashable India",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSVdtVjNHUXQ3aGdFQ0xYNkpUbTVQVHNXV2xPR0dtWnZaR0ZHaEl1eV9mbGYwdElhNlQwWTBvTlpOM2EyUnUxNHFzZmJuMVpoLURCcXNaeGxqMUdFQjU2RzZZTFpUUVhHT3JEMjVoelJqQmQ3V0gyczl2ancxeUowRW1ITjNocGR1ODBPZG9mV1hzQnd4SjJPYTk3VUUzUTAzN2pwcHpvQzNzTElPOEdZdHFnd0FDVXBNYnp5T09xaUJETWNQ?oc=5",
+          "domain": "in.mashable.com",
+          "published_ms": 1793943632000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "ChatGPT",
+        "daily_views": 85000,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 85,
+          "reach": 99,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 80.1,
+        "newest_hours": 41,
+        "domains": [
+          "thehansindia.com",
+          "xenospectrum.com",
+          "moneycontrol.com",
+          "indiatoday.in",
+          "news18.com",
+          "gizbot.com",
+          "in.mashable.com"
+        ],
+        "trusted_domains": [
+          "in.mashable.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: OpenAI's New Update Turns Your Photos Into GIFs Instantly"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Claude vs. ChatGPT: which AI can be your personal accountant?",
+      "pillar": "AI productivity and money‑saving uses",
+      "evidence_ids": [
+        90,
+        69
+      ],
+      "hook": "Your AI accountant is here – but is Claude or ChatGPT better at saving you money?",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "Claude (AI)",
+      "commons_query": "Claude AI",
+      "youtube_query": "Claude vs ChatGPT personal finance short",
+      "evidence": [
+        {
+          "title": "Claude Personal Finance Vs. ChatGPT Finances: What Sets Them Apart? - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORGNUWG9XV2JUWGNmcFAxa2V1VWp1TVVnVnd5SUh2cFFZMjg4YUFZT0NtNUh3WlR2dXVYeFpuTHlsWVpDdjN5LVVxdkpIVjl5dXppOFl3MEhXdnprdkF2YzdVTWtvX1NZdzRLWUpSSXZpTGxuejlxNjF5TDJsUHh4bmtzYkdTQQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1794093020000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Anthropic Launches Personal Finance In Claude To Connect Bank Accounts And Analyze Spending - Pulse 2.0",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPX2kxcWdHUDg0cmRNdnBQWXdxQU1MbWdMSnU3Mlpad1hmUkkxLWI2Uk5DY3g4QndBWm1mTmFvQ2d2cHN2MXhEcGVFV2hzU2c3QlFfSlllRXBYeWVUdU5yYXM1SVdsNTl5aTlYcFdIS1pmcFYwTVR2SnZhQ1ZIOEpkc3pJcDRoeDliaGl6QXNzdFdZUEhGaEpWSDJLYWk0Y1hhVU5PQklKd004S3k3M3JsUw?oc=5",
+          "domain": "pulse2.com",
+          "published_ms": 1794147972000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "ChatGPT Personal Finance Review: Should You Link Your Bank? - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1PY1hrb3BncHR6MXAyOWp6anhFQmVlVnhneFlCUjJiUGVfQVBTeHp5OWFQbUhORl9Wb0NvSkR2MlFPLTFfck1mX0ZzanJYbW5EbkFqeGlBeVAxVWhSRVB5dk1n?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1794034668000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic launches Claude Personal Finance, chasing ChatGPT for your bank data - Cryptopolitan",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1mZ3cwVVBXdmJXYk9GdlVSNUJXRDd6NU5YUEFJd04zS0tEU1RDTnlPdmR5WFpXa2ttOTltVVkwMEdJSDZxa1gtTWxKeUk1cFhiYnh3ZDFyMlNjT3BUSzRjVEhEZVRZRmczRTkwNkw1YVpJY1NtRkRkUVExWFNKdE0?oc=5",
+          "domain": "cryptopolitan.com",
+          "published_ms": 1793919846000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Can Read Your Bank Statements: How Anthropics New Personal Finance Tool Works - ABP Live English",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQVm9QVTBpVUNTdm11S3I4R1oyQUxEYkZBaWJQUTRPSTVNbDA0b1NnRS1BcmU3SG5RM3RtYS15aDd2ZFEzLVBOaU40TDVkUEtobVVIMGkwYTVZeW9hRXVtUUlQaVVJWUpGRnZGczE1d1hvaHB0WUpFTXd6MUdST19UdW9yeWQ2S2NGZkdXMURjdmVLWjAwR0tGZ01tLVZFU0VFYnVIR0NST3dxMlo1TWJ1Zk84OGhvUmNMaml3VE9TUFhWN0tqN0ZV0gHMAUFVX3lxTE5DSHh6YzA3T1g4ZUpoRFp5ZkJPNnZPVGEzZnNrZVNSUFdsSWtrWjF3YXkweTBiY25rMEZ1cEtiZDh1MlgxWW5yNjQ5SEF5VDZDNGlFWElvc1dNV3lqc2ZoVWtYOHFjcXJvVHN2UVpVTEJqOWlTNHZWV2tGa0NJQXZZaDNfY0thQVlzb0tzMUstdG5wc1FpVmlKZk1hNlZXUkFrbVQ1MDQ0UTdEVVBTY3lyc3Z1b1FwNzRabUc4a1RGSXVPbHJNTW5ZRlVHWA?oc=5",
+          "domain": "news.abplive.com",
+          "published_ms": 1793966520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Claude (AI)",
+        "daily_views": 6210,
+        "ratio": 0.89
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 76,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 79.2,
+        "newest_hours": 10,
+        "domains": [
+          "engadget.com",
+          "pulse2.com",
+          "felloai.com",
+          "cryptopolitan.com",
+          "news.abplive.com"
+        ],
+        "trusted_domains": [
+          "engadget.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "AI‑generated video of Trump vandalising his office – deepfake politics",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        101
+      ],
+      "hook": "That viral Trump video? All AI – see how deepfakes can rewrite reality.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Donald Trump",
+      "commons_query": "Donald Trump",
+      "youtube_query": "Trump deepfake video short",
+      "evidence": [
+        {
+          "title": "The viral video claiming that Trump vandalised his office following the Republican Party's defeat in 2026 Midterms is AI-generated - FACTLY",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMWEtMmFtdlBTZ1h6QXFsUHo2SWxOeTFmdE9NZ3FnZk0tVlpRUWdSdW9KQUM2dmxISHhOWTlFQnVUYlVJcjR1M1phTFBFem1XbnVBbC1MSWIteThyYTI2LUdKenpCNF9PdnpIdHR2QWpSbjZ0b01CeFR6UnRhTVdXS0xYczM0MFpjYXJnRWU4cERETElOeENzVjBROHl3RVdqQjRSekJITDZST2k4NjRKMWNaYXRVVUdwQXdIYnlkQzl6b2NRbWZPbERJbDRYQ294bG8wZnRvQ21sd01sM2Z2MEhR?oc=5",
+          "domain": "factly.in",
+          "published_ms": 1794052570000,
+          "kind": "news",
+          "id": 101
+        },
+        {
+          "title": "AI-Generated Video Goes Viral As Showing Trump Destroying Office After US Midterms Setback - Newschecker",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdWE1ZEMxTV9Mck5tb3VpQkR6T1hGMHFQRXVlN3FHSzFSQ2MwZXpNR2VGb19BZlJwMWVsaU5yVVBIUkJGZWV1QmlFQmlOaFUzb2xURjVFUnRmNGtFWjdmWWJYcXpiZjhwaFZYcWN1c3R5NE4ybGFfcXV2ZVRvMjRERTBlWWRWYmlmX3c4MUdsb3ZESTFQTm5PdVdqVzR2Szh1TWxLQ1NaUm9sU3Q0dUpBN2lyVXBJSHVuTGdNZGNBYXR3dw?oc=5",
+          "domain": "newschecker.in",
+          "published_ms": 1793886623000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Donald Trump",
+        "daily_views": 86322,
+        "ratio": 2.35
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 76,
+          "reach": 99,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 30
+        },
+        "total": 78.8,
+        "newest_hours": 37,
+        "domains": [
+          "factly.in",
+          "newschecker.in"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Maps gets Gemini AI – 3D navigation in your pocket",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        95
+      ],
+      "hook": "Your next road trip will be guided by AI in 3‑D!",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Google Maps",
+      "commons_query": "Google Maps",
+      "youtube_query": "Gemini AI Google Maps 3D short",
+      "evidence": [
+        {
+          "title": "Google Maps Gets Smarter: Gemini Integration and 3D Immersive Navigation - آي-فون إسلام",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNNk5RNnA2UU95Z0Zod2tGc0FFUE9lMkJxa0pXcVRYRjc5ZXlBSXR4N01SbTNHMmcxLWowZEFDVnBtSm5xVEFBQ19zTmxGb1ZNQ2FncnppemMtTzBybkhBR3hmc20wM0RYNlFfU2FNTFBmTHlaYUhfN1dwbTZabVJPYlBWTE5KMHRLNUZRN3FlVlhSMUtYSnpXT1A3TmhzZllZYVVFTmJ1VXpXekx3aGtlbHBHRjNTV01iV0w3azAwRGZZSUYzS045d3NrSlpyUQ?oc=5",
+          "domain": "iphoneislam.com",
+          "published_ms": 1794071169000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Google Maps Is Getting Gemini AI In CarPlay - InsideEVs",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBoU0VGdEt2eHFIblV6MEhlYkxocGRDeTRySnNuQndZTF9qMmhUZWtPMURrV2NsbFBieEtoMWFLWjI2aHV2QXVwc3llNE5tSWx6bnktTW4zak9ZZ09sbHpfX21Jc0lhS21Sc3VEcUJn?oc=5",
+          "domain": "insideevs.com",
+          "published_ms": 1794105002000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Maps",
+        "daily_views": 6358,
+        "ratio": 1
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 76,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 72.9,
+        "newest_hours": 22,
+        "domains": [
+          "iphoneislam.com",
+          "insideevs.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Instagram’s free 4K AI video editor – edit like a pro on your phone",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        85
+      ],
+      "hook": "Turn your clips into TikTok‑ready videos with Instagram’s new AI editor – no cost.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Instagram",
+      "commons_query": "Instagram app",
+      "youtube_query": "Instagram AI video editor short",
+      "evidence": [
+        {
+          "title": "Instagram is entering the world of video editing on Mac devices... a free app that supports 4K videos and AI tools - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxONElrdzBzOUlvNE96SFdySWcxTUExUWNOa2huSmlLemd3bUFiQUpqZW9pU0FLUmQ4eGVwdHpmZFpIczRNdmhZdFBVLWtXT0VxbjVFWnRpSU9oX3JiYVFvMUJRM25zdnBrZXJFWU1mNFhGMEdOMndLb0FsVjR2bTQ5dFJrZl9xVUU1QzVuX2VLUUZTZ2hRRWdCUEpXRVktVFlNS2dscXJPbjRESUgxR2dES0pkUjE2YTVsNnQ4di12dkpmWG1BaHExTjJwTUZ0YmQzWTMyOXplRnNuMWJUNlhuNlYzdk9DbzRFb2RKUGRyMWFNdVB2dGZjWkpELUQ?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794116945000,
+          "kind": "news",
+          "id": 85
+        },
+        {
+          "title": "Instagram launches free Edits video editor for Mac with 4K exports - The Next Web",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPdlp3bnVoMHZFblJELXpnNGt4QmJhYmFKWVo5Y3dGNGNsZU81RkowNnhRaXJRTWM2OU15TGRWc19kcE5ENTBTRGNFbGh3c0hha1hzdUtJa0lLc25CdjdfQ0lRUml4aEhvMndBQWhNQUFENmY4TWZFOTRBUUJGREpXMEZQU0pBQUpvMjVtRkJUZmFGM0ZqS0p1WTZ3?oc=5",
+          "domain": "thenextweb.com",
+          "published_ms": 1793915791000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Instagram",
+        "daily_views": 21143,
+        "ratio": 0.67
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 87,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 71.9,
+        "newest_hours": 19,
+        "domains": [
+          "voiceofemirates.com",
+          "thenextweb.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Bill Gates warns a $10‑hour robot could replace $20‑hour workers",
+      "pillar": "AI productivity and money‑saving uses",
+      "evidence_ids": [
+        66
+      ],
+      "hook": "A cheap robot could steal your job – Gates explains why we need a plan.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Robotics",
+      "commons_query": "robotic automation",
+      "youtube_query": "Bill Gates robot replace workers short",
+      "evidence": [
+        {
+          "title": "Bill Gates Says A $10-an-Hour Robot Could Replace The $20-an-Hour Worker – 'There Is No Plan' For What Comes Next - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPRVBoa29nSklZX3VnS2ZkTUtMdmhOOGt2bHNvMzJSZXhTcnBNYkxidlgxN0d2OTNmRzZVcl9Ya0x1aWNzaFllU0lONDltQm5pUFJGTUNBREVqeENvVjdYeU5OYklrOXVqYXlHbnNwZXcwUVVycEtoQkFTemhMUndTRzh6eTB5VmNBb1RlSnZyeEw?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1794153608000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "Bill Gates warns AI and robots could disrupt jobs for decades, urges government action - People Matters Global",
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNeDFEVEZaUWNZSUNnR2d5VWdqWjlIaThJc1pLazZFcGMzT0lDNjNrY21sbE41d0ZfeFJGcnV1V2JLc2tVRWl2ODd5TW9LcnZuQk8yMWxFeVFZM0llRlhtckY5UGJyOGd2b1JIekViSjNXaDNLWW9Fc1l4VFpIQWVWNTFPNmt1dVEybkt6eEx2SEp1b2NvcW5LUkNDb3ZtbmdLMFZYWmNSQTF3Um95dkVTbmtSdzJKa1FoeV81dHJqOUxaY0o0UzZhbjZaSDB2SjN6UXNXWG5XRFJqQUFxZ2ZQZkRXZ3g4MnJx?oc=5",
+          "domain": "sea.peoplemattersglobal.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Robotics",
+        "daily_views": 345,
+        "ratio": 0.86
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 51,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 68.3,
+        "newest_hours": 9,
+        "domains": [
+          "finance.yahoo.com",
+          "sea.peoplemattersglobal.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Facebook’s $16 B deep‑fake ad scam – how AI tricks you",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        4
+      ],
+      "hook": "$16 billion lost to AI‑generated fake ads – could you be next?",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Deepfake",
+      "commons_query": "deepfake",
+      "youtube_query": "Facebook AI deepfake scam short",
+      "evidence": [
+        {
+          "title": "Cuban: Facebook knowingly runs AI deepfake scam ads; docs say $16B fraud revenue",
+          "url": "https://finance.yahoo.com/technology/ai/articles/mark-cuban-says-facebook-knowingly-213000020.html",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793920197000,
+          "points": 517,
+          "kind": "hn",
+          "id": 4
+        }
+      ],
+      "wikipedia": {
+        "title": "Deepfake",
+        "daily_views": 1210,
+        "ratio": 1.15
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 60,
+          "reach": 62,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 67.8,
+        "newest_hours": 73,
+        "domains": [
+          "finance.yahoo.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Adobe gives startups 12 months free AI tools – design for free",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        97
+      ],
+      "hook": "Launch a startup with free access to Adobe’s AI design suite for a whole year.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Adobe",
+      "commons_query": "Adobe logo",
+      "youtube_query": "Adobe free AI tools startup short",
+      "evidence": [
+        {
+          "title": "Adobe is giving start-ups 12 months of free access to its top AI tools, including Firefly and Acrobat - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQM0psY2ZYYlcxRkNPRTRXckdraFJxMXNWSmNGTDdCeFV5RUo4MHlKcGFhUHZsYmZnc2U3cXBvWFNoeUJldUpFWG55S1dXUkc4ZS13UGRqcWNJOEttN0E0cDhEeDNsUXNuSHpzMnRkaWZVVFpmNm9Sblh0ZHhPXzBJWGdfZEVqelZ5bGE2eVBOMmlGMTU1SGRLQk1jLXpsRHM4Ujg0Y0RqVjFnajdXUnNmcEprMlpDRXgtYmRvQmljem9MdEN3N3htZ2dR?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794063900000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "Introducing Adobe for Startups - Adobe",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRGhISnQ4YURKN2NGQUtPMTBQNTdTTnFRZG9TejFlY1dYN1BGMkJNejNReVJuTkdMUWh0MTdDdnBpLWNwNzI1RUVjZmlBMTdGZThDbDBaWXdvaXlwR01TamRPRWVYbWZmZWtWbGZsT3Z1NlBvbVBaSndSTVBzNExyVA?oc=5",
+          "domain": "blog.adobe.com",
+          "published_ms": 1793628518000,
+          "kind": "news"
+        },
+        {
+          "title": "Adobe launches new programme offering startups free AI and SEO tools for 12 months - Indian Startup News",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPdFZDYko4X0Y1dTB3QXFjTzVNZjVTSzhsM2xwdVhFRkRhVHRDRG54blk1Q2FsaS1oYVpUQTNKTmNsTzRHSmxLNFFjYjczdEp3ZmhUNUh0UzhOWWRRRV85emVrV1AxTE91eUdBTWRDWGRzMlJ2RFZzUHRLc0JqeDMzVXNhWW5vRmY4bHE2cHQzMWJqWE5NZ3NzeDRYUW41NjIzSXdDMHNYaGFLb3Y4SWJTaHBnTlA2R3VPaUZSQVY3THU0eTVW0gHEAUFVX3lxTE90VkNiSjhfRjV1MHdBcWNPNU1mNVNLOGwzbHB1WEVGRGFUdENEbnhuWTVDYWxpLWhhWlRBM0pOY2xPNEdKbEs0UWNiNzN0SndmaFQ1SHRTOE5ZZFFFXzl6ZWtXUDFMT3V5R0FNZENYZHMyUnZEVnNQdEtzQmp4MzNVc2FZbm9GZjhscTZwdDMxYmpYTk1nc3N4NFhRbjU2MjNJd0Mwc1hoYUtvdjhJYlNocGdOUDZHdU9pRlJBVjdMdTR5NVY?oc=5",
+          "domain": "indianstartupnews.com",
+          "published_ms": 1793891600000,
+          "kind": "news"
+        },
+        {
+          "title": "Adobe Offers Free AI Tools to Startups Under Five Years Old - Seoul Economic Daily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPLVpXMEpDWVJRVjVpUEZTZjFQZ3dMMmt1WlMxLTBiOHFWWWpqbWlJV3NkcW91UjY2MWVYRk0tOWl0djhkLXJpOGg0SVkzQ1hybWN1STdBak1KS3hWWGw0YWhYZTUwSVpTR2t4Y1lpaXU3OWk0SkoyUWFCSkxjNndJQTRDcnJNektNNmRBd0IyenVmeUY2S1FRS3EzM01pb3N3UEVCZUFfZw?oc=5",
+          "domain": "en.sedaily.com",
+          "published_ms": 1793827205000,
+          "kind": "news"
+        },
+        {
+          "title": "Adobe for Startups launched with 12 months of free access to Firefly Pro Plus, Acrobat Studio and Semrush - FoneArena.com",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5NcDdQUUNMM2hmU19jOXl5WGVQRHk1YXN6WEpONjhBLURQZXljT19FWHNoRFVzRWE1Qk9UdGRmTllkTkJfaEljaHZZSVZLLWNiZE1DSzJxczc0VEItZEI0c3F6VnN1SEl4WGFoQ2xn0gFzQVVfeXFMUHB4bk9ibVJvbExoZDgwaHNXVjdNMXI3YlNUaXBDMGNZWUcybFh4R1E5MHl4RnBGdkF1NWxXTk9wdmI4TzVMS1hKWGJnSXNrZXZGM01lYjBXbWt3d0I0YkpRamdSeTdReWpCNjl4aXVVX0JCMA?oc=5",
+          "domain": "fonearena.com",
+          "published_ms": 1793715415000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Adobe",
+        "daily_views": 326,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 87,
+          "reach": 50,
+          "curiosity": 60,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 66.7,
+        "newest_hours": 34,
+        "domains": [
+          "techradar.com",
+          "blog.adobe.com",
+          "indianstartupnews.com",
+          "en.sedaily.com",
+          "fonearena.com"
+        ],
+        "trusted_domains": [
+          "techradar.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "NYT Cooking’s AI assistant: saved my chicken, almost ruined my cake",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        52
+      ],
+      "hook": "When AI cooks for you, expect tasty surprises – and occasional disasters.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Artificial intelligence",
+      "commons_query": "artificial intelligence cooking",
+      "youtube_query": "NYT Cooking AI assistant short",
+      "evidence": [
+        {
+          "title": "NYT Cooking’s AI assistant saved my weeknight chicken, but almost ruined my cake",
+          "url": "https://www.theverge.com/tech/1029489/nyt-cooking-ai-assistant-review",
+          "domain": "theverge.com",
+          "published_ms": 1794166907000,
+          "kind": "feed",
+          "id": 52
+        },
+        {
+          "title": "NYT Cooking’s AI assistant saved my weeknight chicken, but almost ruined my cake - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBrc2NBamlMdERCVTZuX2txQVl6bjQzR19yNXFTTlN2SDNnbjRqcFB6b2xGeGdXM0Y4ZEJ2cERDWi1GZWMxWnUxa3BVREtJN2dUZWdiQ0xrOFBfRnlrekp5VnhSdTFsUU9hVEViWjZYS2h5WHNzX3VLUw?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1794066600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Artificial intelligence",
+        "daily_views": 14828,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 83,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 66.1,
+        "newest_hours": 5,
+        "domains": [
+          "theverge.com"
+        ],
+        "trusted_domains": [
+          "theverge.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "AI‑controlled robot performed brain surgery on a mouse",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        22
+      ],
+      "hook": "A tiny robot brain surgeon, powered by AI, just operated on a mouse – the future is now.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "Robotic surgery",
+      "commons_query": "robotic surgery mouse",
+      "youtube_query": "AI robot brain surgery mouse short",
+      "evidence": [
+        {
+          "title": "Last night an AI agent performed brain surgery on a mouse",
+          "url": "https://twitter.com/OcanaSantero/status/2115442964574908902",
+          "domain": "twitter.com",
+          "published_ms": 1793623859000,
+          "points": 143,
+          "kind": "hn",
+          "id": 22
+        },
+        {
+          "title": "AI agent used to perform controversial brain surgery on a mouse, Anthropic Sonnet-controlled motorized surgery rig — Opus 5.5 refused to conduct biological experiment, Sonnet given free rein to treat epilepsy with a range of gene therapy vectors after - Tom's Hardware",
+          "url": "https://news.google.com/rss/articles/CBMixgNBVV95cUxPRzRlX1FTdGl2RVpEQnROZ1pSYTJ6dEZweEZDemRUNl9lcEd4eUxHS3hGNUlqUk5JcEEtNmhYOFdOQU1ZNHYzcTlDb0xkdUo1N0t4TEMzWkpBaENGTlNNbDhmNjNONlk1aEM2TUdyclFEVEtjcGMtY0U0YVZ2TVBVUC1IX2M4b3huWlU0WGwtLTRBSEVKNS0teGU4d1FuV1ZmOE5sSmxTbTFZX3Z4TzhvQ0N3TGdJQWVKVjNqU2dWSnIwQTFyMEFYN3dia2FMQ3JieElERXhYYS1PcExrSk4zSDd4anlHYUttR2pJdkttTG94WDVaemw5VWllc21KeFZIY1ZGc0FTRDN6THdQMV9xV0ZrYnRIRTZxS1dOWUNGQVE3Q0V2RDcyZi1nSVRCRWg2cE4xY3R6TGpmWC1ua2RMdEw5cDN1S1o1Vnh5R2s3NVlzU2c5MmxETEZOazM5WGJBREVCa0p6VF9OQmxKdVdMY0ZyNGZCMWxHTTh6TURyYXlFMEN5TTM1dGZ3djRxM0pCQl9zRWRwNjdzTmVhN0NtUmpDWC1qUjM5Q0hPSDdhb0xJNnI3WW5CSktiRF92YWI5UE5vaWdB?oc=5",
+          "domain": "tomshardware.com",
+          "published_ms": 1793448000000,
+          "kind": "news"
+        },
+        {
+          "title": "Tech Bytes: Brain surgery robot - WDIO.com",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQbWJMeFBVR0RyMlFRMHY2MTl2WWRHeXRPRG9jZFY5N1VPakx5aWxWVTFTVjk3YnZoTFNzOGU5Rm1TM1R1SDNJMGJiU01wTHh0ZGJrVTZ3VlNWU01sSzQ4aUhNNWpUWENtQVRiaTB1U1lYdEY3UXZlQnhvYnR4OHIwQQ?oc=5",
+          "domain": "wdio.com",
+          "published_ms": 1793628830000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s AI independently performed brain surgery on a mouse: Experiment sparks ethical debate - Root-Nation.com",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPTEtBWFE2REpiU3FBZFlNQlNpWVhud3NCMng2UktEYTNDWTZBcWlwUGR0UUtZVWJPWVF3QV9relZ1WkZwdmdOOXV6WHpOejJCY3NfUEFBQURIUUFEbklrNG45RTJYRUcyQlFNV1ZhLTA0VjY0QnNYSG1KcmRtM01sMnZVT01zdk5UZnVZaQ?oc=5",
+          "domain": "root-nation.com",
+          "published_ms": 1793541613000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Robotic surgery",
+        "daily_views": 57,
+        "ratio": 0.94
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 67,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 64.3,
+        "newest_hours": 154,
+        "domains": [
+          "twitter.com",
+          "tomshardware.com",
+          "wdio.com",
+          "root-nation.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Job seekers are ditching AI interviews – hidden bias exposed",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        84
+      ],
+      "hook": "Why more candidates are saying ‘no thanks’ to AI‑powered hiring tools.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 5
+      },
+      "wikipedia_title": "Algorithmic bias",
+      "commons_query": "algorithmic bias hiring",
+      "youtube_query": "AI interview bias short",
+      "evidence": [
+        {
+          "title": "Employed job seekers are shunning companies which use AI interviews — and I don't blame them - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRnhOY21hdkRpMHBQVkxSRDM2OGFIVmVMNXlicWZlcmNNeTE2anZ2ajBNZlRHaXVRLXRNd3V5ckxtNzhJdHVvUlRIZkcwZUJSTHRJNk1YUGJCSmVuVk5HSWRKamF6YmxkNm9Tdk9ONFM2NHB2eDVJWVZvSmIyZEt1TWxxY25QcVJxRlc5WFEtVEZxLVZpVWJkYkUxNzc2SFlwMk1YaXBReF8xcFVwTnFWbFdfV0FyVHVuTVJB?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794121200000,
+          "kind": "news",
+          "id": 84
+        }
+      ],
+      "wikipedia": {
+        "title": "Algorithmic bias",
+        "daily_views": 79,
+        "ratio": 0.77
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 38,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 50,
+          "source_quality": 35
+        },
+        "total": 57.6,
+        "newest_hours": 18,
+        "domains": [
+          "techradar.com"
+        ],
+        "trusted_domains": [
+          "techradar.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Gemini builds a full travel itinerary without starting over",
+      "pillar": "AI productivity and money‑saving uses",
+      "evidence_ids": [
+        51
+      ],
+      "hook": "Plan an entire trip in seconds with Gemini’s new travel feature.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Gemini (software)",
+      "commons_query": "Gemini AI",
+      "youtube_query": "Gemini AI travel itinerary short",
+      "evidence": [
+        {
+          "title": "Gemini's new feature built my travel itinerary without starting over - How-To Geek",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPVmR0enBsaHc1dTFHNTJmeF9SblNlWmdWVTFtVFFBMng4N0s1Z1RPRGdTTThIbExSLTdPQko0a3ZkTGVtQXNDcXEzS1FRRGRKdkdndXNTUUcyY3FmRmhKZHFTMmRZRUVzNDJ5SmJGQ0ZrOENfek1EOHhSQVBDZHJQU25yajVSdWRMazMwR2JkYzdfX2FXS3BwTng5Zw?oc=5",
+          "domain": "howtogeek.com",
+          "published_ms": 1794169815000,
+          "kind": "news",
+          "id": 51
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 52.5,
+        "newest_hours": 4,
+        "domains": [
+          "howtogeek.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}
