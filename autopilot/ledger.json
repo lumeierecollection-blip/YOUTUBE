@@ -538,6 +538,14 @@
       "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today.",
       "error": "gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: frame 2: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: frame 3: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.\",\"clipped_text: frame 4: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.\",\"clipped_text: frame 5: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.\",\"clipped_text: frame 6: The caption 'Bu",
       "qa": "failed"
+    },
+    "kick-2c4bd9126b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42543834365",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:07:34.967Z"
     }
   },
   "uploads": [],
@@ -1027,5 +1035,5 @@
     "AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRI",
     "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr"
   ],
-  "last_poll_at": "2026-11-09T00:57:57.805Z"
+  "last_poll_at": "2026-11-09T01:07:34.967Z"
 }
