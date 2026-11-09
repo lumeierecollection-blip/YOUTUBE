@@ -265,6 +265,21 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     }
     picks.sort((a, b) => a.scene.index - b.scene.index);
   }
+  // Photographs are this channel's evidence. When the plan's diagrams leave fewer than three, a diagram gives way to a real image.
+  if (picks.length < 3) {
+    const topicQueries = [topic.commons_query, topic.wikipedia_title].filter(Boolean);
+    for (const s of scenes) {
+      if (picks.length >= 3) break;
+      if (!isDiagram(s.index) || s.index === 0) continue;
+      const p = plan.scenes.find((x) => Number(x.index) === s.index) || {};
+      const img = await pickImage({ ...p, text: s.text, subject: topic.topic, commons_queries: [...(p.commons_queries || []), ...topicQueries] }, used, topic.topic);
+      if (!img) continue;
+      const was = visuals.get(s.index);
+      visuals.set(s.index, { ...was, template: "photo", downgraded_from: was.template, downgrade_reason: "needed as a third real photograph" });
+      picks.push({ scene: s, plan: { ...p, subject: p.subject || topic.topic }, img });
+    }
+    picks.sort((a, b) => a.scene.index - b.scene.index);
+  }
   // The pre-check found an exact image with topic-wide searches, so a scene-level plan that missed it can use it.
   if (!picks.some((x) => x.img.relation === "exact") && picks.length) {
     const exact = await pickImage({ commons_queries: [topic.commons_query, topic.wikipedia_title].filter(Boolean), subject: topic.topic, text: topic.topic }, used, topic.topic, true);
