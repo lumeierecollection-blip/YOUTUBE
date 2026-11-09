@@ -22,8 +22,8 @@ export function paperBackground(P, base = P.bg) {
   const m = String(P.grain).match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
   if (!m) throw new StageError("visual-plan", "palette grain must be rgba()");
   const [r, g, b, a] = [m[1] / 255, m[2] / 255, m[3] / 255, Number(m[4])];
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} 0 0 0 ${a * 3} 0'/></filter><rect width='512' height='512' filter='url(#n)'/></svg>`;
-  return `radial-gradient(ellipse at 50% 46%, transparent 58%, ${P.vignette} 100%), radial-gradient(circle, ${P.halftone} 1.5px, transparent 1.9px) 0 0 / 10px 10px, url("data:image/svg+xml,${encodeURIComponent(svg)}") 0 0 / 512px 512px, ${base}`;
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} 0 0 0 ${a} 0'/></filter><rect width='512' height='512' filter='url(#n)'/></svg>`;
+  return `radial-gradient(ellipse at 50% 46%, transparent 68%, ${P.vignette} 100%), radial-gradient(circle, ${P.halftone} 1.5px, transparent 1.9px) 0 0 / 10px 10px, url("data:image/svg+xml,${encodeURIComponent(svg)}") 0 0 / 512px 512px, ${base}`;
 }
 
 // Deliberately generous per-character widths (em), measured against rendered frames of these fonts.

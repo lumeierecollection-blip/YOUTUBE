@@ -160,7 +160,7 @@ export function varietyReport(rows) {
 export function makeContext({ id, inF, outF, top, P, font, nextZ, layers, vox = false }) {
   const span = Math.max(1, outF - inF);
   // Reveals are spread across the scene so each new element lands while it is being talked about.
-  const at = (i, n) => inF + Math.round(span * (0.06 + (0.6 * i) / Math.max(1, n)));
+  const at = (i, n) => (i === 0 ? inF : inF + Math.round(span * (0.06 + (0.6 * i) / Math.max(1, n))));
   return { id, inF, outF, span, top, P, font, layers, vox, z: nextZ, at };
 }
 
@@ -179,7 +179,7 @@ function panel(c, key, rect, { background, at = c.inF, fromX = 0, fromY = 0, sha
     keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: arrive, v: 1 }, { f: span, v: 1 }], tx: [{ f: 0, v: fromX, e: "outCubic" }, { f: arrive + 4, v: 0 }, { f: span, v: 0 }], ty: [{ f: 0, v: fromY, e: "outCubic" }, { f: arrive + 4, v: 0 }, { f: span, v: 0 }] } }));
 }
 
-const line = (c, key, d, { color, width = 5, at = c.inF, drawFrames = 14, fill, ty }) => c.layers.push(stroke(`${c.id}-${key}`, d, { color: color ?? c.P.stroke, width, inF: at, outF: c.outF, z: c.z(), drawFrames, fill, ty }));
+const line = (c, key, d, { color, width = 5, at = c.inF, delay = 0, drawFrames = 14, fill, ty }) => c.layers.push(stroke(`${c.id}-${key}`, d, { color: color ?? c.P.stroke, width, inF: at, outF: c.outF, z: c.z(), delay, drawFrames, fill, ty }));
 const circlePath = (x, y, r) => `M${x} ${y - r} A${r} ${r} 0 1 1 ${x} ${y + r} A${r} ${r} 0 1 1 ${x} ${y - r} Z`;
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 
@@ -196,7 +196,7 @@ function flow(c, p) {
     const at = c.at(i, n), y = Math.round(y0 + i * (bh + gap)), from = i % 2 ? 110 : -110, last = i === n - 1;
     panel(c, `step${i}`, { x, y, w: bw, h: bh }, { background: last ? c.P.accent : c.P.surface, at, fromX: from });
     label(c, `step${i}-t`, s, { x: x + 30, w: bw - 60, maxW: bw - 60, middle: y + bh / 2, max: 46, min: 28, color: last ? c.P.on_accent : c.P.text, at, slideX: from });
-    if (!last) { const a = y + bh + 12, b = Math.round(y + bh + gap - 12); line(c, `arrow${i}`, `M540 ${a} L540 ${b} M524 ${b - 18} L540 ${b} L556 ${b - 18}`, { color: c.P.accent, width: 6, at: at + 10, drawFrames: 16 }); }
+    if (!last) { const a = y + bh + 12, b = Math.round(y + bh + gap - 12); line(c, `arrow${i}`, `M540 ${a} L540 ${b} M524 ${b - 18} L540 ${b} L556 ${b - 18}`, { color: c.P.accent, width: 6, at, delay: 10, drawFrames: 16 }); }
   });
 }
 
@@ -234,7 +234,7 @@ function cause(c, p) {
     label(c, `link${i}-t`, s, { x: x + 24, w: bw - 48, maxW: bw - 48, maxLines: 4, middle: y + bh / 2, max: 40, min: 26, color: last ? c.P.on_accent : c.P.text, at, slideX: left ? -50 : 50 });
     if (!last) {
       const x0 = left ? x + bw : x, y0a = y + bh, x1 = left ? W - 70 - bw / 2 : 70 + bw / 2, y1 = Math.round(y + bh + gap - 8);
-      line(c, `curve${i}`, `M${x0} ${y0a - 30} C${x1} ${y0a - 30} ${x1} ${y0a} ${x1} ${y1} M${x1 - 18} ${y1 - 20} L${x1} ${y1} L${x1 + 18} ${y1 - 20}`, { color: c.P.accent, width: 6, at: at + 12, drawFrames: 20 });
+      line(c, `curve${i}`, `M${x0} ${y0a - 30} C${x1} ${y0a - 30} ${x1} ${y0a} ${x1} ${y1} M${x1 - 18} ${y1 - 20} L${x1} ${y1} L${x1 + 18} ${y1 - 20}`, { color: c.P.accent, width: 6, at, delay: 12, drawFrames: 20 });
     }
   });
 }
@@ -252,14 +252,14 @@ function timeline(c, p) {
 }
 
 function bars(c, p) {
-  const n = p.bars.length, max = Math.max(...p.bars.map((b) => Number(b.value))), full = 860, y0 = c.top + 50, rowH = Math.min(240, (BOTTOM - 40 - y0) / n);
+  const n = p.bars.length, max = Math.max(...p.bars.map((b) => Number(b.value))), full = 860, avail = BOTTOM - 70 - c.top, rowH = Math.min(290, avail / n), y0 = Math.round(c.top + (avail - n * rowH) / 2), thick = n <= 2 ? 70 : 46;
   p.bars.forEach((b, i) => {
     const y = Math.round(y0 + i * rowH), at = c.at(i, n), value = Number(b.value);
     // Length is the value's true share of the largest bar, from zero. Nothing is floored to look bigger.
     const length = max > 0 ? Math.round((value / max) * full) : 0;
-    label(c, `bar${i}-l`, b.label, { x: 90, w: 620, maxW: 610, maxLines: 1, y, max: 42, min: 26, align: "left", color: c.P.muted, weight: 600, at });
-    label(c, `bar${i}-v`, `${p.prefix || ""}${b.value}${p.suffix || ""}`, { x: 730, w: 262, maxW: 260, maxLines: 1, y: y - 4, max: 50, min: 30, align: "left", weight: 800, at: at + 12 });
-    line(c, `bar${i}`, `M90 ${y + 92} L${90 + Math.max(1, length)} ${y + 92}`, { color: i === 0 ? c.P.accent : c.P.text, width: 44, at, drawFrames: 22 });
+    label(c, `bar${i}-l`, b.label, { x: 90, w: 620, maxW: 610, maxLines: 1, y, max: 52, min: 26, align: "left", color: c.P.muted, weight: 600, at });
+    label(c, `bar${i}-v`, `${p.prefix || ""}${b.value}${p.suffix || ""}`, { x: 730, w: 262, maxW: 260, maxLines: 1, y: y - 8, max: 62, min: 30, align: "left", weight: 800, at: at + 12 });
+    line(c, `bar${i}`, `M90 ${y + 118} L${90 + Math.max(1, length)} ${y + 118}`, { color: i === 0 ? c.P.accent : c.P.text, width: thick, at, drawFrames: 22 });
   });
   label(c, "unit", `${p.unit}. Bars start at zero.`, { y: y0 + n * rowH - 8, maxW: 880, maxLines: 1, max: 30, min: 22, weight: 500, color: c.P.muted, at: c.at(n, n + 1) });
   sourceLine(c, p.sources);
@@ -323,15 +323,15 @@ function ranked(c, p) {
 }
 
 function beforeAfter(c, p) {
-  const h = Math.min(450, (BOTTOM - c.top - 70) / 2), x = 90, w = 900, sides = [["before", c.top, -140, c.P.surface, c.P.text], ["after", c.top + h + 70, 140, c.P.panel, c.P.accent]];
+  const h = Math.min(400, (BOTTOM - c.top - 70) / 2), top = Math.round(c.top + (BOTTOM - c.top - (2 * h + 70)) / 2), x = 90, w = 900, sides = [["before", top, -140, c.P.surface, c.P.text], ["after", top + h + 70, 140, c.P.panel, c.P.accent]];
   sides.forEach(([side, y0, from, background, titleColor], i) => {
     const y = Math.round(y0), at = c.at(i, 2), data = p[side] || {};
     panel(c, side, { x, y, w, h: Math.round(h) }, { background, at, fromX: from });
-    label(c, `${side}-t`, String(data.title).toUpperCase(), { x: x + 40, w: w - 80, maxW: w - 80, maxLines: 1, y: y + 34, max: 54, min: 32, align: "left", color: titleColor, weight: 800, at, slideX: from / 2 });
-    (data.points || []).slice(0, 2).forEach((pt, k) => label(c, `${side}-p${k}`, pt, { x: x + 40, w: w - 80, maxW: w - 80, maxLines: 2, y: y + 118 + k * 130, max: 44, min: 28, weight: 500, at: at + 8 + k * 10, slideX: from / 2 }));
+    label(c, `${side}-t`, String(data.title).toUpperCase(), { x: x + 40, w: w - 80, maxW: w - 80, maxLines: 1, y: y + 40, max: 60, min: 32, align: "left", color: titleColor, weight: 800, at, slideX: from / 2 });
+    (data.points || []).slice(0, 2).forEach((pt, k) => label(c, `${side}-p${k}`, pt, { x: x + 40, w: w - 80, maxW: w - 80, maxLines: 2, y: y + 140 + k * 124, max: 54, min: 28, weight: 500, align: "left", at: at + 8 + k * 10, slideX: from / 2 }));
   });
-  const ay = Math.round(c.top + h + 12);
-  line(c, "turn", `M540 ${ay} L540 ${ay + 44} M522 ${ay + 26} L540 ${ay + 44} L558 ${ay + 26}`, { color: c.P.accent, width: 7, at: c.at(1, 2), drawFrames: 10 });
+  const ay = Math.round(top + h + 12);
+  line(c, "turn", `M540 ${ay} L540 ${ay + 44} M522 ${ay + 26} L540 ${ay + 44} L558 ${ay + 26}`, { color: c.P.accent, width: 7, delay: c.at(1, 2) - c.inF, drawFrames: 10 });
 }
 
 function conclusion(c, p) {
@@ -339,13 +339,13 @@ function conclusion(c, p) {
   const x = 60, y = c.top - 30, w = 960, h = BOTTOM - y;
   if (c.vox) {
     line(c, "rule-a", `M120 ${y + 60} L960 ${y + 60}`, { color: c.P.accent, width: 4, drawFrames: 18 });
-    line(c, "rule-b", `M120 ${y + h - 60} L960 ${y + h - 60}`, { color: c.P.accent, width: 4, at: c.at(1, 2), drawFrames: 18 });
+    line(c, "rule-b", `M120 ${y + h - 60} L960 ${y + h - 60}`, { color: c.P.accent, width: 4, delay: c.at(1, 2) - c.inF, drawFrames: 18 });
     label(c, "close", text_, { x: 120, w: 840, maxW: 830, maxLines: 6, middle: y + h / 2, max: 96, min: 54, slideX: -60 });
     return;
   }
   panel(c, "close-panel", { x, y, w, h }, { background: c.P.accent, fromY: 170 });
   label(c, "close", text_, { x: x + 60, w: w - 120, maxW: w - 120, maxLines: 6, middle: y + h / 2, max: 112, min: 54, weight: 800, color: c.P.on_accent, slide: 40 });
-  line(c, "close-rule", `M260 ${y + h - 130} L820 ${y + h - 130}`, { color: c.P.on_accent, width: 8, at: c.at(1, 2), drawFrames: 18 });
+  line(c, "close-rule", `M260 ${y + h - 130} L820 ${y + h - 130}`, { color: c.P.on_accent, width: 8, delay: 10, drawFrames: 18 });
 }
 
 export const BUILDERS = { flow, hub, stack, cause, timeline, bars, line: lineChart, counter, proportion, ranked, before_after: beforeAfter, conclusion };
