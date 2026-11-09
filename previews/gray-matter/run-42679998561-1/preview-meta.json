@@ -2,10 +2,11 @@
   "channel": "gray-matter",
   "production_run": "run-42679998561-1",
   "agent": "agent-gray-matter",
-  "stage": "visual_complete",
-  "status": "running",
-  "timestamp": "2026-11-09T19:07:08.744Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T19:07:31.626Z",
   "branch": "preview/gray-matter-2",
   "commit": "01fc65c25a9b8b17efd1eb7f008e6be9bbd4ce6c",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42679998561#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42679998561#artifacts",
+  "error": "voice produced 7 sentences for 6 script sentences"
 }

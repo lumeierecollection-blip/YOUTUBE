@@ -1,0 +1,4 @@
+Error: voice produced 7 sentences for 6 script sentences
+    at synthesise (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:73:62)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:108:50)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

@@ -1,0 +1,404 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (58/60 words matched)",
+ "voice": "Aoede",
+ "words": [
+  {
+   "text": "A",
+   "start": 0.0,
+   "end": 0.4,
+   "sentence": 0
+  },
+  {
+   "text": "sleepless",
+   "start": 0.4,
+   "end": 1.08,
+   "sentence": 0
+  },
+  {
+   "text": "night",
+   "start": 1.08,
+   "end": 1.54,
+   "sentence": 0
+  },
+  {
+   "text": "makes",
+   "start": 1.54,
+   "end": 2.16,
+   "sentence": 0
+  },
+  {
+   "text": "new",
+   "start": 2.16,
+   "end": 2.62,
+   "sentence": 0
+  },
+  {
+   "text": "things",
+   "start": 2.62,
+   "end": 3.28,
+   "sentence": 0
+  },
+  {
+   "text": "harder",
+   "start": 3.28,
+   "end": 3.86,
+   "sentence": 0
+  },
+  {
+   "text": "to",
+   "start": 3.86,
+   "end": 4.34,
+   "sentence": 0
+  },
+  {
+   "text": "remember",
+   "start": 4.34,
+   "end": 4.7,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 5.64,
+   "end": 5.69,
+   "sentence": 1
+  },
+  {
+   "text": "hippocampus",
+   "start": 5.64,
+   "end": 5.98,
+   "sentence": 1
+  },
+  {
+   "text": "deep",
+   "start": 6.86,
+   "end": 7.16,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 7.16,
+   "end": 7.46,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 7.46,
+   "end": 7.56,
+   "sentence": 1
+  },
+  {
+   "text": "temporal",
+   "start": 7.56,
+   "end": 7.82,
+   "sentence": 1
+  },
+  {
+   "text": "lobe",
+   "start": 7.82,
+   "end": 8.24,
+   "sentence": 1
+  },
+  {
+   "text": "helps",
+   "start": 8.7,
+   "end": 9.0,
+   "sentence": 1
+  },
+  {
+   "text": "form",
+   "start": 9.0,
+   "end": 9.44,
+   "sentence": 1
+  },
+  {
+   "text": "memories",
+   "start": 9.44,
+   "end": 10.02,
+   "sentence": 1
+  },
+  {
+   "text": "One",
+   "start": 10.88,
+   "end": 11.08,
+   "sentence": 2
+  },
+  {
+   "text": "imaging",
+   "start": 11.08,
+   "end": 11.4,
+   "sentence": 2
+  },
+  {
+   "text": "study",
+   "start": 11.4,
+   "end": 11.88,
+   "sentence": 2
+  },
+  {
+   "text": "found",
+   "start": 11.88,
+   "end": 12.4,
+   "sentence": 2
+  },
+  {
+   "text": "it",
+   "start": 12.4,
+   "end": 12.56,
+   "sentence": 2
+  },
+  {
+   "text": "less",
+   "start": 12.56,
+   "end": 12.9,
+   "sentence": 2
+  },
+  {
+   "text": "active",
+   "start": 12.9,
+   "end": 13.42,
+   "sentence": 2
+  },
+  {
+   "text": "during",
+   "start": 13.42,
+   "end": 13.98,
+   "sentence": 2
+  },
+  {
+   "text": "learning",
+   "start": 13.98,
+   "end": 14.32,
+   "sentence": 2
+  },
+  {
+   "text": "In",
+   "start": 15.2,
+   "end": 15.26,
+   "sentence": 3
+  },
+  {
+   "text": "mice",
+   "start": 15.26,
+   "end": 15.54,
+   "sentence": 3
+  },
+  {
+   "text": "five",
+   "start": 15.98,
+   "end": 16.62,
+   "sentence": 3
+  },
+  {
+   "text": "hours",
+   "start": 16.62,
+   "end": 17.1,
+   "sentence": 3
+  },
+  {
+   "text": "awake",
+   "start": 17.1,
+   "end": 17.35,
+   "sentence": 3
+  },
+  {
+   "text": "cut",
+   "start": 17.6,
+   "end": 18.42,
+   "sentence": 3
+  },
+  {
+   "text": "dendritic",
+   "start": 18.42,
+   "end": 19.14,
+   "sentence": 3
+  },
+  {
+   "text": "spines",
+   "start": 19.14,
+   "end": 19.78,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 20.32,
+   "end": 20.56,
+   "sentence": 3
+  },
+  {
+   "text": "receiving",
+   "start": 20.56,
+   "end": 20.9,
+   "sentence": 3
+  },
+  {
+   "text": "side",
+   "start": 20.9,
+   "end": 21.5,
+   "sentence": 3
+  },
+  {
+   "text": "of",
+   "start": 21.5,
+   "end": 21.64,
+   "sentence": 3
+  },
+  {
+   "text": "connections",
+   "start": 21.64,
+   "end": 21.9,
+   "sentence": 3
+  },
+  {
+   "text": "Blocking",
+   "start": 23.02,
+   "end": 23.38,
+   "sentence": 4
+  },
+  {
+   "text": "cofilin",
+   "start": 23.38,
+   "end": 23.96,
+   "sentence": 4
+  },
+  {
+   "text": "which",
+   "start": 24.54,
+   "end": 24.8,
+   "sentence": 4
+  },
+  {
+   "text": "breaks",
+   "start": 24.8,
+   "end": 25.1,
+   "sentence": 4
+  },
+  {
+   "text": "down",
+   "start": 25.1,
+   "end": 25.42,
+   "sentence": 4
+  },
+  {
+   "text": "actin",
+   "start": 25.42,
+   "end": 25.96,
+   "sentence": 4
+  },
+  {
+   "text": "prevented",
+   "start": 26.42,
+   "end": 26.88,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 26.88,
+   "end": 27.38,
+   "sentence": 4
+  },
+  {
+   "text": "loss",
+   "start": 27.38,
+   "end": 27.64,
+   "sentence": 4
+  },
+  {
+   "text": "Recovery",
+   "start": 27.64,
+   "end": 28.68,
+   "sentence": 5
+  },
+  {
+   "text": "sleep",
+   "start": 28.68,
+   "end": 29.14,
+   "sentence": 5
+  },
+  {
+   "text": "reversed",
+   "start": 29.14,
+   "end": 29.88,
+   "sentence": 5
+  },
+  {
+   "text": "it",
+   "start": 29.88,
+   "end": 30.44,
+   "sentence": 5
+  },
+  {
+   "text": "Mice",
+   "start": 31.0,
+   "end": 31.42,
+   "sentence": 6
+  },
+  {
+   "text": "only",
+   "start": 31.42,
+   "end": 31.72,
+   "sentence": 6
+  },
+  {
+   "text": "not",
+   "start": 32.22,
+   "end": 32.68,
+   "sentence": 6
+  },
+  {
+   "text": "proof",
+   "start": 32.68,
+   "end": 33.04,
+   "sentence": 6
+  },
+  {
+   "text": "for",
+   "start": 33.04,
+   "end": 33.32,
+   "sentence": 6
+  },
+  {
+   "text": "people",
+   "start": 33.32,
+   "end": 33.64,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "A sleepless night makes new things harder to remember.",
+   "start": 0.0,
+   "end": 4.7
+  },
+  {
+   "text": "The hippocampus, deep in the temporal lobe, helps form memories.",
+   "start": 5.64,
+   "end": 10.02
+  },
+  {
+   "text": "One imaging study found it less active during learning.",
+   "start": 10.88,
+   "end": 14.32
+  },
+  {
+   "text": "In mice, five hours awake cut dendritic spines, the receiving side of connections.",
+   "start": 15.2,
+   "end": 21.9
+  },
+  {
+   "text": "Blocking cofilin, which breaks down actin, prevented the loss.",
+   "start": 23.02,
+   "end": 27.64
+  },
+  {
+   "text": "Recovery sleep reversed it.",
+   "start": 27.64,
+   "end": 30.44
+  },
+  {
+   "text": "Mice only, not proof for people.",
+   "start": 31.0,
+   "end": 33.64
+  }
+ ]
+}
