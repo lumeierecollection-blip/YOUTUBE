@@ -1026,12 +1026,12 @@
       "attempts": 1,
       "run_id": "42591822188",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:21:02.325Z",
-      "stage": "script",
-      "topic": "Susan B. Anthony Arrested for Voting",
-      "score": 76.5,
-      "pillar": "Forgotten historical figures",
-      "hook": "In 1872, American suffragist Susan B. Anthony was arrested and fined $100 simply for casting a ballot in a presidential election."
+      "updated_at": "2026-11-09T09:23:57.236Z",
+      "stage": "research",
+      "topic": "The First Robotic Rover on Mars",
+      "score": 67.9,
+      "pillar": "Events that changed the modern world",
+      "hook": "In 2011, NASA launched a car-sized mobile laboratory on a daring mission to determine if Mars ever supported microbial life."
     }
   },
   "uploads": [
@@ -1887,6 +1887,15 @@
       "at_ms": 1794216045735,
       "score": 76.5,
       "pillar": "Forgotten historical figures"
+    },
+    {
+      "channel": "1",
+      "topic": "The First Robotic Rover on Mars",
+      "slug": "the-first-robotic-rover-on-mars",
+      "slot": "kick-4d0ab7875c-ch1",
+      "at_ms": 1794216237236,
+      "score": 67.9,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
