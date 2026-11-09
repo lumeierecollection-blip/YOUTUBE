@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Viral Video Falsely Claims Trump Vandalized Office After Midterms",
+      "score": 86.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/viral-video-falsely-claims-trump-vandalized-office-after-mid-shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name p"
+    }
+  ],
+  "selected": null
+}
