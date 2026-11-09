@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { buildFigures } from "./figures.mjs";
 import { claims, scenePlan, scriptPackage, sentences } from "./sample.mjs";
 import { runQa } from "./qa.mjs";
+import { narrate } from "../../production/index.mjs";
 import { SCENES } from "./scenes.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -66,29 +67,13 @@ async function platePayload() {
   return { plate: uri(plate), mask: uri(maskUp), lateral: uri(lateral), plateSize: [info.width, info.height], mask_stats: { area_px: area, bbox: [minX, minY, maxX, maxY] } };
 }
 
-/** Each sentence is voiced alone, so scene timing comes from measured audio, not an estimate. */
-function synthesise(tools, outDir) {
-  mkdirSync(join(outDir, "vo"), { recursive: true });
-  const gap = channel.voice.gap_seconds;
-  for (const rate of channel.voice.rates_to_try) {
-    const parts = sentences.map((s, i) => {
-      const output = `vo/${s.sentence_id}.mp3`;
-      tools.voice({ text: s.text, voice: channel.voice.tts_voice, output, rate });
-      return { sentence_id: s.sentence_id, file: join(outDir, output), duration: tools.durationOf(join(outDir, output)), index: i };
-    });
-    const total = parts.reduce((sum, p) => sum + p.duration, 0) + gap * (parts.length - 1);
-    if (total + TAIL_S > LIMIT - 0.2) { console.log(`rate ${rate}: ${total.toFixed(2)}s is too long`); continue; }
-    let t = 0;
-    const timed = parts.map((p) => { const start = t; t += p.duration + gap; return { ...p, start, end: start + p.duration }; });
-    const inputs = timed.flatMap((p) => ["-i", p.file]);
-    const pads = timed.map((p, i) => `[${i}:a]aresample=44100,apad=pad_dur=${i < timed.length - 1 ? gap : 0}[a${i}]`).join(";");
-    const filter = `${pads};${timed.map((_, i) => `[a${i}]`).join("")}concat=n=${timed.length}:v=0:a=1[out]`;
-    const voiceFile = join(outDir, "voice-preview.mp3");
-    execFileSync("ffmpeg", ["-y", "-v", "error", ...inputs, "-filter_complex", filter, "-map", "[out]", "-c:a", "libmp3lame", "-q:a", "2", voiceFile]);
-    rmSync(join(outDir, "vo"), { recursive: true, force: true });
-    return { voiceFile, timed, rate, total: tools.durationOf(voiceFile) };
-  }
-  throw new Error(`narration does not fit ${LIMIT}s even at the fastest allowed rate; cut the script`);
+/** The whole script is voiced once at the voice's own pace (no rate change); each sentence's timing is read from the measured words. */
+async function synthesise(outDir) {
+  const narration = await narrate({ text: sentences.map((s) => s.text).join(" "), edgeVoice: channel.voice.tts_voice, outDir, name: "voice-track" });
+  if (narration.sentences.length !== sentences.length) throw new Error(`voice produced ${narration.sentences.length} sentences for ${sentences.length} script sentences`);
+  if (narration.seconds + TAIL_S > LIMIT - 0.2) throw new Error(`narration is ${narration.seconds.toFixed(2)}s at natural speed, over the ${LIMIT}s limit; the script must be shortened, the voice is never sped up`);
+  const timed = narration.sentences.map((s, i) => ({ sentence_id: sentences[i].sentence_id, index: i, start: s.start, end: s.end, duration: s.end - s.start }));
+  return { voiceFile: narration.mp3, timed, narration, total: narration.seconds };
 }
 
 /** Caption chunks of at most 34 characters, timed in proportion to their length inside the measured sentence. */
@@ -120,7 +105,9 @@ export default async function preview({ key, runId, outDir, tools }) {
   const plates = await platePayload();
   tools.stage("visual_complete", "running");
 
-  const { voiceFile, timed, rate, total } = synthesise(tools, outDir);
+  const { voiceFile, timed, narration, total } = await synthesise(outDir);
+  const rate = `natural, ${narration.engine}, ${narration.wpm} wpm, playback speed ${narration.playback_speed}`;
+  tools.write("narration.json", { engine: narration.engine, seconds: narration.seconds, wpm: narration.wpm, playback_speed: narration.playback_speed, notes: narration.notes });
   tools.stage("voice_complete", "running", { rate });
 
   const frames = (s) => Math.round(s * FPS);
@@ -148,7 +135,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   const silent = tools.renderComposition({ id: "GrayMatterShort", output: "silent.mp4", durationInFrames: totalFrames, props: { scenes, captions: captionChunks(timed), figures: { css: figures.css, neuron: figures.neuron, synapse: figures.synapse, bare: figures.bare, actin: figures.actin }, plates: { plate: plates.plate, mask: plates.mask, lateral: plates.lateral, size: plates.plateSize }, palette: channel.palette, type: channel.type, statusLabels: channel.status_labels } });
   const video = join(outDir, "preview.mp4");
   // One mux, on the runner: the composition has no audio element because the voice is measured and fixed before rendering.
-  execFileSync("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", voiceFile, "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-af", "apad", "-shortest", "-movflags", "+faststart", video]);
+  execFileSync("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", voiceFile, "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-af", "apad", "-t", String(totalFrames / FPS), "-movflags", "+faststart", video]);
   rmSync(silent, { force: true });
   tools.stage("render_complete", "running");
 

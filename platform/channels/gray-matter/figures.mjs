@@ -118,11 +118,14 @@ function dendriteFigure(kit, { W, H, withSynapse }) {
 function actinFigure(kit) {
   const W = 1000, H = 150;
   const P = kit.fitProjection([[-92, 0, -12], [92, 0, 12]], W, H, { pad: 20, azimuth: 90, elevation: 8 });
-  const half = (x0) => {
-    const h = kit.helixOf({ center: [x0, 0, 0], axis: [1, 0, 0], radius: 5.4, turns: 5, rise: 16, strands: 2 }, P);
-    return kit.helixSvg(h, P, { tone: "hi", rungTone: "lo", width: 3 });
+  // A chain of globular subunits (actin monomers) along a gentle wave: no paired strands and no rungs, so it cannot be mistaken for DNA.
+  // Schematic: subunit size and count are not measured.
+  const half = (x0, x1) => {
+    const beads = [];
+    for (let x = x0, k = 0; x <= x1; x += 19, k++) beads.push(`<circle cx="${x}" cy="${(75 + Math.sin(k * 0.45) * 13).toFixed(1)}" r="12.5" fill="${k % 2 ? "#DDE5EC" : "#C4D0DA"}" stroke="#16181D" stroke-width="2.2"/>`);
+    return beads.join("");
   };
-  return { W, H, left: half(-46), right: half(46), gap: kit.iso([0, 0, 0], P).map(r1) };
+  return { W, H, left: half(42, 456), right: half(544, 958), gap: [500, 75] };
 }
 
 export async function buildFigures(animaDir, palette) {

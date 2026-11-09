@@ -29,7 +29,7 @@
   "voice": {
     "direction": "Clear, educational, accessible.",
     "tts_voice": "en-US-JennyNeural",
-    "rates_to_try": ["+6%", "+10%", "+14%", "+18%"],
+    "playback_speed": 1,
     "gap_seconds": 0.16,
     "generated_speech_notice": "Neural text to speech. Never presented as a human recording."
   },

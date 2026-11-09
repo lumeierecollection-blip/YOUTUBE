@@ -29,12 +29,12 @@ export const claims = [
 ];
 
 export const sentences = [
-  { sentence_id: "s1", beat_id: "b1", text: "A night without sleep makes new information harder to remember.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
+  { sentence_id: "s1", beat_id: "b1", text: "A sleepless night makes new things harder to remember.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
   { sentence_id: "s2", beat_id: "b2", text: "The hippocampus, deep in the temporal lobe, helps form memories.", role: "Names the region, where it is, and what it does.", claim_ids: ["C2"], link_from_previous: "explanation", on_screen_text: "Hippocampus" },
-  { sentence_id: "s3", beat_id: "b3", text: "One imaging study found it less active during learning after sleep loss.", role: "Human evidence, marked as one association.", claim_ids: ["C3"], link_from_previous: "evidence", on_screen_text: "Less active while learning" },
-  { sentence_id: "s4", beat_id: "b4", text: "In mice, five hours awake reduced dendritic spines: the receiving side of excitatory connections.", role: "Moves to the cellular level and defines the term.", claim_ids: ["C4", "C5"], link_from_previous: "explanation", on_screen_text: "Dendritic spine" },
-  { sentence_id: "s5", beat_id: "b5", text: "Suppressing cofilin, which breaks down actin, prevented the loss and the memory deficit.", role: "The causal test, in mice.", claim_ids: ["C6", "C9"], link_from_previous: "cause", on_screen_text: "Cofilin suppressed" },
-  { sentence_id: "s6", beat_id: "b6", text: "Recovery sleep reversed it. But this is mouse evidence, not proof for you.", role: "Payoff and the limit of the evidence.", claim_ids: ["C7", "C8"], link_from_previous: "contradiction", on_screen_text: "Mice only" },
+  { sentence_id: "s3", beat_id: "b3", text: "One imaging study found it less active during learning.", role: "Human evidence, marked as one association.", claim_ids: ["C3"], link_from_previous: "evidence", on_screen_text: "Less active while learning" },
+  { sentence_id: "s4", beat_id: "b4", text: "In mice, five hours awake cut dendritic spines, the receiving side of connections.", role: "Moves to the cellular level and defines the term.", claim_ids: ["C4", "C5"], link_from_previous: "explanation", on_screen_text: "Dendritic spine" },
+  { sentence_id: "s5", beat_id: "b5", text: "Blocking cofilin, which breaks down actin, prevented the loss.", role: "The causal test, in mice.", claim_ids: ["C6", "C9"], link_from_previous: "cause", on_screen_text: "Cofilin suppressed" },
+  { sentence_id: "s6", beat_id: "b6", text: "Recovery sleep reversed it. Mice only, not proof for people.", role: "Payoff and the limit of the evidence.", claim_ids: ["C7", "C8"], link_from_previous: "contradiction", on_screen_text: "Mice only" },
 ];
 
 export const blueprint = {

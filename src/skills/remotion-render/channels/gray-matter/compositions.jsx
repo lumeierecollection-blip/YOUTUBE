@@ -71,11 +71,11 @@ function Everyday({ data, dur, c, type, plates }) {
           <g clipPath="url(#gm-head)">
             <image href={plates.lateral} x={265} y={230} width={600} height={347} opacity={brain} style={{ mixBlendMode: "multiply" }} />
             <ellipse cx={608} cy={504} rx={154} ry={62} transform="rotate(-8 608 504)" fill={c.region} opacity={lobe * (0.32 + 0.1 * Math.sin(f / 5))} />
-            <ellipse cx={608} cy={504} rx={154} ry={62} transform="rotate(-8 608 504)" fill="none" stroke={c.regionText} strokeWidth={4} opacity={lobe} />
+            <ellipse cx={608} cy={504} rx={154} ry={62} transform="rotate(-8 608 504)" fill="none" stroke={c.regionText} strokeWidth={4} strokeDasharray="14 10" opacity={lobe} />
           </g>
           <g opacity={lobe}>
             <path d="M 608 566 L 608 640" stroke={c.regionText} strokeWidth={4} />
-            <Tag x={608} y={684} text="Temporal lobe" c={c} type={type} color={c.regionText} size={40} anchor="middle" />
+            <Tag x={608} y={684} text="Temporal lobe (approximate)" c={c} type={type} color={c.regionText} size={38} anchor="middle" />
           </g>
         </g>
         <g opacity={1 - ramp(t, 0.8, 0.86)}>
@@ -280,7 +280,7 @@ function Ledger({ data, dur, c, type, figures, labels }) {
       </div>
       <div style={{ position: "absolute", left: 60, right: 60, top: 208, textAlign: "center", fontFamily: type.display.family, fontWeight: 700, fontSize: 42, color: c.status.causation }}>{data.recoveryLabel}</div>
       {data.ledger.map((row, i) => {
-        const a = ramp(t, 0.26 + i * 0.09, 0.36 + i * 0.09);
+        const a = ramp(t, 0.04 + i * 0.1, 0.14 + i * 0.1);
         const col = c.status[row.status];
         return (
           <div key={row.head} style={{ position: "absolute", left: 40, right: 40, top: 288 + i * 186, minHeight: 170, display: "flex", opacity: a, transform: `translateX(${(1 - a) * 40}px)` }}>
