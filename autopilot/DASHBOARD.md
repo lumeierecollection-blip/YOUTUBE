@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 10:02 SAST
+Updated 2026-11-09 10:05 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,7 +8,7 @@ Updated 2026-11-09 10:02 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | running, attempts 1 |
+| Latest production | failed-final at discover, attempts 1 |
 | Selected topic and score | n/a |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
@@ -100,3 +100,4 @@ Updated 2026-11-09 10:02 SAST
 - Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 "But essential harpoons failed on that cold, icy surface." — It is unclear what 'that' surface ref
 - Hidden Past kick-bbb510fe7d-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the o
 - AI Tested kick-41d2ea90c6-ch2 failed at discover: discovery failure: 17 candidates, none eligible. Best "Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?" (79.4): too similar to recent topic: Claude AI Can Now Connect Directly to You
+- Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best "The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa
