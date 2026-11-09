@@ -1,0 +1,223 @@
+{
+  "channel": "gray-matter",
+  "production_run": "run-42618187073-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "sc1",
+      "narration": "A night without sleep makes new information harder to remember.",
+      "main_point": "A night without sleep is an everyday event with a measurable effect on memory.",
+      "visual_objective": "See a person awake through the night, then see the brain inside that head and the temporal lobe picked out.",
+      "treatment": "everyday-to-biology",
+      "background": "white",
+      "skill": "remotion, with a public-domain Gray's Anatomy plate",
+      "assets": [
+        {
+          "id": "gray726",
+          "origin": "Gray's Anatomy (1918), Henry Vandyke Carter",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Gray726.png"
+        }
+      ],
+      "animation": "Tie an everyday behaviour to the structure involved",
+      "on_screen_text": [
+        "Awake all night",
+        "New information",
+        "Temporal lobe"
+      ],
+      "claim_ids": [
+        "C1"
+      ],
+      "data_sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC8893218&format=json&resultType=core"
+      ],
+      "transition": "Push in on the temporal lobe, then dissolve to the dissection.",
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "scene_id": "sc2",
+      "narration": "The hippocampus, deep in the temporal lobe, helps form new memories.",
+      "main_point": "The hippocampus sits deep in the temporal lobe and helps form memories.",
+      "visual_objective": "Locate the hippocampus on a real dissection and learn its name and job.",
+      "treatment": "region-highlight",
+      "background": "white",
+      "skill": "remotion, with a public-domain Gray's Anatomy plate",
+      "assets": [
+        {
+          "id": "gray739-emphasizing-hippocampus",
+          "origin": "Gray's Anatomy (1918), Henry Vandyke Carter, hippocampus emphasis by a Wikimedia Commons editor",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Gray739-emphasizing-hippocampus.png"
+        }
+      ],
+      "animation": "Show exactly where a named region is and what it does",
+      "on_screen_text": [
+        "Hippocampus",
+        "Deep in the temporal lobe",
+        "Helps form new memories",
+        "Left hemisphere, opened from the side"
+      ],
+      "claim_ids": [
+        "C2"
+      ],
+      "data_sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=PMCID:PMC3548359&format=json&resultType=core"
+      ],
+      "transition": "Cut to the region enlarged.",
+      "start_s": 3.6666666666666665,
+      "end_s": 7.966666666666667
+    },
+    {
+      "scene_id": "sc3",
+      "narration": "One imaging study found it less active during learning after sleep loss.",
+      "main_point": "One imaging study found lower hippocampal activity during learning after sleep loss.",
+      "visual_objective": "Compare the same region after sleep and after sleep loss, with the direction of the change named.",
+      "treatment": "activity-compare",
+      "background": "white",
+      "skill": "remotion, with a public-domain Gray's Anatomy plate",
+      "assets": [
+        {
+          "id": "gray739-emphasizing-hippocampus",
+          "origin": "Gray's Anatomy (1918), Henry Vandyke Carter, hippocampus emphasis by a Wikimedia Commons editor",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Gray739-emphasizing-hippocampus.png"
+        }
+      ],
+      "animation": "Compare one region between two conditions, naming only the direction of change",
+      "on_screen_text": [
+        "After normal sleep",
+        "After a sleepless night",
+        "Less active while learning",
+        "Glow is illustrative, not scan data"
+      ],
+      "claim_ids": [
+        "C3"
+      ],
+      "data_sources": [
+        "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=17293859&retmode=text&rettype=abstract"
+      ],
+      "transition": "Cut into the cell.",
+      "start_s": 7.966666666666667,
+      "end_s": 12.233333333333333
+    },
+    {
+      "scene_id": "sc4",
+      "narration": "In mice, five hours awake reduced dendritic spines: the receiving side of excitatory connections.",
+      "main_point": "In mice, sleep loss reduces dendritic spines on hippocampal neurons.",
+      "visual_objective": "See a CA1 neuron, a magnified dendrite, what a spine and synapse are, and spines disappearing.",
+      "treatment": "neuron-to-spines",
+      "background": "white",
+      "skill": "anima@f0249c4 kit (geometry) + remotion (motion)",
+      "assets": [
+        {
+          "id": "ca1-neuron",
+          "origin": "Generated at run time with the Anima kit at the pinned commit (kit/branch.mjs, kit/blob.mjs)",
+          "licence": "MIT",
+          "source_url": "https://github.com/Garinmckayl/anima"
+        },
+        {
+          "id": "dendrite-synapse",
+          "origin": "Generated at run time with the Anima kit at the pinned commit (kit/branch.mjs, kit/blob.mjs)",
+          "licence": "MIT",
+          "source_url": "https://github.com/Garinmckayl/anima"
+        }
+      ],
+      "animation": "Go from a whole neuron to a labelled synapse and show a structural change",
+      "on_screen_text": [
+        "Pyramidal neuron",
+        "Hippocampal area CA1",
+        "Dendritic spine",
+        "Synapse",
+        "Fewer spines after 5 h awake"
+      ],
+      "claim_ids": [
+        "C4",
+        "C5"
+      ],
+      "data_sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4996653/fullTextXML",
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=ABSTRACT:%22dendritic%20spines%20are%22%20AND%20ABSTRACT:%22protrusions%22%20AND%20ABSTRACT:%22excitatory%22%20AND%20SRC:MED%20AND%20OPEN_ACCESS:y&format=json&resultType=core&pageSize=8"
+      ],
+      "transition": "Dendrite carries over to the next scene.",
+      "start_s": 12.233333333333333,
+      "end_s": 18.3
+    },
+    {
+      "scene_id": "sc5",
+      "narration": "Suppressing cofilin, which breaks down actin, prevented the loss and the memory deficit.",
+      "main_point": "Suppressing cofilin prevented the spine loss and the memory deficit in mice.",
+      "visual_objective": "Compare the dendrite with and without cofilin suppressed, and see what cofilin does to actin.",
+      "treatment": "mechanism-rescue",
+      "background": "white",
+      "skill": "anima@f0249c4 kit (geometry) + remotion (motion)",
+      "assets": [
+        {
+          "id": "dendrite-bare",
+          "origin": "Generated at run time with the Anima kit at the pinned commit (kit/branch.mjs, kit/blob.mjs)",
+          "licence": "MIT",
+          "source_url": "https://github.com/Garinmckayl/anima"
+        },
+        {
+          "id": "actin-helix",
+          "origin": "Generated at run time with the Anima kit at the pinned commit (kit/chem.mjs)",
+          "licence": "MIT",
+          "source_url": "https://github.com/Garinmckayl/anima"
+        }
+      ],
+      "animation": "Show a causal test: the same process with and without the intervention",
+      "on_screen_text": [
+        "Cofilin breaks down actin filaments",
+        "Sleep loss",
+        "Sleep loss + cofilin suppressed",
+        "Memory deficit",
+        "Memory deficit prevented"
+      ],
+      "claim_ids": [
+        "C6",
+        "C9"
+      ],
+      "data_sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4996653/fullTextXML"
+      ],
+      "transition": "Cut to the evidence ledger.",
+      "start_s": 18.3,
+      "end_s": 23.466666666666665
+    },
+    {
+      "scene_id": "sc6",
+      "narration": "Recovery sleep reversed it. But this is mouse evidence, not proof for you.",
+      "main_point": "Spines recovered with sleep in mice, and the human mechanism is not shown.",
+      "visual_objective": "See the spines return, then read what is established, associated, causal in mice, and uncertain.",
+      "treatment": "evidence-ledger",
+      "background": "white",
+      "skill": "anima@f0249c4 kit (geometry) + remotion (motion)",
+      "assets": [
+        {
+          "id": "dendrite-bare",
+          "origin": "Generated at run time with the Anima kit at the pinned commit (kit/branch.mjs, kit/blob.mjs)",
+          "licence": "MIT",
+          "source_url": "https://github.com/Garinmckayl/anima"
+        }
+      ],
+      "animation": "State what is established, associated, causal in animals, and uncertain",
+      "on_screen_text": [
+        "Recovery sleep: spines back to normal (mice)",
+        "Established",
+        "Association",
+        "Causal test",
+        "Uncertain"
+      ],
+      "claim_ids": [
+        "C7",
+        "C8"
+      ],
+      "data_sources": [
+        "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4996653/fullTextXML"
+      ],
+      "transition": "End.",
+      "start_s": 23.466666666666665,
+      "end_s": 28.933333333333334
+    }
+  ]
+}
