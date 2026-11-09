@@ -726,7 +726,12 @@
       "attempts": 1,
       "run_id": "42559003998",
       "trigger": "push",
-      "updated_at": "2026-11-09T03:58:33.577Z"
+      "updated_at": "2026-11-09T03:59:49.130Z",
+      "stage": "research",
+      "topic": "Comparing ChatGPT Plus and Google AI Pro $20 subscription perks",
+      "score": 80.7,
+      "pillar": "Free versus paid AI tools",
+      "hook": "Are you getting your money's worth from your $20 monthly AI subscription?"
     }
   },
   "uploads": [],
@@ -1324,6 +1329,15 @@
       "at_ms": 1794189186940,
       "score": 63.9,
       "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "2",
+      "topic": "Comparing ChatGPT Plus and Google AI Pro $20 subscription perks",
+      "slug": "comparing-chatgpt-plus-and-google-ai-pro-20-subscription-per",
+      "slot": "kick-a76e0da8ee-ch2",
+      "at_ms": 1794196789130,
+      "score": 80.7,
+      "pillar": "Free versus paid AI tools"
     }
   ],
   "attention": [
