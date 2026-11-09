@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 12:01 SAST
+Updated 2026-11-09 12:05 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -12,7 +12,7 @@ Updated 2026-11-09 12:01 SAST
 | Selected topic and score | n/a |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
-| Performance | 1 views, 0 likes, 0 comments (private) |
+| Performance | 0 views, 0 likes, 0 comments (private) |
 | Analytics | available |
 
 ## AI Tested
@@ -120,3 +120,4 @@ Updated 2026-11-09 12:01 SAST
   - SCR-16: 57 words implies ~28s duration â€”
 - Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 "Was this lethal move meant to secure Canada?" — The 'lethal move' is not defined.. Rewrite it so 
 - Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best "The Sinking of SS Edmund Fitzgerald" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior
+- Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
