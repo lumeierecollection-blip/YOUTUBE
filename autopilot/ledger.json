@@ -1019,6 +1019,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "A law professor asked Claude to renumber pages, and the AI accidentally deleted a whole year of lecture notes.",
       "error": "2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
+    },
+    "kick-4d0ab7875c-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42591822188",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:19:06.036Z"
     }
   },
   "uploads": [
@@ -1946,5 +1954,5 @@
     "Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 wor",
     "AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
-  "last_poll_at": "2026-11-09T09:12:36.030Z"
+  "last_poll_at": "2026-11-09T09:19:06.035Z"
 }
