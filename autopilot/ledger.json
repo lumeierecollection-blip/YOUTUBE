@@ -617,16 +617,17 @@
     },
     "kick-dae3d3a718-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42545566374",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:31:07.905Z",
+      "updated_at": "2026-11-09T01:33:13.674Z",
       "stage": "script",
       "topic": "The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology",
       "score": 75.5,
       "pillar": "Strange inventions and lost technology",
-      "hook": "This 1,600-year-old Roman cup changes color in the light because Roman artisans accidentally mastered quantum nanotechnology."
+      "hook": "This 1,600-year-old Roman cup changes color in the light because Roman artisans accidentally mastered quantum nanotechnology.",
+      "error": "4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percentages (SiO2 and Na2O) without explaining what they mean, leaving a complete novice confused about the significance."
     }
   },
   "uploads": [],
@@ -1219,7 +1220,8 @@
     "Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
     "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script",
     "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined",
-    "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
+    "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
+    "Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent"
   ],
   "last_poll_at": "2026-11-09T01:29:11.414Z"
 }

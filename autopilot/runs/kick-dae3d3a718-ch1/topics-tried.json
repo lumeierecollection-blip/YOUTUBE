@@ -1,0 +1,29 @@
+{
+  "tried": [
+    {
+      "topic": "Decoding a 400-year-old cryptic padlock from a sunken shipwreck",
+      "score": 79.8,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology",
+      "score": 75.5,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percentages (SiO2 and Na2O) without explaining what they mean, leaving a complete novice confused about the significance."
+    },
+    {
+      "topic": "A 1,500-year-old stone statuette of a priestess discovered in Japan",
+      "score": 75.1,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Gaming pieces found on the sunken ship of Genghis Khan’s grandson",
+      "score": 64.6,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    }
+  ],
+  "selected": null
+}
