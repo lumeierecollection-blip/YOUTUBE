@@ -1,15 +1,12 @@
 /** Text fitting, the pre-render layout check, and timeline parts shared by both channel treatments. */
-import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { join } from "node:path";
 import { ROOT, StageError, readJson } from "./lib.mjs";
 
 export const FPS = 30, W = 1080, H = 1920;
 export const sec = (t) => Math.round(Number(t) * FPS);
-export const channelStyle = (channelId) => {
-  const all = JSON.parse(readFileSync(join(ROOT, "config/channels.json"), "utf8"));
-  const list = Array.isArray(all) ? all : all.channels;
-  return list.find((c) => String(c.id) === String(channelId));
-};
+const { resolveChannel } = createRequire(import.meta.url)("../lib/channel-lookup.cjs");
+export const channelStyle = (channelId) => resolveChannel(String(channelId));
 
 // Deliberately generous per-character widths (em), measured against rendered frames of these fonts.
 const charEm = (ch, mono) => (mono ? 0.6 : /[A-Z0-9]/.test(ch) ? 0.7 : ch === " " ? 0.3 : 0.56);
