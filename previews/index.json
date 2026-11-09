@@ -1,23 +1,23 @@
 {
-  "rebuilt_at": "2026-11-09T12:20:08.477Z",
+  "rebuilt_at": "2026-11-09T12:20:10.701Z",
   "channels": [
     {
       "key": "_smoke",
       "agent": "lead-architect",
-      "stage": "render_complete",
-      "status": "running",
-      "at": "2026-11-09T12:20:08.232Z",
+      "stage": "finished",
+      "status": "ok",
+      "at": "2026-11-09T12:20:10.397Z",
       "branch": "preview/_smoke",
       "commit": "39c0dbd7",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42615900359#artifacts)",
-      "sheet": "",
+      "sheet": "[contact-sheet.jpg](_smoke/run-42615900359-1/contact-sheet.jpg)",
       "scenes": "",
-      "voice": "",
+      "voice": "[voice-preview.mp3](_smoke/run-42615900359-1/voice-preview.mp3)",
       "script": "",
       "plan": "",
-      "qa": "",
+      "qa": "[qa-report.json](_smoke/run-42615900359-1/qa-report.json)",
       "blocker": "",
-      "lastOk": "2026-11-09T10:34:07.420Z",
+      "lastOk": "2026-11-09T12:20:10.397Z",
       "run": "run-42615900359-1"
     }
   ]
