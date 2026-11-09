@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T18:35:49.187Z",
+  "rebuilt_at": "2026-11-09T18:38:32.410Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T18:35:48.208Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T18:38:29.922Z",
       "branch": "preview/ai-tested",
-      "commit": "a4a6cd28",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42673434824#artifacts)",
+      "commit": "39ba13e6",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42675585501#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "only 1 model(s) answered every question; a comparison needs at least 2",
+      "blocker": "",
       "lastOk": "2026-11-09T13:00:02.167Z",
-      "run": "run-42673434824-1"
+      "run": "run-42675585501-1"
     },
     {
       "key": "gray-matter",
