@@ -24,13 +24,31 @@ const hasKey = {
   "ollama-cloud": () => !!process.env.OLLAMA_API_KEY,
   openrouter: () => !!process.env.OPENROUTER_API_KEY,
   groq: () => !!process.env.GROQ_API_KEY,
+  cerebras: () => !!process.env.CEREBRAS_API_KEY,
 };
 /** Preference per role. Writer: Gemini first (the repo's rule: Gemini writes, others judge). Critic: anything else first. */
 const ORDER = {
-  writer: ["gemini", "openrouter", "ollama-cloud", "groq"],
-  critic: ["groq", "ollama-cloud", "openrouter", "gemini"],
-  judge: ["gemini", "groq", "ollama-cloud", "openrouter"],
+  writer: ["groq", "cerebras", "gemini", "openrouter", "ollama-cloud"],
+  critic: ["cerebras", "groq", "gemini", "ollama-cloud", "openrouter"],
+  judge: ["gemini", "cerebras", "groq", "ollama-cloud", "openrouter"],
 };
+let cerebrasModel = null;
+/** Cerebras is called directly: the shared client has no route to it. The model is whichever the account can use, by preference. */
+async function callCerebras(messages, { maxTokens, temperature }) {
+  const key = process.env.CEREBRAS_API_KEY, headers = { authorization: `Bearer ${key}`, "content-type": "application/json" };
+  if (!cerebrasModel) {
+    const list = await fetch("https://api.cerebras.ai/v1/models", { headers, signal: AbortSignal.timeout(20000) });
+    if (!list.ok) return { error: list.status === 429 ? "quota_exhausted" : "unavailable", detail: `models HTTP ${list.status}` };
+    const ids = ((await list.json()).data || []).map((m) => m.id);
+    cerebrasModel = [/gpt-oss/, /qwen.*(235|thinking)/, /qwen/, /llama-?4/, /llama/].map((re) => ids.find((id) => re.test(id))).find(Boolean) || ids[0];
+    if (!cerebrasModel) return { error: "unavailable", detail: "no models listed" };
+  }
+  const r = await fetch("https://api.cerebras.ai/v1/chat/completions", { method: "POST", headers, body: JSON.stringify({ model: cerebrasModel, messages, max_completion_tokens: maxTokens, temperature }), signal: AbortSignal.timeout(120000) });
+  if (!r.ok) return { error: r.status === 429 ? "quota_exhausted" : "provider_error", detail: (await r.text()).slice(0, 160) };
+  const j = await r.json();
+  return { value: j.choices?.[0]?.message?.content || "", model: `cerebras/${cerebrasModel}` };
+}
+
 /** When a role runs on Gemini it asks for a different Gemini model than the writer (default gemini-3.5-flash-lite): a separate model call, and a separate per-model quota. */
 const GEMINI_MODEL = { writer: "gemini-3.5-flash", critic: "gemini-3.8-flash", judge: "gemini-3.6-flash" };
 const QUOTA = new Set(["quota_exhausted", "unavailable", "budget_exhausted", "no_key"]);
@@ -46,6 +64,13 @@ export function liveLLM({ log = console.error } = {}) {
     const messages = [...(system ? [{ role: "system", content: system }] : []), { role: "user", content: user }];
     for (const provider of attempts) {
       for (let pass = 0; pass < 2; pass++) {
+        if (provider === "cerebras") {
+          let c;
+          try { c = await callCerebras(messages, { maxTokens, temperature }); } catch (e) { c = { error: "hard_error", detail: e.message }; }
+          if (!c.error && c.value) return { value: c.value, provider, model: c.model, error: null, chain: [...chain, provider], same_provider: avoid.includes(provider) };
+          chain.push(`cerebras:${c.error || "empty"}`); log(`[script-engine] ${role}/${tag}: cerebras ${c.error} ${String(c.detail || "").slice(0, 100)}`);
+          break;
+        }
         const prev = process.env.FORCE_PROVIDER;
         process.env.FORCE_PROVIDER = provider;
         let r;
@@ -86,6 +111,8 @@ export async function ask(ctx, { role, tag, system, user, check = () => [], avoi
     if (r.error || r.value == null) throw new ProviderExhausted(role, r.error || "empty answer", r.chain);
     const value = parseJson(r.value);
     const problems = value == null ? ["the answer was not valid JSON"] : check(value);
+    // A provider that returned unparseable text gets no second turn; the retry goes elsewhere.
+    if (value == null && r.provider) avoid = [...avoid, r.provider];
     if (!problems.length) { rec.ok = true; return { value, provider: r.provider, model: r.model ?? null, same_provider: !!r.same_provider }; }
     rec.ok = false; rec.problems = problems.slice(0, 6);
     lastProblems = problems;
