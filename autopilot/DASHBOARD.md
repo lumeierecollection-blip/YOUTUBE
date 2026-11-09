@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:49 SAST
+Updated 2026-11-09 03:58 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,9 +8,9 @@ Updated 2026-11-09 03:49 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at vox-layout, attempts 1 |
-| Selected topic and score | The Wilmington massacre of 1898, the only municipal government overthrow in US history (64.8/100) |
-| QA | n/a |
+| Latest production | failed-final at qa, attempts 1 |
+| Selected topic and score | The Daring RAF Raid That Sank the Battleship Tirpitz (63.9/100) |
+| QA | failed |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -83,3 +83,4 @@ Updated 2026-11-09 03:49 SAST
 - AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best "Instagram Launches Free Desktop Video Editor to Rival CapCut" (87.2): too similar to recent topic: Instagram launches free desktop video editor t
 - Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context
 - AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
+- Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom","clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo
