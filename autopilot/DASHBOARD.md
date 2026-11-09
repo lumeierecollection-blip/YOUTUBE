@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:21 SAST
+Updated 2026-11-09 02:29 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,9 +8,9 @@ Updated 2026-11-09 02:21 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | The Discovery of the Cullinan Diamond (63.3/100) |
-| QA | failed |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Ruth Harkness capturing and smuggling the first live giant panda to America (58.8/100) |
+| QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -65,3 +65,4 @@ Updated 2026-11-09 02:21 SAST
 - Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":3,"check":"vignette","why":"corners kept 1.567 of their light, centre 1.38"}],"technical":{"duration_le_30":true,"resolutio
 - Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":2,"check":"vignette","why":"corners kept 1.687 of their light, centre 1.187"},{"scene":3,"check":"photo-stability","why":"p
 - AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: "Close-up of DAT" is not named in the research artifact â€” use the research's own name, o
+- Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts
