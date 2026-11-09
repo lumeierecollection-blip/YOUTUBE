@@ -1,0 +1,4 @@
+Error: narration is 30.22s at natural speed, over the 30s limit; the script must be shortened, the voice is never sped up
+    at synthesise (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:74:55)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:108:50)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

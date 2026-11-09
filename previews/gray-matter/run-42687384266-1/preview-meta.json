@@ -2,10 +2,11 @@
   "channel": "gray-matter",
   "production_run": "run-42687384266-1",
   "agent": "agent-gray-matter",
-  "stage": "visual_complete",
-  "status": "running",
-  "timestamp": "2026-11-09T19:53:14.144Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T19:53:35.611Z",
   "branch": "preview/gray-matter-2",
   "commit": "ed71631f0c266dcf985fe22abe1ea7b4a2ade814",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42687384266#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42687384266#artifacts",
+  "error": "narration is 30.22s at natural speed, over the 30s limit; the script must be shortened, the voice is never sped up"
 }
