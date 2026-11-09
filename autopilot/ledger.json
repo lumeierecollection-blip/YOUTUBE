@@ -873,6 +873,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "In 1920, London unveiled a haunting empty tomb that would become the global symbol for fallen soldiers.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - VOICE: 2 sentences start with a person's name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - SPECIFICITY: \"But public grief demanded a perm"
+    },
+    "kick-41d2ea90c6-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42576204272",
+      "trigger": "push",
+      "updated_at": "2026-11-09T07:08:55.799Z"
     }
   },
   "uploads": [
@@ -1690,5 +1698,5 @@
     "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref",
     "Hidden Past kick-bbb510fe7d-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the o"
   ],
-  "last_poll_at": "2026-11-09T06:56:55.067Z"
+  "last_poll_at": "2026-11-09T07:08:55.798Z"
 }
