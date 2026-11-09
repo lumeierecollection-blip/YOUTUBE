@@ -1047,6 +1047,14 @@
       "pillar": "Unexpected AI abilities and limits",
       "hook": "Tech companies promise AI will cure all diseases tomorrow, but actual pharmaceutical CEOs aren't buying it.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+    },
+    "kick-8f65f6a536-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42594197282",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:32:33.070Z"
     }
   },
   "uploads": [
@@ -2012,5 +2020,5 @@
     "Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:\n  - SCR-16: 41 words implies ~20s durati",
     "AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT "
   ],
-  "last_poll_at": "2026-11-09T09:27:30.860Z"
+  "last_poll_at": "2026-11-09T09:32:33.070Z"
 }
