@@ -15,24 +15,28 @@ export const claims = [
   claim("E5", "The study measured brain activity that accompanied the reported distress of being excluded.", "A neuroimaging study examined the neural correlates of social exclusion", "correlation", "Frames the finding as accompanying activity ('neural correlates'), not a cause."),
 ];
 
+/**
+ * Emotion first, science in support. Sentences 1 and 4 are validation, written as editorial reassurance: they make no research claim, are
+ * marked allow_no_claim, and say nothing a study found. The research sentences stay inside what the abstract says.
+ */
 export const sentences = [
-  { text: "Being left out can look, in the brain, a lot like physical pain.", scene: 0, claim_ids: ["E2", "E3"] },
-  { text: "In one study, people played a virtual ball game and were left out.", scene: 1, claim_ids: ["E1"] },
-  { text: "The more distress they reported, the more active the anterior cingulate was.", scene: 2, claim_ids: ["E3"] },
-  { text: "Another region was active, and linked to less distress.", scene: 3, claim_ids: ["E4"] },
-  { text: "That sting comes with measurable brain activity.", scene: 4, claim_ids: ["E5"] },
+  { text: "Being left out may feel, to your brain, a lot like physical pain.", scene: 0, claim_ids: ["E2"] },
+  { text: "So that sting when the group goes quiet is not you being dramatic.", scene: 1, claim_ids: [], allow_no_claim: true, editorial: "validation, not a research claim" },
+  { text: "In one study, people left out of a game showed brain activity that rose with their distress.", scene: 2, claim_ids: ["E1", "E3"] },
+  { text: "Another region was active too, and linked to less distress.", scene: 3, claim_ids: ["E4"] },
+  { text: "Feeling it doesn't mean something is wrong, it means people matter to you.", scene: 4, claim_ids: [], allow_no_claim: true, editorial: "validation, not a research claim" },
 ];
 
 export const scenes = [
-  { kind: "left-out", treatment: "character-excluded-from-play", objective: "Show a character standing apart while two others toss a ball over their head, so the feeling of being left out is seen", background: "dark soft-lit room" },
-  { kind: "screen", treatment: "virtual-game-screen", objective: "Show the virtual ball game: two avatars pass to each other and never to the third, with the character watching", background: "dark soft-lit room" },
-  { kind: "distress", treatment: "scribble-builds-with-restrained-bars", objective: "Show distress building as a tangle inside the head, with two restrained bars rising together", background: "dark soft-lit room" },
-  { kind: "regulate", treatment: "scribble-loosens", objective: "Show the tangle loosening while a soft ring forms, for the region linked to less distress", background: "dark soft-lit room" },
-  { kind: "comfort", treatment: "second-character-sits-beside", objective: "Show another character sitting beside, the light warming and the heart mending, as the feeling is named", background: "dark soft-lit room, warming" },
+  { kind: "left-out", treatment: "figure-stands-apart-hand-lowers", objective: "Show a figure standing apart while two others talk together, one hand lifting to join and then lowering", background: "dark soft-lit room" },
+  { kind: "quiet-chat", treatment: "figure-with-phone-chat-goes-quiet", objective: "Show a seated figure watching a phone as chat bubbles stop appearing and the screen goes still", background: "dark soft-lit room" },
+  { kind: "screen", treatment: "figure-watching-virtual-game", objective: "Show the virtual ball game with two avatars passing to each other, the figure watching, and one small bar rising with distress", background: "dark soft-lit room" },
+  { kind: "regulate", treatment: "scribble-loosens-ring-forms", objective: "Show the tangle loosening and a soft ring forming around the head", background: "dark soft-lit room" },
+  { kind: "comfort", treatment: "second-figure-sits-beside", objective: "Show another figure sitting down beside, a hand on the shoulder, the room warming and the heart mending", background: "dark soft-lit room, warming" },
 ];
 
 export const metadata = {
-  title: "Why Being Left Out Hurts (What One Brain Study Found)",
+  title: "Why Being Left Out Hurts (You're Not Being Dramatic)",
   description: "In a 2003 Science study, people were scanned while playing a virtual ball game in which they were ultimately left out. Activity in one brain region, the anterior cingulate, rose and fell with how distressed they said they felt. One small study of a virtual game: it does not diagnose or advise anyone.\n\n#Shorts #Psychology #Feelings #Relationships #DopamineLoop\n\nSource: Eisenberger, Lieberman & Williams, Science, 2003, doi:10.1126/science.1089134 (abstract on PubMed, PMID 14551436).\n\nIf you are struggling, please talk to someone you trust or a qualified professional.",
   tags: ["being left out", "social pain", "feelings", "psychology", "anterior cingulate", "emotions", "relationships"],
 };
