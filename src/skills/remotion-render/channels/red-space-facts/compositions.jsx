@@ -92,7 +92,7 @@ function S1({ dur, caption }) {
       </Canvas3D>
       <Chip status="scientific_model" note="loss inferred from measured infrared glow" top={170} />
       <div style={{ position: "absolute", left: 60, right: 60, top: 300, fontFamily: SANS, fontWeight: 700, fontSize: 92, lineHeight: 1.0, color: P.text, opacity: ramp(f, 4, 16), textShadow: "0 4px 24px #000" }}>
-        Saturn is losing its rings.
+        Saturn is raining its rings away.
       </div>
       <Caption text={caption} />
     </>
@@ -299,7 +299,7 @@ function S56({ dur, s5Dur, caption5, caption6 }) {
         <Rig cam={cam} />
         <SunLight pos={[-12, 6, 10]} />
         <Stars seed={33} />
-        <SaturnSystem tex={tex} ringOpacity={ringOp} rotation={f * 0.005} />
+        <SaturnSystem tex={tex} ringOpacity={ringOp} rotation={f * 0.005 + (in6 ? (f - s5Dur) * 0.02 : 0)} />
       </Canvas3D>
       {!in6 && (
         <>
@@ -342,7 +342,7 @@ function Short({ scenes, narration }) {
 
 const defaultScenes = [["s1", 0, 90], ["s2", 90, 150], ["s3", 240, 210], ["s4", 450, 130], ["s5", 580, 190], ["s6", 770, 80]].map(([id, from, dur]) => ({ id, from, dur }));
 const defaultNarration = {
-  s1: "Saturn is losing its rings, right now.",
+  s1: "Saturn is raining its rings away.",
   s2: "It orbits nearly ten times farther from the Sun than Earth.",
   s3: "Dark bands in its glow suggest ring rain: charged ice falling along magnetic field lines.",
   s4: "One estimate: an Olympic pool of water, every half hour.",

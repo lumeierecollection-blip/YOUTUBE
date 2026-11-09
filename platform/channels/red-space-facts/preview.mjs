@@ -14,7 +14,7 @@ const SCENE_IDS = ["s1", "s2", "s3", "s4", "s5", "s6"];
 
 const ff = (args) => execFileSync("ffmpeg", ["-y", "-v", "error", ...args], { stdio: "inherit" });
 
-const STYLE = "Brisk, energetic, confident documentary narration for a YouTube Short. Keep it moving, with no long pauses.";
+const STYLE = "Lively and upbeat, a little quicker than conversational, with clear articulation. Confident documentary narration for a YouTube Short.";
 
 /** The whole script is voiced once at the voice's own pace. A take that runs long is voiced again; the speed is never changed. */
 async function voiceAll(outDir) {
@@ -76,5 +76,6 @@ export default async function preview({ key, runId, tools }) {
   await tools.contactSheet({ video, scenes: timing.map((t, i) => ({ id: t.id, start_s: t.start_s, end_s: t.end_s, treatment: sample.scenes[i].treatment, objective: sample.scenes[i].visual_objective })) });
   const qa = await runQa({ tools, video, timing, sample, rate, maxRate: MAX_RATE, maxSeconds: MAX_S, expectedFrames: frames });
   tools.stage(qa.passed ? "qa_passed" : "blocked", qa.passed ? "ok" : "failed", { failures: qa.failures });
+  if (!qa.passed) throw new Error(`QA failed: ${qa.failures.join("; ")}`);
   tools.stage("preview_ready", "ok", { duration_s: qa.duration_s, narration: "provisional" });
 }

@@ -1,7 +1,7 @@
 // QA for the Red Space Facts preview. Writes qa-report.json and scene-*.jpg into the run.
 // Checks the MP4 itself (duration, size, fps, audio), that the 3D is animated (frame differences
 // inside a scene), that frames are not blank, and that every claim record is consistent.
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { rmSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
@@ -32,7 +32,7 @@ export async function runQa({ tools, video, timing, sample, rate, maxRate, maxSe
   if (Math.abs(fps - 30) > 0.01) failures.push(`fps ${fps}, expected 30`);
   if (!a) failures.push("no audio stream in the MP4");
   if (rate > maxRate) failures.push(`voice rate +${rate}% exceeds +${maxRate}%`);
-  const vol = execFileSync("ffmpeg", ["-i", video, "-af", "volumedetect", "-vn", "-f", "null", "-"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+  const vol = spawnSync("ffmpeg", ["-i", video, "-af", "volumedetect", "-vn", "-f", "null", "-"], { encoding: "utf8" }).stderr || "";
   const mean = Number(((vol.match(/mean_volume: (-?[0-9.]+)/) || [])[1]));
   if (!(mean > -40)) failures.push(`voice is not audible in the MP4 (mean ${mean} dB; silence is about -91 dB)`);
 

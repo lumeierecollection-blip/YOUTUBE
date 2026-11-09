@@ -296,7 +296,7 @@
       "beat_id": "b2",
       "treatment": "orbital-scale-pullout",
       "role": "context",
-      "narration": "It orbits nearly ten times farther out than Earth.",
+      "narration": "It orbits nearly ten times farther from the Sun than Earth.",
       "main_point": "Saturn is 9.6 times farther out than Earth, yet its signal was caught from here.",
       "visual_objective": "Pull out from Earth's orbit to Saturn's on true-scale orbits with the ratio counting up.",
       "claim_ids": [
@@ -321,7 +321,7 @@
       "beat_id": "b3",
       "treatment": "ring-rain-labelled-3d",
       "role": "mechanism",
-      "narration": "Dark bands in its glow suggest charged ice falling along field lines.",
+      "narration": "Dark bands in its glow suggest ring rain: charged ice falling along magnetic field lines.",
       "main_point": "Bands are observed; falling ice along field lines is the explanation.",
       "visual_objective": "A labelled 3D Saturn: dark bands at their observed latitudes, ice grains moving along field lines from named rings.",
       "claim_ids": [
@@ -379,7 +379,7 @@
       "beat_id": "b5",
       "treatment": "ring-fade-disputed-models",
       "role": "payoff",
-      "narration": "Models disagree: under a hundred million years left, or billions old.",
+      "narration": "One model leaves under a hundred million years; a 2024 simulation says billions.",
       "main_point": "The timescale is a model, and the rings' age is disputed.",
       "visual_objective": "The rings thin while two sourced model cards sit side by side as competing claims.",
       "claim_ids": [
