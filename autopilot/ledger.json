@@ -709,6 +709,14 @@
       "updated_at": "2026-11-09T02:03:50.943Z",
       "stage": "discover",
       "error": "4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
+    },
+    "kick-583105d332-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42558968217",
+      "trigger": "push",
+      "updated_at": "2026-11-09T03:55:38.616Z"
     }
   },
   "uploads": [],
@@ -1364,5 +1372,5 @@
     "Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo",
     "Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
   ],
-  "last_poll_at": "2026-11-09T02:01:01.473Z"
+  "last_poll_at": "2026-11-09T03:55:38.615Z"
 }
