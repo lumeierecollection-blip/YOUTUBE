@@ -31,3 +31,9 @@ Topic: Sleep and memory (short)
 Writer providers: gemini; critic providers: none; model calls: 3; rounds: 0; narrowings: 0
 Words per minute: 170.7 (measured, voice en-US-JennyNeural)
 Why not approved: writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2
+
+## rival-lines - REJECTED_BLUEPRINT
+Topic: The 2005 UEFA Champions League final (match_analysis)
+Writer providers: gemini, openrouter; critic providers: none; model calls: 10; rounds: 0; narrowings: 0
+Words per minute: 166.5 (measured, voice en-US-AriaNeural)
+Why not approved: blueprint rejected: link "contradiction" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like "group stage" and "knockout rounds" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified; fewer than 5 beats; key_evidence c9 is not used by any beat

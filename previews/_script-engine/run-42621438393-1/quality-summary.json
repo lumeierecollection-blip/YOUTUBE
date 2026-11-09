@@ -188,5 +188,40 @@
     "calls": 3,
     "caveats": [],
     "reason": "writer gave unusable output: story-blueprint.beats: needs at least 3 items, has 2"
+  },
+  {
+    "channel": "rival-lines",
+    "topic": "The 2005 UEFA Champions League final",
+    "format": "match_analysis",
+    "status": "rejected_blueprint",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+        "ok": true,
+        "chars": 26046,
+        "sha256": "1d550d37add75352",
+        "title": "2005 UEFA Champions League final",
+        "published": "2026-10-27",
+        "fetched_at": "2026-11-09T13:03:03.830Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 166.5,
+      "source": "measured",
+      "voice": "en-US-AriaNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini",
+        "openrouter"
+      ],
+      "critic": []
+    },
+    "calls": 10,
+    "caveats": [],
+    "reason": "blueprint rejected: link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified; fewer than 5 beats; key_evidence c9 is not used by any beat"
   }
 ]

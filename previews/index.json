@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:03:09.420Z",
+  "rebuilt_at": "2026-11-09T13:04:01.156Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:03:09.066Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:04:00.748Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:03:09.066Z",
+      "blocker": "rejected_blueprint: blueprint rejected: link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium",
+      "lastOk": "none",
       "run": "run-42621438393-1"
     },
     {

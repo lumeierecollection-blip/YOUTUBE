@@ -1,0 +1,245 @@
+{
+  "channel": "rival-lines",
+  "format": "match_analysis",
+  "topic": "The 2005 UEFA Champions League final",
+  "angle": "how Liverpool came back from three goals down against Milan: a thesis about the turn of the match, with recorded data kept apart from interpretation",
+  "status": "rejected_blueprint",
+  "wpm": {
+    "wpm": 166.5,
+    "source": "measured",
+    "voice": "en-US-AriaNeural"
+  },
+  "limits": {
+    "target_s": 120,
+    "max_s": 180
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 9,
+    "dropped": [
+      {
+        "claim": "Arsenal manager Arsene Wenger felt Liverpool would win the match because Milan looked jaded physically and mentally.",
+        "reason": "name \"Arsene Wenger\" is not in the excerpt"
+      }
+    ],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+        "published": "2026-10-27"
+      }
+    ]
+  },
+  "blocked": {
+    "issues": [
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link",
+        "beat_id": "b5"
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified",
+        "beat_id": null
+      },
+      {
+        "severity": "critical",
+        "code": "length",
+        "message": "fewer than 5 beats",
+        "beat_id": null
+      },
+      {
+        "severity": "major",
+        "code": "evidence",
+        "message": "key_evidence c9 is not used by any beat",
+        "beat_id": null
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "link \"chronology\" is not true of these beats: Chronology does not describe a temporal link between match facts and expectations",
+        "beat_id": "b2"
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "link \"cause\" is not true of these beats: Cause link is not directly supported by the claims presented",
+        "beat_id": "b4"
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "the beats do not answer the central question from the claims",
+        "beat_id": null
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "a first-time viewer would be lost: The plan does not explain what specifically triggered the mental shift after Liverpool scored the first goal; It lacks detail on how the underdog mindset translated into concrete actions on the pitch; Key match events (goals, tactical changes, halftime adjustments) are missing, which a first‑time viewer would need to understand the comeback",
+        "beat_id": null
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 3473,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 2474,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "gemini",
+      "ms": 2388,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 2242,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "openrouter",
+      "ms": 9102,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini:budget_exhausted",
+        "openrouter"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "openrouter",
+      "ms": 7838,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini:budget_exhausted",
+        "openrouter"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 3473,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "openrouter",
+      "ms": 9115,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini:budget_exhausted",
+        "openrouter"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "openrouter",
+      "ms": 10187,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini:budget_exhausted",
+        "openrouter"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 3089,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini",
+      "openrouter"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "ok": true,
+      "chars": 26046,
+      "sha256": "1d550d37add75352",
+      "title": "2005 UEFA Champions League final",
+      "published": "2026-10-27",
+      "fetched_at": "2026-11-09T13:03:03.830Z"
+    }
+  ],
+  "error": "blueprint rejected: link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified; fewer than 5 beats; key_evidence c9 is not used by any beat",
+  "open_findings": []
+}
