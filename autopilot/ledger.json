@@ -796,11 +796,13 @@
     },
     "kick-aab00134a5-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42563470278",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:44:55.081Z"
+      "updated_at": "2026-11-09T04:46:13.835Z",
+      "stage": "discover",
+      "error": "discovery failure: 15 candidates, none eligible. Best \"Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker\" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots Are Coming for Jobs"
     }
   },
   "uploads": [
@@ -1547,7 +1549,8 @@
     "Hidden Past kick-df87d44ce0-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€",
     "Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the ",
     "AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or d",
-    "YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data."
+    "YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data.",
+    "AI Tested kick-aab00134a5-ch2 failed at discover: discovery failure: 15 candidates, none eligible. Best \"Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker\" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots"
   ],
   "last_poll_at": "2026-11-09T04:44:55.079Z"
 }
