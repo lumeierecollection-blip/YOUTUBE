@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "hubble-first-secondary-eclipse-rocky-exoplanet",
+  "format": "shorts",
+  "hook": "A rocky planet just revealed its scorching heat from across the galaxy.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A rocky planet just revealed its scorching heat from across the galaxy.",
+      "visual_cue": "Close up of a glowing rocky exoplanet in deep space.",
+      "sfx_cue": "Deep bass drop",
+      "b_roll": [
+        "NASA artist concept of a rocky exoplanet"
+      ],
+      "text_overlay": {
+        "text": "Scorching discovery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2019, the Transiting Exoplanet Survey Satellite spotted TOI-2431b. How hot does a rocky planet get when it circles that close?",
+      "visual_cue": "Animation showing a planet orbiting a star quickly.",
+      "sfx_cue": "Fast ticking clock sound",
+      "b_roll": [
+        "NASA TESS orbit diagram",
+        "Animation of orbital transit"
+      ],
+      "text_overlay": {
+        "text": "5.4 hour orbit"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Hubble Space Telescope just captured the planet's secondary eclipse for the first time.",
+      "visual_cue": "Hubble Space Telescope orbiting Earth.",
+      "sfx_cue": "Shutter click",
+      "b_roll": [
+        "Hubble Space Telescope public domain image"
+      ],
+      "text_overlay": {
+        "text": "Hubble captures eclipse"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Leiden Observatory combined Hubble and TESS data to confirm this intense 2524 K temperature.",
+      "visual_cue": "Thermal map of an exoplanet showing high temperatures.",
+      "sfx_cue": "Low hum of heat",
+      "b_roll": [
+        "Thermal data visualization",
+        "NASA artistic representation of molten planet"
+      ],
+      "text_overlay": {
+        "text": "2524 K temperature"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Transiting Exoplanet Survey Satellite continues to track this rocky world discovered in 2019.",
+      "visual_cue": "Wide shot of a star system drifting into darkness.",
+      "sfx_cue": "Fading ambient space sound",
+      "b_roll": [
+        "Deep space star field"
+      ],
+      "text_overlay": {
+        "text": "A world of fire"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://arxiv.org/abs/2609.31966",
+    "https://spaceandsky.com/hubble-first-rocky-exoplanet-secondary-eclipse-toi-2431b"
+  ]
+}

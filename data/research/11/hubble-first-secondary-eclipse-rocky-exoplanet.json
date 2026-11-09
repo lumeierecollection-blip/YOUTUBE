@@ -1,0 +1,73 @@
+{
+  "topic_slug": "hubble-first-secondary-eclipse-rocky-exoplanet",
+  "strongest_angle": "The Hubble Space Telescope successfully detected the secondary eclipse of the ultra-short-period rocky exoplanet TOI-2431b for the first time, providing a dayside brightness temperature of 2524 K and combining near-infrared observations with TESS optical data.",
+  "key_facts": [
+    {
+      "fact": "The Hubble Space Telescope detected the secondary eclipse of the rocky exoplanet TOI-2431b for the first time in the near infrared using its Wide Field Camera 3.",
+      "source_url": "https://arxiv.org/abs/2609.31966",
+      "source_name": "Leiden Observatory arXiv",
+      "confidence": "high"
+    },
+    {
+      "fact": "The secondary eclipse points to a dayside brightness temperature of 2524 K for the rocky planet TOI-2431b.",
+      "source_url": "https://spaceandsky.com/hubble-first-rocky-exoplanet-secondary-eclipse-toi-2431b",
+      "source_name": "Space&Sky",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Transiting Exoplanet Survey Satellite (TESS) spotted the ultra-short-period rocky planet TOI-2431b in the year 2019 with an orbital period of 5.4 hours.",
+      "source_url": "https://spaceandsky.com/hubble-first-rocky-exoplanet-secondary-eclipse-toi-2431b",
+      "source_name": "Space&Sky",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Leiden Observatory presented an HST/WFC3 G141 phase-curve observation of TOI-2431b combining Hubble and TESS optical eclipse measurements.",
+      "source_url": "https://arxiv.org/abs/2609.31966",
+      "source_name": "Leiden Observatory arXiv",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Dayside brightness temperature of TOI-2431b",
+      "value": 2524,
+      "unit": "K",
+      "source_url": "https://spaceandsky.com/hubble-first-rocky-exoplanet-secondary-eclipse-toi-2431b"
+    },
+    {
+      "label": "Orbital period of TOI-2431b",
+      "value": 5.4,
+      "unit": "hours",
+      "source_url": "https://arxiv.org/abs/2609.31966"
+    },
+    {
+      "label": "Discovery year of TOI-2431b by TESS",
+      "value": 2019,
+      "unit": "year",
+      "source_url": "https://spaceandsky.com/hubble-first-rocky-exoplanet-secondary-eclipse-toi-2431b"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Hubble Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "TOI-2431b",
+      "kind": "object"
+    },
+    {
+      "name": "Leiden Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Transiting Exoplanet Survey Satellite",
+      "kind": "organization"
+    },
+    {
+      "name": "Wide Field Camera 3",
+      "kind": "object"
+    }
+  ]
+}
