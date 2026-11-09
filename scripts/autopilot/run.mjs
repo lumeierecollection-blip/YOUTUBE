@@ -131,7 +131,7 @@ async function produce(slotId, channelId) {
       }
     }
     writeJson(join(runState, "topics-tried.json"), { tried, selected: topic?.topic || null });
-    if (!topic) throw new StageError(lastErr?.stage || "script", `${tried.length} topic(s) tried, none produced an accepted script. Last: ${String(lastErr?.message).slice(0, 500)}`);
+    if (!topic) throw new StageError(lastErr?.stage || "discover", `${tried.length} topic(s) tried, none usable. Last: ${String(lastErr?.message || tried.at(-1)?.reason).slice(0, 500)}`);
     writeJson(join(runState, "selected-topic.json"), topic);
     await notify(ledger, `${channel.name}: topic selected\n${topic.topic}\nScore ${topic.score.total}/100`);
     }
