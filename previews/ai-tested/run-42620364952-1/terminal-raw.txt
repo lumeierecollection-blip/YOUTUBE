@@ -1,0 +1,6 @@
+$ npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format <format>)'
+  --output-format <format>              Output format (only works with --print):
+  -p, --print                           Print response and exit (useful for
+--- stderr ---
+
+--- exit 0 ---
