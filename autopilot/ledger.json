@@ -590,6 +590,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "A major global consulting firm just got busted publishing a research paper full of fake AI hallucinations.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script"
+    },
+    "kick-88d81d1080-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42544893770",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:23:22.604Z"
     }
   },
   "uploads": [],
@@ -1146,5 +1154,5 @@
     "Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
     "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script"
   ],
-  "last_poll_at": "2026-11-09T01:17:59.575Z"
+  "last_poll_at": "2026-11-09T01:23:22.603Z"
 }
