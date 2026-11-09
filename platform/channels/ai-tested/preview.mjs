@@ -6,6 +6,7 @@ import { liveLLM } from "../../script-engine/llm.mjs";
 import { sceneTraceability } from "../../script-engine/traceability.mjs";
 import { buildTimeline, durationOf, FPS, narrate, publishFrames, technicalQa } from "../../production/index.mjs";
 import { spawnSync } from "node:child_process";
+import { METADATA, SENTENCES as FIXED_SENTENCES, USE_FIXED } from "./fixed-script.mjs";
 import { assemble, measure, sceneKindOfClaim } from "./experiment.mjs";
 
 const EDGE = "en-US-AndrewNeural";
@@ -13,8 +14,17 @@ const CALIBRATION = "The report was published in March. It listed three findings
 const OBJECTIVE = { hook: "Pose the question on a real test word, with its matching letters lighting up", setup: "Show how the test was run, step by step", terminal: "Show the real prompt and each model's real reply", score: "Show each model's measured score out of the total", split: "Compare scores on real words and random letter strings", miss: "Show the widest real miss: the correct count against the answer given", close: "Answer the opening question, with the final scores" };
 const TREATMENT = { hook: "kinetic-question", setup: "process-diagram", terminal: "terminal-demo", score: "bar-chart", split: "split-comparison", miss: "before-after-numbers", close: "verdict-panel" };
 
+function fixedResult(SENTENCES, claims, topic, key, blueprint) {
+  const sentences = SENTENCES.map((x, i) => ({ sentence_id: `f${i + 1}`, beat_id: `b${i + 1}`, role: "narration", link_from_previous: i ? "explanation" : "none", on_screen_text: "", ...x }));
+  const words = sentences.map((x) => x.text).join(" ");
+  const quality_report = { approved_by: "not reviewed by the engine critic", written_by: "written directly on the owner's instruction", independent_provider: false };
+  const pkg = { channel: key, topic, format: "short", target_seconds: 27, blueprint, hook_options: [{ text: sentences[0].text, family: "direct question", honest: true }], selected_hook: sentences[0].text, sentences, payoff: sentences.at(-2).text, ending: sentences.at(-1).text, cta: null, sources: [...new Map(claims.map((c) => [c.source_id, { source_id: c.source_id, url: c.source_url, published: c.published ?? null }])).values()], claims, duration_estimate_s: words.split(/\s+/).length / 2.05, quality_report };
+  return { status: "written_directly", package: pkg, report: { status: "written_directly", note: "The script engine and its independent critic did not review this script." }, findings: [] };
+}
+
 function mapScenes(pkg) {
   const kinds = pkg.sentences.map((s, i) => {
+    if (s.kind) return s.kind;
     if (i === 0) return "hook";
     if (i === pkg.sentences.length - 1) return "close";
     return (s.claim_ids || []).map(sceneKindOfClaim).find(Boolean) || null;
@@ -49,7 +59,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   tools.stage("research_complete", "ok");
 
   // The word budget comes from this voice, measured now.
-  const calibration = await narrate({ text: CALIBRATION, edgeVoice: EDGE, outDir, name: "calibration" });
+  const calibration = USE_FIXED ? { engine: "skipped", wpm: 125, seconds: 0, notes: [] } : await narrate({ text: CALIBRATION, edgeVoice: EDGE, outDir, name: "calibration" });
   let wpm = { wpm: calibration.wpm, source: "measured", voice: calibration.engine };
   tools.write("voice-calibration.json", { engine: calibration.engine, wpm: calibration.wpm, seconds: calibration.seconds, notes: calibration.notes });
 
@@ -57,7 +67,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   let result, narration, pkg, attempt = 0;
   for (;;) {
     attempt++;
-    result = await runEngine({
+    result = USE_FIXED ? fixedResult(FIXED_SENTENCES, exp.claims, "Can AI models count letters?", key, { central_question: "Can AI models count letters?", thesis: "In this test one model was perfect and the other was not.", why_it_matters: "The same question got very different reliability.", viewer_start: "Has heard AI struggles to count letters.", viewer_end: "Knows what this test measured and how each model scored.", key_evidence: ["score0", "score1", "split_random1", "miss"], beats: [], questions_raised: [{ question: "Can AI count letters?", raised_in: "f1", answered_in: "f9" }], conclusion: "AI can count, but not every model." }) : await runEngine({
       channelKey: key, format: "short", topic: "Can AI models count letters? A test of real models", angle: "Tell it as one story. Open on the question of whether AI can count letters. Say how the test worked, then give the example, then the scores, then why the random letters mattered, and end by answering the opening question. One figure per sentence. Eight or nine short spoken sentences, about 54 words. Use only the measured results.",
       claimResult: { claims: exp.claims, dropped: [], sources: exp.sources }, llm, wpm, production_run: runId, profileOverrides: { minSeconds: 24, targetSeconds: 26.5, maxSeconds: 29 }, maxRevisions: 3,
       onProgress: (ev) => {
@@ -66,7 +76,7 @@ export default async function preview({ key, runId, outDir, tools }) {
       },
     });
     tools.write("script-quality-report.json", result.report);
-    if (result.status !== "approved") { tools.write("open-findings.json", result.findings || []); throw new Error(`script engine: ${result.status}: ${JSON.stringify((result.findings || []).slice(0, 6).map((f) => `${f.rule}: ${f.problem}`)).slice(0, 700)} ${result.error || ""}`); }
+    if (!["approved", "written_directly"].includes(result.status)) { tools.write("open-findings.json", result.findings || []); throw new Error(`script engine: ${result.status}: ${JSON.stringify((result.findings || []).slice(0, 6).map((f) => `${f.rule}: ${f.problem}`)).slice(0, 700)} ${result.error || ""}`); }
     pkg = result.package;
     tools.write("script-package.json", pkg);
     if (result.report.last_critique) tools.write("critique.json", result.report.last_critique);
@@ -112,5 +122,6 @@ export default async function preview({ key, runId, outDir, tools }) {
   if (!qa.pass) { tools.stage("blocked", "failed", { issues: qa.failures.join("; ") }); throw new Error(`QA failed: ${qa.failures.join("; ")}`); }
   tools.stage("qa_passed", "ok");
   tools.stage("preview_ready", "ok");
+  tools.write("delivery.json", METADATA);
   tools.stage("awaiting_approval", "ok");
 }

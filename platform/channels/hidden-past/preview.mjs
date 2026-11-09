@@ -8,6 +8,7 @@
  * Added here: the newspaper/document treatment and the dated historical map scene.
  */
 import { spawnSync } from "node:child_process";
+import { METADATA, SENTENCES as FIXED_SENTENCES, USE_FIXED } from "./fixed-script.mjs";
 import { runEngine } from "../../script-engine/engine.mjs";
 import { liveLLM } from "../../script-engine/llm.mjs";
 import { sceneTraceability } from "../../script-engine/traceability.mjs";
@@ -144,6 +145,14 @@ process.exit(0);`;
   }
 }
 
+function fixedResult(SENTENCES, claims, topic, key, blueprint) {
+  const sentences = SENTENCES.map((x, i) => ({ sentence_id: `f${i + 1}`, beat_id: `b${i + 1}`, role: "narration", link_from_previous: i ? "explanation" : "none", on_screen_text: "", ...x }));
+  const words = sentences.map((x) => x.text).join(" ");
+  const quality_report = { approved_by: "not reviewed by the engine critic", written_by: "written directly on the owner's instruction", independent_provider: false };
+  const pkg = { channel: key, topic, format: "short", target_seconds: 27, blueprint, hook_options: [{ text: sentences[0].text, family: "direct question", honest: true }], selected_hook: sentences[0].text, sentences, payoff: sentences.at(-2).text, ending: sentences.at(-1).text, cta: null, sources: [...new Map(claims.map((c) => [c.source_id, { source_id: c.source_id, url: c.source_url, published: c.published ?? null }])).values()], claims, duration_estimate_s: words.split(/\s+/).length / 2.05, quality_report };
+  return { status: "written_directly", package: pkg, report: { status: "written_directly", note: "The script engine and its independent critic did not review this script." }, findings: [] };
+}
+
 export default async function preview({ key, runId, outDir, tools, entry }) {
   const work = join(ROOT, "output/work", `hidden-past-${runId}`);
   rmSync(work, { recursive: true, force: true });
@@ -168,7 +177,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   tools.write("claims.json", claimsOut);
   process.env.MAX_TOKENS_PER_VIDEO ||= "2000000";
   const SCENE_OF_CLAIM = { c1: 0, c2: 1, c3: 2, c4: 3, c5: 4, c6: 4 };
-  const calibration = await narrate({ text: "The report was published in March. It listed three findings. The first concerned the cost of the programme, which rose by a fifth over two years. The second looked at who paid for it, and the third asked whether anyone had checked.", edgeVoice: entry.tts_voice, outDir, name: "calibration", gravity: "serious" });
+  const calibration = USE_FIXED ? { engine: "skipped", wpm: 130, seconds: 0, notes: [] } : await narrate({ text: "The report was published in March. It listed three findings. The first concerned the cost of the programme, which rose by a fifth over two years. The second looked at who paid for it, and the third asked whether anyone had checked.", edgeVoice: entry.tts_voice, outDir, name: "calibration", gravity: "serious" });
   tools.write("voice-calibration.json", { engine: calibration.engine, wpm: calibration.wpm, seconds: calibration.seconds, notes: calibration.notes });
   let wpm = { wpm: calibration.wpm, source: "measured", voice: calibration.engine };
   const llm = liveLLM();
@@ -176,7 +185,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   let result, pkg, narrationInfo, attempt = 0;
   for (;;) {
     attempt++;
-    result = await runEngine({
+    result = USE_FIXED ? fixedResult(FIXED_SENTENCES, claimsOut, TOPIC, key, { central_question: "Whose arrest does a famous Sarajevo photograph really show?", thesis: "The photograph is real, but its famous caption is a later claim that scholars dispute.", why_it_matters: "A caption can outlive the evidence for it.", viewer_start: "Knows the assassination happened in Sarajevo.", viewer_end: "Can tell what the 1914 sources show from what later captions claim.", key_evidence: ["c1", "c4", "c5"], beats: [], questions_raised: [{ question: "Whose arrest is it?", raised_in: "f1", answered_in: "f7" }], conclusion: "The picture is real; the caption is in doubt." }) : await runEngine({
       channelKey: key, format: "short", topic: TOPIC, angle: "Tell it as one investigation, evidence first. Open at Sarajevo City Hall on 28 June 1914 with the couple's photograph. Place the city in today's country and in Austria-Hungary in 1914. Then the next day's newspaper. Then the famous arrest photograph, and what scholars say it really shows. End by answering whether the photograph shows Princip. Say plainly what is disputed. Seven or eight short spoken sentences.",
       claimResult: { claims: claimsOut, dropped: [], sources: claimSources }, llm, wpm, production_run: runId, profileOverrides: { minSeconds: 24, targetSeconds: 26.5, maxSeconds: 29 }, maxRevisions: 3,
       onProgress: (ev) => {
@@ -185,7 +194,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       },
     });
     tools.write("script-quality-report.json", result.report);
-    if (result.status !== "approved") { tools.write("open-findings.json", result.findings || []); throw new Error(`script engine: ${result.status}: ${JSON.stringify((result.findings || []).slice(0, 6).map((f) => `${f.rule}: ${f.problem}`)).slice(0, 700)} ${result.error || ""}`); }
+    if (!["approved", "written_directly"].includes(result.status)) { tools.write("open-findings.json", result.findings || []); throw new Error(`script engine: ${result.status}: ${JSON.stringify((result.findings || []).slice(0, 6).map((f) => `${f.rule}: ${f.problem}`)).slice(0, 700)} ${result.error || ""}`); }
     pkg = result.package;
     tools.write("script-package.json", pkg);
     if (result.report.last_critique) tools.write("critique.json", result.report.last_critique);
@@ -208,6 +217,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   pkg.sentences.forEach((x, i) => {
     const cited = (x.claim_ids || []).map((c) => SCENE_OF_CLAIM[c]).filter((n) => n !== undefined);
     const prev = i ? picture[i - 1] : 0;
+    if (x.scene !== undefined) { picture.push(x.scene); return; }
     picture.push(i === 0 ? 0 : cited.length ? Math.max(prev, Math.min(...cited.filter((n) => n >= prev).concat(4))) : prev);
   });
   const order = [...new Set(picture)];
@@ -399,5 +409,6 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   tools.stage(accepted ? "qa_passed" : "blocked", accepted ? "ok" : "failed", { issues: [...report.failures.map((f) => `${f.check}: ${f.why}`), ...qa.technical.failures].join("; ").slice(0, 500) || undefined });
   if (!accepted) throw new Error("QA failed; see qa-report.json");
   tools.stage("preview_ready", "ok");
+  tools.write("delivery.json", METADATA);
   tools.stage("awaiting_approval", "ok");
 }

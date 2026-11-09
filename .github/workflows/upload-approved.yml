@@ -1,0 +1,49 @@
+name: Upload Approved Video
+
+# Uploads only an MP4 whose SHA-256 is listed in config/upload-approval.json, as PRIVATE, then reads
+# it back from YouTube. Nothing here renders, and nothing here can publish.
+on:
+  push:
+    branches:
+      - "upload/**"
+
+concurrency:
+  group: upload-approved
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund --ignore-scripts || npm install --no-audit --no-fund --ignore-scripts; }
+          retry install
+      - name: Upload privately and verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AUTOPILOT_STATE_DIR: ${{ github.workspace }}/.state
+          CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+        run: node platform/production/upload-approved.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: upload-evidence-${{ github.run_id }}
+          path: upload-evidence-*.json
+          retention-days: 90
