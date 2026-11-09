@@ -722,16 +722,17 @@
     },
     "kick-a76e0da8ee-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42559003998",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:00:08.819Z",
+      "updated_at": "2026-11-09T04:08:17.650Z",
       "stage": "script",
       "topic": "Comparing ChatGPT Plus and Google AI Pro $20 subscription perks",
       "score": 80.7,
       "pillar": "Free versus paid AI tools",
-      "hook": "Are you getting your money's worth from your $20 monthly AI subscription?"
+      "hook": "Are you getting your money's worth from your $20 monthly AI subscription?",
+      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script abruptly jumps between unrelated coding stats, pricing trivia, and storage features without a logical narrative flow, leaving a confused viewer wondering what is actually being compared."
     }
   },
   "uploads": [],
@@ -1395,7 +1396,8 @@
     "AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo",
     "Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
-    "Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
+    "Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
+    "AI Tested kick-a76e0da8ee-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script"
   ],
   "last_poll_at": "2026-11-09T03:58:33.577Z"
 }

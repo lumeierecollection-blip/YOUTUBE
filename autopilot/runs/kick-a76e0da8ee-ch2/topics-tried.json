@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Comparing ChatGPT Plus and Google AI Pro $20 subscription perks",
+      "score": 80.7,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script abruptly jumps between unrelated coding stats, pricing trivia, and storage features without a logical narrative flow, leaving a confused viewer wondering what is actually being compared."
+    }
+  ],
+  "selected": null
+}
