@@ -981,6 +981,14 @@
       "updated_at": "2026-11-09T09:03:27.987Z",
       "stage": "discover",
       "error": "discovery failure: 14 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+    },
+    "kick-b7dd86b5f6-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42590247326",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:03:47.453Z"
     }
   },
   "uploads": [
@@ -1860,5 +1868,5 @@
     "AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"ChatGPT Images 2.6 Adds Instant GIF Creation\" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
     "Hidden Past kick-0533ccf24b-ch1 failed at discover: discovery failure: 14 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
   ],
-  "last_poll_at": "2026-11-09T09:01:53.802Z"
+  "last_poll_at": "2026-11-09T09:03:47.452Z"
 }
