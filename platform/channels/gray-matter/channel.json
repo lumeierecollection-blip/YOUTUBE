@@ -28,7 +28,8 @@
   },
   "voice": {
     "direction": "Clear, educational, accessible.",
-    "tts_voice": "en-US-JennyNeural",
+    "tts_voice": "en-GB-RyanNeural",
+    "voice_note": "Maps to Gemini Rasalgethi, measured at about 136 wpm. The earlier Jenny/Aoede voice measured about 96 wpm, which cannot fit the evidence in 30 s without cutting it.",
     "playback_speed": 1,
     "gap_seconds": 0.16,
     "generated_speech_notice": "Neural text to speech. Never presented as a human recording."
