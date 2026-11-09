@@ -69,7 +69,7 @@ function promptFile(previous, feedback, dir, drawable, channel) {
   let p = readFileSync(join(ROOT, "prompts/autopilot-write-short.md"), "utf8")
     .replaceAll("{{MIN}}", b.min).replaceAll("{{MAX}}", b.max).replaceAll("{{REJECT}}", b.reject)
     .replaceAll("{{HOOK}}", b.table.hook).replaceAll("{{SETUP}}", b.table.setup).replaceAll("{{REHOOK}}", b.table.rehook).replaceAll("{{PAYOFF}}", b.table.payoff).replaceAll("{{CLOSE}}", b.table.close);
-  if (drawable?.length) p += `\n\n## Facts this channel can draw\n\nThis channel rejects any sentence that does not ground something drawable. These research facts qualify. Build every sentence around one of them, and keep its figure, date, place or list exactly as written:\n${drawable.map((f) => `- ${f}`).join("\n")}\n`;
+  if (drawable?.length) p += `\n\n## Facts this channel can draw\n\nThis channel rejects any sentence that does not ground something drawable. These research facts qualify. Build every sentence around one of them, and keep its figure, date, place or list exactly as written:\n${drawable.map((f) => `- ${f}`).join("\n")}\n\nThis applies to the setup's question and the close as well. Put a figure, date or place inside the question ("Who gets the 12 free months?") and inside the close ("Check the 12-month deadline before it ends."). A question or a closing line with no figure in it is rejected.\n`;
   if (previous) {
     const n = wordCount(previous);
     p += `\n\n## Revise your previous draft\n\n${JSON.stringify(previous, null, 1)}\n\nThe quality gates found:\n${feedback}\n\nThe draft has ${n} words; the limit is ${b.max}. Change only what these findings need and leave every other sentence exactly as it is. Tighten wording rather than deleting a beat, and keep all five sections.
@@ -135,6 +135,7 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   const scriptStem = `${stem}-script`;
   let feedback = "", previous = null;
   const drawable = await drawableFacts(channel, researchPath);
+  log("script", `drawable facts offered: ${drawable.length}`);
   for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
     log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
@@ -142,7 +143,6 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     // Sources come from the research itself, so a script can never cite a URL the research does not hold.
     out.sources_used = [...new Set((readJson(researchPath).key_facts || []).map((f) => f.source_url).filter(Boolean))].slice(0, 6);
-    log("script", `drawable facts offered: ${drawable.length}`);
     writeJson(scriptPath, out);
     feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
     previous = readJson(scriptPath);
