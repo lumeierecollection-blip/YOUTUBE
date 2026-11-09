@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:05 SAST
+Updated 2026-11-09 11:12 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 11:05 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | D.B. Cooper's legendary 1971 airplane hijacking and parachute escape (71.7/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
@@ -109,3 +109,5 @@ Updated 2026-11-09 11:05 SAST
 - AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best "ChatGPT Images 2.6 Adds Instant GIF Creation" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos
 - Hidden Past kick-0533ccf24b-ch1 failed at discover: discovery failure: 14 candidates, none eligible. Best "The Sinking of SS Edmund Fitzgerald" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior
 - AI Tested kick-b7dd86b5f6-ch2 failed at discover: discovery failure: 22 candidates, none eligible. Best "WhatsApp rolls out AI photo expansion tool for iPhone users" (80.2): no trusted source
+- Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:
+  - SCR-16: 65 wor
