@@ -75,10 +75,11 @@ async function collectSignals(channel, nowMs, wave = 1) {
       return j.events.map((e) => ({ title: `${e.year}: ${e.text}`, url: e.pages?.[0]?.content_urls?.desktop?.page || "https://en.wikipedia.org", domain: "wikipedia.org", published_ms: nowMs, kind: "anniversary" }));
     }));
   }
-  const all = (await Promise.all(tasks)).flat();
+  // The freshest items from every source, so no single busy feed crowds out the rest.
+  const perSource = (await Promise.all(tasks)).map((list) => [...list].sort((a, b) => b.published_ms - a.published_ms).slice(0, 12));
   const seen = new Set();
-  const items = all.filter((x) => { const k = x.title.toLowerCase().slice(0, 70); if (seen.has(k)) return false; seen.add(k); return true; })
-    .sort((a, b) => (b.points || 0) - (a.points || 0) || b.published_ms - a.published_ms).slice(0, 110)
+  const items = perSource.flat().filter((x) => { const k = x.title.toLowerCase().slice(0, 70); if (seen.has(k)) return false; seen.add(k); return true; })
+    .sort((a, b) => (b.points || 0) - (a.points || 0) || b.published_ms - a.published_ms).slice(0, 170)
     .map((x, i) => ({ ...x, id: i }));
   return { items, report };
 }
