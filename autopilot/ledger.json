@@ -464,6 +464,14 @@
       "pillar": "Forgotten historical figures",
       "hook": "In 1936, a New York socialite walked out of war-torn China carrying a live giant panda disguised as a lapdog.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts:\n  - SCR-16: 60 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 5 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55.\n  - SCR-14: sources_used references URL(s) not present in the research file"
+    },
+    "kick-17244d3563-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42540547512",
+      "trigger": "push",
+      "updated_at": "2026-11-09T00:30:37.511Z"
     }
   },
   "uploads": [],
@@ -867,5 +875,5 @@
     "AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, o",
     "Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts"
   ],
-  "last_poll_at": "2026-11-09T00:22:17.258Z"
+  "last_poll_at": "2026-11-09T00:30:37.511Z"
 }
