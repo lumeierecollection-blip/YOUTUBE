@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 10:40 SAST
+Updated 2026-11-09 10:56 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -12,7 +12,7 @@ Updated 2026-11-09 10:40 SAST
 | Selected topic and score | The 1937 Estado Novo Coup in Brazil (59.8/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
-| Performance | 1 views, 0 likes, 0 comments (private) |
+| Performance | 0 views, 0 likes, 0 comments (private) |
 | Analytics | available |
 
 ## AI Tested
@@ -20,7 +20,7 @@ Updated 2026-11-09 10:40 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Viral Video Falsely Claims Trump Vandalized Office After Midterms (86.9/100) |
+| Selected topic and score | Nearly 20% of workers replaced by AI are being asked back (75.9/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -103,3 +103,5 @@ Updated 2026-11-09 10:40 SAST
 - Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best "The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa
 - AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "In Washington DC November" is not named in the research artifact â€” use the research's own name, or drop the
 - Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: "manufactured fear trapping democracy in Rio." is unsupported: While research notes a forged plan was used to c
+- AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:
+  - SCR-17 STRICT (str
