@@ -2,14 +2,12 @@
   "channel": "red-space-facts",
   "production_run": "run-42689701095-1",
   "agent": "agent-red-space-facts",
-  "stage": "blocked",
-  "status": "failed",
-  "timestamp": "2026-11-09T20:11:35.625Z",
+  "stage": "preview_ready",
+  "status": "ok",
+  "timestamp": "2026-11-09T20:11:37.984Z",
   "branch": "preview/red-space-facts-2",
   "commit": "930055d18f5b76b895de9c06afd886bfa76ef5f2",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42689701095#artifacts",
-  "failures": [
-    "voice is not audible in the MP4 (mean NaN dB; silence is about -91 dB)",
-    "s6: looks static (mean abs diff 0.09 over 0.4 s)"
-  ]
+  "duration_s": 20.288,
+  "narration": "provisional"
 }
