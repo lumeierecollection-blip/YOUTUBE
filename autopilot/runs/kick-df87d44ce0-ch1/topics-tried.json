@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Gaming Pieces from Genghis Khan's Grandson's Fleet",
+      "score": 77.5,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Sealed Pompeii Wardrobe Opened After 2,000 Years",
+      "score": 77.2,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Burial of the Unknown Warrior",
+      "score": 67.8,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 5 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    }
+  ],
+  "selected": null
+}
