@@ -1,0 +1,345 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (49/51 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "A",
+   "start": 0.0,
+   "end": 0.32,
+   "sentence": 0
+  },
+  {
+   "text": "sleepless",
+   "start": 0.32,
+   "end": 1.02,
+   "sentence": 0
+  },
+  {
+   "text": "night",
+   "start": 1.02,
+   "end": 1.54,
+   "sentence": 0
+  },
+  {
+   "text": "worsens",
+   "start": 1.54,
+   "end": 2.7,
+   "sentence": 0
+  },
+  {
+   "text": "memory",
+   "start": 2.7,
+   "end": 3.08,
+   "sentence": 0
+  },
+  {
+   "text": "for",
+   "start": 3.08,
+   "end": 3.6,
+   "sentence": 0
+  },
+  {
+   "text": "new",
+   "start": 3.6,
+   "end": 3.92,
+   "sentence": 0
+  },
+  {
+   "text": "things",
+   "start": 3.92,
+   "end": 4.46,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 5.34,
+   "end": 5.39,
+   "sentence": 1
+  },
+  {
+   "text": "hippocampus",
+   "start": 5.36,
+   "end": 5.72,
+   "sentence": 1
+  },
+  {
+   "text": "deep",
+   "start": 6.72,
+   "end": 6.82,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 6.82,
+   "end": 7.18,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 7.18,
+   "end": 7.32,
+   "sentence": 1
+  },
+  {
+   "text": "temporal",
+   "start": 7.32,
+   "end": 7.68,
+   "sentence": 1
+  },
+  {
+   "text": "lobe",
+   "start": 7.68,
+   "end": 8.28,
+   "sentence": 1
+  },
+  {
+   "text": "helps",
+   "start": 8.8,
+   "end": 9.0,
+   "sentence": 1
+  },
+  {
+   "text": "form",
+   "start": 9.0,
+   "end": 9.4,
+   "sentence": 1
+  },
+  {
+   "text": "memories",
+   "start": 9.4,
+   "end": 10.04,
+   "sentence": 1
+  },
+  {
+   "text": "One",
+   "start": 10.98,
+   "end": 11.04,
+   "sentence": 2
+  },
+  {
+   "text": "imaging",
+   "start": 11.04,
+   "end": 11.44,
+   "sentence": 2
+  },
+  {
+   "text": "study",
+   "start": 11.44,
+   "end": 11.9,
+   "sentence": 2
+  },
+  {
+   "text": "found",
+   "start": 11.9,
+   "end": 12.32,
+   "sentence": 2
+  },
+  {
+   "text": "it",
+   "start": 12.32,
+   "end": 12.46,
+   "sentence": 2
+  },
+  {
+   "text": "less",
+   "start": 12.46,
+   "end": 12.78,
+   "sentence": 2
+  },
+  {
+   "text": "active",
+   "start": 12.78,
+   "end": 13.4,
+   "sentence": 2
+  },
+  {
+   "text": "when",
+   "start": 13.4,
+   "end": 13.76,
+   "sentence": 2
+  },
+  {
+   "text": "learning",
+   "start": 13.76,
+   "end": 14.1,
+   "sentence": 2
+  },
+  {
+   "text": "In",
+   "start": 14.9,
+   "end": 14.96,
+   "sentence": 3
+  },
+  {
+   "text": "mice",
+   "start": 14.96,
+   "end": 15.24,
+   "sentence": 3
+  },
+  {
+   "text": "five",
+   "start": 15.68,
+   "end": 16.18,
+   "sentence": 3
+  },
+  {
+   "text": "hours",
+   "start": 16.18,
+   "end": 16.62,
+   "sentence": 3
+  },
+  {
+   "text": "awake",
+   "start": 16.62,
+   "end": 17.04,
+   "sentence": 3
+  },
+  {
+   "text": "cut",
+   "start": 17.04,
+   "end": 17.74,
+   "sentence": 3
+  },
+  {
+   "text": "dendritic",
+   "start": 17.74,
+   "end": 18.44,
+   "sentence": 3
+  },
+  {
+   "text": "spines",
+   "start": 18.44,
+   "end": 19.2,
+   "sentence": 3
+  },
+  {
+   "text": "Blocking",
+   "start": 20.04,
+   "end": 20.26,
+   "sentence": 4
+  },
+  {
+   "text": "cofilin",
+   "start": 20.26,
+   "end": 20.76,
+   "sentence": 4
+  },
+  {
+   "text": "which",
+   "start": 21.26,
+   "end": 21.42,
+   "sentence": 4
+  },
+  {
+   "text": "breaks",
+   "start": 21.42,
+   "end": 21.7,
+   "sentence": 4
+  },
+  {
+   "text": "down",
+   "start": 21.7,
+   "end": 22.06,
+   "sentence": 4
+  },
+  {
+   "text": "actin",
+   "start": 22.06,
+   "end": 22.56,
+   "sentence": 4
+  },
+  {
+   "text": "prevented",
+   "start": 23.06,
+   "end": 23.34,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 23.34,
+   "end": 23.8,
+   "sentence": 4
+  },
+  {
+   "text": "loss",
+   "start": 23.8,
+   "end": 24.04,
+   "sentence": 4
+  },
+  {
+   "text": "Recovery",
+   "start": 25.28,
+   "end": 25.33,
+   "sentence": 5
+  },
+  {
+   "text": "sleep",
+   "start": 25.28,
+   "end": 25.68,
+   "sentence": 5
+  },
+  {
+   "text": "reversed",
+   "start": 25.68,
+   "end": 26.0,
+   "sentence": 5
+  },
+  {
+   "text": "it",
+   "start": 26.0,
+   "end": 26.58,
+   "sentence": 5
+  },
+  {
+   "text": "only",
+   "start": 26.9,
+   "end": 27.44,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 27.44,
+   "end": 27.72,
+   "sentence": 5
+  },
+  {
+   "text": "mice",
+   "start": 27.72,
+   "end": 27.98,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "A sleepless night worsens memory for new things.",
+   "start": 0.0,
+   "end": 4.46
+  },
+  {
+   "text": "The hippocampus, deep in the temporal lobe, helps form memories.",
+   "start": 5.34,
+   "end": 10.04
+  },
+  {
+   "text": "One imaging study found it less active when learning.",
+   "start": 10.98,
+   "end": 14.1
+  },
+  {
+   "text": "In mice, five hours awake cut dendritic spines.",
+   "start": 14.9,
+   "end": 19.2
+  },
+  {
+   "text": "Blocking cofilin, which breaks down actin, prevented the loss.",
+   "start": 20.04,
+   "end": 24.04
+  },
+  {
+   "text": "Recovery sleep reversed it, only in mice.",
+   "start": 25.28,
+   "end": 27.98
+  }
+ ]
+}
