@@ -768,7 +768,12 @@
       "attempts": 1,
       "run_id": "42560725532",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:26:21.968Z"
+      "updated_at": "2026-11-09T04:27:36.225Z",
+      "stage": "research",
+      "topic": "Apple testing 3 new AI features for the iPhone Photos app",
+      "score": 83,
+      "pillar": "New AI features and releases",
+      "hook": "Apple is reportedly planning a massive overhaul to the iPhone Photos app with three powerful new AI capabilities."
     }
   },
   "uploads": [],
@@ -1402,6 +1407,15 @@
       "at_ms": 1794198194380,
       "score": 66.3,
       "pillar": "Forgotten historical figures"
+    },
+    {
+      "channel": "2",
+      "topic": "Apple testing 3 new AI features for the iPhone Photos app",
+      "slug": "apple-testing-3-new-ai-features-for-the-iphone-photos-app",
+      "slot": "kick-25e02450db-ch2",
+      "at_ms": 1794198456225,
+      "score": 83,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
