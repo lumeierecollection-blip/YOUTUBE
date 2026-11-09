@@ -747,6 +747,14 @@
       "pillar": "Unbelievable true historical events",
       "hook": "To honor millions of nameless fallen soldiers, Britain buried one completely anonymous hero in Westminster Abbey.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 5 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    "kick-fbb26cd62b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42560683899",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:14:31.779Z"
     }
   },
   "uploads": [],
@@ -1423,5 +1431,5 @@
     "AI Tested kick-a76e0da8ee-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script",
     "Hidden Past kick-df87d44ce0-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€"
   ],
-  "last_poll_at": "2026-11-09T04:08:38.109Z"
+  "last_poll_at": "2026-11-09T04:14:31.778Z"
 }
