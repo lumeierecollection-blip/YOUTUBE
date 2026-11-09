@@ -761,6 +761,14 @@
       "pillar": "Forgotten historical figures",
       "hook": "Australia's most infamous outlaw built a suit of impenetrable metal armor before his final shootout.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/ned-kelly-s-last-stand-and-execution-shorts:\n  - SCR-16: 58 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 3 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 4"
+    },
+    "kick-25e02450db-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42560725532",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:26:21.968Z"
     }
   },
   "uploads": [],
@@ -1456,5 +1464,5 @@
     "Hidden Past kick-df87d44ce0-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:\n  - SCR-16: 60 words implies ~29s duration â€",
     "Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the "
   ],
-  "last_poll_at": "2026-11-09T04:14:31.778Z"
+  "last_poll_at": "2026-11-09T04:26:21.968Z"
 }
