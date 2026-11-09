@@ -1,0 +1,627 @@
+{
+  "channel": "ai-tested",
+  "format": "short",
+  "topic": "Can AI models count letters? A test of real models",
+  "angle": "What happened when the same counting questions went to each model, and what the scores show. Use only the measured results.",
+  "status": "rejected",
+  "wpm": {
+    "wpm": 123,
+    "source": "measured",
+    "voice": "gemini:Sadaltager"
+  },
+  "limits": {
+    "target_s": 26.5,
+    "max_s": 29
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "writer_provider": "groq",
+      "words": 45,
+      "deterministic": {
+        "critical": 0,
+        "major": 11,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Gemini\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Gemini\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Flash\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Flash\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"GPT\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"GPT\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"OSS\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"OSS\" is."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "5 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "8 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "The ending brings in something the listener has not heard (figure 5, 4).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          },
+          {
+            "rule": "CON-12",
+            "severity": "major",
+            "category": "unfulfilled_hook",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "The hook says 3.5 and the rest of the script never returns to it.",
+            "fix": "Deliver that figure in the payoff or take it out of the hook."
+          },
+          {
+            "rule": "TRC-06",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"only\" is stronger than the claims behind this sentence.",
+            "fix": "Use the claim's own strength."
+          },
+          {
+            "rule": "TRC-06",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"biggest\" is stronger than the claims behind this sentence.",
+            "fix": "Use the claim's own strength."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "major",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 22s; the minimum is 24s",
+            "fix": "Add a beat that serves the question."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 11,
+        "minor": 0
+      }
+    },
+    {
+      "round": 2,
+      "writer_provider": "groq",
+      "words": 54,
+      "deterministic": {
+        "critical": 1,
+        "major": 6,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"GPT\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"GPT\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"OSS\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"OSS\" is."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "6 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "9 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "5 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "critical",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The sentence states a figure or a name but cites no claim.",
+            "fix": "Cite a claim or remove the figure or name."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The ending brings in something the listener has not heard (count, perfect, often, err).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 1,
+        "major": 6,
+        "minor": 0
+      }
+    },
+    {
+      "round": 3,
+      "writer_provider": "groq",
+      "words": 57,
+      "deterministic": {
+        "critical": 1,
+        "major": 10,
+        "minor": 1,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Gemini\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Gemini\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Flash\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Flash\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"GPT\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"GPT\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"OSS\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"OSS\" is."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "6 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s1",
+              "s2"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "5 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-02",
+            "severity": "major",
+            "category": "abrupt_topic_change",
+            "sentence_ids": [
+              "s2",
+              "s3"
+            ],
+            "problem": "These two sentences share no subject, name or fact: the narration jumps.",
+            "fix": "Add the missing step that connects them, or reorder, or remove one."
+          },
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "5 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-01",
+            "severity": "minor",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The stated transition mentions nothing from either sentence.",
+            "fix": "Make the link specific."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "critical",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The sentence states a figure or a name but cites no claim.",
+            "fix": "Cite a claim or remove the figure or name."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The ending brings in something the listener has not heard (reliab, count, letter, often).",
+            "fix": "End on what the script already established; move new material earlier and explain it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 1,
+        "major": 10,
+        "minor": 0
+      }
+    },
+    {
+      "round": 4,
+      "writer_provider": "gemini",
+      "words": 47,
+      "deterministic": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-13",
+            "severity": "major",
+            "category": "unnatural_phrasing",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "6 figures in one sentence; a listener keeps two.",
+            "fix": "Keep the figure that matters."
+          },
+          {
+            "rule": "CON-03",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"this test\" refers to something never mentioned before this point.",
+            "fix": "Say what \"test\" is, or mention it earlier."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "major",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 21s; the minimum is 24s",
+            "fix": "Add a beat that serves the question."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 3,
+        "minor": 0
+      }
+    }
+  ],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 8,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+        "published": "2026-11-09",
+        "title": "AI Tested letter-count test run"
+      }
+    ]
+  },
+  "blueprint": {
+    "attempts": 2,
+    "removed_beats": [],
+    "checks": {
+      "max_beats": 3,
+      "deterministic": "pass",
+      "model": {
+        "answers_question": true,
+        "fits_length": true,
+        "beats": [
+          {
+            "beat_id": "b1",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "It introduces the test design used to determine whether AI models can count letters."
+          },
+          {
+            "beat_id": "b2",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "consequence",
+            "reason": "The test scores are the outcome or consequence of running the test described in b1, rather than evidence proving the test setup."
+          },
+          {
+            "beat_id": "b3",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "It wraps up the narrative following directly from the test results presented in b2."
+          }
+        ],
+        "relinked_by_checker": [
+          {
+            "beat_id": "b2",
+            "from": "evidence",
+            "to": "consequence",
+            "reason": "The test scores are the outcome or consequence of running the test described in b1, rather than evidence proving the test setup."
+          }
+        ]
+      }
+    },
+    "history": [
+      {
+        "attempt": 1,
+        "stage": "deterministic",
+        "issues": [
+          {
+            "severity": "critical",
+            "code": "order",
+            "message": "last beat must be the ending",
+            "beat_id": "b3"
+          },
+          {
+            "severity": "major",
+            "code": "order",
+            "message": "the payoff must come immediately before the ending",
+            "beat_id": null
+          },
+          {
+            "severity": "critical",
+            "code": "order",
+            "message": "exactly one opening and one ending",
+            "beat_id": null
+          }
+        ]
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 4382,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 3928,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 16728,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 7135,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 53337,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 54031,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "ms": 57365,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq:quota_exhausted",
+        "cerebras:provider_error",
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "groq",
+      "gemini"
+    ],
+    "critic": []
+  }
+}

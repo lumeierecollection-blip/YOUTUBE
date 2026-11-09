@@ -1,0 +1,30 @@
+[
+  {
+    "rule": "CON-13",
+    "severity": "major",
+    "category": "unnatural_phrasing",
+    "sentence_ids": [
+      "s2"
+    ],
+    "problem": "6 figures in one sentence; a listener keeps two.",
+    "fix": "Keep the figure that matters."
+  },
+  {
+    "rule": "CON-03",
+    "severity": "major",
+    "category": "missing_context",
+    "sentence_ids": [
+      "s3"
+    ],
+    "problem": "\"this test\" refers to something never mentioned before this point.",
+    "fix": "Say what \"test\" is, or mention it earlier."
+  },
+  {
+    "rule": "DUR-01",
+    "sentence_ids": [],
+    "severity": "major",
+    "category": "unrealistic_duration",
+    "problem": "the script is estimated at 21s; the minimum is 24s",
+    "fix": "Add a beat that serves the question."
+  }
+]
