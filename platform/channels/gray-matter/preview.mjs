@@ -1,6 +1,6 @@
 /** Gray Matter sample Short: sources are recorded in sample.mjs, geometry comes from the Anima kit, rendering from Remotion. */
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -106,6 +106,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   tools.stage("visual_complete", "running");
 
   const { voiceFile, timed, narration, total } = await synthesise(outDir);
+  copyFileSync(voiceFile, join(outDir, "voice-preview.mp3"));
   const rate = `natural, ${narration.engine}, ${narration.wpm} wpm, playback speed ${narration.playback_speed}`;
   tools.write("narration.json", { engine: narration.engine, seconds: narration.seconds, wpm: narration.wpm, playback_speed: narration.playback_speed, notes: narration.notes });
   tools.stage("voice_complete", "running", { rate });
