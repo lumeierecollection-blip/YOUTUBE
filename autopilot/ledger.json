@@ -1026,12 +1026,12 @@
       "attempts": 1,
       "run_id": "42591822188",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:24:03.910Z",
-      "stage": "script",
-      "topic": "The First Robotic Rover on Mars",
-      "score": 67.9,
+      "updated_at": "2026-11-09T09:25:44.211Z",
+      "stage": "research",
+      "topic": "Jocelyn Bell Burnell Discovers Pulsars",
+      "score": 66.6,
       "pillar": "Events that changed the modern world",
-      "hook": "In 2011, NASA launched a car-sized mobile laboratory on a daring mission to determine if Mars ever supported microbial life."
+      "hook": "In 1967, a graduate student noticed a tiny bit of 'scruff' in her telescope data that turned out to be the universe's first discovered pulsar."
     }
   },
   "uploads": [
@@ -1895,6 +1895,15 @@
       "slot": "kick-4d0ab7875c-ch1",
       "at_ms": 1794216237236,
       "score": 67.9,
+      "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Jocelyn Bell Burnell Discovers Pulsars",
+      "slug": "jocelyn-bell-burnell-discovers-pulsars",
+      "slot": "kick-4d0ab7875c-ch1",
+      "at_ms": 1794216344211,
+      "score": 66.6,
       "pillar": "Events that changed the modern world"
     }
   ],
