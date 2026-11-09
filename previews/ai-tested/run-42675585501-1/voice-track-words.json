@@ -6,331 +6,331 @@
   {
    "text": "Can",
    "start": 0.0,
-   "end": 0.36,
+   "end": 0.54,
    "sentence": 0
   },
   {
    "text": "AI",
-   "start": 0.36,
-   "end": 0.72,
+   "start": 0.54,
+   "end": 0.94,
    "sentence": 0
   },
   {
    "text": "actually",
-   "start": 0.72,
-   "end": 1.8,
+   "start": 0.94,
+   "end": 2.14,
    "sentence": 0
   },
   {
    "text": "count",
-   "start": 1.8,
-   "end": 2.36,
+   "start": 2.14,
+   "end": 2.7,
    "sentence": 0
   },
   {
    "text": "letters",
-   "start": 2.36,
-   "end": 2.76,
+   "start": 2.7,
+   "end": 3.18,
    "sentence": 0
   },
   {
    "text": "We",
-   "start": 3.68,
-   "end": 3.9,
+   "start": 4.02,
+   "end": 4.26,
    "sentence": 1
   },
   {
    "text": "gave",
-   "start": 3.9,
-   "end": 4.06,
+   "start": 4.26,
+   "end": 4.48,
    "sentence": 1
   },
   {
    "text": "two",
-   "start": 4.06,
-   "end": 4.36,
+   "start": 4.48,
+   "end": 4.88,
    "sentence": 1
   },
   {
    "text": "models",
-   "start": 4.36,
-   "end": 4.8,
+   "start": 4.88,
+   "end": 5.34,
    "sentence": 1
   },
   {
    "text": "twenty",
-   "start": 4.8,
-   "end": 5.08,
+   "start": 5.34,
+   "end": 5.67,
    "sentence": 1
   },
   {
    "text": "counting",
-   "start": 5.36,
-   "end": 6.04,
+   "start": 6.0,
+   "end": 6.64,
    "sentence": 1
   },
   {
    "text": "questions",
-   "start": 6.04,
-   "end": 6.52,
+   "start": 6.64,
+   "end": 7.18,
    "sentence": 1
   },
   {
    "text": "Both",
-   "start": 7.24,
-   "end": 7.48,
+   "start": 7.76,
+   "end": 8.1,
    "sentence": 2
   },
   {
    "text": "got",
-   "start": 7.48,
-   "end": 7.7,
+   "start": 8.1,
+   "end": 8.44,
    "sentence": 2
   },
   {
    "text": "strawberry",
-   "start": 7.7,
-   "end": 8.26,
+   "start": 8.44,
+   "end": 9.0,
    "sentence": 2
   },
   {
    "text": "right",
-   "start": 8.26,
-   "end": 8.88,
+   "start": 9.0,
+   "end": 9.74,
    "sentence": 2
   },
   {
    "text": "OpenAI's",
-   "start": 9.94,
-   "end": 10.44,
+   "start": 9.74,
+   "end": 10.753,
    "sentence": 3
   },
   {
    "text": "GPT-OSS",
-   "start": 10.44,
-   "end": 10.94,
+   "start": 10.753,
+   "end": 11.767,
    "sentence": 3
   },
   {
    "text": "then",
-   "start": 11.44,
-   "end": 12.1,
+   "start": 12.78,
+   "end": 13.48,
    "sentence": 3
   },
   {
    "text": "scored",
-   "start": 12.1,
-   "end": 12.42,
+   "start": 13.48,
+   "end": 13.78,
    "sentence": 3
   },
   {
    "text": "twenty",
-   "start": 12.42,
-   "end": 12.87,
+   "start": 13.78,
+   "end": 14.18,
    "sentence": 3
   },
   {
    "text": "out",
-   "start": 13.32,
-   "end": 13.66,
+   "start": 14.58,
+   "end": 14.88,
    "sentence": 3
   },
   {
    "text": "of",
-   "start": 13.66,
-   "end": 13.76,
+   "start": 14.88,
+   "end": 15.0,
    "sentence": 3
   },
   {
    "text": "twenty",
-   "start": 13.76,
-   "end": 14.34,
+   "start": 15.0,
+   "end": 15.6,
    "sentence": 3
   },
   {
    "text": "Google's",
-   "start": 14.92,
-   "end": 15.24,
+   "start": 16.2,
+   "end": 16.46,
    "sentence": 4
   },
   {
    "text": "Flash-Lite",
-   "start": 15.24,
-   "end": 15.35,
+   "start": 16.46,
+   "end": 16.64,
    "sentence": 4
   },
   {
    "text": "got",
-   "start": 15.46,
-   "end": 16.36,
+   "start": 16.82,
+   "end": 17.64,
    "sentence": 4
   },
   {
    "text": "eleven",
-   "start": 16.36,
-   "end": 16.99,
+   "start": 17.64,
+   "end": 18.24,
    "sentence": 4
   },
   {
    "text": "On",
-   "start": 17.62,
-   "end": 17.88,
+   "start": 18.84,
+   "end": 19.04,
    "sentence": 5
   },
   {
    "text": "random",
-   "start": 17.88,
-   "end": 18.24,
+   "start": 19.04,
+   "end": 19.42,
    "sentence": 5
   },
   {
    "text": "letters",
-   "start": 18.24,
-   "end": 18.72,
-   "sentence": 5
-  },
-  {
-   "text": "it",
-   "start": 19.04,
-   "end": 19.1,
-   "sentence": 5
-  },
-  {
-   "text": "got",
-   "start": 19.1,
-   "end": 19.24,
-   "sentence": 5
-  },
-  {
-   "text": "just",
-   "start": 19.24,
-   "end": 19.48,
-   "sentence": 5
-  },
-  {
-   "text": "three",
-   "start": 19.48,
+   "start": 19.42,
    "end": 19.96,
    "sentence": 5
   },
   {
+   "text": "it",
+   "start": 20.42,
+   "end": 20.54,
+   "sentence": 5
+  },
+  {
+   "text": "got",
+   "start": 20.54,
+   "end": 20.72,
+   "sentence": 5
+  },
+  {
+   "text": "just",
+   "start": 20.72,
+   "end": 20.98,
+   "sentence": 5
+  },
+  {
+   "text": "three",
+   "start": 20.98,
+   "end": 21.62,
+   "sentence": 5
+  },
+  {
    "text": "of",
-   "start": 19.96,
-   "end": 20.12,
+   "start": 21.62,
+   "end": 21.94,
    "sentence": 5
   },
   {
    "text": "ten",
-   "start": 20.12,
-   "end": 20.65,
+   "start": 21.94,
+   "end": 22.44,
    "sentence": 5
   },
   {
    "text": "It",
-   "start": 21.18,
-   "end": 21.36,
+   "start": 22.94,
+   "end": 23.08,
    "sentence": 6
   },
   {
    "text": "even",
-   "start": 21.36,
-   "end": 21.48,
+   "start": 23.08,
+   "end": 23.24,
    "sentence": 6
   },
   {
    "text": "found",
-   "start": 21.48,
-   "end": 21.8,
+   "start": 23.24,
+   "end": 23.56,
    "sentence": 6
   },
   {
    "text": "five",
-   "start": 21.8,
-   "end": 22.42,
+   "start": 23.56,
+   "end": 24.16,
    "sentence": 6
   },
   {
    "text": "Os",
-   "start": 22.42,
-   "end": 22.75,
+   "start": 24.16,
+   "end": 24.52,
    "sentence": 6
   },
   {
    "text": "in",
-   "start": 23.08,
-   "end": 23.5,
+   "start": 24.88,
+   "end": 25.36,
    "sentence": 6
   },
   {
    "text": "onomatopoeia",
-   "start": 23.5,
-   "end": 24.18,
+   "start": 25.36,
+   "end": 26.22,
    "sentence": 6
   },
   {
    "text": "There",
-   "start": 24.86,
-   "end": 24.91,
+   "start": 26.78,
+   "end": 26.83,
    "sentence": 7
   },
   {
    "text": "are",
-   "start": 24.9,
-   "end": 25.0,
+   "start": 26.82,
+   "end": 26.94,
    "sentence": 7
   },
   {
    "text": "four",
-   "start": 25.0,
-   "end": 25.34,
+   "start": 26.94,
+   "end": 27.3,
    "sentence": 7
   },
   {
    "text": "So",
-   "start": 26.18,
-   "end": 26.32,
+   "start": 27.3,
+   "end": 28.12,
    "sentence": 8
   },
   {
    "text": "AI",
-   "start": 26.32,
-   "end": 26.58,
+   "start": 28.12,
+   "end": 28.56,
    "sentence": 8
   },
   {
    "text": "can",
-   "start": 26.58,
-   "end": 27.22,
+   "start": 28.56,
+   "end": 29.18,
    "sentence": 8
   },
   {
    "text": "count",
-   "start": 27.22,
-   "end": 27.62,
+   "start": 29.18,
+   "end": 29.66,
    "sentence": 8
   },
   {
    "text": "just",
-   "start": 27.96,
-   "end": 28.38,
+   "start": 30.34,
+   "end": 30.39,
    "sentence": 8
   },
   {
    "text": "not",
-   "start": 28.38,
-   "end": 28.76,
+   "start": 30.36,
+   "end": 30.72,
    "sentence": 8
   },
   {
    "text": "every",
-   "start": 28.76,
-   "end": 29.02,
+   "start": 30.72,
+   "end": 31.3,
    "sentence": 8
   },
   {
    "text": "model",
-   "start": 29.02,
-   "end": 29.26,
+   "start": 31.3,
+   "end": 31.6,
    "sentence": 8
   }
  ],
@@ -338,47 +338,47 @@
   {
    "text": "Can AI actually count letters?",
    "start": 0.0,
-   "end": 2.76
+   "end": 3.18
   },
   {
    "text": "We gave two models twenty counting questions.",
-   "start": 3.68,
-   "end": 6.52
+   "start": 4.02,
+   "end": 7.18
   },
   {
    "text": "Both got strawberry right.",
-   "start": 7.24,
-   "end": 8.88
+   "start": 7.76,
+   "end": 9.74
   },
   {
    "text": "OpenAI's GPT-OSS then scored twenty out of twenty.",
-   "start": 9.94,
-   "end": 14.34
+   "start": 9.74,
+   "end": 15.6
   },
   {
    "text": "Google's Flash-Lite got eleven.",
-   "start": 14.92,
-   "end": 16.99
+   "start": 16.2,
+   "end": 18.24
   },
   {
    "text": "On random letters, it got just three of ten.",
-   "start": 17.62,
-   "end": 20.65
+   "start": 18.84,
+   "end": 22.44
   },
   {
    "text": "It even found five Os in onomatopoeia.",
-   "start": 21.18,
-   "end": 24.18
+   "start": 22.94,
+   "end": 26.22
   },
   {
    "text": "There are four.",
-   "start": 24.86,
-   "end": 25.34
+   "start": 26.78,
+   "end": 27.3
   },
   {
    "text": "So AI can count, just not every model.",
-   "start": 26.18,
-   "end": 29.26
+   "start": 27.3,
+   "end": 31.6
   }
  ]
 }
