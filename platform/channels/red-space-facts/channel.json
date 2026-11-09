@@ -1,0 +1,56 @@
+{
+  "key": "red-space-facts",
+  "name": "Red Space Facts",
+  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 },
+  "voice": { "tts_voice": "en-US-GuyNeural", "direction": "Curious, immersive, scientifically grounded.", "rates_to_try": ["+0%", "+6%", "+12%", "+18%"] },
+  "type": { "display": "Space Grotesk", "data": "JetBrains Mono" },
+  "palette": {
+    "space": "#04060d",
+    "text": "#f4f1e8",
+    "text_dim": "#aab1c2",
+    "caption_bg": "#04060dcc",
+    "leader": "#f4f1e8",
+    "status": {
+      "observation": "#7fd6ff",
+      "scientific_model": "#ffc24d",
+      "hypothetical": "#ff7a6b",
+      "artistic_interpretation": "#c9a6ff"
+    },
+    "saturn_grade": "#f3e3c2",
+    "saturn_atmosphere": "#d9c79a",
+    "dark_band": "#20345c",
+    "ring_tint": "#eadfc8",
+    "ice": "#cfeaff",
+    "field_line": "#7fd6ff",
+    "water": "#3d9be0",
+    "pool_edge": "#cfeaff",
+    "orbit": "#6f7c99",
+    "orbit_focus": "#ffc24d",
+    "sun": "#fff0c4",
+    "sun_glow": "#ffb64d",
+    "star": "#dfe6f5",
+    "planets": {
+      "Mercury": "#a39a8e",
+      "Venus": "#d9c08a",
+      "Earth": "#5aa2e0",
+      "Mars": "#c9673f",
+      "Jupiter": "#d3a874",
+      "Saturn": "#e6cf9c"
+    }
+  },
+  "status_labels": {
+    "observation": "OBSERVED",
+    "scientific_model": "SCIENTIFIC MODEL",
+    "hypothetical": "HYPOTHETICAL",
+    "artistic_interpretation": "ARTISTIC INTERPRETATION"
+  },
+  "disclosure_line": "AI-generated 3D render, not a photo. Includes NASA source material; not reviewed or endorsed by NASA.",
+  "scene_library": [
+    "saturn-ring-plane-flyover",
+    "orbital-scale-pullout",
+    "ring-rain-labelled-3d",
+    "pool-fill-estimate",
+    "ring-fade-disputed-models",
+    "ringless-hypothetical"
+  ]
+}
