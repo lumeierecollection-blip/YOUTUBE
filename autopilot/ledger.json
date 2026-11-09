@@ -866,7 +866,12 @@
       "attempts": 1,
       "run_id": "42576166902",
       "trigger": "push",
-      "updated_at": "2026-11-09T06:56:55.067Z"
+      "updated_at": "2026-11-09T06:58:51.605Z",
+      "stage": "research",
+      "topic": "The Unveiling of the London Cenotaph",
+      "score": 70.2,
+      "pillar": "Events that changed the modern world",
+      "hook": "In 1920, London unveiled a haunting empty tomb that would become the global symbol for fallen soldiers."
     }
   },
   "uploads": [
@@ -1604,6 +1609,15 @@
       "slot": "kick-dfe6805728-ch1",
       "at_ms": 1794201174853,
       "score": 63.1,
+      "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The Unveiling of the London Cenotaph",
+      "slug": "the-unveiling-of-the-london-cenotaph",
+      "slot": "kick-bbb510fe7d-ch1",
+      "at_ms": 1794207531605,
+      "score": 70.2,
       "pillar": "Events that changed the modern world"
     }
   ],
