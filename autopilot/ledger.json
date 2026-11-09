@@ -902,11 +902,13 @@
     },
     "kick-8e5a668775-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42583250101",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:03:50.922Z"
+      "updated_at": "2026-11-09T08:05:25.882Z",
+      "stage": "discover",
+      "error": "discovery failure: 16 candidates, none eligible. Best \"The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior\" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Paul Getty III"
     }
   },
   "uploads": [
@@ -1723,7 +1725,8 @@
     "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")",
     "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref",
     "Hidden Past kick-bbb510fe7d-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the o",
-    "AI Tested kick-41d2ea90c6-ch2 failed at discover: discovery failure: 17 candidates, none eligible. Best \"Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?\" (79.4): too similar to recent topic: Claude AI Can Now Connect Directly to You"
+    "AI Tested kick-41d2ea90c6-ch2 failed at discover: discovery failure: 17 candidates, none eligible. Best \"Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?\" (79.4): too similar to recent topic: Claude AI Can Now Connect Directly to You",
+    "Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior\" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa"
   ],
   "last_poll_at": "2026-11-09T08:03:50.922Z"
 }
