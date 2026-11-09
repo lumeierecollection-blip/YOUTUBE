@@ -24,11 +24,23 @@ permissions:
 jobs:
   autopilot:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 358
     env:
       AUTOPILOT_STATE_DIR: ${{ github.workspace }}/.autopilot-state
     steps:
       - uses: actions/checkout@v4
+
+      # Only a manual kick can carry not_before, for waiting out a provider quota reset on GitHub's side.
+      - name: Hold a kick until its start time
+        if: github.event_name == 'push'
+        timeout-minutes: 345
+        run: |
+          node -e "
+            let k = {};
+            try { k = JSON.parse(require('fs').readFileSync('config/autopilot-kick.json', 'utf8')); } catch {}
+            const wait = Math.ceil((Date.parse(k.not_before || 0) - Date.now()) / 1000);
+            if (wait > 0) { console.log('holding for ' + wait + ' s'); require('child_process').execSync('sleep ' + Math.min(wait, 20400)); }
+          "
 
       - uses: actions/setup-node@v4
         with:
@@ -77,6 +89,8 @@ jobs:
           OPENCODE_MODELS_REASONING: "ollama-cloud/gpt-oss:120b"
           SCRIPT_GEMINI_MODEL: gemini-3.5-flash
           PREP_CALL_TIMEOUT_S: "300"
+          # One process can try several topics; this is a spending guard, not a quality gate.
+          MAX_TOKENS_PER_VIDEO: "400000"
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
