@@ -1,0 +1,25 @@
+{
+  "repo": "GovinduSasanka/opus-motion-library",
+  "commit": "8f1b78a25d0cf310c9bf904d434285046c4ed25a",
+  "motions": [
+    "src/motions/document/doc-highlight-evidence.tsx",
+    "src/motions/data/timeline-ruler.tsx",
+    "src/motions/text/number-counter.tsx"
+  ],
+  "files": [
+    "src/core/asset.ts",
+    "src/core/ease.ts",
+    "src/core/fonts.ts",
+    "src/core/image-kit.tsx",
+    "src/core/r2-la1-kit.tsx",
+    "src/core/r2-pr1-kit.tsx",
+    "src/core/random.ts",
+    "src/core/shapes.tsx",
+    "src/core/stage.tsx",
+    "src/core/text-kit.tsx",
+    "src/core/types.ts",
+    "src/motions/data/timeline-ruler.tsx",
+    "src/motions/document/doc-highlight-evidence.tsx",
+    "src/motions/text/number-counter.tsx"
+  ]
+}
