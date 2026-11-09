@@ -17,15 +17,19 @@ export async function captureRows({ url, rows, viewportWidth = 1000 }) {
     await page.evaluate(() => document.fonts && document.fonts.ready);
     const title = await page.title();
     const out = {};
-    for (const [name, { match, before = 90, after = 70 }] of Object.entries(rows)) {
+    for (const [name, { match, context = true }] of Object.entries(rows)) {
       const found = await page.evaluate((m) => {
         const row = [...document.querySelectorAll("tr")].find((r) => r.cells[0] && r.cells[0].textContent.trim().startsWith(m));
         if (!row) return null;
+        // Crop at the column boundary: flag + description only, so nothing is cut mid-sentence and the text stays large.
+        const third = row.cells[2] ? row.cells[2].getBoundingClientRect().x + scrollX : null;
         const t = row.closest("table").getBoundingClientRect(), r = row.getBoundingClientRect(), c = row.cells[0].getBoundingClientRect();
-        return { table: { x: t.x + scrollX, w: t.width }, row: { y: r.y + scrollY, h: r.height }, cell: { x: c.x + scrollX, y: c.y + scrollY, w: c.width, h: c.height }, cellText: row.cells[0].textContent.trim(), rowText: row.textContent.replace(/\s+/g, " ").trim() };
+        return { table: { x: t.x + scrollX, w: third ? third - (t.x + scrollX) : t.width }, row: { y: r.y + scrollY, h: r.height }, prevH: row.previousElementSibling ? row.previousElementSibling.getBoundingClientRect().height : 0, nextH: row.nextElementSibling ? row.nextElementSibling.getBoundingClientRect().height : 0, cell: { x: c.x + scrollX, y: c.y + scrollY, w: c.width, h: c.height }, cellText: row.cells[0].textContent.trim(), rowText: row.textContent.replace(/\s+/g, " ").trim() };
       }, match);
       if (!found) throw new Error(`no table row starting "${match}" on ${url}`);
-      const clip = { x: found.table.x, y: Math.max(0, found.row.y - before), width: found.table.w, height: found.row.h + before + after };
+      // The row plus the whole row above and below it: real context, with clean row edges. `context` limits neighbours.
+      const pv = context ? found.prevH : 0, nx = context ? found.nextH : 0;
+      const clip = { x: found.table.x, y: found.row.y - pv, width: found.table.w, height: found.row.h + pv + nx };
       const buf = await page.screenshot({ type: "jpeg", quality: 88, clip });
       mkdirSync(join(REMOTION, "public/ai-tested"), { recursive: true });
       writeFileSync(join(REMOTION, `public/ai-tested/${name}.jpg`), buf);

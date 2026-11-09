@@ -52,7 +52,6 @@ function Callout({ x, y, text, delay, w, dy }) {
   const t = useIn(delay, 10);
   return (
     <>
-      <div style={abs(x, y, 4, dy * t, { background: C.accent })} />
       <div style={{ ...abs(0, y + dy, w, 96), opacity: t, display: "flex", justifyContent: "center" }}>
         <div style={{ background: C.ink, color: "#fff", borderRadius: 16, padding: "16px 28px", fontFamily: SANS, fontWeight: 700, fontSize: 38, lineHeight: 1.15, maxWidth: w - 40, textAlign: "center" }}>{text}</div>
       </div>
@@ -152,8 +151,8 @@ function Controls({ dur, p }) {
   return (
     <SceneBox dur={dur}>
       <Headline size={56} top={236}>TWO CONTROLS, PRINT MODE</Headline>
-      <CaptureWindow cap={p.captures.format} x={80} y={330} w={920} url={p.pageUrl} markDelay={6} callout="text | json | stream-json" calloutDelay={20} />
-      <CaptureWindow cap={p.captures.turns} x={80} y={840} w={920} url={p.pageUrl} markDelay={dur * 0.45} callout="limits agentic turns" calloutDelay={dur * 0.45 + 14} />
+      <CaptureWindow cap={p.captures.format} x={80} y={350} w={920} url={p.pageUrl} markDelay={6} callout="--output-format: text, json, stream-json" calloutDelay={20} />
+      <CaptureWindow cap={p.captures.turns} x={80} y={900} w={920} url={p.pageUrl} markDelay={dur * 0.45} callout="--max-turns: limits agentic turns" calloutDelay={dur * 0.45 + 14} />
       <Source text={`SOURCE: ${p.pageHost}`} y={1480} />
     </SceneBox>
   );

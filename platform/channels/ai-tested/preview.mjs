@@ -36,7 +36,7 @@ const dur = (f) => Number(execFileSync("ffprobe", ["-v", "error", "-show_entries
 
 export default async function preview({ key, runId, outDir, tools }) {
   // 1. Real page capture (headless Chrome, annotation anchored on the real rows).
-  const cap = await captureRows({ url: PAGE, rows: { print: { match: "--print" }, format: { match: "--output-format", before: 40, after: 30 }, turns: { match: "--max-turns", before: 40, after: 30 } } });
+  const cap = await captureRows({ url: PAGE, rows: { print: { match: "--print" }, format: { match: "--output-format" }, turns: { match: "--max-turns" } } });
   const fetchedAt = new Date().toISOString();
   tools.write("capture-meta.json", { url: PAGE, title: cap.title, fetchedAt, cells: Object.fromEntries(Object.entries(cap.captures).map(([k, v]) => [k, { cellText: v.cellText, rowText: v.rowText }])) });
   for (const [k, v] of Object.entries(cap.captures)) copyFileSync(join(ROOT, "src/skills/remotion-render/public", v.file), join(outDir, `capture-${k}.jpg`));

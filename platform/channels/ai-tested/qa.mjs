@@ -41,7 +41,8 @@ export async function runQa({ outDir, video, scenes, plan, claims, pkg, stdout, 
     const f = join(outDir, `scene-${s.id}.jpg`);
     if (!existsSync(f)) { add(`frame ${s.id}`, false, "missing"); continue; }
     const img = sharp(f), st = await img.stats(), sd = st.channels.reduce((a, c) => a + c.stdev, 0) / 3;
-    const corner = await sharp(f).extract({ left: 0, top: 300, width: 16, height: 1200 }).stats();
+    // sharp's stats() ignores extract() unless the crop is materialised first
+    const corner = await sharp(await sharp(f).extract({ left: 0, top: 300, width: 16, height: 1200 }).png().toBuffer()).stats();
     const white = corner.channels.every((c) => c.mean > 235);
     add(`frame ${s.id} not blank`, sd > 12, `stdev ${sd.toFixed(1)}`);
     add(`frame ${s.id} white page edge`, white, corner.channels.map((c) => c.mean.toFixed(0)).join("/"));
