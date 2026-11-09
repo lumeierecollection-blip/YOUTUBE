@@ -467,16 +467,18 @@
     },
     "kick-17244d3563-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42540547512",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:38:00.866Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T00:38:04.505Z",
+      "stage": "qa",
       "topic": "Jack the Ripper’s Final Victim – Mary Jane Kelly",
       "score": 68.4,
       "pillar": "Unsolved historical mysteries",
-      "hook": "The gruesome murder of Mary Jane Kelly closed the Whitechapel killings, but the killer’s identity still haunts history."
+      "hook": "The gruesome murder of Mary Jane Kelly closed the Whitechapel killings, but the killer’s identity still haunts history.",
+      "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs source 22.85\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -896,7 +898,8 @@
     "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio",
     "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p",
     "AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, o",
-    "Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts"
+    "Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts",
+    "Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs so"
   ],
   "last_poll_at": "2026-11-09T00:30:37.511Z"
 }

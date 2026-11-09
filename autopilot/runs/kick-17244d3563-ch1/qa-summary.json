@@ -1,0 +1,89 @@
+{
+  "production_id": "ap-kick-17244d3563-ch1",
+  "sha256": "9bf06cb9ae90b5855c20bb3750330ce4713ecaf8e0a9e214ed1bf7789fb9cb99",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 27,
+    "mean_volume_db": -22.3,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The frames are consistent with the historical editorial style, and all text and images are properly placed and legible."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-17244d3563-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 2,
+        "check": "halftone",
+        "why": "dot-screen peak 3784 vs source 69240"
+      },
+      {
+        "scene": 2,
+        "check": "grain",
+        "why": "fine detail 20.9 vs source 22.85"
+      }
+    ],
+    "counts": {
+      "photos": 4,
+      "annotations": 2,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "Did the Whitechapel murders end with a hidden 6th victim?",
+    "description": "The video examines whether a 25‑year‑old Spitalfields resident was the final, hidden victim of the Whitechapel murders. It also reviews Metropolitan Police files, confirming Mary Jane Kelly’s death at 13 Miller’s Court and the 1888 records in The National Archives.\n\n#jacktheripper #whitechapel #truecrime #historymystery #nationalarchives\n\nSources:\n- https://en.wikipedia.org/wiki/Mary_Jane_Kelly\n- https://thejacktherippertour.com/casebook/victims/mary-jane-kelly\n- https://www.nationalarchives.gov.uk/explore-the-collection/stories/hoax-letter-signed-by-jack-the-ripper\n\nImage credits:\n- Typical Victorian terrace in the Spitalfields neighbourhood: Maggie Jones / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:13_Wilkes_Street,_Spitalfields.jpg\n- A hoax letter claiming to be from Jack the Ripper, held in Metropolitan Police files: The Yorkshire Herald / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:A_TELEGRAPH_AND_LETTER_FROM_JACK_THE_RIPPER.jpg\n- The site of 13 Miller’s Court in Spitalfields, the location of Mary Jane Kelly’s murder: Unknown photographer (Police photographer) / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Miller's_Court_No.13.JPG\n- The National Archives building in Kew, where 1888 Ripper files are held: The National Archives (United Kingdom) / Wikimedia Commons, CC BY 3.0 (CC BY 3.0) https://commons.wikimedia.org/wiki/File:Exterior_of_National_Archives_with_Q1.jpg",
+    "tags": [
+      "Jack the Ripper",
+      "Whitechapel murders",
+      "Mary Jane Kelly",
+      "Spitalfields",
+      "National Archives",
+      "1888",
+      "Metropolitan Police",
+      "Miller's Court"
+    ],
+    "hashtags": [
+      "#jacktheripper",
+      "#whitechapel",
+      "#truecrime",
+      "#historymystery",
+      "#nationalarchives"
+    ]
+  }
+}
