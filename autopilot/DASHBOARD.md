@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 12:05 SAST
+Updated 2026-11-09 12:13 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -8,12 +8,12 @@ Updated 2026-11-09 12:05 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | The Invention of Atari's Pong (63.5/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
-| Analytics | available |
+| Analytics | unavailable: 500 Internal error encountered. |
 
 ## AI Tested
 | | |
@@ -23,7 +23,7 @@ Updated 2026-11-09 12:05 SAST
 | Selected topic and score | AI-Powered Smart Glasses Used for School Exam Cheating (72.2/100) |
 | QA | all gates passed |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 0 views, 0 likes, 0 comments (private) |
+| Performance | 1 views, 2 likes, 0 comments (public) |
 | Analytics | available |
 
 ## Needs your attention
@@ -121,3 +121,5 @@ Updated 2026-11-09 12:05 SAST
 - Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 "Was this lethal move meant to secure Canada?" — The 'lethal move' is not defined.. Rewrite it so 
 - Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best "The Sinking of SS Edmund Fitzgerald" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior
 - Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
+- Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:
+  - SCR-16: 57 words implies ~28s duration â€” ou

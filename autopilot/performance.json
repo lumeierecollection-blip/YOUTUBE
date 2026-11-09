@@ -6,25 +6,26 @@
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T10:05:19.844Z"
+      "collected_at": "2026-11-09T10:13:26.192Z"
     },
     "IIdYdKKUiRM": {
       "channel": "2",
-      "privacy": "private",
-      "views": 0,
-      "likes": 0,
+      "privacy": "public",
+      "views": 1,
+      "likes": 2,
       "comments": 0,
-      "collected_at": "2026-11-09T10:05:20.085Z"
+      "collected_at": "2026-11-09T10:13:26.564Z"
     }
   },
   "analytics_status": {
     "1": {
-      "available": true,
-      "checked_at": "2026-11-09T10:05:19.945Z"
+      "available": false,
+      "reason": "500 Internal error encountered.",
+      "checked_at": "2026-11-09T10:13:26.421Z"
     },
     "2": {
       "available": true,
-      "checked_at": "2026-11-09T10:05:20.132Z"
+      "checked_at": "2026-11-09T10:13:26.732Z"
     }
   }
 }
