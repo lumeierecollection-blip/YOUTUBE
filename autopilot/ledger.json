@@ -1112,6 +1112,14 @@
       "updated_at": "2026-11-09T10:05:15.940Z",
       "stage": "discover",
       "error": "1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
+    },
+    "kick-c67a596d45-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42598471838",
+      "trigger": "push",
+      "updated_at": "2026-11-09T10:07:04.890Z"
     }
   },
   "uploads": [
@@ -2149,5 +2157,5 @@
     "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
   ],
-  "last_poll_at": "2026-11-09T10:03:29.560Z"
+  "last_poll_at": "2026-11-09T10:07:04.890Z"
 }
