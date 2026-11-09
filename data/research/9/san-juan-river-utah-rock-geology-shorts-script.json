@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "san-juan-river-utah-rock-geology",
+  "format": "shorts",
+  "hook": "What if a river could carve through 300 million years of rock?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a river could carve through 300 million years of rock?",
+      "text_overlay": {
+        "text": "300 Million Years of Rock"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 6, 2026, the International Space Station photographed the San Juan River in Utah. How did the San Juan River slice through 300 million years of ancient stone?",
+      "text_overlay": {
+        "text": "San Juan River, Utah"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Geologic forces pushed the Colorado Plateau upward starting 20 million years ago, forcing the river downward.",
+      "text_overlay": {
+        "text": "Not always a canyon"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "At Goosenecks State Park in Utah, the San Juan River carved a canyon 300 meters deep.",
+      "text_overlay": {
+        "text": "20 Million Years of Uplift"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "NASA Earth Observatory released the International Space Station's photograph on November 6, 2026.",
+      "text_overlay": {
+        "text": "300 Meter Canyon"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://rockgeoapp.com.br/en/news/goosenecks-san-juan-meandros-fotografia-iss-2026",
+    "https://science.nasa.gov/earth/earth-observatory/taking-a-gander-at-utahs-goosenecks"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "topic_slug": "san-juan-river-utah-rock-geology",
+  "strongest_angle": "Examine how tectonic uplift on the Colorado Plateau forced the San Juan River to carve entrenched meanders 300 million years into southern Utah rock.",
+  "key_facts": [
+    {
+      "fact": "An astronaut aboard the International Space Station captured photograph ISS075-E-188830 of the San Juan River on October 6, 2026, which was released by NASA Earth Observatory on November 6, 2026.",
+      "source_url": "https://rockgeoapp.com.br/en/news/goosenecks-san-juan-meandros-fotografia-iss-2026",
+      "source_name": "RockGeo Editorial",
+      "confidence": "high"
+    },
+    {
+      "fact": "At Goosenecks State Park in southern Utah, the canyon carved by the San Juan River is about 300 meters deep according to RockGeo and the Utah Geological Survey.",
+      "source_url": "https://rockgeoapp.com.br/en/news/goosenecks-san-juan-meandros-fotografia-iss-2026",
+      "source_name": "RockGeo Editorial",
+      "confidence": "high"
+    },
+    {
+      "fact": "Geologic forces pushed the Colorado Plateau upward starting around 20 million years ago, transforming the San Juan River from a flat plain waterway into an entrenched canyon carver.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/taking-a-gander-at-utahs-goosenecks",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Canyon depth at Goosenecks State Park",
+      "value": 300,
+      "unit": "meters",
+      "source_url": "https://rockgeoapp.com.br/en/news/goosenecks-san-juan-meandros-fotografia-iss-2026"
+    },
+    {
+      "label": "Tectonic uplift timeline start",
+      "value": 20,
+      "unit": "million years",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/taking-a-gander-at-utahs-goosenecks"
+    },
+    {
+      "label": "Age of rock layers carved by the San Juan River",
+      "value": 300,
+      "unit": "million years",
+      "source_url": "https://www.earth.com/earth-science/nasa-captures-a-winding-river-carved-into-300-million-year-old-rock"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "San Juan River",
+      "kind": "object"
+    },
+    {
+      "name": "Utah",
+      "kind": "place"
+    },
+    {
+      "name": "International Space Station",
+      "kind": "organization"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Goosenecks State Park",
+      "kind": "place"
+    },
+    {
+      "name": "Colorado Plateau",
+      "kind": "place"
+    },
+    {
+      "name": "Mississippi River",
+      "kind": "object"
+    }
+  ]
+}
