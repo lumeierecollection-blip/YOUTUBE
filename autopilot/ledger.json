@@ -400,13 +400,15 @@
     },
     "kick-803cc08c1f-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42537527942",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:00:55.687Z",
-      "stage": "metadata",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-09T00:01:03.168Z",
+      "stage": "qa",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-static run 5.0 s\"}],\"vox\":[{\"scene\":0,\"check\":\"grade\",\"why\":\"saturation 0.663 not reduced from 0.526\"},{\"scene\":0,\"check\":\"vignette\",\"why\":\"corners kept 0.409 of their light, centre 0.335\"},{\"scene\":1,\"check\":\"grade\",\"why\":\"saturation 0.587 not reduced from 0.516\"},{\"scene\":3,\"check\":\"grade\",\"why\":\"saturation 0.417 not reduced from 0.127\"},{\"scene\":4,\"check\":\"grade\",\"why\":\"saturation 0.471 not reduced from 0.41\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -749,7 +751,8 @@
     "AI Tested kick-dae3e0e226-ch2 failed at qa: gates failed: acceptance. {\"blocking\":[],\"frame\":[],\"acceptance\":[{\"check\":\"stale-reuse\",\"why\":\"script production_id pt-ai-tested-mcp-20261107 !== ap-kick-dae3e0e226-ch2\"}],\"technical\":{\"duration_le_3",
     "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on",
     "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1",
-    "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1"
+    "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1",
+    "Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-st"
   ],
   "last_poll_at": "2026-11-08T23:56:16.625Z"
 }

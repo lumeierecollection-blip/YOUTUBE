@@ -1,0 +1,113 @@
+{
+  "production_id": "ap-kick-803cc08c1f-ch1",
+  "sha256": "2e2c306c2886264283a450a801f476e52101e42d70beb0887e2b859e86cadf26",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 30,
+    "mean_volume_db": -21.8,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": false,
+    "blocking": [
+      {
+        "check": "static-run",
+        "why": "longest near-static run is 5.0s (limit 4.0s)"
+      }
+    ],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The 15 frames maintain a consistent historical editorial aesthetic with desaturated photos, printed textures, and gold accents, with all captions properly positioned and readable."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-803cc08c1f-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": false,
+    "failures": [
+      {
+        "check": "static-run",
+        "why": "longest near-static run 5.0 s"
+      }
+    ]
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 0,
+        "check": "grade",
+        "why": "saturation 0.663 not reduced from 0.526"
+      },
+      {
+        "scene": 0,
+        "check": "vignette",
+        "why": "corners kept 0.409 of their light, centre 0.335"
+      },
+      {
+        "scene": 1,
+        "check": "grade",
+        "why": "saturation 0.587 not reduced from 0.516"
+      },
+      {
+        "scene": 3,
+        "check": "grade",
+        "why": "saturation 0.417 not reduced from 0.127"
+      },
+      {
+        "scene": 4,
+        "check": "grade",
+        "why": "saturation 0.471 not reduced from 0.41"
+      }
+    ],
+    "counts": {
+      "photos": 4,
+      "annotations": 2,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "A 3,400-year-old royal secret hidden in clay tablets",
+    "description": "Archaeologists uncovered 131 cuneiform tablets revealing a deadly epidemic and a nursing princess who died during King Tudhaliya II's reign. This royal tragedy remained buried in the ancient archive for 3,400 years.\n\n#AncientHistory #Archaeology #HistoryUncovered #Cuneiform\n\nSources:\n- https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery\n- https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive\n- https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha\n\nImage credits:\n- An ancient Anatolian cuneiform clay tablet with wedge-shaped script pressed into its surface.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Cultic_Festival_Script.jpg\n- An active archaeological excavation site in Turkey showing ancient stone foundations and soil layers.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Legal_Deposition(?).jpg\n- An ancient Near Eastern artifact or historical relief depicting court figures and royal family members.: Nevit Dilmen ( talk ) / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Museum_of_Anatolian_Civilizations_1320168_nevit.jpg\n- A close-up view of an ancient cuneiform clay tablet detailing historical records.: Internet Archive Book Images / Wikimedia Commons, No restrictions (No restrictions) https://commons.wikimedia.org/wiki/File:The_monuments_and_the_Old_Testament_-_evidence_from_ancient_records_(1900)_(14760499546).jpg",
+    "tags": [
+      "ancient history",
+      "archaeology discovery",
+      "cuneiform tablets",
+      "King Tudhaliya",
+      "royal archive",
+      "ancient tragedy",
+      "historical discoveries",
+      "Kayalipinar"
+    ],
+    "hashtags": [
+      "#AncientHistory",
+      "#Archaeology",
+      "#HistoryUncovered",
+      "#Cuneiform"
+    ]
+  }
+}
