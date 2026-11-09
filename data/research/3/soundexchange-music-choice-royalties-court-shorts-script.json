@@ -1,0 +1,32 @@
+{
+  "channel_id": "3",
+  "topic_slug": "soundexchange-music-choice-royalties-court",
+  "format": "shorts",
+  "hook": "SoundExchange and Music Choice are locked in a seven-year legal battle over unpaid music royalties.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "SoundExchange and Music Choice are locked in a seven-year legal battle over unpaid music royalties."
+    },
+    {
+      "id": "setup",
+      "voiceover": "SoundExchange sued Music Choice in 2019 over alleged underpayments. Did auditor Prager Metis prove Music Choice concealed revenue from its Music Choice for Business service?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The U.S. Court of Appeals for the D.C. Circuit dismissed Music Choice's petition regarding royalty underpayments."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This legal battle resumed in November 2026, seven years after SoundExchange filed the original complaint."
+    },
+    {
+      "id": "close",
+      "voiceover": "Music Choice still faces these claims for underpaid royalties from the 2013 to 2016 period."
+    }
+  ],
+  "sources_used": [
+    "https://www.musicbusinessworldwide.com/soundexchanges-unpaid-royalties-lawsuit-against-music-choice-heads-back-to-court-more-than-seven-years-after-it-was-filed",
+    "https://nvvexstudios.com/bunker/tecnologia/reinicia-la-disputa-legal-entre-soundexchange-y-music-choice-por-regal-as-no-pagadas"
+  ]
+}

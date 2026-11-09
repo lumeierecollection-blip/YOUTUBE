@@ -1,0 +1,83 @@
+{
+  "topic_slug": "soundexchange-music-choice-royalties-court",
+  "strongest_angle": "Examining the seven-year legal battle between SoundExchange and Music Choice as the unpaid royalties case resumes in November 2026, including its history dating back to the April 2019 lawsuit and the 2013-2016 audit period.",
+  "key_facts": [
+    {
+      "fact": "SoundExchange filed the original lawsuit against Music Choice in April 2019, alleging that the company underpaid statutory royalties between 2013 and 2016 for its Music Choice for Business service.",
+      "source_url": "https://www.musicbusinessworldwide.com/soundexchanges-unpaid-royalties-lawsuit-against-music-choice-heads-back-to-court-more-than-seven-years-after-it-was-filed",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "The auditor Prager Metis claimed that Music Choice had concealed the majority of the revenues obtained from the Music Choice for Business subscription service during the 2013 to 2016 period.",
+      "source_url": "https://nvvexstudios.com/bunker/tecnologia/reinicia-la-disputa-legal-entre-soundexchange-y-music-choice-por-regal-as-no-pagadas",
+      "source_name": "Nvvex Studios",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The U.S. Court of Appeals for the D.C. Circuit dismissed Music Choice's petition for review in August 2026 concerning a Copyright Royalty Board ruling regarding royalty underpayments.",
+      "source_url": "https://www.audiartist.com/music-choice-soundexchange-royalty-court-setback",
+      "source_name": "Audiartist",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The marathon legal battle between SoundExchange and Music Choice resumed in November 2026, more than seven years after the initial complaint was filed over unpaid royalties and late fees.",
+      "source_url": "https://www.digitalmusicnews.com/2026/11/05/soundexchange-v-music-choice",
+      "source_name": "Digital Music News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit Filing Year",
+      "value": 2019,
+      "unit": "year",
+      "source_url": "https://www.musicbusinessworldwide.com/soundexchanges-unpaid-royalties-lawsuit-against-music-choice-heads-back-to-court-more-than-seven-years-after-it-was-filed"
+    },
+    {
+      "label": "Audit Start Year",
+      "value": 2013,
+      "unit": "year",
+      "source_url": "https://nvvexstudios.com/bunker/tecnologia/reinicia-la-disputa-legal-entre-soundexchange-y-music-choice-por-regal-as-no-pagadas"
+    },
+    {
+      "label": "Audit End Year",
+      "value": 2016,
+      "unit": "year",
+      "source_url": "https://nvvexstudios.com/bunker/tecnologia/reinicia-la-disputa-legal-entre-soundexchange-y-music-choice-por-regal-as-no-pagadas"
+    },
+    {
+      "label": "Years Since Filing",
+      "value": 7,
+      "unit": "years",
+      "source_url": "https://www.musicbusinessworldwide.com/soundexchanges-unpaid-royalties-lawsuit-against-music-choice-heads-back-to-court-more-than-seven-years-after-it-was-filed"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "SoundExchange",
+      "kind": "organization"
+    },
+    {
+      "name": "Music Choice",
+      "kind": "organization"
+    },
+    {
+      "name": "Prager Metis",
+      "kind": "organization"
+    },
+    {
+      "name": "Music Choice for Business",
+      "kind": "object"
+    },
+    {
+      "name": "U.S. Court of Appeals for the D.C. Circuit",
+      "kind": "organization"
+    },
+    {
+      "name": "Copyright Royalty Board",
+      "kind": "organization"
+    }
+  ]
+}
