@@ -1,0 +1,8 @@
+{
+  "key": "dopamine-loop",
+  "palette": { "bg": "#FFFFFF", "surface": "#F6F3FA", "ink": "#16121F", "dim": "#5C566B", "stroke": "#D9D3E6", "warm": "#E4572E", "cool": "#2D5BD0", "warmSoft": "#FDEDE7", "coolSoft": "#E8EEFC" },
+  "type": { "sans": "Space Grotesk", "mono": "JetBrains Mono" },
+  "voice": { "tts": "en-US-EmmaNeural", "direction": "Warm, curious, intimate, with a lively pace. Never diagnoses the viewer.", "style": "Warm, curious and intimate, lively and a little quicker than conversational, with clear articulation." },
+  "rules": ["white background for explanatory scenes", "picture the experience, not only the mind", "never diagnose or advise the viewer", "every claim traces to a fetched source", "expressive Rive characters are NOT used in this sample: no Rive runtime or asset was fetched and vetted"],
+  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 }
+}
