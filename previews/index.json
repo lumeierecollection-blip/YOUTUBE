@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T12:58:03.734Z",
+  "rebuilt_at": "2026-11-09T12:58:09.883Z",
   "channels": [
     {
       "key": "_smoke",
@@ -23,9 +23,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "started",
-      "status": "running",
-      "at": "2026-11-09T12:58:02.377Z",
+      "stage": "research_complete",
+      "status": "page captured",
+      "at": "2026-11-09T12:58:09.286Z",
       "branch": "preview/ai-tested",
       "commit": "a021de28",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621175613#artifacts)",
