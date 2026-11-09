@@ -1,0 +1,434 @@
+{
+  "scenes": [
+    {
+      "id": "s0",
+      "index": 0,
+      "from": 0,
+      "to": 296,
+      "start_s": 0,
+      "end_s": 9.866666666666667
+    },
+    {
+      "id": "s1",
+      "index": 1,
+      "from": 296,
+      "to": 401,
+      "start_s": 9.866666666666667,
+      "end_s": 13.366666666666667
+    },
+    {
+      "id": "s2",
+      "index": 2,
+      "from": 401,
+      "to": 466,
+      "start_s": 13.366666666666667,
+      "end_s": 15.533333333333333
+    },
+    {
+      "id": "s3",
+      "index": 3,
+      "from": 466,
+      "to": 549,
+      "start_s": 15.533333333333333,
+      "end_s": 18.3
+    },
+    {
+      "id": "s4",
+      "index": 4,
+      "from": 549,
+      "to": 874,
+      "start_s": 18.3,
+      "end_s": 29.133333333333333
+    }
+  ],
+  "captions": [
+    {
+      "text": "Whose arrest does a famous",
+      "from": 0,
+      "to": 56,
+      "words": [
+        {
+          "text": "Whose",
+          "from": 0
+        },
+        {
+          "text": "arrest",
+          "from": 16
+        },
+        {
+          "text": "does",
+          "from": 25
+        },
+        {
+          "text": "a",
+          "from": 41
+        },
+        {
+          "text": "famous",
+          "from": 44
+        }
+      ]
+    },
+    {
+      "text": "Sarajevo photograph really show",
+      "from": 56,
+      "to": 125,
+      "words": [
+        {
+          "text": "Sarajevo",
+          "from": 56
+        },
+        {
+          "text": "photograph",
+          "from": 79
+        },
+        {
+          "text": "really",
+          "from": 91
+        },
+        {
+          "text": "show",
+          "from": 109
+        }
+      ]
+    },
+    {
+      "text": "In June 1914",
+      "from": 146,
+      "to": 176,
+      "words": [
+        {
+          "text": "In",
+          "from": 146
+        },
+        {
+          "text": "June",
+          "from": 146
+        },
+        {
+          "text": "1914",
+          "from": 151
+        }
+      ]
+    },
+    {
+      "text": "the archduke left city hall",
+      "from": 193,
+      "to": 239,
+      "words": [
+        {
+          "text": "the",
+          "from": 193
+        },
+        {
+          "text": "archduke",
+          "from": 196
+        },
+        {
+          "text": "left",
+          "from": 214
+        },
+        {
+          "text": "city",
+          "from": 220
+        },
+        {
+          "text": "hall",
+          "from": 230
+        }
+      ]
+    },
+    {
+      "text": "and was soon killed",
+      "from": 239,
+      "to": 277,
+      "words": [
+        {
+          "text": "and",
+          "from": 239
+        },
+        {
+          "text": "was",
+          "from": 253
+        },
+        {
+          "text": "soon",
+          "from": 256
+        },
+        {
+          "text": "killed",
+          "from": 264
+        }
+      ]
+    },
+    {
+      "text": "Sarajevo is now in Bosnia",
+      "from": 296,
+      "to": 341,
+      "words": [
+        {
+          "text": "Sarajevo",
+          "from": 296
+        },
+        {
+          "text": "is",
+          "from": 315
+        },
+        {
+          "text": "now",
+          "from": 322
+        },
+        {
+          "text": "in",
+          "from": 328
+        },
+        {
+          "text": "Bosnia",
+          "from": 334
+        }
+      ]
+    },
+    {
+      "text": "and Herzegovina",
+      "from": 341,
+      "to": 374,
+      "words": [
+        {
+          "text": "and",
+          "from": 341
+        },
+        {
+          "text": "Herzegovina",
+          "from": 353
+        }
+      ]
+    },
+    {
+      "text": "Then Austria-Hungary",
+      "from": 401,
+      "to": 420,
+      "words": [
+        {
+          "text": "Then",
+          "from": 401
+        },
+        {
+          "text": "Austria-Hungary",
+          "from": 401
+        }
+      ]
+    },
+    {
+      "text": "ruled it",
+      "from": 433,
+      "to": 446,
+      "words": [
+        {
+          "text": "ruled",
+          "from": 433
+        },
+        {
+          "text": "it",
+          "from": 437
+        }
+      ]
+    },
+    {
+      "text": "Next day The New York",
+      "from": 466,
+      "to": 497,
+      "words": [
+        {
+          "text": "Next",
+          "from": 466
+        },
+        {
+          "text": "day",
+          "from": 466
+        },
+        {
+          "text": "The",
+          "from": 482
+        },
+        {
+          "text": "New",
+          "from": 485
+        },
+        {
+          "text": "York",
+          "from": 490
+        }
+      ]
+    },
+    {
+      "text": "Times reported it",
+      "from": 497,
+      "to": 533,
+      "words": [
+        {
+          "text": "Times",
+          "from": 497
+        },
+        {
+          "text": "reported",
+          "from": 507
+        },
+        {
+          "text": "it",
+          "from": 518
+        }
+      ]
+    },
+    {
+      "text": "The photo is often called",
+      "from": 549,
+      "to": 586,
+      "words": [
+        {
+          "text": "The",
+          "from": 549
+        },
+        {
+          "text": "photo",
+          "from": 551
+        },
+        {
+          "text": "is",
+          "from": 557
+        },
+        {
+          "text": "often",
+          "from": 567
+        },
+        {
+          "text": "called",
+          "from": 575
+        }
+      ]
+    },
+    {
+      "text": "Gavrilo Princip's arrest",
+      "from": 586,
+      "to": 636,
+      "words": [
+        {
+          "text": "Gavrilo",
+          "from": 586
+        },
+        {
+          "text": "Princip's",
+          "from": 607
+        },
+        {
+          "text": "arrest",
+          "from": 626
+        }
+      ]
+    },
+    {
+      "text": "Scholars say it shows a",
+      "from": 665,
+      "to": 695,
+      "words": [
+        {
+          "text": "Scholars",
+          "from": 665
+        },
+        {
+          "text": "say",
+          "from": 665
+        },
+        {
+          "text": "it",
+          "from": 673
+        },
+        {
+          "text": "shows",
+          "from": 681
+        },
+        {
+          "text": "a",
+          "from": 687
+        }
+      ]
+    },
+    {
+      "text": "bystander",
+      "from": 695,
+      "to": 719,
+      "words": [
+        {
+          "text": "bystander",
+          "from": 695
+        }
+      ]
+    },
+    {
+      "text": "Ferdinand Behr",
+      "from": 734,
+      "to": 749,
+      "words": [
+        {
+          "text": "Ferdinand",
+          "from": 734
+        },
+        {
+          "text": "Behr",
+          "from": 734
+        }
+      ]
+    },
+    {
+      "text": "The picture is real",
+      "from": 762,
+      "to": 796,
+      "words": [
+        {
+          "text": "The",
+          "from": 762
+        },
+        {
+          "text": "picture",
+          "from": 769
+        },
+        {
+          "text": "is",
+          "from": 775
+        },
+        {
+          "text": "real",
+          "from": 786
+        }
+      ]
+    },
+    {
+      "text": "The caption is in doubt",
+      "from": 810,
+      "to": 844,
+      "words": [
+        {
+          "text": "The",
+          "from": 810
+        },
+        {
+          "text": "caption",
+          "from": 811
+        },
+        {
+          "text": "is",
+          "from": 817
+        },
+        {
+          "text": "in",
+          "from": 833
+        },
+        {
+          "text": "doubt",
+          "from": 836
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 874,
+  "duration_s": 29.133333333333333
+}
