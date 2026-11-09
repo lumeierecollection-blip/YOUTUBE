@@ -1,0 +1,92 @@
+{
+  "production_id": "ap-kick-7d271be20d-ch1",
+  "sha256": "c4cc957151a95a00470fc070abe56c03f9bd281bdd7748dab360de470a80e189",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 26,
+    "mean_volume_db": -22.2,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The 15 frames are consistent in style with no clipped text, overlapping text, blank frames, or broken images."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-7d271be20d-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 2,
+        "check": "vignette",
+        "why": "corners kept 1.687 of their light, centre 1.187"
+      },
+      {
+        "scene": 3,
+        "check": "photo-stability",
+        "why": "photo moved or could not be measured: []"
+      },
+      {
+        "scene": 4,
+        "check": "vignette",
+        "why": "corners kept 1.259 of their light, centre 1.186"
+      }
+    ],
+    "counts": {
+      "photos": 5,
+      "annotations": 2,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "Who really got rich from the biggest diamond ever found?",
+    "description": "Frederick Wells discovered a 3,106-carat diamond just 18 feet underground, but mine owner Thomas Cullinan and the British monarchy reaped the massive wealth. 1905 records highlight the extreme disparity between the finder and the beneficiaries.\n\n#History #Diamonds #HistoricalFacts\n\nSources:\n- https://en.wikipedia.org/wiki/Cullinan_Diamond\n- https://doi.org/10.5741/gems.42.2.120\n\nImage credits:\n- A historical portrait of mine superintendent Frederick Wells or a contemporary South African mining official: Parent Géry / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Cullinan_copie_(R%C3%A9publique_d'Afrique_du_Sud).jpg\n- A historical photograph or painting of mine owner Thomas Cullinan: deror_avi / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Cullinan_Diamond_IMG_9105.JPG\n- A 1905 financial document, stock certificate, or exchange trading floor showing surging values: Parent Géry / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Cullinan_copie.JPG\n- A formal portrait of King Edward VII or an official historical document from the Transvaal Colony: Samuel Begg / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Alexandra_in_coronation_robes.jpg\n- A historical handwritten ledger or official archive document from 1905: Parent Géry / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Cullinan_copie_1.JPG",
+    "tags": [
+      "Cullinan Diamond",
+      "Premier Mine",
+      "Frederick Wells",
+      "Thomas Cullinan",
+      "Edward VII",
+      "Transvaal Colony",
+      "Diamond history",
+      "1905 history"
+    ],
+    "hashtags": [
+      "#History",
+      "#Diamonds",
+      "#HistoricalFacts"
+    ]
+  }
+}

@@ -424,16 +424,18 @@
     },
     "kick-7d271be20d-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42538745489",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:18:18.713Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T00:18:21.094Z",
+      "stage": "qa",
       "topic": "The Discovery of the Cullinan Diamond",
       "score": 63.3,
       "pillar": "Unbelievable true historical events",
-      "hook": "The story of the Cullinan Diamond: the largest gem-quality rough diamond ever found, weighing a staggering 3,106 carats."
+      "hook": "The story of the Cullinan Diamond: the largest gem-quality rough diamond ever found, weighing a staggering 3,106 carats.",
+      "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"photo moved or could not be measured: []\"},{\"scene\":4,\"check\":\"vignette\",\"why\":\"corners kept 1.259 of their light, centre 1.186\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -796,7 +798,8 @@
     "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1",
     "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1",
     "Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-st",
-    "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio"
+    "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio",
+    "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p"
   ],
   "last_poll_at": "2026-11-09T00:10:46.329Z"
 }
