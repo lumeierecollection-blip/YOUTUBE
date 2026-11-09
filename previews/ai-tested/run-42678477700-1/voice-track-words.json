@@ -1,0 +1,319 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (37/45 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "Can",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.38,
+   "end": 0.74,
+   "sentence": 0
+  },
+  {
+   "text": "count",
+   "start": 0.74,
+   "end": 1.7,
+   "sentence": 0
+  },
+  {
+   "text": "letters",
+   "start": 1.7,
+   "end": 2.32,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 3.3,
+   "end": 3.54,
+   "sentence": 1
+  },
+  {
+   "text": "gave",
+   "start": 3.54,
+   "end": 3.72,
+   "sentence": 1
+  },
+  {
+   "text": "two",
+   "start": 3.72,
+   "end": 4.12,
+   "sentence": 1
+  },
+  {
+   "text": "models",
+   "start": 4.12,
+   "end": 4.64,
+   "sentence": 1
+  },
+  {
+   "text": "twenty",
+   "start": 4.64,
+   "end": 4.93,
+   "sentence": 1
+  },
+  {
+   "text": "questions",
+   "start": 5.22,
+   "end": 5.96,
+   "sentence": 1
+  },
+  {
+   "text": "Both",
+   "start": 7.02,
+   "end": 7.07,
+   "sentence": 2
+  },
+  {
+   "text": "got",
+   "start": 7.02,
+   "end": 7.34,
+   "sentence": 2
+  },
+  {
+   "text": "strawberry",
+   "start": 7.34,
+   "end": 7.84,
+   "sentence": 2
+  },
+  {
+   "text": "right",
+   "start": 7.84,
+   "end": 8.46,
+   "sentence": 2
+  },
+  {
+   "text": "OpenAI's",
+   "start": 9.6,
+   "end": 10.12,
+   "sentence": 3
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 10.12,
+   "end": 10.7,
+   "sentence": 3
+  },
+  {
+   "text": "got",
+   "start": 11.28,
+   "end": 11.92,
+   "sentence": 3
+  },
+  {
+   "text": "all",
+   "start": 11.92,
+   "end": 12.4,
+   "sentence": 3
+  },
+  {
+   "text": "twenty",
+   "start": 12.4,
+   "end": 13.22,
+   "sentence": 3
+  },
+  {
+   "text": "Google's",
+   "start": 14.04,
+   "end": 14.3,
+   "sentence": 4
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 14.3,
+   "end": 14.51,
+   "sentence": 4
+  },
+  {
+   "text": "got",
+   "start": 14.72,
+   "end": 15.76,
+   "sentence": 4
+  },
+  {
+   "text": "eleven",
+   "start": 15.76,
+   "end": 16.47,
+   "sentence": 4
+  },
+  {
+   "text": "On",
+   "start": 17.18,
+   "end": 17.28,
+   "sentence": 5
+  },
+  {
+   "text": "random",
+   "start": 17.28,
+   "end": 17.58,
+   "sentence": 5
+  },
+  {
+   "text": "letters",
+   "start": 17.58,
+   "end": 17.96,
+   "sentence": 5
+  },
+  {
+   "text": "just",
+   "start": 18.8,
+   "end": 18.85,
+   "sentence": 5
+  },
+  {
+   "text": "three",
+   "start": 18.8,
+   "end": 19.38,
+   "sentence": 5
+  },
+  {
+   "text": "of",
+   "start": 19.38,
+   "end": 19.74,
+   "sentence": 5
+  },
+  {
+   "text": "ten",
+   "start": 19.74,
+   "end": 20.37,
+   "sentence": 5
+  },
+  {
+   "text": "It",
+   "start": 21.0,
+   "end": 21.08,
+   "sentence": 6
+  },
+  {
+   "text": "found",
+   "start": 21.08,
+   "end": 21.28,
+   "sentence": 6
+  },
+  {
+   "text": "five",
+   "start": 21.28,
+   "end": 21.92,
+   "sentence": 6
+  },
+  {
+   "text": "Os",
+   "start": 21.92,
+   "end": 22.25,
+   "sentence": 6
+  },
+  {
+   "text": "in",
+   "start": 22.58,
+   "end": 22.9,
+   "sentence": 6
+  },
+  {
+   "text": "onomatopoeia",
+   "start": 22.9,
+   "end": 23.5,
+   "sentence": 6
+  },
+  {
+   "text": "not",
+   "start": 24.1,
+   "end": 24.15,
+   "sentence": 6
+  },
+  {
+   "text": "four",
+   "start": 24.14,
+   "end": 24.42,
+   "sentence": 6
+  },
+  {
+   "text": "AI",
+   "start": 25.56,
+   "end": 25.61,
+   "sentence": 7
+  },
+  {
+   "text": "can",
+   "start": 25.58,
+   "end": 26.2,
+   "sentence": 7
+  },
+  {
+   "text": "count",
+   "start": 26.2,
+   "end": 26.74,
+   "sentence": 7
+  },
+  {
+   "text": "just",
+   "start": 27.46,
+   "end": 27.54,
+   "sentence": 7
+  },
+  {
+   "text": "not",
+   "start": 27.54,
+   "end": 27.92,
+   "sentence": 7
+  },
+  {
+   "text": "every",
+   "start": 27.92,
+   "end": 28.18,
+   "sentence": 7
+  },
+  {
+   "text": "model",
+   "start": 28.18,
+   "end": 28.46,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Can AI count letters?",
+   "start": 0.0,
+   "end": 2.32
+  },
+  {
+   "text": "We gave two models twenty questions.",
+   "start": 3.3,
+   "end": 5.96
+  },
+  {
+   "text": "Both got strawberry right.",
+   "start": 7.02,
+   "end": 8.46
+  },
+  {
+   "text": "OpenAI's GPT-OSS got all twenty.",
+   "start": 9.6,
+   "end": 13.22
+  },
+  {
+   "text": "Google's Flash-Lite got eleven.",
+   "start": 14.04,
+   "end": 16.47
+  },
+  {
+   "text": "On random letters, just three of ten.",
+   "start": 17.18,
+   "end": 20.37
+  },
+  {
+   "text": "It found five Os in onomatopoeia, not four.",
+   "start": 21.0,
+   "end": 24.42
+  },
+  {
+   "text": "AI can count, just not every model.",
+   "start": 25.56,
+   "end": 28.46
+  }
+ ]
+}
