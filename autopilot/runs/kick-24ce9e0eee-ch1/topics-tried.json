@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The 14th Dalai Lama Assumes Temporal Power at Age 15",
+      "score": 76.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLAIM: \"Why take control then?\" is unsupported: The research does not contain any statement or text asking or explaining 'Why take control then?'.. Use only what the research states, with its exact strength.\n  - CLAIM: \"But the crisis demanded a leader.\" is unsupported: The research does not state that 'the crisis demanded a leader'.. Use only what the research states, with its exact strength."
+    },
+    {
+      "topic": "The 1983 Brink's-Mat Gold Heist",
+      "score": 66.9,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Execution of Métis Leader Louis Riel",
+      "score": 61.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"John A.\" — Fragmented sentence; the viewer does not know who this is.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), "
+    }
+  ],
+  "selected": null
+}
