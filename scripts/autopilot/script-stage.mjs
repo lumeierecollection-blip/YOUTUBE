@@ -8,7 +8,7 @@
  */
 import { copyFileSync, existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { ROOT, StageError, askJson, durationOf, log, must, parseJsonAnswer, readJson, run, writeJson } from "./lib.mjs";
+import { ROOT, StageError, askJson, durationOf, factCheck, log, must, parseJsonAnswer, readJson, run, writeJson } from "./lib.mjs";
 import { retrievePages } from "./retrieve.mjs";
 import { channelStyle } from "./visual-common.mjs";
 
@@ -98,6 +98,8 @@ function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
   const claims = run("node", ["scripts/validate-script-claims.cjs", channel.id, scriptPath, researchPath], { capture: true, merge: true });
   if (claims.status === 4) throw new StageError("script", "claim verification was unavailable; not producing unverified claims");
   const found = [];
+  const filler = readJson(scriptPath).sections.flatMap((s) => s.voiceover.match(/[^.!?]*\b1\s+[a-zA-Z][^.!?]*[.!?]/g) || []);
+  if (filler.length) found.push(filler.map((x) => `  - NARRATIVE: "${x.trim()}" uses "1" as a filler count. Rewrite it with a real figure from the research.`).join("\n"));
   if (story.status !== 0 && story.status !== 3) found.push(issues(story.stdout, /^ {2}- /) || "story checks failed");
   if (claims.status !== 0) found.push(issues(claims.stdout, /^ {2}- CLAIM/) || "claims check failed");
   return found.join("\n");
@@ -173,7 +175,15 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
       const verdict = await editorialVerdict(scriptPath, topic, researchPath);
       writeJson(join(dir, "script-editorial.json"), { verdict, advisory_findings: feedback ? feedback.split("\n") : [], passes: pass });
       log("script", `editorial verdict: ${verdict.pass ? "pass" : "fail"} (${verdict.why})`);
-      if (verdict.pass) return { scriptPath, scriptRel, stem: scriptStem };
+      if (verdict.pass) {
+        const facts = await factCheck(readJson(scriptPath).sections.map((s) => s.voiceover).join(" "), researchPath);
+        writeJson(join(dir, "script-fact-check.json"), facts);
+        log("script", `fact check: ${facts.pass ? `pass (${facts.checked} claims)` : `${facts.bad.length} failed`}`);
+        if (facts.pass) return { scriptPath, scriptRel, stem: scriptStem };
+        feedback = facts.bad.map((c) => `  - CLAIM: "${c.claim}" is ${c.verdict}: ${c.why}. Use only what the research states, with its exact strength.`).join("\n");
+        if (!facts.bad.length) feedback = "The fact checker returned no claims; state concrete facts from the research.";
+        continue;
+      }
       feedback = `The final editor rejected the script. Failed: ${verdict.failed.join(", ")}. ${verdict.why}`;
       continue;
     }

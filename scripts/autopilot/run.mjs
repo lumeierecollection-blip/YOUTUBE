@@ -162,7 +162,7 @@ async function produce(slotId, channelId) {
 
     mark("metadata");
     const meta = await import("./metadata.mjs");
-    const seo = await meta.buildMetadata({ channel, topic, script, attributions: built.attributions || built.credits || [] });
+    const seo = await meta.buildMetadata({ channel, topic, script, attributions: built.attributions || built.credits || [], researchPath });
     const summary = { production_id: productionId, sha256: sha256File(mp4), technical, video_qa: { pass: videoQa.pass, blocking: videoQa.blocking, superseded_for_vox: videoQa.superseded }, frame_review: frame, acceptance: { pass: acceptance.pass, failures: acceptance.report.failures }, vox: voxReport ? { pass: voxReport.pass, failures: voxReport.failures, counts: voxReport.counts } : null, seo };
     writeJson(join(dir, "qa-summary.json"), summary);
     writeJson(join(STATE_DIR, "autopilot/runs", slotId, "qa-summary.json"), summary);

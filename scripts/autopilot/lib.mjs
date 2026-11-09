@@ -80,6 +80,42 @@ export async function askVision(prompt, jpegBuffers, tag = "autopilot-vision") {
   return parseJsonAnswer(r);
 }
 
+/** Prefers Groq's gpt-oss-120b for judgement calls and falls back to the normal chain. */
+export async function askStrongJson(prompt, tag) {
+  if (process.env.GROQ_API_KEY) {
+    const { callLLMWithProvenance } = await import("../../src/lib/llm.js");
+    process.env.FORCE_PROVIDER = "groq";
+    try {
+      const r = await callLLMWithProvenance([{ role: "user", content: prompt }], { maxTokens: 5000, temperature: 0, keepAlive: 0 }, tag);
+      const parsed = r.error ? null : parseJsonAnswer(r.value);
+      if (parsed) return parsed;
+      log(tag, `groq gave no usable answer (${r.error || "not JSON"})`);
+    } catch (e) { log(tag, `groq error: ${e.message}`); } finally { delete process.env.FORCE_PROVIDER; }
+  }
+  return askJson(prompt, tag);
+}
+
+/**
+ * Claim-by-claim check of finished text against the research. "Targeted" is not "hit" and
+ * "hit" is not "sank": a verb stronger than the source counts as a failure.
+ */
+export async function factCheck(text, researchPath, tag = "autopilot-fact-check") {
+  const research = readJson(researchPath);
+  const v = await askStrongJson(`You are a strict fact checker. Check every factual claim in TEXT against RESEARCH only. Do not use outside knowledge to approve a claim.
+
+A claim fails if the research does not state it, or if its verb or number is stronger than the research. "Targeted" does not support "hit". "Hit" does not support "sank". "Damaged" does not support "destroyed". "Some" does not support "all".
+
+TEXT:
+${text}
+
+RESEARCH:
+${JSON.stringify({ key_facts: research.key_facts, numbers: research.numbers, quotes: research.quotes }).slice(0, 7000)}
+
+Return JSON: {"claims":[{"claim":"...","verdict":"supported|overstated|unsupported","why":"..."}]}`, tag);
+  const bad = (v.claims || []).filter((c) => c.verdict !== "supported");
+  return { pass: Array.isArray(v.claims) && v.claims.length > 0 && bad.length === 0, bad, checked: v.claims?.length || 0 };
+}
+
 /** A truncated or malformed answer is retried; only repeated failure stops the stage. */
 export async function askJson(prompt, tag = "autopilot") {
   const { callLLM, isProviderError } = await import("../../src/lib/llm.js");
