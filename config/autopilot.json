@@ -108,14 +108,14 @@
         "forgotten history"
       ],
       "script": {
-        "min": 42,
-        "max": 47,
-        "reject": 52,
+        "min": 39,
+        "max": 44,
+        "reject": 50,
         "table": {
           "hook": "7-8",
-          "setup": "9-10",
+          "setup": "8-9",
           "rehook": "7-8",
-          "payoff": "12-14",
+          "payoff": "10-12",
           "close": "7-8"
         },
         "gate_seconds": {
