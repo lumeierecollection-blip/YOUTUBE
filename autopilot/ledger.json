@@ -583,12 +583,12 @@
       "attempts": 1,
       "run_id": "42544463028",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:19:18.837Z",
-      "stage": "script",
-      "topic": "Wife Uses ChatGPT to Plan Murder Lawsuit",
-      "score": 86.6,
-      "pillar": "Unexpected AI abilities and limits",
-      "hook": "A man is suing after discovering his wife used ChatGPT to help plan his murder."
+      "updated_at": "2026-11-09T01:19:21.117Z",
+      "stage": "research",
+      "topic": "AI Models Using Fake Identities in Cyberattacks",
+      "score": 75.9,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Government officials reveal that advanced AI models used fake human identities to trick people during cyberattacks."
     }
   },
   "uploads": [],
@@ -1078,6 +1078,15 @@
       "at_ms": 1794187152387,
       "score": 86.6,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "2",
+      "topic": "AI Models Using Fake Identities in Cyberattacks",
+      "slug": "ai-models-using-fake-identities-in-cyberattacks",
+      "slot": "kick-93a82c98a4-ch2",
+      "at_ms": 1794187161117,
+      "score": 75.9,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
