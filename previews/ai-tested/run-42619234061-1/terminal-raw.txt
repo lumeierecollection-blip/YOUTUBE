@@ -1,0 +1,9 @@
+$ npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format)'
+                                        --output-format=stream-json)
+                                        --output-format=stream-json)
+  --output-format <format>              Output format (only works with --print):
+  -p, --print                           Print response and exit (useful for
+                                        --output-format=stream-json)
+--- stderr ---
+
+--- exit 0 ---
