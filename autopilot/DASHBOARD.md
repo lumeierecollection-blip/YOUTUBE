@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:27 SAST
+Updated 2026-11-09 11:31 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 11:27 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at research, attempts 1 |
-| Selected topic and score | Law professor accidentally deletes entire year of lecture notes using Claude (75.2/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | Drugmaker CEOs Doubt Silicon Valley's Promises That AI Will Cure Disease (64.3/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -114,3 +114,5 @@ Updated 2026-11-09 11:27 SAST
 - AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
 - Hidden Past kick-4d0ab7875c-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/jocelyn-bell-burnell-discovers-pulsars-shorts:
   - SCR-16: 41 words implies ~20s durati
+- AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:
+  - SCR-17 STRICT 
