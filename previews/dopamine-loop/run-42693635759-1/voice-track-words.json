@@ -1,0 +1,316 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (47/47 words matched)",
+ "voice": "Sulafat",
+ "words": [
+  {
+   "text": "Your",
+   "start": 0.0,
+   "end": 0.44,
+   "sentence": 0
+  },
+  {
+   "text": "brain",
+   "start": 0.44,
+   "end": 0.94,
+   "sentence": 0
+  },
+  {
+   "text": "can",
+   "start": 0.94,
+   "end": 1.22,
+   "sentence": 0
+  },
+  {
+   "text": "start",
+   "start": 1.22,
+   "end": 1.5,
+   "sentence": 0
+  },
+  {
+   "text": "rewarding",
+   "start": 1.5,
+   "end": 1.92,
+   "sentence": 0
+  },
+  {
+   "text": "you",
+   "start": 1.92,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "before",
+   "start": 2.36,
+   "end": 2.76,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.76,
+   "end": 3.22,
+   "sentence": 0
+  },
+  {
+   "text": "song's",
+   "start": 3.22,
+   "end": 3.58,
+   "sentence": 0
+  },
+  {
+   "text": "best",
+   "start": 3.58,
+   "end": 3.8,
+   "sentence": 0
+  },
+  {
+   "text": "part",
+   "start": 3.8,
+   "end": 4.08,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 4.76,
+   "end": 4.81,
+   "sentence": 1
+  },
+  {
+   "text": "scans",
+   "start": 4.8,
+   "end": 5.02,
+   "sentence": 1
+  },
+  {
+   "text": "of",
+   "start": 5.02,
+   "end": 5.32,
+   "sentence": 1
+  },
+  {
+   "text": "listeners",
+   "start": 5.32,
+   "end": 5.66,
+   "sentence": 1
+  },
+  {
+   "text": "dopamine",
+   "start": 6.34,
+   "end": 6.39,
+   "sentence": 1
+  },
+  {
+   "text": "was",
+   "start": 6.38,
+   "end": 6.9,
+   "sentence": 1
+  },
+  {
+   "text": "released",
+   "start": 6.9,
+   "end": 7.2,
+   "sentence": 1
+  },
+  {
+   "text": "at",
+   "start": 7.2,
+   "end": 7.46,
+   "sentence": 1
+  },
+  {
+   "text": "peak",
+   "start": 7.46,
+   "end": 7.84,
+   "sentence": 1
+  },
+  {
+   "text": "emotional",
+   "start": 7.84,
+   "end": 8.32,
+   "sentence": 1
+  },
+  {
+   "text": "arousal",
+   "start": 8.32,
+   "end": 8.84,
+   "sentence": 1
+  },
+  {
+   "text": "The",
+   "start": 9.6,
+   "end": 9.65,
+   "sentence": 2
+  },
+  {
+   "text": "caudate",
+   "start": 9.6,
+   "end": 10.06,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 10.06,
+   "end": 10.28,
+   "sentence": 2
+  },
+  {
+   "text": "more",
+   "start": 10.28,
+   "end": 10.52,
+   "sentence": 2
+  },
+  {
+   "text": "involved",
+   "start": 10.52,
+   "end": 10.92,
+   "sentence": 2
+  },
+  {
+   "text": "during",
+   "start": 10.92,
+   "end": 11.22,
+   "sentence": 2
+  },
+  {
+   "text": "anticipation",
+   "start": 11.22,
+   "end": 11.8,
+   "sentence": 2
+  },
+  {
+   "text": "The",
+   "start": 12.9,
+   "end": 12.95,
+   "sentence": 3
+  },
+  {
+   "text": "nucleus",
+   "start": 12.92,
+   "end": 13.16,
+   "sentence": 3
+  },
+  {
+   "text": "accumbens",
+   "start": 13.16,
+   "end": 13.9,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 13.9,
+   "end": 14.06,
+   "sentence": 3
+  },
+  {
+   "text": "more",
+   "start": 14.06,
+   "end": 14.26,
+   "sentence": 3
+  },
+  {
+   "text": "involved",
+   "start": 14.26,
+   "end": 14.6,
+   "sentence": 3
+  },
+  {
+   "text": "at",
+   "start": 14.6,
+   "end": 14.78,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 14.78,
+   "end": 14.9,
+   "sentence": 3
+  },
+  {
+   "text": "peak",
+   "start": 14.9,
+   "end": 15.24,
+   "sentence": 3
+  },
+  {
+   "text": "Anticipation",
+   "start": 16.12,
+   "end": 16.82,
+   "sentence": 4
+  },
+  {
+   "text": "can",
+   "start": 16.82,
+   "end": 17.08,
+   "sentence": 4
+  },
+  {
+   "text": "use",
+   "start": 17.08,
+   "end": 17.28,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 17.28,
+   "end": 17.38,
+   "sentence": 4
+  },
+  {
+   "text": "pathway",
+   "start": 17.38,
+   "end": 17.82,
+   "sentence": 4
+  },
+  {
+   "text": "distinct",
+   "start": 17.82,
+   "end": 18.36,
+   "sentence": 4
+  },
+  {
+   "text": "from",
+   "start": 18.36,
+   "end": 18.82,
+   "sentence": 4
+  },
+  {
+   "text": "peak",
+   "start": 18.82,
+   "end": 19.08,
+   "sentence": 4
+  },
+  {
+   "text": "pleasure",
+   "start": 19.08,
+   "end": 19.48,
+   "sentence": 4
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Your brain can start rewarding you before a song's best part.",
+   "start": 0.0,
+   "end": 4.08
+  },
+  {
+   "text": "In scans of listeners, dopamine was released at peak emotional arousal.",
+   "start": 4.76,
+   "end": 8.84
+  },
+  {
+   "text": "The caudate was more involved during anticipation.",
+   "start": 9.6,
+   "end": 11.8
+  },
+  {
+   "text": "The nucleus accumbens was more involved at the peak.",
+   "start": 12.9,
+   "end": 15.24
+  },
+  {
+   "text": "Anticipation can use a pathway distinct from peak pleasure.",
+   "start": 16.12,
+   "end": 19.48
+  }
+ ]
+}
