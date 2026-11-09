@@ -24,6 +24,8 @@ The INPUT section holds the frozen research, the channel and its style. Use only
 - The first time a person or place appears, say in a few words who or what it is.
 - Never write he, she, him or her unless that person is already named. If the research gives no name, repeat the description ("the 88-year-old").
 - One topic only. A viewer who knows nothing must be able to follow it.
+- Choose figures a beginner can feel: years, prices, distances, people, counts of everyday things. Never use chemical formulas, percentages of ingredients or obscure measurements.
+- The ending says why the whole story matters, in plain words.
 - Never claim more than the research says. Avoid sweeping words like "forever", "everything" or "changed the world" unless the research says so.
 - **Every sentence must state something that can be drawn: a sourced number, date, place, a list of two or more things, a comparison, a document, an amount of money, or a cause ("because", "so").** Naming a company or person alone does not count.
 
