@@ -71,14 +71,14 @@ function Limb({ x, y, a, l, w = 30, hand = false, foot = 0 }) {
     <g>
       <path d={d} fill="none" stroke={RIM} strokeOpacity={0.5} strokeWidth={w + 6} strokeLinecap="round" strokeLinejoin="round" />
       <path d={d} fill="none" stroke={INK} strokeWidth={w} strokeLinecap="round" strokeLinejoin="round" />
-      {hand && <><circle cx={e[0]} cy={e[1]} r={w * 0.82} fill={INK} stroke={RIM} strokeOpacity={0.5} strokeWidth={3} /><ellipse cx={e[0] + Math.sin(rad(a[1] + 55)) * w * 0.7} cy={e[1] + Math.cos(rad(a[1] + 55)) * w * 0.7} rx={w * 0.3} ry={w * 0.5} fill={INK} stroke={RIM} strokeOpacity={0.4} strokeWidth={2} transform={`rotate(${-a[1] - 55} ${e[0] + Math.sin(rad(a[1] + 55)) * w * 0.7} ${e[1] + Math.cos(rad(a[1] + 55)) * w * 0.7})`} /></>}
+      {hand && <><circle cx={e[0]} cy={e[1]} r={w * 0.66} fill={INK} stroke={RIM} strokeOpacity={0.5} strokeWidth={3} /><ellipse cx={e[0] + Math.sin(rad(a[1] + 55)) * w * 0.7} cy={e[1] + Math.cos(rad(a[1] + 55)) * w * 0.7} rx={w * 0.3} ry={w * 0.5} fill={INK} stroke={RIM} strokeOpacity={0.4} strokeWidth={2} transform={`rotate(${-a[1] - 55} ${e[0] + Math.sin(rad(a[1] + 55)) * w * 0.7} ${e[1] + Math.cos(rad(a[1] + 55)) * w * 0.7})`} /></>}
       {foot !== 0 && <ellipse cx={e[0] + foot * 26} cy={e[1] + 14} rx={46} ry={19} fill={INK} stroke={RIM} strokeOpacity={0.5} strokeWidth={3} />}
     </g>
   );
 }
 
 export const POSES = {
-  stand: { aL: [4, 2], aR: [-4, -2], lL: [2, 0], lR: [-2, 0] },
+  stand: { aL: [3, 1], aR: [-3, -1], lL: [1, 0], lR: [-1, 0] },
   sit: { aL: [10, 22], aR: [-6, 14], lL: [90, 0], lR: [90, 0], sit: true },
 };
 
@@ -89,7 +89,7 @@ export const POSES = {
  */
 export function Figure({ x = 0, y = 0, scale = 1, flip = 1, mood = "neutral", tilt = 0, lean = 0, thought = 0, calm = 0, heart = null, heartPulse = 0, pose = POSES.stand, breathe = true, rim = RIM, opacity = 1, seed = 7, bust = false }) {
   const f = useCurrentFrame();
-  const br = breathe ? 1 + Math.sin(f / 22) * 0.006 : 1;
+  const br = breathe ? 1 + Math.sin(f / 40) * 0.003 : 1;
   const hipY = 410, shY = 160;
   const torso = "M -100 150 Q 0 128 100 150 Q 122 162 114 204 L 88 408 Q 0 428 -88 408 L -114 204 Q -122 162 -100 150 Z";
   const bustTorso = "M -100 150 Q 0 128 100 150 Q 122 162 116 230 L 112 520 L -112 520 L -116 230 Q -122 162 -100 150 Z";
@@ -98,15 +98,15 @@ export function Figure({ x = 0, y = 0, scale = 1, flip = 1, mood = "neutral", ti
       <g transform={`rotate(${lean} 0 ${hipY})`}>
         {!bust && (
           <g>
-            <Limb x={-40} y={hipY} a={pose.lL} l={[150, 150]} w={46} foot={flip < 0 ? -1 : 1} />
-            <Limb x={40} y={hipY} a={pose.lR} l={[150, 150]} w={46} foot={flip < 0 ? -1 : 1} />
+            <Limb x={-40} y={hipY} a={pose.lL} l={[150, 150]} w={62} foot={flip < 0 ? -1 : 1} />
+            <Limb x={40} y={hipY} a={pose.lR} l={[150, 150]} w={62} foot={flip < 0 ? -1 : 1} />
           </g>
         )}
         <path d={bust ? bustTorso : torso} fill={INK} stroke={rim} strokeWidth={3} strokeOpacity={0.55} strokeLinejoin="round" />
         {!bust && (
           <g>
-            <Limb x={-104} y={shY} a={pose.aL} l={[120, 112]} w={30} hand />
-            <Limb x={104} y={shY} a={pose.aR} l={[120, 112]} w={30} hand />
+            <Limb x={-100} y={shY} a={pose.aL} l={[118, 108]} w={42} hand />
+            <Limb x={100} y={shY} a={pose.aR} l={[118, 108]} w={42} hand />
           </g>
         )}
         {heart && <g transform="translate(-4 232)"><Heart state={heart} pulse={heartPulse} /></g>}

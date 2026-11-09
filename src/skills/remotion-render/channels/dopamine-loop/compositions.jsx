@@ -17,18 +17,18 @@ const S = 0.85; // standing scale shared by the full-figure scenes
 /** One figure stands apart from two who talk. A hand lifts to join, then lowers. */
 function LeftOut({ dur }) {
   const f = useCurrentFrame();
-  const talk = (ph) => Math.sin(f / 11 + ph) * 8;
-  const up = f < dur * 0.45 ? lerp(f, dur * 0.18, dur * 0.42, 6, 74) : lerp(f, dur * 0.55, dur * 0.82, 74, 5);
-  const poseC = { ...POSES.stand, aR: [up, up * 0.55 + 4] };
-  const sway = Math.sin(f / 36) * 1.2;
+  const talk = (ph) => Math.sin(f / 30 + ph) * 3;
+  const up = f < dur * 0.45 ? lerp(f, dur * 0.18, dur * 0.46, 4, 46) : lerp(f, dur * 0.56, dur * 0.88, 46, 4);
+  const poseC = { ...POSES.stand, aR: [up, up * 0.7 + 3] };
+  const sway = Math.sin(f / 60) * 0.7;
   return (
     <Scene dur={dur}>
       <Room tint={0} />
       {tag(190, DIM, "BEING LEFT OUT")}
       <svg width={1080} height={1920} style={{ position: "absolute", left: 0, top: 0 }}>
         {FL(1300)}
-        <Figure x={680} y={760} scale={0.62} mood="happy" tilt={4} pose={{ ...POSES.stand, aL: [12 + talk(0), 20], aR: [-30 + talk(1), -12] }} />
-        <Figure x={880} y={760} scale={0.62} flip={-1} mood="happy" tilt={-3} pose={{ ...POSES.stand, aL: [14 + talk(2), 24], aR: [-26 + talk(3), -10] }} />
+        <Figure x={680} y={760} scale={0.62} mood="happy" tilt={4} pose={{ ...POSES.stand, aL: [8 + talk(0), 12], aR: [-14 + talk(1), -6] }} />
+        <Figure x={880} y={760} scale={0.62} flip={-1} mood="happy" tilt={-3} pose={{ ...POSES.stand, aL: [9 + talk(2), 14], aR: [-12 + talk(3), -5] }} />
         <Figure x={250} y={690} scale={S} mood="sad" tilt={7 + sway} heart="broken" heartPulse={(Math.sin(f / 9) + 1) / 2} pose={poseC} seed={11} />
       </svg>
     </Scene>
@@ -108,7 +108,7 @@ function Comfort({ dur }) {
   const f = useCurrentFrame();
   const walk = lerp(f, 4, dur * 0.4, 0, 1), sit = lerp(f, dur * 0.4, dur * 0.55, 0, 1), reach = lerp(f, dur * 0.58, dur * 0.72, 0, 1);
   const dx = lerp(f, 4, dur * 0.4, 1330, 650);
-  const stride = Math.sin(f / 4) * 22 * (walk < 1 ? 1 : 0);
+  const stride = Math.sin(f / 9) * 9 * (walk < 1 ? 1 : 0);
   const sitPose = mix({ ...POSES.stand, lL: [stride, 0], lR: [-stride, 0] }, POSES.sit, sit);
   const dPose = { ...sitPose, aR: [4 + 41 * reach, 2 + 8 * reach], aL: [-4, -2] };
   const dY = 700 - 150 * S * (1 - sit);
