@@ -1,0 +1,351 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (48/52 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Saturn",
+   "start": 0.0,
+   "end": 0.54,
+   "sentence": 0
+  },
+  {
+   "text": "is",
+   "start": 0.54,
+   "end": 0.84,
+   "sentence": 0
+  },
+  {
+   "text": "raining",
+   "start": 0.84,
+   "end": 1.22,
+   "sentence": 0
+  },
+  {
+   "text": "its",
+   "start": 1.22,
+   "end": 1.52,
+   "sentence": 0
+  },
+  {
+   "text": "rings",
+   "start": 1.52,
+   "end": 1.72,
+   "sentence": 0
+  },
+  {
+   "text": "away",
+   "start": 1.72,
+   "end": 2.04,
+   "sentence": 0
+  },
+  {
+   "text": "It",
+   "start": 2.5,
+   "end": 2.55,
+   "sentence": 1
+  },
+  {
+   "text": "orbits",
+   "start": 2.52,
+   "end": 2.68,
+   "sentence": 1
+  },
+  {
+   "text": "nearly",
+   "start": 2.68,
+   "end": 2.96,
+   "sentence": 1
+  },
+  {
+   "text": "ten",
+   "start": 2.96,
+   "end": 3.46,
+   "sentence": 1
+  },
+  {
+   "text": "times",
+   "start": 3.46,
+   "end": 3.8,
+   "sentence": 1
+  },
+  {
+   "text": "farther",
+   "start": 3.8,
+   "end": 4.12,
+   "sentence": 1
+  },
+  {
+   "text": "out",
+   "start": 4.12,
+   "end": 4.34,
+   "sentence": 1
+  },
+  {
+   "text": "than",
+   "start": 4.34,
+   "end": 4.42,
+   "sentence": 1
+  },
+  {
+   "text": "Earth",
+   "start": 4.48,
+   "end": 4.64,
+   "sentence": 1
+  },
+  {
+   "text": "Dark",
+   "start": 5.18,
+   "end": 5.3,
+   "sentence": 2
+  },
+  {
+   "text": "bands",
+   "start": 5.3,
+   "end": 5.64,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 5.64,
+   "end": 5.88,
+   "sentence": 2
+  },
+  {
+   "text": "its",
+   "start": 5.88,
+   "end": 5.98,
+   "sentence": 2
+  },
+  {
+   "text": "glow",
+   "start": 5.98,
+   "end": 6.2,
+   "sentence": 2
+  },
+  {
+   "text": "suggest",
+   "start": 6.2,
+   "end": 6.56,
+   "sentence": 2
+  },
+  {
+   "text": "charged",
+   "start": 6.56,
+   "end": 7.08,
+   "sentence": 2
+  },
+  {
+   "text": "ice",
+   "start": 7.08,
+   "end": 7.58,
+   "sentence": 2
+  },
+  {
+   "text": "falling",
+   "start": 7.58,
+   "end": 7.92,
+   "sentence": 2
+  },
+  {
+   "text": "along",
+   "start": 7.92,
+   "end": 8.24,
+   "sentence": 2
+  },
+  {
+   "text": "field",
+   "start": 8.24,
+   "end": 8.6,
+   "sentence": 2
+  },
+  {
+   "text": "lines",
+   "start": 8.6,
+   "end": 8.88,
+   "sentence": 2
+  },
+  {
+   "text": "One",
+   "start": 9.4,
+   "end": 9.56,
+   "sentence": 3
+  },
+  {
+   "text": "estimate",
+   "start": 9.56,
+   "end": 9.82,
+   "sentence": 3
+  },
+  {
+   "text": "an",
+   "start": 9.82,
+   "end": 10.06,
+   "sentence": 3
+  },
+  {
+   "text": "Olympic",
+   "start": 10.3,
+   "end": 10.6,
+   "sentence": 3
+  },
+  {
+   "text": "pool",
+   "start": 10.6,
+   "end": 10.98,
+   "sentence": 3
+  },
+  {
+   "text": "every",
+   "start": 10.98,
+   "end": 11.42,
+   "sentence": 3
+  },
+  {
+   "text": "half",
+   "start": 11.42,
+   "end": 11.82,
+   "sentence": 3
+  },
+  {
+   "text": "hour",
+   "start": 11.82,
+   "end": 12.2,
+   "sentence": 3
+  },
+  {
+   "text": "Models",
+   "start": 12.76,
+   "end": 12.86,
+   "sentence": 4
+  },
+  {
+   "text": "disagree",
+   "start": 12.86,
+   "end": 13.22,
+   "sentence": 4
+  },
+  {
+   "text": "under",
+   "start": 13.86,
+   "end": 13.91,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 13.86,
+   "end": 13.993,
+   "sentence": 4
+  },
+  {
+   "text": "hundred",
+   "start": 13.993,
+   "end": 14.127,
+   "sentence": 4
+  },
+  {
+   "text": "million",
+   "start": 14.26,
+   "end": 14.48,
+   "sentence": 4
+  },
+  {
+   "text": "years",
+   "start": 14.48,
+   "end": 14.84,
+   "sentence": 4
+  },
+  {
+   "text": "left",
+   "start": 14.84,
+   "end": 15.06,
+   "sentence": 4
+  },
+  {
+   "text": "or",
+   "start": 15.06,
+   "end": 15.46,
+   "sentence": 4
+  },
+  {
+   "text": "billions",
+   "start": 15.46,
+   "end": 15.86,
+   "sentence": 4
+  },
+  {
+   "text": "old",
+   "start": 15.86,
+   "end": 16.4,
+   "sentence": 4
+  },
+  {
+   "text": "A",
+   "start": 17.1,
+   "end": 17.15,
+   "sentence": 5
+  },
+  {
+   "text": "ringless",
+   "start": 17.12,
+   "end": 17.5,
+   "sentence": 5
+  },
+  {
+   "text": "Saturn",
+   "start": 17.5,
+   "end": 17.78,
+   "sentence": 5
+  },
+  {
+   "text": "is",
+   "start": 17.78,
+   "end": 18.02,
+   "sentence": 5
+  },
+  {
+   "text": "only",
+   "start": 18.02,
+   "end": 18.4,
+   "sentence": 5
+  },
+  {
+   "text": "hypothetical",
+   "start": 18.4,
+   "end": 18.84,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Saturn is raining its rings away.",
+   "start": 0.0,
+   "end": 2.04
+  },
+  {
+   "text": "It orbits nearly ten times farther out than Earth.",
+   "start": 2.5,
+   "end": 4.64
+  },
+  {
+   "text": "Dark bands in its glow suggest charged ice falling along field lines.",
+   "start": 5.18,
+   "end": 8.88
+  },
+  {
+   "text": "One estimate: an Olympic pool every half hour.",
+   "start": 9.4,
+   "end": 12.2
+  },
+  {
+   "text": "Models disagree: under a hundred million years left, or billions old.",
+   "start": 12.76,
+   "end": 16.4
+  },
+  {
+   "text": "A ringless Saturn is only hypothetical.",
+   "start": 17.1,
+   "end": 18.84
+  }
+ ]
+}
