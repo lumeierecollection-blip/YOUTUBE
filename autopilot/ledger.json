@@ -677,7 +677,12 @@
       "attempts": 1,
       "run_id": "42546702761",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:46:53.343Z"
+      "updated_at": "2026-11-09T01:48:10.286Z",
+      "stage": "research",
+      "topic": "ChatGPT's new update lets you turn any photo into a custom GIF",
+      "score": 86.8,
+      "pillar": "New AI features and releases",
+      "hook": "OpenAI just launched Images 2.6, allowing you to instantly turn your photos and sketches into animated GIFs."
     }
   },
   "uploads": [],
@@ -1239,6 +1244,15 @@
       "at_ms": 1794188555106,
       "score": 64.8,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "2",
+      "topic": "ChatGPT's new update lets you turn any photo into a custom GIF",
+      "slug": "chatgpt-s-new-update-lets-you-turn-any-photo-into-a-custom-g",
+      "slot": "kick-b4086ba5c1-ch2",
+      "at_ms": 1794188890286,
+      "score": 86.8,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
