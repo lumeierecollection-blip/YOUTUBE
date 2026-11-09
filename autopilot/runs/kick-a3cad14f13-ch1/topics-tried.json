@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "The 1938 Kristallnacht Pogrom",
+      "score": 66.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The narrative jumps jarringly back and forth in chronology and focus—from the aftermath (30,000 jailed) to the geography, back to the trigger (Herschel Grynszpan), and finally to a disconnected October prelude—making it very difficult for a completely uninitiated viewer to follow."
+    },
+    {
+      "topic": "The 1940 Taranto Naval Raid",
+      "score": 65,
+      "stage": "assets",
+      "reason": "no image shows the story's actual subject; context images alone would mislead"
+    }
+  ],
+  "selected": null
+}
