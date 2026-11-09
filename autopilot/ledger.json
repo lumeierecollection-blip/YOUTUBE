@@ -1061,6 +1061,14 @@
       "pillar": "Archaeological discoveries",
       "hook": "A metal detectorist searching for a lost hammer in a Suffolk field accidentally uncovered Britain's largest ever hoard of Roman gold and silver.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    "kick-24ce9e0eee-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42595263580",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:41:06.891Z"
     }
   },
   "uploads": [
@@ -2045,5 +2053,5 @@
     "AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:\n  - SCR-17 STRICT ",
     "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”"
   ],
-  "last_poll_at": "2026-11-09T09:32:33.070Z"
+  "last_poll_at": "2026-11-09T09:41:06.890Z"
 }
