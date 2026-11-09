@@ -148,7 +148,7 @@ async function enforceWordBudget(out, channel) {
   const b = channel.script;
   for (let i = 1; i <= 3 && wordCount(out) > b.max; i++) {
     const limits = Object.entries(b.table).map(([id, range]) => `${id}: at most ${String(range).split("-").pop()} words`).join(", ");
-    const cut = await askJson(`Shorten this YouTube Short narration to at most ${b.max} words in total. It is ${wordCount(out)} words now.
+    const cut = await askJson(`Shorten this YouTube Short narration to between ${b.min} and ${b.max} words in total. It is ${wordCount(out)} words now.
 Limits per section: ${limits}.
 Cut words and clauses, and rewrite for flow. Keep every section, its first word, its job in the story, every "?" and every figure that remains exactly as written. Add no new fact, name or number. Keep it sounding like one person talking.
 
@@ -159,6 +159,9 @@ Return JSON: {"sections":[{"id":"hook","voiceover":"..."}]}`, "autopilot-word-bu
     if (!out.sections.every((s) => byId.get(s.id))) { log("script", "word budget pass dropped a section; keeping the draft"); return; }
     const shorter = { ...out, sections: out.sections.map((s) => ({ ...s, voiceover: byId.get(s.id) })) };
     if (wordCount(shorter) >= wordCount(out)) return;
+    // A cut that goes too far, or removes the question or the turn, is worse than the draft.
+    const keepsBeats = (from, to) => from.sections.every((s) => (!s.voiceover.includes("?") || to.sections.find((x) => x.id === s.id).voiceover.includes("?")) && (!/^But\b/.test(s.voiceover) || /^But\b/.test(to.sections.find((x) => x.id === s.id).voiceover)));
+    if (wordCount(shorter) < b.min || !keepsBeats(out, shorter)) { log("script", `word budget pass rejected (${wordCount(shorter)} words)`); continue; }
     log("script", `word budget: ${wordCount(out)} -> ${wordCount(shorter)} words`);
     out.sections = shorter.sections;
     out.hook = out.sections.find((s) => s.id === "hook")?.voiceover || out.hook;

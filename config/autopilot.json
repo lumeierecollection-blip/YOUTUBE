@@ -109,21 +109,21 @@
       ],
       "script": {
         "tempo": 1.12,
-        "min": 39,
-        "max": 44,
-        "reject": 50,
+        "min": 45,
+        "max": 50,
+        "reject": 54,
         "table": {
-          "hook": "7-8",
-          "setup": "8-9",
-          "rehook": "7-8",
-          "payoff": "10-12",
-          "close": "7-8"
+          "hook": "8-9",
+          "setup": "10-11",
+          "rehook": "8-9",
+          "payoff": "11-13",
+          "close": "8-9"
         },
         "gate_seconds": {
           "min": 20,
           "max": 27
         },
-        "note": "Ryan neural voice measured about 107 words a minute (54 words took 30.26 s). The target sits low because drafts overshoot it by about 15%."
+        "note": "Ryan neural voice measured about 107 words a minute (54 words took 30.26 s). With the 1.12 tempo, 45 words ran 20.6 s. The script gate accepts 42-55 words, so this range sits inside it."
       }
     },
     "2": {
