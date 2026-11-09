@@ -2,9 +2,9 @@
   "channel": "ai-tested",
   "production_run": "run-42619234061-1",
   "agent": "agent-ai-tested",
-  "stage": "render_complete",
-  "status": "rendered",
-  "timestamp": "2026-11-09T12:47:23.585Z",
+  "stage": "blocked",
+  "status": "QA failed: frame s3 white page edge (194/195/196); frame s4 white page edge (232/233/235)",
+  "timestamp": "2026-11-09T12:47:29.589Z",
   "branch": "preview/ai-tested",
   "commit": "be864fc0f43af62d753c1c8a701f425da652ade9",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619234061#artifacts"
