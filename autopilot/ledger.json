@@ -600,6 +600,14 @@
       "updated_at": "2026-11-09T01:25:10.499Z",
       "stage": "script",
       "error": "3 topic(s) tried, none produced an accepted script. Last: undefined"
+    },
+    "kick-27cf7d6f25-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42545368796",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:25:31.984Z"
     }
   },
   "uploads": [],
@@ -1157,5 +1165,5 @@
     "AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script",
     "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined"
   ],
-  "last_poll_at": "2026-11-09T01:23:22.603Z"
+  "last_poll_at": "2026-11-09T01:25:31.984Z"
 }
