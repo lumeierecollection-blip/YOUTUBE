@@ -24,6 +24,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
       - name: Work out the channel from the branch
         id: channel
         run: |

@@ -28,10 +28,14 @@ function ensureBundleAudio(audio) {
   else if (!existsSync(target)) run("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", target]);
 }
 
+export const STAGES = ["started", "research_complete", "blueprint_complete", "script_complete", "script_approved", "visual_complete", "voice_complete", "render_complete", "qa_passed", "preview_ready", "awaiting_approval", "blocked", "finished", "failed"];
+
 export function makeTools({ key, runId, outDir, agent, publish }) {
   mkdirSync(outDir, { recursive: true });
   const stage = (name, status, extra = {}) => {
-    const meta = { channel: key, production_run: runId, agent, stage: name, status, timestamp: new Date().toISOString(), ...extra };
+    if (!STAGES.includes(name)) throw new Error(`unknown stage "${name}"; use one of ${STAGES.join(", ")}`);
+    const repo = process.env.GITHUB_REPOSITORY, runNo = process.env.GITHUB_RUN_ID;
+    const meta = { channel: key, production_run: runId, agent, stage: name, status, timestamp: new Date().toISOString(), branch: process.env.GITHUB_REF_NAME || null, commit: process.env.GITHUB_SHA || null, artifact_url: repo && runNo ? `https://github.com/${repo}/actions/runs/${runNo}#artifacts` : null, ...extra };
     writeFileSync(join(outDir, "preview-meta.json"), JSON.stringify(meta, null, 2));
     publish();
     return meta;

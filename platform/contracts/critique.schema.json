@@ -2,22 +2,134 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Independent script critique",
   "type": "object",
-  "required": ["reviewer", "verdict", "findings"],
+  "required": [
+    "reviewer",
+    "verdict",
+    "scores",
+    "unexplained_claims",
+    "contradictions",
+    "required_corrections",
+    "findings"
+  ],
   "properties": {
-    "reviewer": { "type": "string", "description": "Must differ from the writer's role and model call." },
-    "verdict": { "enum": ["approve", "revise"] },
+    "reviewer": {
+      "type": "string",
+      "description": "Must differ from the writer's role and model call."
+    },
+    "verdict": {
+      "enum": [
+        "approve",
+        "revise"
+      ]
+    },
     "findings": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["severity", "category", "sentence_ids", "problem", "fix"],
+        "required": [
+          "severity",
+          "category",
+          "sentence_ids",
+          "problem",
+          "fix"
+        ],
         "properties": {
-          "severity": { "enum": ["critical", "major", "minor"] },
-          "category": { "enum": ["abrupt_topic_change", "unexplained_name", "missing_context", "unsupported_claim", "misleading_claim", "repetition", "contradiction", "unexplained_term", "chronology", "causal_error", "unresolved_loop", "unfulfilled_hook", "unsupported_conclusion", "unnatural_phrasing", "visual_mismatch", "wrong_channel_tone", "unrealistic_duration"] },
-          "sentence_ids": { "type": "array", "items": { "type": "string" } },
-          "problem": { "type": "string" },
-          "fix": { "type": "string" }
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "category": {
+            "enum": [
+              "abrupt_topic_change",
+              "unexplained_name",
+              "missing_context",
+              "unsupported_claim",
+              "misleading_claim",
+              "repetition",
+              "contradiction",
+              "unexplained_term",
+              "chronology",
+              "causal_error",
+              "unresolved_loop",
+              "unfulfilled_hook",
+              "unsupported_conclusion",
+              "unnatural_phrasing",
+              "visual_mismatch",
+              "wrong_channel_tone",
+              "unrealistic_duration"
+            ]
+          },
+          "sentence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "problem": {
+            "type": "string"
+          },
+          "fix": {
+            "type": "string"
+          }
         }
+      }
+    },
+    "scores": {
+      "type": "object",
+      "required": [
+        "coherence",
+        "factual_support",
+        "hook_effectiveness",
+        "retention_pacing",
+        "visual_alignment"
+      ],
+      "properties": {
+        "coherence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "factual_support": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "hook_effectiveness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "retention_pacing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "visual_alignment": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    "unexplained_claims": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_corrections": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
     }
   }

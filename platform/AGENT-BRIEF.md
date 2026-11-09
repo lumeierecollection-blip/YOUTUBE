@@ -10,9 +10,16 @@ Read `platform/README.md` first. It defines what you own. Read `CLAUDE.md` too.
 - Never merge to `main`. Never force-push. Never cancel, re-run or disable a workflow you did not start.
 - Never trigger `autopilot.yml` or push to `automation/kick`.
 - The owner's PC has about 1.4 GB of free memory. Do NOT run Remotion, Chrome, Blender, ffmpeg batch work or `npm install` locally, and do not use `run_in_background`. Local work is editing files, `node --check`, and small `node --test` runs. Rendering happens on GitHub.
-- To use `node` modules locally for a unit test, junction them: `cmd //c mklink /J node_modules C:\Users\info\YOUTUBE\node_modules`. Never commit the junction.
+- New worktrees get `node_modules` as a symlink from the main checkout. Never commit it. New worktrees also start from `origin/main`, so run `git fetch origin feat/platform` first and start from the commit your assignment names.
 - Wait for GitHub with a bounded foreground check: `timeout 540 gh run watch <id> --interval 45 >/dev/null 2>&1`. Repeat if needed.
 - Do not fabricate facts, statistics, quotations, images or sources. Every fact in a sample comes from a page you actually fetched; record its URL. Do not weaken a test or gate to pass.
+
+## Budget rules
+
+- Your model tier was chosen for you. Do not ask for a stronger one; if you are truly stuck, stop and report the evidence.
+- Read `docs/operations/SPECIALIST-SKILL-AUDIT.md` instead of re-researching a repository it covers.
+- At most 4 render iterations (pushes). Wait with one `timeout 540 gh run watch`, not repeated polling.
+- Keep files read to what you need. Never dump the repository.
 
 ## How to produce real output
 
@@ -23,7 +30,7 @@ Read `platform/README.md` first. It defines what you own. Read `CLAUDE.md` too.
 
 `preview.mjs` receives `{ key, runId, outDir, tools, entry }`. `tools` is in `platform/preview/lib.mjs`: `stage(name, status)` publishes progress, `write`, `renderComposition`, `renderTimeline`, `voice`, `contactSheet`, `durationOf`.
 
-Call `tools.stage(...)` after each stage so previews appear as you go. Write these into the run when you have them: `story-outline.md`, `script-draft.md`, `scene-plan.json` (must satisfy `platform/contracts/scene-plan.schema.json`), `contact-sheet.jpg`, `preview.mp4`, `voice-preview.mp3`, `qa-report.json`.
+Call `tools.stage(name, status)` after each stage so previews appear as you go. `name` must be one of `STAGES` in `platform/preview/lib.mjs`: research_complete, blueprint_complete, script_complete, script_approved, visual_complete, voice_complete, render_complete, qa_passed, preview_ready, awaiting_approval, blocked. Save representative frames as `scene-*.jpg`. Write these into the run when you have them: `story-outline.md`, `script-draft.md`, `scene-plan.json` (must satisfy `platform/contracts/scene-plan.schema.json`), `contact-sheet.jpg`, `preview.mp4`, `voice-preview.mp3`, `qa-report.json`.
 
 Channel-specific packages go in `platform/channels/<key>/deps.json` or `requirements.txt` and are installed only for your run.
 

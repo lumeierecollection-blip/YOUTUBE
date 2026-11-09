@@ -23,15 +23,16 @@ function latestByChannel(root) {
     const last = runs.at(-1);
     const ok = runs.filter((x) => x.meta.status === "ok").at(-1);
     const has = (n) => (existsSync(join(dir, last.r, n)) ? `[${n}](${key}/${last.r}/${n})` : "");
-    rows.push({ key, agent: last.meta.agent, stage: last.meta.stage, status: last.meta.status, at: last.meta.timestamp, sheet: has("contact-sheet.jpg"), script: has("script-draft.md"), plan: has("scene-plan.json"), blocker: last.meta.error || "", lastOk: ok ? ok.meta.timestamp : "none", run: last.r });
+    const scenes = readdirSync(join(dir, last.r)).filter((n) => /^scene-.*\.(jpg|png)$/.test(n)).slice(0, 4).map((n) => `[${n}](${key}/${last.r}/${n})`).join(" ");
+    rows.push({ key, agent: last.meta.agent, stage: last.meta.stage, status: last.meta.status, at: last.meta.timestamp, branch: last.meta.branch, commit: String(last.meta.commit || "").slice(0, 8), mp4: last.meta.artifact_url ? `[run artifact](${last.meta.artifact_url})` : "", sheet: has("contact-sheet.jpg"), scenes, voice: has("voice-preview.mp3"), script: has("script-draft.md"), plan: has("scene-plan.json"), qa: has("qa-report.json"), blocker: last.meta.error || last.meta.issues || "", lastOk: ok ? ok.meta.timestamp : "none", run: last.r });
   }
   return rows;
 }
 
 function index(root) {
   const rows = latestByChannel(root);
-  const md = ["# Production preview index", "", `Rebuilt ${new Date().toISOString()}. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.`, "", "| Channel | Agent | Stage | Status | Updated | Contact sheet | Script | Scene plan | Last success | Blocker |", "|---|---|---|---|---|---|---|---|---|---|",
-    ...rows.map((r) => `| ${r.key} | ${r.agent} | ${r.stage} | ${r.status} | ${r.at} | ${r.sheet} | ${r.script} | ${r.plan} | ${r.lastOk} | ${String(r.blocker).replace(/\|/g, "/").replace(/\n/g, " ")} |`), ""].join("\n");
+  const md = ["# Production preview index", "", `Rebuilt ${new Date().toISOString()}. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.`, "", "| Channel | Agent | Stage | Status | Updated | Branch @ commit | MP4 | Contact sheet | Scenes | Voice | Script | Scene plan | QA | Last success | Outstanding |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|",
+    ...rows.map((r) => `| ${r.key} | ${r.agent} | ${r.stage} | ${r.status} | ${r.at} | ${r.branch || ""} @ ${r.commit} | ${r.mp4} | ${r.sheet} | ${r.scenes} | ${r.voice} | ${r.script} | ${r.plan} | ${r.qa} | ${r.lastOk} | ${String(r.blocker).replace(/\|/g, "/").replace(/\n/g, " ")} |`), ""].join("\n");
   writeFileSync(join(root, "index.md"), md);
   writeFileSync(join(root, "index.json"), JSON.stringify({ rebuilt_at: new Date().toISOString(), channels: rows }, null, 2));
 }
