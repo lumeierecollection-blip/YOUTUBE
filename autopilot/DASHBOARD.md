@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:35 SAST
+Updated 2026-11-09 03:37 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 03:35 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Why experts say giving your AI assistant too much independence leads to silly mistakes (67.2/100) |
+| Latest production | failed-final at discover, attempts 1 |
+| Selected topic and score | n/a |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -80,3 +80,4 @@ Updated 2026-11-09 03:35 SAST
 - AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure
 - Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent
 - Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best "400-year-old shipwreck padlock decoded" (79.5): too few freely licensed images (0 on Wikimedia Commons)
+- AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best "Instagram Launches Free Desktop Video Editor to Rival CapCut" (87.2): too similar to recent topic: Instagram launches free desktop video editor t
