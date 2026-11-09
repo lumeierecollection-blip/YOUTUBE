@@ -998,12 +998,12 @@
       "attempts": 1,
       "run_id": "42590636988",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:07:53.986Z",
-      "stage": "script",
-      "topic": "Edwin Hubble proves the Andromeda Nebula is another galaxy",
-      "score": 74.6,
-      "pillar": "Events that changed the modern world",
-      "hook": "In one newspaper announcement, humanity's entire perspective of the universe expanded infinitely."
+      "updated_at": "2026-11-09T09:09:16.561Z",
+      "stage": "research",
+      "topic": "Albert Hofmann's accidental synthesis of LSD in Basel",
+      "score": 72.1,
+      "pillar": "Unbelievable true historical events",
+      "hook": "A routine pharmaceutical experiment in 1938 accidentally birthed history's most notorious mind-altering chemical."
     }
   },
   "uploads": [
@@ -1814,6 +1814,15 @@
       "at_ms": 1794215243753,
       "score": 74.6,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Albert Hofmann's accidental synthesis of LSD in Basel",
+      "slug": "albert-hofmann-s-accidental-synthesis-of-lsd-in-basel",
+      "slot": "kick-e8859da190-ch1",
+      "at_ms": 1794215356561,
+      "score": 72.1,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
