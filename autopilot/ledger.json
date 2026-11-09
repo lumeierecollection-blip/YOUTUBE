@@ -944,12 +944,12 @@
       "attempts": 1,
       "run_id": "42585427400",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:50:28.949Z",
-      "stage": "script",
-      "topic": "Meta's new Muse Voice brings real-time conversational avatars and voice chat",
-      "score": 84.1,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Meta's new AI voice tool lets you have real-time, face-to-face chats with expressive avatars."
+      "updated_at": "2026-11-09T08:55:38.606Z",
+      "stage": "research",
+      "topic": "Nearly 20% of workers replaced by AI are being asked back",
+      "score": 75.9,
+      "pillar": "AI changing everyday work",
+      "hook": "Companies are backtracking after replacing workers with AI, asking nearly 20% of them to come back."
     }
   },
   "uploads": [
@@ -1742,6 +1742,15 @@
       "at_ms": 1794214212215,
       "score": 84.1,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Nearly 20% of workers replaced by AI are being asked back",
+      "slug": "nearly-20-of-workers-replaced-by-ai-are-being-asked-back",
+      "slot": "kick-4d6c9e0e00-ch2",
+      "at_ms": 1794214538606,
+      "score": 75.9,
+      "pillar": "AI changing everyday work"
     }
   ],
   "attention": [
