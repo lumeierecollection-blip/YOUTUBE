@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "AI Voice Cloning Fraud Scheme and $129M Scam",
+      "score": 72,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 4 \"But this scheme targeted 3 types of global enterprises.\" — The word 'this' refers to a scheme that hasn't been described yet.. Rewrite it so a vi"
+    }
+  ],
+  "selected": null
+}
