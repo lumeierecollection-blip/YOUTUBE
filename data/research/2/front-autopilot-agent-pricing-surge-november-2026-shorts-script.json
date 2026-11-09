@@ -1,0 +1,74 @@
+{
+  "channel_id": "2",
+  "topic_slug": "front-autopilot-agent-pricing-surge-november-2026",
+  "format": "shorts",
+  "hook": "Front just hiked the price of its Autopilot AI agent 680%.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Front just hiked the price of its Autopilot AI agent 680%.",
+      "visual_cue": "A bold text overlay showing 680% increase against a dark background.",
+      "sfx_cue": "Sharp cash register ding.",
+      "b_roll": [
+        "Abstract digital graph showing a vertical spike."
+      ],
+      "text_overlay": {
+        "text": "680% Price Hike"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Between November 2 and November 9, 2026, the company changed its rates. How did Front shift its Autopilot cost model during the November 2026 pricing strategy update?",
+      "visual_cue": "Calendar pages flipping from November 2 to 9 with a list of process names appearing.",
+      "sfx_cue": "Soft page-turning sound.",
+      "b_roll": [
+        "Calendar graphic highlighting November 2026.",
+        "Simple list graphic showing Triage, Handoff, and Resolution."
+      ],
+      "text_overlay": {
+        "text": "Nov 2 - Nov 9, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This massive 680% price hike reflects broader shifts in SaaS pricing strategies for Front customers.",
+      "visual_cue": "Comparison graphic showing two price tiers side by side.",
+      "sfx_cue": "Low rising drone sound.",
+      "b_roll": [
+        "Split screen showing price comparison."
+      ],
+      "text_overlay": {
+        "text": "Major Cost Jump"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Front customers previously paid $0.05 per conversation for the Autopilot AI agent before the hike.",
+      "visual_cue": "Bar chart comparing 0.05 USD and 0.39 USD.",
+      "sfx_cue": "Subtle digital click.",
+      "b_roll": [
+        "Bar chart animating the growth from 0.05 to 0.39."
+      ],
+      "text_overlay": {
+        "text": "$0.05 to $0.39 per chat"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Front now charges $0.39 per conversation for Autopilot, marking a 680% increase for all users.",
+      "visual_cue": "Final total amount displayed in large font.",
+      "sfx_cue": "Finality sound.",
+      "b_roll": [
+        "Close up of the $0.39 figure."
+      ],
+      "text_overlay": {
+        "text": "$0.39 per conversation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://pricingsaas.com/companies/front/diffs/2026W46",
+    "https://pricingsaas.com/news/week/2026W46",
+    "https://front.com/pricing"
+  ]
+}
