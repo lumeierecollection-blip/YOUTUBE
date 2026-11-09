@@ -1,0 +1,60 @@
+{
+  "note": "Every photograph is a real image from Wikimedia Commons with its licence recorded. Nothing here is AI-generated. Documents are typeset excerpts of fetched text.",
+  "assets": [
+    {
+      "id": "snipes-portrait",
+      "description": "Wesley Snipes speaking at the 2018 San Diego Comic-Con International in San Diego, California.",
+      "role": "large cut-out of the subject",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_by_Gage_Skidmore.jpg",
+      "licence": "CC BY-SA 3.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Gage Skidmore",
+      "original_credit": "Own work",
+      "date_taken": "2018-07-21",
+      "retrieved": "2026-11-09",
+      "claim": "K1",
+      "authenticity": "authentic",
+      "size_px": "1544x2312",
+      "credit_line": "Gage Skidmore, CC BY-SA 3.0, via Wikimedia Commons",
+      "bytes": 1536187,
+      "treatment": "photographic cut-out (rembg, u2net_human_seg), torn-paper edge, monochrome. No pixel of the subject is generated."
+    },
+    {
+      "id": "snipes-booking",
+      "description": "Mug shot of Wesley Snipes .",
+      "role": "genuine booking photograph",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_mug_shot.jpg",
+      "licence": "Public domain",
+      "licence_url": "",
+      "author": "United States Marshals Service",
+      "original_credit": "http://www.thesmokinggun.com/mugshots/celebrity/hollywood/wesley-snipes",
+      "date_taken": "2008-04-24",
+      "retrieved": "2026-11-09",
+      "claim": "P1",
+      "authenticity": "authentic",
+      "size_px": "474x639",
+      "credit_line": "United States Marshals Service, Public domain, via Wikimedia Commons",
+      "bytes": 114803
+    }
+  ],
+  "documents": [
+    {
+      "id": "doj-excerpt",
+      "type": "typeset excerpt of fetched text",
+      "description": "Sentencing and verdict sentences from the US Department of Justice release",
+      "source_url": "https://www.blastmagazine.com/?p=1227",
+      "note": "Republished copy; justice.gov original not retrieved",
+      "claim": "K1, K2"
+    },
+    {
+      "id": "cbs-excerpt",
+      "type": "typeset excerpt of fetched text",
+      "description": "The government's alleged earnings and back-taxes figures",
+      "source_url": "https://www.cbsnews.com/news/wesley-snipes-gets-3-years-in-prison",
+      "claim": "K4"
+    }
+  ],
+  "music": "see music-manifest.json"
+}
