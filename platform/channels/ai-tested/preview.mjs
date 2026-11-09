@@ -48,7 +48,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   for (;;) {
     attempt++;
     result = await runEngine({
-      channelKey: key, format: "short", topic: "Can AI models count letters? A test of real models", angle: "What happened when the same counting questions went to each model, and what the scores show. Use only the measured results.",
+      channelKey: key, format: "short", topic: "Can AI models count letters? A test of real models", angle: "Tell it as one story. Open on the question of whether AI can count letters. Say how the test worked, then give the example, then the scores, then why the random letters mattered, and end by answering the opening question. One figure per sentence. Eight or nine short spoken sentences, about 54 words. Use only the measured results.",
       claimResult: { claims: exp.claims, dropped: [], sources: exp.sources }, llm, wpm, production_run: runId, profileOverrides: { minSeconds: 24, targetSeconds: 26.5, maxSeconds: 29 }, maxRevisions: 3,
       onProgress: (ev) => {
         if (ev.event === "blueprint") { tools.write("blueprint.json", ev.blueprint); tools.write("story-outline.md", `# Blueprint\n\nCentral question: ${ev.blueprint.central_question}\n\nThesis: ${ev.blueprint.thesis}\n\nConclusion: ${ev.blueprint.conclusion}\n`); tools.stage("blueprint_complete", "ok"); }

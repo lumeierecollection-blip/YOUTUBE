@@ -34,9 +34,9 @@ async function callOpenAiStyle(url, key, model, text) {
 }
 
 const CANDIDATES = [
-  { name: "Gemini 3.5 Flash", id: "gemini-3.5-flash", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash", t), pause: 4500 },
-  { name: "Gemini 3.5 Flash-Lite", id: "gemini-3.5-flash-lite", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash-lite", t), pause: 4500 },
-  { name: "GPT-OSS 120B", id: "openai/gpt-oss-120b", available: () => !!process.env.GROQ_API_KEY, ask: (t) => callOpenAiStyle("https://api.groq.com/openai/v1/chat/completions", process.env.GROQ_API_KEY, "openai/gpt-oss-120b", t), pause: 2500 },
+  { name: "Gemini 3.5 Flash", speak: "Google's Gemini Flash", id: "gemini-3.5-flash", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash", t), pause: 4500 },
+  { name: "Gemini 3.5 Flash-Lite", speak: "Google's Flash-Lite", id: "gemini-3.5-flash-lite", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash-lite", t), pause: 4500 },
+  { name: "GPT-OSS 120B", speak: "OpenAI's GPT-OSS", id: "openai/gpt-oss-120b", available: () => !!process.env.GROQ_API_KEY, ask: (t) => callOpenAiStyle("https://api.groq.com/openai/v1/chat/completions", process.env.GROQ_API_KEY, "openai/gpt-oss-120b", t), pause: 2500 },
 ];
 
 async function askWithRetry(model, text) {
@@ -64,7 +64,7 @@ export async function runExperiment({ runUrl, now = new Date(), log = console.er
       }
     } catch (e) { log(`[experiment] ${m.name} dropped: ${e.message} after ${answers.length} answers`); continue; }
     const score = (g) => answers.filter((a) => a.ok && (!g || a.group === g)).length;
-    models.push({ name: m.name, id: m.id, correct: score(), real: score("real"), random: score("random"), answers });
+    models.push({ name: m.name, speak: m.speak, id: m.id, correct: score(), real: score("real"), random: score("random"), answers });
     log(`[experiment] ${m.name}: ${score()}/${questions.length}`);
   }
   if (models.length < 2) throw new Error(`only ${models.length} model(s) answered every question; a comparison needs at least 2`);
@@ -74,20 +74,24 @@ export async function runExperiment({ runUrl, now = new Date(), log = console.er
   const exampleReplies = models.map((m) => ({ model: m.name, reply: m.answers[0].reply, answer: m.answers[0].answer, ok: m.answers[0].ok }));
   // The widest miss across all models, so the video can show a real wrong answer if one exists.
   const miss = models.flatMap((m) => m.answers.filter((a) => !a.ok && a.answer !== null).map((a) => ({ ...a, model: m.name, error: Math.abs(a.answer - a.correct) }))).sort((a, b) => b.error - a.error)[0] || null;
+  // One figure per sentence: these are heard once, and the script is built from them.
+  const sameAnswer = exampleReplies.every((r) => r.answer === exampleReplies[0].answer);
   const line = {
-    design: `On ${date}, an automated test sent ${questions.length} letter-counting questions to each of ${models.length} AI models: ${models.map((m) => m.name).join(", ")}. Ten questions used real English words and ten used random strings of 24 letters.`,
-    check: "Each model was told to reply with only the number, and code that counted the letters marked every reply right or wrong.",
-    example: `Asked how many times the letter "${example.letter}" appears in "${example.word}", where the correct answer is ${example.correct}, ${exampleReplies.map((r) => `${r.model} answered ${r.answer ?? "with no number"}`).join(" and ")}.`,
-    miss: miss ? `The widest miss came from ${miss.model}: asked to count the letter "${miss.letter}" in the random string "${miss.word}", it answered ${miss.answer}, and the correct answer is ${miss.correct}.` : null,
+    design: `The test sent ${questions.length} letter-counting questions to ${models.length === 2 ? "two" : "three"} AI models.`,
+    groups: "Half used real English words, and half used random strings of letters.",
+    check: "Each model had to reply with only a number, and code that counted the letters marked every reply.",
+    example: sameAnswer && exampleReplies[0].ok ? `Every model counted ${example.correct} ${example.letter.toUpperCase()}s in ${example.word}, which is correct.` : exampleReplies.map((r, i) => `${models[i].speak} counted ${r.answer ?? "nothing usable"} ${example.letter.toUpperCase()}s in ${example.word}.`).join(" "),
+    miss: miss ? `${models.find((m) => m.name === miss.model).speak} counted ${miss.answer} ${miss.letter.toUpperCase()}s in ${miss.group === "real" ? miss.word : "one random string"}, when the answer was ${miss.correct}.` : null,
   };
-  const scoreLine = (m) => `${m.name} got ${m.correct} of ${questions.length} questions right.`;
-  const splitLine = (m) => `${m.name} scored ${m.real} of 10 on real words and ${m.random} of 10 on random letter strings.`;
-  const text = [line.design, line.check, line.example, ...models.map(scoreLine), ...models.map(splitLine), line.miss].filter(Boolean).join("\n\n");
+  const scoreLine = (m) => `${m.speak} got ${m.correct} of ${questions.length} right.`;
+  const realLine = (m) => `On real words, ${m.speak} got ${m.real} of 10.`;
+  const randomLine = (m) => `On random letters, ${m.speak} got ${m.random} of 10.`;
+  const text = [line.design, line.groups, line.check, line.example, ...models.map(scoreLine), ...models.map(realLine), ...models.map(randomLine), line.miss].filter(Boolean).join("\n\n");
   const url = runUrl;
-  const claim = (claim_id, sentence, editorial_status = "measured_statistic") => ({ claim_id, claim: sentence, source_id: "s1", source_url: url, published: date, excerpt: sentence, confidence: "high", context: "Measured in this production's own test; results can differ between runs and the models change over time.", editorial_status });
-  const claims = [claim("design", line.design, "demonstrated_feature"), claim("check", line.check, "demonstrated_feature"), claim("example", line.example), ...models.map((m, i) => claim(`score${i}`, scoreLine(m))), ...models.map((m, i) => claim(`split${i}`, splitLine(m))), ...(line.miss ? [claim("miss", line.miss)] : [])];
+  const claim = (claim_id, sentence, editorial_status = "measured_statistic") => ({ claim_id, claim: sentence, source_id: "s1", source_url: url, published: date, excerpt: sentence, confidence: "high", context: `Measured in this production's own test on ${date}; results can differ between runs and the models change over time. Models: ${models.map((m) => m.name).join(", ")}.`, editorial_status });
+  const claims = [claim("design", line.design, "demonstrated_feature"), claim("design_groups", line.groups, "demonstrated_feature"), claim("check", line.check, "demonstrated_feature"), claim("example", line.example), ...models.map((m, i) => claim(`score${i}`, scoreLine(m))), ...models.map((m, i) => claim(`split_real${i}`, realLine(m))), ...models.map((m, i) => claim(`split_random${i}`, randomLine(m))), ...(line.miss ? [claim("miss", line.miss)] : [])];
   return { date, total: questions.length, models, questions, example: { ...example, replies: exampleReplies }, miss, report_text: text, claims, sources: [{ source_id: "s1", url, published: date, title: "AI Tested letter-count test run" }] };
 }
 
 /** Which picture explains a claim. The script's own claim citations decide which scene a sentence lands on. */
-export const sceneKindOfClaim = (id) => (id === "design" || id === "check" ? "setup" : id === "example" ? "terminal" : id.startsWith("score") ? "score" : id.startsWith("split") ? "split" : id === "miss" ? "miss" : null);
+export const sceneKindOfClaim = (id) => (id.startsWith("design") || id === "check" ? "setup" : id === "example" ? "terminal" : id.startsWith("score") ? "score" : id.startsWith("split") ? "split" : id === "miss" ? "miss" : null);
