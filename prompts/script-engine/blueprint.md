@@ -25,4 +25,12 @@ Plan one story that answers ONE central question.
 - questions_raised: every question the story raises, with raised_in and answered_in as beat_ids (answered in the same or a later beat). The payoff must answer the central question.
 - conclusion: the one-sentence takeaway that answers the central question.
 
-Return only JSON with keys central_question, thesis, why_it_matters, viewer_start, viewer_end, key_evidence, beats, questions_raised, conclusion. beat_id values are b1, b2, ...
+Return only JSON with exactly this shape (every beat has ALL FIVE keys; use claim_ids from the list above; this example is only the shape):
+{"central_question":"...?","thesis":"...","why_it_matters":"...","viewer_start":"...","viewer_end":"...","key_evidence":["c1","c3"],
+ "beats":[
+  {"beat_id":"b1","role":"opening","purpose":"how this beat helps answer the question","claim_ids":["c1"],"link_from_previous":"none"},
+  {"beat_id":"b2","role":"development","purpose":"...","claim_ids":["c2"],"link_from_previous":"explanation"},
+  {"beat_id":"b3","role":"payoff","purpose":"...","claim_ids":["c3"],"link_from_previous":"consequence"},
+  {"beat_id":"b4","role":"ending","purpose":"...","claim_ids":[],"link_from_previous":"evidence"}],
+ "questions_raised":[{"question":"...","raised_in":"b1","answered_in":"b3"}],"conclusion":"..."}
+At least {{min_beats}} beats, at most {{max_beats}}, with at least two different claim_ids across the beats.

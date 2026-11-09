@@ -309,6 +309,26 @@ test("scene plans built from an approved script trace back to the script", async
   assert.deepEqual(sceneTraceability(plan, r.package, r.package.claims).filter((f) => f.severity !== "minor"), []);
 });
 
+test("blueprint: what a first-time viewer would not know becomes a note for the writer; a false link is replaced by the one the checker names", async () => {
+  const claims = (await extractClaims({ llm: scriptedLLM({ claims: GOOD_CLAIMS }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", sources: SOURCES })).claims;
+  const check = { ...BP_CHECK, gaps: ["context window", "router.yaml"], beats: BP_CHECK.beats.map((b) => (b.beat_id === "b3" ? { ...b, link_true: false, correct_link: "evidence", reason: "the result is evidence, not a consequence" } : b)) };
+  const res = await buildBlueprint({ llm: scriptedLLM({ blueprint: structuredClone(BLUEPRINT), "blueprint-check": check }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", claims, capacityWords: 76, targetSeconds: 27 });
+  assert.deepEqual(res.blueprint.explain_in_script, ["context window", "router.yaml"]);
+  assert.equal(res.blueprint.beats.find((b) => b.beat_id === "b3").link_from_previous, "evidence");
+  assert.equal(res.checks.model.relinked_by_checker[0].from, "consequence");
+  const none = { ...check, beats: check.beats.map((b) => (b.beat_id === "b3" ? { ...b, correct_link: "none" } : b)) };
+  await assert.rejects(buildBlueprint({ llm: scriptedLLM({ blueprint: structuredClone(BLUEPRINT), "blueprint-check": none }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", claims, capacityWords: 76, targetSeconds: 27 }), BlueprintRejected);
+});
+
+test("blueprint: an answer that is not a valid plan costs an attempt, it does not end the channel", async () => {
+  const claims = (await extractClaims({ llm: scriptedLLM({ claims: GOOD_CLAIMS }), calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", sources: SOURCES })).claims;
+  const noRole = { ...BLUEPRINT, beats: BLUEPRINT.beats.map(({ role, ...b }) => b) };
+  const llm = scriptedLLM({ blueprint: [noRole, noRole, BLUEPRINT], "blueprint-check": BP_CHECK });
+  const res = await buildBlueprint({ llm, calls: [] }, { channel: channelConfig("ai-tested", "short"), topic: "Quill Router", angle: "x", claims, capacityWords: 76, targetSeconds: 27 });
+  assert.equal(res.attempts, 2);
+  assert.equal(res.history[0].stage, "format");
+});
+
 test("LONG FORM end to end: a long-form channel runs the long path (CONSTRUCTED length overrides so the tiny test script fits)", async () => {
   const lf = { claims: GOOD_CLAIMS.claims.map((c) => ({ ...c, editorial_status: c.editorial_status === "measured_statistic" ? "measured_statistic" : "established_fact" })) };
   const five = { ...BLUEPRINT, beats: [BLUEPRINT.beats[0], BLUEPRINT.beats[1], { beat_id: "b2b", role: "development", purpose: "Explain that the tool reads the prompt length before it picks the cheapest model", claim_ids: ["c3"], link_from_previous: "explanation" }, BLUEPRINT.beats[2], BLUEPRINT.beats[3]] };

@@ -3,7 +3,7 @@
  * Deterministic checks, then one model check. A beat that does not serve the central question is removed;
  * if what remains cannot answer the question, the blueprint is rejected and nothing is written.
  */
-import { ask } from "./llm.mjs";
+import { BadModelOutput, ask } from "./llm.mjs";
 import { prompt } from "./prompt.mjs";
 import { validate } from "./schema.mjs";
 import { overlap, wordCount } from "./text.mjs";
@@ -14,6 +14,7 @@ export class BlueprintRejected extends Error {
 
 const issue = (severity, code, message, beat_id = null) => ({ severity, code, message, beat_id });
 const PROTECTED = new Set(["opening", "payoff", "ending"]);
+const LINKS = ["cause", "consequence", "chronology", "comparison", "contradiction", "explanation", "discovery", "evidence", "change_over_time"];
 
 /** Beats the length can hold: about 14 spoken words each is the least that states a claim clearly. */
 export const maxBeatsFor = (profile, capacityWords) => Math.max(profile.minBeats, Math.min(profile.maxBeats, Math.floor(capacityWords / (profile.mode === "short" ? 14 : 60))));
@@ -109,7 +110,18 @@ export async function buildBlueprint(ctx, { channel, topic, angle, claims, capac
       topic, angle, target_seconds: String(Math.round(targetSeconds)), capacity_words: String(Math.round(capacityWords)), max_beats: String(maxBeats), min_beats: String(profile.minBeats),
       claims: claimList(claims), feedback,
     });
-    const { value: bp } = await ask(ctx, { role: "writer", tag: "blueprint", user, maxTokens: 3000, temperature: 0.3, check: (v) => validate("story-blueprint", v) });
+    let bp;
+    try { ({ value: bp } = await ask(ctx, { role: "writer", tag: "blueprint", user, maxTokens: 3000, temperature: 0.3, check: (v) => validate("story-blueprint", v) })); }
+    catch (e) {
+      if (!(e instanceof BadModelOutput)) throw e;
+      history.push({ attempt, stage: "format", issues: [issue("critical", "schema", e.detail)] });
+      feedback = `The previous answer was not a valid plan: ${e.detail}. Follow the JSON shape exactly, including "role" and "link_from_previous" on every beat.`;
+      continue;
+    }
+    // key_evidence is a pointer list, not a claim of its own: drop pointers to claims no beat uses.
+    const usedIds = new Set((bp.beats || []).flatMap((b) => b.claim_ids || []));
+    bp.key_evidence = [...new Set((bp.key_evidence || []).filter((k) => usedIds.has(k)))];
+    if (!bp.key_evidence.length) bp.key_evidence = [...usedIds].slice(0, 3);
     let current = bp;
     let det = blueprintIssues(current, { claims, profile, channel, maxBeats });
     // Remove beats that do not serve the question (deterministic test), then re-check what is left.
@@ -144,24 +156,30 @@ export async function buildBlueprint(ctx, { channel, topic, angle, claims, capac
     }
     if (!model) { history.push({ attempt, stage: "after-removal", issues: det }); feedback = `Removing off-question beats broke the plan:\n${det.map((d) => `- ${d.message}`).join("\n")}\nPlan a tighter story.`; continue; }
     const verdicts = new Map(model.beats.map((b) => [b.beat_id, b]));
-    const modelIssues = [];
+    const modelIssues = [], relinked = [];
     for (const b of current.beats) {
       const v = verdicts.get(b.beat_id);
       if (!v) modelIssues.push(issue("major", "model", "the check did not judge this beat", b.beat_id));
       else {
         if (v.serves === false) modelIssues.push(issue("critical", "model", `a ${b.role} beat does not serve the question: ${v.reason}`, b.beat_id));
-        if (v.link_true === false) modelIssues.push(issue("major", "model", `link "${b.link_from_previous}" is not true of these beats: ${v.reason}`, b.beat_id));
+        if (v.link_true === false) {
+          // The checker names the link that IS true; use it (recorded). Only when none fits is the plan sent back.
+          if (LINKS.includes(v.correct_link) && b !== current.beats[0]) { relinked.push({ beat_id: b.beat_id, from: b.link_from_previous, to: v.correct_link, reason: v.reason }); b.link_from_previous = v.correct_link; }
+          else modelIssues.push(issue("major", "model", `link "${b.link_from_previous}" is not true of these beats and no other link fits: ${v.reason}`, b.beat_id));
+        }
       }
     }
     if (model.answers_question === false) modelIssues.push(issue("critical", "model", "the beats do not answer the central question from the claims"));
     if (model.fits_length === false) modelIssues.push(issue("critical", "model", `does not fit the length${model.narrow_to ? `; narrow to: ${model.narrow_to}` : ""}`));
-    if ((model.gaps || []).length) modelIssues.push(issue("major", "model", `a first-time viewer would be lost: ${model.gaps.slice(0, 3).join("; ")}`));
+    // What a first-time viewer would not know is not a reason to reject the plan: it is an instruction to the writer,
+    // who must explain each item in the sentence where it first appears (and the continuity gates verify that it did).
+    current = { ...current, explain_in_script: (model.gaps || []).map(String).slice(0, 6) };
     if (modelIssues.length) {
       history.push({ attempt, stage: "model", issues: modelIssues });
       feedback = `A reviewer rejected the previous plan:\n${modelIssues.map((d) => `- ${d.beat_id ? d.beat_id + ": " : ""}${d.message}`).join("\n")}${model.narrow_to ? `\nConsider the narrower question: ${model.narrow_to}` : ""}`;
       continue;
     }
-    return { blueprint: current, removed: removedAll, checks: { max_beats: maxBeats, deterministic: "pass", model: { answers_question: true, fits_length: true, beats: model.beats } }, attempts: attempt, history };
+    return { blueprint: current, removed: removedAll, checks: { max_beats: maxBeats, deterministic: "pass", model: { answers_question: true, fits_length: true, beats: model.beats, relinked_by_checker: relinked } }, attempts: attempt, history };
   }
   throw new BlueprintRejected(history.flatMap((h) => h.issues));
 }

@@ -51,7 +51,7 @@ export async function runEngine({ channelKey, format = "short", topic, angle, so
   const report = { channel: channelKey, format, topic, angle, status: "pending", wpm, limits: { target_s: channel.profile.targetSeconds, max_s: channel.profile.maxSeconds }, rounds: [], narrowings: 0, caveats: [], unreviewed_script_released: false };
   const finish = (status, extra = {}) => {
     report.status = status;
-    report.calls = ctx.calls.map(({ role, tag, attempt, provider, ms, error, ok, same_provider, chain }) => ({ role, tag, attempt, provider, ms, error, ok, same_provider, chain }));
+    report.calls = ctx.calls.map(({ role, tag, attempt, provider, model, ms, error, ok, same_provider, chain, problems }) => ({ role, tag, attempt, provider, model, ms, error, ok, same_provider, chain, problems }));
     report.providers = { writer: [...new Set(ctx.calls.filter((c) => c.role === "writer").map((c) => c.provider).filter(Boolean))], critic: [...new Set(ctx.calls.filter((c) => c.role === "critic").map((c) => c.provider).filter(Boolean))] };
     return { status, report, ...extra };
   };
@@ -65,7 +65,7 @@ export async function runEngine({ channelKey, format = "short", topic, angle, so
     report.claims = { count: claims.length, dropped: claimResult.dropped || [], sources: claimResult.sources };
 
     let blueprintResult = null, narrowTo = null, capacity = capacityWords(channel.profile.targetSeconds, wpm.wpm), targetSeconds = channel.profile.targetSeconds;
-    let previous = null, issues = [], writerProvider = null, rounds = 0, trimmed = false;
+    let previous = null, issues = [], writerProvider = null, writerModel = null, rounds = 0, trimmed = false;
     const drafts = [];
     for (;;) {
       // 2. blueprint (rebuilt when the story has to be narrowed)
@@ -81,7 +81,7 @@ export async function runEngine({ channelKey, format = "short", topic, angle, so
       const claimsOf = (s) => (s.claim_ids || []).map((id) => claims.find((c) => c.claim_id === id)).filter(Boolean);
       const hookReject = (h) => CHANNEL_RULES[channelKey]?.script?.({ sentences: [{ sentence_id: "hook", text: h.text, claim_ids: h.claim_ids || [] }], claimsOf, claims, blueprint }).some((x) => x.severity === "critical" && x.sentence_ids.includes("hook"));
       const w = await writeScript(ctx, { channel, topic, blueprint, claims, wpm, previous, issues, targetSeconds, hookReject });
-      writerProvider = w.provider;
+      writerProvider = w.provider; writerModel = w.model ?? null;
       rounds++;
       const round = { round: rounds, writer_provider: w.provider, words: w.words ?? null };
       report.rounds.push(round);
@@ -123,12 +123,12 @@ export async function runEngine({ channelKey, format = "short", topic, angle, so
           if (crit.verdict === "approve") {
             const seeds = sceneSeeds(pkg, wpm, { channel: channelKey, production_run });
             pkg.quality_report = {
-              status: "approved", approved_by: crit.reviewer, written_by: `writer/${writerProvider}`, independent_provider: !crit.same_provider, scores: crit.scores,
+              status: "approved", approved_by: crit.reviewer, written_by: `writer/${writerProvider}`, writer_model: writerModel, critic_model: crit.model, independent_provider: !crit.same_provider, scores: crit.scores,
               deterministic: summarise(det), minor_findings: det.filter((x) => x.severity === "minor").length, rounds, wpm,
             };
             assertValid("script-package", pkg);
             report.final = { sentences: pkg.sentences.length, words: pkg.sentences.map((s) => s.text).join(" ").split(/\s+/).length, duration_estimate_s: pkg.duration_estimate_s };
-            if (crit.same_provider) report.caveats.push("The critic ran on the same provider as the writer (no other provider had a key); it was a separate role and prompt, not a separate model family.");
+            if (crit.same_provider) report.caveats.push(`The critic ran on the same provider as the writer (no other provider could answer); it was a separate role, a separate prompt and a separate call${crit.model && writerModel && crit.model !== writerModel ? ` on a different model (${crit.model} vs ${writerModel})` : ""}, not a different provider.`);
             if (wpm.source !== "measured") report.caveats.push("Duration used the default words-per-minute, not a measured one.");
             return finish("approved", { package: pkg, blueprint, claims, critique: crit, scene_seeds: seeds, drafts });
           }

@@ -19,6 +19,7 @@ HOW EVERY SENTENCE MUST WORK (these are checked line by line by code and by a re
 4. Every sentence that states a fact lists its claim_ids, and says no more than those claims say. Do not strengthen a verb ("targeted" is not "hit") or generalise ("some" is not "all"). Sentences that state no fact (a bridge, a question, a recap) have claim_ids [].
 5. If you ask a question, answer it in the next one or two sentences. If you promise something in the first sentence, the payoff delivers exactly that.
 6. Do not repeat a fact already said. Do not use stock phrases ("here's the thing", "you won't believe", "turns out", "like and subscribe").
+6b. If the blueprint has "explain_in_script", every item listed there must be explained in a few plain words in the sentence where it first appears.
 7. Plain spoken English. Contractions are fine. No filler counts such as "1 country" when a name will do.
 
 HOOKS: give {{hook_count}} different first lines (hook_options), each a different formula from: {{formulas}}. All of them must make the SAME promise that the payoff keeps, use only figures and names from the claims, and be at most {{hook_words}} words. Each lists the claim_ids it states. The first sentence of "sentences" is the hook you think is strongest; the second sentence must follow from ANY of your hooks. A hook that promises more than the video delivers is not allowed, however good it sounds.

@@ -29,8 +29,10 @@ const hasKey = {
 const ORDER = {
   writer: ["gemini", "openrouter", "ollama-cloud", "groq"],
   critic: ["groq", "ollama-cloud", "openrouter", "gemini"],
-  judge: ["groq", "ollama-cloud", "openrouter", "gemini"],
+  judge: ["gemini", "groq", "ollama-cloud", "openrouter"],
 };
+/** When a role runs on Gemini it asks for a different Gemini model than the writer (default gemini-3.5-flash-lite): a separate model call, and a separate per-model quota. */
+const GEMINI_MODEL = { critic: "gemini-3.8-flash", judge: "gemini-3.6-flash" };
 const QUOTA = new Set(["quota_exhausted", "unavailable", "budget_exhausted", "no_key"]);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -47,11 +49,11 @@ export function liveLLM({ log = console.error } = {}) {
         const prev = process.env.FORCE_PROVIDER;
         process.env.FORCE_PROVIDER = provider;
         let r;
-        try { r = await callLLMWithProvenance(messages, { maxTokens, temperature, keepAlive: 0, noCache: true }, `script-engine-${tag}`); }
+        try { r = await callLLMWithProvenance(messages, { maxTokens, temperature, keepAlive: 0, noCache: true, ...(provider === "gemini" && GEMINI_MODEL[role] ? { model: GEMINI_MODEL[role] } : {}) }, `script-engine-${tag}`); }
         catch (e) { r = { value: { error: "hard_error", detail: e.message }, provider, error: "hard_error", chain: [provider] }; }
         finally { if (prev === undefined) delete process.env.FORCE_PROVIDER; else process.env.FORCE_PROVIDER = prev; }
         const failed = r.error || isProviderError(r.value);
-        if (!failed) return { value: r.value, provider, error: null, chain: [...chain, provider], same_provider: avoid.includes(provider) };
+        if (!failed) return { value: r.value, provider, model: provider === "gemini" ? (GEMINI_MODEL[role] || "gemini-3.5-flash-lite") : null, error: null, chain: [...chain, provider], same_provider: avoid.includes(provider) };
         const kind = r.error || r.value?.error || "error";
         const detail = String(r.value?.detail || "");
         const hint = detail.match(/try again in (?:(\d+)m)?([\d.]+)s/i);
@@ -79,12 +81,12 @@ export async function ask(ctx, { role, tag, system, user, check = () => [], avoi
   for (let attempt = 1; attempt <= 2; attempt++) {
     const t0 = Date.now();
     const r = await ctx.llm({ role, tag, system, user: prompt, avoid, maxTokens, temperature });
-    const rec = { role, tag, attempt, provider: r.provider, chain: r.chain, ms: Date.now() - t0, error: r.error || null, same_provider: !!r.same_provider };
+    const rec = { role, tag, attempt, provider: r.provider, model: r.model ?? null, chain: r.chain, ms: Date.now() - t0, error: r.error || null, same_provider: !!r.same_provider };
     calls.push(rec);
     if (r.error || r.value == null) throw new ProviderExhausted(role, r.error || "empty answer", r.chain);
     const value = parseJson(r.value);
     const problems = value == null ? ["the answer was not valid JSON"] : check(value);
-    if (!problems.length) { rec.ok = true; return { value, provider: r.provider, same_provider: !!r.same_provider }; }
+    if (!problems.length) { rec.ok = true; return { value, provider: r.provider, model: r.model ?? null, same_provider: !!r.same_provider }; }
     rec.ok = false; rec.problems = problems.slice(0, 6);
     lastProblems = problems;
     prompt = `${user}\n\nYour previous answer was rejected for these reasons. Fix every one and return the complete JSON again:\n- ${problems.slice(0, 10).join("\n- ")}`;

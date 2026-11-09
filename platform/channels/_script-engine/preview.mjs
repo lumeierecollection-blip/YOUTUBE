@@ -20,6 +20,9 @@ const draftMd = (title, pkg, extra = "") => `# ${title}\n\n${extra}Central quest
 const outlineMd = (bp, removed) => `# Story outline\n\nCentral question: ${bp.central_question}\n\nThesis: ${bp.thesis}\n\nWhy it matters: ${bp.why_it_matters}\n\nViewer starts knowing: ${bp.viewer_start}\n\nViewer ends understanding: ${bp.viewer_end}\n\n${bp.beats.map((b) => `- ${b.beat_id} (${b.role}, link: ${b.link_from_previous}, claims: ${b.claim_ids.join(",") || "none"}): ${b.purpose}`).join("\n")}\n\nQuestions raised: ${bp.questions_raised.map((q) => `"${q.question}" raised in ${q.raised_in}, answered in ${q.answered_in}`).join("; ") || "none"}\n\nConclusion: ${bp.conclusion}\n${removed.length ? `\nBeats removed because they did not serve the question: ${removed.map((r) => `${r.beat_id} (${r.by}: ${r.reason})`).join("; ")}\n` : ""}`;
 
 export default async function preview({ runId, tools, _llm = null }) {
+  // src/lib/gemini-client.js stops a process at 50,000 tokens ("one video"). Eight channels make roughly 100 calls, so the
+  // cap is raised for this run only; the provider's own quotas still apply and are reported as blocked_provider.
+  process.env.MAX_TOKENS_PER_VIDEO ||= "5000000";
   const llm = _llm || liveLLM();
   const started = Date.now();
   const wpmCache = new Map();

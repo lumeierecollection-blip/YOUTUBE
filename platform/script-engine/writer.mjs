@@ -84,16 +84,16 @@ export async function writeScript(ctx, { channel, topic, blueprint, claims, wpm,
     max_sentence_words: String(profile.maxSentenceWords), hook_count: profile.mode === "short" ? "4" : "3", formulas: FORMULAS.join(", "), hook_words: String(profile.hookMaxWords),
     per_beat: profile.mode === "short" ? "2" : "8", revision,
   });
-  const { value: out, provider } = await ask(ctx, {
+  const { value: out, provider, model } = await ask(ctx, {
     role: "writer", tag: previous ? "writer-revise" : "writer", user, avoid, maxTokens: profile.mode === "short" ? 3500 : 9000, temperature: 0.5,
     check: (v) => writerStructureProblems(v, { blueprint, claims, profile }),
   });
   const body = out.sentences.map((s) => s.text).join(" ");
   const hooks = pickHook(out.hook_options, { claims, blueprint, sentencesText: { payoff: out.sentences.filter((s) => blueprint.beats.find((b) => b.beat_id === s.beat_id)?.role === "payoff").map((s) => s.text).join(" ") }, profile, reject: hookReject });
-  if (!hooks.selected) return { pkg: null, hooks, provider, raw: out, noHonestHook: hooks.options.flatMap((h) => h.dishonest_reasons.map((r) => `"${h.text}": ${r}`)).slice(0, 8) };
+  if (!hooks.selected) return { pkg: null, hooks, provider, model, raw: out, noHonestHook: hooks.options.flatMap((h) => h.dishonest_reasons.map((r) => `"${h.text}": ${r}`)).slice(0, 8) };
   const pkg = assemble({ channel, topic, blueprint, claims, out, hooks, wpm, format: channel.format });
   const stock = pkg.sentences.filter((s) => CLICKBAIT.test(s.text)).map((s) => s.sentence_id);
-  return { pkg, hooks, provider, raw: out, stockPhrases: stock, maxWords, words: wordCount(body) };
+  return { pkg, hooks, provider, model, raw: out, stockPhrases: stock, maxWords, words: wordCount(body) };
 }
 
 export function validatePackage(pkg) {

@@ -38,7 +38,7 @@ export function effectiveVerdict(c) {
 
 export async function critique(ctx, { pkg, claims, channel, known = [], writerProvider, wpm, limit }) {
   const avoid = writerProvider ? [writerProvider] : [];
-  const { value, provider, same_provider } = await ask(ctx, {
+  const { value, provider, model, same_provider } = await ask(ctx, {
     role: "critic", tag: "critic", avoid, maxTokens: 3500, temperature: 0,
     user: prompt("critic", {
       channel_name: channel.name, editorial: channel.editorial, guidance: channel.guidance, central_question: pkg.blueprint.central_question, thesis: pkg.blueprint.thesis,
@@ -52,6 +52,6 @@ export async function critique(ctx, { pkg, claims, channel, known = [], writerPr
   const reviewer = `critic/${provider}`;
   const record = { reviewer, verdict: value.verdict, scores: value.scores, unexplained_claims: value.unexplained_claims, contradictions: value.contradictions, required_corrections: value.required_corrections, findings: value.findings, answers: value.answers };
   const eff = effectiveVerdict(record);
-  const out = { ...record, verdict: eff.verdict, critic_verdict: value.verdict, verdict_overridden: eff.overridden, blocking_reasons: eff.reasons, provider, same_provider: !!same_provider, writer_provider: writerProvider || null };
+  const out = { ...record, verdict: eff.verdict, critic_verdict: value.verdict, verdict_overridden: eff.overridden, blocking_reasons: eff.reasons, provider, model: model ?? null, same_provider: !!same_provider, writer_provider: writerProvider || null };
   return out;
 }
