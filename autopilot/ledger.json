@@ -782,12 +782,12 @@
       "attempts": 1,
       "run_id": "42561890757",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:32:07.530Z",
-      "stage": "script",
-      "topic": "Sherman's March to the Sea",
-      "score": 75.1,
-      "pillar": "Unbelievable true historical events",
-      "hook": "The brutal scorched-earth campaign that cut a 60-mile-wide path of destruction across Georgia."
+      "updated_at": "2026-11-09T04:35:55.096Z",
+      "stage": "research",
+      "topic": "Operation Catechism: Sinking the Tirpitz",
+      "score": 63.9,
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "The daring wartime raid that finally neutralized Hitler's feared monster battleship in a Norwegian fjord."
     }
   },
   "uploads": [],
@@ -1439,6 +1439,15 @@
       "at_ms": 1794198721732,
       "score": 75.1,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "Operation Catechism: Sinking the Tirpitz",
+      "slug": "operation-catechism-sinking-the-tirpitz",
+      "slot": "kick-c15e6a3b99-ch1",
+      "at_ms": 1794198955096,
+      "score": 63.9,
+      "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
   "attention": [
