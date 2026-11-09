@@ -1,0 +1,62 @@
+[
+  {
+    "claim_id": "c1",
+    "claim": "Archduke Franz Ferdinand and Sophie are photographed getting into a car at Sarajevo City Hall on 28 June 1914, shortly before the assassination.",
+    "source_id": "src-couple",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+    "excerpt": "get into a motor car to depart from the City Hall, Sarajevo, shortly before they were assassinated",
+    "confidence": "high",
+    "editorial_status": "primary_source",
+    "context": "Photographer unknown; caption text is the Imperial War Museums description carried on Commons."
+  },
+  {
+    "claim_id": "c2",
+    "claim": "Sarajevo is the capital of Bosnia and Herzegovina.",
+    "source_id": "src-wiki-sarajevo",
+    "source_url": "https://en.wikipedia.org/wiki/Sarajevo",
+    "excerpt": "capital and largest city of Bosnia and Herzegovina",
+    "confidence": "high",
+    "editorial_status": "established_fact",
+    "context": "Shown on a Natural Earth 1:50m map (public domain); place coordinates from Wikipedia."
+  },
+  {
+    "claim_id": "c3",
+    "claim": "Bosnia and Herzegovina was formally annexed by Austria-Hungary in 1908, and was part of it in June 1914.",
+    "source_id": "src-wiki",
+    "source_url": "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand",
+    "excerpt": "Bosnia and Herzegovina, formally annexed by Austria-Hungary in 1908",
+    "confidence": "high",
+    "editorial_status": "established_fact",
+    "context": "The dated map is an 1895 ethnographic map by Richard Andree with the 1914 border added later; it is used to show the 1914 border, not 1895 politics."
+  },
+  {
+    "claim_id": "c4",
+    "claim": "The New York Times front page of Monday 29 June 1914 reports the archduke and his wife were killed in Sarajevo by a Bosnian youth.",
+    "source_id": "src-nyt",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+    "excerpt": "HEIR TO AUSTRIA'S THRONE IS SLAIN WITH HIS WIFE BY A BOSNIAN YOUTH TO AVENGE SEIZURE OF HIS COUNTRY",
+    "confidence": "high",
+    "editorial_status": "primary_source",
+    "context": "Headline read from the scanned page image. The newspaper's own framing (avenging seizure of a country) is the paper's, 1914."
+  },
+  {
+    "claim_id": "c5",
+    "claim": "The photograph is often said to show the arrest of Gavrilo Princip, but several scholars say it shows Ferdinand Behr, a bystander initially suspected of involvement.",
+    "source_id": "src-behr",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+    "excerpt": "often said to depict the arrest of Gavrilo Princip, although several scholars say that it depicts the arrest of Ferdinand Behr, a bystander",
+    "confidence": "medium",
+    "editorial_status": "later_interpretation",
+    "context": "Cited on Commons to Finestone & Massie, The Last Courts of Europe (Dent, 1981, p. 247). Scholarly attribution, not a caption from 1914."
+  },
+  {
+    "claim_id": "c6",
+    "claim": "David James Smith writes that there is no photograph of Princip's arrest.",
+    "source_id": "src-behr",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+    "excerpt": "there is no photograph of Gavro's arrest - this photograph shows the arrest of Behr",
+    "confidence": "medium",
+    "editorial_status": "later_interpretation",
+    "context": "Quoted on Commons from David James Smith, One Morning in Sarajevo (Hachette UK, 2010). One author's judgement; the narration attributes it."
+  }
+]
