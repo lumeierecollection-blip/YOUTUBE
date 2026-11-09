@@ -845,6 +845,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "Three men were just busted in a massive $129 million scam that used hyper-realistic AI voice clones of company bosses.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 4 \"But this scheme targeted 3 types of global enterprises.\" — The word 'this' refers to a scheme that hasn't been described yet.. Rewrite it so a vi"
+    },
+    "kick-dfe6805728-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42565431207",
+      "trigger": "push",
+      "updated_at": "2026-11-09T05:11:21.401Z"
     }
   },
   "uploads": [
@@ -1642,5 +1650,5 @@
     "Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n",
     "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")"
   ],
-  "last_poll_at": "2026-11-09T05:06:33.695Z"
+  "last_poll_at": "2026-11-09T05:11:21.401Z"
 }
