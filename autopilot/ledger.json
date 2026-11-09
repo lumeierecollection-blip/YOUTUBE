@@ -1075,6 +1075,14 @@
       "pillar": "Forgotten historical figures",
       "hook": "He was hailed as the Father of Manitoba, yet ended up on the gallows for high treason.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"John A.\" — Fragmented sentence; the viewer does not know who this is.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), "
+    },
+    "kick-a4d2f98db6-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42595289544",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:51:48.656Z"
     }
   },
   "uploads": [
@@ -2078,5 +2086,5 @@
     "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”",
     "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so "
   ],
-  "last_poll_at": "2026-11-09T09:41:06.890Z"
+  "last_poll_at": "2026-11-09T09:51:48.655Z"
 }
