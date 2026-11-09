@@ -136,7 +136,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   const silent = tools.renderComposition({ id: "GrayMatterShort", output: "silent.mp4", durationInFrames: totalFrames, props: { scenes, captions: captionChunks(timed), figures: { css: figures.css, neuron: figures.neuron, synapse: figures.synapse, bare: figures.bare, actin: figures.actin }, plates: { plate: plates.plate, mask: plates.mask, lateral: plates.lateral, size: plates.plateSize }, palette: channel.palette, type: channel.type, statusLabels: channel.status_labels } });
   const video = join(outDir, "preview.mp4");
   // One mux, on the runner: the composition has no audio element because the voice is measured and fixed before rendering.
-  execFileSync("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", voiceFile, "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-af", "apad", "-t", String(totalFrames / FPS), "-movflags", "+faststart", video]);
+  execFileSync("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", voiceFile, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-af", "apad", "-t", String(totalFrames / FPS), "-movflags", "+faststart", video]);
   rmSync(silent, { force: true });
   tools.stage("render_complete", "running");
 

@@ -9,7 +9,7 @@
  * and checks every scene frame is not blank. It does not OCR the frames, so whether a label is
  * legible and correctly placed is a human judgement made on the contact sheet and scene-*.jpg.
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
@@ -35,6 +35,10 @@ export async function runQa(outDir, extra = {}) {
   check("resolution", width === channel.format.width && height === channel.format.height, `${width}x${height}, required ${channel.format.width}x${channel.format.height}`);
   check("fps", fps === `${channel.format.fps}/1`, fps);
   check("audio", Boolean(audio), audio || "no audio stream");
+  // Codec alone proved nothing: the first version shipped a silent track. The voice must be audible in the MP4 itself.
+  const vol = existsSync(video) ? spawnSync("ffmpeg", ["-i", video, "-af", "volumedetect", "-vn", "-f", "null", "-"], { encoding: "utf8" }).stderr : "";
+  const mean = Number((vol.match(/mean_volume: (-?[d.]+)/) || [])[1]);
+  check("voice-audible", Number.isFinite(mean) && mean > -40, `mean volume ${mean} dB in the MP4 (silence is about -91 dB)`);
   check("voice-preview", existsSync(join(outDir, "voice-preview.mp3")), "voice-preview.mp3");
 
   const plan = JSON.parse(readFileSync(join(outDir, "scene-plan.json"), "utf8"));
