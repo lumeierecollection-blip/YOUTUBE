@@ -1,0 +1,65 @@
+{
+  "retrieved": "2026-11-09T13:14:28.653Z",
+  "wikipedia_article": "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand",
+  "files": [
+    {
+      "key": "couple",
+      "title": "File:Archduke Franz Ferdinand in Sarajevo, June 1914 Q91848.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/38/Archduke_Franz_Ferdinand_in_Sarajevo%2C_June_1914_Q91848.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licence": "Public domain",
+      "creator": "Unknown authorUnknown author",
+      "credit": "http://media.iwm.org.uk/iwm/mediaLib//14/media-14642/large.jpg This photograph Q 91848 comes from the collections of the Imperial War Museums.",
+      "date": "28 June 1914 (First World War, Pre-1914)",
+      "description": "Archduke Franz Ferdinand in Sarajevo, June 1914 Heir to the Austro-Hungarian throne Archduke Franz Ferdinand and his wife, Sophie, get into a motor car to depart from the City Hall, Sarajevo, shortly before they were assassinated by the Serbian nationalist Gavrilo Princip on 28 June 1914.",
+      "orig_w": 800,
+      "orig_h": 649
+    },
+    {
+      "key": "map1914",
+      "title": "File:Austria-Hungary (ethnic 1890, with red 1914 and blue 1920 borders).jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Austria-Hungary_(ethnic_1890,_with_red_1914_and_blue_1920_borders).jpg",
+      "file_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Austria-Hungary_%28ethnic_1890%2C_with_red_1914_and_blue_1920_borders%29.jpg/3840px-Austria-Hungary_%28ethnic_1890%2C_with_red_1914_and_blue_1920_borders%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "licence": "Public domain",
+      "creator": "Richard Andree",
+      "credit": "Image:Austria-Hungary (ethnic).jpg",
+      "date": "2020-12-22 12:22:11",
+      "description": "Austria-Hungary (ethnic map 1890, with red 1914 and blue 1920 borders) from Richard Andree's Times Atlas, 1895, comparative borders added (red 1914 and blue 1920).",
+      "orig_w": 5150,
+      "orig_h": 3395
+    },
+    {
+      "key": "nyt",
+      "title": "File:The New York Times 1914-06-29- Vol 63 Iss 20610 (IA per new-york-times-magazine the-new-york-times 1914-06-29 63 20610).pdf",
+      "page_url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+      "file_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_%28IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610%29.pdf/page1-1920px-The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_%28IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610%29.pdf.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "licence": "Public domain",
+      "creator": "Unknown author",
+      "credit": "Internet Archive identifier: per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610 https://archive.org/download/per_new-york-times-magazine_the-new",
+      "date": "",
+      "description": "The New York Times 1914-06-29: Volume 63, Issue 20610.Digitized from IA41661203-12.Previous issue: per_new-york-times-magazine_the-new-york-times_1914-06-28_63_20609.Next issue: per_new-york-times-magazine_the-new-york-times_1914-06-30_63_20611. Subjects: General Interest Periodicals--United States; Magazines; microfilm",
+      "orig_w": 2579,
+      "orig_h": 3231
+    },
+    {
+      "key": "behr",
+      "title": "File:Ferdinand Behr arrested in Sarajevo 1914.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licence": "Public domain",
+      "creator": "Unknown authorUnknown author",
+      "credit": "Originally: Serbian archives Online: Week 9 seminar (only image)",
+      "date": "1914-06-28",
+      "description": "This picture is often said to depict the arrest of Gavrilo Princip, although several scholars say that it depicts the arrest of Ferdinand Behr, a bystander who was initially suspected of involvement in the assassination.[1][2] ↑ (1981) The last courts of Europe, Dent, p. 247 ↑ Smith, David James (2010) One Morning In Sarajevo, Hachette UK \"He was photographed on the way to the station and the phot",
+      "orig_w": 1602,
+      "orig_h": 1028
+    }
+  ],
+  "place": {
+    "name": "Sarajevo",
+    "lat": 43.85638889,
+    "lon": 18.41305556,
+    "source": "https://en.wikipedia.org/wiki/Sarajevo (coordinates API)"
+  },
+  "map_data": "Natural Earth 1:50m and 1:110m (public domain)"
+}
