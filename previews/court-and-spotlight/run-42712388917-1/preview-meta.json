@@ -2,9 +2,9 @@
   "channel": "court-and-spotlight",
   "production_run": "run-42712388917-1",
   "agent": "agent-court-and-spotlight",
-  "stage": "awaiting_approval",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-09T22:36:30.243Z",
+  "timestamp": "2026-11-09T22:36:32.346Z",
   "branch": "preview/court-and-spotlight-magazine-3",
   "commit": "f1d9b899ea0883f5269c1e27ef79b180d6153c48",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42712388917#artifacts"
