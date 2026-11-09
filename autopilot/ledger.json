@@ -471,12 +471,12 @@
       "attempts": 1,
       "run_id": "42540547512",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:32:15.195Z",
-      "stage": "script",
-      "topic": "The Night the Berlin Wall Fell",
-      "score": 79.1,
-      "pillar": "Events that changed the modern world",
-      "hook": "When East Germans opened the checkpoints, a concrete barrier that had divided a world for 28 years crumbled in minutes."
+      "updated_at": "2026-11-09T00:33:14.888Z",
+      "stage": "research",
+      "topic": "Jack the Ripper’s Final Victim – Mary Jane Kelly",
+      "score": 68.4,
+      "pillar": "Unsolved historical mysteries",
+      "hook": "The gruesome murder of Mary Jane Kelly closed the Whitechapel killings, but the killer’s identity still haunts history."
     }
   },
   "uploads": [],
@@ -849,6 +849,15 @@
       "at_ms": 1794184326881,
       "score": 79.1,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Jack the Ripper’s Final Victim – Mary Jane Kelly",
+      "slug": "jack-the-ripper-s-final-victim-mary-jane-kelly",
+      "slot": "kick-17244d3563-ch1",
+      "at_ms": 1794184394888,
+      "score": 68.4,
+      "pillar": "Unsolved historical mysteries"
     }
   ],
   "attention": [
