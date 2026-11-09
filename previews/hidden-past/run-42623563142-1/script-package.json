@@ -1,0 +1,248 @@
+{
+  "provisional": "hand-planned sample, not from the script engine",
+  "channel": "hidden-past",
+  "topic": "The Sarajevo arrest photograph that is often misattributed",
+  "format": "short",
+  "target_seconds": 28,
+  "blueprint": {
+    "central_question": "A famous arrest photograph from Sarajevo, 1914: whose arrest does it show?",
+    "thesis": "The photograph is a primary source for the day, but its famous caption is a later interpretation that scholars dispute.",
+    "why_it_matters": "A widely reproduced caption can outlive the evidence for it.",
+    "viewer_start": "Knows the assassination happened in Sarajevo.",
+    "viewer_end": "Can tell what the 1914 sources show from what later captions claim.",
+    "key_evidence": [
+      "c1",
+      "c4",
+      "c5"
+    ],
+    "beats": [
+      {
+        "beat_id": "b1",
+        "role": "opening",
+        "purpose": "Evidence first: the photograph of the couple at the city hall.",
+        "claim_ids": [
+          "c1"
+        ],
+        "link_from_previous": "none"
+      },
+      {
+        "beat_id": "b2",
+        "role": "context",
+        "purpose": "Where and under whose borders: modern map then dated map.",
+        "claim_ids": [
+          "c2",
+          "c3"
+        ],
+        "link_from_previous": "change_over_time"
+      },
+      {
+        "beat_id": "b3",
+        "role": "development",
+        "purpose": "The primary report of the day.",
+        "claim_ids": [
+          "c4"
+        ],
+        "link_from_previous": "chronology"
+      },
+      {
+        "beat_id": "b4",
+        "role": "payoff",
+        "purpose": "The arrest photograph and what scholars say it shows.",
+        "claim_ids": [
+          "c5",
+          "c6"
+        ],
+        "link_from_previous": "contradiction"
+      }
+    ],
+    "questions_raised": [
+      {
+        "question": "Whose arrest does the photograph show?",
+        "raised_in": "b3",
+        "answered_in": "b4"
+      }
+    ],
+    "conclusion": "The arrest photograph is real; its caption is the disputed part."
+  },
+  "hook_options": [
+    {
+      "text": "Sarajevo, 28 June 1914. Archduke Franz Ferdinand and his wife leave the city hall.",
+      "family": "evidence-first cold open",
+      "honest": true
+    },
+    {
+      "text": "A famous photograph. A caption scholars dispute.",
+      "family": "contradiction",
+      "honest": true
+    }
+  ],
+  "selected_hook": "Sarajevo, 28 June 1914. Archduke Franz Ferdinand and his wife leave the city hall.",
+  "sentences": [
+    {
+      "sentence_id": "s1",
+      "beat_id": "b1",
+      "text": "Sarajevo, 28 June 1914. Archduke Franz Ferdinand and his wife leave the city hall.",
+      "role": "evidence",
+      "claim_ids": [
+        "c1"
+      ],
+      "link_from_previous": "none"
+    },
+    {
+      "sentence_id": "s2",
+      "beat_id": "b2",
+      "text": "Today, Sarajevo is in Bosnia and Herzegovina.",
+      "role": "context",
+      "claim_ids": [
+        "c2"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "sentence_id": "s3",
+      "beat_id": "b2",
+      "text": "In 1914 it lay inside Austria-Hungary, which had annexed Bosnia in 1908.",
+      "role": "context",
+      "claim_ids": [
+        "c3"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "sentence_id": "s4",
+      "beat_id": "b3",
+      "text": "The New York Times reported the killings the next day.",
+      "role": "primary report",
+      "claim_ids": [
+        "c4"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "sentence_id": "s5",
+      "beat_id": "b4",
+      "text": "This photograph is often captioned as the arrest of Gavrilo Princip.",
+      "role": "later interpretation",
+      "claim_ids": [
+        "c5"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "sentence_id": "s6",
+      "beat_id": "b4",
+      "text": "Scholars say it shows Ferdinand Behr, a bystander.",
+      "role": "later interpretation",
+      "claim_ids": [
+        "c5"
+      ],
+      "link_from_previous": "chronology"
+    },
+    {
+      "sentence_id": "s7",
+      "beat_id": "b4",
+      "text": "Author David James Smith writes that no photograph of Princip's arrest exists.",
+      "role": "later interpretation",
+      "claim_ids": [
+        "c6"
+      ],
+      "link_from_previous": "chronology"
+    }
+  ],
+  "payoff": "Scholars say it shows Ferdinand Behr, a bystander.",
+  "ending": "Author David James Smith writes that no photograph of Princip's arrest exists.",
+  "cta": null,
+  "sources": [
+    {
+      "source_id": "src-couple",
+      "url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg"
+    },
+    {
+      "source_id": "src-wiki",
+      "url": "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand"
+    },
+    {
+      "source_id": "src-wiki-sarajevo",
+      "url": "https://en.wikipedia.org/wiki/Sarajevo"
+    },
+    {
+      "source_id": "src-map",
+      "url": "https://commons.wikimedia.org/wiki/File:Austria-Hungary_(ethnic_1890,_with_red_1914_and_blue_1920_borders).jpg"
+    },
+    {
+      "source_id": "src-nyt",
+      "url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+      "published": "1914-06-29"
+    },
+    {
+      "source_id": "src-behr",
+      "url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Archduke Franz Ferdinand and Sophie are photographed getting into a car at Sarajevo City Hall on 28 June 1914, shortly before the assassination.",
+      "source_id": "src-couple",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+      "excerpt": "get into a motor car to depart from the City Hall, Sarajevo, shortly before they were assassinated",
+      "confidence": "high",
+      "editorial_status": "primary_source",
+      "context": "Photographer unknown; caption text is the Imperial War Museums description carried on Commons."
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Sarajevo is the capital of Bosnia and Herzegovina.",
+      "source_id": "src-wiki-sarajevo",
+      "source_url": "https://en.wikipedia.org/wiki/Sarajevo",
+      "excerpt": "capital and largest city of Bosnia and Herzegovina",
+      "confidence": "high",
+      "editorial_status": "established_fact",
+      "context": "Shown on a Natural Earth 1:50m map (public domain); place coordinates from Wikipedia."
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Bosnia and Herzegovina was formally annexed by Austria-Hungary in 1908, and was part of it in June 1914.",
+      "source_id": "src-wiki",
+      "source_url": "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand",
+      "excerpt": "Bosnia and Herzegovina, formally annexed by Austria-Hungary in 1908",
+      "confidence": "high",
+      "editorial_status": "established_fact",
+      "context": "The dated map is an 1895 ethnographic map by Richard Andree with the 1914 border added later; it is used to show the 1914 border, not 1895 politics."
+    },
+    {
+      "claim_id": "c4",
+      "claim": "The New York Times front page of Monday 29 June 1914 reports the archduke and his wife were killed in Sarajevo by a Bosnian youth.",
+      "source_id": "src-nyt",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+      "excerpt": "HEIR TO AUSTRIA'S THRONE IS SLAIN WITH HIS WIFE BY A BOSNIAN YOUTH TO AVENGE SEIZURE OF HIS COUNTRY",
+      "confidence": "high",
+      "editorial_status": "primary_source",
+      "context": "Headline read from the scanned page image. The newspaper's own framing (avenging seizure of a country) is the paper's, 1914."
+    },
+    {
+      "claim_id": "c5",
+      "claim": "The photograph is often said to show the arrest of Gavrilo Princip, but several scholars say it shows Ferdinand Behr, a bystander initially suspected of involvement.",
+      "source_id": "src-behr",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+      "excerpt": "often said to depict the arrest of Gavrilo Princip, although several scholars say that it depicts the arrest of Ferdinand Behr, a bystander",
+      "confidence": "medium",
+      "editorial_status": "later_interpretation",
+      "context": "Cited on Commons to Finestone & Massie, The Last Courts of Europe (Dent, 1981, p. 247). Scholarly attribution, not a caption from 1914."
+    },
+    {
+      "claim_id": "c6",
+      "claim": "David James Smith writes that there is no photograph of Princip's arrest.",
+      "source_id": "src-behr",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+      "excerpt": "there is no photograph of Gavro's arrest - this photograph shows the arrest of Behr",
+      "confidence": "medium",
+      "editorial_status": "later_interpretation",
+      "context": "Quoted on Commons from David James Smith, One Morning in Sarajevo (Hachette UK, 2010). One author's judgement; the narration attributes it."
+    }
+  ],
+  "duration_estimate_s": 24,
+  "quality_report": {
+    "note": "not produced by the script engine; claims were string-checked against fetched sources"
+  }
+}
