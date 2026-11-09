@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 06:26 SAST
+Updated 2026-11-09 06:29 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -20,7 +20,7 @@ Updated 2026-11-09 06:26 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Comparing ChatGPT Plus and Google AI Pro $20 subscription perks (80.7/100) |
+| Selected topic and score | Apple testing 3 new AI features for the iPhone Photos app (83/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -90,3 +90,4 @@ Updated 2026-11-09 06:26 SAST
 - Hidden Past kick-df87d44ce0-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-burial-of-the-unknown-warrior-shorts:
   - SCR-16: 60 words implies ~29s duration â€
 - Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Old Melbourne Gaol Where" is not named in the research artifact â€” use the research's own name, or drop the 
+- AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Extend Enhance and Reframe Which" is not named in the research artifact â€” use the research's own name, or d
