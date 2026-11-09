@@ -754,12 +754,12 @@
       "attempts": 1,
       "run_id": "42560683899",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:16:33.461Z",
-      "stage": "script",
-      "topic": "The Armistice in the Compiègne Forest Railway Carriage",
-      "score": 66.6,
-      "pillar": "Events that changed the modern world",
-      "hook": "World War I didn't end on a battlefield—it ended inside a secret railway carriage."
+      "updated_at": "2026-11-09T04:23:14.380Z",
+      "stage": "research",
+      "topic": "Ned Kelly's Last Stand and Execution",
+      "score": 66.3,
+      "pillar": "Forgotten historical figures",
+      "hook": "Australia's most infamous outlaw built a suit of impenetrable metal armor before his final shootout."
     }
   },
   "uploads": [],
@@ -1384,6 +1384,15 @@
       "at_ms": 1794197771905,
       "score": 66.6,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Ned Kelly's Last Stand and Execution",
+      "slug": "ned-kelly-s-last-stand-and-execution",
+      "slot": "kick-fbb26cd62b-ch1",
+      "at_ms": 1794198194380,
+      "score": 66.3,
+      "pillar": "Forgotten historical figures"
     }
   ],
   "attention": [
