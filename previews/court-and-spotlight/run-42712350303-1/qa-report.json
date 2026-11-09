@@ -1,0 +1,64 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 26.944,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -21.4,
+  "max_volume_db": -3.9,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Charon",
+    "seconds": 26.448,
+    "wpm": 140.7,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "question",
+      "start_s": 0,
+      "end_s": 5.2
+    },
+    {
+      "id": "s2",
+      "kind": "chart",
+      "start_s": 5.2,
+      "end_s": 10.633333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "oldrecord",
+      "start_s": 10.633333333333333,
+      "end_s": 16.266666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "fiveyears",
+      "start_s": 16.266666666666666,
+      "end_s": 20.566666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "moreshows",
+      "start_s": 20.566666666666666,
+      "end_s": 22.866666666666667
+    },
+    {
+      "id": "s6",
+      "kind": "answer",
+      "start_s": 22.866666666666667,
+      "end_s": 26.9
+    }
+  ]
+}
