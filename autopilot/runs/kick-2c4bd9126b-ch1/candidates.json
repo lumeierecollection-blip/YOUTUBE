@@ -1,0 +1,759 @@
+{
+  "generated_at": "2026-11-09T01:08:33.609Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 85
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Ancient Siberian tomb reveals 2,800-year-old cannabis use",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        105,
+        109
+      ],
+      "hook": "An ancient Siberian tomb just revealed surprising new secrets about cannabis use nearly 3,000 years ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk",
+      "youtube_query": "ancient Siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 109
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 75.1,
+        "newest_hours": 15,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "allthatsinteresting.com",
+          "404media.co",
+          "hightimes.com",
+          "cannabisaficionado.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Exceptional 5th-century Germanic warrior burials unearthed in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        88,
+        103
+      ],
+      "hook": "Archaeologists in France just uncovered dazzling 5th-century graves filled with warhorses and weapon-wielding chieftains.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Germanic warrior archaeology",
+      "youtube_query": "5th century warrior burials France archaeology",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 103
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 67.5,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of a 2,500-year-old Egyptian tomb containing ten mummified crocodiles",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95,
+        97
+      ],
+      "hook": "Archaeologists opened an ancient Egyptian tomb and found a horrifying offering: ten mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile mummies",
+      "commons_query": "Crocodile mummy",
+      "youtube_query": "mummified crocodiles Egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 97
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 64,
+        "newest_hours": 6,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Great Lakes Storm of 1913",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        41
+      ],
+      "hook": "The deadliest natural disaster in Great Lakes history completely swallowed 19 massive ships without a trace.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Great Lakes storm of 1913",
+      "commons_query": "Great Lakes storm of 1913",
+      "youtube_query": "Great Lakes storm of 1913 shipwreck disaster",
+      "evidence": [
+        {
+          "title": "1913: The Great Lakes Storm of 1913, the most destructive natural disaster ever to hit the lakes, reaches its greatest intensity after beginning two days earlier. The storm destroys 19 ships and kills more than 250 people.",
+          "url": "https://en.wikipedia.org/wiki/Great_Lakes_Storm_of_1913",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 41
+        },
+        {
+          "title": "Why November Is The Deadliest Month On The Great Lakes - WorldAtlas",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPQ1RqYV8yZG13S0JvUFZ0dE05Sl9vQUN6RXZuUThQYlhHSnlTdENzOXdNZFZCZnZYNFFWYWVQb3R3by14bjFRY3pDMWlYOVo2RlV2WkIxb1plbzRZcHhqLUplZW9mS3ZOVDlLZVNRbU9rOWtWUENIbG5HTFRoSTJUV2NVZDJvRUpaRTBRbXNmZ2xfdFVHdThr?oc=5",
+          "domain": "worldatlas.com",
+          "published_ms": 1793559600000,
+          "kind": "news"
+        },
+        {
+          "title": "The White Hurricane of 1913: The Day the Great Lakes Swallowed a Fleet - Vocal",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNc1pkeGdBSXB1d3lIVUN4cDB0Z1QzYUhBRHh0dXpzajBOeV95Q2ZLTHdmR08yT09FVVJCZUJtd1o2WDZRNDZpNHhwRTQwQXI3SjJhUGZqckVJSUY2RjBnLXJBUVZoVUJqNFg4MVRZQmRJRXZ4NGtVOHh3TnNHNllBbUczYTRvdl9aX21WbnJHaTI2M0lPVXVocTVtQXhDZw?oc=5",
+          "domain": "vocal.media",
+          "published_ms": 1793085540000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Great Lakes storm of 1913",
+        "daily_views": 2,
+        "ratio": 1.14
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 10,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 63.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "worldatlas.com",
+          "vocal.media"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of a lost Viking Age church in Greenland",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "A human skeleton has finally confirmed the long-rumored location of a lost Viking church in Greenland.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Greenlandic Norse",
+      "commons_query": "Brattahlid",
+      "youtube_query": "lost Viking church Greenland skeleton discovery",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 92
+        }
+      ],
+      "wikipedia": {
+        "title": "Greenlandic Norse",
+        "daily_views": 42,
+        "ratio": 0.86
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 33,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 62.5,
+        "newest_hours": 4,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Skeleton confirms lost Viking church in Greenland"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Stockholm Bloodbath of 1520",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        65
+      ],
+      "hook": "Over 50 people were lured to a royal coronation in Stockholm—only to be executed.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Stockholm Bloodbath",
+      "commons_query": "Stockholm Bloodbath",
+      "youtube_query": "Stockholm Bloodbath history",
+      "evidence": [
+        {
+          "title": "1520: More than 50 people are sentenced and executed in the Stockholm Bloodbath.",
+          "url": "https://en.wikipedia.org/wiki/Stockholm_Bloodbath",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 65
+        }
+      ],
+      "wikipedia": {
+        "title": "Stockholm Bloodbath",
+        "daily_views": 162,
+        "ratio": 0.97
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 62.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        40
+      ],
+      "hook": "How a daring German raider ship terrorized Allied trade routes until a fateful naval duel in the Indian Ocean.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "SMS Emden",
+      "commons_query": "SMS Emden",
+      "youtube_query": "SMS Emden Battle of Cocos history",
+      "evidence": [
+        {
+          "title": "1914: SMS Emden is sunk by HMAS Sydney in the Battle of Cocos.",
+          "url": "https://en.wikipedia.org/wiki/SMS_Emden",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 40
+        }
+      ],
+      "wikipedia": {
+        "title": "SMS Emden",
+        "daily_views": 110,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 60.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Ruth Harkness capturing and bringing the first live giant panda to the US",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1936, an American socialite smuggled a baby panda out of China in a hatbox.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ruth Harkness",
+      "commons_query": "Giant panda",
+      "youtube_query": "Ruth Harkness first giant panda America",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Ruth Harkness",
+        "daily_views": 15,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 24,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Ruth Harkness capturing and smuggling the first live giant panda to America"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's first whole eye transplant performed by NYU Langone Health surgeons",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "For the first time in human history, doctors successfully transplanted an entire human eye.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Eye transplantation",
+      "commons_query": "Human eye",
+      "youtube_query": "first whole eye transplant medical history",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": {
+        "title": "Eye transplantation",
+        "daily_views": 18,
+        "ratio": 1.06
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 26,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 58.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1979 NORAD nuclear false alarm that nearly triggered WWIII",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "In 1979, US computers suddenly reported a massive Soviet nuclear first strike was underway.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "1979 nuclear false alarm",
+      "commons_query": "NORAD Cheyenne Mountain Complex",
+      "youtube_query": "1979 nuclear false alarm NORAD",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186513609,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 58,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}

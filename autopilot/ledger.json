@@ -545,7 +545,12 @@
       "attempts": 1,
       "run_id": "42543834365",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:07:34.967Z"
+      "updated_at": "2026-11-09T01:08:47.515Z",
+      "stage": "research",
+      "topic": "The Great Lakes Storm of 1913",
+      "score": 63.5,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "The deadliest natural disaster in Great Lakes history completely swallowed 19 massive ships without a trace."
     }
   },
   "uploads": [],
@@ -990,6 +995,15 @@
       "at_ms": 1794185967563,
       "score": 80,
       "pillar": "Ancient civilisations and discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "The Great Lakes Storm of 1913",
+      "slug": "the-great-lakes-storm-of-1913",
+      "slot": "kick-2c4bd9126b-ch1",
+      "at_ms": 1794186527515,
+      "score": 63.5,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
