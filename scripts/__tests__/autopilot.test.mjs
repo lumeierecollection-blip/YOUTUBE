@@ -287,3 +287,13 @@ test("an abbreviation does not end a sentence", () => {
   assert.deepEqual(split("The U.K. return rate is 13 percent. Why?"), ["The U.K. return rate is 13 percent.", "Why?"]);
   assert.equal(split("Workers in the U.S. came back.").length, 1);
 });
+
+test("a chart never mixes units or hides behind a vague unit", async () => {
+  const { validateScene } = await import("../autopilot/visual-vocabulary.mjs");
+  const facts = [{ text: "It finished the test in 18 minutes.", url: "u" }, { text: "It scored 96 points on the test.", url: "u" }, { text: "4 increases", url: "u" }, { text: "2 cuts", url: "u" }];
+  const opts = { facts, corpus: "", allowed: new Set(["bars", "kinetic"]), fallback: "kinetic" };
+  const mixed = validateScene({ template: "bars", unit: "test results", bars: [{ label: "Time", value: 18, fact: 0 }, { label: "Score", value: 96, fact: 1 }] }, opts);
+  assert.equal(mixed.template, "kinetic");
+  assert.equal(validateScene({ template: "bars", unit: "metrics", bars: [{ label: "Up", value: 4, fact: 2 }, { label: "Down", value: 2, fact: 3 }] }, opts).template, "kinetic");
+  assert.equal(validateScene({ template: "bars", unit: "price moves", bars: [{ label: "Up", value: 4, fact: 2 }, { label: "Down", value: 2, fact: 3 }] }, opts).template, "bars");
+});
