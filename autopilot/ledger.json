@@ -719,6 +719,14 @@
       "updated_at": "2026-11-09T03:58:13.800Z",
       "stage": "discover",
       "error": "3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
+    },
+    "kick-a76e0da8ee-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42559003998",
+      "trigger": "push",
+      "updated_at": "2026-11-09T03:58:33.577Z"
     }
   },
   "uploads": [],
@@ -1375,5 +1383,5 @@
     "Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject"
   ],
-  "last_poll_at": "2026-11-09T03:55:38.615Z"
+  "last_poll_at": "2026-11-09T03:58:33.577Z"
 }
