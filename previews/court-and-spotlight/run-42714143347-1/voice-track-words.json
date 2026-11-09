@@ -1,0 +1,411 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (53/62 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "A",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "billion-dollar",
+   "start": 0.38,
+   "end": 0.86,
+   "sentence": 0
+  },
+  {
+   "text": "tour",
+   "start": 1.34,
+   "end": 1.62,
+   "sentence": 0
+  },
+  {
+   "text": "just",
+   "start": 1.62,
+   "end": 2.14,
+   "sentence": 0
+  },
+  {
+   "text": "beat",
+   "start": 2.14,
+   "end": 2.44,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.44,
+   "end": 2.56,
+   "sentence": 0
+  },
+  {
+   "text": "record",
+   "start": 2.56,
+   "end": 2.84,
+   "sentence": 0
+  },
+  {
+   "text": "Elton",
+   "start": 2.84,
+   "end": 3.34,
+   "sentence": 0
+  },
+  {
+   "text": "John",
+   "start": 3.34,
+   "end": 3.58,
+   "sentence": 0
+  },
+  {
+   "text": "spent",
+   "start": 3.58,
+   "end": 4.0,
+   "sentence": 0
+  },
+  {
+   "text": "five",
+   "start": 4.0,
+   "end": 4.52,
+   "sentence": 0
+  },
+  {
+   "text": "years",
+   "start": 4.52,
+   "end": 4.94,
+   "sentence": 0
+  },
+  {
+   "text": "setting",
+   "start": 4.94,
+   "end": 5.42,
+   "sentence": 0
+  },
+  {
+   "text": "Pollstar",
+   "start": 5.42,
+   "end": 5.95,
+   "sentence": 1
+  },
+  {
+   "text": "says",
+   "start": 6.48,
+   "end": 6.8,
+   "sentence": 1
+  },
+  {
+   "text": "Taylor",
+   "start": 6.8,
+   "end": 7.12,
+   "sentence": 1
+  },
+  {
+   "text": "Swift's",
+   "start": 7.12,
+   "end": 7.74,
+   "sentence": 1
+  },
+  {
+   "text": "Eras",
+   "start": 7.74,
+   "end": 8.0,
+   "sentence": 1
+  },
+  {
+   "text": "Tour",
+   "start": 8.26,
+   "end": 8.5,
+   "sentence": 1
+  },
+  {
+   "text": "passed",
+   "start": 8.5,
+   "end": 8.96,
+   "sentence": 1
+  },
+  {
+   "text": "one",
+   "start": 8.96,
+   "end": 9.22,
+   "sentence": 1
+  },
+  {
+   "text": "billion",
+   "start": 9.48,
+   "end": 9.94,
+   "sentence": 1
+  },
+  {
+   "text": "dollars",
+   "start": 9.94,
+   "end": 10.47,
+   "sentence": 1
+  },
+  {
+   "text": "Elton",
+   "start": 11.0,
+   "end": 11.36,
+   "sentence": 2
+  },
+  {
+   "text": "John's",
+   "start": 11.36,
+   "end": 11.7,
+   "sentence": 2
+  },
+  {
+   "text": "farewell",
+   "start": 11.7,
+   "end": 11.84,
+   "sentence": 2
+  },
+  {
+   "text": "tour",
+   "start": 11.84,
+   "end": 12.38,
+   "sentence": 2
+  },
+  {
+   "text": "held",
+   "start": 12.38,
+   "end": 12.62,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 12.62,
+   "end": 12.8,
+   "sentence": 2
+  },
+  {
+   "text": "old",
+   "start": 12.8,
+   "end": 12.94,
+   "sentence": 2
+  },
+  {
+   "text": "record",
+   "start": 12.94,
+   "end": 13.18,
+   "sentence": 2
+  },
+  {
+   "text": "nine",
+   "start": 13.18,
+   "end": 13.555,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 13.555,
+   "end": 13.93,
+   "sentence": 2
+  },
+  {
+   "text": "thirty-nine",
+   "start": 13.93,
+   "end": 14.305,
+   "sentence": 2
+  },
+  {
+   "text": "million",
+   "start": 14.68,
+   "end": 15.38,
+   "sentence": 2
+  },
+  {
+   "text": "dollars",
+   "start": 15.38,
+   "end": 15.84,
+   "sentence": 2
+  },
+  {
+   "text": "His",
+   "start": 16.3,
+   "end": 16.54,
+   "sentence": 3
+  },
+  {
+   "text": "total",
+   "start": 16.54,
+   "end": 16.78,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 16.78,
+   "end": 17.04,
+   "sentence": 3
+  },
+  {
+   "text": "built",
+   "start": 17.04,
+   "end": 17.22,
+   "sentence": 3
+  },
+  {
+   "text": "over",
+   "start": 17.22,
+   "end": 17.54,
+   "sentence": 3
+  },
+  {
+   "text": "five",
+   "start": 17.54,
+   "end": 17.94,
+   "sentence": 3
+  },
+  {
+   "text": "years",
+   "start": 17.94,
+   "end": 18.26,
+   "sentence": 3
+  },
+  {
+   "text": "with",
+   "start": 18.26,
+   "end": 18.64,
+   "sentence": 3
+  },
+  {
+   "text": "pandemic",
+   "start": 18.64,
+   "end": 19.22,
+   "sentence": 3
+  },
+  {
+   "text": "delays",
+   "start": 19.22,
+   "end": 19.42,
+   "sentence": 3
+  },
+  {
+   "text": "Earlier",
+   "start": 20.52,
+   "end": 20.57,
+   "sentence": 4
+  },
+  {
+   "text": "record",
+   "start": 20.52,
+   "end": 20.8,
+   "sentence": 4
+  },
+  {
+   "text": "tours",
+   "start": 20.8,
+   "end": 21.14,
+   "sentence": 4
+  },
+  {
+   "text": "also",
+   "start": 21.14,
+   "end": 21.58,
+   "sentence": 4
+  },
+  {
+   "text": "played",
+   "start": 21.58,
+   "end": 21.96,
+   "sentence": 4
+  },
+  {
+   "text": "many",
+   "start": 21.96,
+   "end": 22.2,
+   "sentence": 4
+  },
+  {
+   "text": "more",
+   "start": 22.2,
+   "end": 22.52,
+   "sentence": 4
+  },
+  {
+   "text": "shows",
+   "start": 22.52,
+   "end": 22.78,
+   "sentence": 4
+  },
+  {
+   "text": "Same",
+   "start": 22.78,
+   "end": 23.6,
+   "sentence": 5
+  },
+  {
+   "text": "record",
+   "start": 23.6,
+   "end": 23.9,
+   "sentence": 5
+  },
+  {
+   "text": "very",
+   "start": 24.3,
+   "end": 24.52,
+   "sentence": 5
+  },
+  {
+   "text": "different",
+   "start": 24.52,
+   "end": 25.06,
+   "sentence": 5
+  },
+  {
+   "text": "routes",
+   "start": 25.06,
+   "end": 25.26,
+   "sentence": 5
+  },
+  {
+   "text": "to",
+   "start": 25.26,
+   "end": 25.52,
+   "sentence": 5
+  },
+  {
+   "text": "get",
+   "start": 25.52,
+   "end": 25.64,
+   "sentence": 5
+  },
+  {
+   "text": "there",
+   "start": 25.64,
+   "end": 25.84,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "A billion-dollar tour just beat a record Elton John spent five years setting.",
+   "start": 0.0,
+   "end": 5.42
+  },
+  {
+   "text": "Pollstar says Taylor Swift's Eras Tour passed one billion dollars.",
+   "start": 5.42,
+   "end": 10.47
+  },
+  {
+   "text": "Elton John's farewell tour held the old record: nine hundred thirty-nine million dollars.",
+   "start": 11.0,
+   "end": 15.84
+  },
+  {
+   "text": "His total was built over five years, with pandemic delays.",
+   "start": 16.3,
+   "end": 19.42
+  },
+  {
+   "text": "Earlier record tours also played many more shows.",
+   "start": 20.52,
+   "end": 22.78
+  },
+  {
+   "text": "Same record, very different routes to get there.",
+   "start": 22.78,
+   "end": 25.84
+  }
+ ]
+}
