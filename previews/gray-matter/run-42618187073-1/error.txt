@@ -1,0 +1,3 @@
+Error: QA failed: fps: 30/1,
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:188:21)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
