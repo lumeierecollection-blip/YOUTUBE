@@ -2,10 +2,13 @@
   "channel": "red-space-facts",
   "production_run": "run-42624684502-1",
   "agent": "agent-red-space-facts",
-  "stage": "render_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:26:31.044Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:26:42.150Z",
   "branch": "preview/red-space-facts",
   "commit": "7495ca57df020ff8c4fbed9b29ad1dd51297cad3",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42624684502#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42624684502#artifacts",
+  "failures": [
+    "s6: looks static (mean abs diff 0.09 over 0.4 s)"
+  ]
 }

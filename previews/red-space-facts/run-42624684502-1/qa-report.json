@@ -1,0 +1,150 @@
+{
+  "passed": false,
+  "failures": [
+    "s6: looks static (mean abs diff 0.09 over 0.4 s)"
+  ],
+  "notes": [
+    "hypothetical claims: c10 (shown only in s5/s6 under HYPOTHETICAL labels)",
+    "Narration is provisional (hand-planned, not from the script engine). Voice is edge-tts neural speech, not a human recording.",
+    "Checks here are mechanical. A person must still look at the frames: label overlaps, orbit proportions and texture look are not machine-verified."
+  ],
+  "duration_s": 29.6,
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "frames_expected": 888,
+  "has_audio": true,
+  "voice": {
+    "tts_voice": "en-US-GuyNeural",
+    "rate": "+8%",
+    "max_rate": "+8%",
+    "provisional_narration": true
+  },
+  "sources_fetched": [
+    "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+    "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/",
+    "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+    "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html",
+    "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html",
+    "https://www.ipgp.fr/en/news-and-agenda/news/a-new-perspective-on-the-age-of-saturns-rings"
+  ],
+  "claims": [
+    {
+      "claim_id": "c01",
+      "editorial_status": "scientific_model",
+      "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/"
+    },
+    {
+      "claim_id": "c02",
+      "editorial_status": "observation",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+    },
+    {
+      "claim_id": "c03",
+      "editorial_status": "observation",
+      "source_url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/"
+    },
+    {
+      "claim_id": "c04",
+      "editorial_status": "observation",
+      "source_url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/"
+    },
+    {
+      "claim_id": "c05",
+      "editorial_status": "scientific_model",
+      "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/"
+    },
+    {
+      "claim_id": "c06",
+      "editorial_status": "scientific_model",
+      "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/"
+    },
+    {
+      "claim_id": "c07",
+      "editorial_status": "scientific_model",
+      "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/"
+    },
+    {
+      "claim_id": "c08",
+      "editorial_status": "scientific_model",
+      "source_url": "https://www.ipgp.fr/en/news-and-agenda/news/a-new-perspective-on-the-age-of-saturns-rings"
+    },
+    {
+      "claim_id": "c09",
+      "editorial_status": "observation",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html"
+    },
+    {
+      "claim_id": "c10",
+      "editorial_status": "hypothetical",
+      "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/"
+    },
+    {
+      "claim_id": "c11",
+      "editorial_status": "artistic_interpretation",
+      "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "s1",
+      "start_s": 0,
+      "end_s": 3.44,
+      "voice_s": 3.1,
+      "frame_mean": 40.1,
+      "frame_std": 59.1,
+      "motion_diff_0p4s": 7.89,
+      "jpg": "scene-s1.jpg"
+    },
+    {
+      "id": "s2",
+      "start_s": 3.44,
+      "end_s": 7.35,
+      "voice_s": 3.7,
+      "frame_mean": 19.2,
+      "frame_std": 37,
+      "motion_diff_0p4s": 9.67,
+      "jpg": "scene-s2.jpg"
+    },
+    {
+      "id": "s3",
+      "start_s": 7.35,
+      "end_s": 12.85,
+      "voice_s": 5.28,
+      "frame_mean": 24.8,
+      "frame_std": 40.9,
+      "motion_diff_0p4s": 1.65,
+      "jpg": "scene-s3.jpg"
+    },
+    {
+      "id": "s4",
+      "start_s": 12.85,
+      "end_s": 17.08,
+      "voice_s": 4.01,
+      "frame_mean": 193.3,
+      "frame_std": 71.5,
+      "motion_diff_0p4s": 2.46,
+      "jpg": "scene-s4.jpg"
+    },
+    {
+      "id": "s5",
+      "start_s": 17.08,
+      "end_s": 24.93,
+      "voice_s": 7.63,
+      "frame_mean": 22.7,
+      "frame_std": 38.8,
+      "motion_diff_0p4s": 0.44,
+      "jpg": "scene-s5.jpg"
+    },
+    {
+      "id": "s6",
+      "start_s": 24.93,
+      "end_s": 29.59,
+      "voice_s": 3.94,
+      "frame_mean": 28,
+      "frame_std": 52.5,
+      "motion_diff_0p4s": 0.09,
+      "jpg": "scene-s6.jpg"
+    }
+  ]
+}
