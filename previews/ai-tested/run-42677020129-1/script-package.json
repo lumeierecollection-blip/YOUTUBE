@@ -1,0 +1,281 @@
+{
+  "channel": "ai-tested",
+  "topic": "Can AI models count letters?",
+  "format": "short",
+  "target_seconds": 27,
+  "blueprint": {
+    "central_question": "Can AI models count letters?",
+    "thesis": "In this test one model was perfect and the other was not.",
+    "why_it_matters": "The same question got very different reliability.",
+    "viewer_start": "Has heard AI struggles to count letters.",
+    "viewer_end": "Knows what this test measured and how each model scored.",
+    "key_evidence": [
+      "score0",
+      "score1",
+      "split_random1",
+      "miss"
+    ],
+    "beats": [],
+    "questions_raised": [
+      {
+        "question": "Can AI count letters?",
+        "raised_in": "f1",
+        "answered_in": "f9"
+      }
+    ],
+    "conclusion": "AI can count, but not every model."
+  },
+  "hook_options": [
+    {
+      "text": "Can AI count letters?",
+      "family": "direct question",
+      "honest": true
+    }
+  ],
+  "selected_hook": "Can AI count letters?",
+  "sentences": [
+    {
+      "sentence_id": "f1",
+      "beat_id": "b1",
+      "role": "narration",
+      "link_from_previous": "none",
+      "on_screen_text": "",
+      "text": "Can AI count letters?",
+      "kind": "hook",
+      "claim_ids": []
+    },
+    {
+      "sentence_id": "f2",
+      "beat_id": "b2",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "We gave two models twenty questions.",
+      "kind": "setup",
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "sentence_id": "f3",
+      "beat_id": "b3",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "Both got strawberry right.",
+      "kind": "terminal",
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "sentence_id": "f4",
+      "beat_id": "b4",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "OpenAI's GPT-OSS got all twenty.",
+      "kind": "score",
+      "claim_ids": [
+        "score0"
+      ]
+    },
+    {
+      "sentence_id": "f5",
+      "beat_id": "b5",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "Google's Flash-Lite got eleven.",
+      "kind": "score",
+      "claim_ids": [
+        "score1"
+      ]
+    },
+    {
+      "sentence_id": "f6",
+      "beat_id": "b6",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "On random letters, just three of ten.",
+      "kind": "split",
+      "claim_ids": [
+        "split_random1"
+      ]
+    },
+    {
+      "sentence_id": "f7",
+      "beat_id": "b7",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "It found five Os in onomatopoeia.",
+      "kind": "miss",
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "sentence_id": "f8",
+      "beat_id": "b8",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "There are four.",
+      "kind": "miss",
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "sentence_id": "f9",
+      "beat_id": "b9",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "AI can count. Just not every model.",
+      "text": "So AI can count, just not every model.",
+      "kind": "close",
+      "claim_ids": []
+    }
+  ],
+  "payoff": "There are four.",
+  "ending": "So AI can count, just not every model.",
+  "cta": null,
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "The test sent 20 letter-counting questions to two AI models.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "The test sent 20 letter-counting questions to two AI models.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "design_groups",
+      "claim": "Half used real English words, and half used random strings of letters.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Half used real English words, and half used random strings of letters.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "check",
+      "claim": "Each model had to reply with only a number, and code that counted the letters marked every reply.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Each model had to reply with only a number, and code that counted the letters marked every reply.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "example",
+      "claim": "Every model counted 3 Rs in strawberry, which is correct.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Every model counted 3 Rs in strawberry, which is correct.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "score0",
+      "claim": "OpenAI's GPT-OSS got 20 of 20 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "OpenAI's GPT-OSS got 20 of 20 right.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "score1",
+      "claim": "Google's Flash-Lite got 11 of 20 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Google's Flash-Lite got 11 of 20 right.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_real0",
+      "claim": "On real words, OpenAI's GPT-OSS got 10 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On real words, OpenAI's GPT-OSS got 10 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_real1",
+      "claim": "On real words, Google's Flash-Lite got 8 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On real words, Google's Flash-Lite got 8 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_random0",
+      "claim": "On random letters, OpenAI's GPT-OSS got 10 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On random letters, OpenAI's GPT-OSS got 10 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split_random1",
+      "claim": "On random letters, Google's Flash-Lite got 3 of 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "On random letters, Google's Flash-Lite got 3 of 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "miss",
+      "claim": "Google's Flash-Lite counted 5 Os in onomatopoeia, when the answer was 4.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42663933823",
+      "published": "2026-11-09",
+      "excerpt": "Google's Flash-Lite counted 5 Os in onomatopoeia, when the answer was 4.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-09; results can differ between runs and the models change over time. Models: GPT-OSS 120B, Gemini 3.5 Flash-Lite.",
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "duration_estimate_s": 22.926829268292686,
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  }
+}
