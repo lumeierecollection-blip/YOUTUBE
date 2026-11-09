@@ -152,7 +152,9 @@ jobs:
             const fs = require('fs');
             const priority = JSON.parse(fs.readFileSync('config/run-channels.json', 'utf-8')).channels.map(String);
             const req = (process.env.REQUESTED || '').split(',').map(s => s.trim().replace(/^ch-?/i, '').replace(/^0+/, '')).filter(Boolean);
-            const ids = req.length ? req : priority;
+            // Channels the two-channel autopilot owns are not produced here on a schedule.
+            const autopilot = Object.keys(JSON.parse(fs.readFileSync('config/autopilot.json', 'utf-8')).channels);
+            const ids = req.length ? req : priority.filter(id => !autopilot.includes(id));
             const notPriority = ids.filter(id => !priority.includes(id));
             if (notPriority.length) {
               console.error('Not run channels (config/run-channels.json): ' + notPriority.join(',') + ' (priority: ' + priority.join(',') + ')');
