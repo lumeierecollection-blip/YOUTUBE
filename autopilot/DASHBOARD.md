@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:13 SAST
+Updated 2026-11-09 03:17 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 03:13 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at assets, attempts 1 |
-| Selected topic and score | The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos (60.2/100) |
+| Selected topic and score | Ancient Mosaic Discovered After 90 Years in North Macedonia (64.4/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -74,3 +74,4 @@ Updated 2026-11-09 03:13 SAST
 - Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.","clipped_text: fr
 - Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead
 - AI Tested kick-3dfcfe63bb-ch2 failed at discover: discovery failure: 14 candidates, none eligible. Best "Claude AI can now connect to your bank account" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account
+- Hidden Past kick-af9692b82b-ch1 failed at assets: 1 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead
