@@ -29,8 +29,8 @@ export const claims = [
 ];
 
 export const sentences = [
-  { sentence_id: "s1", beat_id: "b1", text: "A sleepless night worsens memory for new things.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
-  { sentence_id: "s2", beat_id: "b2", text: "The hippocampus, deep in the temporal lobe, helps form memories.", role: "Names the region, where it is, and what it does.", claim_ids: ["C2"], link_from_previous: "explanation", on_screen_text: "Hippocampus" },
+  { sentence_id: "s1", beat_id: "b1", text: "A sleepless night makes learning harder.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
+  { sentence_id: "s2", beat_id: "b2", text: "The hippocampus, in the temporal lobe, helps form memories.", role: "Names the region, where it is, and what it does.", claim_ids: ["C2"], link_from_previous: "explanation", on_screen_text: "Hippocampus" },
   { sentence_id: "s3", beat_id: "b3", text: "One imaging study found it less active when learning.", role: "Human evidence, marked as one association.", claim_ids: ["C3"], link_from_previous: "evidence", on_screen_text: "Less active while learning" },
   { sentence_id: "s4", beat_id: "b4", text: "In mice, five hours awake cut dendritic spines.", role: "Moves to the cellular level and defines the term.", claim_ids: ["C4", "C5"], link_from_previous: "explanation", on_screen_text: "Dendritic spine" },
   { sentence_id: "s5", beat_id: "b5", text: "Blocking cofilin, which breaks down actin, prevented the loss.", role: "The causal test, in mice.", claim_ids: ["C6", "C9"], link_from_previous: "cause", on_screen_text: "Cofilin suppressed" },
