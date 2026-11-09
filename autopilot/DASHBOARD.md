@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:58 SAST
+Updated 2026-11-09 04:03 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,9 +8,9 @@ Updated 2026-11-09 03:58 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | The Daring RAF Raid That Sank the Battleship Tirpitz (63.9/100) |
-| QA | failed |
+| Latest production | failed-final at discover, attempts 1 |
+| Selected topic and score | n/a |
+| QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
 | Analytics | not checked |
@@ -84,3 +84,4 @@ Updated 2026-11-09 03:58 SAST
 - Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context
 - AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
 - Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom","clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo
+- Hidden Past kick-13aa60d8d9-ch1 failed at discover: 4 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
