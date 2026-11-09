@@ -1,0 +1,33 @@
+{
+  "format": "entertainment_magazine",
+  "style_checks": [
+    "the subject is recognisable and well photographed",
+    "photograph quality and variety",
+    "achievement and timeline accuracy",
+    "editorial polish",
+    "narration matches the image"
+  ],
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 22.442,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -21.9,
+    "max_volume_db": -4.1,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 21.936,
+      "words": 56,
+      "wpm": 153.2,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "note": "Style checks are reviewed on the contact sheet and frames; the technical block is measured on the MP4."
+}
