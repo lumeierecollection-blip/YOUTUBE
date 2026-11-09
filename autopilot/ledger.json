@@ -838,7 +838,12 @@
       "attempts": 1,
       "run_id": "42564339039",
       "trigger": "push",
-      "updated_at": "2026-11-09T05:06:33.695Z"
+      "updated_at": "2026-11-09T05:07:54.376Z",
+      "stage": "research",
+      "topic": "AI Voice Cloning Fraud Scheme and $129M Scam",
+      "score": 72,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Three men were just busted in a massive $129 million scam that used hyper-realistic AI voice clones of company bosses."
     }
   },
   "uploads": [
@@ -1559,6 +1564,15 @@
       "at_ms": 1794200739017,
       "score": 59.1,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "AI Voice Cloning Fraud Scheme and $129M Scam",
+      "slug": "ai-voice-cloning-fraud-scheme-and-129m-scam",
+      "slot": "kick-bdd3b0e701-ch2",
+      "at_ms": 1794200874376,
+      "score": 72,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
