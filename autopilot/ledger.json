@@ -1092,6 +1092,14 @@
       "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9",
       "video_id": "IIdYdKKUiRM",
       "privacy_status": "private"
+    },
+    "kick-aebd86ec0c-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42596694782",
+      "trigger": "push",
+      "updated_at": "2026-11-09T10:00:15.746Z"
     }
   },
   "uploads": [
@@ -2127,5 +2135,5 @@
     "Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:\n  - SCR-16: 57 words implies ~28s duration â€”",
     "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so "
   ],
-  "last_poll_at": "2026-11-09T09:51:48.655Z"
+  "last_poll_at": "2026-11-09T10:00:15.745Z"
 }
