@@ -810,12 +810,12 @@
       "attempts": 1,
       "run_id": "42563510288",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:48:35.558Z",
-      "stage": "script",
-      "topic": "The 1938 Kristallnacht Pogrom",
-      "score": 66.6,
-      "pillar": "Unbelievable true historical events",
-      "hook": "When Nazi stormtroopers launched a coordinated night of terror across Germany and Austria."
+      "updated_at": "2026-11-09T04:50:29.737Z",
+      "stage": "research",
+      "topic": "The 1940 Taranto Naval Raid",
+      "score": 65,
+      "pillar": "Events that changed the modern world",
+      "hook": "The daring nighttime carrier strike that forever changed naval warfare and inspired Pearl Harbor."
     }
   },
   "uploads": [
@@ -1509,6 +1509,15 @@
       "at_ms": 1794199698222,
       "score": 66.6,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1940 Taranto Naval Raid",
+      "slug": "the-1940-taranto-naval-raid",
+      "slot": "kick-a3cad14f13-ch1",
+      "at_ms": 1794199829737,
+      "score": 65,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
