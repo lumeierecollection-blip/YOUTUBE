@@ -1,0 +1,152 @@
+{
+  "channel": "ai-tested",
+  "duration_s": 27.6,
+  "scene_count": 6,
+  "pass": false,
+  "failures": [
+    "frame s3 white page edge (203/204/205)",
+    "frame s4 white page edge (228/229/231)"
+  ],
+  "checks": [
+    {
+      "id": "duration<=30s",
+      "pass": true,
+      "detail": "27.60s"
+    },
+    {
+      "id": "1080x1920",
+      "pass": true,
+      "detail": "1080x1920"
+    },
+    {
+      "id": "30fps",
+      "pass": true,
+      "detail": "30/1"
+    },
+    {
+      "id": "has audio",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "scene-plan schema",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "claim ids resolve",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "every claim has excerpt + source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "demonstrated claims backed by real output",
+      "pass": true,
+      "detail": "1 demonstrated, 5 documented only"
+    },
+    {
+      "id": "palette has no purple",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "frame s1 not blank",
+      "pass": true,
+      "detail": "stdev 38.6"
+    },
+    {
+      "id": "frame s1 white page edge",
+      "pass": true,
+      "detail": "242/245/247"
+    },
+    {
+      "id": "frame s2 not blank",
+      "pass": true,
+      "detail": "stdev 46.6"
+    },
+    {
+      "id": "frame s2 white page edge",
+      "pass": true,
+      "detail": "241/242/242"
+    },
+    {
+      "id": "frame s2 differs from previous",
+      "pass": true,
+      "detail": "mean diff 18.4"
+    },
+    {
+      "id": "frame s3 not blank",
+      "pass": true,
+      "detail": "stdev 93.7"
+    },
+    {
+      "id": "frame s3 white page edge",
+      "pass": false,
+      "detail": "203/204/205"
+    },
+    {
+      "id": "frame s3 differs from previous",
+      "pass": true,
+      "detail": "mean diff 40.9"
+    },
+    {
+      "id": "frame s4 not blank",
+      "pass": true,
+      "detail": "stdev 69.0"
+    },
+    {
+      "id": "frame s4 white page edge",
+      "pass": false,
+      "detail": "228/229/231"
+    },
+    {
+      "id": "frame s4 differs from previous",
+      "pass": true,
+      "detail": "mean diff 68.2"
+    },
+    {
+      "id": "frame s5 not blank",
+      "pass": true,
+      "detail": "stdev 51.6"
+    },
+    {
+      "id": "frame s5 white page edge",
+      "pass": true,
+      "detail": "238/239/240"
+    },
+    {
+      "id": "frame s5 differs from previous",
+      "pass": true,
+      "detail": "mean diff 28.7"
+    },
+    {
+      "id": "frame s6 not blank",
+      "pass": true,
+      "detail": "stdev 32.7"
+    },
+    {
+      "id": "frame s6 white page edge",
+      "pass": true,
+      "detail": "246/248/249"
+    },
+    {
+      "id": "frame s6 differs from previous",
+      "pass": true,
+      "detail": "mean diff 15.1"
+    },
+    {
+      "id": "voice preview exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "id": "narration marked provisional",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}
