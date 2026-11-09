@@ -19,13 +19,13 @@ for (const f of Object.values(FILES)) f.page_url = COMMONS(f.title);
 
 /** Each sentence is one spoken line. `scene` groups sentences onto one picture. */
 export const SENTENCES = [
-  { id: "s1", scene: 0, claim_ids: ["c1"], text: "Sarajevo, 28 June 1914. Archduke Franz Ferdinand and his wife leave the city hall." },
-  { id: "s2", scene: 1, claim_ids: ["c2"], text: "Today, Sarajevo is in Bosnia and Herzegovina." },
-  { id: "s3", scene: 2, claim_ids: ["c3"], text: "In 1914 it lay inside Austria-Hungary, which had annexed Bosnia in 1908." },
-  { id: "s4", scene: 3, claim_ids: ["c4"], text: "The New York Times reported the killings the next day." },
-  { id: "s5", scene: 4, claim_ids: ["c5"], text: "This photograph is often captioned as the arrest of Gavrilo Princip." },
+  { id: "s1", scene: 0, claim_ids: ["c1"], text: "Sarajevo, 28 June 1914. The archduke and his wife leave city hall." },
+  { id: "s2", scene: 1, claim_ids: ["c2"], text: "Today, Bosnia and Herzegovina." },
+  { id: "s3", scene: 2, claim_ids: ["c3"], text: "In 1914, Austria-Hungary, annexed in 1908." },
+  { id: "s4", scene: 3, claim_ids: ["c4"], text: "Next day, The New York Times reports the killings." },
+  { id: "s5", scene: 4, claim_ids: ["c5"], text: "This photo is often captioned as Princip's arrest." },
   { id: "s6", scene: 4, claim_ids: ["c5"], text: "Scholars say it shows Ferdinand Behr, a bystander." },
-  { id: "s7", scene: 4, claim_ids: ["c6"], text: "Author David James Smith writes that no photograph of Princip's arrest exists." },
+  { id: "s7", scene: 4, claim_ids: ["c6"], text: "David James Smith: no photo of Princip's arrest exists." },
 ];
 
 /** `must` strings have to appear in the fetched source text, or the run stops. */

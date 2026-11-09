@@ -192,17 +192,17 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
 
   // 3. Voice: one take per sentence, so scene timing comes from the audio itself.
   let timing, narration;
-  for (const rate of ["+0%", "+6%", "+12%"]) {
+  for (const rate of ["+0%", "+6%", "+12%", "+18%"]) {
     const files = SENTENCES.map((s, i) => tools.voice({ text: s.text, voice: entry.tts_voice, output: `.s${i}.mp3`, rate }));
     const durs = files.map((f) => tools.durationOf(f));
-    const GAP = 0.16;
+    const GAP = 0.12;
     narration = join(work, "narration.mp3");
     const filt = durs.map((d, i) => `[${i}:a]apad=pad_dur=${GAP},atrim=0:${(d + GAP).toFixed(3)},asetpts=PTS-STARTPTS[a${i}]`).join(";") + `;${durs.map((_, i) => `[a${i}]`).join("")}concat=n=${durs.length}:v=0:a=1[out]`;
     sh("ffmpeg", ["-y", "-v", "error", ...files.flatMap((f) => ["-i", f]), "-filter_complex", filt, "-map", "[out]", "-b:a", "160k", narration]);
     let t = 0;
     timing = SENTENCES.map((s, i) => { const o = { ...s, start: t, end: t + durs[i] }; t += durs[i] + GAP; return o; });
     files.forEach((f) => rmSync(f, { force: true }));
-    if (tools.durationOf(narration) <= 28.6) break;
+    if (tools.durationOf(narration) <= 29.0) break;
     console.log(`narration ${tools.durationOf(narration)}s at rate ${rate}; retrying faster`);
   }
   const narrationS = tools.durationOf(narration);
