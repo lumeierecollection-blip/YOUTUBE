@@ -252,6 +252,11 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     }
     picks.sort((a, b) => a.scene.index - b.scene.index);
   }
+  // The pre-check found an exact image with topic-wide searches, so a scene-level plan that missed it can use it.
+  if (!picks.some((x) => x.img.relation === "exact") && picks.length) {
+    const exact = await pickImage({ commons_queries: [topic.commons_query, topic.wikipedia_title].filter(Boolean), subject: topic.topic, text: topic.topic }, used, topic.topic, true);
+    if (exact) picks[0] = { ...picks[0], img: exact };
+  }
   if (!picks.some((x) => x.img.relation === "exact")) throw new StageError("assets", "no image shows the story's actual subject; context images alone would mislead");
   if (picks.length < 3) throw new StageError("assets", `only ${picks.length} verified, licensed images found; need at least 3 distinct real images`);
 

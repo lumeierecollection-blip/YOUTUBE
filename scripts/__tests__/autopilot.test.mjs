@@ -139,3 +139,8 @@ test("two shared proper names make a near-repeat, however the headline is reword
   assert.ok(similarity("NYT Cooking AI assistant makes wild ingredient mistakes", "NYT Cooking AI Assistant Flubs Recipe Swaps") >= 0.5);
   assert.ok(similarity("Viking church found in Greenland", "Roman fort found in Britain") < 0.5);
 });
+
+test("one distinctive shared name marks the same story; common names do not", () => {
+  assert.ok(similarity("Battle of Taranto: The First Attack", "The 1940 Taranto Naval Raid") >= 0.5);
+  assert.ok(similarity("Roman fort found in Britain", "Roman coins found in Spain") < 0.6);
+});
