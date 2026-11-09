@@ -57,3 +57,9 @@ Why not approved: Error: script-package invalid:
     at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
     at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/_script-engine/preview.mjs:64:22)
     at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
+
+## world-view - REJECTED_BLUEPRINT
+Topic: The 1956 Suez Crisis (short)
+Writer providers: gemini; critic providers: none; model calls: 7; rounds: 0; narrowings: 0
+Words per minute: 177 (measured, voice en-GB-SoniaNeural)
+Why not approved: blueprint rejected: a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.; the beats do not answer the central question from the claims; the beats do not answer the central question from the claims; does not fit the length; narrow to: The plan fails because it lists the UK and France joining as a beat but provides no claims to explain their distinct motivations, leaving the central question unanswered.

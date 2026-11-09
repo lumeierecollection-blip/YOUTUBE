@@ -1,0 +1,190 @@
+{
+  "channel": "world-view",
+  "format": "short",
+  "topic": "The 1956 Suez Crisis",
+  "angle": "who acted, what the documents record, and where historians disagree about motives, with views attributed to those who hold them",
+  "status": "rejected_blueprint",
+  "wpm": {
+    "wpm": 177,
+    "source": "measured",
+    "voice": "en-GB-SoniaNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 9,
+    "dropped": [
+      {
+        "claim": "Israel invaded Egypt on 29 October 1956.",
+        "reason": "claim has number(s) the excerpt does not hold: 1956"
+      }
+    ],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+        "published": "2026-11-04"
+      }
+    ]
+  },
+  "blocked": {
+    "issues": [
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.",
+        "beat_id": "b4"
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "the beats do not answer the central question from the claims",
+        "beat_id": null
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "the beats do not answer the central question from the claims",
+        "beat_id": null
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "does not fit the length; narrow to: The plan fails because it lists the UK and France joining as a beat but provides no claims to explain their distinct motivations, leaving the central question unanswered.",
+        "beat_id": null
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "the beats do not answer the central question from the claims",
+        "beat_id": null
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 5038,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1568,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 5962,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 2094,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 39893,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 1916,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 5372,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+      "ok": true,
+      "chars": 61303,
+      "sha256": "b31f2338bb1357d8",
+      "title": "Suez Crisis",
+      "published": "2026-11-04",
+      "fetched_at": "2026-11-09T13:25:55.927Z"
+    }
+  ],
+  "error": "blueprint rejected: a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.; the beats do not answer the central question from the claims; the beats do not answer the central question from the claims; does not fit the length; narrow to: The plan fails because it lists the UK and France joining as a beat but provides no claims to explain their distinct motivations, leaving the central question unanswered.",
+  "open_findings": []
+}

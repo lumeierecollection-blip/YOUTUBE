@@ -249,5 +249,39 @@
       "voice": "en-US-GuyNeural"
     },
     "reason": "Error: script-package invalid:\n  script-package.cta: expected string|null, got object\n    at assertValid (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/schema.mjs:59:23)\n    at runEngine (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/engine.mjs:106:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/_script-engine/preview.mjs:64:22)\n    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3"
+  },
+  {
+    "channel": "world-view",
+    "topic": "The 1956 Suez Crisis",
+    "format": "short",
+    "status": "rejected_blueprint",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+        "ok": true,
+        "chars": 61303,
+        "sha256": "b31f2338bb1357d8",
+        "title": "Suez Crisis",
+        "published": "2026-11-04",
+        "fetched_at": "2026-11-09T13:25:55.927Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 177,
+      "source": "measured",
+      "voice": "en-GB-SoniaNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 7,
+    "caveats": [],
+    "reason": "blueprint rejected: a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.; the beats do not answer the central question from the claims; the beats do not answer the central question from the claims; does not fit the length; narrow to: The plan fails because it lists the UK and France joining as a beat but provides no claims to explain their distinct motivations, leaving the central question unanswered."
   }
 ]

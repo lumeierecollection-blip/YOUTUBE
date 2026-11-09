@@ -2,11 +2,11 @@
   "channel": "world-view",
   "production_run": "run-42623336334-1",
   "agent": "agent-script-engine",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:26:01.994Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:27:00.205Z",
   "branch": "preview/_script-engine",
   "commit": "ddf327a8eacf3b2dd103c0065d9a85ca8cc14cca",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts",
-  "claims": 9
+  "issues": "rejected_blueprint: blueprint rejected: a ending beat does not serve the question: The beat fails to provide a summary or synthesis of the intervention origins, serving no purpose.; the beats do not answer the central question from the claims; the beats do not answer the central question from the claims; does not fit t"
 }
