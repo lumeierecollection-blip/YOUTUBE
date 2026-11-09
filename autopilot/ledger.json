@@ -1068,7 +1068,12 @@
       "attempts": 1,
       "run_id": "42595263580",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:41:06.891Z"
+      "updated_at": "2026-11-09T09:42:49.427Z",
+      "stage": "research",
+      "topic": "The 14th Dalai Lama Assumes Temporal Power at Age 15",
+      "score": 76.1,
+      "pillar": "Forgotten historical figures",
+      "hook": "Thrown into the political firestorm of WWII's end, a 15-year-old boy took absolute rule of Tibet."
     }
   },
   "uploads": [
@@ -1969,6 +1974,15 @@
       "at_ms": 1794217100757,
       "score": 60.2,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "1",
+      "topic": "The 14th Dalai Lama Assumes Temporal Power at Age 15",
+      "slug": "the-14th-dalai-lama-assumes-temporal-power-at-age-15",
+      "slot": "kick-24ce9e0eee-ch1",
+      "at_ms": 1794217369427,
+      "score": 76.1,
+      "pillar": "Forgotten historical figures"
     }
   ],
   "attention": [
