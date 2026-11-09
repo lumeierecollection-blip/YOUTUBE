@@ -82,7 +82,7 @@
     },
     "kick-830ba6105e-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "42526505018",
       "trigger": "push",
@@ -91,7 +91,8 @@
       "topic": "Job Seekers Are Shunning Companies That Use AI Interviews",
       "score": 80.8,
       "pillar": "AI changing everyday work",
-      "hook": "Job seekers are actively rejecting companies that force them to interview with AI."
+      "hook": "Job seekers are actively rejecting companies that force them to interview with AI.",
+      "error": "run 42526505018 ended without reporting a result (last stage: research)"
     },
     "kick-4e6fd5e3e2-ch2": {
       "channel": "2",
@@ -522,6 +523,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "Even the New York Times cooking assistant is struggling, giving users wild ingredient swaps that ruin dinners.",
       "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+    },
+    "kick-5d4ed935bc-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42542848945",
+      "trigger": "push",
+      "updated_at": "2026-11-09T00:57:57.806Z"
     }
   },
   "uploads": [],
@@ -1001,5 +1010,5 @@
     "Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":tr",
     "AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRI"
   ],
-  "last_poll_at": "2026-11-09T00:55:08.812Z"
+  "last_poll_at": "2026-11-09T00:57:57.805Z"
 }
