@@ -35,7 +35,7 @@ async function commonsSearch(query) {
   }).filter(Boolean);
 }
 
-async function pickImage(scene, used, story) {
+async function pickImage(scene, used, story, requireExact = false) {
   for (const q of scene.commons_queries || []) {
     let results = [];
     try { results = await commonsSearch(q); } catch (e) { log("assets", `Commons search failed for "${q}": ${e.message}`); }
@@ -52,7 +52,7 @@ context: not the story's own object, but the same place, culture, period or the 
 unrelated: a different culture, site or period than the story (read the file name and description for where it comes from), logos, AI-generated art, modern stock images, or merely similar-looking things.`, buf, "autopilot-commons");
       const relation = v?.relation === "exact" || v?.relation === "context" ? v.relation : "unrelated";
       log("assets", `${c.title}: ${relation} (${v?.why || "no answer"})`);
-      if (relation !== "unrelated") { used.add(c.title); return { ...c, kind: v.kind || "photograph", relation, thumbBuf: buf }; }
+      if (relation === "exact" || (relation === "context" && !requireExact)) { used.add(c.title); return { ...c, kind: v.kind || "photograph", relation, thumbBuf: buf }; }
     }
   }
   return null;
@@ -60,8 +60,8 @@ unrelated: a different culture, site or period than the story (read the file nam
 
 /** A cheap check before any research is spent: is there a real image of what this story is about? */
 export async function hasExactImage(topic) {
-  const img = await pickImage({ commons_queries: [topic.commons_query, topic.wikipedia_title].filter(Boolean), subject: topic.topic, text: topic.topic }, new Set(), topic.topic);
-  return img?.relation === "exact";
+  const img = await pickImage({ commons_queries: [topic.commons_query, topic.wikipedia_title].filter(Boolean), subject: topic.topic, text: topic.topic }, new Set(), topic.topic, true);
+  return Boolean(img);
 }
 
 /** Vision models report boxes as fractions or on a 0-1000 grid; accepts either. */
