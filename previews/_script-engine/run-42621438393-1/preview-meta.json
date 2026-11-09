@@ -1,12 +1,12 @@
 {
-  "channel": "world-view",
+  "channel": "_script-engine",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
-  "stage": "blocked",
-  "status": "failed",
-  "timestamp": "2026-11-09T13:04:26.359Z",
+  "stage": "preview_ready",
+  "status": "ok",
+  "timestamp": "2026-11-09T13:04:32.687Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "issues": "blocked_provider: no provider could answer for writer: provider_error"
+  "issues": "0 of 8 channels approved"
 }
