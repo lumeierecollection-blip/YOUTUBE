@@ -1,0 +1,82 @@
+{
+  "production_id": "ap-kick-c15e6a3b99-ch1",
+  "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 28,
+    "mean_volume_db": -21.9,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "dismissed_after_full_resolution_check": [
+      "clipped_text: frame 14: Remember the nineteen forty raid that changed naval warfare"
+    ],
+    "verdict": {
+      "clipped_text": [
+        "frame 14: Remember the nineteen forty raid that changed naval warfare"
+      ],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The video frames maintain a consistent historical editorial look with proper desaturated photos and captions, though frame 14 exhibits slight text overlap at the bottom."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-c15e6a3b99-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 6,
+      "annotations": 4,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "How slow biplanes sank six battleships at Taranto",
+    "description": "In 1940, 21 slow Fairey Swordfish biplanes launched a surprise Royal Navy attack on Taranto harbor. Admiral Andrew Cunningham's raid proved that massive battleship fleets were suddenly vulnerable to air power.\n\n#NavalHistory #WorldWar2 #Taranto1940 #MilitaryHistory\n\nSources:\n- https://en.wikipedia.org/wiki/Battle_of_Taranto\n- https://www.airandspaceforces.com/article/the-air-raid-at-taranto\n- https://nationalinterest.org/blog/reboot/taranto-nearly-forgotten-attack-inspired-pearl-harbor-172149\n- https://www.usni.org/magazines/naval-history-magazine/1995/june/taranto\n\nImage credits:\n- A Fairey Swordfish biplane flying above a battleship fleet: Royal Air Force official photographer / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Royal_Air_Force_1939-1945-_Coastal_Command_CH8981.jpg\n- A frail-looking fabric-covered Fairey Swordfish biplane in the air: Eric Friedebach / Wikimedia Commons, CC BY 2.0 (CC BY 2.0) https://commons.wikimedia.org/wiki/File:Fairey_Swordfish_(at_Fantasy_of_Flight).jpg\n- A Fairey Swordfish biplane flying in the sky: Coote, R G G (Lt), Royal Navy official photographer / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:The_Royal_Navy_during_the_Second_World_War_A9011.jpg\n- Portrait of Admiral Andrew Cunningham in naval uniform: Unknown author / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Andrew_Cunningham_cropped.jpg\n- A damaged warship in harbor showing structural vulnerability: Eric Friedebach / Wikimedia Commons, CC BY 2.0 (CC BY 2.0) https://commons.wikimedia.org/wiki/File:Fairey_Swordfish_Cockpit.jpg\n- Archival aerial photograph of the Taranto harbor raid: Ernesto Burzagli (1873-1944). / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Tarantoharb1921.jpg",
+    "tags": [
+      "Taranto raid",
+      "Royal Navy",
+      "Fairey Swordfish",
+      "naval warfare",
+      "World War 2 history",
+      "battleships",
+      "Andrew Cunningham",
+      "1940 raid"
+    ],
+    "hashtags": [
+      "#NavalHistory",
+      "#WorldWar2",
+      "#Taranto1940",
+      "#MilitaryHistory"
+    ]
+  }
+}

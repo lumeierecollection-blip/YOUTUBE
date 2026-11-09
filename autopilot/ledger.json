@@ -778,16 +778,18 @@
     },
     "kick-c15e6a3b99-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "qa-passed",
       "attempts": 1,
       "run_id": "42561890757",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:41:37.201Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T04:41:39.500Z",
+      "stage": "qa-passed",
       "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
       "score": 61.5,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor."
+      "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
+      "qa": "all gates passed",
+      "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f"
     }
   },
   "uploads": [],
