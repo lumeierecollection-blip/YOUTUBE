@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T22:03:10.438Z",
+  "rebuilt_at": "2026-11-09T22:07:05.647Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,21 +61,21 @@
     {
       "key": "court-and-spotlight",
       "agent": "agent-court-and-spotlight",
-      "stage": "finished",
-      "status": "ok",
-      "at": "2026-11-09T22:03:10.066Z",
-      "branch": "preview/court-and-spotlight-investigation-2",
-      "commit": "f450f62a",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42704646955#artifacts)",
-      "sheet": "[contact-sheet.jpg](court-and-spotlight/run-42704646955-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](court-and-spotlight/run-42704646955-1/scene-s1.jpg) [scene-s2.jpg](court-and-spotlight/run-42704646955-1/scene-s2.jpg) [scene-s3.jpg](court-and-spotlight/run-42704646955-1/scene-s3.jpg) [scene-s4.jpg](court-and-spotlight/run-42704646955-1/scene-s4.jpg)",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T22:07:00.643Z",
+      "branch": "preview/court-and-spotlight-investigation-3",
+      "commit": "7f744c83",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42708602176#artifacts)",
+      "sheet": "",
+      "scenes": "",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](court-and-spotlight/run-42704646955-1/scene-plan.json)",
-      "qa": "[qa-report.json](court-and-spotlight/run-42704646955-1/qa-report.json)",
+      "plan": "",
+      "qa": "",
       "blocker": "",
       "lastOk": "2026-11-09T22:03:10.066Z",
-      "run": "run-42704646955-1"
+      "run": "run-42708602176-1"
     },
     {
       "key": "dopamine-loop",
