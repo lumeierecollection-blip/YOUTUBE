@@ -1,0 +1,46 @@
+[
+  {
+    "channel": "ai-tested",
+    "topic": "Model Context Protocol",
+    "format": "short",
+    "status": "blocked_model",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+        "ok": true,
+        "chars": 8751,
+        "sha256": "83d45b37a3396048",
+        "title": "Model Context Protocol",
+        "published": "2026-11-09",
+        "fetched_at": "2026-11-09T13:13:01.948Z"
+      },
+      {
+        "source_id": "s2",
+        "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+        "ok": true,
+        "chars": 42649,
+        "sha256": "b7dcbe6c040da933",
+        "title": "What is the Model Context Protocol (MCP)? - Model Context Protocol",
+        "published": null,
+        "fetched_at": "2026-11-09T13:13:02.284Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 189.6,
+      "source": "measured",
+      "voice": "en-US-AndrewNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 4,
+    "caveats": [],
+    "reason": "judge gave unusable output: the answer was not valid JSON"
+  }
+]
