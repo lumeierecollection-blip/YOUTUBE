@@ -1,0 +1,99 @@
+{
+  "production_id": "ap-kick-5d4ed935bc-ch1",
+  "sha256": "ab0c09c8d011112f1f0df3ee7108bfaf36e1079a2bd726b3430a3ab4aa58ef2d",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 27,
+    "mean_volume_db": -22.2,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": false,
+    "problems": [
+      "clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.",
+      "clipped_text: frame 2: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.",
+      "clipped_text: frame 3: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.",
+      "clipped_text: frame 4: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.",
+      "clipped_text: frame 5: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.",
+      "clipped_text: frame 6: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.",
+      "clipped_text: frame 7: The caption 'It lives in the Asturias region today' is cut off at the bottom edge.",
+      "clipped_text: frame 8: The caption 'It lives in the Asturias region today' is cut off at the bottom edge.",
+      "clipped_text: frame 9: The caption 'Check how DNA traces history over seven thousand years' is cut off at the bottom edge.",
+      "clipped_text: frame 10: The caption 'Check how DNA traces history over seven thousand years' is cut off at the bottom edge."
+    ],
+    "verdict": {
+      "clipped_text": [
+        "frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.",
+        "frame 2: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.",
+        "frame 3: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.",
+        "frame 4: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.",
+        "frame 5: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.",
+        "frame 6: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.",
+        "frame 7: The caption 'It lives in the Asturias region today' is cut off at the bottom edge.",
+        "frame 8: The caption 'It lives in the Asturias region today' is cut off at the bottom edge.",
+        "frame 9: The caption 'Check how DNA traces history over seven thousand years' is cut off at the bottom edge.",
+        "frame 10: The caption 'Check how DNA traces history over seven thousand years' is cut off at the bottom edge."
+      ],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The frames maintain a consistent historical editorial aesthetic with desaturated photos and gold accents, but the bottom captions are consistently clipped in the layout."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-5d4ed935bc-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 4,
+      "annotations": 1,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "7,000-year-old leather links ancient dna to modern Asturian goat",
+    "description": "A 7,000-year-old leather fragment discovered in Cueva de los Murciélagos, Spain, contains ancient DNA. Genetic testing shows the DNA matches the modern Bermeya goat that lives in Asturias, illustrating a 7,000-year genetic link.\n\n#ancientdna #bermeyagoat #archaeology #spainhistory\n\nSources:\n- https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0358468\n- https://www.eurekalert.org/news-releases/1149590\n- https://portalcomunicacion.uah.es/diario-digital/actualidad/La-UAH-participa-en-una-investigacion-que-demuestra-que-una-piel-de-cabra-de-hace-7.000-anos-revela-una-conexion-genetica-con-la-actual-raza-Bermeya\n\nImage credits:\n- An ancient, preserved piece of prehistoric leather showing organic texture.: Virginio Rosa / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Schiaparelli's_excavations_-_Gebelein,_Northern_hill,_Grave_goods_of_the_Tomb_of_the_Unknown,_1911,_photo_4_of_10_-_Archivio_fotografico_Museo_Egizio,_Turin_B00202.jpg\n- A laboratory setting showing genetic testing and DNA sequencing visuals.: Virginio Rosa / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Schiaparelli's_excavations_-_Gebelein,_Northern_hill,_Grave_goods_of_the_Tomb_of_the_Unknown,_1911,_photo_3_of_10_-_Archivio_fotografico_Museo_Egizio,_Turin_B00200.jpg\n- A modern Bermeya goat with its characteristic reddish-brown coat.: Jusotil_1943 / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:La_Ascensi%C3%B3n._Cabra_Bermeya._Oviedo.jpg\n- The green mountainous landscape of the Asturias region in Spain.: Davidwishard / Wikimedia Commons, CC BY 3.0 (CC BY 3.0) https://commons.wikimedia.org/wiki/File:From_Montsacro,_Asturias_landscape.JPG",
+    "tags": [
+      "ancient dna",
+      "leather fragment",
+      "Cueva de los Murciélagos",
+      "Bermeya goat",
+      "Asturias",
+      "genetic testing",
+      "7,000 years",
+      "archaeology"
+    ],
+    "hashtags": [
+      "#ancientdna",
+      "#bermeyagoat",
+      "#archaeology",
+      "#spainhistory"
+    ]
+  }
+}

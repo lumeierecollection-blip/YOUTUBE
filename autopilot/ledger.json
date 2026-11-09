@@ -526,16 +526,18 @@
     },
     "kick-5d4ed935bc-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42542848945",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:04:28.754Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T01:04:34.171Z",
+      "stage": "qa",
       "topic": "7,000-Year-Old Leather DNA Links to Modern Goats",
       "score": 80,
       "pillar": "Ancient civilisations and discoveries",
-      "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today."
+      "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today.",
+      "error": "gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: frame 2: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: frame 3: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.\",\"clipped_text: frame 4: The caption 'Experts found this in Cueva de los Murciélagos, Spain' is cut off at the bottom edge.\",\"clipped_text: frame 5: The caption 'But genetic testing confirms a surprising ancestral link' is cut off at the bottom edge.\",\"clipped_text: frame 6: The caption 'Bu",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -1022,7 +1024,8 @@
     "Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs so",
     "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts",
     "Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":tr",
-    "AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRI"
+    "AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRI",
+    "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr"
   ],
   "last_poll_at": "2026-11-09T00:57:57.805Z"
 }
