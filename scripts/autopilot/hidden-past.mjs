@@ -47,7 +47,7 @@ async function pickImage(scene, used, story) {
       const buf = Buffer.from(await img.arrayBuffer());
       const v = await askVision(`Story: "${story}". Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}. Commons description: ${c.description || "(none)"}.
 Reply JSON {"relation":"exact|context|unrelated","kind":"photograph|portrait|document|artefact|illustration|map|other","why":"..."}.
-exact: this is the actual object, person, document or site the story is about.
+exact: it shows a person, ship, building, object, document or site that the narration names, even if the photo was taken at another moment.
 context: not the story's own object, but the same place, culture, period or the same person's world, so it honestly sets the scene.
 unrelated: a different culture, site or period than the story (read the file name and description for where it comes from), logos, AI-generated art, modern stock images, or merely similar-looking things.`, buf, "autopilot-commons");
       const relation = v?.relation === "exact" || v?.relation === "context" ? v.relation : "unrelated";
