@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Massive 2,600-year-old ancient Egyptian complex discovered from space",
+      "score": 84.2,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "5,300-year-old grape-sized kidney stone found in Bronze Age burial",
+      "score": 74.3,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Playing cards found in a Mongol invasion shipwreck off the coast of Japan",
+      "score": 72.3,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    }
+  ],
+  "selected": null
+}

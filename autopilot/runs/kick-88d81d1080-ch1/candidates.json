@@ -1,0 +1,1839 @@
+{
+  "generated_at": "2026-11-09T01:24:26.157Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 114,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 87
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 53
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 41
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Massive 2,600-year-old ancient Egyptian complex discovered from space",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        36,
+        44,
+        157
+      ],
+      "hook": "Buried beneath the thick mud of the Nile Delta, satellite imagery just revealed a massive ancient Egyptian structure.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Ancient Egypt",
+      "commons_query": "Nile Delta archaeological excavation",
+      "youtube_query": "buried ancient Egyptian structure Nile Delta",
+      "evidence": [
+        {
+          "title": "Egypt uncovers 2,600-year-old buried structure - News of Bahrain",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQVnFOT3k1OGFvdy00UEp6ZG1oaGRiOGlaRGlSVUpIRERiVWJpaU1JR0dseWF5VzVjUm9vY1pDN29CLTlOX1lPZkVKLTBCSUpFaXlkTzFCUEh1bEJyVmhUNWZqYm9QcVV4a3NxbEhKVEN3QTNEZS1yTUE4b1lJM01laXRLSGxoOWpHS3JMWHV6cw?oc=5",
+          "domain": "newsofbahrain.com",
+          "published_ms": 1794158697000,
+          "kind": "news",
+          "id": 36
+        },
+        {
+          "title": "Egypt unearths 2,600-year-old structure buried beneath Nile Delta - Gulf News",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOQl9LRkRISmRoM05ncXQzNE9BRlcwVkxzYmloRUlCTDlWSHdOSUFNbjFwSGgwTHJJVmJuUVBlTkZyZHZRc1pvNm9ra3RyQ0M5RFh6MGFINjVoejJEcTdlc3BJZGdseVRqMkg1TGt0YTdvUkU4ZktQS25PNDM1YmdMMTZ3dXR4ZmFhOXVzcko4V3ZtMmZidlc0RHNEbXIwb291YWpnZ2V3SEcyWVZn0gG_AUFVX3lxTFBoa3R4a2Y4VndZc0hfanExX2xtQm5WLW14SGtySG91WVZaSXZwVWR3UjlRUFhTRkpzNWlVbWtVdmNwZ2RIdWhNa1lBcWhJamVVZlYzZ0dPTnhvSkJLMVEtX045V0Q3VzhvSHRRbUpneVZiZ1djMlhSNl9kU2JiRjZqTk90OWZFVU5KeGN3WUxycl85TDhTRjcwZXR2MTl2OG9JdWFrdDRZT3Bra1VybXdSUmt5ekdwUlk3bHpBY29R?oc=5",
+          "domain": "gulfnews.com",
+          "published_ms": 1794144345000,
+          "kind": "news",
+          "id": 44
+        },
+        {
+          "title": "Buried for 2,600 years beneath Nile mud, a massive ancient Egyptian complex was just found — from space",
+          "url": "https://www.livescience.com/archaeology/ancient-egyptians/buried-for-2-600-years-beneath-nile-mud-a-massive-ancient-egyptian-complex-was-just-found-from-space",
+          "domain": "livescience.com",
+          "published_ms": 1793638341000,
+          "kind": "feed",
+          "id": 157
+        },
+        {
+          "title": "Huge Ancient Egyptian Structure Buried for 2,600 Years Discovered from Space - People.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOd25Ma0duOGZtYXk1T2dGRElWWW9nRS1TQVgzRHgyem1zQzVJSjdPT1pYLTdPR1VQRjZIb1NUYmdjN2hIOUpicHAwdEp5SXVRUXRqaDJpQV9KcmotcEFWVlc5azFsdDZjLVhhcFBCVUJtb1lWRkUzbm5fbVUyY3lPUnNDdndpNGkyTk5uaTh4WUtkcW42MW5IMDloY096XzJ2R0dtR2lR?oc=5",
+          "domain": "people.com",
+          "published_ms": 1793718486000,
+          "kind": "news"
+        },
+        {
+          "title": "Mysterious 2,600-year-old Egyptian building discovered from space — and it could be an ancient tomb or shrine - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxPQUcteW1QdVNjY05faDhNSXdraWxRcFdqVUxIUHJGYThjdkhjdnhWa1ZQTEJuRW9wTTNUQTNCb2ZIVGpZTDhWUnlORUVycW9IdUctTC1aeXJRMzlVMERMZ0RmS0ZwTVRVYVZGR2dmaTh2cVhHMHFNV1BKaGd6UGQyOXMxbVdhOHYxTGx4WTFteFVDZklXVnhyczBFYTFNYmNXMVd1bUZmT3NNT0REZDB4eDZDSUVYVDJJX3BNcjNpSVhiYlFsc3A5SlhQZzh0Mlo4eTZhNDFvNll5N3VDQTBRZTMteVZRWm11RGgwRTdEaw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793638341000,
+          "kind": "news"
+        },
+        {
+          "title": "2,600-year-old Egyptian complex discovered beneath ancient Buto - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUl9CT2tpWlVUTlM3aENlUnd1dTRzOGNPNENOS1NONlB6dWx2ZUN4YWZKUkpESUR5N0hQckRla3QtcjAxNnE5QVJocU5JNmQ5eDgwMmJOZDNFTHl0TkpzWkRjRC1PUm5OTXozU3ZMT3VhR1NubWhReTloMjRkRlpYN0N3WnNIYnJuM3NEdUJiVnBvUXRIbEdEMHkteGRJNExVd3dyMWZacGtYY1E?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1793657299000,
+          "kind": "news"
+        },
+        {
+          "title": "Massive Ancient Secret Spotted Beneath Egypt From Space - The Daily Beast",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNQ3JXdHhjMXh4ZjkxQlFIWWVja0N3dlI2dTUxRElNREpVU0lkckJCN21nRlh2Wm8xQzk4TkhablR1Zm5rWkZqWUJmcVRtaGZrMjlDS0sya2ktLXNReFJFbkVFblBXajVrTjFrN0twRVVJLU03NkRYa3NyV0R4a0k0SHRWdThQTEo2dXBiS2pYa0hfNzdaeVVoYjlrY1ZkS2pMUnc?oc=5",
+          "domain": "thedailybeast.com",
+          "published_ms": 1793728313000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Ancient Egypt",
+        "daily_views": 2552,
+        "ratio": 0.98
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 68,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 84.2,
+        "newest_hours": 8,
+        "domains": [
+          "newsofbahrain.com",
+          "gulfnews.com",
+          "livescience.com",
+          "people.com",
+          "heritagedaily.com",
+          "thedailybeast.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "2,800-year-old Siberian tomb reveals cannabis use in rituals",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        45,
+        67,
+        84
+      ],
+      "hook": "A 2,800-year-old tomb in Siberia revealed surprising evidence of cannabis used during human sacrifices.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk burial mound Siberia",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 45
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news",
+          "id": 67
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 84
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 13,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 79.1,
+        "newest_hours": 17,
+        "domains": [
+          "sciencedaily.com",
+          "news.ssbcrack.com",
+          "livescience.com",
+          "reuters.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "allthatsinteresting.com",
+          "404media.co",
+          "hightimes.com",
+          "cannabisaficionado.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "reuters.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "400-year-old intricate padlock from shipwreck finally opened",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        66,
+        85,
+        88
+      ],
+      "hook": "Experts finally cracked the code on a 400-year-old padlock retrieved from a sunken shipwreck.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Padlock",
+      "commons_query": "",
+      "youtube_query": "400 year old shipwreck padlock opened",
+      "evidence": [
+        {
+          "title": "Welsh experts solve 400-year-old lock recovered from 16th century shipwreck - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02WDBMbjI0VFo4QTdyZTBjZnc2dXU1ZWVYX3VDLTI3blVCN2ZwSnlfRE9TbnJDa0xRd1dzTGdPVHB6NWRSMW5RTi1BdUxuMW5aVmNCTWtaay1KX0JX?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1794052372000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened ‪—‬ but it leaves a mystery",
+          "url": "https://www.livescience.com/archaeology/cryptic-padlock-from-a-400-year-old-shipwreck-finally-opened-but-it-leaves-a-mystery",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "feed",
+          "id": 85
+        },
+        {
+          "title": "Scientists Cracked the Code on a 400-Year-Old Padlock. What It Was Protecting Is Still a Mystery. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQT2xDYWdXMnRVOEd6OVpIN19zSTA2VXA1ZlRFdU5Vb3o4YmYzYlNTdFdRY3hkcDNZOFUzYlB4amt1TWY1TldqN3FHTWtUMFJPcF8zUUpDNm9pUHcwU3BreHJwSktPNnF2U2J3M1FqVUoyallUYk9IN0xNWHhfZ0Z5OGNsdlZxN29jTFktSFQweFBXRFNMUUNTZ3k2T3BZT1NhWlBOeDRPRENfc014WUE5bGxyTC0tcU10RmtZRUhkUVl6TEtTRnJOaDdBQ3ByWUFMeGUxZ3FGSUlYM1dkelNremdtbXgxMzhEa0ZqQlVBUnk?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793885400000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened — but it leaves a mystery - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSkxVSTJVUWVnM3dsUDhXTG90MEMwX2pnYTk3dFkzMXQ0bUFQZWhpVGJqNUVSNzVGV0pJdDNMcXd5ZXRKWWMzSkZuclMzVUE4Z2ozUHBlZ0t3bDRDd3BiQzBBbmVUcjlnZEl3RGVONGNSeWVab0kweFAwVllRdmkxdHZFc0lKYzRaa3g2Nm5uT3U4ajZhTm81SkFNVzRMMW5WbXdYVGxIaVZqVWRxTE5XOWdEVU1KUV85a25Ia085R3RmZw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Used CT and Finally Opened a 400-Year-Old Lock From a Welsh Shipwreck - ZME Science",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOVF9NMFpNcVZEblB4SW1McG5HOE93NHNWSXJyWFhrbGZOMVRqUy1sR1hUc0dJMTlyZUVjUUplb3dXRzBtekF2bDFSbmtfbDc0cXh2UlhlRGpzUGNTNlkya0VpbXV2TUYxMmF4M3NLUXZpYlIwSkZsNFFVWXk2UzEzZzhXd05PaUFjQkl6bGlUUTBlVHNuandDOUhTTHppeDVNMGx4ZWFNcUx5bE5MaGN4YTVQOU9nQ1JuNEtldmhWVDNjSzRGeVdNWg?oc=5",
+          "domain": "zmescience.com",
+          "published_ms": 1793909712000,
+          "kind": "news"
+        },
+        {
+          "title": "Code cracked for 400-year-old shipwreck padlock - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9GMXNUUm1SZlBzMDNla1pFNFlLWndVQXctMGljdGhBdnNxOGFDYl9LOXpJVlBTUmRFNkE2LS1Neno2Qm9kcHlzRmhac3dad0ZHZ3BzVVo3aDc?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1793808282000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Padlock",
+        "daily_views": 117,
+        "ratio": 1.15
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 87,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 76,
+        "newest_hours": 38,
+        "domains": [
+          "jpost.com",
+          "livescience.com",
+          "popularmechanics.com",
+          "zmescience.com",
+          "bbc.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "bbc.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Monumental medieval cathedral uncovered beneath Old Dongola in Sudan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        25,
+        146
+      ],
+      "hook": "Archaeologists in Sudan reached the original floor of a massive medieval cathedral larger than the White House.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola archaeological site",
+      "youtube_query": "Old Dongola cathedral excavation Sudan",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 25
+        },
+        {
+          "title": "Archaeologists reach the original floor of Nubia’s largest cathedral in Sudan - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPTTYzemY3cURMVWxMb1pGS0U1Smxrd0IxUEJGT1lGX0JQZlpMbUU1X0c3aEpqSFIxMG95OHlteE5rWmZranVNMDREa3V5RDByMnpmRkV2ZG5uVmRGbUFNTEwtVm9fZU9QWXRSYlZ6S3pWUEpUSm9aV00zbk5KQWg5TGdScUxwVG5MZURRUzIzVFE?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793812222000,
+          "kind": "news",
+          "id": 146
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 82,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.1,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "archaeologymag.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "archaeologymag.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "5,300-year-old grape-sized kidney stone found in Bronze Age burial",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Archaeologists examining a 5,300-year-old Bronze Age grave made a painful discovery inside the skeleton.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Kidney stone",
+      "commons_query": "Bronze Age burial archaeological site",
+      "youtube_query": "ancient kidney stone discovery archaeology",
+      "evidence": [
+        {
+          "title": "5,300-year-old kidney stone the size of a grape found in Bronze Age man's burial near Black Sea",
+          "url": "https://www.livescience.com/archaeology/5-300-year-old-kidney-stone-the-size-of-a-grape-found-in-bronze-age-mans-burial-near-black-sea",
+          "domain": "livescience.com",
+          "published_ms": 1793703600000,
+          "kind": "feed",
+          "id": 98
+        },
+        {
+          "title": "5,300-year-old kidney stone the size of a grape found in Bronze Age man's burial near Black Sea - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQbU9ydFVJQUZQdzZWa0FTYTRtTkh3VnBlQzVjZ3BvS2ZkQWFUWk9fdkIxY1FVRFBmRzJUMzFaMm1paWJZQ2lWbkFaV1lQTGczQlZ1VE5Gak14bHJ4d1Z0S05RcDdjVHU5ZEFCbGM3RmE2M04weTZISjFwYk1OYWZzTEVWY2JFeEljV2UxaE1Jc2JTZkh0c09EVHczNTZwbTQzWXAwTzNUQzFlQVdFcndNR2hLSTRuVjF0Nm43bkU0alAtZEdoZ3FmaDJKS3VYRk0?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793703600000,
+          "kind": "news"
+        },
+        {
+          "title": "A Grape-Sized Kidney Stone Reveals the Agony of a Man Who Lived 5,300 Years Ago - ZME Science",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNM01INnhRTS1IbXlBY3hFM0FUaVlsam5vY2NSVHRrZUZyYkdIb3YxcS1JWGRhTDB5RTBLQlV1bTB4LVpHa2R1bzVBaWhtRGtpQ19WSzM2ZFE1b1JiLTlOSE1oY29NMHBiUm5DWjB1TGpBOVhlR3J3UzhaUDg4Z3d1am9hRjBwckVLckE?oc=5",
+          "domain": "zmescience.com",
+          "published_ms": 1793795350000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found a 5000-Year-Old Kidney Stone in Russia - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOY0VlSDdhb04tRVdKSjRnUWNrdGpWb2syQmdHOWdUN0tuOUpyWjVXVm5PN2hzdWxSOHZhdF91VXlKd0xCWmhvQ0lvLW50U2dySFRrT2JxMzQtY09yVDdXcmprWnZzakFVSXU5U3BtSnZSNG01NlVBcUtXZ20yb3VkV09GbkRoNXZ2VU1nWnh4SUFRNElUaTQ1bDgyX0FSTWhiZVUzTk9CR1IzSUxjZ3ljb0F6cnZGUjNxa2JMSWd0MHVZR1VSZ0dxbw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793724647000,
+          "kind": "news"
+        },
+        {
+          "title": "5,300-year-old kidney stone found in a Russian steppe tomb - Foro3D",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPUXYtaEhsR092UU5ZSVJ1c3hFeXAzak00TkptUkhiRnN4ZURNSV9VLWJXQzcteU9iMHkwSWh3MzBFMFZCc2ZObEZRM0NQQ0M5YmYyM0NtM0xOd1FFdkhBYzVWNmx5ZmNaYVpsWGhCTVoySkxhN3N5Y3dSZWZzOFhCNFF3b2hpRk5pSEFPbFRlbHJpTXRTa1BkaDJOSzduU0tscWdoVEtNYnhNZUk?oc=5",
+          "domain": "foro3d.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Kidney stone",
+        "daily_views": 55,
+        "ratio": 0.95
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 81,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 74.3,
+        "newest_hours": 65,
+        "domains": [
+          "livescience.com",
+          "zmescience.com",
+          "gizmodo.com",
+          "foro3d.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "7,000-year-old leather reveals ancient DNA link to goats alive today",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        23,
+        103,
+        144
+      ],
+      "hook": "Scientists extracted DNA from a 7,000-year-old piece of leather and found a direct link to modern farm animals.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Ancient DNA",
+      "commons_query": "archaeological leather artifact",
+      "youtube_query": "7000 year old leather ancient DNA goats",
+      "evidence": [
+        {
+          "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1794184608000,
+          "kind": "news",
+          "id": 23
+        },
+        {
+          "title": "7,000-year-old goat leather from Spain reveals DNA link to modern Iberian goats - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793987217000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - EurekAlert!",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ldVI1ak9vMFZsMWNWdXJHNFdNMVdzWHZKS2RQS0JEeUMzZE1fcmdwSWhKck1uX1lNdnZhZDA2bW04bmJyVmU1RW0xWmlHX0NsRzYzOW1aNTJNbE10?oc=5",
+          "domain": "eurekalert.org",
+          "published_ms": 1793820815000,
+          "kind": "news",
+          "id": 144
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCWFlmdmpESHNXcUlHWjRWcTN0NUV0REsyMFJsWU9fQk9LUFc4aTdGcnVwcmxuZW9TeWRSTWtPc2tnamhwbHdZMkc1RzNMZWpIMGZZb0ZleHVKcjB3dF9ndDFvcjZLcGFRQ2lMS3JzN2NfOVE4?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793818816000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Ancient DNA",
+        "daily_views": 88,
+        "ratio": 1.12
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 39,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 74,
+        "newest_hours": 1,
+        "domains": [
+          "scitechdaily.com",
+          "archaeologymag.com",
+          "eurekalert.org",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "archaeologymag.com",
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: 7,000-Year-Old Leather DNA Links to Modern Goats"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Sealed for 2,000 years, archaeologists just opened a wooden wardrobe in Pompeii",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        94
+      ],
+      "hook": "For nearly two millennia, this wooden wardrobe in Pompeii remained entirely sealed—until now.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Pompeii",
+      "commons_query": "Pompeii wooden furniture artifacts",
+      "youtube_query": "Pompeii sealed wooden wardrobe discovery",
+      "evidence": [
+        {
+          "title": "This Wooden Wardrobe in Pompeii Remained Sealed for Nearly 2,000 Years. Archaeologists Just Opened It for the First Time - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPdDM1Yjk1NW9CeHZ0UHF1bU50WVhrZ1BnWWpUa2htQlIxV2NJdlJZNlk1a21BU2VfNkUwV1BnbVRxNi05TmtOdFBCX2hteF9QSE9XMkdiLWptelZrcFJXZ0Y3TG9ST3hmWjFRYmNWZUdRMmFEeHQyZ1ZqMjBmVUZEa244SHNqUXg1UUI0Vk9POVA0cTdXZ1JrV1QzUzhrRENDaGllUFZ6Q0ZkaWIyY294ZTBfQkROWDZDQjhOLUpBaWVWalV2bUZpVFJ4bm1UcmRZaDNYN3FMdmpzY2QwMGYtTDViYlQwSEh5RnZPaUhaTFRORi1kdkliWTY3UnFUUkV0?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793999615000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Pompeii Wardrobe Sealed Since AD 79 Opens: Childhood Amulets Left Behind in Ash - Tech Times",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPUVp6VW10ajJ6Mk04TDZCZGR0UE5FVHp5RVRYN2FCQTVmMDk2dEQtX0lZMDR2VkFkb2ZXUl9sYWhqWm5iY1g1MEZ5bjdGYS1qYTdYLThmUWlxeVRqay1WbmNRaHo0Yzh0M3NYUEptdkFTdjB2NGsyYnFCYXlYckdvcWxoeFVqcGRaTzktWUVhNTc0am1aWWdERE5qelNoZzIwal9LZk96Y2JOSGZid3oxczFNTG9hOW1wNVRHbG1aMmNnUEUzM1RCOTlB?oc=5",
+          "domain": "techtimes.com",
+          "published_ms": 1793337129000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pompeii",
+        "daily_views": 2140,
+        "ratio": 0.87
+      },
+      "youtube": null,
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 66,
+          "reach": 67,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 51,
+          "source_quality": 65
+        },
+        "total": 72.9,
+        "newest_hours": 52,
+        "domains": [
+          "smithsonianmag.com",
+          "techtimes.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (1 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "World's oldest shipwreck discovered off the coast of Turkey",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        61,
+        80
+      ],
+      "hook": "Divers off the coast of Turkey just found what is officially recognized as the world's oldest shipwreck.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Shipwreck",
+      "commons_query": "ancient shipwreck underwater archaeology",
+      "youtube_query": "world's oldest shipwreck Turkey discovery",
+      "evidence": [
+        {
+          "title": "Shipwreck believed to be the world's oldest discovered off the coast of Turkey - ABC News - Breaking News, Latest News and Videos",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNZTZLdkNZbHM3UUNndHNFbUJRM3Z1WnZuaVJId1NfVzkzaU9XSVl3ZWd1QWt5ZE96UGdXd29zYWh5RGlnVHZfSjRmYnRzOTJwZVFSVGNNaDRhTmt6M056RjZHTm5SX0FHX0ZpVlBST01oVHBwNXBfVndCUVNRZmRoamFYY3VSblBwOW1NUzVKRDJxUjlrOEJTV0EwdU1JYzZTV2VxaXR0T2J5eUNRVlZMS1B4NNIBuAFBVV95cUxPQzRuSkE2cGx1NDVOUkQyeUh4QzVTOVdPT0hWNVhVOWNpRVJ6bmZZbEl5UHZOYmNqbzhwVE1GOE96SzZJSjNTM1R1dGVpNFlXOVZFaGFKM29zbFp1eVdYRHRsRnQ4NlpsTy15U3hUTUpBQmpYdkp5d3J5UXBVaFN3NmFUdjEteEJWOGNaX1BuTGk3bTN1ZnVQa3p3V1hoN1FfdzFDMlUyQWtqci1GbTRMaEtlR3VFOENo?oc=5",
+          "domain": "abcnews.com",
+          "published_ms": 1794094543000,
+          "kind": "news",
+          "id": 61
+        },
+        {
+          "title": "World's oldest shipwreck discovered off Turkey coast enters Guinness World Records - Слободен печат",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNTHl5OVc3aDhjaGszVC05Uzk1RTY3ajNjSnduOE1POGRDckNYaXZBOEppVENaSEdFSHJfenJYYnBXcFNQYVI2bzlyYnJHNHdZc2t1ckZ2OGh4a3Zia0FwM2ltalRhenE3T3NuV3U0SHZaR2ozeW9NLXV2TEZyNkNqcERUMTBMemtSMENVV0Q4SkJBY3RXcTJZazhQcWttU2h0TkNJVkd1X013UHIydks4RDNSOXB0NnEwMXZER29tMDlsSTB2Zms0WA?oc=5",
+          "domain": "slobodenpecat.mk",
+          "published_ms": 1794056501000,
+          "kind": "news",
+          "id": 80
+        },
+        {
+          "title": "Archaeologists may have just found the world's oldest shipwreck - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5UdGVKUm1RWGVQeFd0VVZOY1pJTDBNVC1WMUFQUTBNVURMR3hYekFkRUtNaFU3cGQ5b0l4V3RZUTRfV29GTnVtSlhhbFdKUWgtdnNlRDJ4TDNyN0VldmlkYmNOQzVRR05Qay1KbVpxaw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        },
+        {
+          "title": "Evidence of what may be world’s oldest shipwreck found in underwater excavations off Turkish isle - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE1wcDBMNEozSC1RZ3QyZmRuMlI5X1RiVHBIaWU1UktwQUVnZ3p6NDZyZG5wNEZpVjl4cllPQUZ6cm81S3lrbGNNM1NRNnZ2N0gzbUZRZXRoWjBtdzZB?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1793488287000,
+          "kind": "news"
+        },
+        {
+          "title": "The ‘world’s oldest’ shipwreck found off Turkish coast - www.tcnjsignalnews.com",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNY0M3RzBEdHBGQXdLX195bzdleEw1QXJEUDAwNU9qQlJla0xlcmxleVVzeWVxZTFlZUQ4clJwd1NKUkdkeUowUmJTRDlZYlpZd1A2aTd5U1hJbnVyVHlnRlpVRTZtempjYm50MjEwd0pXYjNHRnJ0a180RnJMZ3pNbEpLRmRfM2lCY3VCS1B1akxHREVfUDZCZnZXbXVvS0U?oc=5",
+          "domain": "tcnjsignalnews.com",
+          "published_ms": 1793325000000,
+          "kind": "news"
+        },
+        {
+          "title": "Meet the Turkish archaeologist behind discovery of world’s oldest shipwreck - TRT World",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9XbFRjcHQydE96RktCU3hvaFFHU253R0ZISHlTYXdWNXI2dHRneEFEamJVT205ZWlQdmppZmZJb0hLNEdhcjRyTHBPY2EyQ3YyN0R0LUVRZVQ?oc=5",
+          "domain": "trtworld.com",
+          "published_ms": 1793018669000,
+          "kind": "news"
+        },
+        {
+          "title": "Meet di Turkish archaeologist wey discover di world’s oldest shipwreck - TRT Afrika",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1hbi00RUpRajRSSkNhdHpndE4weHFiakprYUV2aHVMTTFyNWhaelRZejNod2o0dFZuWXFjQ29rYm5ucGdsNmotNE1UdmRLR1R0eFdDWjIxOW5aQ2w1ei1wNEtXRktyZmpHUDhBcFV0TQ?oc=5",
+          "domain": "trtafrika.com",
+          "published_ms": 1793487305000,
+          "kind": "news"
+        },
+        {
+          "title": "World’s oldest shipwreck enters Guinness World Records - Hürriyet Daily News",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZHVsUjR2ZnV0NGZlU1REdkxqOG5OdnNyQUdLVDN0RXBhdHQxRE1nMWJOMGZMdnAxTkdpeFpsSFI2dkpLVmR6MFlKeWRkUTVwb3F5X3N5eVhfZTZFaUF2a1FtWW9talhTajBBcWZvd3RodlNiMFdMUHhNdzBjQy1Nc0Y3c3RYOWNkalFTN3pTZ3NudURfbzVWRGh3?oc=5",
+          "domain": "hurriyetdailynews.com",
+          "published_ms": 1793859556000,
+          "kind": "news"
+        },
+        {
+          "title": "World's oldest shipwreck discovered off Türkiye's coast enters Guinness World Records - Anadolu Ajansı",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOSloyY29Ic1RQN3Q5UXhWemZGOVB1WTV0akRCSEhKUnItOU93ZnBkVmR1X3FNanExa281VlJ0aEk3Mkk2UWFiLThydmZfQmM0QXdGeHducEx5VEFkbko0dzlNZUxLeVk2cl9oMU1VQzNkVHlhSjdJcUJXQnJxX25jSkotU21KbUdvbUZvSUt1d3AwdDQzbG1tb1VBUHBTcnRrQXVBbnZhb0tXc0FFcG5SdEhRZWRRZXgtV19YZFlJS1lNdw?oc=5",
+          "domain": "aa.com.tr",
+          "published_ms": 1793788747000,
+          "kind": "news"
+        },
+        {
+          "title": "World’s oldest shipwreck discovered in Türkiye dating back nearly 5000 years - News24",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPVmdGRG9LazhpZWVzaDBOQk9MZnh4V0RVZGtkbnpjREpQVDNSNHI5c3NwUUtmeExaYkpRWDdOYThickdPT1U3dWtaazdHemJPQjNNVWtENGVnM25pUzR2TnpWelo5b2FlMVliQXJmbGFyeGdwbjEtdU02REhMU3JXOHltSjhFdHgybGl0akFCX2FXQmg1MGRTY25qbzgzVkttWFczWG9KNGNYcGlybHZtekFlaDIzTWNBR2JhNF9fREZwdFNpNVNfeFgzMEpFWWxz?oc=5",
+          "domain": "news24.com",
+          "published_ms": 1793462985000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Shipwreck",
+        "daily_views": 215,
+        "ratio": 0.76
+      },
+      "youtube": null,
+      "commons_hits": 8,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 47,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 72.8,
+        "newest_hours": 26,
+        "domains": [
+          "abcnews.com",
+          "slobodenpecat.mk",
+          "sciencedaily.com",
+          "jpost.com",
+          "tcnjsignalnews.com",
+          "trtworld.com",
+          "trtafrika.com",
+          "hurriyetdailynews.com",
+          "aa.com.tr",
+          "news24.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Playing cards found in a Mongol invasion shipwreck off the coast of Japan",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Divers exploring a sunken fleet from the Mongol invasions of Japan made a startling find: actual playing cards.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion artifact",
+      "youtube_query": "playing cards Mongol invasion shipwreck Japan",
+      "evidence": [
+        {
+          "title": "News - Playing Cards Found in Mongol Invasion Shipwreck Off Japan - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcXBPZ25fOF9NaF9pVGRNVWZxWmd6T1prdnVIRVBFYUlOVVhEQm5SNUxQcjR4d0lDMXZKUmpjTDBMY25YSnpPRExFeTlxS2UwTWEzYzBYWW9oejJtOVhTcFl6RUtNZ1JQOTJuMnZLUTNFREhVc0VWamNrdjNwVjZVQW85WDBDSmU4QVNvM3lGX2RCX0FGR2FvRFdNdHAtcEt2?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793994330000,
+          "kind": "news",
+          "id": 98
+        },
+        {
+          "title": "Dice and Game Tiles Found Aboard a Mongol Warship Sunk Off Japan in 1281 - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZ3ZYUVkxc2U4MDhfRmxYVE5UNDEyVDJpTlJ3ZVExbmNoODMwNXZFeUEwdjlBSjNGdUFVbndPXzYyZlZPbnpCLWhFUEdaSkNWRVc1eXNoczdLaUxTcnlzVU00ZGEta2dNVmhsWl9yY1haSHhabFFIbjVrMWFjckxqRGg5bHl4OWdackIxQTlmRndtam1UXzNNTEN1ZWFjeWZCcjFxMVFMd01DaFRNZTZTYw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1793898815000,
+          "kind": "news"
+        },
+        {
+          "title": "Dice, mahjong precursor cards found in 1281 Mongol invasion shipwreck off Nagasaki Pref. - 毎日新聞",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBESXhsaUt0Tmg2SG9qSWZqYUhSRWhWZ1FDQ3VsWnpvcnBfR0FwbFNGVXVDQlA3M2pQY1FwWExmdEdCRmdQX0JPVjdkeHVjdEZmSWVMTjd3STRrOGxCYllxSG1XeHYyZWszM19SeVdXS29pODg?oc=5",
+          "domain": "mainichi.jp",
+          "published_ms": 1793779074000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 15,
+      "score": {
+        "factors": {
+          "momentum": 74,
+          "reach": 53,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 72.3,
+        "newest_hours": 54,
+        "domains": [
+          "archaeology.org",
+          "ancient-origins.net",
+          "mainichi.jp"
+        ],
+        "trusted_domains": [
+          "archaeology.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Fishermen rescue a cruise ship pianist who fell overboard and swam for 9 hours",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        22,
+        32,
+        37,
+        39
+      ],
+      "hook": "He fell off a cruise ship in the middle of the ocean and survived 9 hours treading water.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "cruise ship pianist rescued after falling overboard",
+      "evidence": [
+        {
+          "title": "Cruise ship employee found by fishermen treading water 20 miles off the California coast - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWlhCd1pjRGNBdVphRmZydGVMZGVJSFZVZXFyZmp4SThHRmVuNl82emY2OU55YS1yT0xZUU85Y3plcTZIS3o3OVNjV2FLeVI3SzZGdmY4TjhDbkxxTWk0cWVYMU1qc0YtaV9aVzd4R1RGZTN0dHBrOXBRbzZ6QVhwWFM0ODVVdVZDYXgwZFRNSU5Mb1Z5VUVpT1NSaGV6cW0xdFFKWVdQZU9YX0xSN3ZOV2g4R1Z6WDJUaGhhOQ?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794185280000,
+          "kind": "news",
+          "id": 22
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - People.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaWxzZWhVdDhGTVRENTdHN3NIZ0I1eWV5NmRtNDY1OUI0dGhUb0Z2SDc2OUdudlNQNkNZaFY1UjZ5WWtxQ1FyUy1UYkpnOG1hYmpqTmlHNGFVRzF5SXVWSzBkRXhYOEdLdVZrOE1Rdl9NdGdRb2NhRXpDb0ZySkYwbmZCZjNKdS1mQnBHQXZ5bkk0RXNSTGdtYVJtU0cxejVx?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794163936000,
+          "kind": "news",
+          "id": 32
+        },
+        {
+          "title": "Pianist who plunged from Royal Caribbean cruise ship is found on brink of death 20 miles from coast by fishermen - Daily Mail",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPZHJoT0t4bUpXNlFSUkx1dEZvWTROLWJuVDhveVVEcXctSEZDUi00SkF2S2ZraWoxZEZfbTl2bEJzVXo2UEdMdzVUV3VCWmhmM2VIUmlIVEthMG12bUpneDRmd21wXy1oVktkRi1DbWEzS0YyQUh1SWNOaW5MRXhubXkxUy1pVm1ZYWpqYS1hOG50UjIyTGhmUEpvMzVRU0V5djdzRWliZGMxS29GZ2fSAbMBQVVfeXFMTVg5Tmg2T2k1LWxJUGliaUVraGZVWEd2ZnFuSVpGckJ5eWc5WEZ5YUJ1elBYRXVGYzcxS1ZnSWdLN0NITDFiYzc3MFU3elNtOGpPcEhpanEtWDBUQXRrTGh1RGp0SjJTWXFBbGp3dWF5WUt2b09YcVd4X01DRkp0d2NCcGgxWDdlNjZ2eTBKMGNoWktid3RFNW01TlhpbGNMa3dUblVja1RSUDRJckMwc3kybzA?oc=5",
+          "domain": "dailymail.com",
+          "published_ms": 1794157150000,
+          "kind": "news",
+          "id": 37
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - 9NEWS",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX0FVaGRjejRjSnpqLU92dlhBc29hYVNWVXhLTmR2UHc3ZURBazNjMlFac0hwTzNMOEtNemVjeXE1TzRzNTJoc1RHYTNlME9iYTBGOXlsRFRnZTYwZ29UR09RU2RLUGpvcDR3UDdueGk4X1p6QVVvTFBzVWVtV1BYOVFpaDBYd2dqcjNPM0Z1M1hET1lZQUwySmdXYjA1UTc4T0k5UEsyTDU3Zk56V3diZGU3TmtMWTZqRGlQbDctaEV1enV5aUFOZ1B1RG9Fdk5MbzVibzk4RjE0cXc?oc=5",
+          "domain": "9news.com",
+          "published_ms": 1794153480000,
+          "kind": "news",
+          "id": 39
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQRU9sOTFtMTF0a04yM2NpcW5TV2xyV2QxWlNyc3o1bjF5ZlVfT1IyUzlPNk0xU3FWT3RGZnBoVERvbTdGV2Y4VDRwNXVidkRUMGpMb3VpQVNnMUo1Q0hSWW9Obk9OQ3NkSXdTNTlzRElQdUozOU5pZ2hKM0VjYjRhVzNvc1o?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794163936000,
+          "kind": "news"
+        },
+        {
+          "title": "Survived 9 Hours in the Middle of the Pacific... Pianist Who Fell Overboard from Cruise Ship Dramatically Rescued - 아시아경제",
+          "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE02dmdIT2Fack9SLTQxbzlLcmZrTnFMWUd0TG1HUHpiQ0x4R3BKQjJGN0tHS0hzNFgzeFRTX0E3WGtQTW1OektpZExYeWl1TUpXdGtmVUtqYUY1ZHlBbmNfRHJOazE?oc=5",
+          "domain": "asiae.co.kr",
+          "published_ms": 1794186178000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 68.5,
+        "newest_hours": 0,
+        "domains": [
+          "independent.co.uk",
+          "people.com",
+          "dailymail.com",
+          "9news.com",
+          "aol.com",
+          "asiae.co.kr"
+        ],
+        "trusted_domains": [
+          "independent.co.uk"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "WWII ship sunk by Nazi spy sub discovered off Maine",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        75,
+        82
+      ],
+      "hook": "Divers off the coast of Maine solved an 80-year-old WWII mystery by finding a long-lost sunken ship.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Sinking of Black Point",
+      "commons_query": "World War II shipwreck underwater",
+      "youtube_query": "WWII shipwreck discovered off Maine",
+      "evidence": [
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 75
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 82
+        },
+        {
+          "title": "Shipwreck found in Gulf of Maine more than 80 years after WWII sinking - Portland Press Herald - Maine Sunday Telegram",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBueDc1dkNwUFZ3Q3lXelJSdnlWMGVLcVl5eTlQU28wSjAzQ3E3TFF3RnptdnY4cUR6cmQwLWc0U2x2d0xNZ3k4Z0QyN0gwTW8?oc=5",
+          "domain": "pressherald.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "An infamous Nazi sub sank a ship in 1944, days after landing spies in Maine. The wreckage has now been found. - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1ySnU0eEVBNlBoSHNNMWRaYXF2U2NhNlhSN1pNNU1VOWEwSW1MMnBRRDdCc3ctTHJ1clRtTG54Wk91VVNuRl9VMGdwY2ZYWEk0dWdQTWdyTnJwazI0NzZOSXdsWl9ORXphbzJYalo4Z0JjZnpOOA?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 99,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 68.3,
+        "newest_hours": 28,
+        "domains": [
+          "gizmodo.com",
+          "bostonglobe.com",
+          "pressherald.com",
+          "cbsnews.com",
+          "ua-stena.info"
+        ],
+        "trusted_domains": [
+          "cbsnews.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A metal detectorist searching for a lost hammer found Britain's richest Roman treasure",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        57
+      ],
+      "hook": "He was just trying to find his lost hammer, and accidentally uncovered the richest Roman treasure in British history.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Hoxne Hoard",
+      "commons_query": "Hoxne Hoard",
+      "youtube_query": "Hoxne Hoard metal detector hammer",
+      "evidence": [
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQWjlpQ3Z0Q21KZUhyVjZ1Qk1pUzhJUFlQTFRhd0Fpa0JnbGRyNW1salRnOGNjVFNCc2NzcGJPQnNuVDh3VU1hWms1MVFTdG11eUpWU2VkelFBSzI1d01TTWM5YzZuMjQwZDRPbWZiQm44N0JoZS1DNHFwUTBIbkQ1VFpwMA?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794123420000,
+          "kind": "news",
+          "id": 57
+        },
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - Earth.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa013Qm10VjJySzZUV0pGLTZhOWUxSnNReUJqNnoyOG5JZzAxZVA0Uk5rdC1EVVdRUG10dmw1aUFtT2Q3elU2bTZDTE5MbEhNU0JKQWNFd3ZyRHhqRkxDdDRNWVlmcVc4VkItTHVtZVFqYXRYOHJhd0lYOXY0MmwwTjhsZUtKendXOGNCbWlkZW9aRjYwVXVGNlFubmgwSVgyTTktUkktRDRyTUltRkE?oc=5",
+          "domain": "earth.com",
+          "published_ms": 1794122520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Hoxne Hoard",
+        "daily_views": 46,
+        "ratio": 0.84
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 33,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 67.8,
+        "newest_hours": 18,
+        "domains": [
+          "aol.com",
+          "earth.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "2,500-year-old tomb containing 10 mummified crocodiles discovered in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        30,
+        32
+      ],
+      "hook": "Archaeologists opened an ancient Egyptian tomb and uncovered ten perfectly preserved mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "Egyptian mummified crocodile",
+      "youtube_query": "mummified crocodiles Egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 30
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 32
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 67.2,
+        "newest_hours": 6,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Board games and dice found on Genghis Khan's grandson's sunken ship",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        48,
+        74
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion fleet found perfectly preserved gaming pieces from the 13th century.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasion fleet shipwreck artifact",
+      "youtube_query": "sunken mongol ship artifacts dice",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 48
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 74
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 53,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 40,
+          "source_quality": 65
+        },
+        "total": 66.8,
+        "newest_hours": 21,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Treasure hunter strikes gold with 1,000-year-old artifact linked to the 'Hand of God'",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        159,
+        160
+      ],
+      "hook": "This incredible 1,000-year-old Viking treasure may have literally touched a saint's hand.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Viking art",
+      "commons_query": "Viking gold treasure artifact",
+      "youtube_query": "1000 year old Viking treasure Hand of God",
+      "evidence": [
+        {
+          "title": "Archeologists Found a 1,000-Year-Old Viking Treasure That May Have Touched a Saint’s Hand - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdmlVclRKNTNicXFEZTdubE9oTXg4dEstbXJfdGhIRzFxVTlJY0p3TENQTEdmdUpoMnVOM1JQTHFhMVAyR1FYa01sempjbzlBQ1dZS3poUENJVTd5NnZRVUQyeFVBUXJXMVdWNFdYTUwyclJfLTAwQ2w4WkEwNFl1R2RROEV3WVdnMDMxM3NXdklSQ0E?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793629800000,
+          "kind": "news",
+          "id": 159
+        },
+        {
+          "title": "Treasure hunter strikes gold with 1,000-year-old discovery linked to 'Hand of God' - Fox News",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQU0dxQ0JiZXlSTWM4c1RKcmR1bkdwb29GakRyUzVjMUwteUYxLUd0cU02MDdXcFZYMmpBRnJuV0RZRjVyeTd1UVNFTnZlTktzN0Q2Q0V2cGt2VlF3d2ZiS3B0WnJxajRFUzhqMHdRbTFpYzhVN1N6THY3TFZNbExCanEwRm9ZYkxvY0VaQkJkR0pad2hDNjRuWThGX3lnLV820gGmAUFVX3lxTE0tLUdoRVdidkFPSVk2dS1PLTBwc29aUVhmRG1hWWZqZEN5WkN6SjVwdnlzaWhveTZiLUp5WnZmWnNWaW1PcVh4TXJnRF9zNlhEYnpZNWJUeTdtWmxlNFV3N3RIdXZGRGl2LW94Tk1aZGxJM09uQ1FpdnVDLS1xdlpsZ1l5bldDU1NLT0lOdlFaT29pLUU0S0VtMHo5WW9TdzdkTC1jQWc?oc=5",
+          "domain": "foxnews.com",
+          "published_ms": 1793624428000,
+          "kind": "news",
+          "id": 160
+        },
+        {
+          "title": "Treasure Hunter Discovers 1,000-Year-Old Gold Pendant Linked to ‘Hand of God’ Near Downton Abbey Film Set - People.com",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPaUlTRlpKQ2xLbTF2VURnaFREMTdGUW1iZkZQYWVnM0liMnE3OWdMMkowdzRtaFZiMmRHX3dseTZxRXVCS3UwRHgwOUlIdjdWNlQ3ZXdTTFlQVWpta2ROYlEydlptMXBRaXBQMEk3WWVJTGtjVXAteGZtY2pRSXpnSUNEX1JZNFBqaWdyTmJFZ0FwRXdxSFFBeHlKdENkcXpIMGdFRjJB?oc=5",
+          "domain": "people.com",
+          "published_ms": 1793699012000,
+          "kind": "news"
+        },
+        {
+          "title": "Treasure Hunter Discovers 1,000-Year-Old Gold Pendant Linked to ‘Hand of God’ - Beliefnet",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOcUc5UDNMTHV3R19YbmpBTGFUTDBCZjVCOVlDRkozN1dUWnlva0wwSDNkTDVhYzZGWVlwOWg5dmVuYVdGT0VjN1dYVEZsd2g4ZFdnektYcDczc2dYVzNoRmNlczM0VXdDSE9yeWN0aTEyTFVvWHg0aEtjUERaQW1GV2hFZzlwT0xHNVA5UzNkWkRUZnNqcTA3bC02X2JZWXZMRjFHUkd1NlFpcjRTdllHRTExYkZJYXJ5a0FYQnZBQjZnTy1hNmg2X1UwdDZBVXFvaHFfTjI4cw?oc=5",
+          "domain": "beliefnet.com",
+          "published_ms": 1793716611000,
+          "kind": "news"
+        },
+        {
+          "title": "Gold ‘Hand of God’ Pendant Unearthed After 1,000 Years - Charisma Magazine Online",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOd0dGVEFYOFpMeU1VTkh1VkVOem1nRXhwTmpSWmdlOVl4Q2ZaR3c3SlJEZ2h1WFI1Y1lvUUl5amlJSXI5aVdZU3JYRXZaMXJtd19jWDFMclpVek1UZ3NNZldYSEQ3TlloY0ZPRlBlX3VsVEV3a2ZLdUFJTVdMOGJmc0RVS0EtTEZ6UThF?oc=5",
+          "domain": "mycharisma.com",
+          "published_ms": 1793653665000,
+          "kind": "news"
+        },
+        {
+          "title": "Metal detectorist finds gold pendant that may depict the “Hand of God” - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOakdvNEtTdDVEcF9nRGxQQ1ZxYlRSVjdMaVZ4MUY3V2gtNlFsWG1xV1RZZVN6N2M5TFE5bmxBdE5lMDBjVHBPQjZkQURJaGFJY2FCMkFsLU0wTkRMYmI5ZU5ILWxubGVud1ZxS3NsVUNtcFdIdHJEdnRlVUd5ZkREVXFHWVZnS2Z3elE?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1793625807000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Viking art",
+        "daily_views": 59,
+        "ratio": 0.41
+      },
+      "youtube": null,
+      "commons_hits": 4,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 30
+        },
+        "total": 62.6,
+        "newest_hours": 131,
+        "domains": [
+          "popularmechanics.com",
+          "foxnews.com",
+          "people.com",
+          "beliefnet.com",
+          "mycharisma.com",
+          "mezha.net"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too few freely licensed images (4 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Colorful 1,800-year-old belt buckle reveals a nomadic equestrian warrior's life",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        142
+      ],
+      "hook": "Unearthed in a Ukrainian forest, this dazzling 1,800-year-old belt buckle belonged to a forgotten nomadic horse warrior.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Nomad",
+      "commons_query": "ancient belt buckle archaeological artifact",
+      "youtube_query": "1800 year old belt buckle Ukrainian forest",
+      "evidence": [
+        {
+          "title": "Colorful 1,800-year-old belt buckle discovered in a Ukrainian forest may have belonged to a nomadic equestrian warrior",
+          "url": "https://www.livescience.com/archaeology/colorful-1-800-year-old-belt-buckle-discovered-in-a-ukrainian-forest-may-have-belonged-to-a-nomadic-equestrian-warrior",
+          "domain": "livescience.com",
+          "published_ms": 1793827720000,
+          "kind": "feed",
+          "id": 142
+        },
+        {
+          "title": "Colorful 1,800-year-old belt buckle discovered in a Ukrainian forest may have belonged to a nomadic equestrian warrior - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOZ3RlSG02YVNkVXlaM1RmdldrX2twOUZrSVpZNUhqZzRndXRrcXg1N21SMlc4YVBXU3EyWl81TzAtVTIxbFg3TWFOWWJSUFhINkFNQTNoUFhGc0lZU1ptSkZ5eS13NDZUZHc2bUNGQTNiaEh1Vkw5QTJWZmU0YXMwVDhsc24wbjBER2MwOFpKc3lJNS05NlRIaERuZ0w0cFIzUC00UndWXzExZnZkNTJlODBhR2V4cllNa1NCRHk2QjFxZGNnX1U5dU5jZEsxUFpBcGtsZGNnT2VRdi1Ma0VnNWszYWFCbTNSUW1zVkJ5RQ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793827720000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Nomad",
+        "daily_views": 469,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": 9,
+      "score": {
+        "factors": {
+          "momentum": 49,
+          "reach": 53,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 61.4,
+        "newest_hours": 100,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Roman 'drug stash' hidden inside a hollow bone discovered by archaeologists",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        119
+      ],
+      "hook": "Archaeologists found an ancient Roman medical secret: a hidden drug stash packed right inside a bone.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Medicine in ancient Rome",
+      "commons_query": "Roman medical instruments artifact",
+      "youtube_query": "Roman drug stash hidden inside bone",
+      "evidence": [
+        {
+          "title": "Archaeologists Find 2,000-Year-Old Roman ‘Drug Stash’ Hidden Inside a Bone - ZME Science",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQdFVRb2k4VGdBcWZteFh6Q1ViZ0lBVVpsWHE1d0pHOXctYVlMd1hsclg4djZKcm9zQ3FhTmI4MGp0OWxxOXJwUVNhTXlrMDhtQ3NlblNWN1ZJTnVhSjRERlZocGtGWWdSbVFpTDRVSm55YUpfd3lyM0VxN05ycW5IdWJ1U1FSaU9zb3RVSDNB?oc=5",
+          "domain": "zmescience.com",
+          "published_ms": 1793913320000,
+          "kind": "news",
+          "id": 119
+        }
+      ],
+      "wikipedia": {
+        "title": "Medicine in ancient Rome",
+        "daily_views": 52,
+        "ratio": 1.1
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 54,
+          "reach": 34,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 0
+        },
+        "total": 58.8,
+        "newest_hours": 76,
+        "domains": [
+          "zmescience.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "World's first whole eye transplant announced by US surgeons",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "Surgeons achieved the impossible by performing the world's first successful whole eye transplant.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Eye transplantation",
+      "commons_query": "",
+      "youtube_query": "first whole eye transplant NYU Langone",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794187466157,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": {
+        "title": "Eye transplantation",
+        "daily_views": 18,
+        "ratio": 1.06
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 26,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 55.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "600-year-old gold ring with Gothic loyalty inscription found in Dutch moat",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "Hidden for six centuries in a filled-in moat behind the Dutch parliament, this gold ring resurfaced with a single secret word.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Bespoke ring",
+      "commons_query": "medieval gold ring archaeological find",
+      "youtube_query": "medieval gold ring found Dutch parliament moat",
+      "evidence": [
+        {
+          "title": "Hidden for 600 years in a filled-in moat behind the Dutch parliament, a gold ring has resurfaced, and the Gothic letters set into its band spell out a single word about loyalty - ECOticias.com - El Periódico Verde",
+          "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZHBWSlQ0RlRhNVpMLUZaWFdhRDFZcV81NkRfcWFhNEdyWGdSUEpoZkR6MVhMSzZ5YkZLcDRlTHFqYW54S2NId1ZId3RwdmluSl9zcmVRUkNGYmE3MVNRVVBqOXdfQ2xMSE8zaUM3SVFWZENlWWRBeVAtU29DTGdxbWxnNU1VeFlnYlFBRE94X1k0VTM0ZTdkUFFkSmt1Z2k5OGlDcno0S1dBTjVxSmp5bjdicW5OV1dHbXM2VHhIbDhvelJwdE55ZWs4OG04UGJwb2FVYzhJODJmby0tbzVmMU4wU085THllRlZMM0o1V3RQNUtEcDVqQlpza1RTeS1zeHFVclhxNnBSWjNGd0dKTURGZ1E1OEJHVm1jdVp0b2pIWEdQdW03NS1CNU5CSk91MVdWTw?oc=5",
+          "domain": "ecoticias.com",
+          "published_ms": 1793840400000,
+          "kind": "news",
+          "id": 92
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 56,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 51.5,
+        "newest_hours": 96,
+        "domains": [
+          "ecoticias.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A mysterious U.S. army barrel washes ashore in Quebec, sparking anthrax fears",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        102
+      ],
+      "hook": "A strange, weathered U.S. military barrel washed ashore in Canada, triggering immediate biohazard concerns.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "US army barrel washes ashore Quebec anthrax",
+      "evidence": [
+        {
+          "title": "A mysterious U.S. army barrel washed ashore in Quebec. Why did it drum up anthrax concerns? - CBC",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQTTNEX0hBSjAxQU5CMmpjcUo4Q3NLanRlRzBPSHRPS0RCOGkxUkRieXZTRTdvZDlKcXNJRlF1WUVYV1BWUXA2R1otRk9Ob1JfeC1HNVprSWRHNXdrLWpua1piQmVVajI4ajNYcWNleDYtUXdtdWZJd0xiT21jMHl0Q2RMNGJJbzRVWXV2V0M5d1NXX0E?oc=5",
+          "domain": "cbc.ca",
+          "published_ms": 1793988225000,
+          "kind": "news",
+          "id": 102
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 0
+        },
+        "total": 48.5,
+        "newest_hours": 55,
+        "domains": [
+          "cbc.ca"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "score 48.5 below 50"
+      ],
+      "wave": 2
+    }
+  ]
+}
