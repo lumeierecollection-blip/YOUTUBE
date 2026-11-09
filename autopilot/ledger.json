@@ -428,7 +428,12 @@
       "attempts": 1,
       "run_id": "42538745489",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:10:46.330Z"
+      "updated_at": "2026-11-09T00:12:25.546Z",
+      "stage": "research",
+      "topic": "Garry Kasparov Becomes World Chess Champion at 22",
+      "score": 66,
+      "pillar": "Forgotten historical figures",
+      "hook": "At just 22 years old, Garry Kasparov shattered chess history by dethroning Anatoly Karpov to become the youngest world champion ever."
     }
   },
   "uploads": [],
@@ -738,6 +743,15 @@
       "at_ms": 1794179991980,
       "score": 56.6,
       "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "1",
+      "topic": "Garry Kasparov Becomes World Chess Champion at 22",
+      "slug": "garry-kasparov-becomes-world-chess-champion-at-22",
+      "slot": "kick-7d271be20d-ch1",
+      "at_ms": 1794183145545,
+      "score": 66,
+      "pillar": "Forgotten historical figures"
     }
   ],
   "attention": [
