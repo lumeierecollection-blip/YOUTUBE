@@ -3,10 +3,10 @@
     "ZFhtdVwK2zQ": {
       "channel": "1",
       "privacy": "private",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T09:59:58.930Z"
+      "collected_at": "2026-11-09T10:01:43.596Z"
     },
     "IIdYdKKUiRM": {
       "channel": "2",
@@ -14,17 +14,17 @@
       "views": 0,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T09:59:59.362Z"
+      "collected_at": "2026-11-09T10:01:44.024Z"
     }
   },
   "analytics_status": {
     "1": {
       "available": true,
-      "checked_at": "2026-11-09T09:59:59.188Z"
+      "checked_at": "2026-11-09T10:01:43.816Z"
     },
     "2": {
       "available": true,
-      "checked_at": "2026-11-09T09:59:59.421Z"
+      "checked_at": "2026-11-09T10:01:44.091Z"
     }
   }
 }
