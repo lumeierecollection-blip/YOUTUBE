@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Meta Ray-Ban smart glasses hacked to run unauthorized apps",
+      "score": 65.9,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/meta-ray-ban-smart-glasses-hacked-to-run-unauthorized-apps-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a tex"
+    }
+  ],
+  "selected": null
+}

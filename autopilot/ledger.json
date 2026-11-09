@@ -439,16 +439,17 @@
     },
     "kick-622fc2e35c-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42538785590",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:20:29.932Z",
+      "updated_at": "2026-11-09T00:21:56.497Z",
       "stage": "script",
       "topic": "Meta Ray-Ban smart glasses hacked to run unauthorized apps",
       "score": 65.9,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Researchers just hacked Meta's popular smart glasses to bypass security restrictions."
+      "hook": "Researchers just hacked Meta's popular smart glasses to bypass security restrictions.",
+      "error": "1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/meta-ray-ban-smart-glasses-hacked-to-run-unauthorized-apps-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a tex"
     }
   },
   "uploads": [],
@@ -821,7 +822,8 @@
     "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1",
     "Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-st",
     "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio",
-    "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p"
+    "Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"vignette\",\"why\":\"corners kept 1.687 of their light, centre 1.187\"},{\"scene\":3,\"check\":\"photo-stability\",\"why\":\"p",
+    "AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, o"
   ],
   "last_poll_at": "2026-11-09T00:18:47.160Z"
 }
