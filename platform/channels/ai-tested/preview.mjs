@@ -5,7 +5,8 @@ import { runEngine } from "../../script-engine/engine.mjs";
 import { liveLLM } from "../../script-engine/llm.mjs";
 import { sceneTraceability } from "../../script-engine/traceability.mjs";
 import { buildTimeline, durationOf, FPS, narrate, publishFrames, technicalQa } from "../../production/index.mjs";
-import { runExperiment, sceneKindOfClaim } from "./experiment.mjs";
+import { spawnSync } from "node:child_process";
+import { assemble, measure, sceneKindOfClaim } from "./experiment.mjs";
 
 const EDGE = "en-US-AndrewNeural";
 const CALIBRATION = "The report was published in March. It listed three findings. The first concerned the cost of the programme, which rose by a fifth over two years. The second looked at who paid for it, and the third asked whether anyone had checked.";
@@ -33,7 +34,16 @@ export default async function preview({ key, runId, outDir, tools }) {
   process.env.MAX_TOKENS_PER_VIDEO ||= "2000000";
   const repo = process.env.GITHUB_REPOSITORY, runUrl = repo ? `https://github.com/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}` : "local";
 
-  const exp = await runExperiment({ runUrl });
+  // A test already run today is reused rather than spending the models' daily quota again; its own run stays the cited source.
+  const today = new Date().toISOString().slice(0, 10);
+  const earlier = (() => {
+    const g = (...a) => spawnSync("git", a, { encoding: "utf8", maxBuffer: 2e8 });
+    if (g("fetch", "--depth=1", "origin", "automation/previews").status !== 0) return null;
+    const files = g("ls-tree", "-r", "--name-only", "FETCH_HEAD", "previews/ai-tested").stdout.split("\n").filter((f) => f.endsWith("/experiment.json")).sort().reverse();
+    for (const f of files) { try { const j = JSON.parse(g("show", `FETCH_HEAD:${f}`).stdout); if (j.date === today && j.models?.length >= 2 && j.run_url) return { date: j.date, run_url: j.run_url, models: j.models, reused_from: f }; } catch {} }
+    return null;
+  })();
+  const exp = assemble(earlier || await measure({ runUrl }));
   tools.write("experiment.json", exp);
   tools.write("claims.json", exp.claims);
   tools.stage("research_complete", "ok");

@@ -8,6 +8,10 @@
  * Added here: the newspaper/document treatment and the dated historical map scene.
  */
 import { spawnSync } from "node:child_process";
+import { runEngine } from "../../script-engine/engine.mjs";
+import { liveLLM } from "../../script-engine/llm.mjs";
+import { sceneTraceability } from "../../script-engine/traceability.mjs";
+import { buildTimeline, narrate, technicalQa } from "../../production/index.mjs";
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { basename, join } from "node:path";
@@ -159,71 +163,63 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   tools.write("sources.json", { retrieved: new Date().toISOString(), wikipedia_article: WIKI_ARTICLE, files: Object.values(src).map(({ wikitext, file, ...r }) => r), place: { ...sarajevo, source: "https://en.wikipedia.org/wiki/Sarajevo (coordinates API)" }, map_data: "Natural Earth 1:50m and 1:110m (public domain)" });
   tools.stage("research_complete", "ok", { claims: CLAIMS.length });
 
-  // 2. Blueprint and script.
+  // 2. The shared engine writes from the verified claims. Each claim belongs to one picture, so the citations place the sentences.
   const claimsOut = CLAIMS.map(({ must, ...c }) => c);
-  const blueprint = {
-    central_question: "A famous arrest photograph from Sarajevo, 1914: whose arrest does it show?",
-    thesis: "The photograph is a primary source for the day, but its famous caption is a later interpretation that scholars dispute.",
-    why_it_matters: "A widely reproduced caption can outlive the evidence for it.",
-    viewer_start: "Knows the assassination happened in Sarajevo.", viewer_end: "Can tell what the 1914 sources show from what later captions claim.",
-    key_evidence: ["c1", "c4", "c5"],
-    beats: [
-      { beat_id: "b1", role: "opening", purpose: "Evidence first: the photograph of the couple at the city hall.", claim_ids: ["c1"], link_from_previous: "none" },
-      { beat_id: "b2", role: "context", purpose: "Where and under whose borders: modern map then dated map.", claim_ids: ["c2", "c3"], link_from_previous: "change_over_time" },
-      { beat_id: "b3", role: "development", purpose: "The primary report of the day.", claim_ids: ["c4"], link_from_previous: "chronology" },
-      { beat_id: "b4", role: "payoff", purpose: "The arrest photograph and what scholars say it shows.", claim_ids: ["c5", "c6"], link_from_previous: "contradiction" },
-    ],
-    questions_raised: [{ question: "Whose arrest does the photograph show?", raised_in: "b3", answered_in: "b4" }],
-    conclusion: "The arrest photograph is real; its caption is the disputed part.",
-  };
-  const pkg = {
-    provisional: "hand-planned sample, not from the script engine",
-    channel: key, topic: TOPIC, format: "short", target_seconds: 28, blueprint,
-    hook_options: [{ text: SENTENCES[0].text, family: "evidence-first cold open", honest: true }, { text: "A famous photograph. A caption scholars dispute.", family: "contradiction", honest: true }],
-    selected_hook: SENTENCES[0].text,
-    sentences: SENTENCES.map((s, i) => ({ sentence_id: s.id, beat_id: ["b1", "b2", "b2", "b3", "b4", "b4"][i], text: s.text, role: ["evidence", "context", "context", "primary report", "later interpretation", "later interpretation"][i], claim_ids: s.claim_ids, link_from_previous: i ? "chronology" : "none" })),
-    payoff: SENTENCES[4].text, ending: SENTENCES[5].text, cta: null,
-    sources: [{ source_id: "src-couple", url: FILES.couple.page_url }, { source_id: "src-wiki", url: WIKI_ARTICLE }, { source_id: "src-wiki-sarajevo", url: "https://en.wikipedia.org/wiki/Sarajevo" }, { source_id: "src-map", url: FILES.map1914.page_url }, { source_id: "src-nyt", url: FILES.nyt.page_url, published: "1914-06-29" }, { source_id: "src-behr", url: FILES.behr.page_url }],
-    claims: claimsOut, duration_estimate_s: 24, quality_report: { note: "not produced by the script engine; claims were string-checked against fetched sources" },
-  };
-  tools.write("script-package.json", pkg);
-  tools.write("story-outline.md", `# Story outline (PROVISIONAL, hand-planned sample)\n\nStory: ${TOPIC}\n\n${blueprint.beats.map((b) => `- **${b.role}** (${b.beat_id}): ${b.purpose} Claims: ${b.claim_ids.join(", ")}`).join("\n")}\n\nThesis: ${blueprint.thesis}\n`);
-  tools.write("script-draft.md", `# Script draft (PROVISIONAL narration: hand-planned sample, not from the script engine)\n\n${SENTENCES.map((s) => `- ${s.text}  \n  _claims: ${s.claim_ids.join(", ")}_`).join("\n")}\n\n## Claims\n\n${CLAIMS.map((c) => `- **${c.claim_id}** [${c.editorial_status}] ${c.claim}  \n  Source: ${c.source_url}  \n  Excerpt: "${c.excerpt}"${c.context ? `  \n  Context: ${c.context}` : ""}`).join("\n")}\n`);
-  tools.stage("blueprint_complete", "ok");
-  tools.stage("script_complete", "provisional");
-
-  // 3. Voice: one take per sentence, so scene timing comes from the audio itself.
-  let timing, narration;
-  for (const rate of ["+0%", "+6%", "+12%", "+18%"]) {
-    const raw = SENTENCES.map((s, i) => tools.voice({ text: s.text, voice: entry.tts_voice, output: `.s${i}.mp3`, rate }));
-    // The engine leaves a quarter second or so of silence at both ends of every take; trimmed, the pauses are ours.
-    const trim = "silenceremove=start_periods=1:start_threshold=-50dB:detection=peak,areverse,silenceremove=start_periods=1:start_threshold=-50dB:detection=peak,areverse";
-    const files = raw.map((f, i) => { const o = join(work, `t${i}.mp3`); sh("ffmpeg", ["-y", "-v", "error", "-i", f, "-af", trim, o]); rmSync(f, { force: true }); return o; });
-    const durs = files.map((f) => tools.durationOf(f));
-    const GAP = 0.2;
-    narration = join(work, "narration.mp3");
-    const filt = durs.map((d, i) => `[${i}:a]apad=pad_dur=${GAP},atrim=0:${(d + GAP).toFixed(3)},asetpts=PTS-STARTPTS[a${i}]`).join(";") + `;${durs.map((_, i) => `[a${i}]`).join("")}concat=n=${durs.length}:v=0:a=1[out]`;
-    sh("ffmpeg", ["-y", "-v", "error", ...files.flatMap((f) => ["-i", f]), "-filter_complex", filt, "-map", "[out]", "-b:a", "160k", narration]);
-    let t = 0;
-    timing = SENTENCES.map((s, i) => { const o = { ...s, start: t, end: t + durs[i] }; t += durs[i] + GAP; return o; });
-    files.forEach((f) => rmSync(f, { force: true }));
-    if (tools.durationOf(narration) <= 29.0) break;
-    console.log(`narration ${tools.durationOf(narration)}s at rate ${rate}; retrying faster`);
+  tools.write("claims.json", claimsOut);
+  process.env.MAX_TOKENS_PER_VIDEO ||= "2000000";
+  const SCENE_OF_CLAIM = { c1: 0, c2: 1, c3: 2, c4: 3, c5: 4, c6: 4 };
+  const calibration = await narrate({ text: "The report was published in March. It listed three findings. The first concerned the cost of the programme, which rose by a fifth over two years. The second looked at who paid for it, and the third asked whether anyone had checked.", edgeVoice: entry.tts_voice, outDir, name: "calibration", gravity: "serious" });
+  tools.write("voice-calibration.json", { engine: calibration.engine, wpm: calibration.wpm, seconds: calibration.seconds, notes: calibration.notes });
+  let wpm = { wpm: calibration.wpm, source: "measured", voice: calibration.engine };
+  const llm = liveLLM();
+  const claimSources = [...new Map(claimsOut.map((c) => [c.source_id, { source_id: c.source_id, url: c.source_url, published: c.published ?? null }])).values()];
+  let result, pkg, narrationInfo, attempt = 0;
+  for (;;) {
+    attempt++;
+    result = await runEngine({
+      channelKey: key, format: "short", topic: TOPIC, angle: "Tell it as one investigation, evidence first. Open at Sarajevo City Hall on 28 June 1914 with the couple's photograph. Place the city in today's country and in Austria-Hungary in 1914. Then the next day's newspaper. Then the famous arrest photograph, and what scholars say it really shows. End by answering whether the photograph shows Princip. Say plainly what is disputed. Seven or eight short spoken sentences.",
+      claimResult: { claims: claimsOut, dropped: [], sources: claimSources }, llm, wpm, production_run: runId, profileOverrides: { minSeconds: 24, targetSeconds: 26.5, maxSeconds: 29 }, maxRevisions: 3,
+      onProgress: (ev) => {
+        if (ev.event === "blueprint") { tools.write("blueprint.json", ev.blueprint); tools.write("story-outline.md", `# Blueprint\n\nCentral question: ${ev.blueprint.central_question}\n\nThesis: ${ev.blueprint.thesis}\n\nConclusion: ${ev.blueprint.conclusion}\n`); tools.stage("blueprint_complete", "ok"); }
+        if (ev.event === "draft") { tools.write(`script-draft-round${ev.round}.md`, ev.pkg.sentences.map((x) => x.text).join("\n")); tools.write("script-draft.md", ev.pkg.sentences.map((x) => x.text).join("\n")); tools.stage("script_complete", "ok", { round: ev.round }); }
+      },
+    });
+    tools.write("script-quality-report.json", result.report);
+    if (result.status !== "approved") { tools.write("open-findings.json", result.findings || []); throw new Error(`script engine: ${result.status}: ${JSON.stringify((result.findings || []).slice(0, 6).map((f) => `${f.rule}: ${f.problem}`)).slice(0, 700)} ${result.error || ""}`); }
+    pkg = result.package;
+    tools.write("script-package.json", pkg);
+    if (result.report.last_critique) tools.write("critique.json", result.report.last_critique);
+    tools.write("script-final.md", pkg.sentences.map((x) => x.text).join("\n"));
+    tools.stage("script_approved", "ok", { approved_by: pkg.quality_report.approved_by });
+    narrationInfo = await narrate({ text: pkg.sentences.map((x) => x.text).join(" "), edgeVoice: entry.tts_voice, outDir, gravity: "serious" });
+    if (narrationInfo.seconds <= 29.3 && narrationInfo.seconds >= 23.5) break;
+    // Too long or short at natural speed: the script changes, never the voice.
+    wpm = { wpm: narrationInfo.wpm, source: "measured-from-narration", voice: narrationInfo.engine };
+    if (attempt >= 3) throw new Error(`narration is ${narrationInfo.seconds}s after ${attempt} rewrites`);
   }
-  const narrationS = tools.durationOf(narration);
-  const durationS = Math.min(30, Math.ceil(narrationS + 0.6));
-  if (narrationS > 29.4) throw new Error(`narration is ${narrationS}s; cannot fit a 30 s Short`);
+  const narration = narrationInfo.mp3;
   copyFileSync(narration, join(outDir, "voice-preview.mp3"));
-  tools.stage("voice_complete", "ok", { narration_s: narrationS, narration: "provisional" });
-  const durationF = sec(durationS);
+  tools.write("narration.json", { engine: narrationInfo.engine, seconds: narrationInfo.seconds, wpm: narrationInfo.wpm, playback_speed: narrationInfo.playback_speed, notes: narrationInfo.notes });
+  tools.stage("voice_complete", "ok", { narration_s: narrationInfo.seconds, engine: narrationInfo.engine });
+  if (narrationInfo.sentences.length !== pkg.sentences.length) throw new Error(`voice produced ${narrationInfo.sentences.length} sentences for ${pkg.sentences.length} script sentences`);
 
-  // Scenes: one per picture; consecutive sentences with the same scene id share it.
-  const sceneIds = [...new Set(SENTENCES.map((s) => s.scene))];
-  const scenes = sceneIds.map((id, k) => {
-    const ss = timing.filter((s) => s.scene === id);
-    return { index: id, text: ss.map((s) => s.text).join(" "), from: k === 0 ? 0 : ss[0].start, to: k === sceneIds.length - 1 ? null : timing.find((s) => s.scene === sceneIds[k + 1]).start, claim_ids: [...new Set(ss.flatMap((s) => s.claim_ids))] };
+  // Pictures run in story order: a sentence with no claim of its own stays on the picture before it.
+  const picture = [];
+  pkg.sentences.forEach((x, i) => {
+    const cited = (x.claim_ids || []).map((c) => SCENE_OF_CLAIM[c]).filter((n) => n !== undefined);
+    const prev = i ? picture[i - 1] : 0;
+    picture.push(i === 0 ? 0 : cited.length ? Math.max(prev, Math.min(...cited.filter((n) => n >= prev).concat(4))) : prev);
   });
-  const bounds = (s) => ({ inF: sec(s.from), outF: s.to === null ? durationF : sec(s.to) });
+  const order = [...new Set(picture)];
+  const sceneOfSentence = picture.map((n) => order.indexOf(n));
+  const tl = buildTimeline({ narration: narrationInfo, sceneOfSentence, sceneMeta: order.map((n) => ({ id: `s${n}`, index: n })) });
+  tools.write("timeline.json", tl);
+  const durationS = tl.duration_s, durationF = tl.durationInFrames;
+  const scenes = tl.scenes.map((sc, k) => {
+    const members = pkg.sentences.filter((_, i) => sceneOfSentence[i] === k);
+    return { index: sc.index, text: members.map((x) => x.text).join(" "), from: sc.start_s, to: k === tl.scenes.length - 1 ? null : sc.end_s, claim_ids: [...new Set(members.flatMap((x) => x.claim_ids || []))] };
+  });
+  const bounds = (x) => ({ inF: sec(x.from), outF: x.to === null ? durationF : sec(x.to) });
 
   // 4. Images: photographs through PhotoTreatment as they are; documents get the document treatment first.
   const paperTone = { r: 244, g: 236, b: 220 };
@@ -356,12 +352,12 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   const mixed = join(work, "narration-with-sfx.mp3");
   sh("ffmpeg", ["-y", "-v", "error", "-i", narration, ...cues.flatMap((c) => ["-i", join(REMOTION_DIR, "public/sfx", sfxFile[c.sound])]), "-filter_complex", `${cues.map((c, i) => `[${i + 1}:a]adelay=${Math.round(c.at * 1000)}|${Math.round(c.at * 1000)},volume=0.22[s${i}]`).join(";")};[0:a]${cues.map((_, i) => `[s${i}]`).join("")}amix=inputs=${cues.length + 1}:duration=first:normalize=0[out]`, "-map", "[out]", "-b:a", "192k", mixed]);
 
-  const words = { sentences: timing.map((s) => ({ text: s.text, start: s.start, end: s.end })), words: timing.flatMap((s, i) => { const ws = s.text.split(/\s+/); const tot = ws.reduce((n, w) => n + w.length + 1, 0); let at = s.start; return ws.map((w) => { const d = ((w.length + 1) / tot) * (s.end - s.start); const o = { text: w, start: at, end: at + d, sentence: i }; at += d; return o; }); }) };
+  const words = JSON.parse(readFileSync(narrationInfo.wordsFile, "utf8"));
   const timeline = {
     version: 1, id: SLUG, title: `Hidden Past: ${TOPIC}`, production_id: runId, channel_id: "ch-01", width: W, height: H, fps: FPS, durationInFrames: durationF, palette: P, fonts: { primary: SERIF }, assets,
     layers: stripForRender(layers), captions: captions(words), caption_style: { x: 90, y: 1560, w: W - 180, h: 200, size: 52 },
     scenes: scenes.map((s) => ({ id: `s${s.index}`, start: s.from, end: s.to ?? durationS })),
-    metadata: { topic: TOPIC, duration_s: durationS, treatment: "vox", narration: "provisional, hand-planned sample" },
+    metadata: { topic: TOPIC, duration_s: durationS, treatment: "vox", narration: narrationInfo.engine },
   };
   const voxPlan = { production_id: runId, accent: P.accent, recipe_source: "src/skills/remotion-render/effects/PhotoTreatment.jsx", halftone_opacity: VOX.halftone_opacity, scenes: voxRecord, sfx };
   writeFileSync(join(work, "vox-plan.json"), JSON.stringify(voxPlan, null, 2));
@@ -388,7 +384,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   const sheetScenes = scenes.map((s, i) => ({ id: `s${s.index}`, start_s: s.from, end_s: s.to ?? durationS, treatment: scenePlan[i].treatment, objective: scenePlan[i].visual_objective }));
   await tools.contactSheet({ video, scenes: sheetScenes });
   const qa = {
-    channel: key, run: runId, narration_status: "PROVISIONAL: hand-planned sample, not from the script engine",
+    channel: key, run: runId, script: { status: result.status, approved_by: pkg.quality_report.approved_by, written_by: pkg.quality_report.written_by, independent_provider: pkg.quality_report.independent_provider }, technical: technicalQa({ video, narration: narrationInfo, timeline: tl }), alignment_findings: sceneTraceability({ channel: key, production_run: runId, format: "short", scenes: scenePlan }, pkg, claimsOut),
     duration_s: dur, max_s: 30, size: `${W}x${H}`, fps: FPS,
     vox_gate: { pass: report.pass, failures: report.failures, counts: report.counts, report_file: "vox-compliance-report.json", mp4_sha256: report.mp4_sha256 },
     photo_stability: report.scenes.filter((s) => s.measured?.stability).map((s) => ({ scene: s.scene, asset: s.treatments.find((t) => t.type === "photo_treatment") ? "photograph" : "", ...s.measured.stability })),
@@ -399,6 +395,9 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     frames,
   };
   tools.write("qa-report.json", qa);
-  tools.stage(report.pass && movingKeys.length === 0 ? "qa_passed" : "blocked", report.pass ? "ok" : "vox gate failed", { gate_failures: report.failures.length });
+  const accepted = report.pass && movingKeys.length === 0 && qa.technical.pass;
+  tools.stage(accepted ? "qa_passed" : "blocked", accepted ? "ok" : "failed", { issues: [...report.failures.map((f) => `${f.check}: ${f.why}`), ...qa.technical.failures].join("; ").slice(0, 500) || undefined });
+  if (!accepted) throw new Error("QA failed; see qa-report.json");
   tools.stage("preview_ready", "ok");
+  tools.stage("awaiting_approval", "ok");
 }

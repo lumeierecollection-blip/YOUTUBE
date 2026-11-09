@@ -17,13 +17,22 @@ function randomStrings(n, len, seed) {
 }
 
 const prompt = (word, letter) => `How many times does the letter "${letter}" appear in "${word}"? Reply with only the number.`;
-const geminiKey = () => process.env.GEMINI_API_KEY_1 || process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY_2;
+const geminiKeys = () => ["GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
+const geminiKey = () => geminiKeys()[0];
+const exhausted = new Set();
 
 async function callGemini(model, text) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${geminiKey()}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { temperature: 0, maxOutputTokens: 2048 } }), signal: AbortSignal.timeout(60000) });
-  if (!r.ok) throw Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
-  const j = await r.json();
-  return (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("").trim();
+  // Quota is per key and model, so a 429 moves on to the next key.
+  let last;
+  for (const key of geminiKeys()) {
+    if (exhausted.has(key + model)) continue;
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { temperature: 0, maxOutputTokens: 2048 } }), signal: AbortSignal.timeout(60000) });
+    if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("").trim(); }
+    last = Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
+    if (r.status !== 429) throw last;
+    exhausted.add(key + model);
+  }
+  throw last || Object.assign(new Error("no Gemini key left for this model"), { status: 429 });
 }
 
 async function callOpenAiStyle(url, key, model, text) {
@@ -49,9 +58,14 @@ async function askWithRetry(model, text) {
 /** The first whole number in the reply. A reply with no number is marked wrong. */
 const parse = (reply) => { const m = String(reply).match(/-?\d+/); return m ? Number(m[0]) : null; };
 
-export async function runExperiment({ runUrl, now = new Date(), log = console.error }) {
+export function buildQuestions() {
   const seed = 20261109;
-  const questions = [...WORDS.map(([word, letter]) => ({ group: "real", word, letter })), ...randomStrings(10, 24, seed).map(([word, letter]) => ({ group: "random", word, letter }))].map((q) => ({ ...q, correct: count(q.word, q.letter), prompt: prompt(q.word, q.letter) }));
+  return [...WORDS.map(([word, letter]) => ({ group: "real", word, letter })), ...randomStrings(10, 24, seed).map(([word, letter]) => ({ group: "random", word, letter }))].map((q) => ({ ...q, correct: count(q.word, q.letter), prompt: prompt(q.word, q.letter) }));
+}
+
+/** Asks every available model every question. Returns only the raw results; assemble() turns them into claims. */
+export async function measure({ runUrl, now = new Date(), log = console.error }) {
+  const questions = buildQuestions();
   const models = [];
   for (const m of CANDIDATES.filter((c) => c.available())) {
     const answers = [];
@@ -69,7 +83,15 @@ export async function runExperiment({ runUrl, now = new Date(), log = console.er
   }
   if (models.length < 2) throw new Error(`only ${models.length} model(s) answered every question; a comparison needs at least 2`);
   models.sort((a, b) => b.correct - a.correct);
-  const date = now.toISOString().slice(0, 10);
+  return { date: now.toISOString().slice(0, 10), run_url: runUrl, models };
+}
+
+const SPEAK = Object.fromEntries(CANDIDATES.map((c) => [c.name, c.speak]));
+
+/** Turns one measurement into the facts the script is built from. A reused measurement keeps its original run as the source. */
+export function assemble({ date, run_url: runUrl, models: raw, reused_from = null }) {
+  const questions = buildQuestions();
+  const models = raw.map((m) => ({ ...m, speak: SPEAK[m.name] || m.name }));
   const example = questions[0];
   const exampleReplies = models.map((m) => ({ model: m.name, reply: m.answers[0].reply, answer: m.answers[0].answer, ok: m.answers[0].ok }));
   // The widest miss across all models, so the video can show a real wrong answer if one exists.
@@ -90,7 +112,7 @@ export async function runExperiment({ runUrl, now = new Date(), log = console.er
   const url = runUrl;
   const claim = (claim_id, sentence, editorial_status = "measured_statistic") => ({ claim_id, claim: sentence, source_id: "s1", source_url: url, published: date, excerpt: sentence, confidence: "high", context: `Measured in this production's own test on ${date}; results can differ between runs and the models change over time. Models: ${models.map((m) => m.name).join(", ")}.`, editorial_status });
   const claims = [claim("design", line.design, "demonstrated_feature"), claim("design_groups", line.groups, "demonstrated_feature"), claim("check", line.check, "demonstrated_feature"), claim("example", line.example), ...models.map((m, i) => claim(`score${i}`, scoreLine(m))), ...models.map((m, i) => claim(`split_real${i}`, realLine(m))), ...models.map((m, i) => claim(`split_random${i}`, randomLine(m))), ...(line.miss ? [claim("miss", line.miss)] : [])];
-  return { date, total: questions.length, models, questions, example: { ...example, replies: exampleReplies }, miss, report_text: text, claims, sources: [{ source_id: "s1", url, published: date, title: "AI Tested letter-count test run" }] };
+  return { date, reused_from, run_url: runUrl, total: questions.length, models, questions, example: { ...example, replies: exampleReplies }, miss, report_text: text, claims, sources: [{ source_id: "s1", url, published: date, title: "AI Tested letter-count test run" }] };
 }
 
 /** Which picture explains a claim. The script's own claim citations decide which scene a sentence lands on. */
