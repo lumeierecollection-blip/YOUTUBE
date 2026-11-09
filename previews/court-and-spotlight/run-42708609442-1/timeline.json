@@ -1,0 +1,385 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "cover",
+      "treatment": "magazine-cover-full-bleed",
+      "objective": "Open on a magazine cover: the real 2023 tour photograph full-bleed, the headline, the credit",
+      "background": "full-bleed photograph",
+      "from": 0,
+      "to": 180,
+      "start_s": 0,
+      "end_s": 6
+    },
+    {
+      "id": "s2",
+      "kind": "nine",
+      "treatment": "big-number-with-cutout",
+      "objective": "Show nine nominations as a giant numeral with a clean cut-out portrait layered through it and nine stars lighting in turn",
+      "background": "cream page",
+      "from": 180,
+      "to": 252,
+      "start_s": 6,
+      "end_s": 8.4
+    },
+    {
+      "id": "s3",
+      "kind": "win",
+      "treatment": "win-card-with-cutout-and-quote",
+      "objective": "Name the win and the album with a large cut-out portrait, then the quotation she gave on stage",
+      "background": "cream page",
+      "from": 252,
+      "to": 527,
+      "start_s": 8.4,
+      "end_s": 17.566666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "total",
+      "treatment": "counter-with-career-strip",
+      "objective": "Count up to thirty-two and show four photographs from different years as a career strip, each labelled with its photo date",
+      "background": "cream page, gold accent",
+      "from": 527,
+      "to": 607,
+      "start_s": 17.566666666666666,
+      "end_s": 20.233333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "record",
+      "treatment": "record-ribbon-with-photo",
+      "objective": "Close on the record ribbon and the sixty-five-year span over the 2023 photograph, with all photo credits",
+      "background": "cream page",
+      "from": 607,
+      "to": 710,
+      "start_s": 20.233333333333334,
+      "end_s": 23.666666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "In one night",
+      "from": 0,
+      "to": 37,
+      "words": [
+        {
+          "text": "In",
+          "from": 0
+        },
+        {
+          "text": "one",
+          "from": 13
+        },
+        {
+          "text": "night",
+          "from": 20
+        }
+      ]
+    },
+    {
+      "text": "Beyoncé became the most-awarded",
+      "from": 45,
+      "to": 95,
+      "words": [
+        {
+          "text": "Beyoncé",
+          "from": 45
+        },
+        {
+          "text": "became",
+          "from": 61
+        },
+        {
+          "text": "the",
+          "from": 70
+        },
+        {
+          "text": "most-awarded",
+          "from": 77
+        }
+      ]
+    },
+    {
+      "text": "artist in Grammy history",
+      "from": 106,
+      "to": 157,
+      "words": [
+        {
+          "text": "artist",
+          "from": 106
+        },
+        {
+          "text": "in",
+          "from": 117
+        },
+        {
+          "text": "Grammy",
+          "from": 127
+        },
+        {
+          "text": "history",
+          "from": 137
+        }
+      ]
+    },
+    {
+      "text": "She arrived with nine nominations",
+      "from": 180,
+      "to": 226,
+      "words": [
+        {
+          "text": "She",
+          "from": 180
+        },
+        {
+          "text": "arrived",
+          "from": 181
+        },
+        {
+          "text": "with",
+          "from": 188
+        },
+        {
+          "text": "nine",
+          "from": 200
+        },
+        {
+          "text": "nominations",
+          "from": 209
+        }
+      ]
+    },
+    {
+      "text": "Her fourth win was best",
+      "from": 252,
+      "to": 291,
+      "words": [
+        {
+          "text": "Her",
+          "from": 252
+        },
+        {
+          "text": "fourth",
+          "from": 253
+        },
+        {
+          "text": "win",
+          "from": 262
+        },
+        {
+          "text": "was",
+          "from": 270
+        },
+        {
+          "text": "best",
+          "from": 282
+        }
+      ]
+    },
+    {
+      "text": "dance and electronic music album",
+      "from": 291,
+      "to": 354,
+      "words": [
+        {
+          "text": "dance",
+          "from": 291
+        },
+        {
+          "text": "and",
+          "from": 305
+        },
+        {
+          "text": "electronic",
+          "from": 313
+        },
+        {
+          "text": "music",
+          "from": 319
+        },
+        {
+          "text": "album",
+          "from": 343
+        }
+      ]
+    },
+    {
+      "text": "for Renaissance",
+      "from": 364,
+      "to": 374,
+      "words": [
+        {
+          "text": "for",
+          "from": 364
+        },
+        {
+          "text": "Renaissance",
+          "from": 364
+        }
+      ]
+    },
+    {
+      "text": "On stage she said she",
+      "from": 401,
+      "to": 442,
+      "words": [
+        {
+          "text": "On",
+          "from": 401
+        },
+        {
+          "text": "stage",
+          "from": 404
+        },
+        {
+          "text": "she",
+          "from": 414
+        },
+        {
+          "text": "said",
+          "from": 431
+        },
+        {
+          "text": "she",
+          "from": 437
+        }
+      ]
+    },
+    {
+      "text": "was just trying to receive",
+      "from": 442,
+      "to": 489,
+      "words": [
+        {
+          "text": "was",
+          "from": 442
+        },
+        {
+          "text": "just",
+          "from": 445
+        },
+        {
+          "text": "trying",
+          "from": 456
+        },
+        {
+          "text": "to",
+          "from": 469
+        },
+        {
+          "text": "receive",
+          "from": 476
+        }
+      ]
+    },
+    {
+      "text": "the night",
+      "from": 489,
+      "to": 509,
+      "words": [
+        {
+          "text": "the",
+          "from": 489
+        },
+        {
+          "text": "night",
+          "from": 499
+        }
+      ]
+    },
+    {
+      "text": "That made thirty-two Grammys in",
+      "from": 527,
+      "to": 583,
+      "words": [
+        {
+          "text": "That",
+          "from": 527
+        },
+        {
+          "text": "made",
+          "from": 532
+        },
+        {
+          "text": "thirty-two",
+          "from": 536
+        },
+        {
+          "text": "Grammys",
+          "from": 551
+        },
+        {
+          "text": "in",
+          "from": 578
+        }
+      ]
+    },
+    {
+      "text": "her career More than any",
+      "from": 583,
+      "to": 626,
+      "words": [
+        {
+          "text": "her",
+          "from": 583
+        },
+        {
+          "text": "career",
+          "from": 586
+        },
+        {
+          "text": "More",
+          "from": 607
+        },
+        {
+          "text": "than",
+          "from": 611
+        },
+        {
+          "text": "any",
+          "from": 616
+        }
+      ]
+    },
+    {
+      "text": "other artist in the awards'",
+      "from": 626,
+      "to": 664,
+      "words": [
+        {
+          "text": "other",
+          "from": 626
+        },
+        {
+          "text": "artist",
+          "from": 635
+        },
+        {
+          "text": "in",
+          "from": 644
+        },
+        {
+          "text": "the",
+          "from": 652
+        },
+        {
+          "text": "awards'",
+          "from": 655
+        }
+      ]
+    },
+    {
+      "text": "history",
+      "from": 667,
+      "to": 681,
+      "words": [
+        {
+          "text": "history",
+          "from": 667
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 710,
+  "duration_s": 23.666666666666668
+}
