@@ -39,7 +39,8 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   tools.write("scene-plan.json", { channel: key, production_run: runId, format: "short", scenes: timeline.scenes.map((s, i) => ({ scene_id: s.id, narration: sentences.filter((x) => x.scene === i).map((x) => x.text).join(" "), main_point: s.objective, visual_objective: s.objective, treatment: s.treatment, background: s.background || "white", skill: s.skill || "remotion", claim_ids: [...new Set(sentences.filter((x) => x.scene === i).flatMap((x) => x.claim_ids || []))], start_s: s.start_s, end_s: s.end_s })) });
   tools.stage("visual_complete", "ok");
 
-  const video = tools.renderComposition({ id: compositionId, props: { durationInFrames: timeline.durationInFrames, scenes: timeline.scenes, captions: timeline.captions, ...(makeProps ? makeProps({ timeline, narration }) : {}) }, audio: narration.mp3, durationInFrames: timeline.durationInFrames });
+  const extra = makeProps ? await makeProps({ timeline, narration }) : {};
+  const video = tools.renderComposition({ id: compositionId, props: { durationInFrames: timeline.durationInFrames, scenes: timeline.scenes, captions: timeline.captions, ...extra }, audio: narration.mp3, durationInFrames: timeline.durationInFrames });
   tools.stage("render_complete", "ok");
   await publishFrames({ tools, video, timeline, objectiveOf: (s) => s.objective });
 
