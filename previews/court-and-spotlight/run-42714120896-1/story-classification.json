@@ -1,0 +1,12 @@
+{
+  "format": "investigation",
+  "reasoning": "Matched Alleged crime or legal case, arrest, prison, documented dispute, or fact-check of a viral claim: alleg, tax case, court, sentenc.",
+  "alternatives": [],
+  "evidence_available": [
+    "snipes-portrait",
+    "snipes-booking"
+  ],
+  "hybrid": null,
+  "branch": "preview/court-and-spotlight-investigation-4",
+  "expected_for_branch": "investigation"
+}
