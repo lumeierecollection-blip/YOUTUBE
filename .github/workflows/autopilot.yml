@@ -63,8 +63,13 @@ jobs:
       - name: Install production tools
         if: steps.select.outputs.slot != ''
         run: |
-          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-          (cd src/skills/remotion-render && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund))
+          # A dependency downloads a binary from GitHub Releases during install, and that download returns 504 at times.
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; echo "install failed, retrying in ${pause}s"; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc jq
           pip3 install --quiet edge-tts faster-whisper
 
