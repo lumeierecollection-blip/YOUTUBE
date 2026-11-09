@@ -1012,7 +1012,12 @@
       "attempts": 1,
       "run_id": "42590890284",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:12:36.030Z"
+      "updated_at": "2026-11-09T09:13:48.847Z",
+      "stage": "research",
+      "topic": "WhatsApp rolls out AI photo expansion tool on iPhone",
+      "score": 82.7,
+      "pillar": "Trending AI tools and apps",
+      "hook": "You can now expand your photos using built-in AI directly inside WhatsApp on your iPhone."
     }
   },
   "uploads": [
@@ -1841,6 +1846,15 @@
       "at_ms": 1794215482135,
       "score": 71.7,
       "pillar": "Unsolved historical mysteries"
+    },
+    {
+      "channel": "2",
+      "topic": "WhatsApp rolls out AI photo expansion tool on iPhone",
+      "slug": "whatsapp-rolls-out-ai-photo-expansion-tool-on-iphone",
+      "slot": "kick-08d0af4b3f-ch2",
+      "at_ms": 1794215628847,
+      "score": 82.7,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
