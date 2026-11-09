@@ -562,6 +562,14 @@
       "updated_at": "2026-11-09T01:13:13.854Z",
       "stage": "discover",
       "error": "discovery failure: 14 candidates, none eligible. Best \"Claude AI can now connect to your bank account\" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
+    },
+    "kick-af9692b82b-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42544325951",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:13:34.208Z"
     }
   },
   "uploads": [],
@@ -1080,5 +1088,5 @@
     "Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead",
     "AI Tested kick-3dfcfe63bb-ch2 failed at discover: discovery failure: 14 candidates, none eligible. Best \"Claude AI can now connect to your bank account\" (86.1): too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
   ],
-  "last_poll_at": "2026-11-09T01:11:49.636Z"
+  "last_poll_at": "2026-11-09T01:13:34.208Z"
 }
