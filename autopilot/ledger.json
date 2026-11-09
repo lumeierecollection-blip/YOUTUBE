@@ -663,12 +663,12 @@
       "attempts": 1,
       "run_id": "42546665711",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:41:02.969Z",
-      "stage": "script",
-      "topic": "The sinking of the SS Edmund Fitzgerald on Lake Superior",
-      "score": 80.6,
-      "pillar": "Historical disasters and survival stories",
-      "hook": "In November 1975, the legendary freighter SS Edmund Fitzgerald vanished into Lake Superior, taking all 29 crew with it."
+      "updated_at": "2026-11-09T01:42:35.106Z",
+      "stage": "research",
+      "topic": "The Wilmington massacre of 1898, the only municipal government overthrow in US history",
+      "score": 64.8,
+      "pillar": "Unbelievable true historical events",
+      "hook": "This is the forgotten story of the only time a local American government was violently overthrown in a coup."
     }
   },
   "uploads": [],
@@ -1221,6 +1221,15 @@
       "at_ms": 1794188447186,
       "score": 80.6,
       "pillar": "Historical disasters and survival stories"
+    },
+    {
+      "channel": "1",
+      "topic": "The Wilmington massacre of 1898, the only municipal government overthrow in US history",
+      "slug": "the-wilmington-massacre-of-1898-the-only-municipal-governmen",
+      "slot": "kick-9eefa2545a-ch1",
+      "at_ms": 1794188555106,
+      "score": 64.8,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
