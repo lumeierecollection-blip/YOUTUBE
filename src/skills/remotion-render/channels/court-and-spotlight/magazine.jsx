@@ -38,9 +38,9 @@ function Nine({ dur, images, credits, dates }) {
     <Scene dur={dur}>
       <Page><Masthead /></Page>
       <From dy={40} style={abs(20, 250, 700, 700, { fontFamily: SERIF, fontWeight: 700, fontStyle: "italic", fontSize: 720, lineHeight: 1, color: M.gold })}>9</From>
-      <Cut src={images.p2011} x={330} y={290} w={760} />
-      <From delay={8} style={abs(60, 1010, 600, 70, { fontFamily: SANS, fontWeight: 800, fontSize: 52, letterSpacing: "0.26em", color: M.ink })}>NOMINATIONS</From>
-      <div style={abs(60, 1130, 960, 110, { display: "flex", gap: 22 })}>
+      <Cut src={images.p2011} x={420} y={280} w={620} />
+      <From delay={8} style={abs(60, 1210, 600, 70, { fontFamily: SANS, fontWeight: 800, fontSize: 52, letterSpacing: "0.26em", color: M.ink })}>NOMINATIONS</From>
+      <div style={abs(60, 1310, 960, 110, { display: "flex", gap: 22 })}>
         {Array.from({ length: 9 }, (_, i) => { const on = interpolate(f, [12 + i * 4, 18 + i * 4], [0, 1], clamp); return <div key={i} style={{ fontSize: 74, lineHeight: 1, color: M.gold, opacity: 0.18 + 0.82 * on, transform: `scale(${0.8 + 0.2 * on})` }}>★</div>; })}
       </div>
       <Credit>Photo ({dates.p2011}): {credits.p2011}</Credit>
@@ -54,7 +54,7 @@ function Win({ dur, images, credits, dates }) {
   return (
     <Scene dur={dur}>
       <Page><Masthead /></Page>
-      <Cut src={images.p2009} x={560} y={250} w={560} />
+      <div style={abs(640, 270, 380, 520, { transform: "rotate(2.5deg)", boxShadow: "0 24px 50px rgba(0,0,0,0.32)", border: `10px solid ${M.white}` })}><Photo src={images.p2009} style={{ width: "100%", height: "100%", backgroundPosition: "center 20%" }} /></div>
       <From dy={20} style={abs(60, 270, 480, 80, { display: "flex", alignItems: "center" })}><div style={{ background: M.red, color: M.white, fontFamily: SANS, fontWeight: 800, fontSize: 40, letterSpacing: "0.14em", padding: "10px 24px", borderRadius: 6 }}>WIN № 4</div></From>
       <From delay={6} dy={30} style={abs(60, 560, 940, 200, { fontFamily: SERIF, fontWeight: 700, fontSize: 136, lineHeight: 1, color: M.ink })}>Renaissance</From>
       <From delay={12} style={abs(60, 770, 800, 130, { fontFamily: SANS, fontWeight: 600, fontSize: 44, lineHeight: 1.2, color: M.dim })}>Best dance/electronic music album</From>

@@ -16,7 +16,7 @@ export const sentences = sampleSentences;
 export const scenes = [
   { kind: "cover", treatment: "magazine-cover-full-bleed", objective: "Open on a magazine cover: the real 2023 tour photograph full-bleed, the headline, the credit", background: "full-bleed photograph" },
   { kind: "nine", treatment: "big-number-with-cutout", objective: "Show nine nominations as a giant numeral with a clean cut-out portrait layered through it and nine stars lighting in turn", background: "cream page" },
-  { kind: "win", treatment: "win-card-with-cutout-and-quote", objective: "Name the win and the album with a large cut-out portrait, then the quotation she gave on stage", background: "cream page" },
+  { kind: "win", treatment: "win-card-with-cutout-and-quote", objective: "Name the win and the album beside a framed photograph, then the quotation she gave on stage", background: "cream page" },
   { kind: "total", treatment: "counter-with-career-strip", objective: "Count up to thirty-two and show four photographs from different years as a career strip, each labelled with its photo date", background: "cream page, gold accent" },
   { kind: "record", treatment: "record-ribbon-with-photo", objective: "Close on the record ribbon and the sixty-five-year span over the 2023 photograph, with all photo credits", background: "cream page" },
 ];
@@ -31,7 +31,7 @@ export const blueprint = {
 export const ASSETS = [
   { id: "bey-2023", key: "p2023", title: "File:Beyoncé - Tottenham Hotspur Stadium - 1st June 2023 (10 of 118) (52946364598) (best crop).jpg", role: "full-bleed cover and closing photograph", claim: "M1" },
   { id: "bey-2011", key: "p2011", title: "File:Beyoncé Knowles GMA Run the World cropped.jpg", role: "clean cut-out through the nominations numeral", claim: "M3", cutout: { seed: 2 } },
-  { id: "bey-2009", key: "p2009", title: "File:Beyoncé Antwerp Sportpaleis.jpg", role: "clean cut-out beside the win card", claim: "M2", cutout: { seed: 3 } },
+  { id: "bey-2009", key: "p2009", title: "File:Beyoncé Knowles 2009.jpg", role: "framed photograph beside the win card", claim: "M2" },
   { id: "bey-2016", key: "p2016", title: "File:Beyonce - The Formation World Tour, at Wembley Stadium in London, England.jpg", role: "career strip", claim: "M1" },
 ];
 

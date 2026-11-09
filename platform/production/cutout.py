@@ -46,6 +46,18 @@ def main():
     # keep the main subject: drop specks that are not part of the largest connected region
     alpha = cut.split()[-1]
     alpha = alpha.point(lambda v: 255 if v > 24 else 0)
+    # keep only the largest connected region, so crowd fragments and stray objects are dropped; refuse a cut-out that is mostly fragments
+    from scipy import ndimage
+    arr = np.asarray(alpha) > 0
+    labels, n = ndimage.label(arr)
+    if n > 1:
+        sizes = ndimage.sum(arr, labels, range(1, n + 1))
+        keep = int(np.argmax(sizes)) + 1
+        frac = float(sizes.max() / max(1.0, sizes.sum()))
+        arr = labels == keep
+        if frac < 0.6:
+            raise SystemExit(f"cutout rejected: the largest region is only {frac:.0%} of the mask (several subjects or a crowd)")
+        alpha = Image.fromarray((arr * 255).astype(np.uint8))
     cut.putalpha(alpha)
 
     if a.bw:
