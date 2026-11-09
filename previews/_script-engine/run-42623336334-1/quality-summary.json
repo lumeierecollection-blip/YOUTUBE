@@ -225,5 +225,29 @@
     "calls": 4,
     "caveats": [],
     "reason": "judge gave unusable output: the answer was not valid JSON"
+  },
+  {
+    "channel": "court-and-spotlight",
+    "topic": "Martha Stewart and the ImClone case",
+    "format": "investigation",
+    "status": "engine_error",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+        "ok": true,
+        "chars": 25590,
+        "sha256": "cc58c3b6648ddf63",
+        "title": "Martha Stewart",
+        "published": "2026-11-08",
+        "fetched_at": "2026-11-09T13:24:48.040Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 176.8,
+      "source": "measured",
+      "voice": "en-US-GuyNeural"
+    },
+    "reason": "Error: script-package invalid:\n  script-package.cta: expected string|null, got object\n    at assertValid (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/schema.mjs:59:23)\n    at runEngine (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/engine.mjs:106:7)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/_script-engine/preview.mjs:64:22)\n    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3"
   }
 ]

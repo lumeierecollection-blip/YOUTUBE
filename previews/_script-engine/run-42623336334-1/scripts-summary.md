@@ -46,3 +46,14 @@ Topic: The 2005 UEFA Champions League final (match_analysis)
 Writer providers: gemini; critic providers: none; model calls: 4; rounds: 0; narrowings: 0
 Words per minute: 166.5 (measured, voice en-US-AriaNeural)
 Why not approved: judge gave unusable output: the answer was not valid JSON
+
+## court-and-spotlight - ENGINE_ERROR
+Topic: Martha Stewart and the ImClone case (investigation)
+Words per minute: 176.8 (measured, voice en-US-GuyNeural)
+Why not approved: Error: script-package invalid:
+  script-package.cta: expected string|null, got object
+    at assertValid (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/schema.mjs:59:23)
+    at runEngine (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/script-engine/engine.mjs:106:7)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/_script-engine/preview.mjs:64:22)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
