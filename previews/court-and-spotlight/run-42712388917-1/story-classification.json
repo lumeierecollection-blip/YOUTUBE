@@ -1,0 +1,21 @@
+{
+  "format": "entertainment_magazine",
+  "reasoning": "Matched Awards, achievements, career milestones, fashion, collections, iconic moments: record-breaking, grammy, award, achievement, milestone.",
+  "alternatives": [
+    {
+      "format": "vox_explainer",
+      "matches": [
+        "how did"
+      ]
+    }
+  ],
+  "evidence_available": [
+    "bey-2023",
+    "bey-2011",
+    "bey-2009",
+    "bey-2016"
+  ],
+  "hybrid": "Overlapping signals; one primary style stays dominant and the others are not mixed in.",
+  "branch": "preview/court-and-spotlight-magazine-3",
+  "expected_for_branch": "entertainment_magazine"
+}

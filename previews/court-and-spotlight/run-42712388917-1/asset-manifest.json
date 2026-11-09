@@ -1,0 +1,88 @@
+{
+  "note": "Every photograph is a real image from Wikimedia Commons with its licence recorded. Nothing here is AI-generated. Documents are typeset excerpts of fetched text.",
+  "assets": [
+    {
+      "id": "bey-2023",
+      "description": "Беёнсэ ў рамках сусветнага тура Renaissance World Tour на стадыёне «Тотэнхэм Хотспур» у Лондане 1 чэрвеня 2023 года",
+      "role": "full-bleed cover and closing photograph",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Beyonc%C3%A9_-_Tottenham_Hotspur_Stadium_-_1st_June_2023_(10_of_118)_(52946364598)_(best_crop).jpg",
+      "licence": "CC BY 2.0",
+      "licence_url": "https://creativecommons.org/licenses/by/2.0",
+      "author": "Raph_PH",
+      "original_credit": "BeyonceSpurs010623 (10 of 118)",
+      "date_taken": "2023-06-01 19:49",
+      "retrieved": "2026-11-09",
+      "claim": "M1",
+      "authenticity": "authentic",
+      "size_px": "900x1200",
+      "credit_line": "Raph_PH, CC BY 2.0, via Wikimedia Commons",
+      "bytes": 656983
+    },
+    {
+      "id": "bey-2011",
+      "description": "BEYONCE CONCERT IN CENTRAL PARK 2011 / Good Morning America's Summer Concert Series - Central Park, Manhattan NYC - 0701/11",
+      "role": "clean cut-out through the nominations numeral",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Beyonc%C3%A9_Knowles_GMA_Run_the_World_cropped.jpg",
+      "licence": "CC BY-SA 2.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "author": "Beyoncé_Knowles_GMA_Run_the_World.jpg : Asterio Tecson derivative work: Jonathas Davi ( talk )",
+      "original_credit": "Beyoncé_Knowles_GMA_Run_the_World.jpg",
+      "date_taken": "2011-07-09 01:05",
+      "retrieved": "2026-11-09",
+      "claim": "M3",
+      "authenticity": "authentic",
+      "size_px": "809x1077",
+      "credit_line": "Beyoncé_Knowles_GMA_Run_the_World.jpg : Asterio Tecson derivative work: Jonathas Davi ( talk ), CC BY-SA 2.0, via Wikimedia Commons",
+      "bytes": 682457,
+      "treatment": "photographic cut-out (rembg, u2net_human_seg). No pixel of the subject is generated."
+    },
+    {
+      "id": "bey-2009",
+      "description": "Beyoncé Knowles at the 81st Academy Awards",
+      "role": "framed photograph beside the win card",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Beyonc%C3%A9_Knowles_2009.jpg",
+      "licence": "CC BY 3.0",
+      "licence_url": "https://creativecommons.org/licenses/by/3.0",
+      "author": "Chrisa Hickey at https://www.flickr.com/photos/chrisahickey/",
+      "original_credit": "https://www.flickr.com/photos/chrisahickey/3308232342",
+      "date_taken": "February 22, 2009; uploaded February 24, 2009",
+      "retrieved": "2026-11-09",
+      "claim": "M2",
+      "authenticity": "authentic",
+      "size_px": "1450x1403",
+      "credit_line": "Chrisa Hickey at https://www.flickr.com/photos/chrisahickey/, CC BY 3.0, via Wikimedia Commons",
+      "bytes": 627619
+    },
+    {
+      "id": "bey-2016",
+      "description": "A cropped version of the previously uploaded file \"FWT11.jpg\", which features Beyoncé performing during her Formation World Tour in London.",
+      "role": "career strip",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Beyonce_-_The_Formation_World_Tour,_at_Wembley_Stadium_in_London,_England.jpg",
+      "licence": "CC BY-SA 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Rocbeyonce",
+      "original_credit": "File:FWT11.jpg / https://www.facebook.com/shawntok",
+      "date_taken": "2016-07-03",
+      "retrieved": "2026-11-09",
+      "claim": "M1",
+      "authenticity": "authentic",
+      "size_px": "609x900",
+      "credit_line": "Rocbeyonce, CC BY-SA 4.0, via Wikimedia Commons",
+      "bytes": 595906
+    }
+  ],
+  "documents": [
+    {
+      "id": "kqed-excerpt",
+      "type": "typeset excerpt of fetched text",
+      "description": "The record, the win and the quotation",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "claim": "M1, M2, M3, M4"
+    }
+  ],
+  "music": "see music-manifest.json"
+}
