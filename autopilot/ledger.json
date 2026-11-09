@@ -1102,6 +1102,14 @@
       "updated_at": "2026-11-09T10:01:40.739Z",
       "stage": "discover",
       "error": "discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+    },
+    "kick-815e89f172-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42598019605",
+      "trigger": "push",
+      "updated_at": "2026-11-09T10:03:29.560Z"
     }
   },
   "uploads": [
@@ -2138,5 +2146,5 @@
     "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so ",
     "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
   ],
-  "last_poll_at": "2026-11-09T10:00:15.745Z"
+  "last_poll_at": "2026-11-09T10:03:29.560Z"
 }
