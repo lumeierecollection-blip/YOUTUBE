@@ -1,0 +1,20 @@
+{
+  "video_id": "IIdYdKKUiRM",
+  "url": "https://www.youtube.com/watch?v=IIdYdKKUiRM",
+  "channel_id": "UCZY_vlCgnK839ZJjhCCWuyg",
+  "channel_title": "AI Tested",
+  "title": "Four Students Caught Using AI Glasses on Tests",
+  "privacy_status": "private",
+  "upload_status": "uploaded",
+  "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9",
+  "production_id": "ap-kick-a4d2f98db6-ch2",
+  "checks": {
+    "channel": true,
+    "title": true,
+    "description": true,
+    "private": true,
+    "not_scheduled": true
+  },
+  "verified": true,
+  "verified_at": "2026-11-09T09:59:57.531Z"
+}

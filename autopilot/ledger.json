@@ -1078,18 +1078,20 @@
     },
     "kick-a4d2f98db6-ch2": {
       "channel": "2",
-      "status": "qa-passed",
+      "status": "delivered",
       "attempts": 1,
       "run_id": "42595289544",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:59:52.415Z",
-      "stage": "qa-passed",
+      "updated_at": "2026-11-09T09:59:57.531Z",
+      "stage": "delivered",
       "topic": "AI-Powered Smart Glasses Used for School Exam Cheating",
       "score": 72.2,
       "pillar": "AI tools ordinary people can use",
       "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams.",
       "qa": "all gates passed",
-      "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9"
+      "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9",
+      "video_id": "IIdYdKKUiRM",
+      "privacy_status": "private"
     }
   },
   "uploads": [
@@ -1106,6 +1108,20 @@
       "pillar": "Secret operations and evidence-backed conspiracies",
       "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
       "run_id": "42561890757"
+    },
+    {
+      "channel": "2",
+      "slot": "kick-a4d2f98db6-ch2",
+      "video_id": "IIdYdKKUiRM",
+      "url": "https://www.youtube.com/watch?v=IIdYdKKUiRM",
+      "title": "Four Students Caught Using AI Glasses on Tests",
+      "sha256": "ac674af7158056441111c60653ad76615ccf14f7540d7bb036c32546997049c9",
+      "production_id": "ap-kick-a4d2f98db6-ch2",
+      "privacy_status": "private",
+      "uploaded_at": "2026-11-09T09:59:57.531Z",
+      "pillar": "AI tools ordinary people can use",
+      "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams.",
+      "run_id": "42595289544"
     }
   ],
   "topics": [
