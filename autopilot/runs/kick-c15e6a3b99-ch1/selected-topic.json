@@ -1,0 +1,58 @@
+{
+  "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
+  "pillar": "Secret operations and evidence-backed conspiracies",
+  "evidence_ids": [
+    29
+  ],
+  "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 9
+  },
+  "wikipedia_title": "Battle of Taranto",
+  "commons_query": "Battle of Taranto 1940",
+  "youtube_query": "Battle of Taranto royal navy aircraft attack",
+  "evidence": [
+    {
+      "title": "1940, 11-11: Second World War: The Royal Navy launched the first all-aircraft ship-to-ship naval attack in history against the Italians in the Battle of Taranto.",
+      "url": "https://en.wikipedia.org/wiki/World_War_II",
+      "domain": "wikipedia.org",
+      "published_ms": 1794198666597,
+      "kind": "anniversary",
+      "id": 29
+    }
+  ],
+  "wikipedia": {
+    "title": "Battle of Taranto",
+    "daily_views": 183,
+    "ratio": 0.78
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 46,
+      "reach": 45,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 95,
+      "source_quality": 35
+    },
+    "total": 61.5,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 2,
+  "slug": "battle-of-taranto-the-first-all-aircraft-ship-to-ship-attack",
+  "angle": "How an obsolete biplane design and a daring night torpedo run at Taranto accidentally handed the Imperial Japanese Navy the exact blueprint for the attack on Pearl Harbor.",
+  "what_others_do": "Existing content typically focuses on standard historical recounts of the battle's tactical timeline and British naval victory without connecting it to its global strategic aftermath."
+}

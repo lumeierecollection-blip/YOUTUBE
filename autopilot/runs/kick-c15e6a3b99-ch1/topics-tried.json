@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The Pompeii Wooden Wardrobe Opened After 2,000 Years",
+      "score": 75.6,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Sherman's March to the Sea",
+      "score": 75.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 2 \"William T.\" — The sentence is incomplete and leaves the subject hanging.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 3 \"Sherman led this 425-mile trek.\" — The viewer does not know what 'this' trek refers to yet, as the previous sentence was incomplete.. Rewrite it so a viewer who knows nothing follows it"
+    },
+    {
+      "topic": "Operation Catechism: Sinking the Tirpitz",
+      "score": 63.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Troms Did\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/operation-catechism-sinking-the-tirpitz-shorts:\n  - SCR-16: 62 words implies ~30s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 7 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exac"
+    }
+  ],
+  "selected": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack"
+}
