@@ -1,13 +1,15 @@
 // AI Tested sample: Claude Code print mode. Narration is PROVISIONAL (hand-planned, not from the script engine).
 import { execFileSync, spawnSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 import { captureRows } from "./capture.mjs";
 import { runQa } from "./qa.mjs";
 
 const PAGE = "https://code.claude.com/docs/en/cli-reference";
 const FLAGS = ["--print", "--output-format"];
-const CMD = `npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format)'`;
+const CMD = `npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format <format>)'`;
 const FPS = 30, GAP = 0.3, TTS = "en-US-AndrewNeural";
 const sleep = (s) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, s * 1000);
 // edge-tts sometimes returns NoAudioReceived from CI: retry, then try sibling voices. Voice used is logged.
@@ -37,6 +39,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   const cap = await captureRows({ url: PAGE, rows: { print: { match: "--print" }, format: { match: "--output-format", before: 40, after: 30 }, turns: { match: "--max-turns", before: 40, after: 30 } } });
   const fetchedAt = new Date().toISOString();
   tools.write("capture-meta.json", { url: PAGE, title: cap.title, fetchedAt, cells: Object.fromEntries(Object.entries(cap.captures).map(([k, v]) => [k, { cellText: v.cellText, rowText: v.rowText }])) });
+  for (const [k, v] of Object.entries(cap.captures)) copyFileSync(join(ROOT, "src/skills/remotion-render/public", v.file), join(outDir, `capture-${k}.jpg`));
   tools.stage("research_complete", "page captured");
 
   // 2. Real command, real output.
@@ -45,7 +48,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   tools.write("terminal-raw.txt", `$ ${CMD}\n${stdout}\n--- stderr ---\n${r.stderr || ""}\n--- exit ${r.status} ---\n`);
   const found = FLAGS.filter((f) => stdout.includes(f));
   if (found.length !== FLAGS.length) throw new Error(`help output lacks flags (found ${found}); see terminal-raw.txt`);
-  const lines = stdout.split("\n").map((l) => l.trim().replace(/ {2,}/g, "  ")).filter(Boolean).map((l) => (l.length > 46 ? l.slice(0, 45) + "…" : l)).slice(0, 5);
+  const lines = stdout.split("\n").map((l) => l.trim().replace(/ {2,}/g, "  ")).filter(Boolean).map((l) => (l.length > 41 ? l.slice(0, 40) + "…" : l)).slice(0, 5);
 
   // 3. Script package, claims, scene plan (hand-planned).
   const doc = (k) => cap.captures[k].rowText;
@@ -77,7 +80,8 @@ export default async function preview({ key, runId, outDir, tools }) {
   const total = scenes.at(-1).to;
   if (total / FPS > 30) throw new Error(`runtime ${total / FPS}s exceeds 30s`);
   const captionChunks = scenes.flatMap((s) => {
-    const words = s.text.split(" "), chunks = []; for (let i = 0; i < words.length; i += 4) chunks.push(words.slice(i, i + 4).join(" "));
+    const chunks = []; // split per sentence first, then into even groups of at most 5 words
+    for (const sentence of s.text.match(/[^.]+\.?/g).map((x) => x.trim()).filter(Boolean)) { const w = sentence.split(" "), n = Math.ceil(w.length / 5), per = Math.ceil(w.length / n); for (let i = 0; i < w.length; i += per) chunks.push(w.slice(i, i + per).join(" ")); }
     const chars = chunks.reduce((a, c) => a + c.length, 0); let at = s.from;
     return chunks.map((c) => { const n = Math.max(1, Math.round((c.length / chars) * s.speech * FPS)); const o = { text: c, from: at, to: at + n }; at += n; return o; }).map((o, i, a) => (i === a.length - 1 ? { ...o, to: s.to } : o));
   });

@@ -1,7 +1,7 @@
 // AI Tested Short. Props come from platform/channels/ai-tested/preview.mjs: real capture crops,
 // real terminal output, per-scene timings measured from the generated voice.
 import React from "react";
-import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, Easing } from "remotion";
+import { AbsoluteFill, Sequence, staticFile, interpolate, useCurrentFrame, Easing } from "remotion";
 import { FONT_FACES } from "../../fonts-loader.js";
 
 const C = { bg: "#FFFFFF", surface: "#F3F4F6", ink: "#111827", dim: "#6B7280", stroke: "#D1D5DB", accent: "#0E7490", termBg: "#111418", termHead: "#1F2429", termText: "#E5E7EB", termGreen: "#4ADE80" };
@@ -38,7 +38,7 @@ function CaptureWindow({ cap, x, y, w, url, markDelay = 8, callout, calloutDelay
           <div style={{ marginLeft: 16, flex: 1, height: 36, borderRadius: 18, background: C.bg, border: `1px solid ${C.stroke}`, fontFamily: MONO, fontSize: 20, color: C.dim, display: "flex", alignItems: "center", padding: "0 18px", overflow: "hidden", whiteSpace: "nowrap" }}>{url}</div>
         </div>
         <div style={abs(12, chrome, inner, h, { overflow: "hidden", borderRadius: 8, background: "#fff" })}>
-          <img src={cap.src} style={{ width: inner, height: h, display: "block" }} />
+          <img src={staticFile(cap.file)} style={{ width: inner, height: h, display: "block" }} />
           <Marker rect={hl} delay={markDelay} />
         </div>
       </div>
@@ -97,26 +97,26 @@ function Terminal({ dur, p }) {
   const typed = Math.min(cmd.length, Math.floor((f / typeEnd) * cmd.length));
   const done = f >= typeEnd;
   const blink = Math.floor(f / 15) % 2 === 0;
-  const lineW = 44;
-  const wrapped = []; for (let i = 0; i < cmd.length; i += lineW) wrapped.push(cmd.slice(i, i + lineW));
+  const lineW = 36;
+  const wrapped = []; { let cur = ""; for (const w of cmd.split(" ")) { if ((cur + " " + w).trim().length > lineW) { wrapped.push(cur + " "); cur = w; } else cur = (cur + " " + w).trim(); } wrapped.push(cur); }
   let shown = typed;
   const cmdLines = wrapped.map((l, i) => { const s = Math.max(0, Math.min(l.length, shown)); shown -= l.length; return l.slice(0, s); });
   const outFrom = typeEnd + 8;
-  const th = 120 + (wrapped.length + out.length) * 50 + 70;
+  const th = 120 + (wrapped.length + out.length) * 58 + 40;
   return (
     <SceneBox dur={dur}>
       <Headline size={64} top={250}>RUN IT. READ THE OUTPUT.</Headline>
-      <div style={abs(60, 400, 960, th, { background: C.termBg, borderRadius: 24, overflow: "hidden", border: `2px solid ${C.ink}` })}>
+      <div style={abs(60, 470, 960, th, { background: C.termBg, borderRadius: 24, overflow: "hidden", border: `2px solid ${C.ink}` })}>
         <div style={abs(0, 0, 960, 56, { background: C.termHead, display: "flex", alignItems: "center", gap: 10, padding: "0 22px" })}>
           {["#EF4444", "#F59E0B", "#22C55E"].map((c) => <div key={c} style={{ width: 14, height: 14, borderRadius: 7, background: c }} />)}
           <span style={{ fontFamily: MONO, fontSize: 22, color: "#9CA3AF", marginLeft: 14 }}>bash - ubuntu runner</span>
         </div>
-        <div style={abs(36, 84, 890, th - 90, { fontFamily: MONO, fontSize: 30, lineHeight: "50px", color: C.termText, whiteSpace: "pre" })}>
+        <div style={abs(36, 84, 890, th - 90, { fontFamily: MONO, fontSize: 35, lineHeight: "58px", color: C.termText, whiteSpace: "pre" })}>
           {cmdLines.map((l, i) => <div key={i}>{i === 0 ? <span style={{ color: C.termGreen }}>$ </span> : "  "}{l}{(!done && i === cmdLines.findLastIndex((x) => x.length)) || (done && f < outFrom && i === cmdLines.length - 1) ? <span style={{ opacity: blink ? 1 : 0 }}>{"█"}</span> : null}</div>)}
           {out.map((l, i) => { const t = interpolate(f, [outFrom + i * 5, outFrom + i * 5 + 4], [0, 1], clamp); return <div key={i} style={{ opacity: t, color: "#FDE68A" }}>{l}</div>; })}
         </div>
       </div>
-      <Rise delay={outFrom} style={abs(60, 400 + th + 24, 960, 120, { fontFamily: SANS, fontSize: 32, color: C.dim, textAlign: "center" })}>
+      <Rise delay={outFrom} style={abs(60, 470 + th + 24, 960, 120, { fontFamily: SANS, fontSize: 32, color: C.dim, textAlign: "center" })}>
         Real output of this command, captured in this render.<br />Runs of spaces are collapsed and long lines cut, for display only.
       </Rise>
     </SceneBox>
@@ -126,26 +126,25 @@ function Terminal({ dur, p }) {
 function Pipe({ dur, p }) {
   const f = useCurrentFrame();
   const nodes = [["logs.txt", "file"], ['claude -p "explain"', "print mode"], ["response", "printed"]];
-  const xs = [190, 540, 890];
+  const xs = [165, 540, 915];
   const dot = interpolate(f, [14, dur - 10], [0, 1], clamp);
   return (
     <SceneBox dur={dur}>
       <Headline size={64} top={250}>PIPE IN. ANSWER OUT.</Headline>
       <div style={abs(0, 560, 1080, 500)}>
-        {[0, 1].map((i) => { const t = interpolate(f, [8 + i * 12, 22 + i * 12], [0, 1], clamp); return <div key={i} style={abs(xs[i] + 125, 218, (xs[i + 1] - xs[i] - 250) * t, 6, { background: C.stroke })} />; })}
-        <div style={abs(xs[0] + 125 + dot * (xs[2] - xs[0] - 250), 206, 30, 30, { background: C.accent, borderRadius: 15, opacity: dot > 0 && dot < 1 ? 1 : 0 })} />
+        {[0, 1].map((i) => { const t = interpolate(f, [8 + i * 12, 22 + i * 12], [0, 1], clamp); return <div key={i} style={abs(xs[i] + 115, 222, (xs[i + 1] - xs[i] - 230) * t, 8, { background: C.stroke })} />; })}
+        <div style={abs(xs[0] + 115 + dot * (xs[2] - xs[0] - 230), 211, 30, 30, { background: C.accent, borderRadius: 15, opacity: dot > 0 && dot < 1 ? 1 : 0 })} />
         {nodes.map(([a, b], i) => (
-          <Rise key={a} delay={i * 8} style={abs(xs[i] - 125, 130, 250, 180, { background: i === 1 ? C.bg : C.surface, border: `${i === 1 ? 4 : 2}px solid ${i === 1 ? C.accent : C.stroke}`, borderRadius: 24, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 10, textAlign: "center" })}>
-            <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: i === 1 ? 27 : 34, color: C.ink }}>{a}</div>
-            <div style={{ fontFamily: SANS, fontSize: 28, color: C.dim, marginTop: 8 }}>{b}</div>
+          <Rise key={a} delay={i * 8} style={abs(xs[i] - 115, 110, 230, 230, { background: i === 1 ? C.bg : C.surface, border: `${i === 1 ? 4 : 2}px solid ${i === 1 ? C.accent : C.stroke}`, borderRadius: 24, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 10, textAlign: "center" })}>
+            <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: i === 1 ? 30 : 36, color: C.ink }}>{a}</div>
+            <div style={{ fontFamily: SANS, fontSize: 32, color: C.dim, marginTop: 10 }}>{b}</div>
           </Rise>
         ))}
       </div>
-      <Rise delay={26} style={abs(60, 1000, 960, 160, { background: C.ink, borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center" })}>
-        <span style={{ fontFamily: MONO, fontSize: 36, color: "#fff" }}>cat logs.txt | claude -p "explain"</span>
+      <Rise delay={26} style={abs(60, 960, 960, 200, { background: C.ink, borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center" })}>
+        <span style={{ fontFamily: MONO, fontSize: 40, color: "#fff" }}>cat logs.txt | claude -p "explain"</span>
       </Rise>
-      <Source text="Example as written in the CLI reference table" y={1190} />
-    </SceneBox>
+      <Source text="Example as written in the CLI reference table" y={1190} />    </SceneBox>
   );
 }
 

@@ -2,6 +2,7 @@
 // screenshots a crop of the real pixels, and reports where the flag cell sits so the annotation lands on it.
 import { createRequire } from "node:module";
 import { join } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const REMOTION = join(fileURLToPath(new URL("../../..", import.meta.url)), "src/skills/remotion-render");
@@ -26,7 +27,9 @@ export async function captureRows({ url, rows, viewportWidth = 1000 }) {
       if (!found) throw new Error(`no table row starting "${match}" on ${url}`);
       const clip = { x: found.table.x, y: Math.max(0, found.row.y - before), width: found.table.w, height: found.row.h + before + after };
       const buf = await page.screenshot({ type: "jpeg", quality: 88, clip });
-      out[name] = { src: `data:image/jpeg;base64,${buf.toString("base64")}`, w: Math.round(clip.width), h: Math.round(clip.height), hl: { x: found.cell.x - clip.x, y: found.cell.y - clip.y, w: found.cell.w, h: found.cell.h }, cellText: found.cellText, rowText: found.rowText };
+      mkdirSync(join(REMOTION, "public/ai-tested"), { recursive: true });
+      writeFileSync(join(REMOTION, `public/ai-tested/${name}.jpg`), buf);
+      out[name] = { file: `ai-tested/${name}.jpg`, w: Math.round(clip.width), h: Math.round(clip.height), hl: { x: found.cell.x - clip.x, y: found.cell.y - clip.y, w: found.cell.w, h: found.cell.h }, cellText: found.cellText, rowText: found.rowText };
     }
     return { title, captures: out };
   } finally { await browser.close(); }
