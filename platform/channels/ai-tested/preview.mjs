@@ -8,7 +8,16 @@ import { runQa } from "./qa.mjs";
 const PAGE = "https://code.claude.com/docs/en/cli-reference";
 const FLAGS = ["--print", "--output-format"];
 const CMD = `npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format)'`;
-const FPS = 30, GAP = 0.3, TTS = "en-US-AndrewNeural", RATE = "+5%";
+const FPS = 30, GAP = 0.3, TTS = "en-US-AndrewNeural";
+const sleep = (s) => Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, s * 1000);
+// edge-tts sometimes returns NoAudioReceived from CI: retry, then try sibling voices. Voice used is logged.
+function speak(tools, text, output) {
+  const errs = [];
+  for (const voice of [TTS, TTS, TTS, "en-US-GuyNeural", "en-US-ChristopherNeural"]) {
+    try { const f = tools.voice({ text, voice, output }); console.log("voice used:", voice); return f; } catch (e) { errs.push(`${voice}: ${e.message}`); sleep(5); }
+  }
+  throw new Error("edge-tts failed: " + errs.join(" | "));
+}
 
 // Narration per scene. PROVISIONAL.
 const NARRATION = [
@@ -52,7 +61,7 @@ export default async function preview({ key, runId, outDir, tools }) {
   // 4. Voice per scene, so every cut is timed from measured speech.
   const parts = [];
   for (const [i, [id, text]] of NARRATION.entries()) {
-    const raw = tools.voice({ text, voice: TTS, rate: RATE, output: `.v${i}.mp3` });
+    const raw = speak(tools, text, `.v${i}.mp3`);
     const d = dur(raw), len = d + GAP;
     ff(["-i", raw, "-af", `apad=whole_dur=${len.toFixed(3)}`, "-ar", "44100", "-ac", "1", join(outDir, `.p${i}.mp3`)]);
     parts.push({ id, text, speech: d, len });
