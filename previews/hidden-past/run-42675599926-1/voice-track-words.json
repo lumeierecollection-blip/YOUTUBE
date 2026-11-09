@@ -1,0 +1,444 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (63/65 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Whose",
+   "start": 0.0,
+   "end": 0.54,
+   "sentence": 0
+  },
+  {
+   "text": "arrest",
+   "start": 0.54,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "does",
+   "start": 0.82,
+   "end": 1.36,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.36,
+   "end": 1.48,
+   "sentence": 0
+  },
+  {
+   "text": "famous",
+   "start": 1.48,
+   "end": 1.86,
+   "sentence": 0
+  },
+  {
+   "text": "Sarajevo",
+   "start": 1.86,
+   "end": 2.64,
+   "sentence": 0
+  },
+  {
+   "text": "photograph",
+   "start": 2.64,
+   "end": 3.04,
+   "sentence": 0
+  },
+  {
+   "text": "really",
+   "start": 3.04,
+   "end": 3.64,
+   "sentence": 0
+  },
+  {
+   "text": "show",
+   "start": 3.64,
+   "end": 4.06,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 4.86,
+   "end": 4.91,
+   "sentence": 1
+  },
+  {
+   "text": "June",
+   "start": 4.88,
+   "end": 5.04,
+   "sentence": 1
+  },
+  {
+   "text": "1914",
+   "start": 5.04,
+   "end": 5.76,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 6.44,
+   "end": 6.52,
+   "sentence": 1
+  },
+  {
+   "text": "archduke",
+   "start": 6.52,
+   "end": 7.14,
+   "sentence": 1
+  },
+  {
+   "text": "left",
+   "start": 7.14,
+   "end": 7.34,
+   "sentence": 1
+  },
+  {
+   "text": "city",
+   "start": 7.34,
+   "end": 7.68,
+   "sentence": 1
+  },
+  {
+   "text": "hall",
+   "start": 7.68,
+   "end": 7.98,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 7.98,
+   "end": 8.44,
+   "sentence": 1
+  },
+  {
+   "text": "was",
+   "start": 8.44,
+   "end": 8.54,
+   "sentence": 1
+  },
+  {
+   "text": "soon",
+   "start": 8.54,
+   "end": 8.8,
+   "sentence": 1
+  },
+  {
+   "text": "killed",
+   "start": 8.8,
+   "end": 9.14,
+   "sentence": 1
+  },
+  {
+   "text": "Sarajevo",
+   "start": 9.86,
+   "end": 10.5,
+   "sentence": 2
+  },
+  {
+   "text": "is",
+   "start": 10.5,
+   "end": 10.72,
+   "sentence": 2
+  },
+  {
+   "text": "now",
+   "start": 10.72,
+   "end": 10.94,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 10.94,
+   "end": 11.14,
+   "sentence": 2
+  },
+  {
+   "text": "Bosnia",
+   "start": 11.14,
+   "end": 11.36,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 11.36,
+   "end": 11.76,
+   "sentence": 2
+  },
+  {
+   "text": "Herzegovina",
+   "start": 11.76,
+   "end": 12.36,
+   "sentence": 2
+  },
+  {
+   "text": "Then",
+   "start": 13.36,
+   "end": 13.41,
+   "sentence": 3
+  },
+  {
+   "text": "Austria-Hungary",
+   "start": 13.36,
+   "end": 13.89,
+   "sentence": 3
+  },
+  {
+   "text": "ruled",
+   "start": 14.42,
+   "end": 14.58,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 14.58,
+   "end": 14.78,
+   "sentence": 3
+  },
+  {
+   "text": "Next",
+   "start": 15.52,
+   "end": 15.57,
+   "sentence": 4
+  },
+  {
+   "text": "day",
+   "start": 15.52,
+   "end": 15.78,
+   "sentence": 4
+  },
+  {
+   "text": "The",
+   "start": 16.06,
+   "end": 16.18,
+   "sentence": 4
+  },
+  {
+   "text": "New",
+   "start": 16.18,
+   "end": 16.32,
+   "sentence": 4
+  },
+  {
+   "text": "York",
+   "start": 16.32,
+   "end": 16.56,
+   "sentence": 4
+  },
+  {
+   "text": "Times",
+   "start": 16.56,
+   "end": 16.9,
+   "sentence": 4
+  },
+  {
+   "text": "reported",
+   "start": 16.9,
+   "end": 17.26,
+   "sentence": 4
+  },
+  {
+   "text": "it",
+   "start": 17.26,
+   "end": 17.66,
+   "sentence": 4
+  },
+  {
+   "text": "The",
+   "start": 18.3,
+   "end": 18.38,
+   "sentence": 5
+  },
+  {
+   "text": "photo",
+   "start": 18.38,
+   "end": 18.58,
+   "sentence": 5
+  },
+  {
+   "text": "is",
+   "start": 18.58,
+   "end": 18.9,
+   "sentence": 5
+  },
+  {
+   "text": "often",
+   "start": 18.9,
+   "end": 19.18,
+   "sentence": 5
+  },
+  {
+   "text": "called",
+   "start": 19.18,
+   "end": 19.52,
+   "sentence": 5
+  },
+  {
+   "text": "Gavrilo",
+   "start": 19.52,
+   "end": 20.24,
+   "sentence": 5
+  },
+  {
+   "text": "Princip's",
+   "start": 20.24,
+   "end": 20.55,
+   "sentence": 5
+  },
+  {
+   "text": "arrest",
+   "start": 20.86,
+   "end": 21.1,
+   "sentence": 5
+  },
+  {
+   "text": "Scholars",
+   "start": 22.16,
+   "end": 22.21,
+   "sentence": 6
+  },
+  {
+   "text": "say",
+   "start": 22.16,
+   "end": 22.44,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 22.44,
+   "end": 22.7,
+   "sentence": 6
+  },
+  {
+   "text": "shows",
+   "start": 22.7,
+   "end": 22.9,
+   "sentence": 6
+  },
+  {
+   "text": "a",
+   "start": 22.9,
+   "end": 23.16,
+   "sentence": 6
+  },
+  {
+   "text": "bystander",
+   "start": 23.16,
+   "end": 23.88,
+   "sentence": 6
+  },
+  {
+   "text": "Ferdinand",
+   "start": 24.46,
+   "end": 24.51,
+   "sentence": 6
+  },
+  {
+   "text": "Behr",
+   "start": 24.46,
+   "end": 24.86,
+   "sentence": 6
+  },
+  {
+   "text": "The",
+   "start": 25.4,
+   "end": 25.62,
+   "sentence": 7
+  },
+  {
+   "text": "picture",
+   "start": 25.62,
+   "end": 25.84,
+   "sentence": 7
+  },
+  {
+   "text": "is",
+   "start": 25.84,
+   "end": 26.2,
+   "sentence": 7
+  },
+  {
+   "text": "real",
+   "start": 26.2,
+   "end": 26.42,
+   "sentence": 7
+  },
+  {
+   "text": "The",
+   "start": 27.0,
+   "end": 27.05,
+   "sentence": 8
+  },
+  {
+   "text": "caption",
+   "start": 27.02,
+   "end": 27.22,
+   "sentence": 8
+  },
+  {
+   "text": "is",
+   "start": 27.22,
+   "end": 27.76,
+   "sentence": 8
+  },
+  {
+   "text": "in",
+   "start": 27.76,
+   "end": 27.86,
+   "sentence": 8
+  },
+  {
+   "text": "doubt",
+   "start": 27.86,
+   "end": 28.04,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Whose arrest does a famous Sarajevo photograph really show?",
+   "start": 0.0,
+   "end": 4.06
+  },
+  {
+   "text": "In June 1914, the archduke left city hall and was soon killed.",
+   "start": 4.86,
+   "end": 9.14
+  },
+  {
+   "text": "Sarajevo is now in Bosnia and Herzegovina.",
+   "start": 9.86,
+   "end": 12.36
+  },
+  {
+   "text": "Then, Austria-Hungary ruled it.",
+   "start": 13.36,
+   "end": 14.78
+  },
+  {
+   "text": "Next day, The New York Times reported it.",
+   "start": 15.52,
+   "end": 17.66
+  },
+  {
+   "text": "The photo is often called Gavrilo Princip's arrest.",
+   "start": 18.3,
+   "end": 21.1
+  },
+  {
+   "text": "Scholars say it shows a bystander, Ferdinand Behr.",
+   "start": 22.16,
+   "end": 24.86
+  },
+  {
+   "text": "The picture is real.",
+   "start": 25.4,
+   "end": 26.42
+  },
+  {
+   "text": "The caption is in doubt.",
+   "start": 27.0,
+   "end": 28.04
+  }
+ ]
+}
