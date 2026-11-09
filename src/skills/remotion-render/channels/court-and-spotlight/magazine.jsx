@@ -54,9 +54,9 @@ function Win({ dur, images, credits, dates }) {
   return (
     <Scene dur={dur}>
       <Page><Masthead /></Page>
-      <div style={abs(640, 270, 380, 520, { transform: "rotate(2.5deg)", boxShadow: "0 24px 50px rgba(0,0,0,0.32)", border: `10px solid ${M.white}` })}><Photo src={images.p2009} style={{ width: "100%", height: "100%", backgroundPosition: "center 20%" }} /></div>
+      <div style={abs(730, 250, 290, 400, { transform: "rotate(2.5deg)", boxShadow: "0 24px 50px rgba(0,0,0,0.32)", border: `10px solid ${M.white}` })}><Photo src={images.p2009} style={{ width: "100%", height: "100%", backgroundPosition: "center 20%" }} /></div>
       <From dy={20} style={abs(60, 270, 480, 80, { display: "flex", alignItems: "center" })}><div style={{ background: M.red, color: M.white, fontFamily: SANS, fontWeight: 800, fontSize: 40, letterSpacing: "0.14em", padding: "10px 24px", borderRadius: 6 }}>WIN № 4</div></From>
-      <From delay={6} dy={30} style={abs(60, 560, 940, 200, { fontFamily: SERIF, fontWeight: 700, fontSize: 136, lineHeight: 1, color: M.ink })}>Renaissance</From>
+      <From delay={6} dy={30} style={abs(60, 600, 700, 200, { fontFamily: SERIF, fontWeight: 700, fontSize: 120, lineHeight: 1, color: M.ink })}>Renaissance</From>
       <From delay={12} style={abs(60, 770, 800, 130, { fontFamily: SANS, fontWeight: 600, fontSize: 44, lineHeight: 1.2, color: M.dim })}>Best dance/electronic music album</From>
       <div style={abs(60, 1040, 940, 330, { opacity: q, transform: `translateY(${(1 - q) * 30}px)`, borderLeft: `8px solid ${M.gold}`, paddingLeft: 36 })}>
         <div style={{ fontFamily: SERIF, fontStyle: "italic", fontWeight: 400, fontSize: 66, lineHeight: 1.12, color: M.ink }}>“I’m just trying to receive this night.”</div>

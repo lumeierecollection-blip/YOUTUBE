@@ -86,8 +86,8 @@ function Doj({ dur, images, credits }) {
         <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 46, lineHeight: 1.32, color: C.ink, marginTop: 34, opacity: t(f, Math.round(dur * 0.38), Math.round(dur * 0.38) + 10) }}>
           Snipes was <Hi from={Math.round(dur * 0.42)} color="#F4A9A0">found guilty by a jury on February 1.</Hi>
         </div>
-        <Label size={21} style={{ position: "absolute", left: 44, bottom: 24 }}>EXCERPT · REPUBLISHED TEXT, BLAST MAGAZINE</Label>
-      </Card>
+        </Card>
+      <Label size={21} color={C.mute} style={{ position: "absolute", left: 70, top: 1275 }}>EXCERPT · REPUBLISHED TEXT, BLAST MAGAZINE</Label>
       <Sticker src={images.portrait} x={660} y={1090} w={400} rot={2} delay={14} />
       <Credit>{credits.portrait}</Credit>
     </Scene>
@@ -128,8 +128,8 @@ function Alleged({ dur }) {
         <Label color={C.amber} size={28}>THE GOVERNMENT'S CLAIM · NOT A FINDING</Label>
         <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 210, lineHeight: 1, color: C.ink, marginTop: 80 }}>${n.toFixed(1)}M+</div>
         <div style={{ fontFamily: SERIF, fontWeight: 400, fontSize: 44, lineHeight: 1.28, color: C.ink, marginTop: 30 }}>The government <Hi from={16} color="#F0B84A">alleged</Hi> Snipes made at least $13.8 million for the years in question and owed $2.7 million in back taxes.</div>
-        <Label size={21} style={{ position: "absolute", left: 44, bottom: 24 }}>AS REPORTED BY CBS NEWS · 25 APR 2008</Label>
-      </Card>
+        </Card>
+      <Label size={21} color={C.mute} style={{ position: "absolute", left: 90, top: 1450 }}>AS REPORTED BY CBS NEWS · 25 APR 2008</Label>
       <Stamp text="ALLEGED" color={C.amber} x={600} y={1250} delay={20} size={76} />
     </Scene>
   );

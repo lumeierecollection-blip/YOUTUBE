@@ -23,7 +23,7 @@ export async function commonsMeta(title) {
   if (!ALLOWED.test(licence)) throw new Error(`"${title}" has licence "${licence}", which is not allowed for reuse`);
   return {
     title, page: i.descriptionurl, original_url: i.url, url: i.width > 1600 ? i.thumburl : i.url, width: i.width, height: i.height, mime: i.mime,
-    licence, licence_url: strip(m.LicenseUrl?.value), author: strip(m.Artist?.value), credit: strip(m.Credit?.value), description: strip(m.ImageDescription?.value),
+    licence, licence_url: strip(m.LicenseUrl?.value), author: strip(m.Artist?.value).replace(/https?:[^ ]*/g, "").replace(/ at[ ]*$/, "").replace(/[ ]+/g, " ").trim().slice(0, 70), credit: strip(m.Credit?.value), description: strip(m.ImageDescription?.value),
     date: strip(m.DateTimeOriginal?.value) || strip(m.DateTime?.value), attribution_required: strip(m.AttributionRequired?.value) === "true",
   };
 }
