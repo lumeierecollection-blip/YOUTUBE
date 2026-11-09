@@ -1,0 +1,6 @@
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p0.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p1.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p2.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p3.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p4.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-42621175613-1/.p5.mp3'
