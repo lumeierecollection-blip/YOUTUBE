@@ -944,12 +944,12 @@
       "attempts": 1,
       "run_id": "42585427400",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:42:46.137Z",
-      "stage": "script",
-      "topic": "Meta's Muse AI app adds custom 'Spaces' to organize everyday tasks",
-      "score": 89.1,
+      "updated_at": "2026-11-09T08:50:12.215Z",
+      "stage": "research",
+      "topic": "Meta's new Muse Voice brings real-time conversational avatars and voice chat",
+      "score": 84.1,
       "pillar": "Trending AI tools and apps",
-      "hook": "Meta just added a feature to its Muse app that lets you build mini-apps out of thin air."
+      "hook": "Meta's new AI voice tool lets you have real-time, face-to-face chats with expressive avatars."
     }
   },
   "uploads": [
@@ -1732,6 +1732,15 @@
       "slot": "kick-4d6c9e0e00-ch2",
       "at_ms": 1794213731666,
       "score": 89.1,
+      "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Meta's new Muse Voice brings real-time conversational avatars and voice chat",
+      "slug": "meta-s-new-muse-voice-brings-real-time-conversational-avatar",
+      "slot": "kick-4d6c9e0e00-ch2",
+      "at_ms": 1794214212215,
+      "score": 84.1,
       "pillar": "Trending AI tools and apps"
     }
   ],
