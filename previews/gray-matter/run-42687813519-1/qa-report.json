@@ -1,0 +1,143 @@
+{
+  "channel": "gray-matter",
+  "ok": true,
+  "duration_s": 28.633333,
+  "width": 1080,
+  "height": 1920,
+  "fps": "30/1",
+  "audio": "aac",
+  "provisional": "hand-planned sample, not from the script engine",
+  "voice_notice": "Neural text to speech. Never presented as a human recording.",
+  "checks": [
+    {
+      "id": "duration",
+      "ok": true,
+      "detail": "28.63 s, limit 30 s, measured from the MP4"
+    },
+    {
+      "id": "resolution",
+      "ok": true,
+      "detail": "1080x1920, required 1080x1920"
+    },
+    {
+      "id": "fps",
+      "ok": true,
+      "detail": "30/1"
+    },
+    {
+      "id": "audio",
+      "ok": true,
+      "detail": "aac"
+    },
+    {
+      "id": "voice-audible",
+      "ok": true,
+      "detail": "mean volume -23.1 dB in the MP4 (silence is about -91 dB)"
+    },
+    {
+      "id": "voice-preview",
+      "ok": true,
+      "detail": "voice-preview.mp3"
+    },
+    {
+      "id": "every-scene-labelled",
+      "ok": true,
+      "detail": "6 scenes, each with structure, function/process and evidence-status labels"
+    },
+    {
+      "id": "scene-frames",
+      "ok": true,
+      "detail": "6 scene-*.jpg for 6 scenes"
+    },
+    {
+      "id": "narration-marked-provisional",
+      "ok": true,
+      "detail": "hand-planned sample, not from the script engine"
+    },
+    {
+      "id": "every-sentence-has-claim-record",
+      "ok": true,
+      "detail": "all sentences cite existing claim records"
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "sc1",
+      "treatment": "everyday-to-biology",
+      "labels": {
+        "structure": "Temporal lobe",
+        "function_or_process": "Sleep loss and new information",
+        "evidence_status": "ESTABLISHED: Human meta-analysis: worse memory"
+      },
+      "problems": []
+    },
+    {
+      "scene_id": "sc2",
+      "treatment": "region-highlight",
+      "labels": {
+        "structure": "Hippocampus",
+        "function_or_process": "Helps form new memories",
+        "evidence_status": "ESTABLISHED: Anatomy and function"
+      },
+      "problems": []
+    },
+    {
+      "scene_id": "sc3",
+      "treatment": "activity-compare",
+      "labels": {
+        "structure": "Hippocampus",
+        "function_or_process": "Activity while learning, two conditions",
+        "evidence_status": "ASSOCIATION: One human imaging study"
+      },
+      "problems": []
+    },
+    {
+      "scene_id": "sc4",
+      "treatment": "neuron-to-spines",
+      "labels": {
+        "structure": "Pyramidal neuron, Hippocampal area CA1; dendritic spine; presynaptic terminal; receptors",
+        "function_or_process": "Synapse: spines lost after sleep loss",
+        "evidence_status": "CAUSAL TEST: Measured in mice, one study"
+      },
+      "problems": []
+    },
+    {
+      "scene_id": "sc5",
+      "treatment": "mechanism-rescue",
+      "labels": {
+        "structure": "Dendrite and actin filament",
+        "function_or_process": "Cofilin breaks down actin filaments",
+        "evidence_status": "CAUSAL TEST: Mice only, one study"
+      },
+      "problems": []
+    },
+    {
+      "scene_id": "sc6",
+      "treatment": "evidence-ledger",
+      "labels": {
+        "structure": "Dendritic spines",
+        "function_or_process": "Recovery sleep: spines back to normal (mice)",
+        "evidence_status": "ESTABLISHED: Sleep loss before learning impairs memory | ASSOCIATION: Hippocampus less active while learning | CAUSAL TEST: Cofilin drives the spine loss | UNCERTAIN: Do spines change the same way in people?"
+      },
+      "problems": []
+    }
+  ],
+  "voice_rate": "natural, gemini:Rasalgethi, 102.2 wpm, playback speed 1",
+  "voice_total_s": 28.176,
+  "anima_commit": "f0249c4fdc94cc854abcff8bf34a087e37145714",
+  "anima_bio_audit": {
+    "ok": true,
+    "errors": []
+  },
+  "mask": {
+    "area_px": 1746,
+    "bbox": [
+      202,
+      210,
+      303,
+      292
+    ]
+  },
+  "sentences_without_valid_claims": [],
+  "not_checked": "Legibility and anatomical placement are judged by looking at contact-sheet.jpg and scene-*.jpg; this script does not OCR."
+}
