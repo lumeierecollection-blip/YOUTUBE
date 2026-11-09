@@ -782,12 +782,12 @@
       "attempts": 1,
       "run_id": "42561890757",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:36:00.660Z",
-      "stage": "script",
-      "topic": "Operation Catechism: Sinking the Tirpitz",
-      "score": 63.9,
+      "updated_at": "2026-11-09T04:37:22.031Z",
+      "stage": "research",
+      "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
+      "score": 61.5,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "The daring wartime raid that finally neutralized Hitler's feared monster battleship in a Norwegian fjord."
+      "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor."
     }
   },
   "uploads": [],
@@ -1447,6 +1447,15 @@
       "slot": "kick-c15e6a3b99-ch1",
       "at_ms": 1794198955096,
       "score": 63.9,
+      "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "1",
+      "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
+      "slug": "battle-of-taranto-the-first-all-aircraft-ship-to-ship-attack",
+      "slot": "kick-c15e6a3b99-ch1",
+      "at_ms": 1794199042030,
+      "score": 61.5,
       "pillar": "Secret operations and evidence-backed conspiracies"
     }
   ],
