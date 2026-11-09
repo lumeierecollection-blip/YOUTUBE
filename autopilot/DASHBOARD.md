@@ -1,19 +1,19 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 06:29 SAST
+Updated 2026-11-09 06:41 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
 ## Hidden Past
 | | |
 |---|---|
-| Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Ned Kelly's Last Stand and Execution (66.3/100) |
-| QA | n/a |
-| Upload | n/a |
-| Performance | n/a |
-| Analytics | not checked |
+| Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
+| Latest production | delivered at delivered, attempts 1 |
+| Selected topic and score | Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack (61.5/100) |
+| QA | all gates passed |
+| Upload | ZFhtdVwK2zQ, privacy verified: private |
+| Performance | 0 views, 0 likes, 0 comments (private) |
+| Analytics | unavailable: 403 YouTube Analytics API has not been used in project 42862040335 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/youtubeanalytics.googleapis.com/overvi |
 
 ## AI Tested
 | | |
@@ -91,3 +91,4 @@ Updated 2026-11-09 06:29 SAST
   - SCR-16: 60 words implies ~29s duration â€
 - Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Old Melbourne Gaol Where" is not named in the research artifact â€” use the research's own name, or drop the 
 - AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Extend Enhance and Reframe Which" is not named in the research artifact â€” use the research's own name, or d
+- YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data.

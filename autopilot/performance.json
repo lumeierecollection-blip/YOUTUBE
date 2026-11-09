@@ -1,4 +1,19 @@
 {
-  "videos": {},
-  "analytics_status": {}
+  "videos": {
+    "ZFhtdVwK2zQ": {
+      "channel": "1",
+      "privacy": "private",
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "collected_at": "2026-11-09T04:41:46.994Z"
+    }
+  },
+  "analytics_status": {
+    "1": {
+      "available": false,
+      "reason": "403 YouTube Analytics API has not been used in project 42862040335 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/youtubeanalytics.googleapis.com/overvi",
+      "checked_at": "2026-11-09T04:41:47.191Z"
+    }
+  }
 }
