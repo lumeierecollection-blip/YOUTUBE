@@ -944,7 +944,12 @@
       "attempts": 1,
       "run_id": "42585427400",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:40:52.481Z"
+      "updated_at": "2026-11-09T08:42:11.666Z",
+      "stage": "research",
+      "topic": "Meta's Muse AI app adds custom 'Spaces' to organize everyday tasks",
+      "score": 89.1,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Meta just added a feature to its Muse app that lets you build mini-apps out of thin air."
     }
   },
   "uploads": [
@@ -1719,6 +1724,15 @@
       "at_ms": 1794213152359,
       "score": 59.8,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Meta's Muse AI app adds custom 'Spaces' to organize everyday tasks",
+      "slug": "meta-s-muse-ai-app-adds-custom-spaces-to-organize-everyday-t",
+      "slot": "kick-4d6c9e0e00-ch2",
+      "at_ms": 1794213731666,
+      "score": 89.1,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
