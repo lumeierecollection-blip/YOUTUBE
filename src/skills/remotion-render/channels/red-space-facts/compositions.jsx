@@ -299,7 +299,7 @@ function S56({ dur, s5Dur, caption5, caption6 }) {
         <Rig cam={cam} />
         <SunLight pos={[-12, 6, 10]} />
         <Stars seed={33} />
-        <SaturnSystem tex={tex} ringOpacity={ringOp} rotation={f * 0.005 + (in6 ? (f - s5Dur) * 0.02 : 0)} />
+        <SaturnSystem tex={tex} ringOpacity={ringOp} rotation={f * 0.005 + (in6 ? (f - s5Dur) * 0.08 : 0)} />
       </Canvas3D>
       {!in6 && (
         <>
