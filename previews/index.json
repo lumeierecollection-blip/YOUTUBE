@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:02:35.033Z",
+  "rebuilt_at": "2026-11-09T13:02:46.339Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "blocked",
-      "status": "failed",
-      "at": "2026-11-09T13:02:34.626Z",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-09T13:02:45.998Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "blocked_model: writer gave unusable output: story-blueprint.beats[0]: missing \"role\"; story-blueprint.beats[1]: missing \"role\"; story-blueprint.beats[2]: missing \"role\"; story-blueprint.beats[3]: missing \"role\"",
-      "lastOk": "none",
+      "blocker": "",
+      "lastOk": "2026-11-09T13:02:45.998Z",
       "run": "run-42621438393-1"
     },
     {

@@ -1,0 +1,156 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "ok": true,
+      "chars": 61450,
+      "sha256": "0bf0231e93aa2dc0",
+      "title": "Sleep and memory",
+      "published": "2026-10-04",
+      "fetched_at": "2026-11-09T13:02:39.374Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Memory is a product of brain plasticity, which involves structural changes within synapses that create associations between stimuli.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Memory, the cognitive process of storing and retrieving past experiences, learning and recognition, is a product of brain plasticity, the structural changes within synapses that create associations between stimuli.",
+      "confidence": "high",
+      "context": "Brain plasticity refers to structural changes within synapses that create associations between stimuli to form memories.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Memory processes are stabilized and enhanced by nocturnal sleep and daytime naps.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Memory processes have been shown to be stabilized and enhanced (sped up and/or integrated) and memories better consolidated by nocturnal sleep and daytime naps.",
+      "confidence": "high",
+      "context": "Nocturnal sleep and daytime naps contribute to the stabilization, enhancement, and consolidation of memories.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Declarative memories are believed to be enhanced by slow-wave sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Generally, declarative memories are believed to be enhanced by slow-wave sleep, while non-declarative memories are enhanced by rapid eye movement (REM) sleep, although there are some inconsistencies among experimental results.",
+      "confidence": "medium",
+      "context": "Slow-wave sleep and rapid eye movement sleep are linked to different types of memory enhancement.",
+      "contradictory_evidence": [],
+      "editorial_status": "hypothesis"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Most studies point to specific deficits in declarative memories that form pre or post REM sleep deprivation.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Most studies point to the specific deficits in declarative memories that form pre or post REM sleep deprivation.",
+      "confidence": "high",
+      "context": "Studies examine how REM sleep deprivation affects declarative memories.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Deficits in non-declarative memory occur pre or post NREM sleep deprivation.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Conversely, deficits in non-declarative memory occur pre or post NREM sleep deprivation.",
+      "confidence": "high",
+      "context": "NREM sleep deprivation is associated with deficits in non-declarative memory.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "A proposed dual-step memory hypothesis suggests that optimal learning occurs when the memory trace is initially processed in SWS and then REM sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "There is also a proposed dual-step memory hypothesis suggesting that optimal learning occurs when the memory trace is initially processed in SWS and then REM sleep.",
+      "confidence": "medium",
+      "context": "The dual-step memory hypothesis suggests a sequence of slow-wave sleep followed by REM sleep for optimal learning.",
+      "contradictory_evidence": [],
+      "editorial_status": "hypothesis"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Firing sequences in hippocampal ensembles during spatial learning are also active during sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "A study by Peigneux et al., (2004) noted that the firing sequences in the hippocampal ensembles during spatial learning are also active during sleep, which shows that post training sleep has a role in processing spatial memories.",
+      "confidence": "high",
+      "context": "Peigneux et al. conducted a study in 2004 examining hippocampal ensemble activity during sleep after spatial learning.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Hippocampal activity during slow-wave sleep positively correlates with the improvement on the virtual tour task the following day.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "The finding noted that the amount of hippocampal activation during slow-wave sleep positively correlated to the improvement on the virtual tour task the following day, which indicates that hippocampal activity during sleep correlates with the improvement in memory performance.",
+      "confidence": "high",
+      "context": "Researchers used PET scans and fMRI to monitor cerebral blood flow as a marker of synaptic activity during a virtual tour task.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "Modulation of the hippocampus leads to plastic changes in the brain and ultimately an improvement in performance.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "This modulation of the hippocampus leads to plastic changes in the brain and ultimately an improvement in performance.",
+      "confidence": "high",
+      "context": "Learning-dependent modulation in hippocampal activity while sleeping processes previously learned episodic and spatial memory traces.",
+      "contradictory_evidence": [],
+      "editorial_status": "causation"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "Acetylcholine is an excitatory neurotransmitter that increases to near waking levels during REM sleep compared to lower levels during slow-wave sleep.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "Acetylcholine is an excitatory neurotransmitter that is seen to increase to near waking levels during REM sleep while compared to lower levels during slow-wave sleep.",
+      "confidence": "high",
+      "context": "Acetylcholine levels fluctuate across different sleep stages, comparing REM sleep to slow-wave sleep.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c11",
+      "claim": "High levels of acetylcholine promote information attained during wakefulness to be stored in the hippocampus.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04",
+      "excerpt": "High levels of ACh would promote information attained during wakefulness to be stored in the hippocampus.",
+      "confidence": "medium",
+      "context": "Acetylcholine affects the functioning of the hippocampus-dependent memory system.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Sleep_and_memory",
+      "published": "2026-10-04"
+    }
+  ]
+}
