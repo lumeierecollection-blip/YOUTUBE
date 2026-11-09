@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T13:20:21.446Z",
+  "rebuilt_at": "2026-11-09T13:22:18.281Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -95,6 +95,25 @@
       "blocker": "Image to composite must have same dimensions or smaller",
       "lastOk": "none",
       "run": "run-42624159671-1"
+    },
+    {
+      "key": "red-space-facts",
+      "agent": "agent-red-space-facts",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T13:22:17.002Z",
+      "branch": "preview/red-space-facts",
+      "commit": "7495ca57",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42624684502#artifacts)",
+      "sheet": "",
+      "scenes": "",
+      "voice": "",
+      "script": "",
+      "plan": "",
+      "qa": "",
+      "blocker": "",
+      "lastOk": "none",
+      "run": "run-42624684502-1"
     }
   ]
 }
