@@ -1040,7 +1040,12 @@
       "attempts": 1,
       "run_id": "42592429322",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:27:30.860Z"
+      "updated_at": "2026-11-09T09:28:53.393Z",
+      "stage": "research",
+      "topic": "Drugmaker CEOs Doubt Silicon Valley's Promises That AI Will Cure Disease",
+      "score": 64.3,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "Tech companies promise AI will cure all diseases tomorrow, but actual pharmaceutical CEOs aren't buying it."
     }
   },
   "uploads": [
@@ -1914,6 +1919,15 @@
       "at_ms": 1794216344211,
       "score": 66.6,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Drugmaker CEOs Doubt Silicon Valley's Promises That AI Will Cure Disease",
+      "slug": "drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will-",
+      "slot": "kick-a558298fac-ch2",
+      "at_ms": 1794216533392,
+      "score": 64.3,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
