@@ -2837,9 +2837,14 @@
           "topic": "Single-Crystal Turbine Blade Growth and High-Temperature Stress Resistance",
           "slug": "single-crystal-turbine-blade-growth",
           "reserved_at": "2026-11-08T15:24:06.212Z"
+        },
+        {
+          "topic": "ZF 30000 RPM EV Motor Design and 18 to 1 Gearing Reduction",
+          "slug": "zf-30000-rpm-ev-motor-design",
+          "reserved_at": "2026-11-09T19:02:04.263Z"
         }
       ],
-      "last_generated": "2026-11-08T15:24:06.213Z"
+      "last_generated": "2026-11-09T19:02:04.263Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
