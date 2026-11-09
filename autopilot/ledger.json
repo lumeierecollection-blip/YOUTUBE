@@ -552,6 +552,14 @@
       "pillar": "Secret operations and evidence-backed conspiracies",
       "hook": "How a daring German raider ship terrorized Allied trade routes until a fateful naval duel in the Indian Ocean.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead"
+    },
+    "kick-3dfcfe63bb-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42543872725",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:11:49.636Z"
     }
   },
   "uploads": [],
@@ -1069,5 +1077,5 @@
     "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr",
     "Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead"
   ],
-  "last_poll_at": "2026-11-09T01:07:34.967Z"
+  "last_poll_at": "2026-11-09T01:11:49.636Z"
 }
