@@ -177,7 +177,7 @@ export function nameFidelityProblems(script, research) {
 
   const seen = new Set();
   // Per clause: "...Rio de Janeiro. How..." and "In Washington DC, November..." are a name beside another word, not one long name.
-  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])\s+|[,;:]\s+/))) {
+  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+|[,;:]\s+/))) {
     const toks = nameTokens(String(text));
     const runs = [];
     let cur = [];
@@ -218,7 +218,7 @@ export function nameFidelityProblems(script, research) {
  */
 export function wordsOnlyShare(sections = []) {
   const sentences = sections
-    .flatMap((s) => String(s.voiceover || "").split(/(?<=[.!?])\s+/))
+    .flatMap((s) => String(s.voiceover || "").split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+/))
     .map((t) => t.trim()).filter(Boolean);
   const names = (t) => /\d/.test(t) || /(?:^|\s)(?!I\b)[A-Z][A-Za-z]+/.test(t.replace(/^\W*\S+\s*/, " ")) ||
     /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/.test(t);

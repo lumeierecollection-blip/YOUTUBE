@@ -23,6 +23,7 @@ This is one chain, not a list of facts. A viewer leaves the moment the next sent
 - The question opened in the setup stays open until the payoff. Nothing earlier may give away the answer.
 - Stakes rise. The rehook makes the answer matter more than it did a moment ago.
 - Write to be heard. Read it aloud in your head. Maximum 14 words a sentence, and vary the length.
+- On this channel a question needs its figure inside it, said naturally: "Why did 19 percent come back?" not "Why do they return?". A close that begins with an action verb still has to say something a person would really say: "Picture 19 of every 100 replaced workers walking back in." not "Check the 19 percent rate."
 - Never use: "here's the thing", "here's what", "the result?", "turns out", "what if I told you", "in a world where", "not gonna lie", "let me be honest", "game-changer", "No X. No Y. Just Z.", or any request to like, follow or subscribe.
 
 ## Rules

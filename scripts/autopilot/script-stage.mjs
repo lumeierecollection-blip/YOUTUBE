@@ -16,7 +16,7 @@ const MAX_SECONDS = 29.8;
 const SCRIPT_PASSES = 10;
 const MIN_DRAWABLE_FACTS = 5;
 const MAX_SENTENCE_WORDS = 16;
-const BANNED_PHRASING = /\b(here'?s (the thing|the kicker|the twist|what)|the result\?|turns out|what if i told you|in a world where|not gonna lie|let me be honest|game[- ]changer|like and subscribe|smash that)\b/i;
+const BANNED_PHRASING = /\b(here'?s (the thing|the kicker|the twist|what)|the result\?|turns out|what if i told you|in a world where|not gonna lie|let me be honest|game[- ]changer|like and subscribe|smash that|you might be shocked|you won'?t believe)\b/i;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
 const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
@@ -103,7 +103,7 @@ function gateScript({ channel, slug, scriptPath, researchPath, stem }) {
   const narration = readJson(scriptPath).sections.map((s) => s.voiceover).join(" ");
   const bridge = narration.match(BANNED_PHRASING);
   if (bridge) found.push(`  - NARRATIVE: "${bridge[0]}" is stock phrasing a viewer swipes past. State the fact itself.`);
-  const sentencesOf = narration.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const sentencesOf = narration.split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+/).filter(Boolean);
   const longOnes = sentencesOf.filter((s) => s.split(/\s+/).length > MAX_SENTENCE_WORDS);
   if (longOnes.length) found.push(longOnes.map((s) => `  - NARRATIVE: "${s}" is over ${MAX_SENTENCE_WORDS} words, too long to follow by ear. Split it or cut it.`).join("\n"));
   const filler = readJson(scriptPath).sections.flatMap((s) => s.voiceover.match(/[^.!?]*\b1\s+[a-zA-Z][^.!?]*[.!?]/g) || []);

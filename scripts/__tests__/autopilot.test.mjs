@@ -280,3 +280,9 @@ test("title-case common words do not make two stories the same", () => {
   assert.ok(similarity("Battle of Taranto: The First Attack", "The 1940 Taranto Naval Raid") >= 0.5, "a real shared name still counts");
   assert.ok(similarity("Bill Gates Says $10-an-Hour Robots Are Coming for Jobs", "Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker") >= 0.5, "the same story still counts");
 });
+
+test("an abbreviation does not end a sentence", () => {
+  const split = (x) => x.split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+/);
+  assert.deepEqual(split("The U.K. return rate is 13 percent. Why?"), ["The U.K. return rate is 13 percent.", "Why?"]);
+  assert.equal(split("Workers in the U.S. came back.").length, 1);
+});
