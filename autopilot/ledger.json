@@ -687,16 +687,18 @@
     },
     "kick-2f19a628f0-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42547452603",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:58:23.364Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T01:58:29.313Z",
+      "stage": "qa",
       "topic": "The Daring RAF Raid That Sank the Battleship Tirpitz",
       "score": 63.9,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "During WWII, the Royal Air Force launched Operation Catechism, finally destroying Nazi Germany's most feared floating fortress, the battleship Tirpitz."
+      "hook": "During WWII, the Royal Air Force launched Operation Catechism, finally destroying Nazi Germany's most feared floating fortress, the battleship Tirpitz.",
+      "error": "gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 3: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 4: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 5: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 6: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 7: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 8: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 9: 'Image: Wikimedia Commons' is cut of",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -1348,7 +1350,8 @@
     "Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)",
     "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t",
     "Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context",
-    "AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
+    "AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
+    "Hidden Past kick-2f19a628f0-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom\",\"clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bo"
   ],
   "last_poll_at": "2026-11-09T01:49:53.201Z"
 }

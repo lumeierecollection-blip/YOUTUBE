@@ -1,0 +1,111 @@
+{
+  "production_id": "ap-kick-2f19a628f0-ch1",
+  "sha256": "c2c0bda341452e31580273b3c6b4f77ade0f812a87d60dad9915fea798f6d53d",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 29,
+    "mean_volume_db": -22.1,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": false,
+    "problems": [
+      "clipped_text: frame 1: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 2: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 3: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 4: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 5: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 6: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 7: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 8: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 9: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 10: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 11: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 12: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 13: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 14: 'Image: Wikimedia Commons' is cut off at the bottom",
+      "clipped_text: frame 15: 'Image: Wikimedia Commons' is cut off at the bottom"
+    ],
+    "dismissed_after_full_resolution_check": [],
+    "verdict": {
+      "clipped_text": [
+        "frame 1: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 2: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 3: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 4: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 5: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 6: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 7: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 8: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 9: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 10: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 11: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 12: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 13: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 14: 'Image: Wikimedia Commons' is cut off at the bottom",
+        "frame 15: 'Image: Wikimedia Commons' is cut off at the bottom"
+      ],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The frames maintain a consistent historical editorial aesthetic with desaturated photos and gold accents, but the 'Image: Wikimedia Commons' credit is consistently clipped at the bottom of the image containers."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-2f19a628f0-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 6,
+      "annotations": 1,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "How 29 Air Force planes finally sank the Tirpitz with Tallboy bombs",
+    "description": "After ten failed attacks, 29 Royal Air Force aircraft used 12,030‑pound Tallboy bombs to sink the battleship Tirpitz near Tromsø. The strike capsized the ship, killing 940 of its crew.\n\n#Tirpitz #TallboyBomb #WWIIHistory #AirForce #NavalWarfare\n\nSources:\n- https://en.wikipedia.org/wiki/Operation_Catechism\n- https://web.archive.org/web/20120323063336/http:/www.raf.mod.uk/history/bombercommandtirpitznovember121944.cfm\n- https://bombercommandmuseumarchives.ca/tirpitz.html\n\nImage credits:\n- The German battleship Tirpitz afloat in a Norwegian fjord: Unknown author / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Tirpitz_altafjord.jpg\n- Close-up of the heavily armored superstructure of the battleship Tirpitz: Municipal Archives of Trondheim from Trondheim, Norway / Wikimedia Commons, CC BY 2.0 (CC BY 2.0) https://commons.wikimedia.org/wiki/File:Odd_S%C3%B8rli_(1912-1976)_(49565487887).jpg\n- A Royal Air Force Lancaster bomber in flight during World War II: Royal Air Force official photographer, Woodbine G (Mr) / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Avro_Lancaster_-_Royal_Air_Force_1939-1945-_Bomber_Command_CH7491.jpg\n- The massive 12,030-pound Tallboy earthquake bomb on display next to inventors or handlers: Bernard Spragg. NZ from Christchurch, New Zealand / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Avro_Lancaster_Bomber_(8910397019).jpg\n- Multiple Royal Air Force aircraft flying in formation on a bombing raid: Royal Air Force official photographer / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Avro_Lancaster_pigeons_WWII_IWM_TR_193.jpg\n- The capsized hull of the battleship Tirpitz resting upside down in the water: Daventry B J (Flt Lt), Royal Air Force official photographer / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Troms%C3%B6,_Royal_Air_Force_Bomber_Command,_1942-1945_CL2830.jpg",
+    "tags": [
+      "Tirpitz",
+      "Tallboy bomb",
+      "World War II",
+      "air raid",
+      "Royal Air Force",
+      "naval battleship",
+      "Tromsø",
+      "Barnes Wallis"
+    ],
+    "hashtags": [
+      "#Tirpitz",
+      "#TallboyBomb",
+      "#WWIIHistory",
+      "#AirForce",
+      "#NavalWarfare"
+    ]
+  }
+}
