@@ -1,0 +1,50 @@
+[
+  {
+    "rule": "CON-05",
+    "severity": "major",
+    "category": "unexplained_name",
+    "sentence_ids": [
+      "s2"
+    ],
+    "problem": "\"Bosnian\" appears with no word saying what or who it is.",
+    "fix": "Introduce it: say what or who \"Bosnian\" is."
+  },
+  {
+    "rule": "CON-05",
+    "severity": "major",
+    "category": "unexplained_name",
+    "sentence_ids": [
+      "s2"
+    ],
+    "problem": "\"Archduke\" appears with no word saying what or who it is.",
+    "fix": "Introduce it: say what or who \"Archduke\" is."
+  },
+  {
+    "rule": "HP-1",
+    "severity": "major",
+    "category": "misleading_claim",
+    "sentence_ids": [
+      "s1"
+    ],
+    "problem": "A later interpretation is told as established fact.",
+    "fix": "Name who proposed it and phrase it as their reading."
+  },
+  {
+    "rule": "HP-1",
+    "severity": "major",
+    "category": "misleading_claim",
+    "sentence_ids": [
+      "s4"
+    ],
+    "problem": "A later interpretation is told as established fact.",
+    "fix": "Name who proposed it and phrase it as their reading."
+  },
+  {
+    "rule": "DUR-01",
+    "sentence_ids": [],
+    "severity": "critical",
+    "category": "unrealistic_duration",
+    "problem": "the script is estimated at 29.8s; the limit is 29s",
+    "fix": "Narrow the story. Do not speed the voice up."
+  }
+]

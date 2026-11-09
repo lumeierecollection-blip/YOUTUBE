@@ -1,0 +1,4 @@
+Error: script engine: rejected: ["CON-05: \"Bosnian\" appears with no word saying what or who it is.","CON-05: \"Archduke\" appears with no word saying what or who it is.","HP-1: A later interpretation is told as established fact.","HP-1: A later interpretation is told as established fact.","DUR-01: the script is estimated at 29.8s; the limit is 29s"] 
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/preview.mjs:188:105)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

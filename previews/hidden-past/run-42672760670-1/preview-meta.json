@@ -2,11 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42672760670-1",
   "agent": "agent-hidden-past",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T18:21:46.594Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-09T18:21:48.465Z",
   "branch": "preview/hidden-past",
   "commit": "7e52df8c76b7fd10aa176a8ea65ffd4568f664da",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42672760670#artifacts",
-  "round": 4
+  "error": "script engine: rejected: [\"CON-05: \\\"Bosnian\\\" appears with no word saying what or who it is.\",\"CON-05: \\\"Archduke\\\" appears with no word saying what or who it is.\",\"HP-1: A later interpretation is told as established fact.\",\"HP-1: A later interpretation is told as established fact.\",\"DUR-01: the script is estimated at 29.8s; the limit is 29s\"] "
 }

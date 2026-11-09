@@ -1,0 +1,504 @@
+{
+  "channel": "hidden-past",
+  "format": "short",
+  "topic": "The Sarajevo arrest photograph that is often misattributed",
+  "angle": "Tell it as one investigation, evidence first. Open at Sarajevo City Hall on 28 June 1914 with the couple's photograph. Place the city in today's country and in Austria-Hungary in 1914. Then the next day's newspaper. Then the famous arrest photograph, and what scholars say it really shows. End by answering whether the photograph shows Princip. Say plainly what is disputed. Seven or eight short spoken sentences.",
+  "status": "rejected",
+  "wpm": {
+    "wpm": 157.2,
+    "source": "measured",
+    "voice": "gemini:Rasalgethi"
+  },
+  "limits": {
+    "target_s": 26.5,
+    "max_s": 29
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "writer_provider": "gemini",
+      "words": 64,
+      "deterministic": {
+        "critical": 1,
+        "major": 5,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Archduke Franz Ferdinand\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Archduke Franz Ferdinand\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "\"Sophie\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Sophie\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"David James Smith\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"David James Smith\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"Ferdinand Behr\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Ferdinand Behr\" is."
+          },
+          {
+            "rule": "CON-04",
+            "severity": "critical",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "The sentence states a figure or a name but cites no claim.",
+            "fix": "Cite a claim or remove the figure or name."
+          },
+          {
+            "rule": "TRC-04",
+            "severity": "major",
+            "category": "unsupported_claim",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "The name \"Ferdinand Behr\" is in none of this sentence's claims.",
+            "fix": "Remove it or cite a claim that names it."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 1,
+        "major": 5,
+        "minor": 0
+      }
+    },
+    {
+      "round": 2,
+      "writer_provider": "gemini",
+      "words": 67,
+      "deterministic": {
+        "critical": 0,
+        "major": 6,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"David James Smith\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"David James Smith\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"Ferdinand Behr\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Ferdinand Behr\" is."
+          },
+          {
+            "rule": "CON-12",
+            "severity": "major",
+            "category": "unfulfilled_hook",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "The hook says 1914 and the rest of the script never returns to it.",
+            "fix": "Deliver that figure in the payoff or take it out of the hook."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "major",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 23.7s; the minimum is 24s",
+            "fix": "Add a beat that serves the question."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 6,
+        "minor": 0
+      }
+    },
+    {
+      "round": 3,
+      "writer_provider": "gemini",
+      "words": 72,
+      "deterministic": {
+        "critical": 0,
+        "major": 6,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-03",
+            "severity": "major",
+            "category": "missing_context",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"this image\" refers to something never mentioned before this point.",
+            "fix": "Say what \"image\" is, or mention it earlier."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"Bosnian\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Bosnian\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s3"
+            ],
+            "problem": "\"Princip's\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Princip's\" is."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s5"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 0,
+        "major": 6,
+        "minor": 0
+      }
+    },
+    {
+      "round": 4,
+      "writer_provider": "gemini",
+      "words": 77,
+      "deterministic": {
+        "critical": 1,
+        "major": 4,
+        "minor": 0,
+        "findings": [
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"Bosnian\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Bosnian\" is."
+          },
+          {
+            "rule": "CON-05",
+            "severity": "major",
+            "category": "unexplained_name",
+            "sentence_ids": [
+              "s2"
+            ],
+            "problem": "\"Archduke\" appears with no word saying what or who it is.",
+            "fix": "Introduce it: say what or who \"Archduke\" is."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s1"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "HP-1",
+            "severity": "major",
+            "category": "misleading_claim",
+            "sentence_ids": [
+              "s4"
+            ],
+            "problem": "A later interpretation is told as established fact.",
+            "fix": "Name who proposed it and phrase it as their reading."
+          },
+          {
+            "rule": "DUR-01",
+            "sentence_ids": [],
+            "severity": "critical",
+            "category": "unrealistic_duration",
+            "problem": "the script is estimated at 29.8s; the limit is 29s",
+            "fix": "Narrow the story. Do not speed the voice up."
+          }
+        ]
+      },
+      "open_findings": {
+        "critical": 1,
+        "major": 4,
+        "minor": 0
+      }
+    }
+  ],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 6,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "src-couple",
+        "url": "https://commons.wikimedia.org/wiki/File:Archduke_Franz_Ferdinand_in_Sarajevo,_June_1914_Q91848.jpg",
+        "published": null
+      },
+      {
+        "source_id": "src-wiki-sarajevo",
+        "url": "https://en.wikipedia.org/wiki/Sarajevo",
+        "published": null
+      },
+      {
+        "source_id": "src-wiki",
+        "url": "https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand",
+        "published": null
+      },
+      {
+        "source_id": "src-nyt",
+        "url": "https://commons.wikimedia.org/wiki/File:The_New_York_Times_1914-06-29-_Vol_63_Iss_20610_(IA_per_new-york-times-magazine_the-new-york-times_1914-06-29_63_20610).pdf",
+        "published": null
+      },
+      {
+        "source_id": "src-behr",
+        "url": "https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg",
+        "published": null
+      }
+    ]
+  },
+  "blueprint": {
+    "attempts": 1,
+    "removed_beats": [],
+    "checks": {
+      "max_beats": 4,
+      "deterministic": "pass",
+      "model": {
+        "answers_question": true,
+        "fits_length": true,
+        "beats": [
+          {
+            "beat_id": "b1",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Establishes the photographic context of the events in Sarajevo on the day of the assassination."
+          },
+          {
+            "beat_id": "b2",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "chronology",
+            "reason": "The arrest photograph follows the pre-assassination photograph chronologically rather than contradicting it."
+          },
+          {
+            "beat_id": "b3",
+            "serves": true,
+            "link_true": true,
+            "correct_link": "",
+            "reason": "Citing David James Smith provides direct scholarly evidence supporting the dispute raised in beat 2."
+          },
+          {
+            "beat_id": "b4",
+            "serves": true,
+            "link_true": false,
+            "correct_link": "consequence",
+            "reason": "The summary ending is a consequence of the evidence presented, not evidence itself."
+          }
+        ],
+        "relinked_by_checker": [
+          {
+            "beat_id": "b2",
+            "from": "contradiction",
+            "to": "chronology",
+            "reason": "The arrest photograph follows the pre-assassination photograph chronologically rather than contradicting it."
+          },
+          {
+            "beat_id": "b4",
+            "from": "evidence",
+            "to": "consequence",
+            "reason": "The summary ending is a consequence of the evidence presented, not evidence itself."
+          }
+        ]
+      }
+    },
+    "history": []
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "groq",
+      "model": null,
+      "ms": 10883,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 19522,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "ms": 54130,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq:quota_exhausted",
+        "cerebras:provider_error",
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "ms": 16752,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq:quota_exhausted",
+        "cerebras:provider_error",
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "ms": 3530,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq:quota_exhausted",
+        "cerebras:provider_error",
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "writer-revise",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash",
+      "ms": 5030,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq:quota_exhausted",
+        "cerebras:provider_error",
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "groq",
+      "gemini"
+    ],
+    "critic": []
+  }
+}
