@@ -44,6 +44,12 @@ const getJson = async (url, opts) => {
   return r.json();
 };
 
+/** A second, independent news index. Links carry the publisher's real URL. */
+const bingSearch = async (q) => parseFeed(await getText(`https://www.bing.com/news/search?q=${encodeURIComponent(q)}&format=rss&sortby=date`), "news").map((x) => {
+  const real = (x.url.match(/[?&]url=([^&]+)/) || [])[1];
+  const url = real ? decodeURIComponent(real) : x.url;
+  return { ...x, url, domain: hostOf(url) };
+});
 const newsSearch = async (q, days) => parseFeed(await getText(`https://news.google.com/rss/search?q=${encodeURIComponent(q)}+when:${days}d&hl=en-US&gl=US&ceid=US:en`), "news");
 
 /** Wave 2 widens the net to a second set of search phrases over 14 days. */
@@ -53,6 +59,7 @@ async function collectSignals(channel, nowMs, wave = 1) {
   const queries = wave === 1 ? channel.news_queries : channel.wave2_queries;
   for (const q of queries) {
     tasks.push(source(report, `google-news:${q}`, () => newsSearch(q, wave === 1 ? 7 : 14)));
+    tasks.push(source(report, `bing-news:${q}`, () => bingSearch(q)));
   }
   for (const f of channel.feeds) tasks.push(source(report, `feed:${hostOf(f)}`, async () => parseFeed(await getText(f), "feed")));
   for (const sub of channel.reddit) {
@@ -72,9 +79,9 @@ async function collectSignals(channel, nowMs, wave = 1) {
     for (let offset = 0; offset < 7; offset++) {
       const d = new Date(nowMs + offset * 86400e3);
       const mm = String(d.getUTCMonth() + 1).padStart(2, "0"), dd = String(d.getUTCDate()).padStart(2, "0");
-      tasks.push(source(report, , async () => {
-        const j = await getJson();
-        return (j.selected || []).map((e) => ({ title: , url: e.pages?.[0]?.content_urls?.desktop?.page || "https://en.wikipedia.org", domain: "wikipedia.org", published_ms: nowMs, kind: "anniversary" }));
+      tasks.push(source(report, `wikipedia-on-this-day:${mm}-${dd}`, async () => {
+        const j = await getJson(`https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/selected/${mm}/${dd}`);
+        return (j.selected || []).map((e) => ({ title: `${e.year}, ${mm}-${dd}: ${e.text}`, url: e.pages?.[0]?.content_urls?.desktop?.page || "https://en.wikipedia.org", domain: "wikipedia.org", published_ms: nowMs, kind: "anniversary" }));
       }));
     }
   }
