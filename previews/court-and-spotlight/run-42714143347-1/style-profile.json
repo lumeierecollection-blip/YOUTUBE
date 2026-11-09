@@ -1,0 +1,52 @@
+{
+  "id": "vox_explainer",
+  "name": "VOX-Style Pop-Culture Explainer",
+  "composition": "CourtVoxShort",
+  "visual_language": "Visual journalism: light editorial background, large subject cut-outs layered over bold type, labelled charts and comparisons, animated annotations, highlighted key words. Explanation first, decoration never.",
+  "image_strategy": "Real cut-outs of the people involved, placed beside the data they explain. Every chart uses sourced values, one unit, a zero baseline and labelled sources.",
+  "composition_rules": [
+    "one central question, stated in the opening",
+    "the picture explains the argument with sound off",
+    "at least one comparison, timeline or infographic",
+    "no paragraphs of on-screen text",
+    "charts start at zero and name their unit and source"
+  ],
+  "typography": {
+    "display": "Playfair Display 800",
+    "body": "DM Sans",
+    "label": "JetBrains Mono 700"
+  },
+  "palette": {
+    "page": "#F4F2EC",
+    "ink": "#101114",
+    "accent": "#E3402B",
+    "blue": "#2D5BD0",
+    "dim": "#5B5F6A"
+  },
+  "transitions": "restrained slides and wipes",
+  "motion": "bars that grow, labels that draw on, cut-outs that slide into frame",
+  "evidence_requirements": [
+    "every statistic is quoted from a fetched source and cited on screen",
+    "no invented audience figures",
+    "photographs are licensed and credited"
+  ],
+  "music": {
+    "mood": "editorial",
+    "direction": "modern, rhythmic, restrained",
+    "licence": "original, synthesised by platform/production/music.py"
+  },
+  "story_structure": [
+    "the question",
+    "the baseline",
+    "the change or comparison",
+    "the evidence",
+    "the answer"
+  ],
+  "qa_checks": [
+    "clear central argument",
+    "chart data matches sources",
+    "meaningful comparison",
+    "units and labels present",
+    "visual explanation, not decoration"
+  ]
+}
