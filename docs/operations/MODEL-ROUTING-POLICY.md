@@ -37,7 +37,7 @@ without passing through it.
 
 ## Verification (2026-11-09)
 
-Each result was read from that agent's own transcript, in the `model` field of its API responses.
+Each result was read from that agent's own transcript (`~/.claude/projects/.../agent-<id>.jsonl`): the `params.model` of its API requests and the `message.model` of its responses. The agents also reported the same IDs.
 
 | Test | Requested | Actual |
 |---|---|---|
