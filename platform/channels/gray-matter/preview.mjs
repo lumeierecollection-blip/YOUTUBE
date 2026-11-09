@@ -7,6 +7,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildFigures } from "./figures.mjs";
 import { claims, scenePlan, scriptPackage, sentences } from "./sample.mjs";
+import { runQa } from "./qa.mjs";
 import { SCENES } from "./scenes.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -106,19 +107,21 @@ function captionChunks(timed) {
 export default async function preview({ key, runId, outDir, tools }) {
   const v = validators();
   tools.write("story-outline.md", ["# Gray Matter sample: story outline", "", `Topic: ${scriptPackage.topic}`, `Status: ${scriptPackage.provisional}`, "", `Question: ${scriptPackage.blueprint.central_question}`, "", `Thesis: ${scriptPackage.blueprint.thesis}`, "", ...scriptPackage.blueprint.beats.map((b) => `- ${b.beat_id} (${b.role}): ${b.purpose} [${b.claim_ids.join(", ")}]`), ""].join("\n"));
-  tools.write("script-draft.md", ["# Script draft (provisional)", "", ...sentences.map((s) => `${s.sentence_id}. ${s.text}  \n   claims: ${s.claim_ids.join(", ")}`), "", "## Sources", ...scriptPackage.sources.map((s) => `- ${s.source_id}: ${s.title}. ${s.journal}. doi:${s.doi}. Fetched from ${s.url}`), ""].join("\n"));
+  tools.write("script-draft.md", ["# Script draft. PROVISIONAL: hand-planned sample, not from the script engine", "", ...sentences.map((s) => `${s.sentence_id}. ${s.text}  \n   claims: ${s.claim_ids.join(", ")}`), "", "## Sources", ...scriptPackage.sources.map((s) => `- ${s.source_id}: ${s.title}. ${s.journal}. doi:${s.doi}. Fetched from ${s.url}`), ""].join("\n"));
   tools.write("claims.json", claims);
-  tools.stage("script", "running");
+  tools.stage("research_complete", "running", { note: "claim records copied from fetched sources, see claims.json" });
+  tools.stage("blueprint_complete", "running");
+  tools.stage("script_complete", "running", { provisional: scriptPackage.provisional });
 
   const anima = fetchAnima();
   const figures = await buildFigures(anima, channel.palette);
   tools.write("figure-audit.json", { anima_commit: channel.anima.commit, anima_bio_audit: figures.audit, note: "Audits membrane intersection and that labels point at real parts. It does not validate biological accuracy; the claim records do that." });
   if (!figures.audit.ok) throw new Error(`Anima bio audit failed: ${figures.audit.errors.join("; ")}`);
   const plates = await platePayload();
-  tools.stage("figures", "running");
+  tools.stage("visual_complete", "running");
 
   const { voiceFile, timed, rate, total } = synthesise(tools, outDir);
-  tools.stage("voice", "running", { rate });
+  tools.stage("voice_complete", "running", { rate });
 
   const frames = (s) => Math.round(s * FPS);
   const totalFrames = Math.ceil((total + TAIL_S) * FPS);
@@ -140,14 +143,14 @@ export default async function preview({ key, runId, outDir, tools }) {
   const pkg = { ...scriptPackage, duration_estimate_s: total };
   v.script(pkg);
   tools.write("script-package.json", pkg);
-  tools.stage("scene-plan", "running");
+  
 
   const silent = tools.renderComposition({ id: "GrayMatterShort", output: "silent.mp4", durationInFrames: totalFrames, props: { scenes, captions: captionChunks(timed), figures: { css: figures.css, neuron: figures.neuron, synapse: figures.synapse, bare: figures.bare, actin: figures.actin }, plates: { plate: plates.plate, mask: plates.mask, lateral: plates.lateral, size: plates.plateSize }, palette: channel.palette, type: channel.type, statusLabels: channel.status_labels } });
   const video = join(outDir, "preview.mp4");
   // One mux, on the runner: the composition has no audio element because the voice is measured and fixed before rendering.
   execFileSync("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", voiceFile, "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-af", "apad", "-shortest", "-movflags", "+faststart", video]);
   rmSync(silent, { force: true });
-  tools.stage("rendered", "running");
+  tools.stage("render_complete", "running");
 
   // Beats sample each scene at the moments where its picture changes.
   const beatFracs = { "everyday-to-biology": [0.3, 0.92], "region-highlight": [0.75], "activity-compare": [0.75], "neuron-to-spines": [0.3, 0.92], "mechanism-rescue": [0.35, 0.92], "evidence-ledger": [0.18, 0.95] };
@@ -157,13 +160,31 @@ export default async function preview({ key, runId, outDir, tools }) {
   }));
   await tools.contactSheet({ video, scenes: beats });
   mkdirSync(join(outDir, "frames"), { recursive: true });
-  for (const b of beats) execFileSync("ffmpeg", ["-y", "-v", "error", "-ss", b.at.toFixed(3), "-i", video, "-frames:v", "1", "-q:v", "3", join(outDir, "frames", `${b.id}.jpg`)]);
+  const grab = (at, file) => execFileSync("ffmpeg", ["-y", "-v", "error", "-ss", at.toFixed(3), "-i", video, "-frames:v", "1", "-q:v", "3", file]);
+  for (const b of beats) grab(b.at, join(outDir, "frames", `${b.id}.jpg`));
+  // scene-N.jpg: each scene near its end, when its labels and evidence tag are all on screen.
+  plan.scenes.forEach((sc, i) => grab(sc.start_s + (sc.end_s - sc.start_s) * 0.9, join(outDir, `scene-${i + 1}.jpg`)));
+
+  // What each scene must carry on screen, read from the same data the composition renders.
+  const st = channel.status_labels;
+  const labelsOf = (sc, d) => {
+    const status = d.ledger ? d.ledger.map((r) => `${st[r.status]}: ${r.head}`).join(" | ") : `${st[d.status]}: ${d.statusDetail}`;
+    const by = {
+      "everyday-to-biology": { structure: "Temporal lobe", function_or_process: "Sleep loss and new information" },
+      "region-highlight": { structure: d.region?.name, function_or_process: d.region?.does },
+      "activity-compare": { structure: "Hippocampus", function_or_process: "Activity while learning, two conditions" },
+      "neuron-to-spines": { structure: `${d.neuronTitle}, ${d.neuronRegion}; dendritic spine; presynaptic terminal; receptors`, function_or_process: "Synapse: spines lost after sleep loss" },
+      "mechanism-rescue": { structure: "Dendrite and actin filament", function_or_process: d.actinLabel },
+      "evidence-ledger": { structure: "Dendritic spines", function_or_process: d.recoveryLabel },
+    }[sc.treatment];
+    return { ...by, evidence_status: status };
+  };
+  tools.write("label-manifest.json", { note: "Labels each scene must show, derived from the scene data the composition renders.", scenes: plan.scenes.map((sc, i) => ({ scene_id: sc.scene_id, treatment: sc.treatment, labels: labelsOf(sc, scenePlan[i].data) })) });
 
   const duration = tools.durationOf(video);
-  const [width, height] = execFileSync("ffprobe", ["-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "csv=p=0", video]).toString().trim().split(",").map(Number);
-  const audioStreams = execFileSync("ffprobe", ["-v", "error", "-select_streams", "a", "-show_entries", "stream=codec_name", "-of", "csv=p=0", video]).toString().trim();
   const unsupported = sentences.filter((s) => !s.claim_ids.length || s.claim_ids.some((id) => !claims.some((c) => c.claim_id === id))).map((s) => s.sentence_id);
-  const qa = { duration_s: duration, within_limit: duration <= LIMIT, width, height, audio: audioStreams, voice_rate: rate, voice_total_s: total, sentences_without_valid_claims: unsupported, anima_commit: channel.anima.commit, anima_bio_audit: figures.audit, mask: plates.mask_stats, provisional: scriptPackage.provisional, voice_notice: channel.voice.generated_speech_notice };
-  tools.write("qa-report.json", qa);
-  if (!qa.within_limit || width !== channel.format.width || height !== channel.format.height || !audioStreams || unsupported.length) throw new Error(`QA failed: ${JSON.stringify(qa)}`);
+  const qa = await runQa(outDir, { voice_rate: rate, voice_total_s: total, anima_commit: channel.anima.commit, anima_bio_audit: figures.audit, mask: plates.mask_stats, sentences_without_valid_claims: unsupported });
+  tools.stage("qa_passed", qa.ok ? "ok" : "failed");
+  if (!qa.ok) throw new Error(`QA failed: ${qa.checks.filter((c) => !c.ok).map((c) => `${c.id}: ${c.detail}`).join("; ")}`);
+  tools.stage("preview_ready", "ok", { duration_s: duration });
 }
