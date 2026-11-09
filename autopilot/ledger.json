@@ -1068,12 +1068,12 @@
       "attempts": 1,
       "run_id": "42595263580",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:42:56.962Z",
-      "stage": "script",
-      "topic": "The 14th Dalai Lama Assumes Temporal Power at Age 15",
-      "score": 76.1,
+      "updated_at": "2026-11-09T09:48:21.540Z",
+      "stage": "research",
+      "topic": "The Execution of Métis Leader Louis Riel",
+      "score": 61.1,
       "pillar": "Forgotten historical figures",
-      "hook": "Thrown into the political firestorm of WWII's end, a 15-year-old boy took absolute rule of Tibet."
+      "hook": "He was hailed as the Father of Manitoba, yet ended up on the gallows for high treason."
     }
   },
   "uploads": [
@@ -1982,6 +1982,15 @@
       "slot": "kick-24ce9e0eee-ch1",
       "at_ms": 1794217369427,
       "score": 76.1,
+      "pillar": "Forgotten historical figures"
+    },
+    {
+      "channel": "1",
+      "topic": "The Execution of Métis Leader Louis Riel",
+      "slug": "the-execution-of-me-tis-leader-louis-riel",
+      "slot": "kick-24ce9e0eee-ch1",
+      "at_ms": 1794217701540,
+      "score": 61.1,
       "pillar": "Forgotten historical figures"
     }
   ],
