@@ -740,7 +740,12 @@
       "attempts": 1,
       "run_id": "42559323046",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:08:38.109Z"
+      "updated_at": "2026-11-09T04:11:09.727Z",
+      "stage": "research",
+      "topic": "The Burial of the Unknown Warrior",
+      "score": 67.8,
+      "pillar": "Unbelievable true historical events",
+      "hook": "To honor millions of nameless fallen soldiers, Britain buried one completely anonymous hero in Westminster Abbey."
     }
   },
   "uploads": [],
@@ -1347,6 +1352,15 @@
       "at_ms": 1794196789130,
       "score": 80.7,
       "pillar": "Free versus paid AI tools"
+    },
+    {
+      "channel": "1",
+      "topic": "The Burial of the Unknown Warrior",
+      "slug": "the-burial-of-the-unknown-warrior",
+      "slot": "kick-df87d44ce0-ch1",
+      "at_ms": 1794197469727,
+      "score": 67.8,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
