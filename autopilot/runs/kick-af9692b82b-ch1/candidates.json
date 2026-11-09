@@ -1,0 +1,1309 @@
+{
+  "generated_at": "2026-11-09T01:14:46.070Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 86
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 44
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 42
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 53
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Fall of the Berlin Wall",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        15
+      ],
+      "hook": "A bureaucratic mistake accidentally brought down the Berlin Wall overnight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Berlin Wall",
+      "youtube_query": "fall of the berlin wall 1989",
+      "evidence": [
+        {
+          "title": "1989: Cold War: Fall of the Berlin Wall: East Germany opens checkpoints in the Berlin Wall, allowing its citizens to travel to West Berlin.",
+          "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186886070,
+          "kind": "anniversary",
+          "id": 15
+        },
+        {
+          "title": "Trump’s empire is crumbling, much like the Berlin Wall in 1989 - The Forward",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQU19OZXprYWZ4UjJMQlNlQk1Hbjh0OXp3Wm9yLUVqeUkxSmIwTXFxdmRDS0lCZHZKUzg4UnJqQ2hBWUw2RFhfc0dJVVk4XzloeHJYd21EakpWLXpBTEZ3ZDAtRHF3aHJVOVFhdjBZR3ViWE9razVHanRDZDRFV1BwSDRvZGI?oc=5",
+          "domain": "forward.com",
+          "published_ms": 1794060238000,
+          "kind": "news"
+        },
+        {
+          "title": "Germany - Reunification, Berlin Wall, Cold War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kWU00ekdKOGxiVHhLZnIxM1ZhZVZEWG5JT1ByNEd4MTMtWnFJazN2RUk1WjQtb1dxUVdQQXpFb1FwQktnTHZUOUhGS0ItR191a2JabmJFSXM1WGZSdnd2d2RDRGpPc0plX0J2ZExBWWw4WldTbXNicg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793865600000,
+          "kind": "news"
+        },
+        {
+          "title": "Germans relive Berlin Wall memories 37 years after its fall - Türkiye Today",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNdmtIMlBEbHptMmlmaTVmWUdpSHp6Tlo5cDRNSHh6SUo4cFQ4SGU5OGE5SWVFdm93VThxR1prNDVmTEE0TzVDcHpibi13QXBXbDNxQ2hOOXc2ZmJVTFo5c3JFc0R5c19uWktCbEkzUDZucHVlejN3MWo0YnFCc2tDbmZmMTJneV9ub3RIWXdKMVFDMDBHejRWaVNaSTFKMEhmcGRXTTJ3?oc=5",
+          "domain": "turkiyetoday.com",
+          "published_ms": 1794135594000,
+          "kind": "news"
+        },
+        {
+          "title": "Silly's 'Februar' Predicted The Fall Of The Berlin Wall, And The New 33 1/3 Book Reveals How East German Rock Challenged A Regime - That Eric Alper",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxORG9WejZNNmJCbFdQZWdsMXZaaUpDVENFdnhLQ2I4MVczSEdsYlRxSzVXcTZJUzBsTlpHWVlwaWF4M3J1cU5FMWZOYWhJYVVvdERWcGw4Z3VjajJzTjRQM20zYUhFRGp5cXByRUNKc0lxb0FObFUxRDczVW02YlhZWnlwVVFpak4xUURmLVBqLUJwd3Vha0E2d3FxSEsybkRfLUd1LXQxbGhVVGkyYXo0NzhjY28wRnhuYUVvanVNZ0ZZZFJWYmwtM0J0SGlvUHVuNEJ3aFgxOGt2MUd2ZVlFZjg0dUNreDZhQzFGMHdTSTZnVHlERURyRy1SUQ?oc=5",
+          "domain": "thatericalper.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 59,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 81.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "forward.com",
+          "britannica.com",
+          "turkiyetoday.com",
+          "thatericalper.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Medieval Cathedral Uncovered at Old Dongola",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        90
+      ],
+      "hook": "Archaeologists just unearthed a monumental medieval cathedral hidden in the sands of Sudan.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola",
+      "youtube_query": "Old Dongola cathedral excavation",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "Medieval Church Larger Than the White House May Have Been a Cathedral - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPemRTOGxpMFdqN0hVWkxIRTZGZzM2b2theWFMT3ZPN1ZnUnVEOXdSb3UyNG9ZRWhWcGxPSU1rZjk2My1zejJVQXBKUDF5dHZCckd5M3hheDZyVllUajVpNENPb2NHMXNJbGg3b3hBX3J1NVVPVU9JSnRoR21Mek1udE91OGZtTUpiZ0E0RGZKdzU0TEpBR1Z3?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794085914000,
+          "kind": "news"
+        },
+        {
+          "title": "Deep In The Sudan Desert, A Vast Medieval Cathedral Is Slowly Emerging From The Sand - IFLScience",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNVUhnNE5kbWxvVGgxNWNIMnVpTGN2RjE1RXFtelFiQndVZHJiSmJZNTBKcnQzY0laWUQxdjJ5R2d5V25ZeHFmdTRvalNkVW54SGtKalFpQ2ZzaTVySHRTbnE5ZjAxNDFzOV9OU0tYTW1aT2FXVUhEVzduUGJjLUZzak15QTR6LTdVeWFJMWhnOEZKa1R1ZlF6anNCNmsyNTQ3YTdzSzltN1dLRFNLLUxYWGR1aEZINFU?oc=5",
+          "domain": "iflscience.com",
+          "published_ms": 1793545189000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 91,
+          "reach": 36,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 80.3,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "arkeonews.net",
+          "iflscience.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Exceptional 5th-Century Warrior Burials in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        88,
+        103
+      ],
+      "hook": "Workers in France recently unearthed rare 5th-century Germanic chieftains buried with dazzling weapons and warhorses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Early Middle Ages archaeological finds",
+      "youtube_query": "5th century warrior burials france",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "France Dig Finds Two Warrior Graves and Buried Warhorses From Rome's Fall - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQa1pieUhmUWN3VW4xb0M2d2YycTJXMklrQ01QN3V0Zzl4RWpBclBqaEVXNWsyMzdGSTdUQ21uR3ptVkRSTWJVeDdFbWFxQ3BwQV9BdHJYVGwwN0NsdWUxRy1Rc1MxcnBNYVhJTVBjanJtazZJMlNKckV0Y3dYaFFwZ0hNYlNsQ0RQY0hlTm93LWJmUmVOVk1MNU9ENnduRWZXR0FHcG1oaTBKNDdVbFhNNlpmdw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794152775000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 60,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 78.9,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com",
+          "aroundprague.cz"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        105,
+        109
+      ],
+      "hook": "Archaeologists examining a 2,800-year-old Siberian monument uncovered surprising evidence of ancient cannabis rituals.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Siberian archaeology",
+      "youtube_query": "ancient cannabis siberian tomb discovery",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 109
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient humans were using cannabis far earlier in history than we thought - Scientific American",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUEtpYkFzdVhUOHQ5UlJQcTZJUDhEWUwyS2ZQbFZDdjBTUWpwdXBDUHlUaEdMeDZZQTA3cEpUSHVzTlBOOUt6RndqQV9KZjMyZDJRdkI5V2hnOVlKeHo3OWxFQXVsYThpd3QxMHA1MkhEbUV1bXF6UlRIMjByZlNEd01FSEctTHcwcW5CUFROckxOZHNvRndXSGVhN2dBdFRtT0E4SHhjVDBjQQ?oc=5",
+          "domain": "scientificamerican.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Seeds and preserved hair in tomb point to oldest signs of cannabis high 2,800 years ago, study suggests - PBS",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOSTZFT3F0emw3SVZLdmU2RV9LeVpZU3hMUk0zUWtubFFOd2w2YjhraEIxenNsczcweTRoVUtTN2NzTzhSUXFLcjBoR2I0SkNuMFBiemtJMi13R19GMmc3RUFfSXk3VHotVjQyWDkzdjcwcE9sTXBJT1dOaEgtdVVsRTM4OWl0ZDFybjBZbnV5UDlpRXRCTmpHUDRubGxod01fOElwbU55VUlMSTktYVVyankzRkJ0NUJqbk9BQ2JGTTViWTN3RzktZmhoZ05lTVRnalBRSg?oc=5",
+          "domain": "pbs.org",
+          "published_ms": 1794003599000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Were These Ancient Siberian Nomads the First Stoners? - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQdTliSjVGVTNnWXZMYlJkMnhHcDRGaWo5Wk4yV3RielVxWEhtVy1KcmJiYjFjMGFEUHdsTjkwcWF1MUlWbDdMWVAxdkptel9LVEJrYjNwUFIzTnU5WUdqX19Md1FiYUVpenRSMVZsUGxVTkY0ZTJmbDBJWHVCajJiTndHc0R5dmdDNHFuQUhPRTZ5V3ZlOGh3RW1DWVIxSTZiOWQtdUdn?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1793905209000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 75.1,
+        "newest_hours": 15,
+        "domains": [
+          "arkansasonline.com",
+          "sciencedaily.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "pbs.org",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "nytimes.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "scientificamerican.com",
+          "edition.cnn.com",
+          "nytimes.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "DNA From 7,000-Year-Old Leather Links to Modern Goats",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        88
+      ],
+      "hook": "Scientists extracted intact DNA from 7,000-year-old ancient leather and found a direct genetic link to animals alive today.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Domestication of the goat",
+      "commons_query": "ancient leather artifact",
+      "youtube_query": "ancient leather DNA research",
+      "evidence": [
+        {
+          "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1794184608000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "7,000-year-old goat leather from Spain reveals DNA link to modern Iberian goats - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793987217000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - EurekAlert!",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ldVI1ak9vMFZsMWNWdXJHNFdNMVdzWHZKS2RQS0JEeUMzZE1fcmdwSWhKck1uX1lNdnZhZDA2bW04bmJyVmU1RW0xWmlHX0NsRzYzOW1aNTJNbE10?oc=5",
+          "domain": "eurekalert.org",
+          "published_ms": 1793820815000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCWFlmdmpESHNXcUlHWjRWcTN0NUV0REsyMFJsWU9fQk9LUFc4aTdGcnVwcmxuZW9TeWRSTWtPc2tnamhwbHdZMkc1RzNMZWpIMGZZb0ZleHVKcjB3dF9ndDFvcjZLcGFRQ2lMS3JzN2NfOVE4?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793818816000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Domestication of the goat",
+        "daily_views": 26,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 89,
+          "reach": 29,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 73.9,
+        "newest_hours": 1,
+        "domains": [
+          "scitechdaily.com",
+          "archaeologymag.com",
+          "eurekalert.org",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "archaeologymag.com",
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Cruise Employee Survives 20 Miles Off California Coast",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        87,
+        97,
+        104
+      ],
+      "hook": "After plunging off a cruise ship into the middle of the Pacific, a pianist miraculously survived 9 hours treading water.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "Pacific ocean rescue",
+      "youtube_query": "cruise worker rescued ocean california",
+      "evidence": [
+        {
+          "title": "Cruise ship employee found by fishermen treading water 20 miles off the California coast - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQWlhCd1pjRGNBdVphRmZydGVMZGVJSFZVZXFyZmp4SThHRmVuNl82emY2OU55YS1yT0xZUU85Y3plcTZIS3o3OVNjV2FLeVI3SzZGdmY4TjhDbkxxTWk0cWVYMU1qc0YtaV9aVzd4R1RGZTN0dHBrOXBRbzZ6QVhwWFM0ODVVdVZDYXgwZFRNSU5Mb1Z5VUVpT1NSaGV6cW0xdFFKWVdQZU9YX0xSN3ZOV2g4R1Z6WDJUaGhhOQ?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794185280000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "A Cruise Ship Pianist Fell Overboard. 9 Hours Later, Fishermen Found Him Treading Water ‘in the Middle of the Ocean’ - People.com",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQaWxzZWhVdDhGTVRENTdHN3NIZ0I1eWV5NmRtNDY1OUI0dGhUb0Z2SDc2OUdudlNQNkNZaFY1UjZ5WWtxQ1FyUy1UYkpnOG1hYmpqTmlHNGFVRzF5SXVWSzBkRXhYOEdLdVZrOE1Rdl9NdGdRb2NhRXpDb0ZySkYwbmZCZjNKdS1mQnBHQXZ5bkk0RXNSTGdtYVJtU0cxejVx?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794163936000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "Fishermen rescue cruise ship employee found treading water nearly 20 miles off California coast - 9NEWS",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQX0FVaGRjejRjSnpqLU92dlhBc29hYVNWVXhLTmR2UHc3ZURBazNjMlFac0hwTzNMOEtNemVjeXE1TzRzNTJoc1RHYTNlME9iYTBGOXlsRFRnZTYwZ29UR09RU2RLUGpvcDR3UDdueGk4X1p6QVVvTFBzVWVtV1BYOVFpaDBYd2dqcjNPM0Z1M1hET1lZQUwySmdXYjA1UTc4T0k5UEsyTDU3Zk56V3diZGU3TmtMWTZqRGlQbDctaEV1enV5aUFOZ1B1RG9Fdk5MbzVibzk4RjE0cXc?oc=5",
+          "domain": "9news.com",
+          "published_ms": 1794153480000,
+          "kind": "news",
+          "id": 104
+        },
+        {
+          "title": "Newport Beach fishermen find Royal Caribbean cruise ship employee treading water 20 miles off coast - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOZE5YVXhVSmtQWGhrZ05Cd01kckhIRWZma05yck9aMzc3ZmRBQlBvbm9mUExwTXF5Z0pTUTljY0VxQ0h6RGZDX01waXR0aFdzdHlDZHJJZWYtTTBQR1pqY0JzYkN3UE9wQ2d6Z1JzcEpZYmF6SlFHd1N0OU9pMnd1enkxeXliVTVnWkVhUEZHVFN1OEFoMnlxTm5JZ2pYTHVsUXVDY28tZDZoZS1DUFU4clVidVZ2clB5bVVHYXkxdmVZX3c?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1794116160000,
+          "kind": "news"
+        },
+        {
+          "title": "Royal Caribbean cruise ship pianist incredibly survives after plunging overboard 20 miles off California coast - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPWk02RE5hTVp2eWtaeUpoWWNfWDJJVktGZ3hidmpaSTBJUkZiN09LdENrZDJ6TV9SUWJtZGNpVGRTZVlWcVQ2R2dmYW00cERXamNRRlNwYlV1UXZWcXY3WWpFN0FPUTZRMUpWeFBMbDQ4bTdOYnNoSFlyWHhVUlVkbGFVWjAyc2tvY0pUT1MwNC1kSDdrWk1HM3Nsa25lVzhoa0FNYUtnZFI2UGZid19JYnYwbw?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1794162060000,
+          "kind": "news"
+        },
+        {
+          "title": "Fishermen Rescue Man Who Says He Is Cruise Ship Pianist Off California - fish4news.co.uk",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1ObnoxWjhzMmhBX09NSHNEd0N4U0doNWczSTVZeWY3UWszeXRqZ2FkMG9MWmV0ZUNmRlNhVjF4ajlvUUUyX0FidFl6OW84NmtFWC1HbDJnM3N3cnZCN0ZacE1LWFJfSGdSZGlJaXNWQ053REVQWjVMV21iQXk?oc=5",
+          "domain": "fish4news.co.uk",
+          "published_ms": 1794140061000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 73,
+        "newest_hours": 0,
+        "domains": [
+          "independent.co.uk",
+          "people.com",
+          "9news.com",
+          "cbsnews.com",
+          "nypost.com",
+          "fish4news.co.uk"
+        ],
+        "trusted_domains": [
+          "independent.co.uk",
+          "cbsnews.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Lost Viking Age Church Confirmed in Greenland",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "A single skeleton finally confirmed the location of a lost Viking Age church in Greenland.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Norse colonization of Greenland",
+      "commons_query": "Viking ruins Greenland",
+      "youtube_query": "Viking church Greenland discovery",
+      "evidence": [
+        {
+          "title": "Skeleton confirms discovery of lost Viking Age church in Greenland - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNQ0xhMjVyLVhyYWxxb0lIY3JtNnZyZ2dkM3Y2SXBPSlR3czNyMzcwcm9hTUZha21uZ2RTczJCUDIxSzhIMTdkY1V5MVJURlVXYXBXSnEycVQxTkJaQ2s5c2ZjekNpVVRmZm55bDRqY2JzMkt4YkxGZVdGX1Q3YzBXN0hZQ3Q4OEg0LWVNTUh2WF90ZzJXOTV2ZFhQc2xQRWZUQ0RXbDhVUFJYUXJsRnhMUw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794172558000,
+          "kind": "news",
+          "id": 92
+        },
+        {
+          "title": "Archaeologists In Greenland Just Uncovered The Ruins Of A Medieval Norse Church With A Skeleton Buried On The Grounds - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5Uc2ZXVjEtR3VndjVpejlJQk1mMEp0Y1QtTEpRZTdQclJCUUxUeW9OODhnMnNnS0l6aUZHaXphMHlXdmpLWDNWdGtCTnF3UFZuZHNkQjI0WlVrTXdvVGRUaFl1djlTOVVPbjNsWG15X0o?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1793919027000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Norse colonization of Greenland",
+        "daily_views": 3,
+        "ratio": 0.71
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 12,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 66.6,
+        "newest_hours": 4,
+        "domains": [
+          "heritagedaily.com",
+          "allthatsinteresting.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Skeleton confirms lost Viking church in Greenland"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Roman Jewelry Workshop Found Beneath Welsh Housing Estate",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        91
+      ],
+      "hook": "Homeowners had no idea a 2,000-year-old Roman settlement and luxury jewelry workshop lay right under their feet.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "Roman archaeology Wales",
+      "youtube_query": "Roman settlement Wales discovery",
+      "evidence": [
+        {
+          "title": "2,000-year-old Roman settlement and jewellery workshop discovered beneath Welsh housing estate - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd1NUQ1JpNWw1bG9CMWlLZ201NWtsN2xfcm52SEd3ekZTTmNZd1pRb29pOVNMLVNnSERtRHY4aGV2eFBwV2ZoVlNXYUtXQzhDanpPVjEwbGIyV0xPb2ZEM2pwbkQ1RlBYYV92Q0pYNlhmRU5sV1ZpN3loUnEyTTYxUXNDVURHbU43aFNiNzRSRk9fQ0VUWDc5cHRmRnlxTnJWdFFBMXVmM2wtVlpjOW96WWc0aG0zb0htSEt6MkdGLXFfeTU1SlNFaVNyYW5GZllnaHA4Yg?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794173488000,
+          "kind": "news",
+          "id": 91
+        },
+        {
+          "title": "Roman village found under Flintshire housing estate in Mancot - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBmb3J3TFprUzhaMUFfZmRoamFBcTNMc2xwc2ZhanNsNUlXc0N3SC1LTzhEQUU1MTVVZW4wRDl2eE1xVms5SzFuOG5PajhJYnhLeDZ6blJHaEV1cUpyV2c?oc=5",
+          "domain": "bbc.co.uk",
+          "published_ms": 1794049612000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 100
+        },
+        "total": 66.5,
+        "newest_hours": 4,
+        "domains": [
+          "heritagedaily.com",
+          "bbc.co.uk"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "bbc.co.uk"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: 2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Ancient Mosaic Discovered After 90 Years in North Macedonia",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        93
+      ],
+      "hook": "Lost for nearly a century, a stunning ancient mosaic has finally seen the light of day again.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Mosaics",
+      "commons_query": "ancient Roman mosaic North Macedonia",
+      "youtube_query": "ancient mosaic North Macedonia",
+      "evidence": [
+        {
+          "title": "Ancient Mosaic Discovered After 90 Years in North Macedonia - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTzRpVHpRemRVblhucnBONXFyWnR1UTlyZEYyVnZOZ19maTlnOWR0QVp5QzU5VEhPOUtMekdIT2NnNTFacGdvMXR6cmVOa0VkY0NpaHVmNWg4MnNZRmVOQlNhTm1uSnZEdEpOVzN6Q1paLVRhcjNUWjgwcVhySDQ1OGJoaUtCSWhFLUE?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794170021000,
+          "kind": "news",
+          "id": 93
+        },
+        {
+          "title": "Archaeologists Reveal New Secrets of 1,600-Year-Old Theodosian Palace in North Macedonia - GreekReporter.com",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNQUdocWxCRDJzbUZ1YnFnTFYzbWNUOFZEOTVySjBDQVJJd0poUkJSV1ZFaWNvcjIyTjNlb0haWDVaLUtwZ3RBOVRQY3RWRi1XN1UxeDNtUXFfLVE0UzZCVEp0Q3pGMkhLV3NDZDJBdndLMVNsYXcyZGhIa3NoeHctWEhHMFlOYVk0QWlQZDkyblVhTi1HY1NsdzhB?oc=5",
+          "domain": "greekreporter.com",
+          "published_ms": 1793401262000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Mosaics",
+        "daily_views": 4,
+        "ratio": 0.75
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 14,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 64.4,
+        "newest_hours": 5,
+        "domains": [
+          "arkeonews.net",
+          "greekreporter.com"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "2,500-Year-Old Mummified Crocodiles Discovered in Egypt",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95,
+        97
+      ],
+      "hook": "Archaeologists in Egypt opened an ancient tomb and found a horrifying offering: ten mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile mummies",
+      "commons_query": "Mummified crocodile",
+      "youtube_query": "mummified crocodiles egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 97
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 64,
+        "newest_hours": 6,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Cullinan Diamond Presented to the King",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        42
+      ],
+      "hook": "This is the story of the largest gem-quality diamond ever found—weighing over 3,100 carats.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Cullinan Diamond",
+      "commons_query": "Cullinan Diamond",
+      "youtube_query": "Cullinan Diamond history",
+      "evidence": [
+        {
+          "title": "1907: The Cullinan Diamond is presented to King Edward VII on his birthday.",
+          "url": "https://en.wikipedia.org/wiki/Cullinan_Diamond",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186886070,
+          "kind": "anniversary",
+          "id": 42
+        }
+      ],
+      "wikipedia": {
+        "title": "Cullinan Diamond",
+        "daily_views": 519,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Cullinan Diamond"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "19th-Century Shipwreck and Camp Found on Estados Island",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        100
+      ],
+      "hook": "Researchers exploring the remote tip of South America stumbled upon a haunting 19th-century shipwreck and survival camp.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Estados Island",
+      "commons_query": "Estados Island shipwreck",
+      "youtube_query": "Estados Island 19th century shipwreck",
+      "evidence": [
+        {
+          "title": "19th-Century Shipwreck and Camp Discovered on Estados Island near Tierra del Fuego - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPdW9wMzdaaFFwTThLYXRHRmdxU3hBd3B2TUxyYWZOQnlnTXZLWjFfbDJCaU5FM2NTUExYS2FoUVEzTV8zcG45NVVHYzBNRUN5T0RPc3lNbk5UNGx1QWFTNHh6NmF2ZkZsT2U3REp1LXdsRXRtMGx0QVUzZEdBRVktcW9Idm1OYWY5Zi1zbXhfT1RiNWJPRjhLQlpoVkxnWjBWbTZEUlhXQlVEeWVkVkM4ZEtnX3JwcktqU2VZ0gHAAUFVX3lxTE5aNW13dmtiVWlROThkWXFwREhGQVVuNlZaZXB6QmNtMEZMdjF2SnlLNTNSc3hITGIxR1RfaG5TU29Mb1VSTDlmMUhPTjFwWG5mZlFxSS05ZTkxQ1RlaUIwdUpMRmpTU0JKV2twaE5WRU5MZnNpNC1KblAwZGdmS1dfQl9CRUR3UTRsZXQ4dllvY1VyOFdLcW1mTXZUaFBMWjNUeC1SRzNwcGFKcjgxakxfZFBDYTd2VjJUb0NXbFpJRQ?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1794159165000,
+          "kind": "news",
+          "id": 100
+        },
+        {
+          "title": "Archaeologists uncover possible 19th-century castaway camp on island 'at the end of the world' - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOdEV6Qmc4eHNWcDdGbGE1S1RhTTlqcmxCSEVzYVBEU2tNaGl0cktqejBvbkVTclljVEJ0WlhvOUZfNFpWUjBXdjlTZUR6aW15bHJ3eTNvLXNuc3hpTFh4YlFwT2JsbHR1ZXEtVENlaW5JM1NPa1RLNVVxQ2R6c3lmNGxmcko0dw?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793894438000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 63,
+        "newest_hours": 8,
+        "domains": [
+          "inkorr.com",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "World's First Whole Eye Transplant",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "For the first time in medical history, doctors successfully transplanted an entire human eye.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Eye transplantation",
+      "commons_query": "Human eye",
+      "youtube_query": "first whole eye transplant medical history",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186886070,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": {
+        "title": "Eye transplantation",
+        "daily_views": 18,
+        "ratio": 1.06
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 26,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 59.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Capture of the First Live Panda",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1936, an American fashion designer smuggled the very first live giant panda out of China.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ruth Harkness",
+      "commons_query": "Giant panda",
+      "youtube_query": "first live giant panda Ruth Harkness",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186886070,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Ruth Harkness",
+        "daily_views": 15,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 24,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 56.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Ruth Harkness capturing and smuggling the first live giant panda to America"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Nuclear False Alarm of 1979",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "In 1979, NORAD computers suddenly announced a massive Soviet nuclear strike was underway.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "1979 nuclear false alarm",
+      "commons_query": "NORAD",
+      "youtube_query": "1979 nuclear false alarm NORAD",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794186886070,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 56.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}

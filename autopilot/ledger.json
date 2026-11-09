@@ -569,7 +569,12 @@
       "attempts": 1,
       "run_id": "42544325951",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:13:34.208Z"
+      "updated_at": "2026-11-09T01:15:18.296Z",
+      "stage": "research",
+      "topic": "Ancient Mosaic Discovered After 90 Years in North Macedonia",
+      "score": 64.4,
+      "pillar": "Archaeological discoveries",
+      "hook": "Lost for nearly a century, a stunning ancient mosaic has finally seen the light of day again."
     }
   },
   "uploads": [],
@@ -1041,6 +1046,15 @@
       "at_ms": 1794186613339,
       "score": 60.2,
       "pillar": "Secret operations and evidence-backed conspiracies"
+    },
+    {
+      "channel": "1",
+      "topic": "Ancient Mosaic Discovered After 90 Years in North Macedonia",
+      "slug": "ancient-mosaic-discovered-after-90-years-in-north-macedonia",
+      "slot": "kick-af9692b82b-ch1",
+      "at_ms": 1794186918296,
+      "score": 64.4,
+      "pillar": "Archaeological discoveries"
     }
   ],
   "attention": [
