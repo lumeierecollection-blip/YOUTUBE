@@ -1,0 +1,209 @@
+{
+  "channel": "hidden-past",
+  "format": "short",
+  "topic": "The Antikythera mechanism",
+  "angle": "what the physical evidence shows the device could do, kept apart from what later researchers made of it",
+  "status": "rejected_blueprint",
+  "wpm": {
+    "wpm": 171.4,
+    "source": "measured",
+    "voice": "en-GB-RyanNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 8,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+        "published": "2026-11-05"
+      }
+    ]
+  },
+  "blocked": {
+    "issues": [
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.",
+        "beat_id": "b1"
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.",
+        "beat_id": "b3"
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "a ending beat does not serve the question: Provides a closing statement without adding new factual content.",
+        "beat_id": "b4"
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "a first-time viewer would be lost: The term \"orrery\" is never defined for viewers unfamiliar with it.; The purpose of the gears and inscriptions (what they calculate) is not explained.; No context is given for why the 13 cm gear with 223 teeth is significant.",
+        "beat_id": null
+      },
+      {
+        "severity": "major",
+        "code": "evidence",
+        "message": "key_evidence c7 is not used by any beat",
+        "beat_id": null
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "a opening beat does not serve the question: Provides background but does not describe gear evidence.",
+        "beat_id": "b1"
+      },
+      {
+        "severity": "critical",
+        "code": "model",
+        "message": "a ending beat does not serve the question: Repeats earlier points without adding new evidence.",
+        "beat_id": "b4"
+      },
+      {
+        "severity": "major",
+        "code": "model",
+        "message": "a first-time viewer would be lost: The term \"orrery\" is never explained.; Why the 223‑tooth count matters is not clarified.; The significance of only four fragments containing gears is not stated.",
+        "beat_id": null
+      }
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 4124,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 4632,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 4937,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 4069,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 2546,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 14923,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "gemini",
+      "ms": 2865,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 2388,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "ok": true,
+      "chars": 56158,
+      "sha256": "e20232b87757ca50",
+      "title": "Antikythera mechanism",
+      "published": "2026-11-05",
+      "fetched_at": "2026-11-09T13:00:45.168Z"
+    }
+  ],
+  "error": "blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not serve the question: Provides a closing statement without adding new factual content.; a first-time viewer would be lost: The term \"orrery\" is never defined for viewers unfamiliar with it.; The purpose of the gears and inscriptions (what they calculate) is not explained.; No context is given for why the 13 cm gear with 223 teeth is significant.",
+  "open_findings": []
+}

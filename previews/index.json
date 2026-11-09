@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T13:00:54.321Z",
+  "rebuilt_at": "2026-11-09T13:01:32.369Z",
   "channels": [
     {
       "key": "_script-engine",
       "agent": "agent-script-engine",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-09T13:00:53.929Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-09T13:01:31.992Z",
       "branch": "preview/_script-engine",
       "commit": "21f68815",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts)",
@@ -16,8 +16,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-09T13:00:53.929Z",
+      "blocker": "rejected_blueprint: blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not",
+      "lastOk": "none",
       "run": "run-42621438393-1"
     },
     {

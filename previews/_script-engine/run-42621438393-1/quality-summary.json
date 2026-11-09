@@ -42,5 +42,39 @@
     "calls": 6,
     "caveats": [],
     "reason": "blueprint rejected: a first-time viewer would be lost: MCP host; MCP client; LLM; the story rests on fewer than two claims; a payoff beat does not serve the question: It describes deployment locations, which does not clarify capabilities.; link \"chronology\" is not true of these beats: It describes deployment locations, which does not clarify capabilities."
+  },
+  {
+    "channel": "hidden-past",
+    "topic": "The Antikythera mechanism",
+    "format": "short",
+    "status": "rejected_blueprint",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+        "ok": true,
+        "chars": 56158,
+        "sha256": "e20232b87757ca50",
+        "title": "Antikythera mechanism",
+        "published": "2026-11-05",
+        "fetched_at": "2026-11-09T13:00:45.168Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 171.4,
+      "source": "measured",
+      "voice": "en-GB-RyanNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 8,
+    "caveats": [],
+    "reason": "blueprint rejected: a opening beat does not serve the question: Sets context but does not directly describe what the evidence shows the mechanism contains.; link \"explanation\" is not true of these beats: Repeats earlier claims instead of providing a clear explanation of them.; a ending beat does not serve the question: Provides a closing statement without adding new factual content.; a first-time viewer would be lost: The term \"orrery\" is never defined for viewers unfamiliar with it.; The purpose of the gears and inscriptions (what they calculate) is not explained.; No context is given for why the 13 cm gear with 223 teeth is significant."
   }
 ]
