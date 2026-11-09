@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:54 SAST
+Updated 2026-11-09 02:57 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -20,7 +20,7 @@ Updated 2026-11-09 02:54 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Adobe gives startups 12 months free AI tools – design for free (66.7/100) |
+| Selected topic and score | NYT Cooking AI Assistant Flubs Recipe Swaps (76.3/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -69,3 +69,5 @@ Updated 2026-11-09 02:54 SAST
 - Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":2,"check":"halftone","why":"dot-screen peak 3784 vs source 69240"},{"scene":2,"check":"grain","why":"fine detail 20.9 vs so
 - AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts
 - Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":0,"check":"grain","why":"fine detail 7.24 vs source 8.8"}],"technical":{"duration_le_30":true,"resolution":true,"fps_30":tr
+- AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:
+  - SCR-17 STRI
