@@ -496,16 +496,18 @@
     },
     "kick-312d03eb14-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42541387898",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:54:36.538Z",
-      "stage": "metadata",
+      "updated_at": "2026-11-09T00:54:47.132Z",
+      "stage": "qa",
       "topic": "Stalingrad’s Turning Point: German Troops Reach the Volga",
       "score": 65.5,
       "pillar": "Events that changed the modern world",
-      "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified."
+      "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified.",
+      "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -972,7 +974,8 @@
     "AI Tested kick-622fc2e35c-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - SCR-18: \"Close-up of DAT\" is not named in the research artifact â€” use the research's own name, o",
     "Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts",
     "Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":2,\"check\":\"halftone\",\"why\":\"dot-screen peak 3784 vs source 69240\"},{\"scene\":2,\"check\":\"grain\",\"why\":\"fine detail 20.9 vs so",
-    "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts"
+    "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts",
+    "Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":tr"
   ],
   "last_poll_at": "2026-11-09T00:46:17.408Z"
 }

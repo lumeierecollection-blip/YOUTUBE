@@ -1,0 +1,82 @@
+{
+  "production_id": "ap-kick-312d03eb14-ch1",
+  "sha256": "b8b9d0f8e1cb3b0bbe53093533e7c5e8695025efb9c10b84817be7d1c46ae016",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 28,
+    "mean_volume_db": -22.2,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The video frames are coherent, maintaining a consistent historical editorial style with appropriate captions and no technical flaws."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-312d03eb14-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 0,
+        "check": "grain",
+        "why": "fine detail 7.24 vs source 8.8"
+      }
+    ],
+    "counts": {
+      "photos": 5,
+      "annotations": 1,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "How the 16th Panzer Division raced to the Volga River",
+    "description": "In August 1942, the 16th Panzer Division made a lightning-fast advance to reach Stalingrad and the Volga River. However, this incredible speed ultimately trapped Friedrich Paulus's troops in a fatal, grinding battle that ended on February 2, 1943.\n\n#WorldWar2 #Stalingrad #MilitaryHistory #EasternFront\n\nSources:\n- https://warhistory.org/article/approach-to-stalingrad\n- https://www.historyhit.com/stalingrad-through-german-eyes-the-6th-armys-defeat\n- https://www.encyclopedia.com/social-sciences-and-law/political-science-and-government/military-affairs-nonnaval/battle-stalingrad\n- https://warhistory.org/article/martyrdom-on-the-volga\n\nImage credits:\n- German tanks and troops of the 16th Panzer Division on the move in August 1942: Josullivan.59 / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Stalingrad_-_Preparations_for_Operation_Uranus.png\n- The Volga River bank and urban ruins during the Battle of Stalingrad: Zelma / Георгий Зельма / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:RIAN_archive_450_Snipers.jpg\n- General Friedrich Paulus who reached Rynok: No machine-readable author provided. Gb0470 assumed (based on copyright claims). / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Generel_Friedrich_Paulus_bust.jpg\n- Troops and military vehicles covering long distances rapidly in 1942: Unknown author / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Kompozitor_Borodin_Volga_steamships.jpg\n- Historical documentation of the end of the battle on 2 February 1943: Unknown author / Wikimedia Commons, Public domain (Public domain) https://commons.wikimedia.org/wiki/File:Field_Marshal_Paulus,_General_Heitz_and_other_German_officers_of_the_6th_Army_after_its_surrender.jpg",
+    "tags": [
+      "16th Panzer Division",
+      "Stalingrad",
+      "Friedrich Paulus",
+      "Volga River",
+      "August 1942",
+      "WW2 history",
+      "Battle of Stalingrad"
+    ],
+    "hashtags": [
+      "#WorldWar2",
+      "#Stalingrad",
+      "#MilitaryHistory",
+      "#EasternFront"
+    ]
+  }
+}
