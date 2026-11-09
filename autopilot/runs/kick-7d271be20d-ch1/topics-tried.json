@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Garry Kasparov Becomes World Chess Champion at 22",
+      "score": 66,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - CLARITY: sentence 4 \"But a 48-game match in Moscow ended without results.\" — It is unclear if this is the same match mentioned in the previous sentences or a different one.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"Kasparov earned 13 points against 11 for Karpov.\" — It is unclear if these points refer to the 48-game matc"
+    }
+  ],
+  "selected": "The Discovery of the Cullinan Diamond"
+}

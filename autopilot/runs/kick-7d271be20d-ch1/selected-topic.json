@@ -1,0 +1,58 @@
+{
+  "topic": "The Discovery of the Cullinan Diamond",
+  "pillar": "Unbelievable true historical events",
+  "evidence_ids": [
+    42
+  ],
+  "hook": "The story of the Cullinan Diamond: the largest gem-quality rough diamond ever found, weighing a staggering 3,106 carats.",
+  "anniversary": true,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 9
+  },
+  "wikipedia_title": "Cullinan Diamond",
+  "commons_query": "Cullinan Diamond",
+  "youtube_query": "Cullinan Diamond history discovery",
+  "evidence": [
+    {
+      "title": "1907: The Cullinan Diamond is presented to King Edward VII on his birthday.",
+      "url": "https://en.wikipedia.org/wiki/Cullinan_Diamond",
+      "domain": "wikipedia.org",
+      "published_ms": 1794183111856,
+      "kind": "anniversary",
+      "id": 42
+    }
+  ],
+  "wikipedia": {
+    "title": "Cullinan Diamond",
+    "daily_views": 519,
+    "ratio": 0.91
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 46,
+      "reach": 54,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 95,
+      "source_quality": 35
+    },
+    "total": 63.3,
+    "newest_hours": 0,
+    "domains": [
+      "wikipedia.org"
+    ],
+    "trusted_domains": [
+      "wikipedia.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 2,
+  "slug": "the-discovery-of-the-cullinan-diamond",
+  "angle": "Focus on the brutal irony that the miners who unearthed the largest diamond in history received a meager bonus while the mine owner profited wildly and used the stone to buy favor with the British monarchy.",
+  "what_others_do": "Existing videos typically focus solely on the dramatic discovery, the sheer physical size of the Cullinan, and its eventual integration into the British Crown Jewels."
+}
