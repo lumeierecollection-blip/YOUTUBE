@@ -15,11 +15,20 @@ const weighted = (parts) => {
 
 export const tokens = (s) => new Set(String(s).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w.length > 3));
 
+// Words that open or fill many headlines, so sharing them says nothing about the story.
+const GENERIC = /^(new|first|ancient|lost|secret|hidden|how|why|what|the|chatgpt|openai|google|gemini|claude|anthropic|history|years?)$/i;
+const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w)).map((w) => w.toLowerCase()));
+
 export function similarity(a, b) {
   const x = tokens(a), y = tokens(b);
   if (!x.size || !y.size) return 0;
   let shared = 0;
   for (const w of x) if (y.has(w)) shared++;
+  let sharedNames = 0;
+  const ny = names(b);
+  for (const w of names(a)) if (ny.has(w)) sharedNames++;
+  // Two shared proper names mean the same story even when the rest of the headline differs.
+  if (sharedNames >= 2) return Math.max(0.75, shared / Math.min(x.size, y.size));
   return shared / Math.min(x.size, y.size);
 }
 
