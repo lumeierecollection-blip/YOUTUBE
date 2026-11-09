@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T19:46:01.054Z",
+  "rebuilt_at": "2026-11-09T19:46:20.634Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,15 +61,15 @@
     {
       "key": "gray-matter",
       "agent": "agent-gray-matter",
-      "stage": "visual_complete",
+      "stage": "voice_complete",
       "status": "running",
-      "at": "2026-11-09T19:46:00.719Z",
+      "at": "2026-11-09T19:46:20.262Z",
       "branch": "preview/gray-matter-2",
       "commit": "0cdbde68",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42686185220#artifacts)",
       "sheet": "",
       "scenes": "",
-      "voice": "",
+      "voice": "[voice-preview.mp3](gray-matter/run-42686185220-1/voice-preview.mp3)",
       "script": "[script-draft.md](gray-matter/run-42686185220-1/script-draft.md)",
       "plan": "",
       "qa": "",
