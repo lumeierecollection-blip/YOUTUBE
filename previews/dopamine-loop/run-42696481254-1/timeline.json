@@ -1,0 +1,370 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "left-out",
+      "treatment": "character-excluded-from-play",
+      "objective": "Show a character standing apart while two others toss a ball over their head, so the feeling of being left out is seen",
+      "background": "dark soft-lit room",
+      "from": 0,
+      "to": 161,
+      "start_s": 0,
+      "end_s": 5.366666666666666
+    },
+    {
+      "id": "s2",
+      "kind": "screen",
+      "treatment": "virtual-game-screen",
+      "objective": "Show the virtual ball game: two avatars pass to each other and never to the third, with the character watching",
+      "background": "dark soft-lit room",
+      "from": 161,
+      "to": 296,
+      "start_s": 5.366666666666666,
+      "end_s": 9.866666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "distress",
+      "treatment": "scribble-builds-with-restrained-bars",
+      "objective": "Show distress building as a tangle inside the head, with two restrained bars rising together",
+      "background": "dark soft-lit room",
+      "from": 296,
+      "to": 461,
+      "start_s": 9.866666666666667,
+      "end_s": 15.366666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "regulate",
+      "treatment": "scribble-loosens",
+      "objective": "Show the tangle loosening while a soft ring forms, for the region linked to less distress",
+      "background": "dark soft-lit room",
+      "from": 461,
+      "to": 574,
+      "start_s": 15.366666666666667,
+      "end_s": 19.133333333333333
+    },
+    {
+      "id": "s5",
+      "kind": "comfort",
+      "treatment": "second-character-sits-beside",
+      "objective": "Show another character sitting beside, the light warming and the heart mending, as the feeling is named",
+      "background": "dark soft-lit room, warming",
+      "from": 574,
+      "to": 692,
+      "start_s": 19.133333333333333,
+      "end_s": 23.066666666666666
+    }
+  ],
+  "captions": [
+    {
+      "text": "Being left out can look",
+      "from": 0,
+      "to": 53,
+      "words": [
+        {
+          "text": "Being",
+          "from": 0
+        },
+        {
+          "text": "left",
+          "from": 16
+        },
+        {
+          "text": "out",
+          "from": 23
+        },
+        {
+          "text": "can",
+          "from": 34
+        },
+        {
+          "text": "look",
+          "from": 45
+        }
+      ]
+    },
+    {
+      "text": "in the brain a lot",
+      "from": 53,
+      "to": 106,
+      "words": [
+        {
+          "text": "in",
+          "from": 53
+        },
+        {
+          "text": "the",
+          "from": 65
+        },
+        {
+          "text": "brain",
+          "from": 70
+        },
+        {
+          "text": "a",
+          "from": 79
+        },
+        {
+          "text": "lot",
+          "from": 96
+        }
+      ]
+    },
+    {
+      "text": "like physical pain",
+      "from": 106,
+      "to": 145,
+      "words": [
+        {
+          "text": "like",
+          "from": 106
+        },
+        {
+          "text": "physical",
+          "from": 117
+        },
+        {
+          "text": "pain",
+          "from": 128
+        }
+      ]
+    },
+    {
+      "text": "In one study people played",
+      "from": 161,
+      "to": 211,
+      "words": [
+        {
+          "text": "In",
+          "from": 161
+        },
+        {
+          "text": "one",
+          "from": 167
+        },
+        {
+          "text": "study",
+          "from": 173
+        },
+        {
+          "text": "people",
+          "from": 193
+        },
+        {
+          "text": "played",
+          "from": 200
+        }
+      ]
+    },
+    {
+      "text": "a virtual ball game and",
+      "from": 211,
+      "to": 262,
+      "words": [
+        {
+          "text": "a",
+          "from": 211
+        },
+        {
+          "text": "virtual",
+          "from": 218
+        },
+        {
+          "text": "ball",
+          "from": 227
+        },
+        {
+          "text": "game",
+          "from": 241
+        },
+        {
+          "text": "and",
+          "from": 251
+        }
+      ]
+    },
+    {
+      "text": "were left out",
+      "from": 262,
+      "to": 283,
+      "words": [
+        {
+          "text": "were",
+          "from": 262
+        },
+        {
+          "text": "left",
+          "from": 266
+        },
+        {
+          "text": "out",
+          "from": 272
+        }
+      ]
+    },
+    {
+      "text": "The more distress they reported",
+      "from": 296,
+      "to": 343,
+      "words": [
+        {
+          "text": "The",
+          "from": 296
+        },
+        {
+          "text": "more",
+          "from": 301
+        },
+        {
+          "text": "distress",
+          "from": 311
+        },
+        {
+          "text": "they",
+          "from": 322
+        },
+        {
+          "text": "reported",
+          "from": 331
+        }
+      ]
+    },
+    {
+      "text": "the more active the anterior",
+      "from": 356,
+      "to": 404,
+      "words": [
+        {
+          "text": "the",
+          "from": 356
+        },
+        {
+          "text": "more",
+          "from": 359
+        },
+        {
+          "text": "active",
+          "from": 368
+        },
+        {
+          "text": "the",
+          "from": 383
+        },
+        {
+          "text": "anterior",
+          "from": 392
+        }
+      ]
+    },
+    {
+      "text": "cingulate was",
+      "from": 404,
+      "to": 442,
+      "words": [
+        {
+          "text": "cingulate",
+          "from": 404
+        },
+        {
+          "text": "was",
+          "from": 430
+        }
+      ]
+    },
+    {
+      "text": "Another region was active and",
+      "from": 461,
+      "to": 509,
+      "words": [
+        {
+          "text": "Another",
+          "from": 461
+        },
+        {
+          "text": "region",
+          "from": 467
+        },
+        {
+          "text": "was",
+          "from": 476
+        },
+        {
+          "text": "active",
+          "from": 484
+        },
+        {
+          "text": "and",
+          "from": 493
+        }
+      ]
+    },
+    {
+      "text": "linked to less distress",
+      "from": 509,
+      "to": 551,
+      "words": [
+        {
+          "text": "linked",
+          "from": 509
+        },
+        {
+          "text": "to",
+          "from": 518
+        },
+        {
+          "text": "less",
+          "from": 528
+        },
+        {
+          "text": "distress",
+          "from": 535
+        }
+      ]
+    },
+    {
+      "text": "That sting comes with measurable",
+      "from": 574,
+      "to": 626,
+      "words": [
+        {
+          "text": "That",
+          "from": 574
+        },
+        {
+          "text": "sting",
+          "from": 577
+        },
+        {
+          "text": "comes",
+          "from": 590
+        },
+        {
+          "text": "with",
+          "from": 608
+        },
+        {
+          "text": "measurable",
+          "from": 616
+        }
+      ]
+    },
+    {
+      "text": "brain activity",
+      "from": 626,
+      "to": 660,
+      "words": [
+        {
+          "text": "brain",
+          "from": 626
+        },
+        {
+          "text": "activity",
+          "from": 646
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 692,
+  "duration_s": 23.066666666666666
+}

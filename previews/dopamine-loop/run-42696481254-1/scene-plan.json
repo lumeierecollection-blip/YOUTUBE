@@ -1,0 +1,78 @@
+{
+  "channel": "dopamine-loop",
+  "production_run": "run-42696481254-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Being left out can look, in the brain, a lot like physical pain.",
+      "main_point": "Show a character standing apart while two others toss a ball over their head, so the feeling of being left out is seen",
+      "visual_objective": "Show a character standing apart while two others toss a ball over their head, so the feeling of being left out is seen",
+      "treatment": "character-excluded-from-play",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2",
+        "E3"
+      ],
+      "start_s": 0,
+      "end_s": 5.366666666666666
+    },
+    {
+      "scene_id": "s2",
+      "narration": "In one study, people played a virtual ball game and were left out.",
+      "main_point": "Show the virtual ball game: two avatars pass to each other and never to the third, with the character watching",
+      "visual_objective": "Show the virtual ball game: two avatars pass to each other and never to the third, with the character watching",
+      "treatment": "virtual-game-screen",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E1"
+      ],
+      "start_s": 5.366666666666666,
+      "end_s": 9.866666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "The more distress they reported, the more active the anterior cingulate was.",
+      "main_point": "Show distress building as a tangle inside the head, with two restrained bars rising together",
+      "visual_objective": "Show distress building as a tangle inside the head, with two restrained bars rising together",
+      "treatment": "scribble-builds-with-restrained-bars",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E3"
+      ],
+      "start_s": 9.866666666666667,
+      "end_s": 15.366666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Another region was active, and linked to less distress.",
+      "main_point": "Show the tangle loosening while a soft ring forms, for the region linked to less distress",
+      "visual_objective": "Show the tangle loosening while a soft ring forms, for the region linked to less distress",
+      "treatment": "scribble-loosens",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E4"
+      ],
+      "start_s": 15.366666666666667,
+      "end_s": 19.133333333333333
+    },
+    {
+      "scene_id": "s5",
+      "narration": "That sting comes with measurable brain activity.",
+      "main_point": "Show another character sitting beside, the light warming and the heart mending, as the feeling is named",
+      "visual_objective": "Show another character sitting beside, the light warming and the heart mending, as the feeling is named",
+      "treatment": "second-character-sits-beside",
+      "background": "dark soft-lit room, warming",
+      "skill": "remotion",
+      "claim_ids": [
+        "E5"
+      ],
+      "start_s": 19.133333333333333,
+      "end_s": 23.066666666666666
+    }
+  ]
+}
