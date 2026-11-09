@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 07:11 SAST
+Updated 2026-11-09 07:17 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 07:11 SAST
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | The Fall of the Brazilian Empire (59.1/100) |
+| Selected topic and score | Philae Lander's Historic First Touchdown on a Comet (63.1/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
@@ -97,3 +97,4 @@ Updated 2026-11-09 07:11 SAST
 - Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Rio de Janeiro How" is not named in the research artifact â€” use the research's own name, or drop the name.
 
 - AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens ("How was 129 million dollars stolen using AI audio?")
+- Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 "But essential harpoons failed on that cold, icy surface." — It is unclear what 'that' surface ref
