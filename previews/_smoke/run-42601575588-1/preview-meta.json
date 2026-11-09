@@ -2,7 +2,7 @@
   "channel": "_smoke",
   "production_run": "run-42601575588-1",
   "agent": "lead-architect",
-  "stage": "rendered",
-  "status": "running",
-  "timestamp": "2026-11-09T10:34:03.006Z"
+  "stage": "finished",
+  "status": "ok",
+  "timestamp": "2026-11-09T10:34:07.420Z"
 }

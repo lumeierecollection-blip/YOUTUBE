@@ -1,17 +1,17 @@
 {
-  "rebuilt_at": "2026-11-09T10:34:03.357Z",
+  "rebuilt_at": "2026-11-09T10:34:07.774Z",
   "channels": [
     {
       "key": "_smoke",
       "agent": "lead-architect",
-      "stage": "rendered",
-      "status": "running",
-      "at": "2026-11-09T10:34:03.006Z",
-      "sheet": "",
+      "stage": "finished",
+      "status": "ok",
+      "at": "2026-11-09T10:34:07.420Z",
+      "sheet": "[contact-sheet.jpg](_smoke/run-42601575588-1/contact-sheet.jpg)",
       "script": "",
       "plan": "",
       "blocker": "",
-      "lastOk": "none",
+      "lastOk": "2026-11-09T10:34:07.420Z",
       "run": "run-42601575588-1"
     }
   ]
