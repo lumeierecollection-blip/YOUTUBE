@@ -51,6 +51,13 @@ export function makeTools({ key, runId, outDir, agent, publish }) {
       writeFileSync(job, JSON.stringify({ id, props, output: file, audio, durationInFrames }));
       run("node", ["render-channel-composition.mjs", job], { cwd: REMOTION });
       rmSync(job, { force: true });
+      if (audio) {
+        // The bundle does not carry per-render audio, so the voice track is added here.
+        const withAudio = `${file}.audio.mp4`;
+        run("ffmpeg", ["-y", "-v", "error", "-i", file, "-i", audio, "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", withAudio]);
+        copyFileSync(withAudio, file);
+        rmSync(withAudio, { force: true });
+      }
       return file;
     },
 
@@ -68,7 +75,11 @@ export function makeTools({ key, runId, outDir, agent, publish }) {
     voice({ text, voice, output = "voice-preview.mp3", rate = "+0%" }) {
       const file = join(outDir, output), input = join(outDir, `${output}.txt`);
       writeFileSync(input, text);
-      run("edge-tts", ["--voice", voice, `--rate=${rate}`, "--file", input, "--write-media", file]);
+      // edge-tts intermittently returns NoAudioReceived on runners; the same voice is retried, never silently swapped.
+      for (let attempt = 1; ; attempt++) {
+        try { run("edge-tts", ["--voice", voice, `--rate=${rate}`, "--file", input, "--write-media", file]); break; }
+        catch (e) { if (attempt >= 4) throw e; spawnSync("sleep", [String(attempt * 15)]); }
+      }
       rmSync(input, { force: true });
       return file;
     },

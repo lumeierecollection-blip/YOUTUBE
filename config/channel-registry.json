@@ -9,7 +9,7 @@
       "visual": "Clean technology journalism on white. Restrained colour. Purple must not dominate.",
       "foundations": ["remotion", ".agents/skills/terminal-inserts", ".agents/skills/article-highlights", ".agents/skills/motion-graphics"],
       "voice_direction": "Confident, clear, practical.", "tts_voice": "en-US-AndrewNeural",
-      "formats": ["short"], "claim_categories": ["demonstrated_feature", "marketing_claim", "measured_statistic"],
+      "formats": ["short"], "claim_categories": ["demonstrated_feature", "documented_not_run", "marketing_claim", "measured_statistic"],
       "upload": { "status": "configured", "secret_prefix": "CHANNEL_02", "youtube_channel_id": "UCZY_vlCgnK839ZJjhCCWuyg" }
     },
     {
