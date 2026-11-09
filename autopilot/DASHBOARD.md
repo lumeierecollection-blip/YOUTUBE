@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:28 SAST
+Updated 2026-11-09 03:33 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 03:28 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | n/a |
+| Selected topic and score | The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology (75.5/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -78,3 +78,4 @@ Updated 2026-11-09 03:28 SAST
 - AI Tested kick-93a82c98a4-ch2 failed at research: 3 topic(s) tried, none produced an accepted script. Last: only 4 drawable facts in the research; 5 needed for a good strict-visual script
 - Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined
 - AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure
+- Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent
