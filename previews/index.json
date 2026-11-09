@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T13:22:44.692Z",
+  "rebuilt_at": "2026-11-09T13:22:46.278Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -99,9 +99,9 @@
     {
       "key": "red-space-facts",
       "agent": "agent-red-space-facts",
-      "stage": "voice_complete",
+      "stage": "visual_complete",
       "status": "ok",
-      "at": "2026-11-09T13:22:44.406Z",
+      "at": "2026-11-09T13:22:45.962Z",
       "branch": "preview/red-space-facts",
       "commit": "7495ca57",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42624684502#artifacts)",
@@ -109,10 +109,10 @@
       "scenes": "",
       "voice": "[voice-preview.mp3](red-space-facts/run-42624684502-1/voice-preview.mp3)",
       "script": "[script-draft.md](red-space-facts/run-42624684502-1/script-draft.md)",
-      "plan": "",
+      "plan": "[scene-plan.json](red-space-facts/run-42624684502-1/scene-plan.json)",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-09T13:22:44.406Z",
+      "lastOk": "2026-11-09T13:22:45.962Z",
       "run": "run-42624684502-1"
     }
   ]

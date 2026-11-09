@@ -1,0 +1,237 @@
+{
+  "channel": "red-space-facts",
+  "production_run": "run-42624684502-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Saturn is losing its rings, right now.",
+      "main_point": "The rings are draining.",
+      "visual_objective": "Skim the real ring plane toward the lit planet so the rings read as a physical place.",
+      "treatment": "saturn-ring-plane-flyover",
+      "background": "space (3D scene)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "saturn-texture",
+          "origin": "NASA 3D Resources, Images and Textures/Saturn/Saturn.jpg",
+          "licence": "NASA material; not reviewed or endorsed by NASA",
+          "source_url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn"
+        },
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "SCIENTIFIC MODEL: inferred from measured infrared glow"
+      ],
+      "claim_ids": [
+        "c01",
+        "c09",
+        "c11"
+      ],
+      "data_sources": [
+        "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 0,
+      "end_s": 3.4360000000000004
+    },
+    {
+      "scene_id": "s2",
+      "narration": "It orbits nearly ten times farther from the Sun than Earth.",
+      "main_point": "Saturn is 9.6 times farther out than Earth, yet its signal was caught from here.",
+      "visual_objective": "Pull out from Earth's orbit to Saturn's on true-scale orbits with the ratio counting up.",
+      "treatment": "orbital-scale-pullout",
+      "background": "space (3D scene)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "Earth 149.6 million km",
+        "Saturn 1,432 million km",
+        "9.6x Earth's distance",
+        "Orbits to scale. Planets enlarged, positions illustrative."
+      ],
+      "claim_ids": [
+        "c02",
+        "c11"
+      ],
+      "data_sources": [
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 3.4360000000000004,
+      "end_s": 7.352
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Dark bands in its glow suggest ring rain: charged ice falling along magnetic field lines.",
+      "main_point": "Bands are observed; falling ice along field lines is the explanation.",
+      "visual_objective": "A labelled 3D Saturn: dark bands at their observed latitudes, ice grains moving along field lines from named rings.",
+      "treatment": "ring-rain-labelled-3d",
+      "background": "space (3D scene)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "saturn-texture",
+          "origin": "NASA 3D Resources, Images and Textures/Saturn/Saturn.jpg",
+          "licence": "NASA material; not reviewed or endorsed by NASA",
+          "source_url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn"
+        },
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "OBSERVED: dark bands, 25-55 degrees latitude (Keck, April 2011)",
+        "Charged ice grains",
+        "Magnetic field line (simplified)",
+        "C ring",
+        "B ring",
+        "A ring"
+      ],
+      "claim_ids": [
+        "c03",
+        "c04",
+        "c05",
+        "c09",
+        "c11"
+      ],
+      "data_sources": [
+        "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/",
+        "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 7.352,
+      "end_s": 12.852
+    },
+    {
+      "scene_id": "s4",
+      "narration": "One estimate: an Olympic pool of water, every half hour.",
+      "main_point": "The loss rate in human terms.",
+      "visual_objective": "A pool filling in 3D while a 30-minute clock runs, so the rate is visible with the sound off.",
+      "treatment": "pool-fill-estimate",
+      "background": "white (explanatory graphic)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "One Olympic-sized pool",
+        "every 30:00",
+        "Researchers' estimate"
+      ],
+      "claim_ids": [
+        "c06",
+        "c11"
+      ],
+      "data_sources": [
+        "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 12.852,
+      "end_s": 17.08
+    },
+    {
+      "scene_id": "s5",
+      "narration": "By one model, under a hundred million years left. A 2024 simulation says they may be billions of years old.",
+      "main_point": "The timescale is a model, and the rings' age is disputed.",
+      "visual_objective": "The rings thin while two sourced model cards sit side by side as competing claims.",
+      "treatment": "ring-fade-disputed-models",
+      "background": "space (3D scene)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "saturn-texture",
+          "origin": "NASA 3D Resources, Images and Textures/Saturn/Saturn.jpg",
+          "licence": "NASA material; not reviewed or endorsed by NASA",
+          "source_url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn"
+        },
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "2018 study: under 100 million years left",
+        "2024 simulation: could be about 4.5 billion years old"
+      ],
+      "claim_ids": [
+        "c07",
+        "c08",
+        "c11"
+      ],
+      "data_sources": [
+        "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+        "https://www.ipgp.fr/en/news-and-agenda/news/a-new-perspective-on-the-age-of-saturns-rings",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 17.08,
+      "end_s": 24.932
+    },
+    {
+      "scene_id": "s6",
+      "narration": "A bare Saturn? Only a hypothetical.",
+      "main_point": "A ringless Saturn is imagined, not seen.",
+      "visual_objective": "The planet alone, with the hypothetical status filling the frame's top so it cannot be mistaken for an image.",
+      "treatment": "ringless-hypothetical",
+      "background": "space (3D scene)",
+      "skill": "Three.js via @remotion/three (provisional SOLSYS stand-in), channels/red-space-facts/compositions.jsx",
+      "assets": [
+        {
+          "id": "saturn-texture",
+          "origin": "NASA 3D Resources, Images and Textures/Saturn/Saturn.jpg",
+          "licence": "NASA material; not reviewed or endorsed by NASA",
+          "source_url": "https://github.com/nasa/NASA-3D-Resources/tree/master/Images%20and%20Textures/Saturn"
+        },
+        {
+          "id": "figures",
+          "origin": "NASA NSSDC fact sheets",
+          "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/"
+        }
+      ],
+      "animation": "real-time 3D camera and object motion rendered per frame",
+      "on_screen_text": [
+        "HYPOTHETICAL: never observed"
+      ],
+      "claim_ids": [
+        "c10",
+        "c11"
+      ],
+      "data_sources": [
+        "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/",
+        "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html"
+      ],
+      "transition": "6-frame fade",
+      "start_s": 24.932,
+      "end_s": 29.587999999999997
+    }
+  ]
+}
