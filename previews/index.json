@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T10:33:44.922Z",
+  "rebuilt_at": "2026-11-09T10:34:03.357Z",
   "channels": [
     {
       "key": "_smoke",
       "agent": "lead-architect",
-      "stage": "started",
+      "stage": "rendered",
       "status": "running",
-      "at": "2026-11-09T10:33:44.251Z",
+      "at": "2026-11-09T10:34:03.006Z",
       "sheet": "",
       "script": "",
       "plan": "",
