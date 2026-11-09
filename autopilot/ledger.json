@@ -778,21 +778,38 @@
     },
     "kick-c15e6a3b99-ch1": {
       "channel": "1",
-      "status": "qa-passed",
+      "status": "delivered",
       "attempts": 1,
       "run_id": "42561890757",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:41:39.500Z",
-      "stage": "qa-passed",
+      "updated_at": "2026-11-09T04:41:45.523Z",
+      "stage": "delivered",
       "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
       "score": 61.5,
       "pillar": "Secret operations and evidence-backed conspiracies",
       "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
       "qa": "all gates passed",
-      "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f"
+      "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f",
+      "video_id": "ZFhtdVwK2zQ",
+      "privacy_status": "private"
     }
   },
-  "uploads": [],
+  "uploads": [
+    {
+      "channel": "1",
+      "slot": "kick-c15e6a3b99-ch1",
+      "video_id": "ZFhtdVwK2zQ",
+      "url": "https://www.youtube.com/watch?v=ZFhtdVwK2zQ",
+      "title": "How slow biplanes sank six battleships at Taranto",
+      "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f",
+      "production_id": "ap-kick-c15e6a3b99-ch1",
+      "privacy_status": "private",
+      "uploaded_at": "2026-11-09T04:41:45.523Z",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
+      "run_id": "42561890757"
+    }
+  ],
   "topics": [
     {
       "channel": "2",

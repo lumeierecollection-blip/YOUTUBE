@@ -1,0 +1,20 @@
+{
+  "video_id": "ZFhtdVwK2zQ",
+  "url": "https://www.youtube.com/watch?v=ZFhtdVwK2zQ",
+  "channel_id": "UCTUvox63wWPYClFTtq0gUkw",
+  "channel_title": "Hidden Past",
+  "title": "How slow biplanes sank six battleships at Taranto",
+  "privacy_status": "private",
+  "upload_status": "uploaded",
+  "sha256": "6bdba8eac72057ed47b9120827b0198ce5d2f6e798156b545037229983d4d62f",
+  "production_id": "ap-kick-c15e6a3b99-ch1",
+  "checks": {
+    "channel": true,
+    "title": true,
+    "description": true,
+    "private": true,
+    "not_scheduled": true
+  },
+  "verified": true,
+  "verified_at": "2026-11-09T04:41:45.523Z"
+}
