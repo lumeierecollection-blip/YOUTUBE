@@ -100,7 +100,15 @@ async function produce(slotId, channelId) {
     // Topics that cannot be grounded or scripted hand over to the next candidate. A topic tried
     // here stays in the history, so it is never picked again just to get a run through.
     const tried = [];
-    for (const candidate of eligible.slice(0, MAX_TOPICS_PER_RUN)) {
+    let attempted = 0;
+    for (const candidate of eligible.slice(0, 8)) {
+      if (attempted >= MAX_TOPICS_PER_RUN) break;
+      if (channel.treatment === "vox" && !(await (await import("./hidden-past.mjs")).hasExactImage(candidate))) {
+        tried.push({ topic: candidate.topic, score: candidate.score.total, stage: "image-precheck", reason: "no freely licensed image of the actual subject" });
+        log("produce", `skipped before research (no exact image): ${candidate.topic}`);
+        continue;
+      }
+      attempted++;
       const current = await withAngle(candidate);
       ledger.topics.push({ channel: channel.id, topic: current.topic, slug: current.slug, slot: slotId, at_ms: Date.now(), score: current.score.total, pillar: current.pillar });
       mark("research", { topic: current.topic, score: current.score.total, pillar: current.pillar, hook: current.hook });

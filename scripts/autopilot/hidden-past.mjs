@@ -58,6 +58,12 @@ unrelated: a different culture, site or period than the story (read the file nam
   return null;
 }
 
+/** A cheap check before any research is spent: is there a real image of what this story is about? */
+export async function hasExactImage(topic) {
+  const img = await pickImage({ commons_queries: [topic.commons_query, topic.wikipedia_title].filter(Boolean), subject: topic.topic, text: topic.topic }, new Set(), topic.topic);
+  return img?.relation === "exact";
+}
+
 /** Vision models report boxes as fractions or on a 0-1000 grid; accepts either. */
 function toBox(v) {
   if (!v) return null;
