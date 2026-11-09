@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 11:31 SAST
+Updated 2026-11-09 11:39 SAST
 
 **Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
@@ -9,10 +9,10 @@ Updated 2026-11-09 11:31 SAST
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
 | Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Jocelyn Bell Burnell Discovers Pulsars (66.6/100) |
+| Selected topic and score | The Discovery of the Hoxne Hoard (60.2/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
-| Performance | 0 views, 0 likes, 0 comments (private) |
+| Performance | 1 views, 0 likes, 0 comments (private) |
 | Analytics | available |
 
 ## AI Tested
@@ -116,3 +116,5 @@ Updated 2026-11-09 11:31 SAST
   - SCR-16: 41 words implies ~20s durati
 - AI Tested kick-a558298fac-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/drugmaker-ceos-doubt-silicon-valley-s-promises-that-ai-will--shorts:
   - SCR-17 STRICT 
+- Hidden Past kick-8f65f6a536-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-discovery-of-the-hoxne-hoard-shorts:
+  - SCR-16: 57 words implies ~28s duration â€”
