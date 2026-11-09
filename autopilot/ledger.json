@@ -659,16 +659,17 @@
     },
     "kick-9eefa2545a-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42546665711",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:44:08.674Z",
-      "stage": "visuals",
+      "updated_at": "2026-11-09T01:46:34.811Z",
+      "stage": "vox-layout",
       "topic": "The Wilmington massacre of 1898, the only municipal government overthrow in US history",
       "score": 64.8,
       "pillar": "Unbelievable true historical events",
-      "hook": "This is the forgotten story of the only time a local American government was violently overthrown in a coup."
+      "hook": "This is the forgotten story of the only time a local American government was violently overthrown in a coup.",
+      "error": "layout check failed: s2-head overlaps s2-context"
     }
   },
   "uploads": [],
@@ -1282,7 +1283,8 @@
     "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure",
     "Hidden Past kick-dae3d3a718-ch1 failed at script: 4 topic(s) tried, none usable. Last: script failed its gates after 7 passes: The final editor rejected the script. Failed: followable, satisfying_ending. The ending abruptly drops dry chemical percent",
     "Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best \"400-year-old shipwreck padlock decoded\" (79.5): too few freely licensed images (0 on Wikimedia Commons)",
-    "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t"
+    "AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Instagram Launches Free Desktop Video Editor to Rival CapCut\" (87.2): too similar to recent topic: Instagram launches free desktop video editor t",
+    "Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context"
   ],
   "last_poll_at": "2026-11-09T01:39:07.582Z"
 }
