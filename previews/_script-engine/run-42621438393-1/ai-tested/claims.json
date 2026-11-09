@@ -1,0 +1,154 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "ok": true,
+      "chars": 8751,
+      "sha256": "83d45b37a3396048",
+      "title": "Model Context Protocol",
+      "published": "2026-11-09",
+      "fetched_at": "2026-11-09T12:59:44.948Z"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+      "ok": true,
+      "chars": 42649,
+      "sha256": "b7dcbe6c040da933",
+      "title": "What is the Model Context Protocol (MCP)? - Model Context Protocol",
+      "published": null,
+      "fetched_at": "2026-11-09T12:59:45.396Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The Model Context Protocol was introduced by Anthropic in November 2024.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The Model Context Protocol (MCP) is an open standard and open-source framework introduced by Anthropic in November 2024 to standardize the way artificial intelligence (AI) systems like large language models (LLMs) integrate and share data with external tools, systems, and data sources.",
+      "confidence": "high",
+      "context": "Anthropic is the organization that created and introduced the Model Context Protocol in November 2024.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "The Model Context Protocol was created at Anthropic by engineers David Soria Parra and Justin Spahr-Summers.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The protocol was created at Anthropic by engineers David Soria Parra and Justin Spahr-Summers.",
+      "confidence": "high",
+      "context": "David Soria Parra and Justin Spahr-Summers are the engineers who created the protocol at Anthropic.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Anthropic donated the Model Context Protocol to the Agentic AI Foundation in December 2025.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "In December 2025, Anthropic donated MCP to the Agentic AI Foundation, a fund under the Linux Foundation.",
+      "confidence": "high",
+      "context": "The Agentic AI Foundation is a fund under the Linux Foundation that received the protocol from Anthropic in December 2025.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Anthropic described the requirement of custom connectors for each data source or tool as an N times M data integration problem.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "Before MCP, developers often had to build custom connectors for each data source or tool, resulting in what Anthropic described as an \"N×M\" data integration problem.",
+      "confidence": "high",
+      "context": "Anthropic used the term N times M data integration problem to describe the previous need for custom connectors.",
+      "contradictory_evidence": [],
+      "editorial_status": "marketing_claim"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "The Model Context Protocol provides a standardized interface for reading files, executing functions, and handling contextual prompts.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "MCP provides a standardized interface for reading files, executing functions, and handling contextual prompts.",
+      "confidence": "high",
+      "context": "The Model Context Protocol provides a standardized interface for specific system operations.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "An MCP host is typically an AI agent that interacts with an LLM and requires services from one or more MCP servers.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "An MCP host is typically an AI agent that interacts with an LLM and requires services from one or more MCP servers.",
+      "confidence": "high",
+      "context": "An MCP host interacts with an LLM and relies on services from MCP servers.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "For each MCP server, the MCP host will create a dedicated MCP client that communicates with that server.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "For each of these MCP servers, the MCP host will create a dedicated MCP client that communicates with that server.",
+      "confidence": "high",
+      "context": "The MCP host establishes a dedicated client to communicate with each MCP server.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Client and host will typically run on the same machine, while the MCP servers may be local or remote.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "Client and host will typically run on the same machine, while the MCP servers may be local or remote.",
+      "confidence": "high",
+      "context": "The deployment location of clients, hosts, and servers can vary between local and remote machines.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "The protocol was released with software development kits in Python, TypeScript, C# and Java.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "The protocol was released with software development kits (SDKs) in programming languages including Python, TypeScript, C# and Java and examples of MCP server implementations.",
+      "confidence": "high",
+      "context": "Software development kits were released in multiple programming languages to support the protocol.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "MCP Apps standardizes the delivery of interactive user interfaces from MCP servers to host applications like Claude and ChatGPT.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09",
+      "excerpt": "While the base MCP specification is restricted to text and structured data, MCP Apps standardizes the delivery of interactive user interfaces-such as dashboards, forms, and data visualizations-from MCP servers to host applications like Claude and ChatGPT.",
+      "confidence": "high",
+      "context": "MCP Apps is an extension that standardizes interactive user interfaces for applications like Claude and ChatGPT.",
+      "contradictory_evidence": [],
+      "editorial_status": "demonstrated_feature"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "published": "2026-11-09"
+    }
+  ]
+}
