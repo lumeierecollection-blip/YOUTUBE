@@ -173,7 +173,9 @@ export async function voxGate({ mp4, dir, outDir, productionId }) {
       r.measured.halftone = { treated: htTreated, source: htSource };
       r.measured.grain = { treated: treated.fine_detail, source: source.fine_detail };
       if (source.saturation > 0.12 && treated.saturation > source.saturation * 0.92) fail(s.scene, "grade", `saturation ${treated.saturation} not reduced from ${source.saturation}`);
-      if (vignetteRatio > 0.95) fail(s.scene, "vignette", `corners kept ${r.measured.vignette.corner_light_kept} of their light, centre ${r.measured.vignette.centre_light_kept}`);
+      // A photo whose corners are already near-black has no light left for a vignette to remove.
+      r.measured.vignette.measurable = source.corners >= 40;
+      if (source.corners >= 40 && vignetteRatio > 0.95) fail(s.scene, "vignette", `corners kept ${r.measured.vignette.corner_light_kept} of their light, centre ${r.measured.vignette.centre_light_kept}`);
       if (htTreated.peak_over_median < Math.max(40, htSource.peak_over_median * 1.3)) fail(s.scene, "halftone", `dot-screen peak ${htTreated.peak_over_median} vs source ${htSource.peak_over_median}`);
       if (treated.fine_detail < source.fine_detail * 1.05) fail(s.scene, "grain", `fine detail ${treated.fine_detail} vs source ${source.fine_detail}`);
       if (annotation) {
