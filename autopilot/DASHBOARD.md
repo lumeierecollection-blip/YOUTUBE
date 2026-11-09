@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 06:53 SAST
+Updated 2026-11-09 07:06 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-09 06:53 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at assets, attempts 1 |
-| Selected topic and score | The 1940 Taranto Naval Raid (65/100) |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | The Fall of the Brazilian Empire (59.1/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
@@ -94,3 +94,5 @@ Updated 2026-11-09 06:53 SAST
 - YouTube Analytics is unavailable for channel 1: re-authorising with the yt-analytics.readonly scope would enable retention data.
 - AI Tested kick-aab00134a5-ch2 failed at discover: discovery failure: 15 candidates, none eligible. Best "Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker" (78.7): too similar to recent topic: Bill Gates Says $10-an-Hour Robots
 - Hidden Past kick-a3cad14f13-ch1 failed at assets: 2 topic(s) tried, none usable. Last: no image shows the story's actual subject; context images alone would mislead
+- Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Rio de Janeiro How" is not named in the research artifact â€” use the research's own name, or drop the name.
+
