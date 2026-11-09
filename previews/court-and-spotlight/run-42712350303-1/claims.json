@@ -1,0 +1,50 @@
+[
+  {
+    "claim_id": "T1",
+    "claim": "Pollstar reported that Taylor Swift's Eras Tour had so far grossed more than $1 billion, the first tour to do so.",
+    "source_id": "musicweek2023",
+    "source_url": "https://www.musicweek.com/live/read/taylor-swift-breaks-record-with-first-tour-to-gross-more-than-1-billion/088979",
+    "published": "2023-12",
+    "excerpt": "Taylor Swift’s Eras Tour has so far grossed more than $1 billion, according to Pollstar.",
+    "confidence": "medium",
+    "context": "Figure is a floor ('more than'), reported 'so far' in December 2023 and attributed to Pollstar. Headline: 'first tour to gross more than $1 billion'.",
+    "contradictory_evidence": [],
+    "editorial_status": "confirmed"
+  },
+  {
+    "claim_id": "T2",
+    "claim": "Elton John's Farewell Yellow Brick Road Tour set the previous touring record with $939 million.",
+    "source_id": "musicweek2023",
+    "source_url": "https://www.musicweek.com/live/read/taylor-swift-breaks-record-with-first-tour-to-gross-more-than-1-billion/088979",
+    "published": "2023-12",
+    "excerpt": "Elton John’s Farewell Yellow Brick Road Tour set the previous touring record with $939 million",
+    "confidence": "medium",
+    "context": "The report's wording. Billboard's own Boxscore ranks only officially reported figures and is a different basis; this video uses the Music Week/Pollstar framing only.",
+    "contradictory_evidence": [],
+    "editorial_status": "confirmed"
+  },
+  {
+    "claim_id": "T3",
+    "claim": "Elton John's $939 million was amassed over five years, due to pandemic delays.",
+    "source_id": "musicweek2023",
+    "source_url": "https://www.musicweek.com/live/read/taylor-swift-breaks-record-with-first-tour-to-gross-more-than-1-billion/088979",
+    "published": "2023-12",
+    "excerpt": "although that huge total was amassed over five years due to pandemic delays.",
+    "confidence": "medium",
+    "context": "Says nothing about how long the Eras Tour took, and the video says nothing either.",
+    "contradictory_evidence": [],
+    "editorial_status": "confirmed"
+  },
+  {
+    "claim_id": "T4",
+    "claim": "Previous record-breaking tours by U2, Ed Sheeran and Elton John all included many more performances.",
+    "source_id": "cmu2023",
+    "source_url": "https://completemusicupdate.com/taylor-swifts-record-breaking-tour-topped-a-billion-dollars/",
+    "published": "2023-12",
+    "excerpt": "making it bigger than previous record-breaking tours by U2, Ed Sheeran and Elton John which all included many more performances",
+    "confidence": "medium",
+    "context": "'Many more performances' is the report's wording; no show counts were retrieved, so none are shown.",
+    "contradictory_evidence": [],
+    "editorial_status": "confirmed"
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "format": "vox_explainer",
+  "reasoning": "Matched Cultural influence, why a celebrity became famous, comparisons, cultural analysis: how did, comparison, cultural, influence.",
+  "alternatives": [],
+  "evidence_available": [
+    "swift-eras-2023",
+    "elton-farewell-2018"
+  ],
+  "hybrid": null,
+  "branch": "preview/court-and-spotlight-vox",
+  "expected_for_branch": "vox_explainer"
+}
