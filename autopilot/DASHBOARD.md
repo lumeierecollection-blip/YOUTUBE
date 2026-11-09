@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:01 SAST
+Updated 2026-11-09 02:09 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -62,3 +62,4 @@ Updated 2026-11-09 02:01 SAST
 - Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1
 - Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1
 - Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {"blocking":[{"check":"static-run","why":"longest near-static run is 5.0s (limit 4.0s)"}],"frame":[],"acceptance":[{"check":"static-run","why":"longest near-st
+- Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":3,"check":"vignette","why":"corners kept 1.567 of their light, centre 1.38"}],"technical":{"duration_le_30":true,"resolutio
