@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T12:42:03.442Z",
+  "rebuilt_at": "2026-11-09T12:43:55.716Z",
   "channels": [
     {
       "key": "_smoke",
@@ -23,21 +23,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-09T12:40:55.464Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-09T12:43:54.747Z",
       "branch": "preview/ai-tested",
-      "commit": "aa283e10",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618793581#artifacts)",
+      "commit": "be864fc0",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619234061#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "edge-tts --voice en-US-AndrewNeural --rate=+5% failed (exit 1)",
+      "blocker": "",
       "lastOk": "none",
-      "run": "run-42618793581-1"
+      "run": "run-42619234061-1"
     },
     {
       "key": "gray-matter",
