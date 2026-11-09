@@ -1,0 +1,3 @@
+Error: QA failed: voice-audible: mean volume NaN dB in the MP4 (silence is about -91 dB)
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:176:21)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
