@@ -66,7 +66,7 @@ function Everyday({ data, dur, c, type, plates }) {
       <Svg w={1080} h={1040} width={1080} height={1040}>
         <defs><clipPath id="gm-head"><path d={`${HEAD} Z`} /></clipPath></defs>
         <g transform={`translate(608 504) scale(${zoom}) translate(-608 -504)`}>
-          <path d={`${HEAD}`} fill={c.soft} stroke={c.ink} strokeWidth={7} strokeLinecap="round" />
+          <path d={`${HEAD}`} fill="#FFFFFF" stroke={c.ink} strokeWidth={7} strokeLinecap="round" />
           <circle cx={292} cy={480} r={9} fill={c.ink} />
           <g clipPath="url(#gm-head)">
             <image href={plates.lateral} x={265} y={230} width={600} height={347} opacity={brain} style={{ mixBlendMode: "multiply" }} />
@@ -113,7 +113,7 @@ function Region({ data, dur, c, type, plates }) {
   const leader = [290 * k, 356 * k];
   return (
     <div style={{ position: "absolute", top: FIG_TOP, left: 0, width: 1080, height: FIG_H, overflow: "hidden" }}>
-      <div style={{ position: "absolute", left: 20, top: 34, width: PLATE_W, height: plateH, transform: `scale(${zoom})`, transformOrigin: `${255 * k}px ${250 * k}px` }}>
+      <div style={{ position: "absolute", left: 20, top: -76, width: PLATE_W, height: plateH, transform: `scale(${zoom})`, transformOrigin: `${255 * k}px ${250 * k}px` }}>
         <img src={plates.plate} style={{ position: "absolute", inset: 0, width: PLATE_W, height: plateH }} />
         <div style={{ position: "absolute", inset: 0, background: c.region, opacity: glow, mixBlendMode: "multiply", WebkitMaskImage: `url(${plates.mask})`, WebkitMaskSize: "100% 100%", maskImage: `url(${plates.mask})`, maskSize: "100% 100%" }} />
         {/* Covers the plate's small baked-in caption so the larger label below replaces it. */}
@@ -121,19 +121,19 @@ function Region({ data, dur, c, type, plates }) {
         <div style={{ position: "absolute", left: leader[0] - 2.5, top: leader[1] - 8, width: 5, height: 70, background: c.ink }} />
       </div>
       <div style={{ position: "absolute", left: 40, right: 40, top: 0, display: "flex", justifyContent: "space-between", fontFamily: type.label.family, fontWeight: 700, fontSize: 30, color: c.muted }}><span>FRONT</span><span>{data.region.view}</span><span>BACK</span></div>
-      <div style={{ position: "absolute", left: 60, right: 60, top: 846, opacity: card, transform: `translateY(${(1 - card) * 20}px)` }}>
-        <div style={{ fontFamily: type.display.family, fontWeight: 700, fontSize: 76, color: c.regionText, lineHeight: 1 }}>{data.region.name}</div>
-        <div style={{ fontFamily: type.display.family, fontWeight: 700, fontSize: 44, color: c.ink, marginTop: 12 }}>{data.region.where}</div>
-        <div style={{ fontFamily: type.display.family, fontWeight: 400, fontSize: 44, color: c.ink, marginTop: 4 }}>{data.region.does}</div>
-        <div style={{ fontFamily: type.display.family, fontWeight: 400, fontSize: 26, color: c.muted, marginTop: 10 }}>{data.region.credit}</div>
+      <div style={{ position: "absolute", left: 60, right: 60, top: 736, opacity: card, transform: `translateY(${(1 - card) * 20}px)` }}>
+        <div style={{ fontFamily: type.display.family, fontWeight: 700, fontSize: 68, color: c.regionText, lineHeight: 1 }}>{data.region.name}</div>
+        <div style={{ fontFamily: type.display.family, fontWeight: 700, fontSize: 40, color: c.ink, marginTop: 8 }}>{data.region.where}</div>
+        <div style={{ fontFamily: type.display.family, fontWeight: 400, fontSize: 40, color: c.ink, marginTop: 2 }}>{data.region.does}</div>
       </div>
+      <div style={{ position: "absolute", left: 60, right: 60, top: 962, fontFamily: type.display.family, fontWeight: 400, fontSize: 28, color: c.muted, opacity: card }}>{data.region.credit}</div>
     </div>
   );
 }
 
 function Activity({ data, dur, c, type, plates }) {
   const f = useCurrentFrame();
-  const zoomW = 1760, k = zoomW / plates.size[0], cardW = 960, cardH = 410;
+  const zoomW = 1400, k = zoomW / plates.size[0], cardW = 960, cardH = 410;
   const offX = cardW / 2 - 255 * k, offY = cardH / 2 - 250 * k;
   return (
     <div style={{ position: "absolute", top: FIG_TOP, left: 60, width: cardW, height: FIG_H }}>
@@ -146,6 +146,7 @@ function Activity({ data, dur, c, type, plates }) {
             <div style={{ position: "absolute", left: offX, top: offY, width: zoomW, height: plates.size[1] * k, background: c.region, opacity: glow, WebkitMaskImage: `url(${plates.mask})`, WebkitMaskSize: "100% 100%", maskImage: `url(${plates.mask})`, maskSize: "100% 100%" }} />
             <div style={{ position: "absolute", left: 22, top: 18, fontFamily: type.display.family, fontWeight: 700, fontSize: 44, color: c.ink, background: "#fff", padding: "4px 14px", borderRadius: 8 }}>{row.label}</div>
             <div style={{ position: "absolute", left: 22, bottom: 18, fontFamily: type.display.family, fontWeight: 700, fontSize: 42, color: row.level < 1 ? c.loss : c.regionText, background: "#fff", padding: "4px 14px", borderRadius: 8 }}>{row.value}</div>
+            <div style={{ position: "absolute", right: 22, bottom: 18, fontFamily: type.label.family, fontWeight: 700, fontSize: 34, color: c.regionText, background: "#fff", padding: "4px 14px", borderRadius: 8 }}>Hippocampus</div>
             {row.memory ? <div style={{ position: "absolute", right: 22, top: 18, fontFamily: type.display.family, fontWeight: 700, fontSize: 36, color: c.loss, background: "#fff", padding: "6px 14px", borderRadius: 8 }}>{row.memory}</div> : null}
           </div>
         );
@@ -217,8 +218,8 @@ function NeuronSpines({ data, dur, c, type, figures }) {
           {label(fig.anchors.vesicle[0] - 250, fig.anchors.vesicle[1] + 18, "Vesicles", "end", fig.anchors.vesicle[0], fig.anchors.vesicle[1], 0.26)}
           {label(fig.anchors.cleft[0] + 90, fig.anchors.cleft[1] + 8, "Synaptic cleft", "start", fig.anchors.cleft[0], fig.anchors.cleft[1], 0.32)}
           {label(fig.anchors.receptor[0] + 110, fig.anchors.receptor[1] + 66, "Receptors", "start", fig.anchors.receptor[0], fig.anchors.receptor[1], 0.38)}
-          {label(fig.anchors.spine[0] - 230, fig.anchors.spine[1] + 16, "Dendritic spine", "end", fig.anchors.spine[0], fig.anchors.spine[1], 0.44)}
-          {label(fig.anchors.dendrite[0] - 40, fig.anchors.dendrite[1] + 100, "Dendrite", "middle", fig.anchors.dendrite[0], fig.anchors.dendrite[1], 0.5)}
+          {label(fig.anchors.spine[0] - 170, fig.anchors.spine[1] - 52, "Dendritic spine", "end", fig.anchors.spine[0], fig.anchors.spine[1], 0.44)}
+          {label(fig.anchors.dendrite[0] - 60, fig.anchors.dendrite[1] + 78, "Dendrite", "middle", fig.anchors.dendrite[0], fig.anchors.dendrite[1], 0.5)}
         </Svg>
         <div style={{ position: "absolute", left: 18, right: 18, bottom: 54, textAlign: "center", fontFamily: type.display.family, fontWeight: 700, fontSize: 42, color: c.loss, opacity: ramp(t, 0.6, 0.72) }}>{data.result}</div>
         <div style={{ position: "absolute", left: 18, right: 18, bottom: 14, textAlign: "center", fontFamily: type.display.family, fontWeight: 400, fontSize: 26, color: c.muted }}>{data.scaleNote}</div>
@@ -241,14 +242,16 @@ function Rescue({ data, dur, c, type, figures }) {
         <Svg w={actin.W} h={actin.H} width={1000} height={actin.H}>
           <Raw html={actin.left} transform={`translate(${-split} 0)`} />
           <Raw html={actin.right} transform={`translate(${split} 0)`} />
-          <circle cx={actin.gap[0]} cy={actin.gap[1] - 40} r={26} fill={c.loss} opacity={cofilin} />
-          <Tag x={actin.gap[0]} y={actin.gap[1] - 32} text="C" c={c} type={type} size={32} color="#fff" anchor="middle" o={cofilin} />
+          <circle cx={actin.gap[0]} cy={actin.gap[1] - 52} r={20} fill={c.loss} opacity={cofilin} />
+          <Tag x={actin.gap[0] + 32} y={actin.gap[1] - 41} text="Cofilin" c={c} type={type} size={34} color={c.loss} o={cofilin} />
+          <Tag x={110} y={actin.gap[1] + 62} text="Actin filament" c={c} type={type} size={30} color={c.muted} o={cofilin} />
         </Svg>
       </div>
       <div style={{ position: "absolute", left: 60, right: 60, top: 150, textAlign: "center", fontFamily: type.display.family, fontWeight: 700, fontSize: 40, color: c.loss }}>{data.actinLabel}</div>
       {data.panels.map((p, i) => (
         <div key={p.label} className="iso" data-theme="light" style={{ position: "absolute", left: 20, top: 224 + i * (panelH + 22), width: 1040, height: panelH, borderRadius: 18, border: `3px solid ${c.rule}`, background: "#fff", opacity: ramp(f, 2 + i * 8, 12 + i * 8), overflow: "hidden" }}>
           <div style={{ position: "absolute", left: 22, top: 12, fontFamily: type.display.family, fontWeight: 700, fontSize: 42, color: c.ink }}>{p.label}</div>
+          <div style={{ position: "absolute", right: 22, top: 16, fontFamily: type.label.family, fontWeight: 700, fontSize: 30, color: c.muted }}>Dendrite with spines</div>
           <div style={{ position: "absolute", left: 20, top: 68 }}>
             <Svg w={bare.W} h={bare.H} width={1000} height={figH}>
               <Spines fig={bare} shrink={p.loses ? loss : null} />

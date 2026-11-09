@@ -29,7 +29,7 @@ export async function runQa(outDir, extra = {}) {
 
   const duration = existsSync(video) ? Number(probe(video, ["-show_entries", "format=duration"])) : NaN;
   const [width, height] = existsSync(video) ? probe(video, ["-select_streams", "v:0", "-show_entries", "stream=width,height"]).split(",").map(Number) : [0, 0];
-  const fps = existsSync(video) ? probe(video, ["-select_streams", "v:0", "-show_entries", "stream=r_frame_rate"]) : "";
+  const fps = existsSync(video) ? probe(video, ["-select_streams", "v:0", "-show_entries", "stream=r_frame_rate"]).replace(/,$/, "") : "";
   const audio = existsSync(video) ? probe(video, ["-select_streams", "a", "-show_entries", "stream=codec_name"]) : "";
   check("duration", duration <= channel.format.max_seconds && duration > 5, `${duration.toFixed(2)} s, limit ${channel.format.max_seconds} s, measured from the MP4`);
   check("resolution", width === channel.format.width && height === channel.format.height, `${width}x${height}, required ${channel.format.width}x${channel.format.height}`);
