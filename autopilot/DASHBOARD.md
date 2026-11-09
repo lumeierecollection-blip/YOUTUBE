@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:09 SAST
+Updated 2026-11-09 02:18 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 02:09 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | Hittite cuneiform tablets discovered at Kayalipinar (undefined/100) |
+| Selected topic and score | The Discovery of the Cullinan Diamond (63.3/100) |
 | QA | failed |
 | Upload | n/a |
 | Performance | n/a |
@@ -63,3 +63,4 @@ Updated 2026-11-09 02:09 SAST
 - Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1
 - Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {"blocking":[{"check":"static-run","why":"longest near-static run is 5.0s (limit 4.0s)"}],"frame":[],"acceptance":[{"check":"static-run","why":"longest near-st
 - Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":3,"check":"vignette","why":"corners kept 1.567 of their light, centre 1.38"}],"technical":{"duration_le_30":true,"resolutio
+- Hidden Past kick-7d271be20d-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":2,"check":"vignette","why":"corners kept 1.687 of their light, centre 1.187"},{"scene":3,"check":"photo-stability","why":"p
