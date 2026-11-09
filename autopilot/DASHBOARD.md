@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:46 SAST
+Updated 2026-11-09 03:49 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 03:46 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at research, attempts 1 |
+| Selected topic and score | Amazon Lets Users Text Alexa to Help Them Shop (74.2/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -82,3 +82,4 @@ Updated 2026-11-09 03:46 SAST
 - Hidden Past kick-a02fb16fbb-ch1 failed at discover: discovery failure: 20 candidates, none eligible. Best "400-year-old shipwreck padlock decoded" (79.5): too few freely licensed images (0 on Wikimedia Commons)
 - AI Tested kick-9b1b055c41-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best "Instagram Launches Free Desktop Video Editor to Rival CapCut" (87.2): too similar to recent topic: Instagram launches free desktop video editor t
 - Hidden Past kick-9eefa2545a-ch1 failed at vox-layout: layout check failed: s2-head overlaps s2-context
+- AI Tested kick-b4086ba5c1-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
