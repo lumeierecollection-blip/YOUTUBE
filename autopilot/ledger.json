@@ -859,6 +859,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "Humanity successfully landed a spacecraft on a speeding comet 300 million miles from Earth.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface refers to, as the comet has not been described as a surface yet.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"European Space Agency staff in Darmstadt endured a 7 hour descent.\" — It is unclear why staff on Ea"
+    },
+    "kick-bbb510fe7d-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42576166902",
+      "trigger": "push",
+      "updated_at": "2026-11-09T06:56:55.067Z"
     }
   },
   "uploads": [
@@ -1666,5 +1674,5 @@
     "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")",
     "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref"
   ],
-  "last_poll_at": "2026-11-09T05:11:21.401Z"
+  "last_poll_at": "2026-11-09T06:56:55.067Z"
 }
