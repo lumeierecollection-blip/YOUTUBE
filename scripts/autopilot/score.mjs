@@ -16,7 +16,7 @@ const weighted = (parts) => {
 export const tokens = (s) => new Set(String(s).toLowerCase().replace(/[^a-z0-9 ]+/g, " ").split(/\s+/).filter((w) => w.length > 3));
 
 // Words that open or fill many headlines, so sharing them says nothing about the story.
-const GENERIC = /^(new|first|ancient|lost|secret|hidden|how|why|what|the|chatgpt|openai|google|gemini|claude|anthropic|history|years?)$/i;
+const GENERIC = /^(new|first|ancient|lost|secret|hidden|how|why|what|the|chatgpt|openai|google|gemini|claude|anthropic|history|years?|battle|discovery|discovered|great|world|royal|empire|kingdom|mystery|story|naval|attack|tomb|city|american|british|german|french|roman|egyptian|meta|apple|microsoft|amazon)$/i;
 const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w)).map((w) => w.toLowerCase()));
 
 export function similarity(a, b) {
@@ -29,6 +29,8 @@ export function similarity(a, b) {
   for (const w of names(a)) if (ny.has(w)) sharedNames++;
   // Two shared proper names mean the same story even when the rest of the headline differs.
   if (sharedNames >= 2) return Math.max(0.75, shared / Math.min(x.size, y.size));
+  // One distinctive proper name is enough: "Battle of Taranto" and "The 1940 Taranto Raid" are one story.
+  if ([...names(a)].some((w) => ny.has(w) && w.length >= 6)) return Math.max(0.6, shared / Math.min(x.size, y.size));
   return shared / Math.min(x.size, y.size);
 }
 
