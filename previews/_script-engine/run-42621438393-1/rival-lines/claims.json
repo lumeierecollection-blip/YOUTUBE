@@ -1,0 +1,137 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "ok": true,
+      "chars": 26046,
+      "sha256": "1d550d37add75352",
+      "title": "2005 UEFA Champions League final",
+      "published": "2026-10-27",
+      "fetched_at": "2026-11-09T13:03:03.830Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The 2005 UEFA Champions League final was contested between Milan of Italy and Liverpool of England at the Atatürk Olympic Stadium in Istanbul on 25 May 2005.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "The showpiece event was contested between Milan of Italy and Liverpool of England at the Atatürk Olympic Stadium in Istanbul on 25 May 2005.",
+      "confidence": "high",
+      "context": "The 2005 UEFA Champions League final is the match where Liverpool faced Milan.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Liverpool were appearing in their sixth final and had won the competition four times previously.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool, who had won the competition four times, were appearing in their sixth final, and their first since 1985.",
+      "confidence": "high",
+      "context": "Liverpool's historical record in the European Cup prior to the 2005 final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "Milan were appearing in their tenth overall final and had won the competition six times.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Milan, who had won the competition six times, were appearing in their second final in three years and tenth overall.",
+      "confidence": "high",
+      "context": "Milan's historical record in the European Cup prior to the 2005 final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "Each club played 12 matches in total, progressing through the group stage and knockout rounds to reach the final.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Each club needed to progress through the group stage and knockout rounds to reach the final, playing 12 matches in total.",
+      "confidence": "high",
+      "context": "The path both Liverpool and Milan took to reach the 2005 Champions League final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Liverpool finished second in their group behind Monaco and subsequently beat Bayer Leverkusen, Juventus and Chelsea.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool finished second in their group behind 2004 runners-up Monaco and subsequently beat Bayer Leverkusen, Juventus and Chelsea to progress to the final.",
+      "confidence": "high",
+      "context": "Liverpool's opponents during the 2004-05 tournament leading up to the final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Milan won their group ahead of Barcelona and faced Manchester United, Inter Milan and PSV Eindhoven before reaching the final.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Milan won their group ahead of Barcelona and faced Manchester United, Inter Milan and PSV Eindhoven before reaching the final.",
+      "confidence": "high",
+      "context": "Milan's opponents during the 2004-05 tournament leading up to the final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Milan were regarded as favourites and their team included many players who had experienced success in the competition.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Milan were regarded as favourites and their team included many players who had experienced success in the competition.",
+      "confidence": "high",
+      "context": "Pre-match expectations and squad composition for Milan.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Liverpool had been considered underdogs throughout the competition.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool had been considered underdogs throughout the competition, but had beaten more favoured opposition, including Juventus and Chelsea, to reach the final.",
+      "confidence": "high",
+      "context": "Liverpool's status among observers during their run to the 2005 final.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "Liverpool manager Rafael Benítez acknowledged that Milan were favourites while maintaining confidence that his side could win.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27",
+      "excerpt": "Liverpool manager Rafael Benítez acknowledged this: \"Maybe Milan are favourites, but we have confidence, and we can win\".",
+      "confidence": "high",
+      "context": "Rafael Benítez's perspective on Liverpool being the underdogs against Milan.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [
+    {
+      "claim": "Arsenal manager Arsene Wenger felt Liverpool would win the match because Milan looked jaded physically and mentally.",
+      "reason": "name \"Arsene Wenger\" is not in the excerpt"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "published": "2026-10-27"
+    }
+  ]
+}
