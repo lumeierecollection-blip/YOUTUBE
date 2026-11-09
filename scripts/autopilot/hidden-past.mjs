@@ -30,7 +30,8 @@ async function commonsSearch(query) {
     // The same licence rule as scripts/assets/download-historical-images.mjs, which rejects the whole pack otherwise.
     if (!/^public domain$|^pd(-|$)|^cc0(\s|$)|^cc by(-sa)?(\s+\d+(\.\d+)?)?$|^no restrictions$/i.test(lic.trim())) return null;
     if (Math.min(ii.width, ii.height) < 700) return null;
-    return { title: p.title, thumb: ii.thumburl, width: ii.width, height: ii.height, license: lic };
+    const description = String(ii.extmetadata?.ImageDescription?.value || "").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().slice(0, 400);
+    return { title: p.title, thumb: ii.thumburl, width: ii.width, height: ii.height, license: lic, description };
   }).filter(Boolean);
 }
 
@@ -44,11 +45,14 @@ async function pickImage(scene, used, story) {
       try { img = await fetchWithTimeout(c.thumb); } catch { continue; }
       if (!img.ok) continue;
       const buf = Buffer.from(await img.arrayBuffer());
-      const v = await askVision(`Story: "${story}". Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}.
-Reply JSON {"ok":boolean,"kind":"photograph|portrait|document|artefact|illustration|map|other","why":"..."}.
-ok=true only if this genuinely shows the wanted subject or an object, place or person from this exact story. ok=false for a different culture, site or period than the story, logos, AI-generated art, modern stock images, or anything merely similar.`, buf, "autopilot-commons");
-      log("assets", `${c.title}: ${v?.ok ? "accepted" : "rejected"} (${v?.why || "no answer"})`);
-      if (v?.ok) { used.add(c.title); return { ...c, kind: v.kind || "photograph", thumbBuf: buf }; }
+      const v = await askVision(`Story: "${story}". Narration: "${scene.text}". Wanted subject: "${scene.subject}". Commons file: ${c.title}. Commons description: ${c.description || "(none)"}.
+Reply JSON {"relation":"exact|context|unrelated","kind":"photograph|portrait|document|artefact|illustration|map|other","why":"..."}.
+exact: this is the actual object, person, document or site the story is about.
+context: not the story's own object, but the same place, culture, period or the same person's world, so it honestly sets the scene.
+unrelated: a different culture, site or period than the story (read the file name and description for where it comes from), logos, AI-generated art, modern stock images, or merely similar-looking things.`, buf, "autopilot-commons");
+      const relation = v?.relation === "exact" || v?.relation === "context" ? v.relation : "unrelated";
+      log("assets", `${c.title}: ${relation} (${v?.why || "no answer"})`);
+      if (relation !== "unrelated") { used.add(c.title); return { ...c, kind: v.kind || "photograph", relation, thumbBuf: buf }; }
     }
   }
   return null;
@@ -74,8 +78,9 @@ Reply JSON {"found":boolean,"x0":0.1,"y0":0.1,"x1":0.5,"y1":0.5} with a tight bo
   const offered = await askVision(`This image shows: ${subject}. Choose the single most informative specific physical detail clearly visible in it (for example an inscription, a seal, a carved figure, a damaged edge).
 Reply JSON {"label":"2-4 word name of the detail","x0":0.1,"y0":0.1,"x1":0.5,"y1":0.5} with a tight box as fractions of the image width and height.`, jpeg, "autopilot-locate");
   log("annotate", `offered: ${JSON.stringify(offered)?.slice(0, 160)}`);
-  const offeredBox = toBox(offered);
-  return offeredBox && offered.label ? { box: offeredBox, target: String(offered.label), offered: true } : null;
+  const first = Array.isArray(offered) ? offered[0] : offered;
+  const offeredBox = toBox(first);
+  return offeredBox && first?.label ? { box: offeredBox, target: String(first.label), offered: true } : null;
 }
 
 /** The located box is only trusted if a separate look at that crop alone confirms the detail. */
@@ -241,6 +246,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     }
     picks.sort((a, b) => a.scene.index - b.scene.index);
   }
+  if (!picks.some((x) => x.img.relation === "exact")) throw new StageError("assets", "no image shows the story's actual subject; context images alone would mislead");
   if (picks.length < 3) throw new StageError("assets", `only ${picks.length} verified, licensed images found; need at least 3 distinct real images`);
 
   const pack = { name: topic.slug, pack: topic.slug, source: "Wikimedia Commons", selection: "Searched by the VOX plan; each file checked by vision against its sentence", images: picks.map((x, i) => ({ sentence_index: x.scene.index, kind: "artifact", subject: x.plan.subject, label: x.plan.subject, title: x.img.title, id: `hist-${String(i + 1).padStart(2, "0")}`, alt: x.plan.subject, note: x.plan.subject, reason: `Sentence: ${x.scene.text}` })) };
@@ -273,7 +279,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     const what = await confirmDetail(located.target, src, located.box, it.w, it.h, dir, n);
     log("annotate", `confirm "${located.target}": ${what || "not confirmed"}`);
     if (!what) { it.annotationException = `located box not confirmed: ${located.target}`; continue; }
-    it.annotation = { box: located.box, what, target: located.target, label: located.offered ? located.target : it.plan.annotation_label || "" };
+    it.annotation = { box: located.box, what, target: located.target, label: located.offered || it.img.relation === "context" ? located.target : it.plan.annotation_label || "" };
   }
   if (items.filter((i) => i.annotation).length < VOX.min_annotations) throw new StageError("vox-annotation", "no annotation could be tied to a confirmed detail in a real image");
 
@@ -352,12 +358,12 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     }
 
     const hf = headlineFor(scene, p);
-    layers.push(text(`s${scene.index}-head`, hf.text, { y: 150, size: hf.size, weight: 700, color: P.text, inF: bodyIn, outF, z: z++, font: SERIF, slideX: -50, slide: 0, tracking: -0.01 }));
+    layers.push(text(`s${scene.index}-head`, hf.text, { y: 150, size: hf.size, weight: 700, color: P.text, inF: bodyIn, outF, z: 400, font: SERIF, slideX: -50, slide: 0, tracking: -0.01 }));
     rec.treatments.push({ type: "slide_in_typography", layer: `s${scene.index}-head` });
 
     if (mapScene && mapScene.scene.index === scene.index) {
       const { d, project } = mapGeometry(mapScene.coords);
-      layers.push({ id: `s${scene.index}-map`, type: "svg", rect: { x: 0, y: 0, w: W, h: H }, in: bodyIn, out: outF, z: z++, viewBox: [0, 0, W, H], props: { opacity: 1, draw: 1 }, paths: [{ d, fill: P.surface, stroke: P.muted, strokeWidth: 1.5 }] });
+      layers.push({ id: `s${scene.index}-map`, type: "svg", rect: { x: 0, y: 0, w: W, h: H }, in: bodyIn, out: outF, z: z++, viewBox: [0, 0, W, H], props: { opacity: 1, draw: 1, clipT: (300 / H) * 100, clipB: ((H - 1420) / H) * 100 }, paths: [{ d, fill: P.surface, stroke: P.muted, strokeWidth: 1.5 }] });
       const pts = mapScene.coords.map((c) => ({ ...c, xy: project([c.lon, c.lat]) }));
       if (pts.length >= 2) {
         layers.push(stroke(`s${scene.index}-route`, "M" + pts.map((q) => q.xy.join(" ")).join(" L"), { color: P.accent, width: 7, inF: bodyIn, outF, z: z++, delay: 8, drawFrames: Math.min(45, span - 16) }));
@@ -394,7 +400,11 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     layers.push(solid(`s${scene.index}-shadow`, { x: item.x, y: item.y, w: item.w, h: item.h, background: P.bg, boxShadow: "0 22px 60px rgba(0,0,0,0.75)", inF: photoIn, outF, z: z++ }));
     layers.push({ id: `scene-${scene.index}-image`, type: "image", asset_id: assetId, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in: photoIn, out: outF, z: z++, props: { opacity: 1 }, keyframes: { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: 6, v: 1 }, { f: Math.max(7, outF - photoIn), v: 1 }] } });
     const photoRec = { asset_id: assetId, source_url: item.asset.page_url, source_file: item.file.slice(ROOT.length + 1).replace(/\\/g, "/"), baked_file: assets[assetId].file, rect: { x: item.x, y: item.y, w: item.w, h: item.h }, in_f: photoIn, out_f: outF, kind: item.img.kind, license: item.asset.license };
-    rec.photo = photoRec;
+    rec.photo = { ...photoRec, relation: item.img.relation };
+    if (item.img.relation === "context") {
+      layers.push(text(`s${scene.index}-context`, "Context image, not the find itself", { x: item.x, w: item.w, y: Math.max(122, item.y - 44), size: 30, weight: 600, align: "left", color: P.accent, inF: photoIn, outF, z: 401, font: SERIF, slide: 0, slideX: -30 }));
+      rec.treatments.push({ type: "context_label" });
+    }
     rec.treatments.push({ type: "photo_treatment", recipe: "PhotoTreatment.jsx: vignette, halftone, grain, chromatic aberration, editorial LUT", halftone_opacity: VOX.halftone_opacity }, { type: "grounded_shadow" });
 
     if (item.annotation) {
