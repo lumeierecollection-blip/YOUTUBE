@@ -117,7 +117,7 @@ function Terminal({ dur, p }) {
         </div>
       </div>
       <Rise delay={outFrom} style={abs(60, 400 + th + 24, 960, 120, { fontFamily: SANS, fontSize: 32, color: C.dim, textAlign: "center" })}>
-        Real output of this command, captured in this render.<br />Long lines are cut with an ellipsis for display only.
+        Real output of this command, captured in this render.<br />Runs of spaces are collapsed and long lines cut, for display only.
       </Rise>
     </SceneBox>
   );

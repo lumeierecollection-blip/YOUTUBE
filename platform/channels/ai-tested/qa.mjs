@@ -63,5 +63,5 @@ if (process.argv[1] && process.argv[1].endsWith("qa.mjs") && process.argv[2]) {
   const plan = rd("scene-plan.json"), pkg = rd("script-package.json");
   const scenes = plan.scenes.map((s) => ({ id: s.scene_id, start_s: s.start_s, end_s: s.end_s }));
   const raw = readFileSync(join(d, "terminal-raw.txt"), "utf8");
-  runQa({ outDir: d, video: join(d, "preview.mp4"), scenes, plan, claims: rd("claims.json"), pkg, stdout: raw, found: ["--print", "--output-format", "--max-turns"] }).then((r) => console.log(r.pass ? "QA pass" : r.failures));
+  runQa({ outDir: d, video: join(d, "preview.mp4"), scenes, plan, claims: rd("claims.json"), pkg, stdout: raw, found: ["--print", "--output-format"] }).then((r) => console.log(r.pass ? "QA pass" : r.failures));
 }

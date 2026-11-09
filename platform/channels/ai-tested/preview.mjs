@@ -6,15 +6,15 @@ import { captureRows } from "./capture.mjs";
 import { runQa } from "./qa.mjs";
 
 const PAGE = "https://code.claude.com/docs/en/cli-reference";
-const FLAGS = ["--print", "--output-format", "--max-turns"];
-const CMD = `npx -y @anthropic-ai/claude-code --help | grep -E -- '--print|--output-format|--max-turns'`;
+const FLAGS = ["--print", "--output-format"];
+const CMD = `npx -y @anthropic-ai/claude-code --help | grep -E -- '^ +(-p, --print|--output-format)'`;
 const FPS = 30, GAP = 0.3, TTS = "en-US-AndrewNeural", RATE = "+5%";
 
 // Narration per scene. PROVISIONAL.
 const NARRATION = [
   ["hook", "Claude Code can answer once, then exit. No chat.", ["c1"], "contrast-hook"],
   ["reference", "The CLI reference: dash p prints the response without interactive mode.", ["c2"], "annotated-capture"],
-  ["terminal", "Run help. Print, output-format and max-turns appear in the real output.", ["c3"], "terminal-demo"],
+  ["terminal", "Run help. The print and output-format flags appear in the real output.", ["c3"], "terminal-demo"],
   ["pipe", "Pipe a log file in, ask a question, and get the answer back.", ["c4"], "process-diagram"],
   ["controls", "Output format takes text, json or stream-json. Max turns caps agentic turns.", ["c5", "c6"], "annotated-capture"],
   ["close", "A chat-free mode, one flag away.", ["c2"], "close-card"],
@@ -36,14 +36,14 @@ export default async function preview({ key, runId, outDir, tools }) {
   tools.write("terminal-raw.txt", `$ ${CMD}\n${stdout}\n--- stderr ---\n${r.stderr || ""}\n--- exit ${r.status} ---\n`);
   const found = FLAGS.filter((f) => stdout.includes(f));
   if (found.length !== FLAGS.length) throw new Error(`help output lacks flags (found ${found}); see terminal-raw.txt`);
-  const lines = stdout.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => (l.length > 42 ? l.slice(0, 41) + "…" : l)).slice(0, 5);
+  const lines = stdout.split("\n").map((l) => l.trim().replace(/ {2,}/g, "  ")).filter(Boolean).map((l) => (l.length > 46 ? l.slice(0, 45) + "…" : l)).slice(0, 5);
 
   // 3. Script package, claims, scene plan (hand-planned).
   const doc = (k) => cap.captures[k].rowText;
   const claims = [
     { claim_id: "c1", claim: 'The CLI reference describes `claude -p "query"` as "Query via SDK, then exit" and `claude` as "Start interactive session".', source_id: "s1", source_url: PAGE, published: null, excerpt: 'claude -p "query" | Query via SDK, then exit | claude -p "explain this function"', confidence: "high", editorial_status: "documented_not_run", context: "Docs wording, not executed here: running a query needs an authenticated account." },
     { claim_id: "c2", claim: "--print / -p prints the response without interactive mode.", source_id: "s1", source_url: PAGE, published: null, excerpt: doc("print").slice(0, 160), confidence: "high", editorial_status: "documented_not_run" },
-    { claim_id: "c3", claim: "The installed Claude Code CLI lists --print, --output-format and --max-turns in its --help output.", source_id: "s2", source_url: "https://www.npmjs.com/package/@anthropic-ai/claude-code", published: null, excerpt: stdout.slice(0, 400), confidence: "high", editorial_status: "demonstrated_feature", context: "Captured by running the displayed command on the GitHub runner during this render (see terminal-raw.txt)." },
+    { claim_id: "c3", claim: "The installed Claude Code CLI lists --print and --output-format in its --help output (--max-turns is not in that output, so it stays documented-only).", source_id: "s2", source_url: "https://www.npmjs.com/package/@anthropic-ai/claude-code", published: null, excerpt: stdout.slice(0, 400), confidence: "high", editorial_status: "demonstrated_feature", context: "Captured by running the displayed command on the GitHub runner during this render (see terminal-raw.txt)." },
     { claim_id: "c4", claim: 'The CLI reference shows `cat logs.txt | claude -p "explain"` as the example for processing piped content.', source_id: "s1", source_url: PAGE, published: null, excerpt: 'Process piped content | cat logs.txt | claude -p "explain"', confidence: "high", editorial_status: "documented_not_run" },
     { claim_id: "c5", claim: "--output-format specifies the output format for print mode: text, json or stream-json.", source_id: "s1", source_url: PAGE, published: null, excerpt: doc("format").slice(0, 160), confidence: "high", editorial_status: "documented_not_run" },
     { claim_id: "c6", claim: "--max-turns limits the number of agentic turns, print mode only.", source_id: "s1", source_url: PAGE, published: null, excerpt: doc("turns").slice(0, 160), confidence: "high", editorial_status: "documented_not_run" },
