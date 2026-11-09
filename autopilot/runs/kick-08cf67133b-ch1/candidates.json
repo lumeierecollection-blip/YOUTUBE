@@ -1,0 +1,700 @@
+{
+  "generated_at": "2026-11-09T00:23:22.439Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 86
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Monumental medieval cathedral uncovered at Old Dongola in Sudan",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        89
+      ],
+      "hook": "Buried beneath the sands of Sudan, archaeologists just uncovered a massive, forgotten medieval cathedral.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "Old Dongola",
+      "youtube_query": "medieval cathedral Old Dongola Sudan",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Deep In The Sudan Desert, A Vast Medieval Cathedral Is Slowly Emerging From The Sand - IFLScience",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNVUhnNE5kbWxvVGgxNWNIMnVpTGN2RjE1RXFtelFiQndVZHJiSmJZNTBKcnQzY0laWUQxdjJ5R2d5V25ZeHFmdTRvalNkVW54SGtKalFpQ2ZzaTVySHRTbnE5ZjAxNDFzOV9OU0tYTW1aT2FXVUhEVzduUGJjLUZzak15QTR6LTdVeWFJMWhnOEZKa1R1ZlF6anNCNmsyNTQ3YTdzSzltN1dLRFNLLUxYWGR1aEZINFU?oc=5",
+          "domain": "iflscience.com",
+          "published_ms": 1793545189000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 82,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 71.1,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com",
+          "iflscience.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5th-century Germanic chieftain graves unearthed in France with dazzling weapons and warhorses",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        88,
+        103,
+        104
+      ],
+      "hook": "Archaeologists in France just uncovered luxury 5th-century warrior tombs complete with sacrificed warhorses and dazzling weapons.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Merovingian art",
+      "commons_query": "Merovingian weapon burial",
+      "youtube_query": "5th century warrior burials France",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "1,600-year-old chieftain burials with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France",
+          "url": "https://www.livescience.com/archaeology/rare-fifth-century-burials-of-germanic-chieftains-with-dazzling-weapons-and-warhorses-discovered-in-france",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "feed",
+          "id": 104
+        }
+      ],
+      "wikipedia": {
+        "title": "Merovingian art",
+        "daily_views": 1,
+        "ratio": 0.5
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 6,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 69.4,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Discovery of 10 mummified crocodiles in an ancient Egyptian tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95,
+        97
+      ],
+      "hook": "Inside a 2,500-year-old Egyptian tomb, archaeologists found a horrifying offering: ten perfectly mummified crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Animal mummy",
+      "commons_query": "mummified crocodile",
+      "youtube_query": "mummified crocodiles Egypt tomb",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 97
+        }
+      ],
+      "wikipedia": {
+        "title": "Animal mummy",
+        "daily_views": 58,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 67.2,
+        "newest_hours": 5,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: The Discovery of the Tomb of Philip II of Macedon"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cannabis discovered in an ancient Siberian monument",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        106
+      ],
+      "hook": "Archaeologists analyzing an ancient Siberian monument found physical evidence of cannabis use in antiquity.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Siberian archaeology",
+      "youtube_query": "cannabis found ancient Siberian monument",
+      "evidence": [
+        {
+          "title": "Cannabis is discovered in Siberian monument - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQQWYwcVN5ZUo3dFdtam1MRFMyVU9aX080aTE4OUxOd0dfZ1kzSU1zUnA3dGM4aHNGOEV1d2pudDBMMWxaTDV2OWdFMTA2Q2ViOG1hT3hsUzJ3RkFOU3Jqd2k3ZDRmWldtZlVWV0ppRUkzaERaZFlTVWU1dzRKNmZzVzhkOEFvaVN3QU9NSEZKN2kzNTZmYlhJ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - ABC17NEWS",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMW5sa0E1ZzJmeC04Y3NSZ2VHMnFDT0ZfZE5aTUtUdlVOQlQtRk5Cbl9mQ3BpMmotX21veG5nZmZwUTFRTTB6MnVZMllfUlZuVmRFRXNQandPZHhQNFpyRmZ3c2RHX1NGNWpWQ0QyRmRVOTBsZVRFdWxyWlpQWnNHc0ZHVkZwUWFRN1llOWxBSTZ0cDJ6cW51d1Exd19BenZFdnhCNjNTNUNpV0pi?oc=5",
+          "domain": "abc17news.com",
+          "published_ms": 1793906342000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 63.2,
+        "newest_hours": 14,
+        "domains": [
+          "arkansasonline.com",
+          "abc17news.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The collapse of the historic Stari Most bridge in Mostar",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        14
+      ],
+      "hook": "For 427 years, this iconic 16th-century stone bridge stood proud—until modern warfare shattered it in seconds.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Stari Most",
+      "commons_query": "Stari Most",
+      "youtube_query": "Stari Most bridge collapse Mostar",
+      "evidence": [
+        {
+          "title": "1993: Stari Most, the \"old bridge\" in the Bosnian city of Mostar, built in 1566, collapses after several days of bombing by Croat forces during the Croat–Bosniak War.",
+          "url": "https://en.wikipedia.org/wiki/Stari_Most",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 14
+        }
+      ],
+      "wikipedia": {
+        "title": "Stari Most",
+        "daily_views": 164,
+        "ratio": 0.8
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 61.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1965 Northeast blackout plunging North America into darkness",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        21
+      ],
+      "hook": "When a tiny relay switch failure plunged the entire U.S. Northeast and parts of Canada into darkness for 13 hours.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Northeast blackout of 1965",
+      "commons_query": "Northeast blackout 1965",
+      "youtube_query": "Northeast blackout 1965",
+      "evidence": [
+        {
+          "title": "1965: Several U.S. states and parts of Canada are hit by a series of blackouts lasting up to 13 hours in the Northeast blackout of 1965.",
+          "url": "https://en.wikipedia.org/wiki/Power_outage",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 21
+        }
+      ],
+      "wikipedia": {
+        "title": "Northeast blackout of 1965",
+        "daily_views": 134,
+        "ratio": 1.16
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 43,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 60.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Ruth Harkness capturing and smuggling the first live giant panda to America",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1936, a New York socialite walked out of war-torn China carrying a live giant panda disguised as a lapdog.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ruth Harkness",
+      "commons_query": "Su Lin giant panda",
+      "youtube_query": "Ruth Harkness giant panda Su Lin",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Ruth Harkness",
+        "daily_views": 15,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 24,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        40
+      ],
+      "hook": "The dramatic duel that ended the reign of the German Empire's most elusive raiding cruiser in World War I.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "SMS Emden",
+      "commons_query": "SMS Emden",
+      "youtube_query": "SMS Emden Battle of Cocos",
+      "evidence": [
+        {
+          "title": "1914: SMS Emden is sunk by HMAS Sydney in the Battle of Cocos.",
+          "url": "https://en.wikipedia.org/wiki/SMS_Emden",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 40
+        }
+      ],
+      "wikipedia": {
+        "title": "SMS Emden",
+        "daily_views": 110,
+        "ratio": 1.01
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 58.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1979 NORAD nuclear false alarm",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "In 1979, US computers suddenly flashed that a massive Soviet nuclear strike was underway. Here is how close we came to WWIII.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "1979 Soviet nuclear false alarm incident",
+      "commons_query": "NORAD Cheyenne Mountain",
+      "youtube_query": "1979 nuclear false alarm NORAD",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 58.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's first whole eye transplant performed at NYU Langone",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "Surgeons achieved the impossible: performing the world's first successful whole-eye transplant.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Eye transplant",
+      "commons_query": "NYU Langone Health",
+      "youtube_query": "first whole eye transplant NYU Langone",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794183802439,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 53,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    }
+  ]
+}

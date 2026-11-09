@@ -457,7 +457,12 @@
       "attempts": 1,
       "run_id": "42539607853",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:22:17.258Z"
+      "updated_at": "2026-11-09T00:23:39.630Z",
+      "stage": "research",
+      "topic": "The collapse of the historic Stari Most bridge in Mostar",
+      "score": 61.3,
+      "pillar": "Events that changed the modern world",
+      "hook": "For 427 years, this iconic 16th-century stone bridge stood proud—until modern warfare shattered it in seconds."
     }
   },
   "uploads": [],
@@ -794,6 +799,15 @@
       "at_ms": 1794183623278,
       "score": 65.9,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "The collapse of the historic Stari Most bridge in Mostar",
+      "slug": "the-collapse-of-the-historic-stari-most-bridge-in-mostar",
+      "slot": "kick-08cf67133b-ch1",
+      "at_ms": 1794183819630,
+      "score": 61.3,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
