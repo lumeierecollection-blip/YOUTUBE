@@ -775,6 +775,14 @@
       "pillar": "New AI features and releases",
       "hook": "Apple is reportedly planning a massive overhaul to the iPhone Photos app with three powerful new AI capabilities.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/apple-testing-3-new-ai-features-for-the-iphone-photos-app-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a na"
+    },
+    "kick-c15e6a3b99-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42561890757",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:30:15.591Z"
     }
   },
   "uploads": [],
@@ -1480,5 +1488,5 @@
     "Hidden Past kick-fbb26cd62b-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Old Melbourne Gaol Where\" is not named in the research artifact â€” use the research's own name, or drop the ",
     "AI Tested kick-25e02450db-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Extend Enhance and Reframe Which\" is not named in the research artifact â€” use the research's own name, or d"
   ],
-  "last_poll_at": "2026-11-09T04:26:21.968Z"
+  "last_poll_at": "2026-11-09T04:30:15.590Z"
 }
