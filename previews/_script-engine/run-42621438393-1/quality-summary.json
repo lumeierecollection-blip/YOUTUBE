@@ -223,5 +223,37 @@
     "calls": 10,
     "caveats": [],
     "reason": "blueprint rejected: link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified; fewer than 5 beats; key_evidence c9 is not used by any beat"
+  },
+  {
+    "channel": "court-and-spotlight",
+    "topic": "Martha Stewart and the ImClone case",
+    "format": "investigation",
+    "status": "blocked_provider",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+        "ok": true,
+        "chars": 25590,
+        "sha256": "cc58c3b6648ddf63",
+        "title": "Martha Stewart",
+        "published": "2026-11-08",
+        "fetched_at": "2026-11-09T13:04:05.499Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 176.8,
+      "source": "measured",
+      "voice": "en-US-GuyNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [],
+      "critic": []
+    },
+    "calls": 1,
+    "caveats": [],
+    "reason": "no provider could answer for writer: provider_error"
   }
 ]

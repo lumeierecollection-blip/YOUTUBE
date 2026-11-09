@@ -1,0 +1,65 @@
+{
+  "channel": "court-and-spotlight",
+  "format": "investigation",
+  "topic": "Martha Stewart and the ImClone case",
+  "angle": "the allegation, the charges, the evidence, her public statements and the outcome, each kept in its own category",
+  "status": "blocked_provider",
+  "wpm": {
+    "wpm": 176.8,
+    "source": "measured",
+    "voice": "en-US-GuyNeural"
+  },
+  "limits": {
+    "target_s": 120,
+    "max_s": 180
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "blocked": {
+    "role": "writer",
+    "detail": "provider_error",
+    "chain": [
+      "gemini:budget_exhausted",
+      "openrouter:hard_error",
+      "ollama-cloud:quota_exhausted",
+      "groq:quota_exhausted"
+    ]
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": null,
+      "ms": 3078,
+      "error": "provider_error",
+      "same_provider": false,
+      "chain": [
+        "gemini:budget_exhausted",
+        "openrouter:hard_error",
+        "ollama-cloud:quota_exhausted",
+        "groq:quota_exhausted"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Martha_Stewart",
+      "ok": true,
+      "chars": 25590,
+      "sha256": "cc58c3b6648ddf63",
+      "title": "Martha Stewart",
+      "published": "2026-11-08",
+      "fetched_at": "2026-11-09T13:04:05.499Z"
+    }
+  ],
+  "error": "no provider could answer for writer: provider_error",
+  "open_findings": []
+}

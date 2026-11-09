@@ -37,3 +37,9 @@ Topic: The 2005 UEFA Champions League final (match_analysis)
 Writer providers: gemini, openrouter; critic providers: none; model calls: 10; rounds: 0; narrowings: 0
 Words per minute: 166.5 (measured, voice en-US-AriaNeural)
 Why not approved: blueprint rejected: link "contradiction" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like "group stage" and "knockout rounds" are not explained for newcomers; The significance of the Atatürk Olympic Stadium location is omitted; Why Monaco’s group‑win makes Liverpool an underdog isn’t clarified; fewer than 5 beats; key_evidence c9 is not used by any beat
+
+## court-and-spotlight - BLOCKED_PROVIDER
+Topic: Martha Stewart and the ImClone case (investigation)
+Writer providers: none; critic providers: none; model calls: 1; rounds: 0; narrowings: 0
+Words per minute: 176.8 (measured, voice en-US-GuyNeural)
+Why not approved: no provider could answer for writer: provider_error

@@ -1,12 +1,12 @@
 {
-  "channel": "rival-lines",
+  "channel": "court-and-spotlight",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
   "stage": "blocked",
   "status": "failed",
-  "timestamp": "2026-11-09T13:04:00.748Z",
+  "timestamp": "2026-11-09T13:04:08.579Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "issues": "rejected_blueprint: blueprint rejected: link \"contradiction\" is not true of these beats: Claims a contradiction where none exists, breaking the logical link; a first-time viewer would be lost: Terms like \"group stage\" and \"knockout rounds\" are not explained for newcomers; The significance of the Atatürk Olympic Stadium"
+  "issues": "blocked_provider: no provider could answer for writer: provider_error"
 }
