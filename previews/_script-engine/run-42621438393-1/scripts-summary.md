@@ -19,3 +19,9 @@ Topic: Why Mars looks red (short)
 Writer providers: gemini; critic providers: none; model calls: 8; rounds: 0; narrowings: 0
 Words per minute: 176.8 (measured, voice en-US-GuyNeural)
 Why not approved: blueprint rejected: link "explanation" is not true of these beats: Introduces dust as a key environmental factor.; link "cause" is not true of these beats: Provides the scientific explanation linking iron oxidation to the red color.; link "chronology" is not true of these beats: Summarizes the observation and explanation to close.; a first-time viewer would be lost: oxidization or rusting process not explained; regolith term not defined; how fine dust contributes to the red appearance
+
+## dopamine-loop - BLOCKED_MODEL
+Topic: Nostalgia (short)
+Writer providers: gemini; critic providers: none; model calls: 7; rounds: 0; narrowings: 0
+Words per minute: 187 (measured, voice en-US-EmmaNeural)
+Why not approved: writer gave unusable output: story-blueprint.beats[0]: missing "role"; story-blueprint.beats[1]: missing "role"; story-blueprint.beats[2]: missing "role"; story-blueprint.beats[3]: missing "role"

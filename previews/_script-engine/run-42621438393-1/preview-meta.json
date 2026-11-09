@@ -2,11 +2,11 @@
   "channel": "dopamine-loop",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:02:20.584Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:02:34.626Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "claims": 9
+  "issues": "blocked_model: writer gave unusable output: story-blueprint.beats[0]: missing \"role\"; story-blueprint.beats[1]: missing \"role\"; story-blueprint.beats[2]: missing \"role\"; story-blueprint.beats[3]: missing \"role\""
 }

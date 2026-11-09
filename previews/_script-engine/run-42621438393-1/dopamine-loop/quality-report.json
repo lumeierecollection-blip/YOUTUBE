@@ -1,0 +1,148 @@
+{
+  "channel": "dopamine-loop",
+  "format": "short",
+  "topic": "Nostalgia",
+  "angle": "the feeling of being pulled into the past by a smell or a song, then what research says about it",
+  "status": "blocked_model",
+  "wpm": {
+    "wpm": 187,
+    "source": "measured",
+    "voice": "en-US-EmmaNeural"
+  },
+  "limits": {
+    "target_s": 27,
+    "max_s": 29
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 9,
+    "dropped": [],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Nostalgia",
+        "published": "2026-10-31"
+      }
+    ]
+  },
+  "blocked": {
+    "role": "writer",
+    "detail": "story-blueprint.beats[0]: missing \"role\"; story-blueprint.beats[1]: missing \"role\"; story-blueprint.beats[2]: missing \"role\"; story-blueprint.beats[3]: missing \"role\""
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 3536,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 1853,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "gemini",
+      "ms": 1691,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "groq",
+      "ms": 2475,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "groq"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 2213,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "ms": 2255,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 2,
+      "provider": "gemini",
+      "ms": 1832,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Nostalgia",
+      "ok": true,
+      "chars": 26726,
+      "sha256": "d1032e6fe76954f1",
+      "title": "Nostalgia",
+      "published": "2026-10-31",
+      "fetched_at": "2026-11-09T13:02:10.092Z"
+    }
+  ],
+  "error": "writer gave unusable output: story-blueprint.beats[0]: missing \"role\"; story-blueprint.beats[1]: missing \"role\"; story-blueprint.beats[2]: missing \"role\"; story-blueprint.beats[3]: missing \"role\"",
+  "open_findings": []
+}
