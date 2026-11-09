@@ -1,9 +1,9 @@
 # Production preview index
 
-Rebuilt 2026-11-09T12:43:55.716Z. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.
+Rebuilt 2026-11-09T12:44:02.045Z. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.
 
 | Channel | Agent | Stage | Status | Updated | Branch @ commit | MP4 | Contact sheet | Scenes | Voice | Script | Scene plan | QA | Last success | Outstanding |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | _smoke | lead-architect | finished | ok | 2026-11-09T12:20:10.397Z | preview/_smoke @ 39c0dbd7 | [run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42615900359#artifacts) | [contact-sheet.jpg](_smoke/run-42615900359-1/contact-sheet.jpg) |  | [voice-preview.mp3](_smoke/run-42615900359-1/voice-preview.mp3) |  |  | [qa-report.json](_smoke/run-42615900359-1/qa-report.json) | 2026-11-09T12:20:10.397Z |  |
-| ai-tested | agent-ai-tested | started | running | 2026-11-09T12:43:54.747Z | preview/ai-tested @ be864fc0 | [run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619234061#artifacts) |  |  |  |  |  |  | none |  |
+| ai-tested | agent-ai-tested | research_complete | page captured | 2026-11-09T12:44:01.680Z | preview/ai-tested @ be864fc0 | [run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42619234061#artifacts) |  |  |  |  |  |  | none |  |
 | gray-matter | agent-gray-matter | failed | failed | 2026-11-09T12:42:03.181Z | preview/gray-matter @ ab073dd5 | [run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618187073#artifacts) | [contact-sheet.jpg](gray-matter/run-42618187073-1/contact-sheet.jpg) | [scene-1.jpg](gray-matter/run-42618187073-1/scene-1.jpg) [scene-2.jpg](gray-matter/run-42618187073-1/scene-2.jpg) [scene-3.jpg](gray-matter/run-42618187073-1/scene-3.jpg) [scene-4.jpg](gray-matter/run-42618187073-1/scene-4.jpg) | [voice-preview.mp3](gray-matter/run-42618187073-1/voice-preview.mp3) | [script-draft.md](gray-matter/run-42618187073-1/script-draft.md) | [scene-plan.json](gray-matter/run-42618187073-1/scene-plan.json) | [qa-report.json](gray-matter/run-42618187073-1/qa-report.json) | none | QA failed: fps: 30/1, |
