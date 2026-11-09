@@ -862,16 +862,17 @@
     },
     "kick-bbb510fe7d-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42576166902",
       "trigger": "push",
-      "updated_at": "2026-11-09T06:59:13.694Z",
+      "updated_at": "2026-11-09T07:08:35.375Z",
       "stage": "script",
       "topic": "The Unveiling of the London Cenotaph",
       "score": 70.2,
       "pillar": "Events that changed the modern world",
-      "hook": "In 1920, London unveiled a haunting empty tomb that would become the global symbol for fallen soldiers."
+      "hook": "In 1920, London unveiled a haunting empty tomb that would become the global symbol for fallen soldiers.",
+      "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - VOICE: 2 sentences start with a person's name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - SPECIFICITY: \"But public grief demanded a perm"
     }
   },
   "uploads": [
@@ -1686,7 +1687,8 @@
     "Hidden Past kick-a3cad14f13-ch1 failed at assets: 2 topic(s) tried, none usable. Last: no image shows the story's actual subject; context images alone would mislead",
     "Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n",
     "AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"How was 129 million dollars stolen using AI audio?\")",
-    "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref"
+    "Hidden Past kick-dfe6805728-ch1 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 4 \"But essential harpoons failed on that cold, icy surface.\" — It is unclear what 'that' surface ref",
+    "Hidden Past kick-bbb510fe7d-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the o"
   ],
   "last_poll_at": "2026-11-09T06:56:55.067Z"
 }

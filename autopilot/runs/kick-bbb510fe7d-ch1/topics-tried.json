@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "The 400-Year-Old Shipwreck Padlock Mystery",
+      "score": 79.6,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The Unveiling of the London Cenotaph",
+      "score": 70.2,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - VOICE: 2 sentences start with a person's name (max 1). A person's name may START at most one sentence; open the others with a pronoun, an action, a place, a number, a time, a question or an object.\n  - SPECIFICITY: \"But public grief demanded a perm"
+    }
+  ],
+  "selected": null
+}
