@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:57 SAST
+Updated 2026-11-09 03:04 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 02:57 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | Stalingrad’s Turning Point: German Troops Reach the Volga (65.5/100) |
+| Selected topic and score | 7,000-Year-Old Leather DNA Links to Modern Goats (80/100) |
 | QA | failed |
 | Upload | n/a |
 | Performance | n/a |
@@ -71,3 +71,4 @@ Updated 2026-11-09 02:57 SAST
 - Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":0,"check":"grain","why":"fine detail 7.24 vs source 8.8"}],"technical":{"duration_le_30":true,"resolution":true,"fps_30":tr
 - AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:
   - SCR-17 STRI
+- Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {"blocking":[],"frame":["clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.","clipped_text: fr
