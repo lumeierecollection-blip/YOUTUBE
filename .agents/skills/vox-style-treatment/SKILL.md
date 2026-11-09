@@ -24,6 +24,11 @@ Sourced from real research on the Vox/Johnny Harris documentary-explainer genre 
 - [ ] Add a gradient scrim WITHIN that full-bleed photo only, for text legibility where the caption sits — this lives on the photo layer, not the canvas
 - [ ] Typography sits in the scrim zone, same type rules as elsewhere
 
+## Hidden Past page
+
+- [ ] Hidden Past's canvas is light archival paper (`autopilot_palette` in `config/channels.json`), with vignette, printed dots and paper grain on the page itself. This is the one exception to "per-asset, never the canvas": the owner asked for the paper to carry the print texture.
+- [ ] The photographs keep the full per-asset treatment above, unchanged, and still never move.
+
 ## Accent color system
 
 - [ ] Exactly ONE bold accent color per channel, reserved for the single thing that matters in a given scene

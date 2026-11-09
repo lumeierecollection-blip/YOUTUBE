@@ -65,7 +65,7 @@ function TextLayer({ layer, s, tl }) {
         letterSpacing: st.tracking ? `${st.tracking}em` : undefined,
         textTransform: st.upper ? "uppercase" : undefined,
         color: st.color || tl.palette.text,
-        textShadow: st.shadow === false ? undefined : "0 2px 14px rgba(0,0,0,0.55)",
+        textShadow: st.shadow === false || tl.palette.light ? undefined : "0 2px 14px rgba(0,0,0,0.55)",
         clipPath: reveal < 0.999 ? `inset(0 ${(1 - reveal) * 100}% 0 0)` : undefined,
         padding: st.pad || 0,
         whiteSpace: "pre-wrap",
@@ -161,7 +161,7 @@ function Captions({ tl, frame }) {
         fontSize: st.size ?? 52,
         lineHeight: 1.15,
         color: tl.palette.text,
-        textShadow: "0 2px 12px rgba(0,0,0,0.85), 0 0 3px rgba(0,0,0,0.9)",
+        textShadow: tl.palette.light ? undefined : "0 2px 12px rgba(0,0,0,0.85), 0 0 3px rgba(0,0,0,0.9)",
         zIndex: 9000,
       }}
     >

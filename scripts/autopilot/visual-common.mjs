@@ -1,4 +1,4 @@
-/** Text fitting, the pre-render layout check, and timeline parts shared by both channel treatments. */
+/** Text fitting, the pre-render layout check, palettes and timeline parts shared by both channel treatments. */
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { ROOT, StageError, readJson } from "./lib.mjs";
@@ -7,6 +7,24 @@ export const FPS = 30, W = 1080, H = 1920;
 export const sec = (t) => Math.round(Number(t) * FPS);
 const { resolveChannel } = createRequire(import.meta.url)("../lib/channel-lookup.cjs");
 export const channelStyle = (channelId) => resolveChannel(String(channelId));
+
+/** The light palette for autopilot productions. Lives in channels.json; other pipelines keep reading `colors`. */
+export function paletteFor(channel) {
+  if (!channel.autopilot_palette) throw new StageError("visual-plan", `channel ${channel.id} has no autopilot_palette in config/channels.json`);
+  return { ...channel.autopilot_palette, light: true };
+}
+
+/**
+ * Archival paper as one CSS background: vignette, printed dots and paper grain over the paper colour.
+ * It is declared CSS rather than an image file, so it adds no asset, no download and no render memory.
+ */
+export function paperBackground(P, base = P.bg) {
+  const m = String(P.grain).match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+  if (!m) throw new StageError("visual-plan", "palette grain must be rgba()");
+  const [r, g, b, a] = [m[1] / 255, m[2] / 255, m[3] / 255, Number(m[4])];
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} 0 0 0 ${a * 3} 0'/></filter><rect width='512' height='512' filter='url(#n)'/></svg>`;
+  return `radial-gradient(ellipse at 50% 46%, transparent 58%, ${P.vignette} 100%), radial-gradient(circle, ${P.halftone} 1.5px, transparent 1.9px) 0 0 / 10px 10px, url("data:image/svg+xml,${encodeURIComponent(svg)}") 0 0 / 512px 512px, ${base}`;
+}
 
 // Deliberately generous per-character widths (em), measured against rendered frames of these fonts.
 const charEm = (ch, mono) => (mono ? 0.6 : /[A-Z0-9]/.test(ch) ? 0.7 : ch === " " ? 0.3 : 0.56);
@@ -75,17 +93,18 @@ export function text(id, content, { x = 90, y, w = W - 180, size, weight = 700, 
   };
 }
 
-export function solid(id, { x, y, w, h, background, inF, outF, z, opacity = 1, boxShadow, keyframes }) {
+export function solid(id, { x, y, w, h, background, inF, outF, z, opacity = 1, boxShadow, keyframes, radius }) {
   const span = Math.max(1, outF - inF);
-  return { id, type: "solid", rect: { x, y, w, h }, in: inF, out: outF, z, style: { background, boxShadow }, props: { opacity }, keyframes: keyframes || { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: Math.min(8, span), v: opacity }, { f: span, v: opacity }] } };
+  return { id, type: "solid", rect: { x, y, w, h }, in: inF, out: outF, z, radius, style: { background, boxShadow }, props: { opacity }, keyframes: keyframes || { opacity: [{ f: 0, v: 0, e: "outCubic" }, { f: Math.min(8, span), v: opacity }, { f: span, v: opacity }] } };
 }
 
 /** A full-canvas stroke that draws on. Visible from its first frame so a scene is never momentarily text-only. */
-export function stroke(id, d, { color, width = 5, inF, outF, z, drawFrames = 16, delay = 0, fill = "none", tx }) {
+export function stroke(id, d, { color, width = 5, inF, outF, z, drawFrames = 16, delay = 0, fill = "none", tx, ty }) {
   const span = Math.max(1, outF - inF);
   const end = Math.min(delay + drawFrames, span);
   const keyframes = { draw: [{ f: 0, v: 0, e: "linear" }, { f: Math.max(1, delay), v: 0 }, { f: end, v: 1, e: "inOutCubic" }, { f: span, v: 1 }] };
   if (tx) keyframes.tx = tx;
+  if (ty) keyframes.ty = ty;
   return { id, type: "svg", rect: { x: 0, y: 0, w: W, h: H }, in: inF, out: outF, z, viewBox: [0, 0, W, H], props: { opacity: 1, draw: 0 }, paths: [{ d, fill, stroke: color, strokeWidth: width, strokeLinecap: "round", strokeLinejoin: "round" }], keyframes };
 }
 

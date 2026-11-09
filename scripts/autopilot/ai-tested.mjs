@@ -6,7 +6,8 @@
 import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT, StageError, askJson, askVision, log, must, readJson, run, sha256File, writeJson } from "./lib.mjs";
-import { FPS, H, W, captions, channelStyle, fit, layoutCheck, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { FPS, H, W, captions, channelStyle, fit, layoutCheck, paletteFor, scenesFromWords, sec, solid, stripForRender, stroke, text } from "./visual-common.mjs";
+import { BUILDERS, PURPOSES, PURPOSE_GUIDE, factList, groundedNumbers, inventoryRow, makeContext, numberedFacts, validateScene, varietyReport, vocabularyGuide } from "./visual-vocabulary.mjs";
 
 const hostOf = (u) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return ""; } };
 const SANS = "Space Grotesk", MONO = "JetBrains Mono";
@@ -32,34 +33,36 @@ Answer as JSON {"ok":boolean,"why":"..."}. ok=true only if it visibly shows a re
   return shots;
 }
 
-const NUM = /\d[\d,.]*/g;
-/** On-screen numbers must exist in the script or research; anything else is removed, not displayed. */
-const groundedNumbers = (s, corpus) => (String(s).match(NUM) || []).every((n) => corpus.includes(n.replace(/[.,]$/, "")));
+const VOCAB = ["kinetic", "article", "diagram", "compare", "terminal", "flow", "hub", "stack", "cause", "timeline", "bars", "line", "counter", "proportion", "ranked", "before_after", "conclusion"];
+const ALLOWED = new Set(VOCAB);
+const BACKGROUND = { compare: "white, with drawn divider", terminal: "white, with one dark terminal inset", article: "white, with a framed screenshot", conclusion: "white, with an accent closing panel", flow: "white, with grey step panels", cause: "white, with grey panels", before_after: "white, with grey and white panels" };
 
-function planPrompt(scenes, script, research, hasShots) {
-  return `You are the motion-graphics director for a 30-second YouTube Short. Choose how each narration sentence is shown.
-Explain visually; do not just repeat the narration as text. Viewers are not developers.
+function planPrompt(scenes, facts, hasShots, feedback) {
+  return `You are the motion-graphics director for a 30-second YouTube Short on a clean white background. Choose how each narration sentence is shown.
+Explain visually; do not just repeat the narration as text. Viewers are not developers. Do not make every scene look like a presentation slide.
 
 Sentences:
 ${scenes.map((s) => `${s.index}. (${(s.end - s.start).toFixed(1)}s) ${s.text}`).join("\n")}
 
-Facts available (do not use any number or name that is not here or in the sentences):
-${JSON.stringify((research.key_facts || []).map((f) => f.fact || f.claim || f.text || f), null, 0).slice(0, 3500)}
+FACTS (the only source for any figure or name):
+${numberedFacts(facts)}
 
-Templates:
-- kinetic: {"headline":"max 6 words","accent":"one word from the headline"}
-- diagram: {"headline":"max 5 words","nodes":["A","B","C"]} three short labels showing how something flows, each max 2 words
-- compare: {"headline":"max 5 words","left":{"title":"max 2 words","points":["max 3 words"]},"right":{"title":"max 2 words","points":["max 3 words"]}} 1-2 points each side
-- bars: {"headline":"max 5 words","bars":[{"label":"max 3 words","value":number}]} 2-4 bars, only numbers stated in the facts
-- terminal: {"headline":"max 5 words","lines":["short text lines"]} 3-5 lines, max 30 characters, an illustration of the idea
-${hasShots ? '- article: {"headline":"max 5 words"} shows a real screenshot of the source article. Use it once or twice, on a sentence about reporting or an announcement.\n' : ""}
-Use at least 3 different templates. The first sentence is the hook: use kinetic. At least one scene must be diagram, compare, bars or terminal.
+${PURPOSE_GUIDE}
 
-Return JSON: {"scenes":[{"index":0,"template":"kinetic","headline":"...","accent":"..."}]} with one object per sentence.`;
+Templates (each object also takes "headline": max 5 words):
+- kinetic: {"headline":"max 6 words","accent":"one word from the headline"} large type alone
+- diagram: {"nodes":["A","B","C"]} three short labels in a left-to-right chain, each max 2 words
+- compare: {"left":{"title":"max 2 words","points":["max 3 words"]},"right":{"title":"max 2 words","points":["max 3 words"]}} 1-2 points each side
+- terminal: {"lines":["short text lines"]} 3-5 lines, max 30 characters, an illustration of the idea
+${hasShots ? '- article: {} shows a real screenshot of the source article. Use once, on a sentence about reporting or an announcement.\n' : ""}${vocabularyGuide(VOCAB)}
+
+The first sentence is the hook: use kinetic, counter or compare. The last sentence usually suits conclusion.
+${feedback ? `\nYour previous plan was rejected. Fix these:\n${feedback}\n` : ""}
+Return JSON: {"scenes":[{"index":0,"purpose":"hook","template":"kinetic","headline":"...","accent":"..."}]} with one object per sentence. "purpose" is one of: ${PURPOSES.join(", ")}.`;
 }
 
 function buildLayers(plan, scenes, durationF, P, shots, corpus) {
-  const layers = [], assets = {};
+  const layers = [], assets = {}, inventory = [];
   let z = 10;
   const sectionF = (s) => ({ inF: sec(s.from), outF: s.to === null ? durationF : sec(s.to) });
   layers.push(solid("bg", { x: 0, y: 0, w: W, h: H, background: P.bg, inF: 0, outF: durationF, z: z++, keyframes: { opacity: [{ f: 0, v: 1 }, { f: durationF, v: 1 }] } }));
@@ -72,8 +75,9 @@ function buildLayers(plan, scenes, durationF, P, shots, corpus) {
     let template = p.template || "kinetic";
     const { inF, outF } = sectionF(scene);
     const id = `s${scene.index}`;
-    if (template === "bars" && !(p.bars?.length >= 2 && p.bars.every((b) => Number.isFinite(Number(b.value)) && groundedNumbers(String(b.value), corpus)))) template = "kinetic";
     if (template === "article" && !shots[shotIdx]) template = "kinetic";
+    inventory.push(inventoryRow({ scene: scene.index, start_s: scene.from, end_s: scene.to ?? durationF / FPS, purpose: p.purpose, template, background: BACKGROUND[template] || "white", sources: template === "article" ? [shots[shotIdx].url] : p.sources, repeat_reason: p.repeat_reason, downgraded_from: p.downgraded_from }));
+    if (template === "conclusion") { BUILDERS.conclusion(makeContext({ id, inF, outF, top: 330, P, font: SANS, nextZ: () => z++, layers }), p); continue; }
     let headlineText = p.headline && groundedNumbers(p.headline, corpus) ? p.headline : scene.text.split(/\s+/).slice(0, 5).join(" ");
     headlineText = headlineText.toUpperCase();
 
@@ -89,6 +93,7 @@ function buildLayers(plan, scenes, durationF, P, shots, corpus) {
     }
     layers.push(text(`${id}-headline`, heroFit.text, { y: 330, size: heroFit.size, weight: 800, color: P.text, inF, outF, z: z++, font: SANS, slide: 24, tracking: 0.02 }));
     const top = 330 + heroFit.lines.length * heroFit.size * 1.12 + 50;
+    if (BUILDERS[template]) { BUILDERS[template](makeContext({ id, inF, outF, top: Math.round(top), P, font: SANS, nextZ: () => z++, layers }), p); continue; }
 
     if (template === "article") {
       const shot = shots[shotIdx++];
@@ -125,31 +130,21 @@ function buildLayers(plan, scenes, durationF, P, shots, corpus) {
           if (f) layers.push(text(`${id}-${side}-pt${i}`, f.text, { x, w: 420, y: y0 + 200 + i * 210, size: f.size, weight: 500, color: P.text, inF: inF + 10 + i * 10, outF, z: z++, font: SANS, slide: 20 }));
         });
       }
-    } else if (template === "bars") {
-      const bars = p.bars.slice(0, 4), max = Math.max(...bars.map((b) => Number(b.value)));
-      const y0 = Math.round(top + 80);
-      bars.forEach((b, i) => {
-        const y = y0 + i * 190, width = Math.max(60, Math.round((Number(b.value) / max) * 800));
-        const f = fit(String(b.label), { maxW: 900, maxLines: 1, max: 40, min: 28 });
-        if (f) layers.push(text(`${id}-bar${i}-label`, f.text, { y, size: f.size, align: "left", color: P.muted, weight: 600, inF, outF, z: z++, font: SANS, slide: 0 }));
-        layers.push(stroke(`${id}-bar${i}`, `M90 ${y + 90} L${90 + width} ${y + 90}`, { color: i === 0 ? P.accent : P.text, width: 40, inF, outF, z: z++, delay: 6 + i * 8, drawFrames: 20 }));
-        layers.push(text(`${id}-bar${i}-value`, String(b.value), { x: 690, w: 300, y: y - 6, size: 44, weight: 800, align: "left", color: P.text, inF: inF + 16 + i * 8, outF, z: z++, font: SANS, slide: 0 }));
-      });
     } else {
       const lines = (p.lines || []).slice(0, 5).map((l) => String(l).slice(0, 36));
       const tx = 110, ty = Math.round(top + 20), tw = W - 220, th = 110 + lines.length * 62;
       layers.push(solid(`${id}-term`, { x: tx, y: ty, w: tw, h: th, background: P.terminal, inF, outF, z: z++ }));
-      layers.push(solid(`${id}-termhead`, { x: tx, y: ty, w: tw, h: 46, background: P.surface, inF, outF, z: z++ }));
+      layers.push(solid(`${id}-termhead`, { x: tx, y: ty, w: tw, h: 46, background: P.terminal_head, inF, outF, z: z++ }));
       layers.push(stroke(`${id}-termline`, `M${tx} ${ty + th} L${tx + tw} ${ty + th}`, { color: P.accent, width: 4, inF, outF, z: z++ }));
       lines.forEach((l, i) => {
         if (!groundedNumbers(l, corpus)) return;
         const lf = fit(l, { maxW: tw - 90, maxLines: 1, max: 34, min: 22, mono: true });
-        if (lf) layers.push(text(`${id}-line${i}`, lf.text, { x: tx + 44, w: tw - 80, y: ty + 76 + i * 62, size: lf.size, weight: 400, align: "left", color: i === 0 ? P.accent : P.text, inF: inF + 10 + i * 10, outF, z: z++, font: MONO, slide: 0, mono: true }));
+        if (lf) layers.push(text(`${id}-line${i}`, lf.text, { x: tx + 44, w: tw - 80, y: ty + 76 + i * 62, size: lf.size, weight: 400, align: "left", color: i === 0 ? P.terminal_accent : P.terminal_text, inF: inF + 10 + i * 10, outF, z: z++, font: MONO, slide: 0, mono: true }));
       });
       layers.push(text(`${id}-illustrative`, "ILLUSTRATIVE", { y: ty + th + 24, size: 28, color: P.muted, inF, outF, z: z++, font: SANS, slide: 0, tracking: 0.16 }));
     }
   }
-  return { layers, assets };
+  return { layers, assets, inventory };
 }
 
 export async function buildAiTested({ channel, topic, script, narration, research, dir, productionId }) {
@@ -157,23 +152,40 @@ export async function buildAiTested({ channel, topic, script, narration, researc
   const durationS = Math.min(30, Math.ceil(narration.seconds + 0.6));
   const durationF = sec(durationS);
   const ch = channelStyle(channel.id);
-  const P = { bg: ch.colors.bg, accent: ch.colors.accent, text: "#FFFFFF", muted: "#9CA3AF", surface: ch.colors.secondary, stroke: "#C8C8CB", terminal: ch.colors.primary };
+  const P = paletteFor(ch);
   const researchData = readJson(research);
   const scriptData = readJson(script.scriptPath);
   const urls = [...new Set([...(scriptData.sources_used || []), ...(researchData.key_facts || []).map((f) => f.source_url)].filter((u) => /^https?:/.test(u)))];
   const shots = await screenshotSources(urls, topic.topic, dir);
   if (!shots.length) throw new StageError("assets", "no cited page produced a usable screenshot; the article highlight has no real source to show");
 
-  const plan = await askJson(planPrompt(scenes, scriptData, researchData, true), "autopilot-visual-plan");
-  writeJson(join(dir, "visual-plan.json"), plan);
   const corpus = JSON.stringify(researchData) + JSON.stringify(scriptData);
-  // The gate needs a moving real image, so a plan that left the screenshots unused gets the first eligible non-hook scene.
-  if (!plan.scenes?.some((s) => s.template === "article")) {
-    const s = plan.scenes.find((x) => Number(x.index) > 0);
-    if (s) s.template = "article";
+  const facts = factList(researchData);
+  // The planner gets its own mistakes back: a plan that repeats a layout or breaks the layout check is redone.
+  let feedback = "", layers, assets, inventory, variety;
+  for (let attempt = 1; ; attempt++) {
+    const plan = await askJson(planPrompt(scenes, facts, true, feedback), "autopilot-visual-plan");
+    writeJson(join(dir, "visual-plan.json"), plan);
+    const planned = scenes.map((s) => validateScene(plan.scenes?.find((x) => Number(x.index) === s.index) || { index: s.index, template: "kinetic" }, { facts, corpus, allowed: ALLOWED, fallback: "kinetic" }));
+    // The gate needs a moving real image. A plan with no screenshot gives one to a scene that is only type, then to a later scene.
+    if (!planned.some((s) => s.template === "article")) {
+      const s = planned.find((x) => Number(x.index) > 0 && x.template === "kinetic") || planned.find((x) => Number(x.index) > 0);
+      if (s) { s.template = "article"; s.sources = []; }
+    }
+    try {
+      ({ layers, assets, inventory } = buildLayers(planned, scenes, durationF, P, shots, corpus));
+      layoutCheck(layers, "layout");
+      variety = varietyReport(inventory);
+      if (variety.pass) break;
+      feedback = variety.violations.join("\n");
+    } catch (e) {
+      if (!(e instanceof StageError)) throw e;
+      feedback = e.message;
+    }
+    log("visual-plan", `attempt ${attempt} rejected: ${feedback.slice(0, 300)}`);
+    if (attempt >= 3) throw new StageError("visual-variety", `no acceptable visual plan after 3 attempts: ${feedback.slice(0, 400)}`);
   }
-  const { layers, assets } = buildLayers(plan.scenes, scenes, durationF, P, shots, corpus);
-  layoutCheck(layers, "layout");
+  writeJson(join(dir, "visual-inventory.json"), { variety, scenes: inventory });
 
   const timeline = {
     version: 1, id: topic.slug, title: `AI Tested: ${topic.topic}`, production_id: productionId, channel_id: `ch-${channel.id.padStart(2, "0")}`,
@@ -187,7 +199,8 @@ export async function buildAiTested({ channel, topic, script, narration, researc
   const manifest = {
     assets: Object.entries(assets).map(([asset_id, a]) => ({ asset_id, source_url: a.source_url, sha256: sha256File(join(ROOT, a.file)), bytes: statSync(join(ROOT, a.file)).size, scene_beat_assignment: "article highlight", reason_relevant: `Screenshot of a source cited for ${topic.topic}`, subject: a.credit, label: a.credit })),
     relevance_gate_result: { missing_photo_replaced_by_unrelated_image: false },
+    composition_inventory: inventory,
   };
   writeJson(join(dir, "asset-manifest.json"), manifest);
-  return { timelinePath, audioPath: narration.mp3, manifestPath: join(dir, "asset-manifest.json"), credits: shots.map((s) => s.url) };
+  return { timelinePath, audioPath: narration.mp3, manifestPath: join(dir, "asset-manifest.json"), credits: shots.map((s) => s.url), inventory, palette: P };
 }

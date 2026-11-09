@@ -13,7 +13,7 @@ import { loadLedger, pickDueSlot, reapStale, saveLedger } from "./schedule.mjs";
 
 const MAX_TOPICS_PER_RUN = 3;
 // Failures that are about the topic itself, so the next candidate may succeed.
-const TOPIC_LEVEL_STAGES = new Set(["research", "script", "tts", "assets", "vox-annotation"]);
+const TOPIC_LEVEL_STAGES = new Set(["research", "script", "tts", "assets", "vox-annotation", "visual-variety"]);
 const output = (k, v) => { if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `${k}=${v}\n`); log("output", `${k}=${v}`); };
 const git = (args, opts) => run("git", ["-C", STATE_DIR, ...args], { capture: true, ...opts });
 
@@ -156,6 +156,8 @@ async function produce(slotId, channelId) {
     }
     mark("technical-qa");
     const technical = qa.technicalChecks(mp4);
+    const { visualGate } = await import("./visual-gate.mjs");
+    const visual = await visualGate({ mp4, inventory: built.inventory, palette: built.palette, dir });
     const videoQa = qa.runVideoQa({ mp4, timelinePath: built.timelinePath, dir, treatment: channel.treatment });
     const frame = await qa.frameReview({ mp4, dir, channelName: channel.name, treatment: channel.treatment, duration: technical.duration });
     const acceptance = qa.acceptance({ channel, topic, script, narration, mp4, timelinePath: built.timelinePath, manifestPath: built.manifestPath, dir, productionId });
@@ -163,14 +165,14 @@ async function produce(slotId, channelId) {
     mark("metadata");
     const meta = await import("./metadata.mjs");
     const seo = await meta.buildMetadata({ channel, topic, script, attributions: built.attributions || built.credits || [], researchPath });
-    const summary = { production_id: productionId, sha256: sha256File(mp4), technical, video_qa: { pass: videoQa.pass, blocking: videoQa.blocking, superseded_for_vox: videoQa.superseded }, frame_review: frame, acceptance: { pass: acceptance.pass, failures: acceptance.report.failures }, vox: voxReport ? { pass: voxReport.pass, failures: voxReport.failures, counts: voxReport.counts } : null, seo };
+    const summary = { production_id: productionId, sha256: sha256File(mp4), technical, visual: { pass: visual.pass, failures: visual.failures, median_background_share: visual.median_background_share }, video_qa: { pass: videoQa.pass, blocking: videoQa.blocking, superseded_for_vox: videoQa.superseded }, frame_review: frame, acceptance: { pass: acceptance.pass, failures: acceptance.report.failures }, vox: voxReport ? { pass: voxReport.pass, failures: voxReport.failures, counts: voxReport.counts } : null, seo };
     writeJson(join(dir, "qa-summary.json"), summary);
     writeJson(join(STATE_DIR, "autopilot/runs", slotId, "qa-summary.json"), summary);
     await qa.proofPackage({ channel, dir, mp4, voxReport, frame, video: technical, attributions: built.attributions, manifestPath: built.manifestPath, title: seo.title });
 
-    const gates = { vox: voxReport ? voxReport.pass : true, technical: technical.pass, video_qa: videoQa.pass, frame_review: frame.pass, acceptance: acceptance.pass };
+    const gates = { vox: voxReport ? voxReport.pass : true, technical: technical.pass, visual: visual.pass, video_qa: videoQa.pass, frame_review: frame.pass, acceptance: acceptance.pass };
     const failed = Object.entries(gates).filter(([, ok]) => !ok).map(([k]) => k);
-    if (failed.length) throw new StageError("qa", `gates failed: ${failed.join(", ")}. ${JSON.stringify({ blocking: videoQa.blocking, frame: frame.problems || frame.why, acceptance: acceptance.report.failures, vox: voxReport?.failures, technical: technical.checks }).slice(0, 700)}`);
+    if (failed.length) throw new StageError("qa", `gates failed: ${failed.join(", ")}. ${JSON.stringify({ blocking: videoQa.blocking, frame: frame.problems || frame.why, acceptance: acceptance.report.failures, vox: voxReport?.failures, technical: technical.checks, visual: visual.failures }).slice(0, 700)}`);
     writeJson(join(dir, "deliver.json"), { title: seo.title, description: seo.description, tags: seo.tags, mp4: mp4Rel, production_id: productionId, pillar: topic.pillar, hook: topic.hook });
     mark("qa-passed", { status: "qa-passed", qa: "all gates passed", sha256: summary.sha256 });
     await notify(ledger, `${channel.name}: passed QA\n${seo.title}\nPreview: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`);
