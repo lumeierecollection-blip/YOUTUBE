@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 03:37 SAST
+Updated 2026-11-09 03:38 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -8,7 +8,7 @@ Updated 2026-11-09 03:37 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at discover, attempts 1 |
+| Latest production | running, attempts 1 |
 | Selected topic and score | n/a |
 | QA | n/a |
 | Upload | n/a |
