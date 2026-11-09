@@ -1,0 +1,814 @@
+{
+  "generated_at": "2026-11-09T00:31:46.014Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 87
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "The Night the Berlin Wall Fell",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        15
+      ],
+      "hook": "When East Germans opened the checkpoints, a concrete barrier that had divided a world for 28 years crumbled in minutes.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Berlin Wall 1989 crowd",
+      "youtube_query": "Berlin Wall fall 1989",
+      "evidence": [
+        {
+          "title": "1989: Cold War: Fall of the Berlin Wall: East Germany opens checkpoints in the Berlin Wall, allowing its citizens to travel to West Berlin.",
+          "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 15
+        },
+        {
+          "title": "Trump’s empire is crumbling, much like the Berlin Wall in 1989 - The Forward",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQU19OZXprYWZ4UjJMQlNlQk1Hbjh0OXp3Wm9yLUVqeUkxSmIwTXFxdmRDS0lCZHZKUzg4UnJqQ2hBWUw2RFhfc0dJVVk4XzloeHJYd21EakpWLXpBTEZ3ZDAtRHF3aHJVOVFhdjBZR3ViWE9razVHanRDZDRFV1BwSDRvZGI?oc=5",
+          "domain": "forward.com",
+          "published_ms": 1794060238000,
+          "kind": "news"
+        },
+        {
+          "title": "Germany - Reunification, Berlin Wall, Cold War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kWU00ekdKOGxiVHhLZnIxM1ZhZVZEWG5JT1ByNEd4MTMtWnFJazN2RUk1WjQtb1dxUVdQQXpFb1FwQktnTHZUOUhGS0ItR191a2JabmJFSXM1WGZSdnd2d2RDRGpPc0plX0J2ZExBWWw4WldTbXNicg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793865600000,
+          "kind": "news"
+        },
+        {
+          "title": "Germans relive Berlin Wall memories 37 years after its fall - Türkiye Today",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNdmtIMlBEbHptMmlmaTVmWUdpSHp6Tlo5cDRNSHh6SUo4cFQ4SGU5OGE5SWVFdm93VThxR1prNDVmTEE0TzVDcHpibi13QXBXbDNxQ2hOOXc2ZmJVTFo5c3JFc0R5c19uWktCbEkzUDZucHVlejN3MWo0YnFCc2tDbmZmMTJneV9ub3RIWXdKMVFDMDBHejRWaVNaSTFKMEhmcGRXTTJ3?oc=5",
+          "domain": "turkiyetoday.com",
+          "published_ms": 1794135594000,
+          "kind": "news"
+        },
+        {
+          "title": "On This Day: The night the Berlin Wall came down - Starts at 60",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQakxGeUFEY2FKRGJHTGM4dkg3ejhROXBJcC1Cc3pMbDU1dnVXRDJ2ZzZPNzdNMXFFTThneWxlcWdwaHhEM2dzOXRfVUpoWDczUlBCSHRfRExDeGM1R2RMaUxHZmd1ejVVajNURmtxTkZEdnU4NFMxd3Y3Z0VkeDR4WlpLTE9xaGFn?oc=5",
+          "domain": "startsat60.com",
+          "published_ms": 1794162320000,
+          "kind": "news"
+        },
+        {
+          "title": "Silly's 'Februar' Predicted The Fall Of The Berlin Wall, And The New 33 1/3 Book Reveals How East German Rock Challenged A Regime - That Eric Alper",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxORG9WejZNNmJCbFdQZWdsMXZaaUpDVENFdnhLQ2I4MVczSEdsYlRxSzVXcTZJUzBsTlpHWVlwaWF4M3J1cU5FMWZOYWhJYVVvdERWcGw4Z3VjajJzTjRQM20zYUhFRGp5cXByRUNKc0lxb0FObFUxRDczVW02YlhZWnlwVVFpak4xUURmLVBqLUJwd3Vha0E2d3FxSEsybkRfLUd1LXQxbGhVVGkyYXo0NzhjY28wRnhuYUVvanVNZ0ZZZFJWYmwtM0J0SGlvUHVuNEJ3aFgxOGt2MUd2ZVlFZjg0dUNreDZhQzFGMHdTSTZnVHlERURyRy1SUQ?oc=5",
+          "domain": "thatericalper.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        },
+        {
+          "title": "The Day the Berlin Wall Stopped Being a Wall - Collater.al Magazine",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1MZzFUdmhXbE1HR3B3TWFFeVFPaXo0T2N6V2dNZ1hkU0x6VWZfLW45QTdJQWdhaWZxWEFoZUJCYUJlWlhjQnJ6V2RFR3NmX0lYYU5uWW84WTRtTHQ1SUhmdk8yQjlIS0drTTd4RGFTMjVqSHpodmc?oc=5",
+          "domain": "collater.al",
+          "published_ms": 1793392806000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 59,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 79.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "forward.com",
+          "britannica.com",
+          "turkiyetoday.com",
+          "startsat60.com",
+          "thatericalper.com",
+          "collater.al"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Jack the Ripper’s Final Victim – Mary Jane Kelly",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        47
+      ],
+      "hook": "The gruesome murder of Mary Jane Kelly closed the Whitechapel killings, but the killer’s identity still haunts history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Jack the Ripper",
+      "commons_query": "Jack the Ripper Mary Jane Kelly",
+      "youtube_query": "Jack the Ripper final victim",
+      "evidence": [
+        {
+          "title": "1888: Jack the Ripper murders Mary Jane Kelly, his final victim in the Whitechapel murders.",
+          "url": "https://en.wikipedia.org/wiki/Jack_the_Ripper",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 47
+        }
+      ],
+      "wikipedia": {
+        "title": "Jack the Ripper",
+        "daily_views": 12071,
+        "ratio": 1.43
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 82,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 68.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Egyptian Tomb of 2,500 Years Reveals 10 Mummified Crocodiles",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        95,
+        97
+      ],
+      "hook": "A newly opened Egyptian tomb held ten perfectly preserved crocodiles, sacrificed to the gods over two millennia ago.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "mummified crocodiles Egypt tomb",
+      "youtube_query": "mummified crocodiles Egyptian tomb",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 95
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 97
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 59,
+        "newest_hours": 5,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Cullinan Diamond – The Largest Gem Ever Found",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        42
+      ],
+      "hook": "In 1907 the world’s biggest diamond, the Cullinan, was cut and presented to King Edward VII – a glittering piece of history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 9
+      },
+      "wikipedia_title": "Cullinan Diamond",
+      "commons_query": "Cullinan Diamond 1907",
+      "youtube_query": "Cullinan diamond story",
+      "evidence": [
+        {
+          "title": "1907: The Cullinan Diamond is presented to King Edward VII on his birthday.",
+          "url": "https://en.wikipedia.org/wiki/Cullinan_Diamond",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 42
+        }
+      ],
+      "wikipedia": {
+        "title": "Cullinan Diamond",
+        "daily_views": 519,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 54,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 58.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Cullinan Diamond"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World’s First Whole‑Eye Transplant",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "Scientists finally pulled off the impossible – a whole human eye transplanted into another person.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Whole eye transplantation",
+      "commons_query": "whole eye transplant surgery",
+      "youtube_query": "first whole eye transplant",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 56,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5th‑Century Warrior Burials Unearthed in France",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        88
+      ],
+      "hook": "A French dig revealed elite 5th‑century warriors buried with swords, helmets and exotic jewelry – a snapshot of post‑Roman power.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "5th century warrior burial France",
+      "youtube_query": "5th century French warrior burial",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 88
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 54.5,
+        "newest_hours": 2,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Ancient Ocean of Giant Predators Upsets Evolution Theory",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        87
+      ],
+      "hook": "Fossils from an ancient sea show monsters that dwarf even the biggest dinosaurs, rewriting the story of marine evolution.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 6,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "giant prehistoric marine predators fossil",
+      "youtube_query": "ancient ocean giant predators",
+      "evidence": [
+        {
+          "title": "An ancient ocean full of giant predators reveals a surprising twist in evolution - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02YUY1dG5qSE9kX2pXb2ZJVndkWW53V0xLRW5XRmJkbTNkNkR2M2N0ZThob2VuWDVHYzVNT25tYTJ3aGdvMURqcGljcDRBYlF0alZyRDFybkhHRjQ3XzI4cEJfY3B1WHVPS0ZzaFFR?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794178058000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "An ancient ocean full of giant predators reveals a surprising twist in evolution - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBFUm54UDExVzFnOUtMRjJjbFd5cjdlYmE5YzhseGNIZndTdXA4eFJoUjJ2VDBkUzNJOEx6ZmQ2Wm9XcVFJY0xJeTJMLWw5OWFSbmFiWlJTcWJqWlVJcjhYa0FGdWFLWVVORVE?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794178018000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 13,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 60,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 54,
+        "newest_hours": 2,
+        "domains": [
+          "sciencedaily.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Roman Settlement and Jewellery Workshop Hidden Beneath a Welsh Estate",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        91
+      ],
+      "hook": "Beneath modern homes in Wales, archaeologists uncovered a 2,000‑year‑old Roman town and a glittering jewellery workshop.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "Roman settlement Wales excavation",
+      "youtube_query": "Roman settlement under Welsh housing",
+      "evidence": [
+        {
+          "title": "2,000-year-old Roman settlement and jewellery workshop discovered beneath Welsh housing estate - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPd1NUQ1JpNWw1bG9CMWlLZ201NWtsN2xfcm52SEd3ekZTTmNZd1pRb29pOVNMLVNnSERtRHY4aGV2eFBwV2ZoVlNXYUtXQzhDanpPVjEwbGIyV0xPb2ZEM2pwbkQ1RlBYYV92Q0pYNlhmRU5sV1ZpN3loUnEyTTYxUXNDVURHbU43aFNiNzRSRk9fQ0VUWDc5cHRmRnlxTnJWdFFBMXVmM2wtVlpjOW96WWc0aG0zb0htSEt6MkdGLXFfeTU1SlNFaVNyYW5GZllnaHA4Yg?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794173488000,
+          "kind": "news",
+          "id": 91
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 53,
+        "newest_hours": 3,
+        "domains": [
+          "heritagedaily.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: 2,000-year-old Roman settlement and secret jewelry workshop found under Welsh housing estate"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "1979 NORAD Nuclear False Alarm – How a Glitch Almost Started WWIII",
+      "pillar": "Secret operations and evidence‑backed conspiracies",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "A computer error in 1979 sent the U.S. warning that a massive Soviet nuclear strike was incoming – and then it was cancelled.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "NORAD computer glitch 1979",
+      "commons_query": "NORAD 1979 nuclear alert",
+      "youtube_query": "1979 NORAD false alarm",
+      "evidence": [
+        {
+          "title": "1979: Cold War: Nuclear false alarm: The NORAD computers and the Alternate National Military Command Center in Fort Ritchie, Maryland, detect a purported massive Soviet nuclear strike. After reviewing the raw data from satellites and checking the early-warning radars, the alert is cancelled.",
+          "url": "https://en.wikipedia.org/wiki/Cold_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 17
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 3,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 59,
+          "source_quality": 35
+        },
+        "total": 50.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (3 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Discovery of Darmstadtium – A New Element Born in 1994",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        13
+      ],
+      "hook": "Scientists created a brand‑new element, darmstadtium, in a German lab – a glimpse into the future of chemistry.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 5,
+        "visual": 6
+      },
+      "wikipedia_title": "Darmstadtium",
+      "commons_query": "darmstadtium element",
+      "youtube_query": "darmstadtium discovery 1994",
+      "evidence": [
+        {
+          "title": "1994: The chemical element darmstadtium is discovered.",
+          "url": "https://en.wikipedia.org/wiki/Chemical_element",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 13
+        }
+      ],
+      "wikipedia": {
+        "title": "Darmstadtium",
+        "daily_views": 126,
+        "ratio": 0.88
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 60,
+          "relevance": 50,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 50.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "First Live Giant Panda in America – Su Lin’s 1936 Journey",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1936 a daring fashion designer snuck a baby panda onto a ship, introducing the United States to its most beloved animal.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 6,
+        "visual": 8
+      },
+      "wikipedia_title": "Su Lin (panda)",
+      "commons_query": "Su Lin panda 1936",
+      "youtube_query": "first panda in US Su Lin",
+      "evidence": [
+        {
+          "title": "1936: American fashion designer Ruth Harkness seeks and captures a nine-week-old panda cub in Sichuan; named Su Lin, he becomes the first live giant panda to enter the United States.",
+          "url": "https://en.wikipedia.org/wiki/Ruth_Harkness",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 60,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 48.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "score 48.5 below 50",
+        "too similar to recent topic: Ruth Harkness capturing and smuggling the first live giant panda to America"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The $1 Billion NASDAQ Price‑Fixing Settlement of 1998",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        11
+      ],
+      "hook": "In 1998 a U.S. judge forced 37 brokerages to pay over a billion dollars for a massive NASDAQ price‑fixing scheme.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 7,
+        "visual": 5
+      },
+      "wikipedia_title": "",
+      "commons_query": "NASDAQ price fixing settlement 1998",
+      "youtube_query": "1998 NASDAQ price fixing settlement",
+      "evidence": [
+        {
+          "title": "1998: A U.S. federal judge, in the largest civil settlement in American history, orders 37 U.S. brokerage houses to pay US$1.03 billion to cheated NASDAQ investors to compensate for price fixing.",
+          "url": "https://en.wikipedia.org/wiki/Nasdaq",
+          "domain": "wikipedia.org",
+          "published_ms": 1794184306014,
+          "kind": "anniversary",
+          "id": 11
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 5,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 0,
+          "curiosity": 60,
+          "relevance": 70,
+          "visual": 56,
+          "source_quality": 35
+        },
+        "total": 44.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (5 on Wikimedia Commons)",
+        "score 44.6 below 50"
+      ],
+      "wave": 1
+    }
+  ]
+}

@@ -471,7 +471,12 @@
       "attempts": 1,
       "run_id": "42540547512",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:30:37.511Z"
+      "updated_at": "2026-11-09T00:32:06.881Z",
+      "stage": "research",
+      "topic": "The Night the Berlin Wall Fell",
+      "score": 79.1,
+      "pillar": "Events that changed the modern world",
+      "hook": "When East Germans opened the checkpoints, a concrete barrier that had divided a world for 28 years crumbled in minutes."
     }
   },
   "uploads": [],
@@ -835,6 +840,15 @@
       "at_ms": 1794184114881,
       "score": 58.8,
       "pillar": "Forgotten historical figures"
+    },
+    {
+      "channel": "1",
+      "topic": "The Night the Berlin Wall Fell",
+      "slug": "the-night-the-berlin-wall-fell",
+      "slot": "kick-17244d3563-ch1",
+      "at_ms": 1794184326881,
+      "score": 79.1,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
