@@ -157,11 +157,11 @@ ${JSON.stringify(out.sections.map((s) => ({ id: s.id, voiceover: s.voiceover }))
 Return JSON: {"sections":[{"id":"hook","voiceover":"..."}]}`, "autopilot-word-budget");
     const byId = new Map((cut.sections || []).map((s) => [s.id, String(s.voiceover || "").trim()]));
     if (!out.sections.every((s) => byId.get(s.id))) { log("script", "word budget pass dropped a section; keeping the draft"); return; }
-    const shorter = { ...out, sections: out.sections.map((s) => ({ ...s, voiceover: byId.get(s.id) })) };
+    // A section that lost its question or its opening "But" keeps its original wording; the rest take the cut.
+    const lostBeat = (was, now) => (was.includes("?") && !now.includes("?")) || (/^But\b/.test(was) && !/^But\b/.test(now));
+    const shorter = { ...out, sections: out.sections.map((x) => ({ ...x, voiceover: lostBeat(x.voiceover, byId.get(x.id)) ? x.voiceover : byId.get(x.id) })) };
     if (wordCount(shorter) >= wordCount(out)) return;
-    // A cut that goes too far, or removes the question or the turn, is worse than the draft.
-    const keepsBeats = (from, to) => from.sections.every((s) => (!s.voiceover.includes("?") || to.sections.find((x) => x.id === s.id).voiceover.includes("?")) && (!/^But\b/.test(s.voiceover) || /^But\b/.test(to.sections.find((x) => x.id === s.id).voiceover)));
-    if (wordCount(shorter) < b.min || !keepsBeats(out, shorter)) { log("script", `word budget pass rejected (${wordCount(shorter)} words)`); continue; }
+    if (wordCount(shorter) < b.min) { log("script", `word budget pass went too short (${wordCount(shorter)} words)`); continue; }
     log("script", `word budget: ${wordCount(out)} -> ${wordCount(shorter)} words`);
     out.sections = shorter.sections;
     out.hook = out.sections.find((s) => s.id === "hook")?.voiceover || out.hook;
