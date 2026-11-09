@@ -500,12 +500,12 @@
       "attempts": 1,
       "run_id": "42541387898",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:48:23.136Z",
-      "stage": "script",
-      "topic": "Kristallnacht: The Night the Nazis Unleashed Violence",
-      "score": 68.6,
+      "updated_at": "2026-11-09T00:49:49.246Z",
+      "stage": "research",
+      "topic": "Stalingrad’s Turning Point: German Troops Reach the Volga",
+      "score": 65.5,
       "pillar": "Events that changed the modern world",
-      "hook": "A coordinated pogrom that marked the start of the Holocaust."
+      "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified."
     }
   },
   "uploads": [],
@@ -922,6 +922,15 @@
       "slot": "kick-312d03eb14-ch1",
       "at_ms": 1794185296681,
       "score": 68.6,
+      "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Stalingrad’s Turning Point: German Troops Reach the Volga",
+      "slug": "stalingrad-s-turning-point-german-troops-reach-the-volga",
+      "slot": "kick-312d03eb14-ch1",
+      "at_ms": 1794185389246,
+      "score": 65.5,
       "pillar": "Events that changed the modern world"
     }
   ],
