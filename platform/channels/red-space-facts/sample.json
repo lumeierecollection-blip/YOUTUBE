@@ -1,0 +1,173 @@
+{
+  "provisional": "hand-planned sample, not from the script engine",
+  "topic": "Saturn is losing its rings to ring rain",
+  "format": "short",
+  "target_seconds": 28,
+  "selected_hook": "Saturn is losing its rings, right now.",
+  "hook_options": [
+    { "text": "Saturn is losing its rings, right now.", "family": "present-tense stakes", "honest": true },
+    { "text": "Saturn's rings are raining into the planet.", "family": "strange mechanism", "honest": true },
+    { "text": "Saturn's rings may not be permanent.", "family": "assumption reversal", "honest": true }
+  ],
+  "sources": [
+    { "source_id": "src-release-2018", "url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17" },
+    { "source_id": "src-jpl-2013", "url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/", "published": "2013-04-10" },
+    { "source_id": "src-factsheet-planets", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/", "published": "2025-03-18" },
+    { "source_id": "src-factsheet-saturn", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html", "published": "2025-03-18" },
+    { "source_id": "src-factsheet-rings", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html", "published": "2022-04-19" },
+    { "source_id": "src-ipgp-2025", "url": "https://www.ipgp.fr/en/news-and-agenda/news/a-new-perspective-on-the-age-of-saturns-rings", "published": "2025-01-23" }
+  ],
+  "claims": [
+    {
+      "claim_id": "c01", "claim": "Saturn is losing ring material to the planet.",
+      "source_id": "src-release-2018", "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17",
+      "excerpt": "New NASA research confirms that Saturn is losing its iconic rings at the maximum rate estimated from Voyager 1 & 2 observations made decades ago.",
+      "confidence": "high", "editorial_status": "scientific_model",
+      "context": "The loss is inferred from measured infrared emission, not from watching the rings shrink. Marked as a model on screen for that reason."
+    },
+    {
+      "claim_id": "c02", "claim": "Saturn orbits about 9.6 times farther from the Sun than Earth (1,432.0 vs 149.6 million km).",
+      "source_id": "src-factsheet-planets", "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/", "published": "2025-03-18",
+      "excerpt": "Distance from Sun (10^6 km): Earth 149.6, Saturn 1432.0",
+      "confidence": "high", "editorial_status": "observation",
+      "context": "Ratio 1432.0 / 149.6 = 9.57, computed from the two fact-sheet values. The narration rounds this to 'nearly ten times'."
+    },
+    {
+      "claim_id": "c03", "claim": "The Keck Observatory in Hawaii observed Saturn's bands in April 2011.",
+      "source_id": "src-jpl-2013", "source_url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/", "published": "2013-04-10",
+      "excerpt": "with the W.M Keck Observatory on Mauna Kea, in Hawaii, in April 2011",
+      "confidence": "high", "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c04", "claim": "Dark bands appeared in Saturn's upper-atmosphere glow, around 25 to 55 degrees latitude.",
+      "source_id": "src-jpl-2013", "source_url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/", "published": "2013-04-10",
+      "excerpt": "What they observed instead was a series of light and dark bands ... from around 25 to 55 degrees latitude",
+      "confidence": "high", "editorial_status": "observation",
+      "context": "Observed in the infrared. The render shows the band location in visible colours so it can be seen."
+    },
+    {
+      "claim_id": "c05", "claim": "Ring rain: electrically charged ice particles flow from the rings along Saturn's magnetic field lines into the upper atmosphere.",
+      "source_id": "src-release-2018", "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17",
+      "excerpt": "proposing that electrically charged ice particles from Saturn's rings were flowing down invisible magnetic field lines, dumping water in Saturn's upper atmosphere where these lines emerged from the planet.",
+      "confidence": "high", "editorial_status": "scientific_model",
+      "context": "The bands are observed; the particle flow that explains them is the model."
+    },
+    {
+      "claim_id": "c06", "claim": "Researchers estimate ring rain drains enough water products to fill an Olympic-sized swimming pool in half an hour.",
+      "source_id": "src-release-2018", "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17",
+      "excerpt": "We estimate that this 'ring rain' drains an amount of water products that could fill an Olympic-sized swimming pool from Saturn's rings in half an hour",
+      "confidence": "medium", "editorial_status": "scientific_model",
+      "context": "A researcher's estimate from James O'Donoghue. Spoken as an estimate."
+    },
+    {
+      "claim_id": "c07", "claim": "With ring rain plus the inflow Cassini measured at the equator, the rings could last less than 100 million years; ring rain alone gives about 300 million.",
+      "source_id": "src-release-2018", "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17",
+      "excerpt": "From this alone, the entire ring system will be gone in 300 million years, but add to this the Cassini-spacecraft measured ring-material detected falling into Saturn's equator ... less than 100 million years to live",
+      "confidence": "medium", "editorial_status": "scientific_model",
+      "contradictory_evidence": ["c08: a 2024 Nature Geoscience simulation argues the rings may be far older than their appearance suggests, which undercuts age estimates based on it."]
+    },
+    {
+      "claim_id": "c08", "claim": "A 2024 simulation study argues Saturn's rings could be as old as the Solar System, about 4.5 billion years.",
+      "source_id": "src-ipgp-2025", "source_url": "https://www.ipgp.fr/en/news-and-agenda/news/a-new-perspective-on-the-age-of-saturns-rings", "published": "2025-01-23",
+      "excerpt": "could be as old as the Solar System (about 4.5 billions of years)",
+      "confidence": "medium", "editorial_status": "scientific_model",
+      "context": "Hyodo, Madeira and Genda, Nature Geoscience, 16 December 2024. It concerns the rings' age; the ring-rain rate is a separate question.",
+      "contradictory_evidence": ["c07: the 2018 release finds the rings unlikely to be older than 100 million years."]
+    },
+    {
+      "claim_id": "c09", "claim": "Ring boundaries and optical depths used in the render: C ring from 74,658 km, B ring 91,975 to 117,507 km, A ring 122,340 to 136,780 km.",
+      "source_id": "src-factsheet-rings", "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html", "published": "2022-04-19",
+      "excerpt": "C ring inner edge 74,658; B ring inner edge 91,975; B ring outer edge 117,507; A ring inner edge 122,340; A ring outer edge 136,780",
+      "confidence": "high", "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c10", "claim": "A Saturn with no rings at all, shown in the final scene.",
+      "source_id": "src-release-2018", "source_url": "https://science.nasa.gov/solar-system/nasa-research-reveals-saturn-is-losing-its-rings-at-worst-case-scenario-rate/", "published": "2018-12-17",
+      "excerpt": "less than 100 million years to live",
+      "confidence": "low", "editorial_status": "hypothetical",
+      "context": "Nobody has observed this. It extrapolates model c07, which c08 disputes. Labelled HYPOTHETICAL on screen."
+    },
+    {
+      "claim_id": "c11", "claim": "Render choices that are not data: field lines drawn as a centred dipole, grain size, count and speed, foreground ice chunks, planet colour grade, ring fine structure within sourced optical-depth ranges, gap widths, planet phases and enlarged planet markers.",
+      "source_id": "src-factsheet-saturn", "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html", "published": "2025-03-18",
+      "excerpt": "Saturn's magnetic field has significant quadrapole and octapole moments, making approximation of the central field as an offset dipole difficult.",
+      "confidence": "high", "editorial_status": "artistic_interpretation",
+      "context": "The excerpt is why the dipole drawing is flagged: it is a simplification, not the measured field. The on-screen disclosure says every shot is a render."
+    }
+  ],
+  "blueprint": {
+    "central_question": "Why would Saturn's rings disappear, and how sure are we?",
+    "thesis": "Dark bands on Saturn point to ring material raining into the planet, but how long the rings last, and how old they are, is still argued.",
+    "why_it_matters": "The most familiar feature in the solar system may be temporary, and the evidence shows how astronomers reason from a faint signal.",
+    "viewer_start": "Saturn's rings are permanent.",
+    "viewer_end": "The rings are losing material; what is observed, what is modelled and what is only imagined are different things.",
+    "key_evidence": ["c04", "c05", "c06", "c07", "c08"],
+    "beats": [
+      { "beat_id": "b1", "role": "opening", "purpose": "State the loss as a present-tense surprise.", "claim_ids": ["c01"], "link_from_previous": "none" },
+      { "beat_id": "b2", "role": "context", "purpose": "Set how far away this is and how the clue was found.", "claim_ids": ["c02", "c03"], "link_from_previous": "discovery" },
+      { "beat_id": "b3", "role": "development", "purpose": "Show observation and mechanism, kept visibly separate.", "claim_ids": ["c04", "c05", "c09", "c11"], "link_from_previous": "explanation" },
+      { "beat_id": "b4", "role": "development", "purpose": "Make the loss rate physical.", "claim_ids": ["c06"], "link_from_previous": "consequence" },
+      { "beat_id": "b5", "role": "payoff", "purpose": "Give the timescale and the scientific disagreement.", "claim_ids": ["c07", "c08"], "link_from_previous": "contradiction" },
+      { "beat_id": "b6", "role": "ending", "purpose": "Show the ringless planet, plainly labelled as imagined.", "claim_ids": ["c10"], "link_from_previous": "consequence" }
+    ],
+    "questions_raised": [
+      { "question": "How do we know the rings are draining?", "raised_in": "b1", "answered_in": "b3" },
+      { "question": "How long do they have?", "raised_in": "b4", "answered_in": "b5" }
+    ],
+    "conclusion": "The drain is measured, the deadline is modelled and disputed, and a bare Saturn remains a hypothetical."
+  },
+  "scenes": [
+    {
+      "scene_id": "s1", "beat_id": "b1", "treatment": "saturn-ring-plane-flyover", "role": "hook",
+      "narration": "Saturn is losing its rings, right now.",
+      "main_point": "The rings are draining.",
+      "visual_objective": "Skim the real ring plane toward the lit planet so the rings read as a physical place.",
+      "claim_ids": ["c01", "c09", "c11"], "statuses": [{ "status": "scientific_model", "note": "inferred from measured infrared glow" }],
+      "on_screen_text": ["SCIENTIFIC MODEL: inferred from measured infrared glow"]
+    },
+    {
+      "scene_id": "s2", "beat_id": "b2", "treatment": "orbital-scale-pullout", "role": "context",
+      "narration": "It's nearly ten times Earth's distance from the Sun. In 2011, a telescope in Hawaii caught the clue.",
+      "main_point": "Saturn is 9.6 times farther out than Earth, yet its signal was caught from here.",
+      "visual_objective": "Pull out from Earth's orbit to Saturn's on true-scale orbits with the ratio counting up.",
+      "claim_ids": ["c02", "c03", "c11"], "statuses": [{ "status": "observation", "note": "measured orbital distances" }],
+      "on_screen_text": ["Earth 149.6 million km", "Saturn 1,432 million km", "9.6x Earth's distance", "Orbits to scale. Planets enlarged, positions illustrative."]
+    },
+    {
+      "scene_id": "s3", "beat_id": "b3", "treatment": "ring-rain-labelled-3d", "role": "mechanism",
+      "narration": "Dark bands in Saturn's glow. Scientists read them as ring rain: charged ice, falling along magnetic field lines.",
+      "main_point": "Bands are observed; falling ice along field lines is the explanation.",
+      "visual_objective": "A labelled 3D Saturn: dark bands at their observed latitudes, ice grains moving along field lines from named rings.",
+      "claim_ids": ["c04", "c05", "c09", "c11"],
+      "statuses": [{ "status": "observation", "note": "dark bands, 25 to 55 degrees latitude" }, { "status": "scientific_model", "note": "ice falling along field lines" }],
+      "on_screen_text": ["Dark bands 25-55 degrees latitude", "Charged ice grains", "Magnetic field line (simplified)", "C ring", "B ring", "A ring"]
+    },
+    {
+      "scene_id": "s4", "beat_id": "b4", "treatment": "pool-fill-estimate", "role": "scale",
+      "narration": "Their estimate? An Olympic pool of water, every half hour.",
+      "main_point": "The loss rate in human terms.",
+      "visual_objective": "A pool filling in 3D while a 30-minute clock runs, so the rate is visible with the sound off.",
+      "claim_ids": ["c06", "c11"], "statuses": [{ "status": "scientific_model", "note": "researchers' estimate" }],
+      "on_screen_text": ["One Olympic-sized pool", "every 30:00", "Researchers' estimate"]
+    },
+    {
+      "scene_id": "s5", "beat_id": "b5", "treatment": "ring-fade-disputed-models", "role": "payoff",
+      "narration": "That could empty them in under a hundred million years. But a 2024 simulation argues they may be billions of years old.",
+      "main_point": "The timescale is a model, and the rings' age is disputed.",
+      "visual_objective": "The rings thin while two sourced model cards sit side by side as competing claims.",
+      "claim_ids": ["c07", "c08", "c11"], "statuses": [{ "status": "scientific_model", "note": "two models that disagree" }],
+      "on_screen_text": ["2018 study: under 100 million years left", "2024 simulation: could be about 4.5 billion years old"]
+    },
+    {
+      "scene_id": "s6", "beat_id": "b6", "treatment": "ringless-hypothetical", "role": "ending",
+      "narration": "So picture Saturn, bare. For now, only a hypothetical.",
+      "main_point": "A ringless Saturn is imagined, not seen.",
+      "visual_objective": "The planet alone, with the hypothetical status filling the frame's top so it cannot be mistaken for an image.",
+      "claim_ids": ["c10", "c11"], "statuses": [{ "status": "hypothetical", "note": "never observed" }, { "status": "artistic_interpretation", "note": "imagined render" }],
+      "on_screen_text": ["HYPOTHETICAL: never observed"]
+    }
+  ],
+  "payoff": "The drain is measured, but the deadline is modelled and disputed.",
+  "ending": "A bare Saturn is shown and labelled as hypothetical.",
+  "cta": null
+}

@@ -1,0 +1,47 @@
+{
+  "_note": "Every number below was read from the source page named on its block. Fetched 2026-11-09. Do not edit by hand without re-reading the source.",
+  "saturn": {
+    "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/saturnfact.html",
+    "source_updated": "2025-03-18",
+    "equatorial_radius_km": 60268,
+    "polar_radius_km": 54364,
+    "semimajor_axis_million_km": 1432.041,
+    "obliquity_deg": 26.73,
+    "rotation_hours": 10.656,
+    "magnetic_field_caveat": "Saturn's magnetic field has significant quadrapole and octapole moments, making approximation of the central field as an offset dipole difficult."
+  },
+  "planets": {
+    "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/",
+    "source_updated": "2025-03-18",
+    "rows": [
+      { "name": "Mercury", "distance_million_km": 57.9, "period_days": 88.0, "diameter_km": 4879 },
+      { "name": "Venus", "distance_million_km": 108.2, "period_days": 224.7, "diameter_km": 12104 },
+      { "name": "Earth", "distance_million_km": 149.6, "period_days": 365.2, "diameter_km": 12756 },
+      { "name": "Mars", "distance_million_km": 228.0, "period_days": 687.0, "diameter_km": 6792 },
+      { "name": "Jupiter", "distance_million_km": 778.5, "period_days": 4331, "diameter_km": 142984 },
+      { "name": "Saturn", "distance_million_km": 1432.0, "period_days": 10747, "diameter_km": 120536 }
+    ]
+  },
+  "rings": {
+    "source_url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html",
+    "source_updated": "2022-04-19",
+    "_rendering_note": "Inner and outer radii, optical-depth ranges and albedos are from the source. Where the source lists a gap or narrow ring by inner edge only, width_km_illustrative is NOT sourced and exists only to make the feature visible.",
+    "regions": [
+      { "name": "C ring", "inner_km": 74658, "outer_km": 91975, "tau_min": 0.05, "tau_max": 0.35, "albedo": 0.2 },
+      { "name": "B ring", "inner_km": 91975, "outer_km": 117507, "tau_min": 0.4, "tau_max": 2.5, "albedo": 0.5 },
+      { "name": "Cassini Division", "inner_km": 117507, "outer_km": 122340, "tau_min": 0.0, "tau_max": 0.1, "albedo": 0.3 },
+      { "name": "A ring", "inner_km": 122340, "outer_km": 136780, "tau_min": 0.4, "tau_max": 1.0, "albedo": 0.5 }
+    ],
+    "gaps": [
+      { "name": "Encke gap", "inner_km": 133410, "width_km_illustrative": 320 }
+    ],
+    "narrow": [
+      { "name": "F ring", "inner_km": 139826, "width_km_illustrative": 500, "tau": 0.1, "albedo": 0.6 }
+    ]
+  },
+  "ring_rain": {
+    "dark_band_lat_min_deg": 25,
+    "dark_band_lat_max_deg": 55,
+    "source_url": "https://www.jpl.nasa.gov/news/blame-it-on-the-rain-from-saturns-rings/"
+  }
+}
