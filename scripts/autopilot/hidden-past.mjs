@@ -188,6 +188,13 @@ process.exit(0);`;
   writeFileSync(runner, script);
   const r = run("node", [runner, jobsFile], { cwd: REMOTION_DIR, timeoutS: 900 });
   if (r.status !== 0 || items.some((it) => !existsSync(it.baked))) throw new StageError("vox-bake", "PhotoTreatment did not produce every still");
+  // The composer writes linear values to the canvas in a still render: centres kept about a third of
+  // their light and saturation rose. This restores display encoding, the same for every photo.
+  for (const it of items) {
+    const encoded = it.baked.replace(/\.png$/, "-srgb.png");
+    must("vox-bake", "ffmpeg", ["-y", "-v", "error", "-i", it.baked, "-vf", "eq=gamma=2.2", encoded]);
+    copyFileSync(encoded, it.baked);
+  }
 }
 
 function mixSoundDesign(voMp3, cues, dir) {
@@ -308,12 +315,15 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
 
   /** Movement inside a long hold comes from small typographic notes, never from the photograph. */
   const holdNotes = (scene, startF, endF, notes, placement) => {
-    const every = 100;
+    const every = 84;
     let i = 0;
-    for (let f = startF + 72; f < endF - 28 && i < notes.length; f += every, i++) {
+    for (let f = startF + 66; f < endF - 24 && i < notes.length; f += every, i++) {
       const out = Math.min(f + every, endF);
-      const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 32, min: 22 });
-      if (nf) layers.push(text(`s${scene.index}-note${i}`, nf.text, { x: placement.x, w: placement.w, y: placement.y, size: nf.size, weight: 500, align: "left", color: P.muted, inF: f, outF: out, z: z++, font: SERIF, slideX: -36, slide: 0 }));
+      const nf = fit(notes[i], { maxW: placement.w, maxLines: 1, max: 44, min: 30 });
+      if (!nf) continue;
+      layers.push(text(`s${scene.index}-note${i}`, nf.text, { x: placement.x, w: placement.w, y: placement.y, size: nf.size, weight: 600, align: "left", color: P.text, inF: f, outF: out, z: z++, font: SERIF, slideX: -60, slide: 0 }));
+      const ry = placement.y + nf.size + 12;
+      layers.push(stroke(`s${scene.index}-note${i}-rule`, `M${placement.x} ${ry} L${placement.x + placement.w} ${ry}`, { color: P.accent, width: 7, inF: f, outF: out, z: z++, drawFrames: 14 }));
     }
   };
 
@@ -369,7 +379,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
           if (fits) { candidate.z = z++; layers.push(candidate); placed.push(b); break; }
         }
       });
-      holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 960, y: 1450 });
+      holdNotes(scene, bodyIn, outF, ["Map: Natural Earth", "Location: Wikipedia", ...pts.map((q) => q.name)], { x: 60, w: 500, y: 1436 });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:110m; coordinates from Wikipedia" });
       voxRecord.push(rec);
       continue;
@@ -405,7 +415,7 @@ export async function buildHiddenPast({ channel, topic, script, narration, resea
     } else {
       rec.exceptions.push({ treatment: "annotation", reason: item.annotationException || "not planned" });
     }
-    holdNotes(scene, photoIn, outF, ["Image: Wikimedia Commons", `Licence: ${item.asset.license}`, String(item.plan.subject || "").slice(0, 44)], { x: 60, w: 460, y: Math.min(item.y + item.h + 24, 1490) });
+    holdNotes(scene, photoIn, outF, ["Image: Wikimedia Commons", `Licence: ${item.asset.license}`, String(item.plan.subject || "").slice(0, 44)], { x: 60, w: 440, y: Math.min(item.y + item.h + 22, 1466) });
     voxRecord.push(rec);
   }
   layoutCheck(layers, "vox-layout");
