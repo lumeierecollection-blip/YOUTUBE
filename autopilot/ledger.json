@@ -964,11 +964,13 @@
     },
     "kick-fe15cefa43-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42589862306",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:59:05.459Z"
+      "updated_at": "2026-11-09T09:00:34.415Z",
+      "stage": "discover",
+      "error": "discovery failure: 16 candidates, none eligible. Best \"ChatGPT Images 2.6 Adds Instant GIF Creation\" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos"
     }
   },
   "uploads": [
@@ -1844,7 +1846,8 @@
     "AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the",
     "Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to c",
     "AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (str",
-    "Hidden Past kick-29161798b7-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Sinking of the SS Edmund Fitzgerald\" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+    "Hidden Past kick-29161798b7-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Sinking of the SS Edmund Fitzgerald\" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
+    "AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"ChatGPT Images 2.6 Adds Instant GIF Creation\" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos"
   ],
   "last_poll_at": "2026-11-09T08:59:05.459Z"
 }
