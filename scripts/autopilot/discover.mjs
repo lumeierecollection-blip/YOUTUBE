@@ -168,7 +168,9 @@ Return JSON: {"candidates":[{"topic":"...","pillar":"...","evidence_ids":[1,2],"
 }
 
 async function scoreWave({ channel, items, ledger, learned, exclude, nowMs }) {
-  const raw = await askJson(candidatePrompt(channel, items, learned, exclude), "autopilot-discover");
+  // Stories already made or tried are named up front, so the model spends its candidates on new ones.
+  const made = ledger.topics.filter((t) => t.channel === channel.id).slice(-60).map((t) => t.topic);
+  const raw = await askJson(candidatePrompt(channel, items, learned, [...new Set([...exclude, ...made])]), "autopilot-discover");
   const byId = new Map(items.map((x) => [x.id, x]));
   const history = ledger.topics.filter((t) => t.channel === channel.id);
   const proposals = (raw.candidates || []).map((c) => ({ ...c, evidence: (c.evidence_ids || []).map((id) => byId.get(Number(id))).filter(Boolean) })).filter((c) => c.topic && c.evidence.length);

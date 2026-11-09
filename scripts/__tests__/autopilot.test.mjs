@@ -277,6 +277,7 @@ test("the name check does not run across a sentence ending", async () => {
 test("title-case common words do not make two stories the same", () => {
   assert.ok(similarity("The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior", "The Tragic Kidnapping and Ransom of John Paul Getty III") < 0.5);
   assert.ok(similarity("Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?", "Claude AI Can Now Connect Directly to Your Bank Account") < 0.5);
+  assert.ok(similarity("Fall of the Berlin Wall by Mistake", "Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird") < 0.5);
   assert.ok(similarity("Battle of Taranto: The First Attack", "The 1940 Taranto Naval Raid") >= 0.5, "a real shared name still counts");
   assert.ok(similarity("Bill Gates Says $10-an-Hour Robots Are Coming for Jobs", "Bill Gates says a $10-an-hour robot could replace the $20-an-hour worker") >= 0.5, "the same story still counts");
 });
