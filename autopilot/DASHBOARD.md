@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 10:58 SAST
+Updated 2026-11-09 11:00 SAST
 
-**Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
+**Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,8 +19,8 @@ Updated 2026-11-09 10:58 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | Nearly 20% of workers replaced by AI are being asked back (75.9/100) |
+| Latest production | failed-final at discover, attempts 1 |
+| Selected topic and score | n/a |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -106,3 +106,4 @@ Updated 2026-11-09 10:58 SAST
 - AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:
   - SCR-17 STRICT (str
 - Hidden Past kick-29161798b7-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best "Sinking of the SS Edmund Fitzgerald" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior
+- AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best "ChatGPT Images 2.6 Adds Instant GIF Creation" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos
