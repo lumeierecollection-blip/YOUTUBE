@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T20:19:04.217Z",
+  "rebuilt_at": "2026-11-09T20:19:06.236Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -99,9 +99,9 @@
     {
       "key": "red-space-facts",
       "agent": "agent-red-space-facts",
-      "stage": "blocked",
+      "stage": "failed",
       "status": "failed",
-      "at": "2026-11-09T20:19:03.840Z",
+      "at": "2026-11-09T20:19:05.800Z",
       "branch": "preview/red-space-facts-2",
       "commit": "0617362e",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42691019921#artifacts)",
@@ -111,7 +111,7 @@
       "script": "[script-draft.md](red-space-facts/run-42691019921-1/script-draft.md)",
       "plan": "[scene-plan.json](red-space-facts/run-42691019921-1/scene-plan.json)",
       "qa": "[qa-report.json](red-space-facts/run-42691019921-1/qa-report.json)",
-      "blocker": "",
+      "blocker": "QA failed: s6: looks static (mean abs diff 0.15 over 0.4 s)",
       "lastOk": "2026-11-09T20:11:40.095Z",
       "run": "run-42691019921-1"
     }

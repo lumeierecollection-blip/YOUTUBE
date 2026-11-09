@@ -2,13 +2,11 @@
   "channel": "red-space-facts",
   "production_run": "run-42691019921-1",
   "agent": "agent-red-space-facts",
-  "stage": "blocked",
+  "stage": "failed",
   "status": "failed",
-  "timestamp": "2026-11-09T20:19:03.840Z",
+  "timestamp": "2026-11-09T20:19:05.800Z",
   "branch": "preview/red-space-facts-2",
   "commit": "0617362ea8840c5a259cd3932321fada65b3c2b6",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42691019921#artifacts",
-  "failures": [
-    "s6: looks static (mean abs diff 0.15 over 0.4 s)"
-  ]
+  "error": "QA failed: s6: looks static (mean abs diff 0.15 over 0.4 s)"
 }
