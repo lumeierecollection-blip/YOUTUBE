@@ -1,0 +1,58 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 25.749,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.5,
+  "max_volume_db": -2.8,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Sulafat",
+    "seconds": 25.248,
+    "wpm": 156.8,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "left-out",
+      "start_s": 0,
+      "end_s": 5.566666666666666
+    },
+    {
+      "id": "s2",
+      "kind": "quiet-chat",
+      "start_s": 5.566666666666666,
+      "end_s": 10.466666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "screen",
+      "start_s": 10.466666666666667,
+      "end_s": 16.4
+    },
+    {
+      "id": "s4",
+      "kind": "regulate",
+      "start_s": 16.4,
+      "end_s": 19.566666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "comfort",
+      "start_s": 19.566666666666666,
+      "end_s": 25.7
+    }
+  ]
+}
