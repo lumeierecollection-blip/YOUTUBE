@@ -984,11 +984,13 @@
     },
     "kick-b7dd86b5f6-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42590247326",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:03:47.453Z"
+      "updated_at": "2026-11-09T09:05:09.011Z",
+      "stage": "discover",
+      "error": "discovery failure: 22 candidates, none eligible. Best \"WhatsApp rolls out AI photo expansion tool for iPhone users\" (80.2): no trusted source"
     }
   },
   "uploads": [
@@ -1866,7 +1868,8 @@
     "AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (str",
     "Hidden Past kick-29161798b7-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Sinking of the SS Edmund Fitzgerald\" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
     "AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"ChatGPT Images 2.6 Adds Instant GIF Creation\" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
-    "Hidden Past kick-0533ccf24b-ch1 failed at discover: discovery failure: 14 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+    "Hidden Past kick-0533ccf24b-ch1 failed at discover: discovery failure: 14 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
+    "AI Tested kick-b7dd86b5f6-ch2 failed at discover: discovery failure: 22 candidates, none eligible. Best \"WhatsApp rolls out AI photo expansion tool for iPhone users\" (80.2): no trusted source"
   ],
   "last_poll_at": "2026-11-09T09:03:47.452Z"
 }
