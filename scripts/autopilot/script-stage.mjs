@@ -13,7 +13,7 @@ import { retrievePages } from "./retrieve.mjs";
 import { channelStyle } from "./visual-common.mjs";
 
 const MAX_SECONDS = 29.8;
-const SCRIPT_PASSES = 7;
+const SCRIPT_PASSES = 10;
 const MIN_DRAWABLE_FACTS = 5;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
