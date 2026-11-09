@@ -3,10 +3,10 @@ import { AbsoluteFill, staticFile } from "remotion";
 import { PhotoTreatment } from "./PhotoTreatment.jsx";
 
 /** One treated photograph, rendered once to a still. The video shows that still unmoved. */
-export function VoxStill({ src, width, height, halftoneOpacity }) {
+export function VoxStill({ src, width, height, halftoneOpacity, grainOpacity }) {
   return (
     <AbsoluteFill style={{ background: "transparent" }}>
-      <PhotoTreatment src={staticFile(src)} treatment="fullbleed" width={width} height={height} halftoneOpacity={halftoneOpacity} />
+      <PhotoTreatment src={staticFile(src)} treatment="fullbleed" width={width} height={height} halftoneOpacity={halftoneOpacity} grainOpacity={grainOpacity} />
     </AbsoluteFill>
   );
 }

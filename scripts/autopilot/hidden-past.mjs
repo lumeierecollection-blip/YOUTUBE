@@ -170,7 +170,7 @@ const d = process.cwd(), chrome = findChrome();
 const b = { ...(chrome ? { browserExecutable: chrome } : {}), chromiumOptions: { gl: 'swangle' }, timeoutInMilliseconds: 180000 };
 const serveUrl = await bundle({ entryPoint: join(d, 'Root.jsx'), publicDir: join(d, 'public'), onProgress: () => {} });
 for (const j of jobs) {
-  const inputProps = { src: j.src, width: j.width, height: j.height, halftoneOpacity: j.halftone };
+  const inputProps = { src: j.src, width: j.width, height: j.height, halftoneOpacity: j.halftone, grainOpacity: j.grain };
   const composition = await selectComposition({ serveUrl, id: 'VoxStill', inputProps, ...b });
   await renderStill({ composition, serveUrl, inputProps, output: j.out, imageFormat: 'png', ...b });
   console.log('baked', j.out);
@@ -180,7 +180,7 @@ process.exit(0);`;
   const jobs = items.map((it) => {
     const name = `${basename(it.file, extname(it.file))}-base.jpg`;
     must("vox-bake", "ffmpeg", ["-y", "-v", "error", "-i", it.file, "-vf", `eq=saturation=${VOX.base_saturation}`, "-q:v", "2", join(pubDir, name)]);
-    return { src: `vox-src/${name}`, width: it.w, height: it.h, halftone: VOX.halftone_opacity, out: it.baked };
+    return { src: `vox-src/${name}`, width: it.w, height: it.h, halftone: VOX.halftone_opacity, grain: VOX.grain_opacity, out: it.baked };
   });
   const jobsFile = join(dir, "bake-jobs.json");
   writeJson(jobsFile, jobs);
