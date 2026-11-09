@@ -17,7 +17,11 @@ export const tokens = (s) => new Set(String(s).toLowerCase().replace(/[^a-z0-9 ]
 
 // Words that open or fill many headlines, so sharing them says nothing about the story.
 const GENERIC = /^(new|first|ancient|lost|secret|hidden|how|why|what|the|chatgpt|openai|google|gemini|claude|anthropic|history|years?|battle|discovery|discovered|great|world|royal|empire|kingdom|mystery|story|naval|attack|tomb|city|american|british|german|french|roman|egyptian|meta|apple|microsoft|amazon)$/i;
-const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w)).map((w) => w.toLowerCase()));
+// Headlines are in Title Case, so a capital letter alone does not make a name. These never count as one.
+// A rare real name caught here (Reading, Flanders) only loses this shortcut; the word-overlap check still applies.
+const TITLE_WORDS = /^(a|an|and|are|as|at|be|been|but|by|can|could|did|do|does|for|from|had|has|have|her|his|if|in|into|is|it|its|may|might|must|my|no|not|now|of|on|or|our|over|she|their|these|they|this|those|to|under|us|was|we|were|when|where|who|will|with|would|you|your|ai|one|two|three|about|after|against|almost|before|behind|between|during|every|inside|never|really|should|without|tragic|deadly|strange|forgotten|famous|bloody|brutal|final|greatest|largest|biggest|people|money|power|artificial|intelligence|agents?|models?|tools?|users?|prices?|assistant|robots?|banks?|account|passwords?|security|update|release|launch|report|review|million|billion|ransom)$/i;
+const COMMON_ENDING = /(ing|ed|tion|sion|ment|ness|ous|ive|ful|ally|ial|ical|ers|ly)$/i;
+const names = (s) => new Set((String(s).match(/\b[A-Z][a-zA-Z0-9]+/g) || []).filter((w) => !GENERIC.test(w) && !TITLE_WORDS.test(w) && !COMMON_ENDING.test(w)).map((w) => w.toLowerCase()));
 
 export function similarity(a, b) {
   const x = tokens(a), y = tokens(b);
