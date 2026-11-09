@@ -926,16 +926,17 @@
     },
     "kick-f805ebbae6-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42585400604",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:32:56.496Z",
+      "updated_at": "2026-11-09T08:40:33.035Z",
       "stage": "script",
       "topic": "The 1937 Estado Novo Coup in Brazil",
       "score": 59.8,
       "pillar": "Events that changed the modern world",
-      "hook": "The bizarre dictator who staged a military coup against his own government."
+      "hook": "The bizarre dictator who staged a military coup against his own government.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to create fear and justify the coup, it does not explicitly state that democracy was \"trapped\" in Rio; the claim extends beyond the provided facts.. Use only what the research states, with its exact strength."
     }
   },
   "uploads": [
@@ -1781,7 +1782,8 @@
     "Hidden Past kick-bbb510fe7d-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - VOICE: 2 sentences start with a person's full name (max 1). A person's name may START at most one sentence; open the o",
     "AI Tested kick-41d2ea90c6-ch2 failed at discover: discovery failure: 17 candidates, none eligible. Best \"Is Giving Your Passwords to AI Financial Agents 'Totally Insane'?\" (79.4): too similar to recent topic: Claude AI Can Now Connect Directly to You",
     "Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior\" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa",
-    "AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the"
+    "AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the",
+    "Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to c"
   ],
   "last_poll_at": "2026-11-09T08:22:05.948Z"
 }

@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The 1970 Exploding Whale of Oregon",
+      "score": 78.8,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The 1988 Launch of Soviet Space Shuttle Buran",
+      "score": 75.2,
+      "stage": "assets",
+      "reason": "only 2 verified, licensed images found; need at least 3 distinct real images"
+    },
+    {
+      "topic": "The 1937 Estado Novo Coup in Brazil",
+      "score": 59.8,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to create fear and justify the coup, it does not explicitly state that democracy was \"trapped\" in Rio; the claim extends beyond the provided facts.. Use only what the research states, with its exact strength."
+    }
+  ],
+  "selected": null
+}
