@@ -251,7 +251,7 @@ function Rescue({ data, dur, c, type, figures }) {
       {data.panels.map((p, i) => (
         <div key={p.label} className="iso" data-theme="light" style={{ position: "absolute", left: 20, top: 224 + i * (panelH + 22), width: 1040, height: panelH, borderRadius: 18, border: `3px solid ${c.rule}`, background: "#fff", opacity: ramp(f, 2 + i * 8, 12 + i * 8), overflow: "hidden" }}>
           <div style={{ position: "absolute", left: 22, top: 12, fontFamily: type.display.family, fontWeight: 700, fontSize: 42, color: c.ink }}>{p.label}</div>
-          <div style={{ position: "absolute", right: 22, top: 16, fontFamily: type.label.family, fontWeight: 700, fontSize: 30, color: c.muted }}>Dendrite with spines</div>
+          <div style={{ position: "absolute", left: 22, bottom: 14, fontFamily: type.label.family, fontWeight: 700, fontSize: 30, color: c.muted }}>Dendrite with spines</div>
           <div style={{ position: "absolute", left: 20, top: 68 }}>
             <Svg w={bare.W} h={bare.H} width={1000} height={figH}>
               <Spines fig={bare} shrink={p.loses ? loss : null} />
