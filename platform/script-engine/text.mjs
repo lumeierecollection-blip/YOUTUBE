@@ -3,7 +3,7 @@
 export const STOP = new Set(`a an the and or but if then than so of to in on at by for with from as is are was were be been being it its this that these those there here
 i you he she we they them his her their our your my me us not no do does did done has have had will would can could should may might must just also very more most
 about into over under after before while during up down out off again once only own same such too s t who whom whose what which when where why how all any both each few other some
-one two three per via vs versus said says say new now`.split(/\s+/));
+one two three per via vs versus said says say new now because therefore thus hence however although though yet instead rather whether until since`.split(/\s+/));
 
 export const norm = (s) => String(s ?? "").normalize("NFKC").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[–—]/g, "-").replace(/\s+/g, " ").trim();
 export const words = (s) => norm(s).split(/\s+/).filter(Boolean);

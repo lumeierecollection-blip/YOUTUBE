@@ -64,7 +64,7 @@ export function assemble({ channel, topic, blueprint, claims, out, hooks, wpm, f
   const pkg = {
     channel: channel.key, topic, format: channel.format, target_seconds: channel.profile.targetSeconds, blueprint,
     hook_options: hooks.options.map((h) => ({ text: h.text, family: h.family, honest: h.honest, score: h.score })),
-    selected_hook: sentences[0].text, sentences, payoff: textOf("payoff"), ending: textOf("ending"), cta: out.cta ?? null,
+    selected_hook: sentences[0].text, sentences, payoff: textOf("payoff"), ending: textOf("ending"), cta: typeof out.cta === "string" && out.cta.trim() ? norm(out.cta) : null,
     sources: [...new Map(usedClaims.map((c) => [c.source_id, { source_id: c.source_id, url: c.source_url, published: c.published ?? null }])).values()],
     claims: usedClaims, duration_estimate_s: estimateSeconds(total, wpm.wpm), quality_report: { status: "pending" },
   };
@@ -85,7 +85,7 @@ export async function writeScript(ctx, { channel, topic, blueprint, claims, wpm,
     per_beat: profile.mode === "short" ? "2" : "8", revision,
   });
   const { value: out, provider, model } = await ask(ctx, {
-    role: "writer", tag: previous ? "writer-revise" : "writer", user, avoid, maxTokens: profile.mode === "short" ? 3500 : 9000, temperature: 0.5,
+    role: "writer", tag: previous ? "writer-revise" : "writer", user, avoid, maxTokens: profile.mode === "short" ? 7000 : 14000, temperature: 0.5,
     check: (v) => writerStructureProblems(v, { blueprint, claims, profile }),
   });
   const body = out.sentences.map((s) => s.text).join(" ");

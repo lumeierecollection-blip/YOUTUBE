@@ -111,7 +111,7 @@ export async function buildBlueprint(ctx, { channel, topic, angle, claims, capac
       claims: claimList(claims), feedback,
     });
     let bp;
-    try { ({ value: bp } = await ask(ctx, { role: "writer", tag: "blueprint", user, maxTokens: 3000, temperature: 0.3, check: (v) => validate("story-blueprint", v) })); }
+    try { ({ value: bp } = await ask(ctx, { role: "writer", tag: "blueprint", user, maxTokens: 6000, temperature: 0.3, check: (v) => validate("story-blueprint", v) })); }
     catch (e) {
       if (!(e instanceof BadModelOutput)) throw e;
       history.push({ attempt, stage: "format", issues: [issue("critical", "schema", e.detail)] });
@@ -141,7 +141,7 @@ export async function buildBlueprint(ctx, { channel, topic, angle, claims, capac
     let model = null;
     for (let pass = 0; pass < 2; pass++) {
       const r = await ask(ctx, {
-        role: "judge", tag: "blueprint-check", avoid: [], maxTokens: 2000, temperature: 0,
+        role: "judge", tag: "blueprint-check", avoid: [], maxTokens: 6000, temperature: 0,
         user: prompt("blueprint-check", { central_question: current.central_question, thesis: current.thesis, claims: claimList(claims), beats: current.beats.map((b) => ({ beat_id: b.beat_id, role: b.role, purpose: b.purpose, link_from_previous: b.link_from_previous, claims: b.claim_ids.map((c) => claims.find((x) => x.claim_id === c)?.claim) })), max_beats: String(maxBeats), target_seconds: String(Math.round(targetSeconds)) }),
         check: (v) => (Array.isArray(v?.beats) && v.beats.length ? [] : ["answer must include a beats array"]),
       });
@@ -170,7 +170,8 @@ export async function buildBlueprint(ctx, { channel, topic, angle, claims, capac
       }
     }
     if (model.answers_question === false) modelIssues.push(issue("critical", "model", "the beats do not answer the central question from the claims"));
-    if (model.fits_length === false) modelIssues.push(issue("critical", "model", `does not fit the length${model.narrow_to ? `; narrow to: ${model.narrow_to}` : ""}`));
+    // "fits the length" is a judgement the measured duration settles later (and narrows the story if it fails); it is a note here.
+    const lengthNote = model.fits_length === false ? (model.narrow_to || "reviewer doubts it fits") : null;
     // What a first-time viewer would not know is not a reason to reject the plan: it is an instruction to the writer,
     // who must explain each item in the sentence where it first appears (and the continuity gates verify that it did).
     current = { ...current, explain_in_script: (model.gaps || []).map(String).slice(0, 6) };

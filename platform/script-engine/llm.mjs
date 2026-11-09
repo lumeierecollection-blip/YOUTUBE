@@ -32,7 +32,7 @@ const ORDER = {
   judge: ["gemini", "groq", "ollama-cloud", "openrouter"],
 };
 /** When a role runs on Gemini it asks for a different Gemini model than the writer (default gemini-3.5-flash-lite): a separate model call, and a separate per-model quota. */
-const GEMINI_MODEL = { critic: "gemini-3.8-flash", judge: "gemini-3.6-flash" };
+const GEMINI_MODEL = { writer: "gemini-3.5-flash", critic: "gemini-3.8-flash", judge: "gemini-3.6-flash" };
 const QUOTA = new Set(["quota_exhausted", "unavailable", "budget_exhausted", "no_key"]);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -53,7 +53,7 @@ export function liveLLM({ log = console.error } = {}) {
         catch (e) { r = { value: { error: "hard_error", detail: e.message }, provider, error: "hard_error", chain: [provider] }; }
         finally { if (prev === undefined) delete process.env.FORCE_PROVIDER; else process.env.FORCE_PROVIDER = prev; }
         const failed = r.error || isProviderError(r.value);
-        if (!failed) return { value: r.value, provider, model: provider === "gemini" ? (GEMINI_MODEL[role] || "gemini-3.5-flash-lite") : null, error: null, chain: [...chain, provider], same_provider: avoid.includes(provider) };
+        if (!failed) return { value: r.value, provider, model: provider === "gemini" ? (GEMINI_MODEL[role] || "gemini-3.5-flash") : null, error: null, chain: [...chain, provider], same_provider: avoid.includes(provider) };
         const kind = r.error || r.value?.error || "error";
         const detail = String(r.value?.detail || "");
         const hint = detail.match(/try again in (?:(\d+)m)?([\d.]+)s/i);

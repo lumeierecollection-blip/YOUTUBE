@@ -62,7 +62,7 @@ export default async function preview({ runId, tools, _llm = null }) {
 
       const drafts = [];
       const result = await runEngine({
-        channelKey, format: T.format, topic: T.topic, angle: T.angle, sources, llm, wpm, production_run: runId, profileOverrides: T.overrides || {},
+        channelKey, format: T.format, topic: T.topic, angle: T.angle, sources, llm, wpm, production_run: runId, profileOverrides: T.overrides || {}, maxRevisions: 3,
         onProgress: (ev) => {
           if (ev.event === "claims") { put("claims.json", { fetched: fetchLog, claims: ev.claims, dropped_by_code: ev.dropped, sources: ev.sources }); tools.stage("research_complete", "ok", { channel: channelKey, claims: ev.claims.length }); }
           if (ev.event === "blueprint") { put("blueprint.json", { blueprint: ev.blueprint, ...ev.report }); put("story-outline.md", outlineMd(ev.blueprint, ev.report.removed_beats)); tools.stage("blueprint_complete", "ok", { channel: channelKey }); }

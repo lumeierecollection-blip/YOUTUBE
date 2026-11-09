@@ -42,7 +42,7 @@ export async function extractClaims(ctx, { channel, topic, angle, sources, minCl
     sources: sources.map((s) => sourceView(s, terms, maxPassageChars)),
   });
   const { value } = await ask(ctx, {
-    role: "writer", tag: "claims", user, maxTokens: 5000, temperature: 0.1,
+    role: "writer", tag: "claims", user, maxTokens: 8000, temperature: 0.1,
     check: (v) => (Array.isArray(v?.claims) && v.claims.length ? [] : ["answer must be {\"claims\":[...]} with at least one claim"]),
   });
   const kept = [], dropped = [];

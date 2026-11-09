@@ -39,7 +39,7 @@ export function effectiveVerdict(c) {
 export async function critique(ctx, { pkg, claims, channel, known = [], writerProvider, wpm, limit }) {
   const avoid = writerProvider ? [writerProvider] : [];
   const { value, provider, model, same_provider } = await ask(ctx, {
-    role: "critic", tag: "critic", avoid, maxTokens: 3500, temperature: 0,
+    role: "critic", tag: "critic", avoid, maxTokens: 7000, temperature: 0,
     user: prompt("critic", {
       channel_name: channel.name, editorial: channel.editorial, guidance: channel.guidance, central_question: pkg.blueprint.central_question, thesis: pkg.blueprint.thesis,
       claims: claims.map((c) => ({ claim_id: c.claim_id, category: c.editorial_status, claim: c.claim, source_words: c.excerpt })),

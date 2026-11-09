@@ -9,7 +9,7 @@
 import { ask } from "./llm.mjs";
 import { CLICKBAIT } from "./channels.mjs";
 import { prompt } from "./prompt.mjs";
-import { GEOGRAPHY, capitalised, content, contentSet, fold, norm, numbers, overlap, sentences as splitSentences, stem, words, wordCount } from "./text.mjs";
+import { GEOGRAPHY, STOP, capitalised, content, contentSet, fold, norm, numbers, overlap, sentences as splitSentences, stem, words, wordCount } from "./text.mjs";
 
 export const CATEGORIES = ["abrupt_topic_change", "unexplained_name", "missing_context", "unsupported_claim", "misleading_claim", "repetition", "contradiction", "unexplained_term", "chronology", "causal_error", "unresolved_loop", "unfulfilled_hook", "unsupported_conclusion", "unnatural_phrasing", "visual_mismatch", "wrong_channel_tone", "unrealistic_duration"];
 
@@ -59,7 +59,11 @@ export function deterministicContinuity(pkg, { claims, profile, channel = null }
       const o = overlap(prev.text, text);
       const sharedName = capitalised(prev.text).some((n) => capitalised(text).includes(n));
       const sharedClaim = s.claim_ids.some((c) => prev.claim_ids.includes(c));
-      if (o.shared === 0 && !sharedName && !sharedClaim) out.push(f("CON-02", "major", "abrupt_topic_change", [prev.sentence_id, id], "These two sentences share no subject, name or fact: the narration jumps.", "Add the missing step that connects them, or reorder, or remove one."));
+      // A pronoun opener ("That pull ...", "It sends ...") points back at the previous sentence, and a stated reason that names
+      // something from BOTH sentences is the writer saying what links them; neither proves the link, the reviews check it.
+      const pronounBridge = /^(that|this|it|its|these|those|they|their|he|she|his|her|which)\b/i.test(text);
+      const linkNamesBoth = overlap(s.link_from_previous || "", prev.text).shared >= 1 && overlap(s.link_from_previous || "", text).shared >= 1;
+      if (o.shared === 0 && !sharedName && !sharedClaim && !pronounBridge && !linkNamesBoth) out.push(f("CON-02", "major", "abrupt_topic_change", [prev.sentence_id, id], "These two sentences share no subject, name or fact: the narration jumps.", "Add the missing step that connects them, or reorder, or remove one."));
     }
 
     // CON-03 a reference with no antecedent.
@@ -67,7 +71,7 @@ export function deterministicContinuity(pkg, { claims, profile, channel = null }
     const before = new Set([...heard, ...heardNames]);
     for (const m of norm(text).matchAll(/\b(this|these|those|such|both|the same)\s+([a-z][a-z-]+)/gi)) {
       const noun = m[2].toLowerCase();
-      if (STOPLIKE(noun) || BRIDGE_NOUN_OK.has(noun) || /(ed|ing|ly)$/.test(noun)) continue;
+      if (STOP.has(noun) || STOPLIKE(noun) || BRIDGE_NOUN_OK.has(noun) || /(ed|ing|ly)$/.test(noun)) continue;
       const nounStem = stem(noun);
       const ownEarlier = content(norm(text).slice(0, m.index)).includes(nounStem);
       if (!before.has(nounStem) && !ownEarlier) out.push(f("CON-03", i === 0 ? "critical" : "major", "missing_context", [id], `"${m[0]}" refers to something never mentioned before this point.`, `Say what "${noun}" is, or mention it earlier.`));
@@ -169,7 +173,7 @@ export const critical = (findings) => findings.filter((x) => x.severity === "cri
 export async function modelContinuity(ctx, { pkg, claims, channel, known = [] }) {
   const lines = pkg.sentences.map((s) => ({ sentence_id: s.sentence_id, beat: s.beat_id, text: s.text, says_it_follows_because: s.link_from_previous, claims: s.claim_ids.map((c) => claims.find((x) => x.claim_id === c)?.claim).filter(Boolean) }));
   const { value, same_provider } = await ask(ctx, {
-    role: "judge", tag: "continuity", maxTokens: 2500, temperature: 0,
+    role: "judge", tag: "continuity", maxTokens: 6000, temperature: 0,
     user: prompt("continuity", { channel_name: channel.name, central_question: pkg.blueprint.central_question, hook: pkg.selected_hook, sentences: lines, known: known.length ? known.map((k) => `[${k.sentence_ids.join(",")}] ${k.problem}`).join("\n") : "(none)", categories: CATEGORIES.join(", ") }),
     check: (v) => {
       const p = [];
