@@ -41,7 +41,17 @@ export function factSupports(factText, value) {
 const NUM = /\d[\d,.]*/g;
 export const groundedNumbers = (s, corpus) => (String(s).match(NUM) || []).every((n) => corpus.includes(n.replace(/[.,]$/, "")));
 
-const unitKind = (u) => (/percent|%/i.test(u) ? "percent" : /dollar|usd|\$|euro|pound/i.test(u) ? "money" : "count");
+const unitKind = (u) => (/percent|%/i.test(u) ? "percent" : /dollar|usd|\$|euro|pound/i.test(u) ? "money" : /second|minute|hour|\bday|week|month|year/i.test(u) ? "time" : /point|score|grade|mark/i.test(u) ? "score" : /kilo|metre|meter|mile|\bkm\b|tonne|\bkg\b|gram/i.test(u) ? "measure" : "count");
+const GENERIC_UNIT = /^(metrics?|values?|numbers?|figures?|data|stats?|statistics|results?|performance)\.?$/i;
+
+/** What a value counts, read from the words around it in its fact: "18 minutes", "$0.68", "96 points". */
+function unitInFact(fact, value) {
+  if (fact.unit) return unitKind(fact.unit);
+  const text = String(fact.text).replace(/(\d),(?=\d)/g, "$1");
+  const at = text.search(new RegExp("(^|[^\\d.])" + String(Number(value)).replace(".", "\\.") + "(?![\\d])"));
+  if (at < 0) return "count";
+  return unitKind(text.slice(Math.max(0, at - 2), at + String(value).length + 16));
+}
 const short = (s, n) => typeof s === "string" && s.trim().length > 0 && s.length <= n;
 
 /** Resolves a cited value. Returns its fact, or null when the citation does not hold. */
@@ -69,10 +79,10 @@ const VALIDATORS = {
     return { sources };
   },
   bars(p, facts) {
-    if (!Array.isArray(p.bars) || p.bars.length < 2 || p.bars.length > 4 || !short(p.unit, 40)) return null;
+    if (!Array.isArray(p.bars) || p.bars.length < 2 || p.bars.length > 4 || !short(p.unit, 40) || GENERIC_UNIT.test(p.unit.trim())) return null;
     const found = p.bars.map((b) => (Number(b.value) >= 0 && short(b.label, 30) ? cited(b.value, b.fact, facts) : null));
     if (found.some((f) => !f)) return null;
-    const kinds = new Set(found.filter((f) => f.unit).map((f) => unitKind(f.unit)));
+    const kinds = new Set(found.map((f, i) => unitInFact(f, p.bars[i].value)));
     return kinds.size <= 1 ? { sources: found.map((f) => f.url) } : null;
   },
   line(p, facts) {
