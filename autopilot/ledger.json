@@ -1008,16 +1008,17 @@
     },
     "kick-08d0af4b3f-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42590890284",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:17:54.865Z",
+      "updated_at": "2026-11-09T09:18:05.340Z",
       "stage": "research",
       "topic": "Law professor accidentally deletes entire year of lecture notes using Claude",
       "score": 75.2,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "A law professor asked Claude to renumber pages, and the AI accidentally deleted a whole year of lecture notes."
+      "hook": "A law professor asked Claude to renumber pages, and the AI accidentally deleted a whole year of lecture notes.",
+      "error": "2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
     }
   },
   "uploads": [
@@ -1942,7 +1943,8 @@
     "AI Tested kick-fe15cefa43-ch2 failed at discover: discovery failure: 16 candidates, none eligible. Best \"ChatGPT Images 2.6 Adds Instant GIF Creation\" (86.8): too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos",
     "Hidden Past kick-0533ccf24b-ch1 failed at discover: discovery failure: 14 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (83.9): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
     "AI Tested kick-b7dd86b5f6-ch2 failed at discover: discovery failure: 22 candidates, none eligible. Best \"WhatsApp rolls out AI photo expansion tool for iPhone users\" (80.2): no trusted source",
-    "Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 wor"
+    "Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 wor",
+    "AI Tested kick-08d0af4b3f-ch2 failed at research: 2 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
   "last_poll_at": "2026-11-09T09:12:36.030Z"
 }
