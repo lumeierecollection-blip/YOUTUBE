@@ -515,7 +515,12 @@
       "attempts": 1,
       "run_id": "42542092593",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:55:08.812Z"
+      "updated_at": "2026-11-09T00:56:48.915Z",
+      "stage": "research",
+      "topic": "NYT Cooking AI Assistant Flubs Recipe Swaps",
+      "score": 76.3,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Even the New York Times cooking assistant is struggling, giving users wild ingredient swaps that ruin dinners."
     }
   },
   "uploads": [],
@@ -942,6 +947,15 @@
       "at_ms": 1794185389246,
       "score": 65.5,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "NYT Cooking AI Assistant Flubs Recipe Swaps",
+      "slug": "nyt-cooking-ai-assistant-flubs-recipe-swaps",
+      "slot": "kick-b837907b92-ch2",
+      "at_ms": 1794185808915,
+      "score": 76.3,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [

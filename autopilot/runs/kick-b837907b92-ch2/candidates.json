@@ -1,0 +1,1707 @@
+{
+  "generated_at": "2026-11-09T00:56:15.396Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1368
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": true,
+          "items": 27
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 51
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 110,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1368
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI video generator viral",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:AI phone feature new",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "google-news:AI browser privacy",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "google-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:AI voice clone",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:AI photo editing app",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:Copilot new feature",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:AI tool saves money",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:AI customer service replaced",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:Meta AI app",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "google-news:AI agent mistake",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:free AI app launch",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:students using AI",
+          "ok": true,
+          "items": 100
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Google's Ultimatum to Schools: Use AI or Lose Search",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        2,
+        59,
+        66,
+        69,
+        81
+      ],
+      "hook": "Google is reportedly telling schools that if they ban AI tools, they could lose Google Search entirely.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Google Search",
+      "commons_query": "",
+      "youtube_query": "Google AI schools search controversy",
+      "evidence": [
+        {
+          "title": "Google will turn off search for schools that reject AI",
+          "url": "https://www.nytimes.com/2026/11/03/us/google-search-schools-restrict-ai.html",
+          "domain": "nytimes.com",
+          "published_ms": 1793719547000,
+          "points": 673,
+          "kind": "hn",
+          "id": 2
+        },
+        {
+          "title": "Google’s AI Ultimatum in CA Schools: 4 Tools Off [2026] - https://tech-insider.org/",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOT1phUk5qT0FEWFNhWHhTVHo3eXB2dXF6ZTRqWGVRdVZDVTJhRktEZHJEN0RLelkyVEpQRmp2OWl1STBjYmlRcGxkeWxsbjVHajN4WHp6bjRoVjBaajlUbXd4NWtpV3h0NldhcVJHVlRDMmRDU1Y3ZHVtdVhaTFBSS0ZjWlo4VVNPM3E0bzVIQUNtTEF3MVJyVDVYTQ?oc=5",
+          "domain": "tech-insider.org",
+          "published_ms": 1794156662000,
+          "kind": "news",
+          "id": 59
+        },
+        {
+          "title": "Google will let schools turn off AI, but they may lose Search - Toledo Blade",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQMGw5UEh0YUlBR21wTHJNa2RObTQ1ekNnSmlmb1QwUFpSOUtNRlAwVVBSQ0pDVWtzNjlvQTNvaGRZS3U4QUVFSVh1bFUwcjlEM3p3VGtHZHlKVTA4WkhUbllnSDRZNmppSGhyM29fUmJsNk1rVUlhbmdqaDk1anRZb1AzNVJIdjFIUWxwXzBpMlMzOE1BcUNvWkhfU01MU284N3lUUF9rTFd6dkU3RHd5YTRST3dIUjFCSVk2R2huM3Rmb1FySUlSTzdFeWNDUXN3aW5KTmx3?oc=5",
+          "domain": "toledoblade.com",
+          "published_ms": 1794144262000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "Mamdani Blasts Google for Using Monopoly to Bully Schools That Ban AI - Futurism",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPRXU3dmZ5Qk9HcjYwQk9WQnloR1ZLNWNSOF9HMHF2UzdXbElTMGRTeGxmOFlLSExtdlpRTWdPbkUyWmZPalJCY2JYTkpjQUZrdXI2S0UxSmlwLU83b0REWUhKZ3BjelBqSWV6UWFYbURUVjdhcjdFM2NUTlAyaEVpdW56SkRWZGpsQWJJ?oc=5",
+          "domain": "futurism.com",
+          "published_ms": 1794142260000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "Google Scrambles to Counter Claims It Is Bullying Schools into Using Gemini - San Jose Inside",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNUWQzVWJwTC1Ca2EySzVIRGVPME9sbkRwRFczVlRoUHpFQkMtR3R2c003bXNQZmdBeGVpeExuc053ZENZS0RHYmxEQm9IZTcxUWhhaFhqVTNKeUJIQVRPXzNzR2hmSEpwSUZpeWlsN1lEbHA2Z2g1WFBNOEFseU05MFdocDlJSEsteFBLRWhPeTFLTUxFLWhWQl9Cc0xXQk54dUNkZkUtQmFzVWI4NzdTYmVaNlVxdw?oc=5",
+          "domain": "sanjoseinside.com",
+          "published_ms": 1794113605000,
+          "kind": "news",
+          "id": 81
+        },
+        {
+          "title": "Google responds to political backlash over removing search from schools that ban AI - CNBC",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNenhBb3YzeXFrNE9nVmR3QUZTZ3M2RlRleVpqMjZMUll0azhuR2ZtUmwyOEcxeEluUlN4UDdQNU54ak9HTUI2ekY4azRzUk9aTVh5dUJYVnhkTVdPMGtIYjR6V0xmdWlqb3hNRmROVzFmZFNEZlJZZV9DaTRlSGQ4akRkSGxjZ1p2dV92cTFxaEUzMTVCNTByZW42T3ZGS3hUR0JOZzRaYWozM0nSAbABQVVfeXFMTktHaFBsT1hOVXFLTVo2RUhyZHNWbkVUU3FhVjdxczdRT2ZUOXFUakJCV0pHUnNkU2NycUd6NEMxS0ozT2VxRFAtbWpnc2lKUWhBZ3c0NHRFMk9vQ19pNTBxc0NCS1N3TmZqNGdwdUcwbE51by1NdEJiM1pOcl9HQXpiMmwwaklRTWhpVC02anVSMmF2QU8yZThyWVpwUWNJb1lObmVYdDc1S0x4VDFrVmQ?oc=5",
+          "domain": "cnbc.com",
+          "published_ms": 1793750880000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Will Turn Off Search for Schools That Reject A.I. - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPa2ZWRmYyZW9YZng5SmhjYnpjQ213dnRKVjVjNW1rcS1RRFoxVUFKYnl2VlVjMk1abE1kQTE2Qk1Ea09WcHlvMjFNbTREWnhmYXZiTjE5RTY0bUdMZGsyRFRCNDNWQjg0SG90WXlaSVV1d19iV0x4UEVnVlFzS3dyVWZB?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1793714407000,
+          "kind": "news"
+        },
+        {
+          "title": "Google faces backlash for plan that would turn off Search for schools that restrict AI - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOclVuQ2ItV3U2Qmd6VTBreHBWYjZYMTF6YmJuNkNhMzBQc0ZET2xWZ1ZXT3pRTnJwLWhhb2VHUkhmc3BWX2M5eEZmMGk4SUNkelYwYW92MkQzOWZhRFAxYzg3c3U4Q3NOQjlWUC04RERxSW1VR1BWQ2FvME9jaFhUNXBTSE5hMEpHMGtLd1VXU2NRYjl6Z0swMTNTd2lzVlRtaV9rNXpzRFBpYWY1RmdrZmM4OC10X3FXWFZqa1NB?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1793809042000,
+          "kind": "news"
+        },
+        {
+          "title": "Google to shut off search for schools that opt out of AI - NBC News",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPTXBsSzByWUh5YVNuZGpjVXRtQ21SMG0waXByX0JZVl85eGJ4M25FOExEMDJGTWpXbjJJa1dheEJLSXV1WEo3VWtMWEFaeWNfeW1FcWNpVTBZY2htRWxMdVExVVRvYjFQYUJyTXVSTjktMFc4VEJXb19JRTNTelM0NTh2akZrdFBTdVZr?oc=5",
+          "domain": "nbcnews.com",
+          "published_ms": 1793730751000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Announces It’s Shutting Off Search Engine Access for Schools That Ban AI - Futurism",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNN3RpZUFBYzFrQ1VvQk1IaXdHelI4SkRnc0VwRFg2RS0wT2xDX1JvLVJlY2E0bDdWQWdzUlBPdnZ0bUtuV1JXSkZzR2xPZXhoZElXYlVIY3hQOTFLcWJ0dVJvWW8xWUI3X2pNMU1QNHB3aUR2b3NKeXZTZXBqUnhnQlFTV0k?oc=5",
+          "domain": "futurism.com",
+          "published_ms": 1793722078000,
+          "kind": "news"
+        },
+        {
+          "title": "Google threatened to block search function in schools. NC schools seek answers - Raleigh News & Observer",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE1YY0RWZFpOYkhkbHJTNF9EVUlpMEZnTExYdU9kc1JtTjVWd3JNRHRMQ29OaWwzUEJTSHNOTXdaUGh0b0tRQ3hGTjRkcWxOcjhGOWs1SDZ3eTB5eEh6S2FOVWx4RFVKNFRMTzI2M2dlRmtwMHRuNlg1OE1ERdIBe0FVX3lxTE95dUI2MENfTzJvcmF1QUZjVFo4WUttLUdoRlVaazFyX0VrQXNyenhIdTAxTUp2Q0tZZmhoSHpsSkwzZ0lEb2x6ODMyekpMR3p6YXBXRFRLdnFqZFNQdlFoLWN4NmJ1TEZVRzNSWFdaNGFfQjVsRDdGUWNlSQ?oc=5",
+          "domain": "newsobserver.com",
+          "published_ms": 1793998320000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Playing Hardball With Schools, Says If They Disable AI Tools, They Can't Use Search - SFist",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOZGFGR1dwekFjbnhrNzlELS1VaDZtZUg2VFA0RHh3YTV4aXdhaEZRVjh2ZlBjQlZtWUNXQ19fU3ZYRUZES2FxZ1RqMUlmcHRzcEZFVkxMN3VLdlVYSDl5Umo4QVJVdWdJN0w2alp5VzZqeGkyVXljdGJYd24wenhFbmU1UlRiaXUyclk5b3hkb2ZvVk5MNkNpcjVQTzJKc2MxZ3hGUk05S2lfOUZaT1haekdwVWlhRVVL?oc=5",
+          "domain": "sfist.com",
+          "published_ms": 1793748440000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Tells Schools To Accept AI Or Lose Google Search Access Entirely - Wccftech",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPNTNtNV95VExGRWlnZ0NUQ0hfRDFXRXFwYVBTaWJ3VVZiXzl1WlpOcVhvSmpwNFZVdDY2OHBYV1BFM0ZQajQ4dGxaVlJ1QXp5eFRjS190Wkc5Mm5rZ0pzcHBHZ3Jrd0NpNHRROERndld6S3hGUlR5SVVkd2tpRVBpcE5VeFBmTnhBWmY2NS1pMDZjaVhxZnVZTdIBngFBVV95cUxPb0ZwaHNhTUQ5WFRFeE04QTE3cmNPbUgxYVNKM1pOLU5PVWkzTkFZY0tfZXVOc0tDSFhTcmI5ay05dnlwRUstejF1WUlqWERCWlIwbmhrbXpsMHd4NFg4MFlNSHdNeDJ4aHBZdzJYSVlTbktwU1hOcEgtbHVFU1hQZG5RR1ZJMDBWTFVMN0FZd1p6VGZnd1ZkckZINFFwQQ?oc=5",
+          "domain": "wccftech.com",
+          "published_ms": 1793740529000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Search",
+        "daily_views": 12935,
+        "ratio": 1.14
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 90,
+          "reach": 82,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 88.4,
+        "newest_hours": 8,
+        "domains": [
+          "nytimes.com",
+          "tech-insider.org",
+          "toledoblade.com",
+          "futurism.com",
+          "sanjoseinside.com",
+          "cnbc.com",
+          "techcrunch.com",
+          "nbcnews.com",
+          "newsobserver.com",
+          "sfist.com",
+          "wccftech.com"
+        ],
+        "trusted_domains": [
+          "nytimes.com",
+          "cnbc.com",
+          "techcrunch.com",
+          "nbcnews.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Claude's New Personal Finance Tool Lets You Connect Bank Accounts",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        69,
+        88,
+        89,
+        104,
+        106
+      ],
+      "hook": "You can now let Anthropic's Claude directly manage your bank accounts and analyze your spending.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Anthropic",
+      "commons_query": "",
+      "youtube_query": "Claude personal finance bank account feature",
+      "evidence": [
+        {
+          "title": "Anthropic Launches Personal Finance In Claude To Connect Bank Accounts And Analyze Spending - Pulse 2.0",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPX2kxcWdHUDg0cmRNdnBQWXdxQU1MbWdMSnU3Mlpad1hmUkkxLWI2Uk5DY3g4QndBWm1mTmFvQ2d2cHN2MXhEcGVFV2hzU2c3QlFfSlllRXBYeWVUdU5yYXM1SVdsNTl5aTlYcFdIS1pmcFYwTVR2SnZhQ1ZIOEpkc3pJcDRoeDliaGl6QXNzdFdZUEhGaEpWSDJLYWk0Y1hhVU5PQklKd004S3k3M3JsUw?oc=5",
+          "domain": "pulse2.com",
+          "published_ms": 1794147972000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "Anthropic launches personal finance feature for Claude - Kalinga TV",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUmg0MExvUW9YZDBDYVpqX29mYU5VODNYenFnSV9icEVIbGZSeVBMZ3cwUXBpWnREOTI4S3JVbjdZcjlteFJFbDY4XzR1ckJRWWpLYWJpa0JIbThuOXBOUFB6QnAzYkFFOWs3NlozY1d0ay00RkNROVljSlNJZkVWSldsUUNGYXE1OHQxS1ZvRGt0QQ?oc=5",
+          "domain": "kalingatv.com",
+          "published_ms": 1794108231000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Claude Personal Finance Vs. ChatGPT Finances: What Sets Them Apart? - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxORGNUWG9XV2JUWGNmcFAxa2V1VWp1TVVnVnd5SUh2cFFZMjg4YUFZT0NtNUh3WlR2dXVYeFpuTHlsWVpDdjN5LVVxdkpIVjl5dXppOFl3MEhXdnprdkF2YzdVTWtvX1NZdzRLWUpSSXZpTGxuejlxNjF5TDJsUHh4bmtzYkdTQQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1794093020000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Anthropic Launches Claude AI Personal Finance Beta for US Users - Geeky Gadgets",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE1wbGoxbXFxUlFLZkZrZU9jYkNtaE1LSk5fM1hYVDVUaGVieDdkMTRfYW1Xejd4ajNQX1g3SGhPdzhWNUdjMG9SMWxmYVJ5QkhtYmZzSURWWVk?oc=5",
+          "domain": "geeky-gadgets.com",
+          "published_ms": 1794034857000,
+          "kind": "news",
+          "id": 104
+        },
+        {
+          "title": "How to Use Claude Personal Finance: Setup, Prompts and What It Can See - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTFB6dWt6d1hTdFF2SVFraXR2NTBoVjVMWFkzUV9oS1BHSkRtc2FuWjUyblpLQ0RkMllsc2dPUXRDRGJyV0xrZV9RU29lM3QyVm1US1pkN2VXWQ?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1794031805000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "Claude Gets Personal Finance Feature With Bank Account Linking - MacRumors",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBFaDM1NklBalNQcXdLVURxM1RUSEVzZGRvZkVWeVExWmVjTV9kTDlOZUhhTTNqdk5aak1tWWlYLTdyUnVlWTh2RktSenBWbmpRV3BLak43Z0hyWTFLem5ya214MnVEYnU1QWF5ZUp3?oc=5",
+          "domain": "macrumors.com",
+          "published_ms": 1793918828000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude can now analyze your spending with its new Personal Finance tool - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZEtFZTdKVm5NbllXbVdGcTRrU3ZuZ3p4Q0VvS2hPRjJQWmJGUWlIRmlpaC1kV1l0WUJTbmRQSm5mVVhrYV9oRUE2c2xPZWpoRDRnWkJwQzFmVmg1REtTN0k4WkRVYjUyaUExOXUyaXlWZU9yei1Bd0ZqYWpGLTNlOXJubi1DQmZxekZWbG9Cd1Q1NE1rTnMzbm15bEw2TnJMNFZnMm9rOWxVdw?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1793901600000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude's new Personal Finance tool aims to help analyze your spending - read-only, of course - ZDNET",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1pMU1xVHcxb1VUUWtPaExlTzYyenlqalBZWjVHUmw5Z0pvTTNVUFRGSXFCSG1UcmxGMWRhZzM4eW9Eb1g5b2Z0bW82aC1VODhNWndERkMyTjRwd1loYS0yR2hyU1JQSGp4cmFrVFNFbkptY0tnTnc?oc=5",
+          "domain": "zdnet.com",
+          "published_ms": 1793901611000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s Claude Can Now Read Your Bank Accounts - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPMWgyS0t1LW4xMndzblFOYmpYb2tmM0l3SUpfV1poZWV5VF9DQU5hcHk0NmpCWk5MdEZqWDFSVnlQMk1WcExKWWR2M05sa3lnYmMyWUVtLUJjcHR5TFdBampXTHEtU29OSWhVZklOblpqR3l5dHhJRzNITlUyeEVlZkh3anV4TGtsWTFzc1U2Q3hLY3ZqaU9WdUNn?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1793996860000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic’s new Personal Finance feature connects Claude to your bank account to help with your money - XDA",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZnNFS2V1RVJLNlc2UVpRY1E4TWVoQjgtQlZwblRzblJLaVotWGc5eGN1d05oRzBPNUdiVFZzRmQtZDB5bGdGdlFMS1ZPYWRRQUllRTg4NDAtWkpFTXowTTE1ZkRmTUtTS0xLWW8yckN1eDBJMEhSV1VBc0JzQXBiUXpRcE1meGhtLS1fLUN0U0lxazBYVkhRaUJLYjFHOE1rdXF5a1liaVYtakhr?oc=5",
+          "domain": "xda-developers.com",
+          "published_ms": 1793902484000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude's personal finance tool analyzes accounts and spending patterns - Interesting Engineering",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOLW1MZVo2ZHdSYXdHWXcwdVM2MmFiVW1GSnowb0dxbWJmZnJ4c3VDb0piWFYtSWdHeU9MNjlNVzAwekpqTG5tRGNtQUxDZHdhVEg1NUd1VEdiU2Z6eExzUnlBZlVUbUstUUJzZXpYSVlEamRFd0pxeWpVRE5mYm1fMndfVnFtN3VwTk91a1BEYUV3OUh1N2djQW1VV3lTRU9YQzhiRw?oc=5",
+          "domain": "interestingengineering.com",
+          "published_ms": 1793935740000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic launches personal finance feature in Claude, lets users connect bank accounts for money insight - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxNam9wRVJ4VDFMUXE5VUZGY0JhVWNpVFVfLU9IVXFvNU5SMWE0aDZvUkt0TFJYaElWT1lPRXdUYWVVSjlOWHJoS3A3ai1HUkNvbGRZdzlJaW80VWlFbUw1b2paSGpVd3hIQWZLT3FhaWh4bVN2NEVqaHlOenY3Y2hwUE91SEEzTDJnQzdIb1BCWElhSkxxenlHdVZQNWZWbjlRcUI3UmgyNDZLU2NENGJMeUkwb2pkczNDS3dfWWhLaG1qdVV1aDFjTlhmRjI4TVpzRmY4b09oUk1oUVYxNE1XZGk2QmkzajZHOEg2WXo2UUhZV2xtV25kRlA4VkdkREowYjNuR2I5TlgwVHlIRHdNMkZnSzU5WVnSAZwCQVVfeXFMT0xaRHY4Q2F3R1RNZ3dnQ0dsMks3d1JnLTBlTkRuZFVNakRfQUR0Vm4tNGZ0SFlGS2xaUFpveDFXWDVTMEFTMHVTZm5xaHViUEZGejZOUkdlcHRnZk1hbXp4UnlTOUlfN3pYeGxiQU9BZEtoVVhGd0VpVjFPVjN4VXI5NWVGOVN1VXA4N3BtX0daNTdqLTJ0cDlIdC1oQ0RhMGs3ODdud3lmQnVwdGhmWWVPUElBYmZGblFUMHd0QmFVWlM3NkhiWURYR2V0STFMaFJIOGZ3bGMzZzlvVnEzemFOQTNpSzdZU0t5ejVhMW1saTRpdzFMazh4MnNsOUdwbVg0MkJRc2J0STJPUzZYM0Y1YV9tcDRJTTItc1U?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1793934000000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Adds Personal Finance Feature to Analyze Bank Accounts and Spending - Mezha",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9vYzJVdU5Heml0Q0tCbXI3eWhBaGdvZjV4MVpHcF9WYUZBVUpBZGdXZGpadWExMDBHV0cwQ2JWZ2NjQURUdThkRnZESVVwa0dpY1RadHJSYndxbEdPdDE3bkVkclZDZ0XSAWxBVV95cUxQaURIQ1IyRF95Mlh2S3E2THR2bVNBYUFIZnpmNzlGM0dVVWVzV1ZHeS1SVDg4YzlSNW43ZUpIRTk2cVY1RFJFckdQN3ROOUx5dUZRZjA3VDJQa3R0N0dsOFNzOGJhMWdybjJLaFM?oc=5",
+          "domain": "mezha.ua",
+          "published_ms": 1793957700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Anthropic",
+        "daily_views": 7548,
+        "ratio": 0.87
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 78,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 84.1,
+        "newest_hours": 11,
+        "domains": [
+          "pulse2.com",
+          "kalingatv.com",
+          "engadget.com",
+          "geeky-gadgets.com",
+          "felloai.com",
+          "macrumors.com",
+          "techcrunch.com",
+          "zdnet.com",
+          "finance.yahoo.com",
+          "xda-developers.com",
+          "interestingengineering.com",
+          "timesofindia.indiatimes.com",
+          "mezha.ua"
+        ],
+        "trusted_domains": [
+          "engadget.com",
+          "techcrunch.com",
+          "zdnet.com",
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Claude AI Can Now Connect Directly to Your Bank Account"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Geoffrey Hinton Says Humanity Might Be Better Off Without AI",
+      "pillar": "Unexpected AI abilities and limits",
+      "evidence_ids": [
+        11
+      ],
+      "hook": "Godfather of AI Geoffrey Hinton admits humanity might actually have been better off without artificial intelligence.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Geoffrey Hinton",
+      "commons_query": "Geoffrey Hinton",
+      "youtube_query": "Geoffrey Hinton better off without AI",
+      "evidence": [
+        {
+          "title": "Geoffrey Hinton: it might turn out we were better off without AI",
+          "url": "https://www.theguardian.com/uk-news/2026/nov/03/ai-godfather-geoffrey-hinton-better-off-without-ai",
+          "domain": "theguardian.com",
+          "published_ms": 1793787814000,
+          "points": 322,
+          "kind": "hn",
+          "id": 11
+        },
+        {
+          "title": "AI ‘godfather’ Geoffrey Hinton: it might turn out we were better off without AI - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPWng3Y1lLdXJhb0F4ZHJEWXZSZ2c0eG1WcEh5WnZpbWM2U1AzUmtVa1JFZ0h3UXd2OEp6SmZiWVBSZW5mcmw4V016RkkyN3lLdnZTQ19UMGRxMUhnMm9famJYREJRVF8zcnF4Q1h5SHJRNk02bllUNHZOMTFidVZ3a2tINnVHcmlRV1oyWF96RlNnWlZNdWg5X0JvZEdNbGc?oc=5",
+          "domain": "theguardian.com",
+          "published_ms": 1793741700000,
+          "kind": "news"
+        },
+        {
+          "title": "‘It might be that we would have been better off never developing it’: Geoffrey Hinton doesn’t like the look of the future of AI — and he’s saying what we’ve all been thinking - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMivAJBVV95cUxQMkhjdDFSa0Uta3MwQlJqcHV0X3VXRzVURFNvdmh0T2p1VkFwRjZ4Ni1McTVJd3lRbTVaYmZMejBqYW4yUUhkdXh4eUFwS1FmWkN6ZHRxZ2xpTGpmd1ZBUno5M05vR05VQ2p0SDdHUUtVb19nZlNaaGhWOGFJYWNtV0tuUTRWRHlkcE0yenk4MUcwUG5HS2lfMldDb0lVWEdfUFpFZEtTXzR1X3NzYTFxNlh5Tlh6S0tQMTRSM3dVY3ZQbjJCUURBRy1wM2NacjBrLWtkZHY4eVM5d0dBQ3hrV3ZySlNURnpiRGc1UTg5Ukoza3dZQlBqbGZSdmtwMU5MVWg3a2w3V2FFMUVhQVdldnYzTDJtYmRlekxzM3dEZHRydEJZcTRVUXRyS01iZGNtb29SZ3hWOW1uNTBp?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1793811224000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Godfather Geoffrey Hinton says we may have been ‘better off’ without AI - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQYXpDdGI3MGlPQ2RNdmRTS1VNb2phSzVtNlBTMjZLSVNQS0NOZnhKSEJHLXo0alNDSHE2aFFfTi1kOUpNaFV3ZnlCcHlFVlotNHRQOHRDaVd6NFFGd2tSeThIM0tHT0xxVUZ1NnRRT2JVUEQ5a0drRGVtZHR0eXYyMlVwMUIweVk?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1793814144000,
+          "kind": "news"
+        },
+        {
+          "title": "A Pioneer In AI is Wondering Whether Humanity Might Be Better Off Without It - Yahoo Tech",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxONnJUMTlJWm04QXVtLUhVcXVnS19vNlRDOVVERlhKbG9mZVpTVzJhVno1aXJiQk95a3VaOHIwMnB5SzhSUFN0aE1TR1FBMUIyWWFCRHJFaUh5M3BOSjZtQ0M5OXBCNHpxYUFjS3NVNGZzVWVOdFNYTk9xQlJBT0xHSXNGVldCOXNpVEtrZXB3Q0g?oc=5",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1793819918000,
+          "kind": "news"
+        },
+        {
+          "title": "'Godfather of AI' Professor Geoffrey Hinton Says Humanity Might've Been Better Off Without It - News18",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPZC0zdGk0bHRtdktIWmZmVzF6TmpYckhDTy1lTUpXNTVuRHI3WjAwbm5OUmt6aFFSaVlqSHNONzBFeHhRWnRjb29XakRFZ2c4eGJvQUM5OHJ4dGFmWVdLeU84Ukt1QnVFSVI2eFlIUDFHckhQb2lBR3A2NExMWmRjR0Zvcmpqc0RIeWQ5aE9DRzk2Q2k2Vk13c216TTJ2RGRqUkYwNUNINmVtY2xxREQyUi05cWtTYjFqLUN3T0tmRXNUdHlvbXRvVHlqb0ZoV2U1VkMxeWZiMHdpZlZoRnpHRGlmYmVjWWF6YVdPTlNMQVBvLWtMX0FxMlo2VGNUWkIt0gGGAkFVX3lxTE9fWF9YSnVPRm80Q2NvVU9zLXVob0JGaHRkLVZPZUpqMGJKMFVrSnN1SzA4bklhSDZVWnR4UWwtb25JMHN1YWlGTHRFX20tVUZ1QmtlcUYta0tWM29PQXZSNVIxQklMZTJ4RlVCVTQ2UFNOM2M2N09HaWJVRlY3TmViS3RXQVlSMkhMT2VDMjhzV2txYzNrdVRzbEZINFIwNHZ3ajdaMHZyVTQ4dFN3anllTFFuUGJBVjZIR2RjanVHWFo4YVdCOXBkZWtPS2luejB0RVh5LTdMcUp4MGczTndMTk9JalZ2RlptTFJwOFNDOTRZdHltYlFjeHNiR0s5UlgweG9XQXc?oc=5",
+          "domain": "news18.com",
+          "published_ms": 1793933497000,
+          "kind": "news"
+        },
+        {
+          "title": "Geoffrey Hinton warns AI could trigger major shutdowns; humanity might be better off without it - news.lavx.hu",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPVEpKbkFjV25TaGVhZGtCX3RaNjN1em9TOGdJMnlCeDJtckcwUDdXdGNHZW1xYmJTaXFCbGhBcUdlWkhnRXJoZ0FONGtIblcwc3hMVl9wc1hXSV9IdkRmNHIySS1VdjIxU2VGNlFZX2JuWjZNQTlfMnllTUV1MHNiMkpuSElRV01OZmNaQl9VMkYxRVZOU1NIXzlfNnkwWEN0Q1lVQl9fN0Q0RFh5NEhiV1hqaS1wdXVoaXN1LW5uUUE?oc=5",
+          "domain": "news.lavx.hu",
+          "published_ms": 1793794679000,
+          "kind": "news"
+        },
+        {
+          "title": "Hinton: \"Humanity might have been better off without AI\"... warns of power and financial grid paralysis - 재경일보",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9VSDZ0T09lQTBhVE5rZ2lUMFgxWm5URnRJSUZYd0ZtRzZzb3IybzJ5cTJtNXk4bm52VDNVSkxFa0V6eDVaUXctSmxsWkozdm5hRzNtY2ZWU21kWm1FMXZuM1dR?oc=5",
+          "domain": "news.jkn.co.kr",
+          "published_ms": 1793771704000,
+          "kind": "news"
+        },
+        {
+          "title": "‘We might have been better off never developing AI’: Godfather of AI Geoffrey Hinton warns of risks - Vartha Bharati",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOSVVuX2JfN1g2dzZnMUtWcDVLWTNCMVlsRmZMN2lXTTVFVjcyZ1FtYkhlcGx0eW5tMGM1Y0RGVkdxbXdvV2dnbGwyT1VQOTN3SUlNbXVBaGJsRFRGRlZtbUlHdWdjUXIwcEJJaktBUEtpcFhXdTdqWGVsSnpickdNRDVkQ1ZQbmtoNXk2MWRVenNoS2xNdnE2eWVpcUtjUkhNNXVHT0tWSzd6cTRhelNhTVJGem9MQXpkQUxsSVJlYVNaRjVXekphYXNQRmNBd1lwOVhzcGJIWUNHdUXSAeABQVVfeXFMTmpqaDdtSDZILVNEemVwc1BzQWdPWFVpYWpZd2tTZmJyYW1naWhYRHBqMkw0R2tESjBUX1V0OTVwZ2Zyd040bzlxeUNHdmhhWHBRSGF2UURBTkxISnJJY2dJelFoQkMzUXZrUnZHb1JMclJybDIybFdWekhValJFdUhBY0pYM2VOelZjODVRSTZNejJPLUpmUTVSSWRMTnlvNk1XRVhiVHlXQ0daT1RWVDd3YzlJdlpveW82S19SOUtVS3VPMTFKZWdYSW05UWRkTHVaQzVMUTZ5VE1WUzFraFE?oc=5",
+          "domain": "english.varthabharati.in",
+          "published_ms": 1793967838000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Geoffrey Hinton",
+        "daily_views": 2691,
+        "ratio": 0.92
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 82,
+          "reach": 69,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 100
+        },
+        "total": 80.3,
+        "newest_hours": 61,
+        "domains": [
+          "theguardian.com",
+          "techradar.com",
+          "mezha.net",
+          "tech.yahoo.com",
+          "news18.com",
+          "news.lavx.hu",
+          "news.jkn.co.kr",
+          "english.varthabharati.in"
+        ],
+        "trusted_domains": [
+          "theguardian.com",
+          "techradar.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Geoffrey Hinton Says We Might Be Better Off Without AI"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "OpenAI Adds GIF Creation and Saved Photo References to Images 2.6",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        70,
+        102
+      ],
+      "hook": "OpenAI's latest image update lets you turn photos and sketches straight into animated GIFs.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "OpenAI",
+      "commons_query": "",
+      "youtube_query": "OpenAI Images 2.6 GIF creation",
+      "evidence": [
+        {
+          "title": "OpenAI launches Images 2.6 with new GIF creation and saved photo reference features - ARYnews.tv",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNER0cWlhRlpBQ1psdmVDbXZSU2VjWUJTcjBPeEdJZHZJQ01BS3UyTlhmNHpoWnFhRVU2bzdXNUoyd1RNa3dGYk5LU0RLM1VyYUxoQ2Y3OXhzMElyeW9yM0F6OHNUWVFWMGlFMHhDUnluMmpWMjNHODQxYkp2Mk5KU3V5aEx5S2l6dTFqcGt2V1k1SF93NUl1TVRSUnlGYzVqaWdNNg?oc=5",
+          "domain": "arynews.tv",
+          "published_ms": 1794144576000,
+          "kind": "news",
+          "id": 70
+        },
+        {
+          "title": "ChatGPT Now Lets Users Turn Photos And Sketches Into Animated GIFs - The Hans India",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZV8yU2FRQ1UyVE5pcTM0aXFlLWFKelNFdlUxZGlpcFlQY2QxcTd0U1NiTENTZkZnbXB4WFpWSHRza2tjWUtibHJlU3FUaFh3SzQzN25mVWh3c3pYOGRVMnpPMDczNDk1cGY4ZVNMU01XeWV3S3FhT0RTUzc2cFRKZ2pWQ2J1MVhteFRfSUlESjgyNjNuTkdlTFBCS1JRc29fVDVQSlVVT08yUjVG?oc=5",
+          "domain": "thehansindia.com",
+          "published_ms": 1794036938000,
+          "kind": "news",
+          "id": 102
+        },
+        {
+          "title": "Introducing Images 2.6 I n t r o d u c i n g I m a g e s 2 6 - OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5aRllmMHFwSmtFNVhMV0dnNXpZa0RkejJ2bDkzYUlTLXRBaHF5TXd0VldHSEZxbWEyQ25EdlM1azgxV2p5dGs0cnZ2dG56ekEzQTJDY1FFWjN5MzZh?oc=5",
+          "domain": "openai.com",
+          "published_ms": 1793811764000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Images 2.6: OpenAI Adds GIFs - www.trendingtopics.eu",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1CQTBoVnZWRjY3MmFKMncxaWM0ZjZUUkVsbmwzRnhwTV90bGtLVWRpV1I0dTZvNXM5bHJTbnpHaHVYZEhfWUQ5bDZfdm45UDkyTGZhMkh4TjlBa3Y4d3NZemFWck1Ec0Ey?oc=5",
+          "domain": "trendingtopics.eu",
+          "published_ms": 1793860064000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Adds GIF Creation To ChatGPT With Images 2.6 - Dataconomy",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdF9QYnJEYldSb01QSDcwM3FTeWdZNzMtMEpkY1pCVUNWZi13eTBBTXBSVnpjWUxwT1FMVHg0eEJhaHJGUkp0LVJNbV9FTDhNS19ETFZjVkZLQXdUM1A1VU1icmp0a1ExNDltbzVpbU5UcDlHVVl2VWxqVl9KZTYydF9QelNCSFZDTDlXZWJB?oc=5",
+          "domain": "dataconomy.com",
+          "published_ms": 1793958962000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Adds GIF Creation to ChatGPT in Images 2.6 Update - TOKENPOST",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBJaFJyTjVZOUtlTEdqY0FXYjZKNGVfdEpFcnFqQjhfLXJqX1lDbUJPMFZYYW56eVhnVFZKZHBnR25MT3dtWmVfUDJ0dnBUYmpTcEJ1X19aSUsxajQ?oc=5",
+          "domain": "tokenpost.com",
+          "published_ms": 1793920360000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI launches Images 2.6 in ChatGPT, Codex and API; adds GIF creation feature - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOdjMxcnRYWkVNcHhxeVcxMDFwb2hvRHpGUFRPUkpxUkFKYmNoLVZLTXBiUVdHaGJsb3hhYm5yNW9XbUItWC1zYWJnVDlFd0JPT1lLY3RHdkVWQURuMjlBZDRRVVlCN0RPaDFheU5rU0NVQmEybEZabkJuOHp0NHA3am1WOUhhU1ZiN2taQ3ZnWGlnQ3ZqS3RqMEtEcDNSckptUVBRYnBJWFhKdHBfNWZoX3pzc3ZCWVo3cER6Q0JSc0J1ZzBSVHM0Ti1pQnJpN1RORkR4ZTdOWGowcmNIaHpLbDh6MkdJcHp4ZlR1VzA4TlFtQdIB9wFBVV95cUxOSlJNS252d3huTVNVR015MUotcmZON0hpc0o5RnJLd0h5d0U1UUVyaFZOUFV5dmRpT09Qbnh1Z1lodl96TU9JYklKNGxwT2NoWC1wS0lJWFNUenFLYkVDbU42M2pGVjBnWTZtS2gweG5jYUpQZGxaOGhVWm9uZTRXNzBLaGhwNVp3bjZfT1g1bWlIM1JleEVpTzJ1Ynd1MHJLeTB0WGJndzRuQVZoLUFlTndaS0VqNFl1WW1GcDNtbV95Q19wdkpfalFHaXNMY0VoYmtYakQ5VWtfM1JjaEh3NTB5LVVtaG9PVnNlUVJIcTZzMDJ2Q2VB?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1793850960000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT adds GIF creation and reusable photo references - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOdzlwQXV3bmFkbkRoUURNSms5emlmV0RGd0lSMU45d0IwSEN3WTNRWWlIY0paOEIwVVpfVmpvZTBWYUliYktoU2l6QUlCbXMwRTFURHdqTTUtdHBkb3VFdGRORTVZcm54S0R3UV9fcnFmSmhkUnJYcFhLWVRLMnliUg?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1794128135000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI speeds image creation 50% with Images 2.6, adds GIFs across ChatGPT - Chosunbiz",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE0zbGVRYzBJVHlOSU53TGtMaEw1SE5ITk9ReHZldmRGajNmbktOUGNPeG9tWkROMFFPWFFJR3VaWTBLdnhWb3pLVkxzdVBNclpuOHgxU2ZDazZtWERnUlNEMGFjUW51cGJ3SEtRQVJXWlFueXNCaFMxc0lR0gGOAUFVX3lxTE4yaUZwVXBDd0hLZzFxclF1LXkwNl9jMW9wUU82TVZEdml4QkVfQy0wZkNXdG1KaVkyaUZRVlA2dnlTbXNWZ0xvU3RjTzdyZjRaUXQ0Y01nd3owb21CTXBkWHZGQjVJV2xMeEFxd3lUclVBQTdCUERxc2VFWlVGTWhSejJpVkwwWVdkWFRqS3c?oc=5",
+          "domain": "biz.chosun.com",
+          "published_ms": 1793858100000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Images 2.6 adds GIF creation and saved reference images - Tbreak UAE",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBZU05jLThtVmVpZ3R2Q1ZhMHNhTTE4QWcyUUxwdk15ZW5raGc5a2UxRGN1bWFLc1hiaDdhSEd3em1YbWY5ZDdKMTdtWFEtZEFDZDNHNmM2YndrVW04ZEl1RA?oc=5",
+          "domain": "tbreak.com",
+          "published_ms": 1793937432000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "OpenAI",
+        "daily_views": 8115,
+        "ratio": 1.04
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 78,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 79.3,
+        "newest_hours": 11,
+        "domains": [
+          "arynews.tv",
+          "thehansindia.com",
+          "openai.com",
+          "trendingtopics.eu",
+          "dataconomy.com",
+          "tokenpost.com",
+          "timesofindia.indiatimes.com",
+          "mezha.net",
+          "biz.chosun.com",
+          "tbreak.com"
+        ],
+        "trusted_domains": [
+          "openai.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: OpenAI's Images 2.6 Update Adds Quick GIF Creation from Photos"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Viral Video Claiming Trump Vandalized Office After Midterms is AI",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        99
+      ],
+      "hook": "A viral video showing Trump allegedly trashing his office after the midterms is completely fake and AI-generated.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Donald Trump",
+      "commons_query": "Donald Trump",
+      "youtube_query": "fake AI video Trump office midterms",
+      "evidence": [
+        {
+          "title": "The viral video claiming that Trump vandalised his office following the Republican Party's defeat in 2026 Midterms is AI-generated - FACTLY",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOMWEtMmFtdlBTZ1h6QXFsUHo2SWxOeTFmdE9NZ3FnZk0tVlpRUWdSdW9KQUM2dmxISHhOWTlFQnVUYlVJcjR1M1phTFBFem1XbnVBbC1MSWIteThyYTI2LUdKenpCNF9PdnpIdHR2QWpSbjZ0b01CeFR6UnRhTVdXS0xYczM0MFpjYXJnRWU4cERETElOeENzVjBROHl3RVdqQjRSekJITDZST2k4NjRKMWNaYXRVVUdwQXdIYnlkQzl6b2NRbWZPbERJbDRYQ294bG8wZnRvQ21sd01sM2Z2MEhR?oc=5",
+          "domain": "factly.in",
+          "published_ms": 1794052570000,
+          "kind": "news",
+          "id": 99
+        },
+        {
+          "title": "AI-Generated Video Goes Viral As Showing Trump Destroying Office After US Midterms Setback - Newschecker",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPdWE1ZEMxTV9Mck5tb3VpQkR6T1hGMHFQRXVlN3FHSzFSQ2MwZXpNR2VGb19BZlJwMWVsaU5yVVBIUkJGZWV1QmlFQmlOaFUzb2xURjVFUnRmNGtFWjdmWWJYcXpiZjhwaFZYcWN1c3R5NE4ybGFfcXV2ZVRvMjRERTBlWWRWYmlmX3c4MUdsb3ZESTFQTm5PdVdqVzR2Szh1TWxLQ1NaUm9sU3Q0dUpBN2lyVXBJSHVuTGdNZGNBYXR3dw?oc=5",
+          "domain": "newschecker.in",
+          "published_ms": 1793886623000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Donald Trump",
+        "daily_views": 86322,
+        "ratio": 2.35
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 76,
+          "reach": 99,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 78.8,
+        "newest_hours": 37,
+        "domains": [
+          "factly.in",
+          "newschecker.in"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Bill Gates Warns $10-an-Hour Robots Will Soon Replace Workers",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        66
+      ],
+      "hook": "Bill Gates says cheap humanoid robots could soon replace twenty-dollar-an-hour workers.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Bill Gates",
+      "commons_query": "Bill Gates",
+      "youtube_query": "Bill Gates robot worker replacement",
+      "evidence": [
+        {
+          "title": "Bill Gates Says A $10-an-Hour Robot Could Replace The $20-an-Hour Worker – 'There Is No Plan' For What Comes Next - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPRVBoa29nSklZX3VnS2ZkTUtMdmhOOGt2bHNvMzJSZXhTcnBNYkxidlgxN0d2OTNmRzZVcl9Ya0x1aWNzaFllU0lONDltQm5pUFJGTUNBREVqeENvVjdYeU5OYklrOXVqYXlHbnNwZXcwUVVycEtoQkFTemhMUndTRzh6eTB5VmNBb1RlSnZyeEw?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1794153608000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "AI job crisis: Bill Gates warns robots could replace office staff and manual workers - Firstpost",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOaTVGaE9qanhQMkpFaWFvYjVBbVJ6R2M1M2hDUHlpOG9TR2lDY0pDMUxpcGJvRUQwWGxuYXVBWnlCSWRkNDJQWEtRbjQyYTM5amE4ampLQXBybDU2azUzTkx6Q3BYQ2VPTDZoYlRMLVBuTVRKQVBtUW4yUndjZmNLbFNodHJvaXNPdU1GcXZjbGhsallYS3hLenhUMkVNdWtuam41QUplWTdjaEpjajJyaFVPNDNKVldIaElhWVBOQVhwc08xaXlZ0gHMAUFVX3lxTE5xMDJoX3M2OU1hZ2tfMldXaWtPVUNuRTlFVTlpeHItSmVUWEZsVmlTa3pqaWp6aFNJUW90QXNZV2RjTUhLb0o1YU8wX0dmU2tyUnN6dlhEb1B2UEN3X1k4RElzOTg4QUIzTEpKcEthZkJibzZSRXdyOUZiSjVQVXNSTnlDX1oyb09UWi1iS1M4UjVGSDA0V1hxeGdsVmNXUG5CeDB2ckh0aTBabllBYlVGRFN2MkR0anE1Y1dadUlzczk0R1ZNN05mT2ZIdQ?oc=5",
+          "domain": "firstpost.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Bill Gates",
+        "daily_views": 4273,
+        "ratio": 0.95
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 73,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 78.2,
+        "newest_hours": 9,
+        "domains": [
+          "finance.yahoo.com",
+          "firstpost.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Bill Gates Says $10-an-Hour Robots Are Coming for Jobs"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "NYT Cooking AI Assistant Flubs Recipe Swaps",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        54,
+        90
+      ],
+      "hook": "Even the New York Times cooking assistant is struggling, giving users wild ingredient swaps that ruin dinners.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "The New York Times",
+      "commons_query": "",
+      "youtube_query": "NYT Cooking AI recipe failures",
+      "evidence": [
+        {
+          "title": "NYT Cooking’s AI assistant saved my weeknight chicken, but almost ruined my cake",
+          "url": "https://www.theverge.com/tech/1029489/nyt-cooking-ai-assistant-review",
+          "domain": "theverge.com",
+          "published_ms": 1794166907000,
+          "kind": "feed",
+          "id": 54
+        },
+        {
+          "title": "NYT Cooking AI Gets 3 Egg & Butter Swaps Wrong [2026] - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNdGxIUEIxYTZBd2gwa1puUTlxYlA1dDRzbUdUNjVmbk1PUnotTEkxYmZSbFRjazhGcjJicS1FTnhYdHJpNEpoQmZRTFRzLURGa1RmM0xtVy1LTU5CemdWSlBDUW9yQWdkWXplYkRvMUhQVEgtcmlHd1p0enpWMEppM290UTV6Z1VhZWc?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1794093833000,
+          "kind": "news",
+          "id": 90
+        }
+      ],
+      "wikipedia": {
+        "title": "The New York Times",
+        "daily_views": 4161,
+        "ratio": 1.13
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 72,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 76.3,
+        "newest_hours": 5,
+        "domains": [
+          "theverge.com",
+          "shattered.io"
+        ],
+        "trusted_domains": [
+          "theverge.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "US Air Traffic Control Finally Retiring Decades-Old Floppy Disks by 2028",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        7,
+        35
+      ],
+      "hook": "Even as tech companies race into advanced AI, US air traffic control is only now phasing out floppy disks.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 6,
+        "visual": 7
+      },
+      "wikipedia_title": "Floppy disk",
+      "commons_query": "Floppy disk",
+      "youtube_query": "air traffic control floppy disks FAA",
+      "evidence": [
+        {
+          "title": "US FAA says it will phase out floppy disks from air traffic control by 2028",
+          "url": "https://www.reuters.com/world/us/us-faa-says-it-will-phase-out-floppy-disks-air-traffic-control-by-2028-2026-11-05/",
+          "domain": "reuters.com",
+          "published_ms": 1793937628000,
+          "points": 405,
+          "kind": "hn",
+          "id": 7
+        },
+        {
+          "title": "FAA begins retiring decades old floppy disks from air traffic control",
+          "url": "https://www.faa.gov/newsroom/trumps-transportation-secretary-sean-p-duffy-begins-retiring-decades-old-floppy-disks-air",
+          "domain": "faa.gov",
+          "published_ms": 1793977404000,
+          "points": 89,
+          "kind": "hn",
+          "id": 35
+        },
+        {
+          "title": "Trump’s Transportation Secretary Sean P. Duffy Begins Retiring Decades Old Floppy Disks from Air Traffic Control as Part of Ongoing Modernization Effort Deployment of Brand New Air Traffic Control Continues at Record Pace - Federal Aviation Administration (.gov)",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMUs0T1NUbms4WW1lMmJEWlNCemhZMnFDdlJPdkxuZGpOZnJKQXVzNm5iWWQ5ay1TaWtYVGRON2lmVGpPcWNESjh2V0QzVzBEZlB3dl9pWE13dGxNTjBUUzNoMWxFMUtnVWxUZzZ0TkM2Qi1EalhHblNWNExQdU9vbDVXcXQ5RG5sS29JNFVTOERxblZLdmw1OEpVM19KU0tpekhGUmxZdnkzY2wxbFkwZlRRNlVULWJsQkE?oc=5",
+          "domain": "faa.gov",
+          "published_ms": 1793886741000,
+          "kind": "news"
+        },
+        {
+          "title": "US FAA says it will phase out floppy disks from air traffic control by 2028 - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPbURGRWJmdmtBZjNxOUNBbldRay1wNndubFg0TVgxZ2c4ejNndkY1ZVhyRXVic2g3Mmg0STB1RjJPdm9Od3VuX1lPTW1nWEFkTUczc0QzeGo2ZkdEMThfbDc1X2ZtQ2JlT2VyZE9NWkswRUo5d3RrdGl2ZGZ3TlJHc0N5WDhZenRzZndsNEJfRDBsYUJXLXlKQ3BraThkZm80aHdzVkJZdmQxMEF3aEoycFVPZlpIQQ?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793900865000,
+          "kind": "news"
+        },
+        {
+          "title": "F.A.A. to Phase Out Floppy Disks in Air Traffic Control Towers - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE44X2NRdXlkdmpFdXI0Yk9TVGI5WVZQYTZQVnRNUG5Da3Z6TllqeG5TY2VKYWF3WVRPbDFoVnlqVU93MnM2VUVOUERPemZpMXYybzVIdVFmOGVSZ1ozMmF3c0Y0NEl0ZGdnZ3d1NURKTGpraFJEVEZN?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1793990534000,
+          "kind": "news"
+        },
+        {
+          "title": "The FAA Is Finally Phasing Out Floppy Disks From Air Traffic Control - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNa19pTGhfcFBDNTN5MUZHZ2RNU0JoUi1sTElsQUxuZG9oZmFiWUVnT1VZYi1aeXhTYmF0N3k4SU8yRUllcHhrSEdDT244d1Q2X3FaWi13NWZmREptZmNxcG9ZMUY4dnNkS2tCYXRPYVFCSGd3RmlRdDJ5cUVPMVREckpRWDhDd1FUd09jczNHeXoxWjV3YlN2WkRxbFFTbmh2dXVkeQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1793906203000,
+          "kind": "news"
+        },
+        {
+          "title": "FAA to Replace Floppy Disks Used in Air Traffic Control by End of 2028 - WataugaOnline.com",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNOWhhT0FjNksyYklObDU5czA1a2FUVktRWWtvZVBSVE0yMk52Y3Mwc043cnJSNjlpOVJsd1R3UEhUQUhnVzRPNEplNDVaZFNTN05Ud1hzc1FTaUkzV3lQTFpRcVRrSlp5ZUZ5WkNzb0JCZ3pDOXpZU09VLVhRb1lwNF9KblVLOGRodGtaWDZCV3o1OG9YU3ZWeDRTbDZMUQ?oc=5",
+          "domain": "wataugaonline.com",
+          "published_ms": 1794001614000,
+          "kind": "news"
+        },
+        {
+          "title": "FAA to finally phase out floppy disks from air traffic control systems by 2028 - LiveNOW from FOX",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNdDN2S1ZUQ2ctWHBUcnVjR2pfYk9GUjM5QXdycl9tckhBV3RDbzBKSEJLTFBXWHRRWndKcl9tWXoxQTF5QnZTWjRJYW5teENhZ255VTBJQlFNSk1nZk9sOTJxZjNBbFBscElWODA3ZzdOaTNCNXgyeFJxTmlWRDItOXM2NC1naFREaURMU2hrSmJlSmlBdlRKa1VFMFNhV1A3ZGlpTVZzQQ?oc=5",
+          "domain": "livenowfox.com",
+          "published_ms": 1793920193000,
+          "kind": "news"
+        },
+        {
+          "title": "FAA to eliminate floppy disks from air traffic control by 2028 - The San Joaquin Valley Sun",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOUGJiZ1NURkIwYWpoLThTZ0ZwN1YyNTJHV0VobFlWWkNQd3U5blViUk9nOFppN3MtUTg4ZnZ4YlljTTBZa0tJUENXY0ZJeEFRU2NkdXk1Q0VtWjBPdk1wcWI1ZVVnRmliQ0stUTZOajVjV1JUOWRjb3hPcV9PYXZMNlBkb2dVQWJld095UEo3bw?oc=5",
+          "domain": "sjvsun.com",
+          "published_ms": 1793916656000,
+          "kind": "news"
+        },
+        {
+          "title": "FAA replacing outdated floppy disks with new air traffic control technology - WISH-TV",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNaHNRTWt5N1FFbFQ1bjk1NUVJaG9TdFRCVk1XWFliM0VCTUx2ZGUtWWdBZHFWUnZkcDJVMklvWEtucXpIYXEzMEVsTEFMTmRReG1ORTgwZTd6cEcwSktmNThjbzZIcHJtQ0J2YU02bnRYbDN0UUZMRElVaUhUUU5vM2NlREdzRFF5SmZyNkY4TWh1bnhmYTdONXhYb1V4S05ndm9OaUZLVDlHV2l0YWVjaVlUcw?oc=5",
+          "domain": "wishtv.com",
+          "published_ms": 1793983320000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Floppy disk",
+        "daily_views": 1051,
+        "ratio": 1.19
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 60,
+          "curiosity": 80,
+          "relevance": 60,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 75.5,
+        "newest_hours": 51,
+        "domains": [
+          "reuters.com",
+          "faa.gov",
+          "nytimes.com",
+          "engadget.com",
+          "wataugaonline.com",
+          "livenowfox.com",
+          "sjvsun.com",
+          "wishtv.com"
+        ],
+        "trusted_domains": [
+          "reuters.com",
+          "nytimes.com",
+          "engadget.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: US Air Traffic Control Is Finally Removing Floppy Disks"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Elvis and Eminem Rights Holders Sue Suno Over Copyright",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        64
+      ],
+      "hook": "The estates of Elvis and Eminem are taking AI music generator Suno to court over copyright infringement.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Suno AI",
+      "commons_query": "",
+      "youtube_query": "Suno AI lawsuit Elvis Eminem",
+      "evidence": [
+        {
+          "title": "Elvis and Eminem rights holders are suing Suno",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1029533/elvis-eminem-suno-ai-music-clone-lawsuit",
+          "domain": "theverge.com",
+          "published_ms": 1794158599000,
+          "kind": "feed",
+          "id": 64
+        },
+        {
+          "title": "Elvis and Eminem rights holders are suing Suno - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPbjUtYjZ0U3JmQzZveW5xMkVUcVNzMFR2dVduYWdHOFNMVWZqTWVKa3U0U0YyNkpxM053MHdNcnhEdk9QanZ1UDZEMTdUOHBZZkFzX0h6WW1sd3ZtZkw1dTVneTVZc2JWU3ZlRnRtYkxqeG1CWFp2RURZR212aUlsM3BtalJUUzhNeC0yZ1hpSnFMbHo5bF9MR3hEcktwcjVsUlE?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1794158599000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis Presley Rights Owners Sue Suno Over AI Voice Cloning: ‘Elvis’ Identity Was Stolen’ - Billboard",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5YM3JlOU9ZbFNlaDhfeXlKU3FCYVh5aFYwZ2k3UWthRnB4WHk2TXNRMlBNM1l5NnpuTm5sLUdYNjM3ZC0yaFl5bUhxU0NabjJBX2pKajF2YXozN1FYM05vMlpsVHpyMm91WFNnc2VtSnVfUmVsQTlpR2ZKWkkwRjQ?oc=5",
+          "domain": "billboard.com",
+          "published_ms": 1794071069000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis Presley rights holders and Eminem’s publisher sue AI music generator Suno - The Express Tribune",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNa3RIT2NSb0hSZnUzNGJObFp1QVB6LWtHYzNqME1HUjRoak1DbXRJaEZMcXdwVjkyaFIxd2pxN0RwUTcwWGJLa3hScjRwVXluTkIzdzR2dkVoNHUtWXVQYWZGUjVzb3BXc0ZsaHVVVFFDNUJBOUx1TjBwQUZQZXYwbDd5bnNPUXUxdE5nWlhjYmNvamhJUEZxSHdNcmJXMTVzbVVHRVlMWVVLdnhQVEFieXVqNWVId9IBvgFBVV95cUxOT3ZOSTBWM0R6Zl92NEwwdktxbzFuNWVTY2FYUFdZRDhwaUdHdlRWY3VYZ0J6MWtjUm1YNzdnTVdtQ3RhNXZYSlB5X0ljeV9MelcxVTVodkxKVERWV0FKZndtVDl0N0gwWUFZaUJkZ1NTRDBXSHhBSWtvak83dkZQeGVmSlRnMHJIU3pIZ2lsWUxRZG1MZXlnSVFtQ1JBUnNCWkpJTzZkQm5jcXV6Snk0OElXOFJ1anpTVkF6dVRn?oc=5",
+          "domain": "tribune.com.pk",
+          "published_ms": 1794076298000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis rights holders and Eminem publisher sue AI music generator Suno - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQWnlfRFZkMmViTi1rRnFaVENORU1VSU9URVVSTlg1NzhZUGVscWMwTzh4SnBtc3lPb2c0R0xxbzVGblN4Z3puRW1FRG9CQ2wtVzg2b0JZMFd2S0hnV3lEY2JPeFdGQW9vdld0bEVaN1VCSl9UOHVVQUZtbUowT0NfY1pqRGR4Zw?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1794069282000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis and Eminem rights holders sue Suno over AI music training and voice imitation - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPS0lqYjMweHJjcmU3NUg2TnI5YzRwSzdzNGg5eEpQcWpOU1BQVUNyZ2V2TUF5R1Z3LS0yQ09sQ1FhSldFV2ZtUl9BSTN6VXJGUUFWOHRMamNFWXh4LTF3Q3dxeXFHbzJ6UTB3VDVhR3Y4YU8zVEtlUU00c0tNNk5TMF85VXVXMTRBR0UzUTVacUROLXpycjU0RXQ3WWZSZHBlMHJFakhFUkFjV2NRZlNhNg?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1794160891000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis Presley’s Rights Owners Sue Suno for Cloning His Voice. It’s One of the First Big Tests of Tennessee’s ELVIS Act - Voice Over Herald",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLUhnZF9NbVN2aWZTckV1TFdsQ3lVTmNfTW5PSFE4NVduTy1yVU1SdEgwN2F1ZUNfZGp2aXYtUFZlNHJSNElQVHFjVWhUX29QSVBReFZ6Ty1hbXUxVlVwSjZ4bEwwX29nclgwS0JBWUloaVpLMWZvaHVwZloxMHhCODFHOEpPMUtHVVlWX1ByZw?oc=5",
+          "domain": "voiceoverherald.com",
+          "published_ms": 1794096000000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis and Eminem Rights Holders Sue Suno Over AI Voice Cloning - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5LMVMtd3IwYnZNSWpEOC1QSy1qTU5HOWQxYnJmeU92UU9SaktlNE5oYUkzaTc3bndSM0kxV0VHZkRhYUUtS1RSRU9VdnRfb21paWQyMkpNblU3V2w2dHhpMlFlbWp5T2RsN05iN2twVFJYVXV2WXc?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1794168300000,
+          "kind": "news"
+        },
+        {
+          "title": "Elvis, Eminem rights holders sue AI music generator Suno - The Daily Star",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOSy1ub3ZyWEdZR2JmbzFsSHZkd0pZT0xpMVlaRWtfU2ZrVUlFQ19VZ3lWOTVIVmJWTS1JSERhMGFFSzZ6d1FxS0xobHMtVEQ4WXpsZ1YzOHdHbkh4bnl3RFEwY1dIUzVGOGFzd1ZYWFZDVEZhaG5MMlNtM1dQRnI2eVBiTmVQblp5MEZ4M2hPdUU0SWhROW5fRVVRRjlsOXlnZnRBZ01wRjJ5WnpFN0RZbzJlVnRZUlB3N21r?oc=5",
+          "domain": "thedailystar.net",
+          "published_ms": 1794132091000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Suno AI",
+        "daily_views": 26,
+        "ratio": 0.28
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 29,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 100
+        },
+        "total": 71.8,
+        "newest_hours": 5,
+        "domains": [
+          "theverge.com",
+          "billboard.com",
+          "tribune.com.pk",
+          "mezha.net",
+          "startupfortune.com",
+          "voiceoverherald.com",
+          "finance.biggo.com",
+          "thedailystar.net"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "billboard.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Elvis and Eminem Rightsholders Sue Suno AI"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "88-Year-Old Loses $450,000 to Deepfake Scam While Bank Refuses Refund",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        75
+      ],
+      "hook": "An 88-year-old lost nearly half a million dollars to a convincing deepfake scam, and his bank won't pay him back.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "Deepfake",
+      "commons_query": "",
+      "youtube_query": "deepfake scam bank elderly loss",
+      "evidence": [
+        {
+          "title": "An 88-year-old lost $450,000 to a deepfake scam — and his bank won't return a penny under Canada's current rules - Yahoo! Finance Canada",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5PLWxHVDFkSEZ6S09xSVUtdVp6b2k4dXJjQTh5eVpZUUlqYnFJODBCeFNuNjBFZEM1XzlCMVhqLXlSdjBGalVfY0RpMkRvbTV4ZkNzZ1A0YlRCR0ZfUUQtRk5vVnlTdDZ4Vk5EX292MG9EbnhiQ3k4?oc=5",
+          "domain": "ca.finance.yahoo.com",
+          "published_ms": 1794140100000,
+          "kind": "news",
+          "id": 75
+        }
+      ],
+      "wikipedia": {
+        "title": "Deepfake",
+        "daily_views": 1210,
+        "ratio": 1.15
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 62,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 60,
+          "source_quality": 35
+        },
+        "total": 69,
+        "newest_hours": 13,
+        "domains": [
+          "ca.finance.yahoo.com"
+        ],
+        "trusted_domains": [
+          "ca.finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Senior Loses $450,000 to Deepfake Scam"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "University Libraries Swarmed by AI Scraping Bots",
+      "pillar": "Unexpected AI abilities and limits",
+      "evidence_ids": [
+        24
+      ],
+      "hook": "University digital libraries are being overrun by hungry AI bots, making it harder for everyday humans to access public archives.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Web scraping",
+      "commons_query": "",
+      "youtube_query": "AI bots scraping university libraries",
+      "evidence": [
+        {
+          "title": "University libraries are being swarmed by AI bots, putting public access at risk",
+          "url": "https://www.cbc.ca/news/world/university-libraries-ai-data-scraping-bots-9.7408287",
+          "domain": "cbc.ca",
+          "published_ms": 1793974389000,
+          "points": 136,
+          "kind": "hn",
+          "id": 24
+        },
+        {
+          "title": "University libraries are being swarmed by AI bots, putting public access at risk - CBC",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPa1pLWkZHZENaWExycVRVLWVjLWRyNHFUNnFRbXplZ0ExYlo2RWJiZDEyZHlyME8xcmI4cWZIcUhRU21YUUhNY3hOSFpscGozRmRUa1lweWhLOERJNUU1WGNzaUdJUElmN081bnVBYVNnTTJjQXNwVDRwVmxaNlV3dlVob3NEbWpmV0E?oc=5",
+          "domain": "cbc.ca",
+          "published_ms": 1793869200000,
+          "kind": "news"
+        },
+        {
+          "title": "Data-scraping bots flood university libraries' websites - Cybernews",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE0yaFBNaU9DWVVhV1djWmFFYmlhTHVBbG5Xc1FGVVYzQTBGQmdGWjBNLTFLcWdJSjZvanBMT3dyVFF1a2ZWWEhEN0dCUVIxMUV0NmsyQVdoNy1yNTQtNlFCRUd0Q3Y2NDg?oc=5",
+          "domain": "cybernews.com",
+          "published_ms": 1793880667000,
+          "kind": "news"
+        },
+        {
+          "title": "Students work on laptops in the Pedagogical Library at the Free University of Berlin on Sept. 20, 2011. The online resources of academic libraries around the world are increasingly being disrupted by AI bots hunting for content. - Yahoo News Canada",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNWUxvVDhLNUp4X0YxN0VHdGhRQTI4WmhEVTI5Q3BlaThxTExmOVRTUDVxQXp3MlFjbkk4eWM5c2RVVjhGVUlCYko3dXVNaGxIUVZyd2NmcHdHYUpWNGl2SGVGalB2RFZMSE9WN3VjekhOQjVkUTZLeW1KSGMycDVoT1pvWEo2clpTOUE?oc=5",
+          "domain": "ca.news.yahoo.com",
+          "published_ms": 1793869200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Web scraping",
+        "daily_views": 2303,
+        "ratio": 0.57
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 67,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 30
+        },
+        "total": 65.2,
+        "newest_hours": 59,
+        "domains": [
+          "cbc.ca",
+          "cybernews.com",
+          "ca.news.yahoo.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Meta Ray-Ban Smart Glasses Hacked to Run Unauthorized Apps",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        78
+      ],
+      "hook": "Researchers just bypassed Meta's security fixes to run unauthorized apps right on Ray-Ban smart glasses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ray-Ban Meta smart glasses",
+      "commons_query": "",
+      "youtube_query": "Meta Ray Ban smart glasses hack",
+      "evidence": [
+        {
+          "title": "Meta Ray-Ban Smart Glasses Hacked: Researcher Bypasses Meta's Security Fix to Run Unauthorized Apps - International Business Times, Singapore Edition",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVGJUS2FqVVVtUFNWeU5wd3NZUlZiNGZkbUs4cVB1QnVudkNSczFZM19weXpRU2k2cnhsOUdvYWIxaVRSNmRGdmw5Sjh3S1N2NFprTW5QM0Z3U0R0WEJMX0dWU2tNLWlPaHN2T2NSU3dIcXZfNjlOUGRuTW9iSkZ3eUg0OWVXT1Y5TkhuR1lSREdlSDQ0YjRaNjVTNlhZbUJieFhJWkZBUWkxejlvX2V4NzFEemJncjdpWEZ2bThn?oc=5",
+          "domain": "ibtimes.sg",
+          "published_ms": 1794123542000,
+          "kind": "news",
+          "id": 78
+        },
+        {
+          "title": "Smart Glasses Detector Apps Are Here. How Well Do They Work? - CNET",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPeTdWcjVkci03QU9OU0tLbEZZWkwzVnEycTE1eUNzcl9waTBSdEJ1LURwalljWC1pdGw3SFNGLWo0M2tvUkx5N1p3NGk4U2ZORmNzWFAyNTdmNFpmamtfbW40ay03UWg5R0dNcUVmUHZEMFQzZTJFZmZJekZ1d0Iwb3gtX0ZBVkluV0dOZ1ZmZmhVYzhXcUd3ZVJVcWw5RV9mOGc?oc=5",
+          "domain": "cnet.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 64.5,
+        "newest_hours": 17,
+        "domains": [
+          "ibtimes.sg",
+          "cnet.com"
+        ],
+        "trusted_domains": [
+          "cnet.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Meta Ray-Ban smart glasses hacked to run unauthorized apps"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Job Seekers Are Rejecting Companies That Use AI Interviews",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        84
+      ],
+      "hook": "Employed job seekers are actively shunning companies that force them to interview with AI bots.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "Employment interview",
+      "commons_query": "",
+      "youtube_query": "job seekers reject AI interviews",
+      "evidence": [
+        {
+          "title": "Employed job seekers are shunning companies which use AI interviews — and I don't blame them - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRnhOY21hdkRpMHBQVkxSRDM2OGFIVmVMNXlicWZlcmNNeTE2anZ2ajBNZlRHaXVRLXRNd3V5ckxtNzhJdHVvUlRIZkcwZUJSTHRJNk1YUGJCSmVuVk5HSWRKamF6YmxkNm9Tdk9ONFM2NHB2eDVJWVZvSmIyZEt1TWxxY25QcVJxRlc5WFEtVEZxLVZpVWJkYkUxNzc2SFlwMk1YaXBReF8xcFVwTnFWbFdfV0FyVHVuTVJB?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794121200000,
+          "kind": "news",
+          "id": 84
+        },
+        {
+          "title": "The New York Times. . Young job seekers are struggling with “ghost postings,” applicant tracking systems and A.I. avatars in job interviews. Our reporter Callie Holtermann explores how Gen Z is finding that it is rare to talk to a human in the job hunt. - Facebook",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNbW5pOS1FMFo5NXBTUllCdGhhOGxRQnFqUjB0eVNYUzJOei1sbjdxeVFTSWJPTW9UczJvczFhYXBRbklmcTZvbG1zT3JNbTdld3FDbXNaMTg5ZGFFdkVyUzdkTFBIN0NSa0FWUHdLLXlxamdKcDFuQlUtYjVmOEVLMGprR3MteWJjd3JDdHBzc2d3c1JndnhHWW9YMTlIdmRuZXkyZWJ3?oc=5",
+          "domain": "facebook.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Employment interview",
+        "daily_views": 0,
+        "ratio": 0.37
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 59.6,
+        "newest_hours": 18,
+        "domains": [
+          "techradar.com",
+          "facebook.com"
+        ],
+        "trusted_domains": [
+          "techradar.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Job Seekers Are Shunning Companies That Use AI Interviews"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Chinese University Drops AI Camera Monitoring After Student Outcry",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        106
+      ],
+      "hook": "A university had to stop using AI cameras to track if students looked distracted after a massive public backlash.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Facial recognition system",
+      "commons_query": "",
+      "youtube_query": "University AI classroom monitoring backlash",
+      "evidence": [
+        {
+          "title": "Chinese university stops using AI to spot absent-minded students after outcry - South China Morning Post",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNZnRTbXZoVXQzQ3ZhTkxLRmpQWmdTR1NfUUFfRGtQcy1qUkN3U0o1VmNjZGNaZ2dZUS1wYUc5UzVfR3FDaUx4QVFYSW1hbnMzWU50SW9FVWtXS21NWlBGSTR1U3ZCOHA2NEt1cHdNWEQ3Z2xzaFdBNXVyUVdEeWZ5Zno4alBFNUxzdzRnNXcxemVBcEp1dW1wNmhjdHVMQkNlWHNXQ2JINHdFa21XWnZOV2QzdkVvR01ldDdLSmFOUUY0UHRxVmtGeWRBamhJeVnSAc8BQVVfeXFMTWd5aHQ5N05nbGlYTk1SdVR3czRuX1hoeWN4UXlHYnh0Rk5pR2hsUWV0UVVpekdPZU15NGN3WDVlR01BVmx2dVA4QVBkYll6b1pQbVVETnNOcXVkZlhFU0xsYXZXblphT1kxUXNCeDhneU5uNDJWM3hxSnNIX0FzUnJwSVh2bE1RZWpUSmFtT0V4LXJsRDlxb3NfZ3hDVld1aU0yZUtWM2VpX2FSOWstemI1dWFQUnJQc21pQUdsVXZtNXZGdDl0c0pmMVU2Wkcw?oc=5",
+          "domain": "scmp.com",
+          "published_ms": 1794052809000,
+          "kind": "news",
+          "id": 106
+        }
+      ],
+      "wikipedia": {
+        "title": "Facial recognition system",
+        "daily_views": 189,
+        "ratio": 1.12
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 60,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 59.2,
+        "newest_hours": 37,
+        "domains": [
+          "scmp.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "AI Scams Target Companies Using Realistic Boss Voice Clones",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        50
+      ],
+      "hook": "Scammers are using eerily realistic voice clones of company bosses to trick employees into handing over money.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Voice cloning",
+      "commons_query": "",
+      "youtube_query": "AI voice clone scam boss",
+      "evidence": [
+        {
+          "title": "AI scam targeted companies using realistic boss voice clones - https://latination.com/",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5zemhzMGRUUHR0eXFNWFdLUTNFcm5yMDEzSnB1b3ZpWkE1V1hqcjNOUldNeEN0ZVF5NEFyc3dZVU1GRmdCLTBwQ1BPNzNjVV9pRVZzSVRDbkF2V0RaTDdDSDBXMDR0U0FLWGkwS3RGN2pxbmpNUWdkOWdn?oc=5",
+          "domain": "latination.com",
+          "published_ms": 1794171767000,
+          "kind": "news",
+          "id": 50
+        }
+      ],
+      "wikipedia": {
+        "title": "Voice cloning",
+        "daily_views": 3,
+        "ratio": 0.64
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 12,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 56.3,
+        "newest_hours": 4,
+        "domains": [
+          "latination.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "US Charges Three in $129M Deepfake Fraud Operation Routed via Greece",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        90
+      ],
+      "hook": "Federal prosecutors have charged three individuals in a massive $129 million deepfake investment fraud scheme.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 5
+      },
+      "wikipedia_title": "Electronic funds transfer fraud",
+      "commons_query": "",
+      "youtube_query": "deepfake fraud charges US Greece",
+      "evidence": [
+        {
+          "title": "US Charges Three Over $129m Deepfake Fraud Routed via Greece - Greek City Times",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBiQkN4YkZkV1JwaDhSa0FjYUQ0a3laM2pnYWFuZGRWNkxnMXo0emJoV014a3QtQzZvcGJMVnFVN0dUcU5RSGlNYjM2QVVkeWVybjFiZ1ZMU0YyUzE1YUpjMUFBUQ?oc=5",
+          "domain": "greekcitytimes.com",
+          "published_ms": 1794092996000,
+          "kind": "news",
+          "id": 90
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 50,
+          "source_quality": 0
+        },
+        "total": 48.9,
+        "newest_hours": 26,
+        "domains": [
+          "greekcitytimes.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "score 48.9 below 50"
+      ],
+      "wave": 1
+    }
+  ]
+}
