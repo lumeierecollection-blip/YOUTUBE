@@ -1,0 +1,6 @@
+Error: Image to composite must have same dimensions or smaller
+    at Sharp.toBuffer (/home/runner/work/YOUTUBE/YOUTUBE/node_modules/sharp/dist/output.cjs:159:17)
+    at treatDocument (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/preview.mjs:96:224)
+    at async mkItem (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/preview.mjs:231:17)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/preview.mjs:240:3)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
