@@ -1,0 +1,79 @@
+{
+  "description": "Authoritative list of the channels on the multi-channel platform. legacy_channel_id links a channel to its entry in channels.json; null means it has none yet. upload.status decides whether a channel may ever upload.",
+  "white_motion_graphics_default": true,
+  "max_shorts_seconds": 30,
+  "channels": [
+    {
+      "key": "ai-tested", "name": "AI Tested", "legacy_channel_id": "2", "priority": 1, "agent": "agent-ai-tested",
+      "editorial": "AI tools, features, comparisons and real workflows. Demonstrates what a tool does instead of repeating announcements.",
+      "visual": "Clean technology journalism on white. Restrained colour. Purple must not dominate.",
+      "foundations": ["remotion", ".agents/skills/terminal-inserts", ".agents/skills/article-highlights", ".agents/skills/motion-graphics"],
+      "voice_direction": "Confident, clear, practical.", "tts_voice": "en-US-AndrewNeural",
+      "formats": ["short"], "claim_categories": ["demonstrated_feature", "marketing_claim", "measured_statistic"],
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_02", "youtube_channel_id": "UCZY_vlCgnK839ZJjhCCWuyg" }
+    },
+    {
+      "key": "hidden-past", "name": "Hidden Past", "legacy_channel_id": "1", "priority": 2, "agent": "agent-hidden-past",
+      "editorial": "Evidence-led history: mysteries, forgotten people and events, investigations. Never manufactures mystery where the record is plain.",
+      "visual": "VOX-inspired editorial on white or warm archival paper. Archival photographs never move.",
+      "foundations": ["remotion", ".agents/skills/vox-style-treatment"],
+      "voice_direction": "Serious, intriguing, documentary.", "tts_voice": "en-GB-RyanNeural",
+      "formats": ["short"], "claim_categories": ["primary_source", "later_interpretation", "established_fact"],
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_01", "youtube_channel_id": "UCTUvox63wWPYClFTtq0gUkw" }
+    },
+    {
+      "key": "red-space-facts", "name": "Red Space Facts", "legacy_channel_id": null, "priority": 3, "agent": "agent-red-space-facts",
+      "editorial": "Planets, astronomy and what-if questions. Separates observations, models, hypotheticals and artistic interpretation.",
+      "visual": "Cinematic, scientifically grounded space. Explanatory graphics default to white; space scenes use space.",
+      "foundations": ["SOLSYS (owner-selected; repository to be confirmed)", "three.js or Blender", "remotion"],
+      "voice_direction": "Curious, immersive, scientifically grounded.", "tts_voice": "en-US-GuyNeural",
+      "formats": ["short"], "claim_categories": ["observation", "scientific_model", "hypothetical", "artistic_interpretation"],
+      "upload": { "status": "not_configured", "reason": "No YouTube channel or OAuth secret is on record for this channel." }
+    },
+    {
+      "key": "dopamine-loop", "name": "Dopamine Loop", "legacy_channel_id": null, "priority": 3, "agent": "agent-dopamine-loop",
+      "editorial": "The subjective experience of emotion. Picture the emotion, not just the mind. Never diagnoses the viewer.",
+      "visual": "Cinematic psychological storytelling; expressive Rive characters where they help. Not a cartoon channel.",
+      "foundations": ["rive", "remotion"],
+      "voice_direction": "Empathetic, thoughtful.", "tts_voice": "en-US-EmmaNeural",
+      "formats": ["short"], "claim_categories": ["established_fact", "hypothesis", "interpretation"],
+      "upload": { "status": "not_configured", "reason": "No YouTube channel or OAuth secret is on record for this channel." }
+    },
+    {
+      "key": "gray-matter", "name": "Gray Matter", "legacy_channel_id": null, "priority": 3, "agent": "agent-gray-matter",
+      "editorial": "What happens inside the brain during everyday experience. Separates correlation from causation.",
+      "visual": "Scientifically grounded, labelled anatomy and processes. Every structure is named on screen.",
+      "foundations": ["https://github.com/Garinmckayl/anima", "remotion"],
+      "voice_direction": "Clear, educational, accessible.", "tts_voice": "en-US-JennyNeural",
+      "formats": ["short"], "claim_categories": ["established_fact", "correlation", "causation", "hypothesis"],
+      "upload": { "status": "not_configured", "reason": "No YouTube channel or OAuth secret is on record for this channel." }
+    },
+    {
+      "key": "rival-lines", "name": "Rival Lines", "legacy_channel_id": "4", "priority": 3, "agent": "agent-rival-lines",
+      "editorial": "Football first. Player documentaries, and match analysis of genuinely significant games with a clear thesis.",
+      "visual": "Premium sports documentary and tactical broadcast graphics. Never cartoonish.",
+      "foundations": ["https://github.com/andrewRowlinson/mplsoccer", "https://github.com/haidrrrry/claude-remotion-skill", "remotion"],
+      "voice_direction": "Energetic when earned, professional.", "tts_voice": "en-US-AriaNeural",
+      "formats": ["player_documentary", "match_analysis"], "claim_categories": ["measured_statistic", "estimate_from_video", "established_fact"],
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_04" }
+    },
+    {
+      "key": "court-and-spotlight", "name": "Court & Spotlight", "legacy_channel_id": "3", "priority": 3, "agent": "agent-court-and-spotlight",
+      "editorial": "Celebrity and pop culture in three selectable formats: investigation, entertainment magazine, VOX-style explainer.",
+      "visual": "Format decides: evidence-panel documentary, glossy magazine, or explanatory graphics.",
+      "foundations": ["https://github.com/GovinduSasanka/opus-motion-library", "https://github.com/haidrrrry/claude-remotion-skill", "https://github.com/remotion-dev/skills", "remotion"],
+      "voice_direction": "Follows the format: serious, energetic or analytical.", "tts_voice": "en-US-GuyNeural",
+      "formats": ["investigation", "entertainment_magazine", "vox_explainer"], "claim_categories": ["allegation", "charge", "conviction", "proven_fact", "disputed_claim", "public_statement", "speculation", "award_won", "nomination"],
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_03" }
+    },
+    {
+      "key": "world-view", "name": "World View", "legacy_channel_id": null, "priority": 3, "agent": "agent-world-view",
+      "editorial": "Serious, neutral geopolitics and political history. Attributes contested interpretations and never treats a group as one political entity.",
+      "visual": "VOX-inspired visual journalism with realistic maps. Six scene directions.",
+      "foundations": ["https://github.com/bouclem/OpenAnimateMyMaps", "https://github.com/Cele-san/vox-style-animation", "https://github.com/iart-ai/map-animation-skills", "https://github.com/GovinduSasanka/opus-motion-library", "remotion"],
+      "voice_direction": "Measured, authoritative, globally informed.", "tts_voice": "en-GB-SoniaNeural",
+      "formats": ["short"], "claim_categories": ["established_fact", "historical_interpretation", "allegation", "political_claim", "propaganda", "public_opinion", "documented_policy", "scholarly_disagreement", "speculation"],
+      "upload": { "status": "not_configured", "reason": "No YouTube channel or OAuth secret is on record for this channel." }
+    }
+  ]
+}

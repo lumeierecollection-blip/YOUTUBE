@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Script package",
+  "type": "object",
+  "required": ["channel", "topic", "format", "target_seconds", "blueprint", "hook_options", "selected_hook", "sentences", "payoff", "ending", "sources", "claims", "duration_estimate_s", "quality_report"],
+  "properties": {
+    "channel": { "type": "string" },
+    "topic": { "type": "string" },
+    "format": { "type": "string" },
+    "target_seconds": { "type": "number" },
+    "blueprint": { "$ref": "story-blueprint.schema.json" },
+    "hook_options": { "type": "array", "minItems": 2, "items": { "type": "object", "required": ["text", "family", "honest"], "properties": { "text": { "type": "string" }, "family": { "type": "string" }, "honest": { "type": "boolean" }, "score": { "type": "number" } } } },
+    "selected_hook": { "type": "string" },
+    "sentences": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["sentence_id", "beat_id", "text", "role", "claim_ids", "link_from_previous"],
+        "properties": {
+          "sentence_id": { "type": "string" },
+          "beat_id": { "type": "string" },
+          "text": { "type": "string" },
+          "role": { "type": "string", "description": "What this sentence establishes." },
+          "claim_ids": { "type": "array", "items": { "type": "string" } },
+          "link_from_previous": { "type": "string" },
+          "on_screen_text": { "type": "string" }
+        }
+      }
+    },
+    "payoff": { "type": "string" },
+    "ending": { "type": "string" },
+    "cta": { "type": ["string", "null"] },
+    "sources": { "type": "array", "items": { "type": "object", "required": ["source_id", "url"], "properties": { "source_id": { "type": "string" }, "url": { "type": "string" }, "published": { "type": ["string", "null"] } } } },
+    "claims": { "type": "array", "items": { "$ref": "claim-record.schema.json" } },
+    "duration_estimate_s": { "type": "number" },
+    "quality_report": { "type": "object" }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Independent script critique",
+  "type": "object",
+  "required": ["reviewer", "verdict", "findings"],
+  "properties": {
+    "reviewer": { "type": "string", "description": "Must differ from the writer's role and model call." },
+    "verdict": { "enum": ["approve", "revise"] },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "category", "sentence_ids", "problem", "fix"],
+        "properties": {
+          "severity": { "enum": ["critical", "major", "minor"] },
+          "category": { "enum": ["abrupt_topic_change", "unexplained_name", "missing_context", "unsupported_claim", "misleading_claim", "repetition", "contradiction", "unexplained_term", "chronology", "causal_error", "unresolved_loop", "unfulfilled_hook", "unsupported_conclusion", "unnatural_phrasing", "visual_mismatch", "wrong_channel_tone", "unrealistic_duration"] },
+          "sentence_ids": { "type": "array", "items": { "type": "string" } },
+          "problem": { "type": "string" },
+          "fix": { "type": "string" }
+        }
+      }
+    }
+  }
+}
