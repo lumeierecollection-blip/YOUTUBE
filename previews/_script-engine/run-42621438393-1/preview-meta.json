@@ -1,12 +1,12 @@
 {
-  "channel": "ai-tested",
+  "channel": "hidden-past",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
-  "stage": "blocked",
-  "status": "failed",
-  "timestamp": "2026-11-09T13:00:40.435Z",
+  "stage": "research_complete",
+  "status": "ok",
+  "timestamp": "2026-11-09T13:00:53.929Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",
-  "issues": "rejected_blueprint: blueprint rejected: a first-time viewer would be lost: MCP host; MCP client; LLM; the story rests on fewer than two claims; a payoff beat does not serve the question: It describes deployment locations, which does not clarify capabilities.; link \"chronology\" is not true of these beats: It describes d"
+  "claims": 8
 }

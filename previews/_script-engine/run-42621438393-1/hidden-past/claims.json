@@ -1,0 +1,120 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "ok": true,
+      "chars": 56158,
+      "sha256": "e20232b87757ca50",
+      "title": "Antikythera mechanism",
+      "published": "2026-11-05",
+      "fetched_at": "2026-11-09T13:00:45.168Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The Antikythera mechanism is an ancient Greek hand-powered orrery built in the 2nd century BC and discovered in 1901.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The Antikythera mechanism ( AN-tik-ih-THEER-ə, US also AN-ty-kih-) is an ancient Greek hand-powered orrery (model of the Solar System) built in the 2nd century BC and discovered in 1901.",
+      "confidence": "high",
+      "context": "The device is identified as an ancient Greek orrery built in the second century BC and discovered in 1901.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "It was among wreckage retrieved from a shipwreck off the coast of the Greek island Antikythera in 1901.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The artefact was among wreckage retrieved from a shipwreck off the coast of the Greek island Antikythera in 1901.",
+      "confidence": "high",
+      "context": "The artefact was found in wreckage off the coast of Antikythera in 1901.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "In 1902, the fragment was noticed by Greek politician Spyridon Stais as containing a gear.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "In 1902, during a visit to the National Archaeological Museum in Athens, it was noticed by Greek politician Spyridon Stais as containing a gear, prompting the first study of the fragment by his cousin, Valerios Stais, the museum director.",
+      "confidence": "high",
+      "context": "Spyridon Stais noticed a gear in the fragment in 1902, leading to a study by museum director Valerios Stais.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "The device was found as one lump and later separated into three main fragments which are now divided into 82 separate fragments.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The device, housed in the remains of a wooden-framed case of (uncertain) overall size 34 cm × 18 cm × 9 cm (13.4 in × 7.1 in × 3.5 in), was found as one lump, later separated into three main fragments which are now divided into 82 separate fragments after conservation efforts.",
+      "confidence": "high",
+      "context": "The mechanism was initially found as a single lump before conservation efforts divided it into 82 separate fragments.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Four of these fragments contain gears, while inscriptions are found on many others.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "Four of these fragments contain gears, while inscriptions are found on many others.",
+      "confidence": "high",
+      "context": "Physical examination shows that four fragments contain gears and many others contain inscriptions.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "The largest gear is about 13 cm in diameter and originally had 223 teeth.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The largest gear is about 13 cm (5 in) in diameter and originally had 223 teeth.",
+      "confidence": "high",
+      "context": "Measurements of the physical mechanism show the largest gear's diameter and original tooth count.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "All these fragments of the mechanism are kept at the National Archaeological Museum.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "All these fragments of the mechanism are kept at the National Archaeological Museum, along with reconstructions and replicas, to demonstrate how it may have looked and worked.",
+      "confidence": "high",
+      "context": "The physical fragments are housed at the National Archaeological Museum alongside reconstructions and replicas.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "Searches for items at the Antikythera wreck site in 2012 and 2015 yielded art objects and a second ship.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "Two other searches for items at the Antikythera wreck site in 2012 and 2015 yielded art objects and a second ship which may be connected with the treasure ship on which the mechanism was found.",
+      "confidence": "high",
+      "context": "Later archaeological searches at the wreck site in 2012 and 2015 recovered art objects and a second ship.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05"
+    }
+  ]
+}
