@@ -1,0 +1,83 @@
+{
+  "topic": "7,000-Year-Old Leather DNA Links to Modern Goats",
+  "pillar": "Ancient civilisations and discoveries",
+  "evidence_ids": [
+    80
+  ],
+  "hook": "Scientists just pulled intact DNA from 7,000-year-old leather—and it matches goats alive today.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 9,
+    "relevance": 9,
+    "visual": 7
+  },
+  "wikipedia_title": "Ancient DNA",
+  "commons_query": "leather artifact ancient",
+  "youtube_query": "7000 year old leather dna goats",
+  "evidence": [
+    {
+      "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+      "domain": "scitechdaily.com",
+      "published_ms": 1794184608000,
+      "kind": "news",
+      "id": 80
+    },
+    {
+      "title": "7,000-year-old goat leather from Spain reveals DNA link to modern Iberian goats - Archaeology News Online Magazine",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ?oc=5",
+      "domain": "archaeologymag.com",
+      "published_ms": 1793987217000,
+      "kind": "news"
+    },
+    {
+      "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - EurekAlert!",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ldVI1ak9vMFZsMWNWdXJHNFdNMVdzWHZKS2RQS0JEeUMzZE1fcmdwSWhKck1uX1lNdnZhZDA2bW04bmJyVmU1RW0xWmlHX0NsRzYzOW1aNTJNbE10?oc=5",
+      "domain": "eurekalert.org",
+      "published_ms": 1793820815000,
+      "kind": "news"
+    },
+    {
+      "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - Phys.org",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCWFlmdmpESHNXcUlHWjRWcTN0NUV0REsyMFJsWU9fQk9LUFc4aTdGcnVwcmxuZW9TeWRSTWtPc2tnamhwbHdZMkc1RzNMZWpIMGZZb0ZleHVKcjB3dF9ndDFvcjZLcGFRQ2lMS3JzN2NfOVE4?oc=5",
+      "domain": "phys.org",
+      "published_ms": 1793818816000,
+      "kind": "news"
+    }
+  ],
+  "wikipedia": {
+    "title": "Ancient DNA",
+    "daily_views": 88,
+    "ratio": 1.12
+  },
+  "youtube": null,
+  "commons_hits": 20,
+  "score": {
+    "factors": {
+      "momentum": 89,
+      "reach": 39,
+      "curiosity": 90,
+      "relevance": 90,
+      "visual": 85,
+      "source_quality": 100
+    },
+    "total": 80,
+    "newest_hours": 0,
+    "domains": [
+      "scitechdaily.com",
+      "archaeologymag.com",
+      "eurekalert.org",
+      "phys.org"
+    ],
+    "trusted_domains": [
+      "archaeologymag.com",
+      "phys.org"
+    ]
+  },
+  "rejected": [],
+  "wave": 2,
+  "slug": "7-000-year-old-leather-dna-links-to-modern-goats",
+  "angle": "Ancient DNA recovered from a 7,000-year-old leather fragment reveals surprising genetic continuity with modern Middle Eastern goats, rewriting the domestication timeline.",
+  "what_others_do": "Existing videos typically focus broadly on archaeological discoveries or ancient clothing without highlighting the specific genetic lineages connecting prehistoric animals to today's livestock."
+}
