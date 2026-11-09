@@ -1,1 +1,4 @@
-{ "npm": ["@remotion/three@4.0.507", "@react-three/fiber@9.7.0", "three@0.185.1"] }
+{
+  "_provisional": "Three.js via @remotion/three is a PROVISIONAL stand-in for the owner's unconfirmed 'SOLSYS' selection. Versions match src/skills/remotion-render/package.json (remotion and @remotion/three 4.0.507, three ^0.185.1). @react-three/fiber is the peer dependency of @remotion/three.",
+  "npm": ["@remotion/three@4.0.507", "@react-three/fiber@9.7.0", "three@0.185.1"]
+}

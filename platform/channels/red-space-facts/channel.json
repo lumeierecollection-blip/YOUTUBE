@@ -1,9 +1,26 @@
 {
   "key": "red-space-facts",
   "name": "Red Space Facts",
-  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 },
-  "voice": { "tts_voice": "en-US-GuyNeural", "direction": "Curious, immersive, scientifically grounded.", "rates_to_try": ["+0%", "+6%", "+12%", "+18%"] },
-  "type": { "display": "Space Grotesk", "data": "JetBrains Mono" },
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "max_seconds": 30
+  },
+  "voice": {
+    "tts_voice": "en-US-GuyNeural",
+    "direction": "Curious, immersive, scientifically grounded.",
+    "rates_to_try": [
+      "+0%",
+      "+6%",
+      "+12%",
+      "+18%"
+    ]
+  },
+  "type": {
+    "display": "Space Grotesk",
+    "data": "JetBrains Mono"
+  },
   "palette": {
     "space": "#04060d",
     "text": "#f4f1e8",
@@ -36,7 +53,12 @@
       "Mars": "#c9673f",
       "Jupiter": "#d3a874",
       "Saturn": "#e6cf9c"
-    }
+    },
+    "white": "#ffffff",
+    "ink": "#10131c",
+    "ink_dim": "#4b5568",
+    "pool_wall": "#8ea6bf",
+    "pool_floor": "#c6d4e3"
   },
   "status_labels": {
     "observation": "OBSERVED",
@@ -44,7 +66,7 @@
     "hypothetical": "HYPOTHETICAL",
     "artistic_interpretation": "ARTISTIC INTERPRETATION"
   },
-  "disclosure_line": "AI-generated 3D render, not a photo. Includes NASA source material; not reviewed or endorsed by NASA.",
+  "disclosure_line": "AI-generated 3D render, not a photo. Saturn globe texture: NASA. Not reviewed or endorsed by NASA.",
   "scene_library": [
     "saturn-ring-plane-flyover",
     "orbital-scale-pullout",
