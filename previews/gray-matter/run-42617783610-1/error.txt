@@ -1,0 +1,4 @@
+Error: narration does not fit 30s even at the fastest allowed rate; cut the script
+    at synthesise (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:91:9)
+    at preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/gray-matter/preview.mjs:123:45)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
