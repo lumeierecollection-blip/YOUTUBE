@@ -545,12 +545,12 @@
       "attempts": 1,
       "run_id": "42543834365",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:09:10.531Z",
-      "stage": "script",
-      "topic": "The Great Lakes Storm of 1913",
-      "score": 63.5,
-      "pillar": "Historical disasters and survival stories",
-      "hook": "The deadliest natural disaster in Great Lakes history completely swallowed 19 massive ships without a trace."
+      "updated_at": "2026-11-09T01:09:48.823Z",
+      "stage": "research",
+      "topic": "The Stockholm Bloodbath of 1520",
+      "score": 62.3,
+      "pillar": "Unbelievable true historical events",
+      "hook": "Over 50 people were lured to a royal coronation in Stockholm—only to be executed."
     }
   },
   "uploads": [],
@@ -1004,6 +1004,15 @@
       "at_ms": 1794186527515,
       "score": 63.5,
       "pillar": "Historical disasters and survival stories"
+    },
+    {
+      "channel": "1",
+      "topic": "The Stockholm Bloodbath of 1520",
+      "slug": "the-stockholm-bloodbath-of-1520",
+      "slot": "kick-2c4bd9126b-ch1",
+      "at_ms": 1794186588823,
+      "score": 62.3,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
