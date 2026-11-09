@@ -1,0 +1,130 @@
+{
+  "topic": "AI-Powered Smart Glasses Used for School Exam Cheating",
+  "pillar": "AI tools ordinary people can use",
+  "evidence_ids": [
+    35,
+    41
+  ],
+  "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 8,
+    "relevance": 8,
+    "visual": 7
+  },
+  "wikipedia_title": "Smartglasses",
+  "commons_query": "",
+  "youtube_query": "AI glasses cheating school exams",
+  "evidence": [
+    {
+      "title": "4 cheating cases using AI glasses caught at middle, high schools this year - Yonhap News Agency",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1Cb1NnSF9VcWF1MHJUdlZnMFFfNkZ5Ny11UTJWLVFUODNfQWJMczFGSy1BYmhtcGZ6YzdBT25NRVNfM0VtX1lleWd2MGlTSndpb0tQaktROUlrUQ?oc=5",
+      "domain": "en.yna.co.kr",
+      "published_ms": 1794206503000,
+      "kind": "news",
+      "id": 35
+    },
+    {
+      "title": "Four Students Caught Using AI Smart Glasses on School Exams - Seoul Economic Daily",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNaW9PNHZOTkxTenlJRjh0YU1HM0FJdGxENWlkWWVlXzhRMHo5eWZpSDdvemFjTm00anhkOWxWcU5lVmZxbTF3LUN2cmxNMUZpd3R6QWw4UzZEQUtsMkVEWlEtLUFISGlpckcycWVsQVBWWlRibFdSd2FKa1B2M0J1NmpUVVBhTWU5azBLVkxyT2VpUGU1aUxuMlBTT3ZxbzNCZnNJ?oc=5",
+      "domain": "en.sedaily.com",
+      "published_ms": 1794201936000,
+      "kind": "news",
+      "id": 41
+    },
+    {
+      "title": "AI Glasses Cheating Cases in Middle, High School Exams - 조선일보",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPVVRwSC1Yejd5T0NaWW5jaXVEWEhTTDY2dGs4Ni1YaGJxYlJMeDRGTmpYUUU2dTlFOU1nb3NBZV81NVpmMHJrampjWG9UVzZIWlItUTFUR043UmlscGIyS3RxQjJhRXJXM080UXgzNlBhSXoyM1R5WEl6bUNVTm1BbG9XSkpXQ3ZI?oc=5",
+      "domain": "chosun.com",
+      "published_ms": 1794198587000,
+      "kind": "news"
+    },
+    {
+      "title": "Lee calls for crackdown on smart glasses cheating ahead of college entrance exam - The Korea Herald",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5zakJjRC1oaEJQdjlEWm53R1BlUWhjeUgtS1pRWUVCV2Zndm9aZldXTUJsM2VaeGx6NVRqaTVVSEZjYW9GR0VVSFRaTW9waF9WV21mN2lpRQ?oc=5",
+      "domain": "koreaherald.com",
+      "published_ms": 1793857731000,
+      "kind": "news"
+    },
+    {
+      "title": "Asia Specific | Can smart glasses exam cheating be stopped? - BBC",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTE5palgzWjVpWXQ2Yzk0YjBxMmJ6UC0yVEhMdHY1MGdSMTAxWDN6dWR3Y3NCSi1VTThjSmcxTjBvVHhON0JNbmtVVDUxMGpNY0tf?oc=5",
+      "domain": "bbc.com",
+      "published_ms": 1793753359000,
+      "kind": "news"
+    },
+    {
+      "title": "AI smart-glasses exam cheating could bring criminal charges and multiyear retest bans, Education Ministry warns - Korea JoongAng Daily",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxNWmZSOXBpMWpnQ0lkVmF0SzFGcEkyVVlJdGNoaGZxR3R4SjcwaTFXeWwwLTNaZGxLQ1R0TGdGa3FGT2NJdW53eTlQV2dpckpRQWRVMkZCdng3aHlhUkdWY0F4SEc1NGdGT2RLSlZ5VmxkNlR5S1BQMjkwcTNxR2oxbUQ1QnhGdHhGTDhnZGR4VlFucXVkVWFjMlcxdW0wZzhhOEtrT1VsVEtJWkc1cUNQdGwxdFFiX1Jrc0tJTVlLbEs5Qmpkbl9DLTZ1N3p1V3FXd1l4Z2JoczNEcXdxTHFiR2hwSFpYSXNJTXBUcUFqNjM?oc=5",
+      "domain": "koreajoongangdaily.com",
+      "published_ms": 1793257200000,
+      "kind": "news"
+    },
+    {
+      "title": "AI smart glasses used to cheat on school exams in 4 cases nationwide, probe finds - 헤럴드경제",
+      "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE8ydkpyaWp6akM4MlY3bGhfR3VOUmc2RnZVRmRnTk5kZGRUTDZSWnJiQUFtVy16U29aZ1J3Y19rRlFWWXNRbnZLa3dncmxfMnN6YXZVbkRRZw?oc=5",
+      "domain": "mbiz.heraldcorp.com",
+      "published_ms": 1794193200000,
+      "kind": "news"
+    },
+    {
+      "title": "Smart Glasses Cheating Detected in Middle and High School Exams: 4 Cases Found Nationwide This Year - news.sbs.co.kr",
+      "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9XdHBhTGM2Y0xEV3h1cXBhdGhtN1BEU2h0VXF2dThQY3ZBLVllVzZhYXRqbXlMT0wwWG5sRDJ4TFdTRjRwZklIdHphcUdsZnhxQXJ0X0E2OFVVQ0xsWTNrWUdNTHFlZw?oc=5",
+      "domain": "news.sbs.co.kr",
+      "published_ms": 1794197400000,
+      "kind": "news"
+    },
+    {
+      "title": "Smart Glasses Cheating Found in Four Middle and High School Exams - Seoul Economic Daily",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNWVMtMUNWbC15cFNaVUozLS1NZGx6Qnc4eFZqcmltUlVSTXFXYlYtMVpKMGlpOFhUN0hsQXg5dlNNWVBUS21QX090c2hyTGZ4UzV2azJXdEUzSzd2YXpQNDBwbXdPV1VjaHNQWGJWX29ONzhYU1lzemYtc3ZocjJveTRacjRtdUdkdDZTMEhMSHlsckxCbnJPWndmNURXNHhwWGVB?oc=5",
+      "domain": "en.sedaily.com",
+      "published_ms": 1794213990000,
+      "kind": "news"
+    },
+    {
+      "title": "Ministry of Justice Tightens Bar Exam Supervision on AI Glasses - 조선일보",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQmdrY0V2V0gyUTNvcktwLVlrM2FzOFF3R1JlQ2JpZk1NbVNGdmRDY0U2N0d6ODE3VjJsem5DeTBqbzJNMFRIRk9TUzFlZmFwakpyNk51SjVYa2RGcFNOR1hfRUlBRHJtc3dBal9Oa3Y4RkVmcHVYdUR3bXZ5NjlENUFaRXphSEhI?oc=5",
+      "domain": "chosun.com",
+      "published_ms": 1793701503000,
+      "kind": "news"
+    }
+  ],
+  "wikipedia": {
+    "title": "Smartglasses",
+    "daily_views": 143,
+    "ratio": 0.87
+  },
+  "youtube": null,
+  "commons_hits": null,
+  "score": {
+    "factors": {
+      "momentum": 88,
+      "reach": 43,
+      "curiosity": 80,
+      "relevance": 80,
+      "visual": 70,
+      "source_quality": 65
+    },
+    "total": 72.2,
+    "newest_hours": 1,
+    "domains": [
+      "en.yna.co.kr",
+      "en.sedaily.com",
+      "chosun.com",
+      "koreaherald.com",
+      "bbc.com",
+      "koreajoongangdaily.com",
+      "mbiz.heraldcorp.com",
+      "news.sbs.co.kr"
+    ],
+    "trusted_domains": [
+      "bbc.com"
+    ]
+  },
+  "rejected": [],
+  "wave": 2,
+  "slug": "ai-powered-smart-glasses-used-for-school-exam-cheating",
+  "angle": "Focusing on the quiet panic of teachers who now have to listen for the specific cadence of an AI whispering answers through bone-conduction frames.",
+  "what_others_do": "Most generic coverage focuses broadly on the technology existing or warns students about getting caught by AI surveillance."
+}

@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Android Auto adds Gemini features to solve common driver annoyances",
+      "score": 73.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: \"Gemini summarizes texts and adds 1 ETA to your response because of the October 20, 2026 update.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - NARRATIVE: \"Gemini summarizes texts and adds 1 ETA to your response because of the October 20, 2026 update.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"How do 14 versions ha"
+    }
+  ],
+  "selected": "AI-Powered Smart Glasses Used for School Exam Cheating"
+}
