@@ -1,0 +1,404 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "cover",
+      "treatment": "case-file-cover",
+      "objective": "Open the case file: the name, the court town and the sentence, as confirmed",
+      "background": "dark navy desk",
+      "from": 0,
+      "to": 162,
+      "start_s": 0,
+      "end_s": 5.4
+    },
+    {
+      "id": "s2",
+      "kind": "verdict-guilty",
+      "treatment": "verdict-document-stamp",
+      "objective": "Show the guilty verdict on the failure-to-file charges, stamped CONVICTED",
+      "background": "dark navy desk",
+      "from": 162,
+      "to": 283,
+      "start_s": 5.4,
+      "end_s": 9.433333333333334
+    },
+    {
+      "id": "s3",
+      "kind": "verdict-acquitted",
+      "treatment": "verdict-document-stamp",
+      "objective": "Show the five other charges on which the jury acquitted, stamped ACQUITTED",
+      "background": "dark navy desk",
+      "from": 283,
+      "to": 410,
+      "start_s": 9.433333333333334,
+      "end_s": 13.666666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "allegation",
+      "treatment": "allegation-card-counter",
+      "objective": "Show the government's figure, kept visibly apart as an ALLEGATION and not a finding",
+      "background": "dark navy desk",
+      "from": 410,
+      "to": 555,
+      "start_s": 13.666666666666666,
+      "end_s": 18.5
+    },
+    {
+      "id": "s5",
+      "kind": "sentence",
+      "treatment": "sought-versus-given",
+      "objective": "Show what prosecutors sought against the three-year sentence the judge gave",
+      "background": "dark navy desk",
+      "from": 555,
+      "to": 666,
+      "start_s": 18.5,
+      "end_s": 22.2
+    }
+  ],
+  "captions": [
+    {
+      "text": "Wesley Snipes got three years",
+      "from": 0,
+      "to": 62,
+      "words": [
+        {
+          "text": "Wesley",
+          "from": 0
+        },
+        {
+          "text": "Snipes",
+          "from": 15
+        },
+        {
+          "text": "got",
+          "from": 32
+        },
+        {
+          "text": "three",
+          "from": 40
+        },
+        {
+          "text": "years",
+          "from": 51
+        }
+      ]
+    },
+    {
+      "text": "in prison over tax returns",
+      "from": 62,
+      "to": 110,
+      "words": [
+        {
+          "text": "in",
+          "from": 62
+        },
+        {
+          "text": "prison",
+          "from": 68
+        },
+        {
+          "text": "over",
+          "from": 76
+        },
+        {
+          "text": "tax",
+          "from": 89
+        },
+        {
+          "text": "returns",
+          "from": 96
+        }
+      ]
+    },
+    {
+      "text": "he never filed",
+      "from": 110,
+      "to": 145,
+      "words": [
+        {
+          "text": "he",
+          "from": 110
+        },
+        {
+          "text": "never",
+          "from": 119
+        },
+        {
+          "text": "filed",
+          "from": 128
+        }
+      ]
+    },
+    {
+      "text": "A jury found him guilty",
+      "from": 162,
+      "to": 191,
+      "words": [
+        {
+          "text": "A",
+          "from": 162
+        },
+        {
+          "text": "jury",
+          "from": 162
+        },
+        {
+          "text": "found",
+          "from": 167
+        },
+        {
+          "text": "him",
+          "from": 179
+        },
+        {
+          "text": "guilty",
+          "from": 184
+        }
+      ]
+    },
+    {
+      "text": "in February on failure-to-file",
+      "from": 191,
+      "to": 240,
+      "words": [
+        {
+          "text": "in",
+          "from": 191
+        },
+        {
+          "text": "February",
+          "from": 200
+        },
+        {
+          "text": "on",
+          "from": 211
+        },
+        {
+          "text": "failure-to-file",
+          "from": 224
+        }
+      ]
+    },
+    {
+      "text": "charges",
+      "from": 250,
+      "to": 266,
+      "words": [
+        {
+          "text": "charges",
+          "from": 250
+        }
+      ]
+    },
+    {
+      "text": "It acquitted him of five",
+      "from": 283,
+      "to": 311,
+      "words": [
+        {
+          "text": "It",
+          "from": 283
+        },
+        {
+          "text": "acquitted",
+          "from": 283
+        },
+        {
+          "text": "him",
+          "from": 292
+        },
+        {
+          "text": "of",
+          "from": 299
+        },
+        {
+          "text": "five",
+          "from": 302
+        }
+      ]
+    },
+    {
+      "text": "other charges",
+      "from": 311,
+      "to": 334,
+      "words": [
+        {
+          "text": "other",
+          "from": 311
+        },
+        {
+          "text": "charges",
+          "from": 320
+        }
+      ]
+    },
+    {
+      "text": "including felony tax fraud",
+      "from": 341,
+      "to": 384,
+      "words": [
+        {
+          "text": "including",
+          "from": 341
+        },
+        {
+          "text": "felony",
+          "from": 347
+        },
+        {
+          "text": "tax",
+          "from": 356
+        },
+        {
+          "text": "fraud",
+          "from": 371
+        }
+      ]
+    },
+    {
+      "text": "Prosecutors alleged he earned at",
+      "from": 410,
+      "to": 449,
+      "words": [
+        {
+          "text": "Prosecutors",
+          "from": 410
+        },
+        {
+          "text": "alleged",
+          "from": 410
+        },
+        {
+          "text": "he",
+          "from": 425
+        },
+        {
+          "text": "earned",
+          "from": 434
+        },
+        {
+          "text": "at",
+          "from": 442
+        }
+      ]
+    },
+    {
+      "text": "least thirteen point eight million",
+      "from": 449,
+      "to": 502,
+      "words": [
+        {
+          "text": "least",
+          "from": 449
+        },
+        {
+          "text": "thirteen",
+          "from": 452
+        },
+        {
+          "text": "point",
+          "from": 462
+        },
+        {
+          "text": "eight",
+          "from": 471
+        },
+        {
+          "text": "million",
+          "from": 489
+        }
+      ]
+    },
+    {
+      "text": "dollars in those years",
+      "from": 502,
+      "to": 539,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 502
+        },
+        {
+          "text": "in",
+          "from": 502
+        },
+        {
+          "text": "those",
+          "from": 524
+        },
+        {
+          "text": "years",
+          "from": 528
+        }
+      ]
+    },
+    {
+      "text": "They sought the maximum and",
+      "from": 555,
+      "to": 589,
+      "words": [
+        {
+          "text": "They",
+          "from": 555
+        },
+        {
+          "text": "sought",
+          "from": 556
+        },
+        {
+          "text": "the",
+          "from": 560
+        },
+        {
+          "text": "maximum",
+          "from": 566
+        },
+        {
+          "text": "and",
+          "from": 572
+        }
+      ]
+    },
+    {
+      "text": "the judge gave him three",
+      "from": 589,
+      "to": 622,
+      "words": [
+        {
+          "text": "the",
+          "from": 589
+        },
+        {
+          "text": "judge",
+          "from": 593
+        },
+        {
+          "text": "gave",
+          "from": 598
+        },
+        {
+          "text": "him",
+          "from": 608
+        },
+        {
+          "text": "three",
+          "from": 613
+        }
+      ]
+    },
+    {
+      "text": "years",
+      "from": 622,
+      "to": 637,
+      "words": [
+        {
+          "text": "years",
+          "from": 622
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 666,
+  "duration_s": 22.2
+}

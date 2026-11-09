@@ -1,0 +1,78 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42697743171-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Wesley Snipes got three years in prison, over tax returns he never filed.",
+      "main_point": "Open the case file: the name, the court town and the sentence, as confirmed",
+      "visual_objective": "Open the case file: the name, the court town and the sentence, as confirmed",
+      "treatment": "case-file-cover",
+      "background": "dark navy desk",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1"
+      ],
+      "start_s": 0,
+      "end_s": 5.4
+    },
+    {
+      "scene_id": "s2",
+      "narration": "A jury found him guilty in February, on failure-to-file charges.",
+      "main_point": "Show the guilty verdict on the failure-to-file charges, stamped CONVICTED",
+      "visual_objective": "Show the guilty verdict on the failure-to-file charges, stamped CONVICTED",
+      "treatment": "verdict-document-stamp",
+      "background": "dark navy desk",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2",
+        "K1"
+      ],
+      "start_s": 5.4,
+      "end_s": 9.433333333333334
+    },
+    {
+      "scene_id": "s3",
+      "narration": "It acquitted him of five other charges, including felony tax fraud.",
+      "main_point": "Show the five other charges on which the jury acquitted, stamped ACQUITTED",
+      "visual_objective": "Show the five other charges on which the jury acquitted, stamped ACQUITTED",
+      "treatment": "verdict-document-stamp",
+      "background": "dark navy desk",
+      "skill": "remotion",
+      "claim_ids": [
+        "K3"
+      ],
+      "start_s": 9.433333333333334,
+      "end_s": 13.666666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Prosecutors alleged he earned at least thirteen point eight million dollars in those years.",
+      "main_point": "Show the government's figure, kept visibly apart as an ALLEGATION and not a finding",
+      "visual_objective": "Show the government's figure, kept visibly apart as an ALLEGATION and not a finding",
+      "treatment": "allegation-card-counter",
+      "background": "dark navy desk",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4"
+      ],
+      "start_s": 13.666666666666666,
+      "end_s": 18.5
+    },
+    {
+      "scene_id": "s5",
+      "narration": "They sought the maximum, and the judge gave him three years.",
+      "main_point": "Show what prosecutors sought against the three-year sentence the judge gave",
+      "visual_objective": "Show what prosecutors sought against the three-year sentence the judge gave",
+      "treatment": "sought-versus-given",
+      "background": "dark navy desk",
+      "skill": "remotion",
+      "claim_ids": [
+        "K5"
+      ],
+      "start_s": 18.5,
+      "end_s": 22.2
+    }
+  ]
+}
