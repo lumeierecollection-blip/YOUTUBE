@@ -134,7 +134,18 @@ function halftonePeak(l) {
   }
   power.sort((a, b) => a - b);
   const median = power[power.length >> 1] || 1;
-  return { peak_over_median: Math.round(peak / median), at };
+  return { peak_over_median: Math.round(peak / median), at, peak, median };
+}
+
+/** Peak power within one bin of a frequency, so a source can be compared at the treatment's own dot frequency. */
+function powerAt(l, at) {
+  const { re, im, N } = spectrum(l);
+  let best = 0;
+  for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+    const x = (at.fx + dx + N) % N, y = (at.fy + dy + N) % N;
+    best = Math.max(best, re[y * N + x] ** 2 + im[y * N + x] ** 2);
+  }
+  return best;
 }
 
 async function colourStats(file, rect) {
@@ -198,8 +209,13 @@ export async function voxGate({ mp4, dir, outDir, productionId }) {
       r.measured.grain = { treated: treated.fine_detail, source: source.fine_detail };
       if (source.saturation > 0.12 && treated.saturation > source.saturation * 0.92) fail(s.scene, "grade", `saturation ${treated.saturation} not reduced from ${source.saturation}`);
       if (vignette.measurable && vignette.ratio > 0.96) fail(s.scene, "vignette", `corners are ${vignette.ratio} of the brightness the tone curve predicts`);
-      if (htTreated.peak_over_median < Math.max(40, htSource.peak_over_median * 1.3)) fail(s.scene, "halftone", `dot-screen peak ${htTreated.peak_over_median} vs source ${htSource.peak_over_median}`);
-      if (treated.fine_detail < source.fine_detail * 1.05) fail(s.scene, "grain", `fine detail ${treated.fine_detail} vs source ${source.fine_detail}`);
+      // Old prints carry their own dot pattern elsewhere in the spectrum, so the source is read at the treatment's frequency.
+      const sourceAtDots = htTreated.at ? powerAt(sourceLuma, htTreated.at) : Infinity;
+      r.measured.halftone.treated_over_source_at_dot_frequency = Math.round((htTreated.peak / Math.max(1, sourceAtDots)) * 10) / 10;
+      if (htTreated.peak_over_median < 40 || htTreated.peak < sourceAtDots * 3) fail(s.scene, "halftone", `dot screen ${htTreated.peak_over_median}x median, ${r.measured.halftone.treated_over_source_at_dot_frequency}x the source at that frequency`);
+      // Grain cannot be separated from content on a source already full of fine detail, such as an engraving.
+      r.measured.grain.measurable = source.fine_detail < 15;
+      if (source.fine_detail < 15 && treated.fine_detail < source.fine_detail * 1.05) fail(s.scene, "grain", `fine detail ${treated.fine_detail} vs source ${source.fine_detail}`);
       if (annotation) {
         const zone = { x0: annotation.screen.cx - annotation.screen.rx - 24, x1: annotation.screen.cx + annotation.screen.rx + 24, y0: annotation.screen.cy - annotation.screen.ry - 24, y1: annotation.screen.cy + annotation.screen.ry + 24 };
         const zoneI = Object.fromEntries(Object.entries(zone).map(([k, v]) => [k, Math.max(0, Math.round(v))]));
