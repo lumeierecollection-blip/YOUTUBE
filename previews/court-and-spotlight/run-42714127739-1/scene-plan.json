@@ -1,0 +1,79 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42714127739-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "In one night, Beyoncé became the most-awarded artist in Grammy history.",
+      "main_point": "Open on a magazine cover: the real 2023 tour photograph full-bleed, the headline, the credit",
+      "visual_objective": "Open on a magazine cover: the real 2023 tour photograph full-bleed, the headline, the credit",
+      "treatment": "magazine-cover-full-bleed",
+      "background": "full-bleed photograph",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 0,
+      "end_s": 5.866666666666666
+    },
+    {
+      "scene_id": "s2",
+      "narration": "She arrived with nine nominations.",
+      "main_point": "Show nine nominations as a giant numeral with a clean cut-out portrait layered through it and nine stars lighting in turn",
+      "visual_objective": "Show nine nominations as a giant numeral with a clean cut-out portrait layered through it and nine stars lighting in turn",
+      "treatment": "big-number-with-cutout",
+      "background": "cream page",
+      "skill": "remotion",
+      "claim_ids": [
+        "M3"
+      ],
+      "start_s": 5.866666666666666,
+      "end_s": 8.2
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Her fourth win was best dance and electronic music album, for Renaissance. On stage she said she was just trying to receive the night.",
+      "main_point": "Name the win and the album beside a framed photograph, then the quotation she gave on stage",
+      "visual_objective": "Name the win and the album beside a framed photograph, then the quotation she gave on stage",
+      "treatment": "win-card-with-cutout-and-quote",
+      "background": "cream page",
+      "skill": "remotion",
+      "claim_ids": [
+        "M2",
+        "M1",
+        "M4"
+      ],
+      "start_s": 8.2,
+      "end_s": 16.433333333333334
+    },
+    {
+      "scene_id": "s4",
+      "narration": "That made thirty-two Grammys in her career.",
+      "main_point": "Count up to thirty-two and show four photographs from different years as a career strip, each labelled with its photo date",
+      "visual_objective": "Count up to thirty-two and show four photographs from different years as a career strip, each labelled with its photo date",
+      "treatment": "counter-with-career-strip",
+      "background": "cream page, gold accent",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 16.433333333333334,
+      "end_s": 19.266666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "More than any other artist in the awards' history.",
+      "main_point": "Close on the record ribbon and the sixty-five-year span over the 2023 photograph, with all photo credits",
+      "visual_objective": "Close on the record ribbon and the sixty-five-year span over the 2023 photograph, with all photo credits",
+      "treatment": "record-ribbon-with-photo",
+      "background": "cream page",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 19.266666666666666,
+      "end_s": 22.4
+    }
+  ]
+}
