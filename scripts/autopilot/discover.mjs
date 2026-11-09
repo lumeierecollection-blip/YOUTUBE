@@ -75,8 +75,9 @@ async function collectSignals(channel, nowMs, wave = 1) {
   }));
   tasks.push(source(report, "google-trends", async () => parseFeed(await getText("https://trends.google.com/trending/rss?geo=US"), "trends").map((x) => ({ ...x, domain: "trends.google.com" }))));
   if (channel.treatment === "vox") {
-    // Anniversaries from today through the coming week.
-    for (let offset = 0; offset < 7; offset++) {
+    // The first wave looks at the coming week. The second reaches five weeks out, because a week's worth of famous dates runs out quickly.
+    const [fromDay, toDay] = wave === 1 ? [0, 7] : [7, 35];
+    for (let offset = fromDay; offset < toDay; offset++) {
       const d = new Date(nowMs + offset * 86400e3);
       const mm = String(d.getUTCMonth() + 1).padStart(2, "0"), dd = String(d.getUTCDate()).padStart(2, "0");
       tasks.push(source(report, `wikipedia-on-this-day:${mm}-${dd}`, async () => {
