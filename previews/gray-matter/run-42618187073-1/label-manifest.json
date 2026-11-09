@@ -1,0 +1,59 @@
+{
+  "note": "Labels each scene must show, derived from the scene data the composition renders.",
+  "scenes": [
+    {
+      "scene_id": "sc1",
+      "treatment": "everyday-to-biology",
+      "labels": {
+        "structure": "Temporal lobe",
+        "function_or_process": "Sleep loss and new information",
+        "evidence_status": "ESTABLISHED: Worse memory: meta-analysis of human studies"
+      }
+    },
+    {
+      "scene_id": "sc2",
+      "treatment": "region-highlight",
+      "labels": {
+        "structure": "Hippocampus",
+        "function_or_process": "Helps form new memories",
+        "evidence_status": "ESTABLISHED: Anatomy and function"
+      }
+    },
+    {
+      "scene_id": "sc3",
+      "treatment": "activity-compare",
+      "labels": {
+        "structure": "Hippocampus",
+        "function_or_process": "Activity while learning, two conditions",
+        "evidence_status": "ASSOCIATION: One human imaging study"
+      }
+    },
+    {
+      "scene_id": "sc4",
+      "treatment": "neuron-to-spines",
+      "labels": {
+        "structure": "Pyramidal neuron, Hippocampal area CA1; dendritic spine; presynaptic terminal; receptors",
+        "function_or_process": "Synapse: spines lost after sleep loss",
+        "evidence_status": "CAUSAL TEST: Measured in mice, one study"
+      }
+    },
+    {
+      "scene_id": "sc5",
+      "treatment": "mechanism-rescue",
+      "labels": {
+        "structure": "Dendrite and actin filament",
+        "function_or_process": "Cofilin breaks down actin filaments",
+        "evidence_status": "CAUSAL TEST: Mice only, one study"
+      }
+    },
+    {
+      "scene_id": "sc6",
+      "treatment": "evidence-ledger",
+      "labels": {
+        "structure": "Dendritic spines",
+        "function_or_process": "Recovery sleep: spines back to normal (mice)",
+        "evidence_status": "ESTABLISHED: Sleep loss before learning impairs memory | ASSOCIATION: Hippocampus less active while learning | CAUSAL TEST: Cofilin drives spine loss and memory deficit | UNCERTAIN: Do spines change the same way in people?"
+      }
+    }
+  ]
+}

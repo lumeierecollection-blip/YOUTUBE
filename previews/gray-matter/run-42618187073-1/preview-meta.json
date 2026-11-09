@@ -2,9 +2,9 @@
   "channel": "gray-matter",
   "production_run": "run-42618187073-1",
   "agent": "agent-gray-matter",
-  "stage": "render_complete",
-  "status": "running",
-  "timestamp": "2026-11-09T12:41:51.049Z",
+  "stage": "qa_passed",
+  "status": "failed",
+  "timestamp": "2026-11-09T12:42:01.075Z",
   "branch": "preview/gray-matter",
   "commit": "ab073dd52200c83b048bcbd24debf5133c194f97",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618187073#artifacts"

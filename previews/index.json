@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T12:41:51.307Z",
+  "rebuilt_at": "2026-11-09T12:42:01.351Z",
   "channels": [
     {
       "key": "_smoke",
@@ -42,18 +42,18 @@
     {
       "key": "gray-matter",
       "agent": "agent-gray-matter",
-      "stage": "render_complete",
-      "status": "running",
-      "at": "2026-11-09T12:41:51.049Z",
+      "stage": "qa_passed",
+      "status": "failed",
+      "at": "2026-11-09T12:42:01.075Z",
       "branch": "preview/gray-matter",
       "commit": "ab073dd5",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42618187073#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "sheet": "[contact-sheet.jpg](gray-matter/run-42618187073-1/contact-sheet.jpg)",
+      "scenes": "[scene-1.jpg](gray-matter/run-42618187073-1/scene-1.jpg) [scene-2.jpg](gray-matter/run-42618187073-1/scene-2.jpg) [scene-3.jpg](gray-matter/run-42618187073-1/scene-3.jpg) [scene-4.jpg](gray-matter/run-42618187073-1/scene-4.jpg)",
       "voice": "[voice-preview.mp3](gray-matter/run-42618187073-1/voice-preview.mp3)",
       "script": "[script-draft.md](gray-matter/run-42618187073-1/script-draft.md)",
       "plan": "[scene-plan.json](gray-matter/run-42618187073-1/scene-plan.json)",
-      "qa": "",
+      "qa": "[qa-report.json](gray-matter/run-42618187073-1/qa-report.json)",
       "blocker": "",
       "lastOk": "none",
       "run": "run-42618187073-1"
