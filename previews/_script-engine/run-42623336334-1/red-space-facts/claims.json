@@ -1,0 +1,135 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Mars",
+      "ok": true,
+      "chars": 56524,
+      "sha256": "ee6533026063728a",
+      "title": "Mars",
+      "published": "2026-11-08",
+      "fetched_at": "2026-11-09T13:16:25.061Z"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "ok": true,
+      "chars": 15861,
+      "sha256": "83de285f9f62f174",
+      "title": "Mars: Facts - NASA Science",
+      "published": "2017-11-10",
+      "fetched_at": "2026-11-09T13:16:25.094Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "Mars is also known as the Red Planet for its orange-red appearance.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Mars",
+      "published": "2026-11-08",
+      "excerpt": "It is also known as the \"Red Planet\", for its orange-red appearance.",
+      "confidence": "high",
+      "context": "Mars is the fourth planet from the Sun and is often called the Red Planet.",
+      "contradictory_evidence": [],
+      "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "Mars usually appears distinctly yellow, orange, or red.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Mars",
+      "published": "2026-11-08",
+      "excerpt": "Mars usually appears distinctly yellow, orange, or red.",
+      "confidence": "high",
+      "context": "Mars is visible in Earth's sky and shows specific color characteristics when viewed.",
+      "contradictory_evidence": [],
+      "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "The ancient Romans named Mars for their god of war because its reddish color was reminiscent of blood.",
+      "source_id": "s2",
+      "source_url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10",
+      "excerpt": "Mars was named by the ancient Romans for their god of war because its reddish color was reminiscent of blood.",
+      "confidence": "high",
+      "context": "Historical naming conventions for Mars were influenced by its visible color.",
+      "contradictory_evidence": [],
+      "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "The Egyptians called Mars Her Desher, meaning the red one.",
+      "source_id": "s2",
+      "source_url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10",
+      "excerpt": "Other civilizations also named the planet for this attribute - for example, the Egyptians called it \"Her Desher,\" meaning \"the red one.\"",
+      "confidence": "high",
+      "context": "Ancient civilizations besides the Romans also associated Mars with its red color.",
+      "contradictory_evidence": [],
+      "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Iron minerals in the Martian dirt oxidize or rust, causing the surface to look red.",
+      "source_id": "s2",
+      "source_url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10",
+      "excerpt": "Even today, it is frequently called the \"Red Planet\" because iron minerals in the Martian dirt oxidize, or rust, causing the surface to look red.",
+      "confidence": "high",
+      "context": "The physical mechanism behind the red appearance of Mars involves oxidized iron minerals.",
+      "contradictory_evidence": [],
+      "editorial_status": "scientific_model"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "Fine dust is prevalent across the surface and the atmosphere of Mars.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Mars",
+      "published": "2026-11-08",
+      "excerpt": "Fine dust is prevalent across the surface and the atmosphere, being picked up and spread at the low Martian gravity even by the weak wind of the tenuous atmosphere.",
+      "confidence": "high",
+      "context": "Fine dust is distributed throughout the Martian environment by weak winds.",
+      "contradictory_evidence": [],
+      "editorial_status": "observation"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "Fine dust gets kicked up into the atmosphere and from a distance makes Mars appear mostly red.",
+      "source_id": "s2",
+      "source_url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10",
+      "excerpt": "This dust gets kicked up into the atmosphere and from a distance makes the planet appear mostly red.",
+      "confidence": "high",
+      "context": "Atmospheric dust contributes to the distant red appearance of Mars.",
+      "contradictory_evidence": [],
+      "editorial_status": "scientific_model"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "The red reason Mars looks reddish is due to oxidization of iron in the rocks, regolith, and dust.",
+      "source_id": "s2",
+      "source_url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10",
+      "excerpt": "The reason Mars looks reddish is due to oxidization - or rusting - of iron in the rocks, regolith (Martian \"soil\"), and dust of Mars.",
+      "confidence": "high",
+      "context": "Surface materials on Mars undergo rusting which affects the planet's visible coloration.",
+      "contradictory_evidence": [],
+      "editorial_status": "scientific_model"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Mars",
+      "published": "2026-11-08"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://science.nasa.gov/mars/facts/",
+      "published": "2017-11-10"
+    }
+  ]
+}
