@@ -140,6 +140,9 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
     const out = agent(["--prompt-file", promptFile(previous, feedback, dir, drawable, channel), "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
+    // Sources come from the research itself, so a script can never cite a URL the research does not hold.
+    out.sources_used = [...new Set((readJson(researchPath).key_facts || []).map((f) => f.source_url).filter(Boolean))].slice(0, 6);
+    log("script", `drawable facts offered: ${drawable.length}`);
     writeJson(scriptPath, out);
     feedback = gateScript({ channel, slug: topic.slug, scriptPath, researchPath, stem });
     previous = readJson(scriptPath);
