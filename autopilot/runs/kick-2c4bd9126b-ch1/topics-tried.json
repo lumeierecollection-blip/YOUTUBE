@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The Great Lakes Storm of 1913",
+      "score": 63.5,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes: The final editor rejected the script. Failed: no_repetition. The script slightly repeats the destruction metrics between the payoff ('12 ships' / '30 vessels') and the preceding context without adding new narrative momentum."
+    },
+    {
+      "topic": "The Stockholm Bloodbath of 1520",
+      "score": 62.3,
+      "stage": "script",
+      "reason": "script failed its gates after 7 passes:   - SCR-18: \"Tre Kronor Was\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Stockholm The\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/the-stockholm-bloodbath-of-1520-shorts:\n  - SCR-16: 56 words implies ~27s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 1 wor"
+    },
+    {
+      "topic": "The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos",
+      "score": 60.2,
+      "stage": "assets",
+      "reason": "no image shows the story's actual subject; context images alone would mislead"
+    }
+  ],
+  "selected": null
+}

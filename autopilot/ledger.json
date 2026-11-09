@@ -541,16 +541,17 @@
     },
     "kick-2c4bd9126b-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42543834365",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:11:11.048Z",
-      "stage": "visuals",
+      "updated_at": "2026-11-09T01:11:27.510Z",
+      "stage": "assets",
       "topic": "The sinking of SMS Emden by HMAS Sydney in the Battle of Cocos",
       "score": 60.2,
       "pillar": "Secret operations and evidence-backed conspiracies",
-      "hook": "How a daring German raider ship terrorized Allied trade routes until a fateful naval duel in the Indian Ocean."
+      "hook": "How a daring German raider ship terrorized Allied trade routes until a fateful naval duel in the Indian Ocean.",
+      "error": "3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead"
     }
   },
   "uploads": [],
@@ -1065,7 +1066,8 @@
     "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts",
     "Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":tr",
     "AI Tested kick-b837907b92-ch2 failed at script: 1 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/nyt-cooking-ai-assistant-flubs-recipe-swaps-shorts:\n  - SCR-17 STRI",
-    "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr"
+    "Hidden Past kick-5d4ed935bc-ch1 failed at qa: gates failed: frame_review. {\"blocking\":[],\"frame\":[\"clipped_text: frame 1: The caption 'A seven thousand-year-old leather fragment holds ancient DNA' is cut off at the bottom edge.\",\"clipped_text: fr",
+    "Hidden Past kick-2c4bd9126b-ch1 failed at assets: 3 topic(s) tried, none produced an accepted script. Last: no image shows the story's actual subject; context images alone would mislead"
   ],
   "last_poll_at": "2026-11-09T01:07:34.967Z"
 }
