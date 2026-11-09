@@ -1,0 +1,151 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42620364952-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Claude Code can answer once, then exit. No chat.",
+      "main_point": "Contrast interactive claude with claude -p, wording from the docs table",
+      "visual_objective": "Contrast interactive claude with claude -p, wording from the docs table",
+      "treatment": "contrast-hook",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [],
+      "animation": "type rise, comparison cards",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c1"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 0,
+      "end_s": 3.8333333333333335
+    },
+    {
+      "scene_id": "s2",
+      "narration": "The CLI reference: dash p prints the response without interactive mode.",
+      "main_point": "Show the real documented --print row, highlighted",
+      "visual_objective": "Show the real documented --print row, highlighted",
+      "treatment": "annotated-capture",
+      "background": "white",
+      "skill": "article-highlights + headless Chrome capture",
+      "assets": [
+        {
+          "id": "capture-reference",
+          "origin": "headless Chrome screenshot of the fetched page",
+          "source_url": "https://code.claude.com/docs/en/cli-reference"
+        }
+      ],
+      "animation": "marker stroke over real row, callout",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c2"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 3.8333333333333335,
+      "end_s": 8.8
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Run help. The print and output-format flags appear in the real output.",
+      "main_point": "Show the real help output containing the three flags",
+      "visual_objective": "Show the real help output containing the three flags",
+      "treatment": "terminal-demo",
+      "background": "white",
+      "skill": "terminal-inserts",
+      "assets": [
+        {
+          "id": "terminal-raw",
+          "origin": "command run on the GitHub runner during this render"
+        }
+      ],
+      "animation": "typed command, real output lines",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c3"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 8.8,
+      "end_s": 13.966666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Pipe a log file in, ask a question, and get the answer back.",
+      "main_point": "Show the documented piping example as a process",
+      "visual_objective": "Show the documented piping example as a process",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [],
+      "animation": "connectors draw, dot travels",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c4"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 13.966666666666667,
+      "end_s": 18.3
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Output format takes text, json or stream-json. Max turns caps agentic turns.",
+      "main_point": "Show the real --output-format and --max-turns rows",
+      "visual_objective": "Show the real --output-format and --max-turns rows",
+      "treatment": "annotated-capture",
+      "background": "white",
+      "skill": "article-highlights + headless Chrome capture",
+      "assets": [
+        {
+          "id": "capture-controls",
+          "origin": "headless Chrome screenshot of the fetched page",
+          "source_url": "https://code.claude.com/docs/en/cli-reference"
+        }
+      ],
+      "animation": "two marker strokes, callouts",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c5",
+        "c6"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 18.3,
+      "end_s": 24.866666666666667
+    },
+    {
+      "scene_id": "s6",
+      "narration": "A chat-free mode, one flag away.",
+      "main_point": "Restate the command and the source",
+      "visual_objective": "Restate the command and the source",
+      "treatment": "close-card",
+      "background": "white",
+      "skill": "motion-graphics",
+      "assets": [],
+      "animation": "type rise",
+      "on_screen_text": [],
+      "claim_ids": [
+        "c2"
+      ],
+      "data_sources": [
+        "https://code.claude.com/docs/en/cli-reference"
+      ],
+      "transition": "fade",
+      "start_s": 24.866666666666667,
+      "end_s": 27.6
+    }
+  ]
+}
