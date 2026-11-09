@@ -56,7 +56,8 @@ async function stability(mp4, photo, annotationBox, tmp) {
   for (let f = first; f <= last; f += 6) frames.push(f);
   if (frames.at(-1) !== last) frames.push(last);
   const size = Math.min(100, Math.floor(Math.min(inner.w, inner.h) / 4)), range = 14;
-  const blocks = [[range, range], [inner.w - size - range, range], [range, inner.h - size - range], [inner.w - size - range, inner.h - size - range]]
+  const xs = [range, (inner.w - size) >> 1, inner.w - size - range], ys = [range, (inner.h - size) >> 1, inner.h - size - range];
+  const blocks = xs.flatMap((x) => ys.map((y) => [x, y])).filter(([x, y]) => !(x === xs[1] && y === ys[1]))
     .filter(([x, y]) => !annotationBox || !(rect.x + margin + x < annotationBox.x1 && rect.x + margin + x + size > annotationBox.x0 && rect.y + margin + y < annotationBox.y1 && rect.y + margin + y + size > annotationBox.y0));
   const base = await luma(frameAt(mp4, first, join(tmp, "stab-base.png")), inner);
   const moves = [];
@@ -67,6 +68,31 @@ async function stability(mp4, photo, annotationBox, tmp) {
   }
   const moved = moves.filter((m) => m.offsets.some((o) => o.dx !== 0 || o.dy !== 0));
   return { pass: blocks.length >= 2 && !moved.length, frames_compared: frames.length, blocks_used: blocks.length, moved_frames: moved.slice(0, 5) };
+}
+
+/**
+ * The grade changes brightness by tone, so comparing corners with the centre directly mixes the two.
+ * The tone curve is learned from the middle of the photo, then used to predict the corners; a real
+ * vignette leaves the corners darker than that prediction.
+ */
+function vignetteVsToneCurve(treated, source) {
+  const W = treated.w, H = treated.h, bins = Array.from({ length: 32 }, () => ({ n: 0, sum: 0 }));
+  for (let y = Math.floor(H * 0.3); y < H * 0.7; y += 3) for (let x = Math.floor(W * 0.3); x < W * 0.7; x += 3) {
+    const b = bins[source.data[y * W + x] >> 3];
+    b.n++; b.sum += treated.data[y * W + x];
+  }
+  const cw = Math.floor(W / 6), ch = Math.floor(H / 6);
+  let actual = 0, expected = 0, covered = 0, total = 0;
+  for (const [x0, y0] of [[0, 0], [W - cw, 0], [0, H - ch], [W - cw, H - ch]]) {
+    for (let y = y0; y < y0 + ch; y += 3) for (let x = x0; x < x0 + cw; x += 3) {
+      total++;
+      const b = bins[source.data[y * W + x] >> 3];
+      if (b.n < 30) continue;
+      covered++; expected += b.sum / b.n; actual += treated.data[y * W + x];
+    }
+  }
+  const coverage = total ? covered / total : 0;
+  return { ratio: expected ? Math.round((actual / expected) * 1000) / 1000 : null, coverage: Math.round(coverage * 100) / 100, measurable: coverage >= 0.5 && expected > 0 };
 }
 
 /** Power spectrum of a 256x256 luma block (radix-2). */
@@ -165,17 +191,13 @@ export async function voxGate({ mp4, dir, outDir, productionId }) {
       const treatedLuma = await luma(fileClean, rect);
       const sourceLuma = await luma(srcResized);
       const htTreated = halftonePeak(treatedLuma), htSource = halftonePeak(sourceLuma);
+      const vignette = vignetteVsToneCurve(treatedLuma, sourceLuma);
+      r.measured.vignette = vignette;
       r.measured.grade = { treated: treated.saturation, source: source.saturation };
-      // Corners must lose more light than the centre did. A ratio of ratios, so a bright-backed photo cannot read as "no vignette".
-      const cornerLoss = treated.corners / Math.max(1, source.corners), centerLoss = treated.center / Math.max(1, source.center);
-      const vignetteRatio = Math.round((cornerLoss / Math.max(0.01, centerLoss)) * 1000) / 1000;
-      r.measured.vignette = { corner_light_kept: Math.round(cornerLoss * 1000) / 1000, centre_light_kept: Math.round(centerLoss * 1000) / 1000, ratio: vignetteRatio };
       r.measured.halftone = { treated: htTreated, source: htSource };
       r.measured.grain = { treated: treated.fine_detail, source: source.fine_detail };
       if (source.saturation > 0.12 && treated.saturation > source.saturation * 0.92) fail(s.scene, "grade", `saturation ${treated.saturation} not reduced from ${source.saturation}`);
-      // A photo whose corners are already near-black has no light left for a vignette to remove.
-      r.measured.vignette.measurable = source.corners >= 40;
-      if (source.corners >= 40 && vignetteRatio > 0.95) fail(s.scene, "vignette", `corners kept ${r.measured.vignette.corner_light_kept} of their light, centre ${r.measured.vignette.centre_light_kept}`);
+      if (vignette.measurable && vignette.ratio > 0.96) fail(s.scene, "vignette", `corners are ${vignette.ratio} of the brightness the tone curve predicts`);
       if (htTreated.peak_over_median < Math.max(40, htSource.peak_over_median * 1.3)) fail(s.scene, "halftone", `dot-screen peak ${htTreated.peak_over_median} vs source ${htSource.peak_over_median}`);
       if (treated.fine_detail < source.fine_detail * 1.05) fail(s.scene, "grain", `fine detail ${treated.fine_detail} vs source ${source.fine_detail}`);
       if (annotation) {

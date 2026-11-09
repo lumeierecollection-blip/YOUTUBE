@@ -99,7 +99,7 @@ function reviewMarkdown(report, plan, attributions, frame) {
   const rows = report.scenes.map((s) => {
     const m = s.measured;
     const t = s.treatments.map((x) => x.type.replaceAll("_", " ")).join(", ");
-    const measured = s.photo ? `stable across ${m.stability.frames_compared} frames (${m.stability.blocks_used} blocks); saturation ${m.grade.source}→${m.grade.treated}; corner vs centre light ${m.vignette.ratio}; dot-screen peak ${m.halftone.source.peak_over_median}→${m.halftone.treated.peak_over_median}; fine detail ${m.grain.source}→${m.grain.treated}` : (m.map_route ? `route accent pixels ${m.map_route.accent_pixels_start}→${m.map_route.end}` : "");
+    const measured = s.photo ? `stable across ${m.stability.frames_compared} frames (${m.stability.blocks_used} blocks); saturation ${m.grade.source}→${m.grade.treated}; corners vs tone curve ${m.vignette.measurable ? m.vignette.ratio : "not measurable"}; dot-screen peak ${m.halftone.source.peak_over_median}→${m.halftone.treated.peak_over_median}; fine detail ${m.grain.source}→${m.grain.treated}` : (m.map_route ? `route accent pixels ${m.map_route.accent_pixels_start}→${m.map_route.end}` : "");
     return `| ${s.scene} | ${Number(s.start_s).toFixed(1)}-${Number(s.end_s).toFixed(1)}s | ${t} | ${measured} | ${(s.exceptions || []).map((e) => `${e.treatment}: ${e.reason}`).join("; ") || "none"} |`;
   });
   return `# VOX visual review
