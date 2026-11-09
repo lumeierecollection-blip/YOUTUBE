@@ -1,0 +1,986 @@
+{
+  "generated_at": "2026-11-09T01:30:12.295Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 114,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 87
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day",
+          "ok": true,
+          "items": 77
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Decoding a 400-year-old cryptic padlock from a sunken shipwreck",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        66,
+        85,
+        88
+      ],
+      "hook": "Experts finally cracked a complex 400-year-old lock recovered from a shipwreck—and what it was protecting remains an absolute mystery.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Shipwreck",
+      "commons_query": "antique padlock",
+      "youtube_query": "400 year old shipwreck padlock",
+      "evidence": [
+        {
+          "title": "Welsh experts solve 400-year-old lock recovered from 16th century shipwreck - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02WDBMbjI0VFo4QTdyZTBjZnc2dXU1ZWVYX3VDLTI3blVCN2ZwSnlfRE9TbnJDa0xRd1dzTGdPVHB6NWRSMW5RTi1BdUxuMW5aVmNCTWtaay1KX0JX?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1794052372000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened ‪—‬ but it leaves a mystery",
+          "url": "https://www.livescience.com/archaeology/cryptic-padlock-from-a-400-year-old-shipwreck-finally-opened-but-it-leaves-a-mystery",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "feed",
+          "id": 85
+        },
+        {
+          "title": "Scientists Cracked the Code on a 400-Year-Old Padlock. What It Was Protecting Is Still a Mystery. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQT2xDYWdXMnRVOEd6OVpIN19zSTA2VXA1ZlRFdU5Vb3o4YmYzYlNTdFdRY3hkcDNZOFUzYlB4amt1TWY1TldqN3FHTWtUMFJPcF8zUUpDNm9pUHcwU3BreHJwSktPNnF2U2J3M1FqVUoyallUYk9IN0xNWHhfZ0Z5OGNsdlZxN29jTFktSFQweFBXRFNMUUNTZ3k2T3BZT1NhWlBOeDRPRENfc014WUE5bGxyTC0tcU10RmtZRUhkUVl6TEtTRnJOaDdBQ3ByWUFMeGUxZ3FGSUlYM1dkelNremdtbXgxMzhEa0ZqQlVBUnk?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793885400000,
+          "kind": "news",
+          "id": 88
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened — but it leaves a mystery - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSkxVSTJVUWVnM3dsUDhXTG90MEMwX2pnYTk3dFkzMXQ0bUFQZWhpVGJqNUVSNzVGV0pJdDNMcXd5ZXRKWWMzSkZuclMzVUE4Z2ozUHBlZ0t3bDRDd3BiQzBBbmVUcjlnZEl3RGVONGNSeWVab0kweFAwVllRdmkxdHZFc0lKYzRaa3g2Nm5uT3U4ajZhTm81SkFNVzRMMW5WbXdYVGxIaVZqVWRxTE5XOWdEVU1KUV85a25Ia085R3RmZw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists crack code to 400-year-old padlock from shipwreck - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQVjY5dUhGMVJkRE9waWhaTlNWMjNvZjc5UTJLRXV5X1ZBVkJEcmQ3Um82YzZOUUFRQzN6bm9IQWtLNTZ5S3pEZ2RMVWV3c1BzVlh1b1EteUdJc3VwNGRORW80SWk3NkpJLUpxOXlVRUlBUFl1YnEzc1ZoclFqWm5DMUVFWGlaNmxoSmczVVhDMzJxRzZ6RXdQM2dhUXJ3bGxhYnFFd3RUZkVKWlJFNDRVcUJlTTVLVVF5bzhjOGh4bw?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1793784480000,
+          "kind": "news"
+        },
+        {
+          "title": "Code cracked for 400-year-old shipwreck padlock - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1FNnVuOHpDTzdnYWozaDlQRHNxajFGUldQc1BvVEdSX21uMTl3WjEyNWRoR3NMUjZGNTJVZEdyWGdSQThEYU9MT1lOTm5wWEtnNEdyZzhnQ1U5bm8?oc=5",
+          "domain": "bbc.co.uk",
+          "published_ms": 1793808329000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Shipwreck",
+        "daily_views": 215,
+        "ratio": 0.76
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 47,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 79.8,
+        "newest_hours": 38,
+        "domains": [
+          "jpost.com",
+          "livescience.com",
+          "popularmechanics.com",
+          "independent.co.uk",
+          "bbc.co.uk"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "independent.co.uk",
+          "bbc.co.uk"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Maya civilization used so much red paint they poisoned their water with mercury",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        56
+      ],
+      "hook": "The ancient Maya used so much bright red cinnabar paint that they accidentally poisoned their own city water supplies with mercury.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red pigment cinnabar",
+      "youtube_query": "Maya mercury water poisoning",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 56
+        },
+        {
+          "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Maya may have poisoned their own lakes with mercury - Techlicious",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1zanEtWGRzSkt1OWJDdlRFRzU2ZEpMZmNNZXY0bGgySnhzbE51MlhQY2hFN2V5dnFKVFQ3bnJzVnBqTG1zb0VqLS1HcHotWHNrbmdvQjh3cUs2R0o3X0k5b1ZmTjhpX1UtM2FNWi1RYllHZEhM?oc=5",
+          "domain": "techlicious.com",
+          "published_ms": 1793996492000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 7,
+      "score": {
+        "factors": {
+          "momentum": 69,
+          "reach": 66,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 79,
+          "source_quality": 65
+        },
+        "total": 76.3,
+        "newest_hours": 32,
+        "domains": [
+          "livescience.com",
+          "techlicious.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Maya Mercury Contamination from Red Vermilion Paint"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        100
+      ],
+      "hook": "This 1,600-year-old Roman cup changes color in the light because Roman artisans accidentally mastered quantum nanotechnology.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Lycurgus Cup",
+      "commons_query": "Lycurgus Cup",
+      "youtube_query": "Lycurgus Cup Roman nanotechnology",
+      "evidence": [
+        {
+          "title": "Lycurgus Cup: A Roman glass goblet made with ancient color-changing nanotechnology",
+          "url": "https://www.livescience.com/archaeology/romans/lycurgus-cup-a-roman-glass-goblet-made-with-ancient-color-changing-nanotechnology",
+          "domain": "livescience.com",
+          "published_ms": 1793617200000,
+          "kind": "feed",
+          "id": 100
+        },
+        {
+          "title": "Lycurgus Cup — a Roman glass goblet made with ancient color-changing nanotechnology - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPX2JLa0lGUGlSSGI2M1poRnpXM1B3YjBjSWZOQnhoTzJCcUF6SjNPTVFlckFCUjRNRWhqNUlqZHJsMk02LUNnRXpmR05wb1QtWFBlbHVDUE9SRDBFeFhZQkV3elpjTVdsUk5PcmVQTGh4b0RPUm1uMW1YRi1UUjRhWjZrS0hIbUJvTlBGOUFZaEpPV0xVazkyZVpMZGp5aml0Q2JnbEgzZDF2TVRKWUM2Sk9tUjlmMzg0bzVYcGZEdWhSQ2h5Nl9Z?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793617200000,
+          "kind": "news"
+        },
+        {
+          "title": "Romans Made Color-Changing Glass With Ancient Nanotechnology. Scientists Just Discovered How to Replicate the 1,600-Year-Old Marvel - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxNZW5za2JwWTVaMXVjR1JCMEQwcFhmVzJfMGNaZ3JUQWx1dzlSSnVtcnZaWjBFdkFUYUhSQjEtNmwxUGl1U0JHS01QUnU0T20yUGZycHVMTkMtTW5HZDR5eG9iTGRxbkk0aEVHVDhXeHR3bXFtMVV4TUU5REN0UHN5OHBfaXBYMGVQb2o4U3J5N1FyZ25vVDNaWUpvN0Q5aHJYVkxMandLelplc3BHQ0ZkMENIbHNoQ0Z6SWpadmdtclNyeFFtWUs3UXRGczZ3U0M4M1NkRWM1aGNIRkJpRzhHQnlQVGNiWG1JNGxvZDg2Sm04R2xUNW1RZnplb1FHNEhUMzJLanpBZE52QjZnc3A4?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Recreate the Lycurgus Cup, the 1,600-Year-Old Roman Glass That Changes Color - GreekReporter.com",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPSTFpcWhuM0FlenNORGNpbmdjWXRsMXZ6aG1fZGpkbU1wSW1SSHZGNlFyWm1NU0o2YnlEQ013NW5UQTE0dFJEVEZjYU9fXzV1VlE2NEdlTjhveFpRVDIwLXd3QkF0aU9UMWZFNUZlc0lUc2dOemFsOTByblVLQWVGeUlyV1Awam8yYnBCanpwU1JBREc1RWRhbHIwaw?oc=5",
+          "domain": "greekreporter.com",
+          "published_ms": 1793137520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Lycurgus Cup",
+        "daily_views": 376,
+        "ratio": 0.6
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 57,
+          "reach": 52,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.5,
+        "newest_hours": 159,
+        "domains": [
+          "livescience.com",
+          "smithsonianmag.com",
+          "greekreporter.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "A 1,500-year-old stone statuette of a priestess discovered in Japan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        35,
+        102
+      ],
+      "hook": "Buried near an ancient Japanese burial mound, this ghostly 1,500-year-old 'shrine maiden' statue has finally been brought to light.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Kofun period",
+      "commons_query": "Haniwa",
+      "youtube_query": "shrine maiden statuette Japan archaeology",
+      "evidence": [
+        {
+          "title": "A 1,500-year-old statuette of a priestess was discovered near a burial mound in Japan: what makes the find unique - Українські Національні Новини (УНН)",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNSnUzYXBodnBQYkFaY1k5WEpBZmRfV0szSTVjSVJrY0pTZC16NWZEaDZsV3hxcm11YUpTZEpRN0JkMWRTNTNJZUNQSFRfekQ0MUV5d0VqNUxrSjZjVjF1TlVvb3VaYXFyTGdCQkFVQTJTS3FTNFNfbHBtbGxxQXltMFRFQ3RKU1h5UmNzTjl6RVRjR2FzdlNaUHYySTM4RWloRVRROUpDVWg0VHNZTk5CTDk5R3d5UHpZQkY4MTRleTZuZGFQMzg0ZkFsRk9iZ3PSAc4BQVVfeXFMUEx4eHF4VW96aHI0UlNjQmd4aTlBX0FLOHVCcUI1RmdFb0xQWko2S0xzV3U2emVTWlZyTldTTVFuMHV1YWtSQ1dETDR4TUkxQ19rMzhNNjBfekM3M19hc1FUUmJ5d1ZmM0ltR0YzWHg4M0ttQnNmRUVaWU9YYmN2Z2VtMkdpdlVhRzlaYmRGcDlUYkJMZHE5Y1lUSExQSlZ0Ti0tYi1kS2ZVRnJrTVpsZ3RELXliMWlHZW1kVF80bnR6R2k4RmpkbGJKU0laeHc?oc=5",
+          "domain": "unn.ua",
+          "published_ms": 1794144632000,
+          "kind": "news",
+          "id": 35
+        },
+        {
+          "title": "Ghostly statue of 'shrine maiden' discovered at 1,500-year-old burial mound in Japan",
+          "url": "https://www.livescience.com/archaeology/ghostly-statue-of-shrine-maiden-discovered-at-1-500-year-old-burial-mound-in-japan",
+          "domain": "livescience.com",
+          "published_ms": 1793451600000,
+          "kind": "feed",
+          "id": 102
+        },
+        {
+          "title": "1,500-year-old ghostly figure depicting female shaman discovered at grave site in Japan - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNcGtxSDRhODB3ZnpmZXV1dXBPLWZHZ1QxUUluRG9jYmJWSklfNlhNQ1RtdzkxQlBKWU1peVo1R25tWndXYmM2VXpRR2Z4Y3Q1eHRwRUp6cWdvMGtkM01iVWlyVnlVNmlWbV81ekctWGRfV1RGNTBlSU1YUzljcWNYdFRnbVh4ZnVSSk9Tb3JtUHJiZXNCLVhBRFJzbGtqWk1TUUlDZ2pBeTlxMlB3UEMzY1YtWGJueUdvdHlIU0IyQQ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793451600000,
+          "kind": "news"
+        },
+        {
+          "title": "Japan Archaeologists Uncover 1,500-Year-Old Statue of Possible Priestess - ColombiaOne.com",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBZWDRwalVNd3FjLWtSZTlFMG1FQjZaanptbDF2ZHdoOVJGTE0wQXEzVUxXbkhTQTZsYlFpMjI2dG9xMHlBdzNETmdUcDdyN1hfVmFjZWxwMVhVc1JweXNtWkZacDlTUjR1RnBqQkJQbVk?oc=5",
+          "domain": "colombiaone.com",
+          "published_ms": 1794078900000,
+          "kind": "news"
+        },
+        {
+          "title": "1,500-year-old figurine of a possible priestess found in Japan — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNUjJ3MkdaUmFDNFZlangtS00yODBWLTh3ZDNBajZOVjhZSDlUTFFNV3VYRThIRW8ydjZNcXptOVpuZHo1VDI2cDYzOHNnbGJJejJuMkFkVDFyTXpOVW9xVVV1OEx3TGdsTFZnSlFJZnFodUVhbzJocXgyTzc5ZzhUY0RtWDJ1Vy1fOUZIRGdfMHczSUVKMkd1YUd6OUtfYXRnSlM1dnBuMA?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Kofun period",
+        "daily_views": 242,
+        "ratio": 0.95
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 48,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 75.1,
+        "newest_hours": 12,
+        "domains": [
+          "unn.ua",
+          "livescience.com",
+          "colombiaone.com",
+          "ua.news"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "2,800-year-old Siberian tomb reveals cannabis used to calm human sacrifice victims",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        45,
+        67,
+        84
+      ],
+      "hook": "In a 2,800-year-old Siberian tomb, archaeologists found chilling evidence of cannabis used to sedate human sacrifice victims.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk",
+      "youtube_query": "ancient siberian tomb pazyryk",
+      "evidence": [
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 45
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news",
+          "id": 67
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 84
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 72.4,
+        "newest_hours": 17,
+        "domains": [
+          "sciencedaily.com",
+          "news.ssbcrack.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "5,300-year-old grape-sized kidney stone found in a Bronze Age grave",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        98
+      ],
+      "hook": "Archaeologists examining a 5,300-year-old grave just found something excruciating: a kidney stone the exact size of a grape.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "ancient human remains archaeological discovery",
+      "evidence": [
+        {
+          "title": "5,300-year-old kidney stone the size of a grape found in Bronze Age man's burial near Black Sea",
+          "url": "https://www.livescience.com/archaeology/5-300-year-old-kidney-stone-the-size-of-a-grape-found-in-bronze-age-mans-burial-near-black-sea",
+          "domain": "livescience.com",
+          "published_ms": 1793703600000,
+          "kind": "feed",
+          "id": 98
+        },
+        {
+          "title": "The discovery shedding light on the Bronze Age in Mallorca - Forbes España",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNVk1Xal9QdUs1RjRGSzBnZnpydkI1dnBuSFRla2VCQVdGa3ZPMGVjNTBtOC1hZjNiM2hBakY5SWZ5VjQtb2lLY2RvQndCWng0OHdndlY0U0EyM1l0U3hSSXhFeWI0cDZKYV91c2taRU9SRWxUeVY2NTdsbW8tSndCaEtmamcxZ1hVcXNZVFJDT3o5ek13Q2xCODRQeTVscGJSaGY1NFRmblN3ZXh2T1E?oc=5",
+          "domain": "forbes.es",
+          "published_ms": 1793352000000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-year-old temple discovery points to mysterious Bronze Age rituals - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNQVZ0U3lMUDJkQVlPLTRaaXc0UlJRbEEwYXExaXV0aURyOTNmY2FRRTVScWtWMkVYTVh6WTg5bnRqRmZpelRZbldIdHJyUVNaZmdCS0VhT185a3QyN2lEVE1JbjQzTVlpTXpKdGVFTFRYS0ZVaU5GNmZzVVJaQjVNdWVOTW5MTEVaRVBsVk40RUE4SHlJWUtWZW5SZEtyc0xJTWxobG8tSl9najJDTTIxOTFZSjk5Zw?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found a 5000-Year-Old Kidney Stone in Russia - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOY0VlSDdhb04tRVdKSjRnUWNrdGpWb2syQmdHOWdUN0tuOUpyWjVXVm5PN2hzdWxSOHZhdF91VXlKd0xCWmhvQ0lvLW50U2dySFRrT2JxMzQtY09yVDdXcmprWnZzakFVSXU5U3BtSnZSNG01NlVBcUtXZ20yb3VkV09GbkRoNXZ2VU1nWnh4SUFRNElUaTQ1bDgyX0FSTWhiZVUzTk9CR1IzSUxjZ3ljb0F6cnZGUjNxa2JMSWd0MHVZR1VSZ0dxbw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793724647000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 68.5,
+        "newest_hours": 129,
+        "domains": [
+          "livescience.com",
+          "forbes.es",
+          "heritagedaily.com",
+          "gizmodo.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World's oldest gold treasure discovered in Varna, Bulgaria",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        25
+      ],
+      "hook": "Before Egypt built its pyramids, a mysterious ancient culture in Europe buried the world's oldest processed gold.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Varna Necropolis",
+      "commons_query": "Varna Necropolis gold",
+      "youtube_query": "varna necropolis gold treasure",
+      "evidence": [
+        {
+          "title": "World’s Oldest Gold Treasure Discovered in Europe - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBRWlpvU0Z0V0hJMHA0QWRRUDZzcU4yM0t1ejY5RlN6V1I4UzRBRjJaVFBFbTRSRjZLckEybm9rR1ZURURSSTM1NEEtdm51VW1oN0VvM2NZN2I3Q1dfS25uRk4xX3RMQ0NtZmM1cHRhdFlIV0FjeW9KNFQtTQ?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794174221000,
+          "kind": "news",
+          "id": 25
+        }
+      ],
+      "wikipedia": {
+        "title": "Varna Necropolis",
+        "daily_views": 159,
+        "ratio": 1.23
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 63,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 65.6,
+        "newest_hours": 4,
+        "domains": [
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "World War II shipwreck sunk by a Nazi spy sub discovered near Maine",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        42,
+        51,
+        75,
+        82
+      ],
+      "hook": "Divers off the coast of Maine just solved an 80-year-old WWII mystery by finding a Canadian ship torpedoed by a Nazi spy submarine.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "World War II shipwreck",
+      "youtube_query": "WWII shipwreck Maine discovered",
+      "evidence": [
+        {
+          "title": "Divers find long-lost WW II shipwreck headed for Saint John - CBC",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQQkZZTDU1bFRCWFN5ZE1jWktUNzMzc3RlZWxTNUJlSHRSRmhBbHpOS3k0aUR3Rk41TTluT3Rfc2tPa1pYWk1Ob1JXSWs5SlhWemlKSEVCNnk5eE1FNjN0RFRLRjhWMHVWVXRWMVZOS0ozbnoyd1lJVWRhU3RKYS14NGdxYUVyNVgwd2lEbFpjOGRERWNNelEyVmZKS3BOZTFNZE1n?oc=5",
+          "domain": "cbc.ca",
+          "published_ms": 1794132000000,
+          "kind": "news",
+          "id": 42
+        },
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news",
+          "id": 51
+        },
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 75
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 82
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 65,
+        "newest_hours": 16,
+        "domains": [
+          "cbc.ca",
+          "ua-stena.info",
+          "gizmodo.com",
+          "bostonglobe.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The real story behind the 504 Sit-In for disability rights",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        79
+      ],
+      "hook": "Discover the incredible story behind the longest peaceful occupation of a federal building in American history.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Section 504 sit-in",
+      "commons_query": "504 Sit-in",
+      "youtube_query": "504 sit in disability rights history",
+      "evidence": [
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History",
+          "url": "https://www.smithsonianmag.com/history/the-real-story-behind-the-504-sit-in-for-disability-rights-the-longest-peaceful-occupation-of-a-federal-building-in-american-history-180989814/",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "feed",
+          "id": 79
+        },
+        {
+          "title": "The Real Story Behind the 504 Sit-In for Disability Rights, the Longest Peaceful Occupation of a Federal Building in American History - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxQRzFPS0Y3ajg0eFp1YVY5TE5hMThaNHFKZUQyYjllU0FUcXZoQ3VhVFk3d05LSFVIRmZSMDFNRE1FeWc2RUE4QWNlZG1jUnRmQ1NmR1ZRaWJtUVFmeEJ6SnoxM1BYeGd6T0FvR0RmcmxTVUtPalpzbGRSVVJDUWxJT3dSSFFiRFZ0N3d1eng2QXZhS0J0M0NsdUs5c0ppOVhXM0xmSjd4T1dZNW9WdWcycDg5YkpHeTNKMUNELW5sQ25nNGo4NWhDNUZJQlV4NWExY3kxbkE0eVhCYnlWck9heHowYjZHZXNLRW5hSVh2UFJkQ2ZIbl94ZmdJZ0VDUXdub0lsVHpCczQ2U0lXR2xJ?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793969100000,
+          "kind": "news"
+        },
+        {
+          "title": "The True Story Behind 'Being Heumann' and the Longest Sit-In in U.S. History - Time Magazine",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5IWHlIeVl6clVRSGQyN2xXTF9YLW10Y01BaVlVTHgzaWhQN0RrVVdOLXVrV3o4VlJheEhtLU5RZGNQUVlQWHRZQURxY0JQaEcxWTEyaW10ZnVMbTBVcVpzLThJRjRtMU1iVVNYY3dn?oc=5",
+          "domain": "time.com",
+          "published_ms": 1793992803000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Being Heumann’ Tells a Disability Rights Story Packed With Real-Life Drama - KQED",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZ05rYjBoUGlsRTdFanQySWpuazBTbHFISjZyMnZNLVUyVFEtSWNOWlJVQmZmaXFZSkVSZ3RzLWJDdC0weGkyaEVWd0E1eWtaWV85a2Y2R1RYcFBLZmNjQVFEeU90Z3hmbVJDZklKeS1LNXg2OE1TRTd5S0JySHg0aUdnOGR3aklnQS1LYlgxNlhZT1h4TzRCSXFpNUZzbzJ4OGVIbS1WZDV0Zw?oc=5",
+          "domain": "kqed.org",
+          "published_ms": 1793751110000,
+          "kind": "news"
+        },
+        {
+          "title": "Is ‘Being Heumann’ a True Story? Judy Heumann and the 504 Sit-In Behind Apple’s Film - FanBolt",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE11eGhFMFNpeDNxdER1REFMNGxpbkFMSW5rdmVCWlQ3NTB1a29ZdkxMZ3c4OF9IYmdja21NNGVmZlBST1NVd093aUdObmhCZWVvTHQwcnE1M0xFMmNWeUVIa1F4czNqbTNvWHNQdjBR?oc=5",
+          "domain": "fanbolt.com",
+          "published_ms": 1793988514000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 94,
+          "reach": 0,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 65,
+        "newest_hours": 54,
+        "domains": [
+          "smithsonianmag.com",
+          "time.com",
+          "kqed.org",
+          "fanbolt.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Gaming pieces found on the sunken ship of Genghis Khan’s grandson",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        48,
+        74
+      ],
+      "hook": "Archaeologists exploring a sunken Mongol invasion ship found delicate gaming pieces, offering a rare glimpse into daily military life.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Mongol invasions",
+      "commons_query": "Mongol artifacts",
+      "youtube_query": "sunken mongol ship gaming pieces",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 48
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 74
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions",
+        "daily_views": 9,
+        "ratio": 0.73
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 20,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 64.6,
+        "newest_hours": 21,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "World's first whole eye transplant announced by NYU Langone Health",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        0
+      ],
+      "hook": "On this day in history, surgeons successfully performed the world's first-ever human whole eye transplant.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Eye transplantation",
+      "commons_query": "NYU Langone Health",
+      "youtube_query": "first whole eye transplant NYU",
+      "evidence": [
+        {
+          "title": "2023: U.S. surgeons at NYU Langone Health announce the world's first whole eye transplant.",
+          "url": "https://en.wikipedia.org/wiki/NYU_Langone_Health",
+          "domain": "wikipedia.org",
+          "published_ms": 1794187812295,
+          "kind": "anniversary",
+          "id": 0
+        }
+      ],
+      "wikipedia": {
+        "title": "Eye transplantation",
+        "daily_views": 18,
+        "ratio": 1.06
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 26,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 55.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: World's First Internet Murder"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A 600-year-old gold ring hidden in a Dutch parliament moat inscribed with a secret message",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        92
+      ],
+      "hook": "Hidden for 600 years in a filled-in moat behind the Dutch parliament, this gold ring resurfaced with a single powerful word about loyalty.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Medieval gold ring",
+      "youtube_query": "medieval gold ring dutch parliament moat",
+      "evidence": [
+        {
+          "title": "Hidden for 600 years in a filled-in moat behind the Dutch parliament, a gold ring has resurfaced, and the Gothic letters set into its band spell out a single word about loyalty - ECOticias.com - El Periódico Verde",
+          "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxNZHBWSlQ0RlRhNVpMLUZaWFdhRDFZcV81NkRfcWFhNEdyWGdSUEpoZkR6MVhMSzZ5YkZLcDRlTHFqYW54S2NId1ZId3RwdmluSl9zcmVRUkNGYmE3MVNRVVBqOXdfQ2xMSE8zaUM3SVFWZENlWWRBeVAtU29DTGdxbWxnNU1VeFlnYlFBRE94X1k0VTM0ZTdkUFFkSmt1Z2k5OGlDcno0S1dBTjVxSmp5bjdicW5OV1dHbXM2VHhIbDhvelJwdE55ZWs4OG04UGJwb2FVYzhJODJmby0tbzVmMU4wU085THllRlZMM0o1V3RQNUtEcDVqQlpza1RTeS1zeHFVclhxNnBSWjNGd0dKTURGZ1E1OEJHVm1jdVp0b2pIWEdQdW03NS1CNU5CSk91MVdWTw?oc=5",
+          "domain": "ecoticias.com",
+          "published_ms": 1793840400000,
+          "kind": "news",
+          "id": 92
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 56,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 51.5,
+        "newest_hours": 97,
+        "domains": [
+          "ecoticias.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}

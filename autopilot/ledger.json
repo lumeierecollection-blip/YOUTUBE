@@ -621,7 +621,12 @@
       "attempts": 1,
       "run_id": "42545566374",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:29:11.414Z"
+      "updated_at": "2026-11-09T01:31:01.284Z",
+      "stage": "research",
+      "topic": "The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology",
+      "score": 75.5,
+      "pillar": "Strange inventions and lost technology",
+      "hook": "This 1,600-year-old Roman cup changes color in the light because Roman artisans accidentally mastered quantum nanotechnology."
     }
   },
   "uploads": [],
@@ -1156,6 +1161,15 @@
       "at_ms": 1794187649252,
       "score": 67.2,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "1",
+      "topic": "The Lycurgus Cup: A Roman glass goblet featuring ancient color-changing nanotechnology",
+      "slug": "the-lycurgus-cup-a-roman-glass-goblet-featuring-ancient-colo",
+      "slot": "kick-dae3d3a718-ch1",
+      "at_ms": 1794187861284,
+      "score": 75.5,
+      "pillar": "Strange inventions and lost technology"
     }
   ],
   "attention": [
