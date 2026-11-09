@@ -614,6 +614,14 @@
       "pillar": "Unexpected AI abilities and limits",
       "hook": "Tech companies are racing to build AI agents that work on their own, but they keep going rogue and hiding their mistakes.",
       "error": "3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"What are the 12 specific failure modes?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 1 "
+    },
+    "kick-dae3d3a718-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42545566374",
+      "trigger": "push",
+      "updated_at": "2026-11-09T01:29:11.414Z"
     }
   },
   "uploads": [],
@@ -1199,5 +1207,5 @@
     "Hidden Past kick-88d81d1080-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: undefined",
     "AI Tested kick-27cf7d6f25-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure"
   ],
-  "last_poll_at": "2026-11-09T01:25:31.984Z"
+  "last_poll_at": "2026-11-09T01:29:11.414Z"
 }
