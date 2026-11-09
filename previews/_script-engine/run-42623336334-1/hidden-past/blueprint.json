@@ -1,0 +1,106 @@
+{
+  "blueprint": {
+    "central_question": "What did the physical evidence show the Antikythera mechanism could actually do?",
+    "thesis": "The physical evidence from its gears and inscriptions shows that this 2nd century BC device could predict astronomical positions and eclipses decades in advance, and track athletic game cycles.",
+    "why_it_matters": "It demonstrates the advanced mechanical capabilities of ancient Greek technology.",
+    "viewer_start": "The viewer knows an ancient artefact called the Antikythera mechanism exists.",
+    "viewer_end": "The viewer understands the specific astronomical and calendar-tracking functions revealed by the physical components of the mechanism.",
+    "key_evidence": [
+      "c5",
+      "c6",
+      "c8",
+      "c9"
+    ],
+    "beats": [
+      {
+        "beat_id": "b1",
+        "role": "opening",
+        "purpose": "Establish the physical presence of gears and inscriptions in the fragments",
+        "claim_ids": [
+          "c5"
+        ],
+        "link_from_previous": "none"
+      },
+      {
+        "beat_id": "b2",
+        "role": "development",
+        "purpose": "Show how the largest gear's physical structure supported complex counting",
+        "claim_ids": [
+          "c6"
+        ],
+        "link_from_previous": "evidence"
+      },
+      {
+        "beat_id": "b3",
+        "role": "payoff",
+        "purpose": "Reveal the direct physical functions of predicting eclipses and tracking game cycles",
+        "claim_ids": [
+          "c8",
+          "c9"
+        ],
+        "link_from_previous": "explanation"
+      },
+      {
+        "beat_id": "b4",
+        "role": "ending",
+        "purpose": "Summarize what the physical evidence proves the device could do",
+        "claim_ids": [],
+        "link_from_previous": "consequence"
+      }
+    ],
+    "questions_raised": [
+      {
+        "question": "What functions were enabled by the gears and inscriptions found in the fragments?",
+        "raised_in": "b1",
+        "answered_in": "b3"
+      }
+    ],
+    "conclusion": "Physical evidence proves the Antikythera mechanism could predict eclipses and track athletic cycles.",
+    "explain_in_script": [
+      "223-tooth Saros cycle link",
+      "athletic game cycles"
+    ]
+  },
+  "attempts": 1,
+  "removed_beats": [],
+  "checks": {
+    "max_beats": 5,
+    "deterministic": "pass",
+    "model": {
+      "answers_question": true,
+      "fits_length": true,
+      "beats": [
+        {
+          "beat_id": "b1",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Establishes the physical presence of gears and inscriptions on the surviving fragments."
+        },
+        {
+          "beat_id": "b2",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Provides specific physical gear evidence illustrating the complex mechanical construction."
+        },
+        {
+          "beat_id": "b3",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Explains the specific astronomical and tracking functions performed by the gear mechanism."
+        },
+        {
+          "beat_id": "b4",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "Summarizes the overall consequences of what the physical evidence demonstrates."
+        }
+      ],
+      "relinked_by_checker": []
+    }
+  },
+  "history": []
+}
