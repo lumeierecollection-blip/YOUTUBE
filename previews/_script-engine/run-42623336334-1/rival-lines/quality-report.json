@@ -1,0 +1,124 @@
+{
+  "channel": "rival-lines",
+  "format": "match_analysis",
+  "topic": "The 2005 UEFA Champions League final",
+  "angle": "how Liverpool came back from three goals down against Milan: a thesis about the turn of the match, with recorded data kept apart from interpretation",
+  "status": "blocked_model",
+  "wpm": {
+    "wpm": 166.5,
+    "source": "measured",
+    "voice": "en-US-AriaNeural"
+  },
+  "limits": {
+    "target_s": 120,
+    "max_s": 180
+  },
+  "rounds": [],
+  "narrowings": 0,
+  "caveats": [],
+  "unreviewed_script_released": false,
+  "claims": {
+    "count": 8,
+    "dropped": [
+      {
+        "claim": "Liverpool defender Jamie Carragher stated that the Liverpool side were not as good as the one that had won the 2001 UEFA Cup final.",
+        "reason": "excerpt is not verbatim in the fetched source"
+      }
+    ],
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+        "published": "2026-10-27"
+      }
+    ]
+  },
+  "blocked": {
+    "role": "judge",
+    "detail": "the answer was not valid JSON"
+  },
+  "calls": [
+    {
+      "role": "writer",
+      "tag": "claims",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 3464,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "writer",
+      "tag": "blueprint",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "ms": 2351,
+      "error": null,
+      "ok": true,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 1,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 242574,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "the answer was not valid JSON"
+      ]
+    },
+    {
+      "role": "judge",
+      "tag": "blueprint-check",
+      "attempt": 2,
+      "provider": "gemini",
+      "model": "gemini-3.6-flash",
+      "ms": 15804,
+      "error": null,
+      "ok": false,
+      "same_provider": false,
+      "chain": [
+        "gemini"
+      ],
+      "problems": [
+        "the answer was not valid JSON"
+      ]
+    }
+  ],
+  "providers": {
+    "writer": [
+      "gemini"
+    ],
+    "critic": []
+  },
+  "fetch": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+      "ok": true,
+      "chars": 26046,
+      "sha256": "1d550d37add75352",
+      "title": "2005 UEFA Champions League final",
+      "published": "2026-10-27",
+      "fetched_at": "2026-11-09T13:20:14.725Z"
+    }
+  ],
+  "error": "judge gave unusable output: the answer was not valid JSON",
+  "open_findings": []
+}

@@ -2,11 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42623336334-1",
   "agent": "agent-script-engine",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-09T13:20:21.186Z",
+  "stage": "blocked",
+  "status": "failed",
+  "timestamp": "2026-11-09T13:24:43.380Z",
   "branch": "preview/_script-engine",
   "commit": "ddf327a8eacf3b2dd103c0065d9a85ca8cc14cca",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42623336334#artifacts",
-  "claims": 8
+  "issues": "blocked_model: judge gave unusable output: the answer was not valid JSON"
 }

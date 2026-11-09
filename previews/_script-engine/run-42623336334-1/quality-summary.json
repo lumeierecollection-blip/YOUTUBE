@@ -191,5 +191,39 @@
     "caveats": [],
     "notApproved": true,
     "reason": "CON-03: \"these memory\" refers to something never mentioned before this point. | CON-04: The ending brings in something the listener has not heard (active, reorganiz, connection, lock). | DUR-01: the script is estimated at 14.4s; the minimum is 18s"
+  },
+  {
+    "channel": "rival-lines",
+    "topic": "The 2005 UEFA Champions League final",
+    "format": "match_analysis",
+    "status": "blocked_model",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/2005_UEFA_Champions_League_final",
+        "ok": true,
+        "chars": 26046,
+        "sha256": "1d550d37add75352",
+        "title": "2005 UEFA Champions League final",
+        "published": "2026-10-27",
+        "fetched_at": "2026-11-09T13:20:14.725Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 166.5,
+      "source": "measured",
+      "voice": "en-US-AriaNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [
+        "gemini"
+      ],
+      "critic": []
+    },
+    "calls": 4,
+    "caveats": [],
+    "reason": "judge gave unusable output: the answer was not valid JSON"
   }
 ]

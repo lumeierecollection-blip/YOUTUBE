@@ -40,3 +40,9 @@ Why not approved: CON-03: "these memory" refers to something never mentioned bef
 
 Last draft (NOT APPROVED):
 > How does sleep actually process our memories? Nocturnal sleep and daytime naps stabilize and enhance these memory processes. Hippocampus activity, the brain structure for memory, directly causes plastic changes and better performance. Sleep actively reorganizes brain connections to lock in memories.
+
+## rival-lines - BLOCKED_MODEL
+Topic: The 2005 UEFA Champions League final (match_analysis)
+Writer providers: gemini; critic providers: none; model calls: 4; rounds: 0; narrowings: 0
+Words per minute: 166.5 (measured, voice en-US-AriaNeural)
+Why not approved: judge gave unusable output: the answer was not valid JSON
