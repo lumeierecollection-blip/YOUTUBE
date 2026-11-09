@@ -269,6 +269,9 @@ test("the name check does not run across a sentence ending", async () => {
   assert.deepEqual(clean.majors, []);
   const invented = nameFidelityProblems({ sections: [{ voiceover: "They met Harold Finch Wembley in the port." }] }, research);
   assert.equal(invented.majors.length, 1, "an unknown name inside one sentence is still flagged");
+  const r2 = { named_entities: [{ name: "Washington DC" }], key_facts: [{ fact: "Filmed in Washington DC on November 3." }] };
+  assert.deepEqual(nameFidelityProblems({ sections: [{ voiceover: "In Washington DC, November brought the clip. Check November 3 again." }] }, r2).majors, []);
+  assert.equal(nameFidelityProblems({ sections: [{ voiceover: "Harold Finch filmed it." }] }, r2).majors.length, 1, "an invented name that opens a sentence is still flagged");
 });
 
 test("title-case common words do not make two stories the same", () => {
