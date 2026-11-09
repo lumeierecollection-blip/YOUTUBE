@@ -508,6 +508,14 @@
       "hook": "When the Nazis finally hit the Volga, the battle for Stalingrad intensified.",
       "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
       "qa": "failed"
+    },
+    "kick-b837907b92-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42542092593",
+      "trigger": "push",
+      "updated_at": "2026-11-09T00:55:08.812Z"
     }
   },
   "uploads": [],
@@ -977,5 +985,5 @@
     "AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts",
     "Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":0,\"check\":\"grain\",\"why\":\"fine detail 7.24 vs source 8.8\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":tr"
   ],
-  "last_poll_at": "2026-11-09T00:46:17.408Z"
+  "last_poll_at": "2026-11-09T00:55:08.812Z"
 }
