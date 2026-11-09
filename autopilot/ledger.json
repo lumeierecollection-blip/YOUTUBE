@@ -607,7 +607,12 @@
       "attempts": 1,
       "run_id": "42545368796",
       "trigger": "push",
-      "updated_at": "2026-11-09T01:25:31.984Z"
+      "updated_at": "2026-11-09T01:26:52.478Z",
+      "stage": "research",
+      "topic": "Instagram launches free desktop video editor to take on CapCut",
+      "score": 83.3,
+      "pillar": "AI tools ordinary people can use",
+      "hook": "Instagram just dropped a brand-new free video editing app for your desktop to rival CapCut."
     }
   },
   "uploads": [],
@@ -1115,6 +1120,15 @@
       "at_ms": 1794187172550,
       "score": 72.6,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "Instagram launches free desktop video editor to take on CapCut",
+      "slug": "instagram-launches-free-desktop-video-editor-to-take-on-capc",
+      "slot": "kick-27cf7d6f25-ch2",
+      "at_ms": 1794187612478,
+      "score": 83.3,
+      "pillar": "AI tools ordinary people can use"
     }
   ],
   "attention": [
