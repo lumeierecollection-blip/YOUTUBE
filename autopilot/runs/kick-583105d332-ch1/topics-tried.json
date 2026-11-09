@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Game-pieces and dice discovered on a sunken Mongol invasion ship off Japan",
+      "score": 83.3,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Experts finally unlock a 400-year-old cryptic padlock recovered from a shipwreck",
+      "score": 76.9,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Divers solve a WWII mystery by locating a Canadian ship sunk off the coast of Maine by a Nazi U-boat",
+      "score": 72.6,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    }
+  ],
+  "selected": null
+}

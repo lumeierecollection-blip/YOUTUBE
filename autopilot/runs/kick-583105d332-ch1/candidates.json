@@ -1,0 +1,864 @@
+{
+  "generated_at": "2026-11-09T03:56:46.271Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 82
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Game-pieces and dice discovered on a sunken Mongol invasion ship off Japan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        121,
+        148,
+        150
+      ],
+      "hook": "Archaeologists diving into a Mongol invasion ship sunk off Japan just found something unexpected: ancient gaming pieces and dice used by Kublai Khan's soldiers.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "Mongol invasions of Japan",
+      "youtube_query": "Mongol shipwreck dice gaming pieces Japan",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 121
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 148
+        },
+        {
+          "title": "News - Playing Cards Found in Mongol Invasion Shipwreck Off Japan - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcXBPZ25fOF9NaF9pVGRNVWZxWmd6T1prdnVIRVBFYUlOVVhEQm5SNUxQcjR4d0lDMXZKUmpjTDBMY25YSnpPRExFeTlxS2UwTWEzYzBYWW9oejJtOVhTcFl6RUtNZ1JQOTJuMnZLUTNFREhVc0VWamNrdjNwVjZVQW85WDBDSmU4QVNvM3lGX2RCX0FGR2FvRFdNdHAtcEt2?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793994330000,
+          "kind": "news",
+          "id": 150
+        },
+        {
+          "title": "Dice and Game Tiles Found Aboard a Mongol Warship Sunk Off Japan in 1281 - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNZ3ZYUVkxc2U4MDhfRmxYVE5UNDEyVDJpTlJ3ZVExbmNoODMwNXZFeUEwdjlBSjNGdUFVbndPXzYyZlZPbnpCLWhFUEdaSkNWRVc1eXNoczdLaUxTcnlzVU00ZGEta2dNVmhsWl9yY1haSHhabFFIbjVrMWFjckxqRGg5bHl4OWdackIxQTlmRndtam1UXzNNTEN1ZWFjeWZCcjFxMVFMd01DaFRNZTZTYw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1793898815000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 83.3,
+        "newest_hours": 24,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net",
+          "archaeology.org",
+          "ancient-origins.net"
+        ],
+        "trusted_domains": [
+          "arkeonews.net",
+          "archaeology.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Exceptional 5th-century warrior and chieftain burials unearthed in France with warhorses",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        97,
+        112
+      ],
+      "hook": "Archaeologists in France have unearthed wealthy 5th-century Germanic chieftain graves packed with dazzling weapons and sacrificed warhorses.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Germanic peoples",
+      "commons_query": "Merovingian weapons archaeology",
+      "youtube_query": "5th century warrior burials France archaeologists",
+      "evidence": [
+        {
+          "title": "Exceptional 5th-century warrior burials unearthed in France - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPMEVZLU5FY1RSR3ZYbkg2Z09rNzFZWllBX08xRS0tSWJjdktULTdybWhQNnVlTnVWQW9KWWJsRFJrUmQ5WENRTDRpUWdiT2cyd1Rob0phMklhNlpJdGY4Tzk0b3RaOGZzcG1vcjdUamM5SWVhMDlDQXZaRVdUYW01QzZSVHpaS2hqdVp2UGZqZ0Zjd0RWMm1FeTZGVUVhWUx3Mm92Yk5law?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794176459000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "Rare fifth-century burials of Germanic chieftains with dazzling weapons and warhorses discovered in France - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxOcXIzZHVuZUVtdjJtcGlHM2VpOXpaQW5leWdUZHVLRnpPNVY2NjJoRHRBcktzNmtOeEo3aUdFWkcyZkFzYVg5TWFLVEVodEVNUlFtdk9aeWk2SGJfaGV4b015eGxHa2Itc2pLUHl2ekJHV2lETUhHWU0zY05JcS1oRktpQ0p3anNJTF9YQlllV3l6UmRYdzZ5aVJKbE0zSG9IbkNfdHg1TjAyVjZGWkp3dlo5WUJXZWk3dWdjNDJEYmxjZEMzZnhObVYycEt3bmZBSzJSd3dta1RNRUJsalFJ?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794142800000,
+          "kind": "news",
+          "id": 112
+        }
+      ],
+      "wikipedia": {
+        "title": "Germanic peoples",
+        "daily_views": 1004,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 60,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 77.2,
+        "newest_hours": 6,
+        "domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Experts finally unlock a 400-year-old cryptic padlock recovered from a shipwreck",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        137,
+        163
+      ],
+      "hook": "It took experts centuries to finally click open this ornate, highly complex padlock recovered from a 400-year-old shipwreck.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Padlock",
+      "commons_query": "Antique padlock",
+      "youtube_query": "400 year old shipwreck padlock opened",
+      "evidence": [
+        {
+          "title": "Welsh experts solve 400-year-old lock recovered from 16th century shipwreck - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02WDBMbjI0VFo4QTdyZTBjZnc2dXU1ZWVYX3VDLTI3blVCN2ZwSnlfRE9TbnJDa0xRd1dzTGdPVHB6NWRSMW5RTi1BdUxuMW5aVmNCTWtaay1KX0JX?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1794052372000,
+          "kind": "news",
+          "id": 137
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened ‪—‬ but it leaves a mystery",
+          "url": "https://www.livescience.com/archaeology/cryptic-padlock-from-a-400-year-old-shipwreck-finally-opened-but-it-leaves-a-mystery",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "feed",
+          "id": 163
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened — but it leaves a mystery - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSkxVSTJVUWVnM3dsUDhXTG90MEMwX2pnYTk3dFkzMXQ0bUFQZWhpVGJqNUVSNzVGV0pJdDNMcXd5ZXRKWWMzSkZuclMzVUE4Z2ozUHBlZ0t3bDRDd3BiQzBBbmVUcjlnZEl3RGVONGNSeWVab0kweFAwVllRdmkxdHZFc0lKYzRaa3g2Nm5uT3U4ajZhTm81SkFNVzRMMW5WbXdYVGxIaVZqVWRxTE5XOWdEVU1KUV85a25Ia085R3RmZw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "news"
+        },
+        {
+          "title": "Code cracked for 400-year-old shipwreck padlock - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9GMXNUUm1SZlBzMDNla1pFNFlLWndVQXctMGljdGhBdnNxOGFDYl9LOXpJVlBTUmRFNkE2LS1Neno2Qm9kcHlzRmhac3dad0ZHZ3BzVVo3aDc?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1793808282000,
+          "kind": "news"
+        },
+        {
+          "title": "Experts crack code on 400-year-old lock recovered from 1583 shipwreck - Daily Mail",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOMnNtdkZpdXZUUXNrV0ZOWW1SSjJuM2NwSWRXbVpaeFg5ZG9wTmFyOUJxOTBLM2dERkZTSU9LbmhvQmxfeWxsaUhJLUFUN1dLY0NFS3M5SGFtemtWTUMycTFrcEVOM1BkNXd1U3ZuN05kTzlOQWhzLVJnZzlINjZKUEpNOWtXRl9rbndobGtzSkxvbW1ZdHc?oc=5",
+          "domain": "dailymail.com",
+          "published_ms": 1793875258000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Padlock",
+        "daily_views": 117,
+        "ratio": 1.15
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 86,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 76.9,
+        "newest_hours": 40,
+        "domains": [
+          "jpost.com",
+          "livescience.com",
+          "bbc.com",
+          "dailymail.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "bbc.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Ancient Siberian tomb reveals the earliest evidence of cannabis use for psychoactive purposes",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        118,
+        138,
+        155,
+        162
+      ],
+      "hook": "An ancient 2,800-year-old Siberian tomb has yielded the oldest direct chemical evidence of humans using cannabis for an intentional high.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "Pazyryk artifacts",
+      "youtube_query": "Siberian tomb cannabis discovery ancient",
+      "evidence": [
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 118
+        },
+        {
+          "title": "Evidence of Cannabis Use for Psychoactive Purposes Found in Ancient Siberian Tomb - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNZklLdTlSbzVzckpJcGVHWFlheEQ4YjUyeG8tZ0VVa3oxVkQ1RWtVcm5EUVN1STlZWFR4ME1SWFUxbHRHX2xRcFZZbS1OQ2JrcDlkeXNCUHJ5dkJieldaYkhvZGxNVWhaRERuS3luN3FZNzV6SEFVLWV4SXlFV0Z6ZG0yeHRYa093QzctU2hnR05HaXBOZ1hoX2xTSDlKOXBISFA3UmhjMWhqYWJs?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794051016000,
+          "kind": "news",
+          "id": 138
+        },
+        {
+          "title": "Ancient tomb discovery suggests oldest evidence of person getting high — 2,800 years ago",
+          "url": "https://www.yahoo.com/news/science/articles/ancient-tomb-discovery-suggests-oldest-204202854.html",
+          "domain": "yahoo.com",
+          "published_ms": 1793968980000,
+          "kind": "news",
+          "id": 155
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 162
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Cannabis Use Traced to a Siberian Tomb - Cannabis Aficionado",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQTEJVMktOaERkaFAyM1p6aW5jMzVwOXRwZzlvamQyY3lvcG1aYzctMmw2U2hZaVpLbFAxd0hlazlHXzVEdE04eFdWMU9iNDZCMTNoYWt1d0VSeW1TLXRNa1dSYzVRRWZ4dmpBS3pXUmQ1UC1NRnVwbkY5bEtpUlQ0QWh2dTlGMTdLMjVCVWVkS2E2Z0xiSHJUYnZibUExUQ?oc=5",
+          "domain": "cannabisaficionado.com",
+          "published_ms": 1793990475000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Scythian Tomb Reveals Evidence of Ancient Cannabis Use in Siberia - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQaWJzYkpJRS1RdVBfakd2ZFZkWDZUQTJnbjZUN1l0d25FZWpzSy1VdFUza21MLTJVcG1WaFRNQnNhLW1sekV5QlU5dDZyc19BbEZ6Mk9FdUhEcm8xT3dhUWRQT21UWjlZSUE1WnFGNHlobWJvYzYtbjVoSTc0ZkNtVmFFQkgzYXd5WGV4R080bmhTc2xOZV9ZbXliSEtHaUZVQXk0Uw?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793914798000,
+          "kind": "news"
+        },
+        {
+          "title": "Cannabis Seeds and CBN Discovered Together in Ancient Siberian Tomb: The Oldest Direct Evidence - 재경일보",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE1wMW5QWWpWYnNOZzNIaWFTYldpVUtIaVk0R1Bmak1XaGUzUzNyQ3VpbzRQTzZYNHQxRGhLaFdvZTlFWG1feG9OcTZrN21OcFZVa0lQTzFEV0FVMEhrdE9za1dR?oc=5",
+          "domain": "news.jkn.co.kr",
+          "published_ms": 1793919900000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Siberian Tomb Yields Earliest Evidence of Cannabis Use for Intoxication - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOc0dKdnhfb3Z6RlpHOXlwZ0JZQktheG5kZjZFbV9VQ1hpUlJvUndJSVRzTGZXRXc5TTZSYjB5THp6a2NfRDljS0tJYnhvY1kzNVl0NWM5cGpUS2psekNOS1N0VktVM040WDN5dGRfNFIwSmdpampLdnZhZ2NSMVh3aVBCMkltWVZ5ZnBvX0IyXzkwMWltSTFVWXl3djRLTGtpME10VDk5VG1NZw?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794139336000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 41,
+          "source_quality": 100
+        },
+        "total": 74.2,
+        "newest_hours": 16,
+        "domains": [
+          "sciencedaily.com",
+          "news.ssbcrack.com",
+          "yahoo.com",
+          "livescience.com",
+          "reuters.com",
+          "sciencealert.com",
+          "edition.cnn.com",
+          "hightimes.com",
+          "cannabisaficionado.com",
+          "arkeonews.net",
+          "news.jkn.co.kr"
+        ],
+        "trusted_domains": [
+          "yahoo.com",
+          "livescience.com",
+          "reuters.com",
+          "edition.cnn.com",
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (1 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Divers solve a WWII mystery by locating a Canadian ship sunk off the coast of Maine by a Nazi U-boat",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        123,
+        149,
+        160
+      ],
+      "hook": "For 80 years, a Canadian ship torpedoed by a Nazi spy submarine off the coast of Maine remained lost—until divers finally found it.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Battle of the St. Lawrence",
+      "commons_query": "World War II shipwreck underwater",
+      "youtube_query": "WWII shipwreck Maine Nazi Uboat found",
+      "evidence": [
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news",
+          "id": 123
+        },
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 149
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 160
+        },
+        {
+          "title": "Canadian steamship torpedoed by Nazi U-boat discovered off MDI - Bangor Daily News",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQMVhPTUZraGJ5bjNYVmNCZjN1MlZiTnRvMDh3Z0l3N1BjRGdTd1NHMFdoVHlfZlJJSnNnNkd1a3BHVk5GV3kza1QzV2FNU0NoVGh6Q3YweVV0WUhXaUhCbU9nQXN6X2V6WGFGZjV0S1Rtem9VSlJNWHhSYnM2aExOVDhfMkwzdTZhaWxYZlJNQjU2NHdCTExTSkVMS3BDWVIzdnZnN3pfMUh1SkxVcUpkM0ZXRU43OE5obU1aVU8wM2M?oc=5",
+          "domain": "bangordailynews.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "An infamous Nazi sub sank a ship in 1944, days after landing spies in Maine. The wreckage has now been found. - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1ySnU0eEVBNlBoSHNNMWRaYXF2U2NhNlhSN1pNNU1VOWEwSW1MMnBRRDdCc3ctTHJ1clRtTG54Wk91VVNuRl9VMGdwY2ZYWEk0dWdQTWdyTnJwazI0NzZOSXdsWl9ORXphbzJYalo4Z0JjZnpOOA?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Shipwreck found in Gulf of Maine more than 80 years after WWII sinking - Portland Press Herald - Maine Sunday Telegram",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBueDc1dkNwUFZ3Q3lXelJSdnlWMGVLcVl5eTlQU28wSjAzQ3E3TFF3RnptdnY4cUR6cmQwLWc0U2x2d0xNZ3k4Z0QyN0gwTW8?oc=5",
+          "domain": "pressherald.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers find Canadian WW2 U-boat victim at 120m off Maine - Divernet",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOWWUtQmh1VmVyekx3NV9mU0tISUlqc1ZnbnVjbWdKOGZXZGJwdGNGeHJ4SHFiM1c2ZVpjNUZpSi12RGI1cnB1ZzBCa2lOVTJvcHpLQlBJaUxwV1ZjeW9MTncyVVZINGJzME9kS3RBU1ZuYUZMZkhVRmZzR09wZzNnWXc5aWExSmJZX1VIV2VTRmkxdkgyZ2xDa1l0ZGY?oc=5",
+          "domain": "divernet.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Portsmouth divers find WWII-era steamship sunk by German U-boat in Gulf of Maine - New Hampshire Public Radio",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbHJ5ZFlZdWlVT1htTmdpVXdTdmcwT3hkcGNfXzdhUklPSU5nWWRZcV9WeHRWb3VoaE43a21ZOE9hdXZLcDItZ1VsRjBRUFBwbzc5bDR6aDZmOGpUTVowMV9vbWlVMk5wT0tZQVU1M0Vsd3N3RjV4em9ucTdjb3dhZFdxdGtvV3hnM1FIMmQ0WU1LaTlpT183cFlB?oc=5",
+          "domain": "nhpr.org",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Spent 7 Years Hunting a Ghost Ship Linked to a Nazi Spy Plot. They Just Found It. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVko0TEcwYlZEbG1pY1d0UmwzZFZ2eXJlS0dLLThNZGRaWWNDZFREbUxlSk1PRFZlNzVuNnhFbmFtNkZBeGI0aDdOakxjUHg4MzBOcnhRLWhKVjA2Uk91SDc5MnhNS2h6U25odEhEdzlEZEZxd3RBMFRSV0JfcTJpb2tZMmdVRUNfUloxLTZBN2xMaGEw?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793716200000,
+          "kind": "news"
+        },
+        {
+          "title": "Portsmouth divers find WWII-era steamship sunk by German U-boat in Gulf of Maine - Seacoastonline.com",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOc2l5SnRTZXNKZXVjdzBaT0RkS0xtU0JQYU5aU1cyWjdtZmxac0JqWHgycXJlMnBPYkFuejVNeVRTQlV6STJmcGxqVndadXFMZzlvUDBveG9RTWVaTDJZUC03YXBkcmRZWm5kVVduR1hVMTZDR2xtQmprblVtR291NFJROEIzQU5vRVdlYVYzMTBydllMcGhLU3hSM0JSN1hjMmM1MUFyZldzcDA4b19YVXVST2F1ZzcyXzhEa2h3djI1cnQydnR5OTNNaHE0Wm5C?oc=5",
+          "domain": "seacoastonline.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of the St. Lawrence",
+        "daily_views": 67,
+        "ratio": 0.78
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 87,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 72.6,
+        "newest_hours": 30,
+        "domains": [
+          "ua-stena.info",
+          "gizmodo.com",
+          "bostonglobe.com",
+          "bangordailynews.com",
+          "cbsnews.com",
+          "pressherald.com",
+          "divernet.com",
+          "nhpr.org",
+          "popularmechanics.com",
+          "seacoastonline.com"
+        ],
+        "trusted_domains": [
+          "cbsnews.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Maya civilization's heavy use of red mercury-based paint poisoned their ancient water supply",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        128
+      ],
+      "hook": "New sediment analysis reveals that the ancient Maya used so much red cinnabar paint that they literally poisoned their own water with mercury.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Maya civilization",
+      "commons_query": "Maya red pigment cinnabar",
+      "youtube_query": "Maya red paint mercury poisoned water",
+      "evidence": [
+        {
+          "title": "The Maya used so much red paint that they poisoned their water with mercury, mud sediments reveal",
+          "url": "https://www.livescience.com/archaeology/americas/the-maya-used-so-much-red-paint-that-they-poisoned-their-water-with-mercury-mud-sediments-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "feed",
+          "id": 128
+        },
+        {
+          "title": "Ancient Maya unknowingly poisoned Yucatán water with mercury - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPNDY4bVBSZ3AzLWd6NVVwSlpTSHpmYmxhb1ZKdkxPajZiajZfUV9IWWlxWGVVSndubEZLYVlxQ1pnR3NpRnAtMUNXSjY1NWt0YlFhbGVTUFhhZGhzei1KYkhTRWIxVU5McUltU052NDlWN1dubTNaR1RYU3BTd0ZOQjBlaEljdHdlTGo0SEZwZDU3cDRHbGpmbUlraUdFYlZudVBDanJrbmVEaGQ4dTFnRUtiM0RFSTkxbUp2QVUxUmNkaklwRlU2Z1Q2UkVER1hGNkQ3QTVtSW9XeWRLelE?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794074400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Maya civilization",
+        "daily_views": 1921,
+        "ratio": 0.96
+      },
+      "youtube": null,
+      "commons_hits": 7,
+      "score": {
+        "factors": {
+          "momentum": 60,
+          "reach": 66,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 79,
+          "source_quality": 35
+        },
+        "total": 67.5,
+        "newest_hours": 34,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too similar to recent topic: Maya Mercury Contamination from Red Vermilion Paint"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "A 4,500-year-old golden helmet discovered in a tomb as a supreme ancient symbol of power",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        127
+      ],
+      "hook": "Unearthed inside an ancient tomb, this dazzling 4,500-year-old golden helmet may be the oldest surviving symbol of royal power ever found.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Bronze Age",
+      "commons_query": "Bronze Age gold helmet",
+      "youtube_query": "4500 year old golden helmet ancient tomb",
+      "evidence": [
+        {
+          "title": "A 4,500-year-old golden helmet discovered in a tomb may be the oldest symbol of power in history - Diario AS",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNX2pnSU83VXdmOGJiNGVmYlR0cEdBMUdGYWJocUVfVmNtYTFNbU9qSEE1TW9pNm1zWTJtbzZneE9HWG9uV0ROWFo3ZHQyaFgyWUJIcXU5YmJxamN6TFVyWWFwald1RXhZQXc4WmtNcVlUUTl3OFQyRWpGUlVNekc3a3RQNWtLVWtpTk9IM2NNQWNpS2pKc2REX2RlSW1iNEZNdkh1MUVoTXZENjRlQURsRFotSy1GQ09vTnV1Zjl0RThJbDBRN1pIbC1xaGt5TnhUR0dTXzRJbWhxbi1TZkl6TEVZX2M1d9IB5gFBVV95cUxNX2pnSU83VXdmOGJiNGVmYlR0cEdBMUdGYWJocUVfVmNtYTFNbU9qSEE1TW9pNm1zWTJtbzZneE9HWG9uV0ROWFo3ZHQyaFgyWUJIcXU5YmJxamN6TFVyWWFwald1RXhZQXc4WmtNcVlUUTl3OFQyRWpGUlVNekc3a3RQNWtLVWtpTk9IM2NNQWNpS2pKc2REX2RlSW1iNEZNdkh1MUVoTXZENjRlQURsRFotSy1GQ09vTnV1Zjl0RThJbDBRN1pIbC1xaGt5TnhUR0dTXzRJbWhxbi1TZkl6TEVZX2M1dw?oc=5",
+          "domain": "en.as.com",
+          "published_ms": 1794074805000,
+          "kind": "news",
+          "id": 127
+        }
+      ],
+      "wikipedia": {
+        "title": "Bronze Age",
+        "daily_views": 1631,
+        "ratio": 0.85
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 60,
+          "reach": 64,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 65.4,
+        "newest_hours": 34,
+        "domains": [
+          "en.as.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Archaeologists discover mummified crocodiles sacrificed in a 2,500-year-old Egyptian tomb",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        104,
+        106
+      ],
+      "hook": "Inside an untouched 2,500-year-old Egyptian tomb, archaeologists made a terrifying discovery: a pit filled with ten perfectly mummified giant crocodiles.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile in ancient Egypt",
+      "commons_query": "Mummified crocodile Egypt",
+      "youtube_query": "mummified crocodiles Egyptian tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 104
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 106
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 30
+        },
+        "total": 62.5,
+        "newest_hours": 8,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}
