@@ -1082,12 +1082,12 @@
       "attempts": 1,
       "run_id": "42595289544",
       "trigger": "push",
-      "updated_at": "2026-11-09T09:53:21.252Z",
-      "stage": "script",
-      "topic": "Android Auto adds Gemini features to solve common driver annoyances",
-      "score": 73.9,
+      "updated_at": "2026-11-09T09:54:10.041Z",
+      "stage": "research",
+      "topic": "AI-Powered Smart Glasses Used for School Exam Cheating",
+      "score": 72.2,
       "pillar": "AI tools ordinary people can use",
-      "hook": "Android Auto's new Gemini update fixes annoying driving and navigation problems automatically."
+      "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams."
     }
   },
   "uploads": [
@@ -2014,6 +2014,15 @@
       "slot": "kick-a4d2f98db6-ch2",
       "at_ms": 1794217988939,
       "score": 73.9,
+      "pillar": "AI tools ordinary people can use"
+    },
+    {
+      "channel": "2",
+      "topic": "AI-Powered Smart Glasses Used for School Exam Cheating",
+      "slug": "ai-powered-smart-glasses-used-for-school-exam-cheating",
+      "slot": "kick-a4d2f98db6-ch2",
+      "at_ms": 1794218050041,
+      "score": 72.2,
       "pillar": "AI tools ordinary people can use"
     }
   ],
