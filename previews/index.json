@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T18:50:40.384Z",
+  "rebuilt_at": "2026-11-09T18:50:42.440Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,9 +42,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "blocked",
+      "stage": "failed",
       "status": "failed",
-      "at": "2026-11-09T18:50:39.921Z",
+      "at": "2026-11-09T18:50:42.060Z",
       "branch": "preview/ai-tested",
       "commit": "21ddeed6",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129#artifacts)",
@@ -54,7 +54,7 @@
       "script": "",
       "plan": "[scene-plan.json](ai-tested/run-42677020129-1/scene-plan.json)",
       "qa": "[qa-report.json](ai-tested/run-42677020129-1/qa-report.json)",
-      "blocker": "MP4 29.16s disagrees with the timeline 29.67s",
+      "blocker": "QA failed: MP4 29.16s disagrees with the timeline 29.67s",
       "lastOk": "2026-11-09T13:00:02.167Z",
       "run": "run-42677020129-1"
     },

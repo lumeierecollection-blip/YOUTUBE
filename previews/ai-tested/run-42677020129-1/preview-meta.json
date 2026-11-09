@@ -2,11 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42677020129-1",
   "agent": "agent-ai-tested",
-  "stage": "blocked",
+  "stage": "failed",
   "status": "failed",
-  "timestamp": "2026-11-09T18:50:39.921Z",
+  "timestamp": "2026-11-09T18:50:42.060Z",
   "branch": "preview/ai-tested",
   "commit": "21ddeed6985cec8ca09a67296eeded543939bb63",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42677020129#artifacts",
-  "issues": "MP4 29.16s disagrees with the timeline 29.67s"
+  "error": "QA failed: MP4 29.16s disagrees with the timeline 29.67s"
 }
