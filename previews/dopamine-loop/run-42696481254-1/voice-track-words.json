@@ -1,0 +1,358 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (54/54 words matched)",
+ "voice": "Sulafat",
+ "words": [
+  {
+   "text": "Being",
+   "start": 0.0,
+   "end": 0.54,
+   "sentence": 0
+  },
+  {
+   "text": "left",
+   "start": 0.54,
+   "end": 0.76,
+   "sentence": 0
+  },
+  {
+   "text": "out",
+   "start": 0.76,
+   "end": 1.14,
+   "sentence": 0
+  },
+  {
+   "text": "can",
+   "start": 1.14,
+   "end": 1.5,
+   "sentence": 0
+  },
+  {
+   "text": "look",
+   "start": 1.5,
+   "end": 1.78,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 1.78,
+   "end": 2.18,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 2.18,
+   "end": 2.32,
+   "sentence": 0
+  },
+  {
+   "text": "brain",
+   "start": 2.32,
+   "end": 2.62,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.62,
+   "end": 3.2,
+   "sentence": 0
+  },
+  {
+   "text": "lot",
+   "start": 3.2,
+   "end": 3.54,
+   "sentence": 0
+  },
+  {
+   "text": "like",
+   "start": 3.54,
+   "end": 3.9,
+   "sentence": 0
+  },
+  {
+   "text": "physical",
+   "start": 3.9,
+   "end": 4.28,
+   "sentence": 0
+  },
+  {
+   "text": "pain",
+   "start": 4.28,
+   "end": 4.74,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 5.38,
+   "end": 5.58,
+   "sentence": 1
+  },
+  {
+   "text": "one",
+   "start": 5.58,
+   "end": 5.76,
+   "sentence": 1
+  },
+  {
+   "text": "study",
+   "start": 5.76,
+   "end": 6.14,
+   "sentence": 1
+  },
+  {
+   "text": "people",
+   "start": 6.44,
+   "end": 6.68,
+   "sentence": 1
+  },
+  {
+   "text": "played",
+   "start": 6.68,
+   "end": 7.04,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 7.04,
+   "end": 7.26,
+   "sentence": 1
+  },
+  {
+   "text": "virtual",
+   "start": 7.26,
+   "end": 7.58,
+   "sentence": 1
+  },
+  {
+   "text": "ball",
+   "start": 7.58,
+   "end": 8.02,
+   "sentence": 1
+  },
+  {
+   "text": "game",
+   "start": 8.02,
+   "end": 8.36,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 8.36,
+   "end": 8.72,
+   "sentence": 1
+  },
+  {
+   "text": "were",
+   "start": 8.72,
+   "end": 8.86,
+   "sentence": 1
+  },
+  {
+   "text": "left",
+   "start": 8.86,
+   "end": 9.06,
+   "sentence": 1
+  },
+  {
+   "text": "out",
+   "start": 9.06,
+   "end": 9.34,
+   "sentence": 1
+  },
+  {
+   "text": "The",
+   "start": 9.86,
+   "end": 10.04,
+   "sentence": 2
+  },
+  {
+   "text": "more",
+   "start": 10.04,
+   "end": 10.36,
+   "sentence": 2
+  },
+  {
+   "text": "distress",
+   "start": 10.36,
+   "end": 10.72,
+   "sentence": 2
+  },
+  {
+   "text": "they",
+   "start": 10.72,
+   "end": 11.04,
+   "sentence": 2
+  },
+  {
+   "text": "reported",
+   "start": 11.04,
+   "end": 11.32,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 11.86,
+   "end": 11.98,
+   "sentence": 2
+  },
+  {
+   "text": "more",
+   "start": 11.98,
+   "end": 12.26,
+   "sentence": 2
+  },
+  {
+   "text": "active",
+   "start": 12.26,
+   "end": 12.78,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 12.78,
+   "end": 13.06,
+   "sentence": 2
+  },
+  {
+   "text": "anterior",
+   "start": 13.06,
+   "end": 13.48,
+   "sentence": 2
+  },
+  {
+   "text": "cingulate",
+   "start": 13.48,
+   "end": 14.32,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 14.32,
+   "end": 14.62,
+   "sentence": 2
+  },
+  {
+   "text": "Another",
+   "start": 15.36,
+   "end": 15.56,
+   "sentence": 3
+  },
+  {
+   "text": "region",
+   "start": 15.56,
+   "end": 15.88,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 15.88,
+   "end": 16.14,
+   "sentence": 3
+  },
+  {
+   "text": "active",
+   "start": 16.14,
+   "end": 16.44,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 16.44,
+   "end": 16.98,
+   "sentence": 3
+  },
+  {
+   "text": "linked",
+   "start": 16.98,
+   "end": 17.28,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 17.28,
+   "end": 17.6,
+   "sentence": 3
+  },
+  {
+   "text": "less",
+   "start": 17.6,
+   "end": 17.84,
+   "sentence": 3
+  },
+  {
+   "text": "distress",
+   "start": 17.84,
+   "end": 18.26,
+   "sentence": 3
+  },
+  {
+   "text": "That",
+   "start": 19.12,
+   "end": 19.24,
+   "sentence": 4
+  },
+  {
+   "text": "sting",
+   "start": 19.24,
+   "end": 19.68,
+   "sentence": 4
+  },
+  {
+   "text": "comes",
+   "start": 19.68,
+   "end": 20.28,
+   "sentence": 4
+  },
+  {
+   "text": "with",
+   "start": 20.28,
+   "end": 20.52,
+   "sentence": 4
+  },
+  {
+   "text": "measurable",
+   "start": 20.52,
+   "end": 20.86,
+   "sentence": 4
+  },
+  {
+   "text": "brain",
+   "start": 20.86,
+   "end": 21.54,
+   "sentence": 4
+  },
+  {
+   "text": "activity",
+   "start": 21.54,
+   "end": 21.9,
+   "sentence": 4
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Being left out can look, in the brain, a lot like physical pain.",
+   "start": 0.0,
+   "end": 4.74
+  },
+  {
+   "text": "In one study, people played a virtual ball game and were left out.",
+   "start": 5.38,
+   "end": 9.34
+  },
+  {
+   "text": "The more distress they reported, the more active the anterior cingulate was.",
+   "start": 9.86,
+   "end": 14.62
+  },
+  {
+   "text": "Another region was active, and linked to less distress.",
+   "start": 15.36,
+   "end": 18.26
+  },
+  {
+   "text": "That sting comes with measurable brain activity.",
+   "start": 19.12,
+   "end": 21.9
+  }
+ ]
+}
