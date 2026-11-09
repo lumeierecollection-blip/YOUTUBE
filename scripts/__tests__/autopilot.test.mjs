@@ -134,3 +134,8 @@ test("a slot that passed QA but lost its upload result is never re-produced auto
   assert.equal(pickDueSlot(l, MON + HOUR), null);
   assert.equal(l.attention.length, 1);
 });
+
+test("two shared proper names make a near-repeat, however the headline is reworded", () => {
+  assert.ok(similarity("NYT Cooking AI assistant makes wild ingredient mistakes", "NYT Cooking AI Assistant Flubs Recipe Swaps") >= 0.5);
+  assert.ok(similarity("Viking church found in Greenland", "Roman fort found in Britain") < 0.5);
+});

@@ -56,7 +56,24 @@ Captions in the lower part of the frame are expected. A frame mid-transition can
 Reply JSON {"clipped_text":["frame: what"],"overlapping_text":["frame: what"],"blank_or_corrupt":["frame"],"unrelated_or_broken_images":["frame: what"],"overall":"one sentence"}.`, readFileSync(sheet), "autopilot-frame-review");
   if (!verdict) return { pass: false, why: "no vision model answered; held rather than passed" };
   const problems = ["clipped_text", "overlapping_text", "blank_or_corrupt", "unrelated_or_broken_images"].flatMap((k) => (verdict[k] || []).map((x) => `${k}: ${x}`));
-  return { pass: problems.length === 0, problems, verdict, sheet };
+  // A small tile can mislead, so text problems are confirmed on full-resolution frames of the MP4.
+  const textProblems = problems.filter((p) => /^(clipped_text|overlapping_text)/.test(p));
+  const dismissed = [];
+  if (textProblems.length) {
+    const indexes = [...new Set(textProblems.map((p) => Number((p.match(/frame\s*(\d+)/i) || [])[1])).filter(Boolean))].slice(0, 4);
+    const checks = indexes.length ? indexes : [1, 8, 15];
+    let confirmed = false, answered = 0;
+    for (const n of checks) {
+      const f = join(framesDir, `full-${n}.jpg`);
+      must("frame-review", "ffmpeg", ["-y", "-v", "error", "-ss", (step * (n - 1) + step / 2).toFixed(3), "-i", mp4, "-frames:v", "1", "-vf", "scale=720:-2", "-q:v", "3", f]);
+      const v = await askVision('This is one full frame of a vertical video. Is any text actually cut off by the edge of the frame, or are two pieces of text printed on top of each other? Reply JSON {"cut_off":boolean,"overlap":boolean,"what":"..."}.', readFileSync(f), "autopilot-frame-confirm");
+      if (v) { answered++; if (v.cut_off || v.overlap) confirmed = true; }
+    }
+    if (!answered) return { pass: false, why: "text problems were reported and could not be confirmed either way; held", problems, verdict, sheet };
+    if (!confirmed) { dismissed.push(...textProblems); }
+  }
+  const remaining = problems.filter((p) => !dismissed.includes(p));
+  return { pass: remaining.length === 0, problems: remaining, dismissed_after_full_resolution_check: dismissed, verdict, sheet };
 }
 
 export function acceptance({ channel, topic, script, narration, mp4, timelinePath, manifestPath, dir, productionId }) {
@@ -99,7 +116,7 @@ function reviewMarkdown(report, plan, attributions, frame) {
   const rows = report.scenes.map((s) => {
     const m = s.measured;
     const t = s.treatments.map((x) => x.type.replaceAll("_", " ")).join(", ");
-    const measured = s.photo ? `stable across ${m.stability.frames_compared} frames (${m.stability.blocks_used} blocks); saturation ${m.grade.source}→${m.grade.treated}; corners vs tone curve ${m.vignette.measurable ? m.vignette.ratio : "not measurable"}; dot screen ${m.halftone.treated.peak_over_median}x median, ${m.halftone.treated_over_source_at_dot_frequency}x source; fine detail ${m.grain.source}→${m.grain.treated}` : (m.map_route ? `route accent pixels ${m.map_route.accent_pixels_start}→${m.map_route.end}` : "");
+    const measured = m.stability ? `stable across ${m.stability.frames_compared} frames (${m.stability.blocks_used} blocks); saturation ${m.grade.source}→${m.grade.treated}; corners vs tone curve ${m.vignette.measurable ? m.vignette.ratio : "not measurable"}; dot screen ${m.halftone.treated.peak_over_median}x median, ${m.halftone.treated_over_source_at_dot_frequency}x source; fine detail ${m.grain.source}→${m.grain.treated}` : (m.map_route ? `route accent pixels ${m.map_route.accent_pixels_start}→${m.map_route.end}` : "");
     return `| ${s.scene} | ${Number(s.start_s).toFixed(1)}-${Number(s.end_s).toFixed(1)}s | ${t} | ${measured} | ${(s.exceptions || []).map((e) => `${e.treatment}: ${e.reason}`).join("; ") || "none"} |`;
   });
   return `# VOX visual review

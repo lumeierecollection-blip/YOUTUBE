@@ -14,6 +14,7 @@ import { channelStyle } from "./visual-common.mjs";
 
 const MAX_SECONDS = 29.8;
 const SCRIPT_PASSES = 7;
+const MIN_DRAWABLE_FACTS = 5;
 // The per-sentence clarity and specificity readers can always find one more nitpick. After repairs,
 // those two alone are logged and the whole script is judged instead. Everything else stays blocking.
 const isAdvisory = (line) => /^ {2}- (CLARITY|SPECIFICITY)/.test(line);
@@ -42,7 +43,7 @@ export async function research({ channel, topic, dir }) {
   const input = JSON.stringify({ topic: topic.topic, angle: topic.angle, slug: topic.slug, channel_id: channel.id, trending_entities: null });
   let out;
   try {
-    out = agent(["--prompt-file", "prompts/research.md", "--schema-file", "schemas/research.json", "--agent", "pipeline-research", "--model", models().research,
+    out = agent(["--prompt-file", "prompts/research.md", "--append-system-prompt-file", "prompts/autopilot-research-extra.md", "--schema-file", "schemas/research.json", "--agent", "pipeline-research", "--model", models().research,
       "--task-label", "research", "--max-retries", "4", "--min-source-domains", "2", "--channel-id", channel.id, "--video-id", topic.slug,
       "--search-out", `data/research/${channel.id}/${topic.slug}-search.json`], input, "research", { SEARCH_FALLBACK_FILE: pages ? fallback : "" });
   } catch (e) {
@@ -136,6 +137,8 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   let feedback = "", previous = null;
   const drawable = await drawableFacts(channel, researchPath);
   log("script", `drawable facts offered: ${drawable.length}`);
+  // Too few drawable facts makes a model satisfy the rule with nonsense, so the topic is dropped instead.
+  if (channelStyle(channel.id)?.strict_visual && drawable.length < MIN_DRAWABLE_FACTS) throw new StageError("research", `only ${drawable.length} drawable facts in the research; ${MIN_DRAWABLE_FACTS} needed for a good strict-visual script`);
   for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
     log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
