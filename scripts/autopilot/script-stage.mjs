@@ -8,7 +8,7 @@
  */
 import { copyFileSync, existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { ROOT, StageError, askJson, durationOf, log, must, readJson, run, writeJson } from "./lib.mjs";
+import { ROOT, StageError, askJson, durationOf, log, must, parseJsonAnswer, readJson, run, writeJson } from "./lib.mjs";
 import { retrievePages } from "./retrieve.mjs";
 import { channelStyle } from "./visual-common.mjs";
 
@@ -114,6 +114,22 @@ async function drawableFacts(channel, researchPath) {
   return [...new Set(texts)].filter((t) => groundedVisualFor(t)).slice(0, 12);
 }
 
+/** Groq's gpt-oss-120b writes these scripts well and has its own quota. Null hands the pass to the Gemini-first runner. */
+async function writeWithGroq(briefPath, ctx, channel, topic) {
+  if (!process.env.GROQ_API_KEY) return null;
+  const { callLLMWithProvenance } = await import("../../src/lib/llm.js");
+  process.env.FORCE_PROVIDER = "groq";
+  try {
+    const prompt = `${readFileSync(briefPath, "utf8")}\n\n## INPUT\n\n${ctx}`;
+    const r = await callLLMWithProvenance([{ role: "user", content: prompt }], { maxTokens: 6000, temperature: 0.5, keepAlive: 0 }, "autopilot-writer");
+    if (r.error) { log("script", `groq unavailable: ${r.error}`); return null; }
+    const j = parseJsonAnswer(r.value);
+    const valid = Array.isArray(j?.sections) && j.sections.length >= 3 && j.sections.every((s) => s.id && String(s.voiceover || "").length >= 40 && String(s.visual_cue || "").length >= 10) && String(j.hook || "").length >= 30;
+    if (!valid) { log("script", "groq answer failed the script shape"); return null; }
+    return { ...j, channel_id: channel.id, topic_slug: topic.slug, format: "shorts", sources_used: j.sources_used || [] };
+  } catch (e) { log("script", `groq error: ${e.message}`); return null; } finally { delete process.env.FORCE_PROVIDER; }
+}
+
 /** One reading of the finished narration as a whole. If no model can answer, the script is held. */
 async function editorialVerdict(scriptPath, topic, researchPath) {
   const data = readJson(scriptPath);
@@ -144,7 +160,8 @@ export async function writeScript({ channel, topic, researchPath, dir }) {
   for (let pass = 1; pass <= SCRIPT_PASSES; pass++) {
     log("script", `pass ${pass}/${SCRIPT_PASSES}${previous ? ` (revising ${wordCount(previous)} words)` : ""}`);
     const ctx = must("script", "node", ["scripts/build-script-context.js", channel.id, topic.slug, "--format", "shorts"], { capture: true }).stdout;
-    const out = agent(["--prompt-file", promptFile(previous, feedback, dir, drawable, channel), "--schema-file", "schemas/script.section.json",
+    const brief = promptFile(previous, feedback, dir, drawable, channel);
+    const out = (await writeWithGroq(brief, ctx, channel, topic)) || agent(["--prompt-file", brief, "--schema-file", "schemas/script.section.json",
       "--agent", "pipeline-script", "--model", models().script, "--task-label", "write-script", "--max-retries", "4", "--channel-id", channel.id, "--video-id", stem], ctx, "script");
     // Sources come from the research itself, so a script can never cite a URL the research does not hold.
     out.sources_used = [...new Set((readJson(researchPath).key_facts || []).map((f) => f.source_url).filter(Boolean))].slice(0, 6);
