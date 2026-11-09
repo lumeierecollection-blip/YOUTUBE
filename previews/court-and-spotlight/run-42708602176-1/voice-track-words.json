@@ -1,0 +1,423 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (58/64 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Wesley",
+   "start": 0.0,
+   "end": 0.46,
+   "sentence": 0
+  },
+  {
+   "text": "Snipes",
+   "start": 0.46,
+   "end": 1.1,
+   "sentence": 0
+  },
+  {
+   "text": "got",
+   "start": 1.1,
+   "end": 1.42,
+   "sentence": 0
+  },
+  {
+   "text": "three",
+   "start": 1.42,
+   "end": 1.82,
+   "sentence": 0
+  },
+  {
+   "text": "years",
+   "start": 1.82,
+   "end": 2.3,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 2.3,
+   "end": 2.54,
+   "sentence": 0
+  },
+  {
+   "text": "prison",
+   "start": 2.54,
+   "end": 2.88,
+   "sentence": 0
+  },
+  {
+   "text": "for",
+   "start": 2.88,
+   "end": 3.18,
+   "sentence": 0
+  },
+  {
+   "text": "not",
+   "start": 3.18,
+   "end": 3.44,
+   "sentence": 0
+  },
+  {
+   "text": "filing",
+   "start": 3.44,
+   "end": 3.82,
+   "sentence": 0
+  },
+  {
+   "text": "tax",
+   "start": 3.82,
+   "end": 4.12,
+   "sentence": 0
+  },
+  {
+   "text": "returns",
+   "start": 4.12,
+   "end": 4.54,
+   "sentence": 0
+  },
+  {
+   "text": "A",
+   "start": 5.3,
+   "end": 5.35,
+   "sentence": 1
+  },
+  {
+   "text": "jury",
+   "start": 5.3,
+   "end": 5.48,
+   "sentence": 1
+  },
+  {
+   "text": "found",
+   "start": 5.48,
+   "end": 5.84,
+   "sentence": 1
+  },
+  {
+   "text": "him",
+   "start": 5.84,
+   "end": 6.0,
+   "sentence": 1
+  },
+  {
+   "text": "guilty",
+   "start": 6.0,
+   "end": 6.22,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 6.22,
+   "end": 6.5,
+   "sentence": 1
+  },
+  {
+   "text": "February",
+   "start": 6.5,
+   "end": 6.88,
+   "sentence": 1
+  },
+  {
+   "text": "on",
+   "start": 6.88,
+   "end": 7.38,
+   "sentence": 1
+  },
+  {
+   "text": "failure-to-file",
+   "start": 7.38,
+   "end": 7.81,
+   "sentence": 1
+  },
+  {
+   "text": "charges",
+   "start": 8.24,
+   "end": 8.6,
+   "sentence": 1
+  },
+  {
+   "text": "It",
+   "start": 9.4,
+   "end": 9.45,
+   "sentence": 2
+  },
+  {
+   "text": "acquitted",
+   "start": 9.42,
+   "end": 9.68,
+   "sentence": 2
+  },
+  {
+   "text": "him",
+   "start": 9.68,
+   "end": 9.94,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 9.94,
+   "end": 10.06,
+   "sentence": 2
+  },
+  {
+   "text": "five",
+   "start": 10.06,
+   "end": 10.36,
+   "sentence": 2
+  },
+  {
+   "text": "other",
+   "start": 10.36,
+   "end": 10.66,
+   "sentence": 2
+  },
+  {
+   "text": "charges",
+   "start": 10.66,
+   "end": 11.02,
+   "sentence": 2
+  },
+  {
+   "text": "including",
+   "start": 11.44,
+   "end": 11.68,
+   "sentence": 2
+  },
+  {
+   "text": "felony",
+   "start": 11.68,
+   "end": 12.02,
+   "sentence": 2
+  },
+  {
+   "text": "tax",
+   "start": 12.02,
+   "end": 12.44,
+   "sentence": 2
+  },
+  {
+   "text": "fraud",
+   "start": 12.44,
+   "end": 12.76,
+   "sentence": 2
+  },
+  {
+   "text": "Prosecutors",
+   "start": 13.7,
+   "end": 13.75,
+   "sentence": 3
+  },
+  {
+   "text": "alleged",
+   "start": 13.7,
+   "end": 14.16,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 14.16,
+   "end": 14.46,
+   "sentence": 3
+  },
+  {
+   "text": "earned",
+   "start": 14.46,
+   "end": 14.72,
+   "sentence": 3
+  },
+  {
+   "text": "at",
+   "start": 14.72,
+   "end": 14.92,
+   "sentence": 3
+  },
+  {
+   "text": "least",
+   "start": 14.92,
+   "end": 15.08,
+   "sentence": 3
+  },
+  {
+   "text": "thirteen",
+   "start": 15.08,
+   "end": 15.39,
+   "sentence": 3
+  },
+  {
+   "text": "point",
+   "start": 15.39,
+   "end": 15.7,
+   "sentence": 3
+  },
+  {
+   "text": "eight",
+   "start": 15.7,
+   "end": 16.01,
+   "sentence": 3
+  },
+  {
+   "text": "million",
+   "start": 16.32,
+   "end": 16.7,
+   "sentence": 3
+  },
+  {
+   "text": "dollars",
+   "start": 16.7,
+   "end": 17.26,
+   "sentence": 3
+  },
+  {
+   "text": "Prosecutors",
+   "start": 17.82,
+   "end": 18.0,
+   "sentence": 4
+  },
+  {
+   "text": "sought",
+   "start": 18.0,
+   "end": 18.56,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 18.56,
+   "end": 18.72,
+   "sentence": 4
+  },
+  {
+   "text": "maximum",
+   "start": 18.72,
+   "end": 19.04,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 19.04,
+   "end": 19.6,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 19.6,
+   "end": 19.7,
+   "sentence": 4
+  },
+  {
+   "text": "judge",
+   "start": 19.7,
+   "end": 19.86,
+   "sentence": 4
+  },
+  {
+   "text": "gave",
+   "start": 19.86,
+   "end": 20.14,
+   "sentence": 4
+  },
+  {
+   "text": "three",
+   "start": 20.14,
+   "end": 20.48,
+   "sentence": 4
+  },
+  {
+   "text": "years",
+   "start": 20.48,
+   "end": 20.86,
+   "sentence": 4
+  },
+  {
+   "text": "A",
+   "start": 21.6,
+   "end": 21.65,
+   "sentence": 5
+  },
+  {
+   "text": "US",
+   "start": 21.6,
+   "end": 21.85,
+   "sentence": 5
+  },
+  {
+   "text": "Marshals",
+   "start": 22.1,
+   "end": 22.26,
+   "sentence": 5
+  },
+  {
+   "text": "booking",
+   "start": 22.26,
+   "end": 22.52,
+   "sentence": 5
+  },
+  {
+   "text": "photo",
+   "start": 22.52,
+   "end": 22.84,
+   "sentence": 5
+  },
+  {
+   "text": "is",
+   "start": 22.84,
+   "end": 23.16,
+   "sentence": 5
+  },
+  {
+   "text": "dated",
+   "start": 23.16,
+   "end": 23.36,
+   "sentence": 5
+  },
+  {
+   "text": "that",
+   "start": 23.36,
+   "end": 23.64,
+   "sentence": 5
+  },
+  {
+   "text": "same",
+   "start": 23.64,
+   "end": 23.94,
+   "sentence": 5
+  },
+  {
+   "text": "day",
+   "start": 23.94,
+   "end": 24.22,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Wesley Snipes got three years in prison for not filing tax returns.",
+   "start": 0.0,
+   "end": 4.54
+  },
+  {
+   "text": "A jury found him guilty in February, on failure-to-file charges.",
+   "start": 5.3,
+   "end": 8.6
+  },
+  {
+   "text": "It acquitted him of five other charges, including felony tax fraud.",
+   "start": 9.4,
+   "end": 12.76
+  },
+  {
+   "text": "Prosecutors alleged he earned at least thirteen point eight million dollars.",
+   "start": 13.7,
+   "end": 17.26
+  },
+  {
+   "text": "Prosecutors sought the maximum, and the judge gave three years.",
+   "start": 17.82,
+   "end": 20.86
+  },
+  {
+   "text": "A US Marshals booking photo is dated that same day.",
+   "start": 21.6,
+   "end": 24.22
+  }
+ ]
+}
