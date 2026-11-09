@@ -1,0 +1,1974 @@
+{
+  "generated_at": "2026-11-09T04:31:06.597Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 81
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-09",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-10",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 51
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:forgotten history",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 4
+        },
+        {
+          "source": "bing-news:shipwreck found",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 42
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "The Accidental Fall of the Berlin Wall",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        4
+      ],
+      "hook": "How a tired official's slip of the tongue accidentally tore down the Berlin Wall overnight.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 10,
+        "visual": 9
+      },
+      "wikipedia_title": "Fall of the Berlin Wall",
+      "commons_query": "Fall of the Berlin Wall 1989",
+      "youtube_query": "fall of the berlin wall history",
+      "evidence": [
+        {
+          "title": "1989, 11-09: East German official Günter Schabowski mistakenly announced the immediate opening of the inner German border, resulting in the fall of the Berlin Wall that night (border crossing pictured).",
+          "url": "https://en.wikipedia.org/wiki/G%C3%BCnter_Schabowski",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 4
+        },
+        {
+          "title": "Today in History: November 9, Berlin Wall falls after 28 years - Texarkana Gazette",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPdlNnek44UE5hdEZZSUlfWmxSMEpMMFZCcEw5VmZYTE5xbTU5djlWMU02b2pWN3ZoeVdGVEMyRHFSTVBnR3VTRVhYem1HWC1mMGlyNjNwbzBRQ3hETkg2VlVEcm00UkJJWFdRWFQ4aEJYc0JHMHhiZmNybVM3Vm5tVW9uNEw3c1FNYXNIS2ZiQ0FPeHYwbTRJWjI3azg?oc=5",
+          "domain": "texarkanagazette.com",
+          "published_ms": 1794196800000,
+          "kind": "news"
+        },
+        {
+          "title": "Why Did the Berlin Wall Fall? - The Imaginative Conservative",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNeVJ1c3I3X2FwZWpuRkRHaHdUWlFqQXRqQWFzT2tCdmg3c25hRnhTU2xBV2JpVlI4RW51ek83MkhjWnFVTFdJS1JjQW01OTVvLS1RbmY0LWFLRTRaOFdRLURkbV8wOEY1cmNPTHd2T0JPV3hYeWJaUzI0VTJXVWt3U0xvSENybDdkWXJJ?oc=5",
+          "domain": "theimaginativeconservative.org",
+          "published_ms": 1794192281000,
+          "kind": "news"
+        },
+        {
+          "title": "Silly's 'Februar' Predicted The Fall Of The Berlin Wall, And The New 33 1/3 Book Reveals How East German Rock Challenged A Regime - That Eric Alper",
+          "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxORG9WejZNNmJCbFdQZWdsMXZaaUpDVENFdnhLQ2I4MVczSEdsYlRxSzVXcTZJUzBsTlpHWVlwaWF4M3J1cU5FMWZOYWhJYVVvdERWcGw4Z3VjajJzTjRQM20zYUhFRGp5cXByRUNKc0lxb0FObFUxRDczVW02YlhZWnlwVVFpak4xUURmLVBqLUJwd3Vha0E2d3FxSEsybkRfLUd1LXQxbGhVVGkyYXo0NzhjY28wRnhuYUVvanVNZ0ZZZFJWYmwtM0J0SGlvUHVuNEJ3aFgxOGt2MUd2ZVlFZjg0dUNreDZhQzFGMHdTSTZnVHlERURyRy1SUQ?oc=5",
+          "domain": "thatericalper.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        },
+        {
+          "title": "Berlin Wall pieces go on display in northeast Arkansas’ National Cold War Center - The Arkansas Democrat-Gazette",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPQWw0WU9jMXhCakZhUmVvYnhDSnZaX191UXJ5SmRaUThEd3U2RWlEbjZ6cWoxTzBudWVERlp5Nllob3hDaENQWUx2X1otVThZdVJPX0NkWEw4ZGhSYXI3eEptNk1sUGtwM05EQXNyMFNJczJJR3V4WWs1T001bW5fY1pGMUNSeDY0NFhEQ1pSOU5zWlBCN2tic0J6OWx1UQ?oc=5",
+          "domain": "arkansasonline.com",
+          "published_ms": 1794114900000,
+          "kind": "news"
+        },
+        {
+          "title": "Germany - Reunification, Berlin Wall, Cold War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1kWU00ekdKOGxiVHhLZnIxM1ZhZVZEWG5JT1ByNEd4MTMtWnFJazN2RUk1WjQtb1dxUVdQQXpFb1FwQktnTHZUOUhGS0ItR191a2JabmJFSXM1WGZSdnd2d2RDRGpPc0plX0J2ZExBWWw4WldTbXNicg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793865600000,
+          "kind": "news"
+        },
+        {
+          "title": "Kim's Jong Un's triple fence -- a wall built to fall - upi",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxONm1jTFFWeGVSVWtMY2hCb3l2TmM4Vl80SzNSRHoyWThqdS03UWNkS1JCY1Z3NktqWEVMWFlYbFQzenE5a1RUTHZjeS1LcWN1UUNTQy15QWFheFhlZ2hnMC11N0hOcTVZdmFubkx6QnpZZTZBSVpRSWhwT1poYm1WR2pvZzJUb3B4anZIUTc4VUtxRjdyblRNRmRXSdIBoAFBVV95cUxONE1aYUdMVmFKZnVZMVNoRE1fRWhTSnBaRE11bUNWWThqNzNXVVg3amw5VlBRaS1pQmlJTTJzazhiSVprMnJjbVljN21TcUNYem1fbFhWb1JuS0RHOFo2ZmNhS0s4cmRZNHY0S3Z4RWhqV1FacW85Y2FqYjBFQ1I5bWFZeExDOGZhZFBzSWJ0d1UzakZXcjBNSGZzVzdsVEpR?oc=5",
+          "domain": "upi.com",
+          "published_ms": 1793806112000,
+          "kind": "news"
+        },
+        {
+          "title": "A generation without the Berlin Wall faces a shifting order - RUSSPAIN.com",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQODN3bGtCOVRiVEoycWdjbGpKVVRVRmszV3BmR2F2SFU0NU1TdXN5akx2ZTFaT3RTbllXam5aMmZNSHB2ZWtqb2swZDloenFSUm9aNnBrZmVVemc4WnFfeEF2czZwWWlWZkI1a0FueUlYeFd3QmtlSk9IbWRhb1plbmdaUXdmZUFCcTlRTHJZUm5ib05qeENzaA?oc=5",
+          "domain": "russpain.com",
+          "published_ms": 1794176881000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fall of the Berlin Wall",
+        "daily_views": 940,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 59,
+          "curiosity": 90,
+          "relevance": 100,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 82.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "texarkanagazette.com",
+          "theimaginativeconservative.org",
+          "thatericalper.com",
+          "arkansasonline.com",
+          "britannica.com",
+          "upi.com",
+          "russpain.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Night the Berlin Wall Fell"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Sinking of the SS Edmund Fitzgerald",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        17
+      ],
+      "hook": "The legendary freighter that vanished into Lake Superior without a single distress signal.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "SS Edmund Fitzgerald",
+      "commons_query": "SS Edmund Fitzgerald",
+      "youtube_query": "ss edmund fitzgerald story",
+      "evidence": [
+        {
+          "title": "1975, 11-10: SS Edmund Fitzgerald sank in Lake Superior, claiming all 29 of her crew's lives.",
+          "url": "https://en.wikipedia.org/wiki/SS_Edmund_Fitzgerald",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 17
+        },
+        {
+          "title": "INTERACTIVE: Detroit remembers the Edmund Fitzgerald — 51 years later - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNMmRuM3FTMnh5VXpVaktCRy1udXN2M05uYmlFWDdLVVNhaW1LVUVnZ1B3WWQzXzRzcUxxUkdPUnF5NlJYSDUyZkRsMmk2b29mVDhBTHFOOFVDTWFqS2h0cjNTWFpsXzB0b014OTVvWWlMYXVVMTVBVkZYOHd5UXRTY1owM1FsX3dCeDI5d051bG5CWlBERzFv?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "New Edmund Fitzgerald film to be released on anniversary of the shipwreck - WMTV 15 NEWS",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQSEM3WUg4eS1NTmNsV3oxN2tiZXBnVE1BbU13MFg1V3J2YUVZTTB4S050RTNobF9xY0tmaDA5YldLWGVPRzJoMXo4ZVlsNUoyUkpaMXllemtaa1hESjQteW1wOFFXUzJrdnRSVE0xUG5vSURqZHU4bUNGYkFQajk2bzNvS0dxRWpKUjNIejF2TDZnNGxtaVIwQksxUjN0Mkxt0gG0AUFVX3lxTFBWbmtaWGZyb0ZoZ1c5ODRCYmpCRjVmSFlUeTVraFJHd3BJQUtfMEd5cjl3ajdCNUNtanlBYXlMdnByQXFNYi1Uem5EdWtLZFZNcm5FYWN5UzNwMjlNUnlPcWd6MkFsZHdzVk5zNzNUNDdveGRyZ1NjaEtzdU13VFdMY0cxNEg1TE9qN2tCV0hIc2ZXaGRpMU9LWEVaamJKOE9RNExfejllUWg5NklBTW9QYko1bA?oc=5",
+          "domain": "wmtv15news.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        },
+        {
+          "title": "Great Lakes swimmers honor Edmund Fitzgerald crew in new documentary - MLive.com",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxORzREZExOM2czbVRWMlQzeFJoMDlRTWxWcU02Q1ZGcXo1dnVMQkk3enNHZTlBb2VPZE5EYnRQajg3LVhDaUlXRFN0cS1fZEJ1QjBMQ0tibEVneWFsVU5Mc2tTanlMWUY2dnFxd2hXZlJVMzJRM3lRaHFVMFBwZTFXdC1RX1ExVkFpcjFjLWRib0NoOWVUaE92VUJjMExmcG02cmFXU0dTU2taeXUy?oc=5",
+          "domain": "mlive.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        },
+        {
+          "title": "Remembering the Edmund Fitzgerald: Watch our special on the Great Lakes tragedy - WPBN",
+          "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxQZlVORVZ5LVlDS2RkeGRqVUx4YmQzalVGR2V5d0pvSkdQUkhxRlBGZFk1eXd1U2hLZHUyZC1KTWdqYmh5aVoySjVwY3JNeEoyMEtSX25GTGJPcXZuaU5TbmdGQlVia1E4bm9Gc0RxTW96aDVwOF9SRGM2QThpRFpRa2NsekQzaEZPejk3ZHhCNVotaHJsdnF1OVp2Y2ZGTmpPb01ZRHZhUGQ1LXRTRVpXMWJXbTBqYng3cm1kTUxFYjhyaktRMVloLXVxV2RBbmRHQ2lGQjV3NmZTTWNZY1VRQnJSeVVJN3ZndFpaMFNGcnBySmZDcnVCb3BqdmZ4RmVUeDJSUzJxSnZNMVFTd3JjdXZyTFR5QWhwMnhvZ2JhMDhSdGwwcFFWVA?oc=5",
+          "domain": "upnorthlive.com",
+          "published_ms": 1793904978000,
+          "kind": "news"
+        },
+        {
+          "title": "Documentary chronicling 411-Mile Edmund Fitzgerald Memorial Swim set for Nov. 10 release - 9and10News.com",
+          "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQckZCaTJydzc1QWV3d0JRRzlwQV9vWXh2bXBFckVMbjM5eW9rMjdMNlJEdlhPOHJBNEdRTlNMTG5TdjdacUhvQXlhN3Z4ekQ1Wmtva19fSm51Njl1TE1PZHh3VzlEMWtpaWNDZ1ZLOG1ZQ2tMNjVUXzJRclpkOEFINUZqWFNOb3BMSktYU3NSUXdnY21JdzY0bG1JMURhVXhTWk5CY3l1d29SUGpIQXBSN0h6Z1F1TmwyRlBTMFdiY0kwNlNP?oc=5",
+          "domain": "9and10news.com",
+          "published_ms": 1793887260000,
+          "kind": "news"
+        },
+        {
+          "title": "A Powerful New Documentary Honors The Legacy Of The Edmund Fitzgerald - KROC-AM",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE92UFNxOUdYcERKTmk0eExTVnJHd2I3RURXbXhWVE5JUFVBNGZqTDhWLTl2aTEySGMzMnlyZG9Ec2VzdmFiY3FETWRPX2RBRGpORVFWc2JvcXpzdmxXUXZITU80SFFMMGhhUGJrVmlQX0hvQQ?oc=5",
+          "domain": "krocnews.com",
+          "published_ms": 1794185815000,
+          "kind": "news"
+        },
+        {
+          "title": "New documentary highlights memorial swim completing Edmund Fitzgerald's journey - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQR3R1V01wMlk2dDlPeUswcVBURWliVlpXdzJGNERSYkZHaDBNUnlUdUZnaVBsZjdwUGdkM3N0Y2RSd3FBU3hNTV9qcktleWpNZl9QakYwMFI4V01LN2VyY0ZBdmhCTmZ6YWUxY3NiS2ZUWC10RGFHVWhfR0hkaDkyRDc5UkZpcWVpRVNLZ3FwQWRud3lheWRZbjhoeGd2SUNjdllWb1NLUQ?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Dossin Great Lakes Museum to commemorate sinking of Edmund Fitzgerald with events from Nov. 7-10 - WXYZ Channel 7",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPdXNsdExmUWljVlBkWVMtNFEwR2YzRllSV0ZVWm9TWnVxdDFxZjV4RUJLSXNvbzM3bmtHUGgxRTRIbjJLU3lWMG9SajBNZ1EtdlBrTXVWUzRhX3lXMlZfcS00dVpHNmdmWXJLbEozbHhtQjhINGxSREF5VFNQWG40amx3Rmh5aGtLUFJ2d3premNiRkZkTXE1cVpKa09VVVVmMzYtdGxtdUZaSm5nSjFsTUx0ZjZOMk53SkdVWEJB?oc=5",
+          "domain": "wxyz.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "SS Edmund Fitzgerald",
+        "daily_views": 11497,
+        "ratio": 2.87
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 83,
+          "reach": 81,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 80.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "wxyz.com",
+          "wmtv15news.com",
+          "mlive.com",
+          "upnorthlive.com",
+          "9and10news.com",
+          "krocnews.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Cannabis Use in an Ancient Siberian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        118,
+        161,
+        165
+      ],
+      "hook": "Archaeologists found 2,800-year-old evidence of cannabis in Siberia, possibly used to calm human sacrifice victims.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Pazyryk culture",
+      "commons_query": "",
+      "youtube_query": "ancient siberian tomb cannabis discovery",
+      "evidence": [
+        {
+          "title": "Ancient Siberian tomb reveals surprising secrets of cannabis use 2,800 years ago - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9SZTlDN09EeFdPVkF4NmEzOERjVFNxZzJVZzc1X2JuUlExMUQ5SlhuTEZoeTBkaHdEU2VZVTBNNUlDakR6TGQ5VUpSZlZJVFYycGw0dHdqYW9jUlVMOElnQVV3aDhEU01ObGd1akktbw?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794125758000,
+          "kind": "news",
+          "id": 118
+        },
+        {
+          "title": "2,800-year-old tomb in Siberia has evidence of the earliest use of cannabis — possibly as a way to calm human sacrifice victims",
+          "url": "https://www.livescience.com/archaeology/2-800-year-old-tomb-in-siberia-has-evidence-of-the-earliest-use-of-cannabis-possibly-as-a-way-to-calm-human-sacrifice-victims",
+          "domain": "livescience.com",
+          "published_ms": 1793908573000,
+          "kind": "feed",
+          "id": 161
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb",
+          "url": "https://www.msn.com/en-us/news/other/earliest-evidence-of-cannabis-use-found-in-ancient-siberian-tomb/ar-AA2gPKgf",
+          "domain": "msn.com",
+          "published_ms": 1793876415000,
+          "kind": "news",
+          "id": 165
+        },
+        {
+          "title": "Siberian burial site reveals ancient use of cannabis as an intoxicant - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPOENySVR1TUczeVdZMEpVcGhlSnBZaU5aVWRPcE9ORVNqXzdZNzUwNXpXN2pPc1RqQTFUQkN2Nmx2d1NjMWJyMzRxbW15dGV6alZMU3dLSzZySjNsQWd3aGtZVHRzamY0bTNPQzJ3bHFoZHFGWkZVSVlDUDBubTZJWC1UaERSRnY1TDEtbHJGeWJPQldVNUpLM2gtRHBmRmFUVVhSX0lxblN1T2s?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1793993807000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient humans were using cannabis far earlier in history than we thought - Scientific American",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOUEtpYkFzdVhUOHQ5UlJQcTZJUDhEWUwyS2ZQbFZDdjBTUWpwdXBDUHlUaEdMeDZZQTA3cEpUSHVzTlBOOUt6RndqQV9KZjMyZDJRdkI5V2hnOVlKeHo3OWxFQXVsYThpd3QxMHA1MkhEbUV1bXF6UlRIMjByZlNEd01FSEctTHcwcW5CUFROckxOZHNvRndXSGVhN2dBdFRtT0E4SHhjVDBjQQ?oc=5",
+          "domain": "scientificamerican.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest evidence of cannabis use discovered in 2,700-year-old royal tomb - Popular Science",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBvWFNvS05iVDdDa2VkUDZibkZ4ZEEyeHlXbnpLQ2pKVnlVWDZmVlZMUzM4TU5qRmV2bWloaU9MYlBCMVNWak9faFJJY0pWNXFnSEZBcDhsRGNiSko1WG8xTWpzTUlRY3F3aU5V?oc=5",
+          "domain": "popsci.com",
+          "published_ms": 1793905200000,
+          "kind": "news"
+        },
+        {
+          "title": "Earliest evidence of cannabis use found in ancient Siberian tomb - CNN",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbDJ4N1RZNEs4WkxRRnE5M2NWeGZhMEhWeGIyUWJJVjF4NVlxQ1l5OExSeTVPZWhUdHBKVlowR1JJT2tvb2dSQ3lEZTl5SWNLdXJ3TXN0Ul82Yjg0T0FoTWlSTzJzU0FxdWlYbDZQTzJSR1pmV0k4WmxsdHEzNlpiMHZyOA?oc=5",
+          "domain": "edition.cnn.com",
+          "published_ms": 1793905215000,
+          "kind": "news"
+        },
+        {
+          "title": "2,800-Year-Old Siberian Sacrificial Tomb Reveals Earliest Known Evidence of Cannabis Intoxication - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxOX1o3RVI5QTBuVFJRX0xfV0R0T3lDZTg4cmZLUHpWbWhjUFJKT0JyTE9KaFZyZXRuTk9QeFZKbmVoOTFYTWNIWndPRFNfRHVUNEQzc19YQTBleWQxTVgxMmxGemtCZFU5SXM1Qktxb2hmZE1XY2c4LUpEazdoSGNlbDBRY0RiVWdyT3daNl9xZEdEQVBsdEFNdlkxeVo5VnVtSk9HR0pUXzhVbWNWMWtPY2pZWnFSSzVWLXFnRnY3M0p2bnM?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793905395000,
+          "kind": "news"
+        },
+        {
+          "title": "Oldest Evidence of Getting High on Cannabis Discovered In 2,800-Year-Old Tomb: ‘Absolutely Crazy’ - 404 Media",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOb0Y0MXV3SV9taVJZVWkyUl85VG5JaG9DVVV2U1lhclNIZDVWaWFEWTFBcm1FYTMtd1R1ekQ3YzFjbWNtLUZEQmxOWlZKTkViTHhGTWhTTVNsRkw3ZDhfakhfX0d3OEhZenRCajRHdF9mTlp6eVZhVEN6OFN6TDVia21nRTlvbmFacTJWOUs5by1jbWEtUkxfX28yYXpNS3k3bTFF?oc=5",
+          "domain": "404media.co",
+          "published_ms": 1793905501000,
+          "kind": "news"
+        },
+        {
+          "title": "The Earliest-Known Use Of Cannabis Has Been Uncovered In A 2,800-Year-Old Tomb In Siberia - All That's Interesting",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1JYmxONzZMWmphN1RpWGhScGhmMTVkYWltWVZ3M1llTXJkYVZKRmtZaThsdzlEdnM2VGJVZTd0c0ZYb09pc0RnZFV0SlBTRkVxTnVQWGVURjBuQW1WZXpzeWtEdmVlb0otZEJaSENn?oc=5",
+          "domain": "allthatsinteresting.com",
+          "published_ms": 1794023805000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Find Earliest Direct Evidence of Psychoactive Cannabis Use in 2,800-Year-Old Siberian Tomb - High Times Magazine",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOOUtUTDZDVHNnZXpJYy1feDJEXy1rN2JKOFI5aWFJdjAtY2swM0xLejNuVTgzUTN3eE1YYVlOUHgwWnR6aW1fRTItaW9CMlRWYWI3MnI2aERxcXoydkFaYm1ocDB5c19ncm14QVU1aXRyVWRsWk9JU0NBaEEybUNHUmgyZ3BiNkZIUXVpSHlla3pReHp3b0ttV3hnb195VVYtdFQ2SVBqUmxHLWRXWmZDTzNYQWNqd0l5Y1VXM2hMMlF6TmFVbkgw?oc=5",
+          "domain": "hightimes.com",
+          "published_ms": 1793987233000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pazyryk culture",
+        "daily_views": 102,
+        "ratio": 0.93
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 40,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 80.6,
+        "newest_hours": 20,
+        "domains": [
+          "sciencedaily.com",
+          "livescience.com",
+          "msn.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "popsci.com",
+          "edition.cnn.com",
+          "sciencealert.com",
+          "404media.co",
+          "allthatsinteresting.com",
+          "hightimes.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "reuters.com",
+          "scientificamerican.com",
+          "edition.cnn.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Board Games on Kublai Khan's Grandson's Ship",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        121,
+        147,
+        149
+      ],
+      "hook": "Divers exploring a sunken Mongol invasion ship found perfectly preserved dice and playing cards from daily life.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Mongol invasions of Japan",
+      "commons_query": "",
+      "youtube_query": "mongol shipwreck dice playing cards japan",
+      "evidence": [
+        {
+          "title": "Sunken Mongol Ship Off Japan: Dice and Games Discovered – A Glimpse into Daily Life - صوت الإمارات",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNbzUxUDFVS2ZYRURGUlZqbHRoUVFhT0RJSWVpYWFrc1ZWcnhQdUJWQUpSMWJhNC1YUUFlU3ZsVTdBbkVqTnk2ZXlPckd0S0dkUk5YaVRNa20wd1ctOS01S2t0d3dsYnlCWjVEWEdjOTMwY294X1pPSkJ6T05YS21fZmYyQnk3eGk3aERFVktkTG11M3dZQm9kNW43OU5WZkRGOFMyQjR6aU1pVDlPQTVKTldvX05Gb3VQbTJ4cG9qYXVmTHl1U1pDRXVOVUgtMU5HOVVV?oc=5",
+          "domain": "voiceofemirates.com",
+          "published_ms": 1794111863000,
+          "kind": "news",
+          "id": 121
+        },
+        {
+          "title": "Gaming Pieces Found on Sunken Ship of Genghis Khan’s Grandson Who Conquered China - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNX29INHBYeWVPZF9nWGVxb0NCWEJkOW5BVVlabGtDRW5fQUx2LW52WDNteGVJX2Nwek5pVWdFOVpMS3J4TlZZVUhsdkNGRVdib1NkNkhiXy0tbGtVOXB5Y2pkN3Jsa0hMTUhReS15QW1zN0JjdXFKazh0U2gta0I3M0JWZ09waFRPSm56bjBmdVlaTW9iT0hMeHJMdlVfQm5pSHEwQmxR?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1793995812000,
+          "kind": "news",
+          "id": 147
+        },
+        {
+          "title": "News - Playing Cards Found in Mongol Invasion Shipwreck Off Japan - Archaeology Magazine",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOcXBPZ25fOF9NaF9pVGRNVWZxWmd6T1prdnVIRVBFYUlOVVhEQm5SNUxQcjR4d0lDMXZKUmpjTDBMY25YSnpPRExFeTlxS2UwTWEzYzBYWW9oejJtOVhTcFl6RUtNZ1JQOTJuMnZLUTNFREhVc0VWamNrdjNwVjZVQW85WDBDSmU4QVNvM3lGX2RCX0FGR2FvRFdNdHAtcEt2?oc=5",
+          "domain": "archaeology.org",
+          "published_ms": 1793994330000,
+          "kind": "news",
+          "id": 149
+        }
+      ],
+      "wikipedia": {
+        "title": "Mongol invasions of Japan",
+        "daily_views": 471,
+        "ratio": 0.9
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 79,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 78.5,
+        "newest_hours": 24,
+        "domains": [
+          "voiceofemirates.com",
+          "arkeonews.net",
+          "archaeology.org"
+        ],
+        "trusted_domains": [
+          "arkeonews.net",
+          "archaeology.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Pompeii Wooden Wardrobe Opened After 2,000 Years",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        169
+      ],
+      "hook": "Archaeologists just unlocked a sealed wooden wardrobe in Pompeii for the first time in nearly two millennia.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Pompeii",
+      "commons_query": "Pompeii excavations",
+      "youtube_query": "Pompeii sealed wooden wardrobe opened",
+      "evidence": [
+        {
+          "title": "This Wooden Wardrobe in Pompeii Remained Sealed for Nearly 2,000 Years. Archaeologists Just Opened It for the First Time - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPdDM1Yjk1NW9CeHZ0UHF1bU50WVhrZ1BnWWpUa2htQlIxV2NJdlJZNlk1a21BU2VfNkUwV1BnbVRxNi05TmtOdFBCX2hteF9QSE9XMkdiLWptelZrcFJXZ0Y3TG9ST3hmWjFRYmNWZUdRMmFEeHQyZ1ZqMjBmVUZEa244SHNqUXg1UUI0Vk9POVA0cTdXZ1JrV1QzUzhrRENDaGllUFZ6Q0ZkaWIyY294ZTBfQkROWDZDQjhOLUpBaWVWalV2bUZpVFJ4bm1UcmRZaDNYN3FMdmpzY2QwMGYtTDViYlQwSEh5RnZPaUhaTFRORi1kdkliWTY3UnFUUkV0?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793999615000,
+          "kind": "news",
+          "id": 169
+        },
+        {
+          "title": "Pompeii Wardrobe Sealed Since AD 79 Opens: Childhood Amulets Left Behind in Ash - Tech Times",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPUVp6VW10ajJ6Mk04TDZCZGR0UE5FVHp5RVRYN2FCQTVmMDk2dEQtX0lZMDR2VkFkb2ZXUl9sYWhqWm5iY1g1MEZ5bjdGYS1qYTdYLThmUWlxeVRqay1WbmNRaHo0Yzh0M3NYUEptdkFTdjB2NGsyYnFCYXlYckdvcWxoeFVqcGRaTzktWUVhNTc0am1aWWdERE5qelNoZzIwal9LZk96Y2JOSGZid3oxczFNTG9hOW1wNVRHbG1aMmNnUEUzM1RCOTlB?oc=5",
+          "domain": "techtimes.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Pompeii",
+        "daily_views": 2140,
+        "ratio": 0.87
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 65,
+          "reach": 67,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 75.6,
+        "newest_hours": 55,
+        "domains": [
+          "smithsonianmag.com",
+          "techtimes.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Sherman's March to the Sea",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        81
+      ],
+      "hook": "The brutal scorched-earth campaign that cut a 60-mile-wide path of destruction across Georgia.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Sherman's March to the Sea",
+      "commons_query": "Sherman's March to the Sea",
+      "youtube_query": "shermans march to the sea history",
+      "evidence": [
+        {
+          "title": "1864, 11-15: American Civil War: Union army general William Tecumseh Sherman (pictured) began his March to the Sea, inflicting significant damage to property and infrastructure using scorched-earth tactics on his way from Atlanta to Savannah, Georgia.",
+          "url": "https://en.wikipedia.org/wiki/American_Civil_War",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 81
+        },
+        {
+          "title": "Sherman’s March to the Sea | Significance, Map, Casualties, & The Civil War - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBvU25wMGNvY3k2Zi1YM1YyOElWS3BIa2k1c3dKY1ZRUUxXQk1EOUI2ZVFWeWU5RmUyYmFReDFCZGRXMGVhNElIY01IZ1JDRXRVYnhtZUxTMk9hRVpvNmxhRjBvTmJhX2c2MFE?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Georgia Stories | How General Sherman Crippled the Confederacy - PBS",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQME9wN281VnNxSEc1Zk1tOFhNdGxHdVZPaWhZWFowRFNmSTZrdkM1ZFI5c2lNT0VGZWxQeHptS0toelJ6UlhSYy1yVlB0VVdMOUM3U2JMbmU3ZzVSN3hURDBZNWdpeU5qaW0xY2d5NGEyVy1CTUZVZ1dCdXZOREtXdlJONlQ?oc=5",
+          "domain": "pbs.org",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "William Tecumseh Sherman - Civil War, March, Memoirs - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5ZYm5BQUM4MWtoMVBNanJydWtHc2VkX1VCVXpxbnFaOWVyUHAyNnZQNTRpeXdNQVllcFhtTWFTdk95aTM2Smh5aGZoZkNuME11bm5lVkFwRWxHc19jbjkzdXNBZlFEa2pfQW9BaExpV2huS1diVE0tWmdfbGs?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Sherman's March to the Sea",
+        "daily_views": 730,
+        "ratio": 1.2
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 65,
+          "reach": 57,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "pbs.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Solving the 400-Year-Old Shipwreck Padlock",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        136,
+        162
+      ],
+      "hook": "Experts finally cracked a cryptic, complex lock recovered from a 16th-century shipwreck—only to leave a new mystery.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "shipwreck padlock solved mystery",
+      "evidence": [
+        {
+          "title": "Welsh experts solve 400-year-old lock recovered from 16th century shipwreck - The Jerusalem Post",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE02WDBMbjI0VFo4QTdyZTBjZnc2dXU1ZWVYX3VDLTI3blVCN2ZwSnlfRE9TbnJDa0xRd1dzTGdPVHB6NWRSMW5RTi1BdUxuMW5aVmNCTWtaay1KX0JX?oc=5",
+          "domain": "jpost.com",
+          "published_ms": 1794052372000,
+          "kind": "news",
+          "id": 136
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened ‪—‬ but it leaves a mystery",
+          "url": "https://www.livescience.com/archaeology/cryptic-padlock-from-a-400-year-old-shipwreck-finally-opened-but-it-leaves-a-mystery",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "feed",
+          "id": 162
+        },
+        {
+          "title": "Code cracked for shipwreck padlock solving 400-year-old mystery - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE8zMDlnZ05qT3hmaUFTaHZtWFZTWjNkY1N3dVFuVi1WeTF5Q2gtbmtDdWJaaGFrblNwMjhLN3BBNVo2Y082a0g1LWpVTnJ1S2ZHOHhUYTF2XzgwNm8?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1793772772000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Like opening the Ark Of The Covenant’: Scientists crack code on treasure ship’s padlock — solving 400-year-old maritime mystery - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQbUFtRm9NSG5ZckJKOGllTEFXUjlxMV92YmZLWEFvdG95SjcyV2hONlcxZmluTm0zMVJtMTFGVXR2SkpBTERpQnVTQUtDOXMtanJ1VFdHT3VQeTFzdUFKTkVRMGF0YUw1UE5VSUxCSUN3T1pqZWN2SzVwMTJ1MG05SkFiUHZ4ZW9tc1dBUlF1QmRZX21SMjJLY0puRFBnaDA?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1793806080000,
+          "kind": "news"
+        },
+        {
+          "title": "Cryptic padlock from a 400-year-old shipwreck finally opened — but it leaves a mystery - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNSkxVSTJVUWVnM3dsUDhXTG90MEMwX2pnYTk3dFkzMXQ0bUFQZWhpVGJqNUVSNzVGV0pJdDNMcXd5ZXRKWWMzSkZuclMzVUE4Z2ozUHBlZ0t3bDRDd3BiQzBBbmVUcjlnZEl3RGVONGNSeWVab0kweFAwVllRdmkxdHZFc0lKYzRaa3g2Nm5uT3U4ajZhTm81SkFNVzRMMW5WbXdYVGxIaVZqVWRxTE5XOWdEVU1KUV85a25Ia085R3RmZw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793908341000,
+          "kind": "news"
+        },
+        {
+          "title": "400-Year-Old Mystery Solved as Researchers Crack Secret Code on Shipwreck Padlock - Yahoo",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPV0JWUUZtNHFnWG5DNzVzRGplOTN0SEJUR2xQVXpQY2VqYXdGSEI1dlVqd1hkdUJBSnlCSHdxMFZZTFNTVUUwbkdWeTMtUFdMSnRocjJ5LUR6b0hWMXd4R19uMllhNnlkR0taWnBUWU9CMHNGY3A0dHhURTdaNmR2YnBoQWVrZGR1eWxmb3VNQjRzb3dSQmFMcQ?oc=5",
+          "domain": "yahoo.com",
+          "published_ms": 1793907003000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists crack code to 400-year-old padlock from shipwreck - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQVjY5dUhGMVJkRE9waWhaTlNWMjNvZjc5UTJLRXV5X1ZBVkJEcmQ3Um82YzZOUUFRQzN6bm9IQWtLNTZ5S3pEZ2RMVWV3c1BzVlh1b1EteUdJc3VwNGRORW80SWk3NkpJLUpxOXlVRUlBUFl1YnEzc1ZoclFqWm5DMUVFWGlaNmxoSmczVVhDMzJxRzZ6RXdQM2dhUXJ3bGxhYnFFd3RUZkVKWlJFNDRVcUJlTTVLVVF5bzhjOGh4bw?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1793784480000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient padlock found in shipwreck treasure finally cracked solving 400-year mystery - Metro.co.uk",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQUXBiX2xaQmJQdjRmVEZ5ZnRqODNhVjhfQko4OFB2WlZtd3ptY2p5YjJhb3BpVmJGdlRYNUkwYnJvaUtsUldoRENZWlVHQWViZkZSd2JJcUlQTkdnNkdUX3hjVk44OVZacXBVM3BzTDd0V015NE52ZF9tVG43SkJUaGlvbDJUcm85Q3JQcHI3YXlTTnZVeVl3UkJFeU0ycmtmTnc3NURvNl8zUEU4OWtiZEVrSzdFaVBMdXQzU2Vta9IBxAFBVV95cUxNZGhGRnR1UGFsNXlydHBqWGk2WGMwM2xfNDBhblN5akk0eFE0QTQ2cXhSemNKLUhVRENkcjRJa1JlSDVBRUJVSzVvOE9KRGhvcDZlcVNhY0dWZXFMbDk5c3c0Rm1EMkZKZUZDcE5NRi0wbkM0bUVIaDdxTDdRYjY1WkQzRkhrRlpGTmNPUWlnbmNlOFlzTXMtRGRLbm9TOVFzaEZKYWtrc0FZTEhTclM3WThfVmluMS1jY0NUSDhQS0JNVHk5?oc=5",
+          "domain": "metro.co.uk",
+          "published_ms": 1793790360000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists crack code of 400-year-old lock found on Welsh shipwreck - Nation.Cymru",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQM3pFYWEzU2JudC00dklPSE1COEwtVHNxdmxuek40ajJJNkdsb1BxTXJGOWpmcGgyLWxnclNXaS1xM25UWEpidUZWUFBCOU1iUmhZSmhiLVJqSEhnclFBc2J5emVZZzFWcDRXSVBUY3RUMUw0alFUaTZDdjhzY21USGRULWd1cXFQZTJuT2VFTjUwUmRwcXduWTV3?oc=5",
+          "domain": "nation.cymru",
+          "published_ms": 1793772292000,
+          "kind": "news"
+        },
+        {
+          "title": "How experts cracked a padlock code found on a 400-year-old shipwreck off the coast of Wales - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOdVkyRHA2TGppd2RGbGh6Rml0b09FTkNHWEpDaVp4MzZsNDdxXzhKSk13UnJGVk9KQ3E2VksxLXFtY3NQV0h1al9CekkxNUxaX213anJpQ2R2Snk0MF83Qm9LZkhpeXpGOTRIREJMX3J5dVUzbGhpbVVpR3BMV0NscDZDYXhnSkJjUTVnN2loV3UzcVJO?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1793783580000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 97,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 72.2,
+        "newest_hours": 41,
+        "domains": [
+          "jpost.com",
+          "livescience.com",
+          "bbc.com",
+          "nypost.com",
+          "yahoo.com",
+          "independent.co.uk",
+          "metro.co.uk",
+          "nation.cymru"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "bbc.com",
+          "yahoo.com",
+          "independent.co.uk"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Sunken WWII Ship Found Off Maine After 80 Years",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        123,
+        148,
+        159
+      ],
+      "hook": "Hunted by a Nazi spy sub, this Canadian freighter vanished off the coast of Maine—until divers found it 80 years later.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "wwii shipwreck found off maine coast",
+      "evidence": [
+        {
+          "title": "Nazi Landing in the US: WWII Shipwreck Found After 80 Years - ua-stena.info",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNTnp5ZHR4blVkRTd1bm5MOXpBTnd2eHhEaVhHcnNlZ3VyQi03VzJKWUtVeDBYcG9hdFhaTVZKa2pqVWRJblQwRnFOQUhzbWs5Q0pKdlo4U3NzOGVBdmtqYVA0c25yOWJGRm53UnM0NFI3dS14a1hJSmFpRFQ2ZmR5VlRRd25aZDMt?oc=5",
+          "domain": "ua-stena.info",
+          "published_ms": 1794088428000,
+          "kind": "news",
+          "id": 123
+        },
+        {
+          "title": "WWII-era Ship Sunk by a Nazi Spy Sub Discovered Near Maine - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOSjJ3d3diUUFrUXdtOGZBZThxdkhxQ3ZjS1JsUVo4cEYtLWlCQmpDeWx3dmdlNV9DX3VESU5pbjB5SjBVZ25RMHhYWjZ1Ym1jQWFFSXJ6TzdKTW81a0s3czZLcmVHMW1CZDJPZjBzRlBkTmpGLWhqeFFKejZ3ZkhaVVB6Mnl6eFBtVFduYjZHekt6cm5xZU1jeHRJbEhvMmFN?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793995524000,
+          "kind": "news",
+          "id": 148
+        },
+        {
+          "title": "‘It is a miracle we found it’: Divers solve WWII mystery with discovery of sunken Canadian ship off Maine coast - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPS3pHcWV3OUtMdWcxMlFUbFR6RGNYS0xWT3FBR0NDcWRuOTBURHZfbUZWbk5INURWVmZzTFh3bllfMFlWandBSG8xR3BYTXF6SEplem4yTjZ5bjhmX0VPWUdIMDVpdXBBMUx2QWJsc3VxQkpCRGpuRGcydEJkV1JpRG9yY2o0UDFaMFE?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1793944800000,
+          "kind": "news",
+          "id": 159
+        },
+        {
+          "title": "An infamous Nazi sub sank a ship in 1944, days after landing spies in Maine. The wreckage has now been found. - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1ySnU0eEVBNlBoSHNNMWRaYXF2U2NhNlhSN1pNNU1VOWEwSW1MMnBRRDdCc3ctTHJ1clRtTG54Wk91VVNuRl9VMGdwY2ZYWEk0dWdQTWdyTnJwazI0NzZOSXdsWl9ORXphbzJYalo4Z0JjZnpOOA?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Shipwreck found in Gulf of Maine more than 80 years after WWII sinking - Portland Press Herald - Maine Sunday Telegram",
+          "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBueDc1dkNwUFZ3Q3lXelJSdnlWMGVLcVl5eTlQU28wSjAzQ3E3TFF3RnptdnY4cUR6cmQwLWc0U2x2d0xNZ3k4Z0QyN0gwTW8?oc=5",
+          "domain": "pressherald.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Spent 7 Years Hunting a Ghost Ship Linked to a Nazi Spy Plot. They Just Found It. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNVko0TEcwYlZEbG1pY1d0UmwzZFZ2eXJlS0dLLThNZGRaWWNDZFREbUxlSk1PRFZlNzVuNnhFbmFtNkZBeGI0aDdOakxjUHg4MzBOcnhRLWhKVjA2Uk91SDc5MnhNS2h6U25odEhEdzlEZEZxd3RBMFRSV0JfcTJpb2tZMmdVRUNfUloxLTZBN2xMaGEw?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793716200000,
+          "kind": "news"
+        },
+        {
+          "title": "A Nazi Submarine Torpedoed a Merchant Ship Just Off the Coast of Maine in 1944. Divers Have Finally Located the Wreckage, 400 Feet Below the Surface - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxNYjVYMXRWNFUxdVlpTnJRS1VKY04tRE8wNG9kNnl1cC1lZHpwOE9uTEVqU2hxNWFKd3ByMHBqaVo0R3RRRXgwMnNYdUYtT21PUGNkZ2RKY3ljS00wd3JiemRjM3huemtZUUloNUZuTC1BRUs3R01IVnJIUzk5Tjg4WVJkNE5hRWhWZUx5b3pCNjE2ak9DX0tEcEFmelVOZGp1X1Y4SjVwMVFkX1ozZ1JadXdyeGs3Z3ZubllfOG5zUnhVSlhhQzNnSnZ5NWM2ZXN2MmZtaFcxWnRSejJ5TExPUW1LLVlxdEQ5RUtYVWtkbDIxN184Qk1RX2ZtN2d1cTkxNUxPTU5hNGl4Wks1RXdmRDdNRDBUbFlRRDhLLUxhY2l2akxOVGc?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793918400000,
+          "kind": "news"
+        },
+        {
+          "title": "Portsmouth divers find WWII-era steamship sunk by German U-boat in Gulf of Maine - New Hampshire Public Radio",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbHJ5ZFlZdWlVT1htTmdpVXdTdmcwT3hkcGNfXzdhUklPSU5nWWRZcV9WeHRWb3VoaE43a21ZOE9hdXZLcDItZ1VsRjBRUFBwbzc5bDR6aDZmOGpUTVowMV9vbWlVMk5wT0tZQVU1M0Vsd3N3RjV4em9ucTdjb3dhZFdxdGtvV3hnM1FIMmQ0WU1LaTlpT183cFlB?oc=5",
+          "domain": "nhpr.org",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "Off Maine's Coast, a Wreck 'That Belongs to Everyone and No One' - Newser",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNQVdGZ0NLY3Z6S3JPcWZicUtFS3p6ZUdycjZwNG9JVGc5YnZpeEN6VlVxLUpsYldER3RDdk1OX2lnSkhfVFNqaDFPRkR3MGtSaHJDYmtuRVlZWnRVME9CdXJWcWNsai1GTFFNeDRzSThEaERvUkFwZU5sSzVTekFwYzFDV2c2Y1hKVnFaS0lWcGZNRFk?oc=5",
+          "domain": "newser.com",
+          "published_ms": 1793967060000,
+          "kind": "news"
+        },
+        {
+          "title": "Portsmouth divers find WWII-era steamship sunk by German U-boat in Gulf of Maine - Seacoastonline.com",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxOc2l5SnRTZXNKZXVjdzBaT0RkS0xtU0JQYU5aU1cyWjdtZmxac0JqWHgycXJlMnBPYkFuejVNeVRTQlV6STJmcGxqVndadXFMZzlvUDBveG9RTWVaTDJZUC03YXBkcmRZWm5kVVduR1hVMTZDR2xtQmprblVtR291NFJROEIzQU5vRVdlYVYzMTBydllMcGhLU3hSM0JSN1hjMmM1MUFyZldzcDA4b19YVXVST2F1ZzcyXzhEa2h3djI1cnQydnR5OTNNaHE0Wm5C?oc=5",
+          "domain": "seacoastonline.com",
+          "published_ms": 1793343600000,
+          "kind": "news"
+        },
+        {
+          "title": "More than 80 years later, ship torpedoed with Nova Scotians on board found off coast of Maine - PNI Atlantic News",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOOFNTU3l6Q3cyNW9GYzhuTGlRNUNZdFBkZ1V5MHRIV1NlSG96dGZJWHc1RHc2YmxSZEVqMnpObkhjTmVxS0FfQWctam9UZE9xc21YSmdaUE11MktxZkhXVHhiaHMyZDR1VHYtbWZadk9UOWZqZmt0OHEzMUdfUVQzWnNraVpmUGtDaU5V?oc=5",
+          "domain": "saltwire.com",
+          "published_ms": 1793084400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 99,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 71.7,
+        "newest_hours": 31,
+        "domains": [
+          "ua-stena.info",
+          "gizmodo.com",
+          "bostonglobe.com",
+          "cbsnews.com",
+          "pressherald.com",
+          "popularmechanics.com",
+          "smithsonianmag.com",
+          "nhpr.org",
+          "newser.com",
+          "seacoastonline.com",
+          "saltwire.com"
+        ],
+        "trusted_domains": [
+          "cbsnews.com",
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 3,300-Year-Old Bronze Sword in an Italian Lake",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        169
+      ],
+      "hook": "How a pristine, razor-sharp Bronze Age sword survived at the bottom of a volcanic lake for millennia.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "bronze age sword volcanic lake Italy",
+      "evidence": [
+        {
+          "title": "Archaeologists Found a 3,300-Year-Old Sword at the Bottom of a Volcanic Lake in Italy—and It’s Still Sharp",
+          "url": "https://www.smithsonianmag.com/smart-news/archaeologists-found-a-3300-year-old-sword-at-the-bottom-of-a-volcanic-lake-in-italy-and-its-still-sharp-180989813/",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793862480000,
+          "kind": "news",
+          "id": 169
+        },
+        {
+          "title": "3,300-year-old sword discovered in an Italian lake may have been dumped there on purpose — and it's still sharp - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOaXd4RU1oYXhKa2cwMlVrakRmeHRGMTl1eHkzenA2X3BDNm1fSlBYa0RBYTNjUEZRdWpnQTBYMmp3NDlrVVAwOERiSXJOY0xTaHVsaDJsSjVUQkVsSFdVMTZnZ05hREpGM3lyTlNfZ2hVbXktZU54R0s5V2U5bDFwdzN6YWxtZzFMSEFvRkJTYi1TZHpjSHpIYU80UTFQTHp1d1J1amhHb0xrRlczX3RZd3NfZ0dQcGplTl9v?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found a 3,300-Year-Old Sword at the Bottom of a Volcanic Lake in Italy—and It's Still Sharp - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOYjJuRWlOSmdOM2VqQVFfNDhNNy1fcThwdU5yNkNwalQ1QmI3N0I1MktTQlBQQnZ2akZESlRQX3cwZzh2blZQX1EyMGtjZTk0NFZJSnV2a1oxQkJGVEtEWE8tSDhHQmZzdkU1b3BRM2xNc2NnZnhzaEpudTFLdEVxWlIxUk10NFlXUzA1MVBNZWVrekxLQkJ0dllzUUFsM0xtYVRyWjdhV0ZoU3hjUHJrbUxuU1dpS2V3TGw4TERaUjYyUkRwaWVNZ3NfbVNwM3JTS3k5RnA4U05WZ2Nib2YtcGFmVkt5dFJMaE9NR2lR?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793891333000,
+          "kind": "news"
+        },
+        {
+          "title": "Bronze Age Sword FIshed From Italian Volcanic Lake Is Still Sharp - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOdVNkX0pOOEJ0Ty1pclBJeXZhYTlTZXZIQjdjbk02Q1V6SW1MM3IyTkV1TDBjaFNVMS1MVjlISjI5VWRQbENxS1M5LUdsNEZQRWtPX1NYc3FoWUhmcHhEMHpoOUh0aHZTLVRraU56ZngzMG95OWkwWFJISzYzQlQyRXZaN1NpZ3ZvVHQ1Xy1mWFRLRjJtNnpMUDhCSG5XMTNMdzR6d21nTnJEb1NyOWh4QzM1YUdTZ0tJRGxuUHF4dw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Italian lake hides 3,300-year-old sword that still holds its edge - Türkiye Today",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNbjRzRVZjdEl3Y2pGdDhlWjZiSkk4QUhFQlBzeVhiZDVkQ2RaN2FHanQ3a0FwaHc0YUpFSjJnSVl4TXE0UUw0OEpxQmdSOHBnVzcwUXh4Wl9MOEtjX1hPWFBRN0RwTUxBRWFUTzNBc2xwcjdoMDFzT2hjYlJ4SzRSbDh2dm90dFlnRmhCSnE0Z1o1YjRCaEdON0tlY3UzMHFIM0x0Z1ljUTNfWkZDU3c?oc=5",
+          "domain": "turkiyetoday.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Sharp 3,300-year-old bronze sword found in Italian lake — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOcWRBQlR2UTlqbi1udVBuekstYW5rNnpNRzZNenBuNFdnTVlNTTVjLVFJajloOUtBNU1QSFZaM0JGckpsMGE3OXdiNkxwZG0tSXNwcEFCV2p4bHoyZVI2MEtxVUpoMnQ2ZXExM2xVcEZjcHhqaWV3LVRRbUhfMWg1dmF1djlZRHVZdWhubmg0QjEzcnZBSzF2bkxuWXhZb0VxMnJxZ1p5MA?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1793223590000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Recovered a 3,200-Year-Old Bronze Sword From an Italian Crater Lake, and Its Cutting Edge Remains Intact - Thought Catalog",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPV3RjRzhZekN5b1RtSEs3U2w4aE1jRzhLeDUzX2FJNlBxNDNQYTVQemRHcHlxQUdvd1hIUDZHS0Nra1BZdUlpUTRnNWZWNXlCREQ3LV9wQUtrd01jbGJKNFZoRG12M0I5MURvNlQ3VUFsczJsdE1FNUdRdFZkWElTaFdvZkVvcUpuZmpSaVBrRUNkQUswd19GaWpHMDN2MHVwbWFVQkZEQU01Q0ZaS2UxUjBxOFA2cGM3QlZiUWFubGRVVVhGLWgwdUx4ZTJlQ3RhbWtUTTFtZ2tmU2IwSENEbUFmbjFvbV95Q09kcUpfYlg?oc=5",
+          "domain": "thoughtcatalog.com",
+          "published_ms": 1793522280000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Pulled a Sword From the Age of Ramesses II Out of Volcanic Lake Mud With a Surprisingly Intact Blade - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9HUmdmQjQtbjFIWDUwU3F0bXdQUC1Ndm1XbmFYRmFqdzJac0k3UmpCQTlGWEQ3dlNkSTZCUVB1YjAzSzlsc0VhOXVTMGZ1R2dPRENaVWh2WUpzWHZiVWxzeTNadm5lNGdLLWVpNi1MM0lzeTMyclZYUU9KUGZSUQ?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1792998000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 71,
+        "newest_hours": 85,
+        "domains": [
+          "smithsonianmag.com",
+          "livescience.com",
+          "gizmodo.com",
+          "turkiyetoday.com",
+          "ua.news",
+          "thoughtcatalog.com",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com",
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Armistice in the Compiègne Forest",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "The secret railway carriage where World War I finally ended—and where Hitler later forced France's surrender.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Armistice of 11 November 1918",
+      "commons_query": "Compiegne Wagon armistice 1918",
+      "youtube_query": "armistice railway carriage compiegne",
+      "evidence": [
+        {
+          "title": "1918, 11-11: The armistice between the German Empire and the Allies was signed in a railway carriage in the Forest of Compiègne of France (signatories pictured).",
+          "url": "https://en.wikipedia.org/wiki/Armistice_of_11_November_1918",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Armistice of 11 November 1918",
+        "daily_views": 989,
+        "ratio": 1.42
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 60,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 68.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Armistice in the Compiègne Forest Railway Carriage"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "DNA from 7,000-Year-Old Leather Links to Living Goats",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        97
+      ],
+      "hook": "How scientists extracted pristine DNA from ancient leather to link prehistoric animals to ones alive today.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "ancient leather DNA research goats",
+      "evidence": [
+        {
+          "title": "Researchers Recover DNA from 7,000-Year-Old Leather, Revealing a Link to Goats Alive Today - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOblE0NGpPcTVGNlUybVo4eHZ1MGp4ZWtWVmFHMjJnaVpiZzV4RVlTeE5fQnZDRHRJenRGR044UlBHaERycGlzbGJNdHBjMkNxbENIRXpkVjBIT3gwUndLYVJLdkQ5RGJwSEFDX1d0OVM4aHU2MGJ2MzRvV1hQSHE2RWJpSUZsVTJBWDBoZzVFVnZ2ajdDUjFRVk1Tckt6aElFYWNWbHgxcEs0UHdjWVd3WXR1WDc?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1794184608000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "7,000-year-old goat leather from Spain reveals DNA link to modern Iberian goats - Archaeology News Online Magazine",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ?oc=5",
+          "domain": "archaeologymag.com",
+          "published_ms": 1793987217000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - EurekAlert!",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE5ldVI1ak9vMFZsMWNWdXJHNFdNMVdzWHZKS2RQS0JEeUMzZE1fcmdwSWhKck1uX1lNdnZhZDA2bW04bmJyVmU1RW0xWmlHX0NsRzYzOW1aNTJNbE10?oc=5",
+          "domain": "eurekalert.org",
+          "published_ms": 1793820815000,
+          "kind": "news"
+        },
+        {
+          "title": "A 7,000-year-old piece of leather reveals a deep history of Spanish goats - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBCWFlmdmpESHNXcUlHWjRWcTN0NUV0REsyMFJsWU9fQk9LUFc4aTdGcnVwcmxuZW9TeWRSTWtPc2tnamhwbHdZMkc1RzNMZWpIMGZZb0ZleHVKcjB3dF9ndDFvcjZLcGFRQ2lMS3JzN2NfOVE4?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793818816000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 68.5,
+        "newest_hours": 4,
+        "domains": [
+          "scitechdaily.com",
+          "archaeologymag.com",
+          "eurekalert.org",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "archaeologymag.com",
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Crusader-Era Cathedral Uncovered at Old Dongola",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        99
+      ],
+      "hook": "Archaeologists uncovered a massive, forgotten medieval cathedral hidden deep in the desert sands.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Old Dongola",
+      "commons_query": "",
+      "youtube_query": "Old Dongola medieval cathedral discovery",
+      "evidence": [
+        {
+          "title": "Monumental medieval cathedral uncovered at Old Dongola - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOX2Ewbl9zblhwLW1UUFVzczRBWGpWbUk3TFA2WmZlY0NXdU50NjRrbmxjc3l0cE5qR0xsUHhCRGlkQmZmYmJCbkg2VFhEd19mU2t4ZE5QdE00SjZLdXBmeTBNQUl5bVZNbExhMDZqVDNjRU5KM09hWVo5VXJmbUR0cVVsMGZTbmE1cGpibzhtNmZMTWZkc0kydnVmZm0zXy14?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794175373000,
+          "kind": "news",
+          "id": 99
+        },
+        {
+          "title": "Archaeologist Artur Obłuski and a Sudanese-Polish team reached the original floor of the Great Church of Jesus in Old Dongola, a medieval cathedral 47 metres wide and about 21 metres tall that he says was bigger than the White House - CPG Click Oil and Gas",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQWXVEa2tXbzljajIzanNvSVE5RzZSSzRudEZvQzJOaXc0Wng1d1BldG84dnZUQ1B0b2FyTVlUT1NOX2JaVkl4LUZUdDYtTGFtLWNUMWNNelJjaFlueGxFeVZTTlVYVnEzX013ekxpMXBrVUdxMW4ycEJfam5XdTVqd19aOTU2Z2EzVVNTN0Q3THBwcGxiMHU0THc1QjU3VV9mSC1VbVd3?oc=5",
+          "domain": "en.clickpetroleoegas.com.br",
+          "published_ms": 1793885700000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Old Dongola",
+        "daily_views": 59,
+        "ratio": 1.45
+      },
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 73,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 67.9,
+        "newest_hours": 6,
+        "domains": [
+          "heritagedaily.com",
+          "en.clickpetroleoegas.com.br"
+        ],
+        "trusted_domains": [
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Monumental medieval cathedral uncovered at Old Dongola in Sudan"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Execution of Ned Kelly",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        35
+      ],
+      "hook": "Australia's most notorious outlaw built a suit of bulletproof armor—until his final stand.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Ned Kelly",
+      "commons_query": "Ned Kelly armor",
+      "youtube_query": "ned kelly history short",
+      "evidence": [
+        {
+          "title": "1880, 11-11: Australian bushranger and outlaw Ned Kelly was hanged in Melbourne, in spite of sympathizers holding rallies for his reprieve.",
+          "url": "https://en.wikipedia.org/wiki/Bushranger",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 35
+        }
+      ],
+      "wikipedia": {
+        "title": "Ned Kelly",
+        "daily_views": 1218,
+        "ratio": 0.91
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 62,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 66.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Jack the Ripper’s Final Victim – Mary Jane Kelly"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Wilmington Massacre: When a US Government Was Overthrown",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        23
+      ],
+      "hook": "The only time in American history a municipal government was violently overthrown by white supremacists.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Wilmington massacre",
+      "commons_query": "Wilmington insurrection 1898",
+      "youtube_query": "Wilmington massacre 1898 history",
+      "evidence": [
+        {
+          "title": "1898, 11-10: White supremacists seized power and massacred black Americans during the Wilmington massacre (newspaper headline pictured), the only instance of a municipal government being overthrown in United States history.",
+          "url": "https://en.wikipedia.org/wiki/White_supremacy",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 23
+        }
+      ],
+      "wikipedia": {
+        "title": "Wilmington massacre",
+        "daily_views": 465,
+        "ratio": 1.42
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 48,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 66.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Wilmington massacre of 1898, the only municipal government overthrow in US history"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 150-Year-Old Mistake Behind a 'Extinct' Giant Bird",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        124
+      ],
+      "hook": "Scientists thought this colossal bird vanished millennia ago—until ancient DNA exposed a centuries-old blunder.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "ancient DNA giant bird extinct mistake",
+      "evidence": [
+        {
+          "title": "Scientists Thought This Giant Bird Had Been Extinct for Thousands of Years, but Ancient DNA Just Exposed a 150-Year-Old Mistake - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE53Uk9ZcXBQMDFsRGRFVElySXR6YWszX21WWXplYmczZGh1RzQwMW1GZXdFVWJqQzNnUzBsWHhZQzhDMEtNRlBJV2Z2d3BrRk1DWlQxeEFaUGlfSGw1LWtnQ0twWkdoRjJNM3RkWEdfLXc?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794140100000,
+          "kind": "news",
+          "id": 124
+        },
+        {
+          "title": "Scientists Solve 150-Year-Old Mystery of Giant Bird Believed to Be Extinct. Turns Out, It’s Still Alive Today - People.com",
+          "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNVkZELXdFcEFKX2FyVlJ4aER4cHYtUzhMalFtVjh2bUx6NWpZSnhFS0VwaHBNV29ubWRqVmpwY2dtdjBlRlAtS0xwM3huMl9SWFA3LXhGT2t5VnR2UVY1RHhYcnA1ODNib244RzVEUDRoSUpzNmxiNmkwR2UyYWJScEhwWE5nRUlYOVVDN1hZakJGLWxFSURkTnpkTnZHVDR5VWdudWJIT3VDbUdhUEl4dExlUUpxYW53OFZINEIzZ3FIUlNsZUFTWTJHV2YyVHZm?oc=5",
+          "domain": "people.com",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        },
+        {
+          "title": "Scientists Discover That a Giant Bird Thought Extinct for Thousands of Years Never Actually Disappeared - SciTechDaily",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNWDZ4Q3RueWdCdl9PeWJYNml1X2M1QjhKdExCSnNmc0phZ0plV1hBbG9yUjBINzg3dXdXMmV5NkxSRnFVaTNWOWdfekY4OGlJYk5HeXJ0clluTEVVQzc5U2pBbkxOOUZ4RXlGU2d0cUhjeTlBN19FS0RmcW11SjdQY01INnhXRG5QVzZqckdZejBkUWNpRklKOUlWNzlSR3lxNFlWTi02dGxTMndHbnR3SUlIWTZRMnU4SEFjdnYzM3VaRy1pTEIwVA?oc=5",
+          "domain": "scitechdaily.com",
+          "published_ms": 1793621637000,
+          "kind": "news"
+        },
+        {
+          "title": "A Giant Bird Declared Extinct 150 Years Ago Was Hiding in Plain Sight - ScienceAlert",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNdmFSakxtQmFOT2NrWFhmRVBpTXFmeTdTX1dud0dQdUFFbWpWQjN6Wlo2T0pFQ0o0UzlNdzVJcmVzOEdKckV6cXFnMkJvTjdPZV8zckF6OFA1STVqeFl0LVpfbXBCOFB6c2g4YnFkMEpHUkdXdUFKbm50VlVYbUN1VzZ3aUI5ZHE2eTJIWjlmcklVcDltdEFaTXhDb0xHaHRUMUVIdUlhUTNrVjZFcS1SdlJrMFVSNnNoMkhhaXBJdw?oc=5",
+          "domain": "sciencealert.com",
+          "published_ms": 1793617356000,
+          "kind": "news"
+        },
+        {
+          "title": "150-year-old mystery about the identity of an 'extinct' giant crane solved - Phys.org",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBITnlwcEFBOHRvQ1lsYzF3bHliNlpNS0JmWmlaSUhIeld3STVLdWFzTE1wbUh0cmhJU3MxRTdEN3k2TDVmTFp4MUpHckNuakhiWldUWERyQlJxWV9qUzNPQUhoQUFFTG9pUXRIeXhoaE51Nms2YXpzOURR?oc=5",
+          "domain": "phys.org",
+          "published_ms": 1793170800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 65,
+        "newest_hours": 16,
+        "domains": [
+          "dailygalaxy.com",
+          "people.com",
+          "scitechdaily.com",
+          "sciencealert.com",
+          "phys.org"
+        ],
+        "trusted_domains": [
+          "phys.org"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Ancient DNA Exposes 150-Year-Old Mistake About Extinct Giant Bird"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Operation Catechism: Sinking the Tirpitz",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        46
+      ],
+      "hook": "The daring wartime raid that finally neutralized Hitler's feared monster battleship in a Norwegian fjord.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "German battleship Tirpitz",
+      "commons_query": "German battleship Tirpitz",
+      "youtube_query": "sinking of the tirpitz",
+      "evidence": [
+        {
+          "title": "1944, 11-12: Second World War: In Operation Catechism, the Royal Air Force sank the German battleship Tirpitz  (video featured) near Tromsø, Norway, killing about 1,000 sailors on board.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 46
+        }
+      ],
+      "wikipedia": {
+        "title": "German battleship Tirpitz",
+        "daily_views": 681,
+        "ratio": 1.05
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 57,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The Accidental Discovery of the Richest Roman Treasure in Britain",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        132
+      ],
+      "hook": "A man looking for a lost hammer just stumbled upon millions in ancient Roman gold.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Hoxne Hoard metal detector hammer discovery",
+      "evidence": [
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQWjlpQ3Z0Q21KZUhyVjZ1Qk1pUzhJUFlQTFRhd0Fpa0JnbGRyNW1salRnOGNjVFNCc2NzcGJPQnNuVDh3VU1hWms1MVFTdG11eUpWU2VkelFBSzI1d01TTWM5YzZuMjQwZDRPbWZiQm44N0JoZS1DNHFwUTBIbkQ1VFpwMA?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794123420000,
+          "kind": "news",
+          "id": 132
+        },
+        {
+          "title": "A man searching for a lost hammer in England accidentally discovered the richest Roman treasure ever found in Britain - Earth.com",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNa013Qm10VjJySzZUV0pGLTZhOWUxSnNReUJqNnoyOG5JZzAxZVA0Uk5rdC1EVVdRUG10dmw1aUFtT2Q3elU2bTZDTE5MbEhNU0JKQWNFd3ZyRHhqRkxDdDRNWVlmcVc4VkItTHVtZVFqYXRYOHJhd0lYOXY0MmwwTjhsZUtKendXOGNCbWlkZW9aRjYwVXVGNlFubmgwSVgyTTktUkktRDRyTUltRkE?oc=5",
+          "domain": "earth.com",
+          "published_ms": 1794122520000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 62.5,
+        "newest_hours": 21,
+        "domains": [
+          "aol.com",
+          "earth.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Mummified Crocodiles in an Ancient Egyptian Tomb",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        104,
+        106
+      ],
+      "hook": "Archaeologists opened a 2,500-year-old Egyptian tomb to find ten perfectly preserved mummified crocodiles sacrificed to the gods.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Egyptian crocodile mummies",
+      "commons_query": "",
+      "youtube_query": "mummified crocodiles egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 104
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 106
+        }
+      ],
+      "wikipedia": null,
+      "youtube": null,
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 62,
+        "newest_hours": 9,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Cannabis Use in an Ancient Siberian Tomb"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "How 21 biplanes crippled an entire battle fleet and inspired Pearl Harbor.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Battle of Taranto",
+      "commons_query": "Battle of Taranto 1940",
+      "youtube_query": "Battle of Taranto royal navy aircraft attack",
+      "evidence": [
+        {
+          "title": "1940, 11-11: Second World War: The Royal Navy launched the first all-aircraft ship-to-ship naval attack in history against the Italians in the Battle of Taranto.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794198666597,
+          "kind": "anniversary",
+          "id": 29
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Taranto",
+        "daily_views": 183,
+        "ratio": 0.78
+      },
+      "youtube": null,
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 61.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    }
+  ]
+}

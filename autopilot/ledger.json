@@ -782,7 +782,12 @@
       "attempts": 1,
       "run_id": "42561890757",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:30:15.591Z"
+      "updated_at": "2026-11-09T04:32:01.732Z",
+      "stage": "research",
+      "topic": "Sherman's March to the Sea",
+      "score": 75.1,
+      "pillar": "Unbelievable true historical events",
+      "hook": "The brutal scorched-earth campaign that cut a 60-mile-wide path of destruction across Georgia."
     }
   },
   "uploads": [],
@@ -1425,6 +1430,15 @@
       "at_ms": 1794198456225,
       "score": 83,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "1",
+      "topic": "Sherman's March to the Sea",
+      "slug": "sherman-s-march-to-the-sea",
+      "slot": "kick-c15e6a3b99-ch1",
+      "at_ms": 1794198721732,
+      "score": 75.1,
+      "pillar": "Unbelievable true historical events"
     }
   ],
   "attention": [
