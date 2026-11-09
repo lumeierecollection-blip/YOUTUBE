@@ -1,12 +1,12 @@
 {
-  "rebuilt_at": "2026-11-09T12:19:49.913Z",
+  "rebuilt_at": "2026-11-09T12:20:08.477Z",
   "channels": [
     {
       "key": "_smoke",
       "agent": "lead-architect",
-      "stage": "started",
+      "stage": "render_complete",
       "status": "running",
-      "at": "2026-11-09T12:19:49.243Z",
+      "at": "2026-11-09T12:20:08.232Z",
       "branch": "preview/_smoke",
       "commit": "39c0dbd7",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42615900359#artifacts)",
