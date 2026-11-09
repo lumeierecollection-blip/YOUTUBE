@@ -831,6 +831,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "In 1889, a sudden military coup brought an unexpected end to Brazil's final emperor.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Dom Pedro II That\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 1/the-fall-of-the-brazilian-empire-shorts:\n  - SCR-16: 56 words implies ~27s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at l"
+    },
+    "kick-bdd3b0e701-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42564339039",
+      "trigger": "push",
+      "updated_at": "2026-11-09T05:06:33.695Z"
     }
   },
   "uploads": [
@@ -1618,5 +1626,5 @@
     "Hidden Past kick-a3cad14f13-ch1 failed at assets: 2 topic(s) tried, none usable. Last: no image shows the story's actual subject; context images alone would mislead",
     "Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Rio de Janeiro How\" is not named in the research artifact â€” use the research's own name, or drop the name.\n"
   ],
-  "last_poll_at": "2026-11-09T04:54:33.924Z"
+  "last_poll_at": "2026-11-09T05:06:33.695Z"
 }
