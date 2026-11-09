@@ -108,21 +108,21 @@
         "forgotten history"
       ],
       "script": {
-        "min": 44,
-        "max": 50,
+        "min": 42,
+        "max": 47,
         "reject": 52,
         "table": {
-          "hook": "6-8",
-          "setup": "9-11",
-          "rehook": "7-9",
-          "payoff": "13-16",
-          "close": "7-9"
+          "hook": "7-8",
+          "setup": "9-10",
+          "rehook": "7-8",
+          "payoff": "12-14",
+          "close": "7-8"
         },
         "gate_seconds": {
           "min": 20,
           "max": 27
         },
-        "note": "Ryan neural voice measured about 107 words a minute (54 words took 30.26 s)."
+        "note": "Ryan neural voice measured about 107 words a minute (54 words took 30.26 s). The target sits low because drafts overshoot it by about 15%."
       }
     },
     "2": {
