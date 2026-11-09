@@ -1005,6 +1005,14 @@
       "pillar": "Unsolved historical mysteries",
       "hook": "He extorted $200,000, jumped out of a Boeing 727 into a freezing thunderstorm, and vanished forever.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 words implies ~31s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 10 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    "kick-08d0af4b3f-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42590890284",
+      "trigger": "push",
+      "updated_at": "2026-11-09T09:12:36.030Z"
     }
   },
   "uploads": [
@@ -1913,5 +1921,5 @@
     "AI Tested kick-b7dd86b5f6-ch2 failed at discover: discovery failure: 22 candidates, none eligible. Best \"WhatsApp rolls out AI photo expansion tool for iPhone users\" (80.2): no trusted source",
     "Hidden Past kick-e8859da190-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/d-b-cooper-s-legendary-1971-airplane-hijacking-and-parachute-shorts:\n  - SCR-16: 65 wor"
   ],
-  "last_poll_at": "2026-11-09T09:05:26.607Z"
+  "last_poll_at": "2026-11-09T09:12:36.030Z"
 }
