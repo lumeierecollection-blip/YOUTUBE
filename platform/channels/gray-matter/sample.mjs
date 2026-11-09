@@ -29,12 +29,12 @@ export const claims = [
 ];
 
 export const sentences = [
-  { sentence_id: "s1", beat_id: "b1", text: "Skip a night of sleep, and new information gets harder to remember.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
+  { sentence_id: "s1", beat_id: "b1", text: "A night without sleep makes new information harder to remember.", role: "Opens on the everyday experience and states what is measured.", claim_ids: ["C1"], link_from_previous: "none", on_screen_text: "Awake all night" },
   { sentence_id: "s2", beat_id: "b2", text: "The hippocampus, deep in the temporal lobe, helps form new memories.", role: "Names the region, where it is, and what it does.", claim_ids: ["C2"], link_from_previous: "explanation", on_screen_text: "Hippocampus" },
-  { sentence_id: "s3", beat_id: "b3", text: "After a sleepless night, one imaging study found it less active during learning, and memory was worse.", role: "Human evidence, marked as one association.", claim_ids: ["C3"], link_from_previous: "evidence", on_screen_text: "Less active while learning" },
-  { sentence_id: "s4", beat_id: "b4", text: "In mice, five hours without sleep reduced dendritic spines, tiny protrusions on the receiving side of many neural connections.", role: "Moves to the cellular level and defines the term.", claim_ids: ["C4", "C5"], link_from_previous: "explanation", on_screen_text: "Dendritic spine" },
-  { sentence_id: "s5", beat_id: "b5", text: "Suppressing a protein called cofilin prevented that loss, and the memory deficit.", role: "The causal test, in mice.", claim_ids: ["C6", "C9"], link_from_previous: "cause", on_screen_text: "Cofilin suppressed" },
-  { sentence_id: "s6", beat_id: "b6", text: "Recovery sleep reversed the spine loss. But this is mouse evidence, not proof of what happens in you.", role: "Payoff and the limit of the evidence.", claim_ids: ["C7", "C8"], link_from_previous: "contradiction", on_screen_text: "Mice only" },
+  { sentence_id: "s3", beat_id: "b3", text: "One imaging study found it less active during learning after sleep loss.", role: "Human evidence, marked as one association.", claim_ids: ["C3"], link_from_previous: "evidence", on_screen_text: "Less active while learning" },
+  { sentence_id: "s4", beat_id: "b4", text: "In mice, five hours awake reduced dendritic spines: the receiving side of excitatory connections.", role: "Moves to the cellular level and defines the term.", claim_ids: ["C4", "C5"], link_from_previous: "explanation", on_screen_text: "Dendritic spine" },
+  { sentence_id: "s5", beat_id: "b5", text: "Suppressing cofilin, which breaks down actin, prevented the loss and the memory deficit.", role: "The causal test, in mice.", claim_ids: ["C6", "C9"], link_from_previous: "cause", on_screen_text: "Cofilin suppressed" },
+  { sentence_id: "s6", beat_id: "b6", text: "Recovery sleep reversed it. But this is mouse evidence, not proof for you.", role: "Payoff and the limit of the evidence.", claim_ids: ["C7", "C8"], link_from_previous: "contradiction", on_screen_text: "Mice only" },
 ];
 
 export const blueprint = {
@@ -83,13 +83,13 @@ export const scriptPackage = {
   target_seconds: 28,
   blueprint,
   hook_options: [
-    { text: "Skip a night of sleep, and new information gets harder to remember.", family: "plain consequence", honest: true },
+    { text: "A night without sleep makes new information harder to remember.", family: "plain consequence", honest: true },
     { text: "One sleepless night changes how your hippocampus learns.", family: "direct claim", honest: false, note: "Rejected: stated as fact about the viewer, while the human evidence is one imaging study." },
   ],
-  selected_hook: "Skip a night of sleep, and new information gets harder to remember.",
+  selected_hook: "A night without sleep makes new information harder to remember.",
   sentences,
   payoff: "In mice, suppressing cofilin prevented both the spine loss and the memory deficit.",
-  ending: "Recovery sleep reversed the spine loss, but this is mouse evidence, not proof of what happens in you.",
+  ending: "Recovery sleep reversed it. But this is mouse evidence, not proof for you.",
   cta: null,
   sources: Object.values(SRC),
   claims,
