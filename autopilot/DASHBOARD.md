@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 07:06 SAST
+Updated 2026-11-09 07:11 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -19,8 +19,8 @@ Updated 2026-11-09 07:06 SAST
 | | |
 |---|---|
 | Last successful video | none yet |
-| Latest production | failed-final at discover, attempts 1 |
-| Selected topic and score | n/a |
+| Latest production | failed-final at script, attempts 1 |
+| Selected topic and score | AI Voice Cloning Fraud Scheme and $129M Scam (72/100) |
 | QA | n/a |
 | Upload | n/a |
 | Performance | n/a |
@@ -96,3 +96,4 @@ Updated 2026-11-09 07:06 SAST
 - Hidden Past kick-a3cad14f13-ch1 failed at assets: 2 topic(s) tried, none usable. Last: no image shows the story's actual subject; context images alone would mislead
 - Hidden Past kick-cf5c10e282-ch1 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Rio de Janeiro How" is not named in the research artifact â€” use the research's own name, or drop the name.
 
+- AI Tested kick-bdd3b0e701-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens ("How was 129 million dollars stolen using AI audio?")
