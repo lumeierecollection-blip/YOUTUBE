@@ -412,13 +412,15 @@
     },
     "kick-d6cf9fd651-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42538164747",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:09:34.111Z",
-      "stage": "metadata",
-      "topic": "Hittite cuneiform tablets discovered at Kayalipinar"
+      "updated_at": "2026-11-09T00:09:36.475Z",
+      "stage": "qa",
+      "topic": "Hittite cuneiform tablets discovered at Kayalipinar",
+      "error": "gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolution\":true,\"fps_30\":true,\"h264\":true,\"aac\":true,\"audible\":true,\"no_black\":true,\"no_freeze\":true,\"no_decode_errors\":true}}",
+      "qa": "failed"
     }
   },
   "uploads": [],
@@ -762,7 +764,8 @@
     "Hidden Past kick-0c3052ab93-ch1 failed at qa: gates failed: vox, video_qa, frame_review, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 6.0s (limit 4.0s)\"}],\"frame\":[\"clipped_text: frame 13: one hundred thirty-on",
     "Hidden Past kick-78a26c5d3b-ch1 failed at vox-layout: layout check failed: s2-place0 overlaps s2-place1",
     "Hidden Past kick-60ab4e94f8-ch1 failed at assets: node scripts/assets/download-historical-images.mjs --channel exited 1",
-    "Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-st"
+    "Hidden Past kick-803cc08c1f-ch1 failed at qa: gates failed: vox, video_qa, acceptance. {\"blocking\":[{\"check\":\"static-run\",\"why\":\"longest near-static run is 5.0s (limit 4.0s)\"}],\"frame\":[],\"acceptance\":[{\"check\":\"static-run\",\"why\":\"longest near-st",
+    "Hidden Past kick-d6cf9fd651-ch1 failed at qa: gates failed: vox. {\"blocking\":[],\"frame\":[],\"acceptance\":[],\"vox\":[{\"scene\":3,\"check\":\"vignette\",\"why\":\"corners kept 1.567 of their light, centre 1.38\"}],\"technical\":{\"duration_le_30\":true,\"resolutio"
   ],
   "last_poll_at": "2026-11-09T00:04:13.839Z"
 }

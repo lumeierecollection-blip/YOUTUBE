@@ -1,0 +1,83 @@
+{
+  "production_id": "ap-kick-d6cf9fd651-ch1",
+  "sha256": "9438009e6e83a7c5b1318ddf56066dc53a8dc2f6bdbdfae21c2e3087a6c906c1",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 30,
+    "mean_volume_db": -21.8,
+    "black": 0,
+    "freeze": 0
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": [
+      {
+        "check": "motion-keyframes",
+        "why": "only 0% of image layers have scale/pan motion"
+      }
+    ]
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The Short follows a consistent historical editorial aesthetic with desaturated images, print textures, and gold accents, with all captions properly positioned and legible."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/kick-d6cf9fd651-ch1/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": {
+    "pass": false,
+    "failures": [
+      {
+        "scene": 3,
+        "check": "vignette",
+        "why": "corners kept 1.567 of their light, centre 1.38"
+      }
+    ],
+    "counts": {
+      "photos": 4,
+      "annotations": 2,
+      "chapter_openers": 2
+    }
+  },
+  "seo": {
+    "title": "A 3,400-Year-Old Royal Tragedy Revealed in Clay",
+    "description": "Archaeologists uncovered 131 cuneiform tablets revealing a deadly epidemic and a nursing princess during King Tudhaliya II's reign. These ancient texts preserved a hidden royal tragedy for 3,400 years.\n\n#AncientHistory #Archaeology #History #Cuneiform\n\nSources:\n- https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery\n- https://www.ancientcyprus.com/news/kayalipinar-hittite-royal-archive\n- https://lejournal.cnrs.fr/nos-blogs/breves-mesopotamiennes/decouverte-dune-archive-royale-hittite-a-samuha\n\nImage credits:\n- An ancient clay cuneiform tablet covered in wedge-shaped script.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Cultic_Festival_Script.jpg\n- An archaeological excavation site showing uncovered ancient stone foundations.: Internet Archive Book Images / Wikimedia Commons, No restrictions (No restrictions) https://commons.wikimedia.org/wiki/File:The_arch%C3%A6ology_of_the_cuneiform_inscriptions_(1908)_(14780113231).jpg\n- An ancient Hittite artifact depicting court figures from the royal era.: Ingeborg Simon / Wikimedia Commons, CC BY-SA 3.0 (CC BY-SA 3.0) https://commons.wikimedia.org/wiki/File:Adana_M%C3%BCze08.jpg\n- A single preserved cuneiform tablet behind museum glass, marking millennia of history.: Mx. Granger / Wikimedia Commons, CC0 (CC0) https://commons.wikimedia.org/wiki/File:Hittite_Cuneiform_Tablet-_Legal_Deposition(?).jpg",
+    "tags": [
+      "ancient history",
+      "archaeology",
+      "cuneiform tablets",
+      "King Tudhaliya II",
+      "Kayalipinar",
+      "ancient royal secret",
+      "historical discovery",
+      "ancient epidemic"
+    ],
+    "hashtags": [
+      "#AncientHistory",
+      "#Archaeology",
+      "#History",
+      "#Cuneiform"
+    ]
+  }
+}
