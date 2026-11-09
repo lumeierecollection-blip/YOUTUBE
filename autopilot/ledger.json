@@ -954,11 +954,13 @@
     },
     "kick-29161798b7-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 1,
       "run_id": "42587990132",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:56:56.997Z"
+      "updated_at": "2026-11-09T08:58:28.257Z",
+      "stage": "discover",
+      "error": "discovery failure: 16 candidates, none eligible. Best \"Sinking of the SS Edmund Fitzgerald\" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
     }
   },
   "uploads": [
@@ -1833,7 +1835,8 @@
     "Hidden Past kick-8e5a668775-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"The Tragic Sinking of the SS Edmund Fitzgerald on Lake Superior\" (81.2): too similar to recent topic: The Tragic Kidnapping and Ransom of John Pa",
     "AI Tested kick-e09b48c0d5-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"In Washington DC November\" is not named in the research artifact â€” use the research's own name, or drop the",
     "Hidden Past kick-f805ebbae6-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLAIM: \"manufactured fear trapping democracy in Rio.\" is unsupported: While research notes a forged plan was used to c",
-    "AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (str"
+    "AI Tested kick-4d6c9e0e00-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/nearly-20-of-workers-replaced-by-ai-are-being-asked-back-shorts:\n  - SCR-17 STRICT (str",
+    "Hidden Past kick-29161798b7-ch1 failed at discover: discovery failure: 16 candidates, none eligible. Best \"Sinking of the SS Edmund Fitzgerald\" (78.4): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior"
   ],
   "last_poll_at": "2026-11-09T08:56:56.996Z"
 }
