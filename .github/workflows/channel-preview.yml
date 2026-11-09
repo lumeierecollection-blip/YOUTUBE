@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: |
             package-lock.json
             src/skills/remotion-render/package-lock.json
-      # faster-whisper needs PyAV below 15, which has wheels for this Python; without it Gemini's voice cannot be aligned.
+      # faster-whisper needs PyAV 15, which still has the option it calls and ships wheels; without it Gemini's voice cannot be aligned.
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -52,7 +52,7 @@ jobs:
           retry install
           cd "$GITHUB_WORKSPACE"
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc jq
-          pip3 install --quiet edge-tts faster-whisper "av<15"
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
       - name: Install this channel's own dependencies
         run: |
           dir="platform/channels/${{ steps.channel.outputs.key }}"
