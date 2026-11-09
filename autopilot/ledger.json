@@ -733,6 +733,14 @@
       "pillar": "Free versus paid AI tools",
       "hook": "Are you getting your money's worth from your $20 monthly AI subscription?",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script abruptly jumps between unrelated coding stats, pricing trivia, and storage features without a logical narrative flow, leaving a confused viewer wondering what is actually being compared."
+    },
+    "kick-df87d44ce0-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42559323046",
+      "trigger": "push",
+      "updated_at": "2026-11-09T04:08:38.109Z"
     }
   },
   "uploads": [],
@@ -1399,5 +1407,5 @@
     "Hidden Past kick-583105d332-ch1 failed at discover: 3 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "AI Tested kick-a76e0da8ee-ch2 failed at script: 1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: The final editor rejected the script. Failed: one_coherent_topic, followable, satisfying_ending, no_repetition. The script"
   ],
-  "last_poll_at": "2026-11-09T03:58:33.577Z"
+  "last_poll_at": "2026-11-09T04:08:38.109Z"
 }
