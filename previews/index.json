@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-09T12:33:12.515Z",
+  "rebuilt_at": "2026-11-09T12:33:13.827Z",
   "channels": [
     {
       "key": "_smoke",
@@ -23,9 +23,9 @@
     {
       "key": "gray-matter",
       "agent": "agent-gray-matter",
-      "stage": "research_complete",
+      "stage": "blueprint_complete",
       "status": "running",
-      "at": "2026-11-09T12:33:12.267Z",
+      "at": "2026-11-09T12:33:13.607Z",
       "branch": "preview/gray-matter",
       "commit": "022a5c93",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42617783610#artifacts)",
