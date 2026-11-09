@@ -486,12 +486,12 @@
       "attempts": 1,
       "run_id": "42540589445",
       "trigger": "push",
-      "updated_at": "2026-11-09T00:40:04.253Z",
-      "stage": "script",
-      "topic": "Claude vs. ChatGPT: which AI can be your personal accountant?",
-      "score": 79.2,
+      "updated_at": "2026-11-09T00:42:48.250Z",
+      "stage": "research",
+      "topic": "Bill Gates warns a $10‑hour robot could replace $20‑hour workers",
+      "score": 68.3,
       "pillar": "AI productivity and money‑saving uses",
-      "hook": "Your AI accountant is here – but is Claude or ChatGPT better at saving you money?"
+      "hook": "A cheap robot could steal your job – Gates explains why we need a plan."
     }
   },
   "uploads": [],
@@ -881,6 +881,15 @@
       "slot": "kick-7ea01591b2-ch2",
       "at_ms": 1794184783210,
       "score": 79.2,
+      "pillar": "AI productivity and money‑saving uses"
+    },
+    {
+      "channel": "2",
+      "topic": "Bill Gates warns a $10‑hour robot could replace $20‑hour workers",
+      "slug": "bill-gates-warns-a-10-hour-robot-could-replace-20-hour-worke",
+      "slot": "kick-7ea01591b2-ch2",
+      "at_ms": 1794184968250,
+      "score": 68.3,
       "pillar": "AI productivity and money‑saving uses"
     }
   ],
