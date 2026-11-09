@@ -645,9 +645,14 @@
           "topic": "Emily Hobhouse Honored 100 Years After Her Historic State Funeral",
           "slug": "emily-hobhouse-honored-100-years-after-funeral",
           "reserved_at": "2026-11-08T15:17:13.014Z"
+        },
+        {
+          "topic": "How Sleuths Decoded the Secret Letters of Mary, Queen of Scots in 2026",
+          "slug": "mary-queen-of-scots-encrypted-letters-france-2026",
+          "reserved_at": "2026-11-09T19:48:37.230Z"
         }
       ],
-      "last_generated": "2026-11-09T18:58:02.604Z"
+      "last_generated": "2026-11-09T19:48:37.230Z"
     },
     "2": {
       "channel_name": "AI Tested",
