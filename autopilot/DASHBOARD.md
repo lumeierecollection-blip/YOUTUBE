@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 02:45 SAST
+Updated 2026-11-09 02:54 SAST
 
 **Next productions:** AI Tested 2026-11-09 11:00 SAST, AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST
 
@@ -9,7 +9,7 @@ Updated 2026-11-09 02:45 SAST
 |---|---|
 | Last successful video | none yet |
 | Latest production | failed-final at qa, attempts 1 |
-| Selected topic and score | Jack the Ripper’s Final Victim – Mary Jane Kelly (68.4/100) |
+| Selected topic and score | Stalingrad’s Turning Point: German Troops Reach the Volga (65.5/100) |
 | QA | failed |
 | Upload | n/a |
 | Performance | n/a |
@@ -68,3 +68,4 @@ Updated 2026-11-09 02:45 SAST
 - Hidden Past kick-08cf67133b-ch1 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 1/ruth-harkness-capturing-and-smuggling-the-first-live-giant-p-shorts
 - Hidden Past kick-17244d3563-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":2,"check":"halftone","why":"dot-screen peak 3784 vs source 69240"},{"scene":2,"check":"grain","why":"fine detail 20.9 vs so
 - AI Tested kick-7ea01591b2-ch2 failed at script: 3 topic(s) tried, none produced an accepted script. Last: script failed its gates after 7 passes: Script gate FAILED (BLOCKER) for 2/adobe-gives-startups-12-months-free-ai-tools-design-for-free-shorts
+- Hidden Past kick-312d03eb14-ch1 failed at qa: gates failed: vox. {"blocking":[],"frame":[],"acceptance":[],"vox":[{"scene":0,"check":"grain","why":"fine detail 7.24 vs source 8.8"}],"technical":{"duration_le_30":true,"resolution":true,"fps_30":tr
