@@ -1,0 +1,136 @@
+{
+  "blueprint": {
+    "central_question": "How did Martha Stewart recover her career and media empire after her conviction in the ImClone stock trading case?",
+    "thesis": "Martha Stewart was convicted of felony charges and served five months in federal prison related to the ImClone stock trading case. Despite speculation that the incident would end her media empire, she successfully launched a comeback campaign in 2005, returned her company to profitability, and reclaimed leadership roles.",
+    "why_it_matters": "Understanding how a major public figure recovered from a federal conviction offers insight into crisis management and brand resilience.",
+    "viewer_start": "The viewer knows Martha Stewart as a prominent lifestyle mogul.",
+    "viewer_end": "The viewer understands the legal fallout of the ImClone case and the timeline of her successful career recovery.",
+    "key_evidence": [
+      "c1",
+      "c2",
+      "c3",
+      "c4",
+      "c5",
+      "c6",
+      "c7"
+    ],
+    "beats": [
+      {
+        "beat_id": "b1",
+        "role": "opening",
+        "purpose": "Establish the legal outcome and conviction that started the crisis.",
+        "claim_ids": [
+          "c1"
+        ],
+        "link_from_previous": "none"
+      },
+      {
+        "beat_id": "b2",
+        "role": "development",
+        "purpose": "Detail the immediate sentence she served following the conviction.",
+        "claim_ids": [
+          "c2"
+        ],
+        "link_from_previous": "chronology"
+      },
+      {
+        "beat_id": "b3",
+        "role": "development",
+        "purpose": "Address the widespread speculation about the future of her media empire.",
+        "claim_ids": [
+          "c3"
+        ],
+        "link_from_previous": "consequence"
+      },
+      {
+        "beat_id": "b4",
+        "role": "payoff",
+        "purpose": "Show how she initiated her comeback and restored her company's financial health.",
+        "claim_ids": [
+          "c4",
+          "c5"
+        ],
+        "link_from_previous": "change_over_time"
+      },
+      {
+        "beat_id": "b5",
+        "role": "ending",
+        "purpose": "Summarize her return to leadership positions within her company.",
+        "claim_ids": [
+          "c6",
+          "c7"
+        ],
+        "link_from_previous": "chronology"
+      }
+    ],
+    "questions_raised": [
+      {
+        "question": "Would the incident effectively end her media empire?",
+        "raised_in": "b3",
+        "answered_in": "b4"
+      }
+    ],
+    "conclusion": "Despite a felony conviction and a prison sentence, Martha Stewart launched a successful comeback campaign that restored her company's profitability and her leadership positions.",
+    "explain_in_script": [
+      "ImClone stock trading case (insider trading scandal)",
+      "Martha Stewart Living Omnimedia (her media company)",
+      "Sequential Brands (the company that bought her brand)"
+    ]
+  },
+  "attempts": 1,
+  "removed_beats": [],
+  "checks": {
+    "max_beats": 5,
+    "deterministic": "pass",
+    "model": {
+      "answers_question": true,
+      "fits_length": true,
+      "beats": [
+        {
+          "beat_id": "b1",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "The beat establishes the starting point of the crisis as requested."
+        },
+        {
+          "beat_id": "b2",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "The sentence follows the conviction chronologically."
+        },
+        {
+          "beat_id": "b3",
+          "serves": true,
+          "link_true": false,
+          "correct_link": "consequence",
+          "reason": "The speculation is a consequence of the conviction and prison sentence, not a direct chronological step."
+        },
+        {
+          "beat_id": "b4",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "The comeback is a direct change over time following the period of speculation."
+        },
+        {
+          "beat_id": "b5",
+          "serves": true,
+          "link_true": true,
+          "correct_link": "",
+          "reason": "The return to leadership is the final chronological step in the recovery process."
+        }
+      ],
+      "relinked_by_checker": [
+        {
+          "beat_id": "b3",
+          "from": "consequence",
+          "to": "consequence",
+          "reason": "The speculation is a consequence of the conviction and prison sentence, not a direct chronological step."
+        }
+      ]
+    }
+  },
+  "history": []
+}
