@@ -43,3 +43,9 @@ Topic: Martha Stewart and the ImClone case (investigation)
 Writer providers: none; critic providers: none; model calls: 1; rounds: 0; narrowings: 0
 Words per minute: 176.8 (measured, voice en-US-GuyNeural)
 Why not approved: no provider could answer for writer: provider_error
+
+## world-view - BLOCKED_PROVIDER
+Topic: The 1956 Suez Crisis (short)
+Writer providers: none; critic providers: none; model calls: 1; rounds: 0; narrowings: 0
+Words per minute: 177 (measured, voice en-GB-SoniaNeural)
+Why not approved: no provider could answer for writer: provider_error

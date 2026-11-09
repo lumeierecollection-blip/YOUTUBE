@@ -1,10 +1,10 @@
 {
-  "channel": "court-and-spotlight",
+  "channel": "world-view",
   "production_run": "run-42621438393-1",
   "agent": "agent-script-engine",
   "stage": "blocked",
   "status": "failed",
-  "timestamp": "2026-11-09T13:04:08.579Z",
+  "timestamp": "2026-11-09T13:04:26.359Z",
   "branch": "preview/_script-engine",
   "commit": "21f68815d409834143e36bc182c55c05267d01b8",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42621438393#artifacts",

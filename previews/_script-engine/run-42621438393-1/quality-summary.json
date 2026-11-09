@@ -255,5 +255,37 @@
     "calls": 1,
     "caveats": [],
     "reason": "no provider could answer for writer: provider_error"
+  },
+  {
+    "channel": "world-view",
+    "topic": "The 1956 Suez Crisis",
+    "format": "short",
+    "status": "blocked_provider",
+    "sources": [
+      {
+        "source_id": "s1",
+        "url": "https://en.wikipedia.org/wiki/Suez_Crisis",
+        "ok": true,
+        "chars": 61303,
+        "sha256": "b31f2338bb1357d8",
+        "title": "Suez Crisis",
+        "published": "2026-11-04",
+        "fetched_at": "2026-11-09T13:04:13.262Z"
+      }
+    ],
+    "wpm": {
+      "wpm": 177,
+      "source": "measured",
+      "voice": "en-GB-SoniaNeural"
+    },
+    "rounds": 0,
+    "narrowings": 0,
+    "providers": {
+      "writer": [],
+      "critic": []
+    },
+    "calls": 1,
+    "caveats": [],
+    "reason": "no provider could answer for writer: provider_error"
   }
 ]
