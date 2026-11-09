@@ -1,0 +1,144 @@
+{
+  "fetched": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "ok": true,
+      "chars": 56158,
+      "sha256": "e20232b87757ca50",
+      "title": "Antikythera mechanism",
+      "published": "2026-11-05",
+      "fetched_at": "2026-11-09T13:14:24.264Z"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "claim": "The Antikythera mechanism is an ancient Greek hand-powered orrery built in the 2nd century BC and discovered in 1901.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The Antikythera mechanism ( AN-tik-ih-THEER-ə, US also AN-ty-kih-) is an ancient Greek hand-powered orrery (model of the Solar System) built in the 2nd century BC and discovered in 1901.",
+      "confidence": "high",
+      "context": "The device is identified as an ancient Greek model of the Solar System discovered in 1901.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c2",
+      "claim": "The artefact was retrieved from a shipwreck off the coast of the Greek island Antikythera in 1901.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The artefact was among wreckage retrieved from a shipwreck off the coast of the Greek island Antikythera in 1901.",
+      "confidence": "high",
+      "context": "The mechanism was found in a shipwreck near Antikythera.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c3",
+      "claim": "In 1902, Spyridon Stais noticed that it contained a gear, prompting the first study of the fragment by Valerios Stais.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "In 1902, during a visit to the National Archaeological Museum in Athens, it was noticed by Greek politician Spyridon Stais as containing a gear, prompting the first study of the fragment by his cousin, Valerios Stais, the museum director.",
+      "confidence": "high",
+      "context": "Spyridon Stais and museum director Valerios Stais conducted the initial examination after spotting a gear.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c4",
+      "claim": "The device was housed in the remains of a wooden-framed case of uncertain overall size 34 cm by 18 cm by 9 cm.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The device, housed in the remains of a wooden-framed case of (uncertain) overall size 34 cm × 18 cm × 9 cm (13.4 in × 7.1 in × 3.5 in), was found as one lump, later separated into three main fragments which are now divided into 82 separate fragments after conservation efforts.",
+      "confidence": "high",
+      "context": "Physical dimensions and fragmentation of the device's case are recorded from conservation efforts.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c5",
+      "claim": "Four of the fragments contain gears, while inscriptions are found on many others.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "Four of these fragments contain gears, while inscriptions are found on many others.",
+      "confidence": "high",
+      "context": "The physical components of the 82 fragments include gears and inscriptions.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c6",
+      "claim": "The largest gear is about 13 cm in diameter and originally had 223 teeth.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "The largest gear is about 13 cm (5 in) in diameter and originally had 223 teeth.",
+      "confidence": "high",
+      "context": "Measurements describe the largest gear found within the fragments.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c7",
+      "claim": "All the fragments of the mechanism are kept at the National Archaeological Museum.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "All these fragments of the mechanism are kept at the National Archaeological Museum, along with reconstructions and replicas, to demonstrate how it may have looked and worked.",
+      "confidence": "high",
+      "context": "The current location of the mechanism's pieces is the National Archaeological Museum.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c8",
+      "claim": "It could be used to predict astronomical positions and eclipses decades in advance.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "It could be used to predict astronomical positions and eclipses decades in advance.",
+      "confidence": "high",
+      "context": "The physical capabilities of the device included predicting eclipses and astronomical positions.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c9",
+      "claim": "It could also be used to track the four-year cycle of athletic games similar to an olympiad, the cycle of the ancient Olympic Games.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "It could also be used to track the four-year cycle of athletic games similar to an olympiad, the cycle of the ancient Olympic Games.",
+      "confidence": "high",
+      "context": "The device was capable of tracking ancient athletic game cycles.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "c10",
+      "claim": "Searches for items at the Antikythera wreck site in 2012 and 2015 yielded art objects and a second ship.",
+      "source_id": "s1",
+      "source_url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05",
+      "excerpt": "Two other searches for items at the Antikythera wreck site in 2012 and 2015 yielded art objects and a second ship which may be connected with the treasure ship on which the mechanism was found.",
+      "confidence": "high",
+      "context": "Subsequent expeditions to the shipwreck site uncovered art and another vessel.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "dropped_by_code": [],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+      "published": "2026-11-05"
+    }
+  ]
+}
