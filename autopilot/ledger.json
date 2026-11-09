@@ -824,12 +824,12 @@
       "attempts": 1,
       "run_id": "42564303115",
       "trigger": "push",
-      "updated_at": "2026-11-09T04:56:08.102Z",
-      "stage": "script",
-      "topic": "The Opening of the Holland Tunnel",
-      "score": 61.6,
-      "pillar": "Unbelievable true historical events",
-      "hook": "Before this underwater engineering marvel was built, crossing the Hudson meant risking your life on a ferry."
+      "updated_at": "2026-11-09T05:05:39.017Z",
+      "stage": "research",
+      "topic": "The Fall of the Brazilian Empire",
+      "score": 59.1,
+      "pillar": "Events that changed the modern world",
+      "hook": "In 1889, a sudden military coup brought an unexpected end to Brazil's final emperor."
     }
   },
   "uploads": [
@@ -1541,6 +1541,15 @@
       "at_ms": 1794200163086,
       "score": 61.6,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "The Fall of the Brazilian Empire",
+      "slug": "the-fall-of-the-brazilian-empire",
+      "slot": "kick-cf5c10e282-ch1",
+      "at_ms": 1794200739017,
+      "score": 59.1,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
