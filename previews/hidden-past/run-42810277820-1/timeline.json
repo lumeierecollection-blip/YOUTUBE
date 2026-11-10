@@ -1,0 +1,412 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "press",
+      "treatment": "collage-sticker-photo-with-stamp",
+      "objective": "Show the real press-conference photograph as a sticker with the date stamp",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 214,
+      "start_s": 0,
+      "end_s": 7.133333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "note",
+      "treatment": "collage-sticker-document",
+      "objective": "Show Schabowski's own note as a taped sticker",
+      "background": "paper panel in saturated frame",
+      "from": 214,
+      "to": 306,
+      "start_s": 7.133333333333334,
+      "end_s": 10.2
+    },
+    {
+      "id": "s3",
+      "kind": "quote",
+      "treatment": "collage-quote-with-timestamps",
+      "objective": "Show his answer as a giant quotation and the evening's timed events",
+      "background": "accent card on paper",
+      "from": 306,
+      "to": 529,
+      "start_s": 10.2,
+      "end_s": 17.633333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "night",
+      "treatment": "collage-sticker-photo-with-timestamp",
+      "objective": "Show the later photograph, labelled, with the checkpoint time",
+      "background": "paper panel in saturated frame",
+      "from": 529,
+      "to": 789,
+      "start_s": 17.633333333333333,
+      "end_s": 26.3
+    }
+  ],
+  "captions": [
+    {
+      "text": "In 1989",
+      "from": 0,
+      "to": 34,
+      "words": [
+        {
+          "text": "In",
+          "from": 0
+        },
+        {
+          "text": "1989",
+          "from": 9
+        }
+      ]
+    },
+    {
+      "text": "one press-conference",
+      "from": 46,
+      "to": 71,
+      "words": [
+        {
+          "text": "one",
+          "from": 46
+        },
+        {
+          "text": "press-conference",
+          "from": 57
+        }
+      ]
+    },
+    {
+      "text": "answer opened the Berlin Wall",
+      "from": 79,
+      "to": 128,
+      "words": [
+        {
+          "text": "answer",
+          "from": 79
+        },
+        {
+          "text": "opened",
+          "from": 87
+        },
+        {
+          "text": "the",
+          "from": 103
+        },
+        {
+          "text": "Berlin",
+          "from": 110
+        },
+        {
+          "text": "Wall",
+          "from": 116
+        }
+      ]
+    },
+    {
+      "text": "To see how start with",
+      "from": 128,
+      "to": 184,
+      "words": [
+        {
+          "text": "To",
+          "from": 128
+        },
+        {
+          "text": "see",
+          "from": 148
+        },
+        {
+          "text": "how",
+          "from": 152
+        },
+        {
+          "text": "start",
+          "from": 159
+        },
+        {
+          "text": "with",
+          "from": 174
+        }
+      ]
+    },
+    {
+      "text": "a note",
+      "from": 184,
+      "to": 197,
+      "words": [
+        {
+          "text": "a",
+          "from": 184
+        },
+        {
+          "text": "note",
+          "from": 187
+        }
+      ]
+    },
+    {
+      "text": "Spokesman Günter Schabowski has just",
+      "from": 214,
+      "to": 271,
+      "words": [
+        {
+          "text": "Spokesman",
+          "from": 214
+        },
+        {
+          "text": "Günter",
+          "from": 222
+        },
+        {
+          "text": "Schabowski",
+          "from": 231
+        },
+        {
+          "text": "has",
+          "from": 249
+        },
+        {
+          "text": "just",
+          "from": 261
+        }
+      ]
+    },
+    {
+      "text": "been handed it",
+      "from": 271,
+      "to": 297,
+      "words": [
+        {
+          "text": "been",
+          "from": 271
+        },
+        {
+          "text": "handed",
+          "from": 277
+        },
+        {
+          "text": "it",
+          "from": 284
+        }
+      ]
+    },
+    {
+      "text": "Asked when it starts",
+      "from": 306,
+      "to": 336,
+      "words": [
+        {
+          "text": "Asked",
+          "from": 306
+        },
+        {
+          "text": "when",
+          "from": 315
+        },
+        {
+          "text": "it",
+          "from": 322
+        },
+        {
+          "text": "starts",
+          "from": 325
+        }
+      ]
+    },
+    {
+      "text": "he says immediately without delay",
+      "from": 344,
+      "to": 410,
+      "words": [
+        {
+          "text": "he",
+          "from": 344
+        },
+        {
+          "text": "says",
+          "from": 346
+        },
+        {
+          "text": "immediately",
+          "from": 352
+        },
+        {
+          "text": "without",
+          "from": 369
+        },
+        {
+          "text": "delay",
+          "from": 389
+        }
+      ]
+    },
+    {
+      "text": "West German news tells viewers",
+      "from": 434,
+      "to": 471,
+      "words": [
+        {
+          "text": "West",
+          "from": 434
+        },
+        {
+          "text": "German",
+          "from": 434
+        },
+        {
+          "text": "news",
+          "from": 442
+        },
+        {
+          "text": "tells",
+          "from": 451
+        },
+        {
+          "text": "viewers",
+          "from": 460
+        }
+      ]
+    },
+    {
+      "text": "the borders are open",
+      "from": 471,
+      "to": 509,
+      "words": [
+        {
+          "text": "the",
+          "from": 471
+        },
+        {
+          "text": "borders",
+          "from": 478
+        },
+        {
+          "text": "are",
+          "from": 485
+        },
+        {
+          "text": "open",
+          "from": 495
+        }
+      ]
+    },
+    {
+      "text": "That night guards at Bornholmer",
+      "from": 529,
+      "to": 568,
+      "words": [
+        {
+          "text": "That",
+          "from": 529
+        },
+        {
+          "text": "night",
+          "from": 531
+        },
+        {
+          "text": "guards",
+          "from": 547
+        },
+        {
+          "text": "at",
+          "from": 553
+        },
+        {
+          "text": "Bornholmer",
+          "from": 559
+        }
+      ]
+    },
+    {
+      "text": "Straße let people through",
+      "from": 568,
+      "to": 621,
+      "words": [
+        {
+          "text": "Straße",
+          "from": 568
+        },
+        {
+          "text": "let",
+          "from": 587
+        },
+        {
+          "text": "people",
+          "from": 599
+        },
+        {
+          "text": "through",
+          "from": 608
+        }
+      ]
+    },
+    {
+      "text": "A wall that stood for",
+      "from": 645,
+      "to": 673,
+      "words": [
+        {
+          "text": "A",
+          "from": 645
+        },
+        {
+          "text": "wall",
+          "from": 646
+        },
+        {
+          "text": "that",
+          "from": 653
+        },
+        {
+          "text": "stood",
+          "from": 659
+        },
+        {
+          "text": "for",
+          "from": 667
+        }
+      ]
+    },
+    {
+      "text": "decades opened on one unprepared",
+      "from": 673,
+      "to": 739,
+      "words": [
+        {
+          "text": "decades",
+          "from": 673
+        },
+        {
+          "text": "opened",
+          "from": 682
+        },
+        {
+          "text": "on",
+          "from": 701
+        },
+        {
+          "text": "one",
+          "from": 709
+        },
+        {
+          "text": "unprepared",
+          "from": 719
+        }
+      ]
+    },
+    {
+      "text": "answer",
+      "from": 739,
+      "to": 761,
+      "words": [
+        {
+          "text": "answer",
+          "from": 739
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 789,
+  "duration_s": 26.3
+}
