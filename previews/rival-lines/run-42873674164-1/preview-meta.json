@@ -2,11 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42873674164-1",
   "agent": "agent-rival-lines",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T18:20:01.584Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T18:22:04.660Z",
   "branch": "preview/rival-lines-final-10",
   "commit": "9130d075392d0912a56c8d01c5649b0a49c4348c",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42873674164#artifacts",
-  "note": "not reviewed by the engine critic"
+  "error": "voice produced 10 sentences for 9 script sentences; use exactly one sentence-ending mark per sentence"
 }
