@@ -1,0 +1,46 @@
+[
+  {
+    "claim_id": "design",
+    "claim": "Each model was asked about ten made-up products and ten real questions.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42800652060",
+    "published": "2026-11-10",
+    "excerpt": "Each model was asked about ten made-up products and ten real questions.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-10; reply marking uses a phrase list, so borderline replies may be mislabelled. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "demonstrated_feature"
+  },
+  {
+    "claim_id": "best",
+    "claim": "Google's Gemini Flash admitted it did not know on all ten made-up products.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42800652060",
+    "published": "2026-11-10",
+    "excerpt": "Google's Gemini Flash admitted it did not know on all ten made-up products.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-10; reply marking uses a phrase list, so borderline replies may be mislabelled. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "worst",
+    "claim": "OpenAI's GPT-OSS admitted it on 1 of ten made-up products.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42800652060",
+    "published": "2026-11-10",
+    "excerpt": "OpenAI's GPT-OSS admitted it on 1 of ten made-up products.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-10; reply marking uses a phrase list, so borderline replies may be mislabelled. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "miss",
+    "claim": "OpenAI's GPT-OSS described Vantrex Melodrive chip, which does not exist, instead of saying it did not know.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42800652060",
+    "published": "2026-11-10",
+    "excerpt": "OpenAI's GPT-OSS described Vantrex Melodrive chip, which does not exist, instead of saying it did not know.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-10; reply marking uses a phrase list, so borderline replies may be mislabelled. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  }
+]
