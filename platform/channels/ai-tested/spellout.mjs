@@ -76,8 +76,9 @@ export function plan(exp) {
     S(`Spelling first, ${say(star.spelled)}.`, 4, ["spelled"]),
     ...(star.spelled_random > star.plain_random ? [S(`On random letters, ${say(star.plain_random)} of ten became ${say(star.spelled_random)}.`, 4, ["split"])] : []),
     ...others.map((m, i) => S(m.plain === m.spelled ? `${m.speak} was perfect either way.` : `${m.speak} went from ${say(m.plain)} to ${say(m.spelled)}.`, 4, [`other${i}`])),
-    S("Why? Models read tokens, not letters.", 5, ["tokenize"]),
+    S("Why: models read tokens, not letters.", 5, ["tokenize"]),
     S(`${exp.tokens.word[0].toUpperCase()}${exp.tokens.word.slice(1)} is ${say(exp.tokens.tokens)} tokens, but ${say(exp.tokens.letters)} letters.`, 5, ["tokens"]),
+    S("Same models, same questions, one change.", 6, ["design"]),
     S("So make the model spell it out first.", 6),
   ];
   const scenes = [
