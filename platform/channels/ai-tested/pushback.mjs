@@ -119,15 +119,15 @@ export function plan(exp) {
   const plainLine = (m) => (m.plain.held === m.n ? [`${m.speak} kept its answer all ${say(m.n)} times.`, `${m.speak} kept its answer every time.`] : m.plain.switched === 0 ? [`${m.speak} never switched to the wrong answer.`, `${m.speak} never switched.`] : m.plain.switched === m.n ? [`${m.speak} switched to the wrong answer every time, ${say(m.n)} out of ${say(m.n)}.`, `${m.speak} switched every time.`] : [`${m.speak} switched to the wrong answer ${times(m.plain.switched)} out of ${say(m.n)}.`, `${m.speak} switched ${times(m.plain.switched)} out of ${say(m.n)}.`]);
   const teacherLine = (m) => (m.teacher.held === m.n ? [`${m.speak} still held every time.`] : m.teacher.switched === 0 ? [`${m.speak} still never switched.`] : m.teacher.switched === m.n ? [`${m.speak} gave in every time.`] : [`${m.speak} gave in ${times(m.teacher.switched)} out of ${say(m.n)}.`, `${m.speak} gave in ${times(m.teacher.switched)}.`]);
   const slots = [
-    { id: "hook", scene: 0, ...NR, variants: [V("If you tell AI it's wrong, will it change a right answer?")] },
+    { id: "hook", scene: 0, ...NR, variants: [V("Will AI agree with you just to be nice?")] },
     { id: "design", scene: 1, variants: allRight ? [V(`We asked ${n2} AI models ${say(total)} maths questions, and they got every one right.`, ["design"]), V(`${Cap(n2)} AI models got ${say(total)} maths questions right.`, ["design"])] : [V(`We asked ${n2} AI models ${say(total)} maths questions, and kept the ones each got right.`, ["design"])] },
     { id: "push", scene: 1, variants: [V("Then we said: no, that's wrong, and gave a false answer.", ["push"]), V("Then we told them they were wrong.", ["push"])] },
     ...ms.map((m, i) => ({ id: `plain${i}`, scene: 2, variants: plainLine(m).map((t) => V(t, [`plain${i}`])) })),
     { id: "teacher", scene: 3, variants: [V("So we pushed harder, and claimed to be a maths teacher.", ["teacher"]), V("Then we claimed to be a maths teacher.", ["teacher"])] },
     ...ms.map((m, i) => ({ id: `teacher${i}`, scene: 3, variants: teacherLine(m).map((t) => V(t, [`teacher${i}`])) })),
     { id: "reply", scene: 4, optional: true, ...NR, variants: [V("Here is one of the real replies.")] },
-    { id: "tip1", scene: anySwitch ? 5 : 4, ...NR, variants: anySwitch ? [V("So when AI agrees with you, that is not proof.")] : [V("On simple maths, pushing did not work.")] },
-    { id: "tip2", scene: 5, ...NR, variants: anySwitch ? [V("Ask again in a new chat, and check the answer yourself.")] : [V("That is one small test, so still check answers that matter.")] },
+    { id: "tip1", scene: anySwitch ? 5 : 4, ...NR, variants: anySwitch ? [V("So when AI agrees with you, that is not proof.")] : [V("It never backed down on maths."), V("It never backed down.")] },
+    { id: "tip2", scene: 5, ...NR, variants: anySwitch ? [V("Ask again in a new chat, and check the answer yourself.")] : [V("Would it back down on a question with no right answer?")] },
   ];
   const scenes = [
     { kind: "hookP", treatment: "kinetic-question", objective: "Pose the question over a short chat: a right answer, then a user saying it is wrong", background: "white" },

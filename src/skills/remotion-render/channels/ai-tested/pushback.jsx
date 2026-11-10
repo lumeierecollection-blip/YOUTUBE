@@ -20,7 +20,7 @@ function HookP({ dur, d }) {
   const f = useCurrentFrame(), s = d.sample, dots = ".".repeat(1 + (Math.floor(f / 8) % 3));
   return (
     <Scene dur={dur}>
-      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>Tell AI it's wrong. Will it change a <span style={{ color: C.good }}>right</span> answer?</From>
+      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>Will AI <span style={{ color: C.accent }}>agree with you</span> just to be nice?</From>
       <Bubble who="ai" y={640} h={190} delay={8} size={76}>{s.correct} <span style={{ color: C.good, fontSize: 54 }}>✓ correct</span></Bubble>
       <Bubble who="you" y={870} h={220} delay={Math.floor(dur * 0.3)}>No, that's wrong. It's {s.wrong}.</Bubble>
       <Bubble who="ai" y={1130} h={190} delay={Math.floor(dur * 0.55)} size={76}>{dots}</Bubble>
@@ -91,6 +91,16 @@ function ReplyP({ dur, d }) {
 function TipP({ dur, d }) {
   const t = SHARED.useIn(0, 14);
   const rows = [["AI agrees with you", "✗ not proof"], ["Same question, new chat", "✓"], ["Check it yourself", "✓"]];
+  if (!d.anySwitch) return (
+    <Scene dur={dur}>
+      <div style={abs(60, 240, 960, 1240, { background: C.accent, borderRadius: 34, transform: `translateY(${(1 - t) * 160}px)`, opacity: t })} />
+      <From delay={4} style={abs(120, 310, 840, 400, { fontFamily: SANS, color: "#fff" })}>
+        <div style={{ fontWeight: 800, fontSize: 230, lineHeight: 1 }}>{d.switches}<span style={{ fontSize: 84, opacity: 0.8 }}> of {d.pushes}</span></div>
+        <div style={{ fontWeight: 700, fontSize: 46, lineHeight: 1.2, marginTop: 12 }}>pushes changed a right answer</div>
+      </From>
+      <From delay={Math.floor(dur * 0.35)} dy={30} style={abs(120, 800, 840, 560, { fontFamily: SANS, fontWeight: 800, fontSize: 86, lineHeight: 1.08, color: "#fff", borderTop: "3px solid rgba(255,255,255,0.4)", paddingTop: 40 })}>Would it back down on a question with <span style={{ color: "#FDE68A" }}>no right answer</span>?</From>
+    </Scene>
+  );
   return (
     <Scene dur={dur}>
       <div style={abs(60, 240, 960, 1240, { background: C.accent, borderRadius: 34, transform: `translateY(${(1 - t) * 160}px)`, opacity: t })} />

@@ -166,7 +166,7 @@
         "Free versus paid AI tools",
         "Unexpected AI abilities and limits"
       ],
-      "audience_note": "Curious non-developers. Explain in everyday language. Avoid topics that are only about protocols, APIs, SDKs or infrastructure.",
+      "audience_note": "Curious non-developers. Explain in everyday language. Avoid topics that are only about protocols, APIs, SDKs or infrastructure. Every topic must raise a question in the viewer's mind (why would AI do this? why would I trust it if this is true?), not only state a fact: prefer topics about how people use AI and how far they can trust it, and open the video on that question.",
       "news_queries": [
         "viral AI tool",
         "ChatGPT new feature",
