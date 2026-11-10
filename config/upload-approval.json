@@ -49,5 +49,22 @@
       "German history",
       "9 November"
     ]
+  },
+  "ai-tested-honesty": {
+    "run_id": 42800652060,
+    "artifact": "preview-ai-tested-42800652060-1",
+    "sha256": "4654b0f38bfcf3c39a00018d0d5738dc5927282b0a35bbf202d5482d1a5cba8a",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Will AI Say “I Don't Know”? We Tested Models on Made-Up Products",
+    "description": "We asked 3 AI models about ten products that do not exist, plus ten real questions as a control, and code marked each reply. One test, run on 10 November 2026. Marking uses a phrase list, so borderline replies can be mislabelled; results change between runs and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini\n\nWhy now: new models keep launching, e.g. https://www.anthropic.com/claude-fable-and-mythos-5-2 (reported on Hacker News, 9 Nov 2026).",
+    "tags": [
+      "AI test",
+      "AI hallucination",
+      "AI models",
+      "I don't know",
+      "GPT-OSS",
+      "Gemini"
+    ]
   }
 }
