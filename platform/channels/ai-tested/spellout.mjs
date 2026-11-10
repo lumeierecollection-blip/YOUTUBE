@@ -53,7 +53,9 @@ export function plan(exp) {
   const gain = (m) => m.spelled - m.plain;
   const star = [...ms].sort((a, b) => gain(b) - gain(a))[0];
   const sumPlain = ms.reduce((a, m) => a + m.plain, 0), sumSpelled = ms.reduce((a, m) => a + m.spelled, 0), sumGain = sumSpelled - sumPlain;
-  if (gain(star) < 3 || sumGain < 5) throw new Error(`spelling out did not help enough to tell this story (best gain ${gain(star)}, total gain ${sumGain})`);
+  // The story is "spelling it out fixes it": stop if that is not what the measurement shows.
+  if (gain(star) < 3 || ms.some((m) => m.spelled < m.plain) || star.spelled < 18) throw new Error(`spelling out did not clearly help (best gain ${gain(star)}; spelled scores ${ms.map((m) => m.spelled).join("/")}; plain ${ms.map((m) => m.plain).join("/")})`);
+  const others = ms.filter((m) => m !== star);
   const url = exp.run_url, date = exp.date, n3 = ms.length === 3 ? "three" : "two";
   const claim = (claim_id, text, status = "measured_statistic", source = "s1") => ({ claim_id, claim: text, source_id: source, source_url: source === "s1" ? url : "https://en.wikipedia.org/wiki/Large_language_model", published: date, excerpt: text, confidence: "high", context: source === "s1" ? `Measured in this production's own test on ${date}; results can differ between runs and as models update. Models: ${ms.map((m) => m.name).join(", ")}. Marking: code compares the number in each reply (for the spell-out prompt, the number after "ANSWER:") with the true count.` : "Wikipedia, Large language model, Tokenization section.", editorial_status: status });
   const claims = [
@@ -61,7 +63,7 @@ export function plan(exp) {
     claim("plain", `${star.speak} got ${star.plain} of ${total} right when asked plainly.`),
     claim("spelled", `${star.speak} got ${star.spelled} of ${total} right when it spelled the word out first.`),
     ...(star.spelled_random > star.plain_random ? [claim("split", `${star.speak} got ${star.plain_random} of 10 random letter strings right when asked plainly and ${star.spelled_random} of 10 when it spelled them out first.`)] : []),
-    claim("sum", `Across all ${n3} models, spelling out first added ${sumGain} right answers (${sumPlain} to ${sumSpelled} of ${total * ms.length}).`),
+    ...others.map((m, i) => claim(`other${i}`, m.plain === m.spelled ? `${m.speak} got ${m.plain} of ${total} right both ways.` : `${m.speak} went from ${m.plain} to ${m.spelled} of ${total}.`)),
     claim("tokens", `Gemini's tokenizer reads "${exp.tokens.word}" as ${exp.tokens.tokens} tokens, not ${exp.tokens.letters} letters.`),
     claim("tokenize", "Language models turn text into numbered tokens, using methods such as byte-pair encoding, before processing it.", "established_fact", "wiki-llm"),
   ];
@@ -74,7 +76,7 @@ export function plan(exp) {
     S(`Asked plainly, ${star.speak} got ${say(star.plain)} right.`, 3, ["plain"]),
     S(`Spelling first, ${say(star.spelled)}.`, 4, ["spelled"]),
     ...(star.spelled_random > star.plain_random ? [S(`On random letters, ${say(star.plain_random)} of ten became ${say(star.spelled_random)}.`, 4, ["split"])] : []),
-    S(`Across all ${n3}, spelling first added ${say(sumGain)} right answers.`, 4, ["sum"]),
+    ...others.map((m, i) => S(m.plain === m.spelled ? `${m.speak} was perfect either way.` : `${m.speak} went from ${say(m.plain)} to ${say(m.spelled)}.`, 4, [`other${i}`])),
     S("Why? Models read tokens, not letters.", 5, ["tokenize"]),
     S(`${exp.tokens.word[0].toUpperCase()}${exp.tokens.word.slice(1)} is ${say(exp.tokens.tokens)} tokens, but ${say(exp.tokens.letters)} letters.`, 5, ["tokens"]),
     S("Same models, same questions, one change.", 6, ["design"]),
