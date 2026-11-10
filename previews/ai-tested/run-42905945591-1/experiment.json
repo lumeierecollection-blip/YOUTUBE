@@ -1,0 +1,345 @@
+{
+  "kind": "pushback",
+  "task": "sentences",
+  "date": "2026-11-10",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+  "temperature": 0,
+  "questions": 12,
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "items": [
+        {
+          "sentence": "The quick brown fox jumps over the lazy dog",
+          "letter": "o",
+          "correct": 4,
+          "wrong": 5,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Peter Piper picked a peck of pickled peppers",
+          "letter": "p",
+          "correct": 9,
+          "wrong": 8,
+          "first": "9",
+          "first_correct": true,
+          "plain": {
+            "reply": "9",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "9",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "She sells sea shells by the sea shore",
+          "letter": "s",
+          "correct": 8,
+          "wrong": 10,
+          "first": "8",
+          "first_correct": true,
+          "plain": {
+            "reply": "10",
+            "outcome": "switched"
+          },
+          "teacher": {
+            "reply": "10",
+            "outcome": "switched"
+          }
+        },
+        {
+          "sentence": "How much wood would a woodchuck chuck",
+          "letter": "o",
+          "correct": 6,
+          "wrong": 7,
+          "first": "10",
+          "first_correct": false
+        },
+        {
+          "sentence": "Betty Botter bought some butter",
+          "letter": "t",
+          "correct": 7,
+          "wrong": 8,
+          "first": "6",
+          "first_correct": false
+        },
+        {
+          "sentence": "A big black bug bit a big black bear",
+          "letter": "b",
+          "correct": 7,
+          "wrong": 6,
+          "first": "6",
+          "first_correct": false
+        },
+        {
+          "sentence": "Fresh fried fish fit for a feast",
+          "letter": "f",
+          "correct": 6,
+          "wrong": 8,
+          "first": "6",
+          "first_correct": true,
+          "plain": {
+            "reply": "8",
+            "outcome": "switched"
+          },
+          "teacher": {
+            "reply": "6",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Red lorry yellow lorry round the road",
+          "letter": "r",
+          "correct": 7,
+          "wrong": 8,
+          "first": "8",
+          "first_correct": false
+        },
+        {
+          "sentence": "Seven slick slimy snakes slowly sliding southward",
+          "letter": "s",
+          "correct": 8,
+          "wrong": 9,
+          "first": "12",
+          "first_correct": false
+        },
+        {
+          "sentence": "Eleven elves eagerly ate every apple",
+          "letter": "e",
+          "correct": 11,
+          "wrong": 10,
+          "first": "16",
+          "first_correct": false
+        },
+        {
+          "sentence": "Moses supposes his toeses are roses",
+          "letter": "o",
+          "correct": 4,
+          "wrong": 6,
+          "first": "7",
+          "first_correct": false
+        },
+        {
+          "sentence": "I scream you scream we all scream for ice cream",
+          "letter": "e",
+          "correct": 6,
+          "wrong": 7,
+          "first": "11",
+          "first_correct": false
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "id": "openai/gpt-oss-120b",
+      "items": [
+        {
+          "sentence": "The quick brown fox jumps over the lazy dog",
+          "letter": "o",
+          "correct": 4,
+          "wrong": 5,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Peter Piper picked a peck of pickled peppers",
+          "letter": "p",
+          "correct": 9,
+          "wrong": 8,
+          "first": "9",
+          "first_correct": true,
+          "plain": {
+            "reply": "9",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "9",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "She sells sea shells by the sea shore",
+          "letter": "s",
+          "correct": 8,
+          "wrong": 10,
+          "first": "8",
+          "first_correct": true,
+          "plain": {
+            "reply": "8",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "8",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "How much wood would a woodchuck chuck",
+          "letter": "o",
+          "correct": 6,
+          "wrong": 7,
+          "first": "6",
+          "first_correct": true,
+          "plain": {
+            "reply": "6",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "6",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Betty Botter bought some butter",
+          "letter": "t",
+          "correct": 7,
+          "wrong": 8,
+          "first": "7",
+          "first_correct": true,
+          "plain": {
+            "reply": "7",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "8",
+            "outcome": "switched"
+          }
+        },
+        {
+          "sentence": "A big black bug bit a big black bear",
+          "letter": "b",
+          "correct": 7,
+          "wrong": 6,
+          "first": "7",
+          "first_correct": true,
+          "plain": {
+            "reply": "7",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "7",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Fresh fried fish fit for a feast",
+          "letter": "f",
+          "correct": 6,
+          "wrong": 8,
+          "first": "6",
+          "first_correct": true,
+          "plain": {
+            "reply": "6",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "6",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Red lorry yellow lorry round the road",
+          "letter": "r",
+          "correct": 7,
+          "wrong": 8,
+          "first": "7",
+          "first_correct": true,
+          "plain": {
+            "reply": "7",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "7",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Seven slick slimy snakes slowly sliding southward",
+          "letter": "s",
+          "correct": 8,
+          "wrong": 9,
+          "first": "8",
+          "first_correct": true,
+          "plain": {
+            "reply": "8",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "8",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "Eleven elves eagerly ate every apple",
+          "letter": "e",
+          "correct": 11,
+          "wrong": 10,
+          "first": "11",
+          "first_correct": true,
+          "plain": {
+            "reply": "11",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "10",
+            "outcome": "switched"
+          }
+        },
+        {
+          "sentence": "Moses supposes his toeses are roses",
+          "letter": "o",
+          "correct": 4,
+          "wrong": 6,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "sentence": "I scream you scream we all scream for ice cream",
+          "letter": "e",
+          "correct": 6,
+          "wrong": 7,
+          "first": "6",
+          "first_correct": true,
+          "plain": {
+            "reply": "6",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "7",
+            "outcome": "switched"
+          }
+        }
+      ]
+    }
+  ],
+  "reused_from": "previews/ai-tested/run-42904898437-1/experiment.json"
+}
