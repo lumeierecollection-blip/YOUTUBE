@@ -74,11 +74,11 @@ export default async function preview({ key, runId, tools }) {
   let sentences = story.sentences, scenes = story.scenes;
   if (story.slots) {
     const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: channel.voice.style });
-    const fit = fitScript({ slots: story.slots, wpm: cal.wpm });
+    const fit = fitScript({ slots: story.slots, wpm: cal.wpm * 0.93, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
     ({ scenes, sentences } = compactScenes({ scenes: story.scenes, sentences: fit.sentences }));
     tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
     console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
   }
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: 34, maxSeconds: 40, makeProps: () => ({ images, credits, data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: 34, maxSeconds: 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 }).sentences }) : undefined, makeProps: () => ({ images, credits, data }) } });
   tools.write("quality-report.json", { format: mode === "player" ? "player_documentary" : "match_analysis", technical: result.qa, data_note: "event data only; locations are where events were recorded" });
 }

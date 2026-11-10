@@ -10,10 +10,25 @@ const UA = "YouTubeAutomationPreview/1.0 (preview render; Wikimedia Commons imag
 const ALLOWED = /^(CC BY(-SA)? [0-9.]+( [a-z]{2,3})?|CC0.*|Public domain|PD[- ].*|Attribution|No restrictions)$/i;
 const strip = (v) => String(v ?? "").replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
+let lastCall = 0;
+/** Wikimedia asks automated clients to go gently: at least 1.5 s between calls, and a patient retry on 429 or 5xx. */
+async function polite(url) {
+  for (let attempt = 1; ; attempt++) {
+    const wait = Math.max(0, lastCall + 1500 - Date.now());
+    if (wait) await new Promise((r) => setTimeout(r, wait));
+    lastCall = Date.now();
+    const r = await fetch(url, { headers: { "User-Agent": UA } });
+    if (r.status !== 429 && r.status < 500) return r;
+    if (attempt >= 5) return r;
+    const ra = Number(r.headers.get("retry-after")) || 0;
+    await new Promise((res) => setTimeout(res, Math.max(ra * 1000, attempt * 12000)));
+  }
+}
+
 export async function commonsMeta(title) {
   const u = new URL("https://commons.wikimedia.org/w/api.php");
   for (const [k, v] of Object.entries({ action: "query", titles: title, prop: "imageinfo", iiprop: "url|extmetadata|size|mime", iiurlwidth: "1600", format: "json" })) u.searchParams.set(k, v);
-  const r = await fetch(u, { headers: { "User-Agent": UA } });
+  const r = await polite(u);
   if (!r.ok) throw new Error(`Commons API ${r.status} for ${title}`);
   const page = Object.values((await r.json()).query.pages)[0];
   const i = page.imageinfo?.[0];
@@ -31,7 +46,7 @@ export async function commonsMeta(title) {
 /** Downloads one asset and returns its manifest entry. `claim` says which story claim it illustrates; `kind` is authentic | illustrative. */
 export async function commonsAsset({ title, dir, id, claim = "", role = "", kind = "authentic" }) {
   const meta = await commonsMeta(title);
-  const r = await fetch(meta.url, { headers: { "User-Agent": UA } });
+  const r = await polite(meta.url);
   if (!r.ok) throw new Error(`download failed ${r.status} for ${title}`);
   const buf = Buffer.from(await r.arrayBuffer());
   if (buf.length < 8000) throw new Error(`${title} is implausibly small (${buf.length} bytes)`);

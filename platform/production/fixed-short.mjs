@@ -9,7 +9,8 @@ import { buildTimeline, FPS, narrate, publishFrames, technicalQa } from "./index
 import { mixMusic } from "./mix.mjs";
 
 export async function runFixedShort({ key, runId, tools, spec }) {
-  const { topic, claims, sources = [], sentences, scenes, compositionId, makeProps, edgeVoice, style, metadata, minSeconds = 20, maxSeconds = 30, writtenBy = "written directly on the owner's instruction from fetched sources" } = spec;
+  const { topic, claims, sources = [], compositionId, makeProps, edgeVoice, style, metadata, minSeconds = 20, maxSeconds = 30, writtenBy = "written directly on the owner's instruction from fetched sources" } = spec;
+  let { sentences, scenes } = spec;
   const note = { approved_by: "not reviewed by the engine critic", written_by: writtenBy, independent_provider: false };
 
   tools.write("claims.json", claims);
@@ -24,14 +25,21 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   if (unknown.length) throw new Error(`script cites claims that do not exist: ${unknown.join(", ")}`);
   if (orphan.length) throw new Error(`sentences without a claim record: ${orphan.join(" | ")}`);
 
-  const text = sentences.map((s) => s.text).join(" ");
   let narration = null;
-  for (let take = 1; take <= 3; take++) {
-    narration = await narrate({ text, edgeVoice, outDir: tools.outDir, name: "voice-track", style });
-    console.log(`voice take ${take}: ${narration.seconds.toFixed(2)}s, ${narration.wpm} wpm, ${narration.engine}`);
+  // The voice's pace varies a little between takes. If every take misses the window, `spec.refit(measuredWpm)` may supply a script re-fitted to the
+  // pace actually measured; the voice is never sped up.
+  for (let pass = 1; ; pass++) {
+    const text = sentences.map((s) => s.text).join(" ");
+    for (let take = 1; take <= 3; take++) {
+      narration = await narrate({ text, edgeVoice, outDir: tools.outDir, name: "voice-track", style });
+      console.log(`voice take ${take}: ${narration.seconds.toFixed(2)}s, ${narration.wpm} wpm, ${narration.engine}`);
+      if (narration.seconds >= minSeconds && narration.seconds <= maxSeconds - 0.75) break;
+    }
     if (narration.seconds >= minSeconds && narration.seconds <= maxSeconds - 0.75) break;
+    if (!spec.refit || pass >= 3) throw new Error(`narration is ${narration.seconds.toFixed(2)}s at natural speed (allowed ${minSeconds} to ${maxSeconds - 0.75}s); change the script, never the speed`);
+    ({ sentences, scenes } = spec.refit(narration.wpm));
+    console.log(`script refitted to the measured ${narration.wpm} wpm: ${sentences.length} sentences`);
   }
-  if (narration.seconds < minSeconds || narration.seconds > maxSeconds - 0.75) throw new Error(`narration is ${narration.seconds.toFixed(2)}s at natural speed (allowed ${minSeconds} to ${maxSeconds - 0.75}s); change the script, never the speed`);
   if (narration.sentences.length !== sentences.length) throw new Error(`voice produced ${narration.sentences.length} sentences for ${sentences.length} script sentences; use exactly one sentence-ending mark per sentence`);
   tools.write("narration.json", { engine: narration.engine, seconds: narration.seconds, wpm: narration.wpm, playback_speed: narration.playback_speed, notes: narration.notes });
   tools.stage("voice_complete", "ok", { engine: narration.engine, wpm: narration.wpm });
