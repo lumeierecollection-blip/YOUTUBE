@@ -1,0 +1,89 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42878984702-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Can AI pick a random number?",
+      "main_point": "Pose the question over the numbers one to ten",
+      "visual_objective": "Pose the question over the numbers one to ten",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 2.6333333333333333
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We asked two models for a number from one to ten, thirty times each. A fair pick lands on each number about three times.",
+      "main_point": "Show the prompt, the number of asks and what a fair pick would look like",
+      "visual_objective": "Show the prompt, the number of asks and what a fair pick would look like",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "design",
+        "fair"
+      ],
+      "start_s": 2.6333333333333333,
+      "end_s": 9.633333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Google's Flash-Lite said seven, thirty times out of thirty. OpenAI's GPT-OSS said seven, thirty times. A random pick would vary, but this did not.",
+      "main_point": "Show each model's thirty replies as a count per number from one to ten against the fair line",
+      "visual_objective": "Show each model's thirty replies as a count per number from one to ten against the fair line",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "top0",
+        "top1"
+      ],
+      "start_s": 9.633333333333333,
+      "end_s": 20.433333333333334
+    },
+    {
+      "scene_id": "s4",
+      "narration": "From one to a hundred, Google's Flash-Lite chose forty-two most often, twenty-six times.",
+      "main_point": "Show each model's most common replies from one to a hundred",
+      "visual_objective": "Show each model's most common replies from one to a hundred",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "hundred0"
+      ],
+      "start_s": 20.433333333333334,
+      "end_s": 25.833333333333332
+    },
+    {
+      "scene_id": "s5",
+      "narration": "People reportedly do it too: the blue-seven effect.",
+      "main_point": "Show the Wikipedia statement that people reportedly favour seven too, with its caveat",
+      "visual_objective": "Show the Wikipedia statement that people reportedly favour seven too, with its caveat",
+      "treatment": "quote-card",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "blue7"
+      ],
+      "start_s": 25.833333333333332,
+      "end_s": 28.5
+    },
+    {
+      "scene_id": "s6",
+      "narration": "For a fair draw, use dice, or ask AI to write code. Never let it pick your giveaway winner.",
+      "main_point": "Close with what to do instead: dice, or code that uses a random function",
+      "visual_objective": "Close with what to do instead: dice, or code that uses a random function",
+      "treatment": "verdict-panel",
+      "background": "accent panel",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 28.5,
+      "end_s": 35.46666666666667
+    }
+  ]
+}

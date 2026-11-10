@@ -1,0 +1,604 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook3",
+      "treatment": "kinetic-question",
+      "objective": "Pose the question over the numbers one to ten",
+      "background": "white",
+      "from": 0,
+      "to": 79,
+      "start_s": 0,
+      "end_s": 2.6333333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "setup3",
+      "treatment": "process-diagram",
+      "objective": "Show the prompt, the number of asks and what a fair pick would look like",
+      "background": "white",
+      "from": 79,
+      "to": 289,
+      "start_s": 2.6333333333333333,
+      "end_s": 9.633333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "hist",
+      "treatment": "bar-chart",
+      "objective": "Show each model's thirty replies as a count per number from one to ten against the fair line",
+      "background": "white",
+      "from": 289,
+      "to": 613,
+      "start_s": 9.633333333333333,
+      "end_s": 20.433333333333334
+    },
+    {
+      "id": "s4",
+      "kind": "hist100",
+      "treatment": "bar-chart",
+      "objective": "Show each model's most common replies from one to a hundred",
+      "background": "white",
+      "from": 613,
+      "to": 775,
+      "start_s": 20.433333333333334,
+      "end_s": 25.833333333333332
+    },
+    {
+      "id": "s5",
+      "kind": "why",
+      "treatment": "quote-card",
+      "objective": "Show the Wikipedia statement that people reportedly favour seven too, with its caveat",
+      "background": "white",
+      "from": 775,
+      "to": 855,
+      "start_s": 25.833333333333332,
+      "end_s": 28.5
+    },
+    {
+      "id": "s6",
+      "kind": "tip",
+      "treatment": "verdict-panel",
+      "objective": "Close with what to do instead: dice, or code that uses a random function",
+      "background": "accent panel",
+      "from": 855,
+      "to": 1064,
+      "start_s": 28.5,
+      "end_s": 35.46666666666667
+    }
+  ],
+  "captions": [
+    {
+      "text": "Can AI pick a random",
+      "from": 0,
+      "to": 46,
+      "words": [
+        {
+          "text": "Can",
+          "from": 0
+        },
+        {
+          "text": "AI",
+          "from": 13
+        },
+        {
+          "text": "pick",
+          "from": 23
+        },
+        {
+          "text": "a",
+          "from": 36
+        },
+        {
+          "text": "random",
+          "from": 40
+        }
+      ]
+    },
+    {
+      "text": "number",
+      "from": 46,
+      "to": 62,
+      "words": [
+        {
+          "text": "number",
+          "from": 46
+        }
+      ]
+    },
+    {
+      "text": "We asked two models for",
+      "from": 79,
+      "to": 113,
+      "words": [
+        {
+          "text": "We",
+          "from": 79
+        },
+        {
+          "text": "asked",
+          "from": 79
+        },
+        {
+          "text": "two",
+          "from": 85
+        },
+        {
+          "text": "models",
+          "from": 94
+        },
+        {
+          "text": "for",
+          "from": 103
+        }
+      ]
+    },
+    {
+      "text": "a number from one to",
+      "from": 113,
+      "to": 138,
+      "words": [
+        {
+          "text": "a",
+          "from": 113
+        },
+        {
+          "text": "number",
+          "from": 115
+        },
+        {
+          "text": "from",
+          "from": 122
+        },
+        {
+          "text": "one",
+          "from": 127
+        },
+        {
+          "text": "to",
+          "from": 134
+        }
+      ]
+    },
+    {
+      "text": "ten thirty times each",
+      "from": 138,
+      "to": 181,
+      "words": [
+        {
+          "text": "ten",
+          "from": 138
+        },
+        {
+          "text": "thirty",
+          "from": 145
+        },
+        {
+          "text": "times",
+          "from": 160
+        },
+        {
+          "text": "each",
+          "from": 173
+        }
+      ]
+    },
+    {
+      "text": "A fair pick lands on",
+      "from": 197,
+      "to": 223,
+      "words": [
+        {
+          "text": "A",
+          "from": 197
+        },
+        {
+          "text": "fair",
+          "from": 198
+        },
+        {
+          "text": "pick",
+          "from": 203
+        },
+        {
+          "text": "lands",
+          "from": 210
+        },
+        {
+          "text": "on",
+          "from": 217
+        }
+      ]
+    },
+    {
+      "text": "each number about three times",
+      "from": 223,
+      "to": 271,
+      "words": [
+        {
+          "text": "each",
+          "from": 223
+        },
+        {
+          "text": "number",
+          "from": 229
+        },
+        {
+          "text": "about",
+          "from": 239
+        },
+        {
+          "text": "three",
+          "from": 246
+        },
+        {
+          "text": "times",
+          "from": 257
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite said seven thirty",
+      "from": 289,
+      "to": 351,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 289
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 302
+        },
+        {
+          "text": "said",
+          "from": 310
+        },
+        {
+          "text": "seven",
+          "from": 326
+        },
+        {
+          "text": "thirty",
+          "from": 337
+        }
+      ]
+    },
+    {
+      "text": "times out of thirty OpenAI's",
+      "from": 358,
+      "to": 414,
+      "words": [
+        {
+          "text": "times",
+          "from": 358
+        },
+        {
+          "text": "out",
+          "from": 368
+        },
+        {
+          "text": "of",
+          "from": 373
+        },
+        {
+          "text": "thirty",
+          "from": 375
+        },
+        {
+          "text": "OpenAI's",
+          "from": 395
+        }
+      ]
+    },
+    {
+      "text": "GPT-OSS",
+      "from": 414,
+      "to": 437,
+      "words": [
+        {
+          "text": "GPT-OSS",
+          "from": 414
+        }
+      ]
+    },
+    {
+      "text": "said seven thirty times",
+      "from": 453,
+      "to": 505,
+      "words": [
+        {
+          "text": "said",
+          "from": 453
+        },
+        {
+          "text": "seven",
+          "from": 465
+        },
+        {
+          "text": "thirty",
+          "from": 474
+        },
+        {
+          "text": "times",
+          "from": 491
+        }
+      ]
+    },
+    {
+      "text": "A random pick would vary",
+      "from": 522,
+      "to": 562,
+      "words": [
+        {
+          "text": "A",
+          "from": 522
+        },
+        {
+          "text": "random",
+          "from": 526
+        },
+        {
+          "text": "pick",
+          "from": 534
+        },
+        {
+          "text": "would",
+          "from": 544
+        },
+        {
+          "text": "vary",
+          "from": 548
+        }
+      ]
+    },
+    {
+      "text": "but this did not",
+      "from": 567,
+      "to": 596,
+      "words": [
+        {
+          "text": "but",
+          "from": 567
+        },
+        {
+          "text": "this",
+          "from": 569
+        },
+        {
+          "text": "did",
+          "from": 577
+        },
+        {
+          "text": "not",
+          "from": 584
+        }
+      ]
+    },
+    {
+      "text": "From one to a hundred",
+      "from": 613,
+      "to": 646,
+      "words": [
+        {
+          "text": "From",
+          "from": 613
+        },
+        {
+          "text": "one",
+          "from": 619
+        },
+        {
+          "text": "to",
+          "from": 625
+        },
+        {
+          "text": "a",
+          "from": 628
+        },
+        {
+          "text": "hundred",
+          "from": 636
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite chose forty-two most",
+      "from": 651,
+      "to": 712,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 651
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 661
+        },
+        {
+          "text": "chose",
+          "from": 669
+        },
+        {
+          "text": "forty-two",
+          "from": 682
+        },
+        {
+          "text": "most",
+          "from": 694
+        }
+      ]
+    },
+    {
+      "text": "often twenty-six times",
+      "from": 712,
+      "to": 757,
+      "words": [
+        {
+          "text": "often",
+          "from": 712
+        },
+        {
+          "text": "twenty-six",
+          "from": 718
+        },
+        {
+          "text": "times",
+          "from": 738
+        }
+      ]
+    },
+    {
+      "text": "People reportedly do it too",
+      "from": 775,
+      "to": 818,
+      "words": [
+        {
+          "text": "People",
+          "from": 775
+        },
+        {
+          "text": "reportedly",
+          "from": 784
+        },
+        {
+          "text": "do",
+          "from": 793
+        },
+        {
+          "text": "it",
+          "from": 806
+        },
+        {
+          "text": "too",
+          "from": 809
+        }
+      ]
+    },
+    {
+      "text": "the blue-seven effect For a",
+      "from": 824,
+      "to": 884,
+      "words": [
+        {
+          "text": "the",
+          "from": 824
+        },
+        {
+          "text": "blue-seven",
+          "from": 829
+        },
+        {
+          "text": "effect",
+          "from": 847
+        },
+        {
+          "text": "For",
+          "from": 855
+        },
+        {
+          "text": "a",
+          "from": 881
+        }
+      ]
+    },
+    {
+      "text": "fair draw use dice or",
+      "from": 884,
+      "to": 941,
+      "words": [
+        {
+          "text": "fair",
+          "from": 884
+        },
+        {
+          "text": "draw",
+          "from": 891
+        },
+        {
+          "text": "use",
+          "from": 907
+        },
+        {
+          "text": "dice",
+          "from": 916
+        },
+        {
+          "text": "or",
+          "from": 924
+        }
+      ]
+    },
+    {
+      "text": "ask AI to write code",
+      "from": 941,
+      "to": 976,
+      "words": [
+        {
+          "text": "ask",
+          "from": 941
+        },
+        {
+          "text": "AI",
+          "from": 950
+        },
+        {
+          "text": "to",
+          "from": 956
+        },
+        {
+          "text": "write",
+          "from": 961
+        },
+        {
+          "text": "code",
+          "from": 966
+        }
+      ]
+    },
+    {
+      "text": "Never let it pick your",
+      "from": 995,
+      "to": 1019,
+      "words": [
+        {
+          "text": "Never",
+          "from": 995
+        },
+        {
+          "text": "let",
+          "from": 997
+        },
+        {
+          "text": "it",
+          "from": 1009
+        },
+        {
+          "text": "pick",
+          "from": 1012
+        },
+        {
+          "text": "your",
+          "from": 1016
+        }
+      ]
+    },
+    {
+      "text": "giveaway winner",
+      "from": 1019,
+      "to": 1039,
+      "words": [
+        {
+          "text": "giveaway",
+          "from": 1019
+        },
+        {
+          "text": "winner",
+          "from": 1025
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1064,
+  "duration_s": 35.46666666666667
+}
