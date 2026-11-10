@@ -106,7 +106,7 @@ async function treatDocument(src, out, { crop, paper, greyscale, width }) {
 }
 
 /** One render of the real PhotoTreatment per image (same procedure as bakeStills in hidden-past.mjs). */
-function bakeStills(items, dir, voMp3) {
+export function bakeStills(items, dir, voMp3) {
   copyFileSync(voMp3, join(REMOTION_DIR, "vo.mp3"));
   const pubDir = join(REMOTION_DIR, "public", "vox-src");
   mkdirSync(pubDir, { recursive: true });

@@ -21,7 +21,7 @@ const COAST_TOLERANCE_DEG = 0.6;
 let detail, world;
 const loadDetail = () => (detail ||= readJson(join(ROOT, "data/geo/ne_50m_countries.min.json")));
 const loadWorld = () => (world ||= readJson(join(ROOT, "src/skills/remotion-render/public/geo/ne_110m_admin_0_countries.geojson")));
-const polygonsOf = (f) => (f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates);
+export const polygonsOf = (f) => (f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates);
 
 function inRing([lon, lat], ring) {
   let inside = false;
@@ -86,7 +86,7 @@ function clipRing(ring, b) {
 }
 const CLIP_WINDOW = { x0: AREA.x - 300, x1: AREA.x + AREA.w + 300, y0: AREA.y - 300, y1: AREA.y + AREA.h + 300 };
 
-function pathOf(polys, project, clip = false) {
+export function pathOf(polys, project, clip = false) {
   const out = [];
   for (const poly of polys) {
     let ring = poly[0].map(project);
