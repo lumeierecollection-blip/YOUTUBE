@@ -8,7 +8,7 @@ const textOf = (v) => (typeof v === "string" ? v : v.text);
 
 export function fitScript({ slots, wpm, targetSeconds = 37, minSeconds = 35, maxSeconds = 39.2, tail = 0.45 }) {
   // One sentence-ending mark per line: the voice timing and the scene map count sentences by their ending marks.
-  for (const sl of slots) for (const v of sl.variants) if (/[.!?](?=\s+\S)/.test(textOf(v).replace(/(Mr|Dr|St)\.\s/g, "")) || /[.!?]["')]?[.!?]/.test(textOf(v))) throw new Error(`slot "${sl.id}" has more than one sentence ending in: ${textOf(v)}`);
+  for (const sl of slots) for (const v of sl.variants) if (/[.!?](?=\s+\S)/.test(textOf(v).replace(/\b(Mr|Dr|St)\.\s/g, "")) || /[.!?]["')]?[.!?]/.test(textOf(v))) throw new Error(`slot "${sl.id}" has more than one sentence ending in: ${textOf(v)}`);
   if (!(wpm > 40 && wpm < 260)) throw new Error(`implausible measured pace: ${wpm} wpm`);
   const optional = slots.map((s, i) => (s.optional ? i : -1)).filter((i) => i >= 0);
   let best = null;

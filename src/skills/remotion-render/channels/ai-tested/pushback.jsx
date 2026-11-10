@@ -36,7 +36,7 @@ function SetupP({ dur, d }) {
       <Bubble who="you" y={370} h={210} delay={4} size={46}>{s.ask}</Bubble>
       <Bubble who="ai" y={610} h={170} delay={4 + step} size={64}>{s.correct} <span style={{ color: C.good, fontSize: 44 }}>✓</span></Bubble>
       <Bubble who="you" y={810} h={330} delay={4 + step * 2} size={44}>{s.push}</Bubble>
-      <From delay={4 + step * 3} style={abs(70, 1180, 940, 300, { background: C.surface, borderRadius: 26, padding: "34px 40px", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: 42, lineHeight: 1.25, color: C.ink })}>
+      <From delay={4 + step * 3} style={abs(70, 1180, 940, 190, { background: C.surface, borderRadius: 26, padding: "34px 40px", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: 42, lineHeight: 1.25, color: C.ink })}>
         {d.models.length} models · {d.total} questions<br /><span style={{ color: C.dim }}>The real answer is {s.correct}. We said {s.wrong}.</span>
       </From>
     </Scene>
@@ -77,7 +77,7 @@ function ReplyP({ dur, d }) {
   return (
     <Scene dur={dur}>
       <Title top={200} size={64}>A real reply</Title>
-      <div style={abs(60, 330, 960, 1010, { background: C.term, borderRadius: 26, padding: "40px 44px", boxSizing: "border-box", fontFamily: MONO, fontSize: 36, lineHeight: 1.35 })}>
+      <div style={{ ...abs(60, 330, 960, 1010, { background: C.term, borderRadius: 26, padding: "40px 44px", boxSizing: "border-box", fontFamily: MONO, fontSize: 40, lineHeight: 1.35 }), height: "auto", minHeight: 620, maxHeight: 1010, overflow: "hidden" }}>
         {line("you:", e.ask, C.termText, 2)}
         {line("ai:", short(e.first, 40), "#FDE68A", 8)}
         {line("you:", e.push, C.termText, 14)}
@@ -94,7 +94,11 @@ function TipP({ dur, d }) {
   return (
     <Scene dur={dur}>
       <div style={abs(60, 240, 960, 1240, { background: C.accent, borderRadius: 34, transform: `translateY(${(1 - t) * 160}px)`, opacity: t })} />
-      <From delay={6} style={abs(120, 330, 840, 600, { fontFamily: SANS, fontWeight: 800, fontSize: 92, lineHeight: 1.08, color: "#fff" })}>{d.anySwitch ? "Agreement is not proof." : "It held. Still check."}</From>
+      <From delay={6} style={abs(120, 320, 840, 230, { fontFamily: SANS, fontWeight: 800, fontSize: 92, lineHeight: 1.08, color: "#fff" })}>{d.anySwitch ? "Agreement is not proof." : "It held. Still check."}</From>
+      {d.pushes ? <From delay={10} style={abs(120, 570, 840, 400, { fontFamily: SANS, color: "#fff" })}>
+        <div style={{ fontWeight: 800, fontSize: 250, lineHeight: 1 }}>{d.switches}<span style={{ fontSize: 90, opacity: 0.8 }}> of {d.pushes}</span></div>
+        <div style={{ fontWeight: 700, fontSize: 46, lineHeight: 1.2, marginTop: 14 }}>pushes changed a right answer</div>
+      </From> : null}
       <div style={abs(120, 1000, 840, 400, { display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 18 })}>
         {rows.map(([a, b], i) => <From key={i} delay={12 + i * 6} dy={20} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: SANS, color: "#fff", fontSize: 44, fontWeight: 600, borderTop: "2px solid rgba(255,255,255,0.35)", paddingTop: 14 }}><span>{a}</span><span style={{ fontWeight: 800, color: i === 0 ? "#FFD2BF" : "#fff" }}>{b}</span></From>)}
       </div>
