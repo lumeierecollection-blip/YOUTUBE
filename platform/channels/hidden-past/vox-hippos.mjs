@@ -219,9 +219,9 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     w -= w % 2; h -= h % 2;
     items[k] = { key: k, input: src[k].file, w, h, x: Math.round((W - w) / 2), y: 330, saturation, halftone, baked: join(work, `${k}-vox.png`) };
   };
-  await mkItem("mug", { maxW: 700, maxH: 700, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
-  await mkItem("hippo", { maxW: 980, maxH: 600, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
-  await mkItem("gate", { maxW: 980, maxH: 600, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
+  await mkItem("mug", { maxW: 700, maxH: 780, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
+  await mkItem("hippo", { maxW: 980, maxH: 700, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
+  await mkItem("gate", { maxW: 980, maxH: 700, saturation: VOX.base_saturation, halftone: VOX.halftone_opacity });
   bakeStills(Object.values(items), work, narration);
   tools.stage("visual_complete", "ok");
 
@@ -235,7 +235,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     const f = fit(ROUTES.headlines[idx], { maxW: 900, maxLines: 2, max: 64, min: 42 });
     layers.push(text(`s${idx}-head`, f.text, { y: 150, size: f.size, weight: 700, color: P.text, inF, outF, z: 400, font: SERIF, slideX: -50, slide: 0, tracking: -0.01 }));
   };
-  const stack = (id, tag, lines, inF, outF, y0 = 990) => {
+  const stack = (id, tag, lines, inF, outF, y0 = 990, { pitch = 100, lineMax = 40 } = {}) => {
     const span = outF - inF;
     layers.push(stroke(`${id}-tagrule`, `M60 ${y0 - 14} L190 ${y0 - 14}`, { color: P.accent, width: 6, inF: inF + 6, outF, z: z++, drawFrames: 12 }));
     layers.push(text(`${id}-tag`, tag, { x: 60, w: 960, y: y0, size: 30, weight: 700, align: "left", color: P.accent, tracking: 0.18, inF: inF + 8, outF, z: z++, font: SERIF, slideX: -40, slide: 0 }));
@@ -243,9 +243,9 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     lines.forEach((ln, k) => {
       const at = inF + 24 + k * step;
       if (at > outF - 10) return;
-      const f = fit(ln.text, { maxW: 940, maxLines: 2, max: 40, min: 30 });
+      const f = fit(ln.text, { maxW: 940, maxLines: 2, max: lineMax, min: 30 });
       if (!f) throw new Error(`line will not fit: ${ln.text}`);
-      layers.push(text(`${id}-line${k}`, f.text, { x: 60, w: 960, y: y0 + 54 + k * 100, size: f.size, weight: ln.accent ? 700 : 600, align: "left", color: ln.accent ? P.accent : P.text, inF: at, outF, z: z++, font: SERIF, slideX: -50, slide: 0 }));
+      layers.push(text(`${id}-line${k}`, f.text, { x: 60, w: 960, y: y0 + 54 + k * pitch, size: f.size, weight: ln.accent ? 700 : 600, align: "left", color: ln.accent ? P.accent : P.text, inF: at, outF, z: z++, font: SERIF, slideX: -50, slide: 0 }));
     });
   };
   const placeStill = (sceneId, k, inF, outF, credit) => {
@@ -275,7 +275,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     if (scene.index === 3) {
       const cOut = inF + 34, f = fit(ROUTES.chapterTitle, { maxW: 840, maxLines: 3, max: 88, min: 52 });
       layers.push(solid("ch1-page", { x: 0, y: 0, w: W, h: H, background: paperBackground(P, P.surface), inF, outF: cOut, z: 500, keyframes: { opacity: [{ f: 0, v: 1 }, { f: 34, v: 1 }] } }));
-      layers.push(text("ch1-num", "CHAPTER I", { y: 640, size: 40, weight: 700, color: P.accent, inF, outF: cOut, z: 501, font: SERIF, tracking: 0.3, slideX: -60, slide: 0 }));
+      layers.push(text("ch1-num", "APRIL 2026", { y: 640, size: 40, weight: 700, color: P.accent, inF, outF: cOut, z: 501, font: SERIF, tracking: 0.3, slideX: -60, slide: 0 }));
       layers.push(stroke("ch1-rule", "M300 716 L780 716", { color: P.accent, width: 3, inF, outF: cOut, z: 501, delay: 4, drawFrames: 14 }));
       layers.push(text("ch1-title", f.text, { y: 770, size: f.size, weight: 700, color: P.text, inF: inF + 4, outF: cOut, z: 501, font: SERIF, slideX: 60, slide: 0 }));
       rec.treatments.push({ type: "chapter_opener", in_f: inF, out_f: cOut, number: 1, title: ROUTES.chapterTitle });
@@ -296,25 +296,26 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       stack("s0", "PRIMARY SOURCE: POLICE PHOTOGRAPH", [{ text: "Pablo Escobar", accent: true }, { text: "Colombian National Police. Wikimedia Commons." }], bodyIn, outF, it.y + it.h + 40);
       Object.assign(plan, { main_point: "Open on the man, then the animals.", visual_objective: "Show Pablo Escobar's own police photograph before explaining the story.", treatment: "archival-photo-ledger", ...base, assets: [{ id: "mug", origin: "Wikimedia Commons (Colombian National Police)", licence: src.mug.licence, source_url: src.mug.page_url }], animation: "headline slides in; photograph never moves; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[0], "Pablo Escobar"] });
     } else if (scene.index === 1) {
-      const { pts, route } = buildMapLayers({ id: "s1", inF: bodyIn, outF, points: places, P, font: SERIF, nextZ: () => z++, layers, handCircle });
+      const { pts, route } = buildMapLayers({ id: "s1", inF: bodyIn, outF, points: places, P, font: SERIF, nextZ: () => z++, layers, handCircle, zoom: true });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:50m; coordinates from English Wikipedia" });
       if (route) rec.treatments.push({ type: "map_route", in_f: route.in_f, end_f: route.end_f });
+      layers.push(text("s1-country", "COLOMBIA", { x: 90, w: 600, y: 330, size: 54, weight: 700, align: "left", color: P.text, inF: bodyIn + 12, outF, z: z++, font: SERIF, slideX: -40, slide: 0, tracking: 0.08 }));
       layers.push(text("s1-maptag", "MODERN BORDERS  |  NATURAL EARTH", { x: 60, w: 960, y: 1446, size: 30, weight: 700, align: "left", color: P.accent, tracking: 0.14, inF: bodyIn + 10, outF, z: z++, font: SERIF, slideX: -40, slide: 0 }));
       Object.assign(plan, { main_point: "Where the estate was.", visual_objective: "Place Hacienda Nápoles between Medellín and Bogotá on a drawn map of Colombia.", treatment: "modern-map-locator", background: "light archival paper", skill: "scripts/autopilot/map-vox.mjs buildMapLayers", assets: [{ id: "natural-earth", origin: "Natural Earth (public domain)", licence: "Public domain" }], animation: "country tints, route and pins draw on, labels slide in", on_screen_text: [ROUTES.headlines[1], ...pts.map((q) => q.name)] });
     } else if (scene.index === 2) {
       const it = placeStill(2, "hippo", bodyIn, outF, credit("hippo"));
       rec.photo = photoRec("hippo", it);
       rec.treatments.push(PT, { type: "grounded_shadow" });
-      const box = { x0: 0.12, x1: 0.95, y0: 0.18, y1: 0.86 };
+      const box = { x0: 0.10, x1: 0.34, y0: 0.50, y1: 0.88 };
       const a = circleOn(2, it, box, 2, bodyIn, outF);
-      rec.treatments.push({ type: "annotation", target: "the hippo", confirmed_as: "the whole animal; Commons description: Vanessa, mascot of the Hacienda Nápoles theme park, 2008; checked by eye on the source", box, ...a });
-      stack("s2", "HOW MANY, ACCORDING TO WIKIPEDIA", [{ text: "1981: four imported" }, { text: "2007: 16" }, { text: "2014: about 40 reported" }, { text: "April 2026: around 200", accent: true }], bodyIn, outF, it.y + it.h + 40);
-      Object.assign(plan, { main_point: "Four became about two hundred.", visual_objective: "Show a real hippo at Hacienda Nápoles and the counts as they grew.", treatment: "archival-photo-card-with-claim-ladder", ...base, assets: [{ id: "hippo", origin: "Wikimedia Commons", licence: src.hippo.licence, source_url: src.hippo.page_url }], animation: "photograph holds still; accent circle draws on; count lines arrive in turn", on_screen_text: [ROUTES.headlines[2], "1981: four imported", "April 2026: around 200"] });
+      rec.treatments.push({ type: "annotation", target: "the hippo", confirmed_as: "the hippo's head; Commons description: Vanessa, mascot of the Hacienda Nápoles theme park, 2008; checked by eye on the source", box, ...a });
+      stack("s2", "HOW MANY, ACCORDING TO WIKIPEDIA", [{ text: "1993: Escobar dies, the hippos escape" }, { text: "2007: 16" }, { text: "2014: about 40 reported" }, { text: "April 2026: around 200", accent: true }], bodyIn, outF, it.y + it.h + 40, { pitch: 84 });
+      Object.assign(plan, { main_point: "Four became about two hundred.", visual_objective: "Show a real hippo at Hacienda Nápoles and the counts as they grew.", treatment: "archival-photo-card-with-claim-ladder", ...base, assets: [{ id: "hippo", origin: "Wikimedia Commons", licence: src.hippo.licence, source_url: src.hippo.page_url }], animation: "photograph holds still; accent circle draws on; count lines arrive in turn", on_screen_text: [ROUTES.headlines[2], "1993: Escobar dies, the hippos escape", "April 2026: around 200"] });
     } else if (scene.index === 3) {
-      const big = fit("80+", { maxW: 940, maxLines: 1, max: 300, min: 200 });
+      const big = fit("80+", { maxW: 940, maxLines: 1, max: 380, min: 200 });
       layers.push(text("s3-big", big.text, { x: 70, w: 940, y: 330, size: big.size, weight: 700, align: "left", color: P.accent, inF: bodyIn + 4, outF, z: z++, font: SERIF, slideX: -60, slide: 0, tracking: -0.02 }));
       rec.treatments.push({ type: "quotation_typography", text: "80+ (more than 80 hippos, per the article)" });
-      stack("s3", "13 APRIL 2026, COLOMBIA", [{ text: "Ministry of Environment approves euthanasia of more than 80 hippos", accent: true }, { text: "An Indian billionaire, Anant Ambani, offers transport and shelter in India" }], bodyIn, outF, 780);
+      stack("s3", "13 APRIL 2026, COLOMBIA", [{ text: "Ministry of Environment approves euthanasia of more than 80 hippos", accent: true }, { text: "An Indian billionaire, Anant Ambani, offers transport and shelter in India" }], bodyIn, outF, 800, { pitch: 120, lineMax: 46 });
       Object.assign(plan, { main_point: "The decision.", visual_objective: "State the cull number large, then the date, the ministry and the offer from India.", treatment: "quote-with-timeline", ...base, assets: [], animation: "number slides in; evidence lines arrive in turn", on_screen_text: ["CHAPTER I", ROUTES.chapterTitle, ROUTES.headlines[3], "80+"] });
     } else {
       const it = placeStill(4, "gate", bodyIn, outF, credit("gate"));
@@ -364,7 +365,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
   const sheetScenes = scenes.map((s, i) => ({ id: `s${s.index}`, start_s: s.from, end_s: s.to ?? durationS, treatment: scenePlan[i].treatment, objective: scenePlan[i].visual_objective }));
   await tools.contactSheet({ video, scenes: sheetScenes });
   const qa = {
-    channel: key, run: runId, script: { status: result.status, approved_by: pkg.quality_report.approved_by, written_by: pkg.quality_report.written_by, independent_provider: pkg.quality_report.independent_provider }, technical: technicalQa({ video, narration: narrationInfo, timeline: tl }), alignment_findings: sceneTraceability({ channel: key, production_run: runId, format: "short", scenes: scenePlan }, pkg, claimsOut),
+    channel: key, run: runId, script: { status: result.status, approved_by: pkg.quality_report.approved_by, written_by: pkg.quality_report.written_by, independent_provider: pkg.quality_report.independent_provider }, technical: technicalQa({ video, narration: narrationInfo, timeline: tl, minSeconds: MIN_S, maxSeconds: MAX_S }), alignment_findings: sceneTraceability({ channel: key, production_run: runId, format: "short", scenes: scenePlan }, pkg, claimsOut),
     duration_s: dur, min_s: MIN_S, max_s: MAX_S, size: `${W}x${H}`, fps: FPS,
     vox_gate: { pass: report.pass, failures: report.failures, counts: report.counts, report_file: "vox-compliance-report.json", mp4_sha256: report.mp4_sha256 },
     photo_stability: report.scenes.filter((s) => s.measured?.stability).map((s) => ({ scene: s.scene, ...s.measured.stability })),

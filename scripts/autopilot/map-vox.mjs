@@ -35,7 +35,8 @@ function inRing([lon, lat], ring) {
 const ringBox = (ring) => ring.reduce((b, [x, y]) => ({ w: Math.min(b.w, x), e: Math.max(b.e, x), s: Math.min(b.s, y), n: Math.max(b.n, y) }), { w: 180, e: -180, s: 90, n: -90 });
 
 /** Finds each place's country and a view that fits those countries, shaped to the map panel. */
-export function frameMap(points, features = loadDetail().features) {
+/** opts.zoom: frame on the places themselves instead of the whole country (the country is still tinted and named in the locator). */
+export function frameMap(points, features = loadDetail().features, opts = {}) {
   const focus = new Map();
   const parts = [];
   for (const p of points) {
@@ -46,7 +47,7 @@ export function frameMap(points, features = loadDetail().features) {
     }
     // Harbours and coastal cities can sit just outside a simplified coastline.
     const found = hit || nearest;
-    if (found) { focus.set(found.f.properties.NAME, found.f); parts.push(ringBox(found.poly[0])); }
+    if (found) { focus.set(found.f.properties.NAME, found.f); if (!opts.zoom) parts.push(ringBox(found.poly[0])); }
   }
   for (const p of points) parts.push({ w: p.lon, e: p.lon, s: p.lat, n: p.lat });
   let box = parts.reduce((a, b) => ({ w: Math.min(a.w, b.w), e: Math.max(a.e, b.e), s: Math.min(a.s, b.s), n: Math.max(a.n, b.n) }));
@@ -76,8 +77,8 @@ const overlaps = (b, list) => list.some((o) => b.x0 < o.x1 && o.x0 < b.x1 && b.y
 const insideMap = (b) => b.x0 >= AREA.x + 14 && b.x1 <= AREA.x + AREA.w - 14 && b.y0 >= AREA.y + 14 && b.y1 <= AREA.y + AREA.h - 14;
 
 /** Draws the whole map into `layers`. Returns the located places and tinted countries for the record. */
-export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, handCircle }) {
-  const span = outF - inF, m = frameMap(points), { box, project } = m;
+export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, handCircle, zoom = false }) {
+  const span = outF - inF, m = frameMap(points, undefined, { zoom }), { box, project } = m;
   const canvas = { rect: { x: 0, y: 0, w: W, h: H }, in: inF, out: outF, type: "svg", viewBox: [0, 0, W, H] };
   const clip = { clipT: (AREA.y / H) * 100, clipB: ((H - AREA.y - AREA.h) / H) * 100, clipL: (AREA.x / W) * 100, clipR: ((W - AREA.x - AREA.w) / W) * 100 };
   layers.push(solid(`${id}-sea`, { ...AREA, background: P.sea, boxShadow: P.shadow, inF, outF, z: nextZ() }));
