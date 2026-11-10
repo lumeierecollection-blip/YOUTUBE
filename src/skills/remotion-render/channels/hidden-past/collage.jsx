@@ -57,7 +57,7 @@ function Quote({ dur }) {
   const f = useCurrentFrame();
   return (<Scene dur={dur}><Paper drift={f * 0.4} />
     <div style={abs(80, 120, 920, 700, { background: K.frame, transform: `rotate(-1.2deg) translateX(${(1 - t(f, 0, 14)) * -900}px)`, boxShadow: "10px 16px 0 rgba(26,23,19,0.2)" })} />
-    <div style={abs(130, 190, 820, 440, { fontFamily: COND, fontWeight: 700, fontSize: 150, lineHeight: 0.95, textTransform: "uppercase", color: K.paper, opacity: t(f, 8, 20) })}>“Immediately, without delay.”</div>
+    <div style={abs(130, 190, 820, 440, { fontFamily: COND, fontWeight: 700, fontSize: 124, lineHeight: 0.98, textTransform: "uppercase", color: K.paper, opacity: t(f, 8, 20) })}>“Immediately, without delay.”</div>
     <div style={abs(130, 700, 820, 70, { fontFamily: COND, fontWeight: 400, fontSize: 30, color: K.paper, opacity: t(f, 14, 26) })}>Günter Schabowski, 9 Nov 1989 (English rendering, Wikipedia)</div>
     {TIMES.map(([tm, label], i) => { const a = t(f, 20 + i * 12, 32 + i * 12); return (
       <div key={tm} style={abs(100, 900 + i * 190, 880, 150, { opacity: a, transform: `translateX(${(1 - a) * 500}px) rotate(${i % 2 ? 1 : -1}deg)`, background: K.white, boxShadow: "8px 12px 0 rgba(26,23,19,0.16)", display: "flex", alignItems: "center", gap: 28, padding: "0 30px", boxSizing: "border-box" })}>
