@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42867464631-1",
   "agent": "agent-ai-tested",
-  "stage": "started",
-  "status": "running",
-  "timestamp": "2026-11-10T17:42:25.641Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T17:42:38.632Z",
   "branch": "preview/ai-tested-spellout-3",
   "commit": "173c9df535308dfd89c0648232c5a396736cf9a0",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42867464631#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42867464631#artifacts",
+  "error": "Invalid or unexpected token"
 }
