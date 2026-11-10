@@ -69,7 +69,7 @@ const Q2 = ({ dur, images, credits, data }) => { const best = data.barcelona_la_
     { k: "type", x: 610, y: 430, w: 420, h: 80, size: 38, font: T.label, upper: false, weight: 800, color: T.ink, text: `in ${best.season.replace("-", "–")} alone`, at: 62, d: 0.1 },
     { k: "custom", x: 70, y: 520, w: 940, h: 1000, r: 0, d: 0, at: 0, from: "none", node: <GoalsChart seasons={data.barcelona_la_liga} /> },
     { k: "type", x: 70, y: 1530, w: 940, h: 30, size: 19, font: T.body, weight: 400, upper: false, color: T.dim, text: "Barcelona career statistics, all competitions, from the Wikipedia career-statistics table.", at: 0, d: 0, from: "none" },
-  ]} pens={[{ cx: 70 + bi * 54.6 + 23, cy: 520 + 900 - best.goals * 8.6 - 10, rx: 62, ry: 70, at: 58, c: "#0B1220" }]} />; };
+  ]} pens={[{ cx: 140 + bi * 54.6 + 23, cy: 520 + 900 - best.goals * 8.6 - 10, rx: 62, ry: 70, at: 58, c: "#0B1220" }]} />; };
 
 const Q3 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{ seed: 34, contour: true }}
   layers={[
@@ -92,8 +92,8 @@ const Q4 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{
     { k: "photo", src: images.p2018, x: 40, y: 190, w: 560, h: 600, r: -4, d: 0.6, from: "l", at: 4, pos: "center 30%", frame: "#fff", border: 14 },
     { k: "cut", src: images.p2022cut, x: 470, y: 240, w: 580, h: 920, r: 2, d: 0.85, from: "r", at: 10 },
     shirt("arg", 20, 860, 360, -7, 18, "ja4"),
-    { k: "num", x: 330, y: 1000, w: 700, h: 360, size: 330, font: AB, color: T.ink, text: "2022", at: 22, d: 0.3, r: -2 },
-    { k: "tag", x: 380, y: 1340, w: 640, h: 96, r: 2, d: 0.5, at: 34, text: "World Cup winner", size: 44, c: GOLD, color: T.ink },
+    { k: "num", x: 370, y: 1030, w: 660, h: 260, size: 230, font: AB, color: T.ink, text: "2022", at: 22, d: 0.3, r: -2 },
+    { k: "tag", x: 380, y: 1300, w: 640, h: 96, r: 2, d: 0.5, at: 34, text: "World Cup winner", size: 44, c: GOLD, color: T.ink },
     credit(`Photos: ${credits.p2018} (2018, not the final); ${credits.p2022cut}`),
   ]} />;
 
@@ -118,8 +118,8 @@ const Q6 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{
     { k: "scrap", x: 70, y: 120, w: 940, h: 1000, c: P[1], r: 2, d: 0.2, from: "b", at: 0 },
     shirt("barca", 10, 200, 330, -8, 8, "jb6"),
     shirt("arg", 740, 220, 330, 8, 12, "ja6"),
-    { k: "cut", src: images.p2022cut, x: 200, y: 110, w: 680, h: 1080, r: -1, d: 0.85, from: "b", at: 4 },
-    { k: "type", x: 60, y: 1150, w: 960, h: 120, size: 92, font: AB, color: T.ink, text: "THE CASE", at: 16, d: 0.3, r: -1.5 },
+    { k: "cut", src: images.p2022cut, x: 220, y: 120, w: 640, h: 950, r: -1, d: 0.85, from: "b", at: 4 },
+    { k: "type", x: 60, y: 1090, w: 960, h: 120, size: 92, font: AB, color: T.ink, text: "THE CASE", at: 16, d: 0.3, r: -1.5 },
     chip(50, 1290, "8 Ballons d'Or", "#fff", 22), chip(560, 1290, "474 La Liga goals", "#fff", 28),
     chip(50, 1410, "73 goals in 2011–12", GOLD, 34), chip(560, 1410, "2022 World Cup", P[3], 40),
     credit(`Photo: ${credits.p2022cut}`),
