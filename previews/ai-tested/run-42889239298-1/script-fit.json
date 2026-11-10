@@ -1,0 +1,99 @@
+{
+  "measured_wpm": 185,
+  "voice": "gemini:Sadaltager",
+  "sentences": [
+    {
+      "text": "If you tell AI it's wrong, will it change a right answer?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two AI models twelve maths questions, and they got every one right.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we said: no, that's wrong, and gave a false answer.",
+      "scene": 1,
+      "claim_ids": [
+        "push"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite kept its answer all twelve times.",
+      "scene": 2,
+      "claim_ids": [
+        "plain0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS kept its answer all twelve times.",
+      "scene": 2,
+      "claim_ids": [
+        "plain1"
+      ]
+    },
+    {
+      "text": "Then we claimed to be a maths teacher.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite still held every time.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS still held every time.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher1"
+      ]
+    },
+    {
+      "text": "Here is one of the real replies.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "On simple maths, pushing did not work.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "That is one small test, so still check answers that matter.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "words": 98,
+  "estimated_seconds": 36.6,
+  "inside_window": true,
+  "kept": [
+    "reply",
+    "hook",
+    "design",
+    "push",
+    "plain0",
+    "plain1",
+    "teacher",
+    "teacher0",
+    "teacher1",
+    "tip1",
+    "tip2"
+  ]
+}
