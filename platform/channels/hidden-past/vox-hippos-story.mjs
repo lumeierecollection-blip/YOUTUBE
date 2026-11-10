@@ -39,14 +39,14 @@ export const CLAIMS = [
 const V = (text, claim_ids = []) => ({ text, claim_ids });
 const NR = { allow_no_claim: true, editorial: "question or transition built from the cited claims" };
 export const SLOTS = [
-  { id: "hook", scene: 0, variants: [V("Pablo Escobar's hippos are still alive, and Colombia has approved killing them.", ["H6", "H7"]), V("Escobar's hippos are still alive, and Colombia approved killing them.", ["H6", "H7"])] },
+  { id: "hook", scene: 0, variants: [V("Pablo Escobar's hippos are still alive, and Colombia has approved killing some of them.", ["H6", "H7"]), V("Escobar's hippos are still alive, and Colombia approved killing some.", ["H6", "H7"])] },
   { id: "import", scene: 0, optional: true, variants: [V("In 1981, he imported four of them for his private zoo.", ["H1"]), V("In 1981, he imported four.", ["H1"])] },
   { id: "estate", scene: 1, variants: [V("His estate lay between Medellín and Bogotá.", ["H2"]), V("The estate lay between Medellín and Bogotá.", ["H2"])] },
   { id: "escape", scene: 2, variants: [V("After he died in 1993, they escaped and spread.", ["H3"]), V("After his death in 1993, they escaped.", ["H3"])] },
   { id: "count", scene: 2, variants: [V("By 2007 there were sixteen, by 2014 about forty, and now around two hundred.", ["H4", "H5", "H6"]), V("Sixteen by 2007, forty by 2014, around two hundred now.", ["H4", "H5", "H6"])] },
   { id: "cull", scene: 3, variants: [V("In April 2026, Colombia approved killing more than eighty of them.", ["H7"]), V("In April 2026, Colombia approved killing over eighty.", ["H7"])] },
-  { id: "india", scene: 3, optional: true, variants: [V("An Indian billionaire offered to take them to India instead.", ["H8"]), V("An Indian billionaire offered them a home.", ["H8"])] },
-  { id: "views", scene: 4, optional: true, variants: [V("Most conservationists call them invasive, but some ecologists say they should stay.", ["H9", "H10"]), V("Conservationists call them invasive; some ecologists disagree.", ["H9", "H10"])] },
+  { id: "india", scene: 3, optional: true, variants: [V("An Indian billionaire offered to take them to India instead.", ["H8"]), V("An Indian billionaire offered them shelter in India.", ["H8"])] },
+  { id: "views", scene: 4, optional: true, variants: [V("Most conservationists call them invasive, but some ecologists say they should stay.", ["H9", "H10"]), V("Most conservationists call them invasive; some ecologists disagree.", ["H9", "H10"])] },
   { id: "close", scene: 4, ...NR, variants: [V("So who decides what happens to Escobar's hippos?"), V("So who decides their fate?")] },
 ];
 
@@ -56,7 +56,7 @@ export const ROUTES = {
 };
 
 export const METADATA = {
-  title: "Pablo Escobar's Hippos Are Still Alive. Colombia Approved Killing Them.",
+  title: "Pablo Escobar's Hippos Are Still Alive. Colombia Approved Killing Over 80.",
   description: "In 1981 Pablo Escobar imported four hippos for his private zoo. After his death in 1993 they escaped and spread. By April 2026 there were around 200, and Colombia's Ministry of Environment approved the euthanasia of more than 80 of them, while an Indian billionaire offered to take the animals to India. Most conservationists call them invasive; some ecologists say they should stay. Facts from Wikipedia's article on hippopotamuses in Colombia; pictures from Wikimedia Commons with credits in the video.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia\nImages: Colombian National Police (public domain), Alvaro Morales Ríos (CC BY-SA 4.0) and XalD (CC BY 3.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
   tags: ["Pablo Escobar", "Escobar hippos", "Colombia", "cocaine hippos", "invasive species", "Hacienda Nápoles", "history"],
 };

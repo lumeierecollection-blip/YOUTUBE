@@ -51,7 +51,7 @@ export function frameMap(points, features = loadDetail().features, opts = {}) {
   }
   for (const p of points) parts.push({ w: p.lon, e: p.lon, s: p.lat, n: p.lat });
   let box = parts.reduce((a, b) => ({ w: Math.min(a.w, b.w), e: Math.max(a.e, b.e), s: Math.min(a.s, b.s), n: Math.max(a.n, b.n) }));
-  const pad = Math.max(1.5, 0.22 * Math.max(box.e - box.w, box.n - box.s));
+  const pad = opts.zoom ? (typeof opts.zoom === "number" ? opts.zoom : 3.2) : Math.max(1.5, 0.22 * Math.max(box.e - box.w, box.n - box.s));
   box = { w: box.w - pad, e: box.e + pad, s: box.s - pad, n: box.n + pad };
   const cos = Math.max(0.35, Math.cos((((box.s + box.n) / 2) * Math.PI) / 180));
   // Widen whichever side is short, so the view fills the panel without stretching the land.
@@ -63,11 +63,36 @@ export function frameMap(points, features = loadDetail().features, opts = {}) {
   return { box, project, focus: [...focus.keys()], focusFeatures: [...focus.values()], features };
 }
 
-function pathOf(polys, project) {
+/** Sutherland-Hodgman: keeps the part of a ring inside the window, so a zoomed view never carries coordinates thousands of pixels off screen. */
+function clipRing(ring, b) {
+  const sides = [
+    [(p) => p[0] >= b.x0, (p, q) => [b.x0, p[1] + ((q[1] - p[1]) * (b.x0 - p[0])) / (q[0] - p[0])]],
+    [(p) => p[0] <= b.x1, (p, q) => [b.x1, p[1] + ((q[1] - p[1]) * (b.x1 - p[0])) / (q[0] - p[0])]],
+    [(p) => p[1] >= b.y0, (p, q) => [p[0] + ((q[0] - p[0]) * (b.y0 - p[1])) / (q[1] - p[1]), b.y0]],
+    [(p) => p[1] <= b.y1, (p, q) => [p[0] + ((q[0] - p[0]) * (b.y1 - p[1])) / (q[1] - p[1]), b.y1]],
+  ];
+  let pts = ring;
+  for (const [inside, cross] of sides) {
+    const next = [];
+    pts.forEach((cur, i) => {
+      const prev = pts[(i + pts.length - 1) % pts.length];
+      if (inside(cur)) { if (!inside(prev)) next.push(cross(prev, cur)); next.push(cur); }
+      else if (inside(prev)) next.push(cross(prev, cur));
+    });
+    pts = next;
+    if (!pts.length) break;
+  }
+  return pts.map(([x, y]) => [round(x), round(y)]);
+}
+const CLIP_WINDOW = { x0: AREA.x - 300, x1: AREA.x + AREA.w + 300, y0: AREA.y - 300, y1: AREA.y + AREA.h + 300 };
+
+function pathOf(polys, project, clip = false) {
   const out = [];
   for (const poly of polys) {
+    let ring = poly[0].map(project);
+    if (clip) ring = clipRing(ring, CLIP_WINDOW);
     const pts = [];
-    for (const c of poly[0]) { const q = project(c).join(" "); if (pts.at(-1) !== q) pts.push(q); }
+    for (const c of ring) { const q = c.join(" "); if (pts.at(-1) !== q) pts.push(q); }
     if (pts.length > 2) out.push("M" + pts.join(" L") + " Z");
   }
   return out.join(" ");
@@ -86,10 +111,10 @@ export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, 
   const visible = (poly) => { const b = ringBox(poly[0]); return b.w < box.e && b.e > box.w && b.s < box.n && b.n > box.s; };
   const focused = new Set(m.focusFeatures);
   const others = m.features.filter((f) => !focused.has(f)).flatMap((f) => polygonsOf(f).filter(visible));
-  layers.push({ ...canvas, id: `${id}-land`, z: nextZ(), props: { opacity: 1, draw: 1, ...clip }, paths: [{ d: pathOf(others, project), fill: P.land, stroke: P.stroke, strokeWidth: 2 }] });
+  layers.push({ ...canvas, id: `${id}-land`, z: nextZ(), props: { opacity: 1, draw: 1, ...clip }, paths: [{ d: pathOf(others, project, !!zoom), fill: P.land, stroke: P.stroke, strokeWidth: 2 }] });
   if (m.focusFeatures.length) {
     const polys = m.focusFeatures.flatMap((f) => polygonsOf(f).filter(visible));
-    layers.push({ ...canvas, id: `${id}-country`, z: nextZ(), props: { opacity: 1, draw: 0, ...clip }, paths: [{ d: pathOf(polys, project), fill: P.focus, stroke: P.stroke, strokeWidth: 5 }], keyframes: { draw: [{ f: 0, v: 0, e: "linear" }, { f: 4, v: 0 }, { f: Math.min(22, span), v: 1, e: "inOutCubic" }, { f: span, v: 1 }] } });
+    layers.push({ ...canvas, id: `${id}-country`, z: nextZ(), props: { opacity: 1, draw: 0, ...clip }, paths: [{ d: pathOf(polys, project, !!zoom), fill: P.focus, stroke: P.stroke, strokeWidth: 5 }], keyframes: { draw: [{ f: 0, v: 0, e: "linear" }, { f: 4, v: 0 }, { f: Math.min(22, span), v: 1, e: "inOutCubic" }, { f: span, v: 1 }] } });
   }
 
   const pts = points.map((c) => ({ ...c, xy: project([c.lon, c.lat]) }));
