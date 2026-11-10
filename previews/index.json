@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T17:44:34.772Z",
+  "rebuilt_at": "2026-11-10T17:47:23.045Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-10T17:44:34.306Z",
-      "branch": "preview/ai-tested-spellout-4",
-      "commit": "db07ebda",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42867506146#artifacts)",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-10T17:47:09.044Z",
+      "branch": "preview/ai-tested-spellout-5",
+      "commit": "4263094d",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42868264591#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "voice produced 11 sentences for 10 script sentences; use exactly one sentence-ending mark per sentence",
+      "blocker": "",
       "lastOk": "2026-11-10T10:49:49.442Z",
-      "run": "run-42867506146-1"
+      "run": "run-42868264591-1"
     },
     {
       "key": "court-and-spotlight",
