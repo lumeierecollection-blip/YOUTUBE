@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "little-giant-recalls-3-6-million-ladders-head-injuries",
+  "format": "shorts",
+  "hook": "A manufacturer recalled 3,662,000 ladders after lock failures caused head injuries.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A manufacturer recalled 3,662,000 ladders after lock failures caused head injuries.",
+      "b_roll": [
+        "Graphic showing 3,662,000 ladder recall count with warning icon"
+      ],
+      "text_overlay": {
+        "text": "3,662,000 Ladders Recalled"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why do 3,662,000 Little Giant Ladder Systems units retract when Rapid Locks fail to engage fully?",
+      "b_roll": [
+        "Map highlighting Springville Utah",
+        "Diagram showing Rapid Locks mechanism failure",
+        "Counter showing 3,662,000 recalled units"
+      ],
+      "text_overlay": {
+        "text": "Rapid Lock Hazard"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the U.S. Consumer Product Safety Commission logged 25 reports of these sudden lock failures.",
+      "b_roll": [
+        "Document graphic displaying 25 reported collapse incidents"
+      ],
+      "text_overlay": {
+        "text": "25 Incident Reports"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Rapid Locks fail to engage, causing 19 victims to suffer skull fractures and traumatic brain injuries. Consumer Product Safety Commission confirms 25 total incidents involving these 3,662,000 recalled units.",
+      "b_roll": [
+        "Bar chart showing 19 total reported injuries",
+        "List displaying head injuries concussions and skull fractures",
+        "Official seal graphic for U.S. Consumer Product Safety Commission"
+      ],
+      "text_overlay": {
+        "text": "19 Injuries Confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Ensure your Rapid Locks are fully engaged to prevent the retraction hazards causing 19 reported injuries.",
+      "b_roll": [
+        "Summary graphic displaying 19 injuries and 3,662,000 recalled ladders"
+      ],
+      "text_overlay": {
+        "text": "3,662,000 Units Recalled"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
+    "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "11",
+  "topic_slug": "jwst-ic-348-smallest-failed-stars",
+  "format": "shorts",
+  "hook": "The James Webb Space Telescope just found an object only 3 times the mass of Jupiter.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The James Webb Space Telescope just found an object only 3 times the mass of Jupiter.",
+      "visual_cue": "Close-up of the James Webb Space Telescope in space."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Located 1,000 light-years away in the Perseus constellation, the IC 348 star cluster is a nursery for young stars. How can a free-floating object be this small?",
+      "visual_cue": "Wide view of the IC 348 cluster with stars highlighted."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet NIRSpec spectrograph data showed this IC 348 target isn't a normal star.",
+      "visual_cue": "Animation showing a cooling, dimming brown dwarf."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers confirmed the object has a mass between 3 and 4 Jupiter masses. NIRSpec spectrograph analysis confirmed it's the lowest-mass brown dwarf ever detected with spectroscopy.",
+      "visual_cue": "Comparison graphic showing the brown dwarf next to Jupiter."
+    },
+    {
+      "id": "close",
+      "voiceover": "Astronomers use the James Webb Space Telescope's NIRSpec spectrograph to scan IC 348.",
+      "visual_cue": "Deep field view of stars slowly fading to black."
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencealert.com/jwst-discovers-record-breaking-brown-dwarf-so-small-it-defies-explanation",
+    "https://www.space.com/james-webb-space-telescope-record-breaking-failed-star-and-two-brown-dwarfs"
+  ]
+}

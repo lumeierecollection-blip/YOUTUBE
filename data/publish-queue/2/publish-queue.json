@@ -226,5 +226,29 @@
     "cancelled": true,
     "source_file": "gemini-4-argon-vs-muse-spark-open-head-to-head-shorts-shorts-2026-11-08.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "3Juf7Wy6w3s",
+    "channel_id": "2",
+    "title": "Front Raises Autopilot Agent Pricing 680% to $0.39 a Chat",
+    "uploaded_at": "2026-11-09T19:57:13.545Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-09T20:57:13.545Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "front-autopilot-agent-pricing-surge-november-2026-shorts-shorts-2026-11-09.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "OdXfJiWkAjs",
+    "channel_id": "2",
+    "title": "Google Gemini 4 Carbon API Pricing and Token Rates Released",
+    "uploaded_at": "2026-11-10T17:17:51.923Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-10T18:17:51.923Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "google-gemini-4-carbon-api-pricing-breakdown-shorts-shorts-2026-11-10.mp4",
+    "source_queue": "approved"
   }
 ]

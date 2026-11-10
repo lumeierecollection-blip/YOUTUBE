@@ -1,0 +1,61 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-dracula-public-domain-analysis",
+  "format": "shorts",
+  "hook": "Dr. Watson once feared Sherlock Holmes’s deductions were supernatural powers worthy of being burned.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Dr. Watson once feared Sherlock Holmes’s deductions were supernatural powers worthy of being burned.",
+      "visual_cue": "close-up of Sherlock Holmes and Dracula facing off in a dark London alley."
+    },
+    {
+      "id": "setup",
+      "voiceover": "If Holmes lived centuries ago, would his deductive methods have gotten him burned alive?",
+      "visual_cue": "Sherlock Holmes and Dr. Watson standing in a dimly lit London street, with Watson pointing accusingly at Holmes.",
+      "sfx_cue": "Watson's voiceover sound effect",
+      "b_roll": [
+        "Sherlock Holmes and Dr. Watson in a dimly lit London street",
+        "Watson pointing at Holmes with a stern look"
+      ],
+      "transition_out": "fade to black"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Loren D. Estleman reveals Count Dracula crawling on castle walls like a monstrous bat.",
+      "visual_cue": "Close-up of Count Dracula crawling on a castle wall, with his cloak spreading like wings.",
+      "sfx_cue": "Count Dracula's voiceover sound effect",
+      "b_roll": [
+        "Count Dracula crawling on a castle wall",
+        "Count Dracula's cloak spreading"
+      ],
+      "transition_out": "fade to black"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Holmes and Dr. Watson investigate 1 mysterious ship bringing nocturnal terror to London streets. Holmes pits his logic against Dracula’s 1 supernatural, animalistic trait of spreading bat-like wings.",
+      "visual_cue": "Sherlock Holmes and Dr. Watson investigating a mysterious ship in London, with Holmes using his deductive skills to solve the mystery.",
+      "sfx_cue": "Ship's horn sound effect",
+      "b_roll": [
+        "Sherlock Holmes and Dr. Watson investigating the ship",
+        "Ship's horn sound effect"
+      ],
+      "transition_out": "fade to black"
+    },
+    {
+      "id": "close",
+      "voiceover": "Holmes solves the mystery of the ship to stop Count Dracula’s terror in London.",
+      "visual_cue": "Sherlock Holmes standing triumphantly in the middle of London, with Dracula fleeing in the background.",
+      "sfx_cue": "Cheering crowd sound effect",
+      "b_roll": [
+        "Sherlock Holmes standing triumphantly in the middle of London",
+        "Crowd cheering"
+      ],
+      "transition_out": "fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+    "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+  ]
+}

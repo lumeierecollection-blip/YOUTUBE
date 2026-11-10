@@ -1,0 +1,73 @@
+{
+  "topic_slug": "google-gemini-4-carbon-api-pricing-breakdown",
+  "strongest_angle": "Reviewing Google Gemini 4 Carbon's public API debut on November 10, 2026, detailing its introductory rates of $2 per million input tokens and $10 per million output tokens compared to its post-introductory standard rates.",
+  "key_facts": [
+    {
+      "fact": "On November 10, 2026, Google made Gemini 4 Carbon publicly available to developers, enterprises, scientists, and consumers with an introductory price of $2 per million input tokens and $10 per million output tokens.",
+      "source_url": "https://9to5google.com/2026/11/10/gemini-app-4-carbon",
+      "source_name": "9to5Google",
+      "confidence": "high"
+    },
+    {
+      "fact": "After the introductory period ends, Google will price Gemini 4 Carbon at $4 per million input tokens and $20 per million output tokens.",
+      "source_url": "https://9to5google.com/2026/10/28/gemini-4-carbon-announcement",
+      "source_name": "9to5Google",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google DeepMind SVP and Chief AI Architect Koray Kavukcuoglu announced the general availability of Gemini 4 Carbon on November 10, 2026.",
+      "source_url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available",
+      "source_name": "Google Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Introductory Input Token Price",
+      "value": 2,
+      "unit": "dollars per million tokens",
+      "source_url": "https://9to5google.com/2026/11/10/gemini-app-4-carbon"
+    },
+    {
+      "label": "Introductory Output Token Price",
+      "value": 10,
+      "unit": "dollars per million tokens",
+      "source_url": "https://9to5google.com/2026/11/10/gemini-app-4-carbon"
+    },
+    {
+      "label": "Standard Input Token Price",
+      "value": 4,
+      "unit": "dollars per million tokens",
+      "source_url": "https://9to5google.com/2026/10/28/gemini-4-carbon-announcement"
+    },
+    {
+      "label": "Standard Output Token Price",
+      "value": 20,
+      "unit": "dollars per million tokens",
+      "source_url": "https://9to5google.com/2026/10/28/gemini-4-carbon-announcement"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini 4 Carbon",
+      "kind": "object"
+    },
+    {
+      "name": "Koray Kavukcuoglu",
+      "kind": "person"
+    },
+    {
+      "name": "Google DeepMind",
+      "kind": "organization"
+    },
+    {
+      "name": "9to5Google",
+      "kind": "organization"
+    }
+  ]
+}

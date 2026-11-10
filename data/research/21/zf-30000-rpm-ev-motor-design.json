@@ -1,0 +1,87 @@
+{
+  "topic_slug": "zf-30000-rpm-ev-motor-design",
+  "strongest_angle": "ZF has developed the High Revolution Drive, a compact 3-in-1 electric drive based in Friedrichshafen that spins at up to 30,000 rpm, achieving a 25 percent reduction in size and weight while requiring 50 percent less magnet mass compared to an 18,000 rpm SELECT drive.",
+  "key_facts": [
+    {
+      "fact": "ZF has developed the High Revolution Drive in Friedrichshafen, a compact 3-in-1 electric drive whose motor spins at up to 30,000 rpm.",
+      "source_url": "https://press.zf.com/press/en/releases/release_111426.html",
+      "source_name": "ZF",
+      "confidence": "high"
+    },
+    {
+      "fact": "The High Revolution Drive is nearly 25 percent smaller and nearly 25 percent lighter than a comparable SELECT drive running at 18,000 rpm.",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm",
+      "source_name": "The EV Report",
+      "confidence": "high"
+    },
+    {
+      "fact": "ZF targets production of the High Revolution Drive by the year 2030, which requires 50 percent less magnet mass.",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm",
+      "source_name": "The EV Report",
+      "confidence": "high"
+    },
+    {
+      "fact": "The German tier-1 supplier ZF integrates an electric motor, power electronics, and a two-stage spur gear transmission within the unit.",
+      "source_url": "https://www.motoring-trends.com/auto-components/zf-unveils-high-revolution-drive-operating-at-30000-rpm-for-electric-vehicles",
+      "source_name": "Motoring Trends",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Maximum motor speed",
+      "value": 30000,
+      "unit": "rpm",
+      "source_url": "https://press.zf.com/press/en/releases/release_111426.html"
+    },
+    {
+      "label": "Size reduction percentage",
+      "value": 25,
+      "unit": "percent",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+    },
+    {
+      "label": "Weight reduction percentage",
+      "value": 25,
+      "unit": "percent",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+    },
+    {
+      "label": "Baseline SELECT drive speed",
+      "value": 18000,
+      "unit": "rpm",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+    },
+    {
+      "label": "Magnet mass reduction percentage",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+    },
+    {
+      "label": "Target production year",
+      "value": 2030,
+      "unit": "year",
+      "source_url": "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "ZF",
+      "kind": "organization"
+    },
+    {
+      "name": "Friedrichshafen",
+      "kind": "place"
+    },
+    {
+      "name": "High Revolution Drive",
+      "kind": "object"
+    },
+    {
+      "name": "SELECT",
+      "kind": "object"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "topic_slug": "little-giant-recalls-3-6-million-ladders-head-injuries",
+  "strongest_angle": "Examine the massive Little Giant ladder recall involving 3,662,000 units and the Rapid Lock mechanism failure that caused 19 injuries, including head trauma, traumatic brain injuries, skull fractures, and concussions.",
+  "key_facts": [
+    {
+      "fact": "Little Giant Ladder Systems recalled approximately 3,662,000 ladders equipped with Rapid Locks due to a sudden retraction fall hazard reported to the U.S. Consumer Product Safety Commission on November 5, 2026.",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
+      "source_name": "CPSC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Consumer Product Safety Commission and Medical Daily reported that the unexpected ladder retractions are tied to 25 total incidents, resulting in 19 injuries including head injuries, traumatic brain injuries, skull fractures, and concussions.",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943",
+      "source_name": "Medical Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Little Giant Ladder Systems is based in Springville, Utah, and manufactures ladders with Rapid Locks that can suddenly retract if the locks are not fully engaged.",
+      "source_url": "https://qz.com/little-giant-ladder-recall-rapid-locks-fall-hazard-110926",
+      "source_name": "Quartz",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Recalled ladder units",
+      "value": 3662000,
+      "unit": "units",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard"
+    },
+    {
+      "label": "Total reports of ladders retracting",
+      "value": 25,
+      "unit": "reports",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+    },
+    {
+      "label": "Total reported injuries",
+      "value": 19,
+      "unit": "injuries",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Little Giant Ladder Systems",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Consumer Product Safety Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Springville",
+      "kind": "place"
+    },
+    {
+      "name": "Utah",
+      "kind": "place"
+    },
+    {
+      "name": "Rapid Locks",
+      "kind": "object"
+    }
+  ]
+}

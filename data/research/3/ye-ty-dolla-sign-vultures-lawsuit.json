@@ -1,0 +1,103 @@
+{
+  "topic_slug": "ye-ty-dolla-sign-vultures-lawsuit",
+  "strongest_angle": "Music producers Jae Deal and Marlon Barrow filed a copyright infringement lawsuit in federal court against Kanye West and Ty Dolla Sign alleging unauthorized sampling of their 2018 composition Joint 2 for the song Vultures.",
+  "key_facts": [
+    {
+      "fact": "Music producers Jaraed Deal and Marlon Barrow filed a three-count copyright infringement complaint on November 6, 2026, in the Central District of California, No. 2:26-cv-13035, against Kanye Omari West and Tyrone William Griffin Jr.",
+      "source_url": "https://copyrightnow.com/news/deal-v-yeezy-record-label-vultures-sampled-works-copyright-complaint-cdcal",
+      "source_name": "Copyright Now",
+      "confidence": "high"
+    },
+    {
+      "fact": "Producers Jaraed Deal and Marlon Barrow allege that Kanye West and Ty Dolla Sign used their 2018 composition Joint 2 without permission to create three versions of the 2023 song Vultures.",
+      "source_url": "https://news.bloomberglaw.com/ip-law/ye-ty-dolla-ign-sued-over-use-of-sample-track-in-vultures",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "Marlon Barrow allegedly was on a phone call with Ty Dolla Sign when he heard the sample titled Joint 2 playing in the background, leading to a request to visit the studio.",
+      "source_url": "https://www.complex.com/music/a/jose-martinez/kanye-west-vultures-sample-lawsuit",
+      "source_name": "Complex",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Filing year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://copyrightnow.com/news/deal-v-yeezy-record-label-vultures-sampled-works-copyright-complaint-cdcal"
+    },
+    {
+      "label": "Composition year",
+      "value": 2018,
+      "unit": "year",
+      "source_url": "https://www.complex.com/music/a/jose-martinez/kanye-west-vultures-sample-lawsuit"
+    },
+    {
+      "label": "Song release year",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://news.bloomberglaw.com/ip-law/ye-ty-dolla-ign-sued-over-use-of-sample-track-in-vultures"
+    },
+    {
+      "label": "Count of versions",
+      "value": 3,
+      "unit": "versions",
+      "source_url": "https://news.bloomberglaw.com/ip-law/ye-ty-dolla-ign-sued-over-use-of-sample-track-in-vultures"
+    },
+    {
+      "label": "Court case number",
+      "value": 13035,
+      "unit": "case number",
+      "source_url": "https://copyrightnow.com/news/deal-v-yeezy-record-label-vultures-sampled-works-copyright-complaint-cdcal"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Jaraed Deal",
+      "kind": "person"
+    },
+    {
+      "name": "Marlon Barrow",
+      "kind": "person"
+    },
+    {
+      "name": "Kanye West",
+      "kind": "person"
+    },
+    {
+      "name": "Ty Dolla Sign",
+      "kind": "person"
+    },
+    {
+      "name": "Vultures",
+      "kind": "object"
+    },
+    {
+      "name": "Joint 2",
+      "kind": "object"
+    },
+    {
+      "name": "Central District of California",
+      "kind": "place"
+    },
+    {
+      "name": "Yeezy Record Label",
+      "kind": "organization"
+    },
+    {
+      "name": "Bloomberg Law",
+      "kind": "organization"
+    },
+    {
+      "name": "Complex",
+      "kind": "organization"
+    },
+    {
+      "name": "Music Business Worldwide",
+      "kind": "organization"
+    }
+  ]
+}

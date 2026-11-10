@@ -1,0 +1,73 @@
+{
+  "channel_id": "17",
+  "topic_slug": "atacama-desert-el-nino-floral-display-2026",
+  "format": "shorts",
+  "hook": "Chile's Atacama Desert just transformed into a massive floral display covering 7,000 square miles.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Chile's Atacama Desert just transformed into a massive floral display covering 7,000 square miles.",
+      "visual_cue": "Wide drone shot of the Atacama Desert landscape transitioning from sand to a carpet of flowers.",
+      "sfx_cue": "Wind transition into soft, ambient desert sounds.",
+      "b_roll": [
+        "Drone footage of Atacama Desert landscape"
+      ],
+      "text_overlay": {
+        "text": "7,000 square miles of flowers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Record-breaking El Niño rains flooded the parched Atacama Desert, creating an unexpected botanical explosion. How did millions of dormant seeds and bulbs in the Atacama Desert suddenly wake up?",
+      "visual_cue": "Map of Chile highlighting the Atacama region with rain animation overlay.",
+      "sfx_cue": "Light rain sound effects.",
+      "b_roll": [
+        "Topographical map of Chile",
+        "Historical meteorological chart graphic"
+      ],
+      "text_overlay": {
+        "text": "Rainfall since 1950"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But these dormant Atacama Desert seeds waited decades for the heaviest rainfall since 1950.",
+      "visual_cue": "Close-up macro shot of tiny seeds buried in dry, cracked desert earth.",
+      "sfx_cue": "Soft, rhythmic pulse sound.",
+      "b_roll": [
+        "Macro shot of desert soil"
+      ],
+      "text_overlay": {
+        "text": "Dormant for decades"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The El Niño super cycle finally triggered this massive floral bloom across the Atacama Desert. Millions of bulbs sprouted simultaneously, covering 7,000 square miles of the parched Atacama Desert landscape.",
+      "visual_cue": "Sweeping cinematic pans showing fields of purple and yellow flowers stretching to the horizon.",
+      "sfx_cue": "Gentle, uplifting orchestral music swell.",
+      "b_roll": [
+        "Cinematic pans of blooming Atacama desert"
+      ],
+      "text_overlay": {
+        "text": "7,000 square miles"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This is the biggest floral display in the Atacama Desert since records began in 1950.",
+      "visual_cue": "Slow zoom out to reveal the scale of the floral display against the mountain backdrop.",
+      "sfx_cue": "Ambient desert breeze.",
+      "b_roll": [
+        "Wide shot of blooming desert"
+      ],
+      "text_overlay": {
+        "text": "Biggest in decades"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.npr.org/2026/11/08/nx-s1-6023812-e1/a-desert-stirs-to-life-chiles-atacama-erupts-in-its-biggest-floral-display-in-decades",
+    "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino"
+  ]
+}

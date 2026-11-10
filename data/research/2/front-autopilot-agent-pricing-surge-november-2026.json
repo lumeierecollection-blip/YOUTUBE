@@ -1,0 +1,62 @@
+{
+  "topic_slug": "front-autopilot-agent-pricing-surge-november-2026",
+  "strongest_angle": "Front significantly increased the cost of its Autopilot AI agent in November 2026, marking a 680% price hike that reflects broader shifts in SaaS pricing strategies.",
+  "key_facts": [
+    {
+      "fact": "Front increased the price of its Autopilot AI agent from $0.05 to $0.39 per conversation between November 2, 2026, and November 9, 2026.",
+      "source_url": "https://pricingsaas.com/companies/front/diffs/2026W46",
+      "source_name": "PricingSaaS Pulse",
+      "confidence": "high"
+    },
+    {
+      "fact": "The price adjustment for the Autopilot AI agent represents a 680% increase in cost per chat for Front customers.",
+      "source_url": "https://pricingsaas.com/news/week/2026W46",
+      "source_name": "PricingSaaS Pulse Weekly",
+      "confidence": "high"
+    },
+    {
+      "fact": "Front categorizes its Autopilot automation levels into three distinct processes: Triage, Handoff, and Resolution.",
+      "source_url": "https://help.front.com/en/articles/4890624",
+      "source_name": "Front Help Center",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Original Autopilot price",
+      "value": 0.05,
+      "unit": "USD per conversation",
+      "source_url": "https://pricingsaas.com/companies/front/diffs/2026W46"
+    },
+    {
+      "label": "New Autopilot price",
+      "value": 0.39,
+      "unit": "USD per conversation",
+      "source_url": "https://front.com/pricing"
+    },
+    {
+      "label": "Percentage increase",
+      "value": 680,
+      "unit": "percent",
+      "source_url": "https://pricingsaas.com/companies/front/diffs/2026W46"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Front",
+      "kind": "organization"
+    },
+    {
+      "name": "Autopilot",
+      "kind": "object"
+    },
+    {
+      "name": "PricingSaaS Pulse",
+      "kind": "organization"
+    },
+    {
+      "name": "Rob Litterst",
+      "kind": "person"
+    }
+  ]
+}

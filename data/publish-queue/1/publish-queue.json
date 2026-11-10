@@ -309,5 +309,29 @@
     "cancelled": true,
     "source_file": "emily-hobhouse-honored-100-years-after-funeral-shorts-shorts-2026-11-08.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "LUfYEYsCLoQ",
+    "channel_id": "1",
+    "title": "How Sleuths Decoded the Secret Letters of Mary, Queen of…",
+    "uploaded_at": "2026-11-09T20:05:55.148Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-09T21:05:55.148Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "mary-queen-of-scots-encrypted-letters-france-2026-shorts-shorts-2026-11-09.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "KiOQvgAws0o",
+    "channel_id": "1",
+    "title": "Clearing an Attic Reveals Documents Stolen from the…",
+    "uploaded_at": "2026-11-10T17:30:29.295Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-10T18:30:29.295Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "dutch-family-attic-national-archives-documents-stolen-shorts-shorts-2026-11-10.mp4",
+    "source_queue": "approved"
   }
 ]

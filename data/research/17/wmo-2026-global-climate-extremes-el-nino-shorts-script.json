@@ -1,0 +1,75 @@
+{
+  "channel_id": "17",
+  "topic_slug": "wmo-2026-global-climate-extremes-el-nino",
+  "format": "shorts",
+  "hook": "In November 2026, the World Meteorological Organization documented extreme global temperatures and melting ice.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In November 2026, the World Meteorological Organization documented extreme global temperatures and melting ice.",
+      "visual_cue": "Global temperature anomaly map showing heat intensity",
+      "sfx_cue": "Low ominous hum",
+      "b_roll": [
+        "Climate data visualization map"
+      ],
+      "text_overlay": {
+        "text": "1.47°C anomaly"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The World Meteorological Organization released this data in Antalya, Türkiye. How much heat is the ocean holding?",
+      "visual_cue": "WMO report cover in Antalya, Türkiye",
+      "sfx_cue": "Data ticker sound",
+      "b_roll": [
+        "WMO logo and Antalya conference venue",
+        "Animated temperature graph",
+        "Ocean surface waves"
+      ],
+      "text_overlay": {
+        "text": "1.47°C above pre-industrial"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The upper 2000 meters of the ocean absorbed 19 zettajoules of heat, a massive energy increase.",
+      "visual_cue": "Cross-section diagram of ocean depth",
+      "sfx_cue": "Deep water sonar ping",
+      "b_roll": [
+        "Ocean depth measurement diagram"
+      ],
+      "text_overlay": {
+        "text": "19 zettajoules increase"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 2025 ocean heat content exceeded the 2024 value by 19 zettajoules of energy. Antalya, Türkiye, now faces rising sea levels and melting ice as an intense El Niño develops.",
+      "visual_cue": "Satellite imagery of melting polar ice",
+      "sfx_cue": "Glacial ice cracking sound",
+      "b_roll": [
+        "Satellite footage of melting ice caps",
+        "Animated flow of ocean currents"
+      ],
+      "text_overlay": {
+        "text": "El Niño impact"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The World Meteorological Organization reports a 1.47 degrees Celsius anomaly for January to September 2026.",
+      "visual_cue": "Close up of a temperature gauge needle in red",
+      "sfx_cue": "Sudden silence",
+      "b_roll": [
+        "Close up of digital thermometer"
+      ],
+      "text_overlay": {
+        "text": "1.47°C anomaly"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://wmo.int/news/media-centre/state-of-climate-2026-gives-new-meaning-phrase-charts",
+    "https://www.tralac.org/documents/resources/external-relations/united-nations/cop31/8123-state-of-the-climate-update-for-cop31-wmo/file.html"
+  ]
+}

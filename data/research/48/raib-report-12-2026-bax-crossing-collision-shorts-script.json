@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "raib-report-12-2026-bax-crossing-collision",
+  "format": "shorts",
+  "hook": "A passenger train struck a stationary delivery van at 71 mph.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A passenger train struck a stationary delivery van at 71 mph.",
+      "text_overlay": {
+        "text": "71 mph Collision"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 13 July 2025, a train ran from Ramsgate to London Victoria. Why did the van stop at 12:42 on the Bax user-worked crossing in Kent?",
+      "text_overlay": {
+        "text": "13 July 2025 at 12:42"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the Rail Accident Investigation Branch Report 12/2026 reveals how the Bax level crossing failed.",
+      "text_overlay": {
+        "text": "RAIB Report 12/2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigators filled 58 pages with findings about the collision that occurred in Kent. This digital file size for the 58 pages reached 18.1 MB.",
+      "text_overlay": {
+        "text": "58 Pages / 18.1 MB"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Report 12/2026 finally documents the 71 mph collision at the Bax crossing.",
+      "text_overlay": {
+        "text": "Official Investigation Summary"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf",
+    "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026"
+  ]
+}

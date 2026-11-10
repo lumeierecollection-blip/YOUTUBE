@@ -1,0 +1,73 @@
+{
+  "channel_id": "2",
+  "topic_slug": "google-gemini-4-carbon-api-pricing-breakdown",
+  "format": "shorts",
+  "hook": "Google just launched Gemini 4 Carbon with a temporary price cut.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Google just launched Gemini 4 Carbon with a temporary price cut.",
+      "visual_cue": "Close-up of the Gemini 4 Carbon logo on a clean white background.",
+      "sfx_cue": "Digital activation sound.",
+      "b_roll": [
+        "Studio shot of Gemini 4 Carbon logo"
+      ],
+      "text_overlay": {
+        "text": "Gemini 4 Carbon Launch"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 10, 2026, the company made this model publicly available to developers. Will Google DeepMind keep these introductory rates of $2 input and $10 output after launch?",
+      "visual_cue": "Split screen showing a calendar marked November 10 and a price tag graphic.",
+      "sfx_cue": "Soft paper rustle.",
+      "b_roll": [
+        "Calendar graphic showing November 10",
+        "Price tag graphic displaying $2 and $10"
+      ],
+      "text_overlay": {
+        "text": "Introductory Pricing: $2 In / $10 Out"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Standard costs will eventually double for every user of the platform.",
+      "visual_cue": "Simple rising graph line showing a doubling trend.",
+      "sfx_cue": "Rising synth tone.",
+      "b_roll": [
+        "Animated line graph rising"
+      ],
+      "text_overlay": {
+        "text": "Prices set to double"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Once the introductory period expires, Google raises the price to $4 per million input tokens. Koray Kavukcuoglu confirmed these standard rates will replace the introductory pricing after the period ends.",
+      "visual_cue": "Comparison chart showing the jump from $2 to $4 and $10 to $20.",
+      "sfx_cue": "Clink of a coin.",
+      "b_roll": [
+        "Bar chart showing price increase"
+      ],
+      "text_overlay": {
+        "text": "Standard Pricing: $4 In / $20 Out"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The standard rate will be $4 for input and $20 output.",
+      "visual_cue": "Final text card displaying the permanent rates.",
+      "sfx_cue": "Light digital ping.",
+      "b_roll": [
+        "Text graphic showing $4 and $20"
+      ],
+      "text_overlay": {
+        "text": "Permanent Rate: $4 In / $20 Out"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://9to5google.com/2026/11/10/gemini-app-4-carbon",
+    "https://9to5google.com/2026/10/28/gemini-4-carbon-announcement"
+  ]
+}

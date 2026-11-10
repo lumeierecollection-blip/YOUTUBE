@@ -645,9 +645,19 @@
           "topic": "Emily Hobhouse Honored 100 Years After Her Historic State Funeral",
           "slug": "emily-hobhouse-honored-100-years-after-funeral",
           "reserved_at": "2026-11-08T15:17:13.014Z"
+        },
+        {
+          "topic": "How Sleuths Decoded the Secret Letters of Mary, Queen of Scots in 2026",
+          "slug": "mary-queen-of-scots-encrypted-letters-france-2026",
+          "reserved_at": "2026-11-09T19:48:37.230Z"
+        },
+        {
+          "topic": "Clearing an Attic Reveals Documents Stolen from the National Archives",
+          "slug": "dutch-family-attic-national-archives-documents-stolen",
+          "reserved_at": "2026-11-10T16:32:02.695Z"
         }
       ],
-      "last_generated": "2026-11-08T15:17:13.014Z"
+      "last_generated": "2026-11-10T16:32:02.695Z"
     },
     "2": {
       "channel_name": "AI Tested",
@@ -1322,9 +1332,19 @@
           "topic": "Google Gemini 4 Argon vs Meta Muse Spark Open Head-to-Head",
           "slug": "gemini-4-argon-vs-muse-spark-open-head-to-head",
           "reserved_at": "2026-11-08T15:47:24.260Z"
+        },
+        {
+          "topic": "OpenAI API Cuts Kuken Industries Drawing Search Time to 4.5 Minutes",
+          "slug": "openai-api-kuken-industries-drawing-search-time",
+          "reserved_at": "2026-11-09T19:49:00.550Z"
+        },
+        {
+          "topic": "Adobe Integrates Agentic CX Coworker Across Major AI Platforms",
+          "slug": "adobe-agentic-cx-enterprise-coworker-integration",
+          "reserved_at": "2026-11-10T16:32:29.511Z"
         }
       ],
-      "last_generated": "2026-11-08T15:47:24.260Z"
+      "last_generated": "2026-11-10T16:32:29.511Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
@@ -1424,9 +1444,19 @@
           "topic": "Prince Harry and Five Others Challenge High Court Privacy Costs Ruling",
           "slug": "prince-harry-elton-john-daily-mail-costs-appeal",
           "reserved_at": "2026-11-08T15:17:49.473Z"
+        },
+        {
+          "topic": "SoundExchange Music Choice Unpaid Royalties Lawsuit Heads Back to Court",
+          "slug": "soundexchange-music-choice-royalties-court",
+          "reserved_at": "2026-11-09T18:55:57.891Z"
+        },
+        {
+          "topic": "Ye and Ty Dolla Sign Sued Over Vultures Track Samples",
+          "slug": "ye-ty-dolla-sign-vultures-lawsuit",
+          "reserved_at": "2026-11-10T16:32:38.554Z"
         }
       ],
-      "last_generated": "2026-11-08T15:17:49.473Z"
+      "last_generated": "2026-11-10T16:32:38.554Z"
     },
     "4": {
       "channel_name": "Rival Lines",
@@ -1531,9 +1561,19 @@
           "topic": "Utah vs BYU Holy War Rivalry Reaches Top 10 FBS Showdown Status",
           "slug": "utah-byu-holy-war-top-10-showdown",
           "reserved_at": "2026-11-08T15:17:04.951Z"
+        },
+        {
+          "topic": "Atletico Madrid vs Barcelona: Fermin Lopez Half-Space Tactics Breakdown",
+          "slug": "atletico-madrid-barcelona-fermin-lopez-tactics",
+          "reserved_at": "2026-11-09T18:55:10.275Z"
+        },
+        {
+          "topic": "England 45-22 Australia Rugby Match Analysis and Record Win",
+          "slug": "england-45-22-australia-nations-championship",
+          "reserved_at": "2026-11-10T17:46:10.422Z"
         }
       ],
-      "last_generated": "2026-11-08T15:17:04.951Z"
+      "last_generated": "2026-11-10T17:46:10.422Z"
     },
     "5": {
       "channel_name": "Broadsheet",
@@ -1812,9 +1852,19 @@
           "topic": "Arthurian Legend: Excalibur and the Sword in the Stone Feats Compared",
           "slug": "arthurian-legend-excalibur-sword-in-the-stone-compared",
           "reserved_at": "2026-11-04T16:33:03.740Z"
+        },
+        {
+          "topic": "How Arthurian Legend Built Camelot and the Round Table Architecture",
+          "slug": "arthurian-legend-camelot-architecture",
+          "reserved_at": "2026-11-09T18:55:16.211Z"
+        },
+        {
+          "topic": "Sherlock Holmes and Dracula Public Domain Crossover Analysis",
+          "slug": "sherlock-holmes-dracula-public-domain-analysis",
+          "reserved_at": "2026-11-10T16:33:45.269Z"
         }
       ],
-      "last_generated": "2026-11-04T16:33:03.740Z"
+      "last_generated": "2026-11-10T16:33:45.270Z"
     },
     "8": {
       "channel_name": "Ledger",
@@ -2416,9 +2466,19 @@
           "topic": "Atacama Desert Blooms in Its Biggest Floral Display in Decades",
           "slug": "atacama-desert-super-el-nino-floral-display",
           "reserved_at": "2026-11-08T15:20:34.782Z"
+        },
+        {
+          "topic": "NASA Astronaut Photo Captures the San Juan River's 300-Million-Year-Old Meanders",
+          "slug": "san-juan-river-utah-rock-geology",
+          "reserved_at": "2026-11-09T18:59:40.710Z"
+        },
+        {
+          "topic": "Georgia's Okefenokee Swamp Becomes UNESCO World Heritage Site",
+          "slug": "okefenokee-swamp-unesco-world-heritage-site",
+          "reserved_at": "2026-11-10T16:47:24.564Z"
         }
       ],
-      "last_generated": "2026-11-08T15:20:34.782Z"
+      "last_generated": "2026-11-10T16:47:24.564Z"
     },
     "10": {
       "channel_name": "Margin Note",
@@ -2600,9 +2660,19 @@
           "topic": "Webb Space Telescope Spots Dust and Water Near Milky Way Center",
           "slug": "webb-space-telescope-dust-water-milky-way-center",
           "reserved_at": "2026-11-08T15:21:24.275Z"
+        },
+        {
+          "topic": "Hubble Space Telescope Detects First Secondary Eclipse of Rocky Exoplanet",
+          "slug": "hubble-first-secondary-eclipse-rocky-exoplanet",
+          "reserved_at": "2026-11-09T18:59:45.688Z"
+        },
+        {
+          "topic": "JWST Discovers Record-Breaking Small Brown Dwarfs in IC 348",
+          "slug": "jwst-ic-348-smallest-failed-stars",
+          "reserved_at": "2026-11-10T16:46:47.422Z"
         }
       ],
-      "last_generated": "2026-11-08T15:21:24.276Z"
+      "last_generated": "2026-11-10T16:46:47.422Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -2727,9 +2797,19 @@
           "topic": "El Niño Drives 2026 Western Pacific Drought Across 14 Island Nations",
           "slug": "el-nino-western-pacific-drought-2026",
           "reserved_at": "2026-11-08T15:21:29.610Z"
+        },
+        {
+          "topic": "El Niño Rains Turn Chile's Atacama Desert Into Massive Floral Display",
+          "slug": "atacama-desert-el-nino-floral-display-2026",
+          "reserved_at": "2026-11-09T19:01:10.510Z"
+        },
+        {
+          "topic": "World Meteorological Organization Reports 2026 Global Climate Extremes and El Niño",
+          "slug": "wmo-2026-global-climate-extremes-el-nino",
+          "reserved_at": "2026-11-10T16:49:28.074Z"
         }
       ],
-      "last_generated": "2026-11-08T15:21:29.610Z"
+      "last_generated": "2026-11-10T16:49:28.075Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -2802,9 +2882,19 @@
           "topic": "Single-Crystal Turbine Blade Growth and High-Temperature Stress Resistance",
           "slug": "single-crystal-turbine-blade-growth",
           "reserved_at": "2026-11-08T15:24:06.212Z"
+        },
+        {
+          "topic": "ZF 30000 RPM EV Motor Design and 18 to 1 Gearing Reduction",
+          "slug": "zf-30000-rpm-ev-motor-design",
+          "reserved_at": "2026-11-09T19:02:04.263Z"
+        },
+        {
+          "topic": "MIT Fabric Molds and Material-Saving Concrete Beams with 40 Percent Mass Reduction",
+          "slug": "mit-fabric-molds-concrete-beams-mass-reduction",
+          "reserved_at": "2026-11-10T16:50:03.047Z"
         }
       ],
-      "last_generated": "2026-11-08T15:24:06.213Z"
+      "last_generated": "2026-11-10T16:50:03.048Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
@@ -4448,9 +4538,19 @@
           "topic": "Gourmia Recalls 176,000 Air Fryer Ovens Over French Door Burn Hazards",
           "slug": "gourmia-air-fryer-oven-recall-target-burn-hazard",
           "reserved_at": "2026-11-08T15:17:38.432Z"
+        },
+        {
+          "topic": "Little Giant Recalls 3.6 Million Rapid Lock Ladders After Head Injury Reports",
+          "slug": "little-giant-recalls-3-6-million-ladders-head-injuries",
+          "reserved_at": "2026-11-09T18:55:23.128Z"
+        },
+        {
+          "topic": "RAIB Report 12/2026: Passenger Train Collision at Bax Crossing",
+          "slug": "raib-report-12-2026-bax-crossing-collision",
+          "reserved_at": "2026-11-10T16:33:55.309Z"
         }
       ],
-      "last_generated": "2026-11-08T15:17:38.432Z"
+      "last_generated": "2026-11-10T16:33:55.310Z"
     },
     "49": {
       "channel_name": "Picture House",

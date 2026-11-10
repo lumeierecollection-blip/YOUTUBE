@@ -1,0 +1,57 @@
+{
+  "topic_slug": "mit-fabric-molds-concrete-beams-mass-reduction",
+  "strongest_angle": "MIT engineers designed and built a 3-meter concrete test beam using a sewn fabric mold, achieving a massive reduction in concrete and steel usage while maintaining structural integrity.",
+  "key_facts": [
+    {
+      "fact": "MIT engineers built a 3-meter concrete test beam using a sewn cotton mold that required one-third the amount of concrete and half as much steel as a conventional beam.",
+      "source_url": "https://news.mit.edu/2026/fabric-molds-could-bring-material-saving-concrete-beams-within-reach-1106",
+      "source_name": "MIT News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers published their findings regarding fabric-formed concrete beams in the Journal of Building Engineering, detailing automated pattern generation for topology optimization.",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S2352710226022941",
+      "source_name": "ScienceDirect",
+      "confidence": "high"
+    },
+    {
+      "fact": "Load testing of the 3-meter beam showed deflection within about 2 percent of the computer model created by the Massachusetts Institute of Technology research team.",
+      "source_url": "https://circularwire.com/articles/mit-team-cuts-beam-concrete-by-two-thirds-using-sewn-fabric-molds",
+      "source_name": "Circular Wire",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "beam length",
+      "value": 3,
+      "unit": "meters",
+      "source_url": "https://news.mit.edu/2026/fabric-molds-could-bring-material-saving-concrete-beams-within-reach-1106"
+    },
+    {
+      "label": "deflection margin",
+      "value": 2,
+      "unit": "percent",
+      "source_url": "https://circularwire.com/articles/mit-team-cuts-beam-concrete-by-two-thirds-using-sewn-fabric-molds"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Massachusetts Institute of Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Journal of Building Engineering",
+      "kind": "organization"
+    },
+    {
+      "name": "ScienceDirect",
+      "kind": "organization"
+    },
+    {
+      "name": "Circular Wire",
+      "kind": "organization"
+    }
+  ]
+}

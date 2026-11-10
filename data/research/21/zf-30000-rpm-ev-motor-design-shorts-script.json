@@ -1,0 +1,74 @@
+{
+  "channel_id": "21",
+  "topic_slug": "zf-30000-rpm-ev-motor-design",
+  "format": "shorts",
+  "hook": "A new electric motor design just hit 30,000 rpm, changing everything.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A new electric motor design just hit 30,000 rpm, changing everything.",
+      "visual_cue": "Macro shot of a high-speed electric motor spinning rapidly in a lab.",
+      "sfx_cue": "High-pitched electric whine increasing in frequency.",
+      "b_roll": [
+        "ZF High Revolution Drive laboratory test bench"
+      ],
+      "text_overlay": {
+        "text": "30,000 RPM Motor"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Engineers in Friedrichshafen developed the High Revolution Drive, a 3-in-1 unit combining a motor, power electronics, and gear transmission. How much smaller and lighter is this Friedrichshafen-engineered High Revolution Drive?",
+      "visual_cue": "3D exploded view of the ZF High Revolution Drive unit showing internal components.",
+      "sfx_cue": "Mechanical clicking as parts assemble in the animation.",
+      "b_roll": [
+        "ZF facility in Friedrichshafen",
+        "Technical diagram of a 3-in-1 electric drive unit"
+      ],
+      "text_overlay": {
+        "text": "3-in-1 Drive Technology"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But ZF also cuts magnet mass by 50 percent, raising the stakes for future efficiency.",
+      "visual_cue": "Comparison graphic showing a large magnet block shrinking to half its size.",
+      "sfx_cue": "Digital shrinking sound effect.",
+      "b_roll": [
+        "Close-up of rare-earth magnets on a manufacturing line"
+      ],
+      "text_overlay": {
+        "text": "50% Less Magnet Mass"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The High Revolution Drive is 25 percent smaller and lighter than an 18,000 rpm SELECT drive. This Friedrichshafen-based design uses 50 percent less magnet mass than the 18,000 rpm SELECT drive.",
+      "visual_cue": "Side-by-side scale comparison of the new drive against the older SELECT model.",
+      "sfx_cue": "Soft electronic chime indicating a successful measurement.",
+      "b_roll": [
+        "Side-by-side size comparison animation",
+        "ZF engineering laboratory environment"
+      ],
+      "text_overlay": {
+        "text": "25% Smaller & Lighter"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "It spins at 30,000 rpm, redefining electric vehicle power density.",
+      "visual_cue": "Final close-up shot of the motor casing with the ZF logo visible.",
+      "sfx_cue": "Whine fades out.",
+      "b_roll": [
+        "ZF High Revolution Drive unit on display"
+      ],
+      "text_overlay": {
+        "text": "30,000 RPM"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://press.zf.com/press/en/releases/release_111426.html",
+    "https://theevreport.com/zf-high-revolution-drive-30000-rpm"
+  ]
+}
