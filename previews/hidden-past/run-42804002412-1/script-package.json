@@ -1,0 +1,206 @@
+{
+  "channel": "hidden-past",
+  "topic": "How an early announcement opened the Berlin Wall's checkpoints",
+  "format": "short",
+  "target_seconds": 27,
+  "blueprint": {
+    "central_question": "How did a press conference open the Berlin Wall's checkpoints?",
+    "thesis": "On 9 November 1989 a spokesman, handed a note and not fully briefed, said new travel rules took effect immediately; that night guards opened the checkpoints.",
+    "why_it_matters": "A turning point can hinge on one unprepared answer.",
+    "viewer_start": "Knows the Wall fell in 1989.",
+    "viewer_end": "Knows how the announcement went out and what followed.",
+    "key_evidence": [
+      "B2",
+      "B4",
+      "B6"
+    ],
+    "beats": [],
+    "questions_raised": [],
+    "conclusion": "One unprepared answer opened the checkpoints."
+  },
+  "hook_options": [
+    {
+      "text": "The Berlin Wall opened after an announcement came too early.",
+      "family": "direct question",
+      "honest": true
+    }
+  ],
+  "selected_hook": "The Berlin Wall opened after an announcement came too early.",
+  "sentences": [
+    {
+      "sentence_id": "f1",
+      "beat_id": "b1",
+      "role": "narration",
+      "link_from_previous": "none",
+      "on_screen_text": "",
+      "text": "The Berlin Wall opened after an announcement came too early.",
+      "scene": 0,
+      "claim_ids": [
+        "B1"
+      ]
+    },
+    {
+      "sentence_id": "f2",
+      "beat_id": "b2",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "He spoke live on East German television, 9 November 1989.",
+      "scene": 0,
+      "claim_ids": [
+        "B2"
+      ]
+    },
+    {
+      "sentence_id": "f3",
+      "beat_id": "b3",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "Spokesman Günter Schabowski had just been handed a note.",
+      "scene": 1,
+      "claim_ids": [
+        "B3"
+      ]
+    },
+    {
+      "sentence_id": "f4",
+      "beat_id": "b4",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "Asked when it began, he said: immediately, without delay.",
+      "scene": 2,
+      "claim_ids": [
+        "B4"
+      ]
+    },
+    {
+      "sentence_id": "f5",
+      "beat_id": "b5",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "West German news told viewers the borders were open.",
+      "scene": 2,
+      "claim_ids": [
+        "B5"
+      ]
+    },
+    {
+      "sentence_id": "f6",
+      "beat_id": "b6",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "That night, guards at Bornholmer Straße let people through.",
+      "scene": 3,
+      "claim_ids": [
+        "B6"
+      ]
+    },
+    {
+      "sentence_id": "f7",
+      "beat_id": "b7",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "One unprepared answer opened the checkpoints.",
+      "scene": 4,
+      "claim_ids": [
+        "B3",
+        "B6"
+      ]
+    }
+  ],
+  "payoff": "That night, guards at Bornholmer Straße let people through.",
+  "ending": "One unprepared answer opened the checkpoints.",
+  "cta": null,
+  "sources": [
+    {
+      "source_id": "wiki-fotbw",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "B1",
+      "claim": "A Politburo press conference on 9 November 1989 prematurely announced that East Germans could travel without restrictions.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "occurred after a Politburo press conference on 9 November 1989 prematurely announced that East Germans could travel without restrictions",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B2",
+      "claim": "The press conference was led by Günter Schabowski, began at 18:00 CET on 9 November, and was broadcast live on East German television and radio.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "led by Günter Schabowski, the outgoing party leader in East Berlin and top party spokesman as Secretary for Information, beginning at 18:00 CET on 9 November and broadcast live on East German television and radio",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B3",
+      "claim": "Shortly before the press conference Schabowski was handed a note announcing the changes, but given no further instructions on how to handle the information.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "Shortly before the press conference, he was handed a note from Krenz announcing the changes, but given no further instructions on how to handle the information.",
+      "confidence": "high",
+      "context": "He had not been involved in the discussions about the new regulations and had not been fully updated.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B4",
+      "claim": "Asked when the regulations would take effect, Schabowski replied that, as far as he knew, it takes effect immediately, without delay.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "Schabowski replied, \"As far as I know, it takes effect immediately, without delay\"",
+      "confidence": "high",
+      "context": "Wikipedia gives this as an English rendering of the German; it calls his answer an apparent assumption based on the note's opening paragraph.",
+      "contradictory_evidence": [],
+      "editorial_status": "later_interpretation"
+    },
+    {
+      "claim_id": "B5",
+      "claim": "West German news told viewers that East Germany's borders were open: the dpa bulletin at 19:04 said citizens could cross the inner German border \"immediately\", and ARD's Tagesthemen said the borders were open to everyone.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "The West German Deutsche Presse-Agentur issued a bulletin at 19:04 which reported that East German citizens would be able to cross the inner German border \"immediately\".",
+      "confidence": "high",
+      "context": "Tagesthemen anchor Hanns Joachim Friedrichs: the GDR announced that, starting immediately, its borders are open to everyone.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B6",
+      "claim": "At 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße crossing, yielded and let guards open the checkpoints.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "duration_estimate_s": 30.243902439024392,
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  }
+}
