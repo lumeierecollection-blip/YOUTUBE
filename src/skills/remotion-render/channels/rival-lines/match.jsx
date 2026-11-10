@@ -45,6 +45,10 @@ function Intro({ dur, data }) {
     <div style={abs(50, 960, 980, 330, { opacity: n, transform: `translateY(${(1 - n) * 40}px)`, background: "rgba(255,255,255,0.06)", borderLeft: `8px solid ${C.gold}`, borderRadius: 8, padding: "34px 40px", boxSizing: "border-box" })}>
       <div style={{ fontFamily: BODY, fontWeight: 800, fontSize: 26, letterSpacing: "0.16em", color: C.gold }}>THE QUESTION</div>
       <div style={{ fontFamily: HEAD, fontSize: 62, color: C.white, lineHeight: 1.05, marginTop: 14, textTransform: "uppercase" }}>How did a controlled final end 3–3?</div></div>
+    <div style={abs(50, 1340, 980, 300, { display: "flex", flexWrap: "wrap", gap: 18, opacity: tw(f, 34, 50) })}>
+      {["Starting formations", "Passing networks", "Shot map", "Expected goals"].map((t, i) => <div key={t} style={{ background: C.panel, borderLeft: `8px solid ${i % 2 ? C.fra : C.arg}`, borderRadius: 8, padding: "18px 26px", fontFamily: BODY, fontWeight: 800, fontSize: 30, letterSpacing: "0.08em", color: C.white, textTransform: "uppercase" }}>{t}</div>)}
+      <div style={{ width: "100%", fontFamily: BODY, fontWeight: 500, fontSize: 24, color: C.dim, marginTop: 6 }}>All graphics are computed from StatsBomb event data, not tracking data.</div>
+    </div>
   </Scene>);
 }
 function Formation({ dur, images, data }) {
@@ -64,7 +68,7 @@ function Network({ dur, images, data }) {
 function Shots({ dur, images, data }) {
   const f = useCurrentFrame(), a = data.stats.Argentina, r = data.stats.France, k = (v) => Math.round(v * tw(f, 14, 40));
   return (<Scene dur={dur}><Head kicker="Up to the 78th minute" title="Shot map" />
-    <Panel src={images.shotmap} x={60} y={330} w={960} h={640} color={C.gold} label="Shot size = expected goals" delay={4} />
+    <Panel src={images.shotmap} x={60} y={330} w={960} h={640} color={C.gold} label="Size = xG" delay={4} />
     <div style={abs(60, 1020, 960, 150, { display: "flex", gap: 24 })}>
       {[["Argentina", C.arg, k(a.shots_before_79), "#0A1628"], ["France", C.fra, k(r.shots_before_79), "#fff"]].map(([n, col, v, tc]) => (<div key={n} style={{ flex: 1, background: C.panel, borderTop: `10px solid ${col}`, borderRadius: 12, padding: "14px 24px", boxSizing: "border-box" }}><div style={{ fontFamily: BODY, fontWeight: 800, fontSize: 24, letterSpacing: "0.14em", color: col, textTransform: "uppercase" }}>{n}</div><div style={{ fontFamily: HEAD, fontSize: 80, color: C.white, lineHeight: 1 }}>{v} <span style={{ fontSize: 30, color: C.dim }}>shots</span></div></div>))}
     </div>
@@ -76,7 +80,7 @@ const yAt = (series, m) => { let y = 0; for (const [mm, v] of series) if (mm <= 
 function XgChart({ dur, data }) {
   const f = useCurrentFrame(), W = 900, H = 640, X = (m) => (m / 122) * W, Y = (v) => H - (v / 3) * H, p = tw(f, 8, Math.min(dur - 20, 70), Easing.inOut(Easing.cubic));
   const line = (t, col) => { const s = data.stats[t].xg_series; return <polyline points={s.map(([m, v]) => `${X(m).toFixed(1)},${Y(v).toFixed(1)}`).join(" ")} fill="none" stroke={col} strokeWidth="9" strokeLinejoin="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - p} />; };
-  const goals = (t, col) => data.stats[t].goal_minutes.map((m, i) => { const shown = X(m) / W <= p + 0.001; return shown ? <g key={`${t}${i}`}><circle cx={X(m)} cy={Y(yAt(data.stats[t].xg_series, m))} r="17" fill={col} stroke="#fff" strokeWidth="4" /><text x={X(m)} y={Y(yAt(data.stats[t].xg_series, m)) - 28} textAnchor="middle" fontFamily={BODY} fontWeight="800" fontSize="26" fill="#fff">{m}'</text></g> : null; });
+  const goals = (t, col) => data.stats[t].goal_minutes.map((m, i) => { const shown = X(m) / W <= p + 0.001; return shown ? <g key={`${t}${i}`}><circle cx={X(m)} cy={Y(yAt(data.stats[t].xg_series, m))} r="17" fill={col} stroke="#fff" strokeWidth="4" /><text x={X(m)} y={Y(yAt(data.stats[t].xg_series, m)) + (t === "France" ? (i % 2 ? 52 : -28) : -28)} textAnchor="middle" fontFamily={BODY} fontWeight="800" fontSize="26" fill="#fff">{m}'</text></g> : null; });
   return (<Scene dur={dur}><Head kicker="Cumulative expected goals" title="The match in one line" />
     <div style={abs(60, 330, 960, 760, { background: C.panel, borderRadius: 16, boxShadow: "0 14px 30px rgba(0,0,0,0.45)" })}>
       <svg width="960" height="760" style={{ position: "absolute", left: 0, top: 0 }}><g transform="translate(40,50)">
