@@ -1,5 +1,6 @@
 // AI Tested follow-up preview: measure real models on the spell-out test, build the script from the measured numbers, then use the shared Short path.
 // This cut is 35 to 40 seconds (the owner's request after the letter-counting video performed well); natural voice speed, never altered.
+import { spawnSync } from "node:child_process";
 import { runFixedShort } from "../../production/fixed-short.mjs";
 import { measure, plan } from "./spellout.mjs";
 
@@ -12,7 +13,17 @@ async function verifyWikipedia() {
 export default async function spelloutPreview({ key, runId, tools }) {
   const repo = process.env.GITHUB_REPOSITORY, runUrl = repo ? `https://github.com/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}` : "local";
   await verifyWikipedia();
-  const exp = await measure({ runUrl });
+  // A test already run today is reused rather than spending the models' daily quota again; its own run stays the cited source.
+  const today = new Date().toISOString().slice(0, 10);
+  const earlier = (() => {
+    const g = (...a) => spawnSync("git", a, { encoding: "utf8", maxBuffer: 2e8 });
+    if (g("fetch", "--depth=1", "origin", "automation/previews").status !== 0) return null;
+    const files = g("ls-tree", "-r", "--name-only", "FETCH_HEAD", "previews/ai-tested").stdout.split("
+").filter((f) => f.endsWith("/experiment.json")).sort().reverse();
+    for (const f of files) { try { const j = JSON.parse(g("show", `FETCH_HEAD:${f}`).stdout); if (j.date === today && j.models?.length >= 2 && j.models[0].spelled_answers && j.tokens) return { ...j, run_url: j.run_url || `https://github.com/${repo}/actions/runs/${f.match(/run-([0-9]+)-/)[1]}`, reused_from: f }; } catch {} }
+    return null;
+  })();
+  const exp = earlier || await measure({ runUrl });
   tools.write("experiment.json", exp);
   tools.stage("research_complete", "ok");
   const p = plan(exp);

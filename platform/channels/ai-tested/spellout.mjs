@@ -70,8 +70,7 @@ export function plan(exp) {
   const S = (text, scene, claim_ids = []) => ({ text, scene, claim_ids, ...(claim_ids.length ? {} : { allow_no_claim: true, editorial: "question, transition or recommendation drawn from the measured results" }) });
   const sentences = [
     S("Why do some AI models fail at counting letters?", 0),
-    S(`We asked ${n3} models twenty questions, twice.`, 1, ["design"]),
-    S("Once plainly, once with one change: spell it out first.", 1, ["design"]),
+    S(`We asked ${n3} models twenty questions, once plainly, once spelling it out first.`, 1, ["design"]),
     S("A real reply: it spells the word, then counts.", 2, ["design"]),
     S(`Asked plainly, ${star.speak} got ${say(star.plain)} right.`, 3, ["plain"]),
     S(`Spelling first, ${say(star.spelled)}.`, 4, ["spelled"]),
@@ -79,7 +78,6 @@ export function plan(exp) {
     ...others.map((m, i) => S(m.plain === m.spelled ? `${m.speak} was perfect either way.` : `${m.speak} went from ${say(m.plain)} to ${say(m.spelled)}.`, 4, [`other${i}`])),
     S("Why? Models read tokens, not letters.", 5, ["tokenize"]),
     S(`${exp.tokens.word[0].toUpperCase()}${exp.tokens.word.slice(1)} is ${say(exp.tokens.tokens)} tokens, but ${say(exp.tokens.letters)} letters.`, 5, ["tokens"]),
-    S("Same models, same questions, one change.", 6, ["design"]),
     S("So make the model spell it out first.", 6),
   ];
   const scenes = [
