@@ -1,0 +1,99 @@
+{
+  "measured_wpm": 163.6,
+  "voice": "gemini:Sadaltager",
+  "sentences": [
+    {
+      "text": "Can AI pick a random number?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two models for a number from one to ten, thirty times each.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "A fair pick lands on each number about three times.",
+      "scene": 1,
+      "claim_ids": [
+        "fair"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite said seven, thirty times out of thirty.",
+      "scene": 2,
+      "claim_ids": [
+        "top0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS said seven, thirty times.",
+      "scene": 2,
+      "claim_ids": [
+        "top1"
+      ]
+    },
+    {
+      "text": "A random pick would vary. This did not.",
+      "scene": 2,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "From one to a hundred, Google's Flash-Lite chose forty-two most often, twenty-six times.",
+      "scene": 3,
+      "claim_ids": [
+        "hundred0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS chose fifty-seven most often, twelve times.",
+      "scene": 3,
+      "claim_ids": [
+        "hundred1"
+      ]
+    },
+    {
+      "text": "People reportedly do it too: the blue-seven effect.",
+      "scene": 4,
+      "claim_ids": [
+        "blue7"
+      ]
+    },
+    {
+      "text": "For a fair draw, use dice, or ask AI to write code.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Never let it pick your giveaway winner.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "words": 101,
+  "estimated_seconds": 37.5,
+  "inside_window": true,
+  "kept": [
+    "notrandom",
+    "hundred1",
+    "hook",
+    "design",
+    "fair",
+    "top0",
+    "top1",
+    "hundred0",
+    "blue7",
+    "tip1",
+    "tip2"
+  ]
+}

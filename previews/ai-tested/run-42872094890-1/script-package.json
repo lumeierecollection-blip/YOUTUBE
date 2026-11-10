@@ -1,0 +1,183 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42872094890-1",
+  "topic": "Can AI pick a random number?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Can AI pick a random number?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two models for a number from one to ten, thirty times each.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "A fair pick lands on each number about three times.",
+      "scene": 1,
+      "claim_ids": [
+        "fair"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite said seven, thirty times out of thirty.",
+      "scene": 2,
+      "claim_ids": [
+        "top0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS said seven, thirty times.",
+      "scene": 2,
+      "claim_ids": [
+        "top1"
+      ]
+    },
+    {
+      "text": "A random pick would vary. This did not.",
+      "scene": 2,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "From one to a hundred, Google's Flash-Lite chose forty-two most often, twenty-six times.",
+      "scene": 3,
+      "claim_ids": [
+        "hundred0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS chose fifty-seven most often, twelve times.",
+      "scene": 3,
+      "claim_ids": [
+        "hundred1"
+      ]
+    },
+    {
+      "text": "People reportedly do it too: the blue-seven effect.",
+      "scene": 4,
+      "claim_ids": [
+        "blue7"
+      ]
+    },
+    {
+      "text": "For a fair draw, use dice, or ask AI to write code.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Never let it pick your giveaway winner.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "title": "AI Tested random-number test run"
+    },
+    {
+      "source_id": "wiki-b7",
+      "url": "https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon",
+      "published": "2026-11-10",
+      "title": "Blue-seven phenomenon (Wikipedia)"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "Each of two models was asked 30 times for a random number from 1 to 10, and 30 times for one from 1 to 100.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "Each of two models was asked 30 times for a random number from 1 to 10, and 30 times for one from 1 to 100.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "fair",
+      "claim": "A fair random pick from 1 to 10 would land on each number about 3 times in 30.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "A fair random pick from 1 to 10 would land on each number about 3 times in 30.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "top0",
+      "claim": "Google's Flash-Lite replied 7 30 times out of 30 when asked for a number from 1 to 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite replied 7 30 times out of 30 when asked for a number from 1 to 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "top1",
+      "claim": "OpenAI's GPT-OSS replied 7 30 times out of 30 when asked for a number from 1 to 10.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "OpenAI's GPT-OSS replied 7 30 times out of 30 when asked for a number from 1 to 10.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "hundred0",
+      "claim": "From 1 to 100, Google's Flash-Lite's most common reply was 42, 26 times out of 30.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "From 1 to 100, Google's Flash-Lite's most common reply was 42, 26 times out of 30.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "hundred1",
+      "claim": "From 1 to 100, OpenAI's GPT-OSS's most common reply was 57, 12 times out of 30.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869937986",
+      "published": "2026-11-10",
+      "excerpt": "From 1 to 100, OpenAI's GPT-OSS's most common reply was 57, 12 times out of 30.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 1 (a typical chat setting); results differ between runs. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "blue7",
+      "claim": "A reported effect called the blue-seven phenomenon says that most people in the US pick seven when asked for a random single-digit number; its existence is disputed.",
+      "source_id": "wiki-b7",
+      "source_url": "https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon",
+      "published": "2026-11-10",
+      "excerpt": "A reported effect called the blue-seven phenomenon says that most people in the US pick seven when asked for a random single-digit number; its existence is disputed.",
+      "confidence": "medium",
+      "context": "Wikipedia, Blue-seven phenomenon: the effect is reported for the US and its existence is disputed.",
+      "editorial_status": "later_interpretation"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
