@@ -2466,9 +2466,14 @@
           "topic": "NASA Astronaut Photo Captures the San Juan River's 300-Million-Year-Old Meanders",
           "slug": "san-juan-river-utah-rock-geology",
           "reserved_at": "2026-11-09T18:59:40.710Z"
+        },
+        {
+          "topic": "Georgia's Okefenokee Swamp Becomes UNESCO World Heritage Site",
+          "slug": "okefenokee-swamp-unesco-world-heritage-site",
+          "reserved_at": "2026-11-10T16:47:24.564Z"
         }
       ],
-      "last_generated": "2026-11-09T18:59:40.710Z"
+      "last_generated": "2026-11-10T16:47:24.564Z"
     },
     "10": {
       "channel_name": "Margin Note",
