@@ -1,0 +1,682 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "still",
+      "treatment": "sticker-photo-with-title",
+      "objective": "Open on a real hippo at Hacienda Nápoles with a bold 'still alive' title",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 89,
+      "start_s": 0,
+      "end_s": 2.966666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "approved",
+      "treatment": "giant-number-with-stamp",
+      "objective": "Give the cull number as the dominant element with the approval stamp and the photograph pushed aside",
+      "background": "paper panel in saturated frame",
+      "from": 89,
+      "to": 166,
+      "start_s": 2.966666666666667,
+      "end_s": 5.533333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "year",
+      "treatment": "date-roll-turn",
+      "objective": "Mark the turn to context with the year 1981",
+      "background": "paper panel in saturated frame",
+      "from": 166,
+      "to": 259,
+      "start_s": 5.533333333333333,
+      "end_s": 8.633333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "import",
+      "treatment": "portrait-sticker-with-count",
+      "objective": "Show Escobar's police photograph beside the number four and four hippo cut-outs",
+      "background": "paper panel in saturated frame",
+      "from": 259,
+      "to": 325,
+      "start_s": 8.633333333333333,
+      "end_s": 10.833333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "estate",
+      "treatment": "drawn-map-with-pinned-photo",
+      "objective": "Draw Colombia, place Hacienda Nápoles between Medellín and Bogotá, and pin the entrance photograph to it",
+      "background": "paper panel in saturated frame",
+      "from": 325,
+      "to": 405,
+      "start_s": 10.833333333333334,
+      "end_s": 13.5
+    },
+    {
+      "id": "s6",
+      "kind": "escape",
+      "treatment": "photo-with-cutouts-leaving",
+      "objective": "Show the estate entrance with hippo cut-outs leaving it, the year 1993 and a stamp",
+      "background": "paper panel in saturated frame",
+      "from": 405,
+      "to": 505,
+      "start_s": 13.5,
+      "end_s": 16.833333333333332
+    },
+    {
+      "id": "s7",
+      "kind": "n16",
+      "treatment": "counting-herd",
+      "objective": "Show sixteen hippo cut-outs in a grid with 16 and 2007",
+      "background": "paper panel in saturated frame",
+      "from": 505,
+      "to": 560,
+      "start_s": 16.833333333333332,
+      "end_s": 18.666666666666668
+    },
+    {
+      "id": "s8",
+      "kind": "n40",
+      "treatment": "counting-herd",
+      "objective": "Show forty hippo cut-outs in a grid with 40 and 2014",
+      "background": "paper panel in saturated frame",
+      "from": 560,
+      "to": 634,
+      "start_s": 18.666666666666668,
+      "end_s": 21.133333333333333
+    },
+    {
+      "id": "s9",
+      "kind": "n200",
+      "treatment": "counting-herd",
+      "objective": "Show two hundred hippo cut-outs with about 200 and April 2026",
+      "background": "paper panel in saturated frame",
+      "from": 634,
+      "to": 688,
+      "start_s": 21.133333333333333,
+      "end_s": 22.933333333333334
+    },
+    {
+      "id": "s10",
+      "kind": "invasive",
+      "treatment": "stamp-over-faded-herd",
+      "objective": "Stamp INVASIVE over the faded herd, attributed to most conservationists",
+      "background": "paper panel in saturated frame",
+      "from": 688,
+      "to": 754,
+      "start_s": 22.933333333333334,
+      "end_s": 25.133333333333333
+    },
+    {
+      "id": "s11",
+      "kind": "cull",
+      "treatment": "herd-with-cull-highlight",
+      "objective": "Colour eighty of the two hundred cut-outs as the approved cull, with the date stamp",
+      "background": "paper panel in saturated frame",
+      "from": 754,
+      "to": 804,
+      "start_s": 25.133333333333333,
+      "end_s": 26.8
+    },
+    {
+      "id": "s12",
+      "kind": "india",
+      "treatment": "drawn-arc-map",
+      "objective": "Draw an arc from Colombia to India with the offer labelled",
+      "background": "paper panel in saturated frame",
+      "from": 804,
+      "to": 908,
+      "start_s": 26.8,
+      "end_s": 30.266666666666666
+    },
+    {
+      "id": "s13",
+      "kind": "stay",
+      "treatment": "sticker-photo-with-quote-card",
+      "objective": "Show a hippo in water with the ecologists' view as a quote card",
+      "background": "paper panel in saturated frame",
+      "from": 908,
+      "to": 968,
+      "start_s": 30.266666666666666,
+      "end_s": 32.266666666666666
+    },
+    {
+      "id": "s14",
+      "kind": "gone",
+      "treatment": "then-and-now-stickers",
+      "objective": "Set Escobar's faded photograph against the hippo, 1993 against 2026, echoing the opening",
+      "background": "paper panel in saturated frame",
+      "from": 968,
+      "to": 1072,
+      "start_s": 32.266666666666666,
+      "end_s": 35.733333333333334
+    }
+  ],
+  "captions": [
+    {
+      "text": "Pablo Escobar's hippos are still",
+      "from": 0,
+      "to": 60,
+      "words": [
+        {
+          "text": "Pablo",
+          "from": 0
+        },
+        {
+          "text": "Escobar's",
+          "from": 13
+        },
+        {
+          "text": "hippos",
+          "from": 32
+        },
+        {
+          "text": "are",
+          "from": 43
+        },
+        {
+          "text": "still",
+          "from": 53
+        }
+      ]
+    },
+    {
+      "text": "alive",
+      "from": 60,
+      "to": 72,
+      "words": [
+        {
+          "text": "alive",
+          "from": 60
+        }
+      ]
+    },
+    {
+      "text": "And Colombia has approved killing",
+      "from": 89,
+      "to": 124,
+      "words": [
+        {
+          "text": "And",
+          "from": 89
+        },
+        {
+          "text": "Colombia",
+          "from": 93
+        },
+        {
+          "text": "has",
+          "from": 100
+        },
+        {
+          "text": "approved",
+          "from": 110
+        },
+        {
+          "text": "killing",
+          "from": 117
+        }
+      ]
+    },
+    {
+      "text": "more than eighty of them",
+      "from": 124,
+      "to": 157,
+      "words": [
+        {
+          "text": "more",
+          "from": 124
+        },
+        {
+          "text": "than",
+          "from": 134
+        },
+        {
+          "text": "eighty",
+          "from": 138
+        },
+        {
+          "text": "of",
+          "from": 145
+        },
+        {
+          "text": "them",
+          "from": 150
+        }
+      ]
+    },
+    {
+      "text": "To understand why",
+      "from": 166,
+      "to": 193,
+      "words": [
+        {
+          "text": "To",
+          "from": 166
+        },
+        {
+          "text": "understand",
+          "from": 172
+        },
+        {
+          "text": "why",
+          "from": 179
+        }
+      ]
+    },
+    {
+      "text": "you have to go back",
+      "from": 202,
+      "to": 218,
+      "words": [
+        {
+          "text": "you",
+          "from": 202
+        },
+        {
+          "text": "have",
+          "from": 206
+        },
+        {
+          "text": "to",
+          "from": 209
+        },
+        {
+          "text": "go",
+          "from": 212
+        },
+        {
+          "text": "back",
+          "from": 215
+        }
+      ]
+    },
+    {
+      "text": "to 1981",
+      "from": 218,
+      "to": 241,
+      "words": [
+        {
+          "text": "to",
+          "from": 218
+        },
+        {
+          "text": "1981",
+          "from": 223
+        }
+      ]
+    },
+    {
+      "text": "Escobar imports four hippos",
+      "from": 259,
+      "to": 311,
+      "words": [
+        {
+          "text": "Escobar",
+          "from": 259
+        },
+        {
+          "text": "imports",
+          "from": 271
+        },
+        {
+          "text": "four",
+          "from": 281
+        },
+        {
+          "text": "hippos",
+          "from": 293
+        }
+      ]
+    },
+    {
+      "text": "His estate sits between Medellín",
+      "from": 325,
+      "to": 366,
+      "words": [
+        {
+          "text": "His",
+          "from": 325
+        },
+        {
+          "text": "estate",
+          "from": 328
+        },
+        {
+          "text": "sits",
+          "from": 334
+        },
+        {
+          "text": "between",
+          "from": 345
+        },
+        {
+          "text": "Medellín",
+          "from": 356
+        }
+      ]
+    },
+    {
+      "text": "and Bogotá",
+      "from": 371,
+      "to": 394,
+      "words": [
+        {
+          "text": "and",
+          "from": 371
+        },
+        {
+          "text": "Bogotá",
+          "from": 377
+        }
+      ]
+    },
+    {
+      "text": "In 1993 he dies",
+      "from": 405,
+      "to": 452,
+      "words": [
+        {
+          "text": "In",
+          "from": 405
+        },
+        {
+          "text": "1993",
+          "from": 412
+        },
+        {
+          "text": "he",
+          "from": 428
+        },
+        {
+          "text": "dies",
+          "from": 443
+        }
+      ]
+    },
+    {
+      "text": "and they escape",
+      "from": 463,
+      "to": 485,
+      "words": [
+        {
+          "text": "and",
+          "from": 463
+        },
+        {
+          "text": "they",
+          "from": 472
+        },
+        {
+          "text": "escape",
+          "from": 476
+        }
+      ]
+    },
+    {
+      "text": "By 2007 sixteen",
+      "from": 505,
+      "to": 539,
+      "words": [
+        {
+          "text": "By",
+          "from": 505
+        },
+        {
+          "text": "2007",
+          "from": 505
+        },
+        {
+          "text": "sixteen",
+          "from": 511
+        }
+      ]
+    },
+    {
+      "text": "By 2014",
+      "from": 560,
+      "to": 578,
+      "words": [
+        {
+          "text": "By",
+          "from": 560
+        },
+        {
+          "text": "2014",
+          "from": 566
+        }
+      ]
+    },
+    {
+      "text": "about forty",
+      "from": 592,
+      "to": 619,
+      "words": [
+        {
+          "text": "about",
+          "from": 592
+        },
+        {
+          "text": "forty",
+          "from": 598
+        }
+      ]
+    },
+    {
+      "text": "Now around two hundred",
+      "from": 634,
+      "to": 677,
+      "words": [
+        {
+          "text": "Now",
+          "from": 634
+        },
+        {
+          "text": "around",
+          "from": 641
+        },
+        {
+          "text": "two",
+          "from": 647
+        },
+        {
+          "text": "hundred",
+          "from": 661
+        }
+      ]
+    },
+    {
+      "text": "But conservationists call them invasive",
+      "from": 688,
+      "to": 736,
+      "words": [
+        {
+          "text": "But",
+          "from": 688
+        },
+        {
+          "text": "conservationists",
+          "from": 691
+        },
+        {
+          "text": "call",
+          "from": 713
+        },
+        {
+          "text": "them",
+          "from": 719
+        },
+        {
+          "text": "invasive",
+          "from": 724
+        }
+      ]
+    },
+    {
+      "text": "So Colombia approves killing over",
+      "from": 754,
+      "to": 798,
+      "words": [
+        {
+          "text": "So",
+          "from": 754
+        },
+        {
+          "text": "Colombia",
+          "from": 761
+        },
+        {
+          "text": "approves",
+          "from": 769
+        },
+        {
+          "text": "killing",
+          "from": 782
+        },
+        {
+          "text": "over",
+          "from": 790
+        }
+      ]
+    },
+    {
+      "text": "eighty An Indian billionaire offers",
+      "from": 798,
+      "to": 859,
+      "words": [
+        {
+          "text": "eighty",
+          "from": 798
+        },
+        {
+          "text": "An",
+          "from": 804
+        },
+        {
+          "text": "Indian",
+          "from": 826
+        },
+        {
+          "text": "billionaire",
+          "from": 833
+        },
+        {
+          "text": "offers",
+          "from": 845
+        }
+      ]
+    },
+    {
+      "text": "them shelter in India",
+      "from": 859,
+      "to": 890,
+      "words": [
+        {
+          "text": "them",
+          "from": 859
+        },
+        {
+          "text": "shelter",
+          "from": 865
+        },
+        {
+          "text": "in",
+          "from": 871
+        },
+        {
+          "text": "India",
+          "from": 879
+        }
+      ]
+    },
+    {
+      "text": "Some ecologists say they should",
+      "from": 908,
+      "to": 941,
+      "words": [
+        {
+          "text": "Some",
+          "from": 908
+        },
+        {
+          "text": "ecologists",
+          "from": 913
+        },
+        {
+          "text": "say",
+          "from": 923
+        },
+        {
+          "text": "they",
+          "from": 933
+        },
+        {
+          "text": "should",
+          "from": 937
+        }
+      ]
+    },
+    {
+      "text": "stay",
+      "from": 941,
+      "to": 952,
+      "words": [
+        {
+          "text": "stay",
+          "from": 941
+        }
+      ]
+    },
+    {
+      "text": "Escobar is gone",
+      "from": 968,
+      "to": 991,
+      "words": [
+        {
+          "text": "Escobar",
+          "from": 968
+        },
+        {
+          "text": "is",
+          "from": 976
+        },
+        {
+          "text": "gone",
+          "from": 982
+        }
+      ]
+    },
+    {
+      "text": "but his hippos are not",
+      "from": 1006,
+      "to": 1045,
+      "words": [
+        {
+          "text": "but",
+          "from": 1006
+        },
+        {
+          "text": "his",
+          "from": 1011
+        },
+        {
+          "text": "hippos",
+          "from": 1013
+        },
+        {
+          "text": "are",
+          "from": 1027
+        },
+        {
+          "text": "not",
+          "from": 1036
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1072,
+  "duration_s": 35.733333333333334
+}
