@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T16:32:07.130Z",
+  "rebuilt_at": "2026-11-10T16:35:35.660Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -156,21 +156,21 @@
     {
       "key": "rival-lines",
       "agent": "agent-rival-lines",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-10T16:32:06.295Z",
-      "branch": "preview/rival-lines-messi-3",
-      "commit": "7afcf96c",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42854549239#artifacts)",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-10T16:35:22.366Z",
+      "branch": "preview/rival-lines-final-7",
+      "commit": "737b8f13",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42855737950#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "narration is 35.52s at natural speed (allowed 20 to 29.25s); change the script, never the speed",
+      "blocker": "",
       "lastOk": "2026-11-10T16:22:21.258Z",
-      "run": "run-42854549239-1"
+      "run": "run-42855737950-1"
     }
   ]
 }
