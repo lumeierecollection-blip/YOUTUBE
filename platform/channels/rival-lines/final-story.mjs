@@ -21,7 +21,7 @@ const V = (text, claim_ids) => ({ text, claim_ids });
 export const slots = [
   { id: "hook", scene: 0, variants: [V("The 2022 World Cup final: Argentina against France, three-all, then Argentina won on penalties.", ["F1"]), V("Argentina against France, 2022: three-all, then penalties.", ["F1"])] },
   { id: "formation", scene: 1, variants: [V("Argentina began in a four-three-three, France in a four-two-three-one.", ["F2"]), V("Argentina in a four-three-three, France in a four-two-three-one.", ["F2"])] },
-  { id: "passes", scene: 2, variants: [V("In the first forty minutes, Argentina completed two hundred and thirty passes. France, one hundred and sixteen.", ["F3"]), V("First forty minutes: Argentina completed about twice as many passes.", ["F3"])] },
+  { id: "passes", scene: 2, variants: [V("In the first forty minutes, Argentina completed two hundred and thirty passes to France's one hundred and sixteen.", ["F3"]), V("First forty minutes: Argentina completed about twice as many passes.", ["F3"])] },
   { id: "shots0", scene: 3, variants: [V("By the seventy-eighth minute, Argentina had ten shots.", ["F4"])] },
   { id: "shots1", scene: 3, variants: [V("France had two, the first in the sixty-seventh minute.", ["F4"]), V("France had two.", ["F4"])] },
   { id: "goals", scene: 4, variants: [V("Then France scored in the seventy-ninth minute, and again in the eightieth.", ["F5"]), V("Then France scored twice in two minutes.", ["F5"])] },

@@ -74,7 +74,7 @@ export default async function preview({ key, runId, tools }) {
   let sentences = story.sentences, scenes = story.scenes;
   if (story.slots) {
     const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: channel.voice.style });
-    const fit = fitScript({ slots: story.slots, wpm: cal.wpm * 0.93, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
+    const fit = fitScript({ slots: story.slots, wpm: cal.wpm * 0.88, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
     ({ scenes, sentences } = compactScenes({ scenes: story.scenes, sentences: fit.sentences }));
     tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
     console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);

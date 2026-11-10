@@ -29,3 +29,9 @@ test("scenes the chosen sentences do not use are removed and the rest renumbered
   assert.deepEqual(scenes, ["s0", "s1", "s3"]);
   assert.deepEqual(s2.map((s) => s.scene), [0, 1, 2]);
 });
+
+test("a line with two sentence endings is refused", () => {
+  assert.throws(() => fitScript({ slots: [{ id: "x", scene: 0, variants: ["One. Two."] }], wpm: 120 }), /more than one sentence/);
+  assert.throws(() => fitScript({ slots: [{ id: "x", scene: 0, variants: ["Why? Because."] }], wpm: 120 }), /more than one sentence/);
+  assert.doesNotThrow(() => fitScript({ slots: [{ id: "x", scene: 0, variants: ["Is it so?"] }], wpm: 120 }));
+});

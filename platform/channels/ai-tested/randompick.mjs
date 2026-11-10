@@ -86,7 +86,7 @@ export function plan(exp) {
     { id: "design", scene: 1, variants: [V(`We asked ${n2} models for a number from one to ten, ${say(exp.asks)} times each.`, ["design"]), V(`${n2[0].toUpperCase()}${n2.slice(1)} models, one to ten, ${say(exp.asks)} times each.`, ["design"])] },
     { id: "fair", scene: 1, variants: [V(`A fair pick lands on each number about ${say(fair)} times.`, ["fair"])] },
     ...ms.map((m, i) => ({ id: `top${i}`, scene: 2, variants: [V(`${m.speak} said ${say(m.t10.value)}, ${times(m.t10.count)} out of ${say(exp.asks)}.`, [`top${i}`]), V(`${m.speak} said ${say(m.t10.value)}, ${times(m.t10.count)}.`, [`top${i}`])] })),
-    { id: "notrandom", scene: 2, optional: true, ...NR, variants: [V("A random pick would vary. This did not.")] },
+    { id: "notrandom", scene: 2, optional: true, ...NR, variants: [V("A random pick would vary, but this did not.")] },
     { id: "hundred0", scene: 3, variants: [V(`From one to a hundred, ${ms[0].speak} chose ${say(ms[0].t100[0].value)} most often, ${times(ms[0].t100[0].count)}.`, ["hundred0"])] },
     ...ms.slice(1).map((m, i) => ({ id: `hundred${i + 1}`, scene: 3, optional: true, variants: [V(`${m.speak} chose ${say(m.t100[0].value)} most often, ${times(m.t100[0].count)}.`, [`hundred${i + 1}`])] })),
     { id: "blue7", scene: 4, variants: [V("People reportedly do it too: the blue-seven effect.", ["blue7"])] },

@@ -39,7 +39,7 @@ export default async function randomPreview({ key, runId, tools }) {
   };
   // The 35 to 40 second rule: measure this voice's pace, then choose the wording that fits. The voice is never sped up.
   const cal = await narrate({ text: CALIBRATION, edgeVoice: "en-US-AndrewNeural", outDir: tools.outDir, name: "calibration", style: STYLE });
-  const fit = fitScript({ slots: p.slots, wpm: cal.wpm * 0.93, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
+  const fit = fitScript({ slots: p.slots, wpm: cal.wpm * 0.88, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
   const { scenes, sentences } = compactScenes({ scenes: p.scenes, sentences: fit.sentences });
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
