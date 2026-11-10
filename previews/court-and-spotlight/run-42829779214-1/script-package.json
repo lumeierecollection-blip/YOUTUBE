@@ -1,0 +1,146 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42829779214-1",
+  "topic": "Beyoncé's record-breaking Grammy night",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "In one night, Beyoncé became the most-awarded artist in Grammy history.",
+      "scene": 0,
+      "claim_ids": [
+        "M1"
+      ]
+    },
+    {
+      "text": "The old record: thirty-one, set by conductor Georg Solti.",
+      "scene": 1,
+      "claim_ids": [
+        "M5"
+      ]
+    },
+    {
+      "text": "She arrived with nine nominations.",
+      "scene": 2,
+      "claim_ids": [
+        "M3"
+      ]
+    },
+    {
+      "text": "Half an hour in, Cuff It tied the record.",
+      "scene": 2,
+      "claim_ids": [
+        "M6"
+      ]
+    },
+    {
+      "text": "Her fourth win, for Renaissance, broke it.",
+      "scene": 3,
+      "claim_ids": [
+        "M2",
+        "M1"
+      ]
+    },
+    {
+      "text": "Thirty-two Grammys, and a new record.",
+      "scene": 3,
+      "claim_ids": [
+        "M1"
+      ]
+    },
+    {
+      "text": "On stage, she said she was just trying to receive the night.",
+      "scene": 4,
+      "claim_ids": [
+        "M4"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "kqed2023",
+      "url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "title": "Beyoncé sets a new Grammy record while Harry Styles wins album of the year (KQED, updated 6 Feb 2023)",
+      "licence": "facts only, no text reused beyond short excerpts"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "M1",
+      "claim": "At the 65th Grammy Awards, Beyoncé won her fourth award of the year, for a career total of 32, the most Grammys of any artist in the awards' history.",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "she won her fourth award of the year for a total of 32 in her career, shattering the record for the most Grammys of any artist in the prize’s 65-year history.",
+      "confidence": "high",
+      "context": "Reported 6 February 2023. The total has since been reported differently elsewhere; this video states only the figure at that ceremony.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "M2",
+      "claim": "The record-setting win was best dance/electronic music album, for RENAISSANCE.",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "She had nine nominations this year, and hit the new record just after 7 p.m. PT, when she won best electronic/dance music album.",
+      "confidence": "high",
+      "context": "Category wording as given in the report.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "M3",
+      "claim": "Beyoncé had nine nominations at that ceremony.",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "She had nine nominations this year",
+      "confidence": "high",
+      "context": "Same report.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "M4",
+      "claim": "Beyoncé cried on taking the stage and said, \"I'm just trying to receive this night.\"",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "She cried upon taking the stage, saying, “I’m just trying to receive this night.”",
+      "confidence": "high",
+      "context": "A quotation as reported by KQED.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "M5",
+      "claim": "The previous Grammy record of 31 wins was set by the late Hungarian-born classical conductor Georg Solti.",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "The previous Grammy record of 31 wins was a feat set by the late Hungarian-born classical conductor Georg Solti.",
+      "confidence": "high",
+      "context": "Same KQED report.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    },
+    {
+      "claim_id": "M6",
+      "claim": "Half an hour into the show, Beyoncé tied the all-time record for most Grammys when she and co-writers won best R&B song for Cuff It.",
+      "source_id": "kqed2023",
+      "source_url": "https://kqed.org/arts/13924749/beyonce-sets-a-new-grammy-record-while-harry-styles-wins-album-of-the-year",
+      "published": "2023-02-06",
+      "excerpt": "tied the all-time record for most Grammys won when she and a team of co-writers won best R&B song for",
+      "confidence": "high",
+      "context": "Same KQED report; 'half an hour into the show' is the report's wording.",
+      "contradictory_evidence": [],
+      "editorial_status": "confirmed"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
