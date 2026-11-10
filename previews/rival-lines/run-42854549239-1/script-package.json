@@ -1,0 +1,172 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42854549239-1",
+  "topic": "Why is Lionel Messi called the greatest of all time?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Why is Lionel Messi called the greatest of all time?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or conclusion drawn from the beats above, not a new claim"
+    },
+    {
+      "text": "Start with the trophies: eight Ballons d'Or.",
+      "scene": 1,
+      "claim_ids": [
+        "W2"
+      ]
+    },
+    {
+      "text": "Then the goals: four hundred and seventy-four in La Liga, a record.",
+      "scene": 2,
+      "claim_ids": [
+        "W4"
+      ]
+    },
+    {
+      "text": "One season, seventy-three.",
+      "scene": 2,
+      "claim_ids": [
+        "T1"
+      ]
+    },
+    {
+      "text": "Two trebles, in 2009 and 2015.",
+      "scene": 3,
+      "claim_ids": [
+        "W3",
+        "W7"
+      ]
+    },
+    {
+      "text": "And in 2022, the World Cup.",
+      "scene": 4,
+      "claim_ids": [
+        "W5"
+      ]
+    },
+    {
+      "text": "In sampled matches, his key passes more than doubled.",
+      "scene": 5,
+      "claim_ids": [
+        "D2"
+      ]
+    },
+    {
+      "text": "That is the case for the greatest.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or conclusion drawn from the beats above, not a new claim"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-messi",
+      "url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "title": "Lionel Messi (Wikipedia, lead and career-statistics table, retrieved 10 Nov 2026)",
+      "licence": "facts only; no text reproduced beyond short excerpts"
+    },
+    {
+      "source_id": "statsbomb",
+      "url": "https://github.com/statsbomb/open-data",
+      "published": "2026-11-10",
+      "title": "StatsBomb Open Data, La Liga 2009/10 and 2018/19 event data",
+      "licence": "StatsBomb Open Data terms: credit StatsBomb and show their logo"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "W2",
+      "claim": "Messi has won eight Ballons d'Or.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "including eight Ballons d'Or, six European Golden Shoes",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W3",
+      "claim": "In 2008-09 Messi helped Barcelona achieve the first treble in Spanish football.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "During the 2008-09 season, he helped Barcelona achieve the first treble in Spanish football",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W4",
+      "claim": "With Barcelona Messi set the record for most goals in La Liga (474).",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "he set records for most goals for a single club (672) and most goals in La Liga (474)",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W5",
+      "claim": "Messi led Argentina to victory at the 2022 World Cup.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "He then led Argentina to victory at the 2021 Copa America, the 2022 World Cup",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W7",
+      "claim": "In 2014-15 Messi helped Barcelona achieve a historic second treble.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "helped Barcelona achieve a historic second treble",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "T1",
+      "claim": "In the 2011-12 season Messi scored 73 goals for Barcelona in all competitions, 50 of them in La Liga.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "Career statistics, Barcelona 2011-12: La Liga 37 apps, 50 goals; total 60 apps, 73 goals",
+      "confidence": "high",
+      "context": "Read from the Wikipedia career-statistics table; the run checks the table's totals against the lead's 672 Barcelona goals and 474 La Liga goals.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "D2",
+      "claim": "In the sample, Messi's key passes (passes that led to a shot) rose from 1.4 per 90 minutes in 2009/10 to 3.5 in 2018/19.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data",
+      "published": "2026-11-10",
+      "excerpt": "key passes per 90: 1.44 (2009/10), 3.51 (2018/19)",
+      "confidence": "medium",
+      "context": "Event-data-derived and LIMITED SAMPLE: the first 12 Barcelona league matches Messi started in each of 2009/10 and 2018/19 in StatsBomb Open Data, per 90 minutes played in those matches. Not a full-season or career statistic.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
