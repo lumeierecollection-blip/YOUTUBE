@@ -2,11 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42865178238-1",
   "agent": "agent-ai-tested",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T17:39:12.007Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T17:40:20.507Z",
   "branch": "preview/ai-tested-spellout-2",
   "commit": "a5d652bf6f881976c90031104141f445b44608e2",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238#artifacts",
-  "note": "not reviewed by the engine critic"
+  "error": "narration is 41.26s at natural speed (allowed 34 to 39.25s); change the script, never the speed"
 }

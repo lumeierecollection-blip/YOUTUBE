@@ -1,0 +1,5 @@
+Error: narration is 41.26s at natural speed (allowed 34 to 39.25s); change the script, never the speed
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:34:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Module.spelloutPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/spellout-preview.mjs:25:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
