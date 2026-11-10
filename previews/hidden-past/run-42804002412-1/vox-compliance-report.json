@@ -1,0 +1,243 @@
+{
+  "production_id": "run-42804002412-1",
+  "mp4": "output/previews/hidden-past/run-42804002412-1/preview.mp4",
+  "mp4_sha256": "ae63976cb7843cfa7a375f43c9afeacb519eb78bfd7abb6ec6a6fdc40f2ab78f",
+  "pass": true,
+  "accent": "#A64B14",
+  "recipe_source": "src/skills/remotion-render/effects/PhotoTreatment.jsx",
+  "counts": {
+    "photos": 2,
+    "annotations": 1,
+    "chapter_openers": 1
+  },
+  "scenes": [
+    {
+      "scene": 0,
+      "start_s": 0,
+      "end_s": 10.033333333333333,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s0-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the press-conference table",
+          "confirmed_as": "the officials' table at the front of the hall, per the Bundesarchiv caption (Schabowski at the press conference, 9 Nov 1989); checked by eye on the source",
+          "box": {
+            "x0": 0.5,
+            "x1": 0.88,
+            "y0": 0.14,
+            "y1": 0.4
+          },
+          "screen": {
+            "cx": 726,
+            "cy": 500,
+            "rx": 214,
+            "ry": 94
+          },
+          "draw_start_f": 10,
+          "draw_end_f": 28
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "stability": {
+          "pass": true,
+          "frames_compared": 50,
+          "blocks_used": 5,
+          "moved_frames": []
+        },
+        "vignette": {
+          "ratio": 0.83,
+          "coverage": 1,
+          "measurable": true
+        },
+        "grade": {
+          "treated": 0.146,
+          "source": 0.308
+        },
+        "halftone": {
+          "treated": {
+            "peak_over_median": 63385,
+            "at": {
+              "fx": 0,
+              "fy": -81,
+              "period_px": 3.16
+            },
+            "peak": 502695297544.40295,
+            "median": 7930874.38380417
+          },
+          "source": {
+            "peak_over_median": 1347,
+            "at": {
+              "fx": 0,
+              "fy": 50,
+              "period_px": 5.12
+            },
+            "peak": 864537785.5713365,
+            "median": 641845.7539395241
+          },
+          "treated_over_source_at_dot_frequency": 3260.2
+        },
+        "grain": {
+          "treated": 19.14,
+          "source": 7,
+          "measurable": true
+        },
+        "annotation": {
+          "accent_pixels_before": 0,
+          "mid_draw": 4354,
+          "after": 7954
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/scene-00.png"
+    },
+    {
+      "scene": 1,
+      "start_s": 10.033333333333333,
+      "end_s": 13.466666666666667,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s1-head"
+        },
+        {
+          "type": "document_treatment",
+          "recipe": "sharp greyscale ink + paper multiply, then PhotoTreatment at low halftone"
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "measured": {},
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/scene-01.png"
+    },
+    {
+      "scene": 2,
+      "start_s": 13.466666666666667,
+      "end_s": 21.066666666666666,
+      "treatments": [
+        {
+          "type": "chapter_opener",
+          "in_f": 404,
+          "out_f": 438,
+          "number": 1,
+          "title": "The Answer"
+        },
+        {
+          "type": "slide_in_typography",
+          "layer": "s2-head"
+        },
+        {
+          "type": "quotation_typography",
+          "text": "As far as I know, it takes effect immediately, without delay (English rendering as given on Wikipedia)"
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "chapter_motion": 4.01
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/scene-02.png",
+      "chapter_frame": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/chapter-1.png"
+    },
+    {
+      "scene": 3,
+      "start_s": 21.066666666666666,
+      "end_s": 25,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s3-head"
+        },
+        {
+          "type": "map",
+          "places": [
+            "Berlin"
+          ],
+          "source": "Natural Earth 1:50m; coordinates from Wikipedia"
+        }
+      ],
+      "exceptions": [],
+      "measured": {},
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/scene-03.png"
+    },
+    {
+      "scene": 4,
+      "start_s": 25,
+      "end_s": 28.8,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s4-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "stability": {
+          "pass": true,
+          "frames_compared": 19,
+          "blocks_used": 8,
+          "moved_frames": []
+        },
+        "vignette": {
+          "ratio": 0.802,
+          "coverage": 1,
+          "measurable": true
+        },
+        "grade": {
+          "treated": 0.105,
+          "source": 0.363
+        },
+        "halftone": {
+          "treated": {
+            "peak_over_median": 39770,
+            "at": {
+              "fx": 81,
+              "fy": 0,
+              "period_px": 3.16
+            },
+            "peak": 321236081995.9244,
+            "median": 8077386.15624773
+          },
+          "source": {
+            "peak_over_median": 2396,
+            "at": {
+              "fx": 54,
+              "fy": -1,
+              "period_px": 4.74
+            },
+            "peak": 3962249587.062414,
+            "median": 1653449.1239110313
+          },
+          "treated_over_source_at_dot_frequency": 1932.3
+        },
+        "grain": {
+          "treated": 11.97,
+          "source": 5.81,
+          "measurable": true
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42804002412-1/gate/scene-04.png"
+    }
+  ],
+  "failures": [],
+  "generated_at": "2026-11-10T11:17:54.957Z"
+}

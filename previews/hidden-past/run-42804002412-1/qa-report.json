@@ -1,0 +1,162 @@
+{
+  "channel": "hidden-past",
+  "run": "run-42804002412-1",
+  "script": {
+    "status": "written_directly",
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  },
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 28.8,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -19.6,
+    "max_volume_db": -2.6,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Rasalgethi",
+      "seconds": 28.344,
+      "words": 62,
+      "wpm": 131.2,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "alignment_findings": [
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "On-screen name \"CHAPTER I\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "On-screen name \"The Answer\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s3"
+      ],
+      "problem": "On-screen name \"Berlin\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    }
+  ],
+  "duration_s": 28.8,
+  "max_s": 30,
+  "size": "1080x1920",
+  "fps": 30,
+  "vox_gate": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 2,
+      "annotations": 1,
+      "chapter_openers": 1
+    },
+    "report_file": "vox-compliance-report.json",
+    "mp4_sha256": "ae63976cb7843cfa7a375f43c9afeacb519eb78bfd7abb6ec6a6fdc40f2ab78f"
+  },
+  "photo_stability": [
+    {
+      "scene": 0,
+      "asset": "photograph",
+      "pass": true,
+      "frames_compared": 50,
+      "blocks_used": 5,
+      "moved_frames": []
+    },
+    {
+      "scene": 4,
+      "asset": "photograph",
+      "pass": true,
+      "frames_compared": 19,
+      "blocks_used": 8,
+      "moved_frames": []
+    }
+  ],
+  "still_layers_with_non_opacity_keyframes": [],
+  "stability_scope": "voxGate measures the two archival photographs in the final MP4. The newspaper and the historical map are documents, not photographs: the gate does not measure them, and their layers are asserted static above (no keyframe other than opacity).",
+  "licences": [
+    {
+      "file": "File:Bundesarchiv Bild 183-1989-1109-030, Berlin, Schabowski auf Pressekonferenz.jpg",
+      "licence": "CC BY-SA 3.0 de",
+      "creator": "Thomas Lehmann",
+      "url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1989-1109-030,_Berlin,_Schabowski_auf_Pressekonferenz.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Bundesarchiv_Bild_183-1989-1109-030%2C_Berlin%2C_Schabowski_auf_Pressekonferenz.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "file": "File:Schabowski-notizzettel.jpg",
+      "licence": "CC BY-SA 3.0",
+      "creator": "Günter Schabowski",
+      "url": "https://commons.wikimedia.org/wiki/File:Schabowski-notizzettel.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Schabowski-notizzettel.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "file": "File:BrandenburgerTorDezember1989.jpg",
+      "licence": "Public domain",
+      "creator": "SSGT F. Lee Corkran",
+      "url": "https://commons.wikimedia.org/wiki/File:BrandenburgerTorDezember1989.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/BrandenburgerTorDezember1989.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "B1",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "B2",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "B3",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "B4",
+      "editorial_status": "later_interpretation",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "B5",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "B6",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    }
+  ],
+  "frames": [
+    "scene-00.jpg",
+    "scene-01.jpg",
+    "scene-02.jpg",
+    "scene-chapter-1.jpg",
+    "scene-03.jpg",
+    "scene-04.jpg"
+  ]
+}
