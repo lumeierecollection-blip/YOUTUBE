@@ -1,0 +1,409 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (53/60 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Why",
+   "start": 0.0,
+   "end": 0.88,
+   "sentence": 0
+  },
+  {
+   "text": "is",
+   "start": 0.88,
+   "end": 1.42,
+   "sentence": 0
+  },
+  {
+   "text": "Lionel",
+   "start": 1.42,
+   "end": 1.7,
+   "sentence": 0
+  },
+  {
+   "text": "Messi",
+   "start": 1.7,
+   "end": 2.38,
+   "sentence": 0
+  },
+  {
+   "text": "called",
+   "start": 2.38,
+   "end": 3.2,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 3.2,
+   "end": 3.4,
+   "sentence": 0
+  },
+  {
+   "text": "greatest",
+   "start": 3.4,
+   "end": 3.88,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 3.88,
+   "end": 4.3,
+   "sentence": 0
+  },
+  {
+   "text": "all",
+   "start": 4.3,
+   "end": 4.48,
+   "sentence": 0
+  },
+  {
+   "text": "time",
+   "start": 4.48,
+   "end": 4.94,
+   "sentence": 0
+  },
+  {
+   "text": "Start",
+   "start": 5.68,
+   "end": 5.96,
+   "sentence": 1
+  },
+  {
+   "text": "with",
+   "start": 5.96,
+   "end": 6.2,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 6.2,
+   "end": 6.34,
+   "sentence": 1
+  },
+  {
+   "text": "trophies",
+   "start": 6.34,
+   "end": 6.58,
+   "sentence": 1
+  },
+  {
+   "text": "eight",
+   "start": 7.42,
+   "end": 7.78,
+   "sentence": 1
+  },
+  {
+   "text": "Ballons",
+   "start": 7.78,
+   "end": 8.347,
+   "sentence": 1
+  },
+  {
+   "text": "d'Or",
+   "start": 8.347,
+   "end": 8.913,
+   "sentence": 1
+  },
+  {
+   "text": "Then",
+   "start": 9.48,
+   "end": 9.6,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 9.6,
+   "end": 9.78,
+   "sentence": 2
+  },
+  {
+   "text": "goals",
+   "start": 9.78,
+   "end": 10.02,
+   "sentence": 2
+  },
+  {
+   "text": "four",
+   "start": 10.02,
+   "end": 10.484,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 10.484,
+   "end": 10.948,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 10.948,
+   "end": 11.412,
+   "sentence": 2
+  },
+  {
+   "text": "seventy-four",
+   "start": 11.412,
+   "end": 11.876,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 12.34,
+   "end": 13.08,
+   "sentence": 2
+  },
+  {
+   "text": "La",
+   "start": 13.08,
+   "end": 13.22,
+   "sentence": 2
+  },
+  {
+   "text": "Liga",
+   "start": 13.22,
+   "end": 13.48,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 14.1,
+   "end": 14.28,
+   "sentence": 2
+  },
+  {
+   "text": "record",
+   "start": 14.28,
+   "end": 14.58,
+   "sentence": 2
+  },
+  {
+   "text": "One",
+   "start": 15.7,
+   "end": 15.75,
+   "sentence": 3
+  },
+  {
+   "text": "season",
+   "start": 15.7,
+   "end": 16.06,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-three",
+   "start": 16.06,
+   "end": 17.29,
+   "sentence": 3
+  },
+  {
+   "text": "Two",
+   "start": 18.52,
+   "end": 18.6,
+   "sentence": 4
+  },
+  {
+   "text": "trebles",
+   "start": 18.6,
+   "end": 19.12,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 19.84,
+   "end": 19.89,
+   "sentence": 4
+  },
+  {
+   "text": "2009",
+   "start": 19.86,
+   "end": 20.24,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 20.24,
+   "end": 21.34,
+   "sentence": 4
+  },
+  {
+   "text": "2015",
+   "start": 21.34,
+   "end": 21.98,
+   "sentence": 4
+  },
+  {
+   "text": "And",
+   "start": 22.9,
+   "end": 23.12,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 23.12,
+   "end": 23.26,
+   "sentence": 5
+  },
+  {
+   "text": "2022",
+   "start": 23.26,
+   "end": 24.08,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 24.98,
+   "end": 25.18,
+   "sentence": 5
+  },
+  {
+   "text": "World",
+   "start": 25.18,
+   "end": 25.54,
+   "sentence": 5
+  },
+  {
+   "text": "Cup",
+   "start": 25.54,
+   "end": 26.12,
+   "sentence": 5
+  },
+  {
+   "text": "In",
+   "start": 26.12,
+   "end": 27.34,
+   "sentence": 6
+  },
+  {
+   "text": "sampled",
+   "start": 27.34,
+   "end": 27.82,
+   "sentence": 6
+  },
+  {
+   "text": "matches",
+   "start": 27.82,
+   "end": 28.22,
+   "sentence": 6
+  },
+  {
+   "text": "his",
+   "start": 29.0,
+   "end": 29.12,
+   "sentence": 6
+  },
+  {
+   "text": "key",
+   "start": 29.12,
+   "end": 29.42,
+   "sentence": 6
+  },
+  {
+   "text": "passes",
+   "start": 29.42,
+   "end": 29.82,
+   "sentence": 6
+  },
+  {
+   "text": "more",
+   "start": 29.82,
+   "end": 30.22,
+   "sentence": 6
+  },
+  {
+   "text": "than",
+   "start": 30.22,
+   "end": 30.4,
+   "sentence": 6
+  },
+  {
+   "text": "doubled",
+   "start": 30.4,
+   "end": 30.9,
+   "sentence": 6
+  },
+  {
+   "text": "That",
+   "start": 31.78,
+   "end": 31.94,
+   "sentence": 7
+  },
+  {
+   "text": "is",
+   "start": 31.94,
+   "end": 32.74,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 32.74,
+   "end": 32.9,
+   "sentence": 7
+  },
+  {
+   "text": "case",
+   "start": 32.9,
+   "end": 33.24,
+   "sentence": 7
+  },
+  {
+   "text": "for",
+   "start": 33.24,
+   "end": 34.06,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 34.06,
+   "end": 34.2,
+   "sentence": 7
+  },
+  {
+   "text": "greatest",
+   "start": 34.2,
+   "end": 34.66,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Why is Lionel Messi called the greatest of all time?",
+   "start": 0.0,
+   "end": 4.94
+  },
+  {
+   "text": "Start with the trophies: eight Ballons d'Or.",
+   "start": 5.68,
+   "end": 8.913
+  },
+  {
+   "text": "Then the goals: four hundred and seventy-four in La Liga, a record.",
+   "start": 9.48,
+   "end": 14.58
+  },
+  {
+   "text": "One season, seventy-three.",
+   "start": 15.7,
+   "end": 17.29
+  },
+  {
+   "text": "Two trebles, in 2009 and 2015.",
+   "start": 18.52,
+   "end": 21.98
+  },
+  {
+   "text": "And in 2022, the World Cup.",
+   "start": 22.9,
+   "end": 26.12
+  },
+  {
+   "text": "In sampled matches, his key passes more than doubled.",
+   "start": 26.12,
+   "end": 30.9
+  },
+  {
+   "text": "That is the case for the greatest.",
+   "start": 31.78,
+   "end": 34.66
+  }
+ ]
+}
