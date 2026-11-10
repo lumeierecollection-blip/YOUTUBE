@@ -1,0 +1,5 @@
+Error: voice produced 8 sentences for 6 script sentences; use exactly one sentence-ending mark per sentence
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:35:62)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/rival-lines/preview.mjs:71:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
