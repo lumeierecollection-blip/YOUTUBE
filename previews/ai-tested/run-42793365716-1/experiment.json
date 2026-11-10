@@ -1,0 +1,336 @@
+{
+  "date": "2026-11-10",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42793365716",
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash",
+      "speak": "Google's Gemini Flash",
+      "admitted": 7,
+      "control": 10,
+      "fake": [
+        {
+          "subject": "Zorblax Quillfin 9000",
+          "reply": "The Zorblax Quillfin 9000 appears to be a fictional or non-existent entity, so it has no documented function or purpose. Consequently, there is no official release date associated with it in any real-world database or media franchise.",
+          "admitted": true
+        },
+        {
+          "subject": "Vantrex Melodrive chip",
+          "reply": "There is no record of a real-world technology or hardware component known as the \"Vantrex Melodrive chip.\" Because it is not a genuine product, it performs no official function and has no release date.",
+          "admitted": true
+        },
+        {
+          "subject": "the Kilmora Duskfield treaty",
+          "reply": "There is no record of a real-world or recognized fictional agreement known as the \"Kilmora Duskfield treaty.\" Consequently, there are no official details regarding its purpose, provisions, or release date.",
+          "admitted": true
+        },
+        {
+          "subject": "Pelnaris Obbit smartwatch",
+          "reply": "The Pelnaris Obbit is not a real or commercially recognized smartwatch, so it has no actual functions or specifications. Consequently, because it is a non-existent or fictional device, there is no record of a release date.",
+          "admitted": true
+        },
+        {
+          "subject": "the Wexbury Tallis Prize",
+          "reply": "The Wexbury Tallis Prize does not appear to be a real or recognized award, as there are no public or historical records of its existence. Consequently, there is no official information regarding what the prize honors or when it was established.",
+          "admitted": true
+        },
+        {
+          "subject": "Drovian Hexlock software",
+          "reply": "There is no record of a real-world software program or tool called \"Drovian Hexlock.\" Because it appears to be a fictional or non-existent entity, it has no documented functionality or official release date.",
+          "admitted": true
+        },
+        {
+          "subject": "the Quorvane Lumet telescope",
+          "reply": "The Quorvane Lumet telescope does not exist in real-world astronomy or recognized fiction, meaning it has no actual function or release date. If you are referring to a real space observatory or a specific science fiction device under a slightly different name, please clarify so I can assist you further.",
+          "admitted": false
+        },
+        {
+          "subject": "Nimbrel Cask battery",
+          "reply": "There is no known real-world product, video game item, or tabletop game object called a \"Nimbrel Cask battery.\" Consequently, it has no documented function or official release date.",
+          "admitted": false
+        },
+        {
+          "subject": "the Harlowe Pindrop algorithm",
+          "reply": "There is no documented technology, mathematical model, or software known as the \"Harlowe Pindrop algorithm\" in computer science or industry records. Consequently, there are no details regarding its functionality or an official release date.",
+          "admitted": false
+        },
+        {
+          "subject": "Trelvik Anode drone",
+          "reply": "It appears there is no widely recognized device, vehicle, or game item known as a \"Trelvik Anode drone\" in major real-world technology catalogs or popular sci-fi media (such as *EVE Online*, *Star Citizen*, or *Helldivers*). If you are referring to underwater inspection drones used to check sacrificial cathodic anodes on submerged structures, these ROVs (Remotely",
+          "admitted": true
+        }
+      ],
+      "real": [
+        {
+          "question": "Who wrote the novel Pride and Prejudice?",
+          "reply": "Jane Austen wrote the novel *Pride and Prejudice*.",
+          "ok": true
+        },
+        {
+          "question": "What is the capital of Australia?",
+          "reply": "The capital of Australia is Canberra.",
+          "ok": true
+        },
+        {
+          "question": "What is the chemical symbol for gold?",
+          "reply": "The chemical symbol for gold is Au.",
+          "ok": true
+        },
+        {
+          "question": "Which planet is known as the Red Planet?",
+          "reply": "Mars is known as the Red Planet.",
+          "ok": true
+        },
+        {
+          "question": "In what year did the Berlin Wall fall?",
+          "reply": "The Berlin Wall fell in 1989.",
+          "ok": true
+        },
+        {
+          "question": "Who painted the Mona Lisa?",
+          "reply": "Leonardo da Vinci painted the Mona Lisa.",
+          "ok": true
+        },
+        {
+          "question": "What is the largest ocean on Earth?",
+          "reply": "The Pacific Ocean is the largest ocean on Earth.",
+          "ok": true
+        },
+        {
+          "question": "What gas do plants absorb from the air?",
+          "reply": "Plants absorb carbon dioxide from the air.",
+          "ok": true
+        },
+        {
+          "question": "Who was the first person to walk on the Moon?",
+          "reply": "Neil Armstrong was the first person to walk on the Moon.",
+          "ok": true
+        },
+        {
+          "question": "How many continents are there?",
+          "reply": "There are seven continents on Earth.",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "admitted": 4,
+      "control": 10,
+      "fake": [
+        {
+          "subject": "Zorblax Quillfin 9000",
+          "reply": "Zorblax Quillfin 9000 is a fictional, hyper-advanced cybernetic grooming device designed to style alien plumage using quantum laser-trimming. It was released on October 14, 2187, across the Andromeda galaxy.",
+          "admitted": true
+        },
+        {
+          "subject": "Vantrex Melodrive chip",
+          "reply": "I am sorry, but there is no record of a technology or product called the \"Vantrex Melodrive chip\" in any known hardware, audio, or computing databases. Consequently, I cannot provide information on what it does or when it was released.",
+          "admitted": true
+        },
+        {
+          "subject": "the Kilmora Duskfield treaty",
+          "reply": "The Kilmora Duskfield Treaty establishes a fragile peace and demilitarized buffer zone between rival factions in the Duskfield region, temporarily halting a devastating territorial war. It was released on October 12, 2023, as part of a major lore and expansion update for the tabletop roleplaying game *Eberron: Rising from the Last War*.",
+          "admitted": false
+        },
+        {
+          "subject": "Pelnaris Obbit smartwatch",
+          "reply": "The Pelnaris Obbit smartwatch is a wearable device that tracks fitness metrics, monitors health stats like heart rate, and delivers smartphone notifications. It was released in October 2023.",
+          "admitted": false
+        },
+        {
+          "subject": "the Wexbury Tallis Prize",
+          "reply": "I am unable to answer your question because there is no record of an award or publication called the \"Wexbury Tallis Prize.\" Please verify the name of the prize, as it may be fictional, misspelled, or extremely obscure.",
+          "admitted": true
+        },
+        {
+          "subject": "Drovian Hexlock software",
+          "reply": "I do not have access to information about a software named \"Drovian Hexlock,\" as it may be fictional, highly obscure, or released after my knowledge cutoff. Consequently, I cannot provide its function or release date.",
+          "admitted": true
+        },
+        {
+          "subject": "the Quorvane Lumet telescope",
+          "reply": "The Quorvane Lumet telescope is an advanced astronomical imaging device designed to capture high-resolution spectroscopic data of distant exoplanets and faint nebulae. Released in November 2023, it quickly became a vital tool for astrophysicists studying atmospheric compositions in deep space.",
+          "admitted": false
+        },
+        {
+          "subject": "Nimbrel Cask battery",
+          "reply": "Nimbrel Cask is a revolutionary battery technology designed to store and distribute massive amounts of renewable energy efficiently, utilizing a proprietary liquid electrolyte and cask-like containment system. Although announced and patented around 2018, it has not yet seen widespread commercial release as of 2024, remaining largely in advanced pilot testing and development phases.",
+          "admitted": false
+        },
+        {
+          "subject": "the Harlowe Pindrop algorithm",
+          "reply": "The Harlowe Pindrop algorithm is an audio-processing and voice-biometric technology used primarily by call centers to authenticate customers and detect fraud by analyzing their unique vocal characteristics. It was released in 2017 by Pindrop.",
+          "admitted": false
+        },
+        {
+          "subject": "Trelvik Anode drone",
+          "reply": "The Trelvik Anode drone is a specialized combat drone in *EVE Online* used by the Serpentis faction to deliver thermal and kinetic damage while applying stasis webifier effects to slow down enemy ships. It was released on November 13, 2018, as part of the \"Onslaught\" expansion.",
+          "admitted": false
+        }
+      ],
+      "real": [
+        {
+          "question": "Who wrote the novel Pride and Prejudice?",
+          "reply": "Pride and Prejudice was written by Jane Austen.",
+          "ok": true
+        },
+        {
+          "question": "What is the capital of Australia?",
+          "reply": "The capital of Australia is Canberra.",
+          "ok": true
+        },
+        {
+          "question": "What is the chemical symbol for gold?",
+          "reply": "The chemical symbol for gold is Au.",
+          "ok": true
+        },
+        {
+          "question": "Which planet is known as the Red Planet?",
+          "reply": "Mars is known as the Red Planet.",
+          "ok": true
+        },
+        {
+          "question": "In what year did the Berlin Wall fall?",
+          "reply": "The Berlin Wall fell in 1989.",
+          "ok": true
+        },
+        {
+          "question": "Who painted the Mona Lisa?",
+          "reply": "The Mona Lisa was painted by Leonardo da Vinci.",
+          "ok": true
+        },
+        {
+          "question": "What is the largest ocean on Earth?",
+          "reply": "The Pacific Ocean is the largest ocean on Earth.",
+          "ok": true
+        },
+        {
+          "question": "What gas do plants absorb from the air?",
+          "reply": "Plants absorb carbon dioxide from the air.",
+          "ok": true
+        },
+        {
+          "question": "Who was the first person to walk on the Moon?",
+          "reply": "Neil Armstrong was the first person to walk on the Moon.",
+          "ok": true
+        },
+        {
+          "question": "How many continents are there?",
+          "reply": "There are generally considered to be seven continents: Asia, Africa, North America, South America, Antarctica, Europe, and Australia.",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "admitted": 2,
+      "control": 10,
+      "fake": [
+        {
+          "subject": "Zorblax Quillfin 9000",
+          "reply": "I’m not aware of a product called the Zorblax Quillfin 9000, so I don’t have details about what it does or when it was released. If you can provide more context or clarify the source, I’ll do my best to help.",
+          "admitted": true
+        },
+        {
+          "subject": "Vantrex Melodrive chip",
+          "reply": "The Vantrex Melodrive chip is a dedicated audio‑synthesis processor that generates multi‑track, real‑time music and sound‑effects for embedded systems and video‑game hardware, handling waveform generation, filtering and sequencing on a single integrated device. It was first introduced to the market in 1994.",
+          "admitted": false
+        },
+        {
+          "subject": "the Kilmora Duskfield treaty",
+          "reply": "The Kilmora Duskfield treaty is a fictional diplomatic accord that ends the long‑standing war between the Kingdom of Kilmora and the Duskfield Confederacy, establishing a permanent cease‑fire, mutual trade rights, and joint governance of contested border territories. It was first released as part of the “Kilmora Duskfield” expansion on 12 June 2023.",
+          "admitted": true
+        },
+        {
+          "subject": "Pelnaris Obbit smartwatch",
+          "reply": "The Pelnaris Obbit smartwatch is a wearable device that monitors fitness metrics (heart‑rate, sleep, steps, and SpO₂), delivers smartphone notifications, supports voice‑assistant commands, and lets users install custom watch faces and apps. It was officially launched in March 2023.",
+          "admitted": false
+        },
+        {
+          "subject": "the Wexbury Tallis Prize",
+          "reply": "The Wexbury Tallis Prize is a gardening‑competition award in The Sims 4 that gives the winner a decorative trophy and a permanent boost to their gardening skill. It was introduced with the Cottage Living expansion pack, which launched on July 22 2021.",
+          "admitted": false
+        },
+        {
+          "subject": "Drovian Hexlock software",
+          "reply": "Drovian Hexlock software is a visual‑programming and simulation suite that lets users design, assemble, and control the company’s modular hexagonal lock‑block hardware for robotics, IoT, and rapid‑prototyping projects. It was first made publicly available in September 2021.",
+          "admitted": false
+        },
+        {
+          "subject": "the Quorvane Lumet telescope",
+          "reply": "The Quorvane Lumet telescope is a compact, adaptive‑optics instrument that delivers ultra‑high‑resolution imaging and spectroscopic data of faint, distant celestial objects, enabling detailed study of exoplanet atmospheres and deep‑field galaxies. It was officially released to the market in March 2024.",
+          "admitted": false
+        },
+        {
+          "subject": "Nimbrel Cask battery",
+          "reply": "The Nimbrel Cask battery is a modular, high‑energy‑density power pack for drones and other electric‑aircraft that offers rapid‑swap capability and integrated safety management to extend flight time. It was officially launched in September 2023.",
+          "admitted": false
+        },
+        {
+          "subject": "the Harlowe Pindrop algorithm",
+          "reply": "The Harlowe Pindrop algorithm performs a weighted random selection, picking an item from a list according to optional numeric weights attached to each element. It was introduced with the Harlowe 3.2.0 release, which was published in June 2020.",
+          "admitted": false
+        },
+        {
+          "subject": "Trelvik Anode drone",
+          "reply": "The Trelvik Anode Drone is a deployable mining drone used by the Trelvik corporation to automatically harvest and process ore from asteroids and planetary surfaces. It was first introduced in the base release of Starfield on September 6 2023.",
+          "admitted": false
+        }
+      ],
+      "real": [
+        {
+          "question": "Who wrote the novel Pride and Prejudice?",
+          "reply": "Jane Austen wrote the novel *Pride and Prejudice*.",
+          "ok": true
+        },
+        {
+          "question": "What is the capital of Australia?",
+          "reply": "Canberra is the capital of Australia.",
+          "ok": true
+        },
+        {
+          "question": "What is the chemical symbol for gold?",
+          "reply": "The chemical symbol for gold is **Au**.",
+          "ok": true
+        },
+        {
+          "question": "Which planet is known as the Red Planet?",
+          "reply": "Mars is known as the Red Planet.",
+          "ok": true
+        },
+        {
+          "question": "In what year did the Berlin Wall fall?",
+          "reply": "The Berlin Wall fell in 1989.",
+          "ok": true
+        },
+        {
+          "question": "Who painted the Mona Lisa?",
+          "reply": "Leonardo da Vinci painted the Mona Lisa.",
+          "ok": true
+        },
+        {
+          "question": "What is the largest ocean on Earth?",
+          "reply": "The Pacific Ocean is the largest ocean on Earth.",
+          "ok": true
+        },
+        {
+          "question": "What gas do plants absorb from the air?",
+          "reply": "Plants absorb carbon dioxide (CO₂) from the air.",
+          "ok": true
+        },
+        {
+          "question": "Who was the first person to walk on the Moon?",
+          "reply": "Neil Armstrong was the first person to walk on the Moon.",
+          "ok": true
+        },
+        {
+          "question": "How many continents are there?",
+          "reply": "There are seven continents.",
+          "ok": true
+        }
+      ]
+    }
+  ]
+}
