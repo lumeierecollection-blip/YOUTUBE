@@ -16,16 +16,18 @@ export const claims = [
   claim("F5", "France scored in the 79th and 80th minutes.", "France goals at minutes 79, 80 and 117", "Event data."),
   claim("F6", "Over regulation and extra time Argentina created 2.76 expected goals and France 2.27.", "sum of statsbomb_xg over shots, periods 1-4: Argentina 2.76, France 2.27", "StatsBomb's expected-goals model, a modelled value for each shot and not a measured outcome."),
 ];
-const S = (text, scene, claim_ids) => ({ text, scene, claim_ids });
-export const sentences = [
-  S("Argentina against France, 2022: three-all, then penalties.", 0, ["F1"]),
-  S("Argentina in a four-three-three, France in a four-two-three-one.", 1, ["F2"]),
-  S("First forty minutes: Argentina completed about twice as many passes.", 2, ["F3"]),
-  S("By the seventy-eighth minute, Argentina had ten shots.", 3, ["F4"]),
-  S("France had two.", 3, ["F4"]),
-  S("Then France scored twice in two minutes.", 4, ["F5"]),
-  S("Argentina built the lead.", 5, ["F4"]),
-  S("France built the comeback.", 5, ["F5"]),
+const V = (text, claim_ids) => ({ text, claim_ids });
+/** Story slots in order; the script fitter picks the wording and optional lines that land at 35 to 40 seconds at the voice's own pace. */
+export const slots = [
+  { id: "hook", scene: 0, variants: [V("The 2022 World Cup final: Argentina against France, three-all, then Argentina won on penalties.", ["F1"]), V("Argentina against France, 2022: three-all, then penalties.", ["F1"])] },
+  { id: "formation", scene: 1, variants: [V("Argentina began in a four-three-three, France in a four-two-three-one.", ["F2"]), V("Argentina in a four-three-three, France in a four-two-three-one.", ["F2"])] },
+  { id: "passes", scene: 2, variants: [V("In the first forty minutes, Argentina completed two hundred and thirty passes. France, one hundred and sixteen.", ["F3"]), V("First forty minutes: Argentina completed about twice as many passes.", ["F3"])] },
+  { id: "shots0", scene: 3, variants: [V("By the seventy-eighth minute, Argentina had ten shots.", ["F4"])] },
+  { id: "shots1", scene: 3, variants: [V("France had two, the first in the sixty-seventh minute.", ["F4"]), V("France had two.", ["F4"])] },
+  { id: "goals", scene: 4, variants: [V("Then France scored in the seventy-ninth minute, and again in the eightieth.", ["F5"]), V("Then France scored twice in two minutes.", ["F5"])] },
+  { id: "xg", scene: 4, optional: true, variants: [V("Over the whole match, expected goals ended nearly level: two point eight to two point three.", ["F6"])] },
+  { id: "thesis0", scene: 5, variants: [V("Argentina built the lead.", ["F4"])] },
+  { id: "thesis1", scene: 5, variants: [V("France built the comeback.", ["F5"])] },
 ];
 export const scenes = [
   { kind: "intro", treatment: "broadcast-scoreboard-and-question", objective: "Introduce the match: the 3-3 scoreboard, the penalty result and the analytical question", background: "navy broadcast" },
