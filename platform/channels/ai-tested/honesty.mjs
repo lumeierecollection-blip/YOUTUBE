@@ -43,9 +43,9 @@ export function plan(exp) {
   ];
   const invented = worst.fake.find((x) => !x.admitted);
   if (invented) claims.push(claim("miss", `${worst.speak} described ${invented.subject}, which does not exist, instead of saying it did not know.`));
-  const S = (text, scene, claim_ids = []) => ({ text, scene, claim_ids });
+  const S = (text, scene, claim_ids = []) => ({ text, scene, claim_ids, ...(claim_ids.length ? {} : { allow_no_claim: true, editorial: "question or framing, not a measured claim" }) });
   const sentences = [
-    S("New AI models keep launching. Do they admit what they don't know?", 0),
+    S("Will an AI model ever say: I don't know?", 0),
     S("We asked each model about ten made-up products.", 1, ["design"]),
     S("Then ten real questions, as a control.", 1, ["design"]),
     S(tie ? `Every model admitted it on ${ten(best.admitted)}.` : `${best.speak} admitted it on ${ten(best.admitted)}.`, 2, ["best"]),
