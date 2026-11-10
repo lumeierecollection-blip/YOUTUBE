@@ -51,7 +51,6 @@ export default async function preview({ key, runId, tools }) {
   if (mode === "match") for (const [k, f] of Object.entries({ formArg: "formation_arg.png", formFra: "formation_fra.png", netArg: "network_arg.png", netFra: "network_fra.png", shotmap: "shotmap.png" })) images[k] = await dataUri(join(adir, f));
   else {
     await verifyWikipedia(story.claims, "Lionel_Messi");
-    images.heat2009 = await dataUri(join(adir, "heat_2009.png")); images.heat2018 = await dataUri(join(adir, "heat_2018.png"));
     for (const a of story.ASSETS) {
       const { file, entry } = await commonsAsset({ title: a.title, dir: join(tools.outDir, "assets"), id: a.id, claim: a.claim, role: "photograph" });
       let used = file;

@@ -41,14 +41,35 @@ def save(fig, path):
     fig.savefig(path, dpi=100, bbox_inches="tight", pad_inches=0, facecolor=fig.get_facecolor())
 
 
+SHIRT_PTS = [(0.30, 0.04), (0.425, 0.04), (0.5, 0.15), (0.575, 0.04), (0.70, 0.04), (0.96, 0.20), (0.83, 0.39), (0.73, 0.33), (0.73, 0.92), (0.27, 0.92), (0.27, 0.33), (0.17, 0.39), (0.04, 0.20)]
+KIT = {ARG: {"base": "#75AADB", "stripe": "#FFFFFF", "num": "#0B1B33"}, FRA: {"base": "#1D3F8F", "stripe": None, "num": "#FFFFFF"}}
+
+
+def draw_shirt(ax, x, y, team, number, w=9.2, h=9.8):
+    """A shirt-shaped marker in the team's real colours (Argentina sky and white stripes, France blue). No crest or sponsor."""
+    from matplotlib.patches import Polygon, Rectangle
+    pts = [(x + (px - 0.5) * w, y + (py - 0.5) * h) for px, py in SHIRT_PTS]
+    poly = Polygon(pts, closed=True, facecolor=KIT[team]["base"], edgecolor="white", linewidth=2.2, zorder=3)
+    ax.add_patch(poly)
+    if KIT[team]["stripe"]:
+        for i in range(1, 9, 2):
+            r = Rectangle((x - w / 2 + i * w / 9, y - h / 2), w / 9, h, facecolor=KIT[team]["stripe"], edgecolor="none", zorder=3.2)
+            ax.add_patch(r)
+            r.set_clip_path(poly)
+    else:
+        for sx in (-1, 1):  # red cuffs, for the tricolour
+            cuff = Polygon([(x + sx * 0.46 * w, y - 0.30 * h), (x + sx * 0.33 * w, y - 0.11 * h), (x + sx * 0.40 * w, y - 0.06 * h), (x + sx * 0.52 * w, y - 0.26 * h)], closed=True, facecolor="#D7263D", edgecolor="none", zorder=3.3)
+            ax.add_patch(cuff)
+    ax.text(x, y + 0.1 * h, number, ha="center", va="center", fontsize=15, fontweight="bold", color=KIT[team]["num"], zorder=4)
+
+
 def formation(events, team, out):
     xi = sbdata.starting_xi(events, team)
     p, fig, ax = pitch_fig()
     for pl in xi["players"]:
         x, y = pl["xy"]
-        p.scatter(x, y, s=1500, color=COL[team], edgecolors="white", linewidth=2.5, zorder=3, ax=ax)
-        ax.text(x, y, str(pl["number"] or ""), ha="center", va="center", fontsize=17, fontweight="bold", color=TEXT[team], zorder=4)
-        ax.text(x, y + 8.2, last(pl["name"]), ha="center", va="center", fontsize=13, fontweight="bold", color="white", zorder=4, path_effects=SHADOW)
+        draw_shirt(ax, x, y, team, str(pl["number"] or ""))
+        ax.text(x, y + 8.6, last(pl["name"]), ha="center", va="center", fontsize=13, fontweight="bold", color="white", zorder=5, path_effects=SHADOW)
     save(fig, out)
     return xi
 

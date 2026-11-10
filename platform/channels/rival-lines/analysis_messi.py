@@ -2,7 +2,7 @@
 Lionel Messi at Barcelona, StatsBomb Open Data La Liga event data: a LIMITED SAMPLE, labelled as one everywhere it is shown.
 For each of two seasons the sample is the first 12 league matches (by date) that Messi started. Numbers are per 90 minutes played in
 those matches. Usage: analysis_messi.py OUT_DIR [CACHE_DIR]
-Writes: messi-data.json, heat_2009.png, heat_2018.png
+Writes: messi-data.json (barcelona_la_liga = verified season table; seasons = limited event-data sample)
 Pass-origin heatmaps show where passes were recorded as starting. They are not tracking data and say nothing about off-ball movement.
 """
 import json
@@ -16,6 +16,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from mplsoccer import Pitch
 
 import sbdata
+import wikistats
 
 SEASONS = [(21, "2009/10", "heat_2009.png"), (4, "2018/19", "heat_2018.png")]
 N = 12
@@ -70,7 +71,9 @@ def main(out_dir, cache):
     for sid, name, png in SEASONS:
         agg, xy = season_sample(sid, cache)
         data["seasons"][name] = agg
-        heat(xy, f"{out_dir}/{png}")
+    data["barcelona_la_liga"] = wikistats.barcelona_la_liga_seasons()  # verified career statistics (Wikipedia table), checked against 672 and 474
+    best = max(data["barcelona_la_liga"], key=lambda x: x["goals"])
+    assert (best["season"], best["goals"], best["league_goals"]) == ("2011-12", 73, 50), best
     a, b = data["seasons"]["2009/10"], data["seasons"]["2018/19"]
     # Guards: the narration quotes these, so the run stops if the data ever differs.
     assert (a["matches"], b["matches"]) == (12, 12), (a, b)
