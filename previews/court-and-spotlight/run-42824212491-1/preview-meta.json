@@ -2,9 +2,9 @@
   "channel": "court-and-spotlight",
   "production_run": "run-42824212491-1",
   "agent": "agent-court-and-spotlight",
-  "stage": "blueprint_complete",
+  "stage": "script_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T13:27:00.276Z",
+  "timestamp": "2026-11-10T13:27:01.792Z",
   "branch": "preview/court-and-spotlight-collage-grammy",
   "commit": "be17fccf90331e06458fb0ba99d0218a4aecc894",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42824212491#artifacts"
