@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-42912726677-1",
   "agent": "agent-hidden-past",
-  "stage": "awaiting_approval",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-10T22:21:49.802Z",
+  "timestamp": "2026-11-10T22:21:51.742Z",
   "branch": "preview/hidden-past-vox-hippos",
   "commit": "2cd157391071bbbf5e0cfa02f1ad96be590dbd8e",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42912726677#artifacts"
