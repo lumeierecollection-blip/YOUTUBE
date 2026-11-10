@@ -1,0 +1,438 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "intro",
+      "treatment": "broadcast-scoreboard-and-question",
+      "objective": "Introduce the match: the 3-3 scoreboard, the penalty result and the analytical question",
+      "background": "navy broadcast",
+      "from": 0,
+      "to": 201,
+      "start_s": 0,
+      "end_s": 6.7
+    },
+    {
+      "id": "s2",
+      "kind": "formation",
+      "treatment": "formation-pitches-stacked",
+      "objective": "Show both starting formations on real pitches with the recorded starting XI",
+      "background": "pitch",
+      "from": 201,
+      "to": 326,
+      "start_s": 6.7,
+      "end_s": 10.866666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "network",
+      "treatment": "passing-networks-first-40",
+      "objective": "Show each team's completed-pass network for the first 40 minutes with the completed-pass counts",
+      "background": "pitch",
+      "from": 326,
+      "to": 452,
+      "start_s": 10.866666666666667,
+      "end_s": 15.066666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "shots",
+      "treatment": "shot-map-with-counters",
+      "objective": "Show every shot before the 79th minute on one pitch, sized by expected goals, with the shot counts",
+      "background": "pitch",
+      "from": 452,
+      "to": 588,
+      "start_s": 15.066666666666666,
+      "end_s": 19.6
+    },
+    {
+      "id": "s5",
+      "kind": "xg",
+      "treatment": "cumulative-xg-line-chart",
+      "objective": "Draw each team's cumulative expected goals through the match with the goals marked",
+      "background": "navy chart",
+      "from": 588,
+      "to": 745,
+      "start_s": 19.6,
+      "end_s": 24.833333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "close",
+      "treatment": "stat-bars-and-thesis",
+      "objective": "Close on comparison bars and the thesis drawn from the data",
+      "background": "navy broadcast",
+      "from": 745,
+      "to": 854,
+      "start_s": 24.833333333333332,
+      "end_s": 28.466666666666665
+    }
+  ],
+  "captions": [
+    {
+      "text": "Argentina against France 2022 three-all",
+      "from": 0,
+      "to": 102,
+      "words": [
+        {
+          "text": "Argentina",
+          "from": 0
+        },
+        {
+          "text": "against",
+          "from": 18
+        },
+        {
+          "text": "France",
+          "from": 37
+        },
+        {
+          "text": "2022",
+          "from": 50
+        },
+        {
+          "text": "three-all",
+          "from": 74
+        }
+      ]
+    },
+    {
+      "text": "then Argentina won on penalties",
+      "from": 124,
+      "to": 170,
+      "words": [
+        {
+          "text": "then",
+          "from": 124
+        },
+        {
+          "text": "Argentina",
+          "from": 125
+        },
+        {
+          "text": "won",
+          "from": 138
+        },
+        {
+          "text": "on",
+          "from": 154
+        },
+        {
+          "text": "penalties",
+          "from": 158
+        }
+      ]
+    },
+    {
+      "text": "Argentina began in a four-three-three",
+      "from": 201,
+      "to": 244,
+      "words": [
+        {
+          "text": "Argentina",
+          "from": 201
+        },
+        {
+          "text": "began",
+          "from": 201
+        },
+        {
+          "text": "in",
+          "from": 215
+        },
+        {
+          "text": "a",
+          "from": 222
+        },
+        {
+          "text": "four-three-three",
+          "from": 224
+        }
+      ]
+    },
+    {
+      "text": "France in a four-two-three-one",
+      "from": 257,
+      "to": 305,
+      "words": [
+        {
+          "text": "France",
+          "from": 257
+        },
+        {
+          "text": "in",
+          "from": 265
+        },
+        {
+          "text": "a",
+          "from": 275
+        },
+        {
+          "text": "four-two-three-one",
+          "from": 278
+        }
+      ]
+    },
+    {
+      "text": "In the first forty minutes",
+      "from": 326,
+      "to": 359,
+      "words": [
+        {
+          "text": "In",
+          "from": 326
+        },
+        {
+          "text": "the",
+          "from": 329
+        },
+        {
+          "text": "first",
+          "from": 331
+        },
+        {
+          "text": "forty",
+          "from": 338
+        },
+        {
+          "text": "minutes",
+          "from": 347
+        }
+      ]
+    },
+    {
+      "text": "Argentina completed about twice as",
+      "from": 364,
+      "to": 416,
+      "words": [
+        {
+          "text": "Argentina",
+          "from": 364
+        },
+        {
+          "text": "completed",
+          "from": 371
+        },
+        {
+          "text": "about",
+          "from": 389
+        },
+        {
+          "text": "twice",
+          "from": 398
+        },
+        {
+          "text": "as",
+          "from": 407
+        }
+      ]
+    },
+    {
+      "text": "many passes",
+      "from": 416,
+      "to": 433,
+      "words": [
+        {
+          "text": "many",
+          "from": 416
+        },
+        {
+          "text": "passes",
+          "from": 421
+        }
+      ]
+    },
+    {
+      "text": "By the seventy-eighth minute Argentina",
+      "from": 452,
+      "to": 494,
+      "words": [
+        {
+          "text": "By",
+          "from": 452
+        },
+        {
+          "text": "the",
+          "from": 452
+        },
+        {
+          "text": "seventy-eighth",
+          "from": 455
+        },
+        {
+          "text": "minute",
+          "from": 474
+        },
+        {
+          "text": "Argentina",
+          "from": 484
+        }
+      ]
+    },
+    {
+      "text": "had ten shots",
+      "from": 494,
+      "to": 528,
+      "words": [
+        {
+          "text": "had",
+          "from": 494
+        },
+        {
+          "text": "ten",
+          "from": 506
+        },
+        {
+          "text": "shots",
+          "from": 516
+        }
+      ]
+    },
+    {
+      "text": "France had two",
+      "from": 540,
+      "to": 570,
+      "words": [
+        {
+          "text": "France",
+          "from": 540
+        },
+        {
+          "text": "had",
+          "from": 548
+        },
+        {
+          "text": "two",
+          "from": 559
+        }
+      ]
+    },
+    {
+      "text": "Then France scored twice in",
+      "from": 588,
+      "to": 629,
+      "words": [
+        {
+          "text": "Then",
+          "from": 588
+        },
+        {
+          "text": "France",
+          "from": 590
+        },
+        {
+          "text": "scored",
+          "from": 599
+        },
+        {
+          "text": "twice",
+          "from": 610
+        },
+        {
+          "text": "in",
+          "from": 620
+        }
+      ]
+    },
+    {
+      "text": "two minutes",
+      "from": 629,
+      "to": 652,
+      "words": [
+        {
+          "text": "two",
+          "from": 629
+        },
+        {
+          "text": "minutes",
+          "from": 636
+        }
+      ]
+    },
+    {
+      "text": "and the chances ended nearly",
+      "from": 661,
+      "to": 700,
+      "words": [
+        {
+          "text": "and",
+          "from": 661
+        },
+        {
+          "text": "the",
+          "from": 664
+        },
+        {
+          "text": "chances",
+          "from": 667
+        },
+        {
+          "text": "ended",
+          "from": 674
+        },
+        {
+          "text": "nearly",
+          "from": 688
+        }
+      ]
+    },
+    {
+      "text": "level",
+      "from": 700,
+      "to": 716,
+      "words": [
+        {
+          "text": "level",
+          "from": 700
+        }
+      ]
+    },
+    {
+      "text": "Argentina built the lead",
+      "from": 745,
+      "to": 771,
+      "words": [
+        {
+          "text": "Argentina",
+          "from": 745
+        },
+        {
+          "text": "built",
+          "from": 745
+        },
+        {
+          "text": "the",
+          "from": 757
+        },
+        {
+          "text": "lead",
+          "from": 763
+        }
+      ]
+    },
+    {
+      "text": "France built the comeback",
+      "from": 783,
+      "to": 817,
+      "words": [
+        {
+          "text": "France",
+          "from": 783
+        },
+        {
+          "text": "built",
+          "from": 788
+        },
+        {
+          "text": "the",
+          "from": 803
+        },
+        {
+          "text": "comeback",
+          "from": 808
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 854,
+  "duration_s": 28.466666666666665
+}
