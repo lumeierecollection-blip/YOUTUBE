@@ -1,0 +1,103 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42862112407-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Why is Messi called the greatest ever?",
+      "main_point": "Pose the question over a sticker portrait with a Barcelona shirt and an Argentina shirt behind",
+      "visual_objective": "Pose the question over a sticker portrait with a Barcelona shirt and an Argentina shirt behind",
+      "treatment": "question-hook-with-shirts-and-portrait",
+      "background": "white editorial page, club blue",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.066666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Eight Ballons d'Or.",
+      "main_point": "Count up to eight Ballons d'Or with eight gold balls and a photograph",
+      "visual_objective": "Count up to eight Ballons d'Or with eight gold balls and a photograph",
+      "treatment": "ballon-dor-count-up",
+      "background": "white editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "W2"
+      ],
+      "start_s": 3.066666666666667,
+      "end_s": 4.666666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Then the goals: four hundred and seventy-four in La Liga, a record. One season, seventy-three.",
+      "main_point": "Draw Barcelona goals per season, La Liga and other competitions, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "visual_objective": "Draw Barcelona goals per season, La Liga and other competitions, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "treatment": "goals-per-season-stacked-bars",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "W4",
+        "T1"
+      ],
+      "start_s": 4.666666666666667,
+      "end_s": 12.133333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Two trebles, in 2009 and 2015.",
+      "main_point": "Show the two trebles on cards with a photograph and the Barcelona shirt",
+      "visual_objective": "Show the two trebles on cards with a photograph and the Barcelona shirt",
+      "treatment": "two-trebles-timeline-with-shirt",
+      "background": "garnet block",
+      "skill": "remotion",
+      "claim_ids": [
+        "W3",
+        "W7"
+      ],
+      "start_s": 12.133333333333333,
+      "end_s": 15.633333333333333
+    },
+    {
+      "scene_id": "s5",
+      "narration": "And in 2022, the World Cup.",
+      "main_point": "Show 2022 as a large number with the sticker portrait, an Argentina shirt and a photograph",
+      "visual_objective": "Show 2022 as a large number with the sticker portrait, an Argentina shirt and a photograph",
+      "treatment": "world-cup-2022-collage",
+      "background": "sky-blue block",
+      "skill": "remotion",
+      "claim_ids": [
+        "W5"
+      ],
+      "start_s": 15.633333333333333,
+      "end_s": 19.233333333333334
+    },
+    {
+      "scene_id": "s6",
+      "narration": "In sampled matches, his key passes more than doubled.",
+      "main_point": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "visual_objective": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "treatment": "key-pass-per-90-bars",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "D2"
+      ],
+      "start_s": 19.233333333333334,
+      "end_s": 22.666666666666668
+    },
+    {
+      "scene_id": "s7",
+      "narration": "That's the case.",
+      "main_point": "Close on the portrait between both shirts with the case in five chips",
+      "visual_objective": "Close on the portrait between both shirts with the case in five chips",
+      "treatment": "portrait-led-recap-chips",
+      "background": "garnet block",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 22.666666666666668,
+      "end_s": 24.433333333333334
+    }
+  ]
+}

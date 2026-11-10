@@ -1,0 +1,386 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "question-hook-with-shirts-and-portrait",
+      "objective": "Pose the question over a sticker portrait with a Barcelona shirt and an Argentina shirt behind",
+      "background": "white editorial page, club blue",
+      "from": 0,
+      "to": 92,
+      "start_s": 0,
+      "end_s": 3.066666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "trophies",
+      "treatment": "ballon-dor-count-up",
+      "objective": "Count up to eight Ballons d'Or with eight gold balls and a photograph",
+      "background": "white editorial page",
+      "from": 92,
+      "to": 140,
+      "start_s": 3.066666666666667,
+      "end_s": 4.666666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "chart",
+      "treatment": "goals-per-season-stacked-bars",
+      "objective": "Draw Barcelona goals per season, La Liga and other competitions, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "background": "white card",
+      "from": 140,
+      "to": 364,
+      "start_s": 4.666666666666667,
+      "end_s": 12.133333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "trebles",
+      "treatment": "two-trebles-timeline-with-shirt",
+      "objective": "Show the two trebles on cards with a photograph and the Barcelona shirt",
+      "background": "garnet block",
+      "from": 364,
+      "to": 469,
+      "start_s": 12.133333333333333,
+      "end_s": 15.633333333333333
+    },
+    {
+      "id": "s5",
+      "kind": "worldcup",
+      "treatment": "world-cup-2022-collage",
+      "objective": "Show 2022 as a large number with the sticker portrait, an Argentina shirt and a photograph",
+      "background": "sky-blue block",
+      "from": 469,
+      "to": 577,
+      "start_s": 15.633333333333333,
+      "end_s": 19.233333333333334
+    },
+    {
+      "id": "s6",
+      "kind": "creator",
+      "treatment": "key-pass-per-90-bars",
+      "objective": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "background": "white card",
+      "from": 577,
+      "to": 680,
+      "start_s": 19.233333333333334,
+      "end_s": 22.666666666666668
+    },
+    {
+      "id": "s7",
+      "kind": "close",
+      "treatment": "portrait-led-recap-chips",
+      "objective": "Close on the portrait between both shirts with the case in five chips",
+      "background": "garnet block",
+      "from": 680,
+      "to": 733,
+      "start_s": 22.666666666666668,
+      "end_s": 24.433333333333334
+    }
+  ],
+  "captions": [
+    {
+      "text": "Why is Messi called the",
+      "from": 0,
+      "to": 47,
+      "words": [
+        {
+          "text": "Why",
+          "from": 0
+        },
+        {
+          "text": "is",
+          "from": 15
+        },
+        {
+          "text": "Messi",
+          "from": 23
+        },
+        {
+          "text": "called",
+          "from": 28
+        },
+        {
+          "text": "the",
+          "from": 42
+        }
+      ]
+    },
+    {
+      "text": "greatest ever",
+      "from": 47,
+      "to": 74,
+      "words": [
+        {
+          "text": "greatest",
+          "from": 47
+        },
+        {
+          "text": "ever",
+          "from": 58
+        }
+      ]
+    },
+    {
+      "text": "Eight Ballons d'Or",
+      "from": 92,
+      "to": 129,
+      "words": [
+        {
+          "text": "Eight",
+          "from": 92
+        },
+        {
+          "text": "Ballons",
+          "from": 96
+        },
+        {
+          "text": "d'Or",
+          "from": 111
+        }
+      ]
+    },
+    {
+      "text": "Then the goals four hundred",
+      "from": 140,
+      "to": 175,
+      "words": [
+        {
+          "text": "Then",
+          "from": 140
+        },
+        {
+          "text": "the",
+          "from": 146
+        },
+        {
+          "text": "goals",
+          "from": 151
+        },
+        {
+          "text": "four",
+          "from": 156
+        },
+        {
+          "text": "hundred",
+          "from": 165
+        }
+      ]
+    },
+    {
+      "text": "and seventy-four in La Liga",
+      "from": 175,
+      "to": 230,
+      "words": [
+        {
+          "text": "and",
+          "from": 175
+        },
+        {
+          "text": "seventy-four",
+          "from": 184
+        },
+        {
+          "text": "in",
+          "from": 203
+        },
+        {
+          "text": "La",
+          "from": 218
+        },
+        {
+          "text": "Liga",
+          "from": 221
+        }
+      ]
+    },
+    {
+      "text": "a record",
+      "from": 238,
+      "to": 255,
+      "words": [
+        {
+          "text": "a",
+          "from": 238
+        },
+        {
+          "text": "record",
+          "from": 242
+        }
+      ]
+    },
+    {
+      "text": "One season seventy-three",
+      "from": 281,
+      "to": 330,
+      "words": [
+        {
+          "text": "One",
+          "from": 281
+        },
+        {
+          "text": "season",
+          "from": 282
+        },
+        {
+          "text": "seventy-three",
+          "from": 290
+        }
+      ]
+    },
+    {
+      "text": "Two trebles in 2009 and",
+      "from": 364,
+      "to": 421,
+      "words": [
+        {
+          "text": "Two",
+          "from": 364
+        },
+        {
+          "text": "trebles",
+          "from": 367
+        },
+        {
+          "text": "in",
+          "from": 380
+        },
+        {
+          "text": "2009",
+          "from": 391
+        },
+        {
+          "text": "and",
+          "from": 400
+        }
+      ]
+    },
+    {
+      "text": "2015",
+      "from": 421,
+      "to": 446,
+      "words": [
+        {
+          "text": "2015",
+          "from": 421
+        }
+      ]
+    },
+    {
+      "text": "And in 2022 the World",
+      "from": 469,
+      "to": 535,
+      "words": [
+        {
+          "text": "And",
+          "from": 469
+        },
+        {
+          "text": "in",
+          "from": 470
+        },
+        {
+          "text": "2022",
+          "from": 474
+        },
+        {
+          "text": "the",
+          "from": 496
+        },
+        {
+          "text": "World",
+          "from": 526
+        }
+      ]
+    },
+    {
+      "text": "Cup",
+      "from": 535,
+      "to": 553,
+      "words": [
+        {
+          "text": "Cup",
+          "from": 535
+        }
+      ]
+    },
+    {
+      "text": "In sampled matches",
+      "from": 577,
+      "to": 599,
+      "words": [
+        {
+          "text": "In",
+          "from": 577
+        },
+        {
+          "text": "sampled",
+          "from": 578
+        },
+        {
+          "text": "matches",
+          "from": 586
+        }
+      ]
+    },
+    {
+      "text": "his key passes more than",
+      "from": 611,
+      "to": 643,
+      "words": [
+        {
+          "text": "his",
+          "from": 611
+        },
+        {
+          "text": "key",
+          "from": 612
+        },
+        {
+          "text": "passes",
+          "from": 619
+        },
+        {
+          "text": "more",
+          "from": 629
+        },
+        {
+          "text": "than",
+          "from": 638
+        }
+      ]
+    },
+    {
+      "text": "doubled",
+      "from": 643,
+      "to": 657,
+      "words": [
+        {
+          "text": "doubled",
+          "from": 643
+        }
+      ]
+    },
+    {
+      "text": "That's the case",
+      "from": 680,
+      "to": 701,
+      "words": [
+        {
+          "text": "That's",
+          "from": 680
+        },
+        {
+          "text": "the",
+          "from": 688
+        },
+        {
+          "text": "case",
+          "from": 691
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 733,
+  "duration_s": 24.433333333333334
+}
