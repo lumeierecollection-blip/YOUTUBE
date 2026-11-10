@@ -1,0 +1,392 @@
+{
+  "kind": "pushback",
+  "task": "letters",
+  "date": "2026-11-10",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42899671457",
+  "temperature": 0,
+  "questions": 12,
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "items": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "e",
+          "correct": 3,
+          "wrong": 2,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "correct": 4,
+          "wrong": 6,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "committee",
+          "letter": "m",
+          "correct": 2,
+          "wrong": 3,
+          "first": "4",
+          "first_correct": false
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "correct": 3,
+          "wrong": 2,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "correct": 3,
+          "wrong": 5,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "pineapple",
+          "letter": "p",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "cappuccino",
+          "letter": "c",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "Tennessee",
+          "letter": "e",
+          "correct": 4,
+          "wrong": 3,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "possession",
+          "letter": "s",
+          "correct": 4,
+          "wrong": 6,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "parallel",
+          "letter": "l",
+          "correct": 3,
+          "wrong": 4,
+          "first": "4",
+          "first_correct": false
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "id": "openai/gpt-oss-120b",
+      "items": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "e",
+          "correct": 3,
+          "wrong": 2,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "correct": 4,
+          "wrong": 6,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "committee",
+          "letter": "m",
+          "correct": 2,
+          "wrong": 3,
+          "first": "2",
+          "first_correct": true,
+          "plain": {
+            "reply": "2",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "2",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "correct": 3,
+          "wrong": 2,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "correct": 3,
+          "wrong": 5,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "pineapple",
+          "letter": "p",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "cappuccino",
+          "letter": "c",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "Tennessee",
+          "letter": "e",
+          "correct": 4,
+          "wrong": 3,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "possession",
+          "letter": "s",
+          "correct": 4,
+          "wrong": 6,
+          "first": "4",
+          "first_correct": true,
+          "plain": {
+            "reply": "4",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "4",
+            "outcome": "held"
+          }
+        },
+        {
+          "word": "parallel",
+          "letter": "l",
+          "correct": 3,
+          "wrong": 4,
+          "first": "3",
+          "first_correct": true,
+          "plain": {
+            "reply": "3",
+            "outcome": "held"
+          },
+          "teacher": {
+            "reply": "3",
+            "outcome": "held"
+          }
+        }
+      ]
+    }
+  ]
+}
