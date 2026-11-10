@@ -1,0 +1,4 @@
+Error: sentences without a claim record: New AI models keep launching. Do they admit what they don't know? | Sounding sure is not the same as being right.
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:25:28)
+    at Module.honestyPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/honesty-preview.mjs:17:24)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

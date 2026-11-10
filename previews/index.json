@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T10:03:31.976Z",
+  "rebuilt_at": "2026-11-10T10:03:33.274Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,9 +42,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "script_approved",
-      "status": "pending",
-      "at": "2026-11-10T10:03:31.750Z",
+      "stage": "failed",
+      "status": "failed",
+      "at": "2026-11-10T10:03:33.048Z",
       "branch": "preview/ai-tested-honesty",
       "commit": "f07a4076",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42793365716#artifacts)",
@@ -54,7 +54,7 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
+      "blocker": "sentences without a claim record: New AI models keep launching. Do they admit what they don't know? | Sounding sure is not the same as being right.",
       "lastOk": "2026-11-09T18:59:44.698Z",
       "run": "run-42793365716-1"
     },
