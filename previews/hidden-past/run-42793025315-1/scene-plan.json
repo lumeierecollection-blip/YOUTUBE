@@ -1,0 +1,66 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42793025315-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "The Berlin Wall opened after an announcement came too early. He spoke live on East German television, 9 November 1989.",
+      "main_point": "Show the real press-conference photograph, dated 9 November 1989, in a matted frame",
+      "visual_objective": "Show the real press-conference photograph, dated 9 November 1989, in a matted frame",
+      "treatment": "archival-photo-matted-with-date-stamp",
+      "background": "archival paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "B1",
+        "B2"
+      ],
+      "start_s": 0,
+      "end_s": 9.033333333333333
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Spokesman Günter Schabowski had just been handed a note.",
+      "main_point": "Show Schabowski's own note, the paper he was handed",
+      "visual_objective": "Show Schabowski's own note, the paper he was handed",
+      "treatment": "document-reveal",
+      "background": "archival paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "B3"
+      ],
+      "start_s": 9.033333333333333,
+      "end_s": 12.433333333333334
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Asked when it began, he said: immediately, without delay. West German news told viewers the borders were open.",
+      "main_point": "Show his answer as a quotation and the evening's first three timed events",
+      "visual_objective": "Show his answer as a quotation and the evening's first three timed events",
+      "treatment": "quote-with-evening-timeline",
+      "background": "archival paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "B4",
+        "B5"
+      ],
+      "start_s": 12.433333333333334,
+      "end_s": 19.966666666666665
+    },
+    {
+      "scene_id": "s4",
+      "narration": "That night, guards at Bornholmer Straße let people through. One unprepared answer opened the checkpoints.",
+      "main_point": "Complete the timeline to the checkpoint opening, with a labelled later photograph",
+      "visual_objective": "Complete the timeline to the checkpoint opening, with a labelled later photograph",
+      "treatment": "photo-with-full-timeline",
+      "background": "archival paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "B6",
+        "B3"
+      ],
+      "start_s": 19.966666666666665,
+      "end_s": 27.666666666666668
+    }
+  ]
+}

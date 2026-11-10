@@ -1,0 +1,426 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "press",
+      "treatment": "archival-photo-matted-with-date-stamp",
+      "objective": "Show the real press-conference photograph, dated 9 November 1989, in a matted frame",
+      "background": "archival paper",
+      "from": 0,
+      "to": 271,
+      "start_s": 0,
+      "end_s": 9.033333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "note",
+      "treatment": "document-reveal",
+      "objective": "Show Schabowski's own note, the paper he was handed",
+      "background": "archival paper",
+      "from": 271,
+      "to": 373,
+      "start_s": 9.033333333333333,
+      "end_s": 12.433333333333334
+    },
+    {
+      "id": "s3",
+      "kind": "quote",
+      "treatment": "quote-with-evening-timeline",
+      "objective": "Show his answer as a quotation and the evening's first three timed events",
+      "background": "archival paper",
+      "from": 373,
+      "to": 599,
+      "start_s": 12.433333333333334,
+      "end_s": 19.966666666666665
+    },
+    {
+      "id": "s4",
+      "kind": "gate",
+      "treatment": "photo-with-full-timeline",
+      "objective": "Complete the timeline to the checkpoint opening, with a labelled later photograph",
+      "background": "archival paper",
+      "from": 599,
+      "to": 830,
+      "start_s": 19.966666666666665,
+      "end_s": 27.666666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "The Berlin Wall opened after",
+      "from": 0,
+      "to": 64,
+      "words": [
+        {
+          "text": "The",
+          "from": 0
+        },
+        {
+          "text": "Berlin",
+          "from": 11
+        },
+        {
+          "text": "Wall",
+          "from": 19
+        },
+        {
+          "text": "opened",
+          "from": 32
+        },
+        {
+          "text": "after",
+          "from": 51
+        }
+      ]
+    },
+    {
+      "text": "an announcement came too early",
+      "from": 64,
+      "to": 118,
+      "words": [
+        {
+          "text": "an",
+          "from": 64
+        },
+        {
+          "text": "announcement",
+          "from": 69
+        },
+        {
+          "text": "came",
+          "from": 77
+        },
+        {
+          "text": "too",
+          "from": 95
+        },
+        {
+          "text": "early",
+          "from": 104
+        }
+      ]
+    },
+    {
+      "text": "He spoke live on East",
+      "from": 134,
+      "to": 165,
+      "words": [
+        {
+          "text": "He",
+          "from": 134
+        },
+        {
+          "text": "spoke",
+          "from": 134
+        },
+        {
+          "text": "live",
+          "from": 140
+        },
+        {
+          "text": "on",
+          "from": 150
+        },
+        {
+          "text": "East",
+          "from": 158
+        }
+      ]
+    },
+    {
+      "text": "German television",
+      "from": 165,
+      "to": 188,
+      "words": [
+        {
+          "text": "German",
+          "from": 165
+        },
+        {
+          "text": "television",
+          "from": 174
+        }
+      ]
+    },
+    {
+      "text": "9 November 1989",
+      "from": 203,
+      "to": 247,
+      "words": [
+        {
+          "text": "9",
+          "from": 203
+        },
+        {
+          "text": "November",
+          "from": 206
+        },
+        {
+          "text": "1989",
+          "from": 217
+        }
+      ]
+    },
+    {
+      "text": "Spokesman Günter Schabowski had just",
+      "from": 271,
+      "to": 331,
+      "words": [
+        {
+          "text": "Spokesman",
+          "from": 271
+        },
+        {
+          "text": "Günter",
+          "from": 280
+        },
+        {
+          "text": "Schabowski",
+          "from": 290
+        },
+        {
+          "text": "had",
+          "from": 310
+        },
+        {
+          "text": "just",
+          "from": 322
+        }
+      ]
+    },
+    {
+      "text": "been handed a note",
+      "from": 331,
+      "to": 359,
+      "words": [
+        {
+          "text": "been",
+          "from": 331
+        },
+        {
+          "text": "handed",
+          "from": 337
+        },
+        {
+          "text": "a",
+          "from": 344
+        },
+        {
+          "text": "note",
+          "from": 350
+        }
+      ]
+    },
+    {
+      "text": "Asked when it began",
+      "from": 373,
+      "to": 400,
+      "words": [
+        {
+          "text": "Asked",
+          "from": 373
+        },
+        {
+          "text": "when",
+          "from": 379
+        },
+        {
+          "text": "it",
+          "from": 388
+        },
+        {
+          "text": "began",
+          "from": 390
+        }
+      ]
+    },
+    {
+      "text": "he said",
+      "from": 411,
+      "to": 422,
+      "words": [
+        {
+          "text": "he",
+          "from": 411
+        },
+        {
+          "text": "said",
+          "from": 413
+        }
+      ]
+    },
+    {
+      "text": "immediately",
+      "from": 430,
+      "to": 443,
+      "words": [
+        {
+          "text": "immediately",
+          "from": 430
+        }
+      ]
+    },
+    {
+      "text": "without delay",
+      "from": 459,
+      "to": 481,
+      "words": [
+        {
+          "text": "without",
+          "from": 459
+        },
+        {
+          "text": "delay",
+          "from": 463
+        }
+      ]
+    },
+    {
+      "text": "West German news told viewers",
+      "from": 502,
+      "to": 544,
+      "words": [
+        {
+          "text": "West",
+          "from": 502
+        },
+        {
+          "text": "German",
+          "from": 504
+        },
+        {
+          "text": "news",
+          "from": 514
+        },
+        {
+          "text": "told",
+          "from": 523
+        },
+        {
+          "text": "viewers",
+          "from": 533
+        }
+      ]
+    },
+    {
+      "text": "the borders were open",
+      "from": 544,
+      "to": 581,
+      "words": [
+        {
+          "text": "the",
+          "from": 544
+        },
+        {
+          "text": "borders",
+          "from": 551
+        },
+        {
+          "text": "were",
+          "from": 560
+        },
+        {
+          "text": "open",
+          "from": 569
+        }
+      ]
+    },
+    {
+      "text": "That night",
+      "from": 599,
+      "to": 611,
+      "words": [
+        {
+          "text": "That",
+          "from": 599
+        },
+        {
+          "text": "night",
+          "from": 600
+        }
+      ]
+    },
+    {
+      "text": "guards at Bornholmer Straße let",
+      "from": 619,
+      "to": 670,
+      "words": [
+        {
+          "text": "guards",
+          "from": 619
+        },
+        {
+          "text": "at",
+          "from": 623
+        },
+        {
+          "text": "Bornholmer",
+          "from": 631
+        },
+        {
+          "text": "Straße",
+          "from": 641
+        },
+        {
+          "text": "let",
+          "from": 659
+        }
+      ]
+    },
+    {
+      "text": "people through",
+      "from": 670,
+      "to": 691,
+      "words": [
+        {
+          "text": "people",
+          "from": 670
+        },
+        {
+          "text": "through",
+          "from": 677
+        }
+      ]
+    },
+    {
+      "text": "One unprepared answer opened the",
+      "from": 711,
+      "to": 784,
+      "words": [
+        {
+          "text": "One",
+          "from": 711
+        },
+        {
+          "text": "unprepared",
+          "from": 718
+        },
+        {
+          "text": "answer",
+          "from": 736
+        },
+        {
+          "text": "opened",
+          "from": 758
+        },
+        {
+          "text": "the",
+          "from": 776
+        }
+      ]
+    },
+    {
+      "text": "checkpoints",
+      "from": 784,
+      "to": 793,
+      "words": [
+        {
+          "text": "checkpoints",
+          "from": 784
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 830,
+  "duration_s": 27.666666666666668
+}
