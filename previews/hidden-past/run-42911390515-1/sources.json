@@ -1,0 +1,66 @@
+{
+  "retrieved": "2026-11-10T22:07:46.911Z",
+  "wikipedia_article": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+  "files": [
+    {
+      "key": "mug",
+      "title": "File:Pablo Escobar Mug (cropped)(b).jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Pablo_Escobar_Mug_(cropped)(b).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Pablo_Escobar_Mug_%28cropped%29%28b%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licence": "Public domain",
+      "creator": "Colombian National Police",
+      "credit": "Colombia National Registry; Colombian National Police",
+      "date": "1976",
+      "description": "A mug shot taken by the regional Colombia control agency in Medellín in 1976.",
+      "orig_w": 2219,
+      "orig_h": 2875
+    },
+    {
+      "key": "hippo",
+      "title": "File:Hipopótamo Vanessa PTHN.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Hipop%C3%B3tamo_Vanessa_PTHN.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Hipop%C3%B3tamo_Vanessa_PTHN.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "licence": "CC BY-SA 4.0",
+      "creator": "Alvaro Morales Ríos",
+      "credit": "Own work",
+      "date": "2008-10-12 14:41:51",
+      "description": "Vanessa, mascota del Parque Temático Hacienda Nápoles",
+      "orig_w": 3456,
+      "orig_h": 2592
+    },
+    {
+      "key": "gate",
+      "title": "File:Pórtico Hacienda Nápoles.JPG",
+      "page_url": "https://commons.wikimedia.org/wiki/File:P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "licence": "CC BY 3.0",
+      "creator": "XalD",
+      "credit": "Own work",
+      "date": "2009-09-06",
+      "description": "Entrada a la Hacienda Nápoles. El avión ya no está en este lugar.",
+      "orig_w": 2848,
+      "orig_h": 2134
+    }
+  ],
+  "places": [
+    {
+      "name": "Medellín",
+      "lat": 6.23083333,
+      "lon": -75.59055556,
+      "source": "English Wikipedia coordinates API"
+    },
+    {
+      "name": "Hacienda Nápoles",
+      "lat": 5.91444444,
+      "lon": -74.72166667,
+      "source": "English Wikipedia coordinates API"
+    },
+    {
+      "name": "Bogotá",
+      "lat": 4.71111111,
+      "lon": -74.07222222,
+      "source": "English Wikipedia coordinates API"
+    }
+  ],
+  "map_data": "Natural Earth 1:50m and 1:110m (public domain)"
+}
