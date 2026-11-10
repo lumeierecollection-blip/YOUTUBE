@@ -1,0 +1,141 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42804002412-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s0",
+      "narration": "The Berlin Wall opened after an announcement came too early. He spoke live on East German television, 9 November 1989.",
+      "claim_ids": [
+        "B1",
+        "B2"
+      ],
+      "start_s": 0,
+      "end_s": 10.033333333333333,
+      "transition": "cut",
+      "main_point": "Open on the evidence itself.",
+      "visual_objective": "Show the real press conference before explaining it.",
+      "treatment": "archival-photo-ledger",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "press",
+          "origin": "Wikimedia Commons (Bundesarchiv)",
+          "licence": "CC BY-SA 3.0 de",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1989-1109-030,_Berlin,_Schabowski_auf_Pressekonferenz.jpg"
+        }
+      ],
+      "animation": "headline slides in; accent circle draws on; photograph never moves",
+      "on_screen_text": [
+        "An announcement came too early",
+        "The officials' table"
+      ]
+    },
+    {
+      "scene_id": "s1",
+      "narration": "Spokesman Günter Schabowski had just been handed a note.",
+      "claim_ids": [
+        "B3"
+      ],
+      "start_s": 10.033333333333333,
+      "end_s": 13.466666666666667,
+      "transition": "cut",
+      "main_point": "The paper he was handed.",
+      "visual_objective": "Show Schabowski's own note.",
+      "treatment": "newspaper-scan",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "note",
+          "origin": "Wikimedia Commons",
+          "licence": "CC BY-SA 3.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Schabowski-notizzettel.jpg"
+        }
+      ],
+      "animation": "page fades in unmoving; evidence lines arrive in turn",
+      "on_screen_text": [
+        "The note he was handed"
+      ]
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Asked when it began, he said: immediately, without delay. West German news told viewers the borders were open.",
+      "claim_ids": [
+        "B4",
+        "B5"
+      ],
+      "start_s": 13.466666666666667,
+      "end_s": 21.066666666666666,
+      "transition": "chapter opener (book-section page)",
+      "main_point": "The answer, and the broadcast.",
+      "visual_objective": "Quote his answer and show the evening's timed events.",
+      "treatment": "quote-with-timeline",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [],
+      "animation": "quotation slides in; timeline lines arrive in turn",
+      "on_screen_text": [
+        "CHAPTER I",
+        "The Answer",
+        "“Immediately, without delay”"
+      ]
+    },
+    {
+      "scene_id": "s3",
+      "narration": "That night, guards at Bornholmer Straße let people through.",
+      "claim_ids": [
+        "B6"
+      ],
+      "start_s": 21.066666666666666,
+      "end_s": 25,
+      "transition": "cut",
+      "main_point": "Where it happened.",
+      "visual_objective": "Locate Berlin on today's map.",
+      "treatment": "modern-map-locator",
+      "background": "light archival paper",
+      "skill": "scripts/autopilot/map-vox.mjs buildMapLayers",
+      "assets": [
+        {
+          "id": "natural-earth",
+          "origin": "Natural Earth (public domain)",
+          "licence": "Public domain"
+        }
+      ],
+      "animation": "country tints, pin and ring draw on, labels slide in",
+      "on_screen_text": [
+        "Berlin, that night",
+        "Berlin"
+      ]
+    },
+    {
+      "scene_id": "s4",
+      "narration": "One unprepared answer opened the checkpoints.",
+      "claim_ids": [
+        "B3",
+        "B6"
+      ],
+      "start_s": 25,
+      "end_s": 28.8,
+      "transition": "cut",
+      "main_point": "The checkpoints opened.",
+      "visual_objective": "Show the aftermath, labelled as a later photograph.",
+      "treatment": "archival-photo-card-with-claim-ladder",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "gate",
+          "origin": "Wikimedia Commons",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:BrandenburgerTorDezember1989.jpg"
+        }
+      ],
+      "animation": "photograph holds still; evidence lines arrive in turn",
+      "on_screen_text": [
+        "The checkpoints opened"
+      ]
+    }
+  ]
+}

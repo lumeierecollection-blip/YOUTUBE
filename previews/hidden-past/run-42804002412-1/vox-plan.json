@@ -1,0 +1,172 @@
+{
+  "production_id": "run-42804002412-1",
+  "accent": "#A64B14",
+  "recipe_source": "src/skills/remotion-render/effects/PhotoTreatment.jsx",
+  "halftone_opacity": 0.1,
+  "scenes": [
+    {
+      "scene": 0,
+      "start_s": 0,
+      "end_s": 10.033333333333333,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s0-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the press-conference table",
+          "confirmed_as": "the officials' table at the front of the hall, per the Bundesarchiv caption (Schabowski at the press conference, 9 Nov 1989); checked by eye on the source",
+          "box": {
+            "x0": 0.5,
+            "x1": 0.88,
+            "y0": 0.14,
+            "y1": 0.4
+          },
+          "screen": {
+            "cx": 726,
+            "cy": 500,
+            "rx": 214,
+            "ry": 94
+          },
+          "draw_start_f": 10,
+          "draw_end_f": 28
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "press",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1989-1109-030,_Berlin,_Schabowski_auf_Pressekonferenz.jpg",
+        "source_file": "output/work/hidden-past-run-42804002412-1/press-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42804002412-1/press-vox.png",
+        "rect": {
+          "x": 50,
+          "y": 330,
+          "w": 980,
+          "h": 628
+        },
+        "in_f": 0,
+        "out_f": 301,
+        "kind": "photograph",
+        "license": "CC BY-SA 3.0 de",
+        "relation": "exact"
+      }
+    },
+    {
+      "scene": 1,
+      "start_s": 10.033333333333333,
+      "end_s": 13.466666666666667,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s1-head"
+        },
+        {
+          "type": "document_treatment",
+          "recipe": "sharp greyscale ink + paper multiply, then PhotoTreatment at low halftone"
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 2,
+      "start_s": 13.466666666666667,
+      "end_s": 21.066666666666666,
+      "treatments": [
+        {
+          "type": "chapter_opener",
+          "in_f": 404,
+          "out_f": 438,
+          "number": 1,
+          "title": "The Answer"
+        },
+        {
+          "type": "slide_in_typography",
+          "layer": "s2-head"
+        },
+        {
+          "type": "quotation_typography",
+          "text": "As far as I know, it takes effect immediately, without delay (English rendering as given on Wikipedia)"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 3,
+      "start_s": 21.066666666666666,
+      "end_s": 25,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s3-head"
+        },
+        {
+          "type": "map",
+          "places": [
+            "Berlin"
+          ],
+          "source": "Natural Earth 1:50m; coordinates from Wikipedia"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 4,
+      "start_s": 25,
+      "end_s": 28.8,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s4-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "gate",
+        "source_url": "https://commons.wikimedia.org/wiki/File:BrandenburgerTorDezember1989.jpg",
+        "source_file": "output/work/hidden-past-run-42804002412-1/gate-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42804002412-1/gate-vox.png",
+        "rect": {
+          "x": 57,
+          "y": 330,
+          "w": 966,
+          "h": 650
+        },
+        "in_f": 750,
+        "out_f": 864,
+        "kind": "photograph",
+        "license": "Public domain",
+        "relation": "exact"
+      }
+    }
+  ],
+  "sfx": [
+    {
+      "sound": "impact",
+      "at": 0.3333333333333333
+    },
+    {
+      "sound": "whoosh",
+      "at": 13.386666666666667
+    }
+  ]
+}
