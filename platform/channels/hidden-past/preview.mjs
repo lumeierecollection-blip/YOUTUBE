@@ -154,7 +154,7 @@ function fixedResult(SENTENCES, claims, topic, key, blueprint) {
 }
 
 export default async function preview({ key, runId, outDir, tools, entry }) {
-  const docStory = (process.env.GITHUB_REF_NAME || "").match(/berlin/)?.[0];
+  const docStory = (process.env.GITHUB_REF_NAME || "").match(/collage-berlin|berlin/)?.[0];
   if (docStory && /vox/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./vox-berlin.mjs")).default({ key, runId, outDir, tools, entry });
   if (docStory) return (await import("./doc-preview.mjs")).default({ key, runId, tools, story: docStory });
   const work = join(ROOT, "output/work", `hidden-past-${runId}`);

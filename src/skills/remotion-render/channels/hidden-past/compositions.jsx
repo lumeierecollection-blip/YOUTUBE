@@ -3,6 +3,7 @@
 import React from "react";
 import { AbsoluteFill, Sequence, interpolate, useCurrentFrame, Easing } from "remotion";
 import { FONT_FACES } from "../../fonts-loader.js";
+import { collageCompositions } from "./collage.jsx";
 import { abs, Captions, clamp, From, Scene } from "../_shared/parts.jsx";
 
 const SERIF = '"Playfair Display", serif', SANS = '"DM Sans", sans-serif';
@@ -73,4 +74,4 @@ export function HiddenPastDocShort({ durationInFrames, scenes, captions, images,
   );
 }
 const base = { fps: 30, width: 1080, height: 1920, durationInFrames: 780, defaultProps: { durationInFrames: 780, scenes: [], captions: [] } };
-export const compositions = [{ id: "HiddenPastDocShort", component: HiddenPastDocShort, ...base, defaultProps: { ...base.defaultProps, images: {}, credits: {}, dates: {} } }];
+export const compositions = [...collageCompositions, { id: "HiddenPastDocShort", component: HiddenPastDocShort, ...base, defaultProps: { ...base.defaultProps, images: {}, credits: {}, dates: {} } }];

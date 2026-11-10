@@ -17,6 +17,6 @@ export default async function docPreview({ key, runId, tools, story }) {
     images[a.key] = await dataUri(file); credits[a.key] = entry.credit_line; dates[a.key] = (entry.date_taken.match(/[0-9]{4}/) || [""])[0]; entries.push(entry);
   }
   tools.write("asset-manifest.json", { note: "Every image is a real file from Wikimedia Commons with its licence recorded. Nothing is AI-generated.", assets: entries });
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: s.topic, claims: s.claims, sources: s.sources, sentences: s.sentences, scenes: s.scenes, compositionId: "HiddenPastDocShort", edgeVoice: channel.voice.tts, style: "Serious, intriguing documentary narration, steady and clear, not slow", metadata: s.metadata, minSeconds: 20, music: { mood: "editorial" }, makeProps: () => ({ images, credits, dates }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: s.topic, claims: s.claims, sources: s.sources, sentences: s.sentences, scenes: s.scenes, compositionId: s.compositionId || "HiddenPastDocShort", edgeVoice: channel.voice.tts, style: "Serious, intriguing documentary narration, steady and clear, not slow", metadata: s.metadata, minSeconds: 20, music: { mood: "editorial" }, makeProps: () => ({ images, credits, dates }) } });
   tools.write("quality-report.json", { format: "history_documentary", technical: result.qa });
 }
