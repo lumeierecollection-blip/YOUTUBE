@@ -1,0 +1,397 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "cover",
+      "treatment": "magazine-cover-collage",
+      "objective": "Open on the real 2023 photograph taped on pastel scraps with the headline and a record sticker",
+      "background": "warm paper, pastel scraps",
+      "from": 0,
+      "to": 190,
+      "start_s": 0,
+      "end_s": 6.333333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "solti",
+      "treatment": "old-record-count-up-collage",
+      "objective": "Count up to the old record of 31 beside the real portrait of Georg Solti and the KQED line",
+      "background": "warm paper, yellow scrap",
+      "from": 190,
+      "to": 304,
+      "start_s": 6.333333333333333,
+      "end_s": 10.133333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "nine",
+      "treatment": "nominations-and-tie-collage",
+      "objective": "Count nine nominations with a sticker portrait, then the Cuff It win that tied the record",
+      "background": "warm paper, lilac and pink scraps",
+      "from": 304,
+      "to": 479,
+      "start_s": 10.133333333333333,
+      "end_s": 15.966666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "record",
+      "treatment": "strike-31-to-32-with-trophy-photo",
+      "objective": "Strike 31, land 32, circle it, with a real Grammy trophy photograph taped beside",
+      "background": "warm paper, pink scrap",
+      "from": 479,
+      "to": 664,
+      "start_s": 15.966666666666667,
+      "end_s": 22.133333333333333
+    },
+    {
+      "id": "s5",
+      "kind": "quote",
+      "treatment": "pull-quote-with-photo",
+      "objective": "Show her quotation as a magazine pull-quote beside a labelled photograph",
+      "background": "warm paper, yellow scrap",
+      "from": 664,
+      "to": 785,
+      "start_s": 22.133333333333333,
+      "end_s": 26.166666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "In one night",
+      "from": 0,
+      "to": 35,
+      "words": [
+        {
+          "text": "In",
+          "from": 0
+        },
+        {
+          "text": "one",
+          "from": 12
+        },
+        {
+          "text": "night",
+          "from": 21
+        }
+      ]
+    },
+    {
+      "text": "Beyoncé became the most-awarded",
+      "from": 43,
+      "to": 96,
+      "words": [
+        {
+          "text": "Beyoncé",
+          "from": 43
+        },
+        {
+          "text": "became",
+          "from": 62
+        },
+        {
+          "text": "the",
+          "from": 71
+        },
+        {
+          "text": "most-awarded",
+          "from": 79
+        }
+      ]
+    },
+    {
+      "text": "artist in Grammy history",
+      "from": 107,
+      "to": 166,
+      "words": [
+        {
+          "text": "artist",
+          "from": 107
+        },
+        {
+          "text": "in",
+          "from": 120
+        },
+        {
+          "text": "Grammy",
+          "from": 131
+        },
+        {
+          "text": "history",
+          "from": 142
+        }
+      ]
+    },
+    {
+      "text": "The old record thirty-one",
+      "from": 190,
+      "to": 224,
+      "words": [
+        {
+          "text": "The",
+          "from": 190
+        },
+        {
+          "text": "old",
+          "from": 191
+        },
+        {
+          "text": "record",
+          "from": 196
+        },
+        {
+          "text": "thirty-one",
+          "from": 205
+        }
+      ]
+    },
+    {
+      "text": "set by conductor Georg Solti",
+      "from": 238,
+      "to": 292,
+      "words": [
+        {
+          "text": "set",
+          "from": 238
+        },
+        {
+          "text": "by",
+          "from": 244
+        },
+        {
+          "text": "conductor",
+          "from": 249
+        },
+        {
+          "text": "Georg",
+          "from": 258
+        },
+        {
+          "text": "Solti",
+          "from": 273
+        }
+      ]
+    },
+    {
+      "text": "She arrived with nine nominations",
+      "from": 304,
+      "to": 365,
+      "words": [
+        {
+          "text": "She",
+          "from": 304
+        },
+        {
+          "text": "arrived",
+          "from": 314
+        },
+        {
+          "text": "with",
+          "from": 322
+        },
+        {
+          "text": "nine",
+          "from": 333
+        },
+        {
+          "text": "nominations",
+          "from": 343
+        }
+      ]
+    },
+    {
+      "text": "Half an hour in Cuff",
+      "from": 388,
+      "to": 414,
+      "words": [
+        {
+          "text": "Half",
+          "from": 388
+        },
+        {
+          "text": "an",
+          "from": 389
+        },
+        {
+          "text": "hour",
+          "from": 394
+        },
+        {
+          "text": "in",
+          "from": 400
+        },
+        {
+          "text": "Cuff",
+          "from": 406
+        }
+      ]
+    },
+    {
+      "text": "It tied the record",
+      "from": 414,
+      "to": 460,
+      "words": [
+        {
+          "text": "It",
+          "from": 414
+        },
+        {
+          "text": "tied",
+          "from": 430
+        },
+        {
+          "text": "the",
+          "from": 441
+        },
+        {
+          "text": "record",
+          "from": 450
+        }
+      ]
+    },
+    {
+      "text": "Her fourth win for Renaissance",
+      "from": 479,
+      "to": 521,
+      "words": [
+        {
+          "text": "Her",
+          "from": 479
+        },
+        {
+          "text": "fourth",
+          "from": 481
+        },
+        {
+          "text": "win",
+          "from": 488
+        },
+        {
+          "text": "for",
+          "from": 499
+        },
+        {
+          "text": "Renaissance",
+          "from": 511
+        }
+      ]
+    },
+    {
+      "text": "broke it Thirty-two",
+      "from": 521,
+      "to": 570,
+      "words": [
+        {
+          "text": "broke",
+          "from": 521
+        },
+        {
+          "text": "it",
+          "from": 545
+        },
+        {
+          "text": "Thirty-two",
+          "from": 552
+        }
+      ]
+    },
+    {
+      "text": "Grammys and a new record",
+      "from": 581,
+      "to": 640,
+      "words": [
+        {
+          "text": "Grammys",
+          "from": 581
+        },
+        {
+          "text": "and",
+          "from": 605
+        },
+        {
+          "text": "a",
+          "from": 617
+        },
+        {
+          "text": "new",
+          "from": 621
+        },
+        {
+          "text": "record",
+          "from": 628
+        }
+      ]
+    },
+    {
+      "text": "On stage she said she",
+      "from": 664,
+      "to": 702,
+      "words": [
+        {
+          "text": "On",
+          "from": 664
+        },
+        {
+          "text": "stage",
+          "from": 669
+        },
+        {
+          "text": "she",
+          "from": 685
+        },
+        {
+          "text": "said",
+          "from": 691
+        },
+        {
+          "text": "she",
+          "from": 698
+        }
+      ]
+    },
+    {
+      "text": "was just trying to receive",
+      "from": 702,
+      "to": 737,
+      "words": [
+        {
+          "text": "was",
+          "from": 702
+        },
+        {
+          "text": "just",
+          "from": 705
+        },
+        {
+          "text": "trying",
+          "from": 711
+        },
+        {
+          "text": "to",
+          "from": 719
+        },
+        {
+          "text": "receive",
+          "from": 725
+        }
+      ]
+    },
+    {
+      "text": "the night",
+      "from": 737,
+      "to": 758,
+      "words": [
+        {
+          "text": "the",
+          "from": 737
+        },
+        {
+          "text": "night",
+          "from": 749
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 785,
+  "duration_s": 26.166666666666668
+}
