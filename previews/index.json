@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T15:43:54.301Z",
+  "rebuilt_at": "2026-11-10T15:43:56.771Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -169,7 +169,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "none",
+      "lastOk": "2026-11-10T15:43:50.182Z",
       "run": "run-42847007427-1"
     }
   ]
