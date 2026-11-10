@@ -1,0 +1,88 @@
+{
+  "attempt": 1,
+  "assumed_wpm": 130,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "Pablo Escobar's hippos are still alive, and Colombia has approved killing some of them.",
+      "scene": 0,
+      "claim_ids": [
+        "H6",
+        "H7"
+      ]
+    },
+    {
+      "text": "In 1981, he imported four.",
+      "scene": 0,
+      "claim_ids": [
+        "H1"
+      ]
+    },
+    {
+      "text": "His estate lay between Medellín and Bogotá.",
+      "scene": 1,
+      "claim_ids": [
+        "H2"
+      ]
+    },
+    {
+      "text": "After he died in 1993, they escaped and spread.",
+      "scene": 2,
+      "claim_ids": [
+        "H3"
+      ]
+    },
+    {
+      "text": "Sixteen by 2007, forty by 2014, around two hundred now.",
+      "scene": 2,
+      "claim_ids": [
+        "H4",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "text": "In April 2026, Colombia approved killing more than eighty of them.",
+      "scene": 3,
+      "claim_ids": [
+        "H7"
+      ]
+    },
+    {
+      "text": "An Indian billionaire offered to take them to India instead.",
+      "scene": 3,
+      "claim_ids": [
+        "H8"
+      ]
+    },
+    {
+      "text": "Most conservationists call them invasive; some ecologists disagree.",
+      "scene": 4,
+      "claim_ids": [
+        "H9",
+        "H10"
+      ]
+    },
+    {
+      "text": "So who decides their fate?",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or transition built from the cited claims"
+    }
+  ],
+  "words": 79,
+  "estimated_seconds": 36.8,
+  "inside_window": true,
+  "kept": [
+    "import",
+    "india",
+    "views",
+    "hook",
+    "estate",
+    "escape",
+    "count",
+    "cull",
+    "close"
+  ]
+}

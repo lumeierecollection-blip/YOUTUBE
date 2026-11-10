@@ -1,0 +1,528 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.8-flash-tts + faster-whisper alignment (72/79 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Pablo",
+   "start": 0.0,
+   "end": 0.66,
+   "sentence": 0
+  },
+  {
+   "text": "Escobar's",
+   "start": 0.66,
+   "end": 1.44,
+   "sentence": 0
+  },
+  {
+   "text": "hippos",
+   "start": 1.44,
+   "end": 1.9,
+   "sentence": 0
+  },
+  {
+   "text": "are",
+   "start": 1.9,
+   "end": 2.04,
+   "sentence": 0
+  },
+  {
+   "text": "still",
+   "start": 2.04,
+   "end": 2.3,
+   "sentence": 0
+  },
+  {
+   "text": "alive",
+   "start": 2.3,
+   "end": 2.68,
+   "sentence": 0
+  },
+  {
+   "text": "and",
+   "start": 3.1,
+   "end": 3.26,
+   "sentence": 0
+  },
+  {
+   "text": "Colombia",
+   "start": 3.26,
+   "end": 3.54,
+   "sentence": 0
+  },
+  {
+   "text": "has",
+   "start": 3.54,
+   "end": 3.98,
+   "sentence": 0
+  },
+  {
+   "text": "approved",
+   "start": 3.98,
+   "end": 4.26,
+   "sentence": 0
+  },
+  {
+   "text": "killing",
+   "start": 4.26,
+   "end": 4.54,
+   "sentence": 0
+  },
+  {
+   "text": "some",
+   "start": 4.54,
+   "end": 4.92,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 4.92,
+   "end": 5.04,
+   "sentence": 0
+  },
+  {
+   "text": "them",
+   "start": 5.04,
+   "end": 5.18,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 5.84,
+   "end": 6.14,
+   "sentence": 1
+  },
+  {
+   "text": "1981",
+   "start": 6.14,
+   "end": 6.6,
+   "sentence": 1
+  },
+  {
+   "text": "he",
+   "start": 7.1,
+   "end": 7.22,
+   "sentence": 1
+  },
+  {
+   "text": "imported",
+   "start": 7.22,
+   "end": 7.56,
+   "sentence": 1
+  },
+  {
+   "text": "four",
+   "start": 7.56,
+   "end": 7.98,
+   "sentence": 1
+  },
+  {
+   "text": "His",
+   "start": 8.58,
+   "end": 8.68,
+   "sentence": 2
+  },
+  {
+   "text": "estate",
+   "start": 8.68,
+   "end": 8.94,
+   "sentence": 2
+  },
+  {
+   "text": "lay",
+   "start": 8.94,
+   "end": 9.24,
+   "sentence": 2
+  },
+  {
+   "text": "between",
+   "start": 9.24,
+   "end": 9.54,
+   "sentence": 2
+  },
+  {
+   "text": "Medell\u00edn",
+   "start": 9.54,
+   "end": 9.82,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 10.1,
+   "end": 10.38,
+   "sentence": 2
+  },
+  {
+   "text": "Bogot\u00e1",
+   "start": 10.38,
+   "end": 10.81,
+   "sentence": 2
+  },
+  {
+   "text": "After",
+   "start": 11.24,
+   "end": 11.82,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 11.82,
+   "end": 12.02,
+   "sentence": 3
+  },
+  {
+   "text": "died",
+   "start": 12.02,
+   "end": 12.24,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 12.24,
+   "end": 12.54,
+   "sentence": 3
+  },
+  {
+   "text": "1993",
+   "start": 12.54,
+   "end": 13.0,
+   "sentence": 3
+  },
+  {
+   "text": "they",
+   "start": 13.08,
+   "end": 13.86,
+   "sentence": 3
+  },
+  {
+   "text": "escaped",
+   "start": 13.86,
+   "end": 14.06,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 14.06,
+   "end": 14.62,
+   "sentence": 3
+  },
+  {
+   "text": "spread",
+   "start": 14.62,
+   "end": 14.94,
+   "sentence": 3
+  },
+  {
+   "text": "Sixteen",
+   "start": 14.94,
+   "end": 15.45,
+   "sentence": 4
+  },
+  {
+   "text": "by",
+   "start": 15.96,
+   "end": 16.44,
+   "sentence": 4
+  },
+  {
+   "text": "2007",
+   "start": 16.44,
+   "end": 16.92,
+   "sentence": 4
+  },
+  {
+   "text": "forty",
+   "start": 16.92,
+   "end": 17.54,
+   "sentence": 4
+  },
+  {
+   "text": "by",
+   "start": 18.16,
+   "end": 18.54,
+   "sentence": 4
+  },
+  {
+   "text": "2014",
+   "start": 18.54,
+   "end": 19.06,
+   "sentence": 4
+  },
+  {
+   "text": "around",
+   "start": 19.66,
+   "end": 19.96,
+   "sentence": 4
+  },
+  {
+   "text": "two",
+   "start": 19.96,
+   "end": 20.107,
+   "sentence": 4
+  },
+  {
+   "text": "hundred",
+   "start": 20.107,
+   "end": 20.253,
+   "sentence": 4
+  },
+  {
+   "text": "now",
+   "start": 20.4,
+   "end": 21.12,
+   "sentence": 4
+  },
+  {
+   "text": "In",
+   "start": 21.96,
+   "end": 22.02,
+   "sentence": 5
+  },
+  {
+   "text": "April",
+   "start": 22.02,
+   "end": 22.28,
+   "sentence": 5
+  },
+  {
+   "text": "2026",
+   "start": 22.28,
+   "end": 23.12,
+   "sentence": 5
+  },
+  {
+   "text": "Colombia",
+   "start": 23.4,
+   "end": 23.76,
+   "sentence": 5
+  },
+  {
+   "text": "approved",
+   "start": 23.76,
+   "end": 24.24,
+   "sentence": 5
+  },
+  {
+   "text": "killing",
+   "start": 24.24,
+   "end": 24.52,
+   "sentence": 5
+  },
+  {
+   "text": "more",
+   "start": 24.52,
+   "end": 24.96,
+   "sentence": 5
+  },
+  {
+   "text": "than",
+   "start": 24.96,
+   "end": 25.12,
+   "sentence": 5
+  },
+  {
+   "text": "eighty",
+   "start": 25.12,
+   "end": 25.27,
+   "sentence": 5
+  },
+  {
+   "text": "of",
+   "start": 25.42,
+   "end": 25.66,
+   "sentence": 5
+  },
+  {
+   "text": "them",
+   "start": 25.66,
+   "end": 25.82,
+   "sentence": 5
+  },
+  {
+   "text": "An",
+   "start": 26.4,
+   "end": 26.5,
+   "sentence": 6
+  },
+  {
+   "text": "Indian",
+   "start": 26.5,
+   "end": 26.82,
+   "sentence": 6
+  },
+  {
+   "text": "billionaire",
+   "start": 26.82,
+   "end": 27.24,
+   "sentence": 6
+  },
+  {
+   "text": "offered",
+   "start": 27.24,
+   "end": 27.66,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 27.66,
+   "end": 27.86,
+   "sentence": 6
+  },
+  {
+   "text": "take",
+   "start": 27.86,
+   "end": 28.06,
+   "sentence": 6
+  },
+  {
+   "text": "them",
+   "start": 28.06,
+   "end": 28.2,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 28.2,
+   "end": 28.32,
+   "sentence": 6
+  },
+  {
+   "text": "India",
+   "start": 28.32,
+   "end": 28.64,
+   "sentence": 6
+  },
+  {
+   "text": "instead",
+   "start": 28.64,
+   "end": 29.04,
+   "sentence": 6
+  },
+  {
+   "text": "Most",
+   "start": 29.04,
+   "end": 30.22,
+   "sentence": 7
+  },
+  {
+   "text": "conservationists",
+   "start": 30.22,
+   "end": 31.12,
+   "sentence": 7
+  },
+  {
+   "text": "call",
+   "start": 31.12,
+   "end": 31.32,
+   "sentence": 7
+  },
+  {
+   "text": "them",
+   "start": 31.32,
+   "end": 31.52,
+   "sentence": 7
+  },
+  {
+   "text": "invasive",
+   "start": 31.52,
+   "end": 31.86,
+   "sentence": 7
+  },
+  {
+   "text": "some",
+   "start": 32.7,
+   "end": 32.86,
+   "sentence": 7
+  },
+  {
+   "text": "ecologists",
+   "start": 32.86,
+   "end": 33.28,
+   "sentence": 7
+  },
+  {
+   "text": "disagree",
+   "start": 33.28,
+   "end": 33.94,
+   "sentence": 7
+  },
+  {
+   "text": "So",
+   "start": 34.9,
+   "end": 35.06,
+   "sentence": 8
+  },
+  {
+   "text": "who",
+   "start": 35.06,
+   "end": 35.24,
+   "sentence": 8
+  },
+  {
+   "text": "decides",
+   "start": 35.24,
+   "end": 35.52,
+   "sentence": 8
+  },
+  {
+   "text": "their",
+   "start": 35.52,
+   "end": 35.96,
+   "sentence": 8
+  },
+  {
+   "text": "fate",
+   "start": 35.96,
+   "end": 36.22,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Pablo Escobar's hippos are still alive, and Colombia has approved killing some of them.",
+   "start": 0.0,
+   "end": 5.18
+  },
+  {
+   "text": "In 1981, he imported four.",
+   "start": 5.84,
+   "end": 7.98
+  },
+  {
+   "text": "His estate lay between Medell\u00edn and Bogot\u00e1.",
+   "start": 8.58,
+   "end": 10.81
+  },
+  {
+   "text": "After he died in 1993, they escaped and spread.",
+   "start": 11.24,
+   "end": 14.94
+  },
+  {
+   "text": "Sixteen by 2007, forty by 2014, around two hundred now.",
+   "start": 14.94,
+   "end": 21.12
+  },
+  {
+   "text": "In April 2026, Colombia approved killing more than eighty of them.",
+   "start": 21.96,
+   "end": 25.82
+  },
+  {
+   "text": "An Indian billionaire offered to take them to India instead.",
+   "start": 26.4,
+   "end": 29.04
+  },
+  {
+   "text": "Most conservationists call them invasive; some ecologists disagree.",
+   "start": 29.04,
+   "end": 33.94
+  },
+  {
+   "text": "So who decides their fate?",
+   "start": 34.9,
+   "end": 36.22
+  }
+ ]
+}
