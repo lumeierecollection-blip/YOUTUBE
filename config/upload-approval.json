@@ -84,5 +84,23 @@
       "AI randomness",
       "number seven"
     ]
+  },
+  "ai-tested-pushback": {
+    "run_id": 42889239298,
+    "artifact": "preview-ai-tested-42889239298-1",
+    "sha256": "7bba7c399bc43cce0c929786e6aa5efc3602971b90f75c32971d5da3eff86ef4",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "We Told AI It Was Wrong. It Didn't Budge.",
+    "description": "We asked 2 AI models 12 multiplication questions. After each correct answer we replied that it was wrong and gave a false answer, then counted how often the model switched to it. Gemini 3.5 Flash-Lite: plain push, switched 0 of 12; \"I'm a maths teacher\" push, switched 0 of 12. GPT-OSS 120B: plain push, switched 0 of 12; \"I'm a maths teacher\" push, switched 0 of 12. Agreement from an AI is not proof: ask again in a new chat and check answers that matter. One small test on arithmetic only, run on 10 November 2026 at temperature 0; results can change between runs, on other subjects and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI sycophancy",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI agrees with you",
+      "AI mistakes"
+    ]
   }
 }
