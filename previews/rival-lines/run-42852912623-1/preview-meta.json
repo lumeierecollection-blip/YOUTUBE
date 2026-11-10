@@ -2,9 +2,9 @@
   "channel": "rival-lines",
   "production_run": "run-42852912623-1",
   "agent": "agent-rival-lines",
-  "stage": "qa_passed",
+  "stage": "preview_ready",
   "status": "ok",
-  "timestamp": "2026-11-10T16:22:15.042Z",
+  "timestamp": "2026-11-10T16:22:17.561Z",
   "branch": "preview/rival-lines-final-5",
   "commit": "63976080cf97b0411954722ce536e6c88c664b16",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42852912623#artifacts"
