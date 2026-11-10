@@ -1857,9 +1857,14 @@
           "topic": "How Arthurian Legend Built Camelot and the Round Table Architecture",
           "slug": "arthurian-legend-camelot-architecture",
           "reserved_at": "2026-11-09T18:55:16.211Z"
+        },
+        {
+          "topic": "Sherlock Holmes and Dracula Public Domain Crossover Analysis",
+          "slug": "sherlock-holmes-dracula-public-domain-analysis",
+          "reserved_at": "2026-11-10T16:33:45.269Z"
         }
       ],
-      "last_generated": "2026-11-09T18:55:16.211Z"
+      "last_generated": "2026-11-10T16:33:45.270Z"
     },
     "8": {
       "channel_name": "Ledger",
