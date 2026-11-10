@@ -650,9 +650,14 @@
           "topic": "How Sleuths Decoded the Secret Letters of Mary, Queen of Scots in 2026",
           "slug": "mary-queen-of-scots-encrypted-letters-france-2026",
           "reserved_at": "2026-11-09T19:48:37.230Z"
+        },
+        {
+          "topic": "Clearing an Attic Reveals Documents Stolen from the National Archives",
+          "slug": "dutch-family-attic-national-archives-documents-stolen",
+          "reserved_at": "2026-11-10T16:32:02.695Z"
         }
       ],
-      "last_generated": "2026-11-09T19:48:37.230Z"
+      "last_generated": "2026-11-10T16:32:02.695Z"
     },
     "2": {
       "channel_name": "AI Tested",
