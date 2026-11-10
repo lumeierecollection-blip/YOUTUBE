@@ -1,0 +1,91 @@
+{
+  "measured_wpm": 162.3,
+  "voice": "gemini:Sadaltager",
+  "sentences": [
+    {
+      "text": "AI had the right answer, until we said it was wrong.",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two AI models twelve questions about counting letters, and Google's Flash-Lite got only four right.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we told them they were wrong.",
+      "scene": 1,
+      "claim_ids": [
+        "push"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite switched twice out of four.",
+      "scene": 2,
+      "claim_ids": [
+        "plain0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS kept its answer every time.",
+      "scene": 2,
+      "claim_ids": [
+        "plain1"
+      ]
+    },
+    {
+      "text": "Then we claimed to be an English teacher.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite gave in once.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS gave in three times.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher1"
+      ]
+    },
+    {
+      "text": "So when AI agrees with you, that is not proof.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "So why trust an answer that changes when you push back?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "words": 89,
+  "estimated_seconds": 37.8,
+  "inside_window": true,
+  "kept": [
+    "hook",
+    "design",
+    "push",
+    "plain0",
+    "plain1",
+    "teacher",
+    "teacher0",
+    "teacher1",
+    "tip1",
+    "tip2"
+  ]
+}
