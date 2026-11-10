@@ -1,0 +1,79 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42818869522-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "In one night, Beyoncé became the most-awarded artist in Grammy history.",
+      "main_point": "Open on the real 2023 photograph with the headline and a highlighted 'most'",
+      "visual_objective": "Open on the real 2023 photograph with the headline and a highlighted 'most'",
+      "treatment": "paper-slap-in-photo-with-highlighter",
+      "background": "cream paper, halftone dot field",
+      "skill": "remotion",
+      "claim_ids": [
+        "M1"
+      ],
+      "start_s": 0,
+      "end_s": 6.133333333333334
+    },
+    {
+      "scene_id": "s2",
+      "narration": "The old record: thirty-one, set by conductor Georg Solti.",
+      "main_point": "Count up to the old record of thirty-one beside a halftone ink portrait of Georg Solti",
+      "visual_objective": "Count up to the old record of thirty-one beside a halftone ink portrait of Georg Solti",
+      "treatment": "giant-count-up-with-halftone-portrait",
+      "background": "recessed paper, coarse halftone (old world)",
+      "skill": "remotion",
+      "claim_ids": [
+        "M5"
+      ],
+      "start_s": 6.133333333333334,
+      "end_s": 9.933333333333334
+    },
+    {
+      "scene_id": "s3",
+      "narration": "She arrived with nine nominations. Half an hour in, Cuff It tied the record.",
+      "main_point": "Count nine nominations, then slap in the card for the Cuff It win that tied the record",
+      "visual_objective": "Count nine nominations, then slap in the card for the Cuff It win that tied the record",
+      "treatment": "count-up-and-tie-card",
+      "background": "cream paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "M3",
+        "M6"
+      ],
+      "start_s": 9.933333333333334,
+      "end_s": 15.5
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Her fourth win, for Renaissance, broke it. Thirty-two Grammys, and a new record.",
+      "main_point": "Strike through thirty-one, land thirty-two in cobalt, circle it in red pen, with a real Grammy trophy photograph",
+      "visual_objective": "Strike through thirty-one, land thirty-two in cobalt, circle it in red pen, with a real Grammy trophy photograph",
+      "treatment": "strike-31-to-32-with-trophy-and-red-pen",
+      "background": "cream paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "M2",
+        "M1"
+      ],
+      "start_s": 15.5,
+      "end_s": 20.666666666666668
+    },
+    {
+      "scene_id": "s5",
+      "narration": "On stage, she said she was just trying to receive the night.",
+      "main_point": "Show her quotation with the key word highlighted beside a labelled photograph",
+      "visual_objective": "Show her quotation with the key word highlighted beside a labelled photograph",
+      "treatment": "quote-with-highlighter",
+      "background": "recessed paper",
+      "skill": "remotion",
+      "claim_ids": [
+        "M4"
+      ],
+      "start_s": 20.666666666666668,
+      "end_s": 25.366666666666667
+    }
+  ]
+}
