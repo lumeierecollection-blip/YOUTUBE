@@ -1,0 +1,437 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "question-hook-with-shirts-and-portrait",
+      "objective": "Pose the question over a sticker portrait with a Barcelona shirt and an Argentina shirt behind",
+      "background": "white editorial page, club blue",
+      "from": 0,
+      "to": 118,
+      "start_s": 0,
+      "end_s": 3.933333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "trophies",
+      "treatment": "ballon-dor-count-up",
+      "objective": "Count up to eight Ballons d'Or with eight gold balls and a photograph",
+      "background": "white editorial page",
+      "from": 118,
+      "to": 196,
+      "start_s": 3.933333333333333,
+      "end_s": 6.533333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "chart",
+      "treatment": "goals-per-season-stacked-bars",
+      "objective": "Draw Barcelona goals per season, La Liga and other competitions, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "background": "white card",
+      "from": 196,
+      "to": 372,
+      "start_s": 6.533333333333333,
+      "end_s": 12.4
+    },
+    {
+      "id": "s4",
+      "kind": "trebles",
+      "treatment": "two-trebles-timeline-with-shirt",
+      "objective": "Show the two trebles on cards with a photograph and the Barcelona shirt",
+      "background": "garnet block",
+      "from": 372,
+      "to": 467,
+      "start_s": 12.4,
+      "end_s": 15.566666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "worldcup",
+      "treatment": "world-cup-2022-collage",
+      "objective": "Show 2022 as a large number with the sticker portrait, an Argentina shirt and a photograph",
+      "background": "sky-blue block",
+      "from": 467,
+      "to": 535,
+      "start_s": 15.566666666666666,
+      "end_s": 17.833333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "creator",
+      "treatment": "key-pass-per-90-bars",
+      "objective": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "background": "white card",
+      "from": 535,
+      "to": 654,
+      "start_s": 17.833333333333332,
+      "end_s": 21.8
+    },
+    {
+      "id": "s7",
+      "kind": "close",
+      "treatment": "portrait-led-recap-chips",
+      "objective": "Close on the portrait between both shirts with the case in five chips",
+      "background": "garnet block",
+      "from": 654,
+      "to": 735,
+      "start_s": 21.8,
+      "end_s": 24.5
+    }
+  ],
+  "captions": [
+    {
+      "text": "Why is Lionel Messi called",
+      "from": 0,
+      "to": 59,
+      "words": [
+        {
+          "text": "Why",
+          "from": 0
+        },
+        {
+          "text": "is",
+          "from": 17
+        },
+        {
+          "text": "Lionel",
+          "from": 28
+        },
+        {
+          "text": "Messi",
+          "from": 35
+        },
+        {
+          "text": "called",
+          "from": 50
+        }
+      ]
+    },
+    {
+      "text": "the greatest of all time",
+      "from": 59,
+      "to": 106,
+      "words": [
+        {
+          "text": "the",
+          "from": 59
+        },
+        {
+          "text": "greatest",
+          "from": 65
+        },
+        {
+          "text": "of",
+          "from": 77
+        },
+        {
+          "text": "all",
+          "from": 86
+        },
+        {
+          "text": "time",
+          "from": 91
+        }
+      ]
+    },
+    {
+      "text": "Start with the trophies",
+      "from": 118,
+      "to": 139,
+      "words": [
+        {
+          "text": "Start",
+          "from": 118
+        },
+        {
+          "text": "with",
+          "from": 122
+        },
+        {
+          "text": "the",
+          "from": 128
+        },
+        {
+          "text": "trophies",
+          "from": 131
+        }
+      ]
+    },
+    {
+      "text": "eight Ballons d'Or",
+      "from": 157,
+      "to": 186,
+      "words": [
+        {
+          "text": "eight",
+          "from": 157
+        },
+        {
+          "text": "Ballons",
+          "from": 157
+        },
+        {
+          "text": "d'Or",
+          "from": 170
+        }
+      ]
+    },
+    {
+      "text": "Then the goals four hundred",
+      "from": 196,
+      "to": 225,
+      "words": [
+        {
+          "text": "Then",
+          "from": 196
+        },
+        {
+          "text": "the",
+          "from": 199
+        },
+        {
+          "text": "goals",
+          "from": 203
+        },
+        {
+          "text": "four",
+          "from": 208
+        },
+        {
+          "text": "hundred",
+          "from": 217
+        }
+      ]
+    },
+    {
+      "text": "and seventy-four in La Liga",
+      "from": 225,
+      "to": 279,
+      "words": [
+        {
+          "text": "and",
+          "from": 225
+        },
+        {
+          "text": "seventy-four",
+          "from": 233
+        },
+        {
+          "text": "in",
+          "from": 250
+        },
+        {
+          "text": "La",
+          "from": 266
+        },
+        {
+          "text": "Liga",
+          "from": 269
+        }
+      ]
+    },
+    {
+      "text": "a record One season seventy-three",
+      "from": 284,
+      "to": 350,
+      "words": [
+        {
+          "text": "a",
+          "from": 284
+        },
+        {
+          "text": "record",
+          "from": 286
+        },
+        {
+          "text": "One",
+          "from": 297
+        },
+        {
+          "text": "season",
+          "from": 313
+        },
+        {
+          "text": "seventy-three",
+          "from": 321
+        }
+      ]
+    },
+    {
+      "text": "Two trebles in 2009 and",
+      "from": 372,
+      "to": 424,
+      "words": [
+        {
+          "text": "Two",
+          "from": 372
+        },
+        {
+          "text": "trebles",
+          "from": 373
+        },
+        {
+          "text": "in",
+          "from": 385
+        },
+        {
+          "text": "2009",
+          "from": 397
+        },
+        {
+          "text": "and",
+          "from": 413
+        }
+      ]
+    },
+    {
+      "text": "2015",
+      "from": 424,
+      "to": 448,
+      "words": [
+        {
+          "text": "2015",
+          "from": 424
+        }
+      ]
+    },
+    {
+      "text": "And in 2022",
+      "from": 467,
+      "to": 493,
+      "words": [
+        {
+          "text": "And",
+          "from": 467
+        },
+        {
+          "text": "in",
+          "from": 470
+        },
+        {
+          "text": "2022",
+          "from": 472
+        }
+      ]
+    },
+    {
+      "text": "the World Cup In sampled",
+      "from": 508,
+      "to": 563,
+      "words": [
+        {
+          "text": "the",
+          "from": 508
+        },
+        {
+          "text": "World",
+          "from": 512
+        },
+        {
+          "text": "Cup",
+          "from": 521
+        },
+        {
+          "text": "In",
+          "from": 535
+        },
+        {
+          "text": "sampled",
+          "from": 553
+        }
+      ]
+    },
+    {
+      "text": "matches",
+      "from": 563,
+      "to": 577,
+      "words": [
+        {
+          "text": "matches",
+          "from": 563
+        }
+      ]
+    },
+    {
+      "text": "his key passes more than",
+      "from": 587,
+      "to": 620,
+      "words": [
+        {
+          "text": "his",
+          "from": 587
+        },
+        {
+          "text": "key",
+          "from": 587
+        },
+        {
+          "text": "passes",
+          "from": 594
+        },
+        {
+          "text": "more",
+          "from": 604
+        },
+        {
+          "text": "than",
+          "from": 615
+        }
+      ]
+    },
+    {
+      "text": "doubled",
+      "from": 620,
+      "to": 635,
+      "words": [
+        {
+          "text": "doubled",
+          "from": 620
+        }
+      ]
+    },
+    {
+      "text": "That is the case for",
+      "from": 654,
+      "to": 687,
+      "words": [
+        {
+          "text": "That",
+          "from": 654
+        },
+        {
+          "text": "is",
+          "from": 660
+        },
+        {
+          "text": "the",
+          "from": 669
+        },
+        {
+          "text": "case",
+          "from": 674
+        },
+        {
+          "text": "for",
+          "from": 679
+        }
+      ]
+    },
+    {
+      "text": "the greatest",
+      "from": 687,
+      "to": 700,
+      "words": [
+        {
+          "text": "the",
+          "from": 687
+        },
+        {
+          "text": "greatest",
+          "from": 690
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 735,
+  "duration_s": 24.5
+}
