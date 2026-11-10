@@ -1,0 +1,281 @@
+{
+  "channel": "hidden-past",
+  "topic": "Pablo Escobar's hippos: four became about two hundred, and Colombia has approved a cull",
+  "format": "short",
+  "target_seconds": 27,
+  "blueprint": {
+    "central_question": "Why are Pablo Escobar's hippos still in Colombia, and what happens to them now?",
+    "thesis": "Four hippos imported in 1981 escaped after his death in 1993 and now number around two hundred; in April 2026 Colombia approved killing more than eighty while some argue they should stay.",
+    "why_it_matters": "A drug lord's private zoo became a live ecological and ethical decision for a whole country.",
+    "viewer_start": "Knows Pablo Escobar.",
+    "viewer_end": "Knows where the hippos came from, how many there are and what is being decided.",
+    "key_evidence": [
+      "H1",
+      "H6",
+      "H7"
+    ],
+    "beats": [],
+    "questions_raised": [],
+    "conclusion": "Who decides what happens to them is still open."
+  },
+  "hook_options": [
+    {
+      "text": "Pablo Escobar's hippos are still alive, and Colombia has approved killing them.",
+      "family": "direct question",
+      "honest": true
+    }
+  ],
+  "selected_hook": "Pablo Escobar's hippos are still alive, and Colombia has approved killing them.",
+  "sentences": [
+    {
+      "sentence_id": "f1",
+      "beat_id": "b1",
+      "role": "narration",
+      "link_from_previous": "none",
+      "on_screen_text": "",
+      "text": "Pablo Escobar's hippos are still alive, and Colombia has approved killing them.",
+      "scene": 0,
+      "claim_ids": [
+        "H6",
+        "H7"
+      ]
+    },
+    {
+      "sentence_id": "f2",
+      "beat_id": "b2",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "In 1981, he imported four of them for his private zoo.",
+      "scene": 0,
+      "claim_ids": [
+        "H1"
+      ]
+    },
+    {
+      "sentence_id": "f3",
+      "beat_id": "b3",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "His estate lay between Medellín and Bogotá.",
+      "scene": 1,
+      "claim_ids": [
+        "H2"
+      ]
+    },
+    {
+      "sentence_id": "f4",
+      "beat_id": "b4",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "After he died in 1993, they escaped and spread.",
+      "scene": 2,
+      "claim_ids": [
+        "H3"
+      ]
+    },
+    {
+      "sentence_id": "f5",
+      "beat_id": "b5",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "By 2007 there were sixteen, by 2014 about forty, and now around two hundred.",
+      "scene": 2,
+      "claim_ids": [
+        "H4",
+        "H5",
+        "H6"
+      ]
+    },
+    {
+      "sentence_id": "f6",
+      "beat_id": "b6",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "In April 2026, Colombia approved killing over eighty.",
+      "scene": 3,
+      "claim_ids": [
+        "H7"
+      ]
+    },
+    {
+      "sentence_id": "f7",
+      "beat_id": "b7",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "An Indian billionaire offered them a home.",
+      "scene": 3,
+      "claim_ids": [
+        "H8"
+      ]
+    },
+    {
+      "sentence_id": "f8",
+      "beat_id": "b8",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "Conservationists call them invasive; some ecologists disagree.",
+      "scene": 4,
+      "claim_ids": [
+        "H9",
+        "H10"
+      ]
+    },
+    {
+      "sentence_id": "f9",
+      "beat_id": "b9",
+      "role": "narration",
+      "link_from_previous": "explanation",
+      "on_screen_text": "",
+      "text": "So who decides their fate?",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or transition built from the cited claims"
+    }
+  ],
+  "payoff": "Conservationists call them invasive; some ecologists disagree.",
+  "ending": "So who decides their fate?",
+  "cta": null,
+  "sources": [
+    {
+      "source_id": "wiki-hippos",
+      "url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "H1",
+      "claim": "In 1981 four hippos, three females and one male, were imported by Pablo Escobar to his private menagerie at Hacienda Nápoles.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "In 1981, four hippos, three females and one male, were imported by Escobar to his private menagerie at his residence in Hacienda N",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H2",
+      "claim": "Hacienda Nápoles is located between the cities of Medellín and Bogotá.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "located between the cities of Medell",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H3",
+      "claim": "After Escobar's 1993 death the zoo was unofficially closed, but the hippos later escaped the residence and spread out to nearby areas.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "After Escobar's 1993 death, the zoo was unofficially closed, but the hippos would later escape the residence and spread out to nearby areas.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H4",
+      "claim": "By 2007 the hippos had multiplied to 16.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "By 2007, the animals had multiplied to 16",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H5",
+      "claim": "In early 2014 there were reported to be 40 hippos in Puerto Triunfo, Antioquia.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "In early 2014, there were reported to be 40 hippopotamuses in Puerto Triunfo, Antioquia.",
+      "confidence": "high",
+      "context": "A reported figure, not a census.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H6",
+      "claim": "As of April 2026 the population was around 200.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "As of April 2026, the population was around 200",
+      "confidence": "high",
+      "context": "An estimate: the article gives earlier counts as ranges.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H7",
+      "claim": "On 13 April 2026 Colombia's Ministry of Environment approved the euthanasia of more than 80 hippos.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "On April 13, 2026, the Colombian Ministry of Environment approved the euthanasia of the more than 80 hippos",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H8",
+      "claim": "The Indian billionaire Anant Ambani offered transportation and shelter in India for the animals.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "Indian billionaire Anant Ambani offered transportation and shelter in India for the animals",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "H9",
+      "claim": "Most conservationists considered the hippos problematic and invasive in Colombia.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "most conservationists considered them problematic and invasive in Colombia",
+      "confidence": "high",
+      "context": "The article contrasts this with a minority view (H10).",
+      "contradictory_evidence": [],
+      "editorial_status": "later_interpretation"
+    },
+    {
+      "claim_id": "H10",
+      "claim": "Some ecologists have argued that the hippos should remain and might even have a positive effect on the local environment.",
+      "source_id": "wiki-hippos",
+      "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+      "published": "2026-11-11",
+      "excerpt": "some ecologists have argued that the hippos should remain and might even have a positive effect on the local environment",
+      "confidence": "high",
+      "context": "A minority view, described in the article as contrasting with most conservationists.",
+      "contradictory_evidence": [],
+      "editorial_status": "later_interpretation"
+    }
+  ],
+  "duration_estimate_s": 39.024390243902445,
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  }
+}
