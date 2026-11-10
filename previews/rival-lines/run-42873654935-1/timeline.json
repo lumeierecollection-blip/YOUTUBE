@@ -1,0 +1,514 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "question-hook-with-real-shirt-photographs",
+      "objective": "Pose the question over a sticker portrait with real photographs of two Argentina shirts",
+      "background": "white editorial page, club blue",
+      "from": 0,
+      "to": 113,
+      "start_s": 0,
+      "end_s": 3.7666666666666666
+    },
+    {
+      "id": "s2",
+      "kind": "trophies",
+      "treatment": "eight-ballon-dor-photographs",
+      "objective": "Count up to eight and show eight photographs of Ballon d'Or trophies",
+      "background": "white editorial page",
+      "from": 113,
+      "to": 232,
+      "start_s": 3.7666666666666666,
+      "end_s": 7.733333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "shoes",
+      "treatment": "golden-shoe-photograph",
+      "objective": "Show a real photograph of a Golden Shoe with the six count",
+      "background": "gold block",
+      "from": 232,
+      "to": 316,
+      "start_s": 7.733333333333333,
+      "end_s": 10.533333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "chart",
+      "treatment": "goals-per-season-stacked-bars",
+      "objective": "Draw Barcelona goals per season, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "background": "white card",
+      "from": 316,
+      "to": 530,
+      "start_s": 10.533333333333333,
+      "end_s": 17.666666666666668
+    },
+    {
+      "id": "s5",
+      "kind": "trebles",
+      "treatment": "two-trebles-with-trophy-display-photograph",
+      "objective": "Show the two trebles on cards with a photograph of the Barcelona trophy display",
+      "background": "garnet block",
+      "from": 530,
+      "to": 670,
+      "start_s": 17.666666666666668,
+      "end_s": 22.333333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "worldcup",
+      "treatment": "world-cup-2022-photograph-collage",
+      "objective": "Show a real photograph of the 2022 World Cup trophy being kissed in an Argentina shirt, with 2022 in large type",
+      "background": "sky-blue block",
+      "from": 670,
+      "to": 795,
+      "start_s": 22.333333333333332,
+      "end_s": 26.5
+    },
+    {
+      "id": "s7",
+      "kind": "creator",
+      "treatment": "key-pass-per-90-bars",
+      "objective": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "background": "white card",
+      "from": 795,
+      "to": 917,
+      "start_s": 26.5,
+      "end_s": 30.566666666666666
+    },
+    {
+      "id": "s8",
+      "kind": "close",
+      "treatment": "portrait-led-question-close",
+      "objective": "Close on the portrait with the question and the evidence as plain chips",
+      "background": "garnet block",
+      "from": 917,
+      "to": 1055,
+      "start_s": 30.566666666666666,
+      "end_s": 35.166666666666664
+    }
+  ],
+  "captions": [
+    {
+      "text": "Is Lionel Messi the greatest",
+      "from": 0,
+      "to": 70,
+      "words": [
+        {
+          "text": "Is",
+          "from": 0
+        },
+        {
+          "text": "Lionel",
+          "from": 13
+        },
+        {
+          "text": "Messi",
+          "from": 22
+        },
+        {
+          "text": "the",
+          "from": 43
+        },
+        {
+          "text": "greatest",
+          "from": 56
+        }
+      ]
+    },
+    {
+      "text": "of all time",
+      "from": 70,
+      "to": 102,
+      "words": [
+        {
+          "text": "of",
+          "from": 70
+        },
+        {
+          "text": "all",
+          "from": 82
+        },
+        {
+          "text": "time",
+          "from": 86
+        }
+      ]
+    },
+    {
+      "text": "Start with the awards",
+      "from": 113,
+      "to": 145,
+      "words": [
+        {
+          "text": "Start",
+          "from": 113
+        },
+        {
+          "text": "with",
+          "from": 122
+        },
+        {
+          "text": "the",
+          "from": 129
+        },
+        {
+          "text": "awards",
+          "from": 133
+        }
+      ]
+    },
+    {
+      "text": "a record eight Ballons d'Or",
+      "from": 158,
+      "to": 219,
+      "words": [
+        {
+          "text": "a",
+          "from": 158
+        },
+        {
+          "text": "record",
+          "from": 160
+        },
+        {
+          "text": "eight",
+          "from": 171
+        },
+        {
+          "text": "Ballons",
+          "from": 185
+        },
+        {
+          "text": "d'Or",
+          "from": 201
+        }
+      ]
+    },
+    {
+      "text": "And six European Golden Shoes",
+      "from": 232,
+      "to": 299,
+      "words": [
+        {
+          "text": "And",
+          "from": 232
+        },
+        {
+          "text": "six",
+          "from": 235
+        },
+        {
+          "text": "European",
+          "from": 246
+        },
+        {
+          "text": "Golden",
+          "from": 263
+        },
+        {
+          "text": "Shoes",
+          "from": 283
+        }
+      ]
+    },
+    {
+      "text": "Four hundred and seventy-four",
+      "from": 316,
+      "to": 365,
+      "words": [
+        {
+          "text": "Four",
+          "from": 316
+        },
+        {
+          "text": "hundred",
+          "from": 327
+        },
+        {
+          "text": "and",
+          "from": 338
+        },
+        {
+          "text": "seventy-four",
+          "from": 347
+        }
+      ]
+    },
+    {
+      "text": "La Liga goals",
+      "from": 376,
+      "to": 401,
+      "words": [
+        {
+          "text": "La",
+          "from": 376
+        },
+        {
+          "text": "Liga",
+          "from": 382
+        },
+        {
+          "text": "goals",
+          "from": 387
+        }
+      ]
+    },
+    {
+      "text": "a record and seventy-three",
+      "from": 410,
+      "to": 458,
+      "words": [
+        {
+          "text": "a",
+          "from": 410
+        },
+        {
+          "text": "record",
+          "from": 411
+        },
+        {
+          "text": "and",
+          "from": 423
+        },
+        {
+          "text": "seventy-three",
+          "from": 440
+        }
+      ]
+    },
+    {
+      "text": "in a single season",
+      "from": 470,
+      "to": 510,
+      "words": [
+        {
+          "text": "in",
+          "from": 470
+        },
+        {
+          "text": "a",
+          "from": 479
+        },
+        {
+          "text": "single",
+          "from": 482
+        },
+        {
+          "text": "season",
+          "from": 490
+        }
+      ]
+    },
+    {
+      "text": "Two trebles with Barcelona",
+      "from": 530,
+      "to": 571,
+      "words": [
+        {
+          "text": "Two",
+          "from": 530
+        },
+        {
+          "text": "trebles",
+          "from": 535
+        },
+        {
+          "text": "with",
+          "from": 550
+        },
+        {
+          "text": "Barcelona",
+          "from": 556
+        }
+      ]
+    },
+    {
+      "text": "in 2009 and 2015",
+      "from": 587,
+      "to": 652,
+      "words": [
+        {
+          "text": "in",
+          "from": 587
+        },
+        {
+          "text": "2009",
+          "from": 589
+        },
+        {
+          "text": "and",
+          "from": 600
+        },
+        {
+          "text": "2015",
+          "from": 623
+        }
+      ]
+    },
+    {
+      "text": "In 2022 he led Argentina",
+      "from": 670,
+      "to": 742,
+      "words": [
+        {
+          "text": "In",
+          "from": 670
+        },
+        {
+          "text": "2022",
+          "from": 679
+        },
+        {
+          "text": "he",
+          "from": 695
+        },
+        {
+          "text": "led",
+          "from": 719
+        },
+        {
+          "text": "Argentina",
+          "from": 727
+        }
+      ]
+    },
+    {
+      "text": "to the World Cup",
+      "from": 742,
+      "to": 784,
+      "words": [
+        {
+          "text": "to",
+          "from": 742
+        },
+        {
+          "text": "the",
+          "from": 760
+        },
+        {
+          "text": "World",
+          "from": 763
+        },
+        {
+          "text": "Cup",
+          "from": 770
+        }
+      ]
+    },
+    {
+      "text": "In sampled matches",
+      "from": 795,
+      "to": 835,
+      "words": [
+        {
+          "text": "In",
+          "from": 795
+        },
+        {
+          "text": "sampled",
+          "from": 805
+        },
+        {
+          "text": "matches",
+          "from": 814
+        }
+      ]
+    },
+    {
+      "text": "his key passes per ninety",
+      "from": 844,
+      "to": 879,
+      "words": [
+        {
+          "text": "his",
+          "from": 844
+        },
+        {
+          "text": "key",
+          "from": 844
+        },
+        {
+          "text": "passes",
+          "from": 852
+        },
+        {
+          "text": "per",
+          "from": 862
+        },
+        {
+          "text": "ninety",
+          "from": 872
+        }
+      ]
+    },
+    {
+      "text": "minutes more than doubled The",
+      "from": 880,
+      "to": 943,
+      "words": [
+        {
+          "text": "minutes",
+          "from": 880
+        },
+        {
+          "text": "more",
+          "from": 892
+        },
+        {
+          "text": "than",
+          "from": 902
+        },
+        {
+          "text": "doubled",
+          "from": 907
+        },
+        {
+          "text": "The",
+          "from": 917
+        }
+      ]
+    },
+    {
+      "text": "greatest of all time",
+      "from": 943,
+      "to": 988,
+      "words": [
+        {
+          "text": "greatest",
+          "from": 943
+        },
+        {
+          "text": "of",
+          "from": 953
+        },
+        {
+          "text": "all",
+          "from": 967
+        },
+        {
+          "text": "time",
+          "from": 972
+        }
+      ]
+    },
+    {
+      "text": "you decide",
+      "from": 1006,
+      "to": 1022,
+      "words": [
+        {
+          "text": "you",
+          "from": 1006
+        },
+        {
+          "text": "decide",
+          "from": 1010
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1055,
+  "duration_s": 35.166666666666664
+}
