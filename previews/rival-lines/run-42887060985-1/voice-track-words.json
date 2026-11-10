@@ -1,0 +1,487 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.8-flash-tts + faster-whisper alignment (64/73 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Is",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "Lionel",
+   "start": 0.38,
+   "end": 0.58,
+   "sentence": 0
+  },
+  {
+   "text": "Messi",
+   "start": 0.58,
+   "end": 1.02,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.02,
+   "end": 1.32,
+   "sentence": 0
+  },
+  {
+   "text": "greatest",
+   "start": 1.32,
+   "end": 1.68,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 1.68,
+   "end": 1.98,
+   "sentence": 0
+  },
+  {
+   "text": "all",
+   "start": 1.98,
+   "end": 2.1,
+   "sentence": 0
+  },
+  {
+   "text": "time",
+   "start": 2.1,
+   "end": 2.4,
+   "sentence": 0
+  },
+  {
+   "text": "Start",
+   "start": 3.08,
+   "end": 3.22,
+   "sentence": 1
+  },
+  {
+   "text": "with",
+   "start": 3.22,
+   "end": 3.42,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 3.42,
+   "end": 3.5,
+   "sentence": 1
+  },
+  {
+   "text": "awards",
+   "start": 3.5,
+   "end": 3.74,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 4.06,
+   "end": 4.11,
+   "sentence": 1
+  },
+  {
+   "text": "record",
+   "start": 4.08,
+   "end": 4.3,
+   "sentence": 1
+  },
+  {
+   "text": "eight",
+   "start": 4.3,
+   "end": 4.76,
+   "sentence": 1
+  },
+  {
+   "text": "Ballons",
+   "start": 4.76,
+   "end": 5.333,
+   "sentence": 1
+  },
+  {
+   "text": "d'Or",
+   "start": 5.333,
+   "end": 5.907,
+   "sentence": 1
+  },
+  {
+   "text": "And",
+   "start": 6.48,
+   "end": 6.54,
+   "sentence": 2
+  },
+  {
+   "text": "six",
+   "start": 6.54,
+   "end": 6.84,
+   "sentence": 2
+  },
+  {
+   "text": "European",
+   "start": 6.84,
+   "end": 7.36,
+   "sentence": 2
+  },
+  {
+   "text": "Golden",
+   "start": 7.36,
+   "end": 7.88,
+   "sentence": 2
+  },
+  {
+   "text": "Shoes",
+   "start": 7.88,
+   "end": 8.28,
+   "sentence": 2
+  },
+  {
+   "text": "Four",
+   "start": 8.28,
+   "end": 8.692,
+   "sentence": 3
+  },
+  {
+   "text": "hundred",
+   "start": 8.692,
+   "end": 9.104,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 9.104,
+   "end": 9.516,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-four",
+   "start": 9.516,
+   "end": 9.928,
+   "sentence": 3
+  },
+  {
+   "text": "La",
+   "start": 10.34,
+   "end": 10.9,
+   "sentence": 3
+  },
+  {
+   "text": "Liga",
+   "start": 10.9,
+   "end": 11.04,
+   "sentence": 3
+  },
+  {
+   "text": "goals",
+   "start": 11.04,
+   "end": 11.44,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 11.68,
+   "end": 11.73,
+   "sentence": 3
+  },
+  {
+   "text": "record",
+   "start": 11.7,
+   "end": 12.02,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 12.34,
+   "end": 12.44,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-three",
+   "start": 12.44,
+   "end": 12.66,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 12.88,
+   "end": 13.42,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 13.42,
+   "end": 13.5,
+   "sentence": 3
+  },
+  {
+   "text": "single",
+   "start": 13.5,
+   "end": 13.64,
+   "sentence": 3
+  },
+  {
+   "text": "season",
+   "start": 13.64,
+   "end": 14.02,
+   "sentence": 3
+  },
+  {
+   "text": "Two",
+   "start": 14.92,
+   "end": 15.02,
+   "sentence": 4
+  },
+  {
+   "text": "trebles",
+   "start": 15.02,
+   "end": 15.4,
+   "sentence": 4
+  },
+  {
+   "text": "with",
+   "start": 15.4,
+   "end": 15.62,
+   "sentence": 4
+  },
+  {
+   "text": "Barcelona",
+   "start": 15.62,
+   "end": 15.9,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 15.9,
+   "end": 16.3,
+   "sentence": 4
+  },
+  {
+   "text": "2009",
+   "start": 16.3,
+   "end": 16.5,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 16.5,
+   "end": 17.16,
+   "sentence": 4
+  },
+  {
+   "text": "2015",
+   "start": 17.16,
+   "end": 17.6,
+   "sentence": 4
+  },
+  {
+   "text": "In",
+   "start": 18.6,
+   "end": 18.74,
+   "sentence": 5
+  },
+  {
+   "text": "2022",
+   "start": 18.74,
+   "end": 19.04,
+   "sentence": 5
+  },
+  {
+   "text": "he",
+   "start": 19.36,
+   "end": 19.88,
+   "sentence": 5
+  },
+  {
+   "text": "led",
+   "start": 19.88,
+   "end": 20.06,
+   "sentence": 5
+  },
+  {
+   "text": "Argentina",
+   "start": 20.06,
+   "end": 20.4,
+   "sentence": 5
+  },
+  {
+   "text": "to",
+   "start": 20.4,
+   "end": 20.88,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 20.88,
+   "end": 20.98,
+   "sentence": 5
+  },
+  {
+   "text": "World",
+   "start": 20.98,
+   "end": 21.12,
+   "sentence": 5
+  },
+  {
+   "text": "Cup",
+   "start": 21.12,
+   "end": 21.38,
+   "sentence": 5
+  },
+  {
+   "text": "In",
+   "start": 22.3,
+   "end": 22.36,
+   "sentence": 6
+  },
+  {
+   "text": "sampled",
+   "start": 22.36,
+   "end": 22.46,
+   "sentence": 6
+  },
+  {
+   "text": "matches",
+   "start": 22.56,
+   "end": 22.86,
+   "sentence": 6
+  },
+  {
+   "text": "his",
+   "start": 23.34,
+   "end": 23.42,
+   "sentence": 6
+  },
+  {
+   "text": "key",
+   "start": 23.42,
+   "end": 23.62,
+   "sentence": 6
+  },
+  {
+   "text": "passes",
+   "start": 23.62,
+   "end": 23.94,
+   "sentence": 6
+  },
+  {
+   "text": "per",
+   "start": 23.94,
+   "end": 24.26,
+   "sentence": 6
+  },
+  {
+   "text": "ninety",
+   "start": 24.26,
+   "end": 24.38,
+   "sentence": 6
+  },
+  {
+   "text": "minutes",
+   "start": 24.5,
+   "end": 24.78,
+   "sentence": 6
+  },
+  {
+   "text": "more",
+   "start": 24.78,
+   "end": 25.04,
+   "sentence": 6
+  },
+  {
+   "text": "than",
+   "start": 25.04,
+   "end": 25.18,
+   "sentence": 6
+  },
+  {
+   "text": "doubled",
+   "start": 25.18,
+   "end": 25.44,
+   "sentence": 6
+  },
+  {
+   "text": "The",
+   "start": 26.14,
+   "end": 26.26,
+   "sentence": 7
+  },
+  {
+   "text": "greatest",
+   "start": 26.26,
+   "end": 26.52,
+   "sentence": 7
+  },
+  {
+   "text": "of",
+   "start": 26.52,
+   "end": 26.9,
+   "sentence": 7
+  },
+  {
+   "text": "all",
+   "start": 26.9,
+   "end": 27.04,
+   "sentence": 7
+  },
+  {
+   "text": "time",
+   "start": 27.04,
+   "end": 27.34,
+   "sentence": 7
+  },
+  {
+   "text": "you",
+   "start": 28.1,
+   "end": 28.15,
+   "sentence": 7
+  },
+  {
+   "text": "decide",
+   "start": 28.14,
+   "end": 28.28,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Is Lionel Messi the greatest of all time?",
+   "start": 0.0,
+   "end": 2.4
+  },
+  {
+   "text": "Start with the awards: a record eight Ballons d'Or.",
+   "start": 3.08,
+   "end": 5.907
+  },
+  {
+   "text": "And six European Golden Shoes.",
+   "start": 6.48,
+   "end": 8.28
+  },
+  {
+   "text": "Four hundred and seventy-four La Liga goals, a record, and seventy-three in a single season.",
+   "start": 8.28,
+   "end": 14.02
+  },
+  {
+   "text": "Two trebles with Barcelona, in 2009 and 2015.",
+   "start": 14.92,
+   "end": 17.6
+  },
+  {
+   "text": "In 2022, he led Argentina to the World Cup.",
+   "start": 18.6,
+   "end": 21.38
+  },
+  {
+   "text": "In sampled matches, his key passes per ninety minutes more than doubled.",
+   "start": 22.3,
+   "end": 25.44
+  },
+  {
+   "text": "The greatest of all time: you decide.",
+   "start": 26.14,
+   "end": 28.28
+  }
+ ]
+}

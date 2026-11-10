@@ -2,11 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42887060985-1",
   "agent": "agent-rival-lines",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T19:41:30.177Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T19:48:04.879Z",
   "branch": "preview/rival-lines-messi-10",
   "commit": "4ba730896e103ce4bc0302f2d1c6aa0d2605024a",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42887060985#artifacts",
-  "note": "not reviewed by the engine critic"
+  "error": "narration is 28.92s at natural speed (allowed 34 to 39.25s); change the script, never the speed"
 }
