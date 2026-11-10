@@ -2,11 +2,10 @@
   "channel": "hidden-past",
   "production_run": "run-42912726677-1",
   "agent": "agent-hidden-past",
-  "stage": "render_complete",
+  "stage": "qa_passed",
   "status": "ok",
-  "timestamp": "2026-11-10T22:20:06.991Z",
+  "timestamp": "2026-11-10T22:21:45.054Z",
   "branch": "preview/hidden-past-vox-hippos",
   "commit": "2cd157391071bbbf5e0cfa02f1ad96be590dbd8e",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42912726677#artifacts",
-  "duration_s": 39.333333
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42912726677#artifacts"
 }
