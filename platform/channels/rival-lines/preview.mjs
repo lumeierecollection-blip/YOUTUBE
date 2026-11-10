@@ -8,12 +8,15 @@ import { fileURLToPath } from "node:url";
 import { runFixedShort } from "../../production/fixed-short.mjs";
 import { commonsAsset, dataUri } from "../../production/commons.mjs";
 import { discover } from "./topics.mjs";
+import { compactScenes, fitScript } from "../../production/fitscript.mjs";
+import { narrate } from "../../production/index.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(here, "../../..");
 const channel = JSON.parse(readFileSync(join(here, "channel.json"), "utf8"));
 const py = process.platform === "win32" ? "python" : "python3";
 const UA = { "User-Agent": "RivalLines/1.0 (football analysis)" };
+const CALIBRATION = "Barcelona won the league on the final day. The striker scored twice in the second half, and the goalkeeper saved a late penalty. It was the club's tenth title in twelve years, and the crowd stayed long after the final whistle.";
 
 function analyse(script, outDir, cache) {
   mkdirSync(outDir, { recursive: true });
@@ -67,6 +70,15 @@ export default async function preview({ key, runId, tools }) {
   tools.write("asset-manifest.json", { note: "Photographs are real Wikimedia Commons files. All tactical graphics are drawn by mplsoccer from recorded events. Nothing is AI-generated.", assets: entries });
 
   // 4. Voice, timeline, render, frames, QA. Voice only: no music has been licensed for this channel yet.
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences: story.sentences, scenes: story.scenes, compositionId: mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: 20, makeProps: () => ({ images, credits, data }) } });
+  // The 35 to 40 second rule: measure this voice's natural pace first, then choose the wording that fits. The voice is never sped up.
+  let sentences = story.sentences, scenes = story.scenes;
+  if (story.slots) {
+    const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: channel.voice.style });
+    const fit = fitScript({ slots: story.slots, wpm: cal.wpm });
+    ({ scenes, sentences } = compactScenes({ scenes: story.scenes, sentences: fit.sentences }));
+    tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
+    console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
+  }
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: 34, maxSeconds: 40, makeProps: () => ({ images, credits, data }) } });
   tools.write("quality-report.json", { format: mode === "player" ? "player_documentary" : "match_analysis", technical: result.qa, data_note: "event data only; locations are where events were recorded" });
 }
