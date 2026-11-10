@@ -38,7 +38,7 @@ export const STORIES = {
     ASSETS: [
       { id: "bey-2023", key: "p2023", title: grTitle("bey-2023"), claim: "M1" },
       { id: "solti", key: "solti", title: grTitle("solti"), claim: "M5" },
-      { id: "bey-2011", key: "p2011cut", title: grTitle("bey-2011"), claim: "M3", cutout: {} },
+      { id: "bey-2011", key: "p2011cut", title: grTitle("bey-2011"), claim: "M3", cutout: { paper: 8 } },
       { id: "trophy", key: "trophy", title: grTitle("trophy"), claim: "M1" },
       { id: "bey-2009", key: "p2009", title: grTitle("bey-2009"), claim: "M4" },
     ],
