@@ -1,0 +1,26 @@
+{
+  "format": "player_documentary",
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 25.216,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -21.1,
+    "max_volume_db": -1.6,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 24.696,
+      "words": 49,
+      "wpm": 119,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "data_note": "event data only; locations are where events were recorded"
+}
