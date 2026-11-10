@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-42809388435-1",
   "agent": "agent-hidden-past",
-  "stage": "blueprint_complete",
+  "stage": "script_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T11:42:01.540Z",
+  "timestamp": "2026-11-10T11:42:03.330Z",
   "branch": "preview/hidden-past-collage-berlin",
   "commit": "73e38428f125c5aae7b9fdf8d5388aa8ed20a019",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42809388435#artifacts"
