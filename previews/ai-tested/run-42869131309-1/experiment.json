@@ -1,0 +1,767 @@
+{
+  "date": "2026-11-10",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "plain": 16,
+      "spelled": 20,
+      "plain_real": 10,
+      "plain_random": 6,
+      "spelled_real": 10,
+      "spelled_random": 10,
+      "plain_answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "6",
+          "answer": 6,
+          "ok": true
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "3",
+          "answer": 3,
+          "ok": false
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "4",
+          "answer": 4,
+          "ok": false
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        }
+      ],
+      "spelled_answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "s-t-r-a-w-b-e-r-r-y\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "m-i-s-s-i-s-s-i-p-p-i\n\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "b-a-n-a-n-a\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "b-o-o-k-k-e-e-p-e-r\n\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "c-o-m-m-i-t-t-e-e\n\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "O-n-o-m-a-t-o-p-o-e-i-a\n\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "r-a-s-p-b-e-r-r-y\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "o-c-c-u-r-r-e-n-c-e\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "a-s-s-e-s-s-m-e-n-t\n\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "b-u-b-b-l-e-g-u-m\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "d-o-t-t-m-b-d-g-r-d-d-o-d-n-d-p-n-i-a-n-l-e-l-s\n\nLet's count the occurrences of the letter \"d\":\n1. **d**ottmbdgrddodndpnianlels (1)\n2. dottmb**d**grddodndpnianlels (2)\n3. dottmbdg**r**... wait: dottmbdgr**d**dodndpnianlels (3)\n4. dottmbdgrd**d**odndpnianlels (4)\n5. dottmbdgrddo**d**ndpnianlels (5)\n6. dottmbdgrddodn**d*",
+          "answer": 6,
+          "ok": true
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "o-h-p-m-b-i-o-s-r-e-l-p-t-r-o-h-s-a-a-i-t-h-n-d\n\nANSWER: 1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "i-i-l-e-n-e-e-i-g-n-r-s-a-s-g-s-i-g-s-n-m-g-h-r\n\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "a-b-d-l-o-p-g-b-r-h-g-t-l-t-p-n-r-e-s-o-g-l-c-a\n\nANSWER: 1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "n-h-m-g-s-a-m-c-h-c-p-o-m-a-p-m-r-b-r-s-s-m-d-h\n\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "l-d-e-a-l-m-s-c-l-h-c-t-r-g-o-h-a-c-e-i-r-s-t-s\n\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "m-b-t-d-s-c-b-o-d-n-r-d-h-c-b-e-b-m-a-a-o-r-i-m\n\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "s-e-m-i-o-b-n-l-r-o-g-p-o-i-l-s-p-m-r-e-d-c-e-s\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "e-l-i-l-c-i-a-c-r-d-h-t-r-o-n-n-o-s-h-c-t-a-o-e\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "p-o-b-l-b-a-m-c-r-s-h-g-d-i-m-o-t-n-o-r-t-a-h-n\n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "id": "openai/gpt-oss-120b",
+      "plain": 20,
+      "spelled": 20,
+      "plain_real": 10,
+      "plain_random": 10,
+      "spelled_real": 10,
+      "spelled_random": 10,
+      "plain_answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "6",
+          "answer": 6,
+          "ok": true
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "3",
+          "answer": 3,
+          "ok": true
+        }
+      ],
+      "spelled_answers": [
+        {
+          "word": "strawberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "s-t-r-a-w-b-e-r-r-y  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "mississippi",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "m-i-s-s-i-s-s-i-p-p-i  \nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "banana",
+          "letter": "a",
+          "group": "real",
+          "correct": 3,
+          "reply": "b-a-n-a-n-a  \nThe letter “a” appears 3 times.  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "bookkeeper",
+          "letter": "o",
+          "group": "real",
+          "correct": 2,
+          "reply": "b-o-o-k-k-e-e-p-e-r  \nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "committee",
+          "letter": "t",
+          "group": "real",
+          "correct": 2,
+          "reply": "c-o-m-m-i-t-t-e-e  \nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "onomatopoeia",
+          "letter": "o",
+          "group": "real",
+          "correct": 4,
+          "reply": "o-n-o-m-a-t-o-p-o-e-i-a\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "raspberry",
+          "letter": "r",
+          "group": "real",
+          "correct": 3,
+          "reply": "r-a-s-p-b-e-r-r-y  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "occurrence",
+          "letter": "c",
+          "group": "real",
+          "correct": 3,
+          "reply": "o-c-c-u-r-r-e-n-c-e  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "assessment",
+          "letter": "s",
+          "group": "real",
+          "correct": 4,
+          "reply": "a-s-s-e-s-s-m-e-n-t  \nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "bubblegum",
+          "letter": "b",
+          "group": "real",
+          "correct": 3,
+          "reply": "b-u-b-b-l-e-g-u-m  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "dottmbdgrddodndpnianlels",
+          "letter": "d",
+          "group": "random",
+          "correct": 6,
+          "reply": "d-o-t-t-m-b-d-g-r-d-d-o-d-n-d-p-n-i-a-n-l-e-l-s\nANSWER: 6",
+          "answer": 6,
+          "ok": true
+        },
+        {
+          "word": "ohpmbiosrelptrohsaaithnd",
+          "letter": "l",
+          "group": "random",
+          "correct": 1,
+          "reply": "o-h-p-m-b-i-o-s-r-e-l-p-t-r-o-h-s-a-a-i-t-h-n-d  \nANSWER: 1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "iileneeignrsasgsigsnmghr",
+          "letter": "g",
+          "group": "random",
+          "correct": 4,
+          "reply": "i-i-l-e-n-e-e-i-g-n-r-s-a-s-g-s-i-g-s-n-m-g-h-r\nANSWER: 4",
+          "answer": 4,
+          "ok": true
+        },
+        {
+          "word": "abdlopgbrhgtltpnresoglca",
+          "letter": "d",
+          "group": "random",
+          "correct": 1,
+          "reply": "a-b-d-l-o-p-g-b-r-h-g-t-l-t-p-n-r-e-s-o-g-l-c-a\nANSWER: 1",
+          "answer": 1,
+          "ok": true
+        },
+        {
+          "word": "nhmgsamchcpomapmrbrssmdh",
+          "letter": "c",
+          "group": "random",
+          "correct": 2,
+          "reply": "n-h-m-g-s-a-m-c-h-c-p-o-m-a-p-m-r-b-r-s-s-m-d-h\nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "ldealmsclhctrgohaceirsts",
+          "letter": "e",
+          "group": "random",
+          "correct": 2,
+          "reply": "l-d-e-a-l-m-s-c-l-h-c-t-r-g-o-h-a-c-e-i-r-s-t-s  \nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "mbtdscbodnrdhcbebmaaorim",
+          "letter": "r",
+          "group": "random",
+          "correct": 2,
+          "reply": "m-b-t-d-s-c-b-o-d-n-r-d-h-c-b-e-b-m-a-a-o-r-i-m  \nANSWER: 2",
+          "answer": 2,
+          "ok": true
+        },
+        {
+          "word": "semiobnlrogpoilspmredces",
+          "letter": "e",
+          "group": "random",
+          "correct": 3,
+          "reply": "s-e-m-i-o-b-n-l-r-o-g-p-o-i-l-s-p-m-r-e-d-c-e-s\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "elilciacrdhtronnoshctaoe",
+          "letter": "c",
+          "group": "random",
+          "correct": 3,
+          "reply": "e-l-i-l-c-i-a-c-r-d-h-t-r-o-n-n-o-s-h-c-t-a-o-e  \nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        },
+        {
+          "word": "poblbamcrshgdimotnortahn",
+          "letter": "o",
+          "group": "random",
+          "correct": 3,
+          "reply": "p-o-b-l-b-a-m-c-r-s-h-g-d-i-m-o-t-n-o-r-t-a-h-n\nANSWER: 3",
+          "answer": 3,
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "tokens": {
+    "word": "strawberry",
+    "letters": 10,
+    "tokens": 1
+  },
+  "example": {
+    "word": "strawberry",
+    "letter": "r",
+    "correct": 3
+  },
+  "reused_from": "previews/ai-tested/run-42868264591-1/experiment.json"
+}
