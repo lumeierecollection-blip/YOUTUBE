@@ -89,7 +89,7 @@ function Why({ dur, d }) {
       <Title top={220}>Models read tokens</Title>
       <div style={abs(0, 420, 1080, 90, { textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 64, color: C.ink, opacity: a })}>“{word}” has {letters} letters</div>
       {word.split("").map((c, i) => <div key={i} style={abs(x0 + i * (tile + 8), 560, tile, tile * 1.25, { background: C.surface, color: C.ink, borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontWeight: 800, fontSize: tile * 0.66, opacity: a })}>{c}</div>)}
-      <div style={abs(0, 760, 1080, 90, { textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 64, color: C.accent, opacity: b })}>The model sees {tokens} tokens</div>
+      <div style={abs(0, 760, 1080, 90, { textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 64, color: C.accent, opacity: b })}>The model sees {tokens} {tokens === 1 ? "token" : "tokens"}</div>
       {Array.from({ length: tokens }, (_, i) => <div key={i} style={abs(x0 + i * (blockW + 12), 900, blockW, 150, { background: C.accent, borderRadius: 18, opacity: b, transform: `scaleX(${b})`, transformOrigin: "left" })} />)}
       <div style={abs(80, 1130, 920, 150, { opacity: b, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 38, lineHeight: 1.25, color: C.dim })}>Token count measured with Gemini's tokenizer. The split itself is not shown: the model cannot see the letters inside a token.</div>
     </Scene>

@@ -64,7 +64,7 @@ export function plan(exp) {
     claim("spelled", `${star.speak} got ${star.spelled} of ${total} right when it spelled the word out first.`),
     ...(star.spelled_random > star.plain_random ? [claim("split", `${star.speak} got ${star.plain_random} of 10 random letter strings right when asked plainly and ${star.spelled_random} of 10 when it spelled them out first.`)] : []),
     ...others.map((m, i) => claim(`other${i}`, m.plain === m.spelled ? `${m.speak} got ${m.plain} of ${total} right both ways.` : `${m.speak} went from ${m.plain} to ${m.spelled} of ${total}.`)),
-    claim("tokens", `Gemini's tokenizer reads "${exp.tokens.word}" as ${exp.tokens.tokens} tokens, not ${exp.tokens.letters} letters.`),
+    claim("tokens", `Gemini's tokenizer reads "${exp.tokens.word}" as ${exp.tokens.tokens} ${exp.tokens.tokens === 1 ? "token" : "tokens"}, not ${exp.tokens.letters} letters.`),
     claim("tokenize", "Language models turn text into numbered tokens, using methods such as byte-pair encoding, before processing it.", "established_fact", "wiki-llm"),
   ];
   const S = (text, scene, claim_ids = []) => ({ text, scene, claim_ids, ...(claim_ids.length ? {} : { allow_no_claim: true, editorial: "question, transition or recommendation drawn from the measured results" }) });
@@ -77,7 +77,7 @@ export function plan(exp) {
     ...(star.spelled_random > star.plain_random ? [S(`On random letters, ${say(star.plain_random)} of ten became ${say(star.spelled_random)}.`, 4, ["split"])] : []),
     ...others.map((m, i) => S(m.plain === m.spelled ? `${m.speak} was perfect either way.` : `${m.speak} went from ${say(m.plain)} to ${say(m.spelled)}.`, 4, [`other${i}`])),
     S("Why: models read tokens, not letters.", 5, ["tokenize"]),
-    S(`${exp.tokens.word[0].toUpperCase()}${exp.tokens.word.slice(1)} is ${say(exp.tokens.tokens)} tokens, but ${say(exp.tokens.letters)} letters.`, 5, ["tokens"]),
+    S(`${exp.tokens.word[0].toUpperCase()}${exp.tokens.word.slice(1)} is ${say(exp.tokens.tokens)} ${exp.tokens.tokens === 1 ? "token" : "tokens"}, but ${say(exp.tokens.letters)} letters.`, 5, ["tokens"]),
     S("Same models, same questions, one change.", 6, ["design"]),
     S("So make the model spell it out first.", 6),
   ];
