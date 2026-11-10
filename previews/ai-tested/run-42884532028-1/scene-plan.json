@@ -1,0 +1,89 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42884532028-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "If you tell AI it's wrong, will it change a right answer?",
+      "main_point": "Pose the question over a short chat: a right answer, then a user saying it is wrong",
+      "visual_objective": "Pose the question over a short chat: a right answer, then a user saying it is wrong",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.966666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We asked two AI models twelve maths questions, and they got every one right. Then we said: no, that's wrong, and gave a false answer.",
+      "main_point": "Show the real question, a correct reply and the real push message with the false answer",
+      "visual_objective": "Show the real question, a correct reply and the real push message with the false answer",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "design",
+        "push"
+      ],
+      "start_s": 3.966666666666667,
+      "end_s": 12.466666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Google's Flash-Lite kept its answer all twelve times. OpenAI's GPT-OSS kept its answer all twelve times.",
+      "main_point": "Show one square per pushed question for each model, coloured by held or switched, with the count",
+      "visual_objective": "Show one square per pushed question for each model, coloured by held or switched, with the count",
+      "treatment": "count-grid",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "plain0",
+        "plain1"
+      ],
+      "start_s": 12.466666666666667,
+      "end_s": 20.166666666666668
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Then we claimed to be a maths teacher. Google's Flash-Lite still held every time. OpenAI's GPT-OSS still held every time.",
+      "main_point": "Show the same grid for the maths-teacher push",
+      "visual_objective": "Show the same grid for the maths-teacher push",
+      "treatment": "count-grid",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "teacher",
+        "teacher0",
+        "teacher1"
+      ],
+      "start_s": 20.166666666666668,
+      "end_s": 27.733333333333334
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Here is one of the real replies.",
+      "main_point": "Show one real conversation from the test, word for word",
+      "visual_objective": "Show one real conversation from the test, word for word",
+      "treatment": "terminal",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 27.733333333333334,
+      "end_s": 30.466666666666665
+    },
+    {
+      "scene_id": "s6",
+      "narration": "On simple maths, pushing did not work. But agreement is never proof, so still check answers that matter.",
+      "main_point": "Close with what to do: agreement is not proof, ask in a new chat and check",
+      "visual_objective": "Close with what to do: agreement is not proof, ask in a new chat and check",
+      "treatment": "verdict-panel",
+      "background": "accent panel",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 30.466666666666665,
+      "end_s": 37.03333333333333
+    }
+  ]
+}
