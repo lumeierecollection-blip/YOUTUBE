@@ -28,13 +28,14 @@ export const claims = [
 /** Story slots in order. The script fitter picks the wording and the optional lines that land at 35 to 40 seconds at the voice's own pace. */
 export const slots = [
   { id: "hook", scene: 0, allow_no_claim: true, editorial: "the question the video leaves with the viewer", variants: [{ text: "Is Lionel Messi the greatest of all time?", claim_ids: [] }] },
-  { id: "ballon", scene: 1, variants: [{ text: "Start with the awards: a record eight Ballons d'Or.", claim_ids: ["W2"] }, { text: "A record eight Ballons d'Or.", claim_ids: ["W2"] }] },
-  { id: "shoes", scene: 2, optional: true, variants: [{ text: "And six European Golden Shoes.", claim_ids: ["W8"] }] },
-  { id: "goals", scene: 3, variants: [{ text: "Four hundred and seventy-four La Liga goals, a record, and seventy-three in a single season.", claim_ids: ["W4", "T1"] }, { text: "Four hundred and seventy-four La Liga goals, a record.", claim_ids: ["W4"] }] },
-  { id: "trebles", scene: 4, variants: [{ text: "Two trebles with Barcelona, in 2009 and 2015.", claim_ids: ["W3", "W7"] }, { text: "Two trebles, 2009 and 2015.", claim_ids: ["W3", "W7"] }] },
-  { id: "worldcup", scene: 5, variants: [{ text: "In 2022, he led Argentina to the World Cup.", claim_ids: ["W5"] }, { text: "In 2022, the World Cup.", claim_ids: ["W5"] }] },
+  { id: "evidence", scene: 0, optional: true, allow_no_claim: true, editorial: "transition into the evidence", variants: [{ text: "Here is the evidence, in numbers.", claim_ids: [] }] },
+  { id: "ballon", scene: 1, variants: [{ text: "Start with the individual awards: a record eight Ballons d'Or.", claim_ids: ["W2"] }, { text: "Start with the awards: a record eight Ballons d'Or.", claim_ids: ["W2"] }, { text: "A record eight Ballons d'Or.", claim_ids: ["W2"] }] },
+  { id: "shoes", scene: 2, optional: true, variants: [{ text: "Add to that six European Golden Shoes.", claim_ids: ["W8"] }, { text: "And six European Golden Shoes.", claim_ids: ["W8"] }] },
+  { id: "goals", scene: 3, variants: [{ text: "For Barcelona he scored four hundred and seventy-four La Liga goals, a record, and seventy-three goals in a single season.", claim_ids: ["W4", "T1"] }, { text: "Four hundred and seventy-four La Liga goals, a record, and seventy-three in a single season.", claim_ids: ["W4", "T1"] }, { text: "Four hundred and seventy-four La Liga goals, a record.", claim_ids: ["W4"] }] },
+  { id: "trebles", scene: 4, variants: [{ text: "He helped Barcelona to two trebles, the first in Spanish football in 2009, and a second in 2015.", claim_ids: ["W3", "W7"] }, { text: "Two trebles with Barcelona, in 2009 and 2015.", claim_ids: ["W3", "W7"] }, { text: "Two trebles, 2009 and 2015.", claim_ids: ["W3", "W7"] }] },
+  { id: "worldcup", scene: 5, variants: [{ text: "Then, in 2022, he led Argentina to victory at the World Cup.", claim_ids: ["W5"] }, { text: "In 2022, he led Argentina to the World Cup.", claim_ids: ["W5"] }, { text: "In 2022, the World Cup.", claim_ids: ["W5"] }] },
   { id: "creator", scene: 6, optional: true, variants: [{ text: "In sampled matches, his key passes per ninety minutes more than doubled.", claim_ids: ["D2"] }] },
-  { id: "close", scene: 7, allow_no_claim: true, editorial: "hands the question back to the viewer", variants: [{ text: "The greatest of all time: you decide.", claim_ids: [] }] },
+  { id: "close", scene: 7, allow_no_claim: true, editorial: "hands the question back to the viewer", variants: [{ text: "So, is he the greatest of all time: you decide.", claim_ids: [] }, { text: "The greatest of all time: you decide.", claim_ids: [] }] },
 ];
 export const scenes = [
   { kind: "hook", treatment: "question-hook-with-real-shirt-photographs", objective: "Pose the question over a sticker portrait with two shirt cut-outs, one Barcelona and one Argentina, the same size", background: "white editorial page, club blue" },

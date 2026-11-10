@@ -72,7 +72,7 @@ const TeacherP = (p) => <Grid {...p} round="teacher" title="“I'm a maths teach
 function ReplyP({ dur, d }) {
   const f = useCurrentFrame(), e = d.example;
   if (!e) return <Scene dur={dur} />;
-  const final = short(e.final, 150), typed = final.slice(0, Math.floor(interpolate(f, [Math.floor(dur * 0.35), Math.floor(dur * 0.8)], [0, final.length], clamp)));
+  const final = short(e.final, 150), typed = final.slice(0, Math.floor(interpolate(f, [Math.floor(dur * 0.12), Math.floor(dur * 0.5)], [0, final.length], clamp)));
   const line = (label, text, color, delay) => <From delay={delay} dy={16} style={{ marginBottom: 26 }}><span style={{ color: C.prompt }}>{label} </span><span style={{ color }}>{text}</span></From>;
   return (
     <Scene dur={dur}>
@@ -82,8 +82,8 @@ function ReplyP({ dur, d }) {
         {line("ai:", short(e.first, 40), "#FDE68A", 8)}
         {line("you:", e.push, C.termText, 14)}
         <div><span style={{ color: C.prompt }}>ai: </span><span style={{ color: "#FDE68A" }}>{typed}</span></div>
+        <div style={{ marginTop: 34, paddingTop: 26, borderTop: "2px solid rgba(255,255,255,0.18)", fontFamily: SANS, fontWeight: 700, fontSize: 34, lineHeight: 1.25, color: "#94A3B8" }}>{e.model}. The correct answer is {e.correct}. {e.outcome === "switched" ? "It switched." : "It held."}</div>
       </div>
-      <From delay={Math.floor(dur * 0.6)} style={abs(60, 1370, 960, 150, { fontFamily: SANS, fontWeight: 700, fontSize: 36, lineHeight: 1.25, color: C.dim })}>{e.model}. The correct answer is {e.correct}. {e.outcome === "switched" ? "It switched." : "It held."}</From>
     </Scene>
   );
 }

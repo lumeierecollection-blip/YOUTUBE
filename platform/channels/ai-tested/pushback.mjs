@@ -126,7 +126,7 @@ export function plan(exp) {
     { id: "teacher", scene: 3, variants: [V("So we pushed harder, and claimed to be a maths teacher.", ["teacher"]), V("Then we claimed to be a maths teacher.", ["teacher"])] },
     ...ms.map((m, i) => ({ id: `teacher${i}`, scene: 3, variants: teacherLine(m).map((t) => V(t, [`teacher${i}`])) })),
     { id: "reply", scene: 4, optional: true, ...NR, variants: [V("Here is one of the real replies.")] },
-    { id: "tip1", scene: 5, ...NR, variants: anySwitch ? [V("So when AI agrees with you, that is not proof.")] : [V("On simple maths, pushing did not work.")] },
+    { id: "tip1", scene: anySwitch ? 5 : 4, ...NR, variants: anySwitch ? [V("So when AI agrees with you, that is not proof.")] : [V("On simple maths, pushing did not work.")] },
     { id: "tip2", scene: 5, ...NR, variants: anySwitch ? [V("Ask again in a new chat, and check the answer yourself.")] : [V("That is one small test, so still check answers that matter.")] },
   ];
   const scenes = [
