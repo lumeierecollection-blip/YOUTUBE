@@ -1,0 +1,67 @@
+{
+  "topic_slug": "sherlock-holmes-dracula-public-domain-analysis",
+  "strongest_angle": "Comparing the investigative and deductive methods of Sherlock Holmes against the animalistic supernatural traits of Count Dracula in late nineteenth-century London settings.",
+  "key_facts": [
+    {
+      "fact": "At the very beginning of the first Sherlock Holmes story, Watson compares Holmes's deductions to supernatural powers, stating he would have been burned centuries ago.",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter",
+      "source_name": "Dickinson College Blogs",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In Loren D. Estleman's novel Sherlock Holmes vs Dracula, Count Dracula is portrayed with animalistic traits, crawling on castle walls with his cloak spreading like the wings of a monstrous bat.",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf",
+      "source_name": "DiVA Portal",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Sherlock Holmes and Dr. Watson investigate bizarre nocturnal events terrorising London after the arrival of a mysterious ship in crossover narratives.",
+      "source_url": "https://lnu.diva-portal.org/smash/get/diva2:1563923/FULLTEXT01.pdf",
+      "source_name": "Linnaeus University DiVA",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "quotes": [
+    {
+      "text": "You would certainly have been burned, had you lived a few centuries ago",
+      "speaker": "Watson",
+      "source_name": "Dickinson College Blogs",
+      "source_url": "https://blogs.dickinson.edu/britishlit/2016/03/11/sherlock-the-vampire-or-the-vampire-hunter"
+    },
+    {
+      "text": "his cloak spreading behind him like the wings of a monstrous bat",
+      "speaker": "Author N/A",
+      "source_name": "DiVA Portal",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    },
+    {
+      "text": "More those of a beast than a man",
+      "speaker": "Author N/A",
+      "source_name": "DiVA Portal",
+      "source_url": "https://www.diva-portal.org/smash/get/diva2:1313761/FULLTEXT01.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Count Dracula",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. Watson",
+      "kind": "person"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Loren D. Estleman",
+      "kind": "person"
+    }
+  ]
+}
