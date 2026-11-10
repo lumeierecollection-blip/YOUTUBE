@@ -1,0 +1,416 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (57/62 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.0,
+   "end": 0.34,
+   "sentence": 0
+  },
+  {
+   "text": "1989",
+   "start": 0.34,
+   "end": 1.02,
+   "sentence": 0
+  },
+  {
+   "text": "one",
+   "start": 1.54,
+   "end": 1.88,
+   "sentence": 0
+  },
+  {
+   "text": "press-conference",
+   "start": 1.88,
+   "end": 2.23,
+   "sentence": 0
+  },
+  {
+   "text": "answer",
+   "start": 2.58,
+   "end": 2.84,
+   "sentence": 0
+  },
+  {
+   "text": "opened",
+   "start": 2.84,
+   "end": 3.44,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 3.44,
+   "end": 3.72,
+   "sentence": 0
+  },
+  {
+   "text": "Berlin",
+   "start": 3.72,
+   "end": 3.88,
+   "sentence": 0
+  },
+  {
+   "text": "Wall",
+   "start": 3.88,
+   "end": 4.22,
+   "sentence": 0
+  },
+  {
+   "text": "To",
+   "start": 4.22,
+   "end": 4.92,
+   "sentence": 1
+  },
+  {
+   "text": "see",
+   "start": 4.92,
+   "end": 5.06,
+   "sentence": 1
+  },
+  {
+   "text": "how",
+   "start": 5.06,
+   "end": 5.3,
+   "sentence": 1
+  },
+  {
+   "text": "start",
+   "start": 5.84,
+   "end": 5.94,
+   "sentence": 1
+  },
+  {
+   "text": "with",
+   "start": 5.94,
+   "end": 6.24,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 6.24,
+   "end": 6.34,
+   "sentence": 1
+  },
+  {
+   "text": "note",
+   "start": 6.34,
+   "end": 6.56,
+   "sentence": 1
+  },
+  {
+   "text": "Spokesman",
+   "start": 7.18,
+   "end": 7.48,
+   "sentence": 2
+  },
+  {
+   "text": "G\u00fcnter",
+   "start": 7.48,
+   "end": 7.84,
+   "sentence": 2
+  },
+  {
+   "text": "Schabowski",
+   "start": 7.84,
+   "end": 8.2,
+   "sentence": 2
+  },
+  {
+   "text": "has",
+   "start": 8.56,
+   "end": 8.9,
+   "sentence": 2
+  },
+  {
+   "text": "just",
+   "start": 8.9,
+   "end": 9.26,
+   "sentence": 2
+  },
+  {
+   "text": "been",
+   "start": 9.26,
+   "end": 9.44,
+   "sentence": 2
+  },
+  {
+   "text": "handed",
+   "start": 9.44,
+   "end": 9.68,
+   "sentence": 2
+  },
+  {
+   "text": "it",
+   "start": 9.68,
+   "end": 9.98,
+   "sentence": 2
+  },
+  {
+   "text": "Asked",
+   "start": 10.36,
+   "end": 10.56,
+   "sentence": 3
+  },
+  {
+   "text": "when",
+   "start": 10.56,
+   "end": 10.8,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 10.8,
+   "end": 10.88,
+   "sentence": 3
+  },
+  {
+   "text": "starts",
+   "start": 10.88,
+   "end": 11.12,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 11.54,
+   "end": 11.62,
+   "sentence": 3
+  },
+  {
+   "text": "says",
+   "start": 11.62,
+   "end": 11.78,
+   "sentence": 3
+  },
+  {
+   "text": "immediately",
+   "start": 11.78,
+   "end": 12.34,
+   "sentence": 3
+  },
+  {
+   "text": "without",
+   "start": 12.96,
+   "end": 13.06,
+   "sentence": 3
+  },
+  {
+   "text": "delay",
+   "start": 13.06,
+   "end": 13.5,
+   "sentence": 3
+  },
+  {
+   "text": "West",
+   "start": 14.24,
+   "end": 14.42,
+   "sentence": 4
+  },
+  {
+   "text": "German",
+   "start": 14.42,
+   "end": 14.66,
+   "sentence": 4
+  },
+  {
+   "text": "news",
+   "start": 14.66,
+   "end": 14.94,
+   "sentence": 4
+  },
+  {
+   "text": "tells",
+   "start": 14.94,
+   "end": 15.22,
+   "sentence": 4
+  },
+  {
+   "text": "viewers",
+   "start": 15.22,
+   "end": 15.58,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 15.58,
+   "end": 15.82,
+   "sentence": 4
+  },
+  {
+   "text": "borders",
+   "start": 15.82,
+   "end": 16.1,
+   "sentence": 4
+  },
+  {
+   "text": "are",
+   "start": 16.1,
+   "end": 16.46,
+   "sentence": 4
+  },
+  {
+   "text": "open",
+   "start": 16.46,
+   "end": 16.82,
+   "sentence": 4
+  },
+  {
+   "text": "That",
+   "start": 17.48,
+   "end": 17.53,
+   "sentence": 5
+  },
+  {
+   "text": "night",
+   "start": 17.5,
+   "end": 17.74,
+   "sentence": 5
+  },
+  {
+   "text": "guards",
+   "start": 18.06,
+   "end": 18.28,
+   "sentence": 5
+  },
+  {
+   "text": "at",
+   "start": 18.28,
+   "end": 18.52,
+   "sentence": 5
+  },
+  {
+   "text": "Bornholmer",
+   "start": 18.52,
+   "end": 18.793,
+   "sentence": 5
+  },
+  {
+   "text": "Stra\u00dfe",
+   "start": 18.793,
+   "end": 19.067,
+   "sentence": 5
+  },
+  {
+   "text": "let",
+   "start": 19.34,
+   "end": 19.7,
+   "sentence": 5
+  },
+  {
+   "text": "people",
+   "start": 19.7,
+   "end": 20.0,
+   "sentence": 5
+  },
+  {
+   "text": "through",
+   "start": 20.0,
+   "end": 20.36,
+   "sentence": 5
+  },
+  {
+   "text": "A",
+   "start": 21.26,
+   "end": 21.32,
+   "sentence": 6
+  },
+  {
+   "text": "wall",
+   "start": 21.32,
+   "end": 21.64,
+   "sentence": 6
+  },
+  {
+   "text": "that",
+   "start": 21.64,
+   "end": 21.84,
+   "sentence": 6
+  },
+  {
+   "text": "stood",
+   "start": 21.84,
+   "end": 22.02,
+   "sentence": 6
+  },
+  {
+   "text": "for",
+   "start": 22.02,
+   "end": 22.3,
+   "sentence": 6
+  },
+  {
+   "text": "decades",
+   "start": 22.3,
+   "end": 22.62,
+   "sentence": 6
+  },
+  {
+   "text": "opened",
+   "start": 22.62,
+   "end": 23.24,
+   "sentence": 6
+  },
+  {
+   "text": "on",
+   "start": 23.24,
+   "end": 23.62,
+   "sentence": 6
+  },
+  {
+   "text": "one",
+   "start": 23.62,
+   "end": 23.94,
+   "sentence": 6
+  },
+  {
+   "text": "unprepared",
+   "start": 23.94,
+   "end": 24.6,
+   "sentence": 6
+  },
+  {
+   "text": "answer",
+   "start": 24.6,
+   "end": 25.2,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "In 1989, one press-conference answer opened the Berlin Wall.",
+   "start": 0.0,
+   "end": 4.22
+  },
+  {
+   "text": "To see how, start with a note.",
+   "start": 4.22,
+   "end": 6.56
+  },
+  {
+   "text": "Spokesman G\u00fcnter Schabowski has just been handed it.",
+   "start": 7.18,
+   "end": 9.98
+  },
+  {
+   "text": "Asked when it starts, he says: immediately, without delay.",
+   "start": 10.36,
+   "end": 13.5
+  },
+  {
+   "text": "West German news tells viewers the borders are open.",
+   "start": 14.24,
+   "end": 16.82
+  },
+  {
+   "text": "That night, guards at Bornholmer Stra\u00dfe let people through.",
+   "start": 17.48,
+   "end": 20.36
+  },
+  {
+   "text": "A wall that stood for decades opened on one unprepared answer.",
+   "start": 21.26,
+   "end": 25.2
+  }
+ ]
+}
