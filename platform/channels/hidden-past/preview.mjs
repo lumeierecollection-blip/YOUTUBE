@@ -154,6 +154,8 @@ function fixedResult(SENTENCES, claims, topic, key, blueprint) {
 }
 
 export default async function preview({ key, runId, outDir, tools, entry }) {
+  const docStory = (process.env.GITHUB_REF_NAME || "").match(/berlin/)?.[0];
+  if (docStory) return (await import("./doc-preview.mjs")).default({ key, runId, tools, story: docStory });
   const work = join(ROOT, "output/work", `hidden-past-${runId}`);
   rmSync(work, { recursive: true, force: true });
   mkdirSync(work, { recursive: true });

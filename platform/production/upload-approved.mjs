@@ -4,6 +4,7 @@
  * config/upload-approval.json names the preview run and the exact SHA-256 that was inspected; a file
  * with any other hash is refused. Usage: node platform/production/upload-approved.mjs
  */
+import { assertHashtags } from "./hashtags.mjs";
 import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -26,6 +27,7 @@ const sha = sha256File(mp4);
 if (sha !== approval.sha256) throw new Error(`SHA-256 mismatch: approved ${approval.sha256}, artifact ${sha}`);
 
 const channel = channelConfig(approval.legacy_channel_id);
+assertHashtags(approval.description);
 const ev = await deliver({ channel, mp4, title: approval.title, description: approval.description, tags: approval.tags, productionId: `approved-${key}-${approval.run_id}`, ledger: { uploads: [] } });
 writeFileSync(join(ROOT, `upload-evidence-${key}.json`), JSON.stringify(ev, null, 2));
 console.log(JSON.stringify(ev, null, 2));

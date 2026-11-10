@@ -7,7 +7,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const UA = "YouTubeAutomationPreview/1.0 (preview render; Wikimedia Commons images with their licences recorded)";
-const ALLOWED = /^(CC BY(-SA)? [0-9.]+|CC0.*|Public domain|PD[- ].*|Attribution|No restrictions)$/i;
+const ALLOWED = /^(CC BY(-SA)? [0-9.]+( [a-z]{2,3})?|CC0.*|Public domain|PD[- ].*|Attribution|No restrictions)$/i;
 const strip = (v) => String(v ?? "").replace(/<[^>]*>/g, " ").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
 
 export async function commonsMeta(title) {

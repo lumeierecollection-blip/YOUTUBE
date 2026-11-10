@@ -4,6 +4,7 @@
  * script was written by hand from fetched sources, so each of them is marked as NOT reviewed by the script
  * engine's independent critic. It never speeds the voice up; a take that runs long is voiced again.
  */
+import { assertHashtags } from "./hashtags.mjs";
 import { buildTimeline, FPS, narrate, publishFrames, technicalQa } from "./index.mjs";
 import { mixMusic } from "./mix.mjs";
 
@@ -52,7 +53,7 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   if (!qa.pass) { tools.stage("blocked", "failed", { issues: qa.failures.join("; ") }); throw new Error(`QA failed: ${qa.failures.join("; ")}`); }
   tools.stage("qa_passed", "ok");
   tools.stage("preview_ready", "ok");
-  if (metadata) tools.write("delivery.json", metadata);
+  if (metadata) { assertHashtags(metadata.description); tools.write("delivery.json", metadata); }
   tools.stage("awaiting_approval", "ok");
   return { video, narration, timeline, qa };
 }
