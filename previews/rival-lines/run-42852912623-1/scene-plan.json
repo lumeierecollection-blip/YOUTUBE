@@ -1,0 +1,93 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42852912623-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Argentina against France, 2022: three-all, then Argentina won on penalties.",
+      "main_point": "Introduce the match: the 3-3 scoreboard, the penalty result and the analytical question",
+      "visual_objective": "Introduce the match: the 3-3 scoreboard, the penalty result and the analytical question",
+      "treatment": "broadcast-scoreboard-and-question",
+      "background": "navy broadcast",
+      "skill": "remotion",
+      "claim_ids": [
+        "F1"
+      ],
+      "start_s": 0,
+      "end_s": 6.933333333333334
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Argentina began in a four-three-three, France in a four-two-three-one.",
+      "main_point": "Show both starting formations on real pitches with the recorded starting XI",
+      "visual_objective": "Show both starting formations on real pitches with the recorded starting XI",
+      "treatment": "formation-pitches-stacked",
+      "background": "pitch",
+      "skill": "remotion",
+      "claim_ids": [
+        "F2"
+      ],
+      "start_s": 6.933333333333334,
+      "end_s": 10.933333333333334
+    },
+    {
+      "scene_id": "s3",
+      "narration": "In the first forty minutes, Argentina completed about twice as many passes.",
+      "main_point": "Show each team's completed-pass network for the first 40 minutes with the completed-pass counts",
+      "visual_objective": "Show each team's completed-pass network for the first 40 minutes with the completed-pass counts",
+      "treatment": "passing-networks-first-40",
+      "background": "pitch",
+      "skill": "remotion",
+      "claim_ids": [
+        "F3"
+      ],
+      "start_s": 10.933333333333334,
+      "end_s": 15.4
+    },
+    {
+      "scene_id": "s4",
+      "narration": "By the seventy-eighth minute, Argentina had ten shots. France had two.",
+      "main_point": "Show every shot before the 79th minute on one pitch, sized by expected goals, with the shot counts",
+      "visual_objective": "Show every shot before the 79th minute on one pitch, sized by expected goals, with the shot counts",
+      "treatment": "shot-map-with-counters",
+      "background": "pitch",
+      "skill": "remotion",
+      "claim_ids": [
+        "F4"
+      ],
+      "start_s": 15.4,
+      "end_s": 19.966666666666665
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Then France scored twice in two minutes, and the chances ended nearly level.",
+      "main_point": "Draw each team's cumulative expected goals through the match with the goals marked",
+      "visual_objective": "Draw each team's cumulative expected goals through the match with the goals marked",
+      "treatment": "cumulative-xg-line-chart",
+      "background": "navy chart",
+      "skill": "remotion",
+      "claim_ids": [
+        "F5",
+        "F6"
+      ],
+      "start_s": 19.966666666666665,
+      "end_s": 25.466666666666665
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Argentina built the lead. France built the comeback.",
+      "main_point": "Close on comparison bars and the thesis drawn from the data",
+      "visual_objective": "Close on comparison bars and the thesis drawn from the data",
+      "treatment": "stat-bars-and-thesis",
+      "background": "navy broadcast",
+      "skill": "remotion",
+      "claim_ids": [
+        "F4",
+        "F5"
+      ],
+      "start_s": 25.466666666666665,
+      "end_s": 29.133333333333333
+    }
+  ]
+}
