@@ -1,0 +1,553 @@
+{
+  "scenes": [
+    {
+      "id": "s0",
+      "index": 0,
+      "from": 0,
+      "to": 292,
+      "start_s": 0,
+      "end_s": 9.733333333333333
+    },
+    {
+      "id": "s1",
+      "index": 1,
+      "from": 292,
+      "to": 374,
+      "start_s": 9.733333333333333,
+      "end_s": 12.466666666666667
+    },
+    {
+      "id": "s2",
+      "index": 2,
+      "from": 374,
+      "to": 677,
+      "start_s": 12.466666666666667,
+      "end_s": 22.566666666666666
+    },
+    {
+      "id": "s3",
+      "index": 3,
+      "from": 677,
+      "to": 924,
+      "start_s": 22.566666666666666,
+      "end_s": 30.8
+    },
+    {
+      "id": "s4",
+      "index": 4,
+      "from": 924,
+      "to": 1116,
+      "start_s": 30.8,
+      "end_s": 37.2
+    }
+  ],
+  "captions": [
+    {
+      "text": "Pablo Escobar's hippos are still",
+      "from": 0,
+      "to": 72,
+      "words": [
+        {
+          "text": "Pablo",
+          "from": 0
+        },
+        {
+          "text": "Escobar's",
+          "from": 17
+        },
+        {
+          "text": "hippos",
+          "from": 41
+        },
+        {
+          "text": "are",
+          "from": 56
+        },
+        {
+          "text": "still",
+          "from": 62
+        }
+      ]
+    },
+    {
+      "text": "alive",
+      "from": 72,
+      "to": 86,
+      "words": [
+        {
+          "text": "alive",
+          "from": 72
+        }
+      ]
+    },
+    {
+      "text": "and Colombia has approved killing",
+      "from": 96,
+      "to": 143,
+      "words": [
+        {
+          "text": "and",
+          "from": 96
+        },
+        {
+          "text": "Colombia",
+          "from": 99
+        },
+        {
+          "text": "has",
+          "from": 106
+        },
+        {
+          "text": "approved",
+          "from": 119
+        },
+        {
+          "text": "killing",
+          "from": 130
+        }
+      ]
+    },
+    {
+      "text": "them",
+      "from": 143,
+      "to": 154,
+      "words": [
+        {
+          "text": "them",
+          "from": 143
+        }
+      ]
+    },
+    {
+      "text": "In 1981",
+      "from": 168,
+      "to": 193,
+      "words": [
+        {
+          "text": "In",
+          "from": 168
+        },
+        {
+          "text": "1981",
+          "from": 173
+        }
+      ]
+    },
+    {
+      "text": "he imported four of them",
+      "from": 205,
+      "to": 239,
+      "words": [
+        {
+          "text": "he",
+          "from": 205
+        },
+        {
+          "text": "imported",
+          "from": 207
+        },
+        {
+          "text": "four",
+          "from": 217
+        },
+        {
+          "text": "of",
+          "from": 229
+        },
+        {
+          "text": "them",
+          "from": 235
+        }
+      ]
+    },
+    {
+      "text": "for his private zoo",
+      "from": 239,
+      "to": 273,
+      "words": [
+        {
+          "text": "for",
+          "from": 239
+        },
+        {
+          "text": "his",
+          "from": 246
+        },
+        {
+          "text": "private",
+          "from": 250
+        },
+        {
+          "text": "zoo",
+          "from": 259
+        }
+      ]
+    },
+    {
+      "text": "His estate lay between Medellín",
+      "from": 292,
+      "to": 333,
+      "words": [
+        {
+          "text": "His",
+          "from": 292
+        },
+        {
+          "text": "estate",
+          "from": 292
+        },
+        {
+          "text": "lay",
+          "from": 299
+        },
+        {
+          "text": "between",
+          "from": 313
+        },
+        {
+          "text": "Medellín",
+          "from": 323
+        }
+      ]
+    },
+    {
+      "text": "and Bogotá",
+      "from": 338,
+      "to": 363,
+      "words": [
+        {
+          "text": "and",
+          "from": 338
+        },
+        {
+          "text": "Bogotá",
+          "from": 346
+        }
+      ]
+    },
+    {
+      "text": "After he died in 1993",
+      "from": 374,
+      "to": 421,
+      "words": [
+        {
+          "text": "After",
+          "from": 374
+        },
+        {
+          "text": "he",
+          "from": 384
+        },
+        {
+          "text": "died",
+          "from": 389
+        },
+        {
+          "text": "in",
+          "from": 395
+        },
+        {
+          "text": "1993",
+          "from": 403
+        }
+      ]
+    },
+    {
+      "text": "they escaped and spread",
+      "from": 422,
+      "to": 473,
+      "words": [
+        {
+          "text": "they",
+          "from": 422
+        },
+        {
+          "text": "escaped",
+          "from": 439
+        },
+        {
+          "text": "and",
+          "from": 446
+        },
+        {
+          "text": "spread",
+          "from": 460
+        }
+      ]
+    },
+    {
+      "text": "By 2007 there were sixteen",
+      "from": 488,
+      "to": 546,
+      "words": [
+        {
+          "text": "By",
+          "from": 488
+        },
+        {
+          "text": "2007",
+          "from": 491
+        },
+        {
+          "text": "there",
+          "from": 512
+        },
+        {
+          "text": "were",
+          "from": 525
+        },
+        {
+          "text": "sixteen",
+          "from": 534
+        }
+      ]
+    },
+    {
+      "text": "by 2014",
+      "from": 552,
+      "to": 572,
+      "words": [
+        {
+          "text": "by",
+          "from": 552
+        },
+        {
+          "text": "2014",
+          "from": 558
+        }
+      ]
+    },
+    {
+      "text": "about forty",
+      "from": 580,
+      "to": 605,
+      "words": [
+        {
+          "text": "about",
+          "from": 580
+        },
+        {
+          "text": "forty",
+          "from": 590
+        }
+      ]
+    },
+    {
+      "text": "and now around two hundred",
+      "from": 614,
+      "to": 666,
+      "words": [
+        {
+          "text": "and",
+          "from": 614
+        },
+        {
+          "text": "now",
+          "from": 619
+        },
+        {
+          "text": "around",
+          "from": 626
+        },
+        {
+          "text": "two",
+          "from": 634
+        },
+        {
+          "text": "hundred",
+          "from": 648
+        }
+      ]
+    },
+    {
+      "text": "In April 2026 Colombia approved",
+      "from": 677,
+      "to": 747,
+      "words": [
+        {
+          "text": "In",
+          "from": 677
+        },
+        {
+          "text": "April",
+          "from": 680
+        },
+        {
+          "text": "2026",
+          "from": 689
+        },
+        {
+          "text": "Colombia",
+          "from": 724
+        },
+        {
+          "text": "approved",
+          "from": 733
+        }
+      ]
+    },
+    {
+      "text": "killing more than eighty of",
+      "from": 747,
+      "to": 790,
+      "words": [
+        {
+          "text": "killing",
+          "from": 747
+        },
+        {
+          "text": "more",
+          "from": 758
+        },
+        {
+          "text": "than",
+          "from": 770
+        },
+        {
+          "text": "eighty",
+          "from": 774
+        },
+        {
+          "text": "of",
+          "from": 783
+        }
+      ]
+    },
+    {
+      "text": "them An Indian billionaire offered",
+      "from": 790,
+      "to": 848,
+      "words": [
+        {
+          "text": "them",
+          "from": 790
+        },
+        {
+          "text": "An",
+          "from": 794
+        },
+        {
+          "text": "Indian",
+          "from": 808
+        },
+        {
+          "text": "billionaire",
+          "from": 815
+        },
+        {
+          "text": "offered",
+          "from": 830
+        }
+      ]
+    },
+    {
+      "text": "to take them to India",
+      "from": 848,
+      "to": 877,
+      "words": [
+        {
+          "text": "to",
+          "from": 848
+        },
+        {
+          "text": "take",
+          "from": 853
+        },
+        {
+          "text": "them",
+          "from": 860
+        },
+        {
+          "text": "to",
+          "from": 864
+        },
+        {
+          "text": "India",
+          "from": 868
+        }
+      ]
+    },
+    {
+      "text": "instead",
+      "from": 877,
+      "to": 893,
+      "words": [
+        {
+          "text": "instead",
+          "from": 877
+        }
+      ]
+    },
+    {
+      "text": "Conservationists call them invasive",
+      "from": 924,
+      "to": 968,
+      "words": [
+        {
+          "text": "Conservationists",
+          "from": 924
+        },
+        {
+          "text": "call",
+          "from": 943
+        },
+        {
+          "text": "them",
+          "from": 950
+        },
+        {
+          "text": "invasive",
+          "from": 955
+        }
+      ]
+    },
+    {
+      "text": "some ecologists disagree",
+      "from": 988,
+      "to": 1022,
+      "words": [
+        {
+          "text": "some",
+          "from": 988
+        },
+        {
+          "text": "ecologists",
+          "from": 989
+        },
+        {
+          "text": "disagree",
+          "from": 1000
+        }
+      ]
+    },
+    {
+      "text": "So who decides their fate",
+      "from": 1046,
+      "to": 1092,
+      "words": [
+        {
+          "text": "So",
+          "from": 1046
+        },
+        {
+          "text": "who",
+          "from": 1048
+        },
+        {
+          "text": "decides",
+          "from": 1055
+        },
+        {
+          "text": "their",
+          "from": 1064
+        },
+        {
+          "text": "fate",
+          "from": 1082
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1116,
+  "duration_s": 37.2
+}
