@@ -1,0 +1,14 @@
+{
+  "statsbomb": {
+    "required": "credit StatsBomb and show the StatsBomb logo",
+    "logo_source": "https://github.com/statsbomb/open-data/tree/master/img",
+    "shown": "on every scene (attribution bar) and in the description",
+    "repo": "https://github.com/statsbomb/open-data"
+  },
+  "photographs": [],
+  "data_classes": {
+    "verified_statistics": "match record (score, shootout)",
+    "event_data_derived": "everything else, computed from StatsBomb events",
+    "video_derived_estimates": "none used"
+  }
+}

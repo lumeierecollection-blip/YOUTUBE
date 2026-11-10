@@ -1,0 +1,270 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (40/41 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Barcelona",
+   "start": 0.0,
+   "end": 0.68,
+   "sentence": 0
+  },
+  {
+   "text": "won",
+   "start": 0.68,
+   "end": 1.16,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.16,
+   "end": 1.34,
+   "sentence": 0
+  },
+  {
+   "text": "league",
+   "start": 1.34,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 1.56,
+   "end": 1.82,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.82,
+   "end": 1.9,
+   "sentence": 0
+  },
+  {
+   "text": "final",
+   "start": 1.9,
+   "end": 2.22,
+   "sentence": 0
+  },
+  {
+   "text": "day",
+   "start": 2.22,
+   "end": 2.66,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 3.24,
+   "end": 3.29,
+   "sentence": 1
+  },
+  {
+   "text": "striker",
+   "start": 3.24,
+   "end": 3.5,
+   "sentence": 1
+  },
+  {
+   "text": "scored",
+   "start": 3.5,
+   "end": 3.92,
+   "sentence": 1
+  },
+  {
+   "text": "twice",
+   "start": 3.92,
+   "end": 4.24,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 4.24,
+   "end": 4.58,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 4.58,
+   "end": 4.66,
+   "sentence": 1
+  },
+  {
+   "text": "second",
+   "start": 4.66,
+   "end": 4.98,
+   "sentence": 1
+  },
+  {
+   "text": "half",
+   "start": 4.98,
+   "end": 5.3,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 5.3,
+   "end": 5.68,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 5.68,
+   "end": 5.78,
+   "sentence": 1
+  },
+  {
+   "text": "goalkeeper",
+   "start": 5.78,
+   "end": 6.0,
+   "sentence": 1
+  },
+  {
+   "text": "saved",
+   "start": 6.0,
+   "end": 6.68,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 6.68,
+   "end": 6.9,
+   "sentence": 1
+  },
+  {
+   "text": "late",
+   "start": 6.9,
+   "end": 7.08,
+   "sentence": 1
+  },
+  {
+   "text": "penalty",
+   "start": 7.08,
+   "end": 7.42,
+   "sentence": 1
+  },
+  {
+   "text": "It",
+   "start": 8.2,
+   "end": 8.25,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 8.24,
+   "end": 8.4,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 8.4,
+   "end": 8.56,
+   "sentence": 2
+  },
+  {
+   "text": "club's",
+   "start": 8.56,
+   "end": 8.94,
+   "sentence": 2
+  },
+  {
+   "text": "tenth",
+   "start": 8.94,
+   "end": 9.22,
+   "sentence": 2
+  },
+  {
+   "text": "title",
+   "start": 9.22,
+   "end": 9.72,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 9.72,
+   "end": 10.0,
+   "sentence": 2
+  },
+  {
+   "text": "twelve",
+   "start": 10.0,
+   "end": 10.14,
+   "sentence": 2
+  },
+  {
+   "text": "years",
+   "start": 10.28,
+   "end": 10.82,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 10.82,
+   "end": 11.28,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 11.28,
+   "end": 11.38,
+   "sentence": 2
+  },
+  {
+   "text": "crowd",
+   "start": 11.38,
+   "end": 11.64,
+   "sentence": 2
+  },
+  {
+   "text": "stayed",
+   "start": 11.64,
+   "end": 12.02,
+   "sentence": 2
+  },
+  {
+   "text": "long",
+   "start": 12.02,
+   "end": 12.4,
+   "sentence": 2
+  },
+  {
+   "text": "after",
+   "start": 12.4,
+   "end": 12.78,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 12.78,
+   "end": 12.94,
+   "sentence": 2
+  },
+  {
+   "text": "final",
+   "start": 12.94,
+   "end": 13.3,
+   "sentence": 2
+  },
+  {
+   "text": "whistle",
+   "start": 13.3,
+   "end": 13.54,
+   "sentence": 2
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Barcelona won the league on the final day.",
+   "start": 0.0,
+   "end": 2.66
+  },
+  {
+   "text": "The striker scored twice in the second half, and the goalkeeper saved a late penalty.",
+   "start": 3.24,
+   "end": 7.42
+  },
+  {
+   "text": "It was the club's tenth title in twelve years, and the crowd stayed long after the final whistle.",
+   "start": 8.2,
+   "end": 13.54
+  }
+ ]
+}
