@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T15:44:12.271Z",
+  "rebuilt_at": "2026-11-10T15:44:37.660Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -156,21 +156,21 @@
     {
       "key": "rival-lines",
       "agent": "agent-rival-lines",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-10T15:44:11.566Z",
-      "branch": "preview/rival-lines-final",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-10T15:44:36.944Z",
+      "branch": "preview/rival-lines-messi",
       "commit": "436f3692",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42847007427#artifacts)",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42847015412#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "voice produced 8 sentences for 6 script sentences; use exactly one sentence-ending mark per sentence",
-      "lastOk": "2026-11-10T15:43:50.182Z",
-      "run": "run-42847007427-1"
+      "blocker": "",
+      "lastOk": "2026-11-10T15:44:36.944Z",
+      "run": "run-42847015412-1"
     }
   ]
 }
