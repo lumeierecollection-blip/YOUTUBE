@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T18:10:09.548Z",
+  "rebuilt_at": "2026-11-10T18:10:42.051Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -156,12 +156,12 @@
     {
       "key": "rival-lines",
       "agent": "agent-rival-lines",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-10T18:10:09.168Z",
-      "branch": "preview/rival-lines-messi-7",
-      "commit": "bb19eeae",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42871941355#artifacts)",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-10T18:10:23.230Z",
+      "branch": "preview/rival-lines-final-9",
+      "commit": "9d858499",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42872165741#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
@@ -170,7 +170,7 @@
       "qa": "",
       "blocker": "",
       "lastOk": "2026-11-10T18:10:09.168Z",
-      "run": "run-42871941355-1"
+      "run": "run-42872165741-1"
     }
   ]
 }
