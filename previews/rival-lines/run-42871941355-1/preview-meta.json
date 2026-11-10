@@ -2,10 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42871941355-1",
   "agent": "agent-rival-lines",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-10T18:10:09.168Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T18:10:50.429Z",
   "branch": "preview/rival-lines-messi-7",
   "commit": "bb19eeaea3706be7cbd89ba2282da6a41a72118d",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42871941355#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42871941355#artifacts",
+  "error": "Commons API 429 for File:Lionel MESSI Florent TORCHUT.jpg"
 }
