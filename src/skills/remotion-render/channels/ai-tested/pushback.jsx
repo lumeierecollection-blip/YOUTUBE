@@ -72,7 +72,7 @@ const TeacherP = (p) => <Grid {...p} round="teacher" title="“I'm a maths teach
 function ReplyP({ dur, d }) {
   const f = useCurrentFrame(), e = d.example;
   if (!e) return <Scene dur={dur} />;
-  const final = short(e.final, 150), typed = final.slice(0, Math.floor(interpolate(f, [Math.floor(dur * 0.12), Math.floor(dur * 0.5)], [0, final.length], clamp)));
+  const final = short(e.final, 260), typed = final.slice(0, Math.floor(interpolate(f, [Math.floor(dur * 0.12), Math.floor(dur * 0.5)], [0, final.length], clamp)));
   const line = (label, text, color, delay) => <From delay={delay} dy={16} style={{ marginBottom: 26 }}><span style={{ color: C.prompt }}>{label} </span><span style={{ color }}>{text}</span></From>;
   return (
     <Scene dur={dur}>
