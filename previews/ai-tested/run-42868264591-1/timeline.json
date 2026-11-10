@@ -1,0 +1,574 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook2",
+      "treatment": "kinetic-question",
+      "objective": "Pose the question over a real test word with its matching letters lighting up",
+      "background": "white",
+      "from": 0,
+      "to": 110,
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "id": "s2",
+      "kind": "ask2",
+      "treatment": "process-diagram",
+      "objective": "Show the two prompts, the plain question and the spell-it-out-first question",
+      "background": "white",
+      "from": 110,
+      "to": 271,
+      "start_s": 3.6666666666666665,
+      "end_s": 9.033333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "reply",
+      "treatment": "terminal-demo",
+      "objective": "Show a real reply in which the model spells the word out and then counts",
+      "background": "dark terminal",
+      "from": 271,
+      "to": 386,
+      "start_s": 9.033333333333333,
+      "end_s": 12.866666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "plainscore",
+      "treatment": "bar-chart",
+      "objective": "Show each model's score on the plain question out of twenty",
+      "background": "white",
+      "from": 386,
+      "to": 504,
+      "start_s": 12.866666666666667,
+      "end_s": 16.8
+    },
+    {
+      "id": "s5",
+      "kind": "fixscore",
+      "treatment": "before-after-bars",
+      "objective": "Show each model's plain score beside its spell-out-first score, and the total gain",
+      "background": "white",
+      "from": 504,
+      "to": 766,
+      "start_s": 16.8,
+      "end_s": 25.533333333333335
+    },
+    {
+      "id": "s6",
+      "kind": "why",
+      "treatment": "token-vs-letters-diagram",
+      "objective": "Show how many tokens the test word is against its letters, as counted by the tokenizer",
+      "background": "white",
+      "from": 766,
+      "to": 975,
+      "start_s": 25.533333333333335,
+      "end_s": 32.5
+    },
+    {
+      "id": "s7",
+      "kind": "close2",
+      "treatment": "verdict-panel",
+      "objective": "Close with the answer: make the model spell it out first, with every model's before and after",
+      "background": "accent panel",
+      "from": 975,
+      "to": 1142,
+      "start_s": 32.5,
+      "end_s": 38.06666666666667
+    }
+  ],
+  "captions": [
+    {
+      "text": "Why do some AI models",
+      "from": 0,
+      "to": 47,
+      "words": [
+        {
+          "text": "Why",
+          "from": 0
+        },
+        {
+          "text": "do",
+          "from": 15
+        },
+        {
+          "text": "some",
+          "from": 19
+        },
+        {
+          "text": "AI",
+          "from": 25
+        },
+        {
+          "text": "models",
+          "from": 34
+        }
+      ]
+    },
+    {
+      "text": "fail at counting letters",
+      "from": 47,
+      "to": 92,
+      "words": [
+        {
+          "text": "fail",
+          "from": 47
+        },
+        {
+          "text": "at",
+          "from": 59
+        },
+        {
+          "text": "counting",
+          "from": 68
+        },
+        {
+          "text": "letters",
+          "from": 77
+        }
+      ]
+    },
+    {
+      "text": "We asked two models twenty",
+      "from": 110,
+      "to": 145,
+      "words": [
+        {
+          "text": "We",
+          "from": 110
+        },
+        {
+          "text": "asked",
+          "from": 113
+        },
+        {
+          "text": "two",
+          "from": 119
+        },
+        {
+          "text": "models",
+          "from": 127
+        },
+        {
+          "text": "twenty",
+          "from": 136
+        }
+      ]
+    },
+    {
+      "text": "questions",
+      "from": 148,
+      "to": 170,
+      "words": [
+        {
+          "text": "questions",
+          "from": 148
+        }
+      ]
+    },
+    {
+      "text": "once plainly",
+      "from": 182,
+      "to": 199,
+      "words": [
+        {
+          "text": "once",
+          "from": 182
+        },
+        {
+          "text": "plainly",
+          "from": 185
+        }
+      ]
+    },
+    {
+      "text": "once spelling it out first",
+      "from": 207,
+      "to": 254,
+      "words": [
+        {
+          "text": "once",
+          "from": 207
+        },
+        {
+          "text": "spelling",
+          "from": 216
+        },
+        {
+          "text": "it",
+          "from": 231
+        },
+        {
+          "text": "out",
+          "from": 240
+        },
+        {
+          "text": "first",
+          "from": 243
+        }
+      ]
+    },
+    {
+      "text": "A real reply",
+      "from": 271,
+      "to": 292,
+      "words": [
+        {
+          "text": "A",
+          "from": 271
+        },
+        {
+          "text": "real",
+          "from": 273
+        },
+        {
+          "text": "reply",
+          "from": 278
+        }
+      ]
+    },
+    {
+      "text": "it spells the word then",
+      "from": 305,
+      "to": 347,
+      "words": [
+        {
+          "text": "it",
+          "from": 305
+        },
+        {
+          "text": "spells",
+          "from": 305
+        },
+        {
+          "text": "the",
+          "from": 313
+        },
+        {
+          "text": "word",
+          "from": 324
+        },
+        {
+          "text": "then",
+          "from": 340
+        }
+      ]
+    },
+    {
+      "text": "counts",
+      "from": 347,
+      "to": 359,
+      "words": [
+        {
+          "text": "counts",
+          "from": 347
+        }
+      ]
+    },
+    {
+      "text": "Asked plainly",
+      "from": 386,
+      "to": 397,
+      "words": [
+        {
+          "text": "Asked",
+          "from": 386
+        },
+        {
+          "text": "plainly",
+          "from": 386
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite got sixteen right",
+      "from": 418,
+      "to": 488,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 418
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 426
+        },
+        {
+          "text": "got",
+          "from": 435
+        },
+        {
+          "text": "sixteen",
+          "from": 457
+        },
+        {
+          "text": "right",
+          "from": 471
+        }
+      ]
+    },
+    {
+      "text": "Spelling first twenty",
+      "from": 504,
+      "to": 539,
+      "words": [
+        {
+          "text": "Spelling",
+          "from": 504
+        },
+        {
+          "text": "first",
+          "from": 509
+        },
+        {
+          "text": "twenty",
+          "from": 514
+        }
+      ]
+    },
+    {
+      "text": "On random letters six of",
+      "from": 559,
+      "to": 602,
+      "words": [
+        {
+          "text": "On",
+          "from": 559
+        },
+        {
+          "text": "random",
+          "from": 561
+        },
+        {
+          "text": "letters",
+          "from": 569
+        },
+        {
+          "text": "six",
+          "from": 578
+        },
+        {
+          "text": "of",
+          "from": 596
+        }
+      ]
+    },
+    {
+      "text": "ten became ten OpenAI's GPT-OSS",
+      "from": 602,
+      "to": 684,
+      "words": [
+        {
+          "text": "ten",
+          "from": 602
+        },
+        {
+          "text": "became",
+          "from": 608
+        },
+        {
+          "text": "ten",
+          "from": 618
+        },
+        {
+          "text": "OpenAI's",
+          "from": 639
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 660
+        }
+      ]
+    },
+    {
+      "text": "was perfect either way",
+      "from": 702,
+      "to": 751,
+      "words": [
+        {
+          "text": "was",
+          "from": 702
+        },
+        {
+          "text": "perfect",
+          "from": 712
+        },
+        {
+          "text": "either",
+          "from": 725
+        },
+        {
+          "text": "way",
+          "from": 737
+        }
+      ]
+    },
+    {
+      "text": "Why",
+      "from": 766,
+      "to": 778,
+      "words": [
+        {
+          "text": "Why",
+          "from": 766
+        }
+      ]
+    },
+    {
+      "text": "models read tokens",
+      "from": 794,
+      "to": 822,
+      "words": [
+        {
+          "text": "models",
+          "from": 794
+        },
+        {
+          "text": "read",
+          "from": 800
+        },
+        {
+          "text": "tokens",
+          "from": 808
+        }
+      ]
+    },
+    {
+      "text": "not letters Strawberry is one",
+      "from": 833,
+      "to": 904,
+      "words": [
+        {
+          "text": "not",
+          "from": 833
+        },
+        {
+          "text": "letters",
+          "from": 839
+        },
+        {
+          "text": "Strawberry",
+          "from": 847
+        },
+        {
+          "text": "is",
+          "from": 879
+        },
+        {
+          "text": "one",
+          "from": 894
+        }
+      ]
+    },
+    {
+      "text": "tokens but ten letters",
+      "from": 904,
+      "to": 949,
+      "words": [
+        {
+          "text": "tokens",
+          "from": 904
+        },
+        {
+          "text": "but",
+          "from": 920
+        },
+        {
+          "text": "ten",
+          "from": 927
+        },
+        {
+          "text": "letters",
+          "from": 937
+        }
+      ]
+    },
+    {
+      "text": "Same models same questions",
+      "from": 975,
+      "to": 1012,
+      "words": [
+        {
+          "text": "Same",
+          "from": 975
+        },
+        {
+          "text": "models",
+          "from": 975
+        },
+        {
+          "text": "same",
+          "from": 991
+        },
+        {
+          "text": "questions",
+          "from": 1000
+        }
+      ]
+    },
+    {
+      "text": "one change",
+      "from": 1031,
+      "to": 1043,
+      "words": [
+        {
+          "text": "one",
+          "from": 1031
+        },
+        {
+          "text": "change",
+          "from": 1031
+        }
+      ]
+    },
+    {
+      "text": "So make the model spell",
+      "from": 1062,
+      "to": 1093,
+      "words": [
+        {
+          "text": "So",
+          "from": 1062
+        },
+        {
+          "text": "make",
+          "from": 1063
+        },
+        {
+          "text": "the",
+          "from": 1073
+        },
+        {
+          "text": "model",
+          "from": 1078
+        },
+        {
+          "text": "spell",
+          "from": 1082
+        }
+      ]
+    },
+    {
+      "text": "it out first",
+      "from": 1093,
+      "to": 1114,
+      "words": [
+        {
+          "text": "it",
+          "from": 1093
+        },
+        {
+          "text": "out",
+          "from": 1100
+        },
+        {
+          "text": "first",
+          "from": 1103
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1142,
+  "duration_s": 38.06666666666667
+}

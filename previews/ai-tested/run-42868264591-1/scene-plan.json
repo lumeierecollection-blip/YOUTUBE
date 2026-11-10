@@ -1,0 +1,106 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42868264591-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Why do some AI models fail at counting letters?",
+      "main_point": "Pose the question over a real test word with its matching letters lighting up",
+      "visual_objective": "Pose the question over a real test word with its matching letters lighting up",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We asked two models twenty questions, once plainly, once spelling it out first.",
+      "main_point": "Show the two prompts, the plain question and the spell-it-out-first question",
+      "visual_objective": "Show the two prompts, the plain question and the spell-it-out-first question",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 3.6666666666666665,
+      "end_s": 9.033333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "A real reply: it spells the word, then counts.",
+      "main_point": "Show a real reply in which the model spells the word out and then counts",
+      "visual_objective": "Show a real reply in which the model spells the word out and then counts",
+      "treatment": "terminal-demo",
+      "background": "dark terminal",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 9.033333333333333,
+      "end_s": 12.866666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Asked plainly, Google's Flash-Lite got sixteen right.",
+      "main_point": "Show each model's score on the plain question out of twenty",
+      "visual_objective": "Show each model's score on the plain question out of twenty",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "plain"
+      ],
+      "start_s": 12.866666666666667,
+      "end_s": 16.8
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Spelling first, twenty. On random letters, six of ten became ten. OpenAI's GPT-OSS was perfect either way.",
+      "main_point": "Show each model's plain score beside its spell-out-first score, and the total gain",
+      "visual_objective": "Show each model's plain score beside its spell-out-first score, and the total gain",
+      "treatment": "before-after-bars",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "spelled",
+        "split",
+        "other0"
+      ],
+      "start_s": 16.8,
+      "end_s": 25.533333333333335
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Why: models read tokens, not letters. Strawberry is one tokens, but ten letters.",
+      "main_point": "Show how many tokens the test word is against its letters, as counted by the tokenizer",
+      "visual_objective": "Show how many tokens the test word is against its letters, as counted by the tokenizer",
+      "treatment": "token-vs-letters-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "tokenize",
+        "tokens"
+      ],
+      "start_s": 25.533333333333335,
+      "end_s": 32.5
+    },
+    {
+      "scene_id": "s7",
+      "narration": "Same models, same questions, one change. So make the model spell it out first.",
+      "main_point": "Close with the answer: make the model spell it out first, with every model's before and after",
+      "visual_objective": "Close with the answer: make the model spell it out first, with every model's before and after",
+      "treatment": "verdict-panel",
+      "background": "accent panel",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 32.5,
+      "end_s": 38.06666666666667
+    }
+  ]
+}
