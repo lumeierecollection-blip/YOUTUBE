@@ -1,0 +1,59 @@
+{
+  "note": "Every image is a real file from Wikimedia Commons with its licence recorded. Nothing is AI-generated.",
+  "assets": [
+    {
+      "id": "press",
+      "description": "For documentary purposes the German Federal Archive often retained the original image captions , which may be erroneous, biased, obsolete or politically extreme . ADN-ZB/Lehmann/ 9.11.89/Berlin: Pressekonferenz/ Günter Schabowski, Mitglied des Politbüros und Sekretär des ZK der SED, informierte im Internationalen Pressezentrum über Verlauf und Ergebnisse des zweiten Beratungstages des 10. Plenums des ZK der SED. Günter Schabowski stand den in- und ausländischen Journalisten Rede und Antwort.",
+      "role": "press conference photograph",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1989-1109-030,_Berlin,_Schabowski_auf_Pressekonferenz.jpg",
+      "licence": "CC BY-SA 3.0 de",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "author": "Thomas Lehmann",
+      "original_credit": "This image was provided to Wikimedia Commons by the German Federal Archive (Deutsches Bundesarchiv) as part of a cooperation project . The German Federal Archive guarantees an authentic representation only using the originals (negative and/or positive), resp. the digitalization of the originals as provided by the Digital Image Archive .",
+      "date_taken": "9 November 1989 date QS:P571,+1989-11-09T00:00:00Z/11",
+      "retrieved": "2026-11-10",
+      "claim": "B2",
+      "authenticity": "authentic",
+      "size_px": "798x512",
+      "credit_line": "Thomas Lehmann, CC BY-SA 3.0 de, via Wikimedia Commons",
+      "bytes": 113461
+    },
+    {
+      "id": "note",
+      "description": "Transkription: Quelle: https://www.hdg.de/lemo/bestand/objekt/dokument-notizzettel-schabowski.html wer kommt mit / Horst? Sie. Bö / Für PK / (nicht länger als 1900) / 1.) Hinweis auf neue Praxis (Briefing) / Symptomatisch! / 2.) Teilnahme - Interesse In - Ausld. für / Plenum. / 3.) Jetzt erst möglich länger in Zukunft / weisendes Konzept d. Erneuerung (Strat.) / Konsequenz, entsch. auf eingeschl. Weg. weiter\" _____________________________________________________________________ / 4.) Vorstellung ZK Mitglied (bereit für Fragen / ________________________________d. Journ. ____________________________ / 5) Chronologie ?? / - evtll erst Referat Egon / o Extra - 2 (durchgestrichen, Anm. d. V.)1 / - Personal Entscheidung o EXTRA 2 / - Aus Diskussion o EXTRA 3 / _____________________________________________________________________ / Frage - ANTWORT / (ZK Mitgl.!) / nicht verg. /_____________________________________________________________________ / ZEIT ! -&gt; kurz vor Schluß - Ende d._Debatte! / Nennung MiRa Beschluß. Kein / PB -Papier. Entscheidung MiRa !! / -&gt; Verlesen Text Reiseregelung / o EXTRA / \"Noch Fragen. Erneut Beleg für Konsequenz / neuer Absichten. Schritt zur Normalität / Einheit mit APr._____________________________________________________ /",
+      "role": "Schabowski's note",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Schabowski-notizzettel.jpg",
+      "licence": "CC BY-SA 3.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Günter Schabowski",
+      "original_credit": "Eigener Scan. Stiftung Haus der Geschichte der Bundesrepublik Deutschland, Zeitgeschichtliches Forum Leipzig.",
+      "date_taken": "1989-11-09",
+      "retrieved": "2026-11-10",
+      "claim": "B3",
+      "authenticity": "authentic",
+      "size_px": "1178x1666",
+      "credit_line": "Günter Schabowski, CC BY-SA 3.0, via Wikimedia Commons",
+      "bytes": 657837
+    },
+    {
+      "id": "gate",
+      "description": "Brandenburg Gate on December 1, 1989. The structure is already freely accessible from the East, however, the crossing to the Western side will not be officially open until December 22nd.",
+      "role": "later photograph, December 1989, labelled as such",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:BrandenburgerTorDezember1989.jpg",
+      "licence": "Public domain",
+      "licence_url": "",
+      "author": "SSGT F. Lee Corkran",
+      "original_credit": "DoD photo, USA",
+      "date_taken": "1989-12-01",
+      "retrieved": "2026-11-10",
+      "claim": "B6",
+      "authenticity": "authentic",
+      "size_px": "2780x1870",
+      "credit_line": "SSGT F. Lee Corkran, Public domain, via Wikimedia Commons",
+      "bytes": 413652
+    }
+  ]
+}
