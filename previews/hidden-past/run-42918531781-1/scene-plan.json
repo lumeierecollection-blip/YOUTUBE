@@ -1,0 +1,202 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42918531781-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Pablo Escobar's hippos are still alive.",
+      "main_point": "Open on a real hippo at Hacienda Nápoles with a bold 'still alive' title",
+      "visual_objective": "Open on a real hippo at Hacienda Nápoles with a bold 'still alive' title",
+      "treatment": "sticker-photo-with-title",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H6"
+      ],
+      "start_s": 0,
+      "end_s": 2.5
+    },
+    {
+      "scene_id": "s2",
+      "narration": "And Colombia has approved killing more than eighty of them.",
+      "main_point": "Give the cull number as the dominant element with the approval stamp and the photograph pushed aside",
+      "visual_objective": "Give the cull number as the dominant element with the approval stamp and the photograph pushed aside",
+      "treatment": "giant-number-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H7"
+      ],
+      "start_s": 2.5,
+      "end_s": 5.3
+    },
+    {
+      "scene_id": "s3",
+      "narration": "To understand why, you have to go back to 1981.",
+      "main_point": "Mark the turn to context with the year 1981",
+      "visual_objective": "Mark the turn to context with the year 1981",
+      "treatment": "date-roll-turn",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 5.3,
+      "end_s": 8.633333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Escobar imports four hippos for his private zoo.",
+      "main_point": "Show Escobar's police photograph beside the number four and four hippo cut-outs",
+      "visual_objective": "Show Escobar's police photograph beside the number four and four hippo cut-outs",
+      "treatment": "portrait-sticker-with-count",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H1"
+      ],
+      "start_s": 8.633333333333333,
+      "end_s": 11.633333333333333
+    },
+    {
+      "scene_id": "s5",
+      "narration": "His estate sits between Medellín and Bogotá.",
+      "main_point": "Draw Colombia, place Hacienda Nápoles between Medellín and Bogotá, and pin the entrance photograph to it",
+      "visual_objective": "Draw Colombia, place Hacienda Nápoles between Medellín and Bogotá, and pin the entrance photograph to it",
+      "treatment": "drawn-map-with-pinned-photo",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H2"
+      ],
+      "start_s": 11.633333333333333,
+      "end_s": 14.233333333333333
+    },
+    {
+      "scene_id": "s6",
+      "narration": "In 1993 he dies, and the hippos escape.",
+      "main_point": "Show the estate entrance with hippo cut-outs leaving it, the year 1993 and a stamp",
+      "visual_objective": "Show the estate entrance with hippo cut-outs leaving it, the year 1993 and a stamp",
+      "treatment": "photo-with-cutouts-leaving",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H3"
+      ],
+      "start_s": 14.233333333333333,
+      "end_s": 17.6
+    },
+    {
+      "scene_id": "s7",
+      "narration": "By 2007, there are sixteen.",
+      "main_point": "Show sixteen hippo cut-outs in a grid with 16 and 2007",
+      "visual_objective": "Show sixteen hippo cut-outs in a grid with 16 and 2007",
+      "treatment": "counting-herd",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H4"
+      ],
+      "start_s": 17.6,
+      "end_s": 19.833333333333332
+    },
+    {
+      "scene_id": "s8",
+      "narration": "By 2014, about forty.",
+      "main_point": "Show forty hippo cut-outs in a grid with 40 and 2014",
+      "visual_objective": "Show forty hippo cut-outs in a grid with 40 and 2014",
+      "treatment": "counting-herd",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H5"
+      ],
+      "start_s": 19.833333333333332,
+      "end_s": 22.4
+    },
+    {
+      "scene_id": "s9",
+      "narration": "Now, around two hundred.",
+      "main_point": "Show two hundred hippo cut-outs with about 200 and April 2026",
+      "visual_objective": "Show two hundred hippo cut-outs with about 200 and April 2026",
+      "treatment": "counting-herd",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H6"
+      ],
+      "start_s": 22.4,
+      "end_s": 23.9
+    },
+    {
+      "scene_id": "s10",
+      "narration": "But most conservationists call them invasive.",
+      "main_point": "Stamp INVASIVE over the faded herd, attributed to most conservationists",
+      "visual_objective": "Stamp INVASIVE over the faded herd, attributed to most conservationists",
+      "treatment": "stamp-over-faded-herd",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H9"
+      ],
+      "start_s": 23.9,
+      "end_s": 26.6
+    },
+    {
+      "scene_id": "s11",
+      "narration": "So in April 2026, Colombia approves killing over eighty.",
+      "main_point": "Colour eighty of the two hundred cut-outs as the approved cull, with the date stamp",
+      "visual_objective": "Colour eighty of the two hundred cut-outs as the approved cull, with the date stamp",
+      "treatment": "herd-with-cull-highlight",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H7"
+      ],
+      "start_s": 26.6,
+      "end_s": 30.8
+    },
+    {
+      "scene_id": "s12",
+      "narration": "An Indian billionaire offers to take them to India instead.",
+      "main_point": "Draw an arc from Colombia to India with the offer labelled",
+      "visual_objective": "Draw an arc from Colombia to India with the offer labelled",
+      "treatment": "drawn-arc-map",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H8"
+      ],
+      "start_s": 30.8,
+      "end_s": 33.93333333333333
+    },
+    {
+      "scene_id": "s13",
+      "narration": "But some ecologists say they should stay.",
+      "main_point": "Show a hippo in water with the ecologists' view as a quote card",
+      "visual_objective": "Show a hippo in water with the ecologists' view as a quote card",
+      "treatment": "sticker-photo-with-quote-card",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H10"
+      ],
+      "start_s": 33.93333333333333,
+      "end_s": 36.36666666666667
+    },
+    {
+      "scene_id": "s14",
+      "narration": "Escobar is gone, but his hippos are not.",
+      "main_point": "Set Escobar's faded photograph against the hippo, 1993 against 2026, echoing the opening",
+      "visual_objective": "Set Escobar's faded photograph against the hippo, 1993 against 2026, echoing the opening",
+      "treatment": "then-and-now-stickers",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "H3",
+        "H6"
+      ],
+      "start_s": 36.36666666666667,
+      "end_s": 39.43333333333333
+    }
+  ]
+}
