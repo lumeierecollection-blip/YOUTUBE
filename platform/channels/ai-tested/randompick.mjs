@@ -79,16 +79,19 @@ export function plan(exp) {
     ...ms.map((m, i) => claim(`hundred${i}`, `From 1 to 100, ${m.speak}'s most common reply was ${m.t100[0].value}, ${m.t100[0].count} times out of ${exp.asks}.`)),
     claim("blue7", "A reported effect called the blue-seven phenomenon says that most people in the US pick seven when asked for a random single-digit number; its existence is disputed.", "later_interpretation", "wiki-b7"),
   ];
-  const S = (text, scene, claim_ids = []) => ({ text, scene, claim_ids, ...(claim_ids.length ? {} : { allow_no_claim: true, editorial: "question or recommendation drawn from the measured results" }) });
-  const sentences = [
-    S("Can AI pick a random number?", 0),
-    S(`We asked ${n2} models for a number from one to ten, ${say(exp.asks)} times each.`, 1, ["design"]),
-    S(`A fair pick lands on each number about ${say(fair)} times.`, 1, ["fair"]),
-    ...ms.map((m, i) => S(`${m.speak} said ${say(m.t10.value)}, ${times(m.t10.count)}.`, 2, [`top${i}`])),
-    S(`From one to a hundred, ${ms[0].speak} chose ${say(ms[0].t100[0].value)} most often, ${times(ms[0].t100[0].count)}.`, 3, ["hundred0"]),
-    S("People reportedly do it too: the blue-seven effect.", 4, ["blue7"]),
-    S("For a fair draw, use dice, or ask AI to write code.", 5),
-    S("Never let it pick your giveaway winner.", 5),
+  const V = (text, claim_ids = []) => ({ text, claim_ids });
+  const NR = { allow_no_claim: true, editorial: "question, transition or recommendation drawn from the measured results" };
+  const slots = [
+    { id: "hook", scene: 0, ...NR, variants: [V("Can AI pick a random number?")] },
+    { id: "design", scene: 1, variants: [V(`We asked ${n2} models for a number from one to ten, ${say(exp.asks)} times each.`, ["design"]), V(`${n2[0].toUpperCase()}${n2.slice(1)} models, one to ten, ${say(exp.asks)} times each.`, ["design"])] },
+    { id: "fair", scene: 1, variants: [V(`A fair pick lands on each number about ${say(fair)} times.`, ["fair"])] },
+    ...ms.map((m, i) => ({ id: `top${i}`, scene: 2, variants: [V(`${m.speak} said ${say(m.t10.value)}, ${times(m.t10.count)} out of ${say(exp.asks)}.`, [`top${i}`]), V(`${m.speak} said ${say(m.t10.value)}, ${times(m.t10.count)}.`, [`top${i}`])] })),
+    { id: "notrandom", scene: 2, optional: true, ...NR, variants: [V("A random pick would vary. This did not.")] },
+    { id: "hundred0", scene: 3, variants: [V(`From one to a hundred, ${ms[0].speak} chose ${say(ms[0].t100[0].value)} most often, ${times(ms[0].t100[0].count)}.`, ["hundred0"])] },
+    ...ms.slice(1).map((m, i) => ({ id: `hundred${i + 1}`, scene: 3, optional: true, variants: [V(`${m.speak} chose ${say(m.t100[0].value)} most often, ${times(m.t100[0].count)}.`, [`hundred${i + 1}`])] })),
+    { id: "blue7", scene: 4, variants: [V("People reportedly do it too: the blue-seven effect.", ["blue7"])] },
+    { id: "tip1", scene: 5, ...NR, variants: [V("For a fair draw, use dice, or ask AI to write code.")] },
+    { id: "tip2", scene: 5, ...NR, variants: [V("Never let it pick your giveaway winner.")] },
   ];
   const scenes = [
     { kind: "hook3", treatment: "kinetic-question", objective: "Pose the question over the numbers one to ten", background: "white" },
@@ -99,5 +102,5 @@ export function plan(exp) {
     { kind: "tip", treatment: "verdict-panel", objective: "Close with what to do instead: dice, or code that uses a random function", background: "accent panel" },
   ];
   const data = { date, asks: exp.asks, fair, temperature: exp.temperature, prompt10: promptFor(10), models: ms.map((m) => ({ name: m.name, speak: m.speak, id: m.id, h10: m.h10, top10: m.t10, top100: m.t100, h100_top: m.t100 })) };
-  return { claims, sentences, scenes, data, sources: [{ source_id: "s1", url, published: date, title: "AI Tested random-number test run" }, { source_id: "wiki-b7", url: "https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon", published: date, title: "Blue-seven phenomenon (Wikipedia)" }] };
+  return { claims, slots, scenes, data, sources: [{ source_id: "s1", url, published: date, title: "AI Tested random-number test run" }, { source_id: "wiki-b7", url: "https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon", published: date, title: "Blue-seven phenomenon (Wikipedia)" }] };
 }
