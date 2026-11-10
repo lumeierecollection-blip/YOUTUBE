@@ -1,0 +1,32 @@
+{
+  "channel_id": "4",
+  "topic_slug": "england-45-22-australia-nations-championship",
+  "format": "shorts",
+  "hook": "England rugby stars secured a record 45-22 victory over Australia at London's Allianz Stadium today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "England rugby stars secured a record 45-22 victory over Australia at London's Allianz Stadium today."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Which player sparked this second-half surge for head coach Steve Borthwick's dominant England rugby side?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the game shifted when Max Jorgensen scored an intercept try right at half-time."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Replacing the injured Immanuel Feyi-Waboso, Henry Pollock scored two second-half tries for the team. Seven tries total proved that Steve Borthwick's tactical substitutions were absolutely decisive for England."
+    },
+    {
+      "id": "close",
+      "voiceover": "That performance set a new 45-point record for England against the Wallabies at Twickenham."
+    }
+  ],
+  "sources_used": [
+    "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia",
+    "https://www.rugby.com.au/news/five-things-we-learnt-from-wallabies-england-2026118"
+  ]
+}
