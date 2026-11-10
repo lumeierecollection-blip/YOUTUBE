@@ -1,0 +1,64 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 37.611,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.6,
+  "max_volume_db": -1.6,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Sadaltager",
+    "seconds": 37.104,
+    "wpm": 156.9,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookP",
+      "start_s": 0,
+      "end_s": 3.3333333333333335
+    },
+    {
+      "id": "s2",
+      "kind": "setupP",
+      "start_s": 3.3333333333333335,
+      "end_s": 13.766666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "plainP",
+      "start_s": 13.766666666666667,
+      "end_s": 20.6
+    },
+    {
+      "id": "s4",
+      "kind": "teacherP",
+      "start_s": 20.6,
+      "end_s": 30.966666666666665
+    },
+    {
+      "id": "s5",
+      "kind": "replyP",
+      "start_s": 30.966666666666665,
+      "end_s": 34.43333333333333
+    },
+    {
+      "id": "s6",
+      "kind": "tipP",
+      "start_s": 34.43333333333333,
+      "end_s": 37.56666666666667
+    }
+  ]
+}
