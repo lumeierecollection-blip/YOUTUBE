@@ -190,4 +190,5 @@ function AiTestedExperiment({ durationInFrames, scenes, captions, data }) {
   );
 }
 
+export const SHARED = { C, SANS, MONO, abs, From, Title, Scene, LetterRow, Bars, Caption, KINDS, useIn, clamp, ease };
 export const experimentCompositions = [{ id: "AiTestedExperiment", component: AiTestedExperiment, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [], captions: [], data: { models: [], example: { word: "", letter: "", prompt: "", replies: [] }, total: 20, date: "" } } }];

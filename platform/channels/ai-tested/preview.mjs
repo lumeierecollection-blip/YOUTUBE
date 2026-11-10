@@ -41,6 +41,7 @@ function mapScenes(pkg) {
 }
 
 export default async function preview({ key, runId, outDir, tools }) {
+  if (/spell/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./spellout-preview.mjs")).default({ key, runId, tools });
   if (/honesty/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./honesty-preview.mjs")).default({ key, runId, tools });
   process.env.MAX_TOKENS_PER_VIDEO ||= "2000000";
   const repo = process.env.GITHUB_REPOSITORY, runUrl = repo ? `https://github.com/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}` : "local";

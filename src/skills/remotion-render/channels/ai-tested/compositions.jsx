@@ -5,6 +5,7 @@ import { AbsoluteFill, Sequence, staticFile, interpolate, useCurrentFrame, Easin
 import { FONT_FACES } from "../../fonts-loader.js";
 import { experimentCompositions } from "./experiment.jsx";
 import { honestyCompositions } from "./honesty.jsx";
+import { spelloutCompositions } from "./spellout.jsx";
 
 const C = { bg: "#FFFFFF", surface: "#F3F4F6", ink: "#111827", dim: "#6B7280", stroke: "#D1D5DB", accent: "#0E7490", termBg: "#111418", termHead: "#1F2429", termText: "#E5E7EB", termGreen: "#4ADE80" };
 const SANS = '"Space Grotesk", sans-serif', MONO = '"JetBrains Mono", monospace';
@@ -196,4 +197,4 @@ function AiTestedShort(props) {
 }
 
 const sample = { kind: "hook", id: "s1", from: 0, to: 90 };
-export const compositions = [...experimentCompositions, ...honestyCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
+export const compositions = [...experimentCompositions, ...honestyCompositions, ...spelloutCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
