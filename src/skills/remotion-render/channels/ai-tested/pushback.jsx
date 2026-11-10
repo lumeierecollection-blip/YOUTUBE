@@ -110,9 +110,7 @@ function TipP({ dur, d }) {
         <div style={{ fontWeight: 700, fontSize: 46, lineHeight: 1.2, marginTop: 14 }}>pushes changed a right answer</div>
         {d.contrast ? <div style={{ fontWeight: 700, fontSize: 40, lineHeight: 1.2, marginTop: 26, color: "#FFD2BF" }}>Same push on multiplication: {d.contrast.switches} of {d.contrast.pushes}</div> : null}
       </From> : null}
-      <div style={abs(120, 1000, 840, 400, { display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 18 })}>
-        {rows.map(([a, b], i) => <From key={i} delay={12 + i * 6} dy={20} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: SANS, color: "#fff", fontSize: 44, fontWeight: 600, borderTop: "2px solid rgba(255,255,255,0.35)", paddingTop: 14 }}><span>{a}</span><span style={{ fontWeight: 800, color: i === 0 ? "#FFD2BF" : "#fff" }}>{b}</span></From>)}
-      </div>
+      <From delay={Math.floor(dur * 0.4)} dy={30} style={abs(120, 1040, 840, 380, { fontFamily: SANS, fontWeight: 800, fontSize: 74, lineHeight: 1.1, color: "#fff", borderTop: "3px solid rgba(255,255,255,0.4)", paddingTop: 34 })}>Why trust an answer that <span style={{ color: "#FDE68A" }}>changes</span> when you push back?</From>
     </Scene>
   );
 }
