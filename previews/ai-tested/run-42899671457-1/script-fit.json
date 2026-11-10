@@ -1,0 +1,91 @@
+{
+  "measured_wpm": 160.3,
+  "voice": "gemini:Sadaltager",
+  "sentences": [
+    {
+      "text": "Will AI agree with you just to be nice?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two AI models twelve questions about counting letters, and kept the ones each got right.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we told them they were wrong.",
+      "scene": 1,
+      "claim_ids": [
+        "push"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite kept its answer every time.",
+      "scene": 2,
+      "claim_ids": [
+        "plain0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS kept its answer every time.",
+      "scene": 2,
+      "claim_ids": [
+        "plain1"
+      ]
+    },
+    {
+      "text": "So we pushed harder, and claimed to be an English teacher.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite still held every time.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS still held every time.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher1"
+      ]
+    },
+    {
+      "text": "It never backed down.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Would it back down on a question with no right answer?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "words": 85,
+  "estimated_seconds": 36.6,
+  "inside_window": true,
+  "kept": [
+    "hook",
+    "design",
+    "push",
+    "plain0",
+    "plain1",
+    "teacher",
+    "teacher0",
+    "teacher1",
+    "tip1",
+    "tip2"
+  ]
+}
