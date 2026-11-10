@@ -1,0 +1,83 @@
+{
+  "channel_id": "1",
+  "topic_slug": "dutch-family-attic-national-archives-documents-stolen",
+  "format": "shorts",
+  "hook": "A Dutch attic cleanout uncovered 25 documents stolen 10 years ago.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A Dutch attic cleanout uncovered 25 documents stolen 10 years ago.",
+      "visual_cue": "Extreme close-up of aged parchment documents resting inside a dusty storage box.",
+      "sfx_cue": "Low suspenseful bass drone",
+      "b_roll": [
+        "Dusty attic interior",
+        "Old parchment paper detail"
+      ],
+      "text_overlay": {
+        "text": "25 STOLEN DOCUMENTS FOUND"
+      },
+      "transition_out": "Fast hard cut"
+    },
+    {
+      "id": "setup",
+      "voiceover": "An archivist stole 25 records from the Netherlands' National Archives in The Hague. The thief used these 16th-century records from the Dutch VOC trading company as loan collateral. Where did those 25 stolen archives end up?",
+      "visual_cue": "Exterior shot of the Netherlands' National Archives building in The Hague, shifting to dimly lit archive racks.",
+      "sfx_cue": "Subtle mystery riser",
+      "b_roll": [
+        "Netherlands National Archives exterior The Hague",
+        "Historical vault document racks"
+      ],
+      "text_overlay": {
+        "text": "THE HAGUE ARCHIVES THEFT"
+      },
+      "transition_out": "Wipe left"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the family found these 25 historic VOC documents inside a cheap Action cardboard box.",
+      "visual_cue": "Close shot of hands opening a worn cardboard box labeled Action in an attic space.",
+      "sfx_cue": "Cardboard sliding sound effect",
+      "b_roll": [
+        "Action store cardboard box opening",
+        "Attic rafters sunlight"
+      ],
+      "text_overlay": {
+        "text": "PACKED IN AN ACTION BOX"
+      },
+      "transition_out": "Quick zoom push"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Art detective Arthur Brand recovered all 25 centuries-old manuscripts. Brand and the Amsterdam police recovered a 15th-century letter and early 17th-century VOC records. The stolen artifacts were safely returned to the Netherlands' National Archives.",
+      "visual_cue": "Art detective Arthur Brand inspecting old manuscripts alongside official law enforcement officers.",
+      "sfx_cue": "Triumphant low orchestral chord",
+      "b_roll": [
+        "Arthur Brand examining historical manuscripts",
+        "Amsterdam police officer standing guard"
+      ],
+      "text_overlay": {
+        "text": "RECOVERED BY ARTHUR BRAND"
+      },
+      "transition_out": "Fade out"
+    },
+    {
+      "id": "close",
+      "voiceover": "Ten years after vanishing, 25 stolen documents returned to The Hague.",
+      "visual_cue": "Wide camera pan across the exterior of the National Archives building in The Hague under clear daylight.",
+      "sfx_cue": "Gavel strike sound effect",
+      "b_roll": [
+        "The Hague city landmark view",
+        "National Archives front entrance"
+      ],
+      "text_overlay": {
+        "text": "RETURNED TO THE HAGUE"
+      },
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://www.smithsonianmag.com/smart-news/stolen-historic-documents-surface-in-attic-ten-years-after-an-employee-used-them-as-collateral-to-borrow-money-180986965",
+    "https://www.dutchnews.nl/2025/07/stolen-voc-documents-turn-up-in-attic-packed-in-an-action-box",
+    "https://nltimes.nl/2025/07/09/art-detective-recovers-centuries-old-documents-stolen-dutch-national-archives"
+  ]
+}
