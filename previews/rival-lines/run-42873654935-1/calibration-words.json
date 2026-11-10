@@ -1,0 +1,270 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (40/41 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Barcelona",
+   "start": 0.0,
+   "end": 0.74,
+   "sentence": 0
+  },
+  {
+   "text": "won",
+   "start": 0.74,
+   "end": 1.32,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.32,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "league",
+   "start": 1.56,
+   "end": 1.78,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 1.78,
+   "end": 2.04,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 2.04,
+   "end": 2.16,
+   "sentence": 0
+  },
+  {
+   "text": "final",
+   "start": 2.16,
+   "end": 2.46,
+   "sentence": 0
+  },
+  {
+   "text": "day",
+   "start": 2.46,
+   "end": 2.94,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 3.46,
+   "end": 3.51,
+   "sentence": 1
+  },
+  {
+   "text": "striker",
+   "start": 3.46,
+   "end": 3.68,
+   "sentence": 1
+  },
+  {
+   "text": "scored",
+   "start": 3.68,
+   "end": 4.2,
+   "sentence": 1
+  },
+  {
+   "text": "twice",
+   "start": 4.2,
+   "end": 4.56,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 4.56,
+   "end": 4.96,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 4.96,
+   "end": 5.04,
+   "sentence": 1
+  },
+  {
+   "text": "second",
+   "start": 5.04,
+   "end": 5.32,
+   "sentence": 1
+  },
+  {
+   "text": "half",
+   "start": 5.32,
+   "end": 5.6,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 5.96,
+   "end": 6.01,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 5.98,
+   "end": 6.08,
+   "sentence": 1
+  },
+  {
+   "text": "goalkeeper",
+   "start": 6.08,
+   "end": 6.28,
+   "sentence": 1
+  },
+  {
+   "text": "saved",
+   "start": 6.28,
+   "end": 6.98,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 6.98,
+   "end": 7.2,
+   "sentence": 1
+  },
+  {
+   "text": "late",
+   "start": 7.2,
+   "end": 7.42,
+   "sentence": 1
+  },
+  {
+   "text": "penalty",
+   "start": 7.42,
+   "end": 7.74,
+   "sentence": 1
+  },
+  {
+   "text": "It",
+   "start": 8.48,
+   "end": 8.54,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 8.54,
+   "end": 8.66,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 8.66,
+   "end": 8.8,
+   "sentence": 2
+  },
+  {
+   "text": "club's",
+   "start": 8.8,
+   "end": 9.24,
+   "sentence": 2
+  },
+  {
+   "text": "tenth",
+   "start": 9.24,
+   "end": 9.5,
+   "sentence": 2
+  },
+  {
+   "text": "title",
+   "start": 9.5,
+   "end": 10.0,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 10.0,
+   "end": 10.34,
+   "sentence": 2
+  },
+  {
+   "text": "twelve",
+   "start": 10.34,
+   "end": 10.5,
+   "sentence": 2
+  },
+  {
+   "text": "years",
+   "start": 10.66,
+   "end": 11.32,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 11.62,
+   "end": 11.8,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 11.8,
+   "end": 11.9,
+   "sentence": 2
+  },
+  {
+   "text": "crowd",
+   "start": 11.9,
+   "end": 12.12,
+   "sentence": 2
+  },
+  {
+   "text": "stayed",
+   "start": 12.12,
+   "end": 12.5,
+   "sentence": 2
+  },
+  {
+   "text": "long",
+   "start": 12.5,
+   "end": 12.88,
+   "sentence": 2
+  },
+  {
+   "text": "after",
+   "start": 12.88,
+   "end": 13.32,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 13.32,
+   "end": 13.46,
+   "sentence": 2
+  },
+  {
+   "text": "final",
+   "start": 13.46,
+   "end": 13.8,
+   "sentence": 2
+  },
+  {
+   "text": "whistle",
+   "start": 13.8,
+   "end": 14.06,
+   "sentence": 2
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Barcelona won the league on the final day.",
+   "start": 0.0,
+   "end": 2.94
+  },
+  {
+   "text": "The striker scored twice in the second half, and the goalkeeper saved a late penalty.",
+   "start": 3.46,
+   "end": 7.74
+  },
+  {
+   "text": "It was the club's tenth title in twelve years, and the crowd stayed long after the final whistle.",
+   "start": 8.48,
+   "end": 14.06
+  }
+ ]
+}
