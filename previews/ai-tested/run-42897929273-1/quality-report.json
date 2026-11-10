@@ -1,0 +1,25 @@
+{
+  "format": "ai_tested_pushback",
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 34.56,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -18.9,
+    "max_volume_db": -2.1,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Sadaltager",
+      "seconds": 34.032,
+      "words": 94,
+      "wpm": 165.7,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  }
+}
