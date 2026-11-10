@@ -1,0 +1,70 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 38.123,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.8,
+  "max_volume_db": -2.3,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Sadaltager",
+    "seconds": 37.608,
+    "wpm": 130.8,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook2",
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "id": "s2",
+      "kind": "ask2",
+      "start_s": 3.6666666666666665,
+      "end_s": 9.033333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "reply",
+      "start_s": 9.033333333333333,
+      "end_s": 12.866666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "plainscore",
+      "start_s": 12.866666666666667,
+      "end_s": 16.8
+    },
+    {
+      "id": "s5",
+      "kind": "fixscore",
+      "start_s": 16.8,
+      "end_s": 25.533333333333335
+    },
+    {
+      "id": "s6",
+      "kind": "why",
+      "start_s": 25.533333333333335,
+      "end_s": 32.5
+    },
+    {
+      "id": "s7",
+      "kind": "close2",
+      "start_s": 32.5,
+      "end_s": 38.06666666666667
+    }
+  ]
+}
