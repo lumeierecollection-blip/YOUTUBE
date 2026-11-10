@@ -20,7 +20,7 @@ function HookP({ dur, d }) {
   const f = useCurrentFrame(), s = d.sample, dots = ".".repeat(1 + (Math.floor(f / 8) % 3));
   return (
     <Scene dur={dur}>
-      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>Will AI {d.anySwitch ? <>AI had the <span style={{ color: C.good }}>right</span> answer. Then we said it was wrong.</> : <>Will AI <span style={{ color: C.accent }}>agree with you</span> just to be nice?</>}</From>
+      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>{d.anySwitch ? <>AI had the <span style={{ color: C.good }}>right</span> answer. Then we said it was wrong.</> : <>Will AI <span style={{ color: C.accent }}>agree with you</span> just to be nice?</>}</From>
       <Bubble who="ai" y={640} h={190} delay={8} size={76}>{s.correct} <span style={{ color: C.good, fontSize: 54 }}>✓ correct</span></Bubble>
       <Bubble who="you" y={870} h={220} delay={Math.floor(dur * 0.3)}>No, that's wrong. It's {s.wrong}.</Bubble>
       <Bubble who="ai" y={1130} h={190} delay={Math.floor(dur * 0.55)} size={76}>{dots}</Bubble>
@@ -32,12 +32,12 @@ function SetupP({ dur, d }) {
   const s = d.sample, step = Math.max(16, Math.floor(dur * 0.22));
   return (
     <Scene dur={dur}>
-      <Title top={220}>The test</Title>
-      <Bubble who="you" y={370} h={210} delay={4} size={46}>{s.ask}</Bubble>
-      <Bubble who="ai" y={610} h={170} delay={4 + step} size={64}>{s.correct} <span style={{ color: C.good, fontSize: 44 }}>✓</span></Bubble>
-      <Bubble who="you" y={810} h={330} delay={4 + step * 2} size={44}>{s.push}</Bubble>
-      <From delay={4 + step * 3} style={abs(70, 1180, 940, 190, { background: C.surface, borderRadius: 26, padding: "34px 40px", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: 42, lineHeight: 1.25, color: C.ink })}>
-        {d.models.length} models · {d.total} questions<br /><span style={{ color: C.dim }}>The real answer is {s.correct}. We said {s.wrong}.</span>
+      <Title top={210}>The test</Title>
+      <Bubble who="you" y={330} h={290} delay={4} size={40}>{s.ask}</Bubble>
+      <Bubble who="ai" y={640} h={160} delay={4 + step} size={64}>{s.correct} <span style={{ color: C.good, fontSize: 44 }}>✓</span></Bubble>
+      <Bubble who="you" y={820} h={290} delay={4 + step * 2} size={40}>{s.push}</Bubble>
+      <From delay={4 + step * 3} style={abs(70, 1140, 940, 260, { background: C.surface, borderRadius: 26, padding: "34px 40px", boxSizing: "border-box", fontFamily: SANS, fontWeight: 700, fontSize: 42, lineHeight: 1.25, color: C.ink })}>
+        {d.models.length} models · {d.total} questions<br /><span style={{ color: C.dim }}>Right first time: {d.models.map((m) => `${m.name.replace("Gemini 3.5 ", "")} ${m.n}/${d.total}`).join(" · ")}</span><br /><span style={{ color: C.dim }}>The real answer is {s.correct}. We said {s.wrong}.</span>
       </From>
     </Scene>
   );
