@@ -2,11 +2,12 @@
   "channel": "rival-lines",
   "production_run": "run-42855709504-1",
   "agent": "agent-rival-lines",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T16:37:04.797Z",
+  "stage": "voice_complete",
+  "status": "ok",
+  "timestamp": "2026-11-10T16:37:21.699Z",
   "branch": "preview/rival-lines-messi-4",
   "commit": "737b8f13baa299bf994025f629c53b53141fdb94",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42855709504#artifacts",
-  "note": "not reviewed by the engine critic"
+  "engine": "gemini:Charon",
+  "wpm": 149.9
 }
