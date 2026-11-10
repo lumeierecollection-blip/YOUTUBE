@@ -1,0 +1,556 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (70/82 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "Why",
+   "start": 0.0,
+   "end": 0.5,
+   "sentence": 0
+  },
+  {
+   "text": "do",
+   "start": 0.5,
+   "end": 0.62,
+   "sentence": 0
+  },
+  {
+   "text": "some",
+   "start": 0.62,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.82,
+   "end": 1.12,
+   "sentence": 0
+  },
+  {
+   "text": "models",
+   "start": 1.12,
+   "end": 1.58,
+   "sentence": 0
+  },
+  {
+   "text": "fail",
+   "start": 1.58,
+   "end": 1.98,
+   "sentence": 0
+  },
+  {
+   "text": "at",
+   "start": 1.98,
+   "end": 2.28,
+   "sentence": 0
+  },
+  {
+   "text": "counting",
+   "start": 2.28,
+   "end": 2.56,
+   "sentence": 0
+  },
+  {
+   "text": "letters",
+   "start": 2.56,
+   "end": 2.96,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 3.68,
+   "end": 3.78,
+   "sentence": 1
+  },
+  {
+   "text": "asked",
+   "start": 3.78,
+   "end": 3.87,
+   "sentence": 1
+  },
+  {
+   "text": "two",
+   "start": 3.96,
+   "end": 4.24,
+   "sentence": 1
+  },
+  {
+   "text": "models",
+   "start": 4.24,
+   "end": 4.54,
+   "sentence": 1
+  },
+  {
+   "text": "twenty",
+   "start": 4.54,
+   "end": 4.74,
+   "sentence": 1
+  },
+  {
+   "text": "questions",
+   "start": 4.94,
+   "end": 5.58,
+   "sentence": 1
+  },
+  {
+   "text": "once",
+   "start": 6.08,
+   "end": 6.18,
+   "sentence": 1
+  },
+  {
+   "text": "plainly",
+   "start": 6.18,
+   "end": 6.52,
+   "sentence": 1
+  },
+  {
+   "text": "once",
+   "start": 6.9,
+   "end": 7.2,
+   "sentence": 1
+  },
+  {
+   "text": "spelling",
+   "start": 7.2,
+   "end": 7.7,
+   "sentence": 1
+  },
+  {
+   "text": "it",
+   "start": 7.7,
+   "end": 8.0,
+   "sentence": 1
+  },
+  {
+   "text": "out",
+   "start": 8.0,
+   "end": 8.1,
+   "sentence": 1
+  },
+  {
+   "text": "first",
+   "start": 8.1,
+   "end": 8.36,
+   "sentence": 1
+  },
+  {
+   "text": "A",
+   "start": 9.02,
+   "end": 9.1,
+   "sentence": 2
+  },
+  {
+   "text": "real",
+   "start": 9.1,
+   "end": 9.28,
+   "sentence": 2
+  },
+  {
+   "text": "reply",
+   "start": 9.28,
+   "end": 9.62,
+   "sentence": 2
+  },
+  {
+   "text": "it",
+   "start": 10.16,
+   "end": 10.21,
+   "sentence": 2
+  },
+  {
+   "text": "spells",
+   "start": 10.18,
+   "end": 10.44,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 10.44,
+   "end": 10.8,
+   "sentence": 2
+  },
+  {
+   "text": "word",
+   "start": 10.8,
+   "end": 11.04,
+   "sentence": 2
+  },
+  {
+   "text": "then",
+   "start": 11.34,
+   "end": 11.56,
+   "sentence": 2
+  },
+  {
+   "text": "counts",
+   "start": 11.56,
+   "end": 11.86,
+   "sentence": 2
+  },
+  {
+   "text": "Asked",
+   "start": 12.86,
+   "end": 12.91,
+   "sentence": 3
+  },
+  {
+   "text": "plainly",
+   "start": 12.86,
+   "end": 13.12,
+   "sentence": 3
+  },
+  {
+   "text": "Google's",
+   "start": 13.94,
+   "end": 14.2,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 14.2,
+   "end": 14.35,
+   "sentence": 3
+  },
+  {
+   "text": "got",
+   "start": 14.5,
+   "end": 15.24,
+   "sentence": 3
+  },
+  {
+   "text": "sixteen",
+   "start": 15.24,
+   "end": 15.47,
+   "sentence": 3
+  },
+  {
+   "text": "right",
+   "start": 15.7,
+   "end": 16.16,
+   "sentence": 3
+  },
+  {
+   "text": "Spelling",
+   "start": 16.8,
+   "end": 16.96,
+   "sentence": 4
+  },
+  {
+   "text": "first",
+   "start": 16.96,
+   "end": 17.12,
+   "sentence": 4
+  },
+  {
+   "text": "twenty",
+   "start": 17.12,
+   "end": 17.88,
+   "sentence": 4
+  },
+  {
+   "text": "On",
+   "start": 18.64,
+   "end": 18.7,
+   "sentence": 5
+  },
+  {
+   "text": "random",
+   "start": 18.7,
+   "end": 18.98,
+   "sentence": 5
+  },
+  {
+   "text": "letters",
+   "start": 18.98,
+   "end": 19.26,
+   "sentence": 5
+  },
+  {
+   "text": "six",
+   "start": 19.26,
+   "end": 19.56,
+   "sentence": 5
+  },
+  {
+   "text": "of",
+   "start": 19.86,
+   "end": 20.06,
+   "sentence": 5
+  },
+  {
+   "text": "ten",
+   "start": 20.06,
+   "end": 20.17,
+   "sentence": 5
+  },
+  {
+   "text": "became",
+   "start": 20.28,
+   "end": 20.6,
+   "sentence": 5
+  },
+  {
+   "text": "ten",
+   "start": 20.6,
+   "end": 21.3,
+   "sentence": 5
+  },
+  {
+   "text": "OpenAI's",
+   "start": 21.3,
+   "end": 22.0,
+   "sentence": 6
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 22.0,
+   "end": 22.7,
+   "sentence": 6
+  },
+  {
+   "text": "was",
+   "start": 23.4,
+   "end": 23.72,
+   "sentence": 6
+  },
+  {
+   "text": "perfect",
+   "start": 23.72,
+   "end": 24.18,
+   "sentence": 6
+  },
+  {
+   "text": "either",
+   "start": 24.18,
+   "end": 24.58,
+   "sentence": 6
+  },
+  {
+   "text": "way",
+   "start": 24.58,
+   "end": 24.92,
+   "sentence": 6
+  },
+  {
+   "text": "Why",
+   "start": 25.54,
+   "end": 25.82,
+   "sentence": 7
+  },
+  {
+   "text": "models",
+   "start": 26.46,
+   "end": 26.68,
+   "sentence": 7
+  },
+  {
+   "text": "read",
+   "start": 26.68,
+   "end": 26.94,
+   "sentence": 7
+  },
+  {
+   "text": "tokens",
+   "start": 26.94,
+   "end": 27.3,
+   "sentence": 7
+  },
+  {
+   "text": "not",
+   "start": 27.76,
+   "end": 27.96,
+   "sentence": 7
+  },
+  {
+   "text": "letters",
+   "start": 27.96,
+   "end": 28.22,
+   "sentence": 7
+  },
+  {
+   "text": "Strawberry",
+   "start": 28.22,
+   "end": 29.3,
+   "sentence": 8
+  },
+  {
+   "text": "is",
+   "start": 29.3,
+   "end": 29.8,
+   "sentence": 8
+  },
+  {
+   "text": "one",
+   "start": 29.8,
+   "end": 30.12,
+   "sentence": 8
+  },
+  {
+   "text": "tokens",
+   "start": 30.12,
+   "end": 30.4,
+   "sentence": 8
+  },
+  {
+   "text": "but",
+   "start": 30.68,
+   "end": 30.9,
+   "sentence": 8
+  },
+  {
+   "text": "ten",
+   "start": 30.9,
+   "end": 31.07,
+   "sentence": 8
+  },
+  {
+   "text": "letters",
+   "start": 31.24,
+   "end": 31.52,
+   "sentence": 8
+  },
+  {
+   "text": "Same",
+   "start": 32.5,
+   "end": 32.55,
+   "sentence": 9
+  },
+  {
+   "text": "models",
+   "start": 32.5,
+   "end": 32.78,
+   "sentence": 9
+  },
+  {
+   "text": "same",
+   "start": 33.04,
+   "end": 33.32,
+   "sentence": 9
+  },
+  {
+   "text": "questions",
+   "start": 33.32,
+   "end": 33.62,
+   "sentence": 9
+  },
+  {
+   "text": "one",
+   "start": 34.36,
+   "end": 34.41,
+   "sentence": 9
+  },
+  {
+   "text": "change",
+   "start": 34.38,
+   "end": 34.66,
+   "sentence": 9
+  },
+  {
+   "text": "So",
+   "start": 35.4,
+   "end": 35.45,
+   "sentence": 10
+  },
+  {
+   "text": "make",
+   "start": 35.44,
+   "end": 35.78,
+   "sentence": 10
+  },
+  {
+   "text": "the",
+   "start": 35.78,
+   "end": 35.92,
+   "sentence": 10
+  },
+  {
+   "text": "model",
+   "start": 35.92,
+   "end": 36.08,
+   "sentence": 10
+  },
+  {
+   "text": "spell",
+   "start": 36.08,
+   "end": 36.44,
+   "sentence": 10
+  },
+  {
+   "text": "it",
+   "start": 36.44,
+   "end": 36.66,
+   "sentence": 10
+  },
+  {
+   "text": "out",
+   "start": 36.66,
+   "end": 36.76,
+   "sentence": 10
+  },
+  {
+   "text": "first",
+   "start": 36.76,
+   "end": 37.04,
+   "sentence": 10
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Why do some AI models fail at counting letters?",
+   "start": 0.0,
+   "end": 2.96
+  },
+  {
+   "text": "We asked two models twenty questions, once plainly, once spelling it out first.",
+   "start": 3.68,
+   "end": 8.36
+  },
+  {
+   "text": "A real reply: it spells the word, then counts.",
+   "start": 9.02,
+   "end": 11.86
+  },
+  {
+   "text": "Asked plainly, Google's Flash-Lite got sixteen right.",
+   "start": 12.86,
+   "end": 16.16
+  },
+  {
+   "text": "Spelling first, twenty.",
+   "start": 16.8,
+   "end": 17.88
+  },
+  {
+   "text": "On random letters, six of ten became ten.",
+   "start": 18.64,
+   "end": 21.3
+  },
+  {
+   "text": "OpenAI's GPT-OSS was perfect either way.",
+   "start": 21.3,
+   "end": 24.92
+  },
+  {
+   "text": "Why: models read tokens, not letters.",
+   "start": 25.54,
+   "end": 28.22
+  },
+  {
+   "text": "Strawberry is one tokens, but ten letters.",
+   "start": 28.22,
+   "end": 31.52
+  },
+  {
+   "text": "Same models, same questions, one change.",
+   "start": 32.5,
+   "end": 34.66
+  },
+  {
+   "text": "So make the model spell it out first.",
+   "start": 35.4,
+   "end": 37.04
+  }
+ ]
+}
