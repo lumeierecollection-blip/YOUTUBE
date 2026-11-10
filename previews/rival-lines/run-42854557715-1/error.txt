@@ -1,0 +1,5 @@
+Error: narration is 39.58s at natural speed (allowed 20 to 29.25s); change the script, never the speed
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:34:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/rival-lines/preview.mjs:70:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
