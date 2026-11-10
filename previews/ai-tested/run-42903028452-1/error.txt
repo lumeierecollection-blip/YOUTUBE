@@ -1,0 +1,4 @@
+Error: slot "hook" has more than one sentence ending in: AI had the right answer. Then we told it it was wrong.
+    at fitScript (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fitscript.mjs:11:171)
+    at Module.pushbackPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/pushback-preview.mjs:44:15)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
