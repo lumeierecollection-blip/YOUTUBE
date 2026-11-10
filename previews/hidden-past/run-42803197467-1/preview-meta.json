@@ -2,11 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42803197467-1",
   "agent": "agent-hidden-past",
-  "stage": "research_complete",
+  "stage": "script_approved",
   "status": "ok",
-  "timestamp": "2026-11-10T10:56:55.515Z",
+  "timestamp": "2026-11-10T10:56:57.241Z",
   "branch": "preview/hidden-past-vox-berlin",
   "commit": "4971b0b6c7eda2ee889c7cd14245ed2a7e2d5652",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42803197467#artifacts",
-  "claims": 6
+  "approved_by": "not reviewed by the engine critic"
 }
