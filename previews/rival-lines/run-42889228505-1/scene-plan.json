@@ -1,0 +1,117 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42889228505-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Is Lionel Messi the greatest of all time? Here is the evidence, in numbers.",
+      "main_point": "Pose the question over a sticker portrait with two shirt cut-outs, one Barcelona and one Argentina, the same size",
+      "visual_objective": "Pose the question over a sticker portrait with two shirt cut-outs, one Barcelona and one Argentina, the same size",
+      "treatment": "question-hook-with-real-shirt-photographs",
+      "background": "white editorial page, club blue",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 5.9
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Start with the individual awards: a record eight Ballons d'Or.",
+      "main_point": "Count up to eight and show one Ballon d'Or trophy cut-out eight times in an even grid",
+      "visual_objective": "Count up to eight and show one Ballon d'Or trophy cut-out eight times in an even grid",
+      "treatment": "eight-ballon-dor-photographs",
+      "background": "white editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "W2"
+      ],
+      "start_s": 5.9,
+      "end_s": 10.033333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Add to that six European Golden Shoes.",
+      "main_point": "Count up to six and show one Golden Shoe cut-out six times in an even grid",
+      "visual_objective": "Count up to six and show one Golden Shoe cut-out six times in an even grid",
+      "treatment": "golden-shoe-photograph",
+      "background": "gold block",
+      "skill": "remotion",
+      "claim_ids": [
+        "W8"
+      ],
+      "start_s": 10.033333333333333,
+      "end_s": 12.766666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "For Barcelona he scored four hundred and seventy-four La Liga goals, a record, and seventy-three goals in a single season.",
+      "main_point": "Draw Barcelona goals per season, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "visual_objective": "Draw Barcelona goals per season, count up the 474 La Liga goals and mark the 73 of 2011-12",
+      "treatment": "goals-per-season-stacked-bars",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "W4",
+        "T1"
+      ],
+      "start_s": 12.766666666666667,
+      "end_s": 20.233333333333334
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Two trebles with Barcelona, in 2009 and 2015.",
+      "main_point": "Show the two trebles on two equal cards under a Barcelona shirt cut-out",
+      "visual_objective": "Show the two trebles on two equal cards under a Barcelona shirt cut-out",
+      "treatment": "two-trebles-with-trophy-display-photograph",
+      "background": "garnet block",
+      "skill": "remotion",
+      "claim_ids": [
+        "W3",
+        "W7"
+      ],
+      "start_s": 20.233333333333334,
+      "end_s": 24.233333333333334
+    },
+    {
+      "scene_id": "s6",
+      "narration": "In 2022, he led Argentina to the World Cup.",
+      "main_point": "Show a real photograph of the 2022 World Cup trophy being kissed in an Argentina shirt, with 2022 in large type and an Argentina shirt cut-out",
+      "visual_objective": "Show a real photograph of the 2022 World Cup trophy being kissed in an Argentina shirt, with 2022 in large type and an Argentina shirt cut-out",
+      "treatment": "world-cup-2022-photograph-collage",
+      "background": "sky-blue block",
+      "skill": "remotion",
+      "claim_ids": [
+        "W5"
+      ],
+      "start_s": 24.233333333333334,
+      "end_s": 27.333333333333332
+    },
+    {
+      "scene_id": "s7",
+      "narration": "In sampled matches, his key passes per ninety minutes more than doubled.",
+      "main_point": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "visual_objective": "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat",
+      "treatment": "key-pass-per-90-bars",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "D2"
+      ],
+      "start_s": 27.333333333333332,
+      "end_s": 32.43333333333333
+    },
+    {
+      "scene_id": "s8",
+      "narration": "The greatest of all time: you decide.",
+      "main_point": "Close on the portrait with the question and the evidence as plain chips",
+      "visual_objective": "Close on the portrait with the question and the evidence as plain chips",
+      "treatment": "portrait-led-question-close",
+      "background": "garnet block",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 32.43333333333333,
+      "end_s": 36
+    }
+  ]
+}
