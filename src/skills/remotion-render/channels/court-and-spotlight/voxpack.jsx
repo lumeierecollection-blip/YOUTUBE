@@ -53,7 +53,7 @@ function Cover({ dur, images, credits, first }) {
   return (<Wrap dur={dur} first={first}>
     <Label y={100} color={V.red}>Grammy Awards · February 2023</Label>
     <Head y={170} size={158}>The <Hl delay={10}>most</Hl> Grammys ever</Head>
-    <Slap x={90} y={760} w={900} h={720} rot={-0.5} delay={6}><Card style={{ width: "100%", height: "100%" }}><Photo src={images.p2023} pos="center 20%" /></Card></Slap>
+    <Slap x={70} y={740} w={940} h={800} rot={-0.5} delay={6}><Card style={{ width: "100%", height: "100%" }}><Photo src={images.p2023} pos="center 20%" /></Card></Slap>
     <Credit>Photo: {credits.p2023}</Credit>
   </Wrap>);
 }
@@ -63,8 +63,8 @@ function Solti({ dur, images, credits, first }) {
     <Label y={100} color={V.red}>The old record</Label>
     <div style={abs(40, 150, 700, 560, { fontFamily: HEAD, fontSize: 520, lineHeight: 1, color: V.ink })}><Hl delay={12}>{n}</Hl></div>
     <Label y={720} color={V.ink} size={34}>Grammy wins</Label>
-    <Slap x={560} y={420} w={470} h={700} rot={0.6} delay={8}><img src={images.solti} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(10px 12px 0 rgba(22,21,19,0.16))" }} /></Slap>
-    <Slap x={70} y={900} w={900} h={160} rot={-0.4} delay={16}><Card style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }}><div style={{ fontFamily: HEAD, fontSize: 56, textTransform: "uppercase", lineHeight: 1 }}>Set by conductor<br /><span style={{ color: V.red }}>Georg Solti</span></div></Card></Slap>
+    <Slap x={580} y={330} w={440} h={620} rot={0.6} delay={8}><img src={images.solti} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(10px 12px 0 rgba(22,21,19,0.16))" }} /></Slap>
+    <Slap x={70} y={1040} w={940} h={190} rot={-0.4} delay={16}><Card style={{ width: "100%", height: "100%", display: "flex", alignItems: "center" }}><div style={{ fontFamily: HEAD, fontSize: 56, textTransform: "uppercase", lineHeight: 1 }}>Set by conductor<br /><span style={{ color: V.red }}>Georg Solti</span></div></Card></Slap>
     <Credit>Portrait (1974): {credits.solti}. Halftone ink bake of the real photograph.</Credit>
   </Wrap>);
 }
@@ -75,7 +75,7 @@ function Nine({ dur, images, credits, first }) {
     <div style={abs(60, 140, 520, 520, { fontFamily: HEAD, fontSize: 470, lineHeight: 1, color: V.ink })}>{n}</div>
     <Label y={640} color={V.ink} size={40}>Nominations</Label>
     <Slap x={560} y={160} w={460} h={640} rot={0.5} delay={6}><img src={images.p2011} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(10px 12px 0 rgba(22,21,19,0.16))" }} /></Slap>
-    <Slap x={70} y={860} w={940} h={420} rot={-0.7} delay={Math.max(14, dur * 0.42)}><Card style={{ width: "100%", height: "100%", padding: 36 }}><div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 30, letterSpacing: "0.12em", textTransform: "uppercase", color: V.dim }}>Half an hour in · best R&amp;B song</div><div style={{ fontFamily: HEAD, fontSize: 96, textTransform: "uppercase", lineHeight: 1, marginTop: 18 }}>“Cuff It”</div><div style={{ fontFamily: HEAD, fontSize: 64, textTransform: "uppercase", color: V.cobalt, marginTop: 18 }}><Hl delay={Math.max(20, dur * 0.5)}>Ties the record</Hl></div></Card></Slap>
+    <Slap x={70} y={940} w={940} h={460} rot={-0.7} delay={Math.max(14, dur * 0.42)}><Card style={{ width: "100%", height: "100%", padding: 36 }}><div style={{ fontFamily: BODY, fontWeight: 700, fontSize: 30, letterSpacing: "0.12em", textTransform: "uppercase", color: V.dim }}>Half an hour in · best R&amp;B song</div><div style={{ fontFamily: HEAD, fontSize: 96, textTransform: "uppercase", lineHeight: 1, marginTop: 18 }}>“Cuff It”</div><div style={{ fontFamily: HEAD, fontSize: 64, textTransform: "uppercase", color: V.cobalt, marginTop: 18 }}><Hl delay={Math.max(20, dur * 0.5)}>Ties the record</Hl></div></Card></Slap>
     <Credit>Photo ({"2011"}): {credits.p2011}</Credit>
   </Wrap>);
 }
@@ -84,10 +84,10 @@ function Record({ dur, images, credits, first }) {
   return (<Wrap dur={dur} first={first}>
     <Label y={100} color={V.red}>Her fourth win · Renaissance</Label>
     <div style={abs(40, 150, 520, 420, { fontFamily: HEAD, fontSize: 330, lineHeight: 1, color: V.ink, position: "absolute" })}><span style={{ position: "relative", display: "inline-block", opacity: 0.55 }}>31<Strike delay={Math.max(10, flip - 6)} /></span></div>
-    <div style={abs(40, 480, 700, 500, { fontFamily: HEAD, fontSize: 470, lineHeight: 1, color: V.cobalt, opacity: tw(f, flip, flip + 10), transform: `scale(${1.15 - 0.15 * tw(f, flip, flip + 14, back)})`, transformOrigin: "left center" })}><Hl delay={flip + 8}>32</Hl></div>
-    <Pen cx={300} cy={720} rx={280} ry={230} delay={flip + 14} />
-    <Slap x={640} y={160} w={400} h={720} rot={0.8} delay={6}><img src={images.trophy} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(10px 12px 0 rgba(22,21,19,0.16))" }} /></Slap>
-    <Slap x={70} y={1060} w={940} h={190} rot={-0.5} delay={flip + 6}><Card style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", padding: 30 }}><div style={{ fontFamily: HEAD, fontSize: 54, textTransform: "uppercase", lineHeight: 1.02 }}>Best dance / electronic<br />music album</div></Card></Slap>
+    <div style={abs(40, 480, 700, 500, { fontFamily: HEAD, fontSize: 400, lineHeight: 1, color: V.cobalt, opacity: tw(f, flip, flip + 10), transform: `scale(${1.15 - 0.15 * tw(f, flip, flip + 14, back)})`, transformOrigin: "left center" })}><Hl delay={flip + 8}>32</Hl></div>
+    <Pen cx={290} cy={720} rx={270} ry={215} delay={flip + 14} />
+    <Slap x={730} y={150} w={310} h={640} rot={0.8} delay={6}><img src={images.trophy} style={{ width: "100%", height: "100%", objectFit: "contain", filter: "drop-shadow(10px 12px 0 rgba(22,21,19,0.16))" }} /></Slap>
+    <Slap x={70} y={1140} w={940} h={200} rot={-0.5} delay={flip + 6}><Card style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", padding: 30 }}><div style={{ fontFamily: HEAD, fontSize: 54, textTransform: "uppercase", lineHeight: 1.02 }}>Best dance / electronic<br />music album</div></Card></Slap>
     <Credit>Trophy photo: {credits.trophy} (Grammy trophies from Kenny Rogers's collection, not Beyoncé's).</Credit>
   </Wrap>);
 }
@@ -95,7 +95,7 @@ function Quote({ dur, images, credits, first }) {
   return (<Wrap dur={dur} first={first} deep>
     <Label y={100}>On stage</Label>
     <Head y={150} size={120} delay={4}>“I'm just trying to <Hl delay={18}>receive</Hl> this night.”</Head>
-    <Slap x={190} y={820} w={700} h={640} rot={0.7} delay={10}><Card style={{ width: "100%", height: "100%" }}><Photo src={images.p2009} pos="center 18%" /></Card></Slap>
+    <Slap x={110} y={760} w={860} h={760} rot={0.7} delay={10}><Card style={{ width: "100%", height: "100%" }}><Photo src={images.p2009} pos="center 18%" /></Card></Slap>
     <Credit>Photo (2009, not that night): {credits.p2009}</Credit>
   </Wrap>);
 }
