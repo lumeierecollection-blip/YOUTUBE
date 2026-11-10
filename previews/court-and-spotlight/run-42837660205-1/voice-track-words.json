@@ -1,0 +1,398 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (51/59 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "one",
+   "start": 0.38,
+   "end": 0.66,
+   "sentence": 0
+  },
+  {
+   "text": "night",
+   "start": 0.66,
+   "end": 1.04,
+   "sentence": 0
+  },
+  {
+   "text": "Beyonc\u00e9",
+   "start": 1.04,
+   "end": 1.43,
+   "sentence": 0
+  },
+  {
+   "text": "became",
+   "start": 1.82,
+   "end": 2.12,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 2.12,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "most-awarded",
+   "start": 2.36,
+   "end": 2.72,
+   "sentence": 0
+  },
+  {
+   "text": "artist",
+   "start": 3.08,
+   "end": 3.52,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 3.52,
+   "end": 3.86,
+   "sentence": 0
+  },
+  {
+   "text": "Grammy",
+   "start": 3.86,
+   "end": 4.2,
+   "sentence": 0
+  },
+  {
+   "text": "history",
+   "start": 4.2,
+   "end": 4.84,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 5.56,
+   "end": 5.61,
+   "sentence": 1
+  },
+  {
+   "text": "old",
+   "start": 5.58,
+   "end": 5.72,
+   "sentence": 1
+  },
+  {
+   "text": "record",
+   "start": 5.72,
+   "end": 5.98,
+   "sentence": 1
+  },
+  {
+   "text": "thirty-one",
+   "start": 5.98,
+   "end": 6.6,
+   "sentence": 1
+  },
+  {
+   "text": "set",
+   "start": 7.22,
+   "end": 7.42,
+   "sentence": 1
+  },
+  {
+   "text": "by",
+   "start": 7.42,
+   "end": 7.62,
+   "sentence": 1
+  },
+  {
+   "text": "conductor",
+   "start": 7.62,
+   "end": 7.88,
+   "sentence": 1
+  },
+  {
+   "text": "Georg",
+   "start": 7.88,
+   "end": 8.34,
+   "sentence": 1
+  },
+  {
+   "text": "Solti",
+   "start": 8.34,
+   "end": 8.8,
+   "sentence": 1
+  },
+  {
+   "text": "She",
+   "start": 9.26,
+   "end": 9.52,
+   "sentence": 2
+  },
+  {
+   "text": "arrived",
+   "start": 9.52,
+   "end": 9.78,
+   "sentence": 2
+  },
+  {
+   "text": "with",
+   "start": 9.78,
+   "end": 10.14,
+   "sentence": 2
+  },
+  {
+   "text": "nine",
+   "start": 10.14,
+   "end": 10.44,
+   "sentence": 2
+  },
+  {
+   "text": "nominations",
+   "start": 10.44,
+   "end": 11.08,
+   "sentence": 2
+  },
+  {
+   "text": "Half",
+   "start": 11.8,
+   "end": 11.86,
+   "sentence": 3
+  },
+  {
+   "text": "an",
+   "start": 11.86,
+   "end": 12.02,
+   "sentence": 3
+  },
+  {
+   "text": "hour",
+   "start": 12.02,
+   "end": 12.18,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 12.18,
+   "end": 12.4,
+   "sentence": 3
+  },
+  {
+   "text": "Cuff",
+   "start": 12.4,
+   "end": 12.64,
+   "sentence": 3
+  },
+  {
+   "text": "It",
+   "start": 12.64,
+   "end": 12.88,
+   "sentence": 3
+  },
+  {
+   "text": "tied",
+   "start": 13.12,
+   "end": 13.44,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 13.44,
+   "end": 13.68,
+   "sentence": 3
+  },
+  {
+   "text": "record",
+   "start": 13.68,
+   "end": 13.9,
+   "sentence": 3
+  },
+  {
+   "text": "Her",
+   "start": 14.56,
+   "end": 14.61,
+   "sentence": 4
+  },
+  {
+   "text": "fourth",
+   "start": 14.6,
+   "end": 14.82,
+   "sentence": 4
+  },
+  {
+   "text": "win",
+   "start": 14.82,
+   "end": 15.12,
+   "sentence": 4
+  },
+  {
+   "text": "for",
+   "start": 15.48,
+   "end": 15.53,
+   "sentence": 4
+  },
+  {
+   "text": "Renaissance",
+   "start": 15.48,
+   "end": 15.76,
+   "sentence": 4
+  },
+  {
+   "text": "broke",
+   "start": 16.4,
+   "end": 16.52,
+   "sentence": 4
+  },
+  {
+   "text": "it",
+   "start": 16.52,
+   "end": 16.76,
+   "sentence": 4
+  },
+  {
+   "text": "Thirty-two",
+   "start": 16.76,
+   "end": 17.25,
+   "sentence": 5
+  },
+  {
+   "text": "Grammys",
+   "start": 17.74,
+   "end": 18.4,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 18.4,
+   "end": 18.68,
+   "sentence": 5
+  },
+  {
+   "text": "a",
+   "start": 18.68,
+   "end": 18.8,
+   "sentence": 5
+  },
+  {
+   "text": "new",
+   "start": 18.8,
+   "end": 18.98,
+   "sentence": 5
+  },
+  {
+   "text": "record",
+   "start": 18.98,
+   "end": 19.3,
+   "sentence": 5
+  },
+  {
+   "text": "On",
+   "start": 19.94,
+   "end": 20.12,
+   "sentence": 6
+  },
+  {
+   "text": "stage",
+   "start": 20.12,
+   "end": 20.4,
+   "sentence": 6
+  },
+  {
+   "text": "she",
+   "start": 20.68,
+   "end": 20.86,
+   "sentence": 6
+  },
+  {
+   "text": "said",
+   "start": 20.86,
+   "end": 21.08,
+   "sentence": 6
+  },
+  {
+   "text": "she",
+   "start": 21.08,
+   "end": 21.24,
+   "sentence": 6
+  },
+  {
+   "text": "was",
+   "start": 21.24,
+   "end": 21.36,
+   "sentence": 6
+  },
+  {
+   "text": "just",
+   "start": 21.36,
+   "end": 21.72,
+   "sentence": 6
+  },
+  {
+   "text": "trying",
+   "start": 21.72,
+   "end": 22.02,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 22.02,
+   "end": 22.24,
+   "sentence": 6
+  },
+  {
+   "text": "receive",
+   "start": 22.24,
+   "end": 22.52,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 22.52,
+   "end": 22.96,
+   "sentence": 6
+  },
+  {
+   "text": "night",
+   "start": 22.96,
+   "end": 23.12,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "In one night, Beyonc\u00e9 became the most-awarded artist in Grammy history.",
+   "start": 0.0,
+   "end": 4.84
+  },
+  {
+   "text": "The old record: thirty-one, set by conductor Georg Solti.",
+   "start": 5.56,
+   "end": 8.8
+  },
+  {
+   "text": "She arrived with nine nominations.",
+   "start": 9.26,
+   "end": 11.08
+  },
+  {
+   "text": "Half an hour in, Cuff It tied the record.",
+   "start": 11.8,
+   "end": 13.9
+  },
+  {
+   "text": "Her fourth win, for Renaissance, broke it.",
+   "start": 14.56,
+   "end": 16.76
+  },
+  {
+   "text": "Thirty-two Grammys, and a new record.",
+   "start": 16.76,
+   "end": 19.3
+  },
+  {
+   "text": "On stage, she said she was just trying to receive the night.",
+   "start": 19.94,
+   "end": 23.12
+  }
+ ]
+}
