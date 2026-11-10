@@ -1,0 +1,343 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (42/49 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Why",
+   "start": 0.0,
+   "end": 0.5,
+   "sentence": 0
+  },
+  {
+   "text": "is",
+   "start": 0.5,
+   "end": 0.76,
+   "sentence": 0
+  },
+  {
+   "text": "Messi",
+   "start": 0.76,
+   "end": 0.94,
+   "sentence": 0
+  },
+  {
+   "text": "called",
+   "start": 0.94,
+   "end": 1.4,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.4,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "greatest",
+   "start": 1.56,
+   "end": 1.92,
+   "sentence": 0
+  },
+  {
+   "text": "ever",
+   "start": 1.92,
+   "end": 2.38,
+   "sentence": 0
+  },
+  {
+   "text": "Eight",
+   "start": 3.08,
+   "end": 3.2,
+   "sentence": 1
+  },
+  {
+   "text": "Ballons",
+   "start": 3.2,
+   "end": 3.693,
+   "sentence": 1
+  },
+  {
+   "text": "d'Or",
+   "start": 3.693,
+   "end": 4.187,
+   "sentence": 1
+  },
+  {
+   "text": "Then",
+   "start": 4.68,
+   "end": 4.88,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 4.88,
+   "end": 5.02,
+   "sentence": 2
+  },
+  {
+   "text": "goals",
+   "start": 5.02,
+   "end": 5.2,
+   "sentence": 2
+  },
+  {
+   "text": "four",
+   "start": 5.2,
+   "end": 5.516,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 5.516,
+   "end": 5.832,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 5.832,
+   "end": 6.148,
+   "sentence": 2
+  },
+  {
+   "text": "seventy-four",
+   "start": 6.148,
+   "end": 6.464,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 6.78,
+   "end": 7.26,
+   "sentence": 2
+  },
+  {
+   "text": "La",
+   "start": 7.26,
+   "end": 7.36,
+   "sentence": 2
+  },
+  {
+   "text": "Liga",
+   "start": 7.36,
+   "end": 7.58,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 7.94,
+   "end": 8.08,
+   "sentence": 2
+  },
+  {
+   "text": "record",
+   "start": 8.08,
+   "end": 8.4,
+   "sentence": 2
+  },
+  {
+   "text": "One",
+   "start": 9.38,
+   "end": 9.43,
+   "sentence": 3
+  },
+  {
+   "text": "season",
+   "start": 9.4,
+   "end": 9.68,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-three",
+   "start": 9.68,
+   "end": 10.9,
+   "sentence": 3
+  },
+  {
+   "text": "Two",
+   "start": 12.12,
+   "end": 12.24,
+   "sentence": 4
+  },
+  {
+   "text": "trebles",
+   "start": 12.24,
+   "end": 12.66,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 12.66,
+   "end": 13.04,
+   "sentence": 4
+  },
+  {
+   "text": "2009",
+   "start": 13.04,
+   "end": 13.32,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 13.32,
+   "end": 14.04,
+   "sentence": 4
+  },
+  {
+   "text": "2015",
+   "start": 14.04,
+   "end": 14.78,
+   "sentence": 4
+  },
+  {
+   "text": "And",
+   "start": 15.62,
+   "end": 15.68,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 15.68,
+   "end": 15.8,
+   "sentence": 5
+  },
+  {
+   "text": "2022",
+   "start": 15.8,
+   "end": 16.52,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 16.52,
+   "end": 17.54,
+   "sentence": 5
+  },
+  {
+   "text": "World",
+   "start": 17.54,
+   "end": 17.84,
+   "sentence": 5
+  },
+  {
+   "text": "Cup",
+   "start": 17.84,
+   "end": 18.32,
+   "sentence": 5
+  },
+  {
+   "text": "In",
+   "start": 19.22,
+   "end": 19.27,
+   "sentence": 6
+  },
+  {
+   "text": "sampled",
+   "start": 19.26,
+   "end": 19.54,
+   "sentence": 6
+  },
+  {
+   "text": "matches",
+   "start": 19.54,
+   "end": 19.88,
+   "sentence": 6
+  },
+  {
+   "text": "his",
+   "start": 20.36,
+   "end": 20.41,
+   "sentence": 6
+  },
+  {
+   "text": "key",
+   "start": 20.4,
+   "end": 20.64,
+   "sentence": 6
+  },
+  {
+   "text": "passes",
+   "start": 20.64,
+   "end": 20.96,
+   "sentence": 6
+  },
+  {
+   "text": "more",
+   "start": 20.96,
+   "end": 21.26,
+   "sentence": 6
+  },
+  {
+   "text": "than",
+   "start": 21.26,
+   "end": 21.44,
+   "sentence": 6
+  },
+  {
+   "text": "doubled",
+   "start": 21.44,
+   "end": 21.8,
+   "sentence": 6
+  },
+  {
+   "text": "That's",
+   "start": 22.68,
+   "end": 22.92,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 22.92,
+   "end": 23.04,
+   "sentence": 7
+  },
+  {
+   "text": "case",
+   "start": 23.04,
+   "end": 23.28,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Why is Messi called the greatest ever?",
+   "start": 0.0,
+   "end": 2.38
+  },
+  {
+   "text": "Eight Ballons d'Or.",
+   "start": 3.08,
+   "end": 4.187
+  },
+  {
+   "text": "Then the goals: four hundred and seventy-four in La Liga, a record.",
+   "start": 4.68,
+   "end": 8.4
+  },
+  {
+   "text": "One season, seventy-three.",
+   "start": 9.38,
+   "end": 10.9
+  },
+  {
+   "text": "Two trebles, in 2009 and 2015.",
+   "start": 12.12,
+   "end": 14.78
+  },
+  {
+   "text": "And in 2022, the World Cup.",
+   "start": 15.62,
+   "end": 18.32
+  },
+  {
+   "text": "In sampled matches, his key passes more than doubled.",
+   "start": 19.22,
+   "end": 21.8
+  },
+  {
+   "text": "That's the case.",
+   "start": 22.68,
+   "end": 23.28
+  }
+ ]
+}
