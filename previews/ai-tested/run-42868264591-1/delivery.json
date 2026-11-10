@@ -1,0 +1,13 @@
+{
+  "title": "Why AI Can't Count Letters (And the Simple Fix)",
+  "description": "Last time, some AI models miscounted letters. We gave 2 models the same 20 questions twice: once plainly, once asking them to spell the word out first. Code marked every reply. Spelling out first added 4 right answers across the models. One test, run on 10 November 2026; results change between runs and as models update. Token count measured with Gemini's tokenizer.\n\n#Shorts #AI #AITested #ChatGPT #Gemini\n\nSource for how models read text: https://en.wikipedia.org/wiki/Large_language_model",
+  "tags": [
+    "AI test",
+    "letter counting",
+    "AI tokens",
+    "ChatGPT",
+    "Gemini",
+    "prompt engineering",
+    "strawberry test"
+  ]
+}
