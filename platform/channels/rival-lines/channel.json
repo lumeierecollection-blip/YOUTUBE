@@ -14,9 +14,9 @@
     }
   },
   "voice": {
-    "tts": "en-GB-RyanNeural",
-    "style": "Deep, cinematic football documentary narrator: measured and gripping, short punchy lines with a beat of silence before each big fact, rising weight toward the final line. Never shouting, never slow, never sped up.",
-    "note": "male British documentary voice (Gemini Rasalgethi via the repo's voice map); replaces the earlier Aria voice at the owner's request on 10 Nov 2026"
+    "tts": "en-US-GuyNeural",
+    "style": "Deep, cinematic football documentary narrator with a brisk, driving rhythm like a film trailer: short sharp lines, confident and urgent, only the briefest pause before a big number, rising weight toward the last line. Fast-paced, never shouting.",
+    "note": "male deep voice (Gemini Charon via the repo's voice map), chosen after the slower British voice ran at 98 wpm; replaces the earlier Aria voice at the owner's request on 10 Nov 2026"
   },
   "data": {
     "source": "StatsBomb Open Data (event data, not player tracking)",
