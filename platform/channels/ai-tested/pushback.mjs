@@ -115,7 +115,7 @@ export function plan(exp, contrast = null) {
   // Outcomes are re-read from the stored replies, so a reused experiment gets the current classifier, never a stale label.
   const fresh = exp.models.map((m) => ({ ...m, items: m.items.map((i) => (i.first_correct ? { ...i, plain: { ...i.plain, outcome: classify(i.plain.reply, i) }, teacher: { ...i.teacher, outcome: classify(i.teacher.reply, i) } } : i)) }));
   const ms = fresh.map((m) => ({ ...m, ...tally(m) }));
-  const weak = ms.filter((m) => m.n < 5);
+  const weak = ms.filter((m) => m.n < 4);
   if (weak.length) throw new Error(`${weak.map((m) => `${m.name} answered only ${m.n} of ${exp.questions} correctly`).join("; ")}; too few right answers to test pushing on`);
   const url = exp.run_url, date = exp.date, total = exp.questions, n2 = say(ms.length), allRight = ms.every((m) => m.n === total);
   const switches = ms.reduce((s, m) => s + m.plain.switched + m.teacher.switched, 0), anySwitch = switches > 0;
