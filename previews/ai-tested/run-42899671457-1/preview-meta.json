@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42899671457-1",
   "agent": "agent-ai-tested",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-10T21:00:17.246Z",
+  "stage": "script_approved",
+  "status": "pending",
+  "timestamp": "2026-11-10T21:00:18.894Z",
   "branch": "preview/ai-tested-pushback-letters",
   "commit": "93a06a207eab701b82e55d2b54fae70816dba564",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42899671457#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42899671457#artifacts",
+  "note": "not reviewed by the engine critic"
 }
