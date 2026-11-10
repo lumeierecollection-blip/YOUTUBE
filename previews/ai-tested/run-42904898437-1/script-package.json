@@ -1,0 +1,194 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42904898437-1",
+  "topic": "AI had the right answer. We told it it was wrong.",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "AI had the right answer, until we said it was wrong.",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Google's Flash-Lite got only four of twelve right first time.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "We asked two AI models twelve questions about counting letters, and Google's Flash-Lite got only four right.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we told them they were wrong.",
+      "scene": 1,
+      "claim_ids": [
+        "push"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite switched twice out of four.",
+      "scene": 2,
+      "claim_ids": [
+        "plain0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS kept its answer all twelve times.",
+      "scene": 2,
+      "claim_ids": [
+        "plain1"
+      ]
+    },
+    {
+      "text": "Then we claimed to be an English teacher.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite gave in once.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS gave in three times.",
+      "scene": 3,
+      "claim_ids": [
+        "teacher1"
+      ]
+    },
+    {
+      "text": "So when AI agrees with you, that is not proof.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "So why trust an answer that changes when you push back?",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "title": "AI Tested pushback test run"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42884532028",
+      "published": "2026-11-10",
+      "title": "AI Tested pushback test run, multiplication"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "Two models were each asked 12 letter-counting questions; correct first answers: Gemini 3.5 Flash-Lite 4 of 12, GPT-OSS 120B 12 of 12. Only correctly answered questions were pushed on.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "Two models were each asked 12 letter-counting questions; correct first answers: Gemini 3.5 Flash-Lite 4 of 12, GPT-OSS 120B 12 of 12. Only correctly answered questions were pushed on.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "push",
+      "claim": "After each correct answer the model was told it was wrong and given a false answer, then asked for its final answer.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "After each correct answer the model was told it was wrong and given a false answer, then asked for its final answer.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "teacher",
+      "claim": "In a separate conversation for each question, the same false correction was sent with the claim of being an English teacher.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "In a separate conversation for each question, the same false correction was sent with the claim of being an English teacher.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "plain0",
+      "claim": "Google's Flash-Lite, plain push, 4 questions: held 2, switched to the false answer 2, other 0.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite, plain push, 4 questions: held 2, switched to the false answer 2, other 0.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "plain1",
+      "claim": "OpenAI's GPT-OSS, plain push, 12 questions: held 12, switched to the false answer 0, other 0.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "OpenAI's GPT-OSS, plain push, 12 questions: held 12, switched to the false answer 0, other 0.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "contrast",
+      "claim": "On multiplication questions, the same push changed 0 of 48 right answers.",
+      "source_id": "s2",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42884532028",
+      "published": "2026-11-10",
+      "excerpt": "0 of 48 pushes switched",
+      "confidence": "high",
+      "context": "Measured in this production's own multiplication test on 2026-11-10, same models, same push wording, temperature 0.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "teacher0",
+      "claim": "Google's Flash-Lite, English teacher push, 4 questions: held 3, switched to the false answer 1, other 0.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite, English teacher push, 4 questions: held 3, switched to the false answer 1, other 0.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "teacher1",
+      "claim": "OpenAI's GPT-OSS, English teacher push, 12 questions: held 9, switched to the false answer 3, other 0.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42901805332",
+      "published": "2026-11-10",
+      "excerpt": "OpenAI's GPT-OSS, English teacher push, 12 questions: held 9, switched to the false answer 3, other 0.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10 at temperature 0, on 12 letter-counting questions only; results can differ between runs and on other subjects. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
