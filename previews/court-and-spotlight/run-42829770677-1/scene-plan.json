@@ -1,0 +1,92 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-42829770677-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Wesley Snipes got three years in prison for not filing tax returns.",
+      "main_point": "Open the case board: the subject, the outcome and the Justice Department sentence text",
+      "visual_objective": "Open the case board: the subject, the outcome and the Justice Department sentence text",
+      "treatment": "case-board-cover-with-sticker-portrait",
+      "background": "aged paper, torn scraps",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1"
+      ],
+      "start_s": 0,
+      "end_s": 5.166666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "A jury found him guilty in February, on failure-to-file charges.",
+      "main_point": "Show the release text with the guilty verdict highlighted and stamped CONVICTED",
+      "visual_objective": "Show the release text with the guilty verdict highlighted and stamped CONVICTED",
+      "treatment": "typed-document-with-highlight-and-stamp",
+      "background": "aged paper, torn scraps",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2",
+        "K1"
+      ],
+      "start_s": 5.166666666666667,
+      "end_s": 9.033333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "It acquitted him of five other charges, including felony tax fraud.",
+      "main_point": "Show the five other charges as tickets, counted up and stamped ACQUITTED",
+      "visual_objective": "Show the five other charges as tickets, counted up and stamped ACQUITTED",
+      "treatment": "charge-tickets-stamped-acquitted",
+      "background": "aged paper, torn scraps",
+      "skill": "remotion",
+      "claim_ids": [
+        "K3"
+      ],
+      "start_s": 9.033333333333333,
+      "end_s": 13.533333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Prosecutors alleged he earned at least thirteen point eight million dollars.",
+      "main_point": "Show the government figure on an amber card, stamped ALLEGED, with the CBS text beneath",
+      "visual_objective": "Show the government figure on an amber card, stamped ALLEGED, with the CBS text beneath",
+      "treatment": "amber-allegation-card-with-source",
+      "background": "aged paper, amber card",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4"
+      ],
+      "start_s": 13.533333333333333,
+      "end_s": 17.933333333333334
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Prosecutors sought the maximum, and the judge gave three years.",
+      "main_point": "Set what prosecutors sought against the three years given, with the subject below",
+      "visual_objective": "Set what prosecutors sought against the three years given, with the subject below",
+      "treatment": "sought-versus-given-collage",
+      "background": "aged paper, torn scraps",
+      "skill": "remotion",
+      "claim_ids": [
+        "K5"
+      ],
+      "start_s": 17.933333333333334,
+      "end_s": 21.833333333333332
+    },
+    {
+      "scene_id": "s6",
+      "narration": "A US Marshals booking photo is dated that same day.",
+      "main_point": "Show the genuine public-domain booking photograph, its source, and the closing record of what was decided and what was alleged",
+      "visual_objective": "Show the genuine public-domain booking photograph, its source, and the closing record of what was decided and what was alleged",
+      "treatment": "taped-booking-photo-record",
+      "background": "aged paper, taped photo",
+      "skill": "remotion",
+      "claim_ids": [
+        "P1"
+      ],
+      "start_s": 21.833333333333332,
+      "end_s": 25.266666666666666
+    }
+  ]
+}
