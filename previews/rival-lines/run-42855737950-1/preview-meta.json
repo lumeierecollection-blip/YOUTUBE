@@ -2,11 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42855737950-1",
   "agent": "agent-rival-lines",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T16:35:53.636Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T16:36:44.874Z",
   "branch": "preview/rival-lines-final-7",
   "commit": "737b8f13baa299bf994025f629c53b53141fdb94",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42855737950#artifacts",
-  "note": "not reviewed by the engine critic"
+  "error": "narration is 30.86s at natural speed (allowed 20 to 29.25s); change the script, never the speed"
 }
