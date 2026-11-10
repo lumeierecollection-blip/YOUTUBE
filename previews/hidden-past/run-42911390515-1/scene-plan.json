@@ -1,0 +1,150 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42911390515-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s0",
+      "narration": "Pablo Escobar's hippos are still alive, and Colombia has approved killing them. In 1981, he imported four of them for his private zoo.",
+      "claim_ids": [
+        "H6",
+        "H7",
+        "H1"
+      ],
+      "start_s": 0,
+      "end_s": 9.733333333333333,
+      "transition": "cut",
+      "main_point": "Open on the man, then the animals.",
+      "visual_objective": "Show Pablo Escobar's own police photograph before explaining the story.",
+      "treatment": "archival-photo-ledger",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "mug",
+          "origin": "Wikimedia Commons (Colombian National Police)",
+          "licence": "Public domain",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Pablo_Escobar_Mug_(cropped)(b).jpg"
+        }
+      ],
+      "animation": "headline slides in; photograph never moves; evidence lines arrive in turn",
+      "on_screen_text": [
+        "Pablo Escobar's hippos",
+        "Pablo Escobar"
+      ]
+    },
+    {
+      "scene_id": "s1",
+      "narration": "His estate lay between Medellín and Bogotá.",
+      "claim_ids": [
+        "H2"
+      ],
+      "start_s": 9.733333333333333,
+      "end_s": 12.466666666666667,
+      "transition": "cut",
+      "main_point": "Where the estate was.",
+      "visual_objective": "Place Hacienda Nápoles between Medellín and Bogotá on a drawn map of Colombia.",
+      "treatment": "modern-map-locator",
+      "background": "light archival paper",
+      "skill": "scripts/autopilot/map-vox.mjs buildMapLayers",
+      "assets": [
+        {
+          "id": "natural-earth",
+          "origin": "Natural Earth (public domain)",
+          "licence": "Public domain"
+        }
+      ],
+      "animation": "country tints, route and pins draw on, labels slide in",
+      "on_screen_text": [
+        "The estate",
+        "Medellín",
+        "Hacienda Nápoles",
+        "Bogotá"
+      ]
+    },
+    {
+      "scene_id": "s2",
+      "narration": "After he died in 1993, they escaped and spread. By 2007 there were sixteen, by 2014 about forty, and now around two hundred.",
+      "claim_ids": [
+        "H3",
+        "H4",
+        "H5",
+        "H6"
+      ],
+      "start_s": 12.466666666666667,
+      "end_s": 22.566666666666666,
+      "transition": "cut",
+      "main_point": "Four became about two hundred.",
+      "visual_objective": "Show a real hippo at Hacienda Nápoles and the counts as they grew.",
+      "treatment": "archival-photo-card-with-claim-ladder",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "hippo",
+          "origin": "Wikimedia Commons",
+          "licence": "CC BY-SA 4.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Hipop%C3%B3tamo_Vanessa_PTHN.jpg"
+        }
+      ],
+      "animation": "photograph holds still; accent circle draws on; count lines arrive in turn",
+      "on_screen_text": [
+        "From four to hundreds",
+        "1981: four imported",
+        "April 2026: around 200"
+      ]
+    },
+    {
+      "scene_id": "s3",
+      "narration": "In April 2026, Colombia approved killing more than eighty of them. An Indian billionaire offered to take them to India instead.",
+      "claim_ids": [
+        "H7",
+        "H8"
+      ],
+      "start_s": 22.566666666666666,
+      "end_s": 30.8,
+      "transition": "chapter opener (book-section page)",
+      "main_point": "The decision.",
+      "visual_objective": "State the cull number large, then the date, the ministry and the offer from India.",
+      "treatment": "quote-with-timeline",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [],
+      "animation": "number slides in; evidence lines arrive in turn",
+      "on_screen_text": [
+        "CHAPTER I",
+        "The Decision",
+        "A cull is approved",
+        "80+"
+      ]
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Conservationists call them invasive; some ecologists disagree. So who decides their fate?",
+      "claim_ids": [
+        "H9",
+        "H10"
+      ],
+      "start_s": 30.8,
+      "end_s": 37.2,
+      "transition": "cut",
+      "main_point": "Two views, no settled answer.",
+      "visual_objective": "Return to the estate and set the two views side by side, labelled as the article gives them.",
+      "treatment": "archival-photo-card-with-claim-ladder",
+      "background": "light archival paper",
+      "skill": ".agents/skills/vox-style-treatment + PhotoTreatment",
+      "assets": [
+        {
+          "id": "gate",
+          "origin": "Wikimedia Commons",
+          "licence": "CC BY 3.0",
+          "source_url": "https://commons.wikimedia.org/wiki/File:P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG"
+        }
+      ],
+      "animation": "photograph holds still; evidence lines arrive in turn",
+      "on_screen_text": [
+        "Invasive, or here to stay?"
+      ]
+    }
+  ]
+}
