@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T10:59:18.706Z",
+  "rebuilt_at": "2026-11-10T11:00:11.948Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,20 +118,20 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "render_complete",
-      "status": "ok",
-      "at": "2026-11-10T10:59:18.328Z",
+      "stage": "blocked",
+      "status": "failed",
+      "at": "2026-11-10T11:00:11.493Z",
       "branch": "preview/hidden-past-vox-berlin",
       "commit": "4971b0b6",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42803197467#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "sheet": "[contact-sheet.jpg](hidden-past/run-42803197467-1/contact-sheet.jpg)",
+      "scenes": "[scene-00.jpg](hidden-past/run-42803197467-1/scene-00.jpg) [scene-01.jpg](hidden-past/run-42803197467-1/scene-01.jpg) [scene-02.jpg](hidden-past/run-42803197467-1/scene-02.jpg) [scene-03.jpg](hidden-past/run-42803197467-1/scene-03.jpg)",
       "voice": "[voice-preview.mp3](hidden-past/run-42803197467-1/voice-preview.mp3)",
       "script": "",
       "plan": "[scene-plan.json](hidden-past/run-42803197467-1/scene-plan.json)",
-      "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-10T10:59:18.328Z",
+      "qa": "[qa-report.json](hidden-past/run-42803197467-1/qa-report.json)",
+      "blocker": "chapter-count: found 0, need 1",
+      "lastOk": "2026-11-10T10:02:08.242Z",
       "run": "run-42803197467-1"
     },
     {
