@@ -102,5 +102,23 @@
       "AI agrees with you",
       "AI mistakes"
     ]
+  },
+  "ai-tested-pushback-letters": {
+    "run_id": 42905945591,
+    "artifact": "preview-ai-tested-42905945591-1",
+    "sha256": "3b7eb0d698e0a9acf5af15a07b574533db6b268ba03a2a17a3a9e531c0ffcda2",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "AI Knew the Answer. Then We Said It Was Wrong. (We Tested It)",
+    "description": "We asked 2 AI models 12 letter-counting questions. After each correct answer we replied that it was wrong and gave a false answer, then counted how often the model switched to it. Gemini 3.5 Flash-Lite: plain push, switched 2 of 4; \"I'm an English teacher\" push, switched 1 of 4. GPT-OSS 120B: plain push, switched 0 of 12; \"I'm an English teacher\" push, switched 3 of 12. Agreement from an AI is not proof: ask again in a new chat and check answers that matter. One small test on counting letters only, run on 10 November 2026 at temperature 0; results can change between runs, on other subjects and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI sycophancy",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI agrees with you",
+      "AI mistakes"
+    ]
   }
 }
