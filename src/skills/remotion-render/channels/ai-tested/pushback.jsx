@@ -20,7 +20,7 @@ function HookP({ dur, d }) {
   const f = useCurrentFrame(), s = d.sample, dots = ".".repeat(1 + (Math.floor(f / 8) % 3));
   return (
     <Scene dur={dur}>
-      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>Will AI <span style={{ color: C.accent }}>agree with you</span> just to be nice?</From>
+      <From dy={30} style={abs(70, 230, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 84, lineHeight: 1.05, color: C.ink })}>Will AI {d.anySwitch ? <>AI had the <span style={{ color: C.good }}>right</span> answer. Then we said it was wrong.</> : <>Will AI <span style={{ color: C.accent }}>agree with you</span> just to be nice?</>}</From>
       <Bubble who="ai" y={640} h={190} delay={8} size={76}>{s.correct} <span style={{ color: C.good, fontSize: 54 }}>✓ correct</span></Bubble>
       <Bubble who="you" y={870} h={220} delay={Math.floor(dur * 0.3)}>No, that's wrong. It's {s.wrong}.</Bubble>
       <Bubble who="ai" y={1130} h={190} delay={Math.floor(dur * 0.55)} size={76}>{dots}</Bubble>
@@ -67,7 +67,7 @@ function Grid({ dur, d, round, title, sub }) {
   );
 }
 const PlainP = (p) => <Grid {...p} round="plain" title="Told “that's wrong”" sub="one square = one question it had right" />;
-const TeacherP = (p) => <Grid {...p} round="teacher" title="“I'm a maths teacher”" sub="same questions, same false answer" />;
+const TeacherP = (p) => <Grid {...p} round="teacher" title={`“I'm ${p.d.task?.teacherLabel || "a maths teacher"}”`} sub="same questions, same false answer" />;
 
 function ReplyP({ dur, d }) {
   const f = useCurrentFrame(), e = d.example;
@@ -104,10 +104,11 @@ function TipP({ dur, d }) {
   return (
     <Scene dur={dur}>
       <div style={abs(60, 240, 960, 1240, { background: C.accent, borderRadius: 34, transform: `translateY(${(1 - t) * 160}px)`, opacity: t })} />
-      <From delay={6} style={abs(120, 320, 840, 230, { fontFamily: SANS, fontWeight: 800, fontSize: 92, lineHeight: 1.08, color: "#fff" })}>{d.anySwitch ? "Agreement is not proof." : "It held. Still check."}</From>
+      <From delay={6} style={abs(120, 320, 840, 230, { fontFamily: SANS, fontWeight: 800, fontSize: 92, lineHeight: 1.08, color: "#fff" })}>Agreement is not proof.</From>
       {d.pushes ? <From delay={10} style={abs(120, 570, 840, 400, { fontFamily: SANS, color: "#fff" })}>
         <div style={{ fontWeight: 800, fontSize: 250, lineHeight: 1 }}>{d.switches}<span style={{ fontSize: 90, opacity: 0.8 }}> of {d.pushes}</span></div>
         <div style={{ fontWeight: 700, fontSize: 46, lineHeight: 1.2, marginTop: 14 }}>pushes changed a right answer</div>
+        {d.contrast ? <div style={{ fontWeight: 700, fontSize: 40, lineHeight: 1.2, marginTop: 26, color: "#FFD2BF" }}>Same push on multiplication: {d.contrast.switches} of {d.contrast.pushes}</div> : null}
       </From> : null}
       <div style={abs(120, 1000, 840, 400, { display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: 18 })}>
         {rows.map(([a, b], i) => <From key={i} delay={12 + i * 6} dy={20} style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", fontFamily: SANS, color: "#fff", fontSize: 44, fontWeight: 600, borderTop: "2px solid rgba(255,255,255,0.35)", paddingTop: 14 }}><span>{a}</span><span style={{ fontWeight: 800, color: i === 0 ? "#FFD2BF" : "#fff" }}>{b}</span></From>)}
