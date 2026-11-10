@@ -4523,9 +4523,14 @@
           "topic": "Little Giant Recalls 3.6 Million Rapid Lock Ladders After Head Injury Reports",
           "slug": "little-giant-recalls-3-6-million-ladders-head-injuries",
           "reserved_at": "2026-11-09T18:55:23.128Z"
+        },
+        {
+          "topic": "RAIB Report 12/2026: Passenger Train Collision at Bax Crossing",
+          "slug": "raib-report-12-2026-bax-crossing-collision",
+          "reserved_at": "2026-11-10T16:33:55.309Z"
         }
       ],
-      "last_generated": "2026-11-09T18:55:23.128Z"
+      "last_generated": "2026-11-10T16:33:55.310Z"
     },
     "49": {
       "channel_name": "Picture House",
