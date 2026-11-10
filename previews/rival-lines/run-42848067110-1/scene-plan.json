@@ -1,0 +1,94 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42848067110-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Lionel Messi is the most decorated player in football history.",
+      "main_point": "Open on a layered editorial collage: big type, a sticker portrait and older photographs behind",
+      "visual_objective": "Open on a layered editorial collage: big type, a sticker portrait and older photographs behind",
+      "treatment": "layered-portrait-collage-with-name",
+      "background": "white editorial page, club colours",
+      "skill": "remotion",
+      "claim_ids": [
+        "W6"
+      ],
+      "start_s": 0,
+      "end_s": 5
+    },
+    {
+      "scene_id": "s2",
+      "narration": "He debuted for Barcelona in 2004, aged seventeen. By 2009, he had helped win Spain's first treble.",
+      "main_point": "Show two career moments on a timeline with photographs from the era",
+      "visual_objective": "Show two career moments on a timeline with photographs from the era",
+      "treatment": "career-timeline-with-photographs",
+      "background": "white editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "W1",
+        "W3"
+      ],
+      "start_s": 5,
+      "end_s": 13.166666666666666
+    },
+    {
+      "scene_id": "s3",
+      "narration": "In sampled matches, his shooting barely changed.",
+      "main_point": "Show where his passes began in two sampled seasons, on real pitches",
+      "visual_objective": "Show where his passes began in two sampled seasons, on real pitches",
+      "treatment": "pass-origin-heatmaps-two-seasons",
+      "background": "white editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "D1"
+      ],
+      "start_s": 13.166666666666666,
+      "end_s": 16.233333333333334
+    },
+    {
+      "scene_id": "s4",
+      "narration": "But his key passes per ninety minutes more than doubled.",
+      "main_point": "Compare shots and key passes per 90 between the two sampled seasons with animated bars",
+      "visual_objective": "Compare shots and key passes per 90 between the two sampled seasons with animated bars",
+      "treatment": "per-90-bar-comparison",
+      "background": "white editorial page",
+      "skill": "remotion",
+      "claim_ids": [
+        "D2"
+      ],
+      "start_s": 16.233333333333334,
+      "end_s": 20
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Eight Ballons d'Or, and the 2022 World Cup.",
+      "main_point": "Show the honours with a photograph and the sticker portrait, with the Ballon d'Or count up",
+      "visual_objective": "Show the honours with a photograph and the sticker portrait, with the Ballon d'Or count up",
+      "treatment": "honours-collage",
+      "background": "club-blue page",
+      "skill": "remotion",
+      "claim_ids": [
+        "W2",
+        "W5"
+      ],
+      "start_s": 20,
+      "end_s": 23.7
+    },
+    {
+      "scene_id": "s6",
+      "narration": "In this sample, the finisher became the creator.",
+      "main_point": "Return to the large portrait with the conclusion in type",
+      "visual_objective": "Return to the large portrait with the conclusion in type",
+      "treatment": "portrait-led-conclusion",
+      "background": "white editorial page, garnet block",
+      "skill": "remotion",
+      "claim_ids": [
+        "D1",
+        "D2"
+      ],
+      "start_s": 23.7,
+      "end_s": 27.866666666666667
+    }
+  ]
+}
