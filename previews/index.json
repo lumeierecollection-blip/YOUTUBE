@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T21:16:11.974Z",
+  "rebuilt_at": "2026-11-10T21:19:27.617Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-10T21:16:11.056Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-10T21:19:11.822Z",
       "branch": "preview/ai-tested-pushback-sentences",
-      "commit": "3089da3b",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42903028452#artifacts)",
+      "commit": "9b72a83a",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42903620728#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "slot \"hook\" has more than one sentence ending in: AI had the right answer. Then we told it it was wrong.",
+      "blocker": "",
       "lastOk": "2026-11-10T21:04:19.081Z",
-      "run": "run-42903028452-1"
+      "run": "run-42903620728-1"
     },
     {
       "key": "court-and-spotlight",
