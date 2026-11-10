@@ -1,0 +1,124 @@
+{
+  "measured_wpm": 205.1,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "Pablo Escobar's hippos are still alive.",
+      "scene": 0,
+      "claim_ids": [
+        "H6"
+      ]
+    },
+    {
+      "text": "And Colombia has approved killing more than eighty of them.",
+      "scene": 1,
+      "claim_ids": [
+        "H7"
+      ]
+    },
+    {
+      "text": "To understand why, you have to go back to 1981.",
+      "scene": 2,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "turn to context, not a factual claim"
+    },
+    {
+      "text": "Escobar imports four hippos for his private zoo.",
+      "scene": 3,
+      "claim_ids": [
+        "H1"
+      ]
+    },
+    {
+      "text": "His estate sits between Medellín and Bogotá.",
+      "scene": 4,
+      "claim_ids": [
+        "H2"
+      ]
+    },
+    {
+      "text": "In 1993 he dies, and the hippos escape.",
+      "scene": 5,
+      "claim_ids": [
+        "H3"
+      ]
+    },
+    {
+      "text": "By 2007, there are sixteen.",
+      "scene": 6,
+      "claim_ids": [
+        "H4"
+      ]
+    },
+    {
+      "text": "By 2014, about forty.",
+      "scene": 7,
+      "claim_ids": [
+        "H5"
+      ]
+    },
+    {
+      "text": "Now, around two hundred.",
+      "scene": 8,
+      "claim_ids": [
+        "H6"
+      ]
+    },
+    {
+      "text": "But most conservationists call them invasive.",
+      "scene": 9,
+      "claim_ids": [
+        "H9"
+      ]
+    },
+    {
+      "text": "So in April 2026, Colombia approves killing over eighty.",
+      "scene": 10,
+      "claim_ids": [
+        "H7"
+      ]
+    },
+    {
+      "text": "An Indian billionaire offers to take them to India instead.",
+      "scene": 11,
+      "claim_ids": [
+        "H8"
+      ]
+    },
+    {
+      "text": "But some ecologists say they should stay.",
+      "scene": 12,
+      "claim_ids": [
+        "H10"
+      ]
+    },
+    {
+      "text": "Escobar is gone, but his hippos are not.",
+      "scene": 13,
+      "claim_ids": [
+        "H3",
+        "H6"
+      ]
+    }
+  ],
+  "words": 102,
+  "estimated_seconds": 34.4,
+  "inside_window": false,
+  "kept": [
+    "hook1",
+    "hook2",
+    "turn",
+    "import",
+    "estate",
+    "escape",
+    "n16",
+    "n40",
+    "n200",
+    "invasive",
+    "cull",
+    "india",
+    "stay",
+    "gone"
+  ]
+}
