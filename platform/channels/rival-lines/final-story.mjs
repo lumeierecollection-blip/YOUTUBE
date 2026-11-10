@@ -21,9 +21,11 @@ export const sentences = [
   S("Argentina against France, 2022: three-all, then Argentina won on penalties.", 0, ["F1"]),
   S("Argentina began in a four-three-three, France in a four-two-three-one.", 1, ["F2"]),
   S("In the first forty minutes, Argentina completed about twice as many passes.", 2, ["F3"]),
-  S("By the seventy-eighth minute, Argentina had ten shots. France had two.", 3, ["F4"]),
+  S("By the seventy-eighth minute, Argentina had ten shots.", 3, ["F4"]),
+  S("France had two.", 3, ["F4"]),
   S("Then France scored twice in two minutes, and the chances ended nearly level.", 4, ["F5", "F6"]),
-  S("Argentina built the lead. France built the comeback.", 5, ["F4", "F5"]),
+  S("Argentina built the lead.", 5, ["F4"]),
+  S("France built the comeback.", 5, ["F5"]),
 ];
 export const scenes = [
   { kind: "intro", treatment: "broadcast-scoreboard-and-question", objective: "Introduce the match: the 3-3 scoreboard, the penalty result and the analytical question", background: "navy broadcast" },
