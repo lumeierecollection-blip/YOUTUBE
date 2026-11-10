@@ -1,0 +1,74 @@
+[
+  {
+    "claim_id": "F1",
+    "claim": "The 2022 World Cup final finished 3-3 after extra time, and Argentina won the penalty shootout 4-2.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "score 3-3; shootout events: Argentina 4 goals, France 2 goals",
+    "confidence": "high",
+    "context": "Counted from the recorded match events and match record.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "F2",
+    "claim": "Argentina started in a 4-3-3 and France in a 4-2-3-1.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "Starting XI formations 433 and 4231",
+    "confidence": "high",
+    "context": "As recorded in StatsBomb's Starting XI events.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "F3",
+    "claim": "In the first 40 minutes, before any substitution, Argentina completed 230 passes and France 116.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "completed passes, period 1, minute < 40: Argentina 230, France 116",
+    "confidence": "high",
+    "context": "Event data: completed passes recorded in that window. 230 is 1.98 times 116, narrated as about twice.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "F4",
+    "claim": "Before the 79th minute Argentina had 10 shots and France 2, and France's first shot came in the 67th minute.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "shots before minute 79 (shootout excluded): Argentina 10, France 2; France first shot 67'",
+    "confidence": "high",
+    "context": "Event data. Shootout excluded.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "F5",
+    "claim": "France scored in the 79th and 80th minutes.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "France goals at minutes 79, 80 and 117",
+    "confidence": "high",
+    "context": "Event data.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "F6",
+    "claim": "Over regulation and extra time Argentina created 2.76 expected goals and France 2.27.",
+    "source_id": "statsbomb",
+    "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3869685.json",
+    "published": "2026-11-10",
+    "excerpt": "sum of statsbomb_xg over shots, periods 1-4: Argentina 2.76, France 2.27",
+    "confidence": "high",
+    "context": "StatsBomb's expected-goals model, a modelled value for each shot and not a measured outcome.",
+    "contradictory_evidence": [],
+    "editorial_status": "measured_statistic"
+  }
+]
