@@ -1337,9 +1337,14 @@
           "topic": "OpenAI API Cuts Kuken Industries Drawing Search Time to 4.5 Minutes",
           "slug": "openai-api-kuken-industries-drawing-search-time",
           "reserved_at": "2026-11-09T19:49:00.550Z"
+        },
+        {
+          "topic": "Adobe Integrates Agentic CX Coworker Across Major AI Platforms",
+          "slug": "adobe-agentic-cx-enterprise-coworker-integration",
+          "reserved_at": "2026-11-10T16:32:29.511Z"
         }
       ],
-      "last_generated": "2026-11-09T19:49:00.550Z"
+      "last_generated": "2026-11-10T16:32:29.511Z"
     },
     "3": {
       "channel_name": "Court & Spotlight",
