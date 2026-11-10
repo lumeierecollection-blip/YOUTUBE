@@ -2,12 +2,10 @@
   "channel": "hidden-past",
   "production_run": "run-42794717509-1",
   "agent": "agent-hidden-past",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T09:56:57.344Z",
+  "timestamp": "2026-11-10T09:56:59.220Z",
   "branch": "preview/hidden-past-berlin-2",
   "commit": "3075fee7c82c0f8bbf47c4482cdec486859c2a13",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42794717509#artifacts",
-  "engine": "gemini:Rasalgethi",
-  "wpm": 136.7
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42794717509#artifacts"
 }
