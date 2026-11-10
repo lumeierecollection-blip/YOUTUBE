@@ -1,0 +1,166 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-42848067110-1",
+  "topic": "Lionel Messi: from finisher to creator",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Lionel Messi is the most decorated player in football history.",
+      "scene": 0,
+      "claim_ids": [
+        "W6"
+      ]
+    },
+    {
+      "text": "He debuted for Barcelona in 2004, aged seventeen.",
+      "scene": 1,
+      "claim_ids": [
+        "W1"
+      ]
+    },
+    {
+      "text": "By 2009, he had helped win Spain's first treble.",
+      "scene": 1,
+      "claim_ids": [
+        "W3"
+      ]
+    },
+    {
+      "text": "In sampled matches, his shooting barely changed.",
+      "scene": 2,
+      "claim_ids": [
+        "D1"
+      ]
+    },
+    {
+      "text": "But his key passes per ninety minutes more than doubled.",
+      "scene": 3,
+      "claim_ids": [
+        "D2"
+      ]
+    },
+    {
+      "text": "Eight Ballons d'Or, and the 2022 World Cup.",
+      "scene": 4,
+      "claim_ids": [
+        "W2",
+        "W5"
+      ]
+    },
+    {
+      "text": "In this sample, the finisher became the creator.",
+      "scene": 5,
+      "claim_ids": [
+        "D1",
+        "D2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-messi",
+      "url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "title": "Lionel Messi (Wikipedia, retrieved 10 Nov 2026)",
+      "licence": "facts only; no text reproduced beyond short excerpts"
+    },
+    {
+      "source_id": "statsbomb",
+      "url": "https://github.com/statsbomb/open-data",
+      "published": "2026-11-10",
+      "title": "StatsBomb Open Data, La Liga 2009/10 and 2018/19 event data",
+      "licence": "StatsBomb Open Data terms: credit StatsBomb and show their logo"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "W1",
+      "claim": "Messi made his competitive debut for Barcelona in 2004, at age 17.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "In 2004, Messi made his competitive debut for the La Liga club Barcelona at age 17.",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W2",
+      "claim": "Messi has won eight Ballons d'Or.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "including eight Ballons d'Or, six European Golden Shoes",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W3",
+      "claim": "In 2008-09 Messi helped Barcelona achieve the first treble in Spanish football.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "During the 2008-09 season, he helped Barcelona achieve the first treble in Spanish football",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W5",
+      "claim": "Messi led Argentina to victory at the 2022 World Cup.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "He then led Argentina to victory at the 2021 Copa America, the 2022 World Cup",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "W6",
+      "claim": "Messi is the most decorated player in the history of professional football.",
+      "source_id": "wiki-messi",
+      "source_url": "https://en.wikipedia.org/wiki/Lionel_Messi",
+      "published": "2026-11-10",
+      "excerpt": "Messi is the most decorated player in the history of professional football",
+      "confidence": "high",
+      "context": "Verified career fact from the article lead.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "D1",
+      "claim": "In the sample, Messi took 4.7 shots per 90 minutes in 2009/10 and 4.8 in 2018/19.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data",
+      "published": "2026-11-10",
+      "excerpt": "shots per 90: 4.67 (2009/10), 4.80 (2018/19)",
+      "confidence": "medium",
+      "context": "Event-data-derived and LIMITED SAMPLE: the first 12 Barcelona league matches Messi started in each of 2009/10 and 2018/19 in StatsBomb Open Data, per 90 minutes played in those matches. Not a full-season or career statistic.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "D2",
+      "claim": "In the sample, Messi's key passes (passes that led to a shot) rose from 1.4 per 90 minutes in 2009/10 to 3.5 in 2018/19.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data",
+      "published": "2026-11-10",
+      "excerpt": "key passes per 90: 1.44 (2009/10), 3.51 (2018/19)",
+      "confidence": "medium",
+      "context": "Event-data-derived and LIMITED SAMPLE: the first 12 Barcelona league matches Messi started in each of 2009/10 and 2018/19 in StatsBomb Open Data, per 90 minutes played in those matches. Not a full-season or career statistic.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
