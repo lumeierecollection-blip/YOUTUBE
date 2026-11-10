@@ -2797,9 +2797,14 @@
           "topic": "El Niño Rains Turn Chile's Atacama Desert Into Massive Floral Display",
           "slug": "atacama-desert-el-nino-floral-display-2026",
           "reserved_at": "2026-11-09T19:01:10.510Z"
+        },
+        {
+          "topic": "World Meteorological Organization Reports 2026 Global Climate Extremes and El Niño",
+          "slug": "wmo-2026-global-climate-extremes-el-nino",
+          "reserved_at": "2026-11-10T16:49:28.074Z"
         }
       ],
-      "last_generated": "2026-11-09T19:01:10.511Z"
+      "last_generated": "2026-11-10T16:49:28.075Z"
     },
     "18": {
       "channel_name": "Brief History",
