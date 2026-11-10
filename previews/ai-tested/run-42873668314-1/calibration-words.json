@@ -1,0 +1,234 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (34/35 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.32,
+   "sentence": 0
+  },
+  {
+   "text": "first",
+   "start": 0.32,
+   "end": 0.56,
+   "sentence": 0
+  },
+  {
+   "text": "model",
+   "start": 0.56,
+   "end": 0.88,
+   "sentence": 0
+  },
+  {
+   "text": "answered",
+   "start": 0.88,
+   "end": 1.34,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 1.34,
+   "end": 1.62,
+   "sentence": 0
+  },
+  {
+   "text": "under",
+   "start": 1.62,
+   "end": 1.86,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.86,
+   "end": 1.91,
+   "sentence": 0
+  },
+  {
+   "text": "second",
+   "start": 1.86,
+   "end": 2.48,
+   "sentence": 0
+  },
+  {
+   "text": "The",
+   "start": 3.0,
+   "end": 3.05,
+   "sentence": 1
+  },
+  {
+   "text": "second",
+   "start": 3.02,
+   "end": 3.38,
+   "sentence": 1
+  },
+  {
+   "text": "took",
+   "start": 3.38,
+   "end": 3.68,
+   "sentence": 1
+  },
+  {
+   "text": "longer",
+   "start": 3.68,
+   "end": 4.0,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 4.42,
+   "end": 4.47,
+   "sentence": 1
+  },
+  {
+   "text": "its",
+   "start": 4.44,
+   "end": 4.56,
+   "sentence": 1
+  },
+  {
+   "text": "reply",
+   "start": 4.56,
+   "end": 4.86,
+   "sentence": 1
+  },
+  {
+   "text": "was",
+   "start": 4.86,
+   "end": 5.18,
+   "sentence": 1
+  },
+  {
+   "text": "twice",
+   "start": 5.18,
+   "end": 5.44,
+   "sentence": 1
+  },
+  {
+   "text": "as",
+   "start": 5.44,
+   "end": 5.74,
+   "sentence": 1
+  },
+  {
+   "text": "long",
+   "start": 5.74,
+   "end": 5.98,
+   "sentence": 1
+  },
+  {
+   "text": "Both",
+   "start": 6.62,
+   "end": 6.82,
+   "sentence": 2
+  },
+  {
+   "text": "were",
+   "start": 6.82,
+   "end": 7.06,
+   "sentence": 2
+  },
+  {
+   "text": "asked",
+   "start": 7.06,
+   "end": 7.24,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 7.24,
+   "end": 7.4,
+   "sentence": 2
+  },
+  {
+   "text": "same",
+   "start": 7.4,
+   "end": 7.64,
+   "sentence": 2
+  },
+  {
+   "text": "question",
+   "start": 7.64,
+   "end": 7.98,
+   "sentence": 2
+  },
+  {
+   "text": "using",
+   "start": 8.28,
+   "end": 8.48,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 8.48,
+   "end": 8.64,
+   "sentence": 2
+  },
+  {
+   "text": "same",
+   "start": 8.64,
+   "end": 8.86,
+   "sentence": 2
+  },
+  {
+   "text": "words",
+   "start": 8.86,
+   "end": 9.14,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 9.14,
+   "end": 9.7,
+   "sentence": 2
+  },
+  {
+   "text": "after",
+   "start": 9.7,
+   "end": 9.9,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 9.9,
+   "end": 10.08,
+   "sentence": 2
+  },
+  {
+   "text": "other",
+   "start": 10.08,
+   "end": 10.32,
+   "sentence": 2
+  },
+  {
+   "text": "thirty",
+   "start": 10.32,
+   "end": 10.56,
+   "sentence": 2
+  },
+  {
+   "text": "times",
+   "start": 10.8,
+   "end": 11.24,
+   "sentence": 2
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The first model answered in under a second.",
+   "start": 0.0,
+   "end": 2.48
+  },
+  {
+   "text": "The second took longer, and its reply was twice as long.",
+   "start": 3.0,
+   "end": 5.98
+  },
+  {
+   "text": "Both were asked the same question, using the same words, one after the other, thirty times.",
+   "start": 6.62,
+   "end": 11.24
+  }
+ ]
+}
