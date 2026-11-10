@@ -2,10 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42921647015-1",
   "agent": "agent-hidden-past",
-  "stage": "started",
-  "status": "running",
-  "timestamp": "2026-11-10T23:15:49.601Z",
+  "stage": "research_complete",
+  "status": "ok",
+  "timestamp": "2026-11-10T23:16:02.815Z",
   "branch": "preview/hidden-past-hippo-beats",
   "commit": "8690be1c08e52f8f3cb5ef5960502e92954a2d14",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42921647015#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42921647015#artifacts",
+  "claims": 10
 }
