@@ -1,0 +1,197 @@
+{
+  "production_id": "run-42912726677-1",
+  "accent": "#A64B14",
+  "recipe_source": "src/skills/remotion-render/effects/PhotoTreatment.jsx",
+  "halftone_opacity": 0.1,
+  "scenes": [
+    {
+      "scene": 0,
+      "start_s": 0,
+      "end_s": 10.266666666666667,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s0-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "mug",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Pablo_Escobar_Mug_(cropped)(b).jpg",
+        "source_file": "output/work/hidden-past-run-42912726677-1/mug-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42912726677-1/mug-vox.png",
+        "rect": {
+          "x": 239,
+          "y": 330,
+          "w": 602,
+          "h": 780
+        },
+        "in_f": 0,
+        "out_f": 308,
+        "kind": "photograph",
+        "license": "Public domain",
+        "relation": "exact"
+      }
+    },
+    {
+      "scene": 1,
+      "start_s": 10.266666666666667,
+      "end_s": 13.133333333333333,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s1-head"
+        },
+        {
+          "type": "map",
+          "places": [
+            "Medellín",
+            "Hacienda Nápoles",
+            "Bogotá"
+          ],
+          "source": "Natural Earth 1:50m; coordinates from English Wikipedia"
+        },
+        {
+          "type": "map_route",
+          "in_f": 316,
+          "end_f": 361
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 2,
+      "start_s": 13.133333333333333,
+      "end_s": 25.033333333333335,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s2-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the hippo",
+          "confirmed_as": "the hippo's head; Commons description: Vanessa, mascot of the Hacienda Nápoles theme park, 2008; checked by eye on the source",
+          "box": {
+            "x0": 0.1,
+            "x1": 0.34,
+            "y0": 0.5,
+            "y1": 0.88
+          },
+          "screen": {
+            "cx": 279,
+            "cy": 813,
+            "rx": 129,
+            "ry": 153
+          },
+          "draw_start_f": 404,
+          "draw_end_f": 422
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "hippo",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Hipop%C3%B3tamo_Vanessa_PTHN.jpg",
+        "source_file": "output/work/hidden-past-run-42912726677-1/hippo-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42912726677-1/hippo-vox.png",
+        "rect": {
+          "x": 74,
+          "y": 330,
+          "w": 932,
+          "h": 700
+        },
+        "in_f": 394,
+        "out_f": 751,
+        "kind": "photograph",
+        "license": "CC BY-SA 4.0",
+        "relation": "exact"
+      }
+    },
+    {
+      "scene": 3,
+      "start_s": 25.033333333333335,
+      "end_s": 32.63333333333333,
+      "treatments": [
+        {
+          "type": "chapter_opener",
+          "in_f": 751,
+          "out_f": 785,
+          "number": 1,
+          "title": "The Decision"
+        },
+        {
+          "type": "slide_in_typography",
+          "layer": "s3-head"
+        },
+        {
+          "type": "quotation_typography",
+          "text": "80+ (more than 80 hippos, per the article)"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "scene": 4,
+      "start_s": 32.63333333333333,
+      "end_s": 39.333333333333336,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s4-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "photo": {
+        "asset_id": "gate",
+        "source_url": "https://commons.wikimedia.org/wiki/File:P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG",
+        "source_file": "output/work/hidden-past-run-42912726677-1/gate-source.jpg",
+        "baked_file": "output/work/hidden-past-run-42912726677-1/gate-vox.png",
+        "rect": {
+          "x": 73,
+          "y": 330,
+          "w": 934,
+          "h": 700
+        },
+        "in_f": 979,
+        "out_f": 1180,
+        "kind": "photograph",
+        "license": "CC BY 3.0",
+        "relation": "exact"
+      }
+    }
+  ],
+  "sfx": [
+    {
+      "sound": "impact",
+      "at": 13.466666666666667
+    },
+    {
+      "sound": "whoosh",
+      "at": 24.953333333333337
+    }
+  ]
+}
