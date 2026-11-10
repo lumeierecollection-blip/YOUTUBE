@@ -1,0 +1,614 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookP",
+      "treatment": "kinetic-question",
+      "objective": "Pose the question over a short chat: a right answer, then a user saying it is wrong",
+      "background": "white",
+      "from": 0,
+      "to": 125,
+      "start_s": 0,
+      "end_s": 4.166666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "setupP",
+      "treatment": "process-diagram",
+      "objective": "Show the real question, a correct reply and the real push message with the false answer",
+      "background": "white",
+      "from": 125,
+      "to": 422,
+      "start_s": 4.166666666666667,
+      "end_s": 14.066666666666666
+    },
+    {
+      "id": "s3",
+      "kind": "plainP",
+      "treatment": "count-grid",
+      "objective": "Show one square per pushed question for each model, coloured by held or switched, with the count",
+      "background": "white",
+      "from": 422,
+      "to": 654,
+      "start_s": 14.066666666666666,
+      "end_s": 21.8
+    },
+    {
+      "id": "s4",
+      "kind": "teacherP",
+      "treatment": "count-grid",
+      "objective": "Show the same grid for the teacher push",
+      "background": "white",
+      "from": 654,
+      "to": 896,
+      "start_s": 21.8,
+      "end_s": 29.866666666666667
+    },
+    {
+      "id": "s5",
+      "kind": "tipP",
+      "treatment": "verdict-panel",
+      "objective": "Close with what to do: agreement is not proof, ask in a new chat and check",
+      "background": "accent panel",
+      "from": 896,
+      "to": 1108,
+      "start_s": 29.866666666666667,
+      "end_s": 36.93333333333333
+    }
+  ],
+  "captions": [
+    {
+      "text": "AI had the right answer",
+      "from": 0,
+      "to": 49,
+      "words": [
+        {
+          "text": "AI",
+          "from": 0
+        },
+        {
+          "text": "had",
+          "from": 12
+        },
+        {
+          "text": "the",
+          "from": 25
+        },
+        {
+          "text": "right",
+          "from": 29
+        },
+        {
+          "text": "answer",
+          "from": 37
+        }
+      ]
+    },
+    {
+      "text": "until we said it was",
+      "from": 49,
+      "to": 92,
+      "words": [
+        {
+          "text": "until",
+          "from": 49
+        },
+        {
+          "text": "we",
+          "from": 62
+        },
+        {
+          "text": "said",
+          "from": 77
+        },
+        {
+          "text": "it",
+          "from": 86
+        },
+        {
+          "text": "was",
+          "from": 89
+        }
+      ]
+    },
+    {
+      "text": "wrong",
+      "from": 92,
+      "to": 106,
+      "words": [
+        {
+          "text": "wrong",
+          "from": 92
+        }
+      ]
+    },
+    {
+      "text": "We asked two AI models",
+      "from": 125,
+      "to": 164,
+      "words": [
+        {
+          "text": "We",
+          "from": 125
+        },
+        {
+          "text": "asked",
+          "from": 128
+        },
+        {
+          "text": "two",
+          "from": 134
+        },
+        {
+          "text": "AI",
+          "from": 144
+        },
+        {
+          "text": "models",
+          "from": 153
+        }
+      ]
+    },
+    {
+      "text": "twelve questions about counting letters",
+      "from": 164,
+      "to": 227,
+      "words": [
+        {
+          "text": "twelve",
+          "from": 164
+        },
+        {
+          "text": "questions",
+          "from": 177
+        },
+        {
+          "text": "about",
+          "from": 194
+        },
+        {
+          "text": "counting",
+          "from": 203
+        },
+        {
+          "text": "letters",
+          "from": 210
+        }
+      ]
+    },
+    {
+      "text": "and kept the ones each",
+      "from": 233,
+      "to": 266,
+      "words": [
+        {
+          "text": "and",
+          "from": 233
+        },
+        {
+          "text": "kept",
+          "from": 238
+        },
+        {
+          "text": "the",
+          "from": 246
+        },
+        {
+          "text": "ones",
+          "from": 252
+        },
+        {
+          "text": "each",
+          "from": 257
+        }
+      ]
+    },
+    {
+      "text": "got right",
+      "from": 266,
+      "to": 283,
+      "words": [
+        {
+          "text": "got",
+          "from": 266
+        },
+        {
+          "text": "right",
+          "from": 271
+        }
+      ]
+    },
+    {
+      "text": "Then we said",
+      "from": 301,
+      "to": 316,
+      "words": [
+        {
+          "text": "Then",
+          "from": 301
+        },
+        {
+          "text": "we",
+          "from": 302
+        },
+        {
+          "text": "said",
+          "from": 307
+        }
+      ]
+    },
+    {
+      "text": "no that's wrong and gave",
+      "from": 325,
+      "to": 373,
+      "words": [
+        {
+          "text": "no",
+          "from": 325
+        },
+        {
+          "text": "that's",
+          "from": 338
+        },
+        {
+          "text": "wrong",
+          "from": 344
+        },
+        {
+          "text": "and",
+          "from": 361
+        },
+        {
+          "text": "gave",
+          "from": 366
+        }
+      ]
+    },
+    {
+      "text": "a false answer",
+      "from": 373,
+      "to": 401,
+      "words": [
+        {
+          "text": "a",
+          "from": 373
+        },
+        {
+          "text": "false",
+          "from": 376
+        },
+        {
+          "text": "answer",
+          "from": 383
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite switched twice out",
+      "from": 422,
+      "to": 485,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 422
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 429
+        },
+        {
+          "text": "switched",
+          "from": 437
+        },
+        {
+          "text": "twice",
+          "from": 457
+        },
+        {
+          "text": "out",
+          "from": 473
+        }
+      ]
+    },
+    {
+      "text": "of four",
+      "from": 485,
+      "to": 499,
+      "words": [
+        {
+          "text": "of",
+          "from": 485
+        },
+        {
+          "text": "four",
+          "from": 487
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 519,
+      "to": 551,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 519
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 533
+        }
+      ]
+    },
+    {
+      "text": "kept its answer all twelve",
+      "from": 564,
+      "to": 612,
+      "words": [
+        {
+          "text": "kept",
+          "from": 564
+        },
+        {
+          "text": "its",
+          "from": 575
+        },
+        {
+          "text": "answer",
+          "from": 582
+        },
+        {
+          "text": "all",
+          "from": 589
+        },
+        {
+          "text": "twelve",
+          "from": 604
+        }
+      ]
+    },
+    {
+      "text": "times",
+      "from": 614,
+      "to": 630,
+      "words": [
+        {
+          "text": "times",
+          "from": 614
+        }
+      ]
+    },
+    {
+      "text": "Then we claimed to be",
+      "from": 654,
+      "to": 681,
+      "words": [
+        {
+          "text": "Then",
+          "from": 654
+        },
+        {
+          "text": "we",
+          "from": 661
+        },
+        {
+          "text": "claimed",
+          "from": 667
+        },
+        {
+          "text": "to",
+          "from": 673
+        },
+        {
+          "text": "be",
+          "from": 679
+        }
+      ]
+    },
+    {
+      "text": "an English teacher",
+      "from": 681,
+      "to": 704,
+      "words": [
+        {
+          "text": "an",
+          "from": 681
+        },
+        {
+          "text": "English",
+          "from": 683
+        },
+        {
+          "text": "teacher",
+          "from": 693
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite gave in once",
+      "from": 722,
+      "to": 772,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 722
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 731
+        },
+        {
+          "text": "gave",
+          "from": 739
+        },
+        {
+          "text": "in",
+          "from": 755
+        },
+        {
+          "text": "once",
+          "from": 761
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 787,
+      "to": 821,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 787
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 803
+        }
+      ]
+    },
+    {
+      "text": "gave in three times",
+      "from": 833,
+      "to": 872,
+      "words": [
+        {
+          "text": "gave",
+          "from": 833
+        },
+        {
+          "text": "in",
+          "from": 842
+        },
+        {
+          "text": "three",
+          "from": 848
+        },
+        {
+          "text": "times",
+          "from": 857
+        }
+      ]
+    },
+    {
+      "text": "So when AI agrees with",
+      "from": 896,
+      "to": 934,
+      "words": [
+        {
+          "text": "So",
+          "from": 896
+        },
+        {
+          "text": "when",
+          "from": 897
+        },
+        {
+          "text": "AI",
+          "from": 904
+        },
+        {
+          "text": "agrees",
+          "from": 911
+        },
+        {
+          "text": "with",
+          "from": 927
+        }
+      ]
+    },
+    {
+      "text": "you that is not proof",
+      "from": 934,
+      "to": 983,
+      "words": [
+        {
+          "text": "you",
+          "from": 934
+        },
+        {
+          "text": "that",
+          "from": 947
+        },
+        {
+          "text": "is",
+          "from": 951
+        },
+        {
+          "text": "not",
+          "from": 957
+        },
+        {
+          "text": "proof",
+          "from": 969
+        }
+      ]
+    },
+    {
+      "text": "So why trust an answer",
+      "from": 1004,
+      "to": 1034,
+      "words": [
+        {
+          "text": "So",
+          "from": 1004
+        },
+        {
+          "text": "why",
+          "from": 1006
+        },
+        {
+          "text": "trust",
+          "from": 1015
+        },
+        {
+          "text": "an",
+          "from": 1021
+        },
+        {
+          "text": "answer",
+          "from": 1027
+        }
+      ]
+    },
+    {
+      "text": "that changes when you push",
+      "from": 1034,
+      "to": 1067,
+      "words": [
+        {
+          "text": "that",
+          "from": 1034
+        },
+        {
+          "text": "changes",
+          "from": 1039
+        },
+        {
+          "text": "when",
+          "from": 1048
+        },
+        {
+          "text": "you",
+          "from": 1058
+        },
+        {
+          "text": "push",
+          "from": 1061
+        }
+      ]
+    },
+    {
+      "text": "back",
+      "from": 1067,
+      "to": 1079,
+      "words": [
+        {
+          "text": "back",
+          "from": 1067
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1108,
+  "duration_s": 36.93333333333333
+}
