@@ -1,0 +1,311 @@
+{
+  "production_id": "run-42915648299-1",
+  "mp4": "output/previews/hidden-past/run-42915648299-1/preview.mp4",
+  "mp4_sha256": "6145124e4bf4abb90fb51bb55cbb1f95c0a767ceab9397deb1b0a75692539216",
+  "pass": true,
+  "accent": "#A64B14",
+  "recipe_source": "src/skills/remotion-render/effects/PhotoTreatment.jsx",
+  "counts": {
+    "photos": 3,
+    "annotations": 1,
+    "chapter_openers": 1
+  },
+  "scenes": [
+    {
+      "scene": 0,
+      "start_s": 0,
+      "end_s": 9.033333333333333,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s0-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "stability": {
+          "pass": true,
+          "frames_compared": 45,
+          "blocks_used": 8,
+          "moved_frames": []
+        },
+        "vignette": {
+          "ratio": 0.722,
+          "coverage": 1,
+          "measurable": true
+        },
+        "grade": {
+          "treated": 0.069,
+          "source": 0.061
+        },
+        "halftone": {
+          "treated": {
+            "peak_over_median": 47111,
+            "at": {
+              "fx": 0,
+              "fy": 81,
+              "period_px": 3.16
+            },
+            "peak": 471398088901.69366,
+            "median": 10006035.93461403
+          },
+          "source": {
+            "peak_over_median": 155,
+            "at": {
+              "fx": 3,
+              "fy": 49,
+              "period_px": 5.21
+            },
+            "peak": 282352827.0902476,
+            "median": 1818693.972373634
+          },
+          "treated_over_source_at_dot_frequency": 5624.6
+        },
+        "grain": {
+          "treated": 20.72,
+          "source": 9.07,
+          "measurable": true
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/scene-00.png"
+    },
+    {
+      "scene": 1,
+      "start_s": 9.033333333333333,
+      "end_s": 12.366666666666667,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s1-head"
+        },
+        {
+          "type": "map",
+          "places": [
+            "Medellín",
+            "Hacienda Nápoles",
+            "Bogotá"
+          ],
+          "source": "Natural Earth 1:50m; coordinates from English Wikipedia"
+        },
+        {
+          "type": "map_route",
+          "in_f": 279,
+          "end_f": 324
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "map_route": {
+          "accent_pixels_start": 76,
+          "end": 6866
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/scene-01.png",
+      "map_frame": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/map-1.png"
+    },
+    {
+      "scene": 2,
+      "start_s": 12.366666666666667,
+      "end_s": 22.366666666666667,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s2-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        },
+        {
+          "type": "annotation",
+          "target": "the hippo",
+          "confirmed_as": "the hippo's head; Commons description: Vanessa, mascot of the Hacienda Nápoles theme park, 2008; checked by eye on the source",
+          "box": {
+            "x0": 0.1,
+            "x1": 0.34,
+            "y0": 0.5,
+            "y1": 0.88
+          },
+          "screen": {
+            "cx": 279,
+            "cy": 813,
+            "rx": 129,
+            "ry": 153
+          },
+          "draw_start_f": 381,
+          "draw_end_f": 399
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "stability": {
+          "pass": true,
+          "frames_compared": 50,
+          "blocks_used": 6,
+          "moved_frames": []
+        },
+        "vignette": {
+          "ratio": 0.811,
+          "coverage": 0.74,
+          "measurable": true
+        },
+        "grade": {
+          "treated": 0.157,
+          "source": 0.368
+        },
+        "halftone": {
+          "treated": {
+            "peak_over_median": 125319,
+            "at": {
+              "fx": 81,
+              "fy": 0,
+              "period_px": 3.16
+            },
+            "peak": 323396929457.2284,
+            "median": 2580580.9701009723
+          },
+          "source": {
+            "peak_over_median": 117,
+            "at": {
+              "fx": -50,
+              "fy": 1,
+              "period_px": 5.12
+            },
+            "peak": 125949176.86825149,
+            "median": 1073064.9821625974
+          },
+          "treated_over_source_at_dot_frequency": 29905.9
+        },
+        "grain": {
+          "treated": 22.73,
+          "source": 14.03,
+          "measurable": true
+        },
+        "annotation": {
+          "accent_pixels_before": 4,
+          "mid_draw": 3774,
+          "after": 7062
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/scene-02.png"
+    },
+    {
+      "scene": 3,
+      "start_s": 22.366666666666667,
+      "end_s": 30.166666666666668,
+      "treatments": [
+        {
+          "type": "chapter_opener",
+          "in_f": 671,
+          "out_f": 705,
+          "number": 1,
+          "title": "The Decision"
+        },
+        {
+          "type": "slide_in_typography",
+          "layer": "s3-head"
+        },
+        {
+          "type": "quotation_typography",
+          "text": "80+ (more than 80 hippos, per the article)"
+        },
+        {
+          "type": "proportion_dots",
+          "filled": 80,
+          "total": 200,
+          "claims": [
+            "H6",
+            "H7"
+          ],
+          "note": "one dot is about one hippo; 200 is an estimate and 80 is a lower bound"
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "chapter_motion": 4.47
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/scene-03.png",
+      "chapter_frame": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/chapter-1.png"
+    },
+    {
+      "scene": 4,
+      "start_s": 30.166666666666668,
+      "end_s": 38.666666666666664,
+      "treatments": [
+        {
+          "type": "slide_in_typography",
+          "layer": "s4-head"
+        },
+        {
+          "type": "photo_treatment",
+          "recipe": "PhotoTreatment.jsx via VoxStill: vignette, halftone, grain, chromatic aberration, editorial LUT",
+          "halftone_opacity": 0.1
+        },
+        {
+          "type": "grounded_shadow"
+        }
+      ],
+      "exceptions": [],
+      "measured": {
+        "stability": {
+          "pass": true,
+          "frames_compared": 42,
+          "blocks_used": 8,
+          "moved_frames": []
+        },
+        "vignette": {
+          "ratio": 0.783,
+          "coverage": 0.97,
+          "measurable": true
+        },
+        "grade": {
+          "treated": 0.095,
+          "source": 0.172
+        },
+        "halftone": {
+          "treated": {
+            "peak_over_median": 72845,
+            "at": {
+              "fx": 81,
+              "fy": 0,
+              "period_px": 3.16
+            },
+            "peak": 540426213922.25494,
+            "median": 7418891.023986998
+          },
+          "source": {
+            "peak_over_median": 681,
+            "at": {
+              "fx": 1,
+              "fy": 54,
+              "period_px": 4.74
+            },
+            "peak": 1669295629.863898,
+            "median": 2452347.20354483
+          },
+          "treated_over_source_at_dot_frequency": 3222.7
+        },
+        "grain": {
+          "treated": 17.85,
+          "source": 7.81,
+          "measurable": true
+        }
+      },
+      "frame_file": "/home/runner/work/YOUTUBE/YOUTUBE/output/work/hidden-past-run-42915648299-1/gate/scene-04.png"
+    }
+  ],
+  "failures": [],
+  "generated_at": "2026-11-10T22:40:47.204Z"
+}

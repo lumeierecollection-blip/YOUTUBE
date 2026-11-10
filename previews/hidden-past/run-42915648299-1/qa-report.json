@@ -1,0 +1,189 @@
+{
+  "channel": "hidden-past",
+  "run": "run-42915648299-1",
+  "script": {
+    "status": "written_directly",
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction",
+    "independent_provider": false
+  },
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 38.667,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -20,
+    "max_volume_db": -2.5,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Rasalgethi",
+      "seconds": 38.184,
+      "words": 96,
+      "wpm": 150.8,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  },
+  "alignment_findings": [
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s2"
+      ],
+      "problem": "The visual implies a trend (rising, falling, growth) that neither narration nor claims state.",
+      "fix": "Do not animate a trend the claims do not establish."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s3"
+      ],
+      "problem": "On-screen name \"CHAPTER I\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    },
+    {
+      "rule": "SCN-04",
+      "severity": "major",
+      "category": "visual_mismatch",
+      "sentence_ids": [
+        "s3"
+      ],
+      "problem": "On-screen name \"The Decision\" is in neither the narration nor the claims.",
+      "fix": "Show only names the narration establishes."
+    }
+  ],
+  "duration_s": 38.666667,
+  "min_s": 35,
+  "max_s": 40,
+  "size": "1080x1920",
+  "fps": 30,
+  "vox_gate": {
+    "pass": true,
+    "failures": [],
+    "counts": {
+      "photos": 3,
+      "annotations": 1,
+      "chapter_openers": 1
+    },
+    "report_file": "vox-compliance-report.json",
+    "mp4_sha256": "6145124e4bf4abb90fb51bb55cbb1f95c0a767ceab9397deb1b0a75692539216"
+  },
+  "photo_stability": [
+    {
+      "scene": 0,
+      "pass": true,
+      "frames_compared": 45,
+      "blocks_used": 8,
+      "moved_frames": []
+    },
+    {
+      "scene": 2,
+      "pass": true,
+      "frames_compared": 50,
+      "blocks_used": 6,
+      "moved_frames": []
+    },
+    {
+      "scene": 4,
+      "pass": true,
+      "frames_compared": 42,
+      "blocks_used": 8,
+      "moved_frames": []
+    }
+  ],
+  "still_layers_with_non_opacity_keyframes": [],
+  "stability_scope": "voxGate measures the photographs in the final MP4. The map is drawn from Natural Earth and is not a photograph; its layers are not measured for stability.",
+  "licences": [
+    {
+      "file": "File:Pablo Escobar Mug (cropped)(b).jpg",
+      "licence": "Public domain",
+      "creator": "Colombian National Police",
+      "url": "https://commons.wikimedia.org/wiki/File:Pablo_Escobar_Mug_(cropped)(b).jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Pablo_Escobar_Mug_%28cropped%29%28b%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "file": "File:Hipopótamo Vanessa PTHN.jpg",
+      "licence": "CC BY-SA 4.0",
+      "creator": "Alvaro Morales Ríos",
+      "url": "https://commons.wikimedia.org/wiki/File:Hipop%C3%B3tamo_Vanessa_PTHN.jpg",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Hipop%C3%B3tamo_Vanessa_PTHN.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    },
+    {
+      "file": "File:Pórtico Hacienda Nápoles.JPG",
+      "licence": "CC BY 3.0",
+      "creator": "XalD",
+      "url": "https://commons.wikimedia.org/wiki/File:P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG",
+      "source_file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/P%C3%B3rtico_Hacienda_N%C3%A1poles.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "H1",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H2",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H3",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H4",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H5",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H6",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H7",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H8",
+      "editorial_status": "established_fact",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H9",
+      "editorial_status": "later_interpretation",
+      "confidence": "high"
+    },
+    {
+      "claim_id": "H10",
+      "editorial_status": "later_interpretation",
+      "confidence": "high"
+    }
+  ],
+  "frames": [
+    "scene-00.jpg",
+    "scene-01.jpg",
+    "scene-map-1.jpg",
+    "scene-02.jpg",
+    "scene-03.jpg",
+    "scene-chapter-1.jpg",
+    "scene-04.jpg"
+  ]
+}
