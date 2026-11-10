@@ -66,5 +66,23 @@
       "GPT-OSS",
       "Gemini"
     ]
+  },
+  "ai-tested-random": {
+    "run_id": 42878984702,
+    "artifact": "preview-ai-tested-42878984702-1",
+    "sha256": "d975888243f57cb61d453a93cb8d5daec2cc4a350f28edc9212f0058deab7a84",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Never Let AI Pick Your Random Winner (We Tested It)",
+    "description": "We asked 2 AI models for a random number from 1 to 10, 30 times each, and counted the replies. A fair pick lands on each number about 3 times. Google's Flash-Lite picked 7 in 30 of 30 asks; OpenAI's GPT-OSS picked 7 in 30 of 30 asks. We also tried 1 to 100. For a fair draw, use dice, or ask the AI to write code that uses a random function. One test, run on 10 November 2026 at the default chat temperature; results change between runs and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini\n\nPeople reportedly favour seven too (disputed): https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon",
+    "tags": [
+      "AI test",
+      "random number",
+      "ChatGPT",
+      "Gemini",
+      "AI giveaway",
+      "AI randomness",
+      "number seven"
+    ]
   }
 }
