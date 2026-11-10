@@ -2,10 +2,11 @@
   "channel": "rival-lines",
   "production_run": "run-42847015412-1",
   "agent": "agent-rival-lines",
-  "stage": "visual_complete",
-  "status": "ok",
-  "timestamp": "2026-11-10T15:45:04.025Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T15:45:12.056Z",
   "branch": "preview/rival-lines-messi",
   "commit": "436f3692ecf4add3f3270996871b37e1b4f8baff",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42847015412#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42847015412#artifacts",
+  "error": "node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/rival-lines/run-42847015412-1/preview.mp4.job.json failed (exit 1)"
 }

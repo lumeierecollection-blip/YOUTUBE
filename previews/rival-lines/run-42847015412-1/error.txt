@@ -1,0 +1,7 @@
+Error: node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/rival-lines/run-42847015412-1/preview.mp4.job.json failed (exit 1)
+    at run (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:21:29)
+    at Object.renderComposition (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:52:7)
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:47:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/rival-lines/preview.mjs:71:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
