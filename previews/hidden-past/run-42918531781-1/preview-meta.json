@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-42918531781-1",
   "agent": "agent-hidden-past",
-  "stage": "preview_ready",
+  "stage": "awaiting_approval",
   "status": "ok",
-  "timestamp": "2026-11-10T23:10:54.206Z",
+  "timestamp": "2026-11-10T23:10:56.179Z",
   "branch": "preview/hidden-past-hippo-beats",
   "commit": "2370e761d3eeac89ddac58427832a65dfd2aa9f6",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42918531781#artifacts"
