@@ -2,11 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42873668314-1",
   "agent": "agent-ai-tested",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-10T18:19:39.599Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T18:20:00.350Z",
   "branch": "preview/ai-tested-random-3",
   "commit": "9130d075392d0912a56c8d01c5649b0a49c4348c",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42873668314#artifacts",
-  "note": "not reviewed by the engine critic"
+  "error": "voice produced 12 sentences for 11 script sentences; use exactly one sentence-ending mark per sentence"
 }

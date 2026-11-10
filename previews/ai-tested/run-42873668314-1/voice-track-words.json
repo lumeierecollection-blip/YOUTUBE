@@ -1,0 +1,657 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (77/98 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "Can",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.38,
+   "end": 0.68,
+   "sentence": 0
+  },
+  {
+   "text": "pick",
+   "start": 0.68,
+   "end": 1.16,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.16,
+   "end": 1.34,
+   "sentence": 0
+  },
+  {
+   "text": "random",
+   "start": 1.34,
+   "end": 1.66,
+   "sentence": 0
+  },
+  {
+   "text": "number",
+   "start": 1.66,
+   "end": 2.22,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 2.78,
+   "end": 2.83,
+   "sentence": 1
+  },
+  {
+   "text": "asked",
+   "start": 2.8,
+   "end": 2.96,
+   "sentence": 1
+  },
+  {
+   "text": "two",
+   "start": 2.96,
+   "end": 3.24,
+   "sentence": 1
+  },
+  {
+   "text": "models",
+   "start": 3.24,
+   "end": 3.52,
+   "sentence": 1
+  },
+  {
+   "text": "for",
+   "start": 3.52,
+   "end": 3.86,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 3.86,
+   "end": 3.92,
+   "sentence": 1
+  },
+  {
+   "text": "number",
+   "start": 3.92,
+   "end": 4.14,
+   "sentence": 1
+  },
+  {
+   "text": "from",
+   "start": 4.14,
+   "end": 4.32,
+   "sentence": 1
+  },
+  {
+   "text": "one",
+   "start": 4.32,
+   "end": 4.46,
+   "sentence": 1
+  },
+  {
+   "text": "to",
+   "start": 4.6,
+   "end": 4.72,
+   "sentence": 1
+  },
+  {
+   "text": "ten",
+   "start": 4.72,
+   "end": 4.973,
+   "sentence": 1
+  },
+  {
+   "text": "thirty",
+   "start": 4.973,
+   "end": 5.227,
+   "sentence": 1
+  },
+  {
+   "text": "times",
+   "start": 5.48,
+   "end": 5.9,
+   "sentence": 1
+  },
+  {
+   "text": "each",
+   "start": 5.9,
+   "end": 6.08,
+   "sentence": 1
+  },
+  {
+   "text": "A",
+   "start": 6.64,
+   "end": 6.69,
+   "sentence": 2
+  },
+  {
+   "text": "fair",
+   "start": 6.66,
+   "end": 6.88,
+   "sentence": 2
+  },
+  {
+   "text": "pick",
+   "start": 6.88,
+   "end": 7.08,
+   "sentence": 2
+  },
+  {
+   "text": "lands",
+   "start": 7.08,
+   "end": 7.3,
+   "sentence": 2
+  },
+  {
+   "text": "on",
+   "start": 7.3,
+   "end": 7.5,
+   "sentence": 2
+  },
+  {
+   "text": "each",
+   "start": 7.5,
+   "end": 7.64,
+   "sentence": 2
+  },
+  {
+   "text": "number",
+   "start": 7.64,
+   "end": 7.96,
+   "sentence": 2
+  },
+  {
+   "text": "about",
+   "start": 7.96,
+   "end": 8.14,
+   "sentence": 2
+  },
+  {
+   "text": "three",
+   "start": 8.14,
+   "end": 8.5,
+   "sentence": 2
+  },
+  {
+   "text": "times",
+   "start": 8.5,
+   "end": 8.84,
+   "sentence": 2
+  },
+  {
+   "text": "Google's",
+   "start": 9.68,
+   "end": 9.88,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 9.88,
+   "end": 10.0,
+   "sentence": 3
+  },
+  {
+   "text": "said",
+   "start": 10.12,
+   "end": 10.68,
+   "sentence": 3
+  },
+  {
+   "text": "seven",
+   "start": 10.68,
+   "end": 11.013,
+   "sentence": 3
+  },
+  {
+   "text": "thirty",
+   "start": 11.013,
+   "end": 11.347,
+   "sentence": 3
+  },
+  {
+   "text": "times",
+   "start": 11.68,
+   "end": 12.06,
+   "sentence": 3
+  },
+  {
+   "text": "OpenAI's",
+   "start": 12.06,
+   "end": 12.76,
+   "sentence": 4
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 12.76,
+   "end": 13.46,
+   "sentence": 4
+  },
+  {
+   "text": "said",
+   "start": 14.16,
+   "end": 14.56,
+   "sentence": 4
+  },
+  {
+   "text": "seven",
+   "start": 14.56,
+   "end": 14.853,
+   "sentence": 4
+  },
+  {
+   "text": "thirty",
+   "start": 14.853,
+   "end": 15.147,
+   "sentence": 4
+  },
+  {
+   "text": "times",
+   "start": 15.44,
+   "end": 15.86,
+   "sentence": 4
+  },
+  {
+   "text": "A",
+   "start": 16.5,
+   "end": 16.55,
+   "sentence": 5
+  },
+  {
+   "text": "random",
+   "start": 16.54,
+   "end": 16.82,
+   "sentence": 5
+  },
+  {
+   "text": "pick",
+   "start": 16.82,
+   "end": 17.1,
+   "sentence": 5
+  },
+  {
+   "text": "would",
+   "start": 17.1,
+   "end": 17.28,
+   "sentence": 5
+  },
+  {
+   "text": "vary",
+   "start": 17.28,
+   "end": 17.5,
+   "sentence": 5
+  },
+  {
+   "text": "This",
+   "start": 18.16,
+   "end": 18.21,
+   "sentence": 6
+  },
+  {
+   "text": "did",
+   "start": 18.16,
+   "end": 18.34,
+   "sentence": 6
+  },
+  {
+   "text": "not",
+   "start": 18.34,
+   "end": 18.6,
+   "sentence": 6
+  },
+  {
+   "text": "From",
+   "start": 19.38,
+   "end": 19.43,
+   "sentence": 7
+  },
+  {
+   "text": "one",
+   "start": 19.42,
+   "end": 19.53,
+   "sentence": 7
+  },
+  {
+   "text": "to",
+   "start": 19.64,
+   "end": 19.76,
+   "sentence": 7
+  },
+  {
+   "text": "a",
+   "start": 19.76,
+   "end": 20.06,
+   "sentence": 7
+  },
+  {
+   "text": "hundred",
+   "start": 20.06,
+   "end": 20.36,
+   "sentence": 7
+  },
+  {
+   "text": "Google's",
+   "start": 20.66,
+   "end": 20.94,
+   "sentence": 7
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 20.94,
+   "end": 21.07,
+   "sentence": 7
+  },
+  {
+   "text": "chose",
+   "start": 21.2,
+   "end": 21.66,
+   "sentence": 7
+  },
+  {
+   "text": "forty-two",
+   "start": 21.66,
+   "end": 21.84,
+   "sentence": 7
+  },
+  {
+   "text": "most",
+   "start": 22.02,
+   "end": 22.72,
+   "sentence": 7
+  },
+  {
+   "text": "often",
+   "start": 22.72,
+   "end": 22.94,
+   "sentence": 7
+  },
+  {
+   "text": "twenty-six",
+   "start": 22.94,
+   "end": 23.25,
+   "sentence": 7
+  },
+  {
+   "text": "times",
+   "start": 23.56,
+   "end": 24.26,
+   "sentence": 7
+  },
+  {
+   "text": "OpenAI's",
+   "start": 24.26,
+   "end": 24.973,
+   "sentence": 8
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 24.973,
+   "end": 25.687,
+   "sentence": 8
+  },
+  {
+   "text": "chose",
+   "start": 26.4,
+   "end": 26.7,
+   "sentence": 8
+  },
+  {
+   "text": "fifty-seven",
+   "start": 26.7,
+   "end": 26.88,
+   "sentence": 8
+  },
+  {
+   "text": "most",
+   "start": 27.06,
+   "end": 27.76,
+   "sentence": 8
+  },
+  {
+   "text": "often",
+   "start": 27.76,
+   "end": 28.0,
+   "sentence": 8
+  },
+  {
+   "text": "twelve",
+   "start": 28.0,
+   "end": 28.26,
+   "sentence": 8
+  },
+  {
+   "text": "times",
+   "start": 28.52,
+   "end": 28.96,
+   "sentence": 8
+  },
+  {
+   "text": "People",
+   "start": 28.96,
+   "end": 29.88,
+   "sentence": 9
+  },
+  {
+   "text": "reportedly",
+   "start": 29.88,
+   "end": 30.22,
+   "sentence": 9
+  },
+  {
+   "text": "do",
+   "start": 30.22,
+   "end": 30.76,
+   "sentence": 9
+  },
+  {
+   "text": "it",
+   "start": 30.76,
+   "end": 30.88,
+   "sentence": 9
+  },
+  {
+   "text": "too",
+   "start": 30.88,
+   "end": 31.16,
+   "sentence": 9
+  },
+  {
+   "text": "the",
+   "start": 31.48,
+   "end": 31.58,
+   "sentence": 9
+  },
+  {
+   "text": "blue-seven",
+   "start": 31.58,
+   "end": 31.91,
+   "sentence": 9
+  },
+  {
+   "text": "effect",
+   "start": 32.24,
+   "end": 32.52,
+   "sentence": 9
+  },
+  {
+   "text": "For",
+   "start": 33.2,
+   "end": 33.32,
+   "sentence": 10
+  },
+  {
+   "text": "a",
+   "start": 33.32,
+   "end": 33.4,
+   "sentence": 10
+  },
+  {
+   "text": "fair",
+   "start": 33.4,
+   "end": 33.6,
+   "sentence": 10
+  },
+  {
+   "text": "draw",
+   "start": 33.6,
+   "end": 33.88,
+   "sentence": 10
+  },
+  {
+   "text": "use",
+   "start": 34.2,
+   "end": 34.4,
+   "sentence": 10
+  },
+  {
+   "text": "dice",
+   "start": 34.4,
+   "end": 34.72,
+   "sentence": 10
+  },
+  {
+   "text": "or",
+   "start": 35.16,
+   "end": 35.24,
+   "sentence": 10
+  },
+  {
+   "text": "ask",
+   "start": 35.24,
+   "end": 35.58,
+   "sentence": 10
+  },
+  {
+   "text": "AI",
+   "start": 35.58,
+   "end": 35.78,
+   "sentence": 10
+  },
+  {
+   "text": "to",
+   "start": 35.78,
+   "end": 36.0,
+   "sentence": 10
+  },
+  {
+   "text": "write",
+   "start": 36.0,
+   "end": 36.12,
+   "sentence": 10
+  },
+  {
+   "text": "code",
+   "start": 36.12,
+   "end": 36.42,
+   "sentence": 10
+  },
+  {
+   "text": "Never",
+   "start": 37.12,
+   "end": 37.17,
+   "sentence": 11
+  },
+  {
+   "text": "let",
+   "start": 37.14,
+   "end": 37.48,
+   "sentence": 11
+  },
+  {
+   "text": "it",
+   "start": 37.48,
+   "end": 37.54,
+   "sentence": 11
+  },
+  {
+   "text": "pick",
+   "start": 37.54,
+   "end": 37.68,
+   "sentence": 11
+  },
+  {
+   "text": "your",
+   "start": 37.68,
+   "end": 37.84,
+   "sentence": 11
+  },
+  {
+   "text": "giveaway",
+   "start": 37.84,
+   "end": 38.12,
+   "sentence": 11
+  },
+  {
+   "text": "winner",
+   "start": 38.12,
+   "end": 38.44,
+   "sentence": 11
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Can AI pick a random number?",
+   "start": 0.0,
+   "end": 2.22
+  },
+  {
+   "text": "We asked two models for a number from one to ten, thirty times each.",
+   "start": 2.78,
+   "end": 6.08
+  },
+  {
+   "text": "A fair pick lands on each number about three times.",
+   "start": 6.64,
+   "end": 8.84
+  },
+  {
+   "text": "Google's Flash-Lite said seven, thirty times.",
+   "start": 9.68,
+   "end": 12.06
+  },
+  {
+   "text": "OpenAI's GPT-OSS said seven, thirty times.",
+   "start": 12.06,
+   "end": 15.86
+  },
+  {
+   "text": "A random pick would vary.",
+   "start": 16.5,
+   "end": 17.5
+  },
+  {
+   "text": "This did not.",
+   "start": 18.16,
+   "end": 18.6
+  },
+  {
+   "text": "From one to a hundred, Google's Flash-Lite chose forty-two most often, twenty-six times.",
+   "start": 19.38,
+   "end": 24.26
+  },
+  {
+   "text": "OpenAI's GPT-OSS chose fifty-seven most often, twelve times.",
+   "start": 24.26,
+   "end": 28.96
+  },
+  {
+   "text": "People reportedly do it too: the blue-seven effect.",
+   "start": 28.96,
+   "end": 32.52
+  },
+  {
+   "text": "For a fair draw, use dice, or ask AI to write code.",
+   "start": 33.2,
+   "end": 36.42
+  },
+  {
+   "text": "Never let it pick your giveaway winner.",
+   "start": 37.12,
+   "end": 38.44
+  }
+ ]
+}
