@@ -1,0 +1,576 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (80/87 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "Is",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "Lionel",
+   "start": 0.42,
+   "end": 0.7,
+   "sentence": 0
+  },
+  {
+   "text": "Messi",
+   "start": 0.7,
+   "end": 1.16,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.16,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "greatest",
+   "start": 1.56,
+   "end": 1.96,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 1.96,
+   "end": 2.28,
+   "sentence": 0
+  },
+  {
+   "text": "all",
+   "start": 2.28,
+   "end": 2.4,
+   "sentence": 0
+  },
+  {
+   "text": "time",
+   "start": 2.4,
+   "end": 2.74,
+   "sentence": 0
+  },
+  {
+   "text": "Here",
+   "start": 3.4,
+   "end": 3.64,
+   "sentence": 1
+  },
+  {
+   "text": "is",
+   "start": 3.64,
+   "end": 3.86,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 3.86,
+   "end": 4.04,
+   "sentence": 1
+  },
+  {
+   "text": "evidence",
+   "start": 4.04,
+   "end": 4.38,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 4.38,
+   "end": 4.82,
+   "sentence": 1
+  },
+  {
+   "text": "numbers",
+   "start": 4.82,
+   "end": 5.16,
+   "sentence": 1
+  },
+  {
+   "text": "Start",
+   "start": 5.9,
+   "end": 6.26,
+   "sentence": 2
+  },
+  {
+   "text": "with",
+   "start": 6.26,
+   "end": 6.52,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 6.52,
+   "end": 6.6,
+   "sentence": 2
+  },
+  {
+   "text": "individual",
+   "start": 6.6,
+   "end": 6.98,
+   "sentence": 2
+  },
+  {
+   "text": "awards",
+   "start": 6.98,
+   "end": 7.5,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 7.8,
+   "end": 7.86,
+   "sentence": 2
+  },
+  {
+   "text": "record",
+   "start": 7.86,
+   "end": 8.24,
+   "sentence": 2
+  },
+  {
+   "text": "eight",
+   "start": 8.24,
+   "end": 8.66,
+   "sentence": 2
+  },
+  {
+   "text": "Ballons",
+   "start": 8.66,
+   "end": 9.16,
+   "sentence": 2
+  },
+  {
+   "text": "d'Or",
+   "start": 9.16,
+   "end": 9.6,
+   "sentence": 2
+  },
+  {
+   "text": "Add",
+   "start": 10.04,
+   "end": 10.12,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 10.12,
+   "end": 10.26,
+   "sentence": 3
+  },
+  {
+   "text": "that",
+   "start": 10.26,
+   "end": 10.42,
+   "sentence": 3
+  },
+  {
+   "text": "six",
+   "start": 10.42,
+   "end": 10.84,
+   "sentence": 3
+  },
+  {
+   "text": "European",
+   "start": 10.84,
+   "end": 11.36,
+   "sentence": 3
+  },
+  {
+   "text": "Golden",
+   "start": 11.36,
+   "end": 11.8,
+   "sentence": 3
+  },
+  {
+   "text": "Shoes",
+   "start": 11.8,
+   "end": 12.16,
+   "sentence": 3
+  },
+  {
+   "text": "For",
+   "start": 12.76,
+   "end": 12.88,
+   "sentence": 4
+  },
+  {
+   "text": "Barcelona",
+   "start": 12.88,
+   "end": 13.24,
+   "sentence": 4
+  },
+  {
+   "text": "he",
+   "start": 13.64,
+   "end": 13.69,
+   "sentence": 4
+  },
+  {
+   "text": "scored",
+   "start": 13.68,
+   "end": 13.86,
+   "sentence": 4
+  },
+  {
+   "text": "four",
+   "start": 13.86,
+   "end": 14.156,
+   "sentence": 4
+  },
+  {
+   "text": "hundred",
+   "start": 14.156,
+   "end": 14.452,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 14.452,
+   "end": 14.748,
+   "sentence": 4
+  },
+  {
+   "text": "seventy-four",
+   "start": 14.748,
+   "end": 15.044,
+   "sentence": 4
+  },
+  {
+   "text": "La",
+   "start": 15.34,
+   "end": 15.62,
+   "sentence": 4
+  },
+  {
+   "text": "Liga",
+   "start": 15.62,
+   "end": 15.8,
+   "sentence": 4
+  },
+  {
+   "text": "goals",
+   "start": 15.8,
+   "end": 16.14,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 16.48,
+   "end": 16.54,
+   "sentence": 4
+  },
+  {
+   "text": "record",
+   "start": 16.54,
+   "end": 16.86,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 17.32,
+   "end": 17.48,
+   "sentence": 4
+  },
+  {
+   "text": "seventy-three",
+   "start": 17.48,
+   "end": 17.72,
+   "sentence": 4
+  },
+  {
+   "text": "goals",
+   "start": 17.96,
+   "end": 18.44,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 18.44,
+   "end": 18.72,
+   "sentence": 4
+  },
+  {
+   "text": "a",
+   "start": 18.72,
+   "end": 18.8,
+   "sentence": 4
+  },
+  {
+   "text": "single",
+   "start": 18.8,
+   "end": 19.04,
+   "sentence": 4
+  },
+  {
+   "text": "season",
+   "start": 19.04,
+   "end": 19.52,
+   "sentence": 4
+  },
+  {
+   "text": "Two",
+   "start": 20.22,
+   "end": 20.36,
+   "sentence": 5
+  },
+  {
+   "text": "trebles",
+   "start": 20.36,
+   "end": 20.88,
+   "sentence": 5
+  },
+  {
+   "text": "with",
+   "start": 20.88,
+   "end": 21.06,
+   "sentence": 5
+  },
+  {
+   "text": "Barcelona",
+   "start": 21.06,
+   "end": 21.44,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 21.44,
+   "end": 21.84,
+   "sentence": 5
+  },
+  {
+   "text": "2009",
+   "start": 21.84,
+   "end": 22.12,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 22.12,
+   "end": 22.82,
+   "sentence": 5
+  },
+  {
+   "text": "2015",
+   "start": 22.82,
+   "end": 23.5,
+   "sentence": 5
+  },
+  {
+   "text": "In",
+   "start": 24.24,
+   "end": 24.48,
+   "sentence": 6
+  },
+  {
+   "text": "2022",
+   "start": 24.48,
+   "end": 24.82,
+   "sentence": 6
+  },
+  {
+   "text": "he",
+   "start": 25.56,
+   "end": 25.64,
+   "sentence": 6
+  },
+  {
+   "text": "led",
+   "start": 25.64,
+   "end": 25.88,
+   "sentence": 6
+  },
+  {
+   "text": "Argentina",
+   "start": 25.88,
+   "end": 26.28,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 26.28,
+   "end": 26.72,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 26.72,
+   "end": 26.84,
+   "sentence": 6
+  },
+  {
+   "text": "World",
+   "start": 26.84,
+   "end": 27.02,
+   "sentence": 6
+  },
+  {
+   "text": "Cup",
+   "start": 27.02,
+   "end": 27.34,
+   "sentence": 6
+  },
+  {
+   "text": "In",
+   "start": 27.34,
+   "end": 28.1,
+   "sentence": 7
+  },
+  {
+   "text": "sampled",
+   "start": 28.1,
+   "end": 28.36,
+   "sentence": 7
+  },
+  {
+   "text": "matches",
+   "start": 28.36,
+   "end": 28.76,
+   "sentence": 7
+  },
+  {
+   "text": "his",
+   "start": 29.16,
+   "end": 29.21,
+   "sentence": 7
+  },
+  {
+   "text": "key",
+   "start": 29.18,
+   "end": 29.42,
+   "sentence": 7
+  },
+  {
+   "text": "passes",
+   "start": 29.42,
+   "end": 29.78,
+   "sentence": 7
+  },
+  {
+   "text": "per",
+   "start": 29.78,
+   "end": 30.1,
+   "sentence": 7
+  },
+  {
+   "text": "ninety",
+   "start": 30.1,
+   "end": 30.23,
+   "sentence": 7
+  },
+  {
+   "text": "minutes",
+   "start": 30.36,
+   "end": 30.66,
+   "sentence": 7
+  },
+  {
+   "text": "more",
+   "start": 30.66,
+   "end": 31.1,
+   "sentence": 7
+  },
+  {
+   "text": "than",
+   "start": 31.1,
+   "end": 31.3,
+   "sentence": 7
+  },
+  {
+   "text": "doubled",
+   "start": 31.3,
+   "end": 31.62,
+   "sentence": 7
+  },
+  {
+   "text": "The",
+   "start": 32.42,
+   "end": 32.47,
+   "sentence": 8
+  },
+  {
+   "text": "greatest",
+   "start": 32.44,
+   "end": 32.76,
+   "sentence": 8
+  },
+  {
+   "text": "of",
+   "start": 32.76,
+   "end": 33.16,
+   "sentence": 8
+  },
+  {
+   "text": "all",
+   "start": 33.16,
+   "end": 33.38,
+   "sentence": 8
+  },
+  {
+   "text": "time",
+   "start": 33.38,
+   "end": 33.8,
+   "sentence": 8
+  },
+  {
+   "text": "you",
+   "start": 34.5,
+   "end": 34.56,
+   "sentence": 8
+  },
+  {
+   "text": "decide",
+   "start": 34.56,
+   "end": 34.76,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Is Lionel Messi the greatest of all time?",
+   "start": 0.0,
+   "end": 2.74
+  },
+  {
+   "text": "Here is the evidence, in numbers.",
+   "start": 3.4,
+   "end": 5.16
+  },
+  {
+   "text": "Start with the individual awards: a record eight Ballons d'Or.",
+   "start": 5.9,
+   "end": 9.6
+  },
+  {
+   "text": "Add to that six European Golden Shoes.",
+   "start": 10.04,
+   "end": 12.16
+  },
+  {
+   "text": "For Barcelona he scored four hundred and seventy-four La Liga goals, a record, and seventy-three goals in a single season.",
+   "start": 12.76,
+   "end": 19.52
+  },
+  {
+   "text": "Two trebles with Barcelona, in 2009 and 2015.",
+   "start": 20.22,
+   "end": 23.5
+  },
+  {
+   "text": "In 2022, he led Argentina to the World Cup.",
+   "start": 24.24,
+   "end": 27.34
+  },
+  {
+   "text": "In sampled matches, his key passes per ninety minutes more than doubled.",
+   "start": 27.34,
+   "end": 31.62
+  },
+  {
+   "text": "The greatest of all time: you decide.",
+   "start": 32.42,
+   "end": 34.76
+  }
+ ]
+}
