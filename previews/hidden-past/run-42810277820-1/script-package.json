@@ -1,0 +1,146 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42810277820-1",
+  "topic": "How an early announcement opened the Berlin Wall's checkpoints",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "In 1989, one press-conference answer opened the Berlin Wall.",
+      "scene": 0,
+      "claim_ids": [
+        "B1"
+      ]
+    },
+    {
+      "text": "To see how, start with a note.",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "turn to context, not a factual claim"
+    },
+    {
+      "text": "Spokesman Günter Schabowski has just been handed it.",
+      "scene": 1,
+      "claim_ids": [
+        "B3"
+      ]
+    },
+    {
+      "text": "Asked when it starts, he says: immediately, without delay.",
+      "scene": 2,
+      "claim_ids": [
+        "B4"
+      ]
+    },
+    {
+      "text": "West German news tells viewers the borders are open.",
+      "scene": 2,
+      "claim_ids": [
+        "B5"
+      ]
+    },
+    {
+      "text": "That night, guards at Bornholmer Straße let people through.",
+      "scene": 3,
+      "claim_ids": [
+        "B6"
+      ]
+    },
+    {
+      "text": "A wall that stood for decades opened on one unprepared answer.",
+      "scene": 3,
+      "claim_ids": [
+        "B1",
+        "B3"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-fotbw",
+      "url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "title": "Fall of the Berlin Wall (Wikipedia, retrieved 10 Nov 2026)",
+      "licence": "facts only; CC BY-SA text not reproduced beyond short excerpts"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "B1",
+      "claim": "A Politburo press conference on 9 November 1989 prematurely announced that East Germans could travel without restrictions.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "occurred after a Politburo press conference on 9 November 1989 prematurely announced that East Germans could travel without restrictions",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B2",
+      "claim": "The press conference was led by Günter Schabowski, began at 18:00 CET on 9 November, and was broadcast live on East German television and radio.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "led by Günter Schabowski, the outgoing party leader in East Berlin and top party spokesman as Secretary for Information, beginning at 18:00 CET on 9 November and broadcast live on East German television and radio",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B3",
+      "claim": "Shortly before the press conference Schabowski was handed a note announcing the changes, but given no further instructions on how to handle the information.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "Shortly before the press conference, he was handed a note from Krenz announcing the changes, but given no further instructions on how to handle the information.",
+      "confidence": "high",
+      "context": "He had not been involved in the discussions about the new regulations and had not been fully updated.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B4",
+      "claim": "Asked when the regulations would take effect, Schabowski replied that, as far as he knew, it takes effect immediately, without delay.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "Schabowski replied, \"As far as I know, it takes effect immediately, without delay\"",
+      "confidence": "high",
+      "context": "Wikipedia gives this as an English rendering of the German; it calls his answer an apparent assumption based on the note's opening paragraph.",
+      "contradictory_evidence": [],
+      "editorial_status": "later_interpretation"
+    },
+    {
+      "claim_id": "B5",
+      "claim": "West German news told viewers that East Germany's borders were open: the dpa bulletin at 19:04 said citizens could cross the inner German border \"immediately\", and ARD's Tagesthemen said the borders were open to everyone.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "The West German Deutsche Presse-Agentur issued a bulletin at 19:04 which reported that East German citizens would be able to cross the inner German border \"immediately\".",
+      "confidence": "high",
+      "context": "Tagesthemen anchor Hanns Joachim Friedrichs: the GDR announced that, starting immediately, its borders are open to everyone.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "B6",
+      "claim": "At 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße crossing, yielded and let guards open the checkpoints.",
+      "source_id": "wiki-fotbw",
+      "source_url": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+      "published": "2026-11-10",
+      "excerpt": "at 22:45 (alternatively given as 23:30) on 9 November, Harald Jäger, commander of the Bornholmer Straße border crossing, yielded, allowing guards to open the checkpoints",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
