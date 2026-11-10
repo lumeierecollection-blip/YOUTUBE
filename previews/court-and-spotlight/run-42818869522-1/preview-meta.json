@@ -2,9 +2,9 @@
   "channel": "court-and-spotlight",
   "production_run": "run-42818869522-1",
   "agent": "agent-court-and-spotlight",
-  "stage": "qa_passed",
+  "stage": "preview_ready",
   "status": "ok",
-  "timestamp": "2026-11-10T13:02:22.965Z",
+  "timestamp": "2026-11-10T13:02:25.299Z",
   "branch": "preview/court-and-spotlight-grammy-2",
   "commit": "a8afd29baade80820ab971ee5d926030276e65fd",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42818869522#artifacts"
