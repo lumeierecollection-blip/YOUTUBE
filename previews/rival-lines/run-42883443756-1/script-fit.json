@@ -1,0 +1,78 @@
+{
+  "measured_wpm": 162.2,
+  "calibration_seconds": 15.168,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "Is Lionel Messi the greatest of all time?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "the question the video leaves with the viewer"
+    },
+    {
+      "text": "Start with the awards: a record eight Ballons d'Or.",
+      "scene": 1,
+      "claim_ids": [
+        "W2"
+      ]
+    },
+    {
+      "text": "And six European Golden Shoes.",
+      "scene": 2,
+      "claim_ids": [
+        "W8"
+      ]
+    },
+    {
+      "text": "Four hundred and seventy-four La Liga goals, a record, and seventy-three in a single season.",
+      "scene": 3,
+      "claim_ids": [
+        "W4",
+        "T1"
+      ]
+    },
+    {
+      "text": "Two trebles with Barcelona, in 2009 and 2015.",
+      "scene": 4,
+      "claim_ids": [
+        "W3",
+        "W7"
+      ]
+    },
+    {
+      "text": "In 2022, he led Argentina to the World Cup.",
+      "scene": 5,
+      "claim_ids": [
+        "W5"
+      ]
+    },
+    {
+      "text": "In sampled matches, his key passes per ninety minutes more than doubled.",
+      "scene": 6,
+      "claim_ids": [
+        "D2"
+      ]
+    },
+    {
+      "text": "The greatest of all time: you decide.",
+      "scene": 7,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "hands the question back to the viewer"
+    }
+  ],
+  "words": 73,
+  "estimated_seconds": 31.1,
+  "inside_window": false,
+  "kept": [
+    "shoes",
+    "creator",
+    "hook",
+    "ballon",
+    "goals",
+    "trebles",
+    "worldcup",
+    "close"
+  ]
+}
