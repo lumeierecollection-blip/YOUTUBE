@@ -1,0 +1,5 @@
+Error: spelling out did not help enough to tell this story (best gain 4, total gain 4)
+    at plan (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/spellout.mjs:56:44)
+    at Module.spelloutPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/spellout-preview.mjs:18:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

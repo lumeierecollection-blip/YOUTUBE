@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-42863062554-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-10T17:26:45.125Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-10T17:26:47.213Z",
   "branch": "preview/ai-tested-spellout",
   "commit": "fb27d6f61a58dac594ad90088a62defcba4e162e",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42863062554#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42863062554#artifacts",
+  "error": "spelling out did not help enough to tell this story (best gain 4, total gain 4)"
 }
