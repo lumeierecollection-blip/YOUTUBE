@@ -18,8 +18,7 @@ export default async function spelloutPreview({ key, runId, tools }) {
   const earlier = (() => {
     const g = (...a) => spawnSync("git", a, { encoding: "utf8", maxBuffer: 2e8 });
     if (g("fetch", "--depth=1", "origin", "automation/previews").status !== 0) return null;
-    const files = g("ls-tree", "-r", "--name-only", "FETCH_HEAD", "previews/ai-tested").stdout.split("
-").filter((f) => f.endsWith("/experiment.json")).sort().reverse();
+    const files = g("ls-tree", "-r", "--name-only", "FETCH_HEAD", "previews/ai-tested").stdout.split(/\r?\n/).filter((f) => f.endsWith("/experiment.json")).sort().reverse();
     for (const f of files) { try { const j = JSON.parse(g("show", `FETCH_HEAD:${f}`).stdout); if (j.date === today && j.models?.length >= 2 && j.models[0].spelled_answers && j.tokens) return { ...j, run_url: j.run_url || `https://github.com/${repo}/actions/runs/${f.match(/run-([0-9]+)-/)[1]}`, reused_from: f }; } catch {} }
     return null;
   })();
