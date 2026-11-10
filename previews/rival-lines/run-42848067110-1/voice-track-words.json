@@ -1,0 +1,404 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (52/60 words matched)",
+ "voice": "Sulafat",
+ "words": [
+  {
+   "text": "Lionel",
+   "start": 0.84,
+   "end": 0.92,
+   "sentence": 0
+  },
+  {
+   "text": "Messi",
+   "start": 0.84,
+   "end": 1.1,
+   "sentence": 0
+  },
+  {
+   "text": "is",
+   "start": 1.1,
+   "end": 1.68,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.68,
+   "end": 1.8,
+   "sentence": 0
+  },
+  {
+   "text": "most",
+   "start": 1.8,
+   "end": 2.12,
+   "sentence": 0
+  },
+  {
+   "text": "decorated",
+   "start": 2.12,
+   "end": 2.48,
+   "sentence": 0
+  },
+  {
+   "text": "player",
+   "start": 2.48,
+   "end": 3.0,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 3.0,
+   "end": 3.36,
+   "sentence": 0
+  },
+  {
+   "text": "football",
+   "start": 3.36,
+   "end": 3.64,
+   "sentence": 0
+  },
+  {
+   "text": "history",
+   "start": 3.64,
+   "end": 4.22,
+   "sentence": 0
+  },
+  {
+   "text": "He",
+   "start": 5.0,
+   "end": 5.05,
+   "sentence": 1
+  },
+  {
+   "text": "debuted",
+   "start": 5.0,
+   "end": 5.34,
+   "sentence": 1
+  },
+  {
+   "text": "for",
+   "start": 5.34,
+   "end": 5.66,
+   "sentence": 1
+  },
+  {
+   "text": "Barcelona",
+   "start": 5.66,
+   "end": 6.08,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 6.08,
+   "end": 6.46,
+   "sentence": 1
+  },
+  {
+   "text": "2004",
+   "start": 6.46,
+   "end": 7.28,
+   "sentence": 1
+  },
+  {
+   "text": "aged",
+   "start": 7.28,
+   "end": 7.867,
+   "sentence": 1
+  },
+  {
+   "text": "seventeen",
+   "start": 7.867,
+   "end": 8.453,
+   "sentence": 1
+  },
+  {
+   "text": "By",
+   "start": 9.04,
+   "end": 9.22,
+   "sentence": 2
+  },
+  {
+   "text": "2009",
+   "start": 9.22,
+   "end": 9.76,
+   "sentence": 2
+  },
+  {
+   "text": "he",
+   "start": 10.34,
+   "end": 10.46,
+   "sentence": 2
+  },
+  {
+   "text": "had",
+   "start": 10.46,
+   "end": 10.62,
+   "sentence": 2
+  },
+  {
+   "text": "helped",
+   "start": 10.62,
+   "end": 10.82,
+   "sentence": 2
+  },
+  {
+   "text": "win",
+   "start": 10.82,
+   "end": 11.08,
+   "sentence": 2
+  },
+  {
+   "text": "Spain's",
+   "start": 11.08,
+   "end": 11.68,
+   "sentence": 2
+  },
+  {
+   "text": "first",
+   "start": 11.68,
+   "end": 12.06,
+   "sentence": 2
+  },
+  {
+   "text": "treble",
+   "start": 12.06,
+   "end": 12.64,
+   "sentence": 2
+  },
+  {
+   "text": "In",
+   "start": 13.18,
+   "end": 13.23,
+   "sentence": 3
+  },
+  {
+   "text": "sampled",
+   "start": 13.2,
+   "end": 13.44,
+   "sentence": 3
+  },
+  {
+   "text": "matches",
+   "start": 13.44,
+   "end": 13.86,
+   "sentence": 3
+  },
+  {
+   "text": "his",
+   "start": 13.86,
+   "end": 14.13,
+   "sentence": 3
+  },
+  {
+   "text": "shooting",
+   "start": 14.4,
+   "end": 14.68,
+   "sentence": 3
+  },
+  {
+   "text": "barely",
+   "start": 14.68,
+   "end": 15.16,
+   "sentence": 3
+  },
+  {
+   "text": "changed",
+   "start": 15.16,
+   "end": 15.66,
+   "sentence": 3
+  },
+  {
+   "text": "But",
+   "start": 16.24,
+   "end": 16.34,
+   "sentence": 4
+  },
+  {
+   "text": "his",
+   "start": 16.34,
+   "end": 16.43,
+   "sentence": 4
+  },
+  {
+   "text": "key",
+   "start": 16.52,
+   "end": 16.82,
+   "sentence": 4
+  },
+  {
+   "text": "passes",
+   "start": 16.82,
+   "end": 17.24,
+   "sentence": 4
+  },
+  {
+   "text": "per",
+   "start": 17.24,
+   "end": 17.56,
+   "sentence": 4
+  },
+  {
+   "text": "ninety",
+   "start": 17.56,
+   "end": 17.7,
+   "sentence": 4
+  },
+  {
+   "text": "minutes",
+   "start": 17.84,
+   "end": 18.22,
+   "sentence": 4
+  },
+  {
+   "text": "more",
+   "start": 18.22,
+   "end": 18.6,
+   "sentence": 4
+  },
+  {
+   "text": "than",
+   "start": 18.6,
+   "end": 18.84,
+   "sentence": 4
+  },
+  {
+   "text": "doubled",
+   "start": 18.84,
+   "end": 19.3,
+   "sentence": 4
+  },
+  {
+   "text": "Eight",
+   "start": 20.0,
+   "end": 20.1,
+   "sentence": 5
+  },
+  {
+   "text": "Ballons",
+   "start": 20.1,
+   "end": 20.38,
+   "sentence": 5
+  },
+  {
+   "text": "d'Or",
+   "start": 20.38,
+   "end": 20.66,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 20.94,
+   "end": 21.38,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 21.38,
+   "end": 21.5,
+   "sentence": 5
+  },
+  {
+   "text": "2022",
+   "start": 21.5,
+   "end": 22.08,
+   "sentence": 5
+  },
+  {
+   "text": "World",
+   "start": 22.08,
+   "end": 22.8,
+   "sentence": 5
+  },
+  {
+   "text": "Cup",
+   "start": 22.8,
+   "end": 23.2,
+   "sentence": 5
+  },
+  {
+   "text": "In",
+   "start": 23.7,
+   "end": 23.78,
+   "sentence": 6
+  },
+  {
+   "text": "this",
+   "start": 23.78,
+   "end": 23.96,
+   "sentence": 6
+  },
+  {
+   "text": "sample",
+   "start": 23.96,
+   "end": 24.28,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 24.64,
+   "end": 24.76,
+   "sentence": 6
+  },
+  {
+   "text": "finisher",
+   "start": 24.76,
+   "end": 25.28,
+   "sentence": 6
+  },
+  {
+   "text": "became",
+   "start": 25.28,
+   "end": 25.64,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 25.64,
+   "end": 26.2,
+   "sentence": 6
+  },
+  {
+   "text": "creator",
+   "start": 26.2,
+   "end": 26.48,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Lionel Messi is the most decorated player in football history.",
+   "start": 0.84,
+   "end": 4.22
+  },
+  {
+   "text": "He debuted for Barcelona in 2004, aged seventeen.",
+   "start": 5.0,
+   "end": 8.453
+  },
+  {
+   "text": "By 2009, he had helped win Spain's first treble.",
+   "start": 9.04,
+   "end": 12.64
+  },
+  {
+   "text": "In sampled matches, his shooting barely changed.",
+   "start": 13.18,
+   "end": 15.66
+  },
+  {
+   "text": "But his key passes per ninety minutes more than doubled.",
+   "start": 16.24,
+   "end": 19.3
+  },
+  {
+   "text": "Eight Ballons d'Or, and the 2022 World Cup.",
+   "start": 20.0,
+   "end": 23.2
+  },
+  {
+   "text": "In this sample, the finisher became the creator.",
+   "start": 23.7,
+   "end": 26.48
+  }
+ ]
+}
