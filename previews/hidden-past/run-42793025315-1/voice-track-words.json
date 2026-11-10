@@ -1,0 +1,416 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (58/62 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "Berlin",
+   "start": 0.38,
+   "end": 0.64,
+   "sentence": 0
+  },
+  {
+   "text": "Wall",
+   "start": 0.64,
+   "end": 1.08,
+   "sentence": 0
+  },
+  {
+   "text": "opened",
+   "start": 1.08,
+   "end": 1.7,
+   "sentence": 0
+  },
+  {
+   "text": "after",
+   "start": 1.7,
+   "end": 2.12,
+   "sentence": 0
+  },
+  {
+   "text": "an",
+   "start": 2.12,
+   "end": 2.3,
+   "sentence": 0
+  },
+  {
+   "text": "announcement",
+   "start": 2.3,
+   "end": 2.58,
+   "sentence": 0
+  },
+  {
+   "text": "came",
+   "start": 2.58,
+   "end": 3.16,
+   "sentence": 0
+  },
+  {
+   "text": "too",
+   "start": 3.16,
+   "end": 3.46,
+   "sentence": 0
+  },
+  {
+   "text": "early",
+   "start": 3.46,
+   "end": 3.82,
+   "sentence": 0
+  },
+  {
+   "text": "He",
+   "start": 4.48,
+   "end": 4.53,
+   "sentence": 1
+  },
+  {
+   "text": "spoke",
+   "start": 4.48,
+   "end": 4.68,
+   "sentence": 1
+  },
+  {
+   "text": "live",
+   "start": 4.68,
+   "end": 5.0,
+   "sentence": 1
+  },
+  {
+   "text": "on",
+   "start": 5.0,
+   "end": 5.28,
+   "sentence": 1
+  },
+  {
+   "text": "East",
+   "start": 5.28,
+   "end": 5.5,
+   "sentence": 1
+  },
+  {
+   "text": "German",
+   "start": 5.5,
+   "end": 5.8,
+   "sentence": 1
+  },
+  {
+   "text": "television",
+   "start": 5.8,
+   "end": 6.16,
+   "sentence": 1
+  },
+  {
+   "text": "9",
+   "start": 6.76,
+   "end": 6.86,
+   "sentence": 1
+  },
+  {
+   "text": "November",
+   "start": 6.86,
+   "end": 7.24,
+   "sentence": 1
+  },
+  {
+   "text": "1989",
+   "start": 7.24,
+   "end": 8.12,
+   "sentence": 1
+  },
+  {
+   "text": "Spokesman",
+   "start": 9.04,
+   "end": 9.32,
+   "sentence": 2
+  },
+  {
+   "text": "G\u00fcnter",
+   "start": 9.32,
+   "end": 9.66,
+   "sentence": 2
+  },
+  {
+   "text": "Schabowski",
+   "start": 9.66,
+   "end": 10.0,
+   "sentence": 2
+  },
+  {
+   "text": "had",
+   "start": 10.34,
+   "end": 10.74,
+   "sentence": 2
+  },
+  {
+   "text": "just",
+   "start": 10.74,
+   "end": 11.04,
+   "sentence": 2
+  },
+  {
+   "text": "been",
+   "start": 11.04,
+   "end": 11.24,
+   "sentence": 2
+  },
+  {
+   "text": "handed",
+   "start": 11.24,
+   "end": 11.46,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 11.46,
+   "end": 11.66,
+   "sentence": 2
+  },
+  {
+   "text": "note",
+   "start": 11.66,
+   "end": 11.86,
+   "sentence": 2
+  },
+  {
+   "text": "Asked",
+   "start": 12.44,
+   "end": 12.64,
+   "sentence": 3
+  },
+  {
+   "text": "when",
+   "start": 12.64,
+   "end": 12.92,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 12.92,
+   "end": 13.0,
+   "sentence": 3
+  },
+  {
+   "text": "began",
+   "start": 13.0,
+   "end": 13.24,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 13.7,
+   "end": 13.76,
+   "sentence": 3
+  },
+  {
+   "text": "said",
+   "start": 13.76,
+   "end": 13.98,
+   "sentence": 3
+  },
+  {
+   "text": "immediately",
+   "start": 14.34,
+   "end": 14.68,
+   "sentence": 3
+  },
+  {
+   "text": "without",
+   "start": 15.3,
+   "end": 15.42,
+   "sentence": 3
+  },
+  {
+   "text": "delay",
+   "start": 15.42,
+   "end": 15.92,
+   "sentence": 3
+  },
+  {
+   "text": "West",
+   "start": 16.74,
+   "end": 16.8,
+   "sentence": 4
+  },
+  {
+   "text": "German",
+   "start": 16.8,
+   "end": 17.12,
+   "sentence": 4
+  },
+  {
+   "text": "news",
+   "start": 17.12,
+   "end": 17.42,
+   "sentence": 4
+  },
+  {
+   "text": "told",
+   "start": 17.42,
+   "end": 17.78,
+   "sentence": 4
+  },
+  {
+   "text": "viewers",
+   "start": 17.78,
+   "end": 18.14,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 18.14,
+   "end": 18.38,
+   "sentence": 4
+  },
+  {
+   "text": "borders",
+   "start": 18.38,
+   "end": 18.68,
+   "sentence": 4
+  },
+  {
+   "text": "were",
+   "start": 18.68,
+   "end": 18.98,
+   "sentence": 4
+  },
+  {
+   "text": "open",
+   "start": 18.98,
+   "end": 19.28,
+   "sentence": 4
+  },
+  {
+   "text": "That",
+   "start": 19.96,
+   "end": 20.01,
+   "sentence": 5
+  },
+  {
+   "text": "night",
+   "start": 20.0,
+   "end": 20.26,
+   "sentence": 5
+  },
+  {
+   "text": "guards",
+   "start": 20.64,
+   "end": 20.78,
+   "sentence": 5
+  },
+  {
+   "text": "at",
+   "start": 20.78,
+   "end": 21.04,
+   "sentence": 5
+  },
+  {
+   "text": "Bornholmer",
+   "start": 21.04,
+   "end": 21.353,
+   "sentence": 5
+  },
+  {
+   "text": "Stra\u00dfe",
+   "start": 21.353,
+   "end": 21.667,
+   "sentence": 5
+  },
+  {
+   "text": "let",
+   "start": 21.98,
+   "end": 22.32,
+   "sentence": 5
+  },
+  {
+   "text": "people",
+   "start": 22.32,
+   "end": 22.58,
+   "sentence": 5
+  },
+  {
+   "text": "through",
+   "start": 22.58,
+   "end": 22.92,
+   "sentence": 5
+  },
+  {
+   "text": "One",
+   "start": 23.7,
+   "end": 23.92,
+   "sentence": 6
+  },
+  {
+   "text": "unprepared",
+   "start": 23.92,
+   "end": 24.54,
+   "sentence": 6
+  },
+  {
+   "text": "answer",
+   "start": 24.54,
+   "end": 25.28,
+   "sentence": 6
+  },
+  {
+   "text": "opened",
+   "start": 25.28,
+   "end": 25.86,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 25.86,
+   "end": 26.14,
+   "sentence": 6
+  },
+  {
+   "text": "checkpoints",
+   "start": 26.14,
+   "end": 26.32,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The Berlin Wall opened after an announcement came too early.",
+   "start": 0.0,
+   "end": 3.82
+  },
+  {
+   "text": "He spoke live on East German television, 9 November 1989.",
+   "start": 4.48,
+   "end": 8.12
+  },
+  {
+   "text": "Spokesman G\u00fcnter Schabowski had just been handed a note.",
+   "start": 9.04,
+   "end": 11.86
+  },
+  {
+   "text": "Asked when it began, he said: immediately, without delay.",
+   "start": 12.44,
+   "end": 15.92
+  },
+  {
+   "text": "West German news told viewers the borders were open.",
+   "start": 16.74,
+   "end": 19.28
+  },
+  {
+   "text": "That night, guards at Bornholmer Stra\u00dfe let people through.",
+   "start": 19.96,
+   "end": 22.92
+  },
+  {
+   "text": "One unprepared answer opened the checkpoints.",
+   "start": 23.7,
+   "end": 26.32
+  }
+ ]
+}
