@@ -2,12 +2,10 @@
   "channel": "hidden-past",
   "production_run": "run-42803197467-1",
   "agent": "agent-hidden-past",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T10:57:14.435Z",
+  "timestamp": "2026-11-10T10:57:38.284Z",
   "branch": "preview/hidden-past-vox-berlin",
   "commit": "4971b0b6c7eda2ee889c7cd14245ed2a7e2d5652",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42803197467#artifacts",
-  "narration_s": 28.2,
-  "engine": "gemini:Rasalgethi"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42803197467#artifacts"
 }

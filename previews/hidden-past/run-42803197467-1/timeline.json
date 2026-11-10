@@ -1,0 +1,415 @@
+{
+  "scenes": [
+    {
+      "id": "s0",
+      "index": 0,
+      "from": 0,
+      "to": 292,
+      "start_s": 0,
+      "end_s": 9.733333333333333
+    },
+    {
+      "id": "s1",
+      "index": 1,
+      "from": 292,
+      "to": 402,
+      "start_s": 9.733333333333333,
+      "end_s": 13.4
+    },
+    {
+      "id": "s2",
+      "index": 2,
+      "from": 402,
+      "to": 631,
+      "start_s": 13.4,
+      "end_s": 21.033333333333335
+    },
+    {
+      "id": "s3",
+      "index": 3,
+      "from": 631,
+      "to": 749,
+      "start_s": 21.033333333333335,
+      "end_s": 24.966666666666665
+    },
+    {
+      "id": "s4",
+      "index": 4,
+      "from": 749,
+      "to": 860,
+      "start_s": 24.966666666666665,
+      "end_s": 28.666666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "The Berlin Wall opened after",
+      "from": 0,
+      "to": 62,
+      "words": [
+        {
+          "text": "The",
+          "from": 0
+        },
+        {
+          "text": "Berlin",
+          "from": 11
+        },
+        {
+          "text": "Wall",
+          "from": 20
+        },
+        {
+          "text": "opened",
+          "from": 32
+        },
+        {
+          "text": "after",
+          "from": 49
+        }
+      ]
+    },
+    {
+      "text": "an announcement came too early",
+      "from": 62,
+      "to": 122,
+      "words": [
+        {
+          "text": "an",
+          "from": 62
+        },
+        {
+          "text": "announcement",
+          "from": 70
+        },
+        {
+          "text": "came",
+          "from": 78
+        },
+        {
+          "text": "too",
+          "from": 94
+        },
+        {
+          "text": "early",
+          "from": 106
+        }
+      ]
+    },
+    {
+      "text": "He spoke live on East",
+      "from": 142,
+      "to": 179,
+      "words": [
+        {
+          "text": "He",
+          "from": 142
+        },
+        {
+          "text": "spoke",
+          "from": 143
+        },
+        {
+          "text": "live",
+          "from": 149
+        },
+        {
+          "text": "on",
+          "from": 160
+        },
+        {
+          "text": "East",
+          "from": 172
+        }
+      ]
+    },
+    {
+      "text": "German television 9 November 1989",
+      "from": 179,
+      "to": 270,
+      "words": [
+        {
+          "text": "German",
+          "from": 179
+        },
+        {
+          "text": "television",
+          "from": 188
+        },
+        {
+          "text": "9",
+          "from": 200
+        },
+        {
+          "text": "November",
+          "from": 220
+        },
+        {
+          "text": "1989",
+          "from": 230
+        }
+      ]
+    },
+    {
+      "text": "Spokesman Günter Schabowski",
+      "from": 292,
+      "to": 325,
+      "words": [
+        {
+          "text": "Spokesman",
+          "from": 292
+        },
+        {
+          "text": "Günter",
+          "from": 301
+        },
+        {
+          "text": "Schabowski",
+          "from": 311
+        }
+      ]
+    },
+    {
+      "text": "had just been handed a",
+      "from": 333,
+      "to": 373,
+      "words": [
+        {
+          "text": "had",
+          "from": 333
+        },
+        {
+          "text": "just",
+          "from": 343
+        },
+        {
+          "text": "been",
+          "from": 352
+        },
+        {
+          "text": "handed",
+          "from": 358
+        },
+        {
+          "text": "a",
+          "from": 366
+        }
+      ]
+    },
+    {
+      "text": "note",
+      "from": 373,
+      "to": 384,
+      "words": [
+        {
+          "text": "note",
+          "from": 373
+        }
+      ]
+    },
+    {
+      "text": "Asked when it began",
+      "from": 402,
+      "to": 430,
+      "words": [
+        {
+          "text": "Asked",
+          "from": 402
+        },
+        {
+          "text": "when",
+          "from": 405
+        },
+        {
+          "text": "it",
+          "from": 416
+        },
+        {
+          "text": "began",
+          "from": 419
+        }
+      ]
+    },
+    {
+      "text": "he said",
+      "from": 438,
+      "to": 449,
+      "words": [
+        {
+          "text": "he",
+          "from": 438
+        },
+        {
+          "text": "said",
+          "from": 439
+        }
+      ]
+    },
+    {
+      "text": "immediately without delay",
+      "from": 458,
+      "to": 506,
+      "words": [
+        {
+          "text": "immediately",
+          "from": 458
+        },
+        {
+          "text": "without",
+          "from": 469
+        },
+        {
+          "text": "delay",
+          "from": 487
+        }
+      ]
+    },
+    {
+      "text": "West German news told viewers",
+      "from": 530,
+      "to": 571,
+      "words": [
+        {
+          "text": "West",
+          "from": 530
+        },
+        {
+          "text": "German",
+          "from": 532
+        },
+        {
+          "text": "news",
+          "from": 542
+        },
+        {
+          "text": "told",
+          "from": 551
+        },
+        {
+          "text": "viewers",
+          "from": 561
+        }
+      ]
+    },
+    {
+      "text": "the borders were open",
+      "from": 571,
+      "to": 610,
+      "words": [
+        {
+          "text": "the",
+          "from": 571
+        },
+        {
+          "text": "borders",
+          "from": 579
+        },
+        {
+          "text": "were",
+          "from": 588
+        },
+        {
+          "text": "open",
+          "from": 598
+        }
+      ]
+    },
+    {
+      "text": "That night guards at Bornholmer",
+      "from": 631,
+      "to": 677,
+      "words": [
+        {
+          "text": "That",
+          "from": 631
+        },
+        {
+          "text": "night",
+          "from": 632
+        },
+        {
+          "text": "guards",
+          "from": 650
+        },
+        {
+          "text": "at",
+          "from": 654
+        },
+        {
+          "text": "Bornholmer",
+          "from": 665
+        }
+      ]
+    },
+    {
+      "text": "Straße",
+      "from": 677,
+      "to": 691,
+      "words": [
+        {
+          "text": "Straße",
+          "from": 677
+        }
+      ]
+    },
+    {
+      "text": "let people through",
+      "from": 699,
+      "to": 727,
+      "words": [
+        {
+          "text": "let",
+          "from": 699
+        },
+        {
+          "text": "people",
+          "from": 706
+        },
+        {
+          "text": "through",
+          "from": 713
+        }
+      ]
+    },
+    {
+      "text": "One unprepared answer opened the",
+      "from": 749,
+      "to": 816,
+      "words": [
+        {
+          "text": "One",
+          "from": 749
+        },
+        {
+          "text": "unprepared",
+          "from": 756
+        },
+        {
+          "text": "answer",
+          "from": 771
+        },
+        {
+          "text": "opened",
+          "from": 790
+        },
+        {
+          "text": "the",
+          "from": 805
+        }
+      ]
+    },
+    {
+      "text": "checkpoints",
+      "from": 816,
+      "to": 824,
+      "words": [
+        {
+          "text": "checkpoints",
+          "from": 816
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 860,
+  "duration_s": 28.666666666666668
+}
