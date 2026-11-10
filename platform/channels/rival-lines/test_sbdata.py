@@ -41,6 +41,15 @@ class SbDataTests(unittest.TestCase):
         self.assertEqual(ys, sorted(ys))
         self.assertAlmostEqual(ys[-1], 0.5)
 
+    def test_display_names_keep_surname_particles(self):
+        self.assertEqual(sbdata.compress_name("Lionel Messi"), "Messi")
+        self.assertEqual(sbdata.compress_name("Alexis Mac Allister"), "Mac Allister")
+        self.assertEqual(sbdata.compress_name("Rodrigo De Paul"), "De Paul")
+        self.assertEqual(sbdata.compress_name("Hugo Lloris"), "Lloris")
+        self.assertEqual(sbdata.compress_name("Neymar"), "Neymar")
+        names = sbdata.display_names([{"lineup": [{"player_name": "Lionel Andres Messi Cuccittini", "player_nickname": "Lionel Messi"}]}])
+        self.assertEqual(names["Lionel Andres Messi Cuccittini"], "Messi")
+
 
 if __name__ == "__main__":
     unittest.main()

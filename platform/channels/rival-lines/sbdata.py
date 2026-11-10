@@ -54,6 +54,29 @@ def starting_xi(events, team):
     raise ValueError(f"no Starting XI for {team}")
 
 
+PARTICLES = {"de", "di", "da", "dos", "mac", "mc", "van", "von", "le", "la", "el", "al"}
+
+
+def compress_name(nickname):
+    """Display name from StatsBomb's own nickname: drop the first name, keep a surname particle ("Di Maria", "Mac Allister")."""
+    parts = nickname.replace(" ", " ").split()
+    if len(parts) <= 1:
+        return nickname
+    rest = parts[1:]
+    if len(rest) == 1:
+        return rest[0]
+    return " ".join(rest) if rest[0].lower() in PARTICLES else rest[-1]
+
+
+def display_names(lineups):
+    """Map of full recorded player name -> short display name, from the lineup file's nicknames."""
+    out = {}
+    for team in lineups:
+        for p in team["lineup"]:
+            out[p["player_name"]] = compress_name(p.get("player_nickname") or p["player_name"])
+    return out
+
+
 def short_name(full):
     """Display name: the last word of a name, except for known compound forms, which come from the recorded name only."""
     parts = full.replace(" ", " ").split()

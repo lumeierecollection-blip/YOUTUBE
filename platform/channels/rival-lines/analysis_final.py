@@ -23,8 +23,11 @@ PITCH = dict(pitch_type="statsbomb", pitch_color="#1F5B3F", line_color="#E9F1EC"
 SHADOW = [pe.withStroke(linewidth=3, foreground="#0B1B33")]
 
 
+NAMES = {}
+
+
 def last(name):
-    return sbdata.short_name(name)
+    return NAMES.get(name) or sbdata.short_name(name)
 
 
 def pitch_fig():
@@ -75,6 +78,7 @@ def shotmap(shot_list, out):
 def main(out_dir, cache):
     os.makedirs(out_dir, exist_ok=True)
     events = sbdata.get(f"events/{MATCH_ID}.json", cache)
+    NAMES.update(sbdata.display_names(sbdata.get(f"lineups/{MATCH_ID}.json", cache)))
     matches = sbdata.get("matches/43/106.json", cache)
     m = next(x for x in matches if x["match_id"] == MATCH_ID)
     xi = {ARG: formation(events, ARG, f"{out_dir}/formation_arg.png"), FRA: formation(events, FRA, f"{out_dir}/formation_fra.png")}
