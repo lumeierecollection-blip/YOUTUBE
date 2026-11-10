@@ -1,0 +1,59 @@
+{
+  "topic_slug": "wmo-2026-global-climate-extremes-el-nino",
+  "strongest_angle": "The World Meteorological Organization documented extreme global temperatures, melting ice, and rising sea levels in Antalya, Türkiye in November 2026, driven by an intensifying El Niño event.",
+  "key_facts": [
+    {
+      "fact": "The World Meteorological Organization published a report in Antalya, Türkiye in November 2026 detailing extreme global temperatures, melting ice, and rising sea levels.",
+      "source_url": "https://wmo.int/news/media-centre/state-of-climate-2026-gives-new-meaning-phrase-charts",
+      "source_name": "World Meteorological Organization",
+      "confidence": "high"
+    },
+    {
+      "fact": "The global average surface temperature for January to September 2026 was 1.47 degrees Celsius above the pre-industrial average according to the World Meteorological Organization.",
+      "source_url": "https://www.climatecentre.org/18007/wmo-state-of-the-climate-in-2026-gives-new-meaning-to-phrase-off-the-charts",
+      "source_name": "Red Cross Red Crescent Climate Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ocean heat content in the upper 2000 meters of the ocean in 2025 exceeded the 2024 value by 19 zettajoules.",
+      "source_url": "https://www.tralac.org/documents/resources/external-relations/united-nations/cop31/8123-state-of-the-climate-update-for-cop31-wmo/file.html",
+      "source_name": "Tralac",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Temperature anomaly January to September 2026",
+      "value": 1.47,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.climatecentre.org/18007/wmo-state-of-the-climate-in-2026-gives-new-meaning-to-phrase-off-the-charts"
+    },
+    {
+      "label": "Ocean depth for heat content measurement",
+      "value": 2000,
+      "unit": "meters",
+      "source_url": "https://www.tralac.org/documents/resources/external-relations/united-nations/cop31/8123-state-of-the-climate-update-for-cop31-wmo/file.html"
+    },
+    {
+      "label": "Ocean heat content increase",
+      "value": 19,
+      "unit": "zettajoules",
+      "source_url": "https://www.tralac.org/documents/resources/external-relations/united-nations/cop31/8123-state-of-the-climate-update-for-cop31-wmo/file.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "World Meteorological Organization",
+      "kind": "organization"
+    },
+    {
+      "name": "Antalya",
+      "kind": "place"
+    },
+    {
+      "name": "Türkiye",
+      "kind": "place"
+    }
+  ]
+}
