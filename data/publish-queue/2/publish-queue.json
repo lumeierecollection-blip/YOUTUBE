@@ -238,5 +238,17 @@
     "cancelled": true,
     "source_file": "front-autopilot-agent-pricing-surge-november-2026-shorts-shorts-2026-11-09.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "OdXfJiWkAjs",
+    "channel_id": "2",
+    "title": "Google Gemini 4 Carbon API Pricing and Token Rates Released",
+    "uploaded_at": "2026-11-10T17:17:51.923Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-10T18:17:51.923Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "google-gemini-4-carbon-api-pricing-breakdown-shorts-shorts-2026-11-10.mp4",
+    "source_queue": "approved"
   }
 ]
