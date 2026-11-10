@@ -2882,9 +2882,14 @@
           "topic": "ZF 30000 RPM EV Motor Design and 18 to 1 Gearing Reduction",
           "slug": "zf-30000-rpm-ev-motor-design",
           "reserved_at": "2026-11-09T19:02:04.263Z"
+        },
+        {
+          "topic": "MIT Fabric Molds and Material-Saving Concrete Beams with 40 Percent Mass Reduction",
+          "slug": "mit-fabric-molds-concrete-beams-mass-reduction",
+          "reserved_at": "2026-11-10T16:50:03.047Z"
         }
       ],
-      "last_generated": "2026-11-09T19:02:04.263Z"
+      "last_generated": "2026-11-10T16:50:03.048Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
