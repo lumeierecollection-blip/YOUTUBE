@@ -1,0 +1,122 @@
+[
+  {
+    "claim_id": "H1",
+    "claim": "In 1981 four hippos, three females and one male, were imported by Pablo Escobar to his private menagerie at Hacienda Nápoles.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "In 1981, four hippos, three females and one male, were imported by Escobar to his private menagerie at his residence in Hacienda N",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H2",
+    "claim": "Hacienda Nápoles is located between the cities of Medellín and Bogotá.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "located between the cities of Medell",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H3",
+    "claim": "After Escobar's 1993 death the zoo was unofficially closed, but the hippos later escaped the residence and spread out to nearby areas.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "After Escobar's 1993 death, the zoo was unofficially closed, but the hippos would later escape the residence and spread out to nearby areas.",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H4",
+    "claim": "By 2007 the hippos had multiplied to 16.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "By 2007, the animals had multiplied to 16",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H5",
+    "claim": "In early 2014 there were reported to be 40 hippos in Puerto Triunfo, Antioquia.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "In early 2014, there were reported to be 40 hippopotamuses in Puerto Triunfo, Antioquia.",
+    "confidence": "high",
+    "context": "A reported figure, not a census.",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H6",
+    "claim": "As of April 2026 the population was around 200.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "As of April 2026, the population was around 200",
+    "confidence": "high",
+    "context": "An estimate: the article gives earlier counts as ranges.",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H7",
+    "claim": "On 13 April 2026 Colombia's Ministry of Environment approved the euthanasia of more than 80 hippos.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "On April 13, 2026, the Colombian Ministry of Environment approved the euthanasia of the more than 80 hippos",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H8",
+    "claim": "The Indian billionaire Anant Ambani offered transportation and shelter in India for the animals.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "Indian billionaire Anant Ambani offered transportation and shelter in India for the animals",
+    "confidence": "high",
+    "context": "",
+    "contradictory_evidence": [],
+    "editorial_status": "established_fact"
+  },
+  {
+    "claim_id": "H9",
+    "claim": "Most conservationists considered the hippos problematic and invasive in Colombia.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "most conservationists considered them problematic and invasive in Colombia",
+    "confidence": "high",
+    "context": "The article contrasts this with a minority view (H10).",
+    "contradictory_evidence": [],
+    "editorial_status": "later_interpretation"
+  },
+  {
+    "claim_id": "H10",
+    "claim": "Some ecologists have argued that the hippos should remain and might even have a positive effect on the local environment.",
+    "source_id": "wiki-hippos",
+    "source_url": "https://en.wikipedia.org/wiki/Hippopotamuses_in_Colombia",
+    "published": "2026-11-11",
+    "excerpt": "some ecologists have argued that the hippos should remain and might even have a positive effect on the local environment",
+    "confidence": "high",
+    "context": "A minority view, described in the article as contrasting with most conservationists.",
+    "contradictory_evidence": [],
+    "editorial_status": "later_interpretation"
+  }
+]
