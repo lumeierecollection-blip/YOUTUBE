@@ -1,0 +1,20 @@
+{
+  "places": [
+    {
+      "name": "Medellín",
+      "lat": 6.23083333,
+      "lon": -75.59055556
+    },
+    {
+      "name": "Hacienda Nápoles",
+      "lat": 5.91444444,
+      "lon": -74.72166667
+    },
+    {
+      "name": "Bogotá",
+      "lat": 4.71111111,
+      "lon": -74.07222222
+    }
+  ],
+  "source": "Natural Earth 1:50m (public domain); coordinates from English Wikipedia"
+}
