@@ -1,0 +1,42 @@
+{
+  "note": "Every photograph is a real Wikimedia Commons file with its licence recorded. Paper, tape, stamps and type are drawn by the renderer. Nothing is AI-generated.",
+  "assets": [
+    {
+      "id": "snipes-portrait",
+      "description": "Wesley Snipes speaking at the 2018 San Diego Comic-Con International in San Diego, California.",
+      "role": "snipes-portrait",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_by_Gage_Skidmore.jpg",
+      "licence": "CC BY-SA 3.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "author": "Gage Skidmore",
+      "original_credit": "Own work",
+      "date_taken": "2018-07-21",
+      "retrieved": "2026-11-10",
+      "claim": "K1",
+      "authenticity": "authentic",
+      "size_px": "1544x2312",
+      "credit_line": "Gage Skidmore, CC BY-SA 3.0, via Wikimedia Commons",
+      "bytes": 1536187,
+      "treatment": "photographic cut-out (rembg), torn-paper edge, monochrome; no pixel of the subject is generated."
+    },
+    {
+      "id": "snipes-booking",
+      "description": "Mug shot of Wesley Snipes .",
+      "role": "snipes-booking",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wesley_Snipes_mug_shot.jpg",
+      "licence": "Public domain",
+      "licence_url": "",
+      "author": "United States Marshals Service",
+      "original_credit": "http://www.thesmokinggun.com/mugshots/celebrity/hollywood/wesley-snipes",
+      "date_taken": "2008-04-24",
+      "retrieved": "2026-11-10",
+      "claim": "P1",
+      "authenticity": "authentic",
+      "size_px": "474x639",
+      "credit_line": "United States Marshals Service, Public domain, via Wikimedia Commons",
+      "bytes": 114803
+    }
+  ]
+}
