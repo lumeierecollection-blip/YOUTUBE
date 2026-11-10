@@ -1,0 +1,392 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (52/58 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "Will",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "an",
+   "start": 0.42,
+   "end": 0.56,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.56,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "model",
+   "start": 0.82,
+   "end": 1.3,
+   "sentence": 0
+  },
+  {
+   "text": "ever",
+   "start": 1.3,
+   "end": 1.68,
+   "sentence": 0
+  },
+  {
+   "text": "say",
+   "start": 1.68,
+   "end": 2.14,
+   "sentence": 0
+  },
+  {
+   "text": "I",
+   "start": 2.5,
+   "end": 2.56,
+   "sentence": 0
+  },
+  {
+   "text": "don't",
+   "start": 2.56,
+   "end": 2.84,
+   "sentence": 0
+  },
+  {
+   "text": "know",
+   "start": 2.84,
+   "end": 3.06,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 3.8,
+   "end": 3.85,
+   "sentence": 1
+  },
+  {
+   "text": "asked",
+   "start": 3.8,
+   "end": 3.98,
+   "sentence": 1
+  },
+  {
+   "text": "each",
+   "start": 3.98,
+   "end": 4.32,
+   "sentence": 1
+  },
+  {
+   "text": "model",
+   "start": 4.32,
+   "end": 4.68,
+   "sentence": 1
+  },
+  {
+   "text": "about",
+   "start": 4.68,
+   "end": 4.98,
+   "sentence": 1
+  },
+  {
+   "text": "ten",
+   "start": 4.98,
+   "end": 5.267,
+   "sentence": 1
+  },
+  {
+   "text": "made-up",
+   "start": 5.267,
+   "end": 5.553,
+   "sentence": 1
+  },
+  {
+   "text": "products",
+   "start": 5.84,
+   "end": 6.16,
+   "sentence": 1
+  },
+  {
+   "text": "Then",
+   "start": 6.72,
+   "end": 6.88,
+   "sentence": 2
+  },
+  {
+   "text": "ten",
+   "start": 6.88,
+   "end": 7.0,
+   "sentence": 2
+  },
+  {
+   "text": "real",
+   "start": 7.12,
+   "end": 7.38,
+   "sentence": 2
+  },
+  {
+   "text": "questions",
+   "start": 7.38,
+   "end": 7.8,
+   "sentence": 2
+  },
+  {
+   "text": "as",
+   "start": 7.8,
+   "end": 8.18,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 8.18,
+   "end": 8.26,
+   "sentence": 2
+  },
+  {
+   "text": "control",
+   "start": 8.26,
+   "end": 8.54,
+   "sentence": 2
+  },
+  {
+   "text": "Google's",
+   "start": 9.68,
+   "end": 9.94,
+   "sentence": 3
+  },
+  {
+   "text": "Gemini",
+   "start": 9.94,
+   "end": 10.32,
+   "sentence": 3
+  },
+  {
+   "text": "Flash",
+   "start": 10.32,
+   "end": 10.78,
+   "sentence": 3
+  },
+  {
+   "text": "admitted",
+   "start": 10.78,
+   "end": 11.34,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 11.34,
+   "end": 11.78,
+   "sentence": 3
+  },
+  {
+   "text": "on",
+   "start": 11.78,
+   "end": 11.94,
+   "sentence": 3
+  },
+  {
+   "text": "7",
+   "start": 11.94,
+   "end": 12.34,
+   "sentence": 3
+  },
+  {
+   "text": "of",
+   "start": 12.34,
+   "end": 12.56,
+   "sentence": 3
+  },
+  {
+   "text": "ten",
+   "start": 12.56,
+   "end": 13.14,
+   "sentence": 3
+  },
+  {
+   "text": "OpenAI's",
+   "start": 13.72,
+   "end": 14.14,
+   "sentence": 4
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 14.14,
+   "end": 14.74,
+   "sentence": 4
+  },
+  {
+   "text": "admitted",
+   "start": 15.34,
+   "end": 15.72,
+   "sentence": 4
+  },
+  {
+   "text": "it",
+   "start": 15.72,
+   "end": 16.14,
+   "sentence": 4
+  },
+  {
+   "text": "on",
+   "start": 16.14,
+   "end": 16.34,
+   "sentence": 4
+  },
+  {
+   "text": "2",
+   "start": 16.34,
+   "end": 16.68,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 16.68,
+   "end": 16.9,
+   "sentence": 4
+  },
+  {
+   "text": "ten",
+   "start": 16.9,
+   "end": 17.34,
+   "sentence": 4
+  },
+  {
+   "text": "It",
+   "start": 17.78,
+   "end": 17.83,
+   "sentence": 5
+  },
+  {
+   "text": "described",
+   "start": 17.8,
+   "end": 18.04,
+   "sentence": 5
+  },
+  {
+   "text": "a",
+   "start": 18.04,
+   "end": 18.32,
+   "sentence": 5
+  },
+  {
+   "text": "product",
+   "start": 18.32,
+   "end": 18.7,
+   "sentence": 5
+  },
+  {
+   "text": "that",
+   "start": 18.7,
+   "end": 18.9,
+   "sentence": 5
+  },
+  {
+   "text": "does",
+   "start": 18.9,
+   "end": 19.2,
+   "sentence": 5
+  },
+  {
+   "text": "not",
+   "start": 19.2,
+   "end": 19.54,
+   "sentence": 5
+  },
+  {
+   "text": "exist",
+   "start": 19.54,
+   "end": 20.04,
+   "sentence": 5
+  },
+  {
+   "text": "Sounding",
+   "start": 20.7,
+   "end": 21.26,
+   "sentence": 6
+  },
+  {
+   "text": "sure",
+   "start": 21.26,
+   "end": 21.58,
+   "sentence": 6
+  },
+  {
+   "text": "is",
+   "start": 21.58,
+   "end": 22.1,
+   "sentence": 6
+  },
+  {
+   "text": "not",
+   "start": 22.1,
+   "end": 22.46,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 22.46,
+   "end": 22.68,
+   "sentence": 6
+  },
+  {
+   "text": "same",
+   "start": 22.68,
+   "end": 22.96,
+   "sentence": 6
+  },
+  {
+   "text": "as",
+   "start": 22.96,
+   "end": 23.14,
+   "sentence": 6
+  },
+  {
+   "text": "being",
+   "start": 23.14,
+   "end": 23.32,
+   "sentence": 6
+  },
+  {
+   "text": "right",
+   "start": 23.32,
+   "end": 23.6,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Will an AI model ever say: I don't know?",
+   "start": 0.0,
+   "end": 3.06
+  },
+  {
+   "text": "We asked each model about ten made-up products.",
+   "start": 3.8,
+   "end": 6.16
+  },
+  {
+   "text": "Then ten real questions, as a control.",
+   "start": 6.72,
+   "end": 8.54
+  },
+  {
+   "text": "Google's Gemini Flash admitted it on 7 of ten.",
+   "start": 9.68,
+   "end": 13.14
+  },
+  {
+   "text": "OpenAI's GPT-OSS admitted it on 2 of ten.",
+   "start": 13.72,
+   "end": 17.34
+  },
+  {
+   "text": "It described a product that does not exist.",
+   "start": 17.78,
+   "end": 20.04
+  },
+  {
+   "text": "Sounding sure is not the same as being right.",
+   "start": 20.7,
+   "end": 23.6
+  }
+ ]
+}
