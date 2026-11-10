@@ -37,12 +37,12 @@ export const slots = [
   { id: "close", scene: 7, allow_no_claim: true, editorial: "hands the question back to the viewer", variants: [{ text: "The greatest of all time: you decide.", claim_ids: [] }] },
 ];
 export const scenes = [
-  { kind: "hook", treatment: "question-hook-with-real-shirt-photographs", objective: "Pose the question over a sticker portrait with real photographs of two Argentina shirts", background: "white editorial page, club blue" },
-  { kind: "trophies", treatment: "eight-ballon-dor-photographs", objective: "Count up to eight and show eight photographs of Ballon d'Or trophies", background: "white editorial page" },
-  { kind: "shoes", treatment: "golden-shoe-photograph", objective: "Show a real photograph of a Golden Shoe with the six count", background: "gold block" },
+  { kind: "hook", treatment: "question-hook-with-real-shirt-photographs", objective: "Pose the question over a sticker portrait with two shirt cut-outs, one Barcelona and one Argentina, the same size", background: "white editorial page, club blue" },
+  { kind: "trophies", treatment: "eight-ballon-dor-photographs", objective: "Count up to eight and show one Ballon d'Or trophy cut-out eight times in an even grid", background: "white editorial page" },
+  { kind: "shoes", treatment: "golden-shoe-photograph", objective: "Count up to six and show one Golden Shoe cut-out six times in an even grid", background: "gold block" },
   { kind: "chart", treatment: "goals-per-season-stacked-bars", objective: "Draw Barcelona goals per season, count up the 474 La Liga goals and mark the 73 of 2011-12", background: "white card" },
-  { kind: "trebles", treatment: "two-trebles-with-trophy-display-photograph", objective: "Show the two trebles on cards with a photograph of the Barcelona trophy display", background: "garnet block" },
-  { kind: "worldcup", treatment: "world-cup-2022-photograph-collage", objective: "Show a real photograph of the 2022 World Cup trophy being kissed in an Argentina shirt, with 2022 in large type", background: "sky-blue block" },
+  { kind: "trebles", treatment: "two-trebles-with-trophy-display-photograph", objective: "Show the two trebles on two equal cards under a Barcelona shirt cut-out", background: "garnet block" },
+  { kind: "worldcup", treatment: "world-cup-2022-photograph-collage", objective: "Show a real photograph of the 2022 World Cup trophy being kissed in an Argentina shirt, with 2022 in large type and an Argentina shirt cut-out", background: "sky-blue block" },
   { kind: "creator", treatment: "key-pass-per-90-bars", objective: "Compare key passes per 90 in two sampled seasons with animated bars and the sample caveat", background: "white card" },
   { kind: "close", treatment: "portrait-led-question-close", objective: "Close on the portrait with the question and the evidence as plain chips", background: "garnet block" },
 ];
@@ -55,19 +55,13 @@ export const blueprint = {
 const T = (id, key, title, claim, cutout) => ({ id, key, title, claim, ...(cutout ? { cutout } : {}) });
 export const ASSETS = [
   T("messi-2022", "p2022cut", "File:Lionel-Messi-Argentina-2022-FIFA-World-Cup sharpness.jpg", "W5", {}),
-  T("messi-2011", "p2011", "File:Lionel Messi Player of the Year 2011.jpg", "W2"),
-  T("messi-2010", "p2010", "File:Messi Barcelona - Valladolid.jpg", "W3"),
-  T("shirt-arg", "shirtArg", "File:Fútbol Diseñando una pasión - 124.jpg", "W5"),
-  T("shirt-shop", "shirtShop", "File:Lionel messi shirts at dot shopping.jpg", "W5"),
+  // Objects are cut out of their photographs (general-object model), so each appears on its own: one shirt, one trophy, one shoe.
+  // The Barcelona shirt is a real Barcelona home shirt, not one Messi wore; the video labels it only as "Barcelona".
+  T("shirt-arg", "shirtArg", "File:Fútbol Diseñando una pasión - 124.jpg", "W5", { model: "isnet-general-use" }),
+  T("shirt-bar", "shirtBar", "File:FC Barcelona shirt2.jpg", "W4", { model: "isnet-general-use" }),
   T("otamendi", "otamendi", "File:Nicolás Otamendi Copa del Mundo 2022.jpg", "W5"),
-  T("golden-shoe", "shoe", "File:Messi's Golden Shoe (51937265513).jpg", "W8"),
-  T("bo-messi", "bo0", "File:Lionel MESSI Florent TORCHUT.jpg", "W2"),
-  T("bo-display", "bo1", "File:Messi's Ballon d'Or.jpg", "W2"),
-  T("bo-2010", "bo2", "File:FIFA Ballon d'Or 2010 – Barcelona Museum.jpg", "W2"),
-  T("bo-camp1", "bo3", "File:Camp Nou Experience (Ank Kumar, INFOSYS) 01.jpg", "W2"),
-  T("bo-camp2", "bo4", "File:Camp Nou Experience (Ank Kumar, INFOSYS) 02.jpg", "W2"),
-  T("bo-fifa07", "bo5", "File:FIFA Ballon D‘OR Awards, FIFA Museum, Zurich 07.jpg", "W2"),
-  T("bo-fifa09", "bo6", "File:FIFA Ballon D‘OR Awards, FIFA Museum, Zurich 09.jpg", "W2"),
+  T("golden-shoe", "shoe", "File:Messi's Golden Shoe (51937265513).jpg", "W8", { model: "isnet-general-use" }),
+  T("ballon-dor", "bo", "File:Camp Nou Experience (Ank Kumar, INFOSYS) 01.jpg", "W2", { model: "isnet-general-use" }),
 ];
 export const metadata = {
   title: "Is Lionel Messi the Greatest of All Time?",

@@ -37,10 +37,14 @@ def main():
     ap.add_argument("--bw", action="store_true")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--max", type=int, default=1400)
+    ap.add_argument("--crop", default="", help="left,top,right,bottom as fractions of the photo, applied before the cut-out")
     a = ap.parse_args()
 
     from rembg import new_session, remove
     img = Image.open(a.src).convert("RGB")
+    if a.crop:
+        l, t, r, b = (float(v) for v in a.crop.split(","))
+        img = img.crop((int(l * img.width), int(t * img.height), int(r * img.width), int(b * img.height)))
     img.thumbnail((a.max, a.max), Image.LANCZOS)
     cut = remove(img, session=new_session(a.model), alpha_matting=False).convert("RGBA")
     # keep the main subject: drop specks that are not part of the largest connected region

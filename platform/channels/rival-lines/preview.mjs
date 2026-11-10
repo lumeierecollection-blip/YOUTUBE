@@ -59,7 +59,7 @@ export default async function preview({ key, runId, tools }) {
       let used = file;
       if (a.cutout) {
         const cut = join(tools.outDir, "assets", `${a.id}-cutout.png`);
-        const r = spawnSync(py, [join(ROOT, "platform/production/cutout.py"), file, cut, "--seed", "1"], { encoding: "utf8", timeout: 900000 });
+        const r = spawnSync(py, [join(ROOT, "platform/production/cutout.py"), file, cut, "--seed", "1", ...(a.cutout.model ? ["--model", a.cutout.model] : []), ...(a.cutout.crop ? ["--crop", a.cutout.crop] : [])], { encoding: "utf8", timeout: 900000 });
         if (r.status !== 0) throw new Error(`cut-out failed for ${a.id}: ${String(r.stderr).split("\n").slice(-5).join(" ").slice(0, 400)}`);
         used = cut; entry.treatment = "photographic cut-out (rembg); no pixel of the subject is generated.";
       }
