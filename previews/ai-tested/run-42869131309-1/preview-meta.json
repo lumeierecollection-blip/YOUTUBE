@@ -2,12 +2,10 @@
   "channel": "ai-tested",
   "production_run": "run-42869131309-1",
   "agent": "agent-ai-tested",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T17:53:01.589Z",
+  "timestamp": "2026-11-10T17:53:03.357Z",
   "branch": "preview/ai-tested-spellout-6",
   "commit": "b0a206003c5b983052e94b99afcd30d60773a299",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869131309#artifacts",
-  "engine": "gemini:Sadaltager",
-  "wpm": 131.2
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42869131309#artifacts"
 }
