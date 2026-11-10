@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T22:05:29.895Z",
+  "rebuilt_at": "2026-11-10T22:07:43.955Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,21 +118,21 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-10T22:05:29.539Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-10T22:07:24.169Z",
       "branch": "preview/hidden-past-vox-hippos",
-      "commit": "ba3925f2",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42910946292#artifacts)",
+      "commit": "fe056842",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42911390515#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "claim H1: \"In 1981, four hippos, three females and one male, were imported by Escobar to his private menagerie at Hacienda N\" not found in the fetched article",
+      "blocker": "",
       "lastOk": "2026-11-10T11:52:40.229Z",
-      "run": "run-42910946292-1"
+      "run": "run-42911390515-1"
     },
     {
       "key": "red-space-facts",
