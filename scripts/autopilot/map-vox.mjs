@@ -102,7 +102,7 @@ const overlaps = (b, list) => list.some((o) => b.x0 < o.x1 && o.x0 < b.x1 && b.y
 const insideMap = (b) => b.x0 >= AREA.x + 14 && b.x1 <= AREA.x + AREA.w - 14 && b.y0 >= AREA.y + 14 && b.y1 <= AREA.y + AREA.h - 14;
 
 /** Draws the whole map into `layers`. Returns the located places and tinted countries for the record. */
-export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, handCircle, zoom = false }) {
+export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, handCircle, zoom = false, avoidRoute = false }) {
   const span = outF - inF, m = frameMap(points, undefined, { zoom }), { box, project } = m;
   const canvas = { rect: { x: 0, y: 0, w: W, h: H }, in: inF, out: outF, type: "svg", viewBox: [0, 0, W, H] };
   const clip = { clipT: (AREA.y / H) * 100, clipB: ((H - AREA.y - AREA.h) / H) * 100, clipL: (AREA.x / W) * 100, clipR: ((W - AREA.x - AREA.w) / W) * 100 };
@@ -122,6 +122,8 @@ export function buildMapLayers({ id, inF, outF, points, P, font, nextZ, layers, 
   if (pts.length >= 2) layers.push(stroke(`${id}-route`, "M" + pts.map((q) => q.xy.join(" ")).join(" L"), { color: P.accent, width: 7, inF, outF, z: nextZ(), delay: 8, drawFrames: routeFrames }));
 
   const placed = [{ x0: INSET.x, x1: INSET.x + INSET.w, y0: INSET.y, y1: INSET.y + INSET.h }];
+  // Optional: keep place names off the drawn route (boxes along each leg), so a line never strikes through a label.
+  if (avoidRoute) for (let i = 1; i < pts.length; i++) { const [ax, ay] = pts[i - 1].xy, [bx, by] = pts[i].xy, n = Math.ceil(Math.hypot(bx - ax, by - ay) / 16); for (let k = 0; k <= n; k++) { const x = ax + ((bx - ax) * k) / n, y = ay + ((by - ay) * k) / n; placed.push({ x0: x - 12, x1: x + 12, y0: y - 12, y1: y + 12 }); } }
   pts.forEach((q, i) => {
     const [x, y] = q.xy, r = 14, at = inF + 8 + i * 14;
     layers.push(stroke(`${id}-pin${i}`, `M${x} ${y - r} A${r} ${r} 0 1 1 ${x} ${y + r} A${r} ${r} 0 1 1 ${x} ${y - r} Z`, { color: P.accent, width: 5, fill: P.accent, inF: at, outF, z: nextZ(), drawFrames: 8 }));

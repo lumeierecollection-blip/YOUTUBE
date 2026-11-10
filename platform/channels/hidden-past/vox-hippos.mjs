@@ -296,7 +296,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       stack("s0", "PRIMARY SOURCE: POLICE PHOTOGRAPH", [{ text: "Pablo Escobar", accent: true }, { text: "Colombian National Police. Wikimedia Commons." }], bodyIn, outF, it.y + it.h + 40);
       Object.assign(plan, { main_point: "Open on the man, then the animals.", visual_objective: "Show Pablo Escobar's own police photograph before explaining the story.", treatment: "archival-photo-ledger", ...base, assets: [{ id: "mug", origin: "Wikimedia Commons (Colombian National Police)", licence: src.mug.licence, source_url: src.mug.page_url }], animation: "headline slides in; photograph never moves; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[0], "Pablo Escobar"] });
     } else if (scene.index === 1) {
-      const { pts, route } = buildMapLayers({ id: "s1", inF: bodyIn, outF, points: places, P, font: SERIF, nextZ: () => z++, layers, handCircle, zoom: 3.4 });
+      const { pts, route } = buildMapLayers({ id: "s1", inF: bodyIn, outF, points: places, P, font: SERIF, nextZ: () => z++, layers, handCircle, zoom: 3.4, avoidRoute: true });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:50m; coordinates from English Wikipedia" });
       if (route) rec.treatments.push({ type: "map_route", in_f: route.in_f, end_f: route.end_f });
       layers.push(text("s1-maptag", "MODERN BORDERS  |  NATURAL EARTH", { x: 60, w: 960, y: 1446, size: 30, weight: 700, align: "left", color: P.accent, tracking: 0.14, inF: bodyIn + 10, outF, z: z++, font: SERIF, slideX: -40, slide: 0 }));
@@ -314,6 +314,16 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       const big = fit("80+", { maxW: 940, maxLines: 1, max: 380, min: 200 });
       layers.push(text("s3-big", big.text, { x: 70, w: 940, y: 330, size: big.size, weight: 700, align: "left", color: P.accent, inF: bodyIn + 4, outF, z: z++, font: SERIF, slideX: -60, slide: 0, tracking: -0.02 }));
       rec.treatments.push({ type: "quotation_typography", text: "80+ (more than 80 hippos, per the article)" });
+      // Proportion drawn from two claims: 80 filled dots of 200 (more than 80 of around 200). One dot is about one hippo.
+      {
+        const dot = (i) => { const c = i % 20, r = Math.floor(i / 20), cx = 90 + c * 47.4, cy = 1190 + r * 29, R = 12.5; return `M${(cx - R).toFixed(1)} ${cy.toFixed(1)} a${R} ${R} 0 1 0 ${2 * R} 0 a${R} ${R} 0 1 0 ${-2 * R} 0 Z`; };
+        const filled = Array.from({ length: 80 }, (_, i) => dot(i)).join(" "), rest = Array.from({ length: 120 }, (_, i) => dot(i + 80)).join(" ");
+        const g = { type: "svg", rect: { x: 0, y: 0, w: W, h: H }, viewBox: [0, 0, W, H], in: bodyIn + 30, out: outF, props: { opacity: 1, draw: 1 } };
+        layers.push({ ...g, id: "s3-dots-rest", z: z++, paths: [{ d: rest, fill: P.surface, stroke: P.stroke, strokeWidth: 1.5 }] });
+        layers.push({ ...g, id: "s3-dots-cull", z: z++, props: { opacity: 1, draw: 0 }, paths: [{ d: filled, fill: P.accent, stroke: "none" }], keyframes: { draw: [{ f: 0, v: 0, e: "linear" }, { f: 10, v: 0 }, { f: 40, v: 1, e: "inOutCubic" }, { f: 400, v: 1 }] } });
+        layers.push(text("s3-dots-label", "More than 80 of around 200 hippos", { x: 60, w: 960, y: 1112, size: 34, weight: 700, align: "left", color: P.text, inF: bodyIn + 36, outF, z: z++, font: SERIF, slideX: -40, slide: 0 }));
+        rec.treatments.push({ type: "proportion_dots", filled: 80, total: 200, claims: ["H6", "H7"], note: "one dot is about one hippo; 200 is an estimate and 80 is a lower bound" });
+      }
       stack("s3", "13 APRIL 2026, COLOMBIA", [{ text: "Ministry of Environment approves euthanasia of more than 80 hippos", accent: true }, { text: "An Indian billionaire, Anant Ambani, offers transport and shelter in India" }], bodyIn, outF, 800, { pitch: 120, lineMax: 46 });
       Object.assign(plan, { main_point: "The decision.", visual_objective: "State the cull number large, then the date, the ministry and the offer from India.", treatment: "quote-with-timeline", ...base, assets: [], animation: "number slides in; evidence lines arrive in turn", on_screen_text: ["CHAPTER I", ROUTES.chapterTitle, ROUTES.headlines[3], "80+"] });
     } else {
