@@ -21,11 +21,11 @@ const Q0 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{
     { k: "scrap", x: -30, y: 470, w: 1140, h: 1080, c: P[0], r: 0, d: 0.2, from: "b", at: 0 },
     { k: "type", x: 60, y: 120, w: 960, h: 150, size: 140, font: AB, color: T.ink, text: "IS HE THE", at: 2, d: 0.3, from: "l", ls: "-0.02em" },
     { k: "type", x: 50, y: 262, w: 1010, h: 180, size: 160, font: AB, color: P[1], text: "GREATEST?", at: 8, d: 0.3, from: "r", ls: "-0.03em" },
-    cut(images.shirtBar, 40, 500, 440, 480, 10, { from: "l" }),
-    cut(images.shirtArg, 600, 500, 440, 480, 14, { from: "r" }),
-    { k: "cut", src: images.p2022cut, x: 300, y: 800, w: 480, h: 750, r: 0, d: 0.85, from: "b", at: 6 },
-    { k: "tag", x: 40, y: 1000, w: 250, h: 70, r: 0, d: 0.5, at: 18, text: "Barcelona", size: 30, c: "#fff" },
-    { k: "tag", x: 790, y: 1000, w: 250, h: 70, r: 0, d: 0.5, at: 20, text: "Argentina", size: 30, c: "#fff" },
+    cut(images.shirtBar, 60, 480, 400, 380, 10, { from: "l" }),
+    cut(images.shirtArg, 620, 480, 400, 380, 14, { from: "r" }),
+    { k: "cut", src: images.p2022cut, x: 310, y: 880, w: 460, h: 670, r: 0, d: 0.85, from: "b", at: 6 },
+    { k: "tag", x: 135, y: 880, w: 250, h: 70, r: 0, d: 0.5, at: 18, text: "Barcelona", size: 30, c: "#fff" },
+    { k: "tag", x: 695, y: 880, w: 250, h: 70, r: 0, d: 0.5, at: 20, text: "Argentina", size: 30, c: "#fff" },
     credit([credits.p2022cut, credits.shirtBar, credits.shirtArg]),
   ]} />;
 
@@ -73,7 +73,7 @@ function GoalsChart({ seasons }) {
 }
 const Q3 = ({ dur, images, credits, data }) => { const best = data.barcelona_la_liga.reduce((a, b) => (b.goals > a.goals ? b : a)), bi = data.barcelona_la_liga.findIndex((s) => s.season === best.season); return <Collage th="sport" dur={dur} ground={{ seed: 44, contour: true }}
   layers={[
-    { k: "scrap", x: 20, y: 110, w: 1040, h: 1440, c: "#fff", r: 0.6, d: 0.15, from: "b", at: 0 },
+    { k: "scrap", x: 20, y: 110, w: 1040, h: 1440, c: "#fff", r: 0, d: 0.15, from: "b", at: 0 },
     { k: "type", x: 70, y: 150, w: 940, h: 60, size: 30, font: T.label, upper: true, weight: 800, color: T.dim, text: "Goals for Barcelona, season by season", at: 2, d: 0.1, ls: "0.08em" },
     { k: "num", x: 60, y: 210, w: 520, h: 230, size: 210, font: AB, color: P[1], count: [0, 474], dur: 30, at: 4, d: 0.2 },
     { k: "type", x: 70, y: 430, w: 520, h: 80, size: 38, font: T.label, upper: false, weight: 800, color: T.ink, text: "La Liga goals: a record", at: 14, d: 0.1 },
@@ -102,6 +102,8 @@ const Q5 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{
   layers={[
     { k: "scrap", x: -20, y: 130, w: 1120, h: 1300, c: P[3], r: 0, d: 0.2, from: "r", at: 0 },
     ph(images.otamendi, 90, 170, 900, 740, 0, 4, { from: "l", pos: "center 35%", border: 14 }),
+    // The photograph is of Messi's team-mate Nicolás Otamendi, so it is labelled: a viewer must not take it for Messi.
+    { k: "tag", x: 104, y: 826, w: 640, h: 64, r: 0, d: 0.5, at: 10, upper: false, text: "Team-mate Nicolás Otamendi with the trophy", size: 26, c: "#fff" },
     { k: "num", x: 60, y: 940, w: 640, h: 260, size: 230, font: AB, color: T.ink, text: "2022", at: 16, d: 0.3, r: 0 },
     { k: "tag", x: 60, y: 1240, w: 620, h: 96, r: 0, d: 0.5, at: 28, text: "World Cup winners", size: 44, c: GOLD, color: T.ink },
     cut(images.shirtArg, 710, 940, 330, 420, 22, { from: "r" }),
@@ -110,7 +112,7 @@ const Q5 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{
 
 const Q6 = ({ dur, images, credits, data }) => { const a = data.seasons["2009/10"], b = data.seasons["2018/19"]; return <Collage th="sport" dur={dur} ground={{ seed: 47, contour: true }}
   layers={[
-    { k: "scrap", x: 30, y: 110, w: 1020, h: 1400, c: "#fff", r: -0.8, d: 0.15, from: "b", at: 0 },
+    { k: "scrap", x: 30, y: 110, w: 1020, h: 1400, c: "#fff", r: 0, d: 0.15, from: "b", at: 0 },
     { k: "type", x: 70, y: 160, w: 940, h: 70, size: 54, font: AB, color: T.ink, text: "Key passes per 90", at: 4, d: 0.2 },
     { k: "type", x: 70, y: 300, w: 500, h: 40, size: 28, font: T.body, weight: 800, upper: false, color: T.dim, text: "2009/10", at: 10, d: 0.1, from: "none" },
     { k: "bar", x: 70, y: 350, w: 800, h: 90, value: a.key_passes_per90 / 4, c: P[0], at: 10, dur: 28, d: 0 },
@@ -119,17 +121,17 @@ const Q6 = ({ dur, images, credits, data }) => { const a = data.seasons["2009/10
     { k: "bar", x: 70, y: 750, w: 800, h: 90, value: b.key_passes_per90 / 4, c: P[1], at: 24, dur: 32, d: 0 },
     { k: "num", x: 70, y: 850, w: 400, h: 150, size: 130, font: AB, color: P[1], count: [0, b.key_passes_per90 * 10], text: "", fmt: "tenth", at: 24, dur: 32, d: 0.2 },
     { k: "stamp", x: 520, y: 1010, w: 480, h: 130, r: -4, d: 0.3, at: 56, text: "More than double", size: 42, color: P[1] },
-    { k: "tag", x: 70, y: 1230, w: 940, h: 150, r: 0.6, d: 0.3, at: 40, size: 26, upper: false, c: P[3], text: "Limited sample: 12 Barcelona league starts per season, StatsBomb open data. A key pass is a pass that led to a shot." },
+    { k: "tag", x: 70, y: 1230, w: 940, h: 150, r: 0, d: 0.3, at: 40, size: 26, upper: false, c: P[3], text: "Limited sample: 12 Barcelona league starts per season, StatsBomb open data. A key pass is a pass that led to a shot." },
   ]} />; };
 
 const chip = (x, y, text, c, at) => ({ k: "tag", x, y, w: 470, h: 90, r: 0, d: 0.5, at, text, size: 32, c });
 const Q7 = ({ dur, images, credits }) => <Collage th="sport" dur={dur} ground={{ seed: 48, contour: true }}
   layers={[
     { k: "scrap", x: 70, y: 120, w: 940, h: 940, c: P[1], r: 0, d: 0.2, from: "b", at: 0 },
-    cut(images.bo, 40, 330, 250, 420, 8, { from: "l" }),
-    cut(images.shoe, 780, 420, 270, 300, 12, { from: "r" }),
+    cut(images.bo, 30, 400, 240, 340, 8, { from: "l" }),
+    cut(images.shoe, 810, 400, 240, 340, 12, { from: "r" }),
     { k: "cut", src: images.p2022cut, x: 230, y: 110, w: 620, h: 940, r: 0, d: 0.85, from: "b", at: 4 },
-    { k: "type", x: 50, y: 1060, w: 980, h: 130, size: 72, font: AB, color: T.ink, text: "GREATEST OF ALL TIME?", at: 16, d: 0.3, r: -1.2 },
+    { k: "type", x: 50, y: 1060, w: 980, h: 130, size: 60, font: AB, color: T.ink, text: "GREATEST OF ALL TIME?", at: 16, d: 0.3, r: 0 },
     chip(40, 1200, "8 Ballons d'Or", "#fff", 22), chip(570, 1200, "6 Golden Shoes", "#fff", 26),
     chip(40, 1310, "474 La Liga goals", "#fff", 30), chip(570, 1310, "73 goals in 2011–12", GOLD, 34),
     chip(40, 1420, "2 trebles", "#fff", 38), chip(570, 1420, "2022 World Cup", P[3], 42),
