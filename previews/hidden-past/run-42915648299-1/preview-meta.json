@@ -2,11 +2,12 @@
   "channel": "hidden-past",
   "production_run": "run-42915648299-1",
   "agent": "agent-hidden-past",
-  "stage": "script_approved",
+  "stage": "voice_complete",
   "status": "ok",
-  "timestamp": "2026-11-10T22:36:17.340Z",
+  "timestamp": "2026-11-10T22:36:20.013Z",
   "branch": "preview/hidden-past-vox-hippos",
   "commit": "f47e0cdb5c90f6ee0f468172af960e94a51c3d94",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42915648299#artifacts",
-  "approved_by": "not reviewed by the engine critic"
+  "narration_s": 38.184,
+  "engine": "gemini:Rasalgethi"
 }
