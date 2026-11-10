@@ -2,9 +2,9 @@
   "channel": "ai-tested",
   "production_run": "run-42904898437-1",
   "agent": "agent-ai-tested",
-  "stage": "preview_ready",
+  "stage": "awaiting_approval",
   "status": "ok",
-  "timestamp": "2026-11-10T21:30:31.877Z",
+  "timestamp": "2026-11-10T21:30:33.700Z",
   "branch": "preview/ai-tested-pushback-sentences",
   "commit": "9f39f3de94bf418bf369142bc26f69e7c6a753b9",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42904898437#artifacts"
