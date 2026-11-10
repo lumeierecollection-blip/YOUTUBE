@@ -1,0 +1,52 @@
+{
+  "retrieved": "2026-11-10T10:56:55.514Z",
+  "wikipedia_article": "https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall",
+  "files": [
+    {
+      "key": "press",
+      "title": "File:Bundesarchiv Bild 183-1989-1109-030, Berlin, Schabowski auf Pressekonferenz.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Bundesarchiv_Bild_183-1989-1109-030,_Berlin,_Schabowski_auf_Pressekonferenz.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Bundesarchiv_Bild_183-1989-1109-030%2C_Berlin%2C_Schabowski_auf_Pressekonferenz.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licence": "CC BY-SA 3.0 de",
+      "creator": "Thomas Lehmann",
+      "credit": "This image was provided to Wikimedia Commons by the German Federal Archive (Deutsches Bundesarchiv) as part of a cooperation project. The German Federal Archive",
+      "date": "9 November 1989date QS:P571,+1989-11-09T00:00:00Z/11",
+      "description": "For documentary purposes the German Federal Archive often retained the original image captions, which may be erroneous, biased, obsolete or politically extreme. ADN-ZB/Lehmann/ 9.11.89/Berlin: Pressekonferenz/ Günter Schabowski, Mitglied des Politbüros und Sekretär des ZK der SED, informierte im Internationalen Pressezentrum über Verlauf und Ergebnisse des zweiten Beratungstages des 10. Plenums de",
+      "orig_w": 798,
+      "orig_h": 512
+    },
+    {
+      "key": "note",
+      "title": "File:Schabowski-notizzettel.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Schabowski-notizzettel.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Schabowski-notizzettel.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "licence": "CC BY-SA 3.0",
+      "creator": "Günter Schabowski",
+      "credit": "Eigener Scan. Stiftung Haus der Geschichte der Bundesrepublik Deutschland, Zeitgeschichtliches Forum Leipzig.",
+      "date": "1989-11-09",
+      "description": "Transkription: Quelle: https://www.hdg.de/lemo/bestand/objekt/dokument-notizzettel-schabowski.html wer kommt mit / Horst? Sie. Bö / Für PK / (nicht länger als 1900) / 1.) Hinweis auf neue Praxis (Briefing) / Symptomatisch! / 2.) Teilnahme - Interesse In - Ausld. für / Plenum. / 3.) Jetzt erst möglich länger in Zukunft / weisendes Konzept d. Erneuerung (Strat.) / Konsequenz, entsch. auf eingeschl. ",
+      "orig_w": 1178,
+      "orig_h": 1666
+    },
+    {
+      "key": "gate",
+      "title": "File:BrandenburgerTorDezember1989.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:BrandenburgerTorDezember1989.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/BrandenburgerTorDezember1989.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "licence": "Public domain",
+      "creator": "SSGT F. Lee Corkran",
+      "credit": "DoD photo, USA",
+      "date": "1989-12-01",
+      "description": "Brandenburg Gate on December 1, 1989. The structure is already freely accessible from the East, however, the crossing to the Western side will not be officially open until December 22nd.",
+      "orig_w": 2780,
+      "orig_h": 1870
+    }
+  ],
+  "place": {
+    "name": "Berlin",
+    "lat": 52.52,
+    "lon": 13.405,
+    "source": "https://en.wikipedia.org/wiki/Sarajevo (coordinates API)"
+  },
+  "map_data": "Natural Earth 1:50m and 1:110m (public domain)"
+}
