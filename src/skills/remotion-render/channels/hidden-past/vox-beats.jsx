@@ -30,7 +30,7 @@ const Tri = ({ x, y, s = 110, rot = 0, delay = 0 }) => { const f = useCurrentFra
 const Dot = ({ x, y, s = 64, delay = 0 }) => { const f = useCurrentFrame(), a = ramp(f, delay, delay + 8, over); return <div style={abs(x, y, s, s, { background: K.frame, borderRadius: s, transform: `scale(${a})` })} />; };
 
 /** A photograph as a sticker: white border, hard and soft shadow. It slides in from an edge and settles; it is never scaled. */
-const Sticker = ({ src, x, y, w, h, rot = 0, from = "left", delay = 0, fit = "cover", tapes = [], credit, filter, pad = 14 }) => {
+const Sticker = ({ src, x, y, w, h, rot = 0, from = "left", delay = 0, fit = "cover", tapes = [], credit, filter, pad = 14, creditTop = false }) => {
   const f = useCurrentFrame(), a = ramp(f, delay, delay + 9);
   const dx = from === "left" ? -(1 - a) * 1000 : from === "right" ? (1 - a) * 1000 : 0, dy = from === "bottom" ? (1 - a) * 900 : from === "top" ? -(1 - a) * 900 : 0;
   return (
@@ -39,7 +39,7 @@ const Sticker = ({ src, x, y, w, h, rot = 0, from = "left", delay = 0, fit = "co
         <img src={src} style={{ width: "100%", height: "100%", objectFit: fit, display: "block", filter }} />
       </div>
       {tapes.map(([tx, ty, tr, tw], i) => <Tape key={i} x={tx} y={ty} rot={tr} w={tw} />)}
-      {credit ? <div style={abs(0, h + 12, w, 30, { fontFamily: COND, fontWeight: 400, fontSize: 22, color: K.dim, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" })}>{credit}</div> : null}
+      {credit ? <div style={abs(0, creditTop ? -36 : h + 12, w, 30, { fontFamily: COND, fontWeight: 400, fontSize: 22, color: K.dim, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" })}>{credit}</div> : null}
     </div>
   );
 };
@@ -130,6 +130,24 @@ function ArcMap({ geo, delay = 0 }) {
   );
 }
 
+/** The story's own years along the bottom: the line fills to the year being told, so every count beat carries the one before it. */
+const YEARS = ["1981", "1993", "2007", "2014", "2026"];
+function Timeline({ active, delay = 6 }) {
+  const f = useCurrentFrame(), x0 = 120, x1 = 960, y = 1420, fill = ramp(f, delay, delay + 16, Easing.inOut(Easing.cubic));
+  const px = (i) => x0 + ((x1 - x0) * i) / (YEARS.length - 1);
+  return (
+    <svg viewBox="0 0 1080 1920" style={abs(0, 0, 1080, 1920)}>
+      <line x1={x0} y1={y} x2={x1} y2={y} stroke={K.stroke} strokeWidth="4" opacity="0.6" />
+      <line x1={x0} y1={y} x2={x0 + (px(active) - x0) * fill} y2={y} stroke={K.frame} strokeWidth="8" strokeLinecap="round" />
+      {YEARS.map((yr, i) => { const on = i <= active, a = ramp(f, delay + i * 2, delay + 8 + i * 2); return (
+        <g key={yr} opacity={a}>
+          <circle cx={px(i)} cy={y} r={i === active ? 17 : 10} fill={on ? K.frame : K.paper} stroke={on ? K.frame : K.stroke} strokeWidth="4" />
+          <text x={px(i)} y={y + 58} textAnchor="middle" fontFamily={COND} fontWeight={700} fontSize={i === active ? 46 : 34} fill={i === active ? K.frame : K.dim}>{yr}</text>
+        </g>); })}
+    </svg>
+  );
+}
+
 const credit = (c, k) => c[k] || "";
 
 // ---------------------------------------------------------------- the fourteen pictures
@@ -166,6 +184,7 @@ function Import({ images, credits, cut }) {
     <Herd src={cut.src} aspect={cut.aspect} count={4} cols={2} x={580} y={760} w={420} delay={14} />
     <Strip x={70} y={1010} w={940} delay={10} size={36}>Imported 1981: three females, one male</Strip>
     <Dot x={920} y={130} s={56} delay={8} />
+    <Timeline active={0} />
   </>);
 }
 function Estate({ images, credits, map }) {
@@ -179,31 +198,34 @@ function Estate({ images, credits, map }) {
 }
 function Escape({ images, credits, cut }) {
   return (<>
-    <Sticker src={images.gate} x={90} y={290} w={900} h={675} rot={1.2} from="top" delay={0} tapes={[[-30, -14, -34, 170], [760, 640, -30, 170]]} credit={credit(credits, "gate")} />
+    <Sticker src={images.gate} x={90} y={290} w={900} h={675} rot={1.2} from="top" delay={0} tapes={[[-30, -14, -34, 170], [760, 640, -30, 170]]} credit={credit(credits, "gate")} creditTop />
     <Cut src={cut.src} x={430} y={780} w={380} h={380 / cut.aspect} delay={12} from="left" rot={-3} />
     <Cut src={cut.src} x={690} y={850} w={330} h={330 / cut.aspect} delay={16} from="left" rot={2} />
     <Cut src={cut.src} x={170} y={870} w={300} h={300 / cut.aspect} delay={20} from="left" rot={-1} />
-    <Num x={70} y={1210} size={300} color={K.ink} delay={4} w={560}>1993</Num>
-    <Stamp x={560} y={1260} w={440} rot={5} delay={10} size={48}>Escobar<br />dies</Stamp>
+    <Num x={70} y={1090} size={260} color={K.ink} delay={4} w={520}>1993</Num>
+    <Stamp x={600} y={1150} w={400} rot={5} delay={10} size={46}>Escobar<br />dies</Stamp>
+    <Timeline active={1} />
   </>);
 }
-function Count({ n, year, note, cols, cut, copies = n, top = 700, w = 920 }) {
+function Count({ n, year, note, cols, cut, top, w, size = 440, active }) {
   return (<>
-    <Num x={60} y={110} size={470} delay={0} w={560}>{n}</Num>
-    <Num x={560} y={170} size={170} color={K.ink} delay={4} w={440} align="right">{year}</Num>
-    <Strip x={420} y={400} w={600} delay={8} size={34}>{note}</Strip>
-    <Herd src={cut.src} aspect={cut.aspect} count={copies} cols={cols} x={80} y={top} w={w} delay={6} />
+    <Num x={60} y={80} size={size} delay={0} w={940}>{n}</Num>
+    <Num x={70} y={500} size={120} color={K.ink} delay={4} w={340}>{year}</Num>
+    <Strip x={410} y={528} w={590} delay={8} size={34}>{note}</Strip>
+    <Herd src={cut.src} aspect={cut.aspect} count={n === "~200" ? 200 : Number(n)} cols={cols} x={(1080 - w) / 2} y={top} w={w} delay={6} />
+    <Timeline active={active} />
   </>);
 }
-const N16 = (p) => <Count n="16" year="2007" note="Sixteen hippos" cols={4} copies={16} top={640} w={880} {...p} />;
-const N40 = (p) => <Count n="40" year="2014" note="About forty, reported" cols={8} copies={40} top={760} w={900} {...p} />;
-const N200 = (p) => <Count n="~200" year="2026" note="April 2026, an estimate" cols={20} copies={200} top={820} w={920} {...p} />;
+const N16 = (p) => <Count n="16" year="2007" note="Sixteen hippos" cols={4} top={690} w={880} active={2} {...p} />;
+const N40 = (p) => <Count n="40" year="2014" note="About forty, reported" cols={7} top={720} w={910} active={3} {...p} />;
+const N200 = (p) => <Count n="~200" year="2026" note="April, an estimate" cols={16} top={720} w={920} size={380} active={4} {...p} />;
 function Invasive({ cut }) {
   return (<>
-    <Herd src={cut.src} aspect={cut.aspect} count={200} cols={20} x={80} y={820} w={920} delay={0} faded={0.35} />
-    <Stamp x={70} y={330} w={940} rot={-6} delay={4} size={200}>Invasive</Stamp>
-    <Strip x={90} y={720} w={760} delay={12} size={40} rot={1}>Most conservationists</Strip>
-    <Tri x={860} y={130} delay={8} rot={14} />
+    <Herd src={cut.src} aspect={cut.aspect} count={200} cols={16} x={80} y={800} w={920} delay={0} faded={0.35} />
+    <Stamp x={70} y={230} w={940} rot={-6} delay={4} size={190}>Invasive</Stamp>
+    <Strip x={90} y={660} w={760} delay={12} size={40} rot={1}>Most conservationists</Strip>
+    <Tri x={860} y={110} delay={8} rot={14} />
+    <Timeline active={4} />
   </>);
 }
 function Cull({ cut }) {
@@ -211,15 +233,16 @@ function Cull({ cut }) {
     <Num x={50} y={100} size={340} delay={0} w={620}>80+</Num>
     <Stamp x={560} y={150} w={440} rot={5} delay={6} size={46}>Approved<br />13 Apr 2026</Stamp>
     <Strip x={60} y={470} w={760} delay={10} size={36}>Ministry of Environment</Strip>
-    <Herd src={cut.src} aspect={cut.aspect} count={200} cols={20} x={80} y={700} w={920} delay={0} cull={80} cullAt={14} faded={0.85} />
-    <div style={abs(80, 1160, 920, 40, { fontFamily: COND, fontWeight: 700, fontSize: 30, letterSpacing: "0.06em", color: K.dim, textTransform: "uppercase" })}>Coloured: more than 80 of around 200</div>
+    <Herd src={cut.src} aspect={cut.aspect} count={200} cols={16} x={80} y={640} w={920} delay={0} cull={80} cullAt={14} faded={0.85} />
+    <Timeline active={4} />
+    <div style={abs(80, 1180, 920, 40, { fontFamily: COND, fontWeight: 700, fontSize: 30, letterSpacing: "0.06em", color: K.dim, textTransform: "uppercase" })}>Coloured: more than 80 of around 200</div>
   </>);
 }
 function India({ world }) {
   return (<>
     <Title y={92} size={90} w={960}>The offer</Title>
     <ArcMap geo={world} delay={0} />
-    <Strip x={60} y={1020} w={960} delay={26} size={34}>Anant Ambani offers transport and shelter in India</Strip>
+    <Strip x={60} y={1010} w={960} delay={26} size={30}>Anant Ambani offers transport and shelter in India</Strip>
     <Stamp x={560} y={1200} w={420} rot={-5} delay={32} size={64}>Offer</Stamp>
   </>);
 }
