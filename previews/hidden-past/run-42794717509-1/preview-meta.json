@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-42794717509-1",
   "agent": "agent-hidden-past",
-  "stage": "qa_passed",
+  "stage": "preview_ready",
   "status": "ok",
-  "timestamp": "2026-11-10T10:02:03.013Z",
+  "timestamp": "2026-11-10T10:02:04.977Z",
   "branch": "preview/hidden-past-berlin-2",
   "commit": "3075fee7c82c0f8bbf47c4482cdec486859c2a13",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42794717509#artifacts"
