@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T14:03:24.985Z",
+  "rebuilt_at": "2026-11-10T14:03:27.235Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,21 +61,21 @@
     {
       "key": "court-and-spotlight",
       "agent": "agent-court-and-spotlight",
-      "stage": "visual_complete",
+      "stage": "qa_passed",
       "status": "ok",
-      "at": "2026-11-10T14:03:24.615Z",
-      "branch": "preview/court-and-spotlight-collage-investigation-2",
-      "commit": "a6181f96",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42829770677#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "at": "2026-11-10T14:03:25.685Z",
+      "branch": "preview/court-and-spotlight-collage-grammy",
+      "commit": "be17fccf",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42824212491#artifacts)",
+      "sheet": "[contact-sheet.jpg](court-and-spotlight/run-42824212491-1/contact-sheet.jpg)",
+      "scenes": "[scene-s1.jpg](court-and-spotlight/run-42824212491-1/scene-s1.jpg) [scene-s2.jpg](court-and-spotlight/run-42824212491-1/scene-s2.jpg) [scene-s3.jpg](court-and-spotlight/run-42824212491-1/scene-s3.jpg) [scene-s4.jpg](court-and-spotlight/run-42824212491-1/scene-s4.jpg)",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](court-and-spotlight/run-42829770677-1/scene-plan.json)",
-      "qa": "",
+      "plan": "[scene-plan.json](court-and-spotlight/run-42824212491-1/scene-plan.json)",
+      "qa": "[qa-report.json](court-and-spotlight/run-42824212491-1/qa-report.json)",
       "blocker": "",
-      "lastOk": "2026-11-10T14:03:24.615Z",
-      "run": "run-42829770677-1"
+      "lastOk": "2026-11-10T14:03:25.685Z",
+      "run": "run-42824212491-1"
     },
     {
       "key": "dopamine-loop",
