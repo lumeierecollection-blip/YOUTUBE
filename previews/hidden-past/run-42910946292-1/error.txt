@@ -1,0 +1,4 @@
+Error: claim H1: "In 1981, four hippos, three females and one male, were imported by Escobar to his private menagerie at Hacienda N" not found in the fetched article
+    at Module.preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/vox-hippos.mjs:169:66)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3
