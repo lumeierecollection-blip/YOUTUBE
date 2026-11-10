@@ -31,5 +31,5 @@ export const SENTENCES = [
   { text: "That night, guards at Bornholmer Straße let people through.", scene: 3, claim_ids: ["B6"] },
   { text: "One unprepared answer opened the checkpoints.", scene: 4, claim_ids: ["B3", "B6"] },
 ];
-export const ROUTES = { headlines: ["An announcement came too early", "The note he was handed", "“Immediately, without delay”", "Berlin, that night", "The checkpoints opened"] };
+export const ROUTES = { chapterTitle: "The Answer", headlines: ["An announcement came too early", "The note he was handed", "“Immediately, without delay”", "Berlin, that night", "The checkpoints opened"] };
 export const METADATA = docMeta;

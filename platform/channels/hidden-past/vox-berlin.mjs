@@ -299,6 +299,17 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
     let bodyIn = inF;
     const plan = { scene_id: `s${scene.index}`, narration: scene.text, claim_ids: scene.claim_ids, start_s: scene.from, end_s: scene.to ?? durationS, transition: "cut" };
 
+    if (scene.index === 2) {
+      const cOut = inF + 34, f = fit(ROUTES.chapterTitle, { maxW: 840, maxLines: 3, max: 88, min: 52 });
+      layers.push(solid("ch1-page", { x: 0, y: 0, w: W, h: H, background: paperBackground(P, P.surface), inF, outF: cOut, z: 500, keyframes: { opacity: [{ f: 0, v: 1 }, { f: 34, v: 1 }] } }));
+      layers.push(text("ch1-num", "CHAPTER I", { y: 640, size: 40, weight: 700, color: P.accent, inF, outF: cOut, z: 501, font: SERIF, tracking: 0.3, slideX: -60, slide: 0 }));
+      layers.push(stroke("ch1-rule", "M300 716 L780 716", { color: P.accent, width: 3, inF, outF: cOut, z: 501, delay: 4, drawFrames: 14 }));
+      layers.push(text("ch1-title", f.text, { y: 770, size: f.size, weight: 700, color: P.text, inF: inF + 4, outF: cOut, z: 501, font: SERIF, slideX: 60, slide: 0 }));
+      rec.treatments.push({ type: "chapter_opener", in_f: inF, out_f: cOut, number: 1, title: ROUTES.chapterTitle });
+      sfx.push({ sound: "whoosh", at: Math.max(0, inF / FPS - 0.08) });
+      bodyIn = cOut;
+      plan.transition = "chapter opener (book-section page)";
+    }
     headline(scene.index, bodyIn, outF);
     rec.treatments.push({ type: "slide_in_typography", layer: `s${scene.index}-head` });
     const credit = (k) => `${src[k].creator}, ${src[k].licence}, via Wikimedia Commons`;
@@ -313,19 +324,19 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       const box = { x0: 0.50, x1: 0.88, y0: 0.14, y1: 0.40 };
       const a = circleOn(0, it, box, 0, bodyIn, outF);
       rec.treatments.push({ type: "annotation", target: "the press-conference table", confirmed_as: "the officials' table at the front of the hall, per the Bundesarchiv caption (Schabowski at the press conference, 9 Nov 1989); checked by eye on the source", box, ...a });
-      stack("s0", "PRIMARY SOURCE: PHOTOGRAPH", [{ text: "Circled: the officials' table", accent: true }, { text: "East Berlin, 9 November 1989. Bundesarchiv." }], bodyIn, outF, it.y + it.h + 40);
-      Object.assign(plan, { main_point: "Open on the evidence itself.", visual_objective: "Show the real press conference before explaining it.", treatment: "archival-photo-ledger", ...base, assets: [{ id: "press", origin: "Wikimedia Commons (Bundesarchiv)", licence: src.press.licence, source_url: src.press.page_url }], animation: "headline slides in; accent circle draws on; photograph never moves", on_screen_text: [ROUTES.headlines[0], "Circled: the officials' table"] });
+      stack("s0", "PRIMARY SOURCE: PHOTOGRAPH", [{ text: "The officials' table", accent: true }, { text: "East Berlin, 9 November 1989. Bundesarchiv." }], bodyIn, outF, it.y + it.h + 40);
+      Object.assign(plan, { main_point: "Open on the evidence itself.", visual_objective: "Show the real press conference before explaining it.", treatment: "archival-photo-ledger", ...base, assets: [{ id: "press", origin: "Wikimedia Commons (Bundesarchiv)", licence: src.press.licence, source_url: src.press.page_url }], animation: "headline slides in; accent circle draws on; photograph never moves", on_screen_text: [ROUTES.headlines[0], "The officials' table"] });
     } else if (scene.index === 1) {
       const it = placeStill(1, "note", bodyIn, outF, credit("note"));
       rec.treatments.push({ type: "document_treatment", recipe: "sharp greyscale ink + paper multiply, then PhotoTreatment at low halftone" }, { type: "grounded_shadow" });
       stack("s1", "PRIMARY SOURCE: HIS OWN NOTES", [{ text: "Handed to him just before the briefing", accent: true }, { text: "No instructions on how to handle it (Wikipedia)" }], bodyIn, outF, it.y + it.h + 40);
-      Object.assign(plan, { main_point: "The paper he was handed.", visual_objective: "Show Schabowski's own note.", treatment: "newspaper-scan", ...base, assets: [{ id: "note", origin: "Wikimedia Commons", licence: src.note.licence, source_url: src.note.page_url }], animation: "page fades in unmoving; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[1], "HIS OWN NOTES"] });
+      Object.assign(plan, { main_point: "The paper he was handed.", visual_objective: "Show Schabowski's own note.", treatment: "newspaper-scan", ...base, assets: [{ id: "note", origin: "Wikimedia Commons", licence: src.note.licence, source_url: src.note.page_url }], animation: "page fades in unmoving; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[1]] });
     } else if (scene.index === 2) {
       const q = fit("“…immediately, without delay.”", { maxW: 940, maxLines: 3, max: 104, min: 64 });
       layers.push(text("s2-quote", q.text, { x: 70, w: 940, y: 360, size: q.size, weight: 700, align: "left", color: P.accent, inF: bodyIn + 4, outF, z: z++, font: SERIF, slideX: -60, slide: 0, tracking: -0.01 }));
       rec.treatments.push({ type: "quotation_typography", text: "As far as I know, it takes effect immediately, without delay (English rendering as given on Wikipedia)" });
       stack("s2", "THE EVENING, 9 NOVEMBER 1989", [{ text: "18:00  Press conference begins, live on TV", accent: false }, { text: "18:53  Asked when the new rules start", accent: false }, { text: "19:04  West German agency: borders open", accent: true }], bodyIn, outF, 780);
-      Object.assign(plan, { main_point: "The answer, and the broadcast.", visual_objective: "Quote his answer and show the evening's timed events.", treatment: "quote-with-timeline", ...base, assets: [], animation: "quotation slides in; timeline lines arrive in turn", on_screen_text: [ROUTES.headlines[2], "THE EVENING, 9 NOVEMBER 1989"] });
+      Object.assign(plan, { main_point: "The answer, and the broadcast.", visual_objective: "Quote his answer and show the evening's timed events.", treatment: "quote-with-timeline", ...base, assets: [], animation: "quotation slides in; timeline lines arrive in turn", on_screen_text: ["CHAPTER I", ROUTES.chapterTitle, ROUTES.headlines[2]] });
     } else if (scene.index === 3) {
       const { pts } = buildMapLayers({ id: "s3", inF: bodyIn, outF, points: [berlin], P, font: SERIF, nextZ: () => z++, layers, handCircle });
       rec.treatments.push({ type: "map", places: pts.map((q) => q.name), source: "Natural Earth 1:50m; coordinates from Wikipedia" });
@@ -336,7 +347,7 @@ export default async function preview({ key, runId, outDir, tools, entry }) {
       rec.photo = photoRec("gate", it);
       rec.treatments.push(PT, { type: "grounded_shadow" });
       stack("s4", "LATER PHOTOGRAPH: DECEMBER 1989", [{ text: "Brandenburg Gate, weeks after that night", accent: true }, { text: "22:45 at Bornholmer Straße (some accounts: 23:30)" }], bodyIn, outF, it.y + it.h + 40);
-      Object.assign(plan, { main_point: "The checkpoints opened.", visual_objective: "Show the aftermath, labelled as a later photograph.", treatment: "archival-photo-card-with-claim-ladder", ...base, assets: [{ id: "gate", origin: "Wikimedia Commons", licence: src.gate.licence, source_url: src.gate.page_url }], animation: "photograph holds still; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[4], "LATER PHOTOGRAPH: DECEMBER 1989"] });
+      Object.assign(plan, { main_point: "The checkpoints opened.", visual_objective: "Show the aftermath, labelled as a later photograph.", treatment: "archival-photo-card-with-claim-ladder", ...base, assets: [{ id: "gate", origin: "Wikimedia Commons", licence: src.gate.licence, source_url: src.gate.page_url }], animation: "photograph holds still; evidence lines arrive in turn", on_screen_text: [ROUTES.headlines[4]] });
     }
     voxRecord.push(rec);
     scenePlan.push(plan);
