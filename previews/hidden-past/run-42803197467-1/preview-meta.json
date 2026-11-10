@@ -2,11 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42803197467-1",
   "agent": "agent-hidden-past",
-  "stage": "blocked",
+  "stage": "failed",
   "status": "failed",
-  "timestamp": "2026-11-10T11:00:11.493Z",
+  "timestamp": "2026-11-10T11:00:13.929Z",
   "branch": "preview/hidden-past-vox-berlin",
   "commit": "4971b0b6c7eda2ee889c7cd14245ed2a7e2d5652",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42803197467#artifacts",
-  "issues": "chapter-count: found 0, need 1"
+  "error": "QA failed; see qa-report.json"
 }
