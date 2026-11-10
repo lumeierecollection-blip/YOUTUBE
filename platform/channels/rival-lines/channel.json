@@ -1,0 +1,20 @@
+{
+  "key": "rival-lines",
+  "name": "Rival Lines",
+  "sport": "football",
+  "formats": {
+    "player_documentary": { "look": "premium editorial sports documentary: layered photographs, sticker cut-outs, big type, career timeline, data comparisons on white", "composition": "RivalPlayerShort", "engine": "court-and-spotlight/collage-engine.jsx (sport theme)" },
+    "match_analysis": { "look": "professional tactical broadcast: real pitch, formation and passing-network graphics from event data, navy scoreboard overlays", "composition": "RivalMatchShort" }
+  },
+  "voice": { "tts": "en-US-AriaNeural", "style": "Energetic but professional football documentary narration: confident, clear and lively, never shouting, never slow." },
+  "data": { "source": "StatsBomb Open Data (event data, not player tracking)", "repo": "https://github.com/statsbomb/open-data", "attribution_required": "credit StatsBomb and show the StatsBomb logo wherever the analysis is shown or published" },
+  "rules": [
+    "three kinds of number are never mixed without saying so: verified career statistics, event-data-derived statistics, video-derived estimates",
+    "event locations are never presented as continuous player movement",
+    "no player position, heatmap, passing network or possession figure is invented; each is computed from the recorded events",
+    "photographs come from Wikimedia Commons with author, licence and source recorded",
+    "no broadcast footage is used; tactical visuals are original graphics",
+    "natural voice speed, never altered"
+  ],
+  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 }
+}
