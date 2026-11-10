@@ -2,7 +2,7 @@
 """
 Photographic cut-out sticker, written for this repository (not derived from any other project's code).
 
-  cutout.py IN.jpg OUT.png [--model u2net_human_seg] [--paper 16] [--bw] [--seed 1] [--max 1400]
+  cutout.py IN.jpg OUT.png [--model u2net_human_seg] [--paper 16] [--bw] [--seed 1] [--max 1400] [--crop l,t,r,b] [--trim l,t,r,b]
 
 1. rembg (MIT) with the U2-Net model (Apache-2.0) removes the background and writes an alpha mask.
 2. --paper N adds a torn-paper border of about N px: the mask is grown, then its edge is roughened with seeded noise,
@@ -38,6 +38,7 @@ def main():
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--max", type=int, default=1400)
     ap.add_argument("--crop", default="", help="left,top,right,bottom as fractions of the photo, applied before the cut-out")
+    ap.add_argument("--trim", default="", help="left,top,right,bottom as fractions of the finished cut-out, kept; removes a stand or hanger the mask included")
     a = ap.parse_args()
 
     from rembg import new_session, remove
@@ -91,6 +92,12 @@ def main():
         if bbox:
             cut = cut.crop(bbox)
 
+    if a.trim:
+        l, t, r, b = (float(v) for v in a.trim.split(","))
+        cut = cut.crop((int(l * cut.width), int(t * cut.height), int(r * cut.width), int(b * cut.height)))
+        bbox = cut.split()[-1].getbbox()
+        if bbox:
+            cut = cut.crop(bbox)
     cut.save(a.dst, optimize=True)
     print(f"cutout: {a.src} -> {a.dst} {cut.size[0]}x{cut.size[1]} model={a.model} paper={a.paper} bw={a.bw}")
 

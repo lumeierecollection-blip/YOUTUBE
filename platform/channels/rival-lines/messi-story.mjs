@@ -55,13 +55,14 @@ export const blueprint = {
 const T = (id, key, title, claim, cutout) => ({ id, key, title, claim, ...(cutout ? { cutout } : {}) });
 export const ASSETS = [
   T("messi-2022", "p2022cut", "File:Lionel-Messi-Argentina-2022-FIFA-World-Cup sharpness.jpg", "W5", {}),
+  // The trims remove the hanger above the Argentina shirt and the dark stand below the Ballon d'Or, which the mask kept as ragged shapes.
   // Objects are cut out of their photographs (general-object model), so each appears on its own: one shirt, one trophy, one shoe.
   // The Barcelona shirt is a real Barcelona home shirt, not one Messi wore; the video labels it only as "Barcelona".
-  T("shirt-arg", "shirtArg", "File:Fútbol Diseñando una pasión - 124.jpg", "W5", { model: "isnet-general-use" }),
+  T("shirt-arg", "shirtArg", "File:Fútbol Diseñando una pasión - 124.jpg", "W5", { model: "isnet-general-use", trim: "0,0.065,1,1" }),
   T("shirt-bar", "shirtBar", "File:FC Barcelona shirt2.jpg", "W4", { model: "isnet-general-use" }),
   T("otamendi", "otamendi", "File:Nicolás Otamendi Copa del Mundo 2022.jpg", "W5"),
   T("golden-shoe", "shoe", "File:Messi's Golden Shoe (51937265513).jpg", "W8", { model: "isnet-general-use" }),
-  T("ballon-dor", "bo", "File:Camp Nou Experience (Ank Kumar, INFOSYS) 01.jpg", "W2", { model: "isnet-general-use" }),
+  T("ballon-dor", "bo", "File:Camp Nou Experience (Ank Kumar, INFOSYS) 01.jpg", "W2", { model: "isnet-general-use", trim: "0,0,1,0.665" }),
 ];
 export const metadata = {
   title: "Is Lionel Messi the Greatest of All Time?",
