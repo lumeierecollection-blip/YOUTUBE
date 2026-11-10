@@ -1,0 +1,183 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42869131309-1",
+  "topic": "Why do some AI models fail at counting letters, and what fixes it?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Why do some AI models fail at counting letters?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked two models twenty questions, once plainly, once spelling it out first.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "A real reply: it spells the word, then counts.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Asked plainly, Google's Flash-Lite got sixteen right.",
+      "scene": 3,
+      "claim_ids": [
+        "plain"
+      ]
+    },
+    {
+      "text": "Spelling first, twenty.",
+      "scene": 4,
+      "claim_ids": [
+        "spelled"
+      ]
+    },
+    {
+      "text": "On random letters, six of ten became ten.",
+      "scene": 4,
+      "claim_ids": [
+        "split"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS was perfect either way.",
+      "scene": 4,
+      "claim_ids": [
+        "other0"
+      ]
+    },
+    {
+      "text": "Why: models read tokens, not letters.",
+      "scene": 5,
+      "claim_ids": [
+        "tokenize"
+      ]
+    },
+    {
+      "text": "Strawberry is one token, but ten letters.",
+      "scene": 5,
+      "claim_ids": [
+        "tokens"
+      ]
+    },
+    {
+      "text": "Same models, same questions, one change.",
+      "scene": 6,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "So make the model spell it out first.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "title": "AI Tested spell-out test run"
+    },
+    {
+      "source_id": "wiki-llm",
+      "url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "published": "2026-11-10",
+      "title": "Large language model (Wikipedia)"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "two models answered the same 20 letter-counting questions twice: once plainly and once asked to spell the word out letter by letter first.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "two models answered the same 20 letter-counting questions twice: once plainly and once asked to spell the word out letter by letter first.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "plain",
+      "claim": "Google's Flash-Lite got 16 of 20 right when asked plainly.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite got 16 of 20 right when asked plainly.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "spelled",
+      "claim": "Google's Flash-Lite got 20 of 20 right when it spelled the word out first.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite got 20 of 20 right when it spelled the word out first.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "split",
+      "claim": "Google's Flash-Lite got 6 of 10 random letter strings right when asked plainly and 10 of 10 when it spelled them out first.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "Google's Flash-Lite got 6 of 10 random letter strings right when asked plainly and 10 of 10 when it spelled them out first.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "other0",
+      "claim": "OpenAI's GPT-OSS got 20 of 20 right both ways.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "OpenAI's GPT-OSS got 20 of 20 right both ways.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "tokens",
+      "claim": "Gemini's tokenizer reads \"strawberry\" as 1 token, not 10 letters.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42865178238",
+      "published": "2026-11-10",
+      "excerpt": "Gemini's tokenizer reads \"strawberry\" as 1 token, not 10 letters.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-10; results can differ between runs and as models update. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B. Marking: code compares the number in each reply (for the spell-out prompt, the number after \"ANSWER:\") with the true count.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "tokenize",
+      "claim": "Language models turn text into numbered tokens, using methods such as byte-pair encoding, before processing it.",
+      "source_id": "wiki-llm",
+      "source_url": "https://en.wikipedia.org/wiki/Large_language_model",
+      "published": "2026-11-10",
+      "excerpt": "Language models turn text into numbered tokens, using methods such as byte-pair encoding, before processing it.",
+      "confidence": "high",
+      "context": "Wikipedia, Large language model, Tokenization section.",
+      "editorial_status": "established_fact"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
