@@ -1,0 +1,419 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "intro",
+      "treatment": "layered-portrait-collage-with-name",
+      "objective": "Open on a layered editorial collage: big type, a sticker portrait and older photographs behind",
+      "background": "white editorial page, club colours",
+      "from": 0,
+      "to": 144,
+      "start_s": 0,
+      "end_s": 4.8
+    },
+    {
+      "id": "s2",
+      "kind": "timeline",
+      "treatment": "career-timeline-with-photographs",
+      "objective": "Show two career moments on a timeline with photographs from the era",
+      "background": "white editorial page",
+      "from": 144,
+      "to": 378,
+      "start_s": 4.8,
+      "end_s": 12.6
+    },
+    {
+      "id": "s3",
+      "kind": "heat",
+      "treatment": "pass-origin-heatmaps-two-seasons",
+      "objective": "Show where his passes began in two sampled seasons, on real pitches",
+      "background": "white editorial page",
+      "from": 378,
+      "to": 466,
+      "start_s": 12.6,
+      "end_s": 15.533333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "stats",
+      "treatment": "per-90-bar-comparison",
+      "objective": "Compare shots and key passes per 90 between the two sampled seasons with animated bars",
+      "background": "white editorial page",
+      "from": 466,
+      "to": 577,
+      "start_s": 15.533333333333333,
+      "end_s": 19.233333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "honours",
+      "treatment": "honours-collage",
+      "objective": "Show the honours with a photograph and the sticker portrait, with the Ballon d'Or count up",
+      "background": "club-blue page",
+      "from": 577,
+      "to": 683,
+      "start_s": 19.233333333333334,
+      "end_s": 22.766666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "close",
+      "treatment": "portrait-led-conclusion",
+      "objective": "Return to the large portrait with the conclusion in type",
+      "background": "white editorial page, garnet block",
+      "from": 683,
+      "to": 800,
+      "start_s": 22.766666666666666,
+      "end_s": 26.666666666666668
+    }
+  ],
+  "captions": [
+    {
+      "text": "Lionel Messi is the most",
+      "from": 0,
+      "to": 53,
+      "words": [
+        {
+          "text": "Lionel",
+          "from": 0
+        },
+        {
+          "text": "Messi",
+          "from": 20
+        },
+        {
+          "text": "is",
+          "from": 32
+        },
+        {
+          "text": "the",
+          "from": 45
+        },
+        {
+          "text": "most",
+          "from": 48
+        }
+      ]
+    },
+    {
+      "text": "decorated player in football history",
+      "from": 53,
+      "to": 123,
+      "words": [
+        {
+          "text": "decorated",
+          "from": 53
+        },
+        {
+          "text": "player",
+          "from": 64
+        },
+        {
+          "text": "in",
+          "from": 83
+        },
+        {
+          "text": "football",
+          "from": 93
+        },
+        {
+          "text": "history",
+          "from": 102
+        }
+      ]
+    },
+    {
+      "text": "He debuted for Barcelona in",
+      "from": 144,
+      "to": 185,
+      "words": [
+        {
+          "text": "He",
+          "from": 144
+        },
+        {
+          "text": "debuted",
+          "from": 144
+        },
+        {
+          "text": "for",
+          "from": 151
+        },
+        {
+          "text": "Barcelona",
+          "from": 160
+        },
+        {
+          "text": "in",
+          "from": 172
+        }
+      ]
+    },
+    {
+      "text": "2004 aged seventeen",
+      "from": 185,
+      "to": 247,
+      "words": [
+        {
+          "text": "2004",
+          "from": 185
+        },
+        {
+          "text": "aged",
+          "from": 209
+        },
+        {
+          "text": "seventeen",
+          "from": 227
+        }
+      ]
+    },
+    {
+      "text": "By 2009",
+      "from": 261,
+      "to": 286,
+      "words": [
+        {
+          "text": "By",
+          "from": 261
+        },
+        {
+          "text": "2009",
+          "from": 267
+        }
+      ]
+    },
+    {
+      "text": "he had helped win Spain's",
+      "from": 300,
+      "to": 333,
+      "words": [
+        {
+          "text": "he",
+          "from": 300
+        },
+        {
+          "text": "had",
+          "from": 304
+        },
+        {
+          "text": "helped",
+          "from": 307
+        },
+        {
+          "text": "win",
+          "from": 312
+        },
+        {
+          "text": "Spain's",
+          "from": 318
+        }
+      ]
+    },
+    {
+      "text": "first treble",
+      "from": 333,
+      "to": 363,
+      "words": [
+        {
+          "text": "first",
+          "from": 333
+        },
+        {
+          "text": "treble",
+          "from": 344
+        }
+      ]
+    },
+    {
+      "text": "In sampled matches his shooting",
+      "from": 378,
+      "to": 420,
+      "words": [
+        {
+          "text": "In",
+          "from": 378
+        },
+        {
+          "text": "sampled",
+          "from": 379
+        },
+        {
+          "text": "matches",
+          "from": 386
+        },
+        {
+          "text": "his",
+          "from": 397
+        },
+        {
+          "text": "shooting",
+          "from": 412
+        }
+      ]
+    },
+    {
+      "text": "barely changed",
+      "from": 420,
+      "to": 451,
+      "words": [
+        {
+          "text": "barely",
+          "from": 420
+        },
+        {
+          "text": "changed",
+          "from": 434
+        }
+      ]
+    },
+    {
+      "text": "But his key passes per",
+      "from": 466,
+      "to": 501,
+      "words": [
+        {
+          "text": "But",
+          "from": 466
+        },
+        {
+          "text": "his",
+          "from": 469
+        },
+        {
+          "text": "key",
+          "from": 472
+        },
+        {
+          "text": "passes",
+          "from": 481
+        },
+        {
+          "text": "per",
+          "from": 492
+        }
+      ]
+    },
+    {
+      "text": "ninety minutes more than doubled",
+      "from": 501,
+      "to": 556,
+      "words": [
+        {
+          "text": "ninety",
+          "from": 501
+        },
+        {
+          "text": "minutes",
+          "from": 508
+        },
+        {
+          "text": "more",
+          "from": 518
+        },
+        {
+          "text": "than",
+          "from": 531
+        },
+        {
+          "text": "doubled",
+          "from": 539
+        }
+      ]
+    },
+    {
+      "text": "Eight Ballons d'Or and the",
+      "from": 577,
+      "to": 617,
+      "words": [
+        {
+          "text": "Eight",
+          "from": 577
+        },
+        {
+          "text": "Ballons",
+          "from": 579
+        },
+        {
+          "text": "d'Or",
+          "from": 586
+        },
+        {
+          "text": "and",
+          "from": 601
+        },
+        {
+          "text": "the",
+          "from": 614
+        }
+      ]
+    },
+    {
+      "text": "2022 World Cup",
+      "from": 617,
+      "to": 667,
+      "words": [
+        {
+          "text": "2022",
+          "from": 617
+        },
+        {
+          "text": "World",
+          "from": 632
+        },
+        {
+          "text": "Cup",
+          "from": 653
+        }
+      ]
+    },
+    {
+      "text": "In this sample",
+      "from": 683,
+      "to": 701,
+      "words": [
+        {
+          "text": "In",
+          "from": 683
+        },
+        {
+          "text": "this",
+          "from": 686
+        },
+        {
+          "text": "sample",
+          "from": 691
+        }
+      ]
+    },
+    {
+      "text": "the finisher became the creator",
+      "from": 710,
+      "to": 761,
+      "words": [
+        {
+          "text": "the",
+          "from": 710
+        },
+        {
+          "text": "finisher",
+          "from": 713
+        },
+        {
+          "text": "became",
+          "from": 728
+        },
+        {
+          "text": "the",
+          "from": 741
+        },
+        {
+          "text": "creator",
+          "from": 751
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 800,
+  "duration_s": 26.666666666666668
+}
