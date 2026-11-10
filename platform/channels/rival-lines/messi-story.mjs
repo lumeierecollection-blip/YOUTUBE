@@ -24,14 +24,14 @@ export const claims = [
 ];
 const S = (text, scene, claim_ids) => ({ text, scene, claim_ids, ...(claim_ids.length ? {} : { allow_no_claim: true, editorial: "question or conclusion drawn from the beats above, not a new claim" }) });
 export const sentences = [
-  S("Why is Lionel Messi called the greatest of all time?", 0, []),
-  S("Start with the trophies: eight Ballons d'Or.", 1, ["W2"]),
+  S("Why is Messi called the greatest ever?", 0, []),
+  S("Eight Ballons d'Or.", 1, ["W2"]),
   S("Then the goals: four hundred and seventy-four in La Liga, a record.", 2, ["W4"]),
   S("One season, seventy-three.", 2, ["T1"]),
   S("Two trebles, in 2009 and 2015.", 3, ["W3", "W7"]),
   S("And in 2022, the World Cup.", 4, ["W5"]),
   S("In sampled matches, his key passes more than doubled.", 5, ["D2"]),
-  S("That is the case for the greatest.", 6, []),
+  S("That's the case.", 6, []),
 ];
 export const scenes = [
   { kind: "hook", treatment: "question-hook-with-shirts-and-portrait", objective: "Pose the question over a sticker portrait with a Barcelona shirt and an Argentina shirt behind", background: "white editorial page, club blue" },
