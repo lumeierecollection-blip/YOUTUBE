@@ -1,0 +1,84 @@
+{
+  "measured_wpm": 178.6,
+  "calibration_seconds": 13.776,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "The 2022 World Cup final: Argentina against France, three-all, then Argentina won on penalties.",
+      "scene": 0,
+      "claim_ids": [
+        "F1"
+      ]
+    },
+    {
+      "text": "Argentina began in a four-three-three, France in a four-two-three-one.",
+      "scene": 1,
+      "claim_ids": [
+        "F2"
+      ]
+    },
+    {
+      "text": "In the first forty minutes, Argentina completed two hundred and thirty passes. France, one hundred and sixteen.",
+      "scene": 2,
+      "claim_ids": [
+        "F3"
+      ]
+    },
+    {
+      "text": "By the seventy-eighth minute, Argentina had ten shots.",
+      "scene": 3,
+      "claim_ids": [
+        "F4"
+      ]
+    },
+    {
+      "text": "France had two, the first in the sixty-seventh minute.",
+      "scene": 3,
+      "claim_ids": [
+        "F4"
+      ]
+    },
+    {
+      "text": "Then France scored in the seventy-ninth minute, and again in the eightieth.",
+      "scene": 4,
+      "claim_ids": [
+        "F5"
+      ]
+    },
+    {
+      "text": "Over the whole match, expected goals ended nearly level: two point eight to two point three.",
+      "scene": 4,
+      "claim_ids": [
+        "F6"
+      ]
+    },
+    {
+      "text": "Argentina built the lead.",
+      "scene": 5,
+      "claim_ids": [
+        "F4"
+      ]
+    },
+    {
+      "text": "France built the comeback.",
+      "scene": 5,
+      "claim_ids": [
+        "F5"
+      ]
+    }
+  ],
+  "words": 93,
+  "estimated_seconds": 31.7,
+  "inside_window": false,
+  "kept": [
+    "xg",
+    "hook",
+    "formation",
+    "passes",
+    "shots0",
+    "shots1",
+    "goals",
+    "thesis0",
+    "thesis1"
+  ]
+}
