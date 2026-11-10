@@ -42,13 +42,13 @@ async function callOpenAiStyle(url, key, model, text) {
   return String(j.choices?.[0]?.message?.content || "").trim();
 }
 
-const CANDIDATES = [
+export const CANDIDATES = [
   { name: "Gemini 3.5 Flash", speak: "Google's Gemini Flash", id: "gemini-3.5-flash", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash", t), pause: 4500 },
   { name: "Gemini 3.5 Flash-Lite", speak: "Google's Flash-Lite", id: "gemini-3.5-flash-lite", available: () => !!geminiKey(), ask: (t) => callGemini("gemini-3.5-flash-lite", t), pause: 4500 },
   { name: "GPT-OSS 120B", speak: "OpenAI's GPT-OSS", id: "openai/gpt-oss-120b", available: () => !!process.env.GROQ_API_KEY, ask: (t) => callOpenAiStyle("https://api.groq.com/openai/v1/chat/completions", process.env.GROQ_API_KEY, "openai/gpt-oss-120b", t), pause: 2500 },
 ];
 
-async function askWithRetry(model, text) {
+export async function askWithRetry(model, text) {
   for (let attempt = 1; ; attempt++) {
     try { return await model.ask(text); }
     catch (e) { if (attempt >= 4) throw e; await sleep((e.status === 429 ? 20000 : 5000) * attempt); }
