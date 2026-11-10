@@ -2,10 +2,11 @@
   "channel": "court-and-spotlight",
   "production_run": "run-42829779214-1",
   "agent": "agent-court-and-spotlight",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-10T14:28:25.539Z",
+  "stage": "script_approved",
+  "status": "pending",
+  "timestamp": "2026-11-10T14:28:26.882Z",
   "branch": "preview/court-and-spotlight-collage-grammy-2",
   "commit": "a6181f96d2aa27f1a62781f63bcc07793916e53c",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42829779214#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42829779214#artifacts",
+  "note": "not reviewed by the engine critic"
 }
