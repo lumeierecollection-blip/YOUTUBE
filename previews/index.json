@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-10T15:58:43.944Z",
+  "rebuilt_at": "2026-11-10T16:09:16.838Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -156,21 +156,21 @@
     {
       "key": "rival-lines",
       "agent": "agent-rival-lines",
-      "stage": "finished",
+      "stage": "render_complete",
       "status": "ok",
-      "at": "2026-11-10T15:58:43.519Z",
-      "branch": "preview/rival-lines-final-4",
+      "at": "2026-11-10T16:09:15.484Z",
+      "branch": "preview/rival-lines-messi-2",
       "commit": "2918093e",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42848057145#artifacts)",
-      "sheet": "[contact-sheet.jpg](rival-lines/run-42848057145-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](rival-lines/run-42848057145-1/scene-s1.jpg) [scene-s2.jpg](rival-lines/run-42848057145-1/scene-s2.jpg) [scene-s3.jpg](rival-lines/run-42848057145-1/scene-s3.jpg) [scene-s4.jpg](rival-lines/run-42848057145-1/scene-s4.jpg)",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42848067110#artifacts)",
+      "sheet": "",
+      "scenes": "",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](rival-lines/run-42848057145-1/scene-plan.json)",
-      "qa": "[qa-report.json](rival-lines/run-42848057145-1/qa-report.json)",
+      "plan": "[scene-plan.json](rival-lines/run-42848067110-1/scene-plan.json)",
+      "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-10T15:58:43.519Z",
-      "run": "run-42848057145-1"
+      "lastOk": "2026-11-10T16:09:15.484Z",
+      "run": "run-42848067110-1"
     }
   ]
 }
