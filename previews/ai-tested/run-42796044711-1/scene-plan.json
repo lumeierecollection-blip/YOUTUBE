@@ -1,0 +1,74 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42796044711-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Will an AI model ever say: I don't know?",
+      "main_point": "Pose the question: do AI models say I don't know",
+      "visual_objective": "Pose the question: do AI models say I don't know",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.8
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We asked each model about ten made-up products. Then ten real questions, as a control.",
+      "main_point": "Show ten made-up product names and ten real questions",
+      "visual_objective": "Show ten made-up product names and ten real questions",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 3.8,
+      "end_s": 9.666666666666666
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Google's Gemini Flash admitted it on 7 of ten. OpenAI's GPT-OSS admitted it on 2 of ten.",
+      "main_point": "Show how many made-up products each model admitted not knowing",
+      "visual_objective": "Show how many made-up products each model admitted not knowing",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "best",
+        "worst"
+      ],
+      "start_s": 9.666666666666666,
+      "end_s": 17.766666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "It described a product that does not exist.",
+      "main_point": "Show a real reply that describes a product that does not exist",
+      "visual_objective": "Show a real reply that describes a product that does not exist",
+      "treatment": "terminal-demo",
+      "background": "dark terminal",
+      "skill": "remotion",
+      "claim_ids": [
+        "miss"
+      ],
+      "start_s": 17.766666666666666,
+      "end_s": 20.7
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Sounding sure is not the same as being right.",
+      "main_point": "Close on the line about sounding sure",
+      "visual_objective": "Close on the line about sounding sure",
+      "treatment": "verdict-panel",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 20.7,
+      "end_s": 24.6
+    }
+  ]
+}

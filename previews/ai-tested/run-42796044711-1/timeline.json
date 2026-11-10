@@ -1,0 +1,407 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "kinetic-question",
+      "objective": "Pose the question: do AI models say I don't know",
+      "background": "white",
+      "from": 0,
+      "to": 114,
+      "start_s": 0,
+      "end_s": 3.8
+    },
+    {
+      "id": "s2",
+      "kind": "setup",
+      "treatment": "process-diagram",
+      "objective": "Show ten made-up product names and ten real questions",
+      "background": "white",
+      "from": 114,
+      "to": 290,
+      "start_s": 3.8,
+      "end_s": 9.666666666666666
+    },
+    {
+      "id": "s3",
+      "kind": "score",
+      "treatment": "bar-chart",
+      "objective": "Show how many made-up products each model admitted not knowing",
+      "background": "white",
+      "from": 290,
+      "to": 533,
+      "start_s": 9.666666666666666,
+      "end_s": 17.766666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "miss",
+      "treatment": "terminal-demo",
+      "objective": "Show a real reply that describes a product that does not exist",
+      "background": "dark terminal",
+      "from": 533,
+      "to": 621,
+      "start_s": 17.766666666666666,
+      "end_s": 20.7
+    },
+    {
+      "id": "s5",
+      "kind": "close",
+      "treatment": "verdict-panel",
+      "objective": "Close on the line about sounding sure",
+      "background": "white",
+      "from": 621,
+      "to": 738,
+      "start_s": 20.7,
+      "end_s": 24.6
+    }
+  ],
+  "captions": [
+    {
+      "text": "Will an AI model ever",
+      "from": 0,
+      "to": 50,
+      "words": [
+        {
+          "text": "Will",
+          "from": 0
+        },
+        {
+          "text": "an",
+          "from": 13
+        },
+        {
+          "text": "AI",
+          "from": 17
+        },
+        {
+          "text": "model",
+          "from": 25
+        },
+        {
+          "text": "ever",
+          "from": 39
+        }
+      ]
+    },
+    {
+      "text": "say",
+      "from": 50,
+      "to": 67,
+      "words": [
+        {
+          "text": "say",
+          "from": 50
+        }
+      ]
+    },
+    {
+      "text": "I don't know",
+      "from": 75,
+      "to": 95,
+      "words": [
+        {
+          "text": "I",
+          "from": 75
+        },
+        {
+          "text": "don't",
+          "from": 77
+        },
+        {
+          "text": "know",
+          "from": 85
+        }
+      ]
+    },
+    {
+      "text": "We asked each model about",
+      "from": 114,
+      "to": 149,
+      "words": [
+        {
+          "text": "We",
+          "from": 114
+        },
+        {
+          "text": "asked",
+          "from": 114
+        },
+        {
+          "text": "each",
+          "from": 119
+        },
+        {
+          "text": "model",
+          "from": 130
+        },
+        {
+          "text": "about",
+          "from": 140
+        }
+      ]
+    },
+    {
+      "text": "ten made-up products",
+      "from": 149,
+      "to": 188,
+      "words": [
+        {
+          "text": "ten",
+          "from": 149
+        },
+        {
+          "text": "made-up",
+          "from": 158
+        },
+        {
+          "text": "products",
+          "from": 175
+        }
+      ]
+    },
+    {
+      "text": "Then ten real questions as",
+      "from": 202,
+      "to": 245,
+      "words": [
+        {
+          "text": "Then",
+          "from": 202
+        },
+        {
+          "text": "ten",
+          "from": 206
+        },
+        {
+          "text": "real",
+          "from": 214
+        },
+        {
+          "text": "questions",
+          "from": 221
+        },
+        {
+          "text": "as",
+          "from": 234
+        }
+      ]
+    },
+    {
+      "text": "a control",
+      "from": 245,
+      "to": 259,
+      "words": [
+        {
+          "text": "a",
+          "from": 245
+        },
+        {
+          "text": "control",
+          "from": 248
+        }
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash admitted it",
+      "from": 290,
+      "to": 353,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 290
+        },
+        {
+          "text": "Gemini",
+          "from": 298
+        },
+        {
+          "text": "Flash",
+          "from": 310
+        },
+        {
+          "text": "admitted",
+          "from": 323
+        },
+        {
+          "text": "it",
+          "from": 340
+        }
+      ]
+    },
+    {
+      "text": "on 7 of ten",
+      "from": 353,
+      "to": 397,
+      "words": [
+        {
+          "text": "on",
+          "from": 353
+        },
+        {
+          "text": "7",
+          "from": 358
+        },
+        {
+          "text": "of",
+          "from": 370
+        },
+        {
+          "text": "ten",
+          "from": 377
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 412,
+      "to": 445,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 412
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 424
+        }
+      ]
+    },
+    {
+      "text": "admitted it on 2 of",
+      "from": 460,
+      "to": 507,
+      "words": [
+        {
+          "text": "admitted",
+          "from": 460
+        },
+        {
+          "text": "it",
+          "from": 472
+        },
+        {
+          "text": "on",
+          "from": 484
+        },
+        {
+          "text": "2",
+          "from": 490
+        },
+        {
+          "text": "of",
+          "from": 500
+        }
+      ]
+    },
+    {
+      "text": "ten",
+      "from": 507,
+      "to": 523,
+      "words": [
+        {
+          "text": "ten",
+          "from": 507
+        }
+      ]
+    },
+    {
+      "text": "It described a product that",
+      "from": 533,
+      "to": 567,
+      "words": [
+        {
+          "text": "It",
+          "from": 533
+        },
+        {
+          "text": "described",
+          "from": 534
+        },
+        {
+          "text": "a",
+          "from": 541
+        },
+        {
+          "text": "product",
+          "from": 550
+        },
+        {
+          "text": "that",
+          "from": 561
+        }
+      ]
+    },
+    {
+      "text": "does not exist",
+      "from": 567,
+      "to": 604,
+      "words": [
+        {
+          "text": "does",
+          "from": 567
+        },
+        {
+          "text": "not",
+          "from": 576
+        },
+        {
+          "text": "exist",
+          "from": 586
+        }
+      ]
+    },
+    {
+      "text": "Sounding sure is not the",
+      "from": 621,
+      "to": 680,
+      "words": [
+        {
+          "text": "Sounding",
+          "from": 621
+        },
+        {
+          "text": "sure",
+          "from": 638
+        },
+        {
+          "text": "is",
+          "from": 647
+        },
+        {
+          "text": "not",
+          "from": 663
+        },
+        {
+          "text": "the",
+          "from": 674
+        }
+      ]
+    },
+    {
+      "text": "same as being right",
+      "from": 680,
+      "to": 711,
+      "words": [
+        {
+          "text": "same",
+          "from": 680
+        },
+        {
+          "text": "as",
+          "from": 689
+        },
+        {
+          "text": "being",
+          "from": 694
+        },
+        {
+          "text": "right",
+          "from": 700
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 738,
+  "duration_s": 24.6
+}
