@@ -1,0 +1,150 @@
+{
+ "sample_note": "first 12 Barcelona league matches that Messi started in each season in StatsBomb Open Data; per 90 minutes played in those matches",
+ "seasons": {
+  "2009/10": {
+   "matches": 12,
+   "minutes": 1061,
+   "first": "2009-09-19",
+   "last": "2010-01-16",
+   "shots_per90": 4.67,
+   "key_passes_per90": 1.44,
+   "passes_per90": 49.71,
+   "xg_per90": 0.64,
+   "goals": 12,
+   "assists": 5
+  },
+  "2018/19": {
+   "matches": 12,
+   "minutes": 1051,
+   "first": "2018-08-18",
+   "last": "2018-12-08",
+   "shots_per90": 4.8,
+   "key_passes_per90": 3.51,
+   "passes_per90": 65.85,
+   "xg_per90": 0.54,
+   "goals": 11,
+   "assists": 7
+  }
+ },
+ "barcelona_la_liga": [
+  {
+   "season": "2004-05",
+   "league_apps": 7,
+   "league_goals": 1,
+   "apps": 9,
+   "goals": 1
+  },
+  {
+   "season": "2005-06",
+   "league_apps": 17,
+   "league_goals": 6,
+   "apps": 25,
+   "goals": 8
+  },
+  {
+   "season": "2006-07",
+   "league_apps": 26,
+   "league_goals": 14,
+   "apps": 36,
+   "goals": 17
+  },
+  {
+   "season": "2007-08",
+   "league_apps": 28,
+   "league_goals": 10,
+   "apps": 40,
+   "goals": 16
+  },
+  {
+   "season": "2008-09",
+   "league_apps": 31,
+   "league_goals": 23,
+   "apps": 51,
+   "goals": 38
+  },
+  {
+   "season": "2009-10",
+   "league_apps": 35,
+   "league_goals": 34,
+   "apps": 53,
+   "goals": 47
+  },
+  {
+   "season": "2010-11",
+   "league_apps": 33,
+   "league_goals": 31,
+   "apps": 55,
+   "goals": 53
+  },
+  {
+   "season": "2011-12",
+   "league_apps": 37,
+   "league_goals": 50,
+   "apps": 60,
+   "goals": 73
+  },
+  {
+   "season": "2012-13",
+   "league_apps": 32,
+   "league_goals": 46,
+   "apps": 50,
+   "goals": 60
+  },
+  {
+   "season": "2013-14",
+   "league_apps": 31,
+   "league_goals": 28,
+   "apps": 46,
+   "goals": 41
+  },
+  {
+   "season": "2014-15",
+   "league_apps": 38,
+   "league_goals": 43,
+   "apps": 57,
+   "goals": 58
+  },
+  {
+   "season": "2015-16",
+   "league_apps": 33,
+   "league_goals": 26,
+   "apps": 49,
+   "goals": 41
+  },
+  {
+   "season": "2016-17",
+   "league_apps": 34,
+   "league_goals": 37,
+   "apps": 52,
+   "goals": 54
+  },
+  {
+   "season": "2017-18",
+   "league_apps": 36,
+   "league_goals": 34,
+   "apps": 54,
+   "goals": 45
+  },
+  {
+   "season": "2018-19",
+   "league_apps": 34,
+   "league_goals": 36,
+   "apps": 50,
+   "goals": 51
+  },
+  {
+   "season": "2019-20",
+   "league_apps": 33,
+   "league_goals": 25,
+   "apps": 44,
+   "goals": 31
+  },
+  {
+   "season": "2020-21",
+   "league_apps": 35,
+   "league_goals": 30,
+   "apps": 47,
+   "goals": 38
+  }
+ ]
+}
