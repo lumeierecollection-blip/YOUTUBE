@@ -1,6 +1,6 @@
 # Production preview index
 
-Rebuilt 2026-11-10T18:19:42.298Z. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.
+Rebuilt 2026-11-10T18:19:48.114Z. Updated when a stage finishes; this is not a live stream. MP4s are in each run's GitHub Actions artifact.
 
 | Channel | Agent | Stage | Status | Updated | Branch @ commit | MP4 | Contact sheet | Scenes | Voice | Script | Scene plan | QA | Last success | Outstanding |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
