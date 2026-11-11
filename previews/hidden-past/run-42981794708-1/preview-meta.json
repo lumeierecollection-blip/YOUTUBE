@@ -2,10 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-42981794708-1",
   "agent": "agent-hidden-past",
-  "stage": "started",
-  "status": "running",
-  "timestamp": "2026-11-11T07:46:46.539Z",
+  "stage": "research_complete",
+  "status": "ok",
+  "timestamp": "2026-11-11T07:47:00.282Z",
   "branch": "preview/hidden-past-crime-beats",
   "commit": "6deeca9ae1311a488ba88e975b5c5b627eb0130b",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42981794708#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42981794708#artifacts",
+  "claims": 13
 }
