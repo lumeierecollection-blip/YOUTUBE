@@ -1,0 +1,2712 @@
+{
+  "generated_at": "2026-11-11T23:31:21.480Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 64
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-16",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-17",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-12",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-13",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 4
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "bing-news:shipwreck found",
+          "ok": true,
+          "items": 4
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 44
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 38
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "bing-news:forgotten history",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 47
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "wikipedia-on-this-day:11-27",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-02",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-18",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-04",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:11-30",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-13",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-24",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-08",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-20",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-01",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-14",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-15",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-07",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-23",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-19",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-26",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-21",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-03",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-22",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-25",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-10",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-06",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "wikipedia-on-this-day:12-12",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-28",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-29",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-09",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        },
+        {
+          "source": "wikipedia-on-this-day:12-05",
+          "ok": true,
+          "items": 13
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "The 3,300-Year-Old Bronze Age Sword Found in an Italian Lake",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        120,
+        133
+      ],
+      "hook": "Divers pulled a pristine 3,300-year-old bronze sword from a lake—and it was still razor sharp.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "3300 year old sword found in lake",
+      "evidence": [
+        {
+          "title": "Archaeologists pulled a 3,300-year-old sword from a lake. One detail stunned them - Cleveland.com",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQSlVoYkRJcXc3VnZUQUFJajl5MVhQcTJtSThHVXQxOTY5SkpHanJvRWlVeUxWX2tvRGhERm1PeWYwa0xXQVRkR2Q4WHRSaTVpWDVXUENFek83YzFQR09aMkZfMHgxSjhmQkJmM2ZueGRCaTNpZ0VlcDRMSmFnVkFkLTR4QUw3dm9TY1BFWkY0cnpyQTBGYjBMWlhWeHZzSzl2NlpxRDNENXU1YjBYUlctR1dzMG4xUXh6MVRyMXZrMHbSAdQBQVVfeXFMTlgwN3VtZl9nMnN2Qi1pTXJ0QmFybnNjZ2c2NHo4MXo5VENlWTlDM2U5alloV3hYVDhPUnRCUnpDYnhSVlg0MUdTUy1ZZTJMakIzbXZEX0pMekR3bzVaYXZIdGszbXZEbFc4cFBRdU1ibGxFYV9wWEN2eTJ2Z2dhNHVUZ0tnekp4cXU4ZFhPX1dZWGF0bVh0WG9RTW1JTGY5T1ZRM0RSalVHVWRaakt2OG5TdnpVYjRVbmVRQTZzOHFwN0dvcExoMy1qUDBoNnlULTA5anI?oc=5",
+          "domain": "cleveland.com",
+          "published_ms": 1794337500000,
+          "kind": "news",
+          "id": 120
+        },
+        {
+          "title": "3,300-Year-Old Sword Found in Italian Lake Still Sharp - Greek City Times",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOYWh4NWdZVVdYQllja09HQWhPTmRFMGc0alo4M0pMbHByWWZMdDR2TlM3Uk9hOHUxTWc5dWpsdnQzWmNUbVZhMUVnMmxDbklJOEVpUjhkVGlZQnlEU0xYWlBjblpIb3hSUkxybi1Jd1UyQzdyTGswcjB6Y2p2RUZQYWR4WnhtdzVLNTlfbUVtTVpMbG9rQWc?oc=5",
+          "domain": "greekcitytimes.com",
+          "published_ms": 1794292256000,
+          "kind": "news",
+          "id": 133
+        },
+        {
+          "title": "Archaeologists Found a 3,300-Year-Old Sword at the Bottom of a Volcanic Lake in Italy—and It's Still Sharp - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOYjJuRWlOSmdOM2VqQVFfNDhNNy1fcThwdU5yNkNwalQ1QmI3N0I1MktTQlBQQnZ2akZESlRQX3cwZzh2blZQX1EyMGtjZTk0NFZJSnV2a1oxQkJGVEtEWE8tSDhHQmZzdkU1b3BRM2xNc2NnZnhzaEpudTFLdEVxWlIxUk10NFlXUzA1MVBNZWVrekxLQkJ0dllzUUFsM0xtYVRyWjdhV0ZoU3hjUHJrbUxuU1dpS2V3TGw4TERaUjYyUkRwaWVNZ3NfbVNwM3JTS3k5RnA4U05WZ2Nib2YtcGFmVkt5dFJMaE9NR2lR?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1793891333000,
+          "kind": "news"
+        },
+        {
+          "title": "Remarkably preserved 3,300-year-old sword discovered in Italian lake with blade still sharp - FOX Weather",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSFdDbThPNFBWWi1SOHdfeGxOUHVfaW80aW9qbWdDbFdzVW9obmViN3A0VzctVjdpeHVjYTVGeUlqNFRodHhNWkJ3cXVXZTNTLTUzaGl4bzZaNURXdVRUWlBLdzhtblNMUExWbmpVbTlWNmNZV1d3cmhxeEg4cjBHM2c0OU1yd2oxUXFBX1VXYlpkMUQ1c1d5ZXZ4UGNTUUZvcWhOdGRrVXhUSkhXMFZKVXIycUxhQUhBRWpLTdIBwgFBVV95cUxQdEpneGJiUGVjVUV6Rmt0N3JvdDZhWkVDdnAweERwcExkWmlwd254WVM0RVYtd1NOZVRmQ2JRSUR2NENhc1pYdVVoNE9vWE5HY1k2WTF4NWI0Sndxc0RQNmJKV1RRbnpVRG1oc3B5dTV2Skh5OGhuZnl4LVBJTlZqby1jdm9lZ0Y0WWQ2UjhkejF6VVdsZWdvNzdQMzJ6WjgtR0JPUGZJV1ViLUZyeU5sczRwUmhtbEdKOWV1WVVmYUd0QQ?oc=5",
+          "domain": "foxweather.com",
+          "published_ms": 1794231650000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found a 3,300-Year-Old Sword at the Bottom of an Italian Lake (and It’s Still Sharp) - VICE",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNbER0OVhUNXlzRkl0bEZpdUJPYXFadENRN01aUkk2NWJnTjR4UUZRRzZCVk1iN0hjUENTYkFCa21qWno0NDJZbmpMQlBXWlBzVUt1dWdkQWlOODlncm5QOTVpS0ZLSGw1LXVZVzZVMjRrRndUXzh6eTNveUE5NnBleU92Q0lTMFNmY2Z2Ym9WT3M1Tmt1NmY0bkhOOEtucERkTFhBZ204LXd2Sk44eF9NbndfVVdldVgxRWRsTEU3OURrcm1zeEpR?oc=5",
+          "domain": "vice.com",
+          "published_ms": 1793430000000,
+          "kind": "news"
+        },
+        {
+          "title": "3,300-Year-Old Sword Discovered in Volcanic Lake — and It’s Still Sharp - People.com",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBzR3RtX2FKSl9YTms3WFVqaHd2SUdEY2pUcTVaTkJYRXZlbGZjVHNlUFhpeFNqZG5xRWQ0VmhIUEQ1LTdJNERzTEtlTjhDT202TEpvNmxxSDEyclVGTVJ5bkNGOU83dXhjdWVDSHQxVm9fTXlJcko0V1VrSy0tQQ?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794329639000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists find 3,300-year-old sword at bottom of lake - geekspin",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQX096aW9IMm1HUTQwazJNdXJHWlFjd1lManRadmc2amZaSlNaRklybG41NlF0YWdHYy1TQW1DaV9XZzR3WWxId2QxNEJqTFZ0OHAtdjJYTEdrVVhxVWpraHBrT05xdkVPWTV2UEVpX05sME8xaXRPTGhyM0Vab2dRVzRxVGI?oc=5",
+          "domain": "geekspin.co",
+          "published_ms": 1794321908000,
+          "kind": "news"
+        },
+        {
+          "title": "Bronze Age Sword FIshed From Italian Volcanic Lake Is Still Sharp - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOdVNkX0pOOEJ0Ty1pclBJeXZhYTlTZXZIQjdjbk02Q1V6SW1MM3IyTkV1TDBjaFNVMS1MVjlISjI5VWRQbENxS1M5LUdsNEZQRWtPX1NYc3FoWUhmcHhEMHpoOUh0aHZTLVRraU56ZngzMG95OWkwWFJISzYzQlQyRXZaN1NpZ3ZvVHQ1Xy1mWFRLRjJtNnpMUDhCSG5XMTNMdzR6d21nTnJEb1NyOWh4QzM1YUdTZ0tJRGxuUHF4dw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Divers Find 3,300-Year-Old Treasure at Bottom of Lake in Italy - The Daily Beast",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNYktqbXEtWWwzMVRXVFlDRTlkNUtiQzJKcHlUR1hPbXE2WFlBM1JOeS1MUGFFTzdiZFcwa1lrVkhpbTVSbVBpTmRhVzdsOU02NklkSTRsQjVmSHgybmViYVdXbGs0LUhHNU5pcEEyMGw5RWdsUW5UZVYzN2NRZEt4UktSWWVwRzEyUUNKTUs2STExcUVKRWc?oc=5",
+          "domain": "thedailybeast.com",
+          "published_ms": 1794252767000,
+          "kind": "news"
+        },
+        {
+          "title": "In Italy, a bronze sword more than 3,300 years old was found on the bottom of a lake, and it remains sharp to this day - Українські Національні Новини (УНН)",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNel9QWVVpaFhlbjJ5N3lUQ3R0NnZoUTNEZ291NllaelZyVW5DZFRnYUxvcTI4dWZFeGxfVDhzZ1Mzd2Y2eS1ZV2Z6NWd3elBZaVlQX0RDa0VFTEdJN29HSjNMWVVpT0RlS2tJNFJ1SjBzSlJYaXMtNnR0RDk4c1FrMU9BSUkwcUJmWXRycFV3VUZVWDV2YlZkS1hrMkNaaC1lUExkYU1YWnE1cGMtYzdleDd3VXY1ZlpKVUJwSzB0ajRvMHpqOUF3eUZyTjZ5UFdQMlZxadIB0wFBVV95cUxOS2RKWklna1FMWDVGREZYRzFaaXdQUWZJWTdGNWphaFVkRnBpNV9hWWlXaGh2dFJYQkVremRjYkpZN1huX1pfOFItM3YxaE1pbzVyWGptYVN2N0xuQzAyN0ZXMHFFeW4wM2ZTZ01XNXUtTy1Ld1IzTWwzZWNlMFNmcmZIV2NwNVF6Qm1DZzd3ZnUyZFBySVVVblNoYVFjSTFoLWVmOEFhTGdYVzRuT05KaDZ6cThvbnlMOFFPLUM1NGdFSHdvWWMtWTNtdC1sTWtCNjJn?oc=5",
+          "domain": "unn.ua",
+          "published_ms": 1793765130000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 425,
+        "competitors": [
+          {
+            "id": "zjzJidIpHvM",
+            "title": "3,300-Year-Old Sword Pulled From a Lake Is Still Sharp #shorts",
+            "channel": "The Forgotten Dispatch",
+            "views": 1171
+          },
+          {
+            "id": "U-z-vKraYbI",
+            "title": "THE SWORD PULLED FROM A 3,000-YEAR-OLD LAKE",
+            "channel": "Areha Hub",
+            "views": 1146
+          },
+          {
+            "id": "tQ3YCLlUwWk",
+            "title": "They Found a 3,300-Year-Old Sword — And It’s Still Sharp",
+            "channel": "TheFactVault",
+            "views": 1087
+          },
+          {
+            "id": "I7M51reoqAw",
+            "title": "3,300-Year-Old Bronze Sword Found in Italian Lake Is Still Sharp",
+            "channel": "THE BLIP",
+            "views": 1036
+          },
+          {
+            "id": "6kPLgklBWIk",
+            "title": "3,300-Year-Old Bronze Age Sword Discovered in Italian Volcanic Lake",
+            "channel": "B.C. Begley",
+            "views": 425
+          },
+          {
+            "id": "RFJjvkO1m_k",
+            "title": "They Found a 3,300-Year-Old SWORD… Still Sharp?! 😱",
+            "channel": "Mini Facts Lab",
+            "views": 365
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 99,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 79.1,
+        "newest_hours": 28,
+        "domains": [
+          "cleveland.com",
+          "greekcitytimes.com",
+          "smithsonianmag.com",
+          "foxweather.com",
+          "vice.com",
+          "people.com",
+          "geekspin.co",
+          "gizmodo.com",
+          "thedailybeast.com",
+          "unn.ua"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1970 Florence Sperm Whale Dynamite Disaster",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        20
+      ],
+      "hook": "When a rotting whale washed ashore in Oregon, local engineers thought dynamite was a good idea. It was a massive mistake.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Exploding whale",
+      "commons_query": "Florence Oregon whale explosion",
+      "youtube_query": "Oregon exploding whale 1970 footage",
+      "evidence": [
+        {
+          "title": "1970, 11-12: The Oregon Highway Division unsuccessfully attempted to destroy a rotting beached sperm whale near Florence, Oregon, with dynamite.",
+          "url": "https://en.wikipedia.org/wiki/Oregon_Department_of_Transportation",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 20
+        },
+        {
+          "title": "Reporter made famous by 1970 \"exploding whale\" story returns to Florence for film's screening - Lincoln Chronicle",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQQzRMSnhhdV9BZ3FxeTlhSU9hY1ZNTjlrV2o0WGN4b2IxUzBKa3VWUTlXcDFEOGlLLVZUZ204dnlwTVBJcGFqYjlobEFBazhlU09FdWFCQTgwbWJRWm5fU2I5cW5JbHRydDExa2E0VWNTbGJpTUpza2NOVXFuSWl5U2NSLV83UmEwNDNHbXJCQ3FsdEpqZF9sNkgycFpfRGFtWnhhR3RZMlM4eExnQU9abzFWR1NoRzhHbEFQSzhOM2VBZFE0TUdpVw?oc=5",
+          "domain": "lincolnchronicle.org",
+          "published_ms": 1794400385000,
+          "kind": "news"
+        },
+        {
+          "title": "Florence Is Throwing Its Exploding Whale a 56th Birthday Party, and Paul Linnman Is Coming - That Oregon Life",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9TbllwOG92bG5aczRodmhzdW50MVNXWDFkTVBUaG5rQ09NbHRsNm9nVTdUY3NfdWlNTkRpVV9KLWctSE9KeHd4ZVZteFJKT3RwYzZYaW1mX1BIZ3ZGUEVZVUEyQmZLS0Y0VDg3ZjdyVnBmaG5iSVZ2ZA?oc=5",
+          "domain": "thatoregonlife.com",
+          "published_ms": 1794294617000,
+          "kind": "news"
+        },
+        {
+          "title": "Florence celebrates 'exploding whale' anniversary with documentary screening - The Register-Guard",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQUmQxXy14Y0t6UjExRzdNWHFDWm9rblczNUllWlJRM2NiaVhRd2k1MWtYdW5Zcm5MVUV6VGVlQ044MVcxVnBwcWVXMEJmcVRySkJ2bzZtMzJLYnpKeFFtWkRGZEdDNzJpQTdUaDBHbllHVFhqblZVd1JTYURRZ0tnUHJuMjZrWEN2UWF6cDVmby1mZ3l3UWR5N2xzYnhVZmRNdjdpdU9ETTRGQXlkXzY1VjN2RkRlN1g2dUFQQ3M1TlhMZw?oc=5",
+          "domain": "registerguard.com",
+          "published_ms": 1793621100000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Exploding whale",
+        "daily_views": 320,
+        "ratio": 1.36
+      },
+      "youtube": {
+        "median_views": 2518,
+        "competitors": [
+          {
+            "id": "_EDVJrsQ4tM",
+            "title": "They Blew Up A Whale With Dynamite",
+            "channel": "PolySoldier",
+            "views": 58169
+          },
+          {
+            "id": "bdYqncSj5wI",
+            "title": "The 1970 Exploding Whale: Oregon’s Infamous Disposal Disaster",
+            "channel": "Historia Highlights ",
+            "views": 44067
+          },
+          {
+            "id": "HZiNJY-c7TY",
+            "title": "They Blew Up a Whale  Huge Mistake",
+            "channel": "Abis",
+            "views": 8256
+          },
+          {
+            "id": "zi_2KwYIYbU",
+            "title": "They Blew Up a Whale… It Did Not Go Well",
+            "channel": "Interestick",
+            "views": 2647
+          },
+          {
+            "id": "vtUxeCs6dVk",
+            "title": "Oregon Blew Up A Dead Whale With Dynamite 🐋💥",
+            "channel": "Historical Wall",
+            "views": 2518
+          },
+          {
+            "id": "BnlA16THZHM",
+            "title": "They Blew Up a Whale… It Went HORRIBLY Wrong 💀🐋",
+            "channel": "HistorysAlibi",
+            "views": 1504
+          }
+        ]
+      },
+      "commons_hits": 12,
+      "score": {
+        "factors": {
+          "momentum": 74,
+          "reach": 54,
+          "curiosity": 100,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 76.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "lincolnchronicle.org",
+          "thatoregonlife.com",
+          "registerguard.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Rosa Parks' 1955 arrest sparking the Montgomery bus boycott",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        165
+      ],
+      "hook": "One quiet refusal on a city bus ignited a movement that changed American history forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Rosa Parks",
+      "commons_query": "Rosa Parks bus arrest",
+      "youtube_query": "Rosa Parks Montgomery bus boycott",
+      "evidence": [
+        {
+          "title": "1955, 12-01: Rosa Parks was arrested for refusing to give up her seat on a public bus to a white man in Montgomery, Alabama, United States, sparking the Montgomery bus boycott.",
+          "url": "https://en.wikipedia.org/wiki/Rosa_Parks",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 165
+        },
+        {
+          "title": "Martin Luther King, Jr. - Civil Rights, Montgomery Bus Boycott, Nonviolence - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNUHFhVi0xaTgwU2d1WUluRS1kOHRCNEgzNnBYemNvMzFhMExhVEs1ZTg4bGZOM0t1SDhQX19SUXM4SFNTeHlEdEhSXy1DaE5EbGY0bUpyRUh1VDlBaHdkd0JiWVJxLTFWS0lMSUV6U2dFVzlBbENyMkJOOThzMlRMNjI3aE84VGpzUjBIYnV3?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794386392000,
+          "kind": "news"
+        },
+        {
+          "title": "Student Murrow Awards: \"An insider's view of the Montgomery Bus Boycott\" - APR | Alabama Public Radio",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPODdFU0FUS1NnSkFMT2NvV1JITkdrQmlrU2RMRFp1ZnB5S3piRWlNQ21pNTZMdzdCV2FBNUFIem9adG05MkIzSndLdl93TFZCcXc3d2FCb1NaYlZ0aFBRSDRCazhpcmZ2ZTh5MWVNY0x1UzUzWUxwdWFpalkxSjlvcTBlSmNXOHhTdWxuUWpkWXRIanMzcDVJTnVDTTlDYVR0ZmVIeQ?oc=5",
+          "domain": "apr.org",
+          "published_ms": 1793383793000,
+          "kind": "news"
+        },
+        {
+          "title": "Montgomery honors civil rights activist Judge Thomas Gray - Montgomery Advertiser",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQUmVUYnB6akt1Z1B1RkhNWm5DT2NmSmR0WEdjV0pONElLSmwzR3ZfQ1pQOHRXY1pRNnRKU1owNE9jZjB4WGdSbEotdUgtTTJlek9aeVI1b0ZpbVdhYy1tSm45OTlTcTFSb1BjblFyZ3YwbTN4LXA4dF9sQlZYYjh3Qy1Jems2LVhuVk9sVWI4RWRLZk1GUzJtSHNqTVU2OUpUd29IQnVDbjdKZE1QN2JzSktSUkUxTTlkdzFwQUVjdW02dnZBSUdhekZpR3Z2WjFxeDRjZEtibi1pU2FDZVlCSkRZcXM5Znp2UlNzVm9B?oc=5",
+          "domain": "montgomeryadvertiser.com",
+          "published_ms": 1793440500000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Rosa Parks",
+        "daily_views": 2604,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 273,
+        "competitors": [
+          {
+            "id": "iOTr-zUpaEU",
+            "title": "Rosa Parks Trained 12 Years for One Bus Seat",
+            "channel": "Black History Pages",
+            "views": 2454
+          },
+          {
+            "id": "lulsztnj7Ao",
+            "title": "The Real Story of Rosa Parks",
+            "channel": "Black History Library",
+            "views": 1344
+          },
+          {
+            "id": "SrOmUEEASbI",
+            "title": "Rosa Parks Wasn’t “Just Tired”—She Was a Civil Rights Activist Who Took a Stand ✊🏽",
+            "channel": "Beat Of Nagpuri",
+            "views": 553
+          },
+          {
+            "id": "ib9x2D2R01k",
+            "title": "Rosa Parks and the Montgomery Bus Boycott: A Turning Point",
+            "channel": "HBCU Week NOW",
+            "views": 428
+          },
+          {
+            "id": "494Hat8rMXI",
+            "title": "Rosa Parks: A Refusal, a Boycott, a Victory",
+            "channel": "Ramir Wilson",
+            "views": 273
+          },
+          {
+            "id": "FUOFt5bhunU",
+            "title": "Rosa Parks: The One Refusal That Sparked the Montgomery Bus Boycott",
+            "channel": "uniteded",
+            "views": 186
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 52,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 76.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "apr.org",
+          "montgomeryadvertiser.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Burial of the Unknown Warrior and the Unveiling of the London Cenotaph",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        8
+      ],
+      "hook": "In 1920, Britain buried an unidentified soldier in Westminster Abbey, creating a global symbol for the lost of WWI.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "The Cenotaph, London",
+      "commons_query": "Cenotaph London Unknown Warrior 1920",
+      "youtube_query": "Unknown Warrior Westminster Abbey 1920",
+      "evidence": [
+        {
+          "title": "1920, 11-11: In London, the Cenotaph was unveiled and the Unknown Warrior was buried in Westminster Abbey in remembrance of the First World War.",
+          "url": "https://en.wikipedia.org/wiki/The_Cenotaph",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 8
+        },
+        {
+          "title": "What Is the Tomb of the Unknown Soldier? - History.com",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1mYm5fX1pVZkZORTBYTFQtTkhxeV9GQlRYajJ3NUZzNU9GQXpYaUZ5NzFaTmJWWHFhcmk3TExoVy1HSjZ6X3ZhWTdYTUJZeGU0TUpWYnFHenVTelFNcERudGU1LTg0RWRyUHVqUTZzTFczb3JlMWhJ?oc=5",
+          "domain": "history.com",
+          "published_ms": 1794343974000,
+          "kind": "news"
+        },
+        {
+          "title": "The Veterans Charity creates Remembrance tribute to retrace the Unknown Warrior’s journey from France to Westminster Abbey in a moving event dedicated to the fallen - Cobseo - The Confederation of Service Charities",
+          "url": "https://news.google.com/rss/articles/CBMimgJBVV95cUxPVnFuU0xWdGluTGhlZG5hT1ZDTDlZRTc0bWF3SU5hOVVnMHBUY2h5M3hEM0REc3RHNklkZEo2NThwZGtwNlJER3kyajNPVUhjMVJ0UllZQXAwQVdiUGQwM1J3eVhfM2JsVG9vYUtZZVVyMFIzc3E1Q0xJdmRmNWZhNkpPWWMxbzBFaF9LM2E2aHc1cGtJT0d4Z2oyTzl0NnNnNGJaN3BGdUw3WGpjWXMxRXRHbVBhbUxMa2pTdEk0V2RNd0laU2xSOTNqY2w3QVJIOVBmRTVSQXRWOGVTU2psSHl3UENkdF9raTRhdDZyUnkwMzlPUEl2NmNOWW9LeE93ekRndzNDNlNIQ1RHeUJFS2VHRnFpTVJtS1E?oc=5",
+          "domain": "cobseo.org.uk",
+          "published_ms": 1793898733000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1105,
+        "competitors": [
+          {
+            "id": "Sc-tdCEbJz8",
+            "title": "How one unidentified soldier came to represent Britain's war dead",
+            "channel": "Sky News",
+            "views": 17518
+          },
+          {
+            "id": "0UPjt7mSCDU",
+            "title": "The Unknown Warrior: The Soldier Buried Among Kings",
+            "channel": "Revive Britannia",
+            "views": 8902
+          },
+          {
+            "id": "04ao0gyAQtY",
+            "title": "THE BURIAL OF THE UNKNOWN WARRIOR",
+            "channel": "Allan Barton - The Antiquary",
+            "views": 5528
+          },
+          {
+            "id": "cxt5_MHPT4g",
+            "title": "Why the Unknown Warrior Was Buried Among Kings",
+            "channel": "The Long Transmission",
+            "views": 2169
+          },
+          {
+            "id": "NPx5o_MbxS4",
+            "title": "The Unknown Warrior: The Nameless Serviceman Buried Among Kings",
+            "channel": "Britain Explained ",
+            "views": 1105
+          },
+          {
+            "id": "zqOKHITGm2g",
+            "title": "The Forgotten Story Behind… THE UNKNOWN WARRIOR",
+            "channel": "Before Today",
+            "views": 673
+          }
+        ]
+      },
+      "commons_hits": 12,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 51,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 75.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "history.com",
+          "cobseo.org.uk"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "history.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Burial of the Unknown Warrior"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1978 Jonestown mass murder and suicide",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        8
+      ],
+      "hook": "How a utopian religious movement in the jungles of Guyana ended in one of the deadliest mass atrocities in modern history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Jonestown",
+      "commons_query": "Jonestown Peoples Temple",
+      "youtube_query": "Jonestown tragedy history",
+      "evidence": [
+        {
+          "title": "1978, 11-18: Jim Jones led more than 900 members of the Peoples Temple to mass murder/suicide in Jonestown, Guyana, hours after some of its members assassinated U.S. Congressman Leo Ryan.",
+          "url": "https://en.wikipedia.org/wiki/Jim_Jones",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 8
+        },
+        {
+          "title": "Trump Rally Attendee Compares MAGA Gathering to ‘Jonestown Cult’ in Fox News Exchange - The Source Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNZGlxOVJySGlYRHR2aUZ0dDJmYk5YcGlQTUw4Zk5JQ2lJaVFNUFVrSm5Cb0RCRVdHMmk5ZFZCZG15LXRwQkt1V0tqTVFtTkZ4OVVVQWtVc1FMeEk0NDVsbVJvcWh5UXAyUzczTTU2VEFJNy0xb1lwaXhiZGNBdWZfLVI2cXBMVXFXaXRVcUw4Rm5hS2ZzeW85RHNDZnhuVFJtMmtiLTh3Ri1VRDJvTHJlcVlfTkR5d1J6?oc=5",
+          "domain": "thesource.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Man compares Trump rally to Jonestown massacre on Fox News - YouTube",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9XZ1VKWC10eWN3V283UnpaUHlJTHRKTkFrVEYxVnBfUTNYZS0zZjJxbTBBWmEzM3RERWRvQ3dDaVBkcXlmX1BxcVptT0lxOVUzYjRpS3RfUXRBQmFC?oc=5",
+          "domain": "youtu.be",
+          "published_ms": 1793292352000,
+          "kind": "news"
+        },
+        {
+          "title": "Inside Deadly World of Doomsday Cults and How Religious Extremism Turned Jonestown, Shakahola Into Mass Death Tragedies - Pulse Kenya",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQMGRNT3djSldtdTlScWdxaWlRQkFTUVM4TWpiSkFOTklkUkpqRGRadFVyNmV0MXNRSmIyb3o0UVN2QjZyZUpWOEQ1bTdYRzJ5bGN5UTJ0ZVlKREVMR01HNkpUeV8zZDk2R0pINWdOcjhZMFluZng3OHBYNi1VVlhINXRsS1V1aEIzbWsxMGlnSWh3RzJzQl9PVmRKRFA2Nlk0TUZ6cFhIaW91Wl83RmVsVnFBRGFvTlZTdVM3U1haVFN1endXLW5FaS1oZXFkbjlIaC1ZbHQyTXZ6RnIwSjRNWTRIQzM2M2w4aUNBNVdPNW90a3M4eU53b19RUU8?oc=5",
+          "domain": "pulse.co.ke",
+          "published_ms": 1794235750000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Too Young for Jonestown’: The Man Who Trolled Fox News at a Trump Rally - Cultura Colectiva",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNTjlLeXQ2ZF9RSm41QkhpbnZoODZqdm9KTldvejZIU3FFM0NmcWJKMXJtdmFxNXdGYi10Z0xDNElrZS0xWTlSZkF2azNFUFZmZjBxZ05MZXpWUlVGOGZHbDlEOWktSnllR2FTRC1uOVVLb0EtRUIzXzY4anNERlFRcnBkcFAwV3B5OTBCazZMeUhZUHZ3RkJIU1p1LVM1UdIBowFBVV95cUxPUFgtVEJfTXgxZDdCVExlcjRyUzBvd2hjdnZXUUhydU1sb1FMVHNJdjdQcWhmNFhzUlBvTEpfMXRQQWVKMnMyeEl5V2U4UE02NjZGLXlTakdQXzI4WUJnem5xcy1jQ1V6eWU5SGZ2Q1cycXNYRy1YRUlsU3kxLVpEMDFxaUltT20xOU5BRWh6ZjFhMGJKaWFfdlB4V0VoTmlKZ2Rj?oc=5",
+          "domain": "culturacolectiva.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "'Nothing Like Seeing a Cult': Trump Rally Attendee Compares MAGA to Jonestown, Stuns Fox Reporter - International Business Times UK",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxORVFTcExzU0ZPQkUyYVVXemVTUHhCNmhkdW5rOVhCdHkyRkhScWpjOWJnMmtwWXQxbDlMTnpMTzVEaDN2c1VRU1VldGxhVk1vOVU3UllSMnFaVUh5eUh2bElOTzJ0Yk1vOVhocGNtQ2ZGbHR2TVY3R1ZsS0dQLTBwVnNmLV95cVUyUUZqMVdB?oc=5",
+          "domain": "ibtimes.co.uk",
+          "published_ms": 1793344260000,
+          "kind": "news"
+        },
+        {
+          "title": "'I Missed Jonestown': Mystery Man Hijacks Fox News at Trump Rally With Brutal 'Cult' Dig - International Business Times UK",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQNHFBLUp6ZGREYUFidGJpY0tBNEgzUGlXa3dERk5TdHdrV3F3YVhsLXRZbGdzTXhqSVNlNDRSMS1Qb3hWWVBOU21kQlgzY2k0TVd3OTI3dDFiS2pUMThZOTZqN0JtYWJfMWRMOVZSdGVWbG9YazJ6ZVk5Vjh4ZE5IRkR4VDBvSzR0a1I3RA?oc=5",
+          "domain": "ibtimes.co.uk",
+          "published_ms": 1793367960000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Jonestown",
+        "daily_views": 6802,
+        "ratio": 0.41
+      },
+      "youtube": {
+        "median_views": 1424,
+        "competitors": [
+          {
+            "id": "icpq4lq0fw4",
+            "title": "Jonestown: How Jim Jones Turned a Utopia Into a Deadly Cult Nightmare",
+            "channel": "The American Story - US History Documentaries",
+            "views": 61479
+          },
+          {
+            "id": "59Rz75qRPWE",
+            "title": "Comparing a Trump rally to the Jonestown Massacre is a bold take. Do you agree with him?",
+            "channel": "Don Lemon",
+            "views": 12099
+          },
+          {
+            "id": "7lfKb8xQji8",
+            "title": "Cult Survivor Jim Jones Jonestown | Cult Stories Cult Education",
+            "channel": "Mya Marie",
+            "views": 2123
+          },
+          {
+            "id": "2CbyI7ZI8Wo",
+            "title": "The Jonestown Death Tape: How Jim Jones Talked 900+ People Into It",
+            "channel": "Addicted story",
+            "views": 1502
+          },
+          {
+            "id": "-oNZuxuRQDg",
+            "title": "Inside the Jonestown Tragedy: How A Utopia Turned Into A Nightmare ⚠️",
+            "channel": "Thinking, While it's legal. ",
+            "views": 1424
+          },
+          {
+            "id": "64skBtzNVyI",
+            "title": "The Jonestown Massacre: 900 People Trapped #history #fyp",
+            "channel": "The Midnight Archive",
+            "views": 864
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 62,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 75.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "thesource.com",
+          "youtu.be",
+          "pulse.co.ke",
+          "culturacolectiva.com",
+          "ibtimes.co.uk"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1988 Maiden Voyage of the Soviet Space Shuttle Buran",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        50
+      ],
+      "hook": "Built to rival NASA, the Soviet Union's Buran space shuttle flew into space completely uncrewed—and was never flown again.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Buran (spacecraft)",
+      "commons_query": "Buran spacecraft launch 1988",
+      "youtube_query": "Soviet space shuttle Buran launch 1988",
+      "evidence": [
+        {
+          "title": "1988, 11-15: The Soviet spacecraft Buran (pictured), a reusable vehicle built in response to NASA's Space Shuttle program, was launched, uncrewed, on its only flight.",
+          "url": "https://en.wikipedia.org/wiki/Buran_(spacecraft)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 50
+        },
+        {
+          "title": "Buran | Space Shuttle, Reusable Launch Vehicle, Soviet Union - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1tNy1XVklWbkRMRUZ2emdTZWdpVjNNamF0aGNDWFg0bWZTaE5HSGdaaDlGYU1qUzdvY1RWOFdpTlNhME9mVXd6VUIxU2Jac1pMdEY2Zzc3YkJ1MDFXQndqVlNydHFWcEp6?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793779200000,
+          "kind": "news"
+        },
+        {
+          "title": "The Soviet Union built its own space shuttle to rival NASA, only for it to end in tragedy - Starlust.org",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNSVRGbnlQT3locUJMUmZLdnZhSUFONnhIQlB4dmFOcTRfVTZEcVJ6MUxLOGFFd2ROdk13bGlGcjdUMHJ1c2w3ZkVlTkZsclB2NlhPVGtOM2o3WG8wXzZaRHlHd01pbGMzLVRWM0VkM0stZnJXS3ZEQm1uMnk4N2YtUkJmMjdzY0pTcGVjWVoyT0plV05hQmlKM1pQc3BRdFNJVnNqTlQ1aVFScnE0NEo1QXVLN2hfUWdkX2Vzdkp1UWdSa0Y1YWc?oc=5",
+          "domain": "starlust.org",
+          "published_ms": 1794254862000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Buran (spacecraft)",
+        "daily_views": 447,
+        "ratio": 1.01
+      },
+      "youtube": {
+        "median_views": 325,
+        "competitors": [
+          {
+            "id": "YScjwGnETeU",
+            "title": "Buran: A Better Space Shuttle?? (But too late)",
+            "channel": "flaps 10",
+            "views": 47985
+          },
+          {
+            "id": "_NOxzLjAgQg",
+            "title": "Why Did the Soviet Space Shuttle Only Fly Once?",
+            "channel": "Rocketyard",
+            "views": 17926
+          },
+          {
+            "id": "8EkszCknQuM",
+            "title": "BURAN - The Soviet Space Shuttle That Flew Once",
+            "channel": "WITAN",
+            "views": 658
+          },
+          {
+            "id": "pbGQwXuv-Lw",
+            "title": "Buran: The Space Shuttle That Landed With NO CREW 🚀",
+            "channel": "The Fun Tech",
+            "views": 336
+          },
+          {
+            "id": "K8xlOi67k-I",
+            "title": "Why Did Buran Land Better Than Any Human Could?",
+            "channel": "Mission Tapes",
+            "views": 325
+          },
+          {
+            "id": "eY83YSQNH8M",
+            "title": "The $16 Billion Spacecraft They Left to Rot",
+            "channel": "Ambition's Graveyard",
+            "views": 308
+          }
+        ]
+      },
+      "commons_hits": 8,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 46,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 100
+        },
+        "total": 74.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "starlust.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 1988 Launch of Soviet Space Shuttle Buran"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1945 opening of the Nuremberg trials",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        32
+      ],
+      "hook": "For the first time in history, fallen dictators and war criminals were put on trial before an international tribunal.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Nuremberg trials",
+      "commons_query": "Nuremberg trials defendants",
+      "youtube_query": "Nuremberg trials courtroom",
+      "evidence": [
+        {
+          "title": "1945, 11-20: The Nuremberg trials (defendants pictured) of 24 leading Nazis involved in the Holocaust and various war crimes during World War II began in Nuremberg, Germany.",
+          "url": "https://en.wikipedia.org/wiki/Nuremberg_trials",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 32
+        },
+        {
+          "title": "Meet the eclectic, brave women behind the Nuremberg Trial - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPVXoxRUt0WEtfRy0yalRSb0poUGVOUUZhMVl2Tmg5azE5OTlVQ1Q3UnVYYmVoX2x1dDVCVDFNRXhxNV9ZampzVWRrRHR5U3VWM21YQUZxUncxVUNmdWVFNzM0MjZFRXVYdVdzdE10UHBycHA3OHBUaWQydms4dEI3MlEzbThkRGlPVnd4aDItTklydjUyRVA1ckVDRFo3QQ?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1793516400000,
+          "kind": "news"
+        },
+        {
+          "title": "At Nuremberg, women helped make history. Then history forgot them. - jewishaz.com",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQdjRXSjd3aFJEamRXbnM0UnBQM1pmSDZ4VEpzeUFnYUZfanZ6QVpMUDlaZ05tdHpKcUxobWxPbWFVZXduZlV1ZkFSSXIxSDN0VG5GTVc5WVphVkx3ajF6WE81LTg1S0JJcE5vUFdDeUpqa0RIcFFNeG91QmVYcmZZRTlmampxajdzQUM5WHh5MWxTVklMeEpVUUJDUmZ3X1AwOW5DWjB1dTJzM1hLS1B0NE5FUXRqSHJWV2ZLNEhSNmtkWnJaSmI5TmRreXh5eU9ZMEd6R2dnamEzXzB6R0JZ?oc=5",
+          "domain": "jewishaz.com",
+          "published_ms": 1793753220000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Nuremberg trials",
+        "daily_views": 2630,
+        "ratio": 1.14
+      },
+      "youtube": {
+        "median_views": 568,
+        "competitors": [
+          {
+            "id": "6MEnKbTvEHw",
+            "title": "The ENTIRE History of the Nuremberg Trials in 21 Minutes",
+            "channel": "Archive in Minutes",
+            "views": 24673
+          },
+          {
+            "id": "eAK96hiXDTc",
+            "title": "Nuremberg Trials (1946) | Rare Original Historic Footage",
+            "channel": "Foxhole Features",
+            "views": 15309
+          },
+          {
+            "id": "HCOoD6-lA04",
+            "title": "Hermann Göring Faces Trial for His Crimes at Nuremberg",
+            "channel": "urmila Tamang",
+            "views": 3167
+          },
+          {
+            "id": "mGAKjDrGWTc",
+            "title": "The Nuremberg Trials in 60 Seconds #shorts",
+            "channel": "Courtroom & Crime Vault",
+            "views": 1230
+          },
+          {
+            "id": "cJUSyckXEOk",
+            "title": "Nuremberg Trial (1945-46) Recap",
+            "channel": "RobertHJacksonCenter",
+            "views": 568
+          },
+          {
+            "id": "5C4T_p6j63g",
+            "title": "He Had Never Tried a Case Before Prosecuting Nuremberg's Biggest Murder Trial",
+            "channel": "Marish storytelling",
+            "views": 221
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 55,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 71.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "nypost.com",
+          "jewishaz.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Antikythera Mechanism: The 2,000-Year-Old Ancient Greek Computer",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        122
+      ],
+      "hook": "Divers pulled a corroded lump of bronze from a shipwreck—and discovered an advanced 2,000-year-old computer.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Antikythera mechanism",
+      "commons_query": "",
+      "youtube_query": "Antikythera mechanism ancient computer",
+      "evidence": [
+        {
+          "title": "The 2,000-year-old machine recovered from a shipwreck: How an ancient Greek device calculated the movements of celestial bodies - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxNeWM3bGp5NFFFMGk1UDVIcHhMOGtJNjJqSE9LXzJJVGpsWnhDLWJ3QmNxdm9pVFVYb2RadWN6UzZTc0YyTG12UGY1YkRNdE9nbFJjMUhNRFZRc2JNR1V1SjhiR29PYzhMWGNvVURjTEl1elZqdXVVeFpTenY3d3MtQ3lMeFdJTzZsYzRwbUFuaVF1b0NtMDNhNXg3czRWWm9UQlktR3RmSXduMEU2ejEzQ0V4UEZpQ3RJZDRacmFKZVhKTXZiMTJJdXBLaE95ZE5GMEcwSVo1Z0xkeG1lLW96SXpNY2pzVGlHTHNzWnI1OUg3ci1WYmJseUFPMGVCS3NzWVhJOVZCZUlzWlMzbFhDcnh4Q2hza2VtN1B3UVZvU01GTHkyMG43MEh1bFh1Q2gy?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794330120000,
+          "kind": "news",
+          "id": 122
+        },
+        {
+          "title": "In 1901, sponge divers off the Greek island of Antikythera recovered a corroded lump of bronze from a 2,0 - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMiigNBVV95cUxNTmlmVnJQVlVvY2JjUDBqZjFFOFRyNDBheHNxWW02NGcxTEdoV3JKOV9BUWI3cXpTczlkcHUtWGdRMVVFYkNsRjl1YllPbmV4d2xGbDZvVEcyT1ozS1c0RmZxRWd2SGlRcWZPNnJzdnB4UmxxbkVGSVgtWml4azBNdW1pV3llbXU2TWZWcFJGN2FMUDd2OWFQVXFrNXNuUV9mUG5GWHppR1c2emhGVmk5ZUNMWXZkOUlVOEM0ckNNMWNXR0tCdmppRV9yeGZGTWN0a1BURmVaSWpYUkFTZU5OUzlBdTVjdW5sYlRmUmlYZlhpUkNnMkMxWmc4NG03MjdXSnY0dkpsVmJCNUExWXRYT2hiSUZYbjIyaW5nekhGZVpYTEdWcGdsblY3a0ZGMzl0U1hrT0d5enRxUlVSdDJTNzBmWnNmQVlIVmF3WlVhbXN2akQ2M25QMldoUHpQckNZSnhHRHB6dHJRRzdhMUFNVkZTbHVoWUZva2JPVk4xS0cwVWtoXzN1clR30gGPA0FVX3lxTE0yMzhGVEpHWHdNRUxUcG9hOFZNaE5qOHpNUDdReWY4UDEyZDgxaHEzemZ6VU93VWE2RDRqdWloaGktSXpRMUFUNy1sc0E5WmdNX3pSTm5zNnVWeVlZNURnQTJQbjh2MVd3T1pFU3ZwOVBtTkF4VTBZTG5IY2dtck1teWF2VGJjNVZUNHZpd0VZX20zU0dUNFliYW5nNUtGSkJmdGk0Vlo1RUlXblc4ZFlYWjBneG9NN3BuNlI5d0RIR1B2NVNDbEtvOGQ1Mzk2ZlFUS3ZNblE5d3J2QmJveEhFRDRwenJ3U2JaZjlKNlNHb2VvclhSMDQyX29YanMxQXFpNlFMWU5MOFJTQmZUMWFnTnVzWVJ1NllNNWl3SGxiWGF0Zi1rWXRZMGNZWnNzMFVURmw1YUJOMFBmTGR6UDFJZEE1eDd5R1pLZGN2VGt5a2RZWS1PNmR5V0dSeHFvYWpHMzBtcldtcDFSZE5oVkY0allPRk8xLTl4OGpaVjdrUVBTVnptaU9KeWNFaFlNOA?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1793516400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Antikythera mechanism",
+        "daily_views": 1644,
+        "ratio": 0.93
+      },
+      "youtube": {
+        "median_views": 824,
+        "competitors": [
+          {
+            "id": "hi9GhrF5ssQ",
+            "title": "Something About the Antikythera Mechanism Doesn’t Add Up",
+            "channel": "Michael Button",
+            "views": 270680
+          },
+          {
+            "id": "Rb9oB6oAh68",
+            "title": "The 2,000-Year-Old Computer Made of Gears ⚙️",
+            "channel": "Hownatomy",
+            "views": 1559
+          },
+          {
+            "id": "6J_ok79Cub8",
+            "title": "The 2,000-Year-Old Shipwreck Computer That Shouldn't Exist #shorts",
+            "channel": "The Past Mora",
+            "views": 1201
+          },
+          {
+            "id": "u8fJqTrNVYw",
+            "title": "The 2,000-Year-Old Computer Found at the Bottom of the Sea ⚙️",
+            "channel": "Wanderwhen",
+            "views": 1063
+          },
+          {
+            "id": "bnsTAzaYGL0",
+            "title": "Divers Found a 2,000-Year-Old Computer Under the Sea #shorts",
+            "channel": "Dossier of the Ancients",
+            "views": 824
+          },
+          {
+            "id": "N1LTVQD90FU",
+            "title": "A 2000 Year Old Computer Found in a Shipwreck?! ⚙️ (Antikythera Mechanism)",
+            "channel": "Curio Loop",
+            "views": 551
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 61,
+          "reach": 55,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 68.6,
+        "newest_hours": 30,
+        "domains": [
+          "timesofindia.indiatimes.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1971 skyjacking and parachute escape of D. B. Cooper",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        76
+      ],
+      "hook": "He hijacked a plane, extorted $200,000, and parachuted into the night—never to be seen again.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "D. B. Cooper",
+      "commons_query": "DB Cooper sketch suspect",
+      "youtube_query": "DB Cooper hijacking disappearance",
+      "evidence": [
+        {
+          "title": "1971, 11-24: After collecting a ransom payout of $200,000, D. B. Cooper (depicted) parachuted out of the rear stairway of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+          "url": "https://en.wikipedia.org/wiki/D._B._Cooper",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 76
+        }
+      ],
+      "wikipedia": {
+        "title": "D. B. Cooper",
+        "daily_views": 3283,
+        "ratio": 0.93
+      },
+      "youtube": {
+        "median_views": 563,
+        "competitors": [
+          {
+            "id": "wic9CnF7vro",
+            "title": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+            "channel": "First Humans ",
+            "views": 930326
+          },
+          {
+            "id": "pXkAvGZp8bQ",
+            "title": "THE GREATEST UNSOLVED HIJACKING MYSTERY?! 😱✈️ | The Search for D.B. Cooper REACTION",
+            "channel": "E.D. ANIME",
+            "views": 4978
+          },
+          {
+            "id": "36P1KEKiFCo",
+            "title": "FBI 45 ఏళ్లు వెతికినా దొరకని హైజాకర్ | D.B. Cooper Case Explained #hijacking #fbi #shorts #mystery",
+            "channel": "Nijam Stories",
+            "views": 1240
+          },
+          {
+            "id": "wHoT_9maGQw",
+            "title": "D.B. Cooper: The Man Who Hijacked a Plane and Vanished Forever ✈️ #historicalmystery#disappearance",
+            "channel": "Dark Atlas",
+            "views": 727
+          },
+          {
+            "id": "EoqQUZ1wV1E",
+            "title": "D.B. Cooper: The Man Who Vanished From a Plane ✈️ | Unsolved Mystery",
+            "channel": "The Mystery Archives",
+            "views": 563
+          },
+          {
+            "id": "exv0m47N9dA",
+            "title": "What Happened to D.B. Cooper?",
+            "channel": "Unsolved Vault",
+            "views": 165
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 56,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 68.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: D.B. Cooper's legendary 1971 airplane hijacking and parachute escape"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1948 Somerton Man mystery in Adelaide",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        167
+      ],
+      "hook": "An unidentified man found dead on a beach with a secret torn code in his pocket that baffled investigators for decades.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Somerton Man",
+      "commons_query": "Somerton Man body beach",
+      "youtube_query": "Somerton Man unsolved mystery",
+      "evidence": [
+        {
+          "title": "1948, 12-01: In \"one of Australia's most profound mysteries\", the body of an unidentified man was found on Somerton beach in Adelaide, a case which remains unsolved.",
+          "url": "https://en.wikipedia.org/wiki/Somerton_Man",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 167
+        },
+        {
+          "title": "The Somerton Man Is Identified. He's Still A Mystery. Brian Mcfadden (bwpRPBWixD) - Unisba Media",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqMnFBZ1g0UksxX1NWLXN2ZzBHTTUySDE2SEd2c2VCR2UwRjNwbTRIX0Z5UWNOTU9PenlCWnJHaDM4QXJzSGRkOXVnQ2lyY0ZsdkZvdjI5aEQ1emNkelJ1SlQ5Ym92dw?oc=5",
+          "domain": "media.unisba.ac.id",
+          "published_ms": 1793888743000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Somerton Man",
+        "daily_views": 600,
+        "ratio": 0.78
+      },
+      "youtube": {
+        "median_views": 120,
+        "competitors": [
+          {
+            "id": "yxbfFHsRHCk",
+            "title": "The Somerton Man Mystery: A Body, a Secret Code, and a Missing Identity",
+            "channel": "Meet Reality",
+            "views": 1921
+          },
+          {
+            "id": "o-_197oNvks",
+            "title": "The Somerton Man: The Unsolved Mystery Nobody Can Explain (Tamam Shud) #mystery #mysterystory",
+            "channel": "GeoTale TV",
+            "views": 1518
+          },
+          {
+            "id": "-lzbc62GabA",
+            "title": "The Somerton Man – Still Unknown",
+            "channel": "Unsolved Archive",
+            "views": 1342
+          },
+          {
+            "id": "FDr2Zf66bCo",
+            "title": "The Somerton Man: The Code That Was Never Solved",
+            "channel": " Obscura Tales",
+            "views": 1004
+          },
+          {
+            "id": "Lo5kAfF5vhQ",
+            "title": "The Somerton Man Mystery: The Final Unanswered Questions",
+            "channel": "The Story Beneath ",
+            "views": 120
+          },
+          {
+            "id": "iZmbQ_1uPl4",
+            "title": "The Unsolved Mystery of the Somerton Man",
+            "channel": "The crime Vault",
+            "views": 67
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 43,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 67.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "media.unisba.ac.id"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1954 Sylacauga meteorite strike hitting a sleeping woman",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        149
+      ],
+      "hook": "Imagine being fast asleep in your own bed and getting struck by a rock from outer space.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Sylacauga meteorite",
+      "commons_query": "Sylacauga meteorite Hodges meteorite",
+      "youtube_query": "meteorite hits woman bed 1954",
+      "evidence": [
+        {
+          "title": "1954, 11-30: A meteorite crashed through a roof in Sylacauga, Alabama, and hit a sleeping woman in the first verified case of a human being injured by an extraterrestrial object.",
+          "url": "https://en.wikipedia.org/wiki/Sylacauga_(meteorite)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 149
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1530,
+        "competitors": [
+          {
+            "id": "T0OloFQoiS4",
+            "title": "NO MAN CAN RESIST HER MARTIAN RAY! ⚡ Devil Girl from Mars (1954) | 4K Sci-Fi Classic",
+            "channel": "Cult Cinema Classics",
+            "views": 190249
+          },
+          {
+            "id": "RSzb9rGITHc",
+            "title": "She Was Hit by a Meteorite While Taking a Nap! 😱 #Meteorite #SpaceFacts #Shorts",
+            "channel": "Velvet Frames",
+            "views": 75223
+          },
+          {
+            "id": "NY_smVhoLLA",
+            "title": "Has a Meteorite Ever Hit a Person?  #minecraftanimation",
+            "channel": "Long Story Tiny",
+            "views": 27388
+          },
+          {
+            "id": "Jd2EdXteOeM",
+            "title": "She Was Hit by a Meteorite and Lived to Tell It 😱 #survival #science #shorts",
+            "channel": "Wonder Punk Shorts",
+            "views": 8428
+          },
+          {
+            "id": "5qKJQbfvDBk",
+            "title": "The Meteorite That Crashed Through a Roof and Hit a Sleeping Woman",
+            "channel": "ByteBiz",
+            "views": 1530
+          },
+          {
+            "id": "Nm9GO51wroI",
+            "title": "A Meteorite Once Hit a Woman in Her Own Living Room ☄️",
+            "channel": "Universe in Ink",
+            "views": 1417
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 65.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 2,500-Year-Old Egyptian Tomb of Mummified Crocodiles",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        153,
+        156
+      ],
+      "hook": "Archaeologists opened a secret Egyptian tomb and found ten giant mummified crocodiles sacrificed to the gods.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Crocodile mummies",
+      "commons_query": "",
+      "youtube_query": "mummified crocodiles egypt tomb discovery",
+      "evidence": [
+        {
+          "title": "A burial site containing 10 mummified crocodiles dating back 2,500 years has been discovered in Egypt - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNMzNGX21qZEVEQzI1Q3AwbHM0TEdLR3BlR05uR01RQmU0SnpFelJ0SWpWWmpuRjVXRXFEZWhEWVlJMkVVNlZjYk1nS3pBTDc2Smg2Rl9QSGRCNG9vN3pCc0g1bzVvQlZfcWotaVFxSlI3Wm9XdEFyY3prUlM1bmw0cXUyUVBnWkdXOWwtVFJwZkJydU4ybmFMVC1XcUJTYkdIbDJRRw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794166464000,
+          "kind": "news",
+          "id": 153
+        },
+        {
+          "title": "Archaeologists Opened a 2,500-Year-Old Egyptian Tomb and Found 10 Mummified Crocodiles Sacrificed to the Gods - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVnhxbU5CWkM0cnl6R0xuOXI3dENLUnlhQW9QLURmLUFXZWw5RFllczRUcUV4UVF1UnZwNWY1WkpRVWtjeGRiLU8tNTFiYVBSMjB3dG1VYVlOVmdPU2hZMlVGVHNBVHhOdU1nN0ZsOTFQaTJBSTJ1bUp2Zi1yZFhFdw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794149100000,
+          "kind": "news",
+          "id": 156
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "4-tBqHu3iRE",
+            "title": "What did they hide inside this mummified crocodile?",
+            "channel": "AncientUFO",
+            "views": 3424
+          },
+          {
+            "id": "L04iN3vFrkw",
+            "title": "10 Crocodile Mummies Were Found in an Ancient Egyptian Tomb… But WHY? 🐊🇪🇬 #mystery #ancientegypt",
+            "channel": "Story Line",
+            "views": 768
+          },
+          {
+            "id": "KAfu-BwxTIc",
+            "title": "Egypt’s Temple City Filled With Mummified Crocodiles",
+            "channel": "Eeriedocsgarden",
+            "views": 176
+          },
+          {
+            "id": "MMvyMBFU57A",
+            "title": "The Dark Mystery of Egypt’s Crocodile Tombs 🐊",
+            "channel": "Enigma Echo",
+            "views": 86
+          },
+          {
+            "id": "U7CTXoo5VrE",
+            "title": "Ten crocodiles were tied up and mummified together in one Egyptian tomb",
+            "channel": "RelicRecords",
+            "views": 55
+          },
+          {
+            "id": "a5e3IQm18tg",
+            "title": "Archaeologists Found 10 Crocodiles Inside an Egyptian Tomb 🐊 #Shorts",
+            "channel": "Learn EveryDAY",
+            "views": 49
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 29,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 65.3,
+        "newest_hours": 76,
+        "domains": [
+          "ua.news",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1820 sinking of the American whaleship Essex by a sperm whale",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        34
+      ],
+      "hook": "A giant sperm whale deliberately attacked and sank a massive whaling ship, inspiring Moby-Dick.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Essex (whaleship)",
+      "commons_query": "Essex whaleship sinking",
+      "youtube_query": "whaleship Essex sunk by whale",
+      "evidence": [
+        {
+          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick.",
+          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 34
+        }
+      ],
+      "wikipedia": {
+        "title": "Essex (whaleship)",
+        "daily_views": 1564,
+        "ratio": 3.51
+      },
+      "youtube": {
+        "median_views": 223,
+        "competitors": [
+          {
+            "id": "QHynS8kHQyA",
+            "title": "A Whale Sank Their Ship. Only Eight Survived. | Essex",
+            "channel": "Salt Water Dossiers",
+            "views": 1406
+          },
+          {
+            "id": "Rsjxdfp_wNA",
+            "title": "The Whaleship Essex: Sunk by a Whale, Then the Real Horror Began",
+            "channel": "Astrelo Reels",
+            "views": 1229
+          },
+          {
+            "id": "e0H08Gl4QOk",
+            "title": "Essex Shipwreck: How a Sperm Whale Sank the Whaling Ship",
+            "channel": "HistoryUnsealed",
+            "views": 1121
+          },
+          {
+            "id": "4UPjx_6Ukmw",
+            "title": "Whaleship Essex 1820: The Ship Sunk by a Giant Sperm Whale",
+            "channel": "Sleepy Science Nights",
+            "views": 559
+          },
+          {
+            "id": "9-OPH9XR43Q",
+            "title": "Sunk by a Whale: The True Horror of the Whaleship Essex (1820) | Full Documentary",
+            "channel": "Old World Story",
+            "views": 223
+          },
+          {
+            "id": "PCsWZNd7smo",
+            "title": "Your Shift on the Whaleship Essex in 1820 (The Whale That Fought Back)",
+            "channel": "NINE TO DIE",
+            "views": 127
+          }
+        ]
+      },
+      "commons_hits": 3,
+      "score": {
+        "factors": {
+          "momentum": 58,
+          "reach": 49,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 59,
+          "source_quality": 35
+        },
+        "total": 63.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (3 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1940 Battle of Taranto: The First All-Aircraft Naval Attack",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        5
+      ],
+      "hook": "How 21 obsolete biplanes crippled an entire battle fleet and changed naval warfare forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Battle of Taranto",
+      "commons_query": "Battle of Taranto 1940",
+      "youtube_query": "Battle of Taranto 1940 Royal Navy",
+      "evidence": [
+        {
+          "title": "1940, 11-11: Second World War: The Royal Navy launched the first all-aircraft ship-to-ship naval attack in history against the Italians in the Battle of Taranto.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 5
+        }
+      ],
+      "wikipedia": {
+        "title": "Battle of Taranto",
+        "daily_views": 222,
+        "ratio": 0.98
+      },
+      "youtube": {
+        "median_views": 71,
+        "competitors": [
+          {
+            "id": "psu-TjQ0auo",
+            "title": "The Battle of Taranto | History in World of Warships: Legends",
+            "channel": "World of Warships: Legends",
+            "views": 10971
+          },
+          {
+            "id": "8rmJIR3y1Xc",
+            "title": "Italy Laughed at Britain's “Obsolete” Biplane — Until It Crippled Their Entire Fleet in One Night!",
+            "channel": "Voices of WWII",
+            "views": 327
+          },
+          {
+            "id": "_AkRMsr8PPg",
+            "title": "Battle of Taranto – November 11/12 1940 - WWII",
+            "channel": "WarScholar",
+            "views": 194
+          },
+          {
+            "id": "q9vudxId-SU",
+            "title": "Taranto: The Night Raid That Crippled Italy's Fleet",
+            "channel": "Theater Of War",
+            "views": 113
+          },
+          {
+            "id": "0LmQS0XpTPs",
+            "title": "Taranto 1940: 21 Biplanes Crippled a Fleet",
+            "channel": "Iron Ink Chronicles",
+            "views": 71
+          },
+          {
+            "id": "Zy5yxdYJsEg",
+            "title": "Taranto 1940: 21 Biplanes Crippled a Battle Fleet",
+            "channel": "The WWII Archives",
+            "views": 31
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 37,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 63.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Battle of Taranto: The First All-Aircraft Ship-to-Ship Attack"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 4,500-Year-Old Golden Helmet: The Oldest Symbol of Power",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        166
+      ],
+      "hook": "Uncovered in a tomb, this 4,500-Year-Old golden helmet may be the oldest surviving symbol of human power.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "4500 year old golden helmet discovery",
+      "evidence": [
+        {
+          "title": "A 4,500-year-old golden helmet discovered in a tomb may be the oldest symbol of power in history - Diario AS",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNX2pnSU83VXdmOGJiNGVmYlR0cEdBMUdGYWJocUVfVmNtYTFNbU9qSEE1TW9pNm1zWTJtbzZneE9HWG9uV0ROWFo3ZHQyaFgyWUJIcXU5YmJxamN6TFVyWWFwald1RXhZQXc4WmtNcVlUUTl3OFQyRWpGUlVNekc3a3RQNWtLVWtpTk9IM2NNQWNpS2pKc2REX2RlSW1iNEZNdkh1MUVoTXZENjRlQURsRFotSy1GQ09vTnV1Zjl0RThJbDBRN1pIbC1xaGt5TnhUR0dTXzRJbWhxbi1TZkl6TEVZX2M1d9IB5gFBVV95cUxNX2pnSU83VXdmOGJiNGVmYlR0cEdBMUdGYWJocUVfVmNtYTFNbU9qSEE1TW9pNm1zWTJtbzZneE9HWG9uV0ROWFo3ZHQyaFgyWUJIcXU5YmJxamN6TFVyWWFwald1RXhZQXc4WmtNcVlUUTl3OFQyRWpGUlVNekc3a3RQNWtLVWtpTk9IM2NNQWNpS2pKc2REX2RlSW1iNEZNdkh1MUVoTXZENjRlQURsRFotSy1GQ09vTnV1Zjl0RThJbDBRN1pIbC1xaGt5TnhUR0dTXzRJbWhxbi1TZkl6TEVZX2M1dw?oc=5",
+          "domain": "en.as.com",
+          "published_ms": 1794074805000,
+          "kind": "news",
+          "id": 166
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1485,
+        "competitors": [
+          {
+            "id": "UKZImlDzKHs",
+            "title": "Kids Gear Cycle for Boys & Girls | Junior MTB & Sports Bicycle | VD Chawla Cycles #KidsCycle",
+            "channel": "VD Chawla Cycle Store",
+            "views": 148441
+          },
+          {
+            "id": "pjvfQZnhNxI",
+            "title": "วงที่ถูกเกลียดที่สุดในโลก แต่ขายได้ล้านชุดในสัปดาห์เดียว | Limp Bizkit",
+            "channel": "โปรอ๋องเรื่องเล่า",
+            "views": 38832
+          },
+          {
+            "id": "hITwyS0DqYI",
+            "title": "He Had No Degree. He Found a King's Ship.",
+            "channel": "UnToldHistory0707",
+            "views": 16874
+          },
+          {
+            "id": "GHmBqREPi5I",
+            "title": "[1/3] Awakening a God-Tier Survival System, I Tamed Prehistoric Beasts to Rule a Deadly Island!",
+            "channel": "Bala Manhua Recaps",
+            "views": 4305
+          },
+          {
+            "id": "CjPw4oHmGbw",
+            "title": "🪖 Hełm Meskalamduga — około 2600–2450 p.n.e.Znane znaleziska. #metaldetecting #ciekawostki",
+            "channel": "„HISTORIA DETEKTORYSTÓW”",
+            "views": 1485
+          },
+          {
+            "id": "HFQ1q1Y2hR4",
+            "title": "Twenty Thousand Leagues under the Sea | Full Audiobook by Jules Verne",
+            "channel": "ARTioBOOKS",
+            "views": 951
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 0
+        },
+        "total": 63.4,
+        "newest_hours": 101,
+        "domains": [
+          "en.as.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1944 RAF Fauld underground munitions explosion",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        118
+      ],
+      "hook": "An underground depot containing thousands of tons of bombs detonated, creating one of the largest non-nuclear explosions in history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "RAF Fauld explosion",
+      "commons_query": "RAF Fauld crater",
+      "youtube_query": "RAF Fauld explosion 1944",
+      "evidence": [
+        {
+          "title": "1944, 11-27: Between 3,500 and 4,000 tonnes of ordnance exploded at the RAF Fauld underground munitions storage depot in the largest non-nuclear explosion in the United Kingdom.",
+          "url": "https://en.wikipedia.org/wiki/RAF_Fauld_explosion",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 118
+        }
+      ],
+      "wikipedia": {
+        "title": "RAF Fauld explosion",
+        "daily_views": 77,
+        "ratio": 0.72
+      },
+      "youtube": {
+        "median_views": 1260,
+        "competitors": [
+          {
+            "id": "m9n62u8bYaQ",
+            "title": "The Biggest Explosion in British History and the Secret Kept for 30 Years: The RAF Fauld Tragedy",
+            "channel": "WW2 Disasters",
+            "views": 111579
+          },
+          {
+            "id": "QF6hva2pl_0",
+            "title": "La Mayor Explosión de la Historia Británica y el Secreto que la RAF Ocultó 30 Años",
+            "channel": "Ruinas de Guerra",
+            "views": 3350
+          },
+          {
+            "id": "benPajz2lBY",
+            "title": "Fauld 1944: la Mayor Explosión de la Historia Británica y el Secreto que se Ocultó 30 Años",
+            "channel": "Ruinas de Guerra",
+            "views": 2433
+          },
+          {
+            "id": "-Db-WlUBUXM",
+            "title": "Pod brytyjską wsią znajdowały się tysiące ton bomb😳💥#shorts",
+            "channel": "Eliasz_Vane",
+            "views": 1465
+          },
+          {
+            "id": "C7526m4KRg4",
+            "title": "The RAF Fauld Explosion 1944: Britain's Largest Blast, Hidden Inside a Staffordshire Hill",
+            "channel": "Geofacts",
+            "views": 1260
+          },
+          {
+            "id": "jTLGLHTW1Hg",
+            "title": "4,000 Tons of Bombs Blew Up Under an English Farm. The Crater Is Longer Than the Titanic 💥",
+            "channel": "Whenabouts",
+            "views": 878
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 46,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 63.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1987 Max Headroom broadcast signal hijacking in Chicago",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        52
+      ],
+      "hook": "Two television broadcasts were suddenly interrupted by an eerie, mask-wearing trickster in one of TV's biggest unsolved hacks.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Max Headroom broadcast hijacking",
+      "commons_query": "Max Headroom mask",
+      "youtube_query": "Max Headroom broadcast hijacking",
+      "evidence": [
+        {
+          "title": "1987, 11-22: Two television stations in Chicago had their broadcast signals hijacked with footage of an unknown person wearing a Max Headroom mask and costume.",
+          "url": "https://en.wikipedia.org/wiki/Max_Headroom_signal_hijackings",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 52
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 434,
+        "competitors": [
+          {
+            "id": "VAi-z3quVwI",
+            "title": "The Max Headroom Hack That Hijacked Two Chicago TV Stations",
+            "channel": "Obsidian Justice",
+            "views": 1395
+          },
+          {
+            "id": "Pro88x6xQYs",
+            "title": "Someone Hijacked Live TV in 1987… Nobody Knows Who Did It #MaxHeadroom #UnsolvedMystery #RHF #Shorts",
+            "channel": "Rabbit Hole Files👽",
+            "views": 1050
+          },
+          {
+            "id": "aH-Mc990BX0",
+            "title": "Someone Hijacked Two Chicago TV Stations in 1987 in a Max Headroom Mask. Never Caught",
+            "channel": "Umbra - True Crime",
+            "views": 747
+          },
+          {
+            "id": "ICt4oygYpgM",
+            "title": "The Max Headroom Hijack That Took Over Chicago TV in 1987",
+            "channel": "Dark Shadows of Truth",
+            "views": 682
+          },
+          {
+            "id": "xNTzrurnHLo",
+            "title": "The Max Headroom Hijacking: Chicago's Unsolved TV Mystery",
+            "channel": "_TrueCrime.Stories_",
+            "views": 434
+          },
+          {
+            "id": "mh_bmwJvWs0",
+            "title": "Someone Hijacked TV in 1987… And Was Never Caught | The Max Headroom Mystery",
+            "channel": "Unknown Archive World",
+            "views": 391
+          }
+        ]
+      },
+      "commons_hits": 2,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 44,
+          "curiosity": 100,
+          "relevance": 80,
+          "visual": 53,
+          "source_quality": 35
+        },
+        "total": 62.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (2 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Kimpa Vita: The 17th-Century 'Kongolese Joan of Arc'",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        145
+      ],
+      "hook": "Burned at the stake in 1706, this African prophet fought to unify her kingdom and is remembered as the Kongolese Joan of Arc.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Kimpa Vita",
+      "commons_query": "",
+      "youtube_query": "Kimpa Vita Kongolese prophet",
+      "evidence": [
+        {
+          "title": "This African Prophet Was Burned at the Stake 320 Years Ago. Today, Kimpa Vita Is Celebrated as the 'Kongolese Joan of Arc'",
+          "url": "https://www.smithsonianmag.com/history/this-african-prophet-was-burned-at-the-stake-320-years-ago-today-kimpa-vita-is-celebrated-as-the-kongolese-joan-of-arc-180989820/",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1794228300000,
+          "kind": "feed",
+          "id": 145
+        },
+        {
+          "title": "This African Prophet Was Burned at the Stake 320 Years Ago. Today, Kimpa Vita Is Celebrated as the 'Kongolese Joan of Arc' - Smithsonian Magazine",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxQRm8yeWtQY0JjTVZKWHlGbGZ3aGUtb204NWJxcEpaRDBhVUdVRlFjc2tEN3VuOE9MbUVhTkdYcE9GM1Z6M2d3a1NXMGcxa3ZxREpNOE5EN1RTMDA2ekJwbHBKNGRfaThGN2wweVM2cmtPMXNzQS1ya2pGdEFBaW81RGdUbVQxRGVrUE1mUDZvWXdxVnM3RjR6NTZia2xTd0pvUEZHOUpxRFRrUEFuWEF6LW5ZWEJPTVNMYkFBd1FRc1FEREIzUmVKa0hVazNUalVlWFQzRnowTUtWVWU2SVpaV3pKbThTZDJYdktKVHZ1cXpzUHdRNG54a2pFV1A?oc=5",
+          "domain": "smithsonianmag.com",
+          "published_ms": 1794228300000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Kimpa Vita",
+        "daily_views": 97,
+        "ratio": 1.99
+      },
+      "youtube": {
+        "median_views": 43,
+        "competitors": [
+          {
+            "id": "JZNT3YvDt1o",
+            "title": "Kimpa Vita : la prophétesse qui voulait réunir le Kongo",
+            "channel": "Lelo Media",
+            "views": 13484
+          },
+          {
+            "id": "qxIMt_YrARI",
+            "title": "She Said Jesus Was Kongolese — So They Burned Her Alive",
+            "channel": "King OGB",
+            "views": 1393
+          },
+          {
+            "id": "TZrDP7sceaQ",
+            "title": "A Saint Took Over Her Body",
+            "channel": "CrypticEras",
+            "views": 326
+          },
+          {
+            "id": "BL3bXRKJl74",
+            "title": "Kimpa Vita — Peak Moment | Africa's War Room Ep. 3 #Shorts",
+            "channel": "African Facts And Fables",
+            "views": 50
+          },
+          {
+            "id": "I419kDEMqWw",
+            "title": "Kimpa Vita: The Kongolese Prophet They Burned Twice",
+            "channel": "LOST TO HISTORY ",
+            "views": 43
+          },
+          {
+            "id": "nL10JBpsePI",
+            "title": "Kimpa Vita: The Kongolese Prophet Burned in 1706",
+            "channel": "folktalepro",
+            "views": 43
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 32,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 60.4,
+        "newest_hours": 59,
+        "domains": [
+          "smithsonianmag.com"
+        ],
+        "trusted_domains": [
+          "smithsonianmag.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1983 Brink's-Mat robbery of £26 million in gold",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        99
+      ],
+      "hook": "Six armed robbers broke into a London warehouse expecting cash, and stumbled upon three tons of pure gold.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Brink's-Mat robbery",
+      "commons_query": "Heathrow Airport warehouse",
+      "youtube_query": "Brink's Mat gold robbery",
+      "evidence": [
+        {
+          "title": "1983, 11-26: Six robbers broke into a Brink's-Mat warehouse at Heathrow Airport in London and stole £26 million in gold, diamonds and cash.",
+          "url": "https://en.wikipedia.org/wiki/Brink's",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 99
+        }
+      ],
+      "wikipedia": {
+        "title": "Brink's-Mat robbery",
+        "daily_views": 1382,
+        "ratio": 1
+      },
+      "youtube": {
+        "median_views": 87,
+        "competitors": [
+          {
+            "id": "D9p6fsqzDDw",
+            "title": "The Brink’s-Mat Heist: Britain's Biggest Gold Robbery #TrueCrime #BrinksMat #GoldHeist",
+            "channel": "Underworld Uncut",
+            "views": 2052
+          },
+          {
+            "id": "hWoFNbWSJ-c",
+            "title": "The Brink's-Mat Heist: Robbers Found £26M in Gold Instead of Cash",
+            "channel": "True Crime Comics",
+            "views": 1290
+          },
+          {
+            "id": "sVLQ2Zc62Ik",
+            "title": "Brink's-Mat Robbery: Massive Gold Heist | True Crime Story",
+            "channel": "Crime Chronicles",
+            "views": 172
+          },
+          {
+            "id": "RIgOZU9Kgdo",
+            "title": "The Heist That Sparked Decades of Murder — The Brink's-Mat Gold Story",
+            "channel": "True History Stories ",
+            "views": 115
+          },
+          {
+            "id": "RRwf_DP_28Y",
+            "title": "The Brink's-Mat Robbery: Six Thieves, 26 Million Pounds in Cursed Gold",
+            "channel": "The Final Clue",
+            "views": 87
+          },
+          {
+            "id": "B98EK_iDUkI",
+            "title": "The Brink's-Mat Heist: They Wanted Cash, Found 3 Tons of Gold",
+            "channel": "PrimeClips",
+            "views": 73
+          }
+        ]
+      },
+      "commons_hits": 10,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 60.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1969 Alcatraz Island occupation by Native American activists",
+      "pillar": "Historical facts that challenge common assumptions",
+      "evidence_ids": [
+        30
+      ],
+      "hook": "Native American activists took over the abandoned Alcatraz federal prison, claiming it under the Treaty of Fort Laramie.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Occupation of Alcatraz",
+      "commons_query": "Occupation of Alcatraz graffiti",
+      "youtube_query": "Alcatraz Indian occupation 1969",
+      "evidence": [
+        {
+          "title": "1969, 11-20: A group of Native American activists began a 19-month occupation (graffiti pictured) of Alcatraz Island in San Francisco Bay.",
+          "url": "https://en.wikipedia.org/wiki/Native_Americans_in_the_United_States",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 30
+        }
+      ],
+      "wikipedia": {
+        "title": "Occupation of Alcatraz",
+        "daily_views": 235,
+        "ratio": 0.97
+      },
+      "youtube": {
+        "median_views": 65,
+        "competitors": [
+          {
+            "id": "AORU9XlJPmE",
+            "title": "Alcatraz Island Wasn’t Always a Prison | The History of Alcatraz",
+            "channel": "Alcatraz Island Guide",
+            "views": 1897
+          },
+          {
+            "id": "Uf4ZwM5rqXc",
+            "title": "When Native Americans Occupied Alcatraz 1969-1971, chapter 19 #alcatraz #sanfranciscohistory",
+            "channel": "Marko  Adventures - AQS Creator",
+            "views": 1025
+          },
+          {
+            "id": "fPRUXFepAEg",
+            "title": "The Entire Story of Alcatraz — Why America Shut Down Its Most Famous Prison in 1963",
+            "channel": "State of Ruin",
+            "views": 606
+          },
+          {
+            "id": "2cMljjKAUgs",
+            "title": "The Entire History of Alcatraz in 16 Minutes | America’s Most Infamous Prison",
+            "channel": "Hypothetically",
+            "views": 246
+          },
+          {
+            "id": "jmNJkLM40Ns",
+            "title": "Richard Oakes Led Alcatraz Occupation Then His Killer Was Acquitted",
+            "channel": "Stolen Nations",
+            "views": 65
+          },
+          {
+            "id": "sqWBuCnVOD0",
+            "title": "Alcatraz - The Woman Who Claimed It First | Episode 106 | History, Drawn Simple",
+            "channel": "History, Drawn Simple",
+            "views": 45
+          }
+        ]
+      },
+      "commons_hits": 6,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 78,
+          "source_quality": 35
+        },
+        "total": 58.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1912 Declaration of Independence of Albania",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        126
+      ],
+      "hook": "After centuries under Ottoman rule, delegates gathered in Vlorë to finally declare an independent Albania.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "Albanian Declaration of Independence",
+      "commons_query": "Assembly of Vlore Albania",
+      "youtube_query": "Albanian Declaration of Independence 1912",
+      "evidence": [
+        {
+          "title": "1912, 11-28: At the All-Albanian Congress, the Assembly of Vlorë was constituted, which declared the independence of the Albanian Vilayet from the Ottoman Empire.",
+          "url": "https://en.wikipedia.org/wiki/All-Albanian_Congress",
+          "domain": "wikipedia.org",
+          "published_ms": 1794439881480,
+          "kind": "anniversary",
+          "id": 126
+        }
+      ],
+      "wikipedia": {
+        "title": "Albanian Declaration of Independence",
+        "daily_views": 32,
+        "ratio": 0.83
+      },
+      "youtube": {
+        "median_views": 122,
+        "competitors": [
+          {
+            "id": "jvCq5Rdw9q8",
+            "title": "Ismail Qemali: 2 ditë për të shpallur Shqipërinë 🇦🇱 #Shorts",
+            "channel": "history.geschichte",
+            "views": 101518
+          },
+          {
+            "id": "G9epTmBQyUw",
+            "title": "40 firma dhe 83 delegatë: ku përfundoi akti i 1912?",
+            "channel": "HistoriShqip",
+            "views": 5142
+          },
+          {
+            "id": "IkqjGdyxn-E",
+            "title": "Albania was declared with foreign armies at the door #Shorts #history #albania #westbalkan",
+            "channel": "The World Rewind",
+            "views": 1210
+          },
+          {
+            "id": "w6Z9Q-w_S-k",
+            "title": "Nëpër Histori Me Verën #shqip",
+            "channel": "NËPËR HISTORI ME VERËN",
+            "views": 1197
+          },
+          {
+            "id": "0YKzPvd-Kmg",
+            "title": "The Map That Erased a Country",
+            "channel": "BiteSizedHistory",
+            "views": 122
+          },
+          {
+            "id": "m_K2GQR8y6A",
+            "title": "The 34 Year Struggle for Albania: From Empire to Partition",
+            "channel": "Balkan Histories",
+            "views": 80
+          }
+        ]
+      },
+      "commons_hits": 5,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 33,
+          "curiosity": 70,
+          "relevance": 70,
+          "visual": 66,
+          "source_quality": 35
+        },
+        "total": 52.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (5 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    }
+  ]
+}

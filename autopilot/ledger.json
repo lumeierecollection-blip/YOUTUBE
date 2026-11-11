@@ -1163,7 +1163,12 @@
       "attempts": 1,
       "run_id": "43120297762",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T23:30:26.793Z"
+      "updated_at": "2026-11-11T23:32:05.218Z",
+      "stage": "research",
+      "topic": "Rosa Parks' 1955 arrest sparking the Montgomery bus boycott",
+      "score": 76.9,
+      "pillar": "Events that changed the modern world",
+      "hook": "One quiet refusal on a city bus ignited a movement that changed American history forever."
     }
   },
   "uploads": [
@@ -2195,6 +2200,15 @@
       "at_ms": 1794417489964,
       "score": 80.2,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "1",
+      "topic": "Rosa Parks' 1955 arrest sparking the Montgomery bus boycott",
+      "slug": "rosa-parks-1955-arrest-sparking-the-montgomery-bus-boycott",
+      "slot": "2026-11-11-ch1",
+      "at_ms": 1794439925218,
+      "score": 76.9,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
