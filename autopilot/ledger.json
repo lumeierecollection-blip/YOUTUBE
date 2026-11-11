@@ -1145,16 +1145,17 @@
     },
     "2026-11-11-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "43066412899",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T17:18:32.883Z",
+      "updated_at": "2026-11-11T17:26:54.821Z",
       "stage": "script",
       "topic": "Students Complete Entire University Assessments in Minutes Using AI",
       "score": 80.2,
       "pillar": "Unexpected AI abilities and limits",
-      "hook": "Schools are panicking after students figured out how to pass entire university exams using AI in just minutes."
+      "hook": "Schools are panicking after students figured out how to pass entire university exams using AI in just minutes.",
+      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     }
   },
   "uploads": [

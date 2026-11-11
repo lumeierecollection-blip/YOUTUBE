@@ -1,0 +1,11 @@
+{
+  "tried": [
+    {
+      "topic": "Students Complete Entire University Assessments in Minutes Using AI",
+      "score": 80.2,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+    }
+  ],
+  "selected": null
+}
