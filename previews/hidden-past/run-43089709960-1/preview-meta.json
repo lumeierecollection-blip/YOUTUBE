@@ -2,10 +2,11 @@
   "channel": "hidden-past",
   "production_run": "run-43089709960-1",
   "agent": "agent-hidden-past",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-11T19:44:52.992Z",
+  "stage": "script_approved",
+  "status": "pending",
+  "timestamp": "2026-11-11T19:44:54.266Z",
   "branch": "preview/hidden-past-capone",
   "commit": "1decbe108551820b39287cda0787c47d35011261",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43089709960#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43089709960#artifacts",
+  "note": "not reviewed by the engine critic"
 }
