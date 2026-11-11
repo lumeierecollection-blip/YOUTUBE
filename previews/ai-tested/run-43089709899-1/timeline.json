@@ -1,0 +1,465 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "title-with-logo-stickers",
+      "objective": "Lead with the result (made-up count) and the models tested",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 146,
+      "start_s": 0,
+      "end_s": 4.866666666666666
+    },
+    {
+      "id": "s2",
+      "kind": "fakes",
+      "treatment": "sticky-note-wall",
+      "objective": "Show the twelve invented names as notes",
+      "background": "paper panel in saturated frame",
+      "from": 146,
+      "to": 241,
+      "start_s": 4.866666666666666,
+      "end_s": 8.033333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "models",
+      "treatment": "logo-stickers",
+      "objective": "Show the three models being asked",
+      "background": "paper panel in saturated frame",
+      "from": 241,
+      "to": 338,
+      "start_s": 8.033333333333333,
+      "end_s": 11.266666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "results",
+      "treatment": "count-rows-with-logos",
+      "objective": "One square per invented thing for each model, coloured admitted or made up, with the count",
+      "background": "paper panel in saturated frame",
+      "from": 338,
+      "to": 542,
+      "start_s": 11.266666666666667,
+      "end_s": 18.066666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "control",
+      "treatment": "real-topics-strip",
+      "objective": "Show the four real topics were answered as normal",
+      "background": "paper panel in saturated frame",
+      "from": 542,
+      "to": 612,
+      "start_s": 18.066666666666666,
+      "end_s": 20.4
+    },
+    {
+      "id": "s6",
+      "kind": "example",
+      "treatment": "chat-card",
+      "objective": "Show one real question and the real reply",
+      "background": "paper panel in saturated frame",
+      "from": 612,
+      "to": 674,
+      "start_s": 20.4,
+      "end_s": 22.466666666666665
+    },
+    {
+      "id": "s7",
+      "kind": "tip",
+      "treatment": "title-with-stamp",
+      "objective": "Close on what to do: ask for the source and click it",
+      "background": "paper panel in saturated frame",
+      "from": 674,
+      "to": 856,
+      "start_s": 22.466666666666665,
+      "end_s": 28.533333333333335
+    }
+  ],
+  "captions": [
+    {
+      "text": "AI described seven of twenty-four",
+      "from": 0,
+      "to": 66,
+      "words": [
+        {
+          "text": "AI",
+          "from": 0
+        },
+        {
+          "text": "described",
+          "from": 13
+        },
+        {
+          "text": "seven",
+          "from": 31
+        },
+        {
+          "text": "of",
+          "from": 48
+        },
+        {
+          "text": "twenty-four",
+          "from": 56
+        }
+      ]
+    },
+    {
+      "text": "invented things as real",
+      "from": 69,
+      "to": 124,
+      "words": [
+        {
+          "text": "invented",
+          "from": 69
+        },
+        {
+          "text": "things",
+          "from": 88
+        },
+        {
+          "text": "as",
+          "from": 104
+        },
+        {
+          "text": "real",
+          "from": 113
+        }
+      ]
+    },
+    {
+      "text": "We invented twelve things that",
+      "from": 146,
+      "to": 191,
+      "words": [
+        {
+          "text": "We",
+          "from": 146
+        },
+        {
+          "text": "invented",
+          "from": 148
+        },
+        {
+          "text": "twelve",
+          "from": 156
+        },
+        {
+          "text": "things",
+          "from": 169
+        },
+        {
+          "text": "that",
+          "from": 186
+        }
+      ]
+    },
+    {
+      "text": "do not exist",
+      "from": 191,
+      "to": 214,
+      "words": [
+        {
+          "text": "do",
+          "from": 191
+        },
+        {
+          "text": "not",
+          "from": 196
+        },
+        {
+          "text": "exist",
+          "from": 200
+        }
+      ]
+    },
+    {
+      "text": "Then we asked two AI",
+      "from": 241,
+      "to": 274,
+      "words": [
+        {
+          "text": "Then",
+          "from": 241
+        },
+        {
+          "text": "we",
+          "from": 241
+        },
+        {
+          "text": "asked",
+          "from": 247
+        },
+        {
+          "text": "two",
+          "from": 256
+        },
+        {
+          "text": "AI",
+          "from": 266
+        }
+      ]
+    },
+    {
+      "text": "models about each one",
+      "from": 274,
+      "to": 316,
+      "words": [
+        {
+          "text": "models",
+          "from": 274
+        },
+        {
+          "text": "about",
+          "from": 286
+        },
+        {
+          "text": "each",
+          "from": 298
+        },
+        {
+          "text": "one",
+          "from": 304
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite made up five",
+      "from": 338,
+      "to": 388,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 338
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 345
+        },
+        {
+          "text": "made",
+          "from": 357
+        },
+        {
+          "text": "up",
+          "from": 372
+        },
+        {
+          "text": "five",
+          "from": 377
+        }
+      ]
+    },
+    {
+      "text": "of twelve",
+      "from": 388,
+      "to": 416,
+      "words": [
+        {
+          "text": "of",
+          "from": 388
+        },
+        {
+          "text": "twelve",
+          "from": 395
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 432,
+      "to": 464,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 432
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 446
+        }
+      ]
+    },
+    {
+      "text": "made up two of twelve",
+      "from": 476,
+      "to": 530,
+      "words": [
+        {
+          "text": "made",
+          "from": 476
+        },
+        {
+          "text": "up",
+          "from": 494
+        },
+        {
+          "text": "two",
+          "from": 499
+        },
+        {
+          "text": "of",
+          "from": 506
+        },
+        {
+          "text": "twelve",
+          "from": 512
+        }
+      ]
+    },
+    {
+      "text": "Real topics were answered normally",
+      "from": 542,
+      "to": 593,
+      "words": [
+        {
+          "text": "Real",
+          "from": 542
+        },
+        {
+          "text": "topics",
+          "from": 546
+        },
+        {
+          "text": "were",
+          "from": 557
+        },
+        {
+          "text": "answered",
+          "from": 568
+        },
+        {
+          "text": "normally",
+          "from": 576
+        }
+      ]
+    },
+    {
+      "text": "Here is one invented answer",
+      "from": 612,
+      "to": 655,
+      "words": [
+        {
+          "text": "Here",
+          "from": 612
+        },
+        {
+          "text": "is",
+          "from": 614
+        },
+        {
+          "text": "one",
+          "from": 618
+        },
+        {
+          "text": "invented",
+          "from": 626
+        },
+        {
+          "text": "answer",
+          "from": 638
+        }
+      ]
+    },
+    {
+      "text": "Confident is not true",
+      "from": 674,
+      "to": 712,
+      "words": [
+        {
+          "text": "Confident",
+          "from": 674
+        },
+        {
+          "text": "is",
+          "from": 683
+        },
+        {
+          "text": "not",
+          "from": 692
+        },
+        {
+          "text": "true",
+          "from": 700
+        }
+      ]
+    },
+    {
+      "text": "so ask for the source",
+      "from": 721,
+      "to": 753,
+      "words": [
+        {
+          "text": "so",
+          "from": 721
+        },
+        {
+          "text": "ask",
+          "from": 725
+        },
+        {
+          "text": "for",
+          "from": 732
+        },
+        {
+          "text": "the",
+          "from": 740
+        },
+        {
+          "text": "source",
+          "from": 743
+        }
+      ]
+    },
+    {
+      "text": "Has AI ever made something",
+      "from": 772,
+      "to": 809,
+      "words": [
+        {
+          "text": "Has",
+          "from": 772
+        },
+        {
+          "text": "AI",
+          "from": 777
+        },
+        {
+          "text": "ever",
+          "from": 784
+        },
+        {
+          "text": "made",
+          "from": 797
+        },
+        {
+          "text": "something",
+          "from": 803
+        }
+      ]
+    },
+    {
+      "text": "up for you",
+      "from": 809,
+      "to": 830,
+      "words": [
+        {
+          "text": "up",
+          "from": 809
+        },
+        {
+          "text": "for",
+          "from": 817
+        },
+        {
+          "text": "you",
+          "from": 822
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 856,
+  "duration_s": 28.533333333333335
+}

@@ -1,0 +1,102 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43089709899-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "AI described seven of twenty-four invented things as real.",
+      "main_point": "Lead with the result (made-up count) and the models tested",
+      "visual_objective": "Lead with the result (made-up count) and the models tested",
+      "treatment": "title-with-logo-stickers",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "total"
+      ],
+      "start_s": 0,
+      "end_s": 4.866666666666666
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We invented twelve things that do not exist.",
+      "main_point": "Show the twelve invented names as notes",
+      "visual_objective": "Show the twelve invented names as notes",
+      "treatment": "sticky-note-wall",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 4.866666666666666,
+      "end_s": 8.033333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Then we asked two AI models about each one.",
+      "main_point": "Show the three models being asked",
+      "visual_objective": "Show the three models being asked",
+      "treatment": "logo-stickers",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 8.033333333333333,
+      "end_s": 11.266666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Google's Flash-Lite made up five of twelve. OpenAI's GPT-OSS made up two of twelve.",
+      "main_point": "One square per invented thing for each model, coloured admitted or made up, with the count",
+      "visual_objective": "One square per invented thing for each model, coloured admitted or made up, with the count",
+      "treatment": "count-rows-with-logos",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "m0",
+        "m1"
+      ],
+      "start_s": 11.266666666666667,
+      "end_s": 18.066666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Real topics were answered normally.",
+      "main_point": "Show the four real topics were answered as normal",
+      "visual_objective": "Show the four real topics were answered as normal",
+      "treatment": "real-topics-strip",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "control"
+      ],
+      "start_s": 18.066666666666666,
+      "end_s": 20.4
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Here is one invented answer.",
+      "main_point": "Show one real question and the real reply",
+      "visual_objective": "Show one real question and the real reply",
+      "treatment": "chat-card",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 20.4,
+      "end_s": 22.466666666666665
+    },
+    {
+      "scene_id": "s7",
+      "narration": "Confident is not true, so ask for the source. Has AI ever made something up for you?",
+      "main_point": "Close on what to do: ask for the source and click it",
+      "visual_objective": "Close on what to do: ask for the source and click it",
+      "treatment": "title-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 22.466666666666665,
+      "end_s": 28.533333333333335
+    }
+  ]
+}
