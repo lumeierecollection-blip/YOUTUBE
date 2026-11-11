@@ -1,0 +1,547 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (75/83 words matched)",
+ "voice": "Sadaltager",
+ "words": [
+  {
+   "text": "If",
+   "start": 0.0,
+   "end": 0.38,
+   "sentence": 0
+  },
+  {
+   "text": "you",
+   "start": 0.38,
+   "end": 0.48,
+   "sentence": 0
+  },
+  {
+   "text": "ask",
+   "start": 0.48,
+   "end": 0.74,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.74,
+   "end": 0.94,
+   "sentence": 0
+  },
+  {
+   "text": "for",
+   "start": 0.94,
+   "end": 1.3,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.3,
+   "end": 1.4,
+   "sentence": 0
+  },
+  {
+   "text": "source",
+   "start": 1.4,
+   "end": 1.72,
+   "sentence": 0
+  },
+  {
+   "text": "will",
+   "start": 2.14,
+   "end": 2.2,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 2.2,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "link",
+   "start": 2.36,
+   "end": 2.56,
+   "sentence": 0
+  },
+  {
+   "text": "work",
+   "start": 2.56,
+   "end": 2.92,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 3.66,
+   "end": 3.71,
+   "sentence": 1
+  },
+  {
+   "text": "asked",
+   "start": 3.68,
+   "end": 3.86,
+   "sentence": 1
+  },
+  {
+   "text": "three",
+   "start": 3.86,
+   "end": 4.26,
+   "sentence": 1
+  },
+  {
+   "text": "AI",
+   "start": 4.26,
+   "end": 4.58,
+   "sentence": 1
+  },
+  {
+   "text": "models",
+   "start": 4.58,
+   "end": 4.98,
+   "sentence": 1
+  },
+  {
+   "text": "for",
+   "start": 4.98,
+   "end": 5.3,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 5.3,
+   "end": 5.4,
+   "sentence": 1
+  },
+  {
+   "text": "link",
+   "start": 5.4,
+   "end": 5.58,
+   "sentence": 1
+  },
+  {
+   "text": "on",
+   "start": 5.58,
+   "end": 5.76,
+   "sentence": 1
+  },
+  {
+   "text": "twelve",
+   "start": 5.76,
+   "end": 5.93,
+   "sentence": 1
+  },
+  {
+   "text": "topics",
+   "start": 6.1,
+   "end": 6.66,
+   "sentence": 1
+  },
+  {
+   "text": "then",
+   "start": 7.0,
+   "end": 7.1,
+   "sentence": 1
+  },
+  {
+   "text": "clicked",
+   "start": 7.1,
+   "end": 7.34,
+   "sentence": 1
+  },
+  {
+   "text": "every",
+   "start": 7.34,
+   "end": 7.793,
+   "sentence": 1
+  },
+  {
+   "text": "one",
+   "start": 7.793,
+   "end": 8.247,
+   "sentence": 1
+  },
+  {
+   "text": "Google's",
+   "start": 8.7,
+   "end": 9.06,
+   "sentence": 2
+  },
+  {
+   "text": "Gemini",
+   "start": 9.06,
+   "end": 9.32,
+   "sentence": 2
+  },
+  {
+   "text": "Flash",
+   "start": 9.32,
+   "end": 9.72,
+   "sentence": 2
+  },
+  {
+   "text": "gave",
+   "start": 9.72,
+   "end": 10.18,
+   "sentence": 2
+  },
+  {
+   "text": "three",
+   "start": 10.18,
+   "end": 10.68,
+   "sentence": 2
+  },
+  {
+   "text": "dead",
+   "start": 10.68,
+   "end": 10.98,
+   "sentence": 2
+  },
+  {
+   "text": "links",
+   "start": 10.98,
+   "end": 11.2,
+   "sentence": 2
+  },
+  {
+   "text": "out",
+   "start": 11.2,
+   "end": 11.44,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 11.44,
+   "end": 11.52,
+   "sentence": 2
+  },
+  {
+   "text": "twelve",
+   "start": 11.52,
+   "end": 12.03,
+   "sentence": 2
+  },
+  {
+   "text": "Google's",
+   "start": 12.54,
+   "end": 12.7,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 12.7,
+   "end": 13.01,
+   "sentence": 3
+  },
+  {
+   "text": "gave",
+   "start": 13.32,
+   "end": 13.68,
+   "sentence": 3
+  },
+  {
+   "text": "four",
+   "start": 13.68,
+   "end": 14.1,
+   "sentence": 3
+  },
+  {
+   "text": "dead",
+   "start": 14.1,
+   "end": 14.38,
+   "sentence": 3
+  },
+  {
+   "text": "links",
+   "start": 14.38,
+   "end": 14.6,
+   "sentence": 3
+  },
+  {
+   "text": "out",
+   "start": 14.6,
+   "end": 14.8,
+   "sentence": 3
+  },
+  {
+   "text": "of",
+   "start": 14.8,
+   "end": 14.9,
+   "sentence": 3
+  },
+  {
+   "text": "twelve",
+   "start": 14.9,
+   "end": 15.42,
+   "sentence": 3
+  },
+  {
+   "text": "OpenAI's",
+   "start": 15.94,
+   "end": 16.34,
+   "sentence": 4
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 16.34,
+   "end": 16.88,
+   "sentence": 4
+  },
+  {
+   "text": "gave",
+   "start": 17.42,
+   "end": 17.66,
+   "sentence": 4
+  },
+  {
+   "text": "five",
+   "start": 17.66,
+   "end": 18.14,
+   "sentence": 4
+  },
+  {
+   "text": "dead",
+   "start": 18.14,
+   "end": 18.44,
+   "sentence": 4
+  },
+  {
+   "text": "links",
+   "start": 18.44,
+   "end": 18.72,
+   "sentence": 4
+  },
+  {
+   "text": "out",
+   "start": 18.72,
+   "end": 18.9,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 18.9,
+   "end": 18.98,
+   "sentence": 4
+  },
+  {
+   "text": "twelve",
+   "start": 18.98,
+   "end": 19.42,
+   "sentence": 4
+  },
+  {
+   "text": "Here",
+   "start": 19.86,
+   "end": 20.08,
+   "sentence": 5
+  },
+  {
+   "text": "is",
+   "start": 20.08,
+   "end": 20.28,
+   "sentence": 5
+  },
+  {
+   "text": "one",
+   "start": 20.28,
+   "end": 20.66,
+   "sentence": 5
+  },
+  {
+   "text": "real",
+   "start": 20.66,
+   "end": 20.92,
+   "sentence": 5
+  },
+  {
+   "text": "answer",
+   "start": 20.92,
+   "end": 21.34,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 21.5,
+   "end": 21.68,
+   "sentence": 5
+  },
+  {
+   "text": "what",
+   "start": 21.68,
+   "end": 21.86,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 21.86,
+   "end": 21.96,
+   "sentence": 5
+  },
+  {
+   "text": "site",
+   "start": 21.96,
+   "end": 22.1,
+   "sentence": 5
+  },
+  {
+   "text": "said",
+   "start": 22.1,
+   "end": 22.38,
+   "sentence": 5
+  },
+  {
+   "text": "A",
+   "start": 22.88,
+   "end": 23.02,
+   "sentence": 6
+  },
+  {
+   "text": "link",
+   "start": 23.02,
+   "end": 23.26,
+   "sentence": 6
+  },
+  {
+   "text": "is",
+   "start": 23.26,
+   "end": 23.58,
+   "sentence": 6
+  },
+  {
+   "text": "not",
+   "start": 23.58,
+   "end": 23.84,
+   "sentence": 6
+  },
+  {
+   "text": "a",
+   "start": 23.84,
+   "end": 23.96,
+   "sentence": 6
+  },
+  {
+   "text": "source",
+   "start": 23.96,
+   "end": 24.26,
+   "sentence": 6
+  },
+  {
+   "text": "until",
+   "start": 24.26,
+   "end": 24.56,
+   "sentence": 6
+  },
+  {
+   "text": "you",
+   "start": 24.56,
+   "end": 24.86,
+   "sentence": 6
+  },
+  {
+   "text": "click",
+   "start": 24.86,
+   "end": 25.18,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 25.18,
+   "end": 25.36,
+   "sentence": 6
+  },
+  {
+   "text": "So",
+   "start": 25.36,
+   "end": 25.88,
+   "sentence": 7
+  },
+  {
+   "text": "how",
+   "start": 25.88,
+   "end": 26.02,
+   "sentence": 7
+  },
+  {
+   "text": "many",
+   "start": 26.02,
+   "end": 26.14,
+   "sentence": 7
+  },
+  {
+   "text": "links",
+   "start": 26.14,
+   "end": 26.34,
+   "sentence": 7
+  },
+  {
+   "text": "have",
+   "start": 26.34,
+   "end": 26.52,
+   "sentence": 7
+  },
+  {
+   "text": "you",
+   "start": 26.52,
+   "end": 26.66,
+   "sentence": 7
+  },
+  {
+   "text": "trusted",
+   "start": 26.66,
+   "end": 26.98,
+   "sentence": 7
+  },
+  {
+   "text": "without",
+   "start": 26.98,
+   "end": 27.36,
+   "sentence": 7
+  },
+  {
+   "text": "clicking",
+   "start": 27.36,
+   "end": 27.66,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "If you ask AI for a source, will the link work?",
+   "start": 0.0,
+   "end": 2.92
+  },
+  {
+   "text": "We asked three AI models for a link on twelve topics, then clicked every one.",
+   "start": 3.66,
+   "end": 8.247
+  },
+  {
+   "text": "Google's Gemini Flash gave three dead links out of twelve.",
+   "start": 8.7,
+   "end": 12.03
+  },
+  {
+   "text": "Google's Flash-Lite gave four dead links out of twelve.",
+   "start": 12.54,
+   "end": 15.42
+  },
+  {
+   "text": "OpenAI's GPT-OSS gave five dead links out of twelve.",
+   "start": 15.94,
+   "end": 19.42
+  },
+  {
+   "text": "Here is one real answer, and what the site said.",
+   "start": 19.86,
+   "end": 22.38
+  },
+  {
+   "text": "A link is not a source until you click it.",
+   "start": 22.88,
+   "end": 25.36
+  },
+  {
+   "text": "So how many links have you trusted without clicking?",
+   "start": 25.36,
+   "end": 27.66
+  }
+ ]
+}
