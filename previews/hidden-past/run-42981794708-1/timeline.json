@@ -1,0 +1,644 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "plane",
+      "treatment": "sticker-photo-with-date-title",
+      "objective": "Open on the very aircraft, HK-1803, with the date of the bombing",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 128,
+      "start_s": 0,
+      "end_s": 4.266666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "route",
+      "treatment": "drawn-map-with-flying-cutout",
+      "objective": "Draw the route from Bogotá to Cali with the aircraft cut-out flying along it",
+      "background": "paper panel in saturated frame",
+      "from": 128,
+      "to": 194,
+      "start_s": 4.266666666666667,
+      "end_s": 6.466666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "boom",
+      "treatment": "map-burst-with-number",
+      "objective": "Mark the explosion over Soacha on the same map with the number five and 'minutes after takeoff'",
+      "background": "paper panel in saturated frame",
+      "from": 194,
+      "to": 272,
+      "start_s": 6.466666666666667,
+      "end_s": 9.066666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "apart",
+      "treatment": "cutout-splitting",
+      "objective": "Split the aircraft cut-out in two and let the halves fall apart over Soacha",
+      "background": "paper panel in saturated frame",
+      "from": 272,
+      "to": 343,
+      "start_s": 9.066666666666666,
+      "end_s": 11.433333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "toll",
+      "treatment": "counted-dots",
+      "objective": "Draw 110 dots, 107 on board and three on the ground",
+      "background": "paper panel in saturated frame",
+      "from": 343,
+      "to": 465,
+      "start_s": 11.433333333333334,
+      "end_s": 15.5
+    },
+    {
+      "id": "s6",
+      "kind": "who",
+      "treatment": "giant-question-mark",
+      "objective": "Pose the question of who ordered it",
+      "background": "paper panel in saturated frame",
+      "from": 465,
+      "to": 510,
+      "start_s": 15.5,
+      "end_s": 17
+    },
+    {
+      "id": "s7",
+      "kind": "cartel",
+      "treatment": "portrait-sticker-with-stamp",
+      "objective": "Show Pablo Escobar's police photograph with the Medellín Cartel stamp",
+      "background": "paper panel in saturated frame",
+      "from": 510,
+      "to": 587,
+      "start_s": 17,
+      "end_s": 19.566666666666666
+    },
+    {
+      "id": "s8",
+      "kind": "target",
+      "treatment": "portrait-sticker-with-target-ring",
+      "objective": "Show César Gaviria, labelled as a 2009 photograph, with a hand-drawn ring around him",
+      "background": "paper panel in saturated frame",
+      "from": 587,
+      "to": 661,
+      "start_s": 19.566666666666666,
+      "end_s": 22.033333333333335
+    },
+    {
+      "id": "s9",
+      "kind": "absent",
+      "treatment": "portrait-with-not-on-board-stamp",
+      "objective": "Stamp 'not on board' over the same portrait",
+      "background": "paper panel in saturated frame",
+      "from": 661,
+      "to": 734,
+      "start_s": 22.033333333333335,
+      "end_s": 24.466666666666665
+    },
+    {
+      "id": "s10",
+      "kind": "das",
+      "treatment": "number-with-dots",
+      "objective": "Show 63 and nine days later in Bogotá, with the 'presumably' attribution",
+      "background": "paper panel in saturated frame",
+      "from": 734,
+      "to": 839,
+      "start_s": 24.466666666666665,
+      "end_s": 27.966666666666665
+    },
+    {
+      "id": "s11",
+      "kind": "disputed",
+      "treatment": "stamp-disputed",
+      "objective": "Stamp the 2016 fuel-pump report as disputed by Avianca and the families",
+      "background": "paper panel in saturated frame",
+      "from": 839,
+      "to": 976,
+      "start_s": 27.966666666666665,
+      "end_s": 32.53333333333333
+    },
+    {
+      "id": "s12",
+      "kind": "close",
+      "treatment": "dots-with-portrait",
+      "objective": "Return to the 110 dots with Gaviria's portrait faded: one target, 110 dead",
+      "background": "paper panel in saturated frame",
+      "from": 976,
+      "to": 1087,
+      "start_s": 32.53333333333333,
+      "end_s": 36.233333333333334
+    }
+  ],
+  "captions": [
+    {
+      "text": "In 1989",
+      "from": 0,
+      "to": 37,
+      "words": [
+        {
+          "text": "In",
+          "from": 0
+        },
+        {
+          "text": "1989",
+          "from": 11
+        }
+      ]
+    },
+    {
+      "text": "a bomb destroys a plane",
+      "from": 48,
+      "to": 91,
+      "words": [
+        {
+          "text": "a",
+          "from": 48
+        },
+        {
+          "text": "bomb",
+          "from": 52
+        },
+        {
+          "text": "destroys",
+          "from": 60
+        },
+        {
+          "text": "a",
+          "from": 75
+        },
+        {
+          "text": "plane",
+          "from": 82
+        }
+      ]
+    },
+    {
+      "text": "over Colombia",
+      "from": 91,
+      "to": 112,
+      "words": [
+        {
+          "text": "over",
+          "from": 91
+        },
+        {
+          "text": "Colombia",
+          "from": 100
+        }
+      ]
+    },
+    {
+      "text": "Flight 203 leaves Bogotá",
+      "from": 128,
+      "to": 183,
+      "words": [
+        {
+          "text": "Flight",
+          "from": 128
+        },
+        {
+          "text": "203",
+          "from": 133
+        },
+        {
+          "text": "leaves",
+          "from": 146
+        },
+        {
+          "text": "Bogotá",
+          "from": 166
+        }
+      ]
+    },
+    {
+      "text": "Five minutes later a bomb",
+      "from": 194,
+      "to": 239,
+      "words": [
+        {
+          "text": "Five",
+          "from": 194
+        },
+        {
+          "text": "minutes",
+          "from": 204
+        },
+        {
+          "text": "later",
+          "from": 212
+        },
+        {
+          "text": "a",
+          "from": 229
+        },
+        {
+          "text": "bomb",
+          "from": 229
+        }
+      ]
+    },
+    {
+      "text": "explodes",
+      "from": 239,
+      "to": 253,
+      "words": [
+        {
+          "text": "explodes",
+          "from": 239
+        }
+      ]
+    },
+    {
+      "text": "The plane breaks apart over",
+      "from": 272,
+      "to": 312,
+      "words": [
+        {
+          "text": "The",
+          "from": 272
+        },
+        {
+          "text": "plane",
+          "from": 275
+        },
+        {
+          "text": "breaks",
+          "from": 282
+        },
+        {
+          "text": "apart",
+          "from": 292
+        },
+        {
+          "text": "over",
+          "from": 302
+        }
+      ]
+    },
+    {
+      "text": "Soacha",
+      "from": 312,
+      "to": 331,
+      "words": [
+        {
+          "text": "Soacha",
+          "from": 312
+        }
+      ]
+    },
+    {
+      "text": "All 107 on board die",
+      "from": 343,
+      "to": 397,
+      "words": [
+        {
+          "text": "All",
+          "from": 343
+        },
+        {
+          "text": "107",
+          "from": 347
+        },
+        {
+          "text": "on",
+          "from": 359
+        },
+        {
+          "text": "board",
+          "from": 376
+        },
+        {
+          "text": "die",
+          "from": 383
+        }
+      ]
+    },
+    {
+      "text": "and three people on the",
+      "from": 397,
+      "to": 437,
+      "words": [
+        {
+          "text": "and",
+          "from": 397
+        },
+        {
+          "text": "three",
+          "from": 413
+        },
+        {
+          "text": "people",
+          "from": 420
+        },
+        {
+          "text": "on",
+          "from": 430
+        },
+        {
+          "text": "the",
+          "from": 434
+        }
+      ]
+    },
+    {
+      "text": "ground",
+      "from": 437,
+      "to": 448,
+      "words": [
+        {
+          "text": "ground",
+          "from": 437
+        }
+      ]
+    },
+    {
+      "text": "Who wanted this",
+      "from": 465,
+      "to": 487,
+      "words": [
+        {
+          "text": "Who",
+          "from": 465
+        },
+        {
+          "text": "wanted",
+          "from": 468
+        },
+        {
+          "text": "this",
+          "from": 476
+        }
+      ]
+    },
+    {
+      "text": "Pablo Escobar's Medellín Cartel ordered",
+      "from": 510,
+      "to": 570,
+      "words": [
+        {
+          "text": "Pablo",
+          "from": 510
+        },
+        {
+          "text": "Escobar's",
+          "from": 510
+        },
+        {
+          "text": "Medellín",
+          "from": 532
+        },
+        {
+          "text": "Cartel",
+          "from": 546
+        },
+        {
+          "text": "ordered",
+          "from": 550
+        }
+      ]
+    },
+    {
+      "text": "it",
+      "from": 570,
+      "to": 578,
+      "words": [
+        {
+          "text": "it",
+          "from": 570
+        }
+      ]
+    },
+    {
+      "text": "His target is César Gaviria",
+      "from": 587,
+      "to": 646,
+      "words": [
+        {
+          "text": "His",
+          "from": 587
+        },
+        {
+          "text": "target",
+          "from": 592
+        },
+        {
+          "text": "is",
+          "from": 603
+        },
+        {
+          "text": "César",
+          "from": 612
+        },
+        {
+          "text": "Gaviria",
+          "from": 626
+        }
+      ]
+    },
+    {
+      "text": "But Gaviria is not on",
+      "from": 661,
+      "to": 698,
+      "words": [
+        {
+          "text": "But",
+          "from": 661
+        },
+        {
+          "text": "Gaviria",
+          "from": 662
+        },
+        {
+          "text": "is",
+          "from": 677
+        },
+        {
+          "text": "not",
+          "from": 683
+        },
+        {
+          "text": "on",
+          "from": 692
+        }
+      ]
+    },
+    {
+      "text": "the plane",
+      "from": 698,
+      "to": 710,
+      "words": [
+        {
+          "text": "the",
+          "from": 698
+        },
+        {
+          "text": "plane",
+          "from": 701
+        }
+      ]
+    },
+    {
+      "text": "Nine days later another bomb",
+      "from": 734,
+      "to": 779,
+      "words": [
+        {
+          "text": "Nine",
+          "from": 734
+        },
+        {
+          "text": "days",
+          "from": 734
+        },
+        {
+          "text": "later",
+          "from": 741
+        },
+        {
+          "text": "another",
+          "from": 761
+        },
+        {
+          "text": "bomb",
+          "from": 769
+        }
+      ]
+    },
+    {
+      "text": "kills sixty-three in Bogotá",
+      "from": 779,
+      "to": 831,
+      "words": [
+        {
+          "text": "kills",
+          "from": 779
+        },
+        {
+          "text": "sixty-three",
+          "from": 788
+        },
+        {
+          "text": "in",
+          "from": 802
+        },
+        {
+          "text": "Bogotá",
+          "from": 816
+        }
+      ]
+    },
+    {
+      "text": "A 2016 report disputes the",
+      "from": 839,
+      "to": 901,
+      "words": [
+        {
+          "text": "A",
+          "from": 839
+        },
+        {
+          "text": "2016",
+          "from": 849
+        },
+        {
+          "text": "report",
+          "from": 858
+        },
+        {
+          "text": "disputes",
+          "from": 878
+        },
+        {
+          "text": "the",
+          "from": 887
+        }
+      ]
+    },
+    {
+      "text": "cause",
+      "from": 901,
+      "to": 911,
+      "words": [
+        {
+          "text": "cause",
+          "from": 901
+        }
+      ]
+    },
+    {
+      "text": "but families reject it",
+      "from": 921,
+      "to": 962,
+      "words": [
+        {
+          "text": "but",
+          "from": 921
+        },
+        {
+          "text": "families",
+          "from": 925
+        },
+        {
+          "text": "reject",
+          "from": 937
+        },
+        {
+          "text": "it",
+          "from": 952
+        }
+      ]
+    },
+    {
+      "text": "A bomb meant for one",
+      "from": 976,
+      "to": 1007,
+      "words": [
+        {
+          "text": "A",
+          "from": 976
+        },
+        {
+          "text": "bomb",
+          "from": 977
+        },
+        {
+          "text": "meant",
+          "from": 984
+        },
+        {
+          "text": "for",
+          "from": 993
+        },
+        {
+          "text": "one",
+          "from": 998
+        }
+      ]
+    },
+    {
+      "text": "man killed 110",
+      "from": 1007,
+      "to": 1048,
+      "words": [
+        {
+          "text": "man",
+          "from": 1007
+        },
+        {
+          "text": "killed",
+          "from": 1018
+        },
+        {
+          "text": "110",
+          "from": 1028
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1087,
+  "duration_s": 36.233333333333334
+}
