@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-11 03:40 SAST
+Updated 2026-11-11 10:03 SAST
 
 **Next productions:** AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST
 
@@ -19,11 +19,11 @@ Updated 2026-11-11 03:40 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed at script, attempts 1 |
-| Selected topic and score | Amazon's New AI-Powered Security Drone and Robot Go Mobile (79.2/100) |
+| Latest production | failed-final at script, attempts 2 |
+| Selected topic and score | AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub (71.3/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 92 views, 5 likes, 0 comments (public) |
+| Performance | 108 views, 5 likes, 0 comments (public) |
 | Analytics | available |
 
 ## Needs your attention
@@ -123,3 +123,5 @@ Updated 2026-11-11 03:40 SAST
 - Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject
 - Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:
   - SCR-16: 57 words implies ~28s duration â€” ou
+- AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:
+  - SCR-17 STRICT 
