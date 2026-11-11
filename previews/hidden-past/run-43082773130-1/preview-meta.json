@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-43082773130-1",
   "agent": "agent-hidden-past",
-  "stage": "blueprint_complete",
+  "stage": "script_complete",
   "status": "ok",
-  "timestamp": "2026-11-11T19:00:47.909Z",
+  "timestamp": "2026-11-11T19:00:49.491Z",
   "branch": "preview/hidden-past-capone",
   "commit": "9010b62014eba4b7e34add8760e273d82010264e",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43082773130#artifacts"
