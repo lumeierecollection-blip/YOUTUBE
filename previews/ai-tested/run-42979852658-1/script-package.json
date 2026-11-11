@@ -1,0 +1,123 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42979852658-1",
+  "topic": "If you ask AI for a source, will the link work?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "If you ask AI for a source, will the link work?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We asked three AI models for a link on twelve topics, then clicked every one.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash gave three dead links out of twelve.",
+      "scene": 2,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite gave four dead links out of twelve.",
+      "scene": 2,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS gave five dead links out of twelve.",
+      "scene": 2,
+      "claim_ids": [
+        "m2"
+      ]
+    },
+    {
+      "text": "Here is one real answer, and what the site said.",
+      "scene": 3,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "A link is not a source until you click it.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "So how many links have you trusted without clicking?",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+      "published": "2026-11-11",
+      "title": "AI Tested links test run"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "Three models were each asked for one direct link to a news article or study on 12 topics, and every link was requested.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+      "published": "2026-11-11",
+      "excerpt": "Three models were each asked for one direct link to a news article or study on 12 topics, and every link was requested.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each link was requested once from a GitHub runner and the server's answer recorded. Opened means the server returned a page (HTTP 2xx); dead means HTTP 404 or 410 or no such web address; unchecked is everything else. One test on 12 topics; results change between runs and as sites and models change. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "m0",
+      "claim": "Google's Gemini Flash, 12 links: 9 opened, 3 dead, 0 unchecked.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+      "published": "2026-11-11",
+      "excerpt": "Google's Gemini Flash, 12 links: 9 opened, 3 dead, 0 unchecked.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each link was requested once from a GitHub runner and the server's answer recorded. Opened means the server returned a page (HTTP 2xx); dead means HTTP 404 or 410 or no such web address; unchecked is everything else. One test on 12 topics; results change between runs and as sites and models change. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m1",
+      "claim": "Google's Flash-Lite, 12 links: 8 opened, 4 dead, 0 unchecked.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+      "published": "2026-11-11",
+      "excerpt": "Google's Flash-Lite, 12 links: 8 opened, 4 dead, 0 unchecked.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each link was requested once from a GitHub runner and the server's answer recorded. Opened means the server returned a page (HTTP 2xx); dead means HTTP 404 or 410 or no such web address; unchecked is everything else. One test on 12 topics; results change between runs and as sites and models change. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m2",
+      "claim": "OpenAI's GPT-OSS, 12 links: 5 opened, 5 dead, 2 unchecked.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+      "published": "2026-11-11",
+      "excerpt": "OpenAI's GPT-OSS, 12 links: 5 opened, 5 dead, 2 unchecked.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each link was requested once from a GitHub runner and the server's answer recorded. Opened means the server returned a page (HTTP 2xx); dead means HTTP 404 or 410 or no such web address; unchecked is everything else. One test on 12 topics; results change between runs and as sites and models change. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
