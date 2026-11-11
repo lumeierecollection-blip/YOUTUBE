@@ -188,6 +188,7 @@ function Close() {
   </>);
 }
 
+export { K, COND, MONO, SHADOW, ramp, over, Board, Tape, Card, Logo, Title, Num, Strip, Stamp, Redact, Slip, Cap };
 const BEATS = { hook: Hook, google: Google, googleKeep: GoogleKeep, anthropic: Anthropic, anthropicKeep: AnthropicKeep, turn: Turn, design: Design, attempts: Attempts, results: Results, example: Example, close: Close };
 function Cap({ captions }) {
   const f = useCurrentFrame(); const c = captions.find((x) => f >= x.from && f < x.to);
