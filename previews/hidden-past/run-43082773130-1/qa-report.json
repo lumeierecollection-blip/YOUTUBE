@@ -1,0 +1,82 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 31.061,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -20.3,
+  "max_volume_db": -1.6,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Charon",
+    "seconds": 30.528,
+    "wpm": 102.2,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "name",
+      "start_s": 0,
+      "end_s": 5.033333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "massacre",
+      "start_s": 5.033333333333333,
+      "end_s": 11
+    },
+    {
+      "id": "s3",
+      "kind": "enemy",
+      "start_s": 11,
+      "end_s": 14.666666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "tax",
+      "start_s": 14.666666666666666,
+      "end_s": 16.433333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "counts",
+      "start_s": 16.433333333333334,
+      "end_s": 19.833333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "evidence",
+      "start_s": 19.833333333333332,
+      "end_s": 23.166666666666668
+    },
+    {
+      "id": "s7",
+      "kind": "sentence",
+      "start_s": 23.166666666666668,
+      "end_s": 25.233333333333334
+    },
+    {
+      "id": "s8",
+      "kind": "end",
+      "start_s": 25.233333333333334,
+      "end_s": 28.666666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "close",
+      "start_s": 28.666666666666668,
+      "end_s": 31
+    }
+  ]
+}
