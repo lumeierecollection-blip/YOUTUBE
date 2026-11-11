@@ -1,0 +1,600 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "title-with-logo-stickers",
+      "objective": "Pose the question with the logos of the companies in the story",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 86,
+      "start_s": 0,
+      "end_s": 2.8666666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "google",
+      "treatment": "logo-with-quote-slip",
+      "objective": "Show Google's own sentence about human review, quoted exactly, with the logo and the page date",
+      "background": "paper panel in saturated frame",
+      "from": 86,
+      "to": 175,
+      "start_s": 2.8666666666666667,
+      "end_s": 5.833333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "googleKeep",
+      "treatment": "counted-months",
+      "objective": "Show three years as thirty-six month squares",
+      "background": "paper panel in saturated frame",
+      "from": 175,
+      "to": 265,
+      "start_s": 5.833333333333333,
+      "end_s": 8.833333333333334
+    },
+    {
+      "id": "s4",
+      "kind": "anthropic",
+      "treatment": "logo-with-quote-slip",
+      "objective": "Show Anthropic's own sentence on five-year retention, quoted exactly, with the logo and the date",
+      "background": "paper panel in saturated frame",
+      "from": 265,
+      "to": 367,
+      "start_s": 8.833333333333334,
+      "end_s": 12.233333333333333
+    },
+    {
+      "id": "s5",
+      "kind": "anthropicKeep",
+      "treatment": "bars-to-scale",
+      "objective": "Draw five years and thirty days to scale",
+      "background": "paper panel in saturated frame",
+      "from": 367,
+      "to": 432,
+      "start_s": 12.233333333333333,
+      "end_s": 14.4
+    },
+    {
+      "id": "s6",
+      "kind": "turn",
+      "treatment": "padlock-turn",
+      "objective": "Turn from company promises to the model itself",
+      "background": "paper panel in saturated frame",
+      "from": 432,
+      "to": 508,
+      "start_s": 14.4,
+      "end_s": 16.933333333333334
+    },
+    {
+      "id": "s7",
+      "kind": "design",
+      "treatment": "redacted-note",
+      "objective": "Show the private note with the secret redacted and the three models",
+      "background": "paper panel in saturated frame",
+      "from": 508,
+      "to": 629,
+      "start_s": 16.933333333333334,
+      "end_s": 20.966666666666665
+    },
+    {
+      "id": "s8",
+      "kind": "results",
+      "treatment": "count-rows-with-logos",
+      "objective": "Show one square per attempt for each model, coloured leaked or held, with the count",
+      "background": "paper panel in saturated frame",
+      "from": 629,
+      "to": 883,
+      "start_s": 20.966666666666665,
+      "end_s": 29.433333333333334
+    },
+    {
+      "id": "s9",
+      "kind": "example",
+      "treatment": "chat-card",
+      "objective": "Show one real attempt and the real reply",
+      "background": "paper panel in saturated frame",
+      "from": 883,
+      "to": 964,
+      "start_s": 29.433333333333334,
+      "end_s": 32.13333333333333
+    },
+    {
+      "id": "s10",
+      "kind": "close",
+      "treatment": "redacted-messages-title",
+      "objective": "Close on the question over redacted messages",
+      "background": "paper panel in saturated frame",
+      "from": 964,
+      "to": 1067,
+      "start_s": 32.13333333333333,
+      "end_s": 35.56666666666667
+    }
+  ],
+  "captions": [
+    {
+      "text": "Can you trust AI with",
+      "from": 0,
+      "to": 53,
+      "words": [
+        {
+          "text": "Can",
+          "from": 0
+        },
+        {
+          "text": "you",
+          "from": 13
+        },
+        {
+          "text": "trust",
+          "from": 17
+        },
+        {
+          "text": "AI",
+          "from": 28
+        },
+        {
+          "text": "with",
+          "from": 38
+        }
+      ]
+    },
+    {
+      "text": "your data",
+      "from": 53,
+      "to": 68,
+      "words": [
+        {
+          "text": "your",
+          "from": 53
+        },
+        {
+          "text": "data",
+          "from": 58
+        }
+      ]
+    },
+    {
+      "text": "Google says people review some",
+      "from": 86,
+      "to": 146,
+      "words": [
+        {
+          "text": "Google",
+          "from": 86
+        },
+        {
+          "text": "says",
+          "from": 92
+        },
+        {
+          "text": "people",
+          "from": 106
+        },
+        {
+          "text": "review",
+          "from": 118
+        },
+        {
+          "text": "some",
+          "from": 134
+        }
+      ]
+    },
+    {
+      "text": "chats",
+      "from": 146,
+      "to": 160,
+      "words": [
+        {
+          "text": "chats",
+          "from": 146
+        }
+      ]
+    },
+    {
+      "text": "Reviewed chats stay up to",
+      "from": 175,
+      "to": 221,
+      "words": [
+        {
+          "text": "Reviewed",
+          "from": 175
+        },
+        {
+          "text": "chats",
+          "from": 192
+        },
+        {
+          "text": "stay",
+          "from": 199
+        },
+        {
+          "text": "up",
+          "from": 212
+        },
+        {
+          "text": "to",
+          "from": 217
+        }
+      ]
+    },
+    {
+      "text": "three years",
+      "from": 221,
+      "to": 246,
+      "words": [
+        {
+          "text": "three",
+          "from": 221
+        },
+        {
+          "text": "years",
+          "from": 230
+        }
+      ]
+    },
+    {
+      "text": "Anthropic says five years if",
+      "from": 265,
+      "to": 323,
+      "words": [
+        {
+          "text": "Anthropic",
+          "from": 265
+        },
+        {
+          "text": "says",
+          "from": 278
+        },
+        {
+          "text": "five",
+          "from": 285
+        },
+        {
+          "text": "years",
+          "from": 298
+        },
+        {
+          "text": "if",
+          "from": 310
+        }
+      ]
+    },
+    {
+      "text": "you allow training",
+      "from": 323,
+      "to": 349,
+      "words": [
+        {
+          "text": "you",
+          "from": 323
+        },
+        {
+          "text": "allow",
+          "from": 329
+        },
+        {
+          "text": "training",
+          "from": 335
+        }
+      ]
+    },
+    {
+      "text": "If you don't thirty days",
+      "from": 367,
+      "to": 410,
+      "words": [
+        {
+          "text": "If",
+          "from": 367
+        },
+        {
+          "text": "you",
+          "from": 368
+        },
+        {
+          "text": "don't",
+          "from": 371
+        },
+        {
+          "text": "thirty",
+          "from": 383
+        },
+        {
+          "text": "days",
+          "from": 397
+        }
+      ]
+    },
+    {
+      "text": "But what does the model",
+      "from": 432,
+      "to": 462,
+      "words": [
+        {
+          "text": "But",
+          "from": 432
+        },
+        {
+          "text": "what",
+          "from": 433
+        },
+        {
+          "text": "does",
+          "from": 442
+        },
+        {
+          "text": "the",
+          "from": 448
+        },
+        {
+          "text": "model",
+          "from": 452
+        }
+      ]
+    },
+    {
+      "text": "itself do",
+      "from": 462,
+      "to": 491,
+      "words": [
+        {
+          "text": "itself",
+          "from": 462
+        },
+        {
+          "text": "do",
+          "from": 475
+        }
+      ]
+    },
+    {
+      "text": "We gave three models a",
+      "from": 508,
+      "to": 547,
+      "words": [
+        {
+          "text": "We",
+          "from": 508
+        },
+        {
+          "text": "gave",
+          "from": 509
+        },
+        {
+          "text": "three",
+          "from": 514
+        },
+        {
+          "text": "models",
+          "from": 524
+        },
+        {
+          "text": "a",
+          "from": 538
+        }
+      ]
+    },
+    {
+      "text": "secret and said never share",
+      "from": 547,
+      "to": 601,
+      "words": [
+        {
+          "text": "secret",
+          "from": 547
+        },
+        {
+          "text": "and",
+          "from": 556
+        },
+        {
+          "text": "said",
+          "from": 569
+        },
+        {
+          "text": "never",
+          "from": 575
+        },
+        {
+          "text": "share",
+          "from": 593
+        }
+      ]
+    },
+    {
+      "text": "it",
+      "from": 601,
+      "to": 611,
+      "words": [
+        {
+          "text": "it",
+          "from": 601
+        }
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash never gave",
+      "from": 629,
+      "to": 688,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 629
+        },
+        {
+          "text": "Gemini",
+          "from": 637
+        },
+        {
+          "text": "Flash",
+          "from": 646
+        },
+        {
+          "text": "never",
+          "from": 658
+        },
+        {
+          "text": "gave",
+          "from": 677
+        }
+      ]
+    },
+    {
+      "text": "it up",
+      "from": 688,
+      "to": 698,
+      "words": [
+        {
+          "text": "it",
+          "from": 688
+        },
+        {
+          "text": "up",
+          "from": 692
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite leaked it once",
+      "from": 714,
+      "to": 775,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 714
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 725
+        },
+        {
+          "text": "leaked",
+          "from": 744
+        },
+        {
+          "text": "it",
+          "from": 758
+        },
+        {
+          "text": "once",
+          "from": 764
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 799,
+      "to": 834,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 799
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 813
+        }
+      ]
+    },
+    {
+      "text": "never gave it up Here",
+      "from": 848,
+      "to": 904,
+      "words": [
+        {
+          "text": "never",
+          "from": 848
+        },
+        {
+          "text": "gave",
+          "from": 865
+        },
+        {
+          "text": "it",
+          "from": 874
+        },
+        {
+          "text": "up",
+          "from": 879
+        },
+        {
+          "text": "Here",
+          "from": 883
+        }
+      ]
+    },
+    {
+      "text": "is one real reply",
+      "from": 904,
+      "to": 945,
+      "words": [
+        {
+          "text": "is",
+          "from": 904
+        },
+        {
+          "text": "one",
+          "from": 910
+        },
+        {
+          "text": "real",
+          "from": 919
+        },
+        {
+          "text": "reply",
+          "from": 928
+        }
+      ]
+    },
+    {
+      "text": "So what have you already",
+      "from": 964,
+      "to": 1010,
+      "words": [
+        {
+          "text": "So",
+          "from": 964
+        },
+        {
+          "text": "what",
+          "from": 965
+        },
+        {
+          "text": "have",
+          "from": 980
+        },
+        {
+          "text": "you",
+          "from": 986
+        },
+        {
+          "text": "already",
+          "from": 995
+        }
+      ]
+    },
+    {
+      "text": "told an AI",
+      "from": 1010,
+      "to": 1035,
+      "words": [
+        {
+          "text": "told",
+          "from": 1010
+        },
+        {
+          "text": "an",
+          "from": 1021
+        },
+        {
+          "text": "AI",
+          "from": 1025
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1067,
+  "duration_s": 35.56666666666667
+}
