@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-11 10:03 SAST
+Updated 2026-11-11 19:26 SAST
 
-**Next productions:** AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST
+**Next productions:** AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,11 +19,11 @@ Updated 2026-11-11 10:03 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed-final at script, attempts 2 |
-| Selected topic and score | AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub (71.3/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Students Complete Entire University Assessments in Minutes Using AI (80.2/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 108 views, 5 likes, 0 comments (public) |
+| Performance | 116 views, 5 likes, 0 comments (public) |
 | Analytics | available |
 
 ## Needs your attention
