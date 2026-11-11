@@ -2807,9 +2807,14 @@
           "topic": "World Meteorological Organization Reports 2026 Global Climate Extremes and El Niño",
           "slug": "wmo-2026-global-climate-extremes-el-nino",
           "reserved_at": "2026-11-10T16:49:28.074Z"
+        },
+        {
+          "topic": "Static Electricity Remains Shockingly Mysterious After Centuries of Study",
+          "slug": "static-electricity-mysterious-charge-buildup",
+          "reserved_at": "2026-11-11T17:00:32.994Z"
         }
       ],
-      "last_generated": "2026-11-10T16:49:28.075Z"
+      "last_generated": "2026-11-11T17:00:32.994Z"
     },
     "18": {
       "channel_name": "Brief History",
