@@ -1,0 +1,59 @@
+{
+  "note": "Every image is a real file from Wikimedia Commons with its licence recorded. Nothing is AI-generated. The aircraft cut-out is the real HK-1803 photograph with the background removed by rembg.",
+  "assets": [
+    {
+      "id": "hk1803",
+      "description": "Aircraft Avianca Boeing 727-21 Reg.: HK-1803 MSN: 19035 Line No.: 272 Location & Date Bogota (Santa Fe de Bogota) - El Dorado (BOG / SKBO) Colombia - November 1982",
+      "role": "the aircraft, Avianca Boeing 727-21 HK-1803, at Bogotá, November 1982",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Avianca_Boeing_727-21_HK-1803.jpg",
+      "licence": "CC BY-SA 4.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "author": "Richard Vandervord",
+      "original_credit": "https://www.airliners.net/photo/Avianca/Boeing-727-21/1491876",
+      "date_taken": "1982-11",
+      "retrieved": "2026-11-11",
+      "claim": "C1",
+      "authenticity": "authentic",
+      "size_px": "1024x640",
+      "credit_line": "Richard Vandervord, CC BY-SA 4.0, via Wikimedia Commons",
+      "bytes": 139481
+    },
+    {
+      "id": "escobar",
+      "description": "A mug shot taken by the regional Colombia control agency in Medellín in 1976.",
+      "role": "Pablo Escobar, police photograph",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Pablo_Escobar_Mug_(cropped)(b).jpg",
+      "licence": "Public domain",
+      "licence_url": "",
+      "author": "Colombian National Police",
+      "original_credit": "Colombia National Registry; Colombian National Police",
+      "date_taken": "1976",
+      "retrieved": "2026-11-11",
+      "claim": "C7",
+      "authenticity": "authentic",
+      "size_px": "2219x2875",
+      "credit_line": "Colombian National Police, Public domain, via Wikimedia Commons",
+      "bytes": 1448600
+    },
+    {
+      "id": "gaviria",
+      "description": "César Gaviria , Colombian politician, speaking at the World Economic Forum on Latin America 2009 in Rio de Janeiro, Brazil.",
+      "role": "César Gaviria, photographed in 2009",
+      "source": "Wikimedia Commons",
+      "source_url": "https://commons.wikimedia.org/wiki/File:C%C3%A9sar_Gaviria,_World_Economic_Forum_on_Latin_America_2009_(cropped_2).jpg",
+      "licence": "CC BY-SA 2.0",
+      "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "author": "World Economic Forum on Flickr",
+      "original_credit": "César Gaviria Trujillo - World Economic Forum on Latin America 2009 Copyright World Economic Forum ( www.weforum.org ) / Photo by Alexandre Campbell",
+      "date_taken": "2009-04-15",
+      "retrieved": "2026-11-11",
+      "claim": "C8",
+      "authenticity": "authentic",
+      "size_px": "1521x1990",
+      "credit_line": "World Economic Forum on Flickr, CC BY-SA 2.0, via Wikimedia Commons",
+      "bytes": 564458
+    }
+  ]
+}
