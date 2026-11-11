@@ -1,0 +1,456 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (61/67 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "AI",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "described",
+   "start": 0.42,
+   "end": 1.02,
+   "sentence": 0
+  },
+  {
+   "text": "seven",
+   "start": 1.02,
+   "end": 1.6,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 1.6,
+   "end": 1.88,
+   "sentence": 0
+  },
+  {
+   "text": "twenty-four",
+   "start": 1.88,
+   "end": 2.09,
+   "sentence": 0
+  },
+  {
+   "text": "invented",
+   "start": 2.3,
+   "end": 2.94,
+   "sentence": 0
+  },
+  {
+   "text": "things",
+   "start": 2.94,
+   "end": 3.48,
+   "sentence": 0
+  },
+  {
+   "text": "as",
+   "start": 3.48,
+   "end": 3.76,
+   "sentence": 0
+  },
+  {
+   "text": "real",
+   "start": 3.76,
+   "end": 4.04,
+   "sentence": 0
+  },
+  {
+   "text": "We",
+   "start": 4.88,
+   "end": 4.94,
+   "sentence": 1
+  },
+  {
+   "text": "invented",
+   "start": 4.94,
+   "end": 5.2,
+   "sentence": 1
+  },
+  {
+   "text": "twelve",
+   "start": 5.2,
+   "end": 5.42,
+   "sentence": 1
+  },
+  {
+   "text": "things",
+   "start": 5.64,
+   "end": 6.2,
+   "sentence": 1
+  },
+  {
+   "text": "that",
+   "start": 6.2,
+   "end": 6.38,
+   "sentence": 1
+  },
+  {
+   "text": "do",
+   "start": 6.38,
+   "end": 6.52,
+   "sentence": 1
+  },
+  {
+   "text": "not",
+   "start": 6.52,
+   "end": 6.68,
+   "sentence": 1
+  },
+  {
+   "text": "exist",
+   "start": 6.68,
+   "end": 7.02,
+   "sentence": 1
+  },
+  {
+   "text": "Then",
+   "start": 8.04,
+   "end": 8.09,
+   "sentence": 2
+  },
+  {
+   "text": "we",
+   "start": 8.04,
+   "end": 8.22,
+   "sentence": 2
+  },
+  {
+   "text": "asked",
+   "start": 8.22,
+   "end": 8.52,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 8.52,
+   "end": 8.88,
+   "sentence": 2
+  },
+  {
+   "text": "AI",
+   "start": 8.88,
+   "end": 9.14,
+   "sentence": 2
+  },
+  {
+   "text": "models",
+   "start": 9.14,
+   "end": 9.54,
+   "sentence": 2
+  },
+  {
+   "text": "about",
+   "start": 9.54,
+   "end": 9.92,
+   "sentence": 2
+  },
+  {
+   "text": "each",
+   "start": 9.92,
+   "end": 10.14,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 10.14,
+   "end": 10.44,
+   "sentence": 2
+  },
+  {
+   "text": "Google's",
+   "start": 11.28,
+   "end": 11.5,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 11.5,
+   "end": 11.7,
+   "sentence": 3
+  },
+  {
+   "text": "made",
+   "start": 11.9,
+   "end": 12.4,
+   "sentence": 3
+  },
+  {
+   "text": "up",
+   "start": 12.4,
+   "end": 12.58,
+   "sentence": 3
+  },
+  {
+   "text": "five",
+   "start": 12.58,
+   "end": 12.94,
+   "sentence": 3
+  },
+  {
+   "text": "of",
+   "start": 12.94,
+   "end": 13.16,
+   "sentence": 3
+  },
+  {
+   "text": "twelve",
+   "start": 13.16,
+   "end": 13.78,
+   "sentence": 3
+  },
+  {
+   "text": "OpenAI's",
+   "start": 14.4,
+   "end": 14.86,
+   "sentence": 4
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 14.86,
+   "end": 15.37,
+   "sentence": 4
+  },
+  {
+   "text": "made",
+   "start": 15.88,
+   "end": 16.48,
+   "sentence": 4
+  },
+  {
+   "text": "up",
+   "start": 16.48,
+   "end": 16.64,
+   "sentence": 4
+  },
+  {
+   "text": "two",
+   "start": 16.64,
+   "end": 16.88,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 16.88,
+   "end": 17.06,
+   "sentence": 4
+  },
+  {
+   "text": "twelve",
+   "start": 17.06,
+   "end": 17.56,
+   "sentence": 4
+  },
+  {
+   "text": "Real",
+   "start": 18.06,
+   "end": 18.2,
+   "sentence": 5
+  },
+  {
+   "text": "topics",
+   "start": 18.2,
+   "end": 18.56,
+   "sentence": 5
+  },
+  {
+   "text": "were",
+   "start": 18.56,
+   "end": 18.94,
+   "sentence": 5
+  },
+  {
+   "text": "answered",
+   "start": 18.94,
+   "end": 19.2,
+   "sentence": 5
+  },
+  {
+   "text": "normally",
+   "start": 19.2,
+   "end": 19.68,
+   "sentence": 5
+  },
+  {
+   "text": "Here",
+   "start": 20.4,
+   "end": 20.46,
+   "sentence": 6
+  },
+  {
+   "text": "is",
+   "start": 20.46,
+   "end": 20.6,
+   "sentence": 6
+  },
+  {
+   "text": "one",
+   "start": 20.6,
+   "end": 20.86,
+   "sentence": 6
+  },
+  {
+   "text": "invented",
+   "start": 20.86,
+   "end": 21.28,
+   "sentence": 6
+  },
+  {
+   "text": "answer",
+   "start": 21.28,
+   "end": 21.74,
+   "sentence": 6
+  },
+  {
+   "text": "Confident",
+   "start": 22.46,
+   "end": 22.76,
+   "sentence": 7
+  },
+  {
+   "text": "is",
+   "start": 22.76,
+   "end": 23.08,
+   "sentence": 7
+  },
+  {
+   "text": "not",
+   "start": 23.08,
+   "end": 23.32,
+   "sentence": 7
+  },
+  {
+   "text": "true",
+   "start": 23.32,
+   "end": 23.62,
+   "sentence": 7
+  },
+  {
+   "text": "so",
+   "start": 24.02,
+   "end": 24.18,
+   "sentence": 7
+  },
+  {
+   "text": "ask",
+   "start": 24.18,
+   "end": 24.4,
+   "sentence": 7
+  },
+  {
+   "text": "for",
+   "start": 24.4,
+   "end": 24.66,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 24.66,
+   "end": 24.76,
+   "sentence": 7
+  },
+  {
+   "text": "source",
+   "start": 24.76,
+   "end": 25.0,
+   "sentence": 7
+  },
+  {
+   "text": "Has",
+   "start": 25.74,
+   "end": 25.9,
+   "sentence": 8
+  },
+  {
+   "text": "AI",
+   "start": 25.9,
+   "end": 26.12,
+   "sentence": 8
+  },
+  {
+   "text": "ever",
+   "start": 26.12,
+   "end": 26.56,
+   "sentence": 8
+  },
+  {
+   "text": "made",
+   "start": 26.56,
+   "end": 26.76,
+   "sentence": 8
+  },
+  {
+   "text": "something",
+   "start": 26.76,
+   "end": 26.96,
+   "sentence": 8
+  },
+  {
+   "text": "up",
+   "start": 26.96,
+   "end": 27.22,
+   "sentence": 8
+  },
+  {
+   "text": "for",
+   "start": 27.22,
+   "end": 27.4,
+   "sentence": 8
+  },
+  {
+   "text": "you",
+   "start": 27.4,
+   "end": 27.56,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "AI described seven of twenty-four invented things as real.",
+   "start": 0.0,
+   "end": 4.04
+  },
+  {
+   "text": "We invented twelve things that do not exist.",
+   "start": 4.88,
+   "end": 7.02
+  },
+  {
+   "text": "Then we asked two AI models about each one.",
+   "start": 8.04,
+   "end": 10.44
+  },
+  {
+   "text": "Google's Flash-Lite made up five of twelve.",
+   "start": 11.28,
+   "end": 13.78
+  },
+  {
+   "text": "OpenAI's GPT-OSS made up two of twelve.",
+   "start": 14.4,
+   "end": 17.56
+  },
+  {
+   "text": "Real topics were answered normally.",
+   "start": 18.06,
+   "end": 19.68
+  },
+  {
+   "text": "Here is one invented answer.",
+   "start": 20.4,
+   "end": 21.74
+  },
+  {
+   "text": "Confident is not true, so ask for the source.",
+   "start": 22.46,
+   "end": 25.0
+  },
+  {
+   "text": "Has AI ever made something up for you?",
+   "start": 25.74,
+   "end": 27.56
+  }
+ ]
+}
