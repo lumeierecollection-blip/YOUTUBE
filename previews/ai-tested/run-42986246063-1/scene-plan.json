@@ -1,0 +1,141 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42986246063-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Can you trust AI with your data?",
+      "main_point": "Pose the question with the logos of the companies in the story",
+      "visual_objective": "Pose the question with the logos of the companies in the story",
+      "treatment": "title-with-logo-stickers",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.066666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Google says people review some chats.",
+      "main_point": "Show Google's own sentence about human review, quoted exactly, with the logo and the page date",
+      "visual_objective": "Show Google's own sentence about human review, quoted exactly, with the logo and the page date",
+      "treatment": "logo-with-quote-slip",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "G1"
+      ],
+      "start_s": 3.066666666666667,
+      "end_s": 5.9
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Reviewed chats stay up to three years.",
+      "main_point": "Show three years as thirty-six month squares",
+      "visual_objective": "Show three years as thirty-six month squares",
+      "treatment": "counted-months",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "G2"
+      ],
+      "start_s": 5.9,
+      "end_s": 8.9
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Anthropic: five years, if you allow training.",
+      "main_point": "Show Anthropic's own sentence on five-year retention, quoted exactly, with the logo and the date",
+      "visual_objective": "Show Anthropic's own sentence on five-year retention, quoted exactly, with the logo and the date",
+      "treatment": "logo-with-quote-slip",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "A1"
+      ],
+      "start_s": 8.9,
+      "end_s": 11.966666666666667
+    },
+    {
+      "scene_id": "s5",
+      "narration": "If you don't, thirty days.",
+      "main_point": "Draw five years and thirty days to scale",
+      "visual_objective": "Draw five years and thirty days to scale",
+      "treatment": "bars-to-scale",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "A2"
+      ],
+      "start_s": 11.966666666666667,
+      "end_s": 14.266666666666667
+    },
+    {
+      "scene_id": "s6",
+      "narration": "But what does the model itself do?",
+      "main_point": "Turn from company promises to the model itself",
+      "visual_objective": "Turn from company promises to the model itself",
+      "treatment": "padlock-turn",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 14.266666666666667,
+      "end_s": 16.633333333333333
+    },
+    {
+      "scene_id": "s7",
+      "narration": "We gave three models a secret and said never share it.",
+      "main_point": "Show the private note with the secret redacted and the three models",
+      "visual_objective": "Show the private note with the secret redacted and the three models",
+      "treatment": "redacted-note",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 16.633333333333333,
+      "end_s": 20.8
+    },
+    {
+      "scene_id": "s8",
+      "narration": "Google's Gemini Flash never gave it up. Google's Flash-Lite leaked it once. OpenAI's GPT-OSS never gave it up.",
+      "main_point": "Show one square per attempt for each model, coloured leaked or held, with the count",
+      "visual_objective": "Show one square per attempt for each model, coloured leaked or held, with the count",
+      "treatment": "count-rows-with-logos",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "m0",
+        "m1",
+        "m2"
+      ],
+      "start_s": 20.8,
+      "end_s": 29.433333333333334
+    },
+    {
+      "scene_id": "s9",
+      "narration": "Here is one real reply.",
+      "main_point": "Show one real attempt and the real reply",
+      "visual_objective": "Show one real attempt and the real reply",
+      "treatment": "chat-card",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 29.433333333333334,
+      "end_s": 32.266666666666666
+    },
+    {
+      "scene_id": "s10",
+      "narration": "So what have you already told an AI?",
+      "main_point": "Close on the question over redacted messages",
+      "visual_objective": "Close on the question over redacted messages",
+      "treatment": "redacted-messages-title",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 32.266666666666666,
+      "end_s": 35.5
+    }
+  ]
+}
