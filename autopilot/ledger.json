@@ -1131,16 +1131,17 @@
     },
     "2026-11-10-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "42937975876",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T01:36:15.174Z",
+      "updated_at": "2026-11-11T01:40:40.303Z",
       "stage": "script",
       "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
       "score": 79.2,
       "pillar": "Trending AI tools and apps",
-      "hook": "Amazon's new Ring security camera doesn't just sit on the wall anymore—it flies around your house."
+      "hook": "Amazon's new Ring security camera doesn't just sit on the wall anymore—it flies around your house.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why does the 2026 Ring Rover Cam launch matter?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"Why does the 2026 Ring Rover Cam launch matter?\" — The narration never explains why it matters.. Rewrite it so a viewer who knows nothing follows it"
     }
   },
   "uploads": [
