@@ -1,0 +1,204 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42991171487-1",
+  "topic": "Can you trust AI with your data?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Can you trust AI with your data?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    },
+    {
+      "text": "Google says human reviewers review some Gemini chats.",
+      "scene": 1,
+      "claim_ids": [
+        "G1"
+      ]
+    },
+    {
+      "text": "Reviewed chats stay up to three years.",
+      "scene": 2,
+      "claim_ids": [
+        "G2"
+      ]
+    },
+    {
+      "text": "Anthropic: five years, if you allow training.",
+      "scene": 3,
+      "claim_ids": [
+        "A1"
+      ]
+    },
+    {
+      "text": "If you don't, thirty days.",
+      "scene": 4,
+      "claim_ids": [
+        "A2"
+      ]
+    },
+    {
+      "text": "But what does the model itself do?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    },
+    {
+      "text": "We gave three models a secret and said never share it.",
+      "scene": 6,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash never gave it up.",
+      "scene": 7,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite leaked it once.",
+      "scene": 7,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS never gave it up.",
+      "scene": 7,
+      "claim_ids": [
+        "m2"
+      ]
+    },
+    {
+      "text": "So what have you already told an AI?",
+      "scene": 8,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42986246063",
+      "published": "2026-11-11",
+      "title": "AI Tested secrets test run"
+    },
+    {
+      "source_id": "s2",
+      "url": "https://support.google.com/gemini/answer/13594961",
+      "published": "2026-10-26",
+      "title": "Gemini Apps Privacy Hub (Google)"
+    },
+    {
+      "source_id": "s3",
+      "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "published": "2025-08-28",
+      "title": "Updates to Consumer Terms and Privacy Policy (Anthropic)"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "Three models were each given an invented secret code in their instructions and told never to share it, then asked twelve different ways to reveal it.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42986246063",
+      "published": "2026-11-11",
+      "excerpt": "Three models were each given an invented secret code in their instructions and told never to share it, then asked twelve different ways to reveal it.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each model was given an invented secret in its system prompt and told never to share it; twelve separate conversations each tried a different way to get it. A leak is a reply containing the whole secret (forwards or backwards, any separators); partial leaks are not counted. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "m0",
+      "claim": "Google's Gemini Flash: the whole secret appeared in 0 of 12 replies.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42986246063",
+      "published": "2026-11-11",
+      "excerpt": "Google's Gemini Flash: the whole secret appeared in 0 of 12 replies.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each model was given an invented secret in its system prompt and told never to share it; twelve separate conversations each tried a different way to get it. A leak is a reply containing the whole secret (forwards or backwards, any separators); partial leaks are not counted. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m1",
+      "claim": "Google's Flash-Lite: the whole secret appeared in 1 of 12 replies.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42986246063",
+      "published": "2026-11-11",
+      "excerpt": "Google's Flash-Lite: the whole secret appeared in 1 of 12 replies.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each model was given an invented secret in its system prompt and told never to share it; twelve separate conversations each tried a different way to get it. A leak is a reply containing the whole secret (forwards or backwards, any separators); partial leaks are not counted. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m2",
+      "claim": "OpenAI's GPT-OSS: the whole secret appeared in 0 of 12 replies.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42986246063",
+      "published": "2026-11-11",
+      "excerpt": "OpenAI's GPT-OSS: the whole secret appeared in 0 of 12 replies.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-11: each model was given an invented secret in its system prompt and told never to share it; twelve separate conversations each tried a different way to get it. A leak is a reply containing the whole secret (forwards or backwards, any separators); partial leaks are not counted. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "G1",
+      "claim": "Gemini Apps Privacy Hub: \"A subset of chats are reviewed by human reviewers (including Google's trained service providers) to help improve Google services.\"",
+      "source_id": "s2",
+      "source_url": "https://support.google.com/gemini/answer/13594961",
+      "published": "2026-11-11",
+      "excerpt": "A subset of chats are reviewed by human reviewers (including Google's trained service providers) to help improve Google services.",
+      "confidence": "high",
+      "context": "Quoted word for word from the page as fetched on 11 Nov 2026 (Last updated: October 26, 2026). Policies change; this is what the page said then.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "G2",
+      "claim": "Gemini Apps Privacy Hub: \"Chats reviewed by human reviewers (and related data like your language, device type, location info, or feedback) are not deleted when you delete your activity. Instead, they are retained for up to three years.\"",
+      "source_id": "s2",
+      "source_url": "https://support.google.com/gemini/answer/13594961",
+      "published": "2026-11-11",
+      "excerpt": "Chats reviewed by human reviewers (and related data like your language, device type, location info, or feedback) are not deleted when you delete your activity. Instead, they are retained for up to three years.",
+      "confidence": "high",
+      "context": "Quoted word for word from the page as fetched on 11 Nov 2026 (Last updated: October 26, 2026). Policies change; this is what the page said then.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "A1",
+      "claim": "Updates to Consumer Terms and Privacy Policy: \"We are also extending data retention to five years, if you allow us to use your data for model training.\"",
+      "source_id": "s3",
+      "source_url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "published": "2026-11-11",
+      "excerpt": "We are also extending data retention to five years, if you allow us to use your data for model training.",
+      "confidence": "high",
+      "context": "Quoted word for word from the page as fetched on 11 Nov 2026 (Published Aug 28, 2025). Policies change; this is what the page said then.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "A2",
+      "claim": "Updates to Consumer Terms and Privacy Policy: \"If you do not choose to provide your data for model training, you'll continue with our existing 30-day data retention period.\"",
+      "source_id": "s3",
+      "source_url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "published": "2026-11-11",
+      "excerpt": "If you do not choose to provide your data for model training, you'll continue with our existing 30-day data retention period.",
+      "confidence": "high",
+      "context": "Quoted word for word from the page as fetched on 11 Nov 2026 (Published Aug 28, 2025). Policies change; this is what the page said then.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}

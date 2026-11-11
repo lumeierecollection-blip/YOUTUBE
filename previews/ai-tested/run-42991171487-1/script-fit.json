@@ -1,0 +1,99 @@
+{
+  "measured_wpm": 149.3,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Can you trust AI with your data?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    },
+    {
+      "text": "Google says human reviewers review some Gemini chats.",
+      "scene": 1,
+      "claim_ids": [
+        "G1"
+      ]
+    },
+    {
+      "text": "Reviewed chats stay up to three years.",
+      "scene": 2,
+      "claim_ids": [
+        "G2"
+      ]
+    },
+    {
+      "text": "Anthropic: five years, if you allow training.",
+      "scene": 3,
+      "claim_ids": [
+        "A1"
+      ]
+    },
+    {
+      "text": "If you don't, thirty days.",
+      "scene": 4,
+      "claim_ids": [
+        "A2"
+      ]
+    },
+    {
+      "text": "But what does the model itself do?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    },
+    {
+      "text": "We gave three models a secret and said never share it.",
+      "scene": 6,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash never gave it up.",
+      "scene": 8,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite leaked it once.",
+      "scene": 8,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS never gave it up.",
+      "scene": 8,
+      "claim_ids": [
+        "m2"
+      ]
+    },
+    {
+      "text": "So what have you already told an AI?",
+      "scene": 10,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the cited sources and the measured results"
+    }
+  ],
+  "words": 78,
+  "estimated_seconds": 36.1,
+  "inside_window": true,
+  "kept": [
+    "googleKeep",
+    "anthropicKeep",
+    "hook",
+    "google",
+    "anthropic",
+    "turn",
+    "design",
+    "m0",
+    "m1",
+    "m2",
+    "tip"
+  ]
+}
