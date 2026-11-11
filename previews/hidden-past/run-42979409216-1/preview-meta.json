@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-42979409216-1",
   "agent": "agent-hidden-past",
-  "stage": "awaiting_approval",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-11T07:39:43.983Z",
+  "timestamp": "2026-11-11T07:39:45.961Z",
   "branch": "preview/hidden-past-crime-beats",
   "commit": "23ef71bbcf69e4f58cd3e8e915d5f3acb33a04b9",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979409216#artifacts"
