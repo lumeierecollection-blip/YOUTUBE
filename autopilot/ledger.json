@@ -1135,12 +1135,12 @@
       "attempts": 1,
       "run_id": "42937975876",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T01:21:07.072Z",
-      "stage": "script",
-      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT",
-      "score": 84.5,
-      "pillar": "Trending AI tools and apps",
-      "hook": "ChatGPT is becoming a search engine—you can now claim your business and set up custom sales agents."
+      "updated_at": "2026-11-11T01:28:26.095Z",
+      "stage": "research",
+      "topic": "Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You",
+      "score": 83.9,
+      "pillar": "New AI features and releases",
+      "hook": "Ever wonder what Google's AI actually remembers about your life? Now you can finally check and delete it."
     }
   },
   "uploads": [
@@ -2118,6 +2118,15 @@
       "at_ms": 1794360032309,
       "score": 84.5,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You",
+      "slug": "google-gemini-s-new-memory-summary-lets-you-see-and-delete-w",
+      "slot": "2026-11-10-ch2",
+      "at_ms": 1794360506095,
+      "score": 83.9,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
