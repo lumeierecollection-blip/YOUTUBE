@@ -2675,9 +2675,14 @@
           "topic": "JWST Discovers Record-Breaking Small Brown Dwarfs in IC 348",
           "slug": "jwst-ic-348-smallest-failed-stars",
           "reserved_at": "2026-11-10T16:46:47.422Z"
+        },
+        {
+          "topic": "Nature Study Confirms M87 Star Black Hole Shadow With Independent Data",
+          "slug": "nature-study-confirms-m87-black-hole-shadow",
+          "reserved_at": "2026-11-11T17:35:27.133Z"
         }
       ],
-      "last_generated": "2026-11-10T16:46:47.422Z"
+      "last_generated": "2026-11-11T17:35:27.133Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
