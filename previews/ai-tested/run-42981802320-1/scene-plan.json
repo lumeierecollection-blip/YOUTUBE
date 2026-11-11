@@ -1,0 +1,74 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-42981802320-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "If you ask AI for a source, will the link work?",
+      "main_point": "Pose the question over a real chat: a request for a link and the link the AI gave",
+      "visual_objective": "Pose the question over a real chat: a request for a link and the link the AI gave",
+      "treatment": "kinetic-question",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 0,
+      "end_s": 3.7333333333333334
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We asked three AI models for a link on twelve topics, then clicked every single one. Each one had to give a news article or a study.",
+      "main_point": "Show the real request, the twelve topics, and that every link was clicked",
+      "visual_objective": "Show the real request, the twelve topics, and that every link was clicked",
+      "treatment": "process-diagram",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 3.7333333333333334,
+      "end_s": 12.566666666666666
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Google's Gemini Flash gave three dead links out of twelve. Google's Flash-Lite gave four dead links out of twelve. OpenAI's GPT-OSS gave five dead links out of twelve. That is twelve dead links out of thirty-six.",
+      "main_point": "Show one square per link for each model, coloured opened, dead or unchecked, with the count",
+      "visual_objective": "Show one square per link for each model, coloured opened, dead or unchecked, with the count",
+      "treatment": "count-grid",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "m0",
+        "m1",
+        "m2",
+        "total"
+      ],
+      "start_s": 12.566666666666666,
+      "end_s": 26.133333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Here is one real answer. This one was about the invention of the World Wide Web.",
+      "main_point": "Show one real link from the test and what the server said",
+      "visual_objective": "Show one real link from the test and what the server said",
+      "treatment": "terminal",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 26.133333333333333,
+      "end_s": 30.466666666666665
+    },
+    {
+      "scene_id": "s5",
+      "narration": "A dead link looks exactly like a working one. How many links have you trusted unclicked?",
+      "main_point": "Close with the dead count and the question: how many links have you trusted unclicked",
+      "visual_objective": "Close with the dead count and the question: how many links have you trusted unclicked",
+      "treatment": "verdict-panel",
+      "background": "accent panel",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 30.466666666666665,
+      "end_s": 36.733333333333334
+    }
+  ]
+}

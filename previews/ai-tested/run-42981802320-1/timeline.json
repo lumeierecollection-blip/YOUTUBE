@@ -1,0 +1,676 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookL",
+      "treatment": "kinetic-question",
+      "objective": "Pose the question over a real chat: a request for a link and the link the AI gave",
+      "background": "white",
+      "from": 0,
+      "to": 112,
+      "start_s": 0,
+      "end_s": 3.7333333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "setupL",
+      "treatment": "process-diagram",
+      "objective": "Show the real request, the twelve topics, and that every link was clicked",
+      "background": "white",
+      "from": 112,
+      "to": 377,
+      "start_s": 3.7333333333333334,
+      "end_s": 12.566666666666666
+    },
+    {
+      "id": "s3",
+      "kind": "gridL",
+      "treatment": "count-grid",
+      "objective": "Show one square per link for each model, coloured opened, dead or unchecked, with the count",
+      "background": "white",
+      "from": 377,
+      "to": 784,
+      "start_s": 12.566666666666666,
+      "end_s": 26.133333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "exampleL",
+      "treatment": "terminal",
+      "objective": "Show one real link from the test and what the server said",
+      "background": "white",
+      "from": 784,
+      "to": 914,
+      "start_s": 26.133333333333333,
+      "end_s": 30.466666666666665
+    },
+    {
+      "id": "s5",
+      "kind": "tipL",
+      "treatment": "verdict-panel",
+      "objective": "Close with the dead count and the question: how many links have you trusted unclicked",
+      "background": "accent panel",
+      "from": 914,
+      "to": 1102,
+      "start_s": 30.466666666666665,
+      "end_s": 36.733333333333334
+    }
+  ],
+  "captions": [
+    {
+      "text": "If you ask AI for",
+      "from": 0,
+      "to": 41,
+      "words": [
+        {
+          "text": "If",
+          "from": 0
+        },
+        {
+          "text": "you",
+          "from": 10
+        },
+        {
+          "text": "ask",
+          "from": 14
+        },
+        {
+          "text": "AI",
+          "from": 21
+        },
+        {
+          "text": "for",
+          "from": 29
+        }
+      ]
+    },
+    {
+      "text": "a source",
+      "from": 41,
+      "to": 57,
+      "words": [
+        {
+          "text": "a",
+          "from": 41
+        },
+        {
+          "text": "source",
+          "from": 44
+        }
+      ]
+    },
+    {
+      "text": "will the link work",
+      "from": 68,
+      "to": 93,
+      "words": [
+        {
+          "text": "will",
+          "from": 68
+        },
+        {
+          "text": "the",
+          "from": 71
+        },
+        {
+          "text": "link",
+          "from": 74
+        },
+        {
+          "text": "work",
+          "from": 80
+        }
+      ]
+    },
+    {
+      "text": "We asked three AI models",
+      "from": 112,
+      "to": 156,
+      "words": [
+        {
+          "text": "We",
+          "from": 112
+        },
+        {
+          "text": "asked",
+          "from": 113
+        },
+        {
+          "text": "three",
+          "from": 120
+        },
+        {
+          "text": "AI",
+          "from": 133
+        },
+        {
+          "text": "models",
+          "from": 143
+        }
+      ]
+    },
+    {
+      "text": "for a link on twelve",
+      "from": 156,
+      "to": 190,
+      "words": [
+        {
+          "text": "for",
+          "from": 156
+        },
+        {
+          "text": "a",
+          "from": 165
+        },
+        {
+          "text": "link",
+          "from": 168
+        },
+        {
+          "text": "on",
+          "from": 176
+        },
+        {
+          "text": "twelve",
+          "from": 182
+        }
+      ]
+    },
+    {
+      "text": "topics then clicked every single",
+      "from": 191,
+      "to": 256,
+      "words": [
+        {
+          "text": "topics",
+          "from": 191
+        },
+        {
+          "text": "then",
+          "from": 218
+        },
+        {
+          "text": "clicked",
+          "from": 221
+        },
+        {
+          "text": "every",
+          "from": 230
+        },
+        {
+          "text": "single",
+          "from": 243
+        }
+      ]
+    },
+    {
+      "text": "one",
+      "from": 256,
+      "to": 270,
+      "words": [
+        {
+          "text": "one",
+          "from": 256
+        }
+      ]
+    },
+    {
+      "text": "Each one had to give",
+      "from": 281,
+      "to": 313,
+      "words": [
+        {
+          "text": "Each",
+          "from": 281
+        },
+        {
+          "text": "one",
+          "from": 286
+        },
+        {
+          "text": "had",
+          "from": 293
+        },
+        {
+          "text": "to",
+          "from": 302
+        },
+        {
+          "text": "give",
+          "from": 308
+        }
+      ]
+    },
+    {
+      "text": "a news article or a",
+      "from": 313,
+      "to": 344,
+      "words": [
+        {
+          "text": "a",
+          "from": 313
+        },
+        {
+          "text": "news",
+          "from": 314
+        },
+        {
+          "text": "article",
+          "from": 321
+        },
+        {
+          "text": "or",
+          "from": 332
+        },
+        {
+          "text": "a",
+          "from": 341
+        }
+      ]
+    },
+    {
+      "text": "study",
+      "from": 344,
+      "to": 356,
+      "words": [
+        {
+          "text": "study",
+          "from": 344
+        }
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash gave three",
+      "from": 377,
+      "to": 428,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 377
+        },
+        {
+          "text": "Gemini",
+          "from": 382
+        },
+        {
+          "text": "Flash",
+          "from": 390
+        },
+        {
+          "text": "gave",
+          "from": 401
+        },
+        {
+          "text": "three",
+          "from": 415
+        }
+      ]
+    },
+    {
+      "text": "dead links out of twelve",
+      "from": 428,
+      "to": 469,
+      "words": [
+        {
+          "text": "dead",
+          "from": 428
+        },
+        {
+          "text": "links",
+          "from": 438
+        },
+        {
+          "text": "out",
+          "from": 445
+        },
+        {
+          "text": "of",
+          "from": 452
+        },
+        {
+          "text": "twelve",
+          "from": 455
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite gave four dead",
+      "from": 477,
+      "to": 533,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 477
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 487
+        },
+        {
+          "text": "gave",
+          "from": 503
+        },
+        {
+          "text": "four",
+          "from": 513
+        },
+        {
+          "text": "dead",
+          "from": 524
+        }
+      ]
+    },
+    {
+      "text": "links out of twelve",
+      "from": 533,
+      "to": 564,
+      "words": [
+        {
+          "text": "links",
+          "from": 533
+        },
+        {
+          "text": "out",
+          "from": 540
+        },
+        {
+          "text": "of",
+          "from": 546
+        },
+        {
+          "text": "twelve",
+          "from": 548
+        }
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS",
+      "from": 574,
+      "to": 607,
+      "words": [
+        {
+          "text": "OpenAI's",
+          "from": 574
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 592
+        }
+      ]
+    },
+    {
+      "text": "gave five dead links out",
+      "from": 616,
+      "to": 667,
+      "words": [
+        {
+          "text": "gave",
+          "from": 616
+        },
+        {
+          "text": "five",
+          "from": 630
+        },
+        {
+          "text": "dead",
+          "from": 644
+        },
+        {
+          "text": "links",
+          "from": 654
+        },
+        {
+          "text": "out",
+          "from": 662
+        }
+      ]
+    },
+    {
+      "text": "of twelve That is twelve",
+      "from": 667,
+      "to": 705,
+      "words": [
+        {
+          "text": "of",
+          "from": 667
+        },
+        {
+          "text": "twelve",
+          "from": 670
+        },
+        {
+          "text": "That",
+          "from": 687
+        },
+        {
+          "text": "is",
+          "from": 691
+        },
+        {
+          "text": "twelve",
+          "from": 695
+        }
+      ]
+    },
+    {
+      "text": "dead links out of thirty-six",
+      "from": 709,
+      "to": 766,
+      "words": [
+        {
+          "text": "dead",
+          "from": 709
+        },
+        {
+          "text": "links",
+          "from": 722
+        },
+        {
+          "text": "out",
+          "from": 733
+        },
+        {
+          "text": "of",
+          "from": 740
+        },
+        {
+          "text": "thirty-six",
+          "from": 742
+        }
+      ]
+    },
+    {
+      "text": "Here is one real answer",
+      "from": 784,
+      "to": 824,
+      "words": [
+        {
+          "text": "Here",
+          "from": 784
+        },
+        {
+          "text": "is",
+          "from": 788
+        },
+        {
+          "text": "one",
+          "from": 793
+        },
+        {
+          "text": "real",
+          "from": 800
+        },
+        {
+          "text": "answer",
+          "from": 808
+        }
+      ]
+    },
+    {
+      "text": "This one was about the",
+      "from": 824,
+      "to": 857,
+      "words": [
+        {
+          "text": "This",
+          "from": 824
+        },
+        {
+          "text": "one",
+          "from": 836
+        },
+        {
+          "text": "was",
+          "from": 842
+        },
+        {
+          "text": "about",
+          "from": 846
+        },
+        {
+          "text": "the",
+          "from": 852
+        }
+      ]
+    },
+    {
+      "text": "invention of the World Wide",
+      "from": 857,
+      "to": 887,
+      "words": [
+        {
+          "text": "invention",
+          "from": 857
+        },
+        {
+          "text": "of",
+          "from": 866
+        },
+        {
+          "text": "the",
+          "from": 872
+        },
+        {
+          "text": "World",
+          "from": 874
+        },
+        {
+          "text": "Wide",
+          "from": 880
+        }
+      ]
+    },
+    {
+      "text": "Web",
+      "from": 887,
+      "to": 898,
+      "words": [
+        {
+          "text": "Web",
+          "from": 887
+        }
+      ]
+    },
+    {
+      "text": "A dead link looks exactly",
+      "from": 914,
+      "to": 950,
+      "words": [
+        {
+          "text": "A",
+          "from": 914
+        },
+        {
+          "text": "dead",
+          "from": 915
+        },
+        {
+          "text": "link",
+          "from": 923
+        },
+        {
+          "text": "looks",
+          "from": 931
+        },
+        {
+          "text": "exactly",
+          "from": 943
+        }
+      ]
+    },
+    {
+      "text": "like a working one",
+      "from": 950,
+      "to": 995,
+      "words": [
+        {
+          "text": "like",
+          "from": 950
+        },
+        {
+          "text": "a",
+          "from": 974
+        },
+        {
+          "text": "working",
+          "from": 976
+        },
+        {
+          "text": "one",
+          "from": 982
+        }
+      ]
+    },
+    {
+      "text": "How many links have you",
+      "from": 1006,
+      "to": 1036,
+      "words": [
+        {
+          "text": "How",
+          "from": 1006
+        },
+        {
+          "text": "many",
+          "from": 1010
+        },
+        {
+          "text": "links",
+          "from": 1015
+        },
+        {
+          "text": "have",
+          "from": 1022
+        },
+        {
+          "text": "you",
+          "from": 1028
+        }
+      ]
+    },
+    {
+      "text": "trusted",
+      "from": 1036,
+      "to": 1049,
+      "words": [
+        {
+          "text": "trusted",
+          "from": 1036
+        }
+      ]
+    },
+    {
+      "text": "unclicked",
+      "from": 1058,
+      "to": 1075,
+      "words": [
+        {
+          "text": "unclicked",
+          "from": 1058
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1102,
+  "duration_s": 36.733333333333334
+}
