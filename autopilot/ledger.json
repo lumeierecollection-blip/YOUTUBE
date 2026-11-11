@@ -1135,12 +1135,12 @@
       "attempts": 2,
       "run_id": "42982260219",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T07:49:15.886Z",
-      "stage": "script",
-      "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
-      "score": 79.2,
+      "updated_at": "2026-11-11T07:50:31.835Z",
+      "stage": "research",
+      "topic": "Adobe Photoshop and Premiere Add Powerful New AI Object Removal Tools",
+      "score": 81.7,
       "pillar": "Trending AI tools and apps",
-      "hook": "Amazon's new Ring security camera doesn't just sit on the wall anymore—it flies around your house.",
+      "hook": "Adobe just updated Photoshop and Premiere with even scarier AI object-removal features that clean up photos and videos instantly.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why does the 2026 Ring Rover Cam launch matter?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"Why does the 2026 Ring Rover Cam launch matter?\" — The narration never explains why it matters.. Rewrite it so a viewer who knows nothing follows it"
     }
   },
@@ -2136,6 +2136,15 @@
       "slot": "2026-11-10-ch2",
       "at_ms": 1794360955278,
       "score": 79.2,
+      "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Adobe Photoshop and Premiere Add Powerful New AI Object Removal Tools",
+      "slug": "adobe-photoshop-and-premiere-add-powerful-new-ai-object-remo",
+      "slot": "2026-11-10-ch2",
+      "at_ms": 1794383431835,
+      "score": 81.7,
       "pillar": "Trending AI tools and apps"
     }
   ],

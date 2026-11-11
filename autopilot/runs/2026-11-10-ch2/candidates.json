@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T01:19:37.610Z",
+  "generated_at": "2026-11-11T07:50:19.328Z",
   "waves": [
     {
       "wave": 1,
@@ -13,7 +13,7 @@
         {
           "source": "feed:openai.com",
           "ok": true,
-          "items": 1377
+          "items": 1380
         },
         {
           "source": "feed:theverge.com",
@@ -21,17 +21,27 @@
           "items": 10
         },
         {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 3
+        },
+        {
           "source": "reddit:artificial",
           "ok": false,
           "error": "HTTP 403"
         },
         {
-          "source": "bing-news:ChatGPT new feature",
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:AI replacing jobs",
           "ok": true,
           "items": 12
         },
         {
-          "source": "reddit:ChatGPT",
+          "source": "reddit:ClaudeAI",
           "ok": false,
           "error": "HTTP 403"
         },
@@ -41,39 +51,9 @@
           "error": "HTTP 403"
         },
         {
-          "source": "reddit:ClaudeAI",
-          "ok": false,
-          "error": "HTTP 403"
-        },
-        {
           "source": "bing-news:viral AI tool",
           "ok": true,
-          "items": 3
-        },
-        {
-          "source": "google-news:AI scam deepfake",
-          "ok": true,
-          "items": 22
-        },
-        {
-          "source": "google-news:AI hallucination mistake",
-          "ok": true,
-          "items": 3
-        },
-        {
-          "source": "bing-news:free AI tools",
-          "ok": true,
-          "items": 9
-        },
-        {
-          "source": "google-news:Gemini AI new feature",
-          "ok": true,
-          "items": 29
-        },
-        {
-          "source": "bing-news:Gemini AI new feature",
-          "ok": true,
-          "items": 12
+          "items": 4
         },
         {
           "source": "google-news:ChatGPT new feature",
@@ -81,17 +61,7 @@
           "items": 28
         },
         {
-          "source": "google-news:AI agent uses computer",
-          "ok": true,
-          "items": 25
-        },
-        {
-          "source": "bing-news:Claude AI new feature",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:AI replacing jobs",
+          "source": "bing-news:ChatGPT new feature",
           "ok": true,
           "items": 11
         },
@@ -101,29 +71,19 @@
           "items": 11
         },
         {
-          "source": "bing-news:AI scam deepfake",
+          "source": "google-news:Gemini AI new feature",
           "ok": true,
-          "items": 12
-        },
-        {
-          "source": "feed:arstechnica.com",
-          "ok": true,
-          "items": 20
+          "items": 29
         },
         {
           "source": "google-news:Claude AI new feature",
           "ok": true,
-          "items": 33
+          "items": 32
         },
         {
-          "source": "bing-news:AI agent uses computer",
+          "source": "bing-news:Claude AI new feature",
           "ok": true,
           "items": 10
-        },
-        {
-          "source": "google-news:AI replacing jobs",
-          "ok": true,
-          "items": 42
         },
         {
           "source": "feed:blog.google",
@@ -131,9 +91,34 @@
           "items": 20
         },
         {
-          "source": "google-news:viral AI tool",
+          "source": "bing-news:Gemini AI new feature",
           "ok": true,
-          "items": 15
+          "items": 12
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "bing-news:AI scam deepfake",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 46
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 40
         },
         {
           "source": "google-trends",
@@ -141,9 +126,24 @@
           "items": 10
         },
         {
-          "source": "google-news:free AI tools",
+          "source": "bing-news:free AI tools",
           "ok": true,
-          "items": 47
+          "items": 10
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "bing-news:AI agent uses computer",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
         },
         {
           "source": "hacker-news",
@@ -155,462 +155,23 @@
   ],
   "candidates": [
     {
-      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT",
-      "pillar": "Trending AI tools and apps",
+      "topic": "Companies Are Quietly Rehiring Human Workers After AI Replacements Failed",
+      "pillar": "AI changing everyday work",
       "evidence_ids": [
-        42,
-        46,
-        51,
-        55,
-        56,
-        90,
-        110,
-        112,
-        148
+        130,
+        132
       ],
-      "hook": "ChatGPT is becoming a search engine—you can now claim your business and set up custom sales agents.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 8,
-        "relevance": 8,
-        "visual": 7
-      },
-      "wikipedia_title": "ChatGPT",
-      "commons_query": "",
-      "youtube_query": "ChatGPT business profiles custom agents",
-      "evidence": [
-        {
-          "title": "ChatGPT takes on Google with new business profiles - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPNTJqUEUyLXB4cUk4QzJmMVh6MC1EblQwQnZGeFNTR0g2dlRibVpGbmJhRVVzZFFUQUt6elU1UWMwemRyX2Y3YVVWUjg4b21RdVJfcUZLdW1zTmcyY0trVTZFNTdUTGRNT1A2RkpSMk1SdmhIaG9qQTVza1UzbUpXQXJrbTRHTkFuQ2JHZWh0VjVrZERTUnA0OGE0TnVEWVVocEtIYklKc9IBugFBVV95cUxOZ2JQNkZpbjBGQVp2SjZ0S2NFeUpvdkR3bDZFRDRsdDk2aEZWMExSRmx5ek40N2pYNFJWUG1QVkdtMGdkYVR6eDk5TkxEZlVXU2h0R1lTZW5wQWJWd1dYa0VERzhoeV92aVFoNlBnMXVzeU1PT0p2dzZRQVJ3YnlkX0tLZkc1aExsTTEtaFRBNnJXTjlNdlF5QVBWVlpXajZFSVdzbmVRd2ZQOEZuVnROd0ZYN1BQa1pzSEE?oc=5",
-          "domain": "gulfnews.com",
-          "published_ms": 1794339934000,
-          "kind": "news",
-          "id": 42
-        },
-        {
-          "title": "OpenAI launches business hub for ChatGPT with verified profiles, agents - NewsBytes",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNUXN4bV9pUzEyX1E3R3ZFY0VqeHFZaTF2WU9SZ0dfNjAxTGFCUjltcFVPQ3l5ZkpDMjhfR3U5Y19fYVBMZjZESTY3Nk9raHItTGFQbjNzdnE4UzdqQVpNT0ZYN09wZG5pQUlsLVRwZVRmZF9MR2diZjFuR3o5dS05LTRIVVhkajd1UTlZNG5fR2tYdDFKYkR4N0twWWdKRDlvTzQ1YklqdDl4ZjRrR2ljSWM4cWRPTFR0?oc=5",
-          "domain": "newsbytesapp.com",
-          "published_ms": 1794338589000,
-          "kind": "news",
-          "id": 46
-        },
-        {
-          "title": "OpenAI Turns ChatGPT Into Business Discovery Engine - The Tech Buzz",
-          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPVmZTc3pYWkxNLVFsei1MTUZsQ3ZxQVJ6MEdCY1ZVRmsybWprSWItOVlveGpEZmo1ZXIzb0o2MFRESUVQNnRBMXphMlRXaExZejFSVEJTbHFwRUJQUHRMYktiY3dzREpNaE9DWlVLOFZOQWhZRDRHVVh1ZlEzRWNBVkpyYUpzcUlaSy1UOA?oc=5",
-          "domain": "techbuzz.ai",
-          "published_ms": 1794337400000,
-          "kind": "news",
-          "id": 51
-        },
-        {
-          "title": "OpenAI Introduces Business Management Features in ChatGPT - Blockchain News",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9UQlFFbVREOXZhTkpNdEJNakplWDhtSlllazBfUXdWYjBsS3JNaEI3SnpQc1FoVWFjQ3p3dWhidUkybENSNmtLSnIza3pQQV9RV0kzTHo0SkRrcjdnMDZYa092WnZiOEllOEMxNVVLbjM?oc=5",
-          "domain": "blockchain.news",
-          "published_ms": 1794336844000,
-          "kind": "news",
-          "id": 55
-        },
-        {
-          "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google - TechCrunch",
-          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZG5mYzRQckViZTVZNlNFSFpVZVh3eXpHQkNkaHd4M3NPd3JSZkZjWEQxa0lqNm8yVEhZVUxlSXFqTEZ1T0ZfckZ4OUY0RVpxV3FoaGVDUnZweW9vMEZZa2N4Um5GWEYyR1hDMUlNVHgyMGJWeGx4TUlodFFiRFB6SlNTYW5qLWNBcnhtUEl0WWYzSTY5OFNhdlVRS0pEZENZNGZrQ29za2xnbzZxLXIzSXA4Z1FyRkZEbFA4MVRhY18?oc=5",
-          "domain": "techcrunch.com",
-          "published_ms": 1794336592000,
-          "kind": "news",
-          "id": 56
-        },
-        {
-          "title": "OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep",
-          "url": "https://venturebeat.com/technology/openai-lets-you-claim-your-business-in-chatgpt-and-set-up-a-custom-agentic-ai-customer-sales-rep",
-          "domain": "venturebeat.com",
-          "published_ms": 1794318540000,
-          "kind": "news",
-          "id": 90
-        },
-        {
-          "title": "Introducing Businesses in ChatGPT",
-          "url": "https://openai.com/index/introducing-businesses-chatgpt",
-          "domain": "openai.com",
-          "published_ms": 1794304800000,
-          "kind": "feed",
-          "id": 110
-        },
-        {
-          "title": "ChatGPT is getting verified AI ‘Business Agents’",
-          "url": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
-          "domain": "theverge.com",
-          "published_ms": 1794304740000,
-          "kind": "news",
-          "id": 112
-        },
-        {
-          "title": "OpenAI Gives Businesses New Tools to Reach ChatGPT Users",
-          "url": "https://www.pymnts.com/news/artificial-intelligence/2026/openai-gives-businesses-new-tools-to-reach-chatgpt-users/",
-          "domain": "pymnts.com",
-          "published_ms": 1794240000000,
-          "kind": "news",
-          "id": 148
-        },
-        {
-          "title": "OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep - VentureBeat",
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5",
-          "domain": "venturebeat.com",
-          "published_ms": 1794347375000,
-          "kind": "news"
-        },
-        {
-          "title": "ChatGPT is getting verified AI ‘Business Agents’ - The Verge",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNYkdJblVLLTVHVVBiaVJ5dENmXzI3WXhvQk50TjlKTnVrREJKYTJ1Zlg5dmlwYUI3Wndic0lPWTRZX1E1V1hsTWx2X1ZPVVNJQXcyVHc5ZFlSM2dmdHViQVZJak80amZ5dWFyQ2JHWlZwT0ttQTZQQUVJdTdrSVcxdnNpRUZiczRzeWtwUVVxbURkNlFjM1dxcHl3?oc=5",
-          "domain": "theverge.com",
-          "published_ms": 1794333646000,
-          "kind": "news"
-        },
-        {
-          "title": "OpenAI Launches Businesses Beta in ChatGPT, Letting Companies Claim Profiles: how 10 outlets framed it - NewsCord",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNeWR4LVFJaWl2ZXlZMVYtcGxFRzd1bmN0YTZUd2Fub3pTclVPS0x5cUMwMnV2SmpVWGJ2U1ZrRktsWVBwazEtUEZWNVNubHJTYVBPaFZxWWpHS2x4QWtsSUlvbTNuVmNJb2ZheTVpcExSTnJwRlB5RWV6Rmw2QTN3VHJRRzBtOTdYX0xBNmFEVGNtZ2tNSUpGOVRGWHJLNHl6bXVFY1FMdkdGQ2p4dkd4dlExTktrUmZhQzFXZ3J2b2NxNkdkT1dMN3Yyb2JnUlhaeW80ZVZ0UVZhdjhoRzdsdzd3bw?oc=5",
-          "domain": "newscord.org",
-          "published_ms": 1794352769000,
-          "kind": "news"
-        },
-        {
-          "title": "OpenAI lets businesses claim ChatGPT profiles, adds AI agents for US e-commerce firms - CNA",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPT0s2SWl2SkxnNS1xZzJILTdpTXVQQWFMNHZhZzRfX3NTMG5kRG5qSEhoTGFHR0c4YWJvZFNGUTNubDkxNHVrTXcyQkd4cHNfYVZKMWkzdk5XVy11bUY0YUNyTVBDM3NBUW1PVlJ4TzMwVmRZUVRVLTV5N2pGMnFTamYyUWZsOHkxSW9HZEdmaXJqemxZa19TTWFpLWRPaVhPMlBrcldtYkhFYUpLdUdrdFZReWxfWWtmdHRLWmNERXpyUHRieDZrSg?oc=5",
-          "domain": "channelnewsasia.com",
-          "published_ms": 1794333800000,
-          "kind": "news"
-        },
-        {
-          "title": "OpenAI gives brands the keys to ChatGPT business profiles, launches AI agents and new advertising opportunities - Mi-3.com.au.",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPT044Q1BIU00xeXRtVkNEYV94WWE4T1g3ZmdSRy1YWTc0dURxSENZTWE4LXFvTFVsRDVXZ3dRWlo4SW1USTVvNDdQQWU2Wk5zYU5MVDdfdDJLM1IyUDMydGNnb3Y0aDNoT1ZhMmlNaWRKT1lDNDEydGJSZHlYX1UwSzJrTTRTOVBidGtOZDdhb3FMMzdfRGdRNGlHQkh6LXExdjkta2NzeFVlWEc4d3BKdmVR?oc=5",
-          "domain": "mi-3.com.au",
-          "published_ms": 1794356109000,
-          "kind": "news"
-        },
-        {
-          "title": "BlackSky Marketing Highlights AI Search Optimization and Custom Website Design for North Texas Small Businesses - Digital Journal",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPTmJReDc5aVNGbEtJYnowclBXTHNkWUt3SGo3d1dCSjFwb1kxLS1yZkNZUFNLS3otZ3ZKQ1hLczV1VTJkVWxmaC10YkRjZWdfamtZMDlDREJnM3NFQ08xWGZYejh5MGFnRWMzT3V0QmhRYkJfMDc3MzZRQUhiNmJZdmE5R0RCSkp4MUZEblFwRFlnLTRrbGp2Q3dzS3ZUc1pSZ01Scnc2UEg4QkFOemhqaXNn?oc=5",
-          "domain": "digitaljournal.com",
-          "published_ms": 1794340400000,
-          "kind": "news"
-        },
-        {
-          "title": "Businesses in ChatGPT Launches in Beta With Business Hub - ShiftDelete.Net",
-          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1OeE5Dckk0YkRNSEUxYTFvMm9OekFTb19UMkc3NGx4WWV0REdQLUU1RU92LVRBLXBpSUpBbW0zMVNxZ0h6Sk1oSWFLdVVBMXJScm5TQVU5X3I3MDVQeUs5cXRpbw?oc=5",
-          "domain": "shiftdelete.net",
-          "published_ms": 1794346774000,
-          "kind": "news"
-        },
-        {
-          "title": "OpenAI launches business profiles, AI agents for U.S. e-commerce firms - Traders Union",
-          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQWDhOSjJwUHNaYnRmQnlQT0hkUkx5WHcwRXdOT0xGZGVHV01rTm1zWWlrOHlEdmg0aU1vdEhIa0VDNWYwdHdCRHEwT0VOQ1R1Q3hfYlkzWExtRkRFN0t2bE55aVg4OTBfVXp0T2pLel9GeHpTbERkeTRDWGtRNGpGSWdCdTEtVFU0ak92NUFaS2p3N0UyNThBMWdmNUd6Vkk?oc=5",
-          "domain": "tradersunion.com",
-          "published_ms": 1794334241000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "ChatGPT",
-        "daily_views": 73635,
-        "ratio": 0.74
-      },
-      "youtube": {
-        "median_views": 67649,
-        "competitors": [
-          {
-            "id": "F8jidmEkIeM",
-            "title": "Claude Code: Build Your First AI Agent in 20 Minutes (100% No Coding)",
-            "channel": "Grace Leung",
-            "views": 279942
-          },
-          {
-            "id": "knOhSmOkqMM",
-            "title": "How to Use the NEW Agent Builder in Microsoft Copilot - Build an AI Agent in Minutes (2026)",
-            "channel": "Mike Tholfsen",
-            "views": 172088
-          },
-          {
-            "id": "F1PEICLlEBk",
-            "title": "Ultimate Guide to ChatGPT in 2026 (Updated for ChatGPT 6 Astra)",
-            "channel": "Skill Leap AI",
-            "views": 134051
-          },
-          {
-            "id": "JWdvTUZoN0s",
-            "title": "ChatGPT Work: 10 AI Agents to Automate Your Work Right Now",
-            "channel": "Grace Leung",
-            "views": 90861
-          },
-          {
-            "id": "5jD-0r59W8o",
-            "title": "How I Built a Personal Assistant Using ChatGPT-6 Astra (AI Agents)",
-            "channel": "Zinho Automates",
-            "views": 67649
-          },
-          {
-            "id": "cXUmFec2PNY",
-            "title": "Use ChatGPT Work to build your data agent",
-            "channel": "OpenAI",
-            "views": 53982
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 88,
-          "reach": 87,
-          "curiosity": 80,
-          "relevance": 80,
-          "visual": 70,
-          "source_quality": 100
-        },
-        "total": 84.5,
-        "newest_hours": 1,
-        "domains": [
-          "gulfnews.com",
-          "newsbytesapp.com",
-          "techbuzz.ai",
-          "blockchain.news",
-          "techcrunch.com",
-          "venturebeat.com",
-          "openai.com",
-          "theverge.com",
-          "pymnts.com",
-          "newscord.org",
-          "channelnewsasia.com",
-          "mi-3.com.au",
-          "digitaljournal.com",
-          "shiftdelete.net",
-          "tradersunion.com"
-        ],
-        "trusted_domains": [
-          "techcrunch.com",
-          "venturebeat.com",
-          "openai.com",
-          "theverge.com"
-        ]
-      },
-      "rejected": [],
-      "wave": 1
-    },
-    {
-      "topic": "Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You",
-      "pillar": "New AI features and releases",
-      "evidence_ids": [
-        65,
-        93,
-        103,
-        114,
-        127
-      ],
-      "hook": "Ever wonder what Google's AI actually remembers about your life? Now you can finally check and delete it.",
+      "hook": "Automated too fast? Companies are starting to hire back the human workers they replaced with AI after realizing automation fell short.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 9,
-        "relevance": 10,
-        "visual": 8
+        "relevance": 9,
+        "visual": 7
       },
-      "wikipedia_title": "Google Gemini",
+      "wikipedia_title": "Impact of artificial intelligence on the labor market",
       "commons_query": "",
-      "youtube_query": "Google Gemini memory summary feature",
-      "evidence": [
-        {
-          "title": "Google Gemini adds Memory Summary feature: now you can view and edit everything AI knows about you - dev.ua",
-          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOaDFpcDVSSTJwTDdiejV6NnFXSEJYaTYzZHAybzlwX0RqTHlyS3JqODdzQVozOVB3ZDJTMGRhWUxCVEY2WlZ4bEpEaEppR3YtZDNXRVlYRzNrNEM4d1pHZjVuQ3pjMkYtMVNFLVZLRl81VlMtSFlzbTR6Y1VLSEZwU1BqQnk3Zw?oc=5",
-          "domain": "dev.ua",
-          "published_ms": 1794328620000,
-          "kind": "news",
-          "id": 65
-        },
-        {
-          "title": "Google Gemini introduces Memory summary: New feature lets users check and delete details - Zee Business",
-          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOaE9aOGpMN29VQnVFOW9BS2ZxN0tBdElaMi0wMTE4SmtYeXY1cWVYNWViMmZoakFkSTZadXdhYldwanhnZjhJUWNhY3BuM2tWZUxMWlg0WkNPSnBTWEtOSG1jVmhSa2tFbHJTN0tsbzJ4Vi1zWW1ZT0JkSFd4czl0aGlxOHg5T0ZHZU5VY2JDaUV0QmJqcG9ma0h3WVdFMEMyT3I3MHREek5VWUwyTHV6QVR5cTYtUG5zemVjSHBoWERRV1JrenNOTTRQUXBBZw?oc=5",
-          "domain": "zeebiz.com",
-          "published_ms": 1794315840000,
-          "kind": "news",
-          "id": 93
-        },
-        {
-          "title": "Google Gemini Now Shows Everything It Remembers About You and Lets You Delete It",
-          "url": "https://www.androidheadlines.com/2026/11/google-gemini-memory-summary-feature.html",
-          "domain": "androidheadlines.com",
-          "published_ms": 1794309360000,
-          "kind": "news",
-          "id": 103
-        },
-        {
-          "title": "Google Gemini Memory Summary Feature Rolls Out With Options to Edit and Delete Saved Details - Gadgets 360",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOYzhNaTVBcnE5cEY2QmJjM3RaSFBFS1FaejgwTjZsV25HbmFnZmpwdWRmOE1hYnhJUUlsTURrSUhPUGtEb0N4S2RfelBxTm5SRWRSVHh5V1ZTalB2bEJnZGdKZ29DLVJzclEwZ21xa0NWYTRWN2JaeC1XYlE2SWdwaVhIeUE3SlVKbXZvUzdHNjhKVmxrQnNjTklUMnBiZ3ZSMFFHSdIBqgFBVV95cUxNcDNZcGt3dERpb3QyQmF1djRIT29TMm95eUotbFZ5eGl1YTBpcDJhME5MdXQtbWt2dlAxd29jZDl4WlNsYkh4dzA5NXhXNzRheUNDMVlMSGMzemFybjFvRVhZN25tT0NRWFZzOEttZ1FEWF9SeVJoMG9HTmtjQ2ZYN0hwYWx5RHJtdVdYRWpmVEl2dzhCR3lrR1Nyb093c1hHLURnaC1OUjcxdw?oc=5",
-          "domain": "gadgets360.com",
-          "published_ms": 1794304212000,
-          "kind": "news",
-          "id": 114
-        },
-        {
-          "title": "You can now review and edit what Google Gemini knows about you.",
-          "url": "https://www.theverge.com/tech/1030720/google-gemini-memory-summary-edit-correct-ai-knowledge",
-          "domain": "theverge.com",
-          "published_ms": 1794293100000,
-          "kind": "news",
-          "id": 127
-        },
-        {
-          "title": "Google Gemini rolling out ‘Memory summary’ with everything it remembers about you - 9to5Google",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9uS2NHSTdHTWVyTDg5dU1WM1NyZ2hLSl9MbExUaVo5U0RmNlNXZ3VObEpMUklfdG1CLTZWeUVNVkhqNHJfQnRhQVp4WWhZU09pbFFSczJ4blNmX2ZpZmhNQmRvWFdRN0ZGR1JoUXd4NDc?oc=5",
-          "domain": "9to5google.com",
-          "published_ms": 1794242820000,
-          "kind": "news"
-        },
-        {
-          "title": "Google rolls out Gemini Memory summary to let you see and edit what it remembers about you - Android Authority",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNak1Ua21kMjgteWhsSFhsZUVlOUtXMTQ5UDY5S1pDUWN3TC05a29ibG1hRGdtMWNpbHpkNEpwQklBdHJoOGdMWUZ4cWRoekx4WUdyU1JHUXNaZ2F1MThXdkIyT0dwc3VFVHhtNTBhT0FEc3laZEJfNzBhUWdaenpGazd5VWo?oc=5",
-          "domain": "androidauthority.com",
-          "published_ms": 1794290460000,
-          "kind": "news"
-        },
-        {
-          "title": "Google is upgrading Gemini with Memory summary — here's how to find out what your assistant knows about you - Android Central",
-          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNNEtXY21WN2s2dDM0WVN6M29uMEtNT3A1LUE5WDhuZUUyZnQ2clVlWVEtOUh4RW0zOG8tR1pWWDFObnJGeHN3aEtEV1VDZVMxMkdMTklSMG9WX1gxZ0RKOFF0aGlJdl9zNkx1VkJLZGFyd2JiZ1hDdUR0R21nQS1zejlxTzJjOHFuWDFjWWVNSWZlaDEtck00MHF6QmZqNDNmRUpSMHpLS1ZyMEEzMU90Mm9FZ0RXeTY5SWhzdHZ0cXJnVkdPMU1feW1vdm5hTTFMMnRKTEhEWE55QkdFNXJMSEhuWnBJYWs?oc=5",
-          "domain": "androidcentral.com",
-          "published_ms": 1794323532000,
-          "kind": "news"
-        },
-        {
-          "title": "Gemini’s Memory Summary: 4 Requirements, 4 Controls [2026] - shattered.io",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBBOWRDM005Mjd3REF1bjN2SjNOT2pzeEZ2b0lFUmI3dnJMRUx2djlTN1dEaEpBV0xMM2tNOTBfdHhHREN0anVLLUxoUmV6TXdhVllIelczX2wtUENwbC00bVVfWkY5eVBVRVlPb2pTWmd6RVRDNmhMUnJqUFkzZmc?oc=5",
-          "domain": "shattered.io",
-          "published_ms": 1794259733000,
-          "kind": "news"
-        },
-        {
-          "title": "Google Gemini Now Shows Everything It Remembers About You and Lets You Delete It - Android Headlines",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQREs2emFmQ2sxTXQ4SUhtbmo1VmZyWmJYcVNhVkYzcmZweFprdER3QWFGTnJqR0FjeXI5NVFpd1NQOXc5WUhXLTlubmp5am45dWc2emJpM2RiWnVmV3RralpXOUtMQ1hQRkR4OFZEZ2htR1B0WVNwNVNyd3hpd1pXdU5TeFYxWmhMcVE?oc=5",
-          "domain": "androidheadlines.com",
-          "published_ms": 1794338247000,
-          "kind": "news"
-        },
-        {
-          "title": "You can finally see, correct, and delete what Gemini remembers about you - MakeUseOf",
-          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQTGg3SFRlbmdPSkExRTR2emYzd1dKRkJLaVU4Z1dOUGJLbHFzWGhJZ0ZuVDh0Tno3MlE3aldZUkF5bFFEVTQ4bTZlaEpzeTdFMFdYV0x0c1lzQVRGNHFfZ1NZVzVxU0FxMVdYb0stbkwwbThLeXNFVUxqcUdIMU1YMmNKdl9WbmFySnc?oc=5",
-          "domain": "makeuseof.com",
-          "published_ms": 1794314606000,
-          "kind": "news"
-        },
-        {
-          "title": "Google rolls out Gemini Memory summary, letting users see what the AI chatbot remembers about them - Philstar Life",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBZMThXMDM4T1NxNDloaG1nQWY1NlZWTUxtSGtOYjJibFZ4SUVIbTBRWkJTQURvdUFRRmxOM240dGh6WmZqOVR4QVVQSTRCVVppU1NNbGFxdTNJOE5EaU9weEhQd1VkVzRIZ3FSSS1ZQXh1dmNHc19MMU5tVXA0ZHPSAYcBQVVfeXFMTkRKZV9maFJKV0JfNzZfaVRHOTQzRzZIckpqeHVzRkludmtTcVNZVHJfeGlValpLNjl1X2hkeWJvLThVdXR6dHlDRHptRXlqRVItZlhWdWZ5RHZuWjJtVGtLaEFXSzlZeTRvdVpSZ3NqUjkxQUNlbUgtcjBrYTJ6cDJHQjdRQ2Nr?oc=5",
-          "domain": "philstarlife.com",
-          "published_ms": 1794275256000,
-          "kind": "news"
-        },
-        {
-          "title": "Google Gemini Memory Summary Makes Its Personal Profile Visible and Editable - remio",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOczFDalp3VTliUzNtcmxueDFpaDV2Y1dJSlZKUlZKQk82T2FKb0d2UnFxTENPd2JlSi0zcEVwZjQwc2FBNHJNVXhjdDJpS1o2MDR2c3NoRllDS0ludlR4RXdfZHVWdFJwYjE2eDNQbkJVWWI5c1pWY3phal9BXzllRWJkT285QnF5a3N3VmdZSkNwcVE1R3ZSbjlNUWp6cmhHMkxZOQ?oc=5",
-          "domain": "remio.ai",
-          "published_ms": 1794283563000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Google Gemini",
-        "daily_views": 2405,
-        "ratio": 0.68
-      },
-      "youtube": {
-        "median_views": 30582,
-        "competitors": [
-          {
-            "id": "ODQtU9TNlKA",
-            "title": "Gemini at Work 2026 in 2 Minutes",
-            "channel": "Google Cloud",
-            "views": 2784104
-          },
-          {
-            "id": "P0Mzkdf1TIk",
-            "title": "What Happened To Google Gemini?",
-            "channel": "Ali H. Salem",
-            "views": 560783
-          },
-          {
-            "id": "kxi3bGvUnLQ",
-            "title": "How to Use Gemini Notebook Better than 99% of People",
-            "channel": "Parker Prompts",
-            "views": 72646
-          },
-          {
-            "id": "sMdWHmuxrjg",
-            "title": "Ultimate Gemini Tutorial: How to Use Gemini AI For Beginners in 2026",
-            "channel": "AI Master",
-            "views": 67398
-          },
-          {
-            "id": "ntVTAaHL5KM",
-            "title": "How to Use Google Gemini Step by Step (It Can Do Your Work Now)",
-            "channel": "Teacher's Tech",
-            "views": 30582
-          },
-          {
-            "id": "id-IL8X5ha4",
-            "title": "🤯 Google Gemini Is Now an AI Agent! 10 INSANE New Features You Need to See (2026)",
-            "channel": "Ai Podcast ",
-            "views": 9511
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 88,
-          "reach": 72,
-          "curiosity": 90,
-          "relevance": 100,
-          "visual": 80,
-          "source_quality": 65
-        },
-        "total": 83.9,
-        "newest_hours": 6,
-        "domains": [
-          "dev.ua",
-          "zeebiz.com",
-          "androidheadlines.com",
-          "gadgets360.com",
-          "theverge.com",
-          "9to5google.com",
-          "androidauthority.com",
-          "androidcentral.com",
-          "shattered.io",
-          "makeuseof.com",
-          "philstarlife.com",
-          "remio.ai"
-        ],
-        "trusted_domains": [
-          "theverge.com"
-        ]
-      },
-      "rejected": [],
-      "wave": 1
-    },
-    {
-      "topic": "Companies Are Rehiring Workers They Laid Off After AI Automation Fails",
-      "pillar": "AI changing everyday work",
-      "evidence_ids": [
-        120,
-        121,
-        134
-      ],
-      "hook": "Companies replaced workers with AI to save money. Now, they're begging those same people to come back.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 10,
-        "relevance": 10,
-        "visual": 6
-      },
-      "wikipedia_title": "",
-      "commons_query": "",
-      "youtube_query": "companies rehiring workers after AI layoffs",
+      "youtube_query": "companies rehiring humans after AI layoffs",
       "evidence": [
         {
           "title": "US Companies Rehire Workers Replaced by AI as Automation Falls Short - The 420.in",
@@ -618,7 +179,7 @@
           "domain": "the420.in",
           "published_ms": 1794297648000,
           "kind": "news",
-          "id": 120
+          "id": 130
         },
         {
           "title": "AI Replacing Humans Backfires? Why Some Companies Are Rehiring Workers After Layoffs - Times Now",
@@ -626,42 +187,13 @@
           "domain": "timesnownews.com",
           "published_ms": 1794297409000,
           "kind": "news",
-          "id": 121
-        },
-        {
-          "title": "AI replaced you, now your company wants you back. Would you return? - India Today",
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOUXh2ZUVTM0I2MW9mSi02REM5TTNHSGFfMkNyZGRKZldDWHRCWlhpT3pvN3dYQldaVHEyTFkxUVUtQXhTQ3dVbEVhMVZBNWw4Rjd4bW5yMjFpTGE0Q3d2UDlPMm5EY25SSkp4R1h4b3dkYmloeFJuS3ZGamJyLUc1czVNSjVnZFB2X2hNNGlGT1BrUmpjUnFWSG1mLVZySHFDQjF2bjltMlNzWm5VanVtLUJwbE5GMGhSVnlkXy1tUjFlMk56NjlzZ1hmb9IB0AFBVV95cUxPOGlXMDRvZTRsRmpBVll2WENhU1BVVVpCUUxEWnktQTVsYlFnRUFBSmNtQlZEQnlMU3lGZS1sLWsxTUFvN1p3YXFrbk9XUTkxZzg3SllqRXZROV9XckdlVGtOZ0RHa1JyYm9lS3g5d2JjM1lLRUxPZWQ2aV94N3d0Y3phS2N4RVFNRVE2M3pHNmozcTN6VHNBRjF4NWppaTNzNDVNMWlVQ08tdlJ5SUI5QVZIZ1Z4ZmpJSktmUmNiQmhRalVSZTUwQi1MYTg5NDhI?oc=5",
-          "domain": "indiatoday.in",
-          "published_ms": 1794276003000,
-          "kind": "news",
-          "id": 134
+          "id": 132
         },
         {
           "title": "The AI Layoff Experiment Is Backfiring – And Companies Are Quietly Rehiring Humans - Gadget Review",
           "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNMnoydHpKRDJ4MXZOX1h3VVRoRnNEa25ZUzdXZmFHNURIM0pEQk1yUThWTWItWnJMLUZBZG1NbEZNYlZUOUpJSndWM1RDSTZrZlNXLXJfVjlmLVh5SlNodDdzdGhZMWRYcFpWZzlxbGFxekk2V241ZFBxSDhkd0tsUDA4QmN2aGZWNm9zLVRFTDdfTTVwMDB4XzJ4YnZfTUV5Qm8wVU9vaDlTWVBwOHc?oc=5",
           "domain": "gadgetreview.com",
           "published_ms": 1793646625000,
-          "kind": "news"
-        },
-        {
-          "title": "Companies Are Rehiring After AI Layoffs as \"AI Rebounding\" Takes Hold - Briefs Finance",
-          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPU3RQc0l6d18ya1BfYklFRGlnOXo2QkZlTGRMRjBBYXA1NEUtQ0ZFWUItZXpGeHlpMVNpdDdyXzdaR0xkamlFY01fSkhWaWRNU012RC1GamlrWGEtSlRVMzVXbzRjZHpNQmxoajlQbDVLZ1ZqenJvdUNCVHBjaEMwb3ZZQ0QzMG5lMUVETjg1SFJqQQ?oc=5",
-          "domain": "briefs.co",
-          "published_ms": 1793373430000,
-          "kind": "news"
-        },
-        {
-          "title": "The AI Layoff Reversal: Why Companies Are Rehiring Support Agents - CustomerThink",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQbW1KbU0zVG5uUW55ZUczSEE1bVFpb29LVkJDeTJnejdEXzRqNFhJM3lQRkpiLVp3eTl5T2ZvdG9lZlVFWl8wVzA1ekJSTk5SV0kxMHg4ZGJzZWIxLUFILXNXbjYwS25sWUNNWkNwUXdjZ01CdENJaFZpbG5RMTBWdWZjMWpOQVAxbFRJZmdpQnI1VUswUkE?oc=5",
-          "domain": "customerthink.com",
-          "published_ms": 1793170800000,
-          "kind": "news"
-        },
-        {
-          "title": "Companies Worldwide Begin Rehiring Workers Previously Laid Off to Be Replaced by AI - SFG Media",
-          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5wRHlsMVBLOHg1ckVYN2xCU2lEdXRIaS1jc2RKYjNJTzFpWnVpdHkyck5YQzd1ZzVfTTlsQmNNeGxtSXdXczhoRVBwMndtR1d2alVzeEdtX2RFRkN2QnlueDJEV1ZUZ1JnUEhOOVlmak0?oc=5",
-          "domain": "sfg.media",
-          "published_ms": 1793516400000,
           "kind": "news"
         },
         {
@@ -672,52 +204,52 @@
           "kind": "news"
         },
         {
-          "title": "Companies Are Hiring Back the Workers They Replaced With AI — and Paying a Premium for It - ad-hoc-news.de",
-          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOaGNoTFI5Q1FQYUFYQ3JRUnVob3RURTc3MXlKdUxia1dlOUhYX0lsMVBrbGsyZVNnUEJReEFYNTl0bmV5cDRydGRjYnhuRmRQSnVDRmJCUDQ0WnFZdEhmWVhXWVEzakRqRkR4YnBvdzAzY3dCN1o3ai1jQzB2RzhYNkdHZ1BTY2Z4Sld1U3BEcmppcHhRSWFhSEVlQXJIdVpzRFhFNFdnck5KaHlYTUY3X1loV2dKNjhyaWZPX1R4RkJ3MENxdjAzVmRqZ0E3ZDNwRkgzdS1YN2d6Z29vakx6eFlpWjctckZCa1lxNklaWU8?oc=5",
-          "domain": "ad-hoc-news.de",
-          "published_ms": 1793487051000,
+          "title": "Firms That Replaced Human Workers With AI Are Now Having to Rehire Staff Quickly - International Business Times UK",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQU09VVE5SdkZYN0xhLVE5LXRmejkyRE1hVmQxSEpYOFRyN3ZvY2VhaEJLNlY0S2tvY3ZzTHM0c2QyaXdEZEFjSlVKUmxSVzB2SWk4V3l5aEx0VGx6RTQtdjJOM213Q2J3R2NycjNSSTBQU1dsQlRlZVpmSERIMGdzdE8yV0xKRnczY3lyOU1wejU2UQ?oc=5",
+          "domain": "ibtimes.co.uk",
+          "published_ms": 1793541420000,
           "kind": "news"
         }
       ],
       "wikipedia": null,
       "youtube": {
-        "median_views": 1505,
+        "median_views": 38789,
         "competitors": [
           {
             "id": "k8pTfkA6sio",
             "title": "AI Layoffs Are Finally Showing the Truth",
             "channel": "The Infographics Show",
-            "views": 962375
+            "views": 962607
           },
           {
             "id": "kTbQAALjvgc",
             "title": "AI is causing productivity declines | Brian Merchant",
             "channel": "The Tech Report",
-            "views": 283793
+            "views": 284924
+          },
+          {
+            "id": "JjXsVc8rZac",
+            "title": "AI Boom, Jobs Bust: Are Tech Giants Replacing Workers With AI? | Vantage on Firstpost",
+            "channel": "Firstpost",
+            "views": 78991
           },
           {
             "id": "htzzb2ai0lI",
             "title": "COMPANIES ARE REHIRING THE PEOPLE THEY LAID OFF",
             "channel": "Joshua Fluke",
-            "views": 76425
+            "views": 76704
           },
           {
             "id": "uPbdLnjpQsU",
             "title": "AI CEO EXPLAINS: AI Layoffs Have Just Reached Breaking Point",
             "channel": "AI With Soleyman",
-            "views": 38771
+            "views": 38789
           },
           {
-            "id": "R-6spckkfqA",
-            "title": "Why Companies Are Rehiring After AI Layoffs",
-            "channel": "Kikoff",
-            "views": 1505
-          },
-          {
-            "id": "O5ijNuM0oLk",
-            "title": "Why AI driven layoffs could backfire as companies race to rehire talent",
-            "channel": "Dewain Robinson - The Agent Dude",
-            "views": 897
+            "id": "O-SeuLBMEN8",
+            "title": "Why Kroger Fired 37% of Their Staff (It’s Not Just Cost-Cutting)",
+            "channel": "Mark Savant",
+            "views": 18623
           }
         ]
       },
@@ -725,24 +257,20 @@
       "score": {
         "factors": {
           "momentum": 100,
-          "reach": 53,
-          "curiosity": 100,
-          "relevance": 100,
-          "visual": 60,
+          "reach": 76,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
           "source_quality": 30
         },
-        "total": 79.6,
-        "newest_hours": 17,
+        "total": 81.8,
+        "newest_hours": 24,
         "domains": [
           "the420.in",
           "timesnownews.com",
-          "indiatoday.in",
           "gadgetreview.com",
-          "briefs.co",
-          "customerthink.com",
-          "sfg.media",
           "sud.ua",
-          "ad-hoc-news.de"
+          "ibtimes.co.uk"
         ],
         "trusted_domains": []
       },
@@ -753,171 +281,135 @@
       "wave": 1
     },
     {
-      "topic": "Anthropic's New Claude Feature Lets AI Join Your Work Meetings",
-      "pillar": "AI tools ordinary people can use",
+      "topic": "Adobe Photoshop and Premiere Add Powerful New AI Object Removal Tools",
+      "pillar": "Trending AI tools and apps",
       "evidence_ids": [
-        25,
-        41,
-        48,
-        57,
-        60,
-        62,
-        117
+        29,
+        91,
+        103
       ],
-      "hook": "Too busy for meetings? Claude can now hop on your video calls and take notes for you.",
+      "hook": "Adobe just updated Photoshop and Premiere with even scarier AI object-removal features that clean up photos and videos instantly.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 9,
+        "curiosity": 8,
         "relevance": 9,
-        "visual": 7
+        "visual": 10
       },
-      "wikipedia_title": "Claude (language model)",
+      "wikipedia_title": "Adobe Photoshop",
       "commons_query": "",
-      "youtube_query": "Claude meetings AI feature",
+      "youtube_query": "Adobe Photoshop Premiere AI remove objects",
       "evidence": [
         {
-          "title": "Anthropic Launches Claude Meetings for Real-Time Teamwork - Demokratis.co.id",
-          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9obGpIcE1RbnZxN0NTWHdvTVBJWWdwal9ScTVpRFgzTjgtcHIxaE1Cb2lHby10eG5qR0pjUVlQbU45RUFfYjFtMU5TSmNmeWNxQ2ZncURJMmVwcndPbjhEZFVXbHFJc1RvQXFreg?oc=5",
-          "domain": "demokratis.co.id",
-          "published_ms": 1794353340000,
+          "title": "Adobe Max 2026: Photoshop, Premiere Get New AI Features, ChatGPT Integration Planned for 2027 - Gadgets 360",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOUWkyQkZaOWxrTmdabGtWWG5nWTZkTk9PUlNvdmFFbnZqSVkydlFGV2lsRk5EMzRyZzFROUZIU283VnFyODhKbWZBSVg2VFB5ZXVnaWowNTRWZ3pzNk5aa1JwSjN4Yy10MW53LWtPRUIwdUplU1NnWmRTRndWSnBmajJ1RlJ4WW5RMUJsZHpCSndJcnlpSlBkTFczb0lSU01OTklPUWlxWTVVTkRSUkhkN0t6WEhfV0pvT0Q1R2Q1OFNEbFJzbU1qZkx2NURxQ0V2b3fSAdcBQVVfeXFMTkZkb1FPUFpWbHBndTU4UXdieEFhdHBzMnA1WjAxX0xxN1ZMZS1VZzRwS211YnNGdHEwbnd6Q1hrUlNxZkd2Q1E1eWRRaldPQnZFRkp0MThMRkdfdHF2aDdfNnNUUVBuMDlsazVOeFFXaDB5VjZnWG5XMDZkbVh0UENNd3h4dy1EQ0Y2ZmZtbExEM1FaM3pTbDBXR0ZPbEw0NUYzMWczQ2tCb0FmSmNLRkdVV1JLZjk4WHY3YzlqQ3RsTUd2LXBIVmdUQ1dqbk1UYllSOV9Pdms?oc=5",
+          "domain": "gadgets360.com",
+          "published_ms": 1794376671000,
           "kind": "news",
-          "id": 25
+          "id": 29
         },
         {
-          "title": "Claude can now join work meetings and complete tasks as you talk - Gulf News",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTE8xNWdSZk94MUdRaWhVbll3QktFOEI0aDVYODNzNm9Bb3h2TTc0WUlvWnBZZGI0NEhVckRUV3R6M2NQYmh2ek0yMXRsNUdkVG5NZFFNRHh5SzRnWHlJLWNXMGJZOFBRczdFTFZwT2Z2NlZDSTFZWEtRamZMczFkNnFDZUF1bC1ob3p6TXQ2dnhoc1A1VU5YNTVXYlk0TjE5ajF3Y1hHUE9FOHZRYURmSEg5YWNqcjZhM1HSAcwBQVVfeXFMTVowcUdaOTVwdWxrQlljWXZScUxIbE5KSGFFZU1FVmtOai1SREhySTJaZXRsQkplbWFBbmFPNXpvVzBlOXJjM3M4cVdKTmxSX1BkN3R3cWhNOTZVQkRSYVhuSjJmYkM5WDB0QmRaV29BNzdxNWtvTEpMS2s1RUhXN1doYllzQ0hhY1dIXzFBZ1ZWZ1JySklFcUl0NGxrS2ZSc1hxQUxwaWxudjN6YXNxRXJreHpyVWRfWTNMaURWQXVmdERFX3ZyNUR4b3d2?oc=5",
-          "domain": "gulfnews.com",
-          "published_ms": 1794340334000,
-          "kind": "news",
-          "id": 41
+          "title": "Photoshop, Lightroom, and Premiere are making it easier to remove things",
+          "url": "https://www.theverge.com/tech/1030653/adobe-max-2026-photoshop-premiere-removal-updates",
+          "domain": "theverge.com",
+          "published_ms": 1794325780000,
+          "kind": "feed",
+          "id": 91
         },
         {
-          "title": "Anthropic Launches New Workplace Features Including Claude Meetings, Whiteboards, and Sheets - SSBCrack",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPNy1PMHNrWlVnTVR3U0V0dEJENHh6NWZEeTNRX25QOEJjWjRrYTNfSHpUSnBQakNiZnA3QWNIbTBsd18yNFZQak9jUEdweGdjcHZSa3o2N2ZsTnFBY3pmMWh4UkdoRG5nRDMyampFNUNReUs1VnFpek5zc3JSQ09tQ0ZqVjB0Wl96ZjdiRE5heDVnbTloZllySDg5MmJsR1B1UDR1WWtLMlRsS25yY1lWOEZaSkpjZUpE?oc=5",
-          "domain": "news.ssbcrack.com",
-          "published_ms": 1794337758000,
-          "kind": "news",
-          "id": 48
-        },
-        {
-          "title": "Anthropic’s Claude Can Now Join Your Meetings. Its Most Useful Function Happens Before the Call Ends - Inc.com",
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdmhSamhqWFY0LVNzQ0kwVUdPUU5RZ21VNkVUZXNlb1I0SkVlcGJqZnF3SGlFWVpPYkxRdk1xWUZYbGFSVFd5c1V6LThLbjctNmstby1KREZ0NUNxdVlYX0xRdTJDMlZGdHF2NEg4Y1E4Zm5QUXc4Ukh2cDg2b1VPd0lVd2FieUtIMzMtMmstdDhaemlXTHRxcjRWY0ZmME1KS0M3c1BlWnBPdG9EQlRqVThsUmZaNGJJeTMtN0V4czhYZVhmRGZEZ0I2cGttZmNuVE1B?oc=5",
-          "domain": "inc.com",
-          "published_ms": 1794335305000,
-          "kind": "news",
-          "id": 57
-        },
-        {
-          "title": "Anthropic wants Claude to join your meetings - Axios",
-          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE43RzRod0FibUhPX1ZYX09KMHdodFZMQWNOcFR1dGh5Q2dsaDJ1QjhjWjIzbWhJamI4SGtJUHQ1S3V0YUZWYnp3bWowbXhUMWhpMUxObFNpakVHNm9yZ1VKbzJqTUNwekNUNG15ZGhTdkxJVWdicktQOFNMVHJFZw?oc=5",
-          "domain": "axios.com",
-          "published_ms": 1794333693000,
-          "kind": "news",
-          "id": 60
-        },
-        {
-          "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks - TechCrunch",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdkN0VWFWT3BuM1RBTG1ZWVp6TWs3RVpNZ2JHSGp2Q0NmcEh6Z3p6anZYY1FYYXpSTXRYZ2hoX2dXY2MyaXdGSXptUFlxWXhMRmVyLVgwbEw0N05PTWJmMmF5bE9uYzF5RkhGOHpueGpuUzA3UE5mekh1UE1oWmp1dWhvWTVEaHhacXJkb0poVklsRWd1V2xWVkpuWlZBbDQ3X3RHajUzWmlabGM5Wml4Ni1KWDZLOV9PYlhPag?oc=5",
+          "title": "Adobe brings AI agents and new creative tools to Photoshop, Premiere, and Firefly - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQRk1iWnBiRk80V2l2bE5vdnVQYVU5LUdUdUhaMHFVdU90czRPZ3RoWnBhLWlVeVNXdzlFX2EtaWtPSnUteU1CQ2pBZHJsWlNIZWZMNV9idjh5VmxZZ2huaV9UWFVNQXJhRUlWMjJJQW9GY3A3RTlReDhzNEdlVTRFQ3h1MHFDa1ZVOG5XQTZGMmM4UTA?oc=5",
           "domain": "techcrunch.com",
-          "published_ms": 1794331800000,
+          "published_ms": 1794319510000,
           "kind": "news",
-          "id": 62
+          "id": 103
         },
         {
-          "title": "Anthropic wants Claude to join your meetings",
-          "url": "https://www.msn.com/en-us/news/other/anthropic-wants-claude-to-join-your-meetings/ar-AA2h9K6F",
-          "domain": "msn.com",
-          "published_ms": 1794303006000,
-          "kind": "news",
-          "id": 117
-        },
-        {
-          "title": "Anthropic Launches Claude Meetings Days Before IPO - The Tech Buzz",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNMWtsemM3M2dreTVpaUp2Q05WUS1ZZURQQzJHYkx1a0x1WjBoRUhMdWNWbTdYd0FGU0d0R2NTT1ZQLXVULWljUjItZjdwWmdaeVlHWnh0MFhmVU9fUEZXT1J1Z2E3UVpRNzZHaXh5X0NBOVVabEVGSllFODZnRTYyUXdoNE54T1Z2WG5N?oc=5",
-          "domain": "techbuzz.ai",
-          "published_ms": 1794334247000,
+          "title": "Photoshop, Lightroom, and Premiere are making it easier to remove things - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPcjNkMG9NZnRXMHFEU1dvclpzeHR5WjdsclJCUjZlUjZmY1phYThnMjJCc3NjelVGaEd1QVJJbmdEYjZ6RWZZTWVtdHN5bzlSN3VxZGlsQS1DVW12LWREbFZBcTR3MUtDOUNxaEVndVhXa3BRUjVhcUswZ1dOOHdiTWUzSzI3NFNPdWZXX2tINmw?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1794319200000,
           "kind": "news"
         },
         {
-          "title": "Anthropic Announces Claude Meetings With a Google Meet Whiteboard Beta - Unite.AI",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUVBic1JHelVDQ2t5Z19xa3pMaUVjNTlwWE55U3lTUHc4TEMxckhKVkYzOFExaTdlZjgzNTVBWDZmLTJLaUlXbWFTVHZKdm1Xa3M0ZGR3c0c3TXJ4QUI4bS1PWXY1V2dvN3JycEN6SXprY2FsVC1WUDlJT1R3MWJNZExBZmZxZVM4ejJHeGtIS2xEcldvdUVJ?oc=5",
-          "domain": "unite.ai",
-          "published_ms": 1794338068000,
+          "title": "Adobe unveils new AI tools for Photoshop, Premiere, and more, with MCP support coming in 2027 - 9to5Mac",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxORnpuUFQ0djY4aUFPTWZXZll6UWxJOW0wMndfaG51cWR5U1dNcWFqcl82eTRFazI2MUNCUEFudXJERVowMjJhX0toT3p2S0poel9xVDdyQlVOOTFWdGVMMGdVendQLTlrRUFoV29ONklad0dsZVlxTnNzVklwT0lwSUk3ZVBiei1Yb1h6VERKTHppdlBOdHFyaDdzZERBQThSaWx1eVJaRWp1bzJIV3B3MFBLTGJ1bVdlUWFZVTlCVQ?oc=5",
+          "domain": "9to5mac.com",
+          "published_ms": 1794320280000,
           "kind": "news"
         },
         {
-          "title": "Anthropic launches Claude Meetings for AI work during video calls — TechCrunch - UA.NEWS",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUGJvTUVSU0c1cW1GdzRLVEtKNGp1RzJYWVdUV3NROFY2b0dqNkZsRGdzUU5Wa2NlYUtFMTQ0RVdEbW1ZSHB3YkdGVlhwM2dybDlzTXVwTXZuajlUb0Q0ZHJSVWpfUGJiU19RVUpJSlEzSFZYLWhCOFdpY3hYdUFob3Itc2hIMTVsd3I5U0phX2FRNXJUY2VQQS1sRTFqbWZXelZ6NWV4Ynpnc05wLU1wVkxRYmJGVzNiSmc?oc=5",
-          "domain": "ua.news",
-          "published_ms": 1794332463000,
+          "title": "Premiere Color Mode exits beta as Adobe accelerates agentic AI - Red Shark News",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5uOHRmVkt2SmRmTG51OVBTa3RtLXU5MHFLcFh2V3pnQzBDSjJSWV9ncEZrMU9pZzNTTmY2bzlXNDFpY29RblozSmM2c2FxRkpZeWdJMzVrUFk5aHZrTEF5UkZTZ1ZTWDhybzJjcTFXbmhiSmZKNUHSAYYBQVVfeXFMTmFzMXotbVVUMnVGeVJESndiX0xkaHhxZV9fXzdWTmhMQjZrUWZHRm1Sb0tuU0pLUEpONFdPamZ3UW90NHdVcEdfQlhmMHRSakJ6SFBLZ0IwRVU3bWlRU0UwSEhWQWVyczFfZjdUQzhTWjVVU0NxZDJTME9lMW8xUlNKMzNickE?oc=5",
+          "domain": "redsharknews.com",
+          "published_ms": 1794327213000,
           "kind": "news"
         },
         {
-          "title": "Anthropic launches Claude Meetings, Whiteboards, and Sheets to boost real-time team productivity. - Pluang",
-          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQYmhjMVFDRURkMWRQaGhtaUVEbnlnRUY4ZXNBWURIX1d2X2NWZjE3clI3N1YwZUVHeXg1aXEwNWlSYl9pVUQxT1dOVjZ5akdTT3J5TmxqcS1mU0dfeTZyLXJNd3M5Z1VUNlZVaFI1Qjl3b2hMQnRtOFdxWENNTHc3TTBwR2xKbmdvY0FsNHk1U05DVW96dTRCSg?oc=5",
-          "domain": "pluang.com",
-          "published_ms": 1794333849000,
+          "title": "Adobe Premiere can now sync your cameras, generate soundtracks, and make unwanted objects disappear – all thanks to AI - Digital Camera World",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQem5nU0xuOFBadHZxS2piRzRtN2h2WGQyYlVPQmhwdUUwYjB2bDhTVFRJMVJmaFZwNV80ZDhMcHprRlcxak1iNENoSFZvc29fSk5nNGxYdUU1RDRRS1pyVHRFa2FjM2tYNEhBVUp4QW1rMGNzTUU1VFAzejhoTi1HQlFQOUh3WFRHb0RONUwzeE5wMlFmOFY3ZnQ2UVZnNjduOXplWUpHZE9MUWJRandyLTRvNGdtS3dFV3ZFakNFV2N5R0Z0TGZoTVRLM3B1NWRnT21YNjVFam5lRlE5Tm1FZncyRS1KSWhTT0NhenhZVE0wbDJzSnc?oc=5",
+          "domain": "digitalcameraworld.com",
+          "published_ms": 1794319200000,
           "kind": "news"
         },
         {
-          "title": "Anthropic launches Claude Meetings in beta on Google Meet - NewsBytes",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPOHNVRWg0RVZZbHowazZtNzV6WlpTdTh1bTNzVzFEWG8tSjFBLXM1YXhCYmdsdmxxNXVQaXJyUGJFMlFUanJwOThsaG56VWd1M2hkc001b05GNFRnNHowVlp5NDQyUkJ1VS1nSUhUajdGRW5MbFlOWWJza3NGc1U5RUx1MUxQQUNvN0QzNUx5SkRrLVhHMmxFM3RSRzRrbDFkTVVGQWhzMA?oc=5",
-          "domain": "newsbytesapp.com",
-          "published_ms": 1794337636000,
+          "title": "Adobe puts Firefly AI Assistant agents inside Photoshop and Premiere at Max - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQZzVVazdWNTVObUR1WXBhQWVZU3FwY3AwQU12Qk0tamQyS09SY0tKc0tFZnU3TS1JZUd4aUVvVTBvTWx2Z1FvMFAyTEt3TnZSNDkyQWMwdmhvWk1RaktORDlpUjJsSjJBc0lRakNkOUZ4eFpuWVJZOEpLc2lmNXFZdU1pd3pUYnR2TzY2RTY3SDBFbVFuTV9ONkNoU2VyX1FnM2xTcnFR?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1794324663000,
           "kind": "news"
         },
         {
-          "title": "Anthropic launches Claude Meetings, letting AI join Google Meet calls - NewsBytes",
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNa250dUJjRjk2c3ZNa24wYzA5ZnhYWUs5aDRxX3RIQWt5ZHdRN3IzMXVSSnNoVklGaG9CY0hlOFlmclA2UEJCSzN6djhEZUhvOWZVRU1ISkh3ZjNnU2ZZS2haLTJxaG5Bd2NqUWc5Y0tLeUpJc0FhTlVBcDU3cmlSeWpuMEJfN3hhSWlRelJ6cnFzYTY0OGI4ekxfMGotR0p6MzU4MmlFMk44SjZBMGNqamxyZ3g4dw?oc=5",
-          "domain": "newsbytesapp.com",
-          "published_ms": 1794338657000,
+          "title": "Adobe adds AI features across Photoshop, Premiere and Firefly, unveils MCP - 디지털투데이",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNdXN4NjliazVzdXFJaHA5dFdxX3BkN09OckxlaWhCdnZScGVLT0RvQmJqaGtjbWpVMDV1VTgwbWd2YkdqT3A3dUZBc242RVVfTmNkbjBHRmhfd1NhN1RVTEQxN3k4WmdPU2tTdk1kUFFsaUFOd0tBalZEdUpXeG8wVmd5NERDYU85Z1NfVXdNR3pHdG1XUWpRam1wdExfSTlUR0lTdXJaTFota1lKc2JVMzJVaFc?oc=5",
+          "domain": "digitaltoday.co.kr",
+          "published_ms": 1794348495000,
           "kind": "news"
         }
       ],
       "wikipedia": {
-        "title": "Claude (language model)",
-        "daily_views": 271,
-        "ratio": 0.67
+        "title": "Adobe Photoshop",
+        "daily_views": 718,
+        "ratio": 0.78
       },
       "youtube": {
-        "median_views": 15552,
+        "median_views": 630,
         "competitors": [
           {
-            "id": "en0GuyhieQk",
-            "title": "Introducing Claude Dashboards and Claude Motion",
-            "channel": "Claude",
-            "views": 1455327
+            "id": "NO7s87W-hNw",
+            "title": "Photoshop’s Amazing New Remove Tool (Trace Erase)",
+            "channel": "photoshopCAFE",
+            "views": 34896
           },
           {
-            "id": "5qt_aGyAsKk",
-            "title": "Projects are now a conversation with Claude",
-            "channel": "Claude",
-            "views": 176590
+            "id": "ciY3ytKVzO8",
+            "title": "Adobe Creative Cloud MCP: AI Agents Edit For You",
+            "channel": "Mike Russell",
+            "views": 6351
           },
           {
-            "id": "zU0jqYKTgMs",
-            "title": "This NEW Claude Update Changes EVERYTHING (Claude Code From Your Phone)",
-            "channel": "Riley Brown",
-            "views": 82909
+            "id": "nrFj9bLd4o4",
+            "title": "How To Extract PNG Elements From Any Image Using AI! #shorts",
+            "channel": "Droid Technical",
+            "views": 1561
           },
           {
-            "id": "4ZsVR-6YOzs",
-            "title": "How Salesforce uses Claude Code",
-            "channel": "Claude",
-            "views": 40695
+            "id": "lotCIlLMj3M",
+            "title": "How to Remove Objects in Premiere Pro (Step By Step) (2026 Guide)",
+            "channel": "Luke Tutorials",
+            "views": 765
           },
           {
-            "id": "zo1izxXPbQ4",
-            "title": "How to Use Claude Cowork 2.0 – Full Workflow Automation Guide 2026",
-            "channel": "AI Master",
-            "views": 15552
+            "id": "tH6fXuFgMJk",
+            "title": "Remove Objects from Any Photo in Photoshop 2026 | Easy Tutorial for Beginners  #photoshoptutorial",
+            "channel": "PhotoDesigns",
+            "views": 630
           },
           {
-            "id": "v0wEAVhOB9k",
-            "title": "How to Use Claude with Microsoft Teams (2026) – Step-by-Step Tutorial",
-            "channel": "Kai Teaches ",
-            "views": 193
+            "id": "HDUkKdQ_8lA",
+            "title": "How to Remove Unwanted Objects in Premiere Pro (Beginner Tutorial)",
+            "channel": "Video Editing for Beginners",
+            "views": 383
           }
         ]
       },
@@ -925,45 +417,283 @@
       "score": {
         "factors": {
           "momentum": 88,
-          "reach": 61,
-          "curiosity": 90,
+          "reach": 51,
+          "curiosity": 80,
           "relevance": 90,
-          "visual": 70,
-          "source_quality": 65
+          "visual": 100,
+          "source_quality": 100
         },
-        "total": 79.3,
+        "total": 81.7,
         "newest_hours": 2,
         "domains": [
-          "demokratis.co.id",
-          "gulfnews.com",
-          "news.ssbcrack.com",
-          "inc.com",
-          "axios.com",
+          "gadgets360.com",
+          "theverge.com",
           "techcrunch.com",
-          "msn.com",
-          "techbuzz.ai",
-          "unite.ai",
-          "ua.news",
-          "pluang.com",
-          "newsbytesapp.com"
+          "9to5mac.com",
+          "redsharknews.com",
+          "digitalcameraworld.com",
+          "startupfortune.com",
+          "digitaltoday.co.kr"
         ],
         "trusted_domains": [
-          "techcrunch.com"
+          "theverge.com",
+          "techcrunch.com",
+          "9to5mac.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Sales Agents in ChatGPT",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        31,
+        45,
+        46,
+        61,
+        73,
+        74,
+        106,
+        121,
+        123
+      ],
+      "hook": "ChatGPT is turning into a shopping mall, letting businesses set up official profiles and AI sales reps to talk to customers.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "ChatGPT",
+      "commons_query": "",
+      "youtube_query": "ChatGPT business profiles AI sales agents",
+      "evidence": [
+        {
+          "title": "OpenAI Brings Business AI Agents To ChatGPT That Will Work Like Salespeople: Here's How - Times Now",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPdXNPRDAwbXJyVVZ3WFI0d1B5akpDY01TbV9Pcy1NTHV6SFJ5bS12ZUZyX2ItWFFlSDZJOUFxR0w0LThETFNHNlZGWFVldDQ5cDRJMWJjQ0J5a252d2NRa2ZIX1JjaE1Pc0FDczkxaEJ4Qlg0T0FkNlRuRzVwUG81UDlrOGd5aERhRlNCN0NhS1FLUnU0Rks5Vk5wQkRmaW5NWlBjdkNSM1FRX0R0V2RHZndiekhXcExQUFFGa3RvcHhiWGRtcmozbG1xUk00UjVEbWVpMk9jdVloTG1yME9HTnJhRVBjUdIB6wFBVV95cUxOV2RXelF2ZmlRcmtIa05fb29JQ21qel9vRG5uMUtXY2dtRkVLd29CbFc1S0pfZUMwNGJhd1JrcU1CQ0plYzR6S09iNy02TFhjMk1CUkNrWlNRWHFBSzU1TlY3Ty1JaFlPc3Bud2EwZ3hOVGRmUm5ObEtIX3l2dVcwNGdMX0s2UXMyWmo4ZDRDbkh5WDV1bGpnUXlIZ2IzQnlxeEZCeElld2tMdFczOTV3Y1N0N2N5amRvM3QzS2lLcFlXdEFoWXAxVHRDUlJGTVdON0NENjRuRzhfNjJDS2tnTUdUaWtlUWFGQXRN?oc=5",
+          "domain": "timesnownews.com",
+          "published_ms": 1794375745000,
+          "kind": "news",
+          "id": 31
+        },
+        {
+          "title": "OpenAI | ChatGPT adds 'Business' features, opens free AI agents to US e-commerce companies, and more",
+          "url": "https://note.com/no_ai_no_life/n/n31373c77ba5c?hl=en",
+          "domain": "note.com",
+          "published_ms": 1794351300000,
+          "kind": "news",
+          "id": 45
+        },
+        {
+          "title": "OpenAI launches ChatGPT business features to challenge Google's advertising market - KuCoin",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZ0lkTmVTR0lzMnluZkdFYU1scVVRUmg5Z0E4eTlaSmFTcDBWSDB5X3p3aWlhOEhVNm5IYkFJRkw2eEtrb1BRa050LWl5Mi1vSkJiNDRzdnFrWGxDeHNCa1R1NTItb3dVYTZRVHFzeWh1ZjBIZXFKX2RxTmdyM1JMa20xbGMybzk1LURMY2I3bjBrOVhFNkN1TGp1MWN6M2dHU29qcF9NeXJGT1l0b2R6dWQyc3h3c3c?oc=5",
+          "domain": "kucoin.com",
+          "published_ms": 1794351294000,
+          "kind": "news",
+          "id": 46
+        },
+        {
+          "title": "ChatGPT takes on Google with new business profiles - Gulf News",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPNTJqUEUyLXB4cUk4QzJmMVh6MC1EblQwQnZGeFNTR0g2dlRibVpGbmJhRVVzZFFUQUt6elU1UWMwemRyX2Y3YVVWUjg4b21RdVJfcUZLdW1zTmcyY0trVTZFNTdUTGRNT1A2RkpSMk1SdmhIaG9qQTVza1UzbUpXQXJrbTRHTkFuQ2JHZWh0VjVrZERTUnA0OGE0TnVEWVVocEtIYklKc9IBugFBVV95cUxOZ2JQNkZpbjBGQVp2SjZ0S2NFeUpvdkR3bDZFRDRsdDk2aEZWMExSRmx5ek40N2pYNFJWUG1QVkdtMGdkYVR6eDk5TkxEZlVXU2h0R1lTZW5wQWJWd1dYa0VERzhoeV92aVFoNlBnMXVzeU1PT0p2dzZRQVJ3YnlkX0tLZkc1aExsTTEtaFRBNnJXTjlNdlF5QVBWVlpXajZFSVdzbmVRd2ZQOEZuVnROd0ZYN1BQa1pzSEE?oc=5",
+          "domain": "gulfnews.com",
+          "published_ms": 1794339934000,
+          "kind": "news",
+          "id": 61
+        },
+        {
+          "title": "OpenAI rolls out new business profiles, making ChatGPT just a little bit more like Google - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOZG5mYzRQckViZTVZNlNFSFpVZVh3eXpHQkNkaHd4M3NPd3JSZkZjWEQxa0lqNm8yVEhZVUxlSXFqTEZ1T0ZfckZ4OUY0RVpxV3FoaGVDUnZweW9vMEZZa2N4Um5GWEYyR1hDMUlNVHgyMGJWeGx4TUlodFFiRFB6SlNTYW5qLWNBcnhtUEl0WWYzSTY5OFNhdlVRS0pEZENZNGZrQ29za2xnbzZxLXIzSXA4Z1FyRkZEbFA4MVRhY18?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1794336592000,
+          "kind": "news",
+          "id": 73
+        },
+        {
+          "title": "OpenAI Introduces Business Management Features in ChatGPT - Blockchain News",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9UQlFFbVREOXZhTkpNdEJNakplWDhtSlllazBfUXdWYjBsS3JNaEI3SnpQc1FoVWFjQ3p3dWhidUkybENSNmtLSnIza3pQQV9RV0kzTHo0SkRrcjdnMDZYa092WnZiOEllOEMxNVVLbjM?oc=5",
+          "domain": "blockchain.news",
+          "published_ms": 1794335880000,
+          "kind": "news",
+          "id": 74
+        },
+        {
+          "title": "OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep",
+          "url": "https://venturebeat.com/technology/openai-lets-you-claim-your-business-in-chatgpt-and-set-up-a-custom-agentic-ai-customer-sales-rep",
+          "domain": "venturebeat.com",
+          "published_ms": 1794318540000,
+          "kind": "news",
+          "id": 106
+        },
+        {
+          "title": "Introducing Businesses in ChatGPT",
+          "url": "https://openai.com/index/introducing-businesses-chatgpt",
+          "domain": "openai.com",
+          "published_ms": 1794304800000,
+          "kind": "feed",
+          "id": 121
+        },
+        {
+          "title": "ChatGPT is getting verified AI ‘Business Agents’",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1030552/openai-chatgpt-business-agents-hub",
+          "domain": "theverge.com",
+          "published_ms": 1794304740000,
+          "kind": "news",
+          "id": 123
+        },
+        {
+          "title": "Introducing Businesses in ChatGPT - OpenAI",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1QWl94aW1pbWMtLVFmMnN6d3NRdk5zOGFhNUNYVUJ4dkZtaG14dnpwQ1F3blgzN2hvTm5DeHV4cXV3dVdfS3JxbDVVb21MMG9sWG0tS2NYNUJTREIyYTVGNmFFdTZEdzQ?oc=5",
+          "domain": "openai.com",
+          "published_ms": 1794263937000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI lets you claim your business in ChatGPT and set up a custom agentic AI customer sales rep - VentureBeat",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPR1k2TE9PS2pnenpoREV0aWhNbFJWeFFRbFBIWEF2dzBxNTdJS2RtenhLZUF6dWxwejg3SnBxRVYtSUxmdUlQUXUzcjgxdXY4TjNqMVJVNGVWOTNFWl83NGhYTEkydkN0Q1RMbEpISl85V0RrT0VtSmN1bnQ2MURLa2VQMjJyUVlnNkFkSTF0YzZ5NlJEZTBjZXpIdzNzX21Fc3otZzNyUVNNU2RWcjNwYzZVMVByOFlZeVFGd21tdGFBZXlUWkF0R1FXNA?oc=5",
+          "domain": "venturebeat.com",
+          "published_ms": 1794347375000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Launches Business Hub and Business Agents in ChatGPT - Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPNU9PeGxLRUp1RW5QWnY3bmFNbm9sS003Z2FYQTZsQ1piQVg0YXdFc2lWck1UZVZ6aTkzMEhsZjRXR1pwazlBNTQ3MF9yTUN1MkhrZXpQQURHTDFWV2dCOE9wQlhKQWJhZmh3el9MSHRfT2wtb1pmTE96YUt2dFBpcWR6VVpaS0tU?oc=5",
+          "domain": "unite.ai",
+          "published_ms": 1794335102000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI opens ChatGPT to businesses with claimable profiles, analytics and sponsored Business Agents - Dealroom",
+          "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQQzdSZkgyWmU5LXhkSU10QXRMdzlFQXNxNE1lX0FHQkxkUnQxbDVtVDBhcmJVQmpOSmU4UjJodG1rbDBtSGRhX1J0aUFSNnppLWJha3c3aG9GRlJTMWpKZkRhcG13VG5JZHFLMVlpdDhhZmxuUXU4QWNhUGJvalVlV3FCLUJNZ1lWR3VNSHZyd2NybTN6QmlOYk9EcllmajQxczFaVHZ5VlN0Z1ctOE9LRy02Vl9IZ3Z2LWM4ZWNFR0g2T1E4UTF0UHlTblc?oc=5",
+          "domain": "app.dealroom.co",
+          "published_ms": 1794381436000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Launches Businesses Beta in ChatGPT, Letting Companies Claim Profiles: how 10 outlets framed it - NewsCord",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxNeWR4LVFJaWl2ZXlZMVYtcGxFRzd1bmN0YTZUd2Fub3pTclVPS0x5cUMwMnV2SmpVWGJ2U1ZrRktsWVBwazEtUEZWNVNubHJTYVBPaFZxWWpHS2x4QWtsSUlvbTNuVmNJb2ZheTVpcExSTnJwRlB5RWV6Rmw2QTN3VHJRRzBtOTdYX0xBNmFEVGNtZ2tNSUpGOVRGWHJLNHl6bXVFY1FMdkdGQ2p4dkd4dlExTktrUmZhQzFXZ3J2b2NxNkdkT1dMN3Yyb2JnUlhaeW80ZVZ0UVZhdjhoRzdsdzd3bw?oc=5",
+          "domain": "newscord.org",
+          "published_ms": 1794352769000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Opens Business Profiles and Agents to Brands - https://www.thekeyword.co/",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9zeTE2V3BXQTdFclhEUVVxUXZ3WVE3aWxzVVVBM2x2TGVSZFVqbEFiS0ZNM290bEdFQk5naXNkNk5WNE8xQ0FyTzlQc05mWlJSV1NneEh6Y0swZW55SFFVUDN0SFRYZmxsN2c?oc=5",
+          "domain": "thekeyword.co",
+          "published_ms": 1794370482000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Lets Brands Claim ChatGPT Profiles and Deploy Verified AI Agents in Ad Push - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBGYXMxMW9lUE5mOUdZTC10MjdQWWgzSV9YQml1Sm5XZXFEb1BYSE5iaHIyaldWcnhfbUhzM1lEVTFpY282OFd4WENQUl9WaHk2cHBVaFBfSTdybWdQMDdjSlNrM3VOYV9DRjJPS1JrWTlseGJ0WWc?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1794335700000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI gives brands the keys to ChatGPT business profiles, launches AI agents and new advertising opportunities - Mi-3.com.au.",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPT044Q1BIU00xeXRtVkNEYV94WWE4T1g3ZmdSRy1YWTc0dURxSENZTWE4LXFvTFVsRDVXZ3dRWlo4SW1USTVvNDdQQWU2Wk5zYU5MVDdfdDJLM1IyUDMydGNnb3Y0aDNoT1ZhMmlNaWRKT1lDNDEydGJSZHlYX1UwSzJrTTRTOVBidGtOZDdhb3FMMzdfRGdRNGlHQkh6LXExdjkta2NzeFVlWEc4d3BKdmVR?oc=5",
+          "domain": "mi-3.com.au",
+          "published_ms": 1794356366000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "ChatGPT",
+        "daily_views": 73635,
+        "ratio": 0.74
+      },
+      "youtube": {
+        "median_views": 60,
+        "competitors": [
+          {
+            "id": "7SmNrxeF83Q",
+            "title": "ChatGPT’s New Automation Features Are INSANE! (New ChatGPT Agents Revealed)",
+            "channel": "Rob The AI Guy",
+            "views": 31567
+          },
+          {
+            "id": "zwBsACDrgM4",
+            "title": "How to Claim Your Business in ChatGPT (NEW Business Hub)",
+            "channel": "Nari Media",
+            "views": 468
+          },
+          {
+            "id": "HPpP7XI_fQQ",
+            "title": "ChatGPT Ads Now Have Agents That Sell For Your Business",
+            "channel": "Total Authority",
+            "views": 119
+          },
+          {
+            "id": "Xy8dCdyoc6c",
+            "title": "Businesses in ChatGPT beta: claim your profile; Business Agents start US-first",
+            "channel": "Alpha Explorer",
+            "views": 92
+          },
+          {
+            "id": "O9QTgxoNusE",
+            "title": "How to Get Your Small Business Found on ChatGPT & AI Search",
+            "channel": "Zqdo",
+            "views": 60
+          },
+          {
+            "id": "g0Rlwb82Dk4",
+            "title": "ChatGPT Business Agents (Business Hub)",
+            "channel": "Leo Carter · OperStack",
+            "views": 23
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 57,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 80.9,
+        "newest_hours": 1,
+        "domains": [
+          "timesnownews.com",
+          "note.com",
+          "kucoin.com",
+          "gulfnews.com",
+          "techcrunch.com",
+          "blockchain.news",
+          "venturebeat.com",
+          "openai.com",
+          "theverge.com",
+          "unite.ai",
+          "app.dealroom.co",
+          "newscord.org",
+          "thekeyword.co",
+          "finance.biggo.com",
+          "mi-3.com.au"
+        ],
+        "trusted_domains": [
+          "techcrunch.com",
+          "venturebeat.com",
+          "openai.com",
+          "theverge.com"
         ]
       },
       "rejected": [
-        "too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
+        "too similar to recent topic: OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT"
       ],
       "wave": 1
     },
     {
-      "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
+      "topic": "Amazon Debuts AI-Powered Security Drone and Mobile Robot for Homes",
       "pillar": "Trending AI tools and apps",
       "evidence_ids": [
-        30,
-        84
+        48,
+        101
       ],
-      "hook": "Amazon's new Ring security camera doesn't just sit on the wall anymore—it flies around your house.",
+      "hook": "Amazon is taking home security mobile by introducing an AI-powered security drone and rolling robot for your house.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
@@ -971,9 +701,9 @@
         "relevance": 8,
         "visual": 9
       },
-      "wikipedia_title": "Amazon Ring",
+      "wikipedia_title": "Ring (company)",
       "commons_query": "",
-      "youtube_query": "Ring security drone robot camera",
+      "youtube_query": "Amazon Ring AI security drone robot",
       "evidence": [
         {
           "title": "Ring cameras go mobile as Amazon debuts AI-powered security drone and robot",
@@ -981,7 +711,7 @@
           "domain": "arstechnica.com",
           "published_ms": 1794350101000,
           "kind": "feed",
-          "id": 30
+          "id": 48
         },
         {
           "title": "Hands-on with Ring’s new AI drone camera for your home",
@@ -989,20 +719,13 @@
           "domain": "theverge.com",
           "published_ms": 1794320939000,
           "kind": "feed",
-          "id": 84
+          "id": 101
         },
         {
           "title": "Amazon's Ring unveils flying drone and robot to patrol homes and businesses - CNBC",
           "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQ0FNMW1oYXZhOVNlV2t2YWdWN3psSEk2SGw5dzg5dU0xa2JBRHNVVHN1dEhjeV9ubG8wQ3U3VFJTMUpCZ1lvNngyZktvMG9WaDRJMkx2ZnJ6eGJiZ0Q3R2NNeGJ2Zm1ZTXBzaHFqejVJek1QN1VjRkp0UmtIbi1td2U0WVVjb09PdzZaUGdIem8zcmNYNmNZYnJrbEVOd1NhaFdBeVpB?oc=5",
           "domain": "cnbc.com",
           "published_ms": 1794317401000,
-          "kind": "news"
-        },
-        {
-          "title": "Amazon’s Ring debuts security robots including a drone - NBC News",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcjNhR2FrNDZPcTV2dGN5SUNCTXQzX0pVNHVEVXhWZk1TdFhyRmRYakVpSEx3c29wZGhBMG9SMkdjVFlnZjRnSHloTjhveDJmUGZCQmRiOHBXRC1ibEF5aHQyNGZQVXd3MURzOTZFWFRjc1pLTVUyQUFxemRjNUtIRGR3WV9OclJ1bEVTaVRld21zN19aQUE?oc=5",
-          "domain": "nbcnews.com",
-          "published_ms": 1794327391000,
           "kind": "news"
         },
         {
@@ -1013,17 +736,24 @@
           "kind": "news"
         },
         {
-          "title": "Ring’s Indoor Drone Camera Is Back—and Now Powered by AI - WIRED",
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1NTXpDVHBNOHhEQlJGblljMDgxVXBmQ1N6Y0hVNm44Umc2S0YxdjR5RTBMOE1NUVNvaER2NVp6c1VqYXhUMDRPQzB3cV9ZdnlLekhVYXhvMXBSS1NBNXhicVdxUEpHLUdkR05aM0k2aw?oc=5",
-          "domain": "wired.com",
-          "published_ms": 1794317400000,
+          "title": "Amazon’s Ring debuts security robots, including a drone - NBC News",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcjNhR2FrNDZPcTV2dGN5SUNCTXQzX0pVNHVEVXhWZk1TdFhyRmRYakVpSEx3c29wZGhBMG9SMkdjVFlnZjRnSHloTjhveDJmUGZCQmRiOHBXRC1ibEF5aHQyNGZQVXd3MURzOTZFWFRjc1pLTVUyQUFxemRjNUtIRGR3WV9OclJ1bEVTaVRld21zN19aQUE?oc=5",
+          "domain": "nbcnews.com",
+          "published_ms": 1794327391000,
           "kind": "news"
         },
         {
           "title": "Amazon's Ring introduces security drone and robot - Axios",
           "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5UcllVNkowaEo2XzlacVU1WHFUamNjdzkyY1daQ1hMZmJzN1NOSkVQQzdyZkJ3eHNIS1FmRHRoelJOMXRlLS1oZ2tLVjlKeGpRbG9PRmNhNUJHdzdIX3dZZ2FybmR5RkxQeTAwMFROdjNRQ0U?oc=5",
           "domain": "axios.com",
-          "published_ms": 1794346643000,
+          "published_ms": 1794375362000,
+          "kind": "news"
+        },
+        {
+          "title": "Amazon launches Ring AI security drone and autonomous robot for homes and businesses - Beinsure",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1MVVA4aW9HemNHYkxMWklENkc4MFpfR1lXMEZiTlhjNHBsWTQ0dHhXaUhlRGNveVdJVUw5VHJaQTdDaFQ1cVJic2ItdlpEbGNTdzFnY2tMbGs1eEdOa0lmTlhwR1NwMHoxaEI0bW5SLUxfazg?oc=5",
+          "domain": "beinsure.com",
+          "published_ms": 1794339107000,
           "kind": "news"
         },
         {
@@ -1034,96 +764,932 @@
           "kind": "news"
         },
         {
-          "title": "Amazon's Ring launches flying camera, autonomous security robot - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOUE9yTnVGeDUteVpSZzY1QW5jUzVxSmpna2hSb29VUE9hVTRjWHhuUTNsZlQtVGtoRkQxQ0JWNkl5amNoWksxdXQyT2c0LV9jNUctdXp3LUZGaDZsaUJCcDlIX0pHWG04WER3clpEVWtzVGI4RXRjaEZoTDBLbkVBZjUtOXhEUjM2N3FENHBrNEJlaU91elR6UmZFZjlxMWdPdHI5YnZIYmpMTkhv?oc=5",
-          "domain": "reuters.com",
-          "published_ms": 1794320027000,
+          "title": "Ring’s Indoor Drone Camera Is Back—and Now Powered by AI - WIRED",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1NTXpDVHBNOHhEQlJGblljMDgxVXBmQ1N6Y0hVNm44Umc2S0YxdjR5RTBMOE1NUVNvaER2NVp6c1VqYXhUMDRPQzB3cV9ZdnlLekhVYXhvMXBSS1NBNXhicVdxUEpHLUdkR05aM0k2aw?oc=5",
+          "domain": "wired.com",
+          "published_ms": 1794317400000,
           "kind": "news"
         },
         {
-          "title": "Ring, known for its doorbell cameras, launches a home security drone and an enterprise security robot - TechCrunch",
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPZ3YxVlRtRmxFcFlCZG1aZUpvUHdFM09FX2FWTkJfTWhGUVV2WlpnVWFtLXNfYTd4cXhEZlQ0ZjVhZm41LW9uY3lLbnFPZGxfOVFJY2VxdjQ2SXZNamRQcHhlTE9PdG9BZVhSTHpnOHRHSXREcVZHaUV0TUJTRUNYa0tlWld5Wms5cHZEWGRrVXJQYU1kb3NwX3c5aDBfZkdZRGVfektMcXMyTl9qVktmeTloXzlrWWRBa0ZHZWNCZW1LdV9xZWhORHFKdmYtaTQ?oc=5",
-          "domain": "techcrunch.com",
-          "published_ms": 1794317400000,
+          "title": "Amazon Ring launched indoor security drone and Rover robot - qz.com",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTFBIcjZnT0JsYzRqUmRuWUtmaXlJbWRTNjdxYV9EaVZiNkg0WHd2XzhJYmZBVi03ZEJlRW9YdUM1M0NyTm55c3JDU2d6YTQwUGFUelZMLWFRcGROQkZvQjgxZWRPNlV5NUhsRmZ5SDQxRHF1R2ZLVEN3ZQ?oc=5",
+          "domain": "qz.com",
+          "published_ms": 1794377029000,
           "kind": "news"
         }
       ],
       "wikipedia": {
-        "title": "Amazon Ring",
-        "daily_views": 0,
-        "ratio": 2
+        "title": "Ring (company)",
+        "daily_views": 332,
+        "ratio": 1.02
       },
       "youtube": {
-        "median_views": 2223,
+        "median_views": 111,
         "competitors": [
-          {
-            "id": "1NARFzFzZdo",
-            "title": "I Wasn't Expecting THIS From Ring! (Hands-on)",
-            "channel": "The Tech Chap",
-            "views": 25312
-          },
           {
             "id": "PMqGhyLERCc",
             "title": "Amazon Ring Wants to Put a Drone in Your Home For Security...Again",
             "channel": "CNET",
-            "views": 14097
+            "views": 25440
           },
           {
-            "id": "jcgwqAd-aOs",
-            "title": "Un drone caméra de surveillance pour ta maison🚨🏠",
-            "channel": "TheiCollection",
-            "views": 9963
-          },
-          {
-            "id": "mKIQJ-itsOk",
-            "title": "Indoor Security Drone?",
-            "channel": "Danny Lum",
-            "views": 2281
-          },
-          {
-            "id": "pHjNq8EAutY",
-            "title": "First Look at Ring's new $250 autonomous Drone Cam 🚁📷",
-            "channel": "ZDNET",
-            "views": 2223
+            "id": "7n-hu9wLWdg",
+            "title": "Get a first look at Ring's indoor flying drone",
+            "channel": "CBS New York",
+            "views": 4140
           },
           {
             "id": "hlRVsFnU3jY",
             "title": "Ring cameras fly now? This is Ring Drone!",
             "channel": "Joshua Vergara",
-            "views": 1583
+            "views": 2985
+          },
+          {
+            "id": "6p6JrDQXcmY",
+            "title": "Amazon Ring Drone Cam Flies Inside Your Home",
+            "channel": "I dont watch news",
+            "views": 1216
+          },
+          {
+            "id": "dfqtvJifl-c",
+            "title": "Amazon's New Ring Drone Flies Around Your Home: Smart or Creepy?",
+            "channel": "Umair Butt",
+            "views": 111
+          },
+          {
+            "id": "bm7gndJM_kU",
+            "title": "How to Buy Amazon Ring AI Drone and Rover Security Robots",
+            "channel": "Reality PC",
+            "views": 63
           }
         ]
       },
       "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 94,
-          "reach": 33,
+          "momentum": 88,
+          "reach": 41,
           "curiosity": 90,
           "relevance": 80,
           "visual": 90,
           "source_quality": 100
         },
         "total": 79.2,
-        "newest_hours": 3,
+        "newest_hours": 2,
         "domains": [
           "arstechnica.com",
           "theverge.com",
           "cnbc.com",
           "nbcnews.com",
-          "wired.com",
           "axios.com",
+          "beinsure.com",
           "geekwire.com",
-          "reuters.com",
-          "techcrunch.com"
+          "wired.com",
+          "qz.com"
         ],
         "trusted_domains": [
           "arstechnica.com",
           "theverge.com",
           "cnbc.com",
           "nbcnews.com",
-          "wired.com",
-          "reuters.com",
+          "wired.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Amazon's New AI-Powered Security Drone and Robot Go Mobile"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini's New Memory Summary Lets You View and Delete What AI Knows About You",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        83,
+        137,
+        140
+      ],
+      "hook": "Ever wonder what Google's AI actually remembers about you? Now you can finally check and delete it.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 10,
+        "visual": 8
+      },
+      "wikipedia_title": "Google Gemini",
+      "commons_query": "",
+      "youtube_query": "Google Gemini memory summary delete data",
+      "evidence": [
+        {
+          "title": "Google Gemini adds Memory Summary feature: now you can view and edit everything AI knows about you - dev.ua",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOaDFpcDVSSTJwTDdiejV6NnFXSEJYaTYzZHAybzlwX0RqTHlyS3JqODdzQVozOVB3ZDJTMGRhWUxCVEY2WlZ4bEpEaEppR3YtZDNXRVlYRzNrNEM4d1pHZjVuQ3pjMkYtMVNFLVZLRl81VlMtSFlzbTR6Y1VLSEZwU1BqQnk3Zw?oc=5",
+          "domain": "dev.ua",
+          "published_ms": 1794328620000,
+          "kind": "news",
+          "id": 83
+        },
+        {
+          "title": "You can now review and edit what Google Gemini knows about you.",
+          "url": "https://www.theverge.com/tech/1030720/google-gemini-memory-summary-edit-correct-ai-knowledge",
+          "domain": "theverge.com",
+          "published_ms": 1794293100000,
+          "kind": "news",
+          "id": 137
+        },
+        {
+          "title": "Google Gemini introduces memory summary: New feature lets users check and delete details",
+          "url": "https://www.msn.com/en-in/news/other/google-gemini-introduces-memory-summary-new-feature-lets-users-check-and-delete-details/ar-AA2h87Aa",
+          "domain": "msn.com",
+          "published_ms": 1794287040000,
+          "kind": "news",
+          "id": 140
+        },
+        {
+          "title": "Google Gemini rolling out ‘Memory summary’ with everything it remembers about you - 9to5Google",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9uS2NHSTdHTWVyTDg5dU1WM1NyZ2hLSl9MbExUaVo5U0RmNlNXZ3VObEpMUklfdG1CLTZWeUVNVkhqNHJfQnRhQVp4WWhZU09pbFFSczJ4blNmX2ZpZmhNQmRvWFdRN0ZGR1JoUXd4NDc?oc=5",
+          "domain": "9to5google.com",
+          "published_ms": 1794242820000,
+          "kind": "news"
+        },
+        {
+          "title": "Google is upgrading Gemini with Memory summary — here's how to find out what your assistant knows about you - Android Central",
+          "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNNEtXY21WN2s2dDM0WVN6M29uMEtNT3A1LUE5WDhuZUUyZnQ2clVlWVEtOUh4RW0zOG8tR1pWWDFObnJGeHN3aEtEV1VDZVMxMkdMTklSMG9WX1gxZ0RKOFF0aGlJdl9zNkx1VkJLZGFyd2JiZ1hDdUR0R21nQS1zejlxTzJjOHFuWDFjWWVNSWZlaDEtck00MHF6QmZqNDNmRUpSMHpLS1ZyMEEzMU90Mm9FZ0RXeTY5SWhzdHZ0cXJnVkdPMU1feW1vdm5hTTFMMnRKTEhEWE55QkdFNXJMSEhuWnBJYWs?oc=5",
+          "domain": "androidcentral.com",
+          "published_ms": 1794323532000,
+          "kind": "news"
+        },
+        {
+          "title": "You can finally see, correct, and delete what Gemini remembers about you - MakeUseOf",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQTGg3SFRlbmdPSkExRTR2emYzd1dKRkJLaVU4Z1dOUGJLbHFzWGhJZ0ZuVDh0Tno3MlE3aldZUkF5bFFEVTQ4bTZlaEpzeTdFMFdYV0x0c1lzQVRGNHFfZ1NZVzVxU0FxMVdYb0stbkwwbThLeXNFVUxqcUdIMU1YMmNKdl9WbmFySnc?oc=5",
+          "domain": "makeuseof.com",
+          "published_ms": 1794314606000,
+          "kind": "news"
+        },
+        {
+          "title": "Google rolls out Gemini Memory summary to let you see and edit what it remembers about you - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNak1Ua21kMjgteWhsSFhsZUVlOUtXMTQ5UDY5S1pDUWN3TC05a29ibG1hRGdtMWNpbHpkNEpwQklBdHJoOGdMWUZ4cWRoekx4WUdyU1JHUXNaZ2F1MThXdkIyT0dwc3VFVHhtNTBhT0FEc3laZEJfNzBhUWdaenpGazd5VWo?oc=5",
+          "domain": "androidauthority.com",
+          "published_ms": 1794290460000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini’s Memory Summary: 4 Requirements, 4 Controls [2026] - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBBOWRDM005Mjd3REF1bjN2SjNOT2pzeEZ2b0lFUmI3dnJMRUx2djlTN1dEaEpBV0xMM2tNOTBfdHhHREN0anVLLUxoUmV6TXdhVllIelczX2wtUENwbC00bVVfWkY5eVBVRVlPb2pTWmd6RVRDNmhMUnJqUFkzZmc?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1794259733000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Gemini Memory Summary Makes Its Personal Profile Visible and Editable - remio",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOczFDalp3VTliUzNtcmxueDFpaDV2Y1dJSlZKUlZKQk82T2FKb0d2UnFxTENPd2JlSi0zcEVwZjQwc2FBNHJNVXhjdDJpS1o2MDR2c3NoRllDS0ludlR4RXdfZHVWdFJwYjE2eDNQbkJVWWI5c1pWY3phal9BXzllRWJkT285QnF5a3N3VmdZSkNwcVE1R3ZSbjlNUWp6cmhHMkxZOQ?oc=5",
+          "domain": "remio.ai",
+          "published_ms": 1794283563000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini Memory summary – what it remembers about you and how to change it - Meteora Web",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOSXlrbUwyQUxaM3dSSi1tWDVHeVc1SVlMb09KdzFBTHJNZEFFelpKWkJtQWh5MHFlSTNFOUg3bzJuazNReWY0MkJTZFdwbUQ3ZWpXSElPRTQyZ0p3ME9EdmR5UDhKTERheUFGNy1SLWRkWVlDanppQjN3SzVKYWdNN3p1d3ZIaVN3MXlZRkR5cjlqcFJsRGdNdXhJWndxSmJXa0E?oc=5",
+          "domain": "meteoraweb.com",
+          "published_ms": 1794293513000,
+          "kind": "news"
+        },
+        {
+          "title": "Google rolls out Gemini Memory summary, letting users see what the AI chatbot remembers about them - Philstar Life",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBZMThXMDM4T1NxNDloaG1nQWY1NlZWTUxtSGtOYjJibFZ4SUVIbTBRWkJTQURvdUFRRmxOM240dGh6WmZqOVR4QVVQSTRCVVppU1NNbGFxdTNJOE5EaU9weEhQd1VkVzRIZ3FSSS1ZQXh1dmNHc19MMU5tVXA0ZHPSAYcBQVVfeXFMTkRKZV9maFJKV0JfNzZfaVRHOTQzRzZIckpqeHVzRkludmtTcVNZVHJfeGlValpLNjl1X2hkeWJvLThVdXR6dHlDRHptRXlqRVItZlhWdWZ5RHZuWjJtVGtLaEFXSzlZeTRvdVpSZ3NqUjkxQUNlbUgtcjBrYTJ6cDJHQjdRQ2Nr?oc=5",
+          "domain": "philstarlife.com",
+          "published_ms": 1794275256000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Gemini",
+        "daily_views": 2405,
+        "ratio": 0.68
+      },
+      "youtube": {
+        "median_views": 30,
+        "competitors": [
+          {
+            "id": "vp-jOJ5Kuq8",
+            "title": "Gemini ko kaise off kare | How to disable Gemini and enable Google Assistant #trendingshorts #gemini",
+            "channel": "Vinay Technical",
+            "views": 153239
+          },
+          {
+            "id": "sXeLwYWI07s",
+            "title": "Google Gemini aur Chat GPT (AI) bare mein YouTube per kya chal raha hai| How to AI Data Delete 🤔 .",
+            "channel": "Hello Creator",
+            "views": 1516
+          },
+          {
+            "id": "KocfB4ybEZE",
+            "title": "See (And Edit) Everything Gemini Remembers About You!",
+            "channel": "BrenTech",
+            "views": 1223
+          },
+          {
+            "id": "TBUTWcdwD6U",
+            "title": "How to Reset ChatGPT Without Deleting Your Account",
+            "channel": "DrewTech Hub",
+            "views": 399
+          },
+          {
+            "id": "vfXeH9oxwZ0",
+            "title": "Gemini Now Shows You Everything It Remembers About You. Here's the 10-Second Check #Shorts",
+            "channel": "Stable Beta",
+            "views": 30
+          },
+          {
+            "id": "VpZ22j3KCKY",
+            "title": "Gemini’s Memory Summary Lets You See and Delete What It Knows #Shorts",
+            "channel": "AndroidPure",
+            "views": 24
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 42,
+          "curiosity": 90,
+          "relevance": 100,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 78,
+        "newest_hours": 15,
+        "domains": [
+          "dev.ua",
+          "theverge.com",
+          "msn.com",
+          "9to5google.com",
+          "androidcentral.com",
+          "makeuseof.com",
+          "androidauthority.com",
+          "shattered.io",
+          "remio.ai",
+          "meteoraweb.com",
+          "philstarlife.com"
+        ],
+        "trusted_domains": [
+          "theverge.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Ohio Zoo Confirms Viral Photo of 'Escaped Lions' Was Entirely Made by AI",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        20
+      ],
+      "hook": "People panicked over photos of lions roaming a city street—until the zoo revealed the whole thing was an AI fake.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Artificial intelligence art",
+      "commons_query": "",
+      "youtube_query": "AI fake escaped lions zoo photo",
+      "evidence": [
+        {
+          "title": "Ohio zoo says viral photo of 'escaped lions' was made by AI - 3News",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE00cENzcE5kbS1XSWhmaWFlZk1PUnZVcXp1dzd3NWJ2d2JPbUNGVzk2QjJzTWtuN3Byc2luc252bmdJc0xrLU1SQjB4N2p5RE1QbTN4dUZTMkt4amx2UVpEc0lIYTdaU0NsektpS25zSTNFSG0yZU1OMGFHRG8?oc=5",
+          "domain": "3news.com",
+          "published_ms": 1794382013000,
+          "kind": "news",
+          "id": 20
+        },
+        {
+          "title": "Ohio zoo: Photo of escaped lions was AI-generated - upi",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQa1ZYem5rQUhoRFd1VjZZb3J0aldIcW1NWGxzdVctRFNoYTA5VHFva2VjT2JDTlppRFdOenhRaHVsaXpicDJQbjJmTkQ1aEpfck1WY1pUYnJYZ0lnY293WG1FaHQwV2gxMGNoekxGMndvakh1cXdVaXp1NUkzTERGMFQwZ01mSWtWSUNoZ2xuc21FRjTSAZgBQVVfeXFMTlFzSlNFUy0tcWVkaVFWZXpiRG42a2RYX0dhcEVsZldqRWRtb2UtWmt3X3dWcXQ3QWFGODNvMkVYQzdGYnZpcE80aWtSWFJSR1RqZlJyNHRfdkMxazBZWV9QSnQyTTZGazNJSVl5aTU1VUZPSks4X1NMVWIzWDFZdDhLSFNDQmdkWmFyM19qbDRRX0JBcGU3b2o?oc=5",
+          "domain": "upi.com",
+          "published_ms": 1794330115000,
+          "kind": "news"
+        },
+        {
+          "title": "Akron Zoo Shuts Down Fake Lion Escape Claims Fueled by AI Photo - Hoodline",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPWnl4LTAyVkVOUzhleUItNXNpMUdkX0RWRTRuc2xVWFpWcncxempDOHVpcVNmZzVvRkpWMUJYVFZNalpJSzM0dFE0ZENEM3RoUm1wX2FsbmhZT1o5WDlNNHN0dXNWanJwOW5LU05hODFCZ20teWtKMjJoWGdPN0NIa0JVSnF3a204MVphMGZtdkJSMlo5d25vVg?oc=5",
+          "domain": "hoodline.com",
+          "published_ms": 1794143230000,
+          "kind": "news"
+        },
+        {
+          "title": "Akron Zoo Confirms No Lions Escaped After Viral AI Image Caused Panic - AOL.com",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9ONF93NjlTMHgxckF4ZllaX0p6RlVyWTdCTHA1eUdXUm5zcGEtb09YcVlZcFFieWdKV1ZCdDBneXcxVF85dlJFTU00aXlMalh3TkdaQkRVbUhnLU9lZVJRYXFHcXc3TlQ1YlpTbDJ0ck9Cbjh6emQ3OUtuUQ?oc=5",
+          "domain": "aol.com",
+          "published_ms": 1794358080000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Artificial intelligence art",
+        "daily_views": 70,
+        "ratio": 0.9
+      },
+      "youtube": {
+        "median_views": 33338,
+        "competitors": [
+          {
+            "id": "SjYLb0GB-Cw",
+            "title": "The Lion Stopped Right Beside Him… Nobody Moved 😳🦁",
+            "channel": "WILD TRINITY ",
+            "views": 8650805
+          },
+          {
+            "id": "J6DZbh9oYdw",
+            "title": "Prehistoric Animals Found Frozen In Ice 😱❄️#animalfacts #wildlife #facts",
+            "channel": "Infinite Fact",
+            "views": 471842
+          },
+          {
+            "id": "MHQ5w7rvzIA",
+            "title": "Tiger victim William Chapman posted video moments before attack",
+            "channel": "The Telegraph",
+            "views": 419290
+          },
+          {
+            "id": "2asP_nRpmoU",
+            "title": "🚨 TIGER ATTACK SHOCKS UK! 🐅😱 Serious incident reported at Yorkshire Wildlife Park#viral",
+            "channel": "globalupdatess",
+            "views": 59640
+          },
+          {
+            "id": "GW7nHvh0BTg",
+            "title": "Never Climb a Tree to Escape a Tiger",
+            "channel": "Curiosity Pulse",
+            "views": 33338
+          },
+          {
+            "id": "z_fQcfzjdxE",
+            "title": "🦒 A Day At The Zoo With Friends",
+            "channel": "Magical AI world",
+            "views": 1673
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 60,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 77.6,
+        "newest_hours": 0,
+        "domains": [
+          "3news.com",
+          "upi.com",
+          "hoodline.com",
+          "aol.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Digital Wellbeing to Use Gemini AI to Manage Screen Time",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        139
+      ],
+      "hook": "Trying to spend less time on your phone? Google's Digital Wellbeing is getting Gemini AI to actively help fix your screen time.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 10,
+        "visual": 8
+      },
+      "wikipedia_title": "Google",
+      "commons_query": "",
+      "youtube_query": "Google Digital Wellbeing Gemini AI screen time",
+      "evidence": [
+        {
+          "title": "Google Digital Wellbeing Will Soon Use Gemini AI to Fix Your Screen Time",
+          "url": "https://www.msn.com/en-us/news/other/google-digital-wellbeing-will-soon-use-gemini-ai-to-fix-your-screen-time/ar-AA2h8ZD1",
+          "domain": "msn.com",
+          "published_ms": 1794290659000,
+          "kind": "news",
+          "id": 139
+        },
+        {
+          "title": "Google Digital Wellbeing Will Soon Use Gemini AI to Fix Your Screen Time - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOS1RNdGpzRFh3T0VCQ2h2VmVfdEJVMHh1eG5kWk5adDJrNDRlN1BBTHJwaGxXMm5Pc2haR3FuamNVSlhLclMxZ2FPZktHeUpFWG1XUVAtaGx0SWo3bnA1di1ZcDZXVDMxZlJ3dGhfYkNKUzlCZGVRMVk1NkJubXphbko1dFN5WUd4bGd0UEJFRkhSdlltWG4zLQ?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1794319640000,
+          "kind": "news"
+        },
+        {
+          "title": "Digital Wellbeing v1.50 beta gives us our first look at Weekly Insights and Gemini integration - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNRzFVUnlJakxBbzZodDlXOEdWU0RXcXI1QlBjRm5XMHRzY0ZwSkV3ZVprUGpIaWVsbVlMOVBFZHp4MFl1dS15RGVhSll6VU9fLXdSUnZXOHI0RzBILXdJRHJLUjQxXzdMSFZfSXFUSHh6MTBWWXlYSDAzaDBCbXlsY0lqNHBSZFUwd3paczEyZVNRVmVDc1MzV25Ccw?oc=5",
+          "domain": "androidauthority.com",
+          "published_ms": 1794225180000,
+          "kind": "news"
+        },
+        {
+          "title": "Google adds AI Weekly Insights to Android Digital Wellbeing | Tap to know more | Inshorts - Inshorts",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOHJRd0hEQldjaGNiWWhFckFLSTBxVW1Za0EwVFpUUW02YXN3amNsczR5dDNReWZfSUhUZThkQnRhZU4zd05xM1BRMndnT0I5cm81ZXhRd1VZT0JBRGs3SUQwQUhZN2Y2ejF5d1ZOYTExUWIzaW1ibFlweHJjazFsaW1VbkZ6eC1QRkp3alMxTldEMlI1Qk1iSzFfTENSY0VSdTh2b2wyZXNpQdIBqgFBVV95cUxQOHJRd0hEQldjaGNiWWhFckFLSTBxVW1Za0EwVFpUUW02YXN3amNsczR5dDNReWZfSUhUZThkQnRhZU4zd05xM1BRMndnT0I5cm81ZXhRd1VZT0JBRGs3SUQwQUhZN2Y2ejF5d1ZOYTExUWIzaW1ibFlweHJjazFsaW1VbkZ6eC1QRkp3alMxTldEMlI1Qk1iSzFfTENSY0VSdTh2b2wyZXNpQQ?oc=5",
+          "domain": "inshorts.com",
+          "published_ms": 1794307686000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Plans to Update Android’s Digital Wellbeing Tool With ‘Weekly Insights’, Gemini AI Integrati... - Gadgets 360",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNc0FmdXBDQktkVnZlazdsaG9ET1gyN1N6Z0R1RkRwSEJYMHFCRnRaUjd4WS0xQWFuNlhfaEVuTUVUTUpicnhYcGFFdGNkUk1lOUlWLWRoOWpsNENkYW5UaHliZk9PWDQ0THVaa3dOZ2hUZ1FONS1paGVUTUp6c2I2bDQyWTFNVm9odzFSMTlLb2g3M3R3VlRLTFh2R0ZEUUlxVjN6YUlCS2NWX21hREl1V2ZMZG1OdG1Pd1ExbUJlZkc4OXU3Uld3bjBn0gHPAUFVX3lxTE52Y0hKT3BhelZYRnAwZVB0eXRvVHJUTG9mTkUtZHRFU3ZwTDU5U0tqbTJrN0Vrc19yZjlZekNVZ1BDSWZZbjV3REZHSmxXd09vVERNdVZMTlp6MHRwbGVnci1CQVRWQ3hReDV2M1dWRE9pQWRTS1JCTXA1bWhCT2xwVjNCTEFLTzNHdUJ4Z3BLaTVYTElsbXRkZnl6c3JKT2ZnZkhjYnJnV1RsS3NDeE95aW1wVktYMlp5LUxsQzB3UzVlUnJpeTR0RXY2bzUtVQ?oc=5",
+          "domain": "gadgets360.com",
+          "published_ms": 1794299960000,
+          "kind": "news"
+        },
+        {
+          "title": "Google adds weekly insights to Android Digital Wellbeing with AI - NewsBytes",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNbHV2UWJZNkduTmUxVkZwVzJ3TGdlVFMyYU5Ibjd1ZlJINEtLM1hOQUt6aXBwckJpcmZKYmU4c3pWRmxLbkc5YTRMZ3VOeEtHei1OWDJPVkI0MkpyaGpSaEFPLXpoRDZMNTVtR3BhZGt5Y3dEZ2lRRWRMWndVaXFEcXJoVTZQcE5YSmx1VzFmTVZveEMwcFhmZlhVOHlHOVJPanFmS1BJQW05SGhqaVZNTw?oc=5",
+          "domain": "newsbytesapp.com",
+          "published_ms": 1794301442000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google",
+        "daily_views": 19077,
+        "ratio": 0.92
+      },
+      "youtube": {
+        "median_views": 1006,
+        "competitors": [
+          {
+            "id": "nRsptB0OM4c",
+            "title": "How To Change Home Screen Settings on Redmi Note 13 Pro✅ | Home Screen Setting 2026 #shorts",
+            "channel": "Tech Wala Bhai",
+            "views": 219919
+          },
+          {
+            "id": "XHiay3b9QzA",
+            "title": "💥Redmi Phone Full Screen Setting 2026 | 📱Redmi Full Screen Display Kaise On Kare #shorts #fullscreen",
+            "channel": "Tech Wala Bhai",
+            "views": 128356
+          },
+          {
+            "id": "HO_iCgShyLk",
+            "title": "How to Turn Off Screen Time on iPhone | Disable Screen Time Limits",
+            "channel": "ViHo",
+            "views": 33854
+          },
+          {
+            "id": "PQJpluPau8E",
+            "title": "How to Delete Parental Controls on Android (Quick & Easy Guide)",
+            "channel": "Beneficial Things",
+            "views": 13992
+          },
+          {
+            "id": "JjuoBptYYiY",
+            "title": "How to Set Up Gemini to Power button on Samsung Tablet?",
+            "channel": "Just Ask Me",
+            "views": 1006
+          },
+          {
+            "id": "uLkldopu0eQ",
+            "title": "Gemini AI Classroom Assistant: AI Agent Orchestration for Smarter Digital Learning ISATE 2026",
+            "channel": "Cyrus Wong",
+            "views": 220
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 64,
+          "curiosity": 80,
+          "relevance": 100,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 76.9,
+        "newest_hours": 18,
+        "domains": [
+          "msn.com",
+          "androidheadlines.com",
+          "androidauthority.com",
+          "inshorts.com",
+          "gadgets360.com",
+          "newsbytesapp.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini 4 Carbon Released With New 'Agent Swarm' Feature",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        28,
+        87,
+        89,
+        92
+      ],
+      "hook": "Google just dropped Gemini 4 Carbon, featuring an 'agent swarm' designed to tackle complex multi-step tasks all at once.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Google Gemini",
+      "commons_query": "",
+      "youtube_query": "Google Gemini 4 Carbon agent swarm",
+      "evidence": [
+        {
+          "title": "Google rolls out Gemini 4 Carbon with new AI swarm - Technobaboy",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOaUxvTjNKb09ZbktjSk4wd1Y4RmI3Q2szblRDdEd6eVh3WlVlSHNDaTNZMnNTOEh3djBJQlhMc3o3ZzlMVkN2RU9NT0lJd2l0dmVvM1RsVk1LSGEzZVpfRHE1eHlSNy0yTGlWNlBVMHItTDVveUxNM2YwQU1qeUcxYjEtQm5iUFZwUnB0RVctNVhkNzB4?oc=5",
+          "domain": "technobaboy.com",
+          "published_ms": 1794379291000,
+          "kind": "news",
+          "id": 28
+        },
+        {
+          "title": "Gemini 4 Carbon is now available - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcFFDTTNsamEzRWp6RmVZemczQjAwQTlCMGhneldpY0gwUnpsS1JQY3o4NnZiSDd3bm56ZkZfM1lEZ1Y1WFN1MUNoTjV3cGNMOHdPc1NfcEhtbVNyMVlTdVpFYjlEZjczN29BUzdOdl9rUDhkNVZHY3ZIUjd1b0lOSEVhN3dMcWgxaVprSDAySnpIZWItVjhRcUg4c3NhbjBmRmh1dw?oc=5",
+          "domain": "blog.google",
+          "published_ms": 1794326731000,
+          "kind": "news",
+          "id": 87
+        },
+        {
+          "title": "Google releases Gemini 4 Carbon with agent ‘swarm’ feature - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOS1FMM2Rhc1RaOWNteEpIRDZLV2RNanAxOEtlY25LQ0tLejhndUQ1M1lpRFdXQjdkMnJ1SGxQSFhSODByVDhrWHp4dzdqM01pTzhTTVBpY2swLTZncWFJU1NaeXlTYk0tbFFzOVFISWFuamYzaXhiNlFfQmZoekk4YXkyaHdBRDhLMF9DSmo4UEZUV0pWcEVYZUNGci1iZw?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1794326400000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Google releases Gemini 4 Carbon with agent ‘swarm’ feature",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1030787/google-gemini-4-carbon-public-rollout",
+          "domain": "theverge.com",
+          "published_ms": 1794324628000,
+          "kind": "feed",
+          "id": 92
+        },
+        {
+          "title": "Gemini 4 Carbon arrives just in time to feel like yesterday's news in the fastest model cycle yet - The Decoder",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOOU5IVE9Bc0hsOV8wZ2M4MS1oUHpwbGt1Z3lrbV9xcmdneGdORnh4Z0ZIWURONXlpUlo2bXowcERqNEExdk9IdHU5eVpDbmk1WEZnMmNpTHpBWU8tSnF2c2V0M1I0MHg0ZEZLVjhwRFJQUm5YekNIZTZtMHRTTVBHbG5xWXpqUnpPcjh1dFhEZGlWejdNbGZjNGxLM1VlYzhKZlMyeUFKSUdyVjFNRlZzQkw3Xy1hM2dpckJ5N0Zn?oc=5",
+          "domain": "the-decoder.com",
+          "published_ms": 1794334936000,
+          "kind": "news"
+        },
+        {
+          "title": "Google's Gemini 4 Carbon Is Now Widely Available Around The World - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBoR2NxSUVhbmlHVEdKSTNrQ1E3dXl0d2RHMzhfOUszN3BON0h4Y0pTSkdUdTcwcTlua0hycGdGa0s5WVBPWEMxT2U0WDJ2UU9WY1pTT0o0TVltUGNsd3N5OHprZzVwZTB5QW1lc2h0dFNuYU1UUzBxaDVtTXVKUQ?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1794326400000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Expands Gemini 4 Carbon Access to Power Users Worldwide - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOTllraXAxZVZXNDZnZi1KRHp3R04wMUtuM3o5REEzOUhHRnJDb20ycnZfYzIzYVZ3SW93dUhtY3JHckNycGtSMk5UXzB6UWEtc2dMbmo5UHlsQVBEbUtEcDl4bEdKTnp2NDRwbDN2ekQtVnVsLV9LdzAwVzEzYkJ1VDY5M1o2N0dhZG52b1ZPbEg?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1794336563000,
+          "kind": "news"
+        },
+        {
+          "title": "Google opens access to Gemini 4 Carbon and unveils agent swarm feature — The Verge - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNWWtrNTRYT2llZ1d5WVRiUmx0aG8xazA1eFU3aGZXM0MtUXN4bDJpamZxcDZ5cXM4aWpHNTczY0MzTDY2OHVWZHh1N0NoenQtWk5ZZE9qVml1c1cxamNVSEt3c3NTTjVrVVlWeEhZOS1CSDZEdlh3NVRQU0h3NGFraUZJS1V1R1ZxWE5tam9pTlVRRVZMWUZRZ0YzQ0MzWW5UcWhDWk92Zjk5YklUQzhSejNoS2pVUWxQaUxPWFlR?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794329935000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Launches Gemini 4 Carbon as Its Strongest Model for Autonomous AI Agents - Brave New Coin",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxONmJpckpNaFROYTdvdnJTZFJJODNfaXdQYW1PQkgxWW9zNTEtRFN6ZmlkNTE2clI4akJad2ZDS0t2YmZaM2RtckIxamo4UUk2VVI3TFZWblBmTlZlb0VTX0FYOU5MZl8wY0hlTUJJSGxrUC00MzhxNl9NdlJLdnZueFZDSE5za2xxYVBGV1dtNE1teUZJOUg2d201OVJfUnFrQ0Rxbkx3ZTdoUXJSVEJTUVhsNA?oc=5",
+          "domain": "bravenewcoin.com",
+          "published_ms": 1794380807000,
+          "kind": "news"
+        },
+        {
+          "title": "Google makes Gemini 4 Carbon widely available at $2 per million input tokens and previews agent swarms - MLQ.ai",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNeU1HeWZ3MzY3RTRteTE5NDEwRFdjWElJMFJ1c2d4MXRRX0ViNlFoTkZuUXBHVE1BYU8yNEtmb0VvcEtqamlZUWZITzY4Nkp4RmRkRGN5Zk1EeG5QQ2toOFJ2WFJMM2ZVbC04STc2eHZDOXFiZTlxVjNPWmpSYk8tVEQ4S0x3UW9CTy1XbzZjQWNObllReV9Ud05CaWp0bXA4SzdGd3VhTmJ3cmxLVUpkdHM5d3l2V2VJT0RUNDEySQ?oc=5",
+          "domain": "mlq.ai",
+          "published_ms": 1794329662000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Opens Gemini 4 Carbon to Paid API and Ultra Users, With Prices Doubling in December - XenoSpectrum",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1IWUQ4elNFNXU2TUQ5M2dvZVVZME9KbnBmYXRZaWg0T0c4cXhVcDQyellKMngzVlZVdmNaaXl2Y2czZkFJOEMyZTVVakItdm5vOXRzVHR1SkZLSWIzdUNCSkhscUhTb1Nh?oc=5",
+          "domain": "xenospectrum.com",
+          "published_ms": 1794360545000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Expands Gemini 4 Carbon Access Beyond Cybersecurity Defenders - Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOSWR2VG04UnNEY1BFUS11aHVBLW96amRKZXJtRGRxLTBvOGtpZHJ2elIwWWFJVDg3QS14cGl6RmlkbWxtMkZ3Ylk3RS1KMjgzM0FkcnhsYlpOclJaXzdpSXQ1ZGMtaWdsdExDZVFIUkRBMmZMRWNFQUlaOURmdU1JbUUwbWo2YW5QT21xRVVQU0ppeE4x?oc=5",
+          "domain": "unite.ai",
+          "published_ms": 1794328381000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Gemini",
+        "daily_views": 2405,
+        "ratio": 0.68
+      },
+      "youtube": {
+        "median_views": 37,
+        "competitors": [
+          {
+            "id": "cXgFL4s4KEs",
+            "title": "Gemini 4 Carbon Is Finally Here: I Built 5 Things in One Day",
+            "channel": "AI with Surya",
+            "views": 1532
+          },
+          {
+            "id": "B0BRBoem8ms",
+            "title": "What Google's Gemini 4 Carbon can actually do",
+            "channel": "Leo Rinaldi",
+            "views": 875
+          },
+          {
+            "id": "-kwFx4T2aYQ",
+            "title": "Google Gemini 4 Carbon: Multi-Agent Swarms in Antigravity",
+            "channel": "Quantum Synergy",
+            "views": 121
+          },
+          {
+            "id": "6O7DrtnLz4g",
+            "title": "Gemini 4 Carbon Ties Claude Fable 5.2 at a Third of the Cost",
+            "channel": "Simply AI",
+            "views": 115
+          },
+          {
+            "id": "b34JDVWdbiM",
+            "title": "Gemini 4 Carbon Replaces Chatbots With Swarms",
+            "channel": "Vinh Nguyen",
+            "views": 37
+          },
+          {
+            "id": "THetgqeGzCU",
+            "title": "Google just released Gemini 4 Carbon with an agent swarm feature #Shorts",
+            "channel": "Ablation Log",
+            "views": 21
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 43,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 75.6,
+        "newest_hours": 1,
+        "domains": [
+          "technobaboy.com",
+          "blog.google",
+          "theverge.com",
+          "the-decoder.com",
+          "engadget.com",
+          "androidheadlines.com",
+          "ua.news",
+          "bravenewcoin.com",
+          "mlq.ai",
+          "xenospectrum.com",
+          "unite.ai"
+        ],
+        "trusted_domains": [
+          "blog.google",
+          "theverge.com",
+          "engadget.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Claude AI Can Now Join Your Live Meetings and Take Over Tasks",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        27,
+        34,
+        41,
+        60,
+        76,
+        126
+      ],
+      "hook": "Anthropic's Claude can now sit in on your Zoom and Google Meet calls and write up your action items before the meeting even ends.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Claude (language model)",
+      "commons_query": "",
+      "youtube_query": "Claude AI joins meetings Google Meet",
+      "evidence": [
+        {
+          "title": "AI Moves Beyond Note-Taking as Claude Joins Google Meet Calls - Analytics Insight",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQNG1NUllDdEw5SEE4RDBUdzIyVGVGY2toQWFNYUJNZkl4UE5FbkIwaDEzZy1Sa2J0OHFPN1NEQ2N6VElEVllITVY5YUR0OEpSLWVnaTVUVzhHSVAxSXhvd3FzOWdZR2hSRHFUWmFNSWt2dVJ4Z1ZkeG9yZExrU1BUZXFVQ2NfdTRIWGU2ZzhyNHhSVUJoZjVVUVNyYlBSWEFs0gGuAUFVX3lxTFBDRmMwY0RmR2N4NHN3eTgzUE9TUDREVU9CNGpGM1ZTNmYxZU5qNURZT0ZYQTJTWkRHNFZWSWpac0JNdU9IZGNQTndkVTRWYWZKRDJ1eHl4ay13dXZOYmFyQkowOVV5MmUyVk5lWWNuMlVwcXgtSmhtMTNWNlV6ZzB3V1ZxM3hEelNCNHpHc2hJNmFoZmJZV09FY05ack1VNG5FWXVPamtrTUNhY21nUQ?oc=5",
+          "domain": "analyticsinsight.net",
+          "published_ms": 1794379500000,
+          "kind": "news",
+          "id": 27
+        },
+        {
+          "title": "Anthropic brings Claude to Google Meet to tackle tasks live - The Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPZXMyZFNEQ1dnbUVTY09FQWkxNmt5bmdYT01Wc3lELVIzNTk2bUJsVjA1Wi0ycFAyeFVaSmsyVTU2RlI5d3BZUHlrZFNyajJPTUhCUUFOUFV1c2RxUzJyZERlODdERUFZamt1VUhzOG1TaUZBTEd4UE1HanZjU2E5UzhPU3BOOXRkVlFLV09rVUVDUDBVVUthc2lfUU15dDRZeW9fQUhKVnlraWFkOEJNWWJVb1plU0VZYUxiSUVSUlMyQkMxRzdES0t4d1U4RmVIUmtwUtIB2wFBVV95cUxQNWVTQXBvbjA3VlQyc2RFT1BPZlVnc2VJT3pnV1o0bGFJS0FCdC11OHRielRld0hxWFB0VDlqTThKX1Z6R2VEMDBmTy1mV2NRcnhWUmNJX1JlNkJzeTQ3LXBYSGdpNkJhbEl5Z2I4Nmx0NmN4TkxkZzlpWm1rX0RpbHlhbmIwTERXWlhuSWJwRGE3T1hwbm9uTHdLOFNDcDRwX0pqVDZvVFpFOFFCN2NzQU16RkRaWlVGcmNEb1h4ejA4MGFZQ3VDLURsZnZnTmRpMnN5RmI3UEx3eTA?oc=5",
+          "domain": "indianexpress.com",
+          "published_ms": 1794369214000,
+          "kind": "news",
+          "id": 34
+        },
+        {
+          "title": "Anthropic Launches Claude Meetings for Real-Time Teamwork - Demokratis.co.id",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9obGpIcE1RbnZxN0NTWHdvTVBJWWdwal9ScTVpRFgzTjgtcHIxaE1Cb2lHby10eG5qR0pjUVlQbU45RUFfYjFtMU5TSmNmeWNxQ2ZncURJMmVwcndPbjhEZFVXbHFJc1RvQXFreg?oc=5",
+          "domain": "demokratis.co.id",
+          "published_ms": 1794353340000,
+          "kind": "news",
+          "id": 41
+        },
+        {
+          "title": "Claude can now join work meetings and complete tasks as you talk - Gulf News",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNTE8xNWdSZk94MUdRaWhVbll3QktFOEI0aDVYODNzNm9Bb3h2TTc0WUlvWnBZZGI0NEhVckRUV3R6M2NQYmh2ek0yMXRsNUdkVG5NZFFNRHh5SzRnWHlJLWNXMGJZOFBRczdFTFZwT2Z2NlZDSTFZWEtRamZMczFkNnFDZUF1bC1ob3p6TXQ2dnhoc1A1VU5YNTVXYlk0TjE5ajF3Y1hHUE9FOHZRYURmSEg5YWNqcjZhM1HSAcwBQVVfeXFMTVowcUdaOTVwdWxrQlljWXZScUxIbE5KSGFFZU1FVmtOai1SREhySTJaZXRsQkplbWFBbmFPNXpvVzBlOXJjM3M4cVdKTmxSX1BkN3R3cWhNOTZVQkRSYVhuSjJmYkM5WDB0QmRaV29BNzdxNWtvTEpMS2s1RUhXN1doYllzQ0hhY1dIXzFBZ1ZWZ1JySklFcUl0NGxrS2ZSc1hxQUxwaWxudjN6YXNxRXJreHpyVWRfWTNMaURWQXVmdERFX3ZyNUR4b3d2?oc=5",
+          "domain": "gulfnews.com",
+          "published_ms": 1794340334000,
+          "kind": "news",
+          "id": 60
+        },
+        {
+          "title": "Anthropic’s Claude Can Now Join Your Meetings. Its Most Useful Function Happens Before the Call Ends - Inc.com",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQdmhSamhqWFY0LVNzQ0kwVUdPUU5RZ21VNkVUZXNlb1I0SkVlcGJqZnF3SGlFWVpPYkxRdk1xWUZYbGFSVFd5c1V6LThLbjctNmstby1KREZ0NUNxdVlYX0xRdTJDMlZGdHF2NEg4Y1E4Zm5QUXc4Ukh2cDg2b1VPd0lVd2FieUtIMzMtMmstdDhaemlXTHRxcjRWY0ZmME1KS0M3c1BlWnBPdG9EQlRqVThsUmZaNGJJeTMtN0V4czhYZVhmRGZEZ0I2cGttZmNuVE1B?oc=5",
+          "domain": "inc.com",
+          "published_ms": 1794335305000,
+          "kind": "news",
+          "id": 76
+        },
+        {
+          "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks",
+          "url": "https://www.msn.com/en-us/technology/artificial-intelligence/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/ar-AA2h9Rwl",
+          "domain": "msn.com",
+          "published_ms": 1794303000000,
+          "kind": "news",
+          "id": 126
+        },
+        {
+          "title": "Anthropic wants Claude to join your meetings - Axios",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE43RzRod0FibUhPX1ZYX09KMHdodFZMQWNOcFR1dGh5Q2dsaDJ1QjhjWjIzbWhJamI4SGtJUHQ1S3V0YUZWYnp3bWowbXhUMWhpMUxObFNpakVHNm9yZ1VKbzJqTUNwekNUNG15ZGhTdkxJVWdicktQOFNMVHJFZw?oc=5",
+          "domain": "axios.com",
+          "published_ms": 1794335530000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic launches Claude Meetings to turn workplace discussions into plans and tasks - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQdkN0VWFWT3BuM1RBTG1ZWVp6TWs3RVpNZ2JHSGp2Q0NmcEh6Z3p6anZYY1FYYXpSTXRYZ2hoX2dXY2MyaXdGSXptUFlxWXhMRmVyLVgwbEw0N05PTWJmMmF5bE9uYzF5RkhGOHpueGpuUzA3UE5mekh1UE1oWmp1dWhvWTVEaHhacXJkb0poVklsRWd1V2xWVkpuWlZBbDQ3X3RHajUzWmlabGM5Wml4Ni1KWDZLOV9PYlhPag?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1794331800000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic Unveils Claude Sheets and Meetings to Challenge Google and Microsoft - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPZWxscWRfVkVUZWxpNG9IbldhLURDX3J2UHcyU0xsYTlnVUtZeFBPU1hNTm11MTZEdWZ1OWlUU2p2cnpWTnVmcTFJMTJDbUJITkNET3pIUFF0MjBpeW96SWF0OS1ycEJsQmdpTlFXeVpTT1MzQjBNMDQyYnJmZUYtWWktbWFualVqYWVubHlZT3BDVVRQZVVjdFh3?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1794365364000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic launches Claude Meetings for AI work during video calls — TechCrunch - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNUGJvTUVSU0c1cW1GdzRLVEtKNGp1RzJYWVdUV3NROFY2b0dqNkZsRGdzUU5Wa2NlYUtFMTQ0RVdEbW1ZSHB3YkdGVlhwM2dybDlzTXVwTXZuajlUb0Q0ZHJSVWpfUGJiU19RVUpJSlEzSFZYLWhCOFdpY3hYdUFob3Itc2hIMTVsd3I5U0phX2FRNXJUY2VQQS1sRTFqbWZXelZ6NWV4Ynpnc05wLU1wVkxRYmJGVzNiSmc?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794332463000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic Unveils Claude Sheets, Meetings and Whiteboards to Challenge Microsoft and Google - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBfUDRWb0Nsajl4UjRkR0J2ZUNGemRDNllndDRxd3BzUE54cWh2TDVCUi1HZ2NRa1Z0T3VmdF9ULTBJQTlHMS1xRkZlWHVlY0JKdGprUlU5YzI2a0hKTzNDUWhHdDJWRmJuZVMtSXRDSWRQcXFuX3c?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1794333900000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic launches Claude Sheets and Meetings in a push into office software as Microsoft shares fall - MLQ.ai",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNLUpYVS0yMVE3cUdEWl95azhnUEJXa2Q5Q3F6QnF2WFNsMzlVRUFoMlZHN0F5STVDckhZWl9KV3BDT21rT1F4RW8yZEZXYk9JZ1VoMDB0MVJPTUtnQUZKeHpzbXA0VEdBNUx6bURuRndHaXFiOVJOVE9Ca2R6clBNU3J1ZW1iWU5XV0t2X3NlQkhIVFJ5eUFGVHFvZE5fZEEtRmF0Q29HQS1NdUVYY2VUZHZ0M0xmZ21zOE11R1pWOA?oc=5",
+          "domain": "mlq.ai",
+          "published_ms": 1794356272000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Meetings, Sheets, and Whiteboards Bring AI-Native Office Tools - OpenTools",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSFNlMW1PaHZyM3lxbHk4dTdUMHY2TUJubU1USmV0NWF1Q3NaSk42Ym9OaUV6TVNkZXE1akw1OHFwdDJYd3lKeWJmX2dYVTNrNXJUNzdnc2NtdkNPNkZRekJka1FlaXE1RXJqYVl0bWQzejFvS0VaQkFVenF3bkVGYWdCTUs2Z3JYeUFB?oc=5",
+          "domain": "opentools.ai",
+          "published_ms": 1794371355000,
+          "kind": "news"
+        },
+        {
+          "title": "Anthropic Launches Claude Meetings, Whiteboards and Sheets to Expand AI Workplace Tools - The 420.in",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBqcFF4WFU0bElTUS1Gc0FhUmtEYlozcE52VjFNYngyQVA5a1Zhc01lWU5MMGdOSVN3MFdvaFpyTHVXSk9nSmVjdGRjVVMwbW5JXzduZ001Zm4wVDVmc1lXeVlwb2xNSDhHQkVnS2Z3?oc=5",
+          "domain": "the420.in",
+          "published_ms": 1794369276000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Claude (language model)",
+        "daily_views": 271,
+        "ratio": 0.67
+      },
+      "youtube": {
+        "median_views": 56,
+        "competitors": [
+          {
+            "id": "aASBP7ju9Xg",
+            "title": "Introducing Claude Suite",
+            "channel": "Tool Finder",
+            "views": 24405
+          },
+          {
+            "id": "bqZwxq2hbiw",
+            "title": "How to connect Claude to all your meetings",
+            "channel": "Mike Sallese",
+            "views": 1196
+          },
+          {
+            "id": "5KudXLRStls",
+            "title": "Claude Meetings beta: Claude joins your Google Meet call and starts work live",
+            "channel": "Alpha Explorer",
+            "views": 227
+          },
+          {
+            "id": "9_PJENOfOqg",
+            "title": "My AI Joins the Meeting, Not Me: A Google Meet Participant Built With Claude #aiagent #googlemeet",
+            "channel": "Vladislav Lysechko",
+            "views": 75
+          },
+          {
+            "id": "xTNBGGVFTXg",
+            "title": "Claude Meetings: Anthropic's New AI Joins Google Meet as a Coworker",
+            "channel": "Quantum Synergy",
+            "views": 56
+          },
+          {
+            "id": "qOazBCkps3s",
+            "title": "Claude can now join your work meetings",
+            "channel": "Alex LeveledAI",
+            "views": 29
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 37,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 72.5,
+        "newest_hours": 1,
+        "domains": [
+          "analyticsinsight.net",
+          "indianexpress.com",
+          "demokratis.co.id",
+          "gulfnews.com",
+          "inc.com",
+          "msn.com",
+          "axios.com",
+          "techcrunch.com",
+          "androidheadlines.com",
+          "ua.news",
+          "finance.biggo.com",
+          "mlq.ai",
+          "opentools.ai",
+          "the420.in"
+        ],
+        "trusted_domains": [
           "techcrunch.com"
         ]
       },
@@ -1131,22 +1697,189 @@
       "wave": 1
     },
     {
-      "topic": "Google Gemini Can Now Turn Your Messy Handwriting Into Professional PDFs",
-      "pillar": "AI productivity and money-saving uses",
+      "topic": "AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub",
+      "pillar": "AI failures, hallucinations, security problems and scams",
       "evidence_ids": [
-        135
+        52,
+        154
       ],
-      "hook": "Got terrible handwriting? Watch how Google Gemini instantly turns your messy scribbles into a clean PDF.",
+      "hook": "Developers beware: popular AI coding tools are accidentally leaking private company passwords and confidential secrets all over GitHub.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 8,
-        "relevance": 9,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "GitHub",
+      "commons_query": "",
+      "youtube_query": "AI coding assistant leak secrets GitHub",
+      "evidence": [
+        {
+          "title": "Grok Build coding agent leaks oodles of confidential info, some belonging to SpaceXSI",
+          "url": "https://arstechnica.com/security/2026/11/grok-build-coding-agent-leaks-oodles-of-confidential-info-some-belonging-to-spacexsi/",
+          "domain": "arstechnica.com",
+          "published_ms": 1794345179000,
+          "kind": "feed",
+          "id": 52
+        },
+        {
+          "title": "Claude Code is accidentally exposing secrets all over GitHub",
+          "url": "https://arstechnica.com/ai/2026/11/claude-code-settings-files-expose-thousands-of-secrets-on-github/",
+          "domain": "arstechnica.com",
+          "published_ms": 1794245066000,
+          "kind": "feed",
+          "id": 154
+        },
+        {
+          "title": "AI Coding Agents Leak Thousands of Secrets to GitHub - Dark Reading",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNRzM1dS1lRkR4UnVNV3A5VXlueFdaQ0p4NzlybjRTZXpqWkYwc19nRHR6Nm1YdTRaRkNkWk5tUnhBMS1yaEJHTnhSYXYybWM5blVCaUxKVi1ITmZCRVVCdW1VRFpmMVRTRndfR0owOVFESkhnZ0poTGVlZVVTc3Vtcw?oc=5",
+          "domain": "darkreading.com",
+          "published_ms": 1794337076000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Code's “Don't Ask Again” File Exposes Passwords and Keys in 1,122 Public Copies on GitHub - The Hacker News",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9vLUN5ZGJuNFdSUmt1YmFxYUYtRWJSbUpRR3pCVUNaVjBCZ2pPWTY5am1nMk5RczBDV3cwbVFEemFqTXN5QV9oLVBGQWMtbTktQTluaVJlaVBxUXIzZjQ5d0pVTnpQcmxQRWEzZE8wT2ZYX25PdHQtYVo5SQ?oc=5",
+          "domain": "thehackernews.com",
+          "published_ms": 1794033840000,
+          "kind": "news"
+        },
+        {
+          "title": "GitHub Octoverse 2026: Five Takeaways for Security Teams - GitGuardian Blog",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1mRW12Y01FRV9xU254RjctWWh3Y3R6NVlaYUNGRUFYQ1AySm9sMW52bUM5ZGNXbVc4b0hEVUJnbENxQ2k3Uk9OWGl5c0E4QnNsTmNaQ2ZxZ2lxQlg2STlhXw?oc=5",
+          "domain": "blog.gitguardian.com",
+          "published_ms": 1793257200000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Code is accidentally exposing secrets all over GitHub - Ars Technica",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNNkpLSnVERzJwSlRmNmZJOTBaZkhzaERjNWREVE9qOGpYbHZuTGdEZW5xbFhEb2l2dEc5WURrS252YmJuRGJudWQ1WnlEVDRXdkEwZWNJeFNoWkhiZzVNX1NQNmlDMTN4b0k5NEtwclJmeEt1Q1A5dno1QTlPd3VOeXZrV1dRLS1tdUQ1T1poeDBwSkVSY1FuLUZZSU5qbzFZSVE?oc=5",
+          "domain": "arstechnica.com",
+          "published_ms": 1794245066000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Code AI Feature Exposes Thousands of Secrets on Public GitHub Repositories - OECD AI Policy Observatory",
+          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE5acXhRTkw3TWlhU3RyNTE3cDFSYUdkSFZEOEtoSGVzelE2WG9oZ0RTUWdFdENTRGEwSlhLMUhESGVNcm9ySU5mLVc4aDNVNDFaTFViS0VuVQ?oc=5",
+          "domain": "oecd.ai",
+          "published_ms": 1794038400000,
+          "kind": "news"
+        },
+        {
+          "title": "Most of 2,539 Leaked Secrets Sat in a Claude Code File - FourWeekMBA",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQbHJoMHBDendnbjhwOGpjRnZJcVQyQlN4amszQjBnaFFGY0hUdDNGWC1vTnhPR3RRd2JBQTcxaUtYdXpCNW01RGdkTzVkZy1HdEtMS0xhTnl1Qm93OEdvYnU0ZjFwOUZtTmlqdjRNV1ktVmwyLXZTS241bXQ3MkdRbHE5QVhmU3M1akE?oc=5",
+          "domain": "fourweekmba.com",
+          "published_ms": 1794053569000,
+          "kind": "news"
+        },
+        {
+          "title": "Claude Code's \"Yes, and Don't Ask Again\" Option Can Leak Passwords and API Keys to GitHub - CyberSecurityNews",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9YS3VBRHpydjVLY3doT2I2TVUyUnlEQ0xWczB3ZlA4WHdheXUyUk9hWWlidXJpM0VKSUlmaU5UM3oyZlNCYkEtbElwcDZ0WGFQUUJ1WU5WeFZqTEt4bWx0T2Z2S3ZYRlM5NFRKWWlKNWdBdHVV0gF6QVVfeXFMTkRUQmYxZlNxaHlZLTRXV09Kb1hwOE50bndwOVhvWmR1WGtTN2FmYXJUWWVadXFOdFlCQWtaYnBlTFRadUpZNjU3VEExTFFnYm5GOWtTRVZJVTBCZDM4cWFnUEZFQllCVllILXduWWQ5SUlYVF9lWDdmWFE?oc=5",
+          "domain": "cybersecuritynews.com",
+          "published_ms": 1794116104000,
+          "kind": "news"
+        },
+        {
+          "title": "Shai-Hulud Descendant Hides in Malicious Ruby Gem to Steal Developer Secrets and Poison AI Coding Tools - GBHackers News",
+          "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFByb053WHQ4cGFoNEpLVzAtRGhxYkpmMXE3TW1DRmh5a0RCY3N5MXVKWV9EMWVtYXpNR3NMeGNWZHdNMWp6d0J0UXpFVWhXZlNWUTF2V9IBWkFVX3lxTFBwSTdKejZuenBNN29ZeFplVlpPRWNxOG10cmpQZ0habHdMMWZSOEZibUMxOXp0ZU1MWWxhZ09MODcyVXBsUmVtMEtLU1ZwLWh2NHRKYVdGaUZZUQ?oc=5",
+          "domain": "gbhackers.com",
+          "published_ms": 1794292864000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "GitHub",
+        "daily_views": 3787,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 55,
+        "competitors": [
+          {
+            "id": "_lN46W4kjZE",
+            "title": "Claude code leaked GitHub passwords",
+            "channel": "Venkatesh Dhongadi",
+            "views": 3066
+          },
+          {
+            "id": "lMrHshSDSbk",
+            "title": "Your AI Leaked 13,000 Private Screenshots 😳",
+            "channel": "Agent Blip",
+            "views": 1320
+          },
+          {
+            "id": "i7udil17WIA",
+            "title": "Secret Exfiltration Explained: How Coding Agents Leak API Keys | AI Threat Files #018",
+            "channel": "Manan Vora | Security Architecture",
+            "views": 145
+          },
+          {
+            "id": "XziiANAR-SQ",
+            "title": "Claude Code \"Don't Ask Again\" Leaked Passwords to GitHub 🔑 Explained",
+            "channel": "Cyber Visual",
+            "views": 59
+          },
+          {
+            "id": "Wrpw6kChuuo",
+            "title": "Why Claude Code Is Secretly Leaking Developer Passwords",
+            "channel": "Neural Nexus",
+            "views": 55
+          },
+          {
+            "id": "t7bI2pWroM0",
+            "title": "Why AI-Written Code Leaks More Secrets #coding #ai",
+            "channel": "The Daily Glitch",
+            "views": 49
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 71.3,
+        "newest_hours": 11,
+        "domains": [
+          "arstechnica.com",
+          "darkreading.com",
+          "thehackernews.com",
+          "blog.gitguardian.com",
+          "oecd.ai",
+          "fourweekmba.com",
+          "cybersecuritynews.com",
+          "gbhackers.com"
+        ],
+        "trusted_domains": [
+          "arstechnica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini Can Now Turn Your Messy Handwritten Notes Into Clean PDFs",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        146
+      ],
+      "hook": "Have terrible handwriting? Google Gemini can now instantly transform your messy chicken scratch into a professional PDF.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 10,
         "visual": 9
       },
       "wikipedia_title": "Google Gemini",
       "commons_query": "",
-      "youtube_query": "Google Gemini handwriting to PDF",
+      "youtube_query": "Google Gemini convert handwritten notes to PDF",
       "evidence": [
         {
           "title": "Google Gemini can now transform your handwritten notes into professional-looking PDFs",
@@ -1154,12 +1887,12 @@
           "domain": "msn.com",
           "published_ms": 1794274997000,
           "kind": "news",
-          "id": 135
+          "id": 146
         },
         {
-          "title": "Google Gemini can now transform your handwritten notes into professional-looking PDFs — and it's one of those AI features that could actually make your life easier and that I'll use all the time - TechRadar",
-          "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxOelExcVJieG1HWGQ5MEVSUjMzMF8ycW13RWx1ZTNOdkxUX0Fvb2MyV0hLTUVFdzlYN2Zka19MVmdhc3dCSk1iSGJlYTV5SHl1YzE2dmtEa0JRSmdhb0lvSHFIVDRfTFNHeGJPX2xGLUEweUlYSFZXdlJXN1FHalNhQUNTTjJ6M0RxOTZBSmhpZ1U2OTdOcTUycW1GY0tYVFFUMHF6Q1YzTGZrMFFLckFIc3lMNnNjSUk3NGlyUU00aE9VRjlVSDFES0NaSlIxNWNrY0IteGY1WGRhYk02Q2lGN1RXTXl3UzEtMlY0ek1GNXQwd3dueFdvdHo4bzk5am5XTEtaZGFYa0Z4eGphTFExNVpvQUZ3Rm5Z?oc=5",
-          "domain": "techradar.com",
+          "title": "Google Gemini can now transform your handwritten notes into professional-looking PDFs — and it's one of those AI features that could actually make your life easier and that I'll use all the time - Yahoo Tech",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNQjdVOUhLdF9adk91c3RDZnNobklvLUdZeUlZQVBnTEV4Q1Zwby1oZkplVzdON1lySXFINVlaUlViOGhTbi12bVRVYzJlY2hlNl9lYXEza1BpU2lyQWNmUzRNa0oza1ZFWVJJNF8tV0VLWUFHYlJTN2xMaW5SZDB2WjMzLTdMQk5RMGR0TVdaTXFvdVpaSjJ3cDM4X0U?oc=5",
+          "domain": "tech.yahoo.com",
           "published_ms": 1794303797000,
           "kind": "news"
         }
@@ -1170,13 +1903,25 @@
         "ratio": 0.68
       },
       "youtube": {
-        "median_views": 67,
+        "median_views": 334,
         "competitors": [
           {
-            "id": "S0n_LgXL1CY",
-            "title": "Turn Handwritten Notes into a Study Guide with Gemini",
-            "channel": "Build With Alan ",
-            "views": 1185
+            "id": "gOqS-g2PiIs",
+            "title": "Type பண்ணவே வேண்டாம்! AI மூலம் Handwritten Notes to PDF in 2 Mins 😱 | skills maker tv",
+            "channel": "Skills Maker TV",
+            "views": 201351
+          },
+          {
+            "id": "fj6YxqM3PAM",
+            "title": "Turn Messy Handwriting Into Beautiful Notes With AI ✍️",
+            "channel": "Arpit Gupta",
+            "views": 1454
+          },
+          {
+            "id": "Ol_zzH_j0PQ",
+            "title": "Gemini's New Updates: Create & Edit Files, Build Sheets, Slides and Connect Apps! | 525",
+            "channel": "Luxmi Shanker",
+            "views": 701
           },
           {
             "id": "sIAx0_B5Qeo",
@@ -1191,22 +1936,10 @@
             "views": 334
           },
           {
-            "id": "OqRDP3siCpw",
-            "title": "Gemini Can Now Turn Your Handwritten Notes Into an Editable PDF",
-            "channel": "AI With Taste",
-            "views": 81
-          },
-          {
-            "id": "fTbgt3v91_4",
-            "title": "Gemini PDF generator: handwriting-style notes, MEH (free)",
-            "channel": "Does It Work? AI",
-            "views": 67
-          },
-          {
-            "id": "GqMdSIMMSi0",
-            "title": "Handwritten Notes to PDF in 1 Click! 😱 (Gemini AI Hacks) #shorts #viral",
-            "channel": "Little Star Pathshala ",
-            "views": 67
+            "id": "1sifbgWwgaE",
+            "title": "أسرع طريقة لتحويل خط اليد إلى ملف وورد قابل للتعديل",
+            "channel": "علي الهلال | Ali AlHelal",
+            "views": 236
           }
         ]
       },
@@ -1214,23 +1947,126 @@
       "score": {
         "factors": {
           "momentum": 71,
-          "reach": 45,
+          "reach": 52,
           "curiosity": 80,
-          "relevance": 90,
+          "relevance": 100,
           "visual": 90,
-          "source_quality": 65
+          "source_quality": 30
         },
-        "total": 71.7,
-        "newest_hours": 16,
+        "total": 71.1,
+        "newest_hours": 22,
         "domains": [
           "msn.com",
-          "techradar.com"
+          "tech.yahoo.com"
         ],
-        "trusted_domains": [
-          "techradar.com"
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Legal Researcher Warns AI Errors Persist Stubbornly in Court Filings",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        152
+      ],
+      "hook": "Lawyers keep getting caught submitting fake AI-generated case law because court hallucinations refuse to go away.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Hallucination (artificial intelligence)",
+      "commons_query": "",
+      "youtube_query": "AI hallucinations court filings lawyers",
+      "evidence": [
+        {
+          "title": "It%E2%80%99s+no+hallucination%3A+AI-generated+errors+persist+in+court+filings - North Carolina Lawyers Weekly",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQWW1NV2Y4MzNRbHVPcEhzTWtmMDBtOUF2YldMVlVwWkpOeWpVdFVmOVJyVGJyWElZb2RCcEdNeGZ2aUxMM0ZpVGxDdHc5Ynhtc1lWaDRmM1d4cjY0S2hfYjNUNE5mdzB6cHpWQS12TlpweVZfSDV1UDEyX1UzWExOQk5xNi0yMlV3cmtuMHRMcTJPYUU2YlhVUjlpUkZ2amhycHk2MmN5dTg?oc=5",
+          "domain": "nclawyersweekly.com",
+          "published_ms": 1794251573000,
+          "kind": "news",
+          "id": 152
+        },
+        {
+          "title": "It’s no hallucination: AI-generated errors persist in court filings - Wisconsin Law Journal - WI Legal News & Resources - cedarnews.net",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPd3hqY2oxekxabmdsNk9wREMzSENOaDRmMFZXV3gxWUZEM25lTXhOcEZRYjVGVmVfLXQzTHZUd01kOF9FRUFtRWNlbzUzQnNLZTNyVjNQVTJIZHdvbzJkVFRvNmhaY3QwQ1FRMUpIdGtmTnJ1cWlZcFVRT2I2SkxxWGd3MXplOVBLMVpoWjAwQjd6enM?oc=5",
+          "domain": "cedarnews.net",
+          "published_ms": 1794233847000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Hallucination (artificial intelligence)",
+        "daily_views": 641,
+        "ratio": 0.77
+      },
+      "youtube": {
+        "median_views": 171,
+        "competitors": [
+          {
+            "id": "9_eUBFpGVLk",
+            "title": "The $5,000 ChatGPT Mistake: Lawyer Sanctions EXPLAINED",
+            "channel": "RM Warner Law",
+            "views": 1513
+          },
+          {
+            "id": "9SUdraNs508",
+            "title": "AI Hallucinations Are Getting Lawyers Sanctioned — Here’s How to Avoid It! #lawyer",
+            "channel": "Lawyer Tips by The Sterling Firm #lawyer #law",
+            "views": 388
+          },
+          {
+            "id": "L2_1MJvsJ1k",
+            "title": "ChatGPT for Lawyers: How to Avoid Hallucinations Once and For All",
+            "channel": "Lawyer Marketing and AI with Andrew Stickel",
+            "views": 229
+          },
+          {
+            "id": "zLPl7dbgmBE",
+            "title": "AI Hallucinations Cost Lawyers $2,500 in Appeals Court Fine",
+            "channel": "Bobot Show",
+            "views": 207
+          },
+          {
+            "id": "efuB0qld33c",
+            "title": "AI Hallucinations in Legal Filings: What Florida Lawyers Need to Know | Florida Appeals",
+            "channel": "Florida Appeals",
+            "views": 171
+          },
+          {
+            "id": "M3UZFfdbe_U",
+            "title": "574 AI hallucinations found in court cases in just 6 months: should we be worried?",
+            "channel": "Lawdistrict | Online Legal Documents, Simplified",
+            "views": 163
+          }
         ]
       },
-      "rejected": [],
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 68,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 30
+        },
+        "total": 61.6,
+        "newest_hours": 37,
+        "domains": [
+          "nclawyersweekly.com",
+          "cedarnews.net"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
       "wave": 1
     }
   ]
