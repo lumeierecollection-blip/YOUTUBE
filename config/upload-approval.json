@@ -211,5 +211,23 @@
       "AI makes things up",
       "AI admits"
     ]
+  },
+  "hidden-past-capone": {
+    "run_id": 43108403800,
+    "artifact": "preview-hidden-past-43108403800-1",
+    "sha256": "060f733612bcabcebecee338bc9771f92c42c21b84fa78911ff55fae1e4afe54",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "Al Capone Was Brought Down by Income Tax",
+    "description": "Al Capone ran the Chicago Outfit from 1925 to 1931. After seven rival gangsters were murdered in 1929 and newspapers named him Public Enemy No. 1, the Treasury and Justice Departments planned income tax prosecutions. He was charged with 22 counts of tax evasion, his own admissions of his income were admitted as evidence, and in 1931 he was convicted of five counts and sentenced to 11 years. He served in Atlanta, then Alcatraz, was released after almost eight years and died in 1947. Was income tax the right way to stop him? Tell us in the comments. Facts from Wikipedia's article on Al Capone; pictures from Wikimedia Commons (all public domain), credited on screen and below.\n\n#Shorts #History #AlCapone #Chicago #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Al_Capone\nImages: Wide World Photos / Chicago Bureau (FBI), The New York Times, Pennsylvania Department of Corrections / FBI, US Bureau of Prisons, George Grantham Bain Collection, US Navy and C.W. Tomlinson, via Wikimedia Commons. Map data: Natural Earth (public domain).",
+    "tags": [
+      "Al Capone",
+      "Chicago Outfit",
+      "Prohibition",
+      "tax evasion",
+      "Alcatraz",
+      "Public Enemy No. 1",
+      "history"
+    ]
   }
 }
