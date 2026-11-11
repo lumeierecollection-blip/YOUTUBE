@@ -1,0 +1,73 @@
+{
+  "topic_slug": "live-nation-35m-whistleblower-arbitration",
+  "strongest_angle": "Examining the $35 million whistleblower lawsuit brought by former executive Nicholas Rumanes against Live Nation, detailing the judge's order on November 9, 2026 to move the employment dispute to private arbitration while preserving judicial oversight over discovery concerns.",
+  "key_facts": [
+    {
+      "fact": "On November 9, 2026, a California state judge in Los Angeles County Superior Court ordered former executive Nicholas Rumanes to pursue his $35 million whistleblower lawsuit against Live Nation through private arbitration.",
+      "source_url": "https://www.ticketnews.com/2026/11/live-nation-whistleblower-lawsuit-arbitration-discovery",
+      "source_name": "TicketNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nicholas Rumanes served as the executive vice president of development and business practice at Live Nation from 2022 to 2025 before being fired in May 2025.",
+      "source_url": "https://wearelegalrevolution.com/live-nation-whistleblower-case-goes-private",
+      "source_name": "wearelegalrevolution",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Despite moving the $35 million employment dispute to private arbitration, the Los Angeles judge ruled that the parties can bring discovery disputes back to court over concerns regarding the arbitrator's rules.",
+      "source_url": "https://massarbitration.co/news/live-nation-whistleblower-arbitration-ruling-rumanes",
+      "source_name": "MassArbitration",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit amount",
+      "value": 35000000,
+      "unit": "USD",
+      "source_url": "https://www.ticketnews.com/2026/11/live-nation-whistleblower-lawsuit-arbitration-discovery"
+    },
+    {
+      "label": "Start year of employment",
+      "value": 2022,
+      "unit": "year",
+      "source_url": "https://wearelegalrevolution.com/live-nation-whistleblower-case-goes-private"
+    },
+    {
+      "label": "End year of employment",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://wearelegalrevolution.com/live-nation-whistleblower-case-goes-private"
+    },
+    {
+      "label": "Month of firing",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://wearelegalrevolution.com/live-nation-whistleblower-case-goes-private"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Nicholas Rumanes",
+      "kind": "person"
+    },
+    {
+      "name": "Live Nation",
+      "kind": "organization"
+    },
+    {
+      "name": "Los Angeles County Superior Court",
+      "kind": "place"
+    },
+    {
+      "name": "Craig Clough",
+      "kind": "person"
+    },
+    {
+      "name": "Dave Clark",
+      "kind": "person"
+    }
+  ]
+}
