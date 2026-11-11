@@ -1,0 +1,573 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (78/84 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.0,
+   "end": 0.36,
+   "sentence": 0
+  },
+  {
+   "text": "1989",
+   "start": 0.36,
+   "end": 1.14,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.6,
+   "end": 1.72,
+   "sentence": 0
+  },
+  {
+   "text": "bomb",
+   "start": 1.72,
+   "end": 2.0,
+   "sentence": 0
+  },
+  {
+   "text": "destroys",
+   "start": 2.0,
+   "end": 2.5,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.5,
+   "end": 2.74,
+   "sentence": 0
+  },
+  {
+   "text": "plane",
+   "start": 2.74,
+   "end": 3.04,
+   "sentence": 0
+  },
+  {
+   "text": "over",
+   "start": 3.04,
+   "end": 3.32,
+   "sentence": 0
+  },
+  {
+   "text": "Colombia",
+   "start": 3.32,
+   "end": 3.64,
+   "sentence": 0
+  },
+  {
+   "text": "Flight",
+   "start": 4.28,
+   "end": 4.42,
+   "sentence": 1
+  },
+  {
+   "text": "203",
+   "start": 4.42,
+   "end": 4.86,
+   "sentence": 1
+  },
+  {
+   "text": "leaves",
+   "start": 4.86,
+   "end": 5.52,
+   "sentence": 1
+  },
+  {
+   "text": "Bogot\u00e1",
+   "start": 5.52,
+   "end": 5.99,
+   "sentence": 1
+  },
+  {
+   "text": "Five",
+   "start": 6.46,
+   "end": 6.8,
+   "sentence": 2
+  },
+  {
+   "text": "minutes",
+   "start": 6.8,
+   "end": 7.06,
+   "sentence": 2
+  },
+  {
+   "text": "later",
+   "start": 7.06,
+   "end": 7.4,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 7.62,
+   "end": 7.67,
+   "sentence": 2
+  },
+  {
+   "text": "bomb",
+   "start": 7.64,
+   "end": 7.98,
+   "sentence": 2
+  },
+  {
+   "text": "explodes",
+   "start": 7.98,
+   "end": 8.34,
+   "sentence": 2
+  },
+  {
+   "text": "The",
+   "start": 9.08,
+   "end": 9.16,
+   "sentence": 3
+  },
+  {
+   "text": "plane",
+   "start": 9.16,
+   "end": 9.4,
+   "sentence": 3
+  },
+  {
+   "text": "breaks",
+   "start": 9.4,
+   "end": 9.74,
+   "sentence": 3
+  },
+  {
+   "text": "apart",
+   "start": 9.74,
+   "end": 10.08,
+   "sentence": 3
+  },
+  {
+   "text": "over",
+   "start": 10.08,
+   "end": 10.4,
+   "sentence": 3
+  },
+  {
+   "text": "Soacha",
+   "start": 10.4,
+   "end": 10.92,
+   "sentence": 3
+  },
+  {
+   "text": "All",
+   "start": 11.44,
+   "end": 11.58,
+   "sentence": 4
+  },
+  {
+   "text": "107",
+   "start": 11.58,
+   "end": 11.96,
+   "sentence": 4
+  },
+  {
+   "text": "on",
+   "start": 11.96,
+   "end": 12.54,
+   "sentence": 4
+  },
+  {
+   "text": "board",
+   "start": 12.54,
+   "end": 12.76,
+   "sentence": 4
+  },
+  {
+   "text": "die",
+   "start": 12.76,
+   "end": 13.22,
+   "sentence": 4
+  },
+  {
+   "text": "and",
+   "start": 13.22,
+   "end": 13.76,
+   "sentence": 4
+  },
+  {
+   "text": "three",
+   "start": 13.76,
+   "end": 14.0,
+   "sentence": 4
+  },
+  {
+   "text": "people",
+   "start": 14.0,
+   "end": 14.34,
+   "sentence": 4
+  },
+  {
+   "text": "on",
+   "start": 14.34,
+   "end": 14.48,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 14.48,
+   "end": 14.56,
+   "sentence": 4
+  },
+  {
+   "text": "ground",
+   "start": 14.56,
+   "end": 14.82,
+   "sentence": 4
+  },
+  {
+   "text": "Who",
+   "start": 15.5,
+   "end": 15.6,
+   "sentence": 5
+  },
+  {
+   "text": "wanted",
+   "start": 15.6,
+   "end": 15.88,
+   "sentence": 5
+  },
+  {
+   "text": "this",
+   "start": 15.88,
+   "end": 16.14,
+   "sentence": 5
+  },
+  {
+   "text": "Pablo",
+   "start": 17.0,
+   "end": 17.05,
+   "sentence": 6
+  },
+  {
+   "text": "Escobar's",
+   "start": 17.0,
+   "end": 17.72,
+   "sentence": 6
+  },
+  {
+   "text": "Medell\u00edn",
+   "start": 17.72,
+   "end": 17.96,
+   "sentence": 6
+  },
+  {
+   "text": "Cartel",
+   "start": 18.2,
+   "end": 18.32,
+   "sentence": 6
+  },
+  {
+   "text": "ordered",
+   "start": 18.32,
+   "end": 19.0,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 19.0,
+   "end": 19.18,
+   "sentence": 6
+  },
+  {
+   "text": "His",
+   "start": 19.56,
+   "end": 19.74,
+   "sentence": 7
+  },
+  {
+   "text": "target",
+   "start": 19.74,
+   "end": 20.1,
+   "sentence": 7
+  },
+  {
+   "text": "is",
+   "start": 20.1,
+   "end": 20.4,
+   "sentence": 7
+  },
+  {
+   "text": "C\u00e9sar",
+   "start": 20.4,
+   "end": 20.63,
+   "sentence": 7
+  },
+  {
+   "text": "Gaviria",
+   "start": 20.86,
+   "end": 21.44,
+   "sentence": 7
+  },
+  {
+   "text": "But",
+   "start": 22.02,
+   "end": 22.08,
+   "sentence": 8
+  },
+  {
+   "text": "Gaviria",
+   "start": 22.08,
+   "end": 22.58,
+   "sentence": 8
+  },
+  {
+   "text": "is",
+   "start": 22.58,
+   "end": 22.76,
+   "sentence": 8
+  },
+  {
+   "text": "not",
+   "start": 22.76,
+   "end": 23.06,
+   "sentence": 8
+  },
+  {
+   "text": "on",
+   "start": 23.06,
+   "end": 23.26,
+   "sentence": 8
+  },
+  {
+   "text": "the",
+   "start": 23.26,
+   "end": 23.38,
+   "sentence": 8
+  },
+  {
+   "text": "plane",
+   "start": 23.38,
+   "end": 23.58,
+   "sentence": 8
+  },
+  {
+   "text": "Nine",
+   "start": 24.48,
+   "end": 24.53,
+   "sentence": 9
+  },
+  {
+   "text": "days",
+   "start": 24.48,
+   "end": 24.7,
+   "sentence": 9
+  },
+  {
+   "text": "later",
+   "start": 24.7,
+   "end": 25.06,
+   "sentence": 9
+  },
+  {
+   "text": "another",
+   "start": 25.38,
+   "end": 25.64,
+   "sentence": 9
+  },
+  {
+   "text": "bomb",
+   "start": 25.64,
+   "end": 25.98,
+   "sentence": 9
+  },
+  {
+   "text": "kills",
+   "start": 25.98,
+   "end": 26.26,
+   "sentence": 9
+  },
+  {
+   "text": "sixty-three",
+   "start": 26.26,
+   "end": 26.5,
+   "sentence": 9
+  },
+  {
+   "text": "in",
+   "start": 26.74,
+   "end": 27.2,
+   "sentence": 9
+  },
+  {
+   "text": "Bogot\u00e1",
+   "start": 27.2,
+   "end": 27.59,
+   "sentence": 9
+  },
+  {
+   "text": "A",
+   "start": 27.98,
+   "end": 28.3,
+   "sentence": 10
+  },
+  {
+   "text": "2016",
+   "start": 28.3,
+   "end": 28.6,
+   "sentence": 10
+  },
+  {
+   "text": "report",
+   "start": 28.6,
+   "end": 29.26,
+   "sentence": 10
+  },
+  {
+   "text": "disputes",
+   "start": 29.26,
+   "end": 29.58,
+   "sentence": 10
+  },
+  {
+   "text": "the",
+   "start": 29.58,
+   "end": 30.04,
+   "sentence": 10
+  },
+  {
+   "text": "cause",
+   "start": 30.04,
+   "end": 30.26,
+   "sentence": 10
+  },
+  {
+   "text": "but",
+   "start": 30.7,
+   "end": 30.82,
+   "sentence": 10
+  },
+  {
+   "text": "families",
+   "start": 30.82,
+   "end": 31.22,
+   "sentence": 10
+  },
+  {
+   "text": "reject",
+   "start": 31.22,
+   "end": 31.74,
+   "sentence": 10
+  },
+  {
+   "text": "it",
+   "start": 31.74,
+   "end": 31.96,
+   "sentence": 10
+  },
+  {
+   "text": "A",
+   "start": 32.52,
+   "end": 32.57,
+   "sentence": 11
+  },
+  {
+   "text": "bomb",
+   "start": 32.56,
+   "end": 32.8,
+   "sentence": 11
+  },
+  {
+   "text": "meant",
+   "start": 32.8,
+   "end": 33.1,
+   "sentence": 11
+  },
+  {
+   "text": "for",
+   "start": 33.1,
+   "end": 33.26,
+   "sentence": 11
+  },
+  {
+   "text": "one",
+   "start": 33.26,
+   "end": 33.56,
+   "sentence": 11
+  },
+  {
+   "text": "man",
+   "start": 33.56,
+   "end": 33.94,
+   "sentence": 11
+  },
+  {
+   "text": "killed",
+   "start": 33.94,
+   "end": 34.26,
+   "sentence": 11
+  },
+  {
+   "text": "110",
+   "start": 34.26,
+   "end": 34.82,
+   "sentence": 11
+  }
+ ],
+ "sentences": [
+  {
+   "text": "In 1989, a bomb destroys a plane over Colombia.",
+   "start": 0.0,
+   "end": 3.64
+  },
+  {
+   "text": "Flight 203 leaves Bogot\u00e1.",
+   "start": 4.28,
+   "end": 5.99
+  },
+  {
+   "text": "Five minutes later, a bomb explodes.",
+   "start": 6.46,
+   "end": 8.34
+  },
+  {
+   "text": "The plane breaks apart over Soacha.",
+   "start": 9.08,
+   "end": 10.92
+  },
+  {
+   "text": "All 107 on board die, and three people on the ground.",
+   "start": 11.44,
+   "end": 14.82
+  },
+  {
+   "text": "Who wanted this?",
+   "start": 15.5,
+   "end": 16.14
+  },
+  {
+   "text": "Pablo Escobar's Medell\u00edn Cartel ordered it.",
+   "start": 17.0,
+   "end": 19.18
+  },
+  {
+   "text": "His target is C\u00e9sar Gaviria.",
+   "start": 19.56,
+   "end": 21.44
+  },
+  {
+   "text": "But Gaviria is not on the plane.",
+   "start": 22.02,
+   "end": 23.58
+  },
+  {
+   "text": "Nine days later, another bomb kills sixty-three in Bogot\u00e1.",
+   "start": 24.48,
+   "end": 27.59
+  },
+  {
+   "text": "A 2016 report disputes the cause, but families reject it.",
+   "start": 27.98,
+   "end": 31.96
+  },
+  {
+   "text": "A bomb meant for one man killed 110.",
+   "start": 32.52,
+   "end": 34.82
+  }
+ ]
+}
