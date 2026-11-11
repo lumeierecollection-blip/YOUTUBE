@@ -168,5 +168,17 @@
     "cancelled": true,
     "source_file": "raib-report-12-2026-bax-crossing-collision-shorts-shorts-2026-11-10.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "PfoQRYUQEZw",
+    "channel_id": "48",
+    "title": "Nova Scotia Reports Time Off Work Drops to 185 Days Per…",
+    "uploaded_at": "2026-11-11T18:13:59.358Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-11T19:13:59.358Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "nova-scotia-workplace-injury-time-loss-185-days-shorts-shorts-2026-11-11.mp4",
+    "source_queue": "approved"
   }
 ]
