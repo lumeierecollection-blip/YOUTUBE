@@ -2892,9 +2892,14 @@
           "topic": "MIT Fabric Molds and Material-Saving Concrete Beams with 40 Percent Mass Reduction",
           "slug": "mit-fabric-molds-concrete-beams-mass-reduction",
           "reserved_at": "2026-11-10T16:50:03.047Z"
+        },
+        {
+          "topic": "Panama Metro Line 3 Monorail Tunnels Beneath the Panama Canal",
+          "slug": "panama-metro-line-3-tunnels-panama-canal",
+          "reserved_at": "2026-11-11T17:10:36.135Z"
         }
       ],
-      "last_generated": "2026-11-10T16:50:03.048Z"
+      "last_generated": "2026-11-11T17:10:36.135Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
