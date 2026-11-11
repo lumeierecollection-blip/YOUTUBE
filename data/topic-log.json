@@ -1872,9 +1872,14 @@
           "topic": "Sherlock Holmes and Dracula Public Domain Crossover Analysis",
           "slug": "sherlock-holmes-dracula-public-domain-analysis",
           "reserved_at": "2026-11-10T16:33:45.269Z"
+        },
+        {
+          "topic": "Edgar Allan Poe and Arthur Conan Doyle Detective Origins Explored",
+          "slug": "poe-and-doyle-detective-origins",
+          "reserved_at": "2026-11-11T17:36:26.469Z"
         }
       ],
-      "last_generated": "2026-11-10T16:33:45.270Z"
+      "last_generated": "2026-11-11T17:36:26.469Z"
     },
     "8": {
       "channel_name": "Ledger",
