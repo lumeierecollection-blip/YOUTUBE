@@ -1,0 +1,561 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (79/82 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Can",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "you",
+   "start": 0.42,
+   "end": 0.56,
+   "sentence": 0
+  },
+  {
+   "text": "trust",
+   "start": 0.56,
+   "end": 0.92,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.92,
+   "end": 1.28,
+   "sentence": 0
+  },
+  {
+   "text": "with",
+   "start": 1.28,
+   "end": 1.76,
+   "sentence": 0
+  },
+  {
+   "text": "your",
+   "start": 1.76,
+   "end": 1.94,
+   "sentence": 0
+  },
+  {
+   "text": "data",
+   "start": 1.94,
+   "end": 2.18,
+   "sentence": 0
+  },
+  {
+   "text": "Google",
+   "start": 2.88,
+   "end": 3.06,
+   "sentence": 1
+  },
+  {
+   "text": "says",
+   "start": 3.06,
+   "end": 3.52,
+   "sentence": 1
+  },
+  {
+   "text": "people",
+   "start": 3.52,
+   "end": 3.92,
+   "sentence": 1
+  },
+  {
+   "text": "review",
+   "start": 3.92,
+   "end": 4.46,
+   "sentence": 1
+  },
+  {
+   "text": "some",
+   "start": 4.46,
+   "end": 4.88,
+   "sentence": 1
+  },
+  {
+   "text": "chats",
+   "start": 4.88,
+   "end": 5.24,
+   "sentence": 1
+  },
+  {
+   "text": "Reviewed",
+   "start": 5.84,
+   "end": 6.4,
+   "sentence": 2
+  },
+  {
+   "text": "chats",
+   "start": 6.4,
+   "end": 6.64,
+   "sentence": 2
+  },
+  {
+   "text": "stay",
+   "start": 6.64,
+   "end": 7.06,
+   "sentence": 2
+  },
+  {
+   "text": "up",
+   "start": 7.06,
+   "end": 7.24,
+   "sentence": 2
+  },
+  {
+   "text": "to",
+   "start": 7.24,
+   "end": 7.38,
+   "sentence": 2
+  },
+  {
+   "text": "three",
+   "start": 7.38,
+   "end": 7.66,
+   "sentence": 2
+  },
+  {
+   "text": "years",
+   "start": 7.66,
+   "end": 8.1,
+   "sentence": 2
+  },
+  {
+   "text": "Anthropic",
+   "start": 8.82,
+   "end": 9.28,
+   "sentence": 3
+  },
+  {
+   "text": "says",
+   "start": 9.28,
+   "end": 9.5,
+   "sentence": 3
+  },
+  {
+   "text": "five",
+   "start": 9.5,
+   "end": 9.92,
+   "sentence": 3
+  },
+  {
+   "text": "years",
+   "start": 9.92,
+   "end": 10.34,
+   "sentence": 3
+  },
+  {
+   "text": "if",
+   "start": 10.34,
+   "end": 10.78,
+   "sentence": 3
+  },
+  {
+   "text": "you",
+   "start": 10.78,
+   "end": 10.96,
+   "sentence": 3
+  },
+  {
+   "text": "allow",
+   "start": 10.96,
+   "end": 11.16,
+   "sentence": 3
+  },
+  {
+   "text": "training",
+   "start": 11.16,
+   "end": 11.52,
+   "sentence": 3
+  },
+  {
+   "text": "If",
+   "start": 12.22,
+   "end": 12.27,
+   "sentence": 4
+  },
+  {
+   "text": "you",
+   "start": 12.26,
+   "end": 12.38,
+   "sentence": 4
+  },
+  {
+   "text": "don't",
+   "start": 12.38,
+   "end": 12.76,
+   "sentence": 4
+  },
+  {
+   "text": "thirty",
+   "start": 12.76,
+   "end": 13.0,
+   "sentence": 4
+  },
+  {
+   "text": "days",
+   "start": 13.24,
+   "end": 13.58,
+   "sentence": 4
+  },
+  {
+   "text": "But",
+   "start": 14.4,
+   "end": 14.45,
+   "sentence": 5
+  },
+  {
+   "text": "what",
+   "start": 14.44,
+   "end": 14.72,
+   "sentence": 5
+  },
+  {
+   "text": "does",
+   "start": 14.72,
+   "end": 14.94,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 14.94,
+   "end": 15.08,
+   "sentence": 5
+  },
+  {
+   "text": "model",
+   "start": 15.08,
+   "end": 15.4,
+   "sentence": 5
+  },
+  {
+   "text": "itself",
+   "start": 15.4,
+   "end": 15.84,
+   "sentence": 5
+  },
+  {
+   "text": "do",
+   "start": 15.84,
+   "end": 16.28,
+   "sentence": 5
+  },
+  {
+   "text": "We",
+   "start": 16.92,
+   "end": 16.97,
+   "sentence": 6
+  },
+  {
+   "text": "gave",
+   "start": 16.96,
+   "end": 17.14,
+   "sentence": 6
+  },
+  {
+   "text": "three",
+   "start": 17.14,
+   "end": 17.48,
+   "sentence": 6
+  },
+  {
+   "text": "models",
+   "start": 17.48,
+   "end": 17.94,
+   "sentence": 6
+  },
+  {
+   "text": "a",
+   "start": 17.94,
+   "end": 18.22,
+   "sentence": 6
+  },
+  {
+   "text": "secret",
+   "start": 18.22,
+   "end": 18.52,
+   "sentence": 6
+  },
+  {
+   "text": "and",
+   "start": 18.52,
+   "end": 18.96,
+   "sentence": 6
+  },
+  {
+   "text": "said",
+   "start": 18.96,
+   "end": 19.18,
+   "sentence": 6
+  },
+  {
+   "text": "never",
+   "start": 19.18,
+   "end": 19.76,
+   "sentence": 6
+  },
+  {
+   "text": "share",
+   "start": 19.76,
+   "end": 20.02,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 20.02,
+   "end": 20.26,
+   "sentence": 6
+  },
+  {
+   "text": "Google's",
+   "start": 20.96,
+   "end": 21.24,
+   "sentence": 7
+  },
+  {
+   "text": "Gemini",
+   "start": 21.24,
+   "end": 21.54,
+   "sentence": 7
+  },
+  {
+   "text": "Flash",
+   "start": 21.54,
+   "end": 21.92,
+   "sentence": 7
+  },
+  {
+   "text": "never",
+   "start": 21.92,
+   "end": 22.58,
+   "sentence": 7
+  },
+  {
+   "text": "gave",
+   "start": 22.58,
+   "end": 22.92,
+   "sentence": 7
+  },
+  {
+   "text": "it",
+   "start": 22.92,
+   "end": 23.08,
+   "sentence": 7
+  },
+  {
+   "text": "up",
+   "start": 23.08,
+   "end": 23.18,
+   "sentence": 7
+  },
+  {
+   "text": "Google's",
+   "start": 23.8,
+   "end": 24.18,
+   "sentence": 8
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 24.18,
+   "end": 24.49,
+   "sentence": 8
+  },
+  {
+   "text": "leaked",
+   "start": 24.8,
+   "end": 25.28,
+   "sentence": 8
+  },
+  {
+   "text": "it",
+   "start": 25.28,
+   "end": 25.48,
+   "sentence": 8
+  },
+  {
+   "text": "once",
+   "start": 25.48,
+   "end": 25.74,
+   "sentence": 8
+  },
+  {
+   "text": "OpenAI's",
+   "start": 26.64,
+   "end": 27.1,
+   "sentence": 9
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 27.1,
+   "end": 27.69,
+   "sentence": 9
+  },
+  {
+   "text": "never",
+   "start": 28.28,
+   "end": 28.82,
+   "sentence": 9
+  },
+  {
+   "text": "gave",
+   "start": 28.82,
+   "end": 29.14,
+   "sentence": 9
+  },
+  {
+   "text": "it",
+   "start": 29.14,
+   "end": 29.3,
+   "sentence": 9
+  },
+  {
+   "text": "up",
+   "start": 29.3,
+   "end": 29.42,
+   "sentence": 9
+  },
+  {
+   "text": "Here",
+   "start": 29.42,
+   "end": 30.12,
+   "sentence": 10
+  },
+  {
+   "text": "is",
+   "start": 30.12,
+   "end": 30.34,
+   "sentence": 10
+  },
+  {
+   "text": "one",
+   "start": 30.34,
+   "end": 30.62,
+   "sentence": 10
+  },
+  {
+   "text": "real",
+   "start": 30.62,
+   "end": 30.94,
+   "sentence": 10
+  },
+  {
+   "text": "reply",
+   "start": 30.94,
+   "end": 31.4,
+   "sentence": 10
+  },
+  {
+   "text": "So",
+   "start": 32.12,
+   "end": 32.17,
+   "sentence": 11
+  },
+  {
+   "text": "what",
+   "start": 32.16,
+   "end": 32.68,
+   "sentence": 11
+  },
+  {
+   "text": "have",
+   "start": 32.68,
+   "end": 32.88,
+   "sentence": 11
+  },
+  {
+   "text": "you",
+   "start": 32.88,
+   "end": 33.16,
+   "sentence": 11
+  },
+  {
+   "text": "already",
+   "start": 33.16,
+   "end": 33.66,
+   "sentence": 11
+  },
+  {
+   "text": "told",
+   "start": 33.66,
+   "end": 34.02,
+   "sentence": 11
+  },
+  {
+   "text": "an",
+   "start": 34.02,
+   "end": 34.18,
+   "sentence": 11
+  },
+  {
+   "text": "AI",
+   "start": 34.18,
+   "end": 34.4,
+   "sentence": 11
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Can you trust AI with your data?",
+   "start": 0.0,
+   "end": 2.18
+  },
+  {
+   "text": "Google says people review some chats.",
+   "start": 2.88,
+   "end": 5.24
+  },
+  {
+   "text": "Reviewed chats stay up to three years.",
+   "start": 5.84,
+   "end": 8.1
+  },
+  {
+   "text": "Anthropic says five years, if you allow training.",
+   "start": 8.82,
+   "end": 11.52
+  },
+  {
+   "text": "If you don't, thirty days.",
+   "start": 12.22,
+   "end": 13.58
+  },
+  {
+   "text": "But what does the model itself do?",
+   "start": 14.4,
+   "end": 16.28
+  },
+  {
+   "text": "We gave three models a secret and said never share it.",
+   "start": 16.92,
+   "end": 20.26
+  },
+  {
+   "text": "Google's Gemini Flash never gave it up.",
+   "start": 20.96,
+   "end": 23.18
+  },
+  {
+   "text": "Google's Flash-Lite leaked it once.",
+   "start": 23.8,
+   "end": 25.74
+  },
+  {
+   "text": "OpenAI's GPT-OSS never gave it up.",
+   "start": 26.64,
+   "end": 29.42
+  },
+  {
+   "text": "Here is one real reply.",
+   "start": 29.42,
+   "end": 31.4
+  },
+  {
+   "text": "So what have you already told an AI?",
+   "start": 32.12,
+   "end": 34.4
+  }
+ ]
+}
