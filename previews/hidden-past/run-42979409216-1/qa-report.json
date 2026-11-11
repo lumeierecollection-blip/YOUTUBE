@@ -1,0 +1,106 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 37.824,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -17.9,
+  "max_volume_db": -1.8,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Rasalgethi",
+    "seconds": 37.296,
+    "wpm": 136.7,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "plane",
+      "start_s": 0,
+      "end_s": 6.433333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "route",
+      "start_s": 6.433333333333334,
+      "end_s": 8.866666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "boom",
+      "start_s": 8.866666666666667,
+      "end_s": 11.266666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "apart",
+      "start_s": 11.266666666666667,
+      "end_s": 13.766666666666667
+    },
+    {
+      "id": "s5",
+      "kind": "toll",
+      "start_s": 13.766666666666667,
+      "end_s": 18.066666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "who",
+      "start_s": 18.066666666666666,
+      "end_s": 19.9
+    },
+    {
+      "id": "s7",
+      "kind": "explosives",
+      "start_s": 19.9,
+      "end_s": 22.2
+    },
+    {
+      "id": "s8",
+      "kind": "cartel",
+      "start_s": 22.2,
+      "end_s": 23.833333333333332
+    },
+    {
+      "id": "s9",
+      "kind": "target",
+      "start_s": 23.833333333333332,
+      "end_s": 26.133333333333333
+    },
+    {
+      "id": "s10",
+      "kind": "absent",
+      "start_s": 26.133333333333333,
+      "end_s": 28.133333333333333
+    },
+    {
+      "id": "s11",
+      "kind": "elected",
+      "start_s": 28.133333333333333,
+      "end_s": 29.966666666666665
+    },
+    {
+      "id": "s12",
+      "kind": "das",
+      "start_s": 29.966666666666665,
+      "end_s": 33.733333333333334
+    },
+    {
+      "id": "s13",
+      "kind": "close",
+      "start_s": 33.733333333333334,
+      "end_s": 37.766666666666666
+    }
+  ]
+}
