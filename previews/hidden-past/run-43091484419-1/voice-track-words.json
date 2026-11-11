@@ -1,0 +1,445 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (64/66 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Al",
+   "start": 0.0,
+   "end": 0.42,
+   "sentence": 0
+  },
+  {
+   "text": "Capone",
+   "start": 0.42,
+   "end": 0.92,
+   "sentence": 0
+  },
+  {
+   "text": "ruled",
+   "start": 0.92,
+   "end": 1.4,
+   "sentence": 0
+  },
+  {
+   "text": "Chicago",
+   "start": 1.4,
+   "end": 1.94,
+   "sentence": 0
+  },
+  {
+   "text": "but",
+   "start": 2.78,
+   "end": 2.88,
+   "sentence": 0
+  },
+  {
+   "text": "income",
+   "start": 2.88,
+   "end": 3.14,
+   "sentence": 0
+  },
+  {
+   "text": "tax",
+   "start": 3.14,
+   "end": 3.68,
+   "sentence": 0
+  },
+  {
+   "text": "put",
+   "start": 3.68,
+   "end": 4.04,
+   "sentence": 0
+  },
+  {
+   "text": "him",
+   "start": 4.04,
+   "end": 4.2,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 4.2,
+   "end": 4.3,
+   "sentence": 0
+  },
+  {
+   "text": "prison",
+   "start": 4.3,
+   "end": 4.62,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 5.64,
+   "end": 5.72,
+   "sentence": 1
+  },
+  {
+   "text": "1929",
+   "start": 5.72,
+   "end": 6.48,
+   "sentence": 1
+  },
+  {
+   "text": "seven",
+   "start": 7.0,
+   "end": 7.38,
+   "sentence": 1
+  },
+  {
+   "text": "rival",
+   "start": 7.38,
+   "end": 7.8,
+   "sentence": 1
+  },
+  {
+   "text": "gangsters",
+   "start": 7.8,
+   "end": 8.44,
+   "sentence": 1
+  },
+  {
+   "text": "were",
+   "start": 8.44,
+   "end": 8.7,
+   "sentence": 1
+  },
+  {
+   "text": "murdered",
+   "start": 8.7,
+   "end": 9.06,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 9.06,
+   "end": 9.62,
+   "sentence": 1
+  },
+  {
+   "text": "newspapers",
+   "start": 9.62,
+   "end": 9.94,
+   "sentence": 1
+  },
+  {
+   "text": "named",
+   "start": 9.94,
+   "end": 10.5,
+   "sentence": 1
+  },
+  {
+   "text": "him",
+   "start": 10.5,
+   "end": 10.76,
+   "sentence": 1
+  },
+  {
+   "text": "Public",
+   "start": 10.76,
+   "end": 11.14,
+   "sentence": 1
+  },
+  {
+   "text": "Enemy",
+   "start": 11.14,
+   "end": 11.54,
+   "sentence": 1
+  },
+  {
+   "text": "Number",
+   "start": 11.54,
+   "end": 11.94,
+   "sentence": 1
+  },
+  {
+   "text": "One",
+   "start": 11.94,
+   "end": 12.38,
+   "sentence": 1
+  },
+  {
+   "text": "Agents",
+   "start": 12.98,
+   "end": 13.44,
+   "sentence": 2
+  },
+  {
+   "text": "turned",
+   "start": 13.44,
+   "end": 13.88,
+   "sentence": 2
+  },
+  {
+   "text": "to",
+   "start": 13.88,
+   "end": 14.08,
+   "sentence": 2
+  },
+  {
+   "text": "income",
+   "start": 14.08,
+   "end": 14.3,
+   "sentence": 2
+  },
+  {
+   "text": "tax",
+   "start": 14.3,
+   "end": 14.78,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 14.78,
+   "end": 15.28,
+   "sentence": 2
+  },
+  {
+   "text": "charged",
+   "start": 15.28,
+   "end": 15.52,
+   "sentence": 2
+  },
+  {
+   "text": "him",
+   "start": 15.52,
+   "end": 15.82,
+   "sentence": 2
+  },
+  {
+   "text": "with",
+   "start": 15.82,
+   "end": 15.98,
+   "sentence": 2
+  },
+  {
+   "text": "twenty-two",
+   "start": 15.98,
+   "end": 16.19,
+   "sentence": 2
+  },
+  {
+   "text": "counts",
+   "start": 16.4,
+   "end": 17.0,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 17.0,
+   "end": 17.28,
+   "sentence": 2
+  },
+  {
+   "text": "evasion",
+   "start": 17.28,
+   "end": 17.54,
+   "sentence": 2
+  },
+  {
+   "text": "His",
+   "start": 18.48,
+   "end": 18.6,
+   "sentence": 3
+  },
+  {
+   "text": "own",
+   "start": 18.6,
+   "end": 18.76,
+   "sentence": 3
+  },
+  {
+   "text": "admissions",
+   "start": 18.76,
+   "end": 19.1,
+   "sentence": 3
+  },
+  {
+   "text": "of",
+   "start": 19.1,
+   "end": 19.46,
+   "sentence": 3
+  },
+  {
+   "text": "income",
+   "start": 19.46,
+   "end": 19.72,
+   "sentence": 3
+  },
+  {
+   "text": "became",
+   "start": 19.72,
+   "end": 20.2,
+   "sentence": 3
+  },
+  {
+   "text": "evidence",
+   "start": 20.2,
+   "end": 20.56,
+   "sentence": 3
+  },
+  {
+   "text": "Convicted",
+   "start": 21.34,
+   "end": 21.6,
+   "sentence": 4
+  },
+  {
+   "text": "on",
+   "start": 21.6,
+   "end": 21.88,
+   "sentence": 4
+  },
+  {
+   "text": "five",
+   "start": 21.88,
+   "end": 22.2,
+   "sentence": 4
+  },
+  {
+   "text": "counts",
+   "start": 22.2,
+   "end": 22.62,
+   "sentence": 4
+  },
+  {
+   "text": "he",
+   "start": 22.94,
+   "end": 23.12,
+   "sentence": 4
+  },
+  {
+   "text": "got",
+   "start": 23.12,
+   "end": 23.24,
+   "sentence": 4
+  },
+  {
+   "text": "eleven",
+   "start": 23.24,
+   "end": 23.45,
+   "sentence": 4
+  },
+  {
+   "text": "years",
+   "start": 23.66,
+   "end": 24.16,
+   "sentence": 4
+  },
+  {
+   "text": "Atlanta",
+   "start": 24.82,
+   "end": 24.98,
+   "sentence": 5
+  },
+  {
+   "text": "then",
+   "start": 25.82,
+   "end": 25.87,
+   "sentence": 5
+  },
+  {
+   "text": "Alcatraz",
+   "start": 25.84,
+   "end": 26.44,
+   "sentence": 5
+  },
+  {
+   "text": "He",
+   "start": 26.94,
+   "end": 27.18,
+   "sentence": 6
+  },
+  {
+   "text": "died",
+   "start": 27.18,
+   "end": 27.38,
+   "sentence": 6
+  },
+  {
+   "text": "in",
+   "start": 27.38,
+   "end": 27.8,
+   "sentence": 6
+  },
+  {
+   "text": "1947",
+   "start": 27.8,
+   "end": 28.46,
+   "sentence": 6
+  },
+  {
+   "text": "Right",
+   "start": 29.18,
+   "end": 29.56,
+   "sentence": 7
+  },
+  {
+   "text": "way",
+   "start": 29.56,
+   "end": 29.76,
+   "sentence": 7
+  },
+  {
+   "text": "to",
+   "start": 29.76,
+   "end": 29.92,
+   "sentence": 7
+  },
+  {
+   "text": "stop",
+   "start": 29.92,
+   "end": 30.1,
+   "sentence": 7
+  },
+  {
+   "text": "him",
+   "start": 30.1,
+   "end": 30.26,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Al Capone ruled Chicago, but income tax put him in prison.",
+   "start": 0.0,
+   "end": 4.62
+  },
+  {
+   "text": "In 1929, seven rival gangsters were murdered, and newspapers named him Public Enemy Number One.",
+   "start": 5.64,
+   "end": 12.38
+  },
+  {
+   "text": "Agents turned to income tax, and charged him with twenty-two counts of evasion.",
+   "start": 12.98,
+   "end": 17.54
+  },
+  {
+   "text": "His own admissions of income became evidence.",
+   "start": 18.48,
+   "end": 20.56
+  },
+  {
+   "text": "Convicted on five counts, he got eleven years.",
+   "start": 21.34,
+   "end": 24.16
+  },
+  {
+   "text": "Atlanta, then Alcatraz.",
+   "start": 24.82,
+   "end": 26.44
+  },
+  {
+   "text": "He died in 1947.",
+   "start": 26.94,
+   "end": 28.46
+  },
+  {
+   "text": "Right way to stop him?",
+   "start": 29.18,
+   "end": 30.26
+  }
+ ]
+}
