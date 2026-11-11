@@ -62,7 +62,7 @@ export default async function voxBeatsPreview({ key, runId, tools }) {
 
   // 2. Script: the wording and the optional lines that land at 35 to 40 seconds at this voice's measured pace.
   const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: STYLE });
-  const fitFor = (wpm) => { const fit = fitScript({ slots: SLOTS, wpm, targetSeconds: 36.8, minSeconds: 35.6, maxSeconds: 38.6 }); return { fit, ...compactScenes({ scenes: SCENES, sentences: fit.sentences }) }; };
+  const fitFor = (wpm) => { const fit = fitScript({ slots: SLOTS, wpm, targetSeconds: 36.2, minSeconds: 35.5, maxSeconds: 38.4 }); return { fit, ...compactScenes({ scenes: SCENES, sentences: fit.sentences }) }; };
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s, ${first.sentences.length} beats`);

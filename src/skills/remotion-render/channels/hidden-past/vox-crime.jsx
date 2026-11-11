@@ -56,7 +56,7 @@ function Boom({ map }) {
   return (<>
     <Title y={92} size={100} w={960}>Over Soacha</Title>
     <MapBoard geo={map} delay={-80} />
-    <Burst x={s.x} y={s.y} size={150} delay={4} />
+    <Burst x={s.x - 20} y={s.y + 20} size={80} delay={4} />
     <svg viewBox="0 0 1080 1920" style={abs(0, 0, 1080, 1920)}><path d={`M${s.x} ${s.y} L ${s.x + 190} ${s.y - 120}`} stroke={K.ink} strokeWidth="5" fill="none" opacity={ramp(f, 12, 20)} /><text x={s.x + 200} y={s.y - 124} fontFamily={COND} fontWeight={700} fontSize="54" fill={K.ink} stroke={K.land} strokeWidth="8" paintOrder="stroke" opacity={ramp(f, 14, 24)}>SOACHA</text></svg>
     <div style={abs(60, 1020, 440, 380, { background: K.paper, boxShadow: SHADOW, transform: `translateY(${(1 - ramp(f, 6, 18)) * 500}px)` })} />
     <Num x={80} y={1010} size={330} delay={8} w={400}>5</Num>
@@ -110,14 +110,14 @@ function Portrait({ images, credits, ring = true, stamp, strip, strip2, year = t
   return (<>
     <Sticker src={images.gaviria} x={80} y={250} w={500} h={654} rot={-1.5} from="left" delay={0} tapes={[[150, -20, -8, 160]]} credit={credits.gaviria} />
     {ring ? <svg viewBox="0 0 1080 1920" style={abs(0, 0, 1080, 1920)}><path d={hand(330, 480, 175, 200, 9)} fill="none" stroke={K.frame} strokeWidth="9" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset={1 - ramp(f, ringDelay, ringDelay + 16)} /></svg> : null}
-    {year ? <><Num x={620} y={270} size={230} delay={4} w={420} color={K.ink}>1990</Num><Strip x={620} y={520} w={400} delay={10} size={32}>Election year</Strip></> : null}
+    {year ? <><Num x={610} y={270} size={190} delay={4} w={400} color={K.ink}>1990</Num><Strip x={610} y={470} w={380} delay={10} size={30}>Election year</Strip></> : null}
     {stamp}
     <Strip x={80} y={1010} w={940} delay={10} size={36}>{strip}</Strip>
     {strip2 ? <Strip x={80} y={1130} w={760} delay={16} size={30} bg={K.ink}>{strip2}</Strip> : null}
   </>);
 }
 const Target = (p) => <Portrait {...p} strip="Presidential candidate César Gaviria" strip2="Photographed in 2009" />;
-const Absent = (p) => <Portrait {...p} ringDelay={-40} strip="Escobar expected him on board" stamp={<Stamp x={110} y={520} w={860} rot={-9} delay={8} size={110}>Not on board</Stamp>} />;
+const Absent = (p) => <Portrait {...p} ringDelay={-40} strip="Escobar expected him on board" stamp={<Stamp x={110} y={640} w={860} rot={-9} delay={8} size={110}>Not on board</Stamp>} />;
 const Elected = (p) => <Portrait {...p} ringDelay={-40} year={false} strip="He went on to be elected president" stamp={<Stamp x={380} y={640} w={640} rot={7} delay={8} size={84} color={K.ink}>Elected</Stamp>} />;
 function Das() {
   return (<>
@@ -168,6 +168,7 @@ export function HiddenPastVoxCrime({ durationInFrames, scenes, captions, images,
     <AbsoluteFill style={{ background: K.frame }}><style>{FONT_FACES}</style>
       <Board f={f} />
       {scenes.map((s) => { const B = BEATS[s.kind]; return B ? <Sequence key={s.id} from={s.from} durationInFrames={s.to - s.from}><AbsoluteFill><B images={images} credits={credits} cut={cut} map={map} /></AbsoluteFill></Sequence> : null; })}
+      <div style={abs(80, 1516, 920, 40, { fontFamily: COND, fontWeight: 700, fontSize: 26, letterSpacing: "0.12em", color: K.dim, textTransform: "uppercase" })}>Avianca Flight 203 · 27 November 1989</div>
       <Cap captions={captions} />
       <div style={abs(36, 1884, 1008 * (f / durationInFrames), 8, { background: K.ink })} />
     </AbsoluteFill>

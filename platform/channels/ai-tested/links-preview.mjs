@@ -34,7 +34,7 @@ export default async function linksPreview({ key, runId, tools }) {
     tags: ["AI test", "AI fake links", "AI sources", "ChatGPT", "Gemini", "can you trust AI", "AI hallucination"],
   };
   const cal = await narrate({ text: CALIBRATION, edgeVoice: "en-US-AndrewNeural", outDir: tools.outDir, name: "calibration", style: STYLE });
-  const fitFor = (wpm) => { const fit = fitScript({ slots: p.slots, wpm, targetSeconds: 36.8, minSeconds: 35.6, maxSeconds: 38.6 }); return { fit, ...compactScenes({ scenes: p.scenes, sentences: fit.sentences }) }; };
+  const fitFor = (wpm) => { const fit = fitScript({ slots: p.slots, wpm, targetSeconds: 36.2, minSeconds: 35.5, maxSeconds: 38.4 }); return { fit, ...compactScenes({ scenes: p.scenes, sentences: fit.sentences }) }; };
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s, kept ${first.fit.kept.join(",")}`);

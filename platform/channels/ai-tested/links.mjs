@@ -61,8 +61,9 @@ export function tally(m) {
   return { n: m.items.length, opened: c("opened"), dead: c("dead"), unchecked: c("unchecked") };
 }
 
-const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
-const say = (n) => (n <= 12 ? ONES[n] : String(n));
+const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
+const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+const say = (n) => (n < 20 ? ONES[n] : n < 100 ? TENS[Math.floor(n / 10)] + (n % 10 ? `-${ONES[n % 10]}` : "") : String(n));
 const Cap = (s) => s[0].toUpperCase() + s.slice(1);
 const short = (u, n = 46) => { const t = String(u || "").replace(/^https?:\/\//, ""); return t.length > n ? `${t.slice(0, n - 1)}…` : t; };
 
@@ -76,15 +77,21 @@ export function plan(exp) {
   const claims = [
     claim("design", `${Cap(n2)} models were each asked for one direct link to a news article or study on ${total} topics, and every link was requested.`, "demonstrated_feature"),
     ...ms.map((m, i) => claim(`m${i}`, `${m.speak}, ${m.n} links: ${counts(m)}.`)),
+    claim("total", `Across ${n2} models, ${dead} of ${all} links were dead: ${ms.map((m) => `${m.name} ${m.dead} of ${m.n}`).join(", ")}.`),
   ];
+  const pick = () => { for (const o of ["dead", "opened", "unchecked"]) for (const m of ms) { const it = m.items.find((i) => i.outcome === o && i.url); if (it) return { model: m.name, topic: it.topic, ask: askText(it.topic), url: it.url, outcome: it.outcome, status: it.status || null, why: it.why || null }; } return null; };
+  const example = pick();
   const V = (text, claim_ids = []) => ({ text, claim_ids });
   const NR = { allow_no_claim: true, editorial: "question, transition or recommendation drawn from the measured results" };
   const line = (m) => (m.dead === 0 ? [`${m.speak} gave no dead links.`, `${m.speak}: no dead links.`] : m.dead === m.n ? [`Every one of ${m.speak}'s links was dead.`, `${m.speak}: every link dead.`] : [`${m.speak} gave ${say(m.dead)} dead links out of ${say(m.n)}.`, `${m.speak}: ${say(m.dead)} dead.`]);
   const slots = [
     { id: "hook", scene: 0, ...NR, variants: [V("If you ask AI for a source, will the link work?")] },
-    { id: "design", scene: 1, variants: [V(`We asked ${n2} AI models for a link on ${say(total)} topics, then clicked every one.`, ["design"]), V(`We asked ${n2} models for ${say(total)} links, then clicked them all.`, ["design"])] },
+    { id: "design", scene: 1, variants: [V(`We asked ${n2} AI models for a link on ${say(total)} topics, then clicked every single one.`, ["design"]), V(`We asked ${n2} AI models for a link on ${say(total)} topics, then clicked every one.`, ["design"]), V(`We asked ${n2} models for ${say(total)} links, then clicked them all.`, ["design"])] },
+    { id: "ask", scene: 1, optional: true, ...NR, variants: [V("Each one had to give a news article or a study."), V("One news article or study each.")] },
     ...ms.map((m, i) => ({ id: `m${i}`, scene: 2, variants: line(m).map((t) => V(t, [`m${i}`])) })),
-    { id: "example", scene: 3, optional: true, ...NR, variants: [V(anyDead ? "Here is one real answer, and what the site said." : "Here is one real answer.")] },
+    { id: "total", scene: 2, variants: [V(anyDead ? `That is ${say(dead)} dead links out of ${say(all)}.` : `That is no dead links out of ${say(all)}.`, ["total"]), V(anyDead ? `${Cap(say(dead))} of ${say(all)} were dead.` : `None were dead.`, ["total"])] },
+    { id: "example", scene: 3, optional: true, ...NR, variants: [V(anyDead ? "Here is one real answer, and what the site said." : "Here is one real answer."), V("Here is one real answer.")] },
+    ...(example ? [{ id: "exTopic", scene: 3, optional: true, ...NR, variants: [V(`This one was about ${example.topic}.`)] }] : []),
     { id: "tip1", scene: 4, ...NR, variants: [V(anyDead ? "A dead link looks exactly like a working one." : "Even a working link only proves a page exists."), V("A link is not a source until you click it.")] },
     { id: "tip2", scene: 4, ...NR, variants: [V("So how many links have you trusted without clicking?"), V("How many links have you trusted unclicked?")] },
   ];
@@ -95,8 +102,6 @@ export function plan(exp) {
     { kind: "exampleL", treatment: "terminal", objective: "Show one real link from the test and what the server said", background: "white" },
     { kind: "tipL", treatment: "verdict-panel", objective: "Close with the dead count and the question: how many links have you trusted unclicked", background: "accent panel" },
   ];
-  const pick = () => { for (const o of ["dead", "opened", "unchecked"]) for (const m of ms) { const it = m.items.find((i) => i.outcome === o && i.url); if (it) return { model: m.name, topic: it.topic, ask: askText(it.topic), url: it.url, outcome: it.outcome, status: it.status || null, why: it.why || null }; } return null; };
-  const example = pick();
   const data = { date, total, anyDead, dead, all, example, models: ms.map((m) => ({ name: m.name, id: m.id, n: m.n, opened: m.opened, dead: m.dead, unchecked: m.unchecked, seq: m.items.map((i) => i.outcome === "none" ? "unchecked" : i.outcome) })), topics: TOPICS, sampleAsk: askText(TOPICS[0]), shortUrl: example ? short(example.url) : "" };
   return { claims, slots, scenes, data, anyDead, sources: [{ source_id: "s1", url, published: date, title: "AI Tested links test run" }] };
 }

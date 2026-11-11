@@ -39,7 +39,7 @@ const V = (text, claim_ids = []) => ({ text, claim_ids });
 const NR = { allow_no_claim: true, editorial: "turn to context, not a factual claim" };
 /** One slot per picture, in story order. Required slots tell the whole crime; optional ones add context where the pace allows. */
 export const SLOTS = [
-  { id: "hook", scene: 0, variants: [V("On November 27, 1989, a bomb destroys a passenger plane over Colombia.", ["C1"]), V("In 1989, a bomb destroys a plane over Colombia.", ["C1"])] },
+  { id: "hook", scene: 0, variants: [V("In 1989, a bomb destroys a plane over Colombia.", ["C1"])] },
   { id: "depart", scene: 1, variants: [V("Flight 203 leaves Bogotá for Cali at 7:13.", ["C2"]), V("Flight 203 leaves Bogotá.", ["C2"])] },
   { id: "boom", scene: 2, variants: [V("Five minutes later, a bomb explodes.", ["C3"])] },
   { id: "apart", scene: 3, variants: [V("The plane breaks apart over Soacha.", ["C4"])] },
@@ -53,7 +53,7 @@ export const SLOTS = [
   { id: "das", scene: 11, variants: [V("Nine days later, another bomb kills sixty-three in Bogotá.", ["C10"]), V("Nine days later, a bomb kills sixty-three in Bogotá.", ["C10"])] },
   { id: "americans", scene: 12, optional: true, variants: [V("Two Americans died, so Washington starts hunting Escobar.", ["C11"]), V("Two Americans died, so the hunt for Escobar begins.", ["C11"])] },
   { id: "assassin", scene: 13, optional: true, variants: [V("His chief assassin gets ten life sentences.", ["C12"])] },
-  { id: "disputed", scene: 14, optional: true, variants: [V("A 2016 report blames a fuel pump, but families and Avianca reject it.", ["C13"]), V("A 2016 report disputes the cause, but families reject it.", ["C13"])] },
+  { id: "disputed", scene: 14, variants: [V("A 2016 report blames a fuel pump, but families and Avianca reject it.", ["C13"]), V("A 2016 report disputes the cause, but families reject it.", ["C13"])] },
   { id: "close", scene: 15, variants: [V("A bomb meant for one man killed one hundred and ten.", ["C5", "C8", "C9"]), V("A bomb meant for one man killed 110.", ["C5", "C8", "C9"])] },
 ];
 
