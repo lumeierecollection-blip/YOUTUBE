@@ -12,12 +12,12 @@ const exhausted = new Set();
 const T = 0;
 
 /** turns: [{ role: "user" | "assistant", text }] */
-async function callGemini(model, turns) {
+async function callGemini(model, turns, system = null) {
   let last;
   const contents = turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.text }] }));
   for (const key of geminiKeys()) {
     if (exhausted.has(key + model)) continue;
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents, generationConfig: { temperature: T, maxOutputTokens: 1024 } }), signal: AbortSignal.timeout(60000) });
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents, ...(system ? { systemInstruction: { parts: [{ text: system }] } } : {}), generationConfig: { temperature: T, maxOutputTokens: 1024 } }), signal: AbortSignal.timeout(60000) });
     if (r.ok) { const j = await r.json(); return (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("").trim(); }
     last = Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
     if (r.status !== 429) throw last;
@@ -25,15 +25,15 @@ async function callGemini(model, turns) {
   }
   throw last || Object.assign(new Error("no Gemini key left for this model"), { status: 429 });
 }
-async function callGroq(model, turns) {
-  const r = await fetch("https://api.groq.com/openai/v1/chat/completions", { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${process.env.GROQ_API_KEY}` }, body: JSON.stringify({ model, temperature: T, max_tokens: 1024, messages: turns.map((t) => ({ role: t.role, content: t.text })) }), signal: AbortSignal.timeout(60000) });
+async function callGroq(model, turns, system = null) {
+  const r = await fetch("https://api.groq.com/openai/v1/chat/completions", { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${process.env.GROQ_API_KEY}` }, body: JSON.stringify({ model, temperature: T, max_tokens: 1024, messages: [...(system ? [{ role: "system", content: system }] : []), ...turns.map((t) => ({ role: t.role, content: t.text }))] }), signal: AbortSignal.timeout(60000) });
   if (!r.ok) throw Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
   return String((await r.json()).choices?.[0]?.message?.content || "").trim();
 }
 export const MODELS = [
-  { name: "Gemini 3.5 Flash", speak: "Google's Gemini Flash", id: "gemini-3.5-flash", available: () => geminiKeys().length > 0, ask: (t) => callGemini("gemini-3.5-flash", t), pause: 3500 },
-  { name: "Gemini 3.5 Flash-Lite", speak: "Google's Flash-Lite", id: "gemini-3.5-flash-lite", available: () => geminiKeys().length > 0, ask: (t) => callGemini("gemini-3.5-flash-lite", t), pause: 3500 },
-  { name: "GPT-OSS 120B", speak: "OpenAI's GPT-OSS", id: "openai/gpt-oss-120b", available: () => !!process.env.GROQ_API_KEY, ask: (t) => callGroq("openai/gpt-oss-120b", t), pause: 1800 },
+  { name: "Gemini 3.5 Flash", speak: "Google's Gemini Flash", id: "gemini-3.5-flash", available: () => geminiKeys().length > 0, ask: (t, system) => callGemini("gemini-3.5-flash", t, system), pause: 3500 },
+  { name: "Gemini 3.5 Flash-Lite", speak: "Google's Flash-Lite", id: "gemini-3.5-flash-lite", available: () => geminiKeys().length > 0, ask: (t, system) => callGemini("gemini-3.5-flash-lite", t, system), pause: 3500 },
+  { name: "GPT-OSS 120B", speak: "OpenAI's GPT-OSS", id: "openai/gpt-oss-120b", available: () => !!process.env.GROQ_API_KEY, ask: (t, system) => callGroq("openai/gpt-oss-120b", t, system), pause: 1800 },
 ];
 async function askWithRetry(model, turns) {
   for (let attempt = 1; ; attempt++) {

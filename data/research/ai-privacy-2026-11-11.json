@@ -1,0 +1,28 @@
+{
+  "retrieved": "2026-11-11",
+  "method": "Fetched with the web-fetch tool; quotes copied verbatim by the fetching agent and re-checked against the page by the video run when the page can be fetched there. OpenAI's pages (openai.com, help.openai.com) returned HTTP 403 to automated fetches, so no OpenAI statement is used.",
+  "pages": {
+    "google": {
+      "url": "https://support.google.com/gemini/answer/13594961",
+      "title": "Gemini Apps Privacy Hub",
+      "dated": "Last updated: October 26, 2026",
+      "quotes": {
+        "G1": "A subset of chats are reviewed by human reviewers (including Google's trained service providers) to help improve Google services.",
+        "G2": "Chats reviewed by human reviewers (and related data like your language, device type, location info, or feedback) are not deleted when you delete your activity. Instead, they are retained for up to three years.",
+        "G3": "You can change your auto-delete setting in Gemini Apps Activity from the default of 18 months to 3 months, 36 months, or indefinite.",
+        "G4": "Temporary chats are not used to train Google's AI models."
+      }
+    },
+    "anthropic": {
+      "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "title": "Updates to Consumer Terms and Privacy Policy",
+      "dated": "Published Aug 28, 2025",
+      "scope": "Claude Free, Pro and Max plans; not the API or Claude for Work",
+      "quotes": {
+        "A1": "We are also extending data retention to five years, if you allow us to use your data for model training.",
+        "A2": "If you do not choose to provide your data for model training, you'll continue with our existing 30-day data retention period.",
+        "A3": "We will train new models using data from Free, Pro, and Max accounts when this setting is on (including when you use Claude Code from these accounts)."
+      }
+    }
+  }
+}
