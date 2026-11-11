@@ -120,5 +120,41 @@
       "AI agrees with you",
       "AI mistakes"
     ]
+  },
+  "hidden-past-crime": {
+    "run_id": 42981794708,
+    "artifact": "preview-hidden-past-42981794708-1",
+    "sha256": "b09d56b939ff7ab0d72bd6d3ba37707177338ff59dd3ee1f33936bd023116039",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "The Bomb Pablo Escobar Planted for a Candidate Who Wasn't on Board",
+    "description": "On 27 November 1989 a bomb destroyed Avianca Flight 203 over Soacha, Colombia, five minutes after it left Bogotá for Cali. All 107 people on board died, and three on the ground. The Medellín Cartel ordered it; Pablo Escobar planned it hoping to kill presidential candidate César Gaviria, who was not on the plane and went on to be elected president. A 2016 newspaper report disputes the cause; Avianca and victims' families rejected it. Facts from Wikipedia's article on Avianca Flight 203; pictures from Wikimedia Commons, credited on screen and below.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Avianca_Flight_203\nImages: Richard Vandervord (CC BY-SA 4.0), Colombian National Police (public domain) and World Economic Forum (CC BY-SA 2.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
+    "tags": [
+      "Pablo Escobar",
+      "Avianca Flight 203",
+      "Medellín Cartel",
+      "César Gaviria",
+      "Colombia",
+      "1989",
+      "history"
+    ]
+  },
+  "ai-tested-links": {
+    "run_id": 42981802320,
+    "artifact": "preview-ai-tested-42981802320-1",
+    "sha256": "aee9978763c77454c5fbafdf5d516f41bf44ba243479664e32bebed112942cea",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "We Clicked Every Link AI Gave Us. 12 of 36 Were Dead.",
+    "description": "We asked 3 AI models for one direct link to a news article or study on 12 topics, then requested every link from a server. Gemini 3.5 Flash: 9 links opened, 3 dead, 0 could not be checked. Gemini 3.5 Flash-Lite: 8 links opened, 4 dead, 0 could not be checked. GPT-OSS 120B: 5 links opened, 5 dead, 2 could not be checked. Opened means the server returned a page (it does not prove the page says what the AI claimed); dead means a 404 or 410 or an address that does not exist; unchecked means the site blocked us or did not answer. A link is not a source until you click it. One small test, run on 11 November 2026 at temperature 0; links, sites and models change.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI fake links",
+      "AI sources",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI hallucination"
+    ]
   }
 }
