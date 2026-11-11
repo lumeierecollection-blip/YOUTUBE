@@ -1,0 +1,532 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (74/78 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Pablo",
+   "start": 0.0,
+   "end": 0.56,
+   "sentence": 0
+  },
+  {
+   "text": "Escobar",
+   "start": 0.56,
+   "end": 1.22,
+   "sentence": 0
+  },
+  {
+   "text": "planned",
+   "start": 1.22,
+   "end": 1.76,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 1.76,
+   "end": 2.06,
+   "sentence": 0
+  },
+  {
+   "text": "bomb",
+   "start": 2.06,
+   "end": 2.3,
+   "sentence": 0
+  },
+  {
+   "text": "for",
+   "start": 2.3,
+   "end": 2.78,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.78,
+   "end": 2.88,
+   "sentence": 0
+  },
+  {
+   "text": "presidential",
+   "start": 2.88,
+   "end": 3.3,
+   "sentence": 0
+  },
+  {
+   "text": "candidate",
+   "start": 3.3,
+   "end": 4.0,
+   "sentence": 0
+  },
+  {
+   "text": "An",
+   "start": 4.74,
+   "end": 4.8,
+   "sentence": 1
+  },
+  {
+   "text": "Avianca",
+   "start": 4.8,
+   "end": 5.28,
+   "sentence": 1
+  },
+  {
+   "text": "jet",
+   "start": 5.28,
+   "end": 5.68,
+   "sentence": 1
+  },
+  {
+   "text": "takes",
+   "start": 5.68,
+   "end": 6.1,
+   "sentence": 1
+  },
+  {
+   "text": "off",
+   "start": 6.1,
+   "end": 6.36,
+   "sentence": 1
+  },
+  {
+   "text": "from",
+   "start": 6.36,
+   "end": 6.62,
+   "sentence": 1
+  },
+  {
+   "text": "Bogot\u00e1",
+   "start": 6.62,
+   "end": 7.06,
+   "sentence": 1
+  },
+  {
+   "text": "It",
+   "start": 7.5,
+   "end": 7.84,
+   "sentence": 2
+  },
+  {
+   "text": "is",
+   "start": 7.84,
+   "end": 7.96,
+   "sentence": 2
+  },
+  {
+   "text": "bound",
+   "start": 7.96,
+   "end": 8.16,
+   "sentence": 2
+  },
+  {
+   "text": "for",
+   "start": 8.16,
+   "end": 8.5,
+   "sentence": 2
+  },
+  {
+   "text": "Cali",
+   "start": 8.5,
+   "end": 9.05,
+   "sentence": 2
+  },
+  {
+   "text": "Five",
+   "start": 9.6,
+   "end": 9.7,
+   "sentence": 3
+  },
+  {
+   "text": "minutes",
+   "start": 9.7,
+   "end": 9.9,
+   "sentence": 3
+  },
+  {
+   "text": "later",
+   "start": 9.9,
+   "end": 10.3,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 10.84,
+   "end": 10.89,
+   "sentence": 3
+  },
+  {
+   "text": "bomb",
+   "start": 10.86,
+   "end": 11.16,
+   "sentence": 3
+  },
+  {
+   "text": "explodes",
+   "start": 11.16,
+   "end": 11.7,
+   "sentence": 3
+  },
+  {
+   "text": "The",
+   "start": 12.64,
+   "end": 12.72,
+   "sentence": 4
+  },
+  {
+   "text": "plane",
+   "start": 12.72,
+   "end": 12.92,
+   "sentence": 4
+  },
+  {
+   "text": "breaks",
+   "start": 12.92,
+   "end": 13.3,
+   "sentence": 4
+  },
+  {
+   "text": "apart",
+   "start": 13.3,
+   "end": 13.68,
+   "sentence": 4
+  },
+  {
+   "text": "over",
+   "start": 13.68,
+   "end": 14.14,
+   "sentence": 4
+  },
+  {
+   "text": "Soacha",
+   "start": 14.14,
+   "end": 14.7,
+   "sentence": 4
+  },
+  {
+   "text": "107",
+   "start": 15.26,
+   "end": 15.64,
+   "sentence": 5
+  },
+  {
+   "text": "die",
+   "start": 15.64,
+   "end": 16.34,
+   "sentence": 5
+  },
+  {
+   "text": "on",
+   "start": 16.34,
+   "end": 16.56,
+   "sentence": 5
+  },
+  {
+   "text": "board",
+   "start": 16.56,
+   "end": 16.74,
+   "sentence": 5
+  },
+  {
+   "text": "three",
+   "start": 17.48,
+   "end": 17.66,
+   "sentence": 5
+  },
+  {
+   "text": "on",
+   "start": 17.66,
+   "end": 17.98,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 17.98,
+   "end": 18.12,
+   "sentence": 5
+  },
+  {
+   "text": "ground",
+   "start": 18.12,
+   "end": 18.38,
+   "sentence": 5
+  },
+  {
+   "text": "The",
+   "start": 19.12,
+   "end": 19.17,
+   "sentence": 6
+  },
+  {
+   "text": "target",
+   "start": 19.16,
+   "end": 19.52,
+   "sentence": 6
+  },
+  {
+   "text": "is",
+   "start": 19.52,
+   "end": 19.94,
+   "sentence": 6
+  },
+  {
+   "text": "C\u00e9sar",
+   "start": 19.94,
+   "end": 20.19,
+   "sentence": 6
+  },
+  {
+   "text": "Gaviria",
+   "start": 20.44,
+   "end": 21.1,
+   "sentence": 6
+  },
+  {
+   "text": "But",
+   "start": 21.52,
+   "end": 21.78,
+   "sentence": 7
+  },
+  {
+   "text": "Gaviria",
+   "start": 21.78,
+   "end": 22.36,
+   "sentence": 7
+  },
+  {
+   "text": "is",
+   "start": 22.36,
+   "end": 22.62,
+   "sentence": 7
+  },
+  {
+   "text": "not",
+   "start": 22.62,
+   "end": 22.86,
+   "sentence": 7
+  },
+  {
+   "text": "on",
+   "start": 22.86,
+   "end": 23.16,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 23.16,
+   "end": 23.32,
+   "sentence": 7
+  },
+  {
+   "text": "plane",
+   "start": 23.32,
+   "end": 23.5,
+   "sentence": 7
+  },
+  {
+   "text": "Nine",
+   "start": 24.4,
+   "end": 24.45,
+   "sentence": 8
+  },
+  {
+   "text": "days",
+   "start": 24.42,
+   "end": 24.66,
+   "sentence": 8
+  },
+  {
+   "text": "later",
+   "start": 24.66,
+   "end": 25.04,
+   "sentence": 8
+  },
+  {
+   "text": "another",
+   "start": 25.42,
+   "end": 25.68,
+   "sentence": 8
+  },
+  {
+   "text": "bomb",
+   "start": 25.68,
+   "end": 26.0,
+   "sentence": 8
+  },
+  {
+   "text": "kills",
+   "start": 26.0,
+   "end": 26.38,
+   "sentence": 8
+  },
+  {
+   "text": "63",
+   "start": 26.38,
+   "end": 26.86,
+   "sentence": 8
+  },
+  {
+   "text": "A",
+   "start": 27.52,
+   "end": 27.9,
+   "sentence": 9
+  },
+  {
+   "text": "2016",
+   "start": 27.9,
+   "end": 28.16,
+   "sentence": 9
+  },
+  {
+   "text": "report",
+   "start": 28.16,
+   "end": 28.88,
+   "sentence": 9
+  },
+  {
+   "text": "disputes",
+   "start": 28.88,
+   "end": 29.36,
+   "sentence": 9
+  },
+  {
+   "text": "the",
+   "start": 29.36,
+   "end": 29.88,
+   "sentence": 9
+  },
+  {
+   "text": "cause",
+   "start": 29.88,
+   "end": 30.14,
+   "sentence": 9
+  },
+  {
+   "text": "but",
+   "start": 30.76,
+   "end": 30.84,
+   "sentence": 9
+  },
+  {
+   "text": "families",
+   "start": 30.84,
+   "end": 31.2,
+   "sentence": 9
+  },
+  {
+   "text": "reject",
+   "start": 31.2,
+   "end": 31.72,
+   "sentence": 9
+  },
+  {
+   "text": "it",
+   "start": 31.72,
+   "end": 31.98,
+   "sentence": 9
+  },
+  {
+   "text": "A",
+   "start": 32.58,
+   "end": 32.63,
+   "sentence": 10
+  },
+  {
+   "text": "bomb",
+   "start": 32.6,
+   "end": 32.8,
+   "sentence": 10
+  },
+  {
+   "text": "meant",
+   "start": 32.8,
+   "end": 33.2,
+   "sentence": 10
+  },
+  {
+   "text": "for",
+   "start": 33.2,
+   "end": 33.42,
+   "sentence": 10
+  },
+  {
+   "text": "one",
+   "start": 33.42,
+   "end": 33.62,
+   "sentence": 10
+  },
+  {
+   "text": "man",
+   "start": 33.62,
+   "end": 34.2,
+   "sentence": 10
+  },
+  {
+   "text": "killed",
+   "start": 34.5,
+   "end": 34.76,
+   "sentence": 10
+  },
+  {
+   "text": "110",
+   "start": 34.76,
+   "end": 35.28,
+   "sentence": 10
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Pablo Escobar planned a bomb for a presidential candidate.",
+   "start": 0.0,
+   "end": 4.0
+  },
+  {
+   "text": "An Avianca jet takes off from Bogot\u00e1.",
+   "start": 4.74,
+   "end": 7.06
+  },
+  {
+   "text": "It is bound for Cali.",
+   "start": 7.5,
+   "end": 9.05
+  },
+  {
+   "text": "Five minutes later, a bomb explodes.",
+   "start": 9.6,
+   "end": 11.7
+  },
+  {
+   "text": "The plane breaks apart over Soacha.",
+   "start": 12.64,
+   "end": 14.7
+  },
+  {
+   "text": "107 die on board, three on the ground.",
+   "start": 15.26,
+   "end": 18.38
+  },
+  {
+   "text": "The target is C\u00e9sar Gaviria.",
+   "start": 19.12,
+   "end": 21.1
+  },
+  {
+   "text": "But Gaviria is not on the plane.",
+   "start": 21.52,
+   "end": 23.5
+  },
+  {
+   "text": "Nine days later, another bomb kills 63.",
+   "start": 24.4,
+   "end": 26.86
+  },
+  {
+   "text": "A 2016 report disputes the cause, but families reject it.",
+   "start": 27.52,
+   "end": 31.98
+  },
+  {
+   "text": "A bomb meant for one man killed 110.",
+   "start": 32.58,
+   "end": 35.28
+  }
+ ]
+}
