@@ -1,0 +1,66 @@
+{
+  "topic_slug": "poe-and-doyle-detective-origins",
+  "strongest_angle": "Analyzing how Edgar Allan Poe established the foundational template for detective fiction through three short stories in the 1840s featuring C. Auguste Dupin in Paris, and how Arthur Conan Doyle subsequently expanded the genre starting in the 1880s.",
+  "key_facts": [
+    {
+      "fact": "Edgar Allan Poe published three short stories featuring his amateur detective C. Auguste Dupin in the 1840s, starting with The Murders in the Rue Morgue in 1841 set in a Parisian apartment.",
+      "source_url": "https://academic.oup.com/edited-volume/61883/chapter/547763418",
+      "source_name": "Oxford Research Encyclopedia of Literature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arthur Conan Doyle wrote 59 Sherlock Holmes tales following his initial stories that first appeared in the 1880s.",
+      "source_url": "https://www.npr.org/2026/11/09/nx-s1-6032766/edgar-allan-poe-arthur-conan-doyle-sherlock-holmes",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the summer of 1927, Arthur Conan Doyle recorded one of the first ever sound-on-film interviews shortly after publishing his final Sherlock Holmes story.",
+      "source_url": "https://pure.hud.ac.uk/ws/files/35406967/Burrow_M_AAM_HolmesAndTheHistoryOfDetectiveFiction_041017.pdf",
+      "source_name": "University of Huddersfield Repository",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Sherlock Holmes tales total",
+      "value": 59,
+      "unit": "tales",
+      "source_url": "https://www.npr.org/2026/11/09/nx-s1-6032766/edgar-allan-poe-arthur-conan-doyle-sherlock-holmes"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Poe ... [wrote Doyle] was the father of the detective tale, and covered its limits so completely that I fail to see how his followers can find any fresh ground which they can confidently call their own.",
+      "speaker": "Sir Arthur Conan Doyle",
+      "source_name": "NPR",
+      "source_url": "https://www.npr.org/2026/11/09/nx-s1-6032766/edgar-allan-poe-arthur-conan-doyle-sherlock-holmes"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Edgar Allan Poe",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "C. Auguste Dupin",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "Oxford University Press",
+      "kind": "organization"
+    }
+  ]
+}

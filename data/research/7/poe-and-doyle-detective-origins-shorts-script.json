@@ -1,0 +1,78 @@
+{
+  "channel_id": "7",
+  "topic_slug": "poe-and-doyle-detective-origins",
+  "format": "shorts",
+  "hook": "Detective fiction began in the 1840s when Edgar Allan Poe created the template for the genre.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Detective fiction began in the 1840s when Edgar Allan Poe created the template for the genre.",
+      "visual_cue": "Side-by-side portrait sketch of Edgar Allan Poe and Arthur Conan Doyle.",
+      "sfx_cue": "Soft, rhythmic scratching of a quill on parchment.",
+      "b_roll": [
+        "Historical 19th-century ink illustration of a quill pen",
+        "Public domain portrait of Edgar Allan Poe",
+        "Public domain portrait of Arthur Conan Doyle"
+      ],
+      "text_overlay": {
+        "text": "Who really created detective fiction?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1841, The Murders in the Rue Morgue introduced the amateur detective C. Auguste Dupin. This Parisian apartment mystery established the foundational template for the entire detective fiction genre. How did Arthur Conan Doyle manage to expand this genre decades after Poe's initial success?",
+      "visual_cue": "Atmospheric map of 1840s Paris with a magnifying glass icon over a building.",
+      "sfx_cue": "Low ambient city street noise of 19th-century Paris.",
+      "b_roll": [
+        "1840s map of Paris",
+        "Illustration of a magnifying glass over a Victorian apartment"
+      ],
+      "text_overlay": {
+        "text": "Poe's 1841 template"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Doyle later wrote 59 Sherlock Holmes tales, expanding the genre that Poe first established in Paris.",
+      "visual_cue": "Animated stack of 59 books appearing one by one.",
+      "sfx_cue": "Sound of books hitting a wooden table.",
+      "b_roll": [
+        "Library shelf animation",
+        "Graphic of 59 books appearing"
+      ],
+      "text_overlay": {
+        "text": "59 Sherlock Holmes tales"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "He produced 59 Sherlock Holmes tales that expanded the legacy Poe started in 1841.",
+      "visual_cue": "Close-up of a vintage document with a bold quote highlight.",
+      "sfx_cue": "Page turning sound.",
+      "b_roll": [
+        "Vintage parchment texture",
+        "Close up of handwritten text"
+      ],
+      "text_overlay": {
+        "text": "Poe: The father of the detective tale"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Doyle recorded a sound-on-film interview in 1927 after finishing his final Sherlock Holmes story.",
+      "visual_cue": "Split screen showing the dates 1841 and the number 59.",
+      "sfx_cue": "Clock ticking rhythm.",
+      "b_roll": [
+        "Timeline graphic from 1841 to present",
+        "Number 59 graphic"
+      ],
+      "text_overlay": {
+        "text": "1841 to 59 tales"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://academic.oup.com/edited-volume/61883/chapter/547763418",
+    "https://www.npr.org/2026/11/09/nx-s1-6032766/edgar-allan-poe-arthur-conan-doyle-sherlock-holmes"
+  ]
+}
