@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "cocos-keeling-islands-massive-rose-coral-colony",
+  "format": "shorts",
+  "hook": "What if a massive coral structure hid underwater for 30 years?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a massive coral structure hid underwater for 30 years?",
+      "text_overlay": {
+        "text": "Hidden for 30 years"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers recently mapped a massive Pachyseris rose coral colony in the Indian Ocean. How large is this hidden giant?",
+      "text_overlay": {
+        "text": "Cocos (Keeling) Islands"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Local divers first spotted parts of this Indian Ocean colony three decades ago.",
+      "text_overlay": {
+        "text": "First spotted 30 years ago"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Scientists finally confirmed the colony measures 1.56 kilometers in total length. This sprawling structure averages 36.5 metres in width. It remains a colossal natural feature of the Indian Ocean.",
+      "text_overlay": {
+        "text": "1.56 kilometers long"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers mapped this Pachyseris colony on the outer reef of the Cocos (Keeling) Islands.",
+      "text_overlay": {
+        "text": "Cocos (Keeling) Islands"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.abc.net.au/news/2026-11-11/massive-coral-colony-found-off-the-cocos-keeling-islands/107367586",
+    "https://oceanographicmagazine.com/news/huge-140-bus-long-coral-colony-mapped-by-scientists-for-first-time"
+  ]
+}
