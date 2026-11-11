@@ -1,0 +1,25 @@
+{
+  "format": "hidden_past_vox_capone_30s",
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 30.315,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -21.5,
+    "max_volume_db": -2,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 29.784,
+      "words": 58,
+      "wpm": 116.8,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  }
+}
