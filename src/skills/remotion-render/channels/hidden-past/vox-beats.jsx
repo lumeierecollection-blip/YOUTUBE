@@ -265,6 +265,7 @@ function Gone({ images, credits }) {
   </>);
 }
 
+export { K, COND, SHADOW, ramp, over, out, Board, Tape, Tri, Dot, Sticker, Cut, Num, Title, Stamp, Strip, MapBoard, Cap, hand };
 const BEATS = { still: Still, approved: Approved, year: Year, import: Import, estate: Estate, escape: Escape, n16: N16, n40: N40, n200: N200, invasive: Invasive, cull: Cull, india: India, stay: Stay, gone: Gone };
 
 function Cap({ captions }) {
