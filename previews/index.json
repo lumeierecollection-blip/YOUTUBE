@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-11T07:27:33.959Z",
+  "rebuilt_at": "2026-11-11T07:27:35.879Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,9 +118,9 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "script_complete",
-      "status": "ok",
-      "at": "2026-11-11T07:27:33.472Z",
+      "stage": "script_approved",
+      "status": "pending",
+      "at": "2026-11-11T07:27:35.374Z",
       "branch": "preview/hidden-past-crime-beats",
       "commit": "23ef71bb",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979409216#artifacts)",
@@ -131,7 +131,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-11T07:27:33.472Z",
+      "lastOk": "2026-11-10T23:28:17.859Z",
       "run": "run-42979409216-1"
     },
     {
