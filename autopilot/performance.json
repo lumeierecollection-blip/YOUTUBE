@@ -3,29 +3,28 @@
     "ZFhtdVwK2zQ": {
       "channel": "1",
       "privacy": "private",
-      "views": 0,
+      "views": 1,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-09T10:13:26.192Z"
+      "collected_at": "2026-11-11T01:40:43.054Z"
     },
     "IIdYdKKUiRM": {
       "channel": "2",
       "privacy": "public",
-      "views": 1,
-      "likes": 2,
+      "views": 92,
+      "likes": 5,
       "comments": 0,
-      "collected_at": "2026-11-09T10:13:26.564Z"
+      "collected_at": "2026-11-11T01:40:43.439Z"
     }
   },
   "analytics_status": {
     "1": {
-      "available": false,
-      "reason": "500 Internal error encountered.",
-      "checked_at": "2026-11-09T10:13:26.421Z"
+      "available": true,
+      "checked_at": "2026-11-11T01:40:43.254Z"
     },
     "2": {
       "available": true,
-      "checked_at": "2026-11-09T10:13:26.732Z"
+      "checked_at": "2026-11-11T01:40:43.510Z"
     }
   }
 }

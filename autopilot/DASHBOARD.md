@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-09 12:13 SAST
+Updated 2026-11-11 03:40 SAST
 
-**Next productions:** AI Tested 2026-11-10 11:00 SAST, AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST
+**Next productions:** AI Tested 2026-11-11 11:00 SAST, Hidden Past 2026-11-11 16:00 SAST, AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -12,18 +12,18 @@ Updated 2026-11-09 12:13 SAST
 | Selected topic and score | The Invention of Atari's Pong (63.5/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
-| Performance | 0 views, 0 likes, 0 comments (private) |
-| Analytics | unavailable: 500 Internal error encountered. |
+| Performance | 1 views, 0 likes, 0 comments (private) |
+| Analytics | available |
 
 ## AI Tested
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | delivered at delivered, attempts 1 |
-| Selected topic and score | AI-Powered Smart Glasses Used for School Exam Cheating (72.2/100) |
-| QA | all gates passed |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Amazon's New AI-Powered Security Drone and Robot Go Mobile (79.2/100) |
+| QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 1 views, 2 likes, 0 comments (public) |
+| Performance | 92 views, 5 likes, 0 comments (public) |
 | Analytics | available |
 
 ## Needs your attention
