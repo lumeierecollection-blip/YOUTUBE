@@ -1163,12 +1163,12 @@
       "attempts": 1,
       "run_id": "43120297762",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T23:32:35.195Z",
-      "stage": "script",
-      "topic": "Rosa Parks' 1955 arrest sparking the Montgomery bus boycott",
-      "score": 76.9,
-      "pillar": "Events that changed the modern world",
-      "hook": "One quiet refusal on a city bus ignited a movement that changed American history forever."
+      "updated_at": "2026-11-11T23:51:17.604Z",
+      "stage": "research",
+      "topic": "The 1978 Jonestown mass murder and suicide",
+      "score": 75.5,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "How a utopian religious movement in the jungles of Guyana ended in one of the deadliest mass atrocities in modern history."
     }
   },
   "uploads": [
@@ -2209,6 +2209,15 @@
       "at_ms": 1794439925218,
       "score": 76.9,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1978 Jonestown mass murder and suicide",
+      "slug": "the-1978-jonestown-mass-murder-and-suicide",
+      "slot": "2026-11-11-ch1",
+      "at_ms": 1794441077604,
+      "score": 75.5,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
