@@ -39,7 +39,7 @@ const ringBox = (ring) => ring.reduce((b, [x, y]) => ({ w: Math.min(b.w, x), e: 
 /** The United States, framed on three places and drawn from Natural Earth: Chicago, the Atlanta penitentiary and Alcatraz. Coordinates are from English Wikipedia. */
 async function routeMap() {
   const places = [await coords("Chicago"), await coords("Atlanta"), await coords("Alcatraz Island")];
-  const m = frameMap(places, undefined, { zoom: 8 }), { box, project } = m;
+  const m = frameMap(places, undefined, { zoom: 16 }), { box, project } = m;
   const visible = (poly) => { const b = ringBox(poly[0]); return b.w < box.e && b.e > box.w && b.s < box.n && b.n > box.s; };
   const focused = new Set(m.focusFeatures);
   const landD = pathOf(m.features.filter((f) => !focused.has(f)).flatMap((f) => polygonsOf(f).filter(visible)), project, true);
@@ -48,7 +48,7 @@ async function routeMap() {
   const labels = [];
   for (const f of m.features.filter((x) => !focused.has(x) && x.properties.LABELRANK <= 5).slice(0, 10)) { const p = [f.properties.LABEL_X, f.properties.LABEL_Y]; if (inView(p)) { const [x, y] = project(p); labels.push({ text: f.properties.NAME.toUpperCase(), x, y, size: 30 }); } }
   const names = ["Chicago, 1925-31", "Atlanta, 1932", "Alcatraz, 1934"];
-  const pins = places.map((q, i) => { const [x, y] = project([q.lon, q.lat]); return { name: names[i], x, y, side: i === 2 ? "left" : "right" }; });
+  const pins = places.map((q, i) => { const [x, y] = project([q.lon, q.lat]); return { name: names[i], x, y, side: "right" }; });
   return { rect: AREA, landD, countryD, labels: labels.slice(0, 6), pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places, map_data: "Natural Earth 1:50m (public domain); coordinates from English Wikipedia" };
 }
 
