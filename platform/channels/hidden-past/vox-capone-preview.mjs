@@ -39,7 +39,7 @@ const ringBox = (ring) => ring.reduce((b, [x, y]) => ({ w: Math.min(b.w, x), e: 
 /** The United States, framed on three places and drawn from Natural Earth: Chicago, the Atlanta penitentiary and Alcatraz. Coordinates are from English Wikipedia. */
 async function routeMap() {
   const places = [await coords("Chicago"), await coords("Atlanta"), await coords("Alcatraz Island")];
-  const m = frameMap(places, undefined, { zoom: 3.2 }), { box, project } = m;
+  const m = frameMap(places, undefined, { zoom: 8 }), { box, project } = m;
   const visible = (poly) => { const b = ringBox(poly[0]); return b.w < box.e && b.e > box.w && b.s < box.n && b.n > box.s; };
   const focused = new Set(m.focusFeatures);
   const landD = pathOf(m.features.filter((f) => !focused.has(f)).flatMap((f) => polygonsOf(f).filter(visible)), project, true);

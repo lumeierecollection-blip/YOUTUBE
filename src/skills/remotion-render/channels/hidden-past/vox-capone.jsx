@@ -43,7 +43,6 @@ function Massacre({ images, credits }) {
 function Counts() {
   return (<>
     <Title size={116} delay={0} w={940}>Income tax</Title>
-    <Strip x={60} y={270} w={940} delay={6} size={32}>Treasury + Justice Departments planned the prosecutions</Strip>
     <Num x={60} y={380} size={360} delay={4} w={500}>22</Num>
     <Strip x={500} y={470} w={510} delay={10} size={32}>Counts of tax evasion</Strip>
     <Strip x={500} y={580} w={510} delay={26} size={32} bg={K.ink}>5 convicted</Strip>

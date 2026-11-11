@@ -69,7 +69,7 @@ function Control({ d }) {
 function Example({ d }) {
   const e = d.example, f = useCurrentFrame();
   if (!e) return null;
-  const reply = String(e.reply || "").replace(/\s+/g, " ").trim(), cut = reply.length > 280 ? `${reply.slice(0, 279)}…` : reply, made = e.outcome === "made_up";
+  const reply = String(e.reply || "").replace(/[*_`#]+/g, "").replace(/\s+/g, " ").trim(), cut = reply.length > 280 ? `${reply.slice(0, 279)}…` : reply, made = e.outcome === "made_up";
   return (<>
     <Title size={96} delay={0} w={960}>{made ? "A real invented answer" : "A real answer"}</Title>
     <Card x={70} y={330} w={800} h={230} rot={-1.2} from="left" delay={2} pad={30} bg={K.frame} style={{ color: K.paper }}>
