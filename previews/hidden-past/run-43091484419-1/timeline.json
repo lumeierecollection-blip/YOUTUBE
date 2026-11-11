@@ -1,0 +1,486 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "name",
+      "treatment": "name-title-with-portrait",
+      "objective": "Open on the name Al Capone over his 1930 portrait with the payoff stated at once: income tax put him in prison",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 169,
+      "start_s": 0,
+      "end_s": 5.633333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "massacre",
+      "treatment": "newspaper-scan-with-number-and-stamp",
+      "objective": "Show the New York Times front page of 15 February 1929, the number seven and the Public Enemy No. 1 stamp",
+      "background": "paper panel in saturated frame",
+      "from": 169,
+      "to": 389,
+      "start_s": 5.633333333333334,
+      "end_s": 12.966666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "counts",
+      "treatment": "giant-words-and-counted-dots",
+      "objective": "Name income tax as the weapon (Treasury and Justice Departments) and draw twenty-two counts as dots, the five he was convicted on in the accent colour",
+      "background": "paper panel in saturated frame",
+      "from": 389,
+      "to": 554,
+      "start_s": 12.966666666666667,
+      "end_s": 18.466666666666665
+    },
+    {
+      "id": "s4",
+      "kind": "evidence",
+      "treatment": "quote-slip",
+      "objective": "Quote the source sentence on his own admissions of income being admitted as evidence",
+      "background": "paper panel in saturated frame",
+      "from": 554,
+      "to": 640,
+      "start_s": 18.466666666666665,
+      "end_s": 21.333333333333332
+    },
+    {
+      "id": "s5",
+      "kind": "sentence",
+      "treatment": "photo-with-giant-number",
+      "objective": "Show eleven years with the prison photograph and the fine",
+      "background": "paper panel in saturated frame",
+      "from": 640,
+      "to": 745,
+      "start_s": 21.333333333333332,
+      "end_s": 24.833333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "prisons",
+      "treatment": "drawn-route-with-two-photos",
+      "objective": "Draw Chicago to Atlanta (1932) to Alcatraz (1934) with a photograph of each prison",
+      "background": "paper panel in saturated frame",
+      "from": 745,
+      "to": 808,
+      "start_s": 24.833333333333332,
+      "end_s": 26.933333333333334
+    },
+    {
+      "id": "s7",
+      "kind": "end",
+      "treatment": "portrait-and-death-certificate",
+      "objective": "Show him around 1935 and the 1947 death certificate",
+      "background": "paper panel in saturated frame",
+      "from": 808,
+      "to": 875,
+      "start_s": 26.933333333333334,
+      "end_s": 29.166666666666668
+    },
+    {
+      "id": "s8",
+      "kind": "close",
+      "treatment": "title-with-stamp",
+      "objective": "Close on a question viewers can answer in the comments: was tax the right way to stop him",
+      "background": "paper panel in saturated frame",
+      "from": 875,
+      "to": 934,
+      "start_s": 29.166666666666668,
+      "end_s": 31.133333333333333
+    }
+  ],
+  "captions": [
+    {
+      "text": "Al Capone ruled Chicago",
+      "from": 0,
+      "to": 61,
+      "words": [
+        {
+          "text": "Al",
+          "from": 0
+        },
+        {
+          "text": "Capone",
+          "from": 13
+        },
+        {
+          "text": "ruled",
+          "from": 28
+        },
+        {
+          "text": "Chicago",
+          "from": 42
+        }
+      ]
+    },
+    {
+      "text": "but income tax put him",
+      "from": 83,
+      "to": 126,
+      "words": [
+        {
+          "text": "but",
+          "from": 83
+        },
+        {
+          "text": "income",
+          "from": 86
+        },
+        {
+          "text": "tax",
+          "from": 94
+        },
+        {
+          "text": "put",
+          "from": 110
+        },
+        {
+          "text": "him",
+          "from": 121
+        }
+      ]
+    },
+    {
+      "text": "in prison",
+      "from": 126,
+      "to": 142,
+      "words": [
+        {
+          "text": "in",
+          "from": 126
+        },
+        {
+          "text": "prison",
+          "from": 129
+        }
+      ]
+    },
+    {
+      "text": "In 1929",
+      "from": 169,
+      "to": 197,
+      "words": [
+        {
+          "text": "In",
+          "from": 169
+        },
+        {
+          "text": "1929",
+          "from": 172
+        }
+      ]
+    },
+    {
+      "text": "seven rival gangsters were murdered",
+      "from": 210,
+      "to": 272,
+      "words": [
+        {
+          "text": "seven",
+          "from": 210
+        },
+        {
+          "text": "rival",
+          "from": 221
+        },
+        {
+          "text": "gangsters",
+          "from": 234
+        },
+        {
+          "text": "were",
+          "from": 253
+        },
+        {
+          "text": "murdered",
+          "from": 261
+        }
+      ]
+    },
+    {
+      "text": "and newspapers named him Public",
+      "from": 272,
+      "to": 334,
+      "words": [
+        {
+          "text": "and",
+          "from": 272
+        },
+        {
+          "text": "newspapers",
+          "from": 289
+        },
+        {
+          "text": "named",
+          "from": 298
+        },
+        {
+          "text": "him",
+          "from": 315
+        },
+        {
+          "text": "Public",
+          "from": 323
+        }
+      ]
+    },
+    {
+      "text": "Enemy Number One",
+      "from": 334,
+      "to": 374,
+      "words": [
+        {
+          "text": "Enemy",
+          "from": 334
+        },
+        {
+          "text": "Number",
+          "from": 346
+        },
+        {
+          "text": "One",
+          "from": 358
+        }
+      ]
+    },
+    {
+      "text": "Agents turned to income tax",
+      "from": 389,
+      "to": 443,
+      "words": [
+        {
+          "text": "Agents",
+          "from": 389
+        },
+        {
+          "text": "turned",
+          "from": 403
+        },
+        {
+          "text": "to",
+          "from": 416
+        },
+        {
+          "text": "income",
+          "from": 422
+        },
+        {
+          "text": "tax",
+          "from": 429
+        }
+      ]
+    },
+    {
+      "text": "and charged him with twenty-two",
+      "from": 443,
+      "to": 489,
+      "words": [
+        {
+          "text": "and",
+          "from": 443
+        },
+        {
+          "text": "charged",
+          "from": 458
+        },
+        {
+          "text": "him",
+          "from": 466
+        },
+        {
+          "text": "with",
+          "from": 475
+        },
+        {
+          "text": "twenty-two",
+          "from": 479
+        }
+      ]
+    },
+    {
+      "text": "counts of evasion",
+      "from": 492,
+      "to": 529,
+      "words": [
+        {
+          "text": "counts",
+          "from": 492
+        },
+        {
+          "text": "of",
+          "from": 510
+        },
+        {
+          "text": "evasion",
+          "from": 518
+        }
+      ]
+    },
+    {
+      "text": "His own admissions of income",
+      "from": 554,
+      "to": 592,
+      "words": [
+        {
+          "text": "His",
+          "from": 554
+        },
+        {
+          "text": "own",
+          "from": 558
+        },
+        {
+          "text": "admissions",
+          "from": 563
+        },
+        {
+          "text": "of",
+          "from": 573
+        },
+        {
+          "text": "income",
+          "from": 584
+        }
+      ]
+    },
+    {
+      "text": "became evidence",
+      "from": 592,
+      "to": 620,
+      "words": [
+        {
+          "text": "became",
+          "from": 592
+        },
+        {
+          "text": "evidence",
+          "from": 606
+        }
+      ]
+    },
+    {
+      "text": "Convicted on five counts he",
+      "from": 640,
+      "to": 694,
+      "words": [
+        {
+          "text": "Convicted",
+          "from": 640
+        },
+        {
+          "text": "on",
+          "from": 648
+        },
+        {
+          "text": "five",
+          "from": 656
+        },
+        {
+          "text": "counts",
+          "from": 666
+        },
+        {
+          "text": "he",
+          "from": 688
+        }
+      ]
+    },
+    {
+      "text": "got eleven years",
+      "from": 694,
+      "to": 728,
+      "words": [
+        {
+          "text": "got",
+          "from": 694
+        },
+        {
+          "text": "eleven",
+          "from": 697
+        },
+        {
+          "text": "years",
+          "from": 710
+        }
+      ]
+    },
+    {
+      "text": "Atlanta",
+      "from": 745,
+      "to": 752,
+      "words": [
+        {
+          "text": "Atlanta",
+          "from": 745
+        }
+      ]
+    },
+    {
+      "text": "then Alcatraz",
+      "from": 775,
+      "to": 796,
+      "words": [
+        {
+          "text": "then",
+          "from": 775
+        },
+        {
+          "text": "Alcatraz",
+          "from": 775
+        }
+      ]
+    },
+    {
+      "text": "He died in 1947",
+      "from": 808,
+      "to": 857,
+      "words": [
+        {
+          "text": "He",
+          "from": 808
+        },
+        {
+          "text": "died",
+          "from": 815
+        },
+        {
+          "text": "in",
+          "from": 821
+        },
+        {
+          "text": "1947",
+          "from": 834
+        }
+      ]
+    },
+    {
+      "text": "Right way to stop him",
+      "from": 875,
+      "to": 911,
+      "words": [
+        {
+          "text": "Right",
+          "from": 875
+        },
+        {
+          "text": "way",
+          "from": 887
+        },
+        {
+          "text": "to",
+          "from": 893
+        },
+        {
+          "text": "stop",
+          "from": 898
+        },
+        {
+          "text": "him",
+          "from": 903
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 934,
+  "duration_s": 31.133333333333333
+}
