@@ -1,0 +1,83 @@
+{
+  "measured_wpm": 158.5,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Will AI admit when it doesn't know something?",
+      "scene": 0,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We invented twelve things that do not exist.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we asked two AI models about each one.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite made up eight of twelve.",
+      "scene": 3,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS made up five of twelve.",
+      "scene": 3,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "Real topics were answered normally.",
+      "scene": 4,
+      "claim_ids": [
+        "control"
+      ]
+    },
+    {
+      "text": "Here is one invented answer.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "A confident answer is not a true one.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "So ask for the source, then click it.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    }
+  ],
+  "words": 65,
+  "estimated_seconds": 28.4,
+  "inside_window": false,
+  "kept": [
+    "control",
+    "example",
+    "hook",
+    "design",
+    "ask",
+    "m0",
+    "m1",
+    "tip1",
+    "tip2"
+  ]
+}
