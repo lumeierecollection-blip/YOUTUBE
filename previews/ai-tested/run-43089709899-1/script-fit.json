@@ -1,0 +1,83 @@
+{
+  "measured_wpm": 156.3,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "AI described seven of twenty-four invented things as real.",
+      "scene": 0,
+      "claim_ids": [
+        "total"
+      ]
+    },
+    {
+      "text": "We invented twelve things that do not exist.",
+      "scene": 1,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we asked two AI models about each one.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite made up five of twelve.",
+      "scene": 3,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS made up two of twelve.",
+      "scene": 3,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "Real topics were answered normally.",
+      "scene": 4,
+      "claim_ids": [
+        "control"
+      ]
+    },
+    {
+      "text": "Here is one invented answer.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Confident is not true, so ask for the source.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Has AI ever made something up for you?",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "words": 67,
+  "estimated_seconds": 29.7,
+  "inside_window": true,
+  "kept": [
+    "control",
+    "example",
+    "hook",
+    "design",
+    "ask",
+    "m0",
+    "m1",
+    "tip1",
+    "tip2"
+  ]
+}
