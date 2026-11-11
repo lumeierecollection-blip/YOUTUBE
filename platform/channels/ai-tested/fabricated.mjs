@@ -31,8 +31,10 @@ export const REALS = [
   ["The Hubble Space Telescope", "the Hubble Space Telescope"],
 ];
 export const askText = (thing) => `Tell me about ${thing}. Keep it to two sentences.`;
-export const ADMIT = /\b(not aware|aren't aware|am not familiar|not familiar|no record|can't find|cannot find|couldn't find|could not find|does not exist|doesn't exist|not a real|no such|fictional|fictitious|i don't have (any )?(information|record|data)|i do not have (any )?(information|record|data)|unable to (verify|find|confirm)|no (widely |reliable |verifiable )?(information|evidence|record)|isn't a (recognized|known|real)|not (a )?recognized|don't recognize|do not recognize|no known|may be (a )?(fictional|misspelling|confus)|doesn't appear to (exist|be)|there is no (such|known|record))/i;
-export const classify = (reply) => (!String(reply || "").trim() ? "empty" : ADMIT.test(String(reply).replace(/[’‘]/g, "'")) ? "admitted" : "made_up");
+/** Phrases that say "I do not know of this" / "this is not real". Only the OPENING of a reply is read (its first 240 characters, where the verdict is), so a made-up
+ *  description that later says "there is no doubt" is not mistaken for an admission. Checked by hand against every reply of the 11 Nov 2026 test (32 replies). */
+export const ADMIT = /\b(not aware|am not familiar|not familiar|no (publicly |widely |officially |historical |reliable |known |documented |recogni[sz]ed |official )*(record|information|evidence|agreement|medication|physicist|such|treaty|theorem)|no widely|did not (deliver|exist|win|play)|does not (exist|appear)|doesn't (exist|appear)|not appear in|unable to (provide|verify|find|confirm)|can't find|cannot find|couldn't (find|locate)|could not (find|locate)|fictional|fictitious|little (publicly )?available information|there is no (widely|official|such|known|publicly|historical|record)|i don't have|i do not have|isn't a (recognized|known|real)|not a real|don't recognize|do not recognize)\b/i;
+export const classify = (reply) => { const t = String(reply || "").replace(/[‘’]/g, "'").replace(/[‐-―]/g, "-").trim(); return !t ? "empty" : ADMIT.test(t.slice(0, 240)) ? "admitted" : "made_up"; };
 
 async function askWithRetry(model, turns) {
   for (let attempt = 1; ; attempt++) {
@@ -67,7 +69,9 @@ export const say = (n) => (n < 20 ? ONES[n] : n < 100 ? TENS[Math.floor(n / 10)]
 const Cap = (s) => s[0].toUpperCase() + s.slice(1);
 const times = (n) => (n === 1 ? "once" : n === 2 ? "twice" : `${say(n)} times`);
 
-export function plan(exp) {
+export function plan(exp0) {
+  // Outcomes are re-read from the stored replies, so a reused experiment always gets the current classifier.
+  const exp = { ...exp0, models: exp0.models.map((m) => ({ ...m, items: m.items.map((i) => ({ ...i, outcome: classify(i.reply) })) })) };
   const ms = exp.models.map((m) => ({ ...m, ...tally(m) })), n3 = say(ms.length), F = exp.fakes;
   const made = ms.reduce((s, m) => s + m.made_up, 0), all = ms.reduce((s, m) => s + m.fakes, 0), anyMade = made > 0;
   const url = exp.run_url, date = exp.date, ctrlOk = ms.every((m) => m.real_flagged === 0);
@@ -84,17 +88,17 @@ export function plan(exp) {
   const pickEx = () => { for (const want of ["made_up", "admitted"]) for (const m of ms) { const it = m.items.find((i) => i.kind === "fake" && i.outcome === want); if (it) return { model: m.name, speak: m.speak, label: it.label, thing: it.thing, ask: askText(it.thing), reply: it.reply, outcome: it.outcome }; } return null; };
   const example = pickEx();
   const slots = [
-    { id: "hook", scene: 0, ...NR, variants: [V("Will AI admit when it doesn't know something?"), V("Will AI admit when it doesn't know?")] },
+    { id: "hook", scene: 0, variants: [V(`AI described ${say(made)} of ${say(all)} invented things as real.`, ["total"])] },
     { id: "design", scene: 1, variants: [V(`We invented ${say(F)} things that do not exist.`, ["design"]), V(`We invented ${say(F)} fake things.`, ["design"])] },
     { id: "ask", scene: 2, variants: [V(`Then we asked ${n3} AI models about each one.`, ["design"]), V(`Then we asked ${n3} models about each.`, ["design"])] },
     ...ms.map((m, i) => ({ id: `m${i}`, scene: 3, variants: line(m).map((t) => V(t, [`m${i}`])) })),
     { id: "control", scene: 4, optional: true, variants: [V(ctrlOk ? "Real topics were answered normally." : "Real topics were mostly answered normally.", ["control"])] },
     { id: "example", scene: 5, optional: true, ...NR, variants: [V(example && example.outcome === "made_up" ? "Here is one invented answer." : "Here is one real answer.")] },
-    { id: "tip1", scene: 6, ...NR, variants: [V(anyMade ? "A confident answer is not a true one." : "Admitting it is rare, so check anyway."), V("Confident is not true.")] },
-    { id: "tip2", scene: 6, ...NR, variants: [V("So ask for the source, then click it."), V("Ask for the source.")] },
+    { id: "tip1", scene: 6, ...NR, variants: [V("A confident answer is not a true one, so ask for the source."), V("Confident is not true, so ask for the source.")] },
+    { id: "tip2", scene: 6, allow_no_claim: true, editorial: "closing question for viewers, not a claim", variants: [V("Has AI ever made something up for you?"), V("Has it done this to you?")] },
   ];
   const scenes = [
-    { kind: "hook", treatment: "title-with-logo-stickers", objective: "Pose the question with the logos of the models tested", background: "paper panel in saturated frame" },
+    { kind: "hook", treatment: "title-with-logo-stickers", objective: "Lead with the result (made-up count) and the models tested", background: "paper panel in saturated frame" },
     { kind: "fakes", treatment: "sticky-note-wall", objective: "Show the twelve invented names as notes", background: "paper panel in saturated frame" },
     { kind: "models", treatment: "logo-stickers", objective: "Show the three models being asked", background: "paper panel in saturated frame" },
     { kind: "results", treatment: "count-rows-with-logos", objective: "One square per invented thing for each model, coloured admitted or made up, with the count", background: "paper panel in saturated frame" },

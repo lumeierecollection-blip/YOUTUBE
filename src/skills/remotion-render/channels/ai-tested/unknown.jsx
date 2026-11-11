@@ -7,12 +7,13 @@ import { K, COND, MONO, ramp, over, Board, Card, Logo, Title, Strip, Stamp, Cap 
 
 const logoOf = (m, images) => (/gpt|openai/i.test(m.name) ? images.openai : images.gemini);
 
-function Hook({ images }) {
+function Hook({ images, d }) {
   return (<>
-    <Title size={128} delay={0}>Will AI admit when it doesn't <span style={{ color: K.frame }}>know</span>?</Title>
+    <Title size={190} delay={0}>{d.made} of {d.all}</Title>
+    <Strip x={60} y={420} w={960} delay={6} size={46}>invented things described as real</Strip>
     <Card x={60} y={660} w={420} h={230} rot={-4} from="left" delay={4} tapes={[[130, -18, -6, 150]]} pad={30}><Logo src={images.gemini} w={360} h={170} /></Card>
     <Card x={560} y={740} w={420} h={230} rot={3} from="right" delay={8} tapes={[[130, -18, 5, 150]]} pad={30}><Logo src={images.openai} w={360} h={170} /></Card>
-    <Stamp x={250} y={1040} w={580} rot={-5} delay={14} size={72} color={K.frame}>I don't know</Stamp>
+    <Stamp x={250} y={1040} w={580} rot={-5} delay={14} size={72} color={K.hot}>Made up</Stamp>
   </>);
 }
 function Fakes({ d }) {
@@ -27,9 +28,7 @@ function Fakes({ d }) {
 function Models({ images, d }) {
   return (<>
     <Title size={100} delay={0} w={960}>Same question, {d.models.length} models</Title>
-    <Card x={70} y={360} w={300} h={210} rot={-3} from="left" delay={3} pad={22}><Logo src={images.gemini} w={256} h={160} /></Card>
-    <Card x={390} y={400} w={300} h={210} rot={2} from="bottom" delay={7} pad={22}><Logo src={images.gemini} w={256} h={160} /></Card>
-    <Card x={710} y={360} w={300} h={210} rot={-2} from="right" delay={11} pad={22}><Logo src={images.openai} w={256} h={160} /></Card>
+    {d.models.map((m, i) => <Card key={m.id + i} x={d.models.length === 2 ? 110 + i * 460 : 70 + i * 320} y={360 + (i % 2) * 40} w={d.models.length === 2 ? 400 : 300} h={d.models.length === 2 ? 260 : 210} rot={[-3, 2, -2][i]} from={["left", "right", "bottom"][i]} delay={3 + i * 4} pad={22}><Logo src={logoOf(m, images)} w={d.models.length === 2 ? 356 : 256} h={d.models.length === 2 ? 210 : 160} /></Card>)}
     <Card x={110} y={760} w={860} h={330} rot={-1} from="bottom" delay={14} pad={36} bg={K.frame} style={{ color: K.paper }}>
       <div style={{ fontFamily: MONO, fontSize: 26, letterSpacing: "0.1em", opacity: 0.8 }}>YOU</div>
       <div style={{ fontFamily: COND, fontWeight: 700, fontSize: 64, lineHeight: 1.06, marginTop: 10 }}>Tell me about … Keep it to two sentences.</div>
@@ -86,9 +85,10 @@ function Example({ d }) {
 }
 function Tip({ d }) {
   return (<>
-    <Title size={140} delay={0}>{d.anyMade ? "Confident is not true" : "Check anyway"}</Title>
-    <Stamp x={110} y={760} w={860} rot={-4} delay={10} size={92}>Ask for<br />the source</Stamp>
-    <Strip x={110} y={1130} w={620} delay={18} size={44} bg={K.ink}>Then click it</Strip>
+    <Title size={130} delay={0}>{d.anyMade ? "Confident is not true" : "Check anyway"}</Title>
+    <Stamp x={110} y={640} w={860} rot={-4} delay={10} size={92}>Ask for<br />the source</Stamp>
+    <Strip x={110} y={1000} w={620} delay={18} size={44} bg={K.ink}>Then click it</Strip>
+    <Strip x={110} y={1160} w={860} delay={34} size={44}>Has AI made things up for you?</Strip>
   </>);
 }
 

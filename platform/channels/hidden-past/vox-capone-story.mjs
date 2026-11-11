@@ -43,33 +43,29 @@ export const CLAIMS = [
 const V = (text, claim_ids = []) => ({ text, claim_ids });
 /** One slot per picture, in story order. Required slots carry the whole story; optional ones add detail where the 30 seconds allow. */
 export const SLOTS = [
-  { id: "name", scene: 0, variants: [V("Al Capone ran Chicago's Outfit through Prohibition.", ["K1"]), V("Al Capone ruled Chicago's Prohibition underworld.", ["K1"])] },
-  { id: "massacre", scene: 1, variants: [V("In 1929, seven rival gangsters were murdered in broad daylight.", ["K2"]), V("In 1929, seven gangsters were murdered.", ["K2"])] },
-  { id: "enemy", scene: 2, optional: true, variants: [V("Newspapers called him Public Enemy Number One.", ["K3"])] },
-  { id: "tax", scene: 3, variants: [V("Federal agents chose another weapon: income tax.", ["K4"]), V("Agents turned to income tax.", ["K4"])] },
-  { id: "counts", scene: 4, variants: [V("Twenty-two counts of tax evasion.", ["K5"])] },
-  { id: "evidence", scene: 5, optional: true, variants: [V("His own admissions of income became evidence.", ["K6"])] },
-  { id: "sentence", scene: 6, variants: [V("Convicted on five counts, he got eleven years.", ["K7", "K8"]), V("Five convictions, eleven years.", ["K7", "K8"])] },
-  { id: "prisons", scene: 7, optional: true, variants: [V("He served in Atlanta, then Alcatraz.", ["K9", "K10"])] },
-  { id: "end", scene: 8, variants: [V("Released after almost eight years, he died in 1947.", ["K11", "K12"]), V("He died in 1947.", ["K12"])] },
-  { id: "close", scene: 9, variants: [V("His own tax records ended the crime boss's reign.", ["K1", "K6", "K7"]), V("Taxes ended his reign.", ["K1", "K7"])] },
+  { id: "name", scene: 0, variants: [V("Al Capone ruled Chicago, but income tax put him in prison.", ["K1", "K5", "K8"]), V("Al Capone ruled Chicago; income tax jailed him.", ["K1", "K5", "K8"]), V("Capone ruled Chicago; tax jailed him.", ["K1", "K5", "K8"])] },
+  { id: "massacre", scene: 1, variants: [V("In 1929, seven rival gangsters were murdered, and newspapers named him Public Enemy Number One.", ["K2", "K3"]), V("Seven rivals were murdered; he became Public Enemy Number One.", ["K2", "K3"])] },
+  { id: "counts", scene: 2, variants: [V("Agents turned to income tax, and charged him with twenty-two counts of evasion.", ["K4", "K5"]), V("Agents chose income tax: twenty-two counts of evasion.", ["K4", "K5"])] },
+  { id: "evidence", scene: 3, variants: [V("His own admissions of income became evidence.", ["K6"]), V("His own admissions became evidence.", ["K6"])] },
+  { id: "sentence", scene: 4, variants: [V("Convicted on five counts, he got eleven years.", ["K7", "K8"]), V("Five convictions, eleven years.", ["K7", "K8"])] },
+  { id: "prisons", scene: 5, optional: true, variants: [V("He served in Atlanta, then Alcatraz.", ["K9", "K10"]), V("Atlanta, then Alcatraz.", ["K9", "K10"])] },
+  { id: "end", scene: 6, variants: [V("Released after almost eight years, he died in 1947.", ["K11", "K12"]), V("He died in 1947.", ["K12"])] },
+  { id: "close", scene: 7, allow_no_claim: true, editorial: "closing question for viewers, not a claim", variants: [V("Was tax the right way to stop him?"), V("Right way to stop him?")] },
 ];
 
 export const SCENES = [
-  { kind: "name", treatment: "name-title-with-portrait", objective: "Open on the name Al Capone over his 1930 portrait, with the years he led the Chicago Outfit", background: "paper panel in saturated frame" },
-  { kind: "massacre", treatment: "newspaper-scan-with-number", objective: "Show the New York Times front page of 15 February 1929 and the number seven", background: "paper panel in saturated frame" },
-  { kind: "enemy", treatment: "portrait-with-stamp", objective: "Stamp 'Public Enemy No. 1' over a 1929 photograph", background: "paper panel in saturated frame" },
-  { kind: "tax", treatment: "giant-word-with-strips", objective: "Turn to income tax as the weapon, named as a plan of the Treasury and Justice Departments", background: "paper panel in saturated frame" },
-  { kind: "counts", treatment: "counted-dots", objective: "Draw twenty-two counts as dots; the five he was convicted on in the accent colour", background: "paper panel in saturated frame" },
+  { kind: "name", treatment: "name-title-with-portrait", objective: "Open on the name Al Capone over his 1930 portrait with the payoff stated at once: income tax put him in prison", background: "paper panel in saturated frame" },
+  { kind: "massacre", treatment: "newspaper-scan-with-number-and-stamp", objective: "Show the New York Times front page of 15 February 1929, the number seven and the Public Enemy No. 1 stamp", background: "paper panel in saturated frame" },
+  { kind: "counts", treatment: "giant-words-and-counted-dots", objective: "Name income tax as the weapon (Treasury and Justice Departments) and draw twenty-two counts as dots, the five he was convicted on in the accent colour", background: "paper panel in saturated frame" },
   { kind: "evidence", treatment: "quote-slip", objective: "Quote the source sentence on his own admissions of income being admitted as evidence", background: "paper panel in saturated frame" },
   { kind: "sentence", treatment: "photo-with-giant-number", objective: "Show eleven years with the prison photograph and the fine", background: "paper panel in saturated frame" },
   { kind: "prisons", treatment: "drawn-route-with-two-photos", objective: "Draw Chicago to Atlanta (1932) to Alcatraz (1934) with a photograph of each prison", background: "paper panel in saturated frame" },
   { kind: "end", treatment: "portrait-and-death-certificate", objective: "Show him around 1935 and the 1947 death certificate", background: "paper panel in saturated frame" },
-  { kind: "close", treatment: "title-with-stamp", objective: "Close on the reframe: his own tax records ended it", background: "paper panel in saturated frame" },
+  { kind: "close", treatment: "title-with-stamp", objective: "Close on a question viewers can answer in the comments: was tax the right way to stop him", background: "paper panel in saturated frame" },
 ];
 
 export const METADATA = {
   title: "Al Capone Was Brought Down by Income Tax",
-  description: "Al Capone ran the Chicago Outfit from 1925 to 1931. After seven rival gangsters were murdered in 1929 and newspapers named him Public Enemy No. 1, the Treasury and Justice Departments planned income tax prosecutions. He was charged with 22 counts of tax evasion, his own admissions of his income were admitted as evidence, and in 1931 he was convicted of five counts and sentenced to 11 years. He served in Atlanta, then Alcatraz, was released after almost eight years and died in 1947. Facts from Wikipedia's article on Al Capone; pictures from Wikimedia Commons (all public domain), credited on screen and below.\n\n#Shorts #History #AlCapone #Chicago #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Al_Capone\nImages: Wide World Photos / Chicago Bureau (FBI), The New York Times, Pennsylvania Department of Corrections / FBI, US Bureau of Prisons, George Grantham Bain Collection, US Navy and C.W. Tomlinson, via Wikimedia Commons. Map data: Natural Earth (public domain).",
+  description: "Al Capone ran the Chicago Outfit from 1925 to 1931. After seven rival gangsters were murdered in 1929 and newspapers named him Public Enemy No. 1, the Treasury and Justice Departments planned income tax prosecutions. He was charged with 22 counts of tax evasion, his own admissions of his income were admitted as evidence, and in 1931 he was convicted of five counts and sentenced to 11 years. He served in Atlanta, then Alcatraz, was released after almost eight years and died in 1947. Was income tax the right way to stop him? Tell us in the comments. Facts from Wikipedia's article on Al Capone; pictures from Wikimedia Commons (all public domain), credited on screen and below.\n\n#Shorts #History #AlCapone #Chicago #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Al_Capone\nImages: Wide World Photos / Chicago Bureau (FBI), The New York Times, Pennsylvania Department of Corrections / FBI, US Bureau of Prisons, George Grantham Bain Collection, US Navy and C.W. Tomlinson, via Wikimedia Commons. Map data: Natural Earth (public domain).",
   tags: ["Al Capone", "Chicago Outfit", "Prohibition", "tax evasion", "Alcatraz", "Public Enemy No. 1", "history"],
 };
