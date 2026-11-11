@@ -47,7 +47,7 @@ async function routeMap() {
   const inView = ([lon, lat]) => lon > box.w && lon < box.e && lat > box.s && lat < box.n;
   const labels = [];
   for (const f of m.features.filter((x) => !focused.has(x) && x.properties.LABELRANK <= 5).slice(0, 10)) { const p = [f.properties.LABEL_X, f.properties.LABEL_Y]; if (inView(p)) { const [x, y] = project(p); labels.push({ text: f.properties.NAME.toUpperCase(), x, y, size: 30 }); } }
-  const names = ["Chicago, 1925-31", "Atlanta, 1932", "Alcatraz, 1934"];
+  const names = ["Chicago", "Atlanta", "Alcatraz"];
   const pins = places.map((q, i) => { const [x, y] = project([q.lon, q.lat]); return { name: names[i], x, y, side: "right" }; });
   return { rect: AREA, landD, countryD, labels: labels.slice(0, 6), pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places, map_data: "Natural Earth 1:50m (public domain); coordinates from English Wikipedia" };
 }
