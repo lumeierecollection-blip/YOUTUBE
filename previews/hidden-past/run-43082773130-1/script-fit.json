@@ -1,0 +1,95 @@
+{
+  "measured_wpm": 148.7,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Al Capone ran Chicago's Outfit through Prohibition.",
+      "scene": 0,
+      "claim_ids": [
+        "K1"
+      ]
+    },
+    {
+      "text": "In 1929, seven rival gangsters were murdered in broad daylight.",
+      "scene": 1,
+      "claim_ids": [
+        "K2"
+      ]
+    },
+    {
+      "text": "Newspapers called him Public Enemy Number One.",
+      "scene": 2,
+      "claim_ids": [
+        "K3"
+      ]
+    },
+    {
+      "text": "Agents turned to income tax.",
+      "scene": 3,
+      "claim_ids": [
+        "K4"
+      ]
+    },
+    {
+      "text": "Twenty-two counts of tax evasion.",
+      "scene": 4,
+      "claim_ids": [
+        "K5"
+      ]
+    },
+    {
+      "text": "His own admissions of income became evidence.",
+      "scene": 5,
+      "claim_ids": [
+        "K6"
+      ]
+    },
+    {
+      "text": "Five convictions, eleven years.",
+      "scene": 6,
+      "claim_ids": [
+        "K7",
+        "K8"
+      ]
+    },
+    {
+      "text": "He served in Atlanta, then Alcatraz.",
+      "scene": 7,
+      "claim_ids": [
+        "K9",
+        "K10"
+      ]
+    },
+    {
+      "text": "Released after almost eight years, he died in 1947.",
+      "scene": 8,
+      "claim_ids": [
+        "K11",
+        "K12"
+      ]
+    },
+    {
+      "text": "Taxes ended his reign.",
+      "scene": 9,
+      "claim_ids": [
+        "K1",
+        "K7"
+      ]
+    }
+  ],
+  "words": 64,
+  "estimated_seconds": 29.8,
+  "inside_window": true,
+  "kept": [
+    "enemy",
+    "evidence",
+    "prisons",
+    "name",
+    "massacre",
+    "tax",
+    "counts",
+    "sentence",
+    "end",
+    "close"
+  ]
+}

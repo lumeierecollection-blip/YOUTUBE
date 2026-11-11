@@ -4,9 +4,8 @@
   "agent": "agent-hidden-past",
   "stage": "research_complete",
   "status": "ok",
-  "timestamp": "2026-11-11T19:00:28.919Z",
+  "timestamp": "2026-11-11T19:00:46.121Z",
   "branch": "preview/hidden-past-capone",
   "commit": "9010b62014eba4b7e34add8760e273d82010264e",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43082773130#artifacts",
-  "claims": 12
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43082773130#artifacts"
 }
