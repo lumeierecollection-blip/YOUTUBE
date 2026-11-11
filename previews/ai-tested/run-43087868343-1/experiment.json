@@ -1,0 +1,249 @@
+{
+  "kind": "fabricated",
+  "date": "2026-11-11",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43083208383",
+  "temperature": 0,
+  "fakes": 12,
+  "reals": 4,
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "items": [
+        {
+          "kind": "fake",
+          "label": "Treaty of Valmoor, 1974",
+          "thing": "the 1974 Treaty of Valmoor between Portugal and Norway",
+          "reply": "There is no record of a \"Treaty of Valmoor\" signed between Portugal and Norway in 1974, nor does any such historical agreement appear to exist in international relations. It is likely a fictional event, a misconception, or a confusion with another diplomatic accord from that era.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "“The Salt Cartographer”",
+          "thing": "the novel 'The Salt Cartographer' by Imre Vasko",
+          "reply": "*The Salt Cartographer* by Imre Vasko is a poignant novella that follows a grief-stricken mapmaker living on a receding, salt-encrusted sea who tries to chart the memories of his lost wife. Through lyrical prose, the novel explores themes of memory, mourning, and the inescapable nature of change in a surreal, dying landscape.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "Hendrickson-Ruiz theorem",
+          "thing": "the Hendrickson-Ruiz theorem in topology",
+          "reply": "The Hendrickson-Ruiz theorem states that for any connected graph $G$, its topological realization is embeddable in 3-space if and only if no minor of $G$ belongs to a specific obstruction set analogous to the Petersen family. In knot theory, it more broadly provides topological conditions for embedding spatial graphs such that their knotting and linking properties are fully determined by their planar components.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "“Midnight at Harrow Bridge”",
+          "thing": "the 1962 film 'Midnight at Harrow Bridge' directed by Lucille Aubrant",
+          "reply": "There is no record of a 1962 film titled *Midnight at Harrow Bridge*, nor is there a director named Lucille Aubrant in film history. Consequently, no information exists regarding this supposed production.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "Battle of Dravenmoor Pass",
+          "thing": "the Battle of Dravenmoor Pass in 1431",
+          "reply": "In 1431, the allied forces of the Northern Reaches decisively ambushed the invading Valorian army within the narrow, snow-choked defile of Dravenmoor Pass. This brutal victory shattered Valorian expansion into the highlands and forced the signing of the Treaty of Iron-Gate, securing northern independence for over a century.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "Quillscript 4.2",
+          "thing": "the programming language Quillscript 4.2",
+          "reply": "Quillscript 4.2 is a fictional, narrative-driven programming language designed to let authors write executable fiction by weaving prose directly with procedural logic. Its defining feature is the \"Plot-Engine,\" which compiles character dialogue and emotional arcs into reactive, branching software systems.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "Odalys Brennvik’s lecture",
+          "thing": "physicist Odalys Brennvik's 1988 Nobel lecture",
+          "reply": "Odalys Brennvik did not deliver a Nobel lecture in 1988, as no physicist by that name has ever won the Nobel Prize. In fact, the 1988 Nobel Prize in Physics was actually awarded to Leon Lederman, Melvin Schwartz, and Jack Steinberger for their work on neutrino beams.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "The Tolvane Islands",
+          "thing": "the Tolvane Islands in the South Atlantic",
+          "reply": "The Tolvane Islands are a fictional archipelago often associated with maritime mysteries and the works of certain weird-fiction authors. In actual geography and cartography, no such islands exist in the South Atlantic Ocean.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "“Winter Orchard”, Zielonski",
+          "thing": "the painting 'Winter Orchard' (1911) by Marek Zielonski",
+          "reply": "'Winter Orchard' (1911) by Marek Zielonski is a haunting post-impressionist landscape that captures the stark beauty of bare fruit trees blanketed in deep, textured snow. Through a moody palette of muted blues, whites, and earthy browns, the painting evokes a profound sense of seasonal stillness and quiet isolation.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "2009 Geneva Lunar Accord",
+          "thing": "the 2009 Geneva Accord on lunar mining rights",
+          "reply": "There is no official international agreement known as the \"2009 Geneva Accord\" regarding lunar mining rights. Instead, the legal framework for space resource extraction is primarily governed by the 1967 Outer Space Treaty, which prohibits national appropriation of celestial bodies while remaining ambiguous on private resource extraction.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "The drug Veltrizan",
+          "thing": "the migraine medicine Veltrizan",
+          "reply": "I am unable to provide information on Veltrizan as there is no widely recognized migraine medication by that name. Please check the spelling or consult a healthcare professional for accurate medication information.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "Tomas Eckerlund, Ajax",
+          "thing": "the footballer Tomas Eckerlund who played for Ajax in 1993",
+          "reply": "Tomas Eckerlund was a Swedish forward who made a brief appearance for Ajax during the 1992–93 Eredivisie season, contributing to their attacking depth under manager Louis van Gaal. He is primarily a footnote in the club's rich history, having played only a handful of official matches before continuing his career elsewhere in Scandinavia.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "Treaty of Tordesillas",
+          "thing": "the Treaty of Tordesillas",
+          "reply": "Signed in 1494, the Treaty of Tordesillas divided the newly discovered lands outside Europe between Spain and Portugal along a meridian 370 leagues west of the Cape Verde islands. This agreement effectively granted Spain rights to most of the Americas, while Portugal secured claims to Africa, Asia, and what is today Brazil.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "“1984”, George Orwell",
+          "thing": "the novel '1984' by George Orwell",
+          "reply": "George Orwell’s dystopian masterpiece *1984* depicts a totalitarian regime led by Big Brother, where government surveillance, psychological manipulation, and historical denial crush all individual freedom. The story follows Winston Smith, a disillusioned man who secretly rebels against the ruling party through a forbidden love affair, only to be ultimately broken by the state's brutal methods of control.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "Marie Curie’s Nobel Prize",
+          "thing": "Marie Curie's Nobel Prize in Physics",
+          "reply": "In 1903, Marie Curie became the first woman to win a Nobel Prize, sharing the Physics prize with her husband Pierre Curie and Henri Becquerel for their pioneering research on radioactivity. This groundbreaking award recognized their joint efforts in discovering and understanding the mysterious rays emitted by uranium and polonium.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "The Hubble Space Telescope",
+          "thing": "the Hubble Space Telescope",
+          "reply": "Launched in 1990, the Hubble Space Telescope is a pioneering orbiting observatory that has provided unprecedented, deep-space images, fundamentally transforming our understanding of the universe. Operating above Earth's distorting atmosphere, it continues to capture groundbreaking data across visible, ultraviolet, and infrared light.",
+          "outcome": "made_up"
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "id": "openai/gpt-oss-120b",
+      "items": [
+        {
+          "kind": "fake",
+          "label": "Treaty of Valmoor, 1974",
+          "thing": "the 1974 Treaty of Valmoor between Portugal and Norway",
+          "reply": "I’m not aware of any historical record of a “1974 Treaty of Valmoor” between Portugal and Norway; it does not appear in the documented treaties or diplomatic archives of either country. If you have more context or a different name for the agreement, I’d be happy to help locate information about it.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "“The Salt Cartographer”",
+          "thing": "the novel 'The Salt Cartographer' by Imre Vasko",
+          "reply": "I’m not aware of a novel titled *The Salt Cartographer* by Imre Vasko, and I couldn’t locate any reliable information about it. If you have additional details (such as a publication year or publisher), I’d be happy to try again.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "Hendrickson-Ruiz theorem",
+          "thing": "the Hendrickson-Ruiz theorem in topology",
+          "reply": "There is no widely recognized “Hendrickson‑Ruiz theorem” in mainstream topology—if it exists, it is likely a specialized result in a niche subfield or a mis‑attribution. If you can provide the specific paper or context where you encountered the name, I can help locate the precise statement.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "“Midnight at Harrow Bridge”",
+          "thing": "the 1962 film 'Midnight at Harrow Bridge' directed by Lucille Aubrant",
+          "reply": "I’m not aware of any record of a 1962 film titled *Midnight at Harrow Bridge* directed by Lucille Aubrant. It’s possible the title or director’s name is misspelled, or the film is extremely obscure and not documented in the sources I have access to.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "Battle of Dravenmoor Pass",
+          "thing": "the Battle of Dravenmoor Pass in 1431",
+          "reply": "There is no historical record of a Battle of Dravenmoor Pass taking place in 1431; the name does not appear in any known primary sources or reputable secondary histories. Consequently, any details about such an event would be fictional or speculative rather than factual.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "Quillscript 4.2",
+          "thing": "the programming language Quillscript 4.2",
+          "reply": "Quillscript 4.2 is a domain‑specific language designed for expressive text manipulation and dynamic document generation, featuring a concise, pipe‑oriented syntax that blends functional transformations with inline markup. Its latest release adds native support for asynchronous I/O, a modular plugin system, and a type‑inferred macro engine that lets developers compose complex formatting pipelines with minimal boilerplate.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "Odalys Brennvik’s lecture",
+          "thing": "physicist Odalys Brennvik's 1988 Nobel lecture",
+          "reply": "I’m not aware of any record of a physicist named Odalys Brennvik delivering a Nobel lecture in 1988—or of a Nobel Prize in physics being awarded to that name that year. If you have more context or a different spelling, I can try to help locate the correct information.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "The Tolvane Islands",
+          "thing": "the Tolvane Islands in the South Atlantic",
+          "reply": "There is no widely documented or recognized location called the Tolvane Islands in the South Atlantic, so they appear to be either a fictional creation or an extremely obscure reference. If you can provide a specific source or context for the name, I can help you interpret or expand on that information.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "“Winter Orchard”, Zielonski",
+          "thing": "the painting 'Winter Orchard' (1911) by Marek Zielonski",
+          "reply": "There is little publicly available information about a painting titled *Winter Orchard* (1911) by Marek Zielonski, and the artist does not appear in major art historical references or museum collections. Consequently, details such as its style, provenance, or critical reception remain largely undocumented.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "2009 Geneva Lunar Accord",
+          "thing": "the 2009 Geneva Accord on lunar mining rights",
+          "reply": "There is no record of a formal “2009 Geneva Accord on lunar mining rights” having been adopted by any international body; the primary treaties governing extraterrestrial resource extraction remain the 1967 Outer Space Treaty and the 1979 Moon Agreement, both of which set out broad principles but do not specifically grant mining rights. Any references to a 2009 Geneva‑based agreement on lunar mining are likely conflations or proposals that have not been ratified as binding international law.",
+          "outcome": "admitted"
+        },
+        {
+          "kind": "fake",
+          "label": "The drug Veltrizan",
+          "thing": "the migraine medicine Veltrizan",
+          "reply": "Veltrizan is a brand‑name formulation that contains the active ingredient erenumab, a monoclonal antibody that blocks the calcitonin‑gene‑related peptide (CGRP) receptor to help prevent migraine attacks. It is administered by subcutaneous injection on a monthly or quarterly schedule and may cause side effects such as injection‑site reactions, constipation, or mild hypersensitivity, so patients should discuss its suitability and any concerns with their healthcare provider.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "fake",
+          "label": "Tomas Eckerlund, Ajax",
+          "thing": "the footballer Tomas Eckerlund who played for Ajax in 1993",
+          "reply": "There is no publicly available record of a footballer named Tomas Eckerlund having played for Ajax in 1993, and he does not appear in the club’s official rosters or historical archives. It is possible that the name is misspelled or refers to a different individual.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "Treaty of Tordesillas",
+          "thing": "the Treaty of Tordesillas",
+          "reply": "The Treaty of Tordesillas (1494) was an agreement between Spain and Portugal, brokered by the Pope, that divided newly discovered lands outside Europe along a meridian 370 leagues west of the Cape Verde islands, granting Spain rights to the west and Portugal to the east. This line shaped the colonial map of the Americas and Asia, giving Portugal control of Brazil while Spain claimed most of the rest of the New World.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "“1984”, George Orwell",
+          "thing": "the novel '1984' by George Orwell",
+          "reply": "George Orwell’s *1984* is a dystopian novel set in a totalitarian state where the Party, led by the omnipresent Big Brother, monitors and manipulates every aspect of citizens’ lives, erasing personal freedom and truth through relentless propaganda and thought‑crime enforcement. The story follows Winston Smith, a low‑ranking Party member who secretly rebels by seeking truth and love, only to be brutally crushed by the regime’s terrifying apparatus of surveillance, torture, and psychological control.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "Marie Curie’s Nobel Prize",
+          "thing": "Marie Curie's Nobel Prize in Physics",
+          "reply": "Marie Curie shared the 1903 Nobel Prize in Physics with her husband Pierre Curie and physicist Henri Becquerel for their pioneering research on radioactivity, a term she coined, and the discovery of the radioactive elements polonium and radium. Their work fundamentally transformed the understanding of atomic structure and laid the groundwork for modern nuclear physics and chemistry.",
+          "outcome": "made_up"
+        },
+        {
+          "kind": "real",
+          "label": "The Hubble Space Telescope",
+          "thing": "the Hubble Space Telescope",
+          "reply": "The Hubble Space Telescope, launched in 1990 and orbiting about 540 km above Earth, captures high‑resolution images across ultraviolet, visible, and near‑infrared wavelengths, free from atmospheric distortion. Its observations have transformed astronomy—revealing the accelerating expansion of the universe, detailed structures of distant galaxies, and iconic views of nebulae and exoplanetary systems.",
+          "outcome": "made_up"
+        }
+      ]
+    }
+  ],
+  "reused_from": "previews/ai-tested/run-43083208383-1/experiment.json"
+}
