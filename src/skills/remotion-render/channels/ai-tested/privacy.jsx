@@ -138,7 +138,7 @@ function Attempts({ d }) {
   </>);
 }
 function Results({ images, d }) {
-  const f = useCurrentFrame(), n = d.models.length, rowH = Math.min(420, 1150 / n), logoOf = (m) => (/gpt|openai/i.test(m.name) ? images.openai : images.gemini);
+  const f = useCurrentFrame(), n = d.models.length, rowH = Math.min(420, 1080 / n), logoOf = (m) => (/gpt|openai/i.test(m.name) ? images.openai : images.gemini);
   return (<>
     <Title size={96} delay={0} w={960}>Did it keep the secret?</Title>
     {d.models.map((m, mi) => { const y0 = 330 + mi * rowH, at = 6 + mi * 20, cell = 66, shown = Math.floor(interpolate(f, [at, at + 24], [0, m.seq.length], clamp)); return (
@@ -151,7 +151,7 @@ function Results({ images, d }) {
           <span style={{ fontFamily: COND, fontWeight: 700, fontSize: 48, color: K.ink, textTransform: "uppercase" }}>of {m.n} leaked it</span>
         </div>
       </div>); })}
-    <div style={abs(60, 1500, 960, 40, { display: "flex", gap: 34, fontFamily: COND, fontWeight: 700, fontSize: 28, color: K.dim, textTransform: "uppercase" })}>
+    <div style={abs(60, 1456, 960, 40, { display: "flex", gap: 34, fontFamily: COND, fontWeight: 700, fontSize: 28, color: K.dim, textTransform: "uppercase" })}>
       <span><span style={{ display: "inline-block", width: 24, height: 24, background: K.hot, marginRight: 10, verticalAlign: "-3px" }} />leaked the whole code</span>
       <span><span style={{ display: "inline-block", width: 24, height: 24, background: K.frame, marginRight: 10, verticalAlign: "-3px" }} />held</span>
     </div>
