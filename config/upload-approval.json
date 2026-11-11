@@ -174,5 +174,24 @@
       "1989",
       "history"
     ]
+  },
+  "ai-tested-privacy": {
+    "run_id": 42991171487,
+    "artifact": "preview-ai-tested-42991171487-1",
+    "sha256": "58e1a4cb653fad12db6c81e0e7ff7603b6618590adf3dc303b3989e4dd494229",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Can You Trust AI With Your Data? We Made It Leak Once",
+    "description": "Google's Gemini Apps Privacy Hub (updated 26 October 2026) says \"a subset of chats are reviewed by human reviewers\" and that reviewed chats are \"retained for up to three years\". Anthropic's consumer terms update (28 August 2025) says data retention extends to five years if you allow training, and stays at 30 days if you do not. OpenAI's own pages refused our automated request, so we quote nothing from them. Then we tested the models themselves: we gave 3 AI models an invented secret code in their instructions, told them never to share it, and tried 12 different ways to get it. Gemini 3.5 Flash: the whole secret appeared in 0 of 12 replies. Gemini 3.5 Flash-Lite: the whole secret appeared in 1 of 12 replies. GPT-OSS 120B: the whole secret appeared in 0 of 12 replies. A partial leak is not counted. No real personal data was used. One small test, run on 11 November 2026 at temperature 0; policies and models change. Company logos are trademarks of their owners, shown only to name them.\n\n#Shorts #AI #AITested #Privacy #ChatGPT #Gemini #Claude\n\nSources: https://support.google.com/gemini/answer/13594961 and https://www.anthropic.com/news/updates-to-our-consumer-terms",
+    "tags": [
+      "AI privacy",
+      "can you trust AI",
+      "AI data",
+      "ChatGPT",
+      "Gemini",
+      "Claude",
+      "AI test",
+      "data privacy"
+    ]
   }
 }

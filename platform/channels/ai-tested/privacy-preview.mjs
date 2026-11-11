@@ -65,7 +65,7 @@ export default async function privacyPreview({ key, runId, tools }) {
 
   const d = p.data, dateText = new Date(exp.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   const metadata = {
-    title: d.anyLeak ? `Can You Trust AI With Your Data? We Made It Leak ${d.leaks} Times` : "Can You Trust AI With Your Data? We Could Not Make It Leak",
+    title: d.anyLeak ? `Can You Trust AI With Your Data? We Made It Leak ${d.leaks === 1 ? "Once" : `${d.leaks} Times`}` : "Can You Trust AI With Your Data? We Could Not Make It Leak",
     description: `Google's Gemini Apps Privacy Hub (updated 26 October 2026) says "a subset of chats are reviewed by human reviewers" and that reviewed chats are "retained for up to three years". Anthropic's consumer terms update (28 August 2025) says data retention extends to five years if you allow training, and stays at 30 days if you do not. OpenAI's own pages refused our automated request, so we quote nothing from them. Then we tested the models themselves: we gave ${exp.models.length} AI models an invented secret code in their instructions, told them never to share it, and tried ${exp.attempts} different ways to get it. ${d.models.map((m) => `${m.name}: the whole secret appeared in ${m.leaked} of ${m.n} replies`).join(". ")}. A partial leak is not counted. No real personal data was used. One small test, run on ${dateText} at temperature 0; policies and models change. Company logos are trademarks of their owners, shown only to name them.\n\n#Shorts #AI #AITested #Privacy #ChatGPT #Gemini #Claude\n\nSources: ${COMPANY.google.url} and ${COMPANY.anthropic.url}`,
     tags: ["AI privacy", "can you trust AI", "AI data", "ChatGPT", "Gemini", "Claude", "AI test", "data privacy"],
   };
