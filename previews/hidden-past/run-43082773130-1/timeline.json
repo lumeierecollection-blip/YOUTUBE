@@ -1,0 +1,427 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "name",
+      "treatment": "name-title-with-portrait",
+      "objective": "Open on the name Al Capone over his 1930 portrait, with the years he led the Chicago Outfit",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 151,
+      "start_s": 0,
+      "end_s": 5.033333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "massacre",
+      "treatment": "newspaper-scan-with-number",
+      "objective": "Show the New York Times front page of 15 February 1929 and the number seven",
+      "background": "paper panel in saturated frame",
+      "from": 151,
+      "to": 330,
+      "start_s": 5.033333333333333,
+      "end_s": 11
+    },
+    {
+      "id": "s3",
+      "kind": "enemy",
+      "treatment": "portrait-with-stamp",
+      "objective": "Stamp 'Public Enemy No. 1' over a 1929 photograph",
+      "background": "paper panel in saturated frame",
+      "from": 330,
+      "to": 440,
+      "start_s": 11,
+      "end_s": 14.666666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "tax",
+      "treatment": "giant-word-with-strips",
+      "objective": "Turn to income tax as the weapon, named as a plan of the Treasury and Justice Departments",
+      "background": "paper panel in saturated frame",
+      "from": 440,
+      "to": 493,
+      "start_s": 14.666666666666666,
+      "end_s": 16.433333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "counts",
+      "treatment": "counted-dots",
+      "objective": "Draw twenty-two counts as dots; the five he was convicted on in the accent colour",
+      "background": "paper panel in saturated frame",
+      "from": 493,
+      "to": 595,
+      "start_s": 16.433333333333334,
+      "end_s": 19.833333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "evidence",
+      "treatment": "quote-slip",
+      "objective": "Quote the source sentence on his own admissions of income being admitted as evidence",
+      "background": "paper panel in saturated frame",
+      "from": 595,
+      "to": 695,
+      "start_s": 19.833333333333332,
+      "end_s": 23.166666666666668
+    },
+    {
+      "id": "s7",
+      "kind": "sentence",
+      "treatment": "photo-with-giant-number",
+      "objective": "Show eleven years with the prison photograph and the fine",
+      "background": "paper panel in saturated frame",
+      "from": 695,
+      "to": 757,
+      "start_s": 23.166666666666668,
+      "end_s": 25.233333333333334
+    },
+    {
+      "id": "s8",
+      "kind": "end",
+      "treatment": "portrait-and-death-certificate",
+      "objective": "Show him around 1935 and the 1947 death certificate",
+      "background": "paper panel in saturated frame",
+      "from": 757,
+      "to": 860,
+      "start_s": 25.233333333333334,
+      "end_s": 28.666666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "close",
+      "treatment": "title-with-stamp",
+      "objective": "Close on the reframe: his own tax records ended it",
+      "background": "paper panel in saturated frame",
+      "from": 860,
+      "to": 930,
+      "start_s": 28.666666666666668,
+      "end_s": 31
+    }
+  ],
+  "captions": [
+    {
+      "text": "Al Capone ruled Chicago's Prohibition",
+      "from": 0,
+      "to": 104,
+      "words": [
+        {
+          "text": "Al",
+          "from": 0
+        },
+        {
+          "text": "Capone",
+          "from": 14
+        },
+        {
+          "text": "ruled",
+          "from": 32
+        },
+        {
+          "text": "Chicago's",
+          "from": 47
+        },
+        {
+          "text": "Prohibition",
+          "from": 82
+        }
+      ]
+    },
+    {
+      "text": "underworld",
+      "from": 104,
+      "to": 119,
+      "words": [
+        {
+          "text": "underworld",
+          "from": 104
+        }
+      ]
+    },
+    {
+      "text": "In 1929",
+      "from": 151,
+      "to": 185,
+      "words": [
+        {
+          "text": "In",
+          "from": 151
+        },
+        {
+          "text": "1929",
+          "from": 154
+        }
+      ]
+    },
+    {
+      "text": "seven rival gangsters were murdered",
+      "from": 198,
+      "to": 269,
+      "words": [
+        {
+          "text": "seven",
+          "from": 198
+        },
+        {
+          "text": "rival",
+          "from": 211
+        },
+        {
+          "text": "gangsters",
+          "from": 225
+        },
+        {
+          "text": "were",
+          "from": 246
+        },
+        {
+          "text": "murdered",
+          "from": 255
+        }
+      ]
+    },
+    {
+      "text": "in broad daylight",
+      "from": 269,
+      "to": 310,
+      "words": [
+        {
+          "text": "in",
+          "from": 269
+        },
+        {
+          "text": "broad",
+          "from": 280
+        },
+        {
+          "text": "daylight",
+          "from": 289
+        }
+      ]
+    },
+    {
+      "text": "Newspapers called him Public Enemy",
+      "from": 330,
+      "to": 392,
+      "words": [
+        {
+          "text": "Newspapers",
+          "from": 330
+        },
+        {
+          "text": "called",
+          "from": 348
+        },
+        {
+          "text": "him",
+          "from": 358
+        },
+        {
+          "text": "Public",
+          "from": 365
+        },
+        {
+          "text": "Enemy",
+          "from": 376
+        }
+      ]
+    },
+    {
+      "text": "Number One",
+      "from": 392,
+      "to": 420,
+      "words": [
+        {
+          "text": "Number",
+          "from": 392
+        },
+        {
+          "text": "One",
+          "from": 404
+        }
+      ]
+    },
+    {
+      "text": "Agents turned to income tax",
+      "from": 440,
+      "to": 493,
+      "words": [
+        {
+          "text": "Agents",
+          "from": 440
+        },
+        {
+          "text": "turned",
+          "from": 445
+        },
+        {
+          "text": "to",
+          "from": 460
+        },
+        {
+          "text": "income",
+          "from": 471
+        },
+        {
+          "text": "tax",
+          "from": 481
+        }
+      ]
+    },
+    {
+      "text": "Twenty-two",
+      "from": 493,
+      "to": 516,
+      "words": [
+        {
+          "text": "Twenty-two",
+          "from": 493
+        }
+      ]
+    },
+    {
+      "text": "counts of tax evasion",
+      "from": 533,
+      "to": 572,
+      "words": [
+        {
+          "text": "counts",
+          "from": 533
+        },
+        {
+          "text": "of",
+          "from": 541
+        },
+        {
+          "text": "tax",
+          "from": 552
+        },
+        {
+          "text": "evasion",
+          "from": 559
+        }
+      ]
+    },
+    {
+      "text": "His own admissions of income",
+      "from": 595,
+      "to": 637,
+      "words": [
+        {
+          "text": "His",
+          "from": 595
+        },
+        {
+          "text": "own",
+          "from": 596
+        },
+        {
+          "text": "admissions",
+          "from": 605
+        },
+        {
+          "text": "of",
+          "from": 616
+        },
+        {
+          "text": "income",
+          "from": 628
+        }
+      ]
+    },
+    {
+      "text": "became evidence",
+      "from": 637,
+      "to": 669,
+      "words": [
+        {
+          "text": "became",
+          "from": 637
+        },
+        {
+          "text": "evidence",
+          "from": 655
+        }
+      ]
+    },
+    {
+      "text": "Five convictions",
+      "from": 695,
+      "to": 713,
+      "words": [
+        {
+          "text": "Five",
+          "from": 695
+        },
+        {
+          "text": "convictions",
+          "from": 698
+        }
+      ]
+    },
+    {
+      "text": "eleven years He died in",
+      "from": 733,
+      "to": 799,
+      "words": [
+        {
+          "text": "eleven",
+          "from": 733
+        },
+        {
+          "text": "years",
+          "from": 742
+        },
+        {
+          "text": "He",
+          "from": 757
+        },
+        {
+          "text": "died",
+          "from": 780
+        },
+        {
+          "text": "in",
+          "from": 788
+        }
+      ]
+    },
+    {
+      "text": "1947",
+      "from": 799,
+      "to": 831,
+      "words": [
+        {
+          "text": "1947",
+          "from": 799
+        }
+      ]
+    },
+    {
+      "text": "Taxes ended his reign",
+      "from": 860,
+      "to": 902,
+      "words": [
+        {
+          "text": "Taxes",
+          "from": 860
+        },
+        {
+          "text": "ended",
+          "from": 860
+        },
+        {
+          "text": "his",
+          "from": 878
+        },
+        {
+          "text": "reign",
+          "from": 889
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 930,
+  "duration_s": 31
+}
