@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-11T19:44:23.413Z",
+  "rebuilt_at": "2026-11-11T19:44:32.091Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,21 +118,21 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "finished",
-      "status": "ok",
-      "at": "2026-11-11T19:40:25.295Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-11T19:44:12.006Z",
       "branch": "preview/hidden-past-capone",
-      "commit": "85217b73",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43087868154#artifacts)",
-      "sheet": "[contact-sheet.jpg](hidden-past/run-43087868154-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](hidden-past/run-43087868154-1/scene-s1.jpg) [scene-s2.jpg](hidden-past/run-43087868154-1/scene-s2.jpg) [scene-s3.jpg](hidden-past/run-43087868154-1/scene-s3.jpg) [scene-s4.jpg](hidden-past/run-43087868154-1/scene-s4.jpg)",
+      "commit": "1decbe10",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43089709960#artifacts)",
+      "sheet": "",
+      "scenes": "",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](hidden-past/run-43087868154-1/scene-plan.json)",
-      "qa": "[qa-report.json](hidden-past/run-43087868154-1/qa-report.json)",
+      "plan": "",
+      "qa": "",
       "blocker": "",
       "lastOk": "2026-11-11T19:40:25.295Z",
-      "run": "run-43087868154-1"
+      "run": "run-43089709960-1"
     },
     {
       "key": "red-space-facts",
