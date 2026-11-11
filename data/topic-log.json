@@ -2827,9 +2827,14 @@
           "topic": "World Meteorological Organization Reports 2026 Global Climate Extremes and El Niño",
           "slug": "wmo-2026-global-climate-extremes-el-nino",
           "reserved_at": "2026-11-10T16:49:28.074Z"
+        },
+        {
+          "topic": "Rediscovery of the Ethiopian Water Mouse After Nearly a Century",
+          "slug": "ethiopian-water-mouse-rediscovery",
+          "reserved_at": "2026-11-11T17:36:07.615Z"
         }
       ],
-      "last_generated": "2026-11-11T17:00:32.994Z"
+      "last_generated": "2026-11-11T17:36:07.615Z"
     },
     "18": {
       "channel_name": "Brief History",
