@@ -1149,7 +1149,12 @@
       "attempts": 1,
       "run_id": "43066412899",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T17:15:52.558Z"
+      "updated_at": "2026-11-11T17:18:09.964Z",
+      "stage": "research",
+      "topic": "Students Complete Entire University Assessments in Minutes Using AI",
+      "score": 80.2,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "Schools are panicking after students figured out how to pass entire university exams using AI in just minutes."
     }
   },
   "uploads": [
@@ -2172,6 +2177,15 @@
       "at_ms": 1794383896228,
       "score": 71.3,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "Students Complete Entire University Assessments in Minutes Using AI",
+      "slug": "students-complete-entire-university-assessments-in-minutes-u",
+      "slot": "2026-11-11-ch2",
+      "at_ms": 1794417489964,
+      "score": 80.2,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
