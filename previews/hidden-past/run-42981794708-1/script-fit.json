@@ -1,0 +1,125 @@
+{
+  "measured_wpm": 180.4,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "In 1989, a bomb destroys a plane over Colombia.",
+      "scene": 0,
+      "claim_ids": [
+        "C1"
+      ]
+    },
+    {
+      "text": "Flight 203 leaves Bogotá.",
+      "scene": 1,
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    {
+      "text": "Five minutes later, a bomb explodes.",
+      "scene": 2,
+      "claim_ids": [
+        "C3"
+      ]
+    },
+    {
+      "text": "The plane breaks apart over Soacha.",
+      "scene": 3,
+      "claim_ids": [
+        "C4"
+      ]
+    },
+    {
+      "text": "All 107 on board die, and three people on the ground.",
+      "scene": 4,
+      "claim_ids": [
+        "C5"
+      ]
+    },
+    {
+      "text": "Who wanted this?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "turn to context, not a factual claim"
+    },
+    {
+      "text": "Investigators find plastic explosives.",
+      "scene": 6,
+      "claim_ids": [
+        "C6"
+      ]
+    },
+    {
+      "text": "Pablo Escobar's Medellín Cartel ordered it.",
+      "scene": 7,
+      "claim_ids": [
+        "C7"
+      ]
+    },
+    {
+      "text": "His target is César Gaviria.",
+      "scene": 8,
+      "claim_ids": [
+        "C8"
+      ]
+    },
+    {
+      "text": "But Gaviria is not on the plane.",
+      "scene": 9,
+      "claim_ids": [
+        "C9"
+      ]
+    },
+    {
+      "text": "He goes on to win the presidency.",
+      "scene": 10,
+      "claim_ids": [
+        "C9"
+      ]
+    },
+    {
+      "text": "Nine days later, another bomb kills sixty-three in Bogotá.",
+      "scene": 11,
+      "claim_ids": [
+        "C10"
+      ]
+    },
+    {
+      "text": "A 2016 report disputes the cause, but families reject it.",
+      "scene": 14,
+      "claim_ids": [
+        "C13"
+      ]
+    },
+    {
+      "text": "A bomb meant for one man killed 110.",
+      "scene": 15,
+      "claim_ids": [
+        "C5",
+        "C8",
+        "C9"
+      ]
+    }
+  ],
+  "words": 95,
+  "estimated_seconds": 36.4,
+  "inside_window": true,
+  "kept": [
+    "who",
+    "explosives",
+    "elected",
+    "hook",
+    "depart",
+    "boom",
+    "apart",
+    "toll",
+    "cartel",
+    "target",
+    "absent",
+    "das",
+    "disputed",
+    "close"
+  ]
+}
