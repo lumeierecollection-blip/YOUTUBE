@@ -1,0 +1,51 @@
+{
+  "format": "ai_tested_privacy",
+  "quote_verification": {
+    "G1": {
+      "url": "https://support.google.com/gemini/answer/13594961",
+      "page_fetched_in_run": true,
+      "found_in_run": true,
+      "note": "quote found on the live page"
+    },
+    "G2": {
+      "url": "https://support.google.com/gemini/answer/13594961",
+      "page_fetched_in_run": true,
+      "found_in_run": true,
+      "note": "quote found on the live page"
+    },
+    "A1": {
+      "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "page_fetched_in_run": true,
+      "found_in_run": true,
+      "note": "quote found on the live page"
+    },
+    "A2": {
+      "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+      "page_fetched_in_run": true,
+      "found_in_run": true,
+      "note": "quote found on the live page"
+    }
+  },
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 35.563,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -19.1,
+    "max_volume_db": -1.8,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 35.04,
+      "words": 81,
+      "wpm": 138.7,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  }
+}
