@@ -1,0 +1,123 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-43108403800-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Al Capone ruled Chicago, but income tax put him in prison.",
+      "main_point": "Open on the name Al Capone over his 1930 portrait with the payoff stated at once: income tax put him in prison",
+      "visual_objective": "Open on the name Al Capone over his 1930 portrait with the payoff stated at once: income tax put him in prison",
+      "treatment": "name-title-with-portrait",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1",
+        "K5",
+        "K8"
+      ],
+      "start_s": 0,
+      "end_s": 5.633333333333334
+    },
+    {
+      "scene_id": "s2",
+      "narration": "In 1929, seven rival gangsters were murdered, and newspapers named him Public Enemy Number One.",
+      "main_point": "Show the New York Times front page of 15 February 1929, the number seven and the Public Enemy No. 1 stamp",
+      "visual_objective": "Show the New York Times front page of 15 February 1929, the number seven and the Public Enemy No. 1 stamp",
+      "treatment": "newspaper-scan-with-number-and-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2",
+        "K3"
+      ],
+      "start_s": 5.633333333333334,
+      "end_s": 13.133333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Agents turned to income tax, and charged him with twenty-two counts of evasion.",
+      "main_point": "Name income tax as the weapon (Treasury and Justice Departments) and draw twenty-two counts as dots, the five he was convicted on in the accent colour",
+      "visual_objective": "Name income tax as the weapon (Treasury and Justice Departments) and draw twenty-two counts as dots, the five he was convicted on in the accent colour",
+      "treatment": "giant-words-and-counted-dots",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4",
+        "K5"
+      ],
+      "start_s": 13.133333333333333,
+      "end_s": 18.733333333333334
+    },
+    {
+      "scene_id": "s4",
+      "narration": "His own admissions became evidence.",
+      "main_point": "Quote the source sentence on his own admissions of income being admitted as evidence",
+      "visual_objective": "Quote the source sentence on his own admissions of income being admitted as evidence",
+      "treatment": "quote-slip",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K6"
+      ],
+      "start_s": 18.733333333333334,
+      "end_s": 21.233333333333334
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Five convictions, eleven years.",
+      "main_point": "Show eleven years with the prison photograph and the fine",
+      "visual_objective": "Show eleven years with the prison photograph and the fine",
+      "treatment": "photo-with-giant-number",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K7",
+        "K8"
+      ],
+      "start_s": 21.233333333333334,
+      "end_s": 23.9
+    },
+    {
+      "scene_id": "s6",
+      "narration": "He served in Atlanta, then Alcatraz.",
+      "main_point": "Draw Chicago to Atlanta (1932) to Alcatraz (1934) with a photograph of each prison",
+      "visual_objective": "Draw Chicago to Atlanta (1932) to Alcatraz (1934) with a photograph of each prison",
+      "treatment": "drawn-route-with-two-photos",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K9",
+        "K10"
+      ],
+      "start_s": 23.9,
+      "end_s": 26.7
+    },
+    {
+      "scene_id": "s7",
+      "narration": "He died in 1947.",
+      "main_point": "Show him around 1935 and the 1947 death certificate",
+      "visual_objective": "Show him around 1935 and the 1947 death certificate",
+      "treatment": "portrait-and-death-certificate",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K12"
+      ],
+      "start_s": 26.7,
+      "end_s": 28.866666666666667
+    },
+    {
+      "scene_id": "s8",
+      "narration": "Right way to stop him?",
+      "main_point": "Close on a question viewers can answer in the comments: was tax the right way to stop him",
+      "visual_objective": "Close on a question viewers can answer in the comments: was tax the right way to stop him",
+      "treatment": "title-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 28.866666666666667,
+      "end_s": 30.9
+    }
+  ]
+}

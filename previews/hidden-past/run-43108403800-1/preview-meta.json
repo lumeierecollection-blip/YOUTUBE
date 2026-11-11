@@ -2,12 +2,10 @@
   "channel": "hidden-past",
   "production_run": "run-43108403800-1",
   "agent": "agent-hidden-past",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-11T22:05:16.824Z",
+  "timestamp": "2026-11-11T22:05:18.742Z",
   "branch": "preview/hidden-past-capone",
   "commit": "c1f29dd2d9eaf1b1548a566fa9b45dd94446fc49",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43108403800#artifacts",
-  "engine": "gemini:Charon",
-  "wpm": 124.2
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43108403800#artifacts"
 }
