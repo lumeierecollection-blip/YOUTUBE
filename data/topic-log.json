@@ -4583,9 +4583,14 @@
           "topic": "RAIB Report 12/2026: Passenger Train Collision at Bax Crossing",
           "slug": "raib-report-12-2026-bax-crossing-collision",
           "reserved_at": "2026-11-10T16:33:55.309Z"
+        },
+        {
+          "topic": "EU-OSHA Expands OSH Barometer with 2026 Workplace Accident Data",
+          "slug": "eu-osha-expands-osh-barometer-2026-data",
+          "reserved_at": "2026-11-11T17:42:15.863Z"
         }
       ],
-      "last_generated": "2026-11-10T16:33:55.310Z"
+      "last_generated": "2026-11-11T17:42:15.863Z"
     },
     "49": {
       "channel_name": "Picture House",
