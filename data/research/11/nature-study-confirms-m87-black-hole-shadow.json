@@ -1,0 +1,79 @@
+{
+  "topic_slug": "nature-study-confirms-m87-black-hole-shadow",
+  "strongest_angle": "A November 2026 study published in Nature by a small CSIRO team confirms the iconic 2019 M87* black hole shadow using an independent interferometric observable, proving the ring structure is not an image-reconstruction artifact.",
+  "key_facts": [
+    {
+      "fact": "Published on 11 November 2026 in Nature, an independent group of four Australian researchers from CSIRO reanalysed the Event Horizon Telescope data using a new interferometric technique to confirm the shadow of black hole M87*.",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+      "source_name": "CSIRO",
+      "confidence": "high"
+    },
+    {
+      "fact": "The original 2019 image of black hole M87* was captured by the Event Horizon Telescope Collaboration, involving hundreds of scientists, which some researchers previously argued was an artifact of image-reconstruction techniques.",
+      "source_url": "https://www.nature.com/articles/d41586-026-03642-7",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new study led by researchers including Samuel Lai, Nithyanandan Thyagarajan, O. Ivy Wong, and Foivos Diakogiannis validates the iconic ring structure predicted by general relativity.",
+      "source_url": "https://www.nature.com/articles/s41586-026-11241-9",
+      "source_name": "Nature",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year of the EHT black hole image",
+      "value": 2019,
+      "unit": "year",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole"
+    },
+    {
+      "label": "Publication year of the independent Nature confirmation study",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole"
+    },
+    {
+      "label": "Number of researchers in the CSIRO team confirming the image",
+      "value": 4,
+      "unit": "researchers",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "M87*",
+      "kind": "object"
+    },
+    {
+      "name": "CSIRO",
+      "kind": "organization"
+    },
+    {
+      "name": "Event Horizon Telescope Collaboration",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Samuel Lai",
+      "kind": "person"
+    },
+    {
+      "name": "Nithyanandan Thyagarajan",
+      "kind": "person"
+    },
+    {
+      "name": "O. Ivy Wong",
+      "kind": "person"
+    },
+    {
+      "name": "Foivos Diakogiannis",
+      "kind": "person"
+    }
+  ]
+}
