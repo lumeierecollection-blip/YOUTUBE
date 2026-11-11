@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-11T08:27:38.197Z",
+  "rebuilt_at": "2026-11-11T08:27:55.308Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,20 +118,20 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "render_complete",
+      "stage": "qa_passed",
       "status": "ok",
-      "at": "2026-11-11T08:27:37.733Z",
+      "at": "2026-11-11T08:27:53.515Z",
       "branch": "preview/hidden-past-crime-beats",
       "commit": "53b3148c",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42985473527#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "sheet": "[contact-sheet.jpg](hidden-past/run-42985473527-1/contact-sheet.jpg)",
+      "scenes": "[scene-s1.jpg](hidden-past/run-42985473527-1/scene-s1.jpg) [scene-s10.jpg](hidden-past/run-42985473527-1/scene-s10.jpg) [scene-s11.jpg](hidden-past/run-42985473527-1/scene-s11.jpg) [scene-s2.jpg](hidden-past/run-42985473527-1/scene-s2.jpg)",
       "voice": "",
       "script": "",
       "plan": "[scene-plan.json](hidden-past/run-42985473527-1/scene-plan.json)",
-      "qa": "",
+      "qa": "[qa-report.json](hidden-past/run-42985473527-1/qa-report.json)",
       "blocker": "",
-      "lastOk": "2026-11-11T08:27:37.733Z",
+      "lastOk": "2026-11-11T08:27:53.515Z",
       "run": "run-42985473527-1"
     },
     {
