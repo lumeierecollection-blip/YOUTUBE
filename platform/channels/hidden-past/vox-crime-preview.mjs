@@ -21,7 +21,8 @@ const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const VOX = JSON.parse(readFileSync(join(ROOT, "config/autopilot.json"), "utf8")).vox;
 const py = process.platform === "win32" ? "python" : "python3";
 const UA = { "User-Agent": "HiddenPastPreview/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; evidence-led history)" };
-const STYLE = "Brisk, urgent and serious, like a documentary narrator who gets to the point; short sentences land hard, no long pauses";
+// Owner, 11 Nov: the voice was too jovial for a bombing. The repo's own grave delivery note (video-tone.js) on a deeper voice; no style override.
+const VOICE = "Charon", GRAVITY = "grave";
 const CALIBRATION = "The report was published in March. It listed three findings. The first concerned the cost of the programme, which rose by a fifth over two years. The second looked at who paid for it, and the third asked whether anyone had checked.";
 
 async function getJson(url) {
@@ -61,7 +62,7 @@ export default async function voxBeatsPreview({ key, runId, tools }) {
   const sources = [{ source_id: "wiki-avianca203", url: WIKI_ARTICLE, published: "2026-11-11" }];
 
   // 2. Script: the wording and the optional lines that land at 35 to 40 seconds at this voice's measured pace.
-  const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: STYLE });
+  const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", gravity: GRAVITY, voice: VOICE });
   const fitFor = (wpm) => { const fit = fitScript({ slots: SLOTS, wpm, targetSeconds: 36.2, minSeconds: 35.5, maxSeconds: 38.4 }); return { fit, ...compactScenes({ scenes: SCENES, sentences: fit.sentences }) }; };
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
@@ -98,6 +99,6 @@ export default async function voxBeatsPreview({ key, runId, tools }) {
     return { images, credits, cut, map };
   };
 
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: TOPIC, claims, sources, sentences: first.sentences, scenes: first.scenes, compositionId: "HiddenPastVoxCrime", edgeVoice: channel.voice.tts, style: STYLE, metadata: METADATA, minSeconds: 35, maxSeconds: 40, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: TOPIC, claims, sources, sentences: first.sentences, scenes: first.scenes, compositionId: "HiddenPastVoxCrime", edgeVoice: channel.voice.tts, gravity: GRAVITY, voice: VOICE, metadata: METADATA, minSeconds: 35, maxSeconds: 40, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps } });
   tools.write("quality-report.json", { format: "hidden_past_vox_crime_layered", technical: result.qa });
 }

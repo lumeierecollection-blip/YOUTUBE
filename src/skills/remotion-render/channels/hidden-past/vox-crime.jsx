@@ -32,10 +32,19 @@ function Burst({ x, y, size = 160, delay = 0 }) {
 }
 
 // ---------------------------------------------------------------- the sixteen pictures
+function Name({ images, credits }) {
+  return (<>
+    <Title size={200} delay={0} w={940}>Pablo<br />Escobar</Title>
+    <Sticker src={images.escobar} x={140} y={520} w={540} h={716} rot={-2} from="bottom" delay={4} tapes={[[170, -20, -8, 170]]} credit={credits.escobar} />
+    <Stamp x={660} y={640} w={330} rot={7} delay={9} size={54}>Bomb plot<br />1989</Stamp>
+    <Strip x={140} y={1330} w={880} delay={12} size={32}>Planned the bombing of a passenger plane</Strip>
+    <Dot x={880} y={1060} s={64} delay={8} />
+  </>);
+}
 function Plane({ images, credits }) {
   return (<>
     <Title size={170} delay={0} w={600}>Nov 27<br />1989</Title>
-    <Stamp x={660} y={150} w={340} rot={6} delay={10} size={44}>Destroyed<br />by a bomb</Stamp>
+    <Stamp x={660} y={150} w={340} rot={6} delay={10} size={44}>Avianca<br />Flight 203</Stamp>
     <Sticker src={images.plane} x={90} y={620} w={900} h={563} rot={-1.4} from="right" delay={3} tapes={[[-30, -14, -34, 170], [720, 540, -30, 170]]} credit={credits.plane} />
     <Strip x={90} y={1270} w={800} delay={12} size={34}>Avianca Boeing 727, HK-1803, in 1982</Strip>
     <Tri x={860} y={440} delay={6} rot={12} />
@@ -160,7 +169,7 @@ function Close({ images, credits }) {
   </>);
 }
 
-const BEATS = { plane: Plane, route: Route, boom: Boom, apart: Apart, toll: Toll, who: Who, explosives: Explosives, cartel: Cartel, target: Target, absent: Absent, elected: Elected, das: Das, americans: Americans, assassin: Assassin, disputed: Disputed, close: Close };
+const BEATS = { name: Name, plane: Plane, route: Route, boom: Boom, apart: Apart, toll: Toll, who: Who, explosives: Explosives, cartel: Cartel, target: Target, absent: Absent, elected: Elected, das: Das, americans: Americans, assassin: Assassin, disputed: Disputed, close: Close };
 
 export function HiddenPastVoxCrime({ durationInFrames, scenes, captions, images, credits, cut, map }) {
   const f = useCurrentFrame();

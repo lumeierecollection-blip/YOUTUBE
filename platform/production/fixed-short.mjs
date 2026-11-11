@@ -31,7 +31,7 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   for (let pass = 1; ; pass++) {
     const text = sentences.map((s) => s.text).join(" ");
     for (let take = 1; take <= 3; take++) {
-      narration = await narrate({ text, edgeVoice, outDir: tools.outDir, name: "voice-track", style });
+      narration = await narrate({ text, edgeVoice, outDir: tools.outDir, name: "voice-track", style, gravity: spec.gravity || null, voice: spec.voice || null });
       console.log(`voice take ${take}: ${narration.seconds.toFixed(2)}s, ${narration.wpm} wpm, ${narration.engine}`);
       if (narration.seconds >= minSeconds && narration.seconds <= maxSeconds - 0.75) break;
     }

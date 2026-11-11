@@ -16,22 +16,22 @@ export const NATURAL_WPM_MAX = 200; // measured across the whole narration; fast
 const probe = (file, entries, stream = "") => execFileSync("ffprobe", ["-v", "error", ...(stream ? ["-select_streams", stream] : []), "-show_entries", entries, "-of", "csv=p=0", file]).toString().trim();
 export const durationOf = (f) => Number(probe(f, "format=duration"));
 
-function geminiVoice(edgeVoice, gravity) {
-  return import(pathToFileURL(join(ROOT, "src/utils/gemini-voice.js")).href).then((m) => m.geminiVoiceFor(edgeVoice, null, gravity));
+function geminiVoice(edgeVoice, gravity, voice = null) {
+  return import(pathToFileURL(join(ROOT, "src/utils/gemini-voice.js")).href).then((m) => m.geminiVoiceFor(edgeVoice, voice, gravity));
 }
 
 /**
  * Generates narration at the voice's own pace and returns its word timings. Gemini's TTS is tried first,
  * because the owner judged edge-tts robotic; edge-tts is the fallback and the result says which ran.
  */
-export async function narrate({ text, edgeVoice, outDir, name = "voice-track", gravity = null, style = null }) {
+export async function narrate({ text, edgeVoice, outDir, name = "voice-track", gravity = null, style = null, voice = null }) {
   const input = join(outDir, `.${name}.txt`), mp3 = join(outDir, `${name}.mp3`), srt = join(outDir, `.${name}.srt`), wordsFile = join(outDir, `${name}-words.json`);
   writeFileSync(input, text);
   const hasGemini = ["GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].some((k) => process.env[k]);
   let engine = null;
   const notes = [];
   if (hasGemini && process.env.TTS_PROVIDER !== "edge") {
-    const g = await geminiVoice(edgeVoice, gravity);
+    const g = await geminiVoice(edgeVoice, gravity, voice);
     const r = spawnSync("python3", [join(ROOT, "src/utils/tts_gemini.py"), "--voice", g.voice, "--style", style || g.style, "--file", input, "--mp3", mp3, "--srt", srt, "--words", wordsFile], { encoding: "utf8", timeout: 600000, cwd: ROOT });
     if (r.status === 0 && existsSync(wordsFile)) engine = `gemini:${g.voice}`;
     else notes.push(`gemini tts failed: ${String(r.stderr || r.stdout).trim().split("\n").at(-1).slice(0, 200)}`);

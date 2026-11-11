@@ -39,31 +39,31 @@ const V = (text, claim_ids = []) => ({ text, claim_ids });
 const NR = { allow_no_claim: true, editorial: "turn to context, not a factual claim" };
 /** One slot per picture, in story order. Required slots tell the whole crime; optional ones add context where the pace allows. */
 export const SLOTS = [
-  { id: "hook", scene: 0, variants: [V("In 1989, a bomb destroys a plane over Colombia.", ["C1"])] },
-  { id: "depart", scene: 1, variants: [V("Flight 203 leaves Bogotá for Cali at 7:13.", ["C2"]), V("Flight 203 leaves Bogotá.", ["C2"])] },
-  { id: "boom", scene: 2, variants: [V("Five minutes later, a bomb explodes.", ["C3"])] },
-  { id: "apart", scene: 3, variants: [V("The plane breaks apart over Soacha.", ["C4"])] },
-  { id: "toll", scene: 4, variants: [V("All 107 on board die, and three people on the ground.", ["C5"]), V("All 107 on board die, plus three on the ground.", ["C5"])] },
-  { id: "who", scene: 5, optional: true, ...NR, variants: [V("So who wants this?"), V("Who wanted this?")] },
+  { id: "name", scene: 0, variants: [V("Pablo Escobar planned a bomb for a presidential candidate.", ["C7", "C8"])] },
+  { id: "plane", scene: 1, variants: [V("On November 27, 1989, an Avianca jet takes off from Bogotá.", ["C1", "C2"]), V("An Avianca jet takes off from Bogotá.", ["C2"]), V("A jet takes off from Bogotá.", ["C2"])] },
+  { id: "route", scene: 2, optional: true, variants: [V("It is bound for Cali.", ["C2"])] },
+  { id: "boom", scene: 3, variants: [V("Five minutes later, a bomb explodes.", ["C3"])] },
+  { id: "apart", scene: 4, variants: [V("The plane breaks apart over Soacha.", ["C4"])] },
+  { id: "toll", scene: 5, variants: [V("All 107 on board die, and three people on the ground.", ["C5"]), V("All 107 on board die, plus three on the ground.", ["C5"]), V("107 die on board, three on the ground.", ["C5"])] },
   { id: "explosives", scene: 6, optional: true, variants: [V("Investigators find plastic explosives.", ["C6"])] },
-  { id: "cartel", scene: 7, variants: [V("Pablo Escobar's Medellín Cartel ordered it.", ["C7"]), V("Pablo Escobar ordered it.", ["C7"])] },
-  { id: "target", scene: 8, variants: [V("His target is a presidential candidate, César Gaviria.", ["C8"]), V("His target is César Gaviria.", ["C8"])] },
+  { id: "cartel", scene: 7, optional: true, variants: [V("The Medellín Cartel gave the order.", ["C7"])] },
+  { id: "target", scene: 8, variants: [V("The target is César Gaviria.", ["C8"])] },
   { id: "absent", scene: 9, variants: [V("But Gaviria is not on the plane.", ["C9"])] },
   { id: "elected", scene: 10, optional: true, variants: [V("He goes on to win the presidency.", ["C9"])] },
-  { id: "das", scene: 11, variants: [V("Nine days later, another bomb kills sixty-three in Bogotá.", ["C10"]), V("Nine days later, a bomb kills sixty-three in Bogotá.", ["C10"])] },
+  { id: "das", scene: 11, variants: [V("Nine days later, another bomb kills sixty-three in Bogotá.", ["C10"]), V("Nine days later, a bomb kills sixty-three in Bogotá.", ["C10"]), V("Nine days later, another bomb kills 63.", ["C10"])] },
   { id: "americans", scene: 12, optional: true, variants: [V("Two Americans died, so Washington starts hunting Escobar.", ["C11"]), V("Two Americans died, so the hunt for Escobar begins.", ["C11"])] },
   { id: "assassin", scene: 13, optional: true, variants: [V("His chief assassin gets ten life sentences.", ["C12"])] },
-  { id: "disputed", scene: 14, variants: [V("A 2016 report blames a fuel pump, but families and Avianca reject it.", ["C13"]), V("A 2016 report disputes the cause, but families reject it.", ["C13"])] },
+  { id: "disputed", scene: 14, variants: [V("A 2016 report disputes the cause, but families reject it.", ["C13"])] },
   { id: "close", scene: 15, variants: [V("A bomb meant for one man killed one hundred and ten.", ["C5", "C8", "C9"]), V("A bomb meant for one man killed 110.", ["C5", "C8", "C9"])] },
 ];
 
 export const SCENES = [
+  { kind: "name", treatment: "name-title-with-portrait", objective: "Open on the name: Pablo Escobar, large, over his police photograph, with the bomb plot of 1989", background: "paper panel in saturated frame" },
   { kind: "plane", treatment: "sticker-photo-with-date-title", objective: "Open on the very aircraft, HK-1803, with the date of the bombing", background: "paper panel in saturated frame" },
   { kind: "route", treatment: "drawn-map-with-flying-cutout", objective: "Draw the route from Bogotá to Cali with the aircraft cut-out flying along it", background: "paper panel in saturated frame" },
   { kind: "boom", treatment: "map-burst-with-number", objective: "Mark the explosion over Soacha on the same map with the number five and 'minutes after takeoff'", background: "paper panel in saturated frame" },
   { kind: "apart", treatment: "cutout-splitting", objective: "Split the aircraft cut-out in two and let the halves fall apart over Soacha", background: "paper panel in saturated frame" },
   { kind: "toll", treatment: "counted-dots", objective: "Draw 110 dots, 107 on board and three on the ground", background: "paper panel in saturated frame" },
-  { kind: "who", treatment: "giant-question-mark", objective: "Pose the question of who ordered it", background: "paper panel in saturated frame" },
   { kind: "explosives", treatment: "stamp-finding", objective: "Stamp the investigation's finding: plastic explosives", background: "paper panel in saturated frame" },
   { kind: "cartel", treatment: "portrait-sticker-with-stamp", objective: "Show Pablo Escobar's police photograph with the Medellín Cartel stamp", background: "paper panel in saturated frame" },
   { kind: "target", treatment: "portrait-sticker-with-target-ring", objective: "Show César Gaviria, labelled as a 2009 photograph, with a hand-drawn ring around him", background: "paper panel in saturated frame" },
@@ -77,7 +77,7 @@ export const SCENES = [
 ];
 
 export const METADATA = {
-  title: "The Bomb Pablo Escobar Planted for a Candidate Who Wasn't on Board",
-  description: "On 27 November 1989 a bomb destroyed Avianca Flight 203 over Soacha, Colombia, five minutes after it left Bogotá for Cali. All 107 people on board died, and three on the ground. The Medellín Cartel ordered it; Pablo Escobar planned it hoping to kill presidential candidate César Gaviria, who was not on the plane and went on to be elected president. A 2016 newspaper report disputes the cause; Avianca and victims' families rejected it. Facts from Wikipedia's article on Avianca Flight 203; pictures from Wikimedia Commons, credited on screen and below.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Avianca_Flight_203\nImages: Richard Vandervord (CC BY-SA 4.0), Colombian National Police (public domain) and World Economic Forum (CC BY-SA 2.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
+  title: "Pablo Escobar's Plane Bomb: The Candidate Who Wasn't on Board",
+  description: "Pablo Escobar planned a bomb for a presidential candidate. On 27 November 1989 it destroyed Avianca Flight 203 over Soacha, Colombia, five minutes after it left Bogotá for Cali. All 107 people on board died, and three on the ground. The Medellín Cartel ordered it; Pablo Escobar planned it hoping to kill presidential candidate César Gaviria, who was not on the plane and went on to be elected president. A 2016 newspaper report disputes the cause; Avianca and victims' families rejected it. Facts from Wikipedia's article on Avianca Flight 203; pictures from Wikimedia Commons, credited on screen and below.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Avianca_Flight_203\nImages: Richard Vandervord (CC BY-SA 4.0), Colombian National Police (public domain) and World Economic Forum (CC BY-SA 2.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
   tags: ["Pablo Escobar", "Avianca Flight 203", "Medellín Cartel", "César Gaviria", "Colombia", "1989", "history"],
 };
