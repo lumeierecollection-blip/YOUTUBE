@@ -1,0 +1,26 @@
+{
+  "G1": {
+    "url": "https://support.google.com/gemini/answer/13594961",
+    "page_fetched_in_run": true,
+    "found_in_run": true,
+    "note": "quote found on the live page"
+  },
+  "G2": {
+    "url": "https://support.google.com/gemini/answer/13594961",
+    "page_fetched_in_run": true,
+    "found_in_run": true,
+    "note": "quote found on the live page"
+  },
+  "A1": {
+    "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+    "page_fetched_in_run": true,
+    "found_in_run": true,
+    "note": "quote found on the live page"
+  },
+  "A2": {
+    "url": "https://www.anthropic.com/news/updates-to-our-consumer-terms",
+    "page_fetched_in_run": true,
+    "found_in_run": true,
+    "note": "quote found on the live page"
+  }
+}
