@@ -1,0 +1,20 @@
+{
+  "places": [
+    {
+      "name": "Bogotá",
+      "lat": 4.71111111,
+      "lon": -74.07222222
+    },
+    {
+      "name": "Cali",
+      "lat": 3.42055556,
+      "lon": -76.52222222
+    },
+    {
+      "name": "Soacha",
+      "lat": 4.58722222,
+      "lon": -74.22138889
+    }
+  ],
+  "source": "Natural Earth 1:50m (public domain); coordinates from English Wikipedia"
+}
