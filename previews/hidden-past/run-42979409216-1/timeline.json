@@ -1,0 +1,666 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "plane",
+      "treatment": "sticker-photo-with-date-title",
+      "objective": "Open on the very aircraft, HK-1803, with the date of the bombing",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 193,
+      "start_s": 0,
+      "end_s": 6.433333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "route",
+      "treatment": "drawn-map-with-flying-cutout",
+      "objective": "Draw the route from Bogotá to Cali with the aircraft cut-out flying along it",
+      "background": "paper panel in saturated frame",
+      "from": 193,
+      "to": 266,
+      "start_s": 6.433333333333334,
+      "end_s": 8.866666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "boom",
+      "treatment": "map-burst-with-number",
+      "objective": "Mark the explosion over Soacha on the same map with the number five and 'minutes after takeoff'",
+      "background": "paper panel in saturated frame",
+      "from": 266,
+      "to": 338,
+      "start_s": 8.866666666666667,
+      "end_s": 11.266666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "apart",
+      "treatment": "cutout-splitting",
+      "objective": "Split the aircraft cut-out in two and let the halves fall apart over Soacha",
+      "background": "paper panel in saturated frame",
+      "from": 338,
+      "to": 413,
+      "start_s": 11.266666666666667,
+      "end_s": 13.766666666666667
+    },
+    {
+      "id": "s5",
+      "kind": "toll",
+      "treatment": "counted-dots",
+      "objective": "Draw 110 dots, 107 on board and three on the ground",
+      "background": "paper panel in saturated frame",
+      "from": 413,
+      "to": 542,
+      "start_s": 13.766666666666667,
+      "end_s": 18.066666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "who",
+      "treatment": "giant-question-mark",
+      "objective": "Pose the question of who ordered it",
+      "background": "paper panel in saturated frame",
+      "from": 542,
+      "to": 597,
+      "start_s": 18.066666666666666,
+      "end_s": 19.9
+    },
+    {
+      "id": "s7",
+      "kind": "explosives",
+      "treatment": "stamp-finding",
+      "objective": "Stamp the investigation's finding: plastic explosives",
+      "background": "paper panel in saturated frame",
+      "from": 597,
+      "to": 666,
+      "start_s": 19.9,
+      "end_s": 22.2
+    },
+    {
+      "id": "s8",
+      "kind": "cartel",
+      "treatment": "portrait-sticker-with-stamp",
+      "objective": "Show Pablo Escobar's police photograph with the Medellín Cartel stamp",
+      "background": "paper panel in saturated frame",
+      "from": 666,
+      "to": 715,
+      "start_s": 22.2,
+      "end_s": 23.833333333333332
+    },
+    {
+      "id": "s9",
+      "kind": "target",
+      "treatment": "portrait-sticker-with-target-ring",
+      "objective": "Show César Gaviria, labelled as a 2009 photograph, with a hand-drawn ring around him",
+      "background": "paper panel in saturated frame",
+      "from": 715,
+      "to": 784,
+      "start_s": 23.833333333333332,
+      "end_s": 26.133333333333333
+    },
+    {
+      "id": "s10",
+      "kind": "absent",
+      "treatment": "portrait-with-not-on-board-stamp",
+      "objective": "Stamp 'not on board' over the same portrait",
+      "background": "paper panel in saturated frame",
+      "from": 784,
+      "to": 844,
+      "start_s": 26.133333333333333,
+      "end_s": 28.133333333333333
+    },
+    {
+      "id": "s11",
+      "kind": "elected",
+      "treatment": "portrait-with-elected-stamp",
+      "objective": "Show Gaviria elected president",
+      "background": "paper panel in saturated frame",
+      "from": 844,
+      "to": 899,
+      "start_s": 28.133333333333333,
+      "end_s": 29.966666666666665
+    },
+    {
+      "id": "s12",
+      "kind": "das",
+      "treatment": "number-with-dots",
+      "objective": "Show 63 and nine days later in Bogotá, with the 'presumably' attribution",
+      "background": "paper panel in saturated frame",
+      "from": 899,
+      "to": 1012,
+      "start_s": 29.966666666666665,
+      "end_s": 33.733333333333334
+    },
+    {
+      "id": "s13",
+      "kind": "close",
+      "treatment": "dots-with-portrait",
+      "objective": "Return to the 110 dots with Gaviria's portrait faded: one target, 110 dead",
+      "background": "paper panel in saturated frame",
+      "from": 1012,
+      "to": 1133,
+      "start_s": 33.733333333333334,
+      "end_s": 37.766666666666666
+    }
+  ],
+  "captions": [
+    {
+      "text": "On November 27",
+      "from": 0,
+      "to": 35,
+      "words": [
+        {
+          "text": "On",
+          "from": 0
+        },
+        {
+          "text": "November",
+          "from": 11
+        },
+        {
+          "text": "27",
+          "from": 19
+        }
+      ]
+    },
+    {
+      "text": "1989",
+      "from": 51,
+      "to": 82,
+      "words": [
+        {
+          "text": "1989",
+          "from": 51
+        }
+      ]
+    },
+    {
+      "text": "a bomb destroys a passenger",
+      "from": 95,
+      "to": 141,
+      "words": [
+        {
+          "text": "a",
+          "from": 95
+        },
+        {
+          "text": "bomb",
+          "from": 98
+        },
+        {
+          "text": "destroys",
+          "from": 106
+        },
+        {
+          "text": "a",
+          "from": 122
+        },
+        {
+          "text": "passenger",
+          "from": 129
+        }
+      ]
+    },
+    {
+      "text": "plane over Colombia",
+      "from": 141,
+      "to": 175,
+      "words": [
+        {
+          "text": "plane",
+          "from": 141
+        },
+        {
+          "text": "over",
+          "from": 151
+        },
+        {
+          "text": "Colombia",
+          "from": 161
+        }
+      ]
+    },
+    {
+      "text": "Flight 203",
+      "from": 193,
+      "to": 215,
+      "words": [
+        {
+          "text": "Flight",
+          "from": 193
+        },
+        {
+          "text": "203",
+          "from": 200
+        }
+      ]
+    },
+    {
+      "text": "leaves Bogotá",
+      "from": 223,
+      "to": 253,
+      "words": [
+        {
+          "text": "leaves",
+          "from": 223
+        },
+        {
+          "text": "Bogotá",
+          "from": 234
+        }
+      ]
+    },
+    {
+      "text": "Five minutes later a bomb",
+      "from": 266,
+      "to": 306,
+      "words": [
+        {
+          "text": "Five",
+          "from": 266
+        },
+        {
+          "text": "minutes",
+          "from": 271
+        },
+        {
+          "text": "later",
+          "from": 278
+        },
+        {
+          "text": "a",
+          "from": 296
+        },
+        {
+          "text": "bomb",
+          "from": 298
+        }
+      ]
+    },
+    {
+      "text": "explodes",
+      "from": 306,
+      "to": 318,
+      "words": [
+        {
+          "text": "explodes",
+          "from": 306
+        }
+      ]
+    },
+    {
+      "text": "The plane breaks apart over",
+      "from": 338,
+      "to": 379,
+      "words": [
+        {
+          "text": "The",
+          "from": 338
+        },
+        {
+          "text": "plane",
+          "from": 339
+        },
+        {
+          "text": "breaks",
+          "from": 346
+        },
+        {
+          "text": "apart",
+          "from": 356
+        },
+        {
+          "text": "over",
+          "from": 368
+        }
+      ]
+    },
+    {
+      "text": "Soacha",
+      "from": 379,
+      "to": 399,
+      "words": [
+        {
+          "text": "Soacha",
+          "from": 379
+        }
+      ]
+    },
+    {
+      "text": "All 107 on board die",
+      "from": 413,
+      "to": 480,
+      "words": [
+        {
+          "text": "All",
+          "from": 413
+        },
+        {
+          "text": "107",
+          "from": 418
+        },
+        {
+          "text": "on",
+          "from": 434
+        },
+        {
+          "text": "board",
+          "from": 457
+        },
+        {
+          "text": "die",
+          "from": 464
+        }
+      ]
+    },
+    {
+      "text": "plus three on the ground",
+      "from": 490,
+      "to": 524,
+      "words": [
+        {
+          "text": "plus",
+          "from": 490
+        },
+        {
+          "text": "three",
+          "from": 495
+        },
+        {
+          "text": "on",
+          "from": 505
+        },
+        {
+          "text": "the",
+          "from": 511
+        },
+        {
+          "text": "ground",
+          "from": 514
+        }
+      ]
+    },
+    {
+      "text": "Who wanted this",
+      "from": 542,
+      "to": 563,
+      "words": [
+        {
+          "text": "Who",
+          "from": 542
+        },
+        {
+          "text": "wanted",
+          "from": 545
+        },
+        {
+          "text": "this",
+          "from": 554
+        }
+      ]
+    },
+    {
+      "text": "Investigators find plastic explosives",
+      "from": 597,
+      "to": 634,
+      "words": [
+        {
+          "text": "Investigators",
+          "from": 597
+        },
+        {
+          "text": "find",
+          "from": 597
+        },
+        {
+          "text": "plastic",
+          "from": 605
+        },
+        {
+          "text": "explosives",
+          "from": 616
+        }
+      ]
+    },
+    {
+      "text": "Pablo Escobar ordered it",
+      "from": 666,
+      "to": 703,
+      "words": [
+        {
+          "text": "Pablo",
+          "from": 666
+        },
+        {
+          "text": "Escobar",
+          "from": 666
+        },
+        {
+          "text": "ordered",
+          "from": 680
+        },
+        {
+          "text": "it",
+          "from": 693
+        }
+      ]
+    },
+    {
+      "text": "His target is César Gaviria",
+      "from": 715,
+      "to": 770,
+      "words": [
+        {
+          "text": "His",
+          "from": 715
+        },
+        {
+          "text": "target",
+          "from": 718
+        },
+        {
+          "text": "is",
+          "from": 728
+        },
+        {
+          "text": "César",
+          "from": 736
+        },
+        {
+          "text": "Gaviria",
+          "from": 748
+        }
+      ]
+    },
+    {
+      "text": "But Gaviria is not on",
+      "from": 784,
+      "to": 816,
+      "words": [
+        {
+          "text": "But",
+          "from": 784
+        },
+        {
+          "text": "Gaviria",
+          "from": 785
+        },
+        {
+          "text": "is",
+          "from": 799
+        },
+        {
+          "text": "not",
+          "from": 803
+        },
+        {
+          "text": "on",
+          "from": 811
+        }
+      ]
+    },
+    {
+      "text": "the plane",
+      "from": 816,
+      "to": 828,
+      "words": [
+        {
+          "text": "the",
+          "from": 816
+        },
+        {
+          "text": "plane",
+          "from": 819
+        }
+      ]
+    },
+    {
+      "text": "He goes on to win",
+      "from": 844,
+      "to": 866,
+      "words": [
+        {
+          "text": "He",
+          "from": 844
+        },
+        {
+          "text": "goes",
+          "from": 847
+        },
+        {
+          "text": "on",
+          "from": 851
+        },
+        {
+          "text": "to",
+          "from": 857
+        },
+        {
+          "text": "win",
+          "from": 862
+        }
+      ]
+    },
+    {
+      "text": "the presidency",
+      "from": 866,
+      "to": 881,
+      "words": [
+        {
+          "text": "the",
+          "from": 866
+        },
+        {
+          "text": "presidency",
+          "from": 869
+        }
+      ]
+    },
+    {
+      "text": "Nine days later",
+      "from": 899,
+      "to": 925,
+      "words": [
+        {
+          "text": "Nine",
+          "from": 899
+        },
+        {
+          "text": "days",
+          "from": 907
+        },
+        {
+          "text": "later",
+          "from": 914
+        }
+      ]
+    },
+    {
+      "text": "another bomb kills sixty-three in",
+      "from": 934,
+      "to": 983,
+      "words": [
+        {
+          "text": "another",
+          "from": 934
+        },
+        {
+          "text": "bomb",
+          "from": 940
+        },
+        {
+          "text": "kills",
+          "from": 949
+        },
+        {
+          "text": "sixty-three",
+          "from": 958
+        },
+        {
+          "text": "in",
+          "from": 974
+        }
+      ]
+    },
+    {
+      "text": "Bogotá",
+      "from": 983,
+      "to": 1001,
+      "words": [
+        {
+          "text": "Bogotá",
+          "from": 983
+        }
+      ]
+    },
+    {
+      "text": "A bomb meant for one",
+      "from": 1012,
+      "to": 1045,
+      "words": [
+        {
+          "text": "A",
+          "from": 1012
+        },
+        {
+          "text": "bomb",
+          "from": 1017
+        },
+        {
+          "text": "meant",
+          "from": 1024
+        },
+        {
+          "text": "for",
+          "from": 1032
+        },
+        {
+          "text": "one",
+          "from": 1037
+        }
+      ]
+    },
+    {
+      "text": "man killed 110",
+      "from": 1045,
+      "to": 1085,
+      "words": [
+        {
+          "text": "man",
+          "from": 1045
+        },
+        {
+          "text": "killed",
+          "from": 1057
+        },
+        {
+          "text": "110",
+          "from": 1069
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1133,
+  "duration_s": 37.766666666666666
+}
