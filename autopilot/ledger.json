@@ -1135,12 +1135,12 @@
       "attempts": 2,
       "run_id": "42982260219",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T07:58:09.647Z",
+      "updated_at": "2026-11-11T07:58:16.228Z",
       "stage": "research",
-      "topic": "Claude AI Can Now Join Your Live Meetings and Take Over Tasks",
-      "score": 72.5,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Anthropic's Claude can now sit in on your Zoom and Google Meet calls and write up your action items before the meeting even ends.",
+      "topic": "AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub",
+      "score": 71.3,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Developers beware: popular AI coding tools are accidentally leaking private company passwords and confidential secrets all over GitHub.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why does the 2026 Ring Rover Cam launch matter?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"Why does the 2026 Ring Rover Cam launch matter?\" — The narration never explains why it matters.. Rewrite it so a viewer who knows nothing follows it"
     }
   },
@@ -2155,6 +2155,15 @@
       "at_ms": 1794383889646,
       "score": 72.5,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub",
+      "slug": "ai-coding-assistant-leaks-confidential-data-and-secrets-acro",
+      "slot": "2026-11-10-ch2",
+      "at_ms": 1794383896228,
+      "score": 71.3,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
