@@ -1,0 +1,366 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (51/52 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Al",
+   "start": 0.0,
+   "end": 0.48,
+   "sentence": 0
+  },
+  {
+   "text": "Capone",
+   "start": 0.48,
+   "end": 1.06,
+   "sentence": 0
+  },
+  {
+   "text": "ruled",
+   "start": 1.06,
+   "end": 1.58,
+   "sentence": 0
+  },
+  {
+   "text": "Chicago's",
+   "start": 1.58,
+   "end": 2.74,
+   "sentence": 0
+  },
+  {
+   "text": "Prohibition",
+   "start": 2.74,
+   "end": 3.48,
+   "sentence": 0
+  },
+  {
+   "text": "underworld",
+   "start": 3.48,
+   "end": 3.86,
+   "sentence": 0
+  },
+  {
+   "text": "In",
+   "start": 5.04,
+   "end": 5.12,
+   "sentence": 1
+  },
+  {
+   "text": "1929",
+   "start": 5.12,
+   "end": 6.06,
+   "sentence": 1
+  },
+  {
+   "text": "seven",
+   "start": 6.6,
+   "end": 7.04,
+   "sentence": 1
+  },
+  {
+   "text": "rival",
+   "start": 7.04,
+   "end": 7.5,
+   "sentence": 1
+  },
+  {
+   "text": "gangsters",
+   "start": 7.5,
+   "end": 8.2,
+   "sentence": 1
+  },
+  {
+   "text": "were",
+   "start": 8.2,
+   "end": 8.5,
+   "sentence": 1
+  },
+  {
+   "text": "murdered",
+   "start": 8.5,
+   "end": 8.96,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 8.96,
+   "end": 9.32,
+   "sentence": 1
+  },
+  {
+   "text": "broad",
+   "start": 9.32,
+   "end": 9.64,
+   "sentence": 1
+  },
+  {
+   "text": "daylight",
+   "start": 9.64,
+   "end": 10.22,
+   "sentence": 1
+  },
+  {
+   "text": "Newspapers",
+   "start": 11.0,
+   "end": 11.6,
+   "sentence": 2
+  },
+  {
+   "text": "called",
+   "start": 11.6,
+   "end": 11.92,
+   "sentence": 2
+  },
+  {
+   "text": "him",
+   "start": 11.92,
+   "end": 12.16,
+   "sentence": 2
+  },
+  {
+   "text": "Public",
+   "start": 12.16,
+   "end": 12.54,
+   "sentence": 2
+  },
+  {
+   "text": "Enemy",
+   "start": 12.54,
+   "end": 13.06,
+   "sentence": 2
+  },
+  {
+   "text": "Number",
+   "start": 13.06,
+   "end": 13.46,
+   "sentence": 2
+  },
+  {
+   "text": "One",
+   "start": 13.46,
+   "end": 13.9,
+   "sentence": 2
+  },
+  {
+   "text": "Agents",
+   "start": 14.66,
+   "end": 14.84,
+   "sentence": 3
+  },
+  {
+   "text": "turned",
+   "start": 14.84,
+   "end": 15.32,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 15.32,
+   "end": 15.7,
+   "sentence": 3
+  },
+  {
+   "text": "income",
+   "start": 15.7,
+   "end": 16.04,
+   "sentence": 3
+  },
+  {
+   "text": "tax",
+   "start": 16.04,
+   "end": 16.44,
+   "sentence": 3
+  },
+  {
+   "text": "Twenty-two",
+   "start": 16.44,
+   "end": 17.11,
+   "sentence": 4
+  },
+  {
+   "text": "counts",
+   "start": 17.78,
+   "end": 18.04,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 18.04,
+   "end": 18.4,
+   "sentence": 4
+  },
+  {
+   "text": "tax",
+   "start": 18.4,
+   "end": 18.64,
+   "sentence": 4
+  },
+  {
+   "text": "evasion",
+   "start": 18.64,
+   "end": 18.98,
+   "sentence": 4
+  },
+  {
+   "text": "His",
+   "start": 19.84,
+   "end": 19.89,
+   "sentence": 5
+  },
+  {
+   "text": "own",
+   "start": 19.88,
+   "end": 20.16,
+   "sentence": 5
+  },
+  {
+   "text": "admissions",
+   "start": 20.16,
+   "end": 20.52,
+   "sentence": 5
+  },
+  {
+   "text": "of",
+   "start": 20.52,
+   "end": 20.94,
+   "sentence": 5
+  },
+  {
+   "text": "income",
+   "start": 20.94,
+   "end": 21.22,
+   "sentence": 5
+  },
+  {
+   "text": "became",
+   "start": 21.22,
+   "end": 21.84,
+   "sentence": 5
+  },
+  {
+   "text": "evidence",
+   "start": 21.84,
+   "end": 22.2,
+   "sentence": 5
+  },
+  {
+   "text": "Five",
+   "start": 23.18,
+   "end": 23.28,
+   "sentence": 6
+  },
+  {
+   "text": "convictions",
+   "start": 23.28,
+   "end": 23.68,
+   "sentence": 6
+  },
+  {
+   "text": "eleven",
+   "start": 24.44,
+   "end": 24.74,
+   "sentence": 6
+  },
+  {
+   "text": "years",
+   "start": 24.74,
+   "end": 25.24,
+   "sentence": 6
+  },
+  {
+   "text": "He",
+   "start": 25.24,
+   "end": 26.0,
+   "sentence": 7
+  },
+  {
+   "text": "died",
+   "start": 26.0,
+   "end": 26.26,
+   "sentence": 7
+  },
+  {
+   "text": "in",
+   "start": 26.26,
+   "end": 26.62,
+   "sentence": 7
+  },
+  {
+   "text": "1947",
+   "start": 26.62,
+   "end": 27.6,
+   "sentence": 7
+  },
+  {
+   "text": "Taxes",
+   "start": 28.68,
+   "end": 28.73,
+   "sentence": 8
+  },
+  {
+   "text": "ended",
+   "start": 28.68,
+   "end": 29.28,
+   "sentence": 8
+  },
+  {
+   "text": "his",
+   "start": 29.28,
+   "end": 29.62,
+   "sentence": 8
+  },
+  {
+   "text": "reign",
+   "start": 29.62,
+   "end": 29.96,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Al Capone ruled Chicago's Prohibition underworld.",
+   "start": 0.0,
+   "end": 3.86
+  },
+  {
+   "text": "In 1929, seven rival gangsters were murdered in broad daylight.",
+   "start": 5.04,
+   "end": 10.22
+  },
+  {
+   "text": "Newspapers called him Public Enemy Number One.",
+   "start": 11.0,
+   "end": 13.9
+  },
+  {
+   "text": "Agents turned to income tax.",
+   "start": 14.66,
+   "end": 16.44
+  },
+  {
+   "text": "Twenty-two counts of tax evasion.",
+   "start": 16.44,
+   "end": 18.98
+  },
+  {
+   "text": "His own admissions of income became evidence.",
+   "start": 19.84,
+   "end": 22.2
+  },
+  {
+   "text": "Five convictions, eleven years.",
+   "start": 23.18,
+   "end": 25.24
+  },
+  {
+   "text": "He died in 1947.",
+   "start": 25.24,
+   "end": 27.6
+  },
+  {
+   "text": "Taxes ended his reign.",
+   "start": 28.68,
+   "end": 29.96
+  }
+ ]
+}
