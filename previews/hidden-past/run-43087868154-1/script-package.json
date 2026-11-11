@@ -1,0 +1,233 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-43087868154-1",
+  "topic": "Al Capone: the Chicago crime boss brought down by income tax",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Al Capone ruled Chicago, but income tax put him in prison.",
+      "scene": 0,
+      "claim_ids": [
+        "K1",
+        "K5",
+        "K8"
+      ]
+    },
+    {
+      "text": "In 1929, seven rival gangsters were murdered, and newspapers named him Public Enemy Number One.",
+      "scene": 1,
+      "claim_ids": [
+        "K2",
+        "K3"
+      ]
+    },
+    {
+      "text": "Agents turned to income tax, and charged him with twenty-two counts of evasion.",
+      "scene": 2,
+      "claim_ids": [
+        "K4",
+        "K5"
+      ]
+    },
+    {
+      "text": "His own admissions of income became evidence.",
+      "scene": 3,
+      "claim_ids": [
+        "K6"
+      ]
+    },
+    {
+      "text": "Five convictions, eleven years.",
+      "scene": 4,
+      "claim_ids": [
+        "K7",
+        "K8"
+      ]
+    },
+    {
+      "text": "He served in Atlanta, then Alcatraz.",
+      "scene": 5,
+      "claim_ids": [
+        "K9",
+        "K10"
+      ]
+    },
+    {
+      "text": "He died in 1947.",
+      "scene": 6,
+      "claim_ids": [
+        "K12"
+      ]
+    },
+    {
+      "text": "Right way to stop him?",
+      "scene": 7,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-capone",
+      "url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11"
+    },
+    {
+      "source_id": "src-nyt",
+      "url": "https://commons.wikimedia.org/wiki/File:19290215_Valentine's_Day_Massacre_-_Seven_Chicago_Gangsters_Slain_-_NY_Times.jpg",
+      "published": "1929-02-15"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "K1",
+      "claim": "Al Capone was the co-founder and boss of the Chicago Outfit from 1925 to 1931, notorious during Prohibition.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "co-founder and boss of the Chicago Outfit from 1925 to 1931",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K2",
+      "claim": "Seven gangsters were shot dead in Chicago on 14 February 1929 (the St Valentine's Day Massacre); the New York Times of 15 February 1929 reported '7 Chicago gangsters slain'.",
+      "source_id": "src-nyt",
+      "source_url": "https://commons.wikimedia.org/wiki/File:19290215_Valentine%27s_Day_Massacre_-_Seven_Chicago_Gangsters_Slain_-_NY_Times.jpg",
+      "published": "1929-02-15",
+      "excerpt": "7 CHICAGO GANGSTERS SLAIN BY FIRING SQUAD OF RIVALS",
+      "confidence": "high",
+      "context": "The scan's masthead reads Friday, February 15, 1929. Wikipedia says seven people from rival gangs were murdered in broad daylight.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K3",
+      "claim": "Newspapers dubbed Capone 'Public Enemy No. 1'.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "newspapers to dub Capone \"Public Enemy No. 1\"",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K4",
+      "claim": "The Treasury and Justice Departments developed plans for income tax prosecutions against Chicago gangsters.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "Treasury and Justice Departments developed plans for income tax prosecutions against Chicago gangsters",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K5",
+      "claim": "Federal authorities charged Capone with twenty-two counts of tax evasion.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "charged him with twenty-two counts of tax evasion",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K6",
+      "claim": "The judge admitted as evidence Capone's own admissions of his income and unpaid taxes.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "the judge admitted as evidence Capone's admissions of his income and unpaid taxes",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K7",
+      "claim": "He was convicted of five counts in 1931 and sentenced to 11 years in federal prison, fined $50,000.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "He was convicted of five counts in 1931.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K8",
+      "claim": "Capone was sentenced to 11 years in federal prison and fined $50,000.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "was sentenced a week later to 11 years in federal prison, fined $50,000",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K9",
+      "claim": "Capone was sent to Atlanta U.S. Penitentiary in May 1932.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "Capone was sent to Atlanta U.S. Penitentiary in May 1932",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K10",
+      "claim": "Capone was moved to Alcatraz in August 1934.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "recently opened Alcatraz Federal Penitentiary off the coast of San Francisco, in August 1934",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K11",
+      "claim": "Capone was released after almost eight years of incarceration, having shown signs of neurosyphilis early in his sentence.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "released after almost eight years of incarceration",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K12",
+      "claim": "In 1947 Capone died of cardiac arrest after a stroke.",
+      "source_id": "wiki-capone",
+      "source_url": "https://en.wikipedia.org/wiki/Al_Capone",
+      "published": "2026-11-11",
+      "excerpt": "In 1947, he died of cardiac arrest after a stroke.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
