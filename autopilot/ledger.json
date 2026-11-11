@@ -1131,17 +1131,17 @@
     },
     "2026-11-10-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "42982260219",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T07:58:23.704Z",
+      "updated_at": "2026-11-11T08:03:39.914Z",
       "stage": "script",
       "topic": "AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub",
       "score": 71.3,
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "Developers beware: popular AI coding tools are accidentally leaking private company passwords and confidential secrets all over GitHub.",
-      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why does the 2026 Ring Rover Cam launch matter?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"Why does the 2026 Ring Rover Cam launch matter?\" — The narration never explains why it matters.. Rewrite it so a viewer who knows nothing follows it"
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     }
   },
   "uploads": [
@@ -2250,7 +2250,8 @@
     "Hidden Past kick-24ce9e0eee-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 2 \"Was this lethal move meant to secure Canada?\" — The 'lethal move' is not defined.. Rewrite it so ",
     "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
-    "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou"
+    "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou",
+    "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT "
   ],
   "last_poll_at": "2026-11-11T07:49:15.886Z"
 }

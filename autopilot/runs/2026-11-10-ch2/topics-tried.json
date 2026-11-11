@@ -1,22 +1,22 @@
 {
   "tried": [
     {
-      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT",
-      "score": 84.5,
+      "topic": "Adobe Photoshop and Premiere Add Powerful New AI Object Removal Tools",
+      "score": 81.7,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/openai-launches-verified-business-profiles-and-custom-ai-age-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/adobe-photoshop-and-premiere-add-powerful-new-ai-object-remo-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     },
     {
-      "topic": "Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You",
-      "score": 83.9,
-      "stage": "script",
-      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-gemini-s-new-memory-summary-lets-you-see-and-delete-w-shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+      "topic": "Claude AI Can Now Join Your Live Meetings and Take Over Tasks",
+      "score": 72.5,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
     },
     {
-      "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
-      "score": 79.2,
+      "topic": "AI Coding Assistant Leaks Confidential Data and Secrets Across GitHub",
+      "score": 71.3,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why does the 2026 Ring Rover Cam launch matter?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 3 \"Why does the 2026 Ring Rover Cam launch matter?\" — The narration never explains why it matters.. Rewrite it so a viewer who knows nothing follows it"
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     }
   ],
   "selected": null
