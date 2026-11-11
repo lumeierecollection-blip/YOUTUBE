@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-11T07:46:57.293Z",
+  "rebuilt_at": "2026-11-11T07:46:59.048Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,21 +118,21 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "finished",
-      "status": "ok",
-      "at": "2026-11-11T07:39:45.961Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-11T07:46:46.539Z",
       "branch": "preview/hidden-past-crime-beats",
-      "commit": "23ef71bb",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979409216#artifacts)",
-      "sheet": "[contact-sheet.jpg](hidden-past/run-42979409216-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](hidden-past/run-42979409216-1/scene-s1.jpg) [scene-s10.jpg](hidden-past/run-42979409216-1/scene-s10.jpg) [scene-s11.jpg](hidden-past/run-42979409216-1/scene-s11.jpg) [scene-s12.jpg](hidden-past/run-42979409216-1/scene-s12.jpg)",
+      "commit": "6deeca9a",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42981794708#artifacts)",
+      "sheet": "",
+      "scenes": "",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](hidden-past/run-42979409216-1/scene-plan.json)",
-      "qa": "[qa-report.json](hidden-past/run-42979409216-1/qa-report.json)",
+      "plan": "",
+      "qa": "",
       "blocker": "",
       "lastOk": "2026-11-11T07:39:45.961Z",
-      "run": "run-42979409216-1"
+      "run": "run-42981794708-1"
     },
     {
       "key": "red-space-facts",
