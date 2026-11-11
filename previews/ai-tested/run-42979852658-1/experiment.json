@@ -1,0 +1,317 @@
+{
+  "kind": "links",
+  "date": "2026-11-11",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42979852658",
+  "temperature": 0,
+  "questions": 12,
+  "models": [
+    {
+      "name": "Gemini 3.5 Flash",
+      "speak": "Google's Gemini Flash",
+      "id": "gemini-3.5-flash",
+      "items": [
+        {
+          "topic": "the Chernobyl disaster",
+          "reply": "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident.aspx",
+          "url": "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident.aspx",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident"
+        },
+        {
+          "topic": "the Apollo 11 moon landing",
+          "reply": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+          "url": "https://www.nasa.gov/history/apollo-11-mission-overview/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.nasa.gov/history/apollo-11-mission-overview/"
+        },
+        {
+          "topic": "the 2008 financial crisis",
+          "reply": "https://www.federalreservehistory.org/essays/great-recession-of-200709",
+          "url": "https://www.federalreservehistory.org/essays/great-recession-of-200709",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.federalreservehistory.org/essays/great-recession-of-200709"
+        },
+        {
+          "topic": "the Panama Papers leak",
+          "reply": "https://www.icij.org/investigations/panama-papers/",
+          "url": "https://www.icij.org/investigations/panama-papers/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.icij.org/investigations/panama-papers/"
+        },
+        {
+          "topic": "CRISPR gene editing",
+          "reply": "https://www.nature.com/articles/d41586-023-03920-x",
+          "url": "https://www.nature.com/articles/d41586-023-03920-x",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fd41586-023-03920-x&code=0a028f34-78fd-47c0-a10f-192e0ded1aa2"
+        },
+        {
+          "topic": "the discovery of penicillin",
+          "reply": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2048009/",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2048009/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2048009/"
+        },
+        {
+          "topic": "the invention of the World Wide Web",
+          "reply": "https://home.cern/science/computing/birth-web",
+          "url": "https://home.cern/science/computing/birth-web",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://home.cern/science/computing/birth-web"
+        },
+        {
+          "topic": "the Great Barrier Reef bleaching",
+          "reply": "https://www.nature.com/articles/s41586-024-07672-x",
+          "url": "https://www.nature.com/articles/s41586-024-07672-x",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-024-07672-x&code=f45db38a-b2f1-49d5-a513-0af4ff654e37"
+        },
+        {
+          "topic": "the Black Death",
+          "reply": "https://www.nature.com/articles/s41586-022-04800-3",
+          "url": "https://www.nature.com/articles/s41586-022-04800-3",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-022-04800-3&code=0924ee1d-9f95-4bec-915f-373292e2b767"
+        },
+        {
+          "topic": "the Hubble Space Telescope launch",
+          "reply": "https://www.nasa.gov/history/30-years-ago-sts-31-launches-the-hubble-space-telescope/",
+          "url": "https://www.nasa.gov/history/30-years-ago-sts-31-launches-the-hubble-space-telescope/",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.nasa.gov/history/30-years-ago-sts-31-launches-the-hubble-space-telescope/"
+        },
+        {
+          "topic": "Moore's law",
+          "reply": "https://www.technologyreview.com/2020/02/24/905789/were-not-prepared-for-the-end-of-moores-law/",
+          "url": "https://www.technologyreview.com/2020/02/24/905789/were-not-prepared-for-the-end-of-moores-law/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.technologyreview.com/2020/02/24/905789/were-not-prepared-for-the-end-of-moores-law/"
+        },
+        {
+          "topic": "the Deepwater Horizon oil spill",
+          "reply": "https://www.epa.gov/enforcement/deepwater-horizon-bp-gulf-oil-spill",
+          "url": "https://www.epa.gov/enforcement/deepwater-horizon-bp-gulf-oil-spill",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.epa.gov/enforcement/deepwater-horizon-bp-gulf-oil-spill"
+        }
+      ]
+    },
+    {
+      "name": "Gemini 3.5 Flash-Lite",
+      "speak": "Google's Flash-Lite",
+      "id": "gemini-3.5-flash-lite",
+      "items": [
+        {
+          "topic": "the Chernobyl disaster",
+          "reply": "https://www.world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident",
+          "url": "https://www.world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://world-nuclear.org/information-library/safety-and-security/safety-of-plants/chernobyl-accident"
+        },
+        {
+          "topic": "the Apollo 11 moon landing",
+          "reply": "https://www.nasa.75th/history/apollo-11",
+          "url": "https://www.nasa.75th/history/apollo-11",
+          "outcome": "dead",
+          "why": "the web address does not exist"
+        },
+        {
+          "topic": "the 2008 financial crisis",
+          "reply": "https://www.federalreserve.gov/newsevents/speech/bernanke20100513a.htm",
+          "url": "https://www.federalreserve.gov/newsevents/speech/bernanke20100513a.htm",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.federalreserve.gov/newsevents/speech/bernanke20100513a.htm"
+        },
+        {
+          "topic": "the Panama Papers leak",
+          "reply": "https://www.icij.org/investigations/panama-papers/",
+          "url": "https://www.icij.org/investigations/panama-papers/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.icij.org/investigations/panama-papers/"
+        },
+        {
+          "topic": "CRISPR gene editing",
+          "reply": "https://www.nature.com/articles/d41586-023-03838-0",
+          "url": "https://www.nature.com/articles/d41586-023-03838-0",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fd41586-023-03838-0&code=47324c3d-a65c-4818-97c5-62d4a0cb2017"
+        },
+        {
+          "topic": "the discovery of penicillin",
+          "reply": "https://www.nature.com/articles/149596a0",
+          "url": "https://www.nature.com/articles/149596a0",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2F149596a0&code=5ffd59c6-9a39-4f20-a736-f3f362741e39"
+        },
+        {
+          "topic": "the invention of the World Wide Web",
+          "reply": "https://home.cern/science/computing/birth-web",
+          "url": "https://home.cern/science/computing/birth-web",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://home.cern/science/computing/birth-web"
+        },
+        {
+          "topic": "the Great Barrier Reef bleaching",
+          "reply": "https://www.nature.com/articles/s41586-024-07672-z",
+          "url": "https://www.nature.com/articles/s41586-024-07672-z",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-024-07672-z&code=2397aff0-e39b-41a9-b8bc-06e367f6c56b"
+        },
+        {
+          "topic": "the Black Death",
+          "reply": "https://www.nature.com/articles/s41586-022-04800-3",
+          "url": "https://www.nature.com/articles/s41586-022-04800-3",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-022-04800-3&code=1c957336-7ac2-4fcd-a0e1-e35799a44d5f"
+        },
+        {
+          "topic": "the Hubble Space Telescope launch",
+          "reply": "https://www.nasa.gov/history/orbiting-repair-man-hubble-space-telescope-launch-and-service/",
+          "url": "https://www.nasa.gov/history/orbiting-repair-man-hubble-space-telescope-launch-and-service/",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.nasa.gov/history/orbiting-repair-man-hubble-space-telescope-launch-and-service/"
+        },
+        {
+          "topic": "Moore's law",
+          "reply": "https://www.nature.com/articles/d41586-022-02230-w",
+          "url": "https://www.nature.com/articles/d41586-022-02230-w",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fd41586-022-02230-w&code=6d315ae1-ceb2-483f-8ac4-58741766cfae"
+        },
+        {
+          "topic": "the Deepwater Horizon oil spill",
+          "reply": "https://www.smithsonianmag.com/science-nature/the-deepwater-horizon-oil-spill-five-years-on-180955032/",
+          "url": "https://www.smithsonianmag.com/science-nature/the-deepwater-horizon-oil-spill-five-years-on-180955032/",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.smithsonianmag.com/smart-news/meet-first-donut-went-space-180955032/"
+        }
+      ]
+    },
+    {
+      "name": "GPT-OSS 120B",
+      "speak": "OpenAI's GPT-OSS",
+      "id": "openai/gpt-oss-120b",
+      "items": [
+        {
+          "topic": "the Chernobyl disaster",
+          "reply": "https://www.bbc.com/news/world-europe-26815571",
+          "url": "https://www.bbc.com/news/world-europe-26815571",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.bbc.com/news/world-europe-26815571"
+        },
+        {
+          "topic": "the Apollo 11 moon landing",
+          "reply": "https://www.nasa.gov/mission_pages/apollo/apollo11.html",
+          "url": "https://www.nasa.gov/mission_pages/apollo/apollo11.html",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://www.nasa.gov/history/july-20-1969-one-giant-leap-for-mankind/"
+        },
+        {
+          "topic": "the 2008 financial crisis",
+          "reply": "https://www.nytimes.com/2008/09/16/business/16crisis.html",
+          "url": "https://www.nytimes.com/2008/09/16/business/16crisis.html",
+          "outcome": "unchecked",
+          "status": 403,
+          "why": "the site answered 403"
+        },
+        {
+          "topic": "the Panama Papers leak",
+          "reply": "https://www.theguardian.com/news/2016/apr/03/panama-papers-leak-icij-what-happened",
+          "url": "https://www.theguardian.com/news/2016/apr/03/panama-papers-leak-icij-what-happened",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.theguardian.com/news/2016/apr/03/panama-papers-leak-icij-what-happened"
+        },
+        {
+          "topic": "CRISPR gene editing",
+          "reply": "https://www.nature.com/articles/s41586-023-05845-2",
+          "url": "https://www.nature.com/articles/s41586-023-05845-2",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-023-05845-2&code=8d79d529-b62f-4dd6-bbe4-65ab371dffb8"
+        },
+        {
+          "topic": "the discovery of penicillin",
+          "reply": "https://www.bbc.com/news/health-51189671",
+          "url": "https://www.bbc.com/news/health-51189671",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.bbc.com/news/health-51189671"
+        },
+        {
+          "topic": "the invention of the World Wide Web",
+          "reply": "https://home.cern/science/computing/birth-web",
+          "url": "https://home.cern/science/computing/birth-web",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://home.cern/science/computing/birth-web"
+        },
+        {
+          "topic": "the Great Barrier Reef bleaching",
+          "reply": "https://www.nature.com/articles/s41586-023-04567-8",
+          "url": "https://www.nature.com/articles/s41586-023-04567-8",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-023-04567-8&code=21f7f14f-40a0-42d0-b4a0-227b59439dfc"
+        },
+        {
+          "topic": "the Black Death",
+          "reply": "https://www.nature.com/articles/s41586-020-2775-5",
+          "url": "https://www.nature.com/articles/s41586-020-2775-5",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41586-020-2775-5&code=feaef056-1b65-46c1-89f6-5fd60a5b4b9a"
+        },
+        {
+          "topic": "the Hubble Space Telescope launch",
+          "reply": "https://www.nasa.gov/mission_pages/hubble/launch/index.html",
+          "url": "https://www.nasa.gov/mission_pages/hubble/launch/index.html",
+          "outcome": "dead",
+          "status": 404,
+          "final": "https://www.nasa.gov/mission_pages/hubble/launch/index.html"
+        },
+        {
+          "topic": "Moore's law",
+          "reply": "https://www.nature.com/articles/d41586-023-03071-5",
+          "url": "https://www.nature.com/articles/d41586-023-03071-5",
+          "outcome": "opened",
+          "status": 200,
+          "final": "https://idp.nature.com/transit?redirect_uri=https%3A%2F%2Fwww.nature.com%2Farticles%2Fd41586-023-03071-5&code=f36fa0e9-e3b3-4f90-81d9-b35b90cd1d31"
+        },
+        {
+          "topic": "the Deepwater Horizon oil spill",
+          "reply": "https://www.nytimes.com/2010/04/21/us/21spill.html",
+          "url": "https://www.nytimes.com/2010/04/21/us/21spill.html",
+          "outcome": "unchecked",
+          "status": 403,
+          "why": "the site answered 403"
+        }
+      ]
+    }
+  ]
+}
