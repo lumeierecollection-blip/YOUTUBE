@@ -11,7 +11,7 @@ const CUT_FILTER = "drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-sh
 const lerp = (a, b, t) => a + (b - a) * t;
 
 /** A grid of dots, one per person. The first `ink` are dark; the rest are the accent. Drawn in order, literally counted. */
-function Dots({ count, accentFrom, cols, x, y, gap, r, delay = 0 }) {
+export function Dots({ count, accentFrom, cols, x, y, gap, r, delay = 0 }) {
   const f = useCurrentFrame(), step = Math.min(0.5, 24 / count);
   const rows = Math.ceil(count / cols);
   return (
