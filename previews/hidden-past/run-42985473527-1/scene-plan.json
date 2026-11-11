@@ -1,0 +1,164 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-42985473527-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Pablo Escobar planned a bomb for a presidential candidate.",
+      "main_point": "Open on the name: Pablo Escobar, large, over his police photograph, with the bomb plot of 1989",
+      "visual_objective": "Open on the name: Pablo Escobar, large, over his police photograph, with the bomb plot of 1989",
+      "treatment": "name-title-with-portrait",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C7",
+        "C8"
+      ],
+      "start_s": 0,
+      "end_s": 4.733333333333333
+    },
+    {
+      "scene_id": "s2",
+      "narration": "An Avianca jet takes off from Bogotá.",
+      "main_point": "Open on the very aircraft, HK-1803, with the date of the bombing",
+      "visual_objective": "Open on the very aircraft, HK-1803, with the date of the bombing",
+      "treatment": "sticker-photo-with-date-title",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C2"
+      ],
+      "start_s": 4.733333333333333,
+      "end_s": 7.5
+    },
+    {
+      "scene_id": "s3",
+      "narration": "It is bound for Cali.",
+      "main_point": "Draw the route from Bogotá to Cali with the aircraft cut-out flying along it",
+      "visual_objective": "Draw the route from Bogotá to Cali with the aircraft cut-out flying along it",
+      "treatment": "drawn-map-with-flying-cutout",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C2"
+      ],
+      "start_s": 7.5,
+      "end_s": 9.6
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Five minutes later, a bomb explodes.",
+      "main_point": "Mark the explosion over Soacha on the same map with the number five and 'minutes after takeoff'",
+      "visual_objective": "Mark the explosion over Soacha on the same map with the number five and 'minutes after takeoff'",
+      "treatment": "map-burst-with-number",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C3"
+      ],
+      "start_s": 9.6,
+      "end_s": 12.633333333333333
+    },
+    {
+      "scene_id": "s5",
+      "narration": "The plane breaks apart over Soacha.",
+      "main_point": "Split the aircraft cut-out in two and let the halves fall apart over Soacha",
+      "visual_objective": "Split the aircraft cut-out in two and let the halves fall apart over Soacha",
+      "treatment": "cutout-splitting",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C4"
+      ],
+      "start_s": 12.633333333333333,
+      "end_s": 15.266666666666667
+    },
+    {
+      "scene_id": "s6",
+      "narration": "107 die on board, three on the ground.",
+      "main_point": "Draw 110 dots, 107 on board and three on the ground",
+      "visual_objective": "Draw 110 dots, 107 on board and three on the ground",
+      "treatment": "counted-dots",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C5"
+      ],
+      "start_s": 15.266666666666667,
+      "end_s": 19.133333333333333
+    },
+    {
+      "scene_id": "s7",
+      "narration": "The target is César Gaviria.",
+      "main_point": "Show César Gaviria, labelled as a 2009 photograph, with a hand-drawn ring around him",
+      "visual_objective": "Show César Gaviria, labelled as a 2009 photograph, with a hand-drawn ring around him",
+      "treatment": "portrait-sticker-with-target-ring",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C8"
+      ],
+      "start_s": 19.133333333333333,
+      "end_s": 21.533333333333335
+    },
+    {
+      "scene_id": "s8",
+      "narration": "But Gaviria is not on the plane.",
+      "main_point": "Stamp 'not on board' over the same portrait",
+      "visual_objective": "Stamp 'not on board' over the same portrait",
+      "treatment": "portrait-with-not-on-board-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C9"
+      ],
+      "start_s": 21.533333333333335,
+      "end_s": 24.4
+    },
+    {
+      "scene_id": "s9",
+      "narration": "Nine days later, another bomb kills 63.",
+      "main_point": "Show 63 and nine days later in Bogotá, with the 'presumably' attribution",
+      "visual_objective": "Show 63 and nine days later in Bogotá, with the 'presumably' attribution",
+      "treatment": "number-with-dots",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C10"
+      ],
+      "start_s": 24.4,
+      "end_s": 27.533333333333335
+    },
+    {
+      "scene_id": "s10",
+      "narration": "A 2016 report disputes the cause, but families reject it.",
+      "main_point": "Stamp the 2016 fuel-pump report as disputed by Avianca and the families",
+      "visual_objective": "Stamp the 2016 fuel-pump report as disputed by Avianca and the families",
+      "treatment": "stamp-disputed",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C13"
+      ],
+      "start_s": 27.533333333333335,
+      "end_s": 32.56666666666667
+    },
+    {
+      "scene_id": "s11",
+      "narration": "A bomb meant for one man killed 110.",
+      "main_point": "Return to the 110 dots with Gaviria's portrait faded: one target, 110 dead",
+      "visual_objective": "Return to the 110 dots with Gaviria's portrait faded: one target, 110 dead",
+      "treatment": "dots-with-portrait",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "C5",
+        "C8",
+        "C9"
+      ],
+      "start_s": 32.56666666666667,
+      "end_s": 37
+    }
+  ]
+}
