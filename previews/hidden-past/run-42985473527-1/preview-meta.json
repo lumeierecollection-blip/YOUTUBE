@@ -4,9 +4,8 @@
   "agent": "agent-hidden-past",
   "stage": "research_complete",
   "status": "ok",
-  "timestamp": "2026-11-11T08:16:20.581Z",
+  "timestamp": "2026-11-11T08:16:34.510Z",
   "branch": "preview/hidden-past-crime-beats",
   "commit": "53b3148ca4df3bd3d9c4c7c1385cf951b6198cde",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42985473527#artifacts",
-  "claims": 13
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/42985473527#artifacts"
 }

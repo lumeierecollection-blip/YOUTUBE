@@ -1,0 +1,102 @@
+{
+  "measured_wpm": 149.1,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Pablo Escobar planned a bomb for a presidential candidate.",
+      "scene": 0,
+      "claim_ids": [
+        "C7",
+        "C8"
+      ]
+    },
+    {
+      "text": "An Avianca jet takes off from Bogotá.",
+      "scene": 1,
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    {
+      "text": "It is bound for Cali.",
+      "scene": 2,
+      "claim_ids": [
+        "C2"
+      ]
+    },
+    {
+      "text": "Five minutes later, a bomb explodes.",
+      "scene": 3,
+      "claim_ids": [
+        "C3"
+      ]
+    },
+    {
+      "text": "The plane breaks apart over Soacha.",
+      "scene": 4,
+      "claim_ids": [
+        "C4"
+      ]
+    },
+    {
+      "text": "107 die on board, three on the ground.",
+      "scene": 5,
+      "claim_ids": [
+        "C5"
+      ]
+    },
+    {
+      "text": "The target is César Gaviria.",
+      "scene": 8,
+      "claim_ids": [
+        "C8"
+      ]
+    },
+    {
+      "text": "But Gaviria is not on the plane.",
+      "scene": 9,
+      "claim_ids": [
+        "C9"
+      ]
+    },
+    {
+      "text": "Nine days later, another bomb kills 63.",
+      "scene": 11,
+      "claim_ids": [
+        "C10"
+      ]
+    },
+    {
+      "text": "A 2016 report disputes the cause, but families reject it.",
+      "scene": 14,
+      "claim_ids": [
+        "C13"
+      ]
+    },
+    {
+      "text": "A bomb meant for one man killed 110.",
+      "scene": 15,
+      "claim_ids": [
+        "C5",
+        "C8",
+        "C9"
+      ]
+    }
+  ],
+  "words": 78,
+  "estimated_seconds": 36.1,
+  "inside_window": true,
+  "kept": [
+    "route",
+    "name",
+    "plane",
+    "boom",
+    "apart",
+    "toll",
+    "target",
+    "absent",
+    "das",
+    "disputed",
+    "close"
+  ]
+}
