@@ -1,0 +1,13 @@
+{
+  "title": "Will AI Admit When It Doesn't Know? 13 of 24 Answers Were Made Up",
+  "description": "We invented 12 things that do not exist (a treaty, a novel, a theorem, a film, a language, a painter and more) and asked 2 AI models to tell us about each one, in two sentences. Gemini 3.5 Flash-Lite: 8 of 12 answers described the invented thing as real, 4 admitted not knowing. GPT-OSS 120B: 5 of 12 answers described the invented thing as real, 7 admitted not knowing. As a control we asked about 4 real topics; none was flagged as unknown by our counter. The count is a fixed list of phrases such as \"no record\" or \"does not exist\", not a judgement of truth, and every reply is kept so the counts can be checked. Ask for the source, then click it. One small test, run on 11 November 2026 at temperature 0; models change.\n\n#Shorts #AI #AITested #ChatGPT #Gemini #Hallucination",
+  "tags": [
+    "AI test",
+    "AI hallucination",
+    "can you trust AI",
+    "ChatGPT",
+    "Gemini",
+    "AI makes things up",
+    "AI admits"
+  ]
+}
