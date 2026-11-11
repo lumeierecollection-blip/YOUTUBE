@@ -1135,7 +1135,12 @@
       "attempts": 1,
       "run_id": "42937975876",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T01:18:36.014Z"
+      "updated_at": "2026-11-11T01:20:32.309Z",
+      "stage": "research",
+      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT",
+      "score": 84.5,
+      "pillar": "Trending AI tools and apps",
+      "hook": "ChatGPT is becoming a search engine—you can now claim your business and set up custom sales agents."
     }
   },
   "uploads": [
@@ -2104,6 +2109,15 @@
       "at_ms": 1794219080149,
       "score": 63.5,
       "pillar": "Strange inventions and lost technology"
+    },
+    {
+      "channel": "2",
+      "topic": "OpenAI Launches Verified Business Profiles and Custom AI Agents in ChatGPT",
+      "slug": "openai-launches-verified-business-profiles-and-custom-ai-age",
+      "slot": "2026-11-10-ch2",
+      "at_ms": 1794360032309,
+      "score": 84.5,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
