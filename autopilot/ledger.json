@@ -1135,12 +1135,12 @@
       "attempts": 1,
       "run_id": "42937975876",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T01:28:44.459Z",
-      "stage": "script",
-      "topic": "Google Gemini's New Memory Summary Lets You See and Delete What AI Knows About You",
-      "score": 83.9,
-      "pillar": "New AI features and releases",
-      "hook": "Ever wonder what Google's AI actually remembers about your life? Now you can finally check and delete it."
+      "updated_at": "2026-11-11T01:35:55.278Z",
+      "stage": "research",
+      "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
+      "score": 79.2,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Amazon's new Ring security camera doesn't just sit on the wall anymore—it flies around your house."
     }
   },
   "uploads": [
@@ -2127,6 +2127,15 @@
       "at_ms": 1794360506095,
       "score": 83.9,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
+      "slug": "amazon-s-new-ai-powered-security-drone-and-robot-go-mobile",
+      "slot": "2026-11-10-ch2",
+      "at_ms": 1794360955278,
+      "score": 79.2,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
