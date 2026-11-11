@@ -1,0 +1,48 @@
+{
+  "channel_id": "48",
+  "topic_slug": "nova-scotia-workplace-injury-time-loss-185-days",
+  "format": "shorts",
+  "hook": "Nova Scotia workplace injury time-loss dropped to 185 days per 100 workers in November 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nova Scotia workplace injury time-loss dropped to 185 days per 100 workers in November 2026.",
+      "text_overlay": {
+        "text": "185 Days per 100 Workers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "This November 2026 data reflects a steady decline in time-loss injury claims across Nova Scotia. Did the time-loss injury rate actually fall from 1.40 claims per 100 workers in 2023?",
+      "text_overlay": {
+        "text": "1.40 (2023) to 1.21 (2025)"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Workers' Compensation Board of Nova Scotia reports a 25 percent drop since 2025.",
+      "text_overlay": {
+        "text": "25% Decline"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "WCB Nova Scotia confirms this 25 percent reduction in time-loss days per 100 covered workers.",
+      "text_overlay": {
+        "text": "190 Days (Sept 2026)"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Safety News Canada confirms this new low of 185 days per 100 workers for the province.",
+      "text_overlay": {
+        "text": "185 Days per 100 Workers"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://safetynewscanada.com/time-off-work-from-injuries-drops-to-185-days-per-100-workers-in-nova-scotia",
+    "https://www.thesafetymag.com/ca/topics/safety-and-ppe/nova-scotia-records-record-low-time-loss-injury-rate-in-2025/547526",
+    "https://www.wcb.ns.ca/sites/default/files/2026-WSIS-Performance-At-A-Glance.pdf"
+  ]
+}
