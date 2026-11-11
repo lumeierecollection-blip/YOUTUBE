@@ -1,0 +1,20 @@
+{
+  "places": [
+    {
+      "name": "Chicago",
+      "lat": 41.88194444,
+      "lon": -87.62777778
+    },
+    {
+      "name": "Atlanta",
+      "lat": 33.74888889,
+      "lon": -84.39
+    },
+    {
+      "name": "Alcatraz Island",
+      "lat": 37.82666667,
+      "lon": -122.42277778
+    }
+  ],
+  "source": "Natural Earth 1:50m (public domain); coordinates from English Wikipedia"
+}
