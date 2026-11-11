@@ -1131,11 +1131,11 @@
     },
     "2026-11-10-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "42937975876",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "42982260219",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T01:40:40.303Z",
+      "updated_at": "2026-11-11T07:49:15.886Z",
       "stage": "script",
       "topic": "Amazon's New AI-Powered Security Drone and Robot Go Mobile",
       "score": 79.2,
@@ -2225,5 +2225,5 @@
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou"
   ],
-  "last_poll_at": "2026-11-11T01:18:36.012Z"
+  "last_poll_at": "2026-11-11T07:49:15.886Z"
 }
