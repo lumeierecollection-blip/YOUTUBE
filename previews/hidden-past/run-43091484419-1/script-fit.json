@@ -1,0 +1,81 @@
+{
+  "measured_wpm": 152.8,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Al Capone ruled Chicago, but income tax put him in prison.",
+      "scene": 0,
+      "claim_ids": [
+        "K1",
+        "K5",
+        "K8"
+      ]
+    },
+    {
+      "text": "In 1929, seven rival gangsters were murdered, and newspapers named him Public Enemy Number One.",
+      "scene": 1,
+      "claim_ids": [
+        "K2",
+        "K3"
+      ]
+    },
+    {
+      "text": "Agents turned to income tax, and charged him with twenty-two counts of evasion.",
+      "scene": 2,
+      "claim_ids": [
+        "K4",
+        "K5"
+      ]
+    },
+    {
+      "text": "His own admissions of income became evidence.",
+      "scene": 3,
+      "claim_ids": [
+        "K6"
+      ]
+    },
+    {
+      "text": "Convicted on five counts, he got eleven years.",
+      "scene": 4,
+      "claim_ids": [
+        "K7",
+        "K8"
+      ]
+    },
+    {
+      "text": "Atlanta, then Alcatraz.",
+      "scene": 5,
+      "claim_ids": [
+        "K9",
+        "K10"
+      ]
+    },
+    {
+      "text": "He died in 1947.",
+      "scene": 6,
+      "claim_ids": [
+        "K12"
+      ]
+    },
+    {
+      "text": "Right way to stop him?",
+      "scene": 7,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "words": 66,
+  "estimated_seconds": 29.9,
+  "inside_window": true,
+  "kept": [
+    "prisons",
+    "name",
+    "massacre",
+    "counts",
+    "evidence",
+    "sentence",
+    "end",
+    "close"
+  ]
+}
