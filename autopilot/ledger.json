@@ -886,19 +886,21 @@
     },
     "kick-3ed6176c43-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "42582992231",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:01:33.421Z"
+      "updated_at": "2026-11-09T08:01:33.421Z",
+      "error": "run 42582992231 ended without reporting a result (last stage: start)"
     },
     "kick-0a7cf65583-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "42583017538",
       "trigger": "push",
-      "updated_at": "2026-11-09T08:02:09.377Z"
+      "updated_at": "2026-11-09T08:02:09.377Z",
+      "error": "run 42583017538 ended without reporting a result (last stage: start)"
     },
     "kick-8e5a668775-ch1": {
       "channel": "1",
@@ -1126,6 +1128,14 @@
       "pillar": "Strange inventions and lost technology",
       "hook": "When Atari released Pong in 1972, the arcade machine was so popular that coins literally jammed the coin slots from sheer overuse.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 2 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    "2026-11-10-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "42937975876",
+      "trigger": "schedule",
+      "updated_at": "2026-11-11T01:18:36.014Z"
     }
   },
   "uploads": [
@@ -2182,5 +2192,5 @@
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou"
   ],
-  "last_poll_at": "2026-11-09T10:07:04.890Z"
+  "last_poll_at": "2026-11-11T01:18:36.012Z"
 }
