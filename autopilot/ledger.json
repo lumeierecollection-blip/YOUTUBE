@@ -1177,7 +1177,12 @@
       "attempts": 1,
       "run_id": "43271634609",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T17:39:04.233Z"
+      "updated_at": "2026-11-12T17:43:38.362Z",
+      "stage": "research",
+      "topic": "Meta's Muse AI Agent Expands to Smartwatches",
+      "score": 80.7,
+      "pillar": "New AI features and releases",
+      "hook": "Meta is bringing its conversational AI agent, Muse, directly to your smartwatch."
     }
   },
   "uploads": [
@@ -2263,6 +2268,15 @@
       "at_ms": 1794472955322,
       "score": 73.5,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Meta's Muse AI Agent Expands to Smartwatches",
+      "slug": "meta-s-muse-ai-agent-expands-to-smartwatches",
+      "slot": "2026-11-12-ch2",
+      "at_ms": 1794505418362,
+      "score": 80.7,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
