@@ -1,10 +1,22 @@
 {
   "tried": [
     {
-      "topic": "Students Complete Entire University Assessments in Minutes Using AI",
-      "score": 80.2,
+      "topic": "Indie Gaming World in Disarray After Studio Uses AI to Fix a Bug in 'Big Walk'",
+      "score": 77.2,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "United Airlines Bans Autonomous AI Agents From Booking Flights for Travelers",
+      "score": 75.1,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/united-airlines-bans-autonomous-ai-agents-from-booking-fligh-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+    },
+    {
+      "topic": "Google Gemini AI Lands on Apple CarPlay for Hands-Free Use",
+      "score": 73.5,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
     }
   ],
   "selected": null

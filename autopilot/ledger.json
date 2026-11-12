@@ -1145,17 +1145,17 @@
     },
     "2026-11-11-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "43182847480",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T08:42:35.322Z",
+      "updated_at": "2026-11-12T08:42:51.843Z",
       "stage": "research",
       "topic": "Google Gemini AI Lands on Apple CarPlay for Hands-Free Use",
       "score": 73.5,
       "pillar": "Trending AI tools and apps",
       "hook": "Apple CarPlay drivers can finally use Google's advanced Gemini AI hands-free on the road.",
-      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
+      "error": "3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
     },
     "2026-11-11-ch1": {
       "channel": "1",
@@ -2342,7 +2342,8 @@
     "Hidden Past kick-aebd86ec0c-ch1 failed at discover: discovery failure: 19 candidates, none eligible. Best \"The Sinking of SS Edmund Fitzgerald\" (84.1): too similar to recent topic: The sinking of the SS Edmund Fitzgerald on Lake Superior",
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou",
-    "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT "
+    "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT ",
+    "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
   "last_poll_at": "2026-11-12T08:26:00.012Z"
 }
