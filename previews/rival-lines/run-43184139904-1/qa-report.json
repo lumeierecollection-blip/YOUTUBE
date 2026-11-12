@@ -1,0 +1,64 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 28.885,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.4,
+  "max_volume_db": -1.5,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Rasalgethi",
+    "seconds": 28.368,
+    "wpm": 122.7,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "intro",
+      "start_s": 0,
+      "end_s": 8.333333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "formation",
+      "start_s": 8.333333333333334,
+      "end_s": 12.6
+    },
+    {
+      "id": "s3",
+      "kind": "network",
+      "start_s": 12.6,
+      "end_s": 16.933333333333334
+    },
+    {
+      "id": "s4",
+      "kind": "shots",
+      "start_s": 16.933333333333334,
+      "end_s": 21.466666666666665
+    },
+    {
+      "id": "s5",
+      "kind": "xg",
+      "start_s": 21.466666666666665,
+      "end_s": 24.966666666666665
+    },
+    {
+      "id": "s6",
+      "kind": "close",
+      "start_s": 24.966666666666665,
+      "end_s": 28.833333333333332
+    }
+  ]
+}
