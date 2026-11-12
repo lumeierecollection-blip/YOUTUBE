@@ -55,11 +55,13 @@ export function frameMap(points, features = loadDetail().features, opts = {}) {
   box = { w: box.w - pad, e: box.e + pad, s: box.s - pad, n: box.n + pad };
   const cos = Math.max(0.35, Math.cos((((box.s + box.n) / 2) * Math.PI) / 180));
   // Widen whichever side is short, so the view fills the panel without stretching the land.
-  const target = AREA.w / AREA.h, wide = (box.e - box.w) * cos, tall = box.n - box.s;
+  // opts.area: the panel to fill (long-form 16:9 passes its own); Shorts keep the default AREA.
+  const A = opts.area || AREA;
+  const target = A.w / A.h, wide = (box.e - box.w) * cos, tall = box.n - box.s;
   if (wide / tall < target) { const need = (tall * target) / cos, mid = (box.w + box.e) / 2; box.w = mid - need / 2; box.e = mid + need / 2; }
   else { const need = wide / target, mid = (box.s + box.n) / 2; box.s = mid - need / 2; box.n = mid + need / 2; }
-  const k = AREA.h / (box.n - box.s);
-  const project = ([lon, lat]) => [round(AREA.x + (lon - box.w) * cos * k), round(AREA.y + (box.n - lat) * k)];
+  const k = A.h / (box.n - box.s);
+  const project = ([lon, lat]) => [round(A.x + (lon - box.w) * cos * k), round(A.y + (box.n - lat) * k)];
   return { box, project, focus: [...focus.keys()], focusFeatures: [...focus.values()], features };
 }
 
@@ -86,11 +88,12 @@ function clipRing(ring, b) {
 }
 const CLIP_WINDOW = { x0: AREA.x - 300, x1: AREA.x + AREA.w + 300, y0: AREA.y - 300, y1: AREA.y + AREA.h + 300 };
 
-export function pathOf(polys, project, clip = false) {
+export function pathOf(polys, project, clip = false, area = AREA) {
+  const win = area === AREA ? CLIP_WINDOW : { x0: area.x - 300, x1: area.x + area.w + 300, y0: area.y - 300, y1: area.y + area.h + 300 };
   const out = [];
   for (const poly of polys) {
     let ring = poly[0].map(project);
-    if (clip) ring = clipRing(ring, CLIP_WINDOW);
+    if (clip) ring = clipRing(ring, win);
     const pts = [];
     for (const c of ring) { const q = c.join(" "); if (pts.at(-1) !== q) pts.push(q); }
     if (pts.length > 2) out.push("M" + pts.join(" L") + " Z");

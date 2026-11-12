@@ -1,0 +1,203 @@
+{
+  "description": "Long-form (16:9) formats per channel, taken from the competitor study of 12 Nov 2026 (report: https://claude.ai/artifact/C6HEJEFWKjrcFWdNEP98zk, data in output/longform-research/). Owner, 12 Nov 2026: every long-form video is at most 10 minutes for now, so the windows below are 6 to 10 minutes and the chapter counts are scaled down from the references. Each channel copies the formula of the reference that performed best and fits its approved look. platform/longform/script-gate.mjs enforces the numbers below; Shorts are untouched and keep their own gates.",
+  "frame": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30
+  },
+  "shared": {
+    "quotes_required": 4,
+    "max_words_per_sentence": 45,
+    "max_unclaimed_share": 0.15,
+    "gap_between_chapters_s": 0.6,
+    "comment_question_in_close": true,
+    "hashtags_min": 3
+  },
+  "channels": {
+    "hidden-past": {
+      "references": [
+        {
+          "channel": "This Is History",
+          "video": "eNyvx740K9E",
+          "why": "the look: shaded-relief maps with a year counter, cut-out portraits laid on the map with a serif name label, period paintings, 22 to 24 chronological chapters"
+        },
+        {
+          "channel": "RealLifeLore",
+          "video": "WiRLNEl-4bk",
+          "why": "the script engine: dated cold open, stakes stacked as numbers, pivot to one central question by about 2:30, 155 to 175 wpm"
+        }
+      ],
+      "minutes": [
+        6,
+        10
+      ],
+      "wpm": [
+        150,
+        175
+      ],
+      "chapters": [
+        5,
+        10
+      ],
+      "chapter_minutes": [
+        0.6,
+        2.5
+      ],
+      "question_by_words": 300,
+      "opening": "Cold open on one dated, concrete moment (a day, a place, what happened). Within the first 120 words at least one number or date. Then the stakes, then one sentence that turns to the central question.",
+      "structure": [
+        "cold_open",
+        "context",
+        "chapters in strict chronology",
+        "turning point",
+        "consequence",
+        "close with what changed and a question for the comments"
+      ],
+      "visual": {
+        "base": "shaded-relief map, warm paper sea, year counter top right",
+        "people": "cut-out portrait on the map with a small-caps serif name label",
+        "art": "period paintings and archival photographs, held or pushed very slowly",
+        "routes": "glowing dotted routes for movement",
+        "palette_from": "config/channels.json"
+      },
+      "title_formula": [
+        "The Entire History of X",
+        "Why X Was Y"
+      ],
+      "thumbnail": "portrait cut-out on the left, glowing map, 2 to 3 words in gold serif capitals",
+      "composition": "HiddenPastLongform"
+    },
+    "ai-tested": {
+      "references": [
+        {
+          "channel": "AI Search",
+          "video": "gX0L0aFA2xg",
+          "why": "claim and scope in 10 seconds, then 11 to 19 chaptered live tests of 1 to 3 minutes, failures shown plainly, specs and pricing last, 180 to 208 wpm"
+        }
+      ],
+      "minutes": [
+        6,
+        10
+      ],
+      "wpm": [
+        165,
+        200
+      ],
+      "chapters": [
+        5,
+        10
+      ],
+      "chapter_minutes": [
+        0.5,
+        2
+      ],
+      "question_by_words": 60,
+      "opening": "First sentence states the claim being tested and the scope (what it can and cannot do). Within 60 words: the promise of the video. Then straight into the first test.",
+      "structure": [
+        "claim_and_scope",
+        "one chapter per real test (setup, run, result counted by code, verdict)",
+        "what failed",
+        "specs and pricing",
+        "close with a verdict and a question for the comments"
+      ],
+      "visual": {
+        "base": "white motion-graphics frame (approved default)",
+        "evidence": "the real tool, its real output and the release page or benchmark chart from the source",
+        "data": "counted results drawn by code",
+        "palette_from": "config/channels.json"
+      },
+      "title_formula": [
+        "[Model] is [one word]",
+        "We Tested X: Y"
+      ],
+      "thumbnail": "one bar with a single lowercase word over a picture of the actual output",
+      "composition": "AiTestedLongform"
+    },
+    "rival-lines": {
+      "references": [
+        {
+          "channel": "Football Made Simple",
+          "video": "N8PZt_9_adI",
+          "why": "dark tactics board, one idea per board, 8 to 9 chapters in 10 to 15 minutes, short match-footage bursts with labels"
+        }
+      ],
+      "minutes": [
+        6,
+        10
+      ],
+      "wpm": [
+        150,
+        185
+      ],
+      "chapters": [
+        5,
+        9
+      ],
+      "chapter_minutes": [
+        0.6,
+        2
+      ],
+      "question_by_words": 120,
+      "opening": "Name the manager or team and a strong, sourced judgement in the first sentence; show the result (table or score) within 30 seconds.",
+      "structure": [
+        "the claim",
+        "one chapter per tactical idea, each with event data",
+        "the risk or weakness",
+        "conclusion and outlook"
+      ],
+      "visual": {
+        "base": "near-black vignetted pitch, top-down",
+        "players": "dots or head cut-outs",
+        "data": "StatsBomb event data, credited",
+        "footage": "short labelled match bursts only if the copyright decision allows"
+      },
+      "title_formula": [
+        "[Manager]'s Tactics Are [judgement]",
+        "How [Team] [result]"
+      ],
+      "thumbnail": "manager cut-out over a pitch with player figures and arrows, or one giant word",
+      "composition": "RivalSeriousWide"
+    },
+    "court-and-spotlight": {
+      "references": [],
+      "reference_status": "No qualifying faceless, document-led reference found yet (2lazy2try and Cinemastic rejected on 12 Nov 2026). Shortlist awaiting frame checks: Jay Diggs, The Rap Archive, DocuReal, Propaganda & Co.",
+      "minutes": [
+        6,
+        10
+      ],
+      "wpm": [
+        150,
+        180
+      ],
+      "chapters": [
+        4,
+        8
+      ],
+      "chapter_minutes": [
+        0.75,
+        2.5
+      ],
+      "question_by_words": 200,
+      "opening": "A famous name and the documented outcome in the first sentence; what the record shows versus what was alleged by the end of the first minute.",
+      "structure": [
+        "outcome",
+        "timeline of the record",
+        "each claim with its source and status (allegation, charge, verdict)",
+        "what is still disputed",
+        "close"
+      ],
+      "visual": {
+        "base": "dark case-file desk",
+        "evidence": "real documents and filings with the quoted line highlighted",
+        "people": "real licensed photographs only",
+        "labels": "allegation and finding drawn differently"
+      },
+      "title_formula": [
+        "What [Name]'s Case Actually Shows"
+      ],
+      "thumbnail": "to be set once a reference is verified",
+      "composition": "CourtSeriousWide"
+    }
+  },
+  "max_minutes": 10
+}

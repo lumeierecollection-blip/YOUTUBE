@@ -45,11 +45,11 @@ export function makeTools({ key, runId, outDir, agent, publish }) {
     write: (name, content) => { const f = join(outDir, name); mkdirSync(dirname(f), { recursive: true }); writeFileSync(f, typeof content === "string" ? content : JSON.stringify(content, null, 2)); return f; },
 
     /** A composition registered in src/skills/remotion-render/channels/<key>/compositions.jsx. */
-    renderComposition({ id, props = {}, output = "preview.mp4", audio = null, durationInFrames = null }) {
+    renderComposition({ id, props = {}, output = "preview.mp4", audio = null, durationInFrames = null, timeoutMinutes = 40 }) {
       ensureBundleAudio(audio);
       const file = join(outDir, output), job = join(outDir, `${output}.job.json`);
       writeFileSync(job, JSON.stringify({ id, props, output: file, audio, durationInFrames }));
-      run("node", ["render-channel-composition.mjs", job], { cwd: REMOTION });
+      run("node", ["render-channel-composition.mjs", job], { cwd: REMOTION, timeout: timeoutMinutes * 60e3 }); // long-form passes a longer limit
       rmSync(job, { force: true });
       if (audio) {
         // The bundle does not carry per-render audio, so the voice track is added here. The picture sets the
