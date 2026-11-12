@@ -2,12 +2,10 @@
   "channel": "rival-lines",
   "production_run": "run-43184139904-1",
   "agent": "agent-rival-lines",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-12T08:38:51.836Z",
+  "timestamp": "2026-11-12T08:38:53.438Z",
   "branch": "preview/rival-lines-serious",
   "commit": "b6f8a190168078bc2d55162bd2d59aa72c499e3a",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43184139904#artifacts",
-  "engine": "gemini:Rasalgethi",
-  "wpm": 122.7
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43184139904#artifacts"
 }
