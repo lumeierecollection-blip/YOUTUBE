@@ -11,7 +11,7 @@ import { commonsAsset } from "../../production/commons.mjs";
 import { AREA, frameMap, pathOf, polygonsOf } from "../../../scripts/autopilot/map-vox.mjs";
 import { loadFormats } from "../../longform/script-gate.mjs";
 import { runLongform } from "../../longform/run-longform.mjs";
-import { reliefFor } from "../../longform/relief.mjs";
+import { bakedBase } from "../../longform/relief.mjs";
 import { spawnSync } from "node:child_process";
 
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
@@ -111,8 +111,9 @@ async function routeMap(places) {
   const landD = pathOf(m.features.filter((f) => !focused.has(f)).flatMap((f) => polygonsOf(f)), m.project, true, FULL);
   const countryD = pathOf(m.focusFeatures.flatMap((f) => polygonsOf(f)), m.project, true, FULL);
   const pins = pts.map((p) => { const [x, y] = m.project([p.lon, p.lat]); return { name: p.name, x, y, side: x > 1500 ? "left" : "right" }; });
-  const relief = await reliefFor(m.box, FULL);
-  return { landD, countryD, labels: [], pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places: pts, relief };
+  // Sea, land and Natural Earth relief baked into one image (fast to render); colours are the Hidden Past palette (vox-beats.jsx K.sea / K.land).
+  const base = await bakedBase({ box: m.box, area: FULL, landD: `${landD} ${countryD}`, sea: "#D3DCDC", land: "#F4EEE2" });
+  return { landD, countryD, labels: [], pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places: pts, base: base.uri };
 }
 
 export default async function hiddenPastLongform({ key, runId, tools }) {

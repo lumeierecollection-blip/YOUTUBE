@@ -24,14 +24,12 @@ function MapScene({ s, maps, images = {} }) {
   const route = ramp(f, 10, 70);
   return (<>
     <svg viewBox="0 0 1920 1080" width={1920} height={1080} style={{ position: "absolute", inset: 0 }}>
-      <defs><clipPath id={`land-${s.id}`}><path d={g.landD + " " + g.countryD} /></clipPath><filter id={`glow-${s.id}`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" /></filter></defs>
-      <rect width="1920" height="1080" fill={K.sea} />
-      <path d={g.landD} fill={K.land} stroke={K.stroke} strokeWidth="2" />
-      {g.relief && <image href={g.relief.uri} x={g.relief.x} y={g.relief.y} width={g.relief.w} height={g.relief.h} preserveAspectRatio="none" clipPath={`url(#land-${s.id})`} style={{ mixBlendMode: "multiply" }} opacity={0.55} />}
-      <path d={g.countryD} fill={K.focus} fillOpacity={ramp(f, 4, 24)} stroke={K.stroke} strokeWidth="3" />
+      {g.base ? <image href={g.base} x={0} y={0} width={1920} height={1080} preserveAspectRatio="none" /> : <><rect width="1920" height="1080" fill={K.sea} /><path d={g.landD} fill={K.land} stroke={K.stroke} strokeWidth="2" /></>}
+      <path d={g.countryD} fill={K.focus} fillOpacity={0.45 * ramp(f, 4, 24)} stroke={K.stroke} strokeWidth="3" />
       {g.labels.map((l, i) => <text key={i} x={l.x} y={l.y} textAnchor="middle" fontFamily={SERIF} fontVariant="small-caps" fontSize={30} letterSpacing="0.12em" fill={K.dim} opacity={ramp(f, 12 + i * 3, 24 + i * 3)}>{l.text}</text>)}
       <g style={{ clipPath: `inset(0 ${100 - route * 100}% 0 0)` }} opacity={route > 0 ? 1 : 0}>
-        <path d={g.routeD} fill="none" stroke="#F2B544" strokeWidth="16" strokeLinecap="round" opacity="0.55" filter={`url(#glow-${s.id})`} />
+        <path d={g.routeD} fill="none" stroke="#F2B544" strokeWidth="22" strokeLinecap="round" opacity="0.28" />
+        <path d={g.routeD} fill="none" stroke="#F2B544" strokeWidth="12" strokeLinecap="round" opacity="0.4" />
         <path d={g.routeD} fill="none" stroke="#FFF4D6" strokeWidth="7" strokeDasharray="1 16" strokeLinecap="round" />
       </g>
       {g.pins.map((p, i) => { const a = ramp(f, 14 + i * 14, 24 + i * 14); return (<g key={i} opacity={a}>

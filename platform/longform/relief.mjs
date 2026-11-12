@@ -39,3 +39,20 @@ export async function reliefFor(box, area, res = "50m") {
   const buf = await sharp(tif, { limitInputPixels: false }).extract({ left: x0, top: y0, width: x1 - x0, height: y1 - y0 }).resize(w, h, { fit: "fill" }).greyscale().jpeg({ quality: 82 }).toBuffer();
   return { uri: `data:image/jpeg;base64,${buf.toString("base64")}`, x: left, y: top, w, h, source: "Natural Earth shaded relief (public domain)" };
 }
+
+/**
+ * The map base baked into one image: sea, land and relief already multiplied, so Chrome draws one picture per frame instead of blending and
+ * clipping a 1920x1080 raster on every frame (the first relief render ran at about 0.6 s a frame on GitHub's software renderer).
+ * landD is the SVG path of all land in the area's pixel space; colors come from the composition's palette, passed in by the job.
+ */
+export async function bakedBase({ box, area, landD, sea, land, strength = 0.55, res = "50m" }) {
+  const r = await reliefFor(box, area, res), W = area.w, H = area.h;
+  const svg = (body) => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${body}</svg>`);
+  const base = await sharp(svg(`<rect width="${W}" height="${H}" fill="${sea}"/><path d="${landD}" fill="${land}"/>`)).png().toBuffer();
+  // Relief lightened toward white by (1 - strength), so a multiply darkens the land by at most `strength`; then kept only where land is.
+  const relief = await sharp(Buffer.from(r.uri.split(",")[1], "base64")).linear(strength, 255 * (1 - strength)).extend({ top: r.y, left: r.x, bottom: Math.max(0, H - r.y - r.h), right: Math.max(0, W - r.x - r.w), background: "#ffffff" }).resize(W, H, { fit: "fill" }).png().toBuffer();
+  const mask = await sharp(svg(`<rect width="${W}" height="${H}" fill="black"/><path d="${landD}" fill="white"/>`)).greyscale().png().toBuffer();
+  const reliefOnLand = await sharp(relief).joinChannel(mask).png().toBuffer();
+  const out = await sharp(base).composite([{ input: reliefOnLand, blend: "multiply" }]).jpeg({ quality: 84 }).toBuffer();
+  return { uri: `data:image/jpeg;base64,${out.toString("base64")}`, source: r.source };
+}
