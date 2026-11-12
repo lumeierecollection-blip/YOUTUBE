@@ -1,0 +1,168 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-43197772216-1",
+  "topic": "Charles Ponzi: the 1920 Boston scheme that gave 'Ponzi scheme' its name",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Charles Ponzi promised fifty percent profit in forty-five days.",
+      "scene": 0,
+      "claim_ids": [
+        "K1"
+      ]
+    },
+    {
+      "text": "To pay everyone, he needed one hundred sixty million coupons, but only twenty-seven thousand existed.",
+      "scene": 1,
+      "claim_ids": [
+        "K2",
+        "K3"
+      ]
+    },
+    {
+      "text": "He paid a crowd two million dollars in three days.",
+      "scene": 2,
+      "claim_ids": [
+        "K4"
+      ]
+    },
+    {
+      "text": "His bank was seized, and investors lost about twenty million dollars.",
+      "scene": 3,
+      "claim_ids": [
+        "K5"
+      ]
+    },
+    {
+      "text": "He admitted one of eighty-six fraud counts: five years.",
+      "scene": 4,
+      "claim_ids": [
+        "K6"
+      ]
+    },
+    {
+      "text": "He died in Rio with seventy-five dollars.",
+      "scene": 5,
+      "claim_ids": [
+        "K8"
+      ]
+    },
+    {
+      "text": "Would you have invested?",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-ponzi",
+      "url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "K1",
+      "claim": "Charles Ponzi promised clients a 50% profit within 45 days or 100% profit within 90 days.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He promised clients a 50% profit within 45 days or 100% profit within 90 days",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K2",
+      "claim": "The scheme claimed to profit by buying discounted postal reply coupons abroad and redeeming them at face value in the U.S.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "buying discounted postal reply coupons in other countries and redeeming them at face value in the U.S.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K3",
+      "claim": "Financial journalist Clarence Barron noted that 160 million coupons would have to be in circulation to cover the investments, while only about 27,000 actually were.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "160 million postal reply coupons would have to be in circulation. However, only about 27,000 actually were.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K4",
+      "claim": "On 26 July 1920 the Boston Post began articles asking hard questions; the articles caused a run on the company, and Ponzi paid out $2 million in three days to a crowd outside his office.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Ponzi paid out $2 million in three days to a wild crowd outside his office.",
+      "confidence": "high",
+      "context": "The Post series began 26 July 1920 (stated in the article).",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K5",
+      "claim": "On 11 August 1920 the Bank Commissioner seized Hanover Trust; the news brought down five other banks, and investors lost about $20 million in 1920 dollars, receiving less than 30 cents on the dollar.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "They lost about $20 million in 1920 dollars",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K6",
+      "claim": "Ponzi was charged with 86 counts of mail fraud, pleaded guilty on 1 November 1920 to a single count, and was sentenced to five years in federal prison.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Ponzi was charged with 86 counts of mail fraud",
+      "confidence": "high",
+      "context": "The guilty plea and the sentence are in the same paragraph of the article.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K7",
+      "claim": "Ponzi was released in 1934 and deported to Italy on 7 October.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "On 7 October, Ponzi was officially deported.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "K8",
+      "claim": "He died in the charity ward of a hospital in Rio de Janeiro on 18 January 1949, leaving an estate of $75.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He left an estate of $75, which was barely enough to bury him.",
+      "confidence": "high",
+      "context": "",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
