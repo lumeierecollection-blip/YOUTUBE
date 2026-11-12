@@ -1,0 +1,66 @@
+{
+  "topic_slug": "iso-11228-3-2026-upper-limbs-ergonomics",
+  "strongest_angle": "The International Organization for Standardization released the second edition of ISO 11228-3:2026 in May 2026, replacing the 2007 version to update ergonomic standards for repetitive upper limb tasks.",
+  "key_facts": [
+    {
+      "fact": "The International Organization for Standardization published the second edition of ISO 11228-3:2026 in May 2026.",
+      "source_url": "https://www.iso.org/standard/11228-3",
+      "source_name": "International Organization for Standardization",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new ISO 11228-3:2026 standard supersedes the previous version, ISO 11228-3:2007, which has been officially withdrawn.",
+      "source_url": "https://online.standard.no/en/iso-11228-3-2026-3",
+      "source_name": "Standard Norge",
+      "confidence": "high"
+    },
+    {
+      "fact": "Intertek Inform lists the purchase price for the ISO 11228-3:2026 standard at 258.00 US dollars.",
+      "source_url": "https://www.intertekinform.com/en-us/standards/iso-11228-3-2026-593076_saig_iso_iso_4015394",
+      "source_name": "Intertek Inform",
+      "confidence": "high"
+    },
+    {
+      "fact": "The British Standards Institution implemented the ISO 11228-3:2026 standard in the United Kingdom through its Technical Committee PH/9/ -/4.",
+      "source_url": "https://webstore.ansi.org/preview-pages/BSI/preview_30453321.pdf",
+      "source_name": "British Standards Institution",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "ISO 11228-3:2026 price in USD",
+      "value": 258,
+      "unit": "US dollars",
+      "source_url": "https://www.intertekinform.com/en-us/standards/iso-11228-3-2026-593076_saig_iso_iso_4015394"
+    },
+    {
+      "label": "Edition number of the new standard",
+      "value": 2,
+      "unit": "edition",
+      "source_url": "https://www.iso.org/standard/11228-3"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "International Organization for Standardization",
+      "kind": "organization"
+    },
+    {
+      "name": "ISO 11228-3:2026",
+      "kind": "object"
+    },
+    {
+      "name": "ISO 11228-3:2007",
+      "kind": "object"
+    },
+    {
+      "name": "British Standards Institution",
+      "kind": "organization"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    }
+  ]
+}
