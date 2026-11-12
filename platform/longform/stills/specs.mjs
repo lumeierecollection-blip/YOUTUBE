@@ -53,13 +53,13 @@ export const SPECS = {
     const { plan } = await import(pathToFileURL(join(ctx.ROOT, "platform/channels/ai-tested/fabricated.mjs")).href);
     const d = plan(j("ai-unknown-experiment.json")).data, ex = d.example;
     // Two real browser captures (the browser-demonstration scene needs real captures; these pages are public).
-    const R = join(ctx.ROOT, "src/skills/remotion-render"), { openBrowser } = await import(pathToFileURL(join(R, "node_modules/@remotion/renderer/dist/esm/index.mjs")).href), { findChrome } = await import(pathToFileURL(join(R, "find-chrome.js")).href);
-    const chrome = findChrome(), br = await openBrowser("chrome", { ...(chrome ? { browserExecutable: chrome } : {}), chromiumOptions: { gl: "swangle" } });
+    const R = join(ctx.ROOT, "src/skills/remotion-render"), { findChrome } = await import(pathToFileURL(join(R, "find-chrome.js")).href), chrome = process.env.CHROME_BIN || findChrome();
     for (const [k, url] of Object.entries({ shot: "https://github.com/remotion-dev/remotion", shot2: "https://github.com/remotion-dev/skills" })) {
-      const page = await br.newPage(); await page.setViewport({ width: 1600, height: 1000 }); await page.goto(url, { waitUntil: "networkidle2", timeout: 60000 });
-      const f = join(dir, `${k}.png`); await page.screenshot({ path: f }); images[k] = await ctx.jpg(f, 1600); assets.captures.push({ key: k, url, taken: new Date().toISOString() }); await page.close();
+      const f = join(dir, `${k}.png`);
+      const r = spawnSync(chrome, ["--headless=new", "--no-sandbox", "--disable-gpu", "--hide-scrollbars", "--window-size=1600,1000", "--virtual-time-budget=15000", `--screenshot=${f}`, url], { encoding: "utf8", timeout: 120000 });
+      if (r.status !== 0) throw new Error(`browser capture of ${url} failed: ${String(r.stderr).slice(-300)}`);
+      images[k] = await ctx.jpg(f, 1600); assets.captures.push({ key: k, url, taken: new Date().toISOString() });
     }
-    await br.close({ silent: true });
     const reply = wrap(String(ex?.reply || "").replace(/[*_`#]+/g, ""), 74).slice(0, 6), made = d.models.map((m) => m.made_up), totalMade = d.made, all = d.all;
     const A = { images }, src = "Capture taken by this preview run; the page is public";
     const claim = { kind: "claim", kicker: "The claim being tested", title: `AI described ${totalMade} of ${all} invented things as real`, scope: `${d.models.length} models, ${d.fakes} things that do not exist, ${d.reals} real controls. Every reply is kept and counted by code.` };
