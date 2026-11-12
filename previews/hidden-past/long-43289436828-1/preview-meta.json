@@ -2,11 +2,13 @@
   "channel": "hidden-past",
   "production_run": "long-43289436828-1",
   "agent": "agent-hidden-past",
-  "stage": "script_approved",
+  "stage": "voice_complete",
   "status": "ok",
-  "timestamp": "2026-11-12T19:25:15.352Z",
+  "timestamp": "2026-11-12T19:26:13.422Z",
   "branch": "longform/hidden-past-pilot",
   "commit": "f21a8041f095e9f4a3ea0638e082885b6e863884",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43289436828#artifacts",
-  "note": "passed the long-form script gate; not reviewed by a person"
+  "engine": "gemini:Charon",
+  "minutes": 1.9,
+  "wpm": 139.7
 }
