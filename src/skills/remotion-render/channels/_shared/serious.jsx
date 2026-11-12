@@ -155,3 +155,41 @@ export function Shell({ t, durationInFrames, scenes, captions, beats, pass, labe
   );
 }
 export const baseComp = { fps: 30, width: 1080, height: 1920, durationInFrames: 900 };
+
+// ── Long form (16:9) ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+// The same evidence beats play in a column on the right (the 1080-wide picture area, scaled). The left carries the sentence being spoken in large
+// type, each word lighting as it is said, or a picture (a photograph, a painting, match footage) with the sentence under it. `side(scene)` returns
+// that picture or null. Beats receive `wide` so a channel can drop its own full-bleed plate.
+const COL = 0.76;
+function Say({ t, words, h, font, upper, from }) {
+  const f = useCurrentFrame(), chars = words.reduce((n, w) => n + w.text.length + 1, 0), size = Math.max(40, Math.min(132, Math.sqrt((880 * h) / (Math.max(chars, 12) * 0.74))));
+  return (
+    <div style={{ width: 880, height: h, display: "flex", flexWrap: "wrap", alignContent: "center", gap: `0 ${size * 0.26}px`, fontFamily: font, fontWeight: 700, fontSize: size, lineHeight: 1.08, textTransform: upper ? "uppercase" : "none", letterSpacing: "-0.01em" }}>
+      {words.map((w, i) => { const a = ramp(f, w.from - from - 2, w.from - from + 5); return <span key={i} style={{ color: t.ink, opacity: 0.2 + 0.8 * a, transform: `translateY(${(1 - a) * 8}px)`, display: "inline-block" }}>{w.text}</span>; })}
+    </div>
+  );
+}
+export function WideShell({ t, durationInFrames, scenes, captions, beats, pass, label, grid = true, side, sayFont = COND, upper = true }) {
+  const f = useCurrentFrame(), all = captions.flatMap((c) => c.words || []);
+  return (
+    <AbsoluteFill style={{ background: t.bg }}><style>{FONT_FACES}</style>
+      <Backdrop t={t} grid={grid} />
+      {label && <div style={abs(56, 36, 1808, 34, { display: "flex", justifyContent: "space-between", fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: "0.14em", color: t.dim, textTransform: "uppercase" })}><span>{label[0]}</span><span>{label[1]}</span></div>}
+      <div style={abs(56, 80, 1808, 2, { background: t.rule, opacity: 0.6 })} />
+      <div style={abs(56, 110, 880, 880)}>
+        {scenes.map((s) => { const dur = s.to - s.from, ws = all.filter((w) => w.from >= s.from && w.from < s.to), media = side ? side(s, dur) : null; return (
+          <Sequence key={s.id} from={s.from} durationInFrames={dur}><Beat dur={dur}>
+            {media && <div style={abs(0, 0, 880, 620, { overflow: "hidden", background: "#000", boxShadow: `12px 12px 0 ${t.accent}, 0 30px 70px rgba(0,0,0,0.55)` })}>{media}</div>}
+            <div style={abs(0, media ? 660 : 0, 880, media ? 220 : 880)}><Say t={t} words={ws} h={media ? 220 : 880} font={sayFont} upper={upper} from={s.from} /></div>
+          </Beat></Sequence>); })}
+      </div>
+      <div style={abs(1010, 96, 1080, 1250, { transform: `scale(${COL})`, transformOrigin: "0 0" })}>
+        <div style={abs(0, -150, 1080, 1400)}>
+          {scenes.map((s) => { const B = beats[s.kind], dur = s.to - s.from, ws = all.filter((w) => w.from >= s.from && w.from < s.to), at = (re, fb) => { const w = ws.find((x) => re.test(x.text)); return w ? w.from - s.from : fb; }; return B ? <Sequence key={s.id} from={s.from} durationInFrames={dur}><Beat dur={dur}><B dur={dur} at={at} wide cues={captions.filter((c) => c.from >= s.from && c.from < s.to).map((c) => c.from - s.from)} {...pass} /></Beat></Sequence> : null; })}
+        </div>
+      </div>
+      <div style={abs(0, 1072, 1920 * (f / durationInFrames), 8, { background: t.accent })} />
+    </AbsoluteFill>
+  );
+}
+export const wideComp = { fps: 30, width: 1920, height: 1080, durationInFrames: 900 };

@@ -2,9 +2,9 @@
 // with the outcome as a giant number. An allegation is never drawn like a finding: allegations are amber and outlined, findings are red and filled.
 // All quoted text, names, numbers and credits arrive as props from the run's claims; nothing about the case is typed in this file.
 import React from "react";
-import { useCurrentFrame } from "remotion";
+import { Img, useCurrentFrame } from "remotion";
 import { abs } from "../_shared/parts.jsx";
-import { COND, MONO, ramp, Kicker, Head, Count, Rule, Chip, Doc, Photo, Shell, baseComp } from "../_shared/serious.jsx";
+import { COND, MONO, ramp, Kicker, Head, Count, Rule, Chip, Doc, Photo, Shell, WideShell, baseComp, wideComp } from "../_shared/serious.jsx";
 
 export const T = { bg: "#08090C", glow: "rgba(120,30,30,0.26)", line: "rgba(255,255,255,0.03)", ink: "#F4F4F2", dim: "#9A9CA3", accent: "#E0261B", rule: "rgba(255,255,255,0.22)", paper: "#F3F0E8", mark: "rgba(224,38,27,0.30)", amber: "#F2A900", ok: "#E9E9E4" };
 const TA = { ...T, accent: T.amber, mark: "rgba(242,169,0,0.42)", onAccent: "#14110B" };
@@ -79,4 +79,10 @@ const BEATS = { cover: Cover, doj: Doj, acquitted: Acquitted, alleged: Alleged, 
 export function CourtSerious({ durationInFrames, scenes, captions, images, c }) {
   return <Shell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ images, c }} label={["Court & Spotlight", c.tag || ""]} />;
 }
-export const seriousCompositions = [{ id: "CourtSerious", component: CourtSerious, ...baseComp, defaultProps: { durationInFrames: 780, scenes: [], captions: [], images: {}, c: { name: [], doj: { hl: [] }, acq: { n: 0, hl: [] }, alleged: { hl: [] }, sought: { hl: [], line: [] }, booking: {} } } }];
+const SIDE = new Set(["doj", "acquitted", "alleged", "sought"]);
+export function CourtSeriousWide({ durationInFrames, scenes, captions, images, c }) {
+  const side = (s) => (SIDE.has(s.kind) && images.portrait ? <Img src={images.portrait} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 18%", filter: "grayscale(1) contrast(1.08)" }} /> : null);
+  return <WideShell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ images, c }} label={["Court & Spotlight", c.tag || ""]} side={side} />;
+}
+const DP = { durationInFrames: 780, scenes: [], captions: [], images: {}, c: { name: [], doj: { hl: [] }, acq: { n: 0, hl: [] }, alleged: { hl: [] }, sought: { hl: [], line: [] }, booking: {} } };
+export const seriousCompositions = [{ id: "CourtSeriousWide", component: CourtSeriousWide, ...wideComp, defaultProps: DP }, { id: "CourtSerious", component: CourtSerious, ...baseComp, defaultProps: { durationInFrames: 780, scenes: [], captions: [], images: {}, c: { name: [], doj: { hl: [] }, acq: { n: 0, hl: [] }, alleged: { hl: [] }, sought: { hl: [], line: [] }, booking: {} } } }];

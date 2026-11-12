@@ -77,7 +77,7 @@ export function buildTimeline({ narration, sceneOfSentence, sceneMeta, tail = 0.
 }
 
 /** Hard technical and timing gates on the real MP4. A failure here means the video does not ship. */
-export function technicalQa({ video, narration, timeline, minSeconds = 24, maxSeconds = 30 }) {
+export function technicalQa({ video, narration, timeline, minSeconds = 24, maxSeconds = 30, size = [1080, 1920] }) {
   const failures = [], d = durationOf(video);
   const [width, height, rate, codec] = (() => { const v = probe(video, "stream=width,height,r_frame_rate,codec_name", "v:0").split(","); return [Number(v[1]), Number(v[2]), v[3], v[0]]; })();
   const [num, den] = rate.split("/").map(Number);
@@ -90,7 +90,7 @@ export function technicalQa({ video, narration, timeline, minSeconds = 24, maxSe
   const check = (ok, why) => { if (!ok) failures.push(why); };
   check(d <= maxSeconds, `MP4 is ${d.toFixed(2)}s; the limit is ${maxSeconds}s`);
   check(d >= minSeconds, `MP4 is ${d.toFixed(2)}s; the target floor is ${minSeconds}s`);
-  check(width === 1080 && height === 1920, `resolution ${width}x${height}`);
+  check(width === size[0] && height === size[1], `resolution ${width}x${height}`);
   check(den && num / den === 30, `frame rate ${rate}`);
   check(codec === "h264", `video codec ${codec}`);
   check(audioCodec === "aac", `audio codec ${audioCodec}`);

@@ -1,15 +1,16 @@
 // Dopamine Loop, serious cut: no characters. Public-domain paintings under a dark wash with a slow push, serif type, and the study itself on a
 // document card with the quoted finding highlighted. The abstract text is the PubMed record (PMID 14551436), passed in as props, never retyped here.
 import React from "react";
-import { useCurrentFrame } from "remotion";
+import { Img, interpolate, useCurrentFrame } from "remotion";
 import { abs } from "../_shared/parts.jsx";
-import { MONO, SERIF, ramp, Plate, Kicker, Head, Rule, Chip, Doc, Shell, baseComp } from "../_shared/serious.jsx";
+import { MONO, SERIF, ramp, Plate, Kicker, Head, Rule, Chip, Doc, Shell, WideShell, baseComp, wideComp } from "../_shared/serious.jsx";
 
 export const T = { bg: "#0B0A09", glow: "rgba(120,100,70,0.22)", line: "rgba(255,255,255,0.0)", ink: "#F4EFE6", dim: "#B3AA9B", accent: "#C9A35B", rule: "rgba(244,239,230,0.3)", paper: "#F3EEE3", mark: "rgba(201,163,91,0.5)", onAccent: "#14110B" };
 const Credit = ({ children }) => { const f = useCurrentFrame(); return <div style={abs(70, 1366, 940, 30, { fontFamily: MONO, fontSize: 19, letterSpacing: "0.06em", color: T.dim, textTransform: "uppercase", opacity: 0.85 * ramp(f, 8, 18) })}>{children}</div>; };
 const H = (p) => <Head t={T} font={SERIF} upper={false} size={118} lh={1.08} {...p} />;
 
-const wrap = (Inner, key, pos, wash) => function Beat({ dur, cues, images, credits, study }) {
+const wrap = (Inner, key, pos, wash) => function Beat({ dur, cues, images, credits, study, wide }) {
+  if (wide) return <Inner dur={dur} cues={cues} study={study} />;
   return (<><Plate src={images[key]} dur={dur} pos={pos} wash={wash} /><Inner dur={dur} cues={cues} study={study} /><Credit>Painting: {credits[key]}</Credit></>);
 };
 
@@ -52,4 +53,15 @@ const BEATS = { "left-out": B1, "quiet-chat": B2, screen: B3, regulate: B4, comf
 export function DopamineSerious({ durationInFrames, scenes, captions, images, credits, study }) {
   return <Shell t={T} grid={false} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ images, credits, study }} label={["Dopamine Loop", "Psychology"]} />;
 }
-export const seriousCompositions = [{ id: "DopamineSerious", component: DopamineSerious, ...baseComp, defaultProps: { durationInFrames: 780, scenes: [], captions: [], images: {}, credits: {}, study: { hl1: [], hl2: [] } } }];
+const ART = { "left-out": ["back", "50% 30%"], "quiet-chat": ["cafe", "50% 40%"], screen: ["melancholy", "50% 50%"], regulate: ["window", "50% 35%"], comfort: ["moon", "50% 40%"] };
+function Painting({ src, pos, dur, credit }) {
+  const f = useCurrentFrame(), s = interpolate(f, [0, dur], [1.03, 1.1], { extrapolateRight: "clamp" });
+  return (<><Img src={src} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transform: `scale(${s})`, filter: "saturate(0.85)" }} />
+    <div style={abs(0, 572, 880, 48, { background: "rgba(0,0,0,0.62)", fontFamily: MONO, fontSize: 18, letterSpacing: "0.06em", color: T.dim, textTransform: "uppercase", padding: "13px 18px", boxSizing: "border-box" })}>Painting: {credit}</div></>);
+}
+export function DopamineSeriousWide({ durationInFrames, scenes, captions, images, credits, study }) {
+  const side = (s, dur) => { const a = ART[s.kind]; return a && images[a[0]] ? <Painting src={images[a[0]]} pos={a[1]} dur={dur} credit={credits[a[0]]} /> : null; };
+  return <WideShell t={T} grid={false} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ images, credits, study }} label={["Dopamine Loop", "Psychology"]} side={side} sayFont={SERIF} upper={false} />;
+}
+const DP = { durationInFrames: 780, scenes: [], captions: [], images: {}, credits: {}, study: { hl1: [], hl2: [] } };
+export const seriousCompositions = [{ id: "DopamineSeriousWide", component: DopamineSeriousWide, ...wideComp, defaultProps: DP }, { id: "DopamineSerious", component: DopamineSerious, ...baseComp, defaultProps: { durationInFrames: 780, scenes: [], captions: [], images: {}, credits: {}, study: { hl1: [], hl2: [] } } }];

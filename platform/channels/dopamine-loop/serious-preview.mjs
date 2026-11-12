@@ -8,6 +8,7 @@ import { runFixedShort } from "../../production/fixed-short.mjs";
 import { commonsAsset } from "../../production/commons.mjs";
 import { claims, metadata, scenes, sentences, sources } from "./sample.mjs";
 
+const LONG = /-long/.test(process.env.GITHUB_REF_NAME || ""); // 16:9 long-form look test
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const ART = {
   back: ["File:Vilhelm Hammershoi - Interieur mit Rueckenansicht einer Frau - 1903-1904 - Randers Kunstmuseum.jpg", "Vilhelm Hammershøi, Interior, 1903–04"],
@@ -35,5 +36,5 @@ export default async function seriousPreview({ key, runId, tools }) {
     images[k] = `data:image/jpeg;base64,${jpg.toString("base64")}`; credits[k] = `${label} · public domain`; entries.push(entry);
   }
   tools.write("asset-manifest.json", { note: "Paintings are public-domain works from Wikimedia Commons, used as mood plates and credited on screen. They do not depict the study. Nothing is AI-generated.", assets: entries });
-  await runFixedShort({ key, runId, tools, spec: { topic: "Why being left out hurts", claims, sources, sentences, scenes, compositionId: "DopamineSerious", edgeVoice: "en-GB-RyanNeural", gravity: "serious", voice: "Charon", metadata, minSeconds: 20, maxSeconds: 32, makeProps: () => ({ images, credits, study: STUDY }) } });
+  await runFixedShort({ key, runId, tools, spec: { topic: "Why being left out hurts", claims, sources, sentences, scenes, compositionId: LONG ? "DopamineSeriousWide" : "DopamineSerious", size: LONG ? [1920, 1080] : undefined, edgeVoice: "en-GB-RyanNeural", gravity: "serious", voice: "Charon", metadata, minSeconds: 20, maxSeconds: 32, makeProps: () => ({ images, credits, study: STUDY }) } });
 }

@@ -63,6 +63,7 @@ const BASE_PORT = 3001;
 const SCOPE = [
   "https://www.googleapis.com/auth/youtube",         // manage channel + rename
   "https://www.googleapis.com/auth/youtube.upload",  // upload videos
+  "https://www.googleapis.com/auth/yt-analytics.readonly", // retention report (scripts/analytics/retention.mjs), read-only
 ].join(" ");
 const TOKEN_URL = "https://oauth2.googleapis.com/token";
 
@@ -85,6 +86,11 @@ const CHANNEL_NAMES = {
   46: "Interview Insider",
   47: "Medicare Navigator",
   48: "Factory Floor",
+  // Platform channels with no channels.json entry yet. Slot numbers chosen on 12 Nov 2026; the upload workflow still has to be given these secrets.
+  50: "Dopamine Loop",
+  51: "Red Space Facts",
+  52: "Gray Matter",
+  53: "World View",
 };
 
 // ── OAuth URL builder ─────────────────────────────────────────────────────────

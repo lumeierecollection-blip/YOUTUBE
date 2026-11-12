@@ -4,7 +4,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { abs } from "../_shared/parts.jsx";
-import { COND, MONO, SANS, ramp, Kicker, Head, Count, Rule, Chip, Doc, Shell, baseComp } from "../_shared/serious.jsx";
+import { COND, MONO, SANS, ramp, Kicker, Head, Count, Rule, Chip, Doc, Shell, WideShell, baseComp, wideComp } from "../_shared/serious.jsx";
 
 export const T = { bg: "#090B0F", glow: "rgba(64,84,130,0.30)", line: "rgba(255,255,255,0.035)", ink: "#F3F5F8", dim: "#8D95A3", accent: "#FF3B30", rule: "rgba(255,255,255,0.22)", paper: "#F4F1EA", mark: "rgba(255,59,48,0.34)", ok: "#3DDC97", cell: "rgba(255,255,255,0.10)" };
 const CELL = 66, GAP = 13.45;
@@ -112,4 +112,8 @@ const BEATS = { hook: Hook, fakes: Fakes, models: Models, results: Results, cont
 export function AiTestedSerious({ durationInFrames, scenes, captions, data }) {
   return <Shell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ d: data }} label={["AI Tested", data.date || ""]} />;
 }
-export const seriousCompositions = [{ id: "AiTestedSerious", component: AiTestedSerious, ...baseComp, defaultProps: { durationInFrames: 900, scenes: [], captions: [], data: { models: [], fakeLabels: [], realLabels: [], example: null, fakes: 12, made: 0, all: 0 } } }];
+export function AiTestedSeriousWide({ durationInFrames, scenes, captions, data }) {
+  return <WideShell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ d: data }} label={["AI Tested", data.date || ""]} />;
+}
+const DP = { durationInFrames: 900, scenes: [], captions: [], data: { models: [], fakeLabels: [], realLabels: [], example: null, fakes: 12, made: 0, all: 0 } };
+export const seriousCompositions = [{ id: "AiTestedSeriousWide", component: AiTestedSeriousWide, ...wideComp, defaultProps: DP }, { id: "AiTestedSerious", component: AiTestedSerious, ...baseComp, defaultProps: { durationInFrames: 900, scenes: [], captions: [], data: { models: [], fakeLabels: [], realLabels: [], example: null, fakes: 12, made: 0, all: 0 } } }];

@@ -11,6 +11,7 @@ import { narrate } from "../../production/index.mjs";
 import { measure, plan } from "./fabricated.mjs";
 
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
+const LONG = /-long/.test(process.env.GITHUB_REF_NAME || ""); // 16:9 long-form look test
 const VOICE = "Charon", GRAVITY = "serious";
 const CALIBRATION = "The first model answered in under a second. The second took longer, and its reply was twice as long. Both were asked the same question, using the same words, one after the other, thirty times.";
 const LOGOS = { gemini: "File:Google Gemini logo.svg", openai: "File:OpenAI logo 2025 (wordmark).svg" };
@@ -66,6 +67,6 @@ export default async function unknownPreview({ key, runId, tools }) {
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s, ${first.sentences.length} beats`);
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Will AI admit when it doesn't know?", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: SERIOUS ? "AiTestedSerious" : "AiTestedUnknown", edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 28, maxSeconds: 32, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ images, data: p.data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Will AI admit when it doesn't know?", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: SERIOUS ? (LONG ? "AiTestedSeriousWide" : "AiTestedSerious") : "AiTestedUnknown", size: LONG ? [1920, 1080] : undefined, edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 28, maxSeconds: 32, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ images, data: p.data }) } });
   tools.write("quality-report.json", { format: "ai_tested_unknown_30s", technical: result.qa });
 }

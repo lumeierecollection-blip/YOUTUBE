@@ -5,7 +5,7 @@
 import React from "react";
 import { AbsoluteFill, OffthreadVideo, useCurrentFrame, interpolate } from "remotion";
 import { abs, clamp } from "../_shared/parts.jsx";
-import { COND, MONO, ramp, Kicker, Head, Count, Rule, Chip, Shell, baseComp } from "../_shared/serious.jsx";
+import { COND, MONO, ramp, Kicker, Head, Count, Rule, Chip, Shell, WideShell, baseComp, wideComp } from "../_shared/serious.jsx";
 import { StatsBombAttribution } from "./attribution.jsx";
 
 export const T = { bg: "#07100C", glow: "rgba(40,110,80,0.28)", line: "rgba(255,255,255,0.03)", ink: "#F2F5F3", dim: "#93A19A", accent: "#F2C94C", rule: "rgba(255,255,255,0.22)", onAccent: "#10140F", a: "#6EC1F2", b: "#FF5A4F" };
@@ -139,5 +139,11 @@ export function RivalSerious({ durationInFrames, scenes, captions, m, logo, plat
   return (<AbsoluteFill><Shell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={beats} pass={{ m }} label={["Rival Lines", m.competition || ""]} />
     <StatsBombAttribution logo={logo} y={1640} /></AbsoluteFill>);
 }
+/** Long form. `plates` (scene kind to a video URL) puts match footage on the left; footage is rights-holder material and is never in this repository. */
+export function RivalSeriousWide({ durationInFrames, scenes, captions, m, logo, plates }) {
+  const side = (s) => (plates && plates[s.kind] ? <OffthreadVideo src={plates[s.kind]} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : null);
+  return (<AbsoluteFill><WideShell t={T} durationInFrames={durationInFrames} scenes={scenes} captions={captions} beats={BEATS} pass={{ m }} label={["Rival Lines", m.competition || ""]} side={side} />
+    <StatsBombAttribution logo={logo} y={1004} /></AbsoluteFill>);
+}
 const dp = { durationInFrames: 1140, scenes: [], captions: [], logo: "", m: { teams: ["A", "B"], title: [], score: {}, pens: {}, formation: {}, lineup: { A: [], B: [] }, passes: {}, shots78: {}, first: {}, xg: { A: [], B: [] }, goals: { A: [], B: [] } } };
-export const seriousCompositions = [{ id: "RivalSerious", component: RivalSerious, ...baseComp, durationInFrames: 1140, defaultProps: dp }];
+export const seriousCompositions = [{ id: "RivalSeriousWide", component: RivalSeriousWide, ...wideComp, durationInFrames: 1140, defaultProps: dp }, { id: "RivalSerious", component: RivalSerious, ...baseComp, durationInFrames: 1140, defaultProps: dp }];

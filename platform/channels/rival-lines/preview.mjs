@@ -16,6 +16,7 @@ const ROOT = join(here, "../../..");
 const channel = JSON.parse(readFileSync(join(here, "channel.json"), "utf8"));
 const py = process.platform === "win32" ? "python" : "python3";
 const UA = { "User-Agent": "RivalLines/1.0 (football analysis)" };
+const LONG = /-long/.test(process.env.GITHUB_REF_NAME || ""); // 16:9 long-form look test
 const CALIBRATION = "Barcelona won the league on the final day. The striker scored twice in the second half, and the goalkeeper saved a late penalty. It was the club's tenth title in twelve years, and the crowd stayed long after the final whistle.";
 
 function analyse(script, outDir, cache) {
@@ -87,6 +88,6 @@ export default async function preview({ key, runId, tools }) {
     tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
     console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
   }
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: SERIOUS ? "RivalSerious" : mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: SERIOUS ? 28 : 34, maxSeconds: SERIOUS ? 32 : 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, ...FIT }).sentences }) : undefined, makeProps: () => (SERIOUS ? { logo: images.sbLogo, m: seriousMatch(data) } : { images, credits, data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: SERIOUS ? (LONG ? "RivalSeriousWide" : "RivalSerious") : mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, size: LONG ? [1920, 1080] : undefined, minSeconds: SERIOUS ? 28 : 34, maxSeconds: SERIOUS ? 32 : 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, ...FIT }).sentences }) : undefined, makeProps: () => (SERIOUS ? { logo: images.sbLogo, m: seriousMatch(data) } : { images, credits, data }) } });
   tools.write("quality-report.json", { format: mode === "player" ? "player_documentary" : "match_analysis", technical: result.qa, data_note: "event data only; locations are where events were recorded" });
 }

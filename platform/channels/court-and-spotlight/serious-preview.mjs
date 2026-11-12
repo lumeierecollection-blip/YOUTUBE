@@ -8,6 +8,7 @@ import { runFixedShort } from "../../production/fixed-short.mjs";
 import { commonsAsset } from "../../production/commons.mjs";
 import * as proof from "./proof-investigation.mjs";
 
+const LONG = /-long/.test(process.env.GITHUB_REF_NAME || ""); // 16:9 long-form look test
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const CBS = "CBS News · 25 Apr 2008";
 const QUOTES = {
@@ -39,5 +40,5 @@ export default async function seriousPreview({ key, runId, tools }) {
   }
   tools.write("asset-manifest.json", { note: "Both photographs are real Wikimedia Commons files with their licences recorded. The portrait is shown in black and white, uncropped of its subject. Documents are typeset excerpts of fetched text. Nothing is AI-generated.", assets: entries, documents: proof.DOCUMENTS });
   const scenes = proof.scenes.map((s) => ({ ...s, kind: KIND[s.kind] || s.kind, background: "black field" }));
-  await runFixedShort({ key, runId, tools, spec: { topic: proof.metadata.title, claims: proof.claims, sources: proof.sources, sentences: proof.sentences, scenes, compositionId: "CourtSerious", edgeVoice: "en-US-GuyNeural", gravity: "serious", voice: "Charon", metadata: proof.metadata, minSeconds: 20, maxSeconds: 32, makeProps: () => ({ images, c: C }) } });
+  await runFixedShort({ key, runId, tools, spec: { topic: proof.metadata.title, claims: proof.claims, sources: proof.sources, sentences: proof.sentences, scenes, compositionId: LONG ? "CourtSeriousWide" : "CourtSerious", size: LONG ? [1920, 1080] : undefined, edgeVoice: "en-US-GuyNeural", gravity: "serious", voice: "Charon", metadata: proof.metadata, minSeconds: 20, maxSeconds: 32, makeProps: () => ({ images, c: C }) } });
 }

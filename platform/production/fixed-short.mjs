@@ -56,7 +56,7 @@ export async function runFixedShort({ key, runId, tools, spec }) {
   tools.stage("render_complete", "ok");
   await publishFrames({ tools, video, timeline, objectiveOf: (s) => s.objective });
 
-  const qa = technicalQa({ video, narration, timeline, minSeconds: Math.min(minSeconds, 20), maxSeconds });
+  const qa = technicalQa({ video, narration, timeline, size: spec.size, minSeconds: Math.min(minSeconds, 20), maxSeconds });
   tools.write("qa-report.json", { ...qa, fps: FPS, narration: { engine: narration.engine, seconds: narration.seconds, wpm: narration.wpm, playback_speed: narration.playback_speed }, script: note, scenes: timeline.scenes.map((s) => ({ id: s.id, kind: s.kind, start_s: s.start_s, end_s: s.end_s })) });
   if (!qa.pass) { tools.stage("blocked", "failed", { issues: qa.failures.join("; ") }); throw new Error(`QA failed: ${qa.failures.join("; ")}`); }
   tools.stage("qa_passed", "ok");
