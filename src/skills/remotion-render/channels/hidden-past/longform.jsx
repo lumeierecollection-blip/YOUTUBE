@@ -18,7 +18,7 @@ function Credit({ children }) { return children ? <div style={abs(80, 1040, 1760
 const Label = ({ x, y, children, size = 34, delay = 8 }) => { const f = useCurrentFrame(); return <div style={abs(x, y, 900, size * 1.4, { fontFamily: SERIF, fontVariant: "small-caps", fontWeight: 700, fontSize: size, color: K.ink, letterSpacing: "0.06em", opacity: ramp(f, delay, delay + 12) })}>{children}</div>; };
 
 /** Map: Natural Earth land, the focus country tinted, places pinned, the route drawn as a dotted line that grows. */
-function MapScene({ s, maps }) {
+function MapScene({ s, maps, images = {} }) {
   const f = useCurrentFrame(), g = maps[s.map];
   if (!g) return null;
   const route = ramp(f, 10, 70);
