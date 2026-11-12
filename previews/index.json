@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T08:48:48.480Z",
+  "rebuilt_at": "2026-11-12T08:48:51.496Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -80,9 +80,9 @@
     {
       "key": "dopamine-loop",
       "agent": "agent-dopamine-loop",
-      "stage": "research_complete",
+      "stage": "blueprint_complete",
       "status": "ok",
-      "at": "2026-11-12T08:48:48.020Z",
+      "at": "2026-11-12T08:48:51.137Z",
       "branch": "preview/dopamine-loop-serious-long",
       "commit": "e8009719",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43185783101#artifacts)",
@@ -93,7 +93,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-12T08:48:48.020Z",
+      "lastOk": "2026-11-12T08:48:51.137Z",
       "run": "run-43185783101-1"
     },
     {
