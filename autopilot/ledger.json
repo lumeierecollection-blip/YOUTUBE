@@ -1149,12 +1149,12 @@
       "attempts": 2,
       "run_id": "43182847480",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T08:26:00.013Z",
-      "stage": "script",
-      "topic": "Students Complete Entire University Assessments in Minutes Using AI",
-      "score": 80.2,
+      "updated_at": "2026-11-12T08:28:14.940Z",
+      "stage": "research",
+      "topic": "Indie Gaming World in Disarray After Studio Uses AI to Fix a Bug in 'Big Walk'",
+      "score": 77.2,
       "pillar": "Unexpected AI abilities and limits",
-      "hook": "Schools are panicking after students figured out how to pass entire university exams using AI in just minutes.",
+      "hook": "An indie game developer used AI to fix a bug, and now the entire gaming community is having a meltdown.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     },
     "2026-11-11-ch1": {
@@ -2228,6 +2228,15 @@
       "at_ms": 1794441491704,
       "score": 71.1,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Indie Gaming World in Disarray After Studio Uses AI to Fix a Bug in 'Big Walk'",
+      "slug": "indie-gaming-world-in-disarray-after-studio-uses-ai-to-fix-a",
+      "slot": "2026-11-11-ch2",
+      "at_ms": 1794472094940,
+      "score": 77.2,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
