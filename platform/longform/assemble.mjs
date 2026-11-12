@@ -71,3 +71,24 @@ export async function narrateChapters({ chapters, outDir, edgeVoice, gravity, vo
   if (Math.abs(seconds - merged.seconds) > 1.5) throw new Error(`joined voice is ${seconds.toFixed(1)} s but the chapter timings add to ${merged.seconds.toFixed(1)} s`);
   return { mp3, seconds, words: merged.words, sentences: merged.sentences, chapterStarts: merged.chapterStarts, engine: [...new Set(parts.map((p) => p.engine))].join("+"), word_count: wordCount, wpm: Math.round((wordCount / seconds) * 600) / 10, playback_speed: 1, notes: parts.flatMap((p) => p.notes || []) };
 }
+
+/**
+ * Description in the layout of the reference channel (12 Nov 2026 study of their real descriptions):
+ * - this-is-history: hashtags on the first line, then a multi-paragraph summary of the story, then sources, credits, chapters.
+ * - ai-search: one summary line ending in the hashtags, the source link, then timestamps.
+ * - reallifelore: summary, then credits for every map and footage source, then chapters.
+ * - football-made-simple: short summary and the data credit, then chapters.
+ * No sponsor lines: we have none. Hashtags are required (at least 3).
+ */
+export function buildDescription({ style, hashtags = [], summary = [], question = "", sources = [], credits = "", chapters = "" }) {
+  if (hashtags.length < 3) throw new Error(`long-form descriptions carry at least 3 hashtags (have ${hashtags.length})`);
+  const tags = hashtags.join(" "), src = sources.length ? `Sources\n${sources.map((u) => `- ${u}`).join("\n")}` : "", ch = chapters ? `Chapters\n${chapters}` : "";
+  const blocks = {
+    "this-is-history": [tags, ...summary, question, src, credits, ch],
+    "ai-search": [`${summary.join(" ")} ${tags}`, question, src, ch],
+    "reallifelore": [...summary, question, credits, src, ch, tags],
+    "football-made-simple": [summary.join(" "), question, credits, src, ch, tags],
+  }[style];
+  if (!blocks) throw new Error(`unknown description style "${style}"`);
+  return blocks.filter((b) => b && String(b).trim()).join("\n\n");
+}

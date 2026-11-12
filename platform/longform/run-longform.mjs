@@ -9,7 +9,7 @@ import { copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { buildTimeline, FPS, technicalQa } from "../production/index.mjs";
 import { checkLongScript, loadFormats } from "./script-gate.mjs";
-import { flattenScenes, narrateChapters, youtubeChapters } from "./assemble.mjs";
+import { buildDescription, flattenScenes, narrateChapters, youtubeChapters } from "./assemble.mjs";
 
 export async function runLongform({ key, runId, tools, spec }) {
   const { pkg, compositionId, makeProps, metadata, edgeVoice, gravity = "serious", voice = null, thumbnail = null, renderMinutes = 240 } = spec;
@@ -61,7 +61,12 @@ export async function runLongform({ key, runId, tools, spec }) {
 
   // 8. Metadata with YouTube chapters.
   const chaptersText = youtubeChapters(pkg.chapters, narration.chapterStarts, narration.seconds);
-  if (metadata) tools.write("delivery.json", { ...metadata, description: `${metadata.description}\n\nChapters\n${chaptersText}`, chapters: chaptersText, format: "long", duration_s: +narration.seconds.toFixed(1) });
+  if (metadata) {
+    // A job that names a style gets the reference channel's description layout (assemble.mjs buildDescription); otherwise its own text plus chapters.
+    const description = metadata.style ? buildDescription({ ...metadata, sources: (pkg.sources || []).map((s) => s.url), chapters: chaptersText }) : `${metadata.description}\n\nChapters\n${chaptersText}`;
+    const { summary, style, hashtags, credits, question, ...rest } = metadata;
+    tools.write("delivery.json", { ...rest, description, description_style: style || null, chapters: chaptersText, format: "long", duration_s: +narration.seconds.toFixed(1) });
+  }
   copyFileSync(narration.mp3, join(tools.outDir, "voice-preview.mp3"));
   tools.stage("preview_ready", "ok");
   tools.stage("awaiting_approval", "ok");

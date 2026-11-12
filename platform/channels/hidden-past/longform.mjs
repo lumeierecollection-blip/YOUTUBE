@@ -11,6 +11,8 @@ import { commonsAsset } from "../../production/commons.mjs";
 import { AREA, frameMap, pathOf, polygonsOf } from "../../../scripts/autopilot/map-vox.mjs";
 import { loadFormats } from "../../longform/script-gate.mjs";
 import { runLongform } from "../../longform/run-longform.mjs";
+import { reliefFor } from "../../longform/relief.mjs";
+import { spawnSync } from "node:child_process";
 
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const UA = { "User-Agent": "HiddenPastLongform/1.0 (https://github.com/lumeierecollection-blip/YOUTUBE; evidence-led history)" };
@@ -54,7 +56,7 @@ const CHAPTERS = [
       S("In the first month, eighteen people invested a total of one thousand eight hundred dollars.", 1, ["first"]),
       Q("So how could a promise that big fall apart so fast?", 2, "central question, asked before the answer")] },
   { id: "arrival", title: "From Lugo to Boston", scenes: [
-      { kind: "map", map: "arrival", caption: "Lugo to Boston", year: "1903", treatment: "route-map", objective: "Where he came from" },
+      { kind: "map", map: "arrival", caption: "Lugo to Boston", portrait: "faceCut", portraitSide: "left", name: "Charles Ponzi", year: "1903", treatment: "route-map", objective: "Where he came from" },
       { kind: "number", big: "$2.50", label: "in his pocket on arrival, by his own account", year: "1903", treatment: "stakes-number", objective: "How little he had" },
       { kind: "quote", quote: "I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me", speaker: "Charles Ponzi", source: CREDIT, year: "1903", treatment: "quote-card", objective: "His own words" }],
     sentences: [
@@ -109,7 +111,8 @@ async function routeMap(places) {
   const landD = pathOf(m.features.filter((f) => !focused.has(f)).flatMap((f) => polygonsOf(f)), m.project, true, FULL);
   const countryD = pathOf(m.focusFeatures.flatMap((f) => polygonsOf(f)), m.project, true, FULL);
   const pins = pts.map((p) => { const [x, y] = m.project([p.lon, p.lat]); return { name: p.name, x, y, side: x > 1500 ? "left" : "right" }; });
-  return { landD, countryD, labels: [], pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places: pts };
+  const relief = await reliefFor(m.box, FULL);
+  return { landD, countryD, labels: [], pins, routeD: "M" + pins.map((p) => `${p.x} ${p.y}`).join(" L"), places: pts, relief };
 }
 
 export default async function hiddenPastLongform({ key, runId, tools }) {
@@ -124,12 +127,24 @@ export default async function hiddenPastLongform({ key, runId, tools }) {
     images[k] = `data:image/jpeg;base64,${(await sharp(file).resize({ width: 1400, withoutEnlargement: true }).jpeg({ quality: 86 }).toBuffer()).toString("base64")}`;
     credits[k] = entry.credit_line; entries.push(entry);
   }
+  { const src = join(tools.outDir, "assets", "face.jpg"), out = join(tools.outDir, "assets", "face-cutout.png");
+    const r = spawnSync("python3", [join(ROOT, "platform/production/cutout.py"), src, out, "--model", "isnet-general-use"], { encoding: "utf8", timeout: 900000 });
+    if (r.status === 0) { images.faceCut = `data:image/png;base64,${(await sharp(out).resize({ height: 1000, withoutEnlargement: true }).png().toBuffer()).toString("base64")}`; entries.push({ id: "face-cutout", treatment: "photographic cut-out (rembg isnet-general-use) of File:Chas. Ponzi LCCN2014711137.jpg; no pixel generated" }); }
+    else console.log("cut-out failed, map shown without portrait:", String(r.stderr).split(String.fromCharCode(10)).filter(Boolean).slice(-2).join(" ")); }
   tools.write("asset-manifest.json", { note: "Public-domain photographs from Wikimedia Commons; maps drawn from Natural Earth with coordinates from English Wikipedia. Nothing is AI-generated.", assets: entries });
   const maps = { arrival: await routeMap([{ title: "Lugo, Emilia-Romagna", name: "Lugo" }, { title: "Boston", name: "Boston" }]), exile: await routeMap([{ title: "Boston", name: "Boston" }, { title: "Rio de Janeiro", name: "Rio de Janeiro" }]) };
   tools.write("map-places.json", Object.fromEntries(Object.entries(maps).map(([k, m]) => [k, m.places])));
 
   const metadata = {
     title: pkg.title,
+    style: "this-is-history", hashtags: ["#history", "#ponzi", "#documentary"],
+    summary: [
+      "In January 1920 Charles Ponzi, an Italian immigrant who had arrived in Boston in 1903 with $2.50, promised investors a 50% profit in 45 days. His story was that he bought international reply coupons cheaply abroad and redeemed them at face value in the United States.",
+      "By late July 1920 he was taking in $250,000 a day. But covering the money would have needed 160 million coupons, and only about 27,000 existed. When the Boston Post started asking questions, the scheme collapsed: investors lost about $20 million, and Ponzi, charged with 86 counts of mail fraud, was sentenced to five years in federal prison.",
+      "Released and deported in 1934, he died in Rio de Janeiro in 1949, leaving an estate of $75.",
+    ],
+    credits: "Photographs: public domain, Wikimedia Commons. Maps: Natural Earth (public domain), coordinates from English Wikipedia.",
+    question: "Would you have trusted a promise of 50% in 45 days? Tell us in the comments.",
     description: "In 1920 Charles Ponzi promised Boston investors a 50% profit in 45 days. He arrived in 1903 with $2.50; by late July 1920 he was taking in $250,000 a day. Covering the money would have needed 160 million postal reply coupons, and only about 27,000 existed. Investors lost about $20 million. Every fact is from the English Wikipedia article on Charles Ponzi; the photographs are public domain, from Wikimedia Commons. Would you have trusted a promise of 50% in 45 days? Tell us in the comments.\n\n#History #Ponzi #Fraud #HiddenPast\n\nSource: " + WIKI,
     tags: ["Charles Ponzi", "Ponzi scheme", "history documentary", "fraud", "1920 Boston", "financial history"],
   };

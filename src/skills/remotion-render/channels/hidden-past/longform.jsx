@@ -14,7 +14,7 @@ function Year({ year }) {
   if (!year) return null;
   return <div style={abs(1640, 48, 230, 64, { fontFamily: SERIF, fontWeight: 700, fontSize: 52, color: K.ink, textAlign: "right", letterSpacing: "0.04em" })}>{year}</div>;
 }
-function Credit({ children }) { return children ? <div style={abs(80, 1020, 1760, 30, { fontFamily: MONO, fontSize: 18, color: K.dim, letterSpacing: "0.04em" })}>{children}</div> : null; }
+function Credit({ children }) { return children ? <div style={abs(80, 1040, 1760, 26, { fontFamily: MONO, fontSize: 18, color: K.dim, letterSpacing: "0.04em" })}>{children}</div> : null; }
 const Label = ({ x, y, children, size = 34, delay = 8 }) => { const f = useCurrentFrame(); return <div style={abs(x, y, 900, size * 1.4, { fontFamily: SERIF, fontVariant: "small-caps", fontWeight: 700, fontSize: size, color: K.ink, letterSpacing: "0.06em", opacity: ramp(f, delay, delay + 12) })}>{children}</div>; };
 
 /** Map: Natural Earth land, the focus country tinted, places pinned, the route drawn as a dotted line that grows. */
@@ -24,29 +24,37 @@ function MapScene({ s, maps }) {
   const route = ramp(f, 10, 70);
   return (<>
     <svg viewBox="0 0 1920 1080" width={1920} height={1080} style={{ position: "absolute", inset: 0 }}>
+      <defs><clipPath id={`land-${s.id}`}><path d={g.landD + " " + g.countryD} /></clipPath><filter id={`glow-${s.id}`} x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6" /></filter></defs>
       <rect width="1920" height="1080" fill={K.sea} />
       <path d={g.landD} fill={K.land} stroke={K.stroke} strokeWidth="2" />
+      {g.relief && <image href={g.relief.uri} x={g.relief.x} y={g.relief.y} width={g.relief.w} height={g.relief.h} preserveAspectRatio="none" clipPath={`url(#land-${s.id})`} style={{ mixBlendMode: "multiply" }} opacity={0.55} />}
       <path d={g.countryD} fill={K.focus} fillOpacity={ramp(f, 4, 24)} stroke={K.stroke} strokeWidth="3" />
       {g.labels.map((l, i) => <text key={i} x={l.x} y={l.y} textAnchor="middle" fontFamily={SERIF} fontVariant="small-caps" fontSize={30} letterSpacing="0.12em" fill={K.dim} opacity={ramp(f, 12 + i * 3, 24 + i * 3)}>{l.text}</text>)}
-      <path d={g.routeD} fill="none" stroke={K.frame} strokeWidth="6" strokeDasharray="2 14" strokeLinecap="round" opacity={route > 0 ? 1 : 0} style={{ clipPath: `inset(0 ${100 - route * 100}% 0 0)` }} />
+      <g style={{ clipPath: `inset(0 ${100 - route * 100}% 0 0)` }} opacity={route > 0 ? 1 : 0}>
+        <path d={g.routeD} fill="none" stroke="#F2B544" strokeWidth="16" strokeLinecap="round" opacity="0.55" filter={`url(#glow-${s.id})`} />
+        <path d={g.routeD} fill="none" stroke="#FFF4D6" strokeWidth="7" strokeDasharray="1 16" strokeLinecap="round" />
+      </g>
       {g.pins.map((p, i) => { const a = ramp(f, 14 + i * 14, 24 + i * 14); return (<g key={i} opacity={a}>
         <circle cx={p.x} cy={p.y} r={12} fill={K.frame} stroke={K.paper} strokeWidth="4" />
         <text x={p.x + (p.side === "left" ? -26 : 26)} y={p.y + 12} textAnchor={p.side === "left" ? "end" : "start"} fontFamily={SERIF} fontWeight="700" fontVariant="small-caps" fontSize="40" fill={K.ink} stroke={K.land} strokeWidth="8" paintOrder="stroke">{p.name}</text></g>); })}
     </svg>
-    {s.caption && <Label x={80} y={940} size={40}>{s.caption}</Label>}
+    {s.portrait && images[s.portrait] && <div style={abs(s.portraitSide === "left" ? 60 : 1340, 220, 520, 700, { opacity: ramp(f, 8, 24), transform: `translateY(${(1 - ramp(f, 8, 28)) * 30}px)` })}>
+      <Img src={images[s.portrait]} style={{ width: "100%", height: "100%", objectFit: "contain", objectPosition: "50% 100%", filter: "drop-shadow(0 18px 30px rgba(26,23,19,0.45))" }} />
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: -64, textAlign: "center", fontFamily: SERIF, fontWeight: 700, fontVariant: "small-caps", fontSize: 42, color: K.ink, letterSpacing: "0.06em", textShadow: `0 0 12px ${K.land}, 0 0 4px ${K.land}` }}>{s.name}</div></div>}
+    {s.caption && <Label x={80} y={900} size={40}>{s.caption}</Label>}
   </>);
 }
 /** A photograph held still in a frame, credited. Optional label under it, the way the reference names each person. */
 function PhotoScene({ s, images, credits }) {
   const f = useCurrentFrame(), a = ramp(f, 0, 14), wide = s.wide !== false && !s.portrait;
-  const box = s.portrait ? { x: 200, y: 110, w: 620, h: 800 } : { x: 260, y: 90, w: 1400, h: 820 };
+  const box = s.portrait ? { x: 200, y: 80, w: 620, h: 780 } : { x: 300, y: 70, w: 1320, h: 760 };
   return (<>
     <AbsoluteFill style={{ background: K.paper }} />
     <div style={abs(box.x, box.y, box.w, box.h, { opacity: a, background: K.ink, padding: 14, boxSizing: "border-box", boxShadow: "0 30px 80px rgba(26,23,19,0.35)" })}>
       <Img src={images[s.image]} style={{ width: "100%", height: "100%", objectFit: wide ? "cover" : "contain", objectPosition: s.pos || "50% 30%" }} />
     </div>
     {s.portrait && <><Label x={900} y={300} size={72} delay={10}>{s.name}</Label><div style={abs(900, 420, 860, 300, { fontFamily: TEXT, fontSize: 40, lineHeight: 1.35, color: K.dim, opacity: ramp(f, 18, 30) })}>{s.note}</div></>}
-    {!s.portrait && s.name && <Label x={260} y={930} size={40}>{s.name}</Label>}
+    {!s.portrait && s.name && <Label x={300} y={850} size={38}>{s.name}</Label>}
     <Credit>{credits[s.image]}</Credit>
   </>);
 }
@@ -86,7 +94,7 @@ function TitleScene({ s }) {
 function Captions({ captions }) {
   const f = useCurrentFrame(), c = captions.find((x) => f >= x.from && f < x.to);
   if (!c) return null;
-  return <div style={abs(260, 960, 1400, 70, { display: "flex", justifyContent: "center", alignItems: "center", fontFamily: TEXT, fontSize: 38, color: K.ink, textAlign: "center" })}><span style={{ background: "rgba(239,230,210,0.92)", padding: "6px 18px", borderRadius: 4 }}>{c.text}</span></div>;
+  return <div style={abs(260, 950, 1400, 70, { display: "flex", justifyContent: "center", alignItems: "center", fontFamily: TEXT, fontSize: 38, color: K.ink, textAlign: "center" })}><span style={{ background: "rgba(239,230,210,0.92)", padding: "6px 18px", borderRadius: 4 }}>{c.text}</span></div>;
 }
 
 function Fade({ dur, children }) { const f = useCurrentFrame(); return <AbsoluteFill style={{ opacity: interpolate(f, [0, 8, dur - 6, dur], [0, 1, 1, 0], clamp) }}>{children}</AbsoluteFill>; }
@@ -112,6 +120,7 @@ export function HiddenPastLongThumb({ image, words = [], maps = {}, map }) {
     <AbsoluteFill style={{ background: K.ink }}><style>{FONT_FACES}</style>
       {g && <svg viewBox="0 0 1920 1080" width={1920} height={1080} style={{ position: "absolute", inset: 0, opacity: 0.85 }}><rect width="1920" height="1080" fill="#123" /><path d={g.landD} fill="#2B3A3A" stroke="#7FA" strokeOpacity="0.25" strokeWidth="2" /><path d={g.routeD} fill="none" stroke="#F2C94C" strokeWidth="10" strokeDasharray="4 18" strokeLinecap="round" /></svg>}
       {image && <Img src={image} style={{ position: "absolute", left: 40, top: 60, height: 1000, width: 760, objectFit: "cover", filter: "contrast(1.1)", boxShadow: "0 0 80px rgba(0,0,0,0.6)" }} />}
+      <div style={abs(820, 250, 1060, 560, { background: "linear-gradient(90deg, rgba(10,16,20,0.85), rgba(10,16,20,0.55))", borderRadius: 8 })} />
       <div style={abs(860, 300, 1000, 600, { fontFamily: SERIF, fontWeight: 700, fontSize: 170, lineHeight: 0.95, color: "#F2C94C", textTransform: "uppercase", textShadow: "0 8px 30px rgba(0,0,0,0.7)" })}>{words.map((w, i) => <div key={i}>{w}</div>)}</div>
     </AbsoluteFill>
   );

@@ -32,7 +32,7 @@
         10
       ],
       "wpm": [
-        150,
+        135,
         175
       ],
       "chapters": [
@@ -65,7 +65,9 @@
         "Why X Was Y"
       ],
       "thumbnail": "portrait cut-out on the left, glowing map, 2 to 3 words in gold serif capitals",
-      "composition": "HiddenPastLongform"
+      "composition": "HiddenPastLongform",
+      "wpm_note": "Charon (serious) measured 138 wpm on the 12 Nov pilot; RealLifeLore reads at 155-175.",
+      "description_style": "this-is-history"
     },
     "ai-tested": {
       "references": [
@@ -111,7 +113,8 @@
         "We Tested X: Y"
       ],
       "thumbnail": "one bar with a single lowercase word over a picture of the actual output",
-      "composition": "AiTestedLongform"
+      "composition": "AiTestedLongform",
+      "description_style": "ai-search"
     },
     "rival-lines": {
       "references": [
@@ -156,7 +159,8 @@
         "How [Team] [result]"
       ],
       "thumbnail": "manager cut-out over a pitch with player figures and arrows, or one giant word",
-      "composition": "RivalSeriousWide"
+      "composition": "RivalSeriousWide",
+      "description_style": "football-made-simple"
     },
     "court-and-spotlight": {
       "references": [],
@@ -196,7 +200,8 @@
         "What [Name]'s Case Actually Shows"
       ],
       "thumbnail": "to be set once a reference is verified",
-      "composition": "CourtSeriousWide"
+      "composition": "CourtSeriousWide",
+      "description_style": "reallifelore"
     }
   },
   "max_minutes": 10
