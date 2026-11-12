@@ -1,0 +1,122 @@
+{
+  "channel": "dopamine-loop",
+  "production_run": "run-43184131975-1",
+  "topic": "Why being left out hurts",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "Being left out may feel, to your brain, a lot like physical pain.",
+      "scene": 0,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "So that sting when the group goes quiet is not you being dramatic.",
+      "scene": 1,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "validation, not a research claim"
+    },
+    {
+      "text": "In one study, people left out of a game showed brain activity that rose with their distress.",
+      "scene": 2,
+      "claim_ids": [
+        "E1",
+        "E3"
+      ]
+    },
+    {
+      "text": "Another region was active too, and linked to less distress.",
+      "scene": 3,
+      "claim_ids": [
+        "E4"
+      ]
+    },
+    {
+      "text": "Feeling it doesn't mean something is wrong, it means people matter to you.",
+      "scene": 4,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "validation, not a research claim"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "eisenberger2003",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "doi": "10.1126/science.1089134",
+      "title": "Does rejection hurt? An fMRI study of social exclusion",
+      "journal": "Science",
+      "licence": "abstract only, facts only, no text or figure reused"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "E1",
+      "claim": "Participants were scanned while playing a virtual ball-tossing game in which they were ultimately excluded.",
+      "source_id": "eisenberger2003",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "excerpt": "Participants were scanned while playing a virtual ball-tossing game in which they were ultimately excluded.",
+      "confidence": "medium",
+      "context": "Study design. The exclusion was inside a virtual game, not a real relationship or a message.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "E2",
+      "claim": "The study tested whether the brain bases of social pain are similar to those of physical pain, and its results paralleled results from physical pain studies.",
+      "source_id": "eisenberger2003",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "excerpt": "tested the hypothesis that the brain bases of social pain are similar to those of physical pain. ... Paralleling results from physical pain studies",
+      "confidence": "medium",
+      "context": "One 2003 study. 'Paralleling' is the abstract's word; it does not say social and physical pain are the same.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "E3",
+      "claim": "The anterior cingulate cortex was more active during exclusion than inclusion and correlated positively with self-reported distress.",
+      "source_id": "eisenberger2003",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "excerpt": "the anterior cingulate cortex (ACC) was more active during exclusion than during inclusion and correlated positively with self-reported distress.",
+      "confidence": "medium",
+      "context": "A correlation between activity and reported distress, not proof that activity causes distress.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "E4",
+      "claim": "Right ventral prefrontal cortex was active during exclusion and correlated negatively with self-reported distress.",
+      "source_id": "eisenberger2003",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "excerpt": "Right ventral prefrontal cortex (RVPFC) was active during exclusion and correlated negatively with self-reported distress.",
+      "confidence": "medium",
+      "context": "The authors suggest this region may regulate distress; that is their interpretation and is not stated as fact here.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    },
+    {
+      "claim_id": "E5",
+      "claim": "The study measured brain activity that accompanied the reported distress of being excluded.",
+      "source_id": "eisenberger2003",
+      "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=14551436&retmode=text&rettype=abstract",
+      "published": "2003-10-10",
+      "excerpt": "A neuroimaging study examined the neural correlates of social exclusion",
+      "confidence": "medium",
+      "context": "Frames the finding as accompanying activity ('neural correlates'), not a cause.",
+      "contradictory_evidence": [],
+      "editorial_status": "correlation"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
