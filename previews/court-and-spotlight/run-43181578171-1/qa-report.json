@@ -1,0 +1,64 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 27.221,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.7,
+  "max_volume_db": -2.2,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Charon",
+    "seconds": 26.688,
+    "wpm": 143.9,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "cover",
+      "start_s": 0,
+      "end_s": 5.166666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "doj",
+      "start_s": 5.166666666666667,
+      "end_s": 9.8
+    },
+    {
+      "id": "s3",
+      "kind": "acquitted",
+      "start_s": 9.8,
+      "end_s": 14.866666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "alleged",
+      "start_s": 14.866666666666667,
+      "end_s": 18.933333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "sought",
+      "start_s": 18.933333333333334,
+      "end_s": 23.133333333333333
+    },
+    {
+      "id": "s6",
+      "kind": "booking",
+      "start_s": 23.133333333333333,
+      "end_s": 27.166666666666668
+    }
+  ]
+}
