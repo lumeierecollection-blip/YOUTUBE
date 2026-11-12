@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T08:31:28.880Z",
+  "rebuilt_at": "2026-11-12T08:36:24.320Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -80,21 +80,21 @@
     {
       "key": "dopamine-loop",
       "agent": "agent-dopamine-loop",
-      "stage": "finished",
-      "status": "ok",
-      "at": "2026-11-12T08:27:30.709Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-12T08:36:12.253Z",
       "branch": "preview/dopamine-loop-serious",
-      "commit": "8aa39f1e",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181571216#artifacts)",
-      "sheet": "[contact-sheet.jpg](dopamine-loop/run-43181571216-1/contact-sheet.jpg)",
-      "scenes": "[scene-s1.jpg](dopamine-loop/run-43181571216-1/scene-s1.jpg) [scene-s2.jpg](dopamine-loop/run-43181571216-1/scene-s2.jpg) [scene-s3.jpg](dopamine-loop/run-43181571216-1/scene-s3.jpg) [scene-s4.jpg](dopamine-loop/run-43181571216-1/scene-s4.jpg)",
+      "commit": "b6f8a190",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43184131975#artifacts)",
+      "sheet": "",
+      "scenes": "",
       "voice": "",
       "script": "",
-      "plan": "[scene-plan.json](dopamine-loop/run-43181571216-1/scene-plan.json)",
-      "qa": "[qa-report.json](dopamine-loop/run-43181571216-1/qa-report.json)",
+      "plan": "",
+      "qa": "",
       "blocker": "",
       "lastOk": "2026-11-12T08:27:30.709Z",
-      "run": "run-43181571216-1"
+      "run": "run-43184131975-1"
     },
     {
       "key": "gray-matter",
