@@ -1,0 +1,30 @@
+{
+  "arrival": [
+    {
+      "title": "Lugo, Emilia-Romagna",
+      "name": "Lugo",
+      "lat": 44.41666667,
+      "lon": 11.91666667
+    },
+    {
+      "title": "Boston",
+      "name": "Boston",
+      "lat": 42.36027778,
+      "lon": -71.05777778
+    }
+  ],
+  "exile": [
+    {
+      "title": "Boston",
+      "name": "Boston",
+      "lat": 42.36027778,
+      "lon": -71.05777778
+    },
+    {
+      "title": "Rio de Janeiro",
+      "name": "Rio de Janeiro",
+      "lat": -22.91111111,
+      "lon": -43.20555556
+    }
+  ]
+}

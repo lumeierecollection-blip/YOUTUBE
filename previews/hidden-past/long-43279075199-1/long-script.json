@@ -1,0 +1,552 @@
+{
+  "channel": "hidden-past",
+  "topic": "Charles Ponzi and the 1920 Boston scheme",
+  "title": "Charles Ponzi: The Promise That Named a Fraud",
+  "central_question": "How could a promise that big fall so fast?",
+  "claims": [
+    {
+      "claim_id": "sec",
+      "claim": "In January 1920, Ponzi started his own company, the \"Securities Exchange Company\"",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "In January 1920, Ponzi started his own company, the \"Securities Exchange Company\"",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "promise",
+      "claim": "He promised clients a 50% profit within 45 days or 100% profit within 90 days",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He promised clients a 50% profit within 45 days or 100% profit within 90 days",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "first",
+      "claim": "In the first month, 18 people invested in his company with a total of $1,800.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "In the first month, 18 people invested in his company with a total of $1,800.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "lugo",
+      "claim": "Born in Lugo, Italy",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Born in Lugo, Italy",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "arrive",
+      "claim": "On 15 November 1903, Ponzi arrived in Boston aboard the S.S. Vancouver.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "On 15 November 1903, Ponzi arrived in Boston aboard the S.S. Vancouver.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "pocket",
+      "claim": "By his own account, Ponzi had $2.50 in his pocket",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "By his own account, Ponzi had $2.50 in his pocket",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "hopes",
+      "claim": "\"I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me,\"",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "\"I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me,\"",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "coupons",
+      "claim": "buying discounted postal reply coupons in other countries and redeeming them at face value in the U.S.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "buying discounted postal reply coupons in other countries and redeeming them at face value in the U.S.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "growth",
+      "claim": "Between February and March 1920, the total amount invested had risen from $5,000 to $25,000",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Between February and March 1920, the total amount invested had risen from $5,000 to $25,000",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "perday",
+      "claim": "At that time, Ponzi was making $250,000 a day.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "At that time, Ponzi was making $250,000 a day.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "barron",
+      "claim": "160 million postal reply coupons would have to be in circulation. However, only about 27,000 actually were.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "160 million postal reply coupons would have to be in circulation. However, only about 27,000 actually were.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "post",
+      "claim": "On 26 July 1920, the Post started a series of articles that asked hard questions",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "On 26 July 1920, the Post started a series of articles that asked hard questions",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "lost",
+      "claim": "They lost about $20 million in 1920 dollars",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "They lost about $20 million in 1920 dollars",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "counts",
+      "claim": "Ponzi was charged with 86 counts of mail fraud",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Ponzi was charged with 86 counts of mail fraud",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "five",
+      "claim": "Ponzi was sentenced to five years in federal prison.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Ponzi was sentenced to five years in federal prison.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "released",
+      "claim": "Ponzi was released in 1934.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "Ponzi was released in 1934.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "trouble",
+      "claim": "He told reporters before he left, \"I went looking for trouble, and I found it.\"",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He told reporters before he left, \"I went looking for trouble, and I found it.\"",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "rio",
+      "claim": "He died in the charity ward of Hospital São Francisco in Rio de Janeiro on 18 January 1949",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He died in the charity ward of Hospital São Francisco in Rio de Janeiro on 18 January 1949",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    },
+    {
+      "claim_id": "estate",
+      "claim": "He left an estate of $75, which was barely enough to bury him.",
+      "source_id": "wiki-ponzi",
+      "source_url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12",
+      "excerpt": "He left an estate of $75, which was barely enough to bury him.",
+      "confidence": "high",
+      "context": "English Wikipedia, Charles Ponzi, fetched on the run; the excerpt must appear verbatim in the fetched text.",
+      "contradictory_evidence": [],
+      "editorial_status": "established_fact"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "wiki-ponzi",
+      "url": "https://en.wikipedia.org/wiki/Charles_Ponzi",
+      "published": "2026-11-12"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "promise",
+      "title": "Fifty percent in forty-five days",
+      "scenes": [
+        {
+          "kind": "photo",
+          "image": "portrait",
+          "portrait": true,
+          "name": "Charles Ponzi",
+          "note": "Securities Exchange Company, Boston",
+          "year": "1920",
+          "treatment": "portrait-with-name",
+          "objective": "Who and where"
+        },
+        {
+          "kind": "number",
+          "big": "50%",
+          "label": "profit promised within 45 days",
+          "big2": "$1,800",
+          "label2": "from 18 investors in the first month",
+          "year": "1920",
+          "treatment": "stakes-number",
+          "objective": "The promise and the first money"
+        },
+        {
+          "kind": "title",
+          "kicker": "The question",
+          "text": "How could a promise that big fall so fast?",
+          "treatment": "central-question",
+          "objective": "Central question"
+        }
+      ],
+      "sentences": [
+        {
+          "text": "In January 1920, a man in Boston named Charles Ponzi started a firm called the Securities Exchange Company.",
+          "scene": 0,
+          "claim_ids": [
+            "sec"
+          ]
+        },
+        {
+          "text": "He promised clients a fifty percent profit within forty-five days.",
+          "scene": 1,
+          "claim_ids": [
+            "promise"
+          ]
+        },
+        {
+          "text": "In the first month, eighteen people invested a total of one thousand eight hundred dollars.",
+          "scene": 1,
+          "claim_ids": [
+            "first"
+          ]
+        },
+        {
+          "text": "So how could a promise that big fall apart so fast?",
+          "scene": 2,
+          "claim_ids": [],
+          "allow_no_claim": true,
+          "editorial": "central question, asked before the answer"
+        }
+      ]
+    },
+    {
+      "id": "arrival",
+      "title": "From Lugo to Boston",
+      "scenes": [
+        {
+          "kind": "map",
+          "map": "arrival",
+          "caption": "Lugo to Boston",
+          "year": "1903",
+          "treatment": "route-map",
+          "objective": "Where he came from"
+        },
+        {
+          "kind": "number",
+          "big": "$2.50",
+          "label": "in his pocket on arrival, by his own account",
+          "year": "1903",
+          "treatment": "stakes-number",
+          "objective": "How little he had"
+        },
+        {
+          "kind": "quote",
+          "quote": "I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me",
+          "speaker": "Charles Ponzi",
+          "source": "Wikipedia, Charles Ponzi",
+          "year": "1903",
+          "treatment": "quote-card",
+          "objective": "His own words"
+        }
+      ],
+      "sentences": [
+        {
+          "text": "Ponzi was born in Lugo, in Italy.",
+          "scene": 0,
+          "claim_ids": [
+            "lugo"
+          ]
+        },
+        {
+          "text": "On the fifteenth of November 1903, he arrived in Boston aboard the steamship Vancouver.",
+          "scene": 0,
+          "claim_ids": [
+            "arrive"
+          ]
+        },
+        {
+          "text": "By his own account, he had two dollars and fifty cents in his pocket.",
+          "scene": 1,
+          "claim_ids": [
+            "pocket"
+          ]
+        },
+        {
+          "text": "Later he said he landed with two dollars fifty in cash and a million dollars in hopes.",
+          "scene": 2,
+          "claim_ids": [
+            "hopes"
+          ],
+          "quote": {
+            "source_id": "wiki-ponzi",
+            "text": "I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me",
+            "speaker": "Charles Ponzi"
+          }
+        }
+      ]
+    },
+    {
+      "id": "coupons",
+      "title": "The coupons",
+      "scenes": [
+        {
+          "kind": "photo",
+          "image": "desk",
+          "name": "Charles Ponzi at his desk",
+          "year": "1920",
+          "treatment": "framed-photo",
+          "objective": "The man at work"
+        },
+        {
+          "kind": "number",
+          "big": "$5,000",
+          "label": "invested by February 1920",
+          "big2": "$25,000",
+          "label2": "by March",
+          "year": "1920",
+          "treatment": "growth-numbers",
+          "objective": "How fast it grew"
+        },
+        {
+          "kind": "number",
+          "big": "$250,000",
+          "label": "taken in a day, late July 1920",
+          "year": "1920",
+          "treatment": "stakes-number",
+          "objective": "The peak"
+        },
+        {
+          "kind": "number",
+          "big": "160,000,000",
+          "label": "coupons needed to cover the money",
+          "big2": "27,000",
+          "label2": "actually in circulation",
+          "year": "1920",
+          "treatment": "needed-vs-existed",
+          "objective": "Why it could not work"
+        }
+      ],
+      "sentences": [
+        {
+          "text": "His story was that he bought international reply coupons cheaply abroad and redeemed them at face value in the United States.",
+          "scene": 0,
+          "claim_ids": [
+            "coupons"
+          ]
+        },
+        {
+          "text": "Between February and March 1920, the money invested rose from five thousand to twenty-five thousand dollars.",
+          "scene": 1,
+          "claim_ids": [
+            "growth"
+          ]
+        },
+        {
+          "text": "By late July, Ponzi was taking in two hundred and fifty thousand dollars a day.",
+          "scene": 2,
+          "claim_ids": [
+            "perday"
+          ]
+        },
+        {
+          "text": "But to cover the money, a hundred and sixty million coupons would have had to exist, and only about twenty-seven thousand did.",
+          "scene": 3,
+          "claim_ids": [
+            "barron"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fall",
+      "title": "The fall",
+      "scenes": [
+        {
+          "kind": "title",
+          "kicker": "26 July 1920",
+          "text": "The Boston Post starts asking questions",
+          "year": "1920",
+          "treatment": "date-card",
+          "objective": "The turn"
+        },
+        {
+          "kind": "number",
+          "big": "$20,000,000",
+          "label": "lost by investors, in 1920 dollars",
+          "year": "1920",
+          "treatment": "stakes-number",
+          "objective": "What it cost"
+        },
+        {
+          "kind": "photo",
+          "image": "mug",
+          "name": "Booking photograph of Charles Ponzi",
+          "year": "1920",
+          "treatment": "framed-photo",
+          "objective": "The charge and sentence"
+        },
+        {
+          "kind": "quote",
+          "quote": "I went looking for trouble, and I found it.",
+          "speaker": "Charles Ponzi, to reporters, 1934",
+          "source": "Wikipedia, Charles Ponzi",
+          "year": "1934",
+          "treatment": "quote-card",
+          "objective": "His own words on leaving"
+        },
+        {
+          "kind": "map",
+          "map": "exile",
+          "caption": "Boston to Rio de Janeiro",
+          "year": "1949",
+          "treatment": "route-map",
+          "objective": "Where it ended"
+        },
+        {
+          "kind": "title",
+          "kicker": "Tell us below",
+          "text": "Would you have trusted fifty percent in forty-five days?",
+          "treatment": "comment-question",
+          "objective": "Question for the comments"
+        }
+      ],
+      "sentences": [
+        {
+          "text": "On the twenty-sixth of July 1920, the Boston Post started asking hard questions.",
+          "scene": 0,
+          "claim_ids": [
+            "post"
+          ]
+        },
+        {
+          "text": "Investors lost about twenty million dollars in nineteen-twenty money.",
+          "scene": 1,
+          "claim_ids": [
+            "lost"
+          ]
+        },
+        {
+          "text": "Charged with eighty-six counts of mail fraud, Ponzi was sentenced to five years in federal prison.",
+          "scene": 2,
+          "claim_ids": [
+            "counts",
+            "five"
+          ]
+        },
+        {
+          "text": "Released in 1934, he told reporters that he went looking for trouble and found it.",
+          "scene": 3,
+          "claim_ids": [
+            "released",
+            "trouble"
+          ],
+          "quote": {
+            "source_id": "wiki-ponzi",
+            "text": "I went looking for trouble, and I found it.",
+            "speaker": "Charles Ponzi"
+          }
+        },
+        {
+          "text": "He died in Rio de Janeiro in 1949, leaving an estate of seventy-five dollars.",
+          "scene": 4,
+          "claim_ids": [
+            "rio",
+            "estate"
+          ]
+        },
+        {
+          "text": "Would you have trusted a promise of fifty percent in forty-five days?",
+          "scene": 5,
+          "claim_ids": [],
+          "allow_no_claim": true,
+          "editorial": "question for the comments"
+        }
+      ]
+    }
+  ]
+}

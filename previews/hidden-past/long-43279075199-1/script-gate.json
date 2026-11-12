@@ -1,0 +1,69 @@
+{
+  "ok": true,
+  "errors": [],
+  "warnings": [],
+  "stats": {
+    "chapters": 4,
+    "sentences": 18,
+    "words": 259,
+    "minutes_at_slow": 1.7,
+    "minutes_at_fast": 1.5,
+    "quotations": 2,
+    "unclaimed_sentences": 2,
+    "first_question_at_word": 54
+  },
+  "pilot": true,
+  "format": {
+    "references": [
+      {
+        "channel": "This Is History",
+        "video": "eNyvx740K9E",
+        "why": "the look: shaded-relief maps with a year counter, cut-out portraits laid on the map with a serif name label, period paintings, 22 to 24 chronological chapters"
+      },
+      {
+        "channel": "RealLifeLore",
+        "video": "WiRLNEl-4bk",
+        "why": "the script engine: dated cold open, stakes stacked as numbers, pivot to one central question by about 2:30, 155 to 175 wpm"
+      }
+    ],
+    "minutes": [
+      1.2,
+      4
+    ],
+    "wpm": [
+      150,
+      175
+    ],
+    "chapters": [
+      3,
+      6
+    ],
+    "chapter_minutes": [
+      0.2,
+      2
+    ],
+    "question_by_words": 120,
+    "opening": "Cold open on one dated, concrete moment (a day, a place, what happened). Within the first 120 words at least one number or date. Then the stakes, then one sentence that turns to the central question.",
+    "structure": [
+      "cold_open",
+      "context",
+      "chapters in strict chronology",
+      "turning point",
+      "consequence",
+      "close with what changed and a question for the comments"
+    ],
+    "visual": {
+      "base": "shaded-relief map, warm paper sea, year counter top right",
+      "people": "cut-out portrait on the map with a small-caps serif name label",
+      "art": "period paintings and archival photographs, held or pushed very slowly",
+      "routes": "glowing dotted routes for movement",
+      "palette_from": "config/channels.json"
+    },
+    "title_formula": [
+      "The Entire History of X",
+      "Why X Was Y"
+    ],
+    "thumbnail": "portrait cut-out on the left, glowing map, 2 to 3 words in gold serif capitals",
+    "composition": "HiddenPastLongform"
+  }
+}
