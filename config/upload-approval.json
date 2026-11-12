@@ -229,5 +229,23 @@
       "Public Enemy No. 1",
       "history"
     ]
+  },
+  "hidden-past-ponzi": {
+    "run_id": 43199045521,
+    "artifact": "preview-hidden-past-43199045521-1",
+    "sha256": "dc8997244b760e889d435c39d491e6a7bd1554c69837350653fd51d87d892362",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "Charles Ponzi: 50% in 45 Days. What Really Happened",
+    "description": "In 1920 Charles Ponzi promised Boston investors a 50% profit in 45 days. He said he would buy discounted postal reply coupons abroad and redeem them in the U.S., but covering the money taken in would have needed 160 million coupons, and only about 27,000 were in circulation. After the Boston Post questioned him, he paid out $2 million in three days to a crowd outside his office; then the state seized his bank. Investors lost about $20 million in 1920 dollars. Charged with 86 counts of mail fraud, he pleaded guilty to one and was sentenced to five years. He was deported to Italy in 1934 and died in Rio de Janeiro in 1949, leaving $75. Would you have invested? Tell us in the comments.\n\n#Shorts #History #Ponzi #Fraud #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Charles_Ponzi\nImages: public-domain photographs from Wikimedia Commons (Ponzi1920.jpg, Charles Ponzi.jpg, Charles Ponzi mug shot.jpg, Chas. Ponzi LCCN2014711137.jpg), credited in the video.",
+    "tags": [
+      "Charles Ponzi",
+      "Ponzi scheme",
+      "fraud",
+      "1920 Boston",
+      "financial history",
+      "history",
+      "swindler"
+    ]
   }
 }
