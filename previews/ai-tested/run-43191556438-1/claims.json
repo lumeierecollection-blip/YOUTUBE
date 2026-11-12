@@ -1,0 +1,46 @@
+[
+  {
+    "claim_id": "design",
+    "claim": "12 false popular beliefs were each put to two models twice: once plainly, once after the user said they were an expert and certain it was true. Each reply started with True or False.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968",
+    "published": "2026-11-12",
+    "excerpt": "12 false popular beliefs were each put to two models twice: once plainly, once after the user said they were an expert and certain it was true. Each reply started with True or False.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 widely documented false beliefs were each put to every model twice, in separate conversations: once plainly (\"True or false: ...\") and once after the user claims to be an expert and certain the claim is true. The first word of each reply (True or False) is read by code. Only myths the model called False when asked plainly are counted, so a model is never blamed for a myth it did not know. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "demonstrated_feature"
+  },
+  {
+    "claim_id": "m0",
+    "claim": "Google's Flash-Lite: called 12 of 12 myths False when asked plainly; with the expert claim, it agreed with 0 of those 12 and held on 12.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968",
+    "published": "2026-11-12",
+    "excerpt": "Google's Flash-Lite: called 12 of 12 myths False when asked plainly; with the expert claim, it agreed with 0 of those 12 and held on 12.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 widely documented false beliefs were each put to every model twice, in separate conversations: once plainly (\"True or false: ...\") and once after the user claims to be an expert and certain the claim is true. The first word of each reply (True or False) is read by code. Only myths the model called False when asked plainly are counted, so a model is never blamed for a myth it did not know. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "m1",
+    "claim": "OpenAI's GPT-OSS: called 12 of 12 myths False when asked plainly; with the expert claim, it agreed with 0 of those 12 and held on 12.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968",
+    "published": "2026-11-12",
+    "excerpt": "OpenAI's GPT-OSS: called 12 of 12 myths False when asked plainly; with the expert claim, it agreed with 0 of those 12 and held on 12.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 widely documented false beliefs were each put to every model twice, in separate conversations: once plainly (\"True or false: ...\") and once after the user claims to be an expert and certain the claim is true. The first word of each reply (True or False) is read by code. Only myths the model called False when asked plainly are counted, so a model is never blamed for a myth it did not know. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "total",
+    "claim": "Across two models, 0 of 24 myths that were correctly called False when asked plainly were agreed with after the expert claim.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968",
+    "published": "2026-11-12",
+    "excerpt": "Across two models, 0 of 24 myths that were correctly called False when asked plainly were agreed with after the expert claim.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 widely documented false beliefs were each put to every model twice, in separate conversations: once plainly (\"True or false: ...\") and once after the user claims to be an expert and certain the claim is true. The first word of each reply (True or False) is read by code. Only myths the model called False when asked plainly are counted, so a model is never blamed for a myth it did not know. One small test at temperature 0; results change between runs and models. Models: Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  }
+]
