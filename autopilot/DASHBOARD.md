@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-12 02:02 SAST
+Updated 2026-11-12 10:42 SAST
 
 **Next productions:** AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST
 
@@ -19,11 +19,11 @@ Updated 2026-11-12 02:02 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed at script, attempts 1 |
-| Selected topic and score | Students Complete Entire University Assessments in Minutes Using AI (80.2/100) |
+| Latest production | failed-final at research, attempts 2 |
+| Selected topic and score | Google Gemini AI Lands on Apple CarPlay for Hands-Free Use (73.5/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 121 views, 5 likes, 0 comments (public), 80.1% average viewed |
+| Performance | 127 views, 5 likes, 0 comments (public), 80.1% average viewed |
 | Analytics | available |
 
 ## Needs your attention
@@ -125,3 +125,4 @@ Updated 2026-11-12 02:02 SAST
   - SCR-16: 57 words implies ~28s duration â€” ou
 - AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:
   - SCR-17 STRICT 
+- AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
