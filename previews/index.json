@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T08:18:51.210Z",
+  "rebuilt_at": "2026-11-12T08:18:53.046Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -156,9 +156,9 @@
     {
       "key": "rival-lines",
       "agent": "agent-rival-lines",
-      "stage": "blueprint_complete",
+      "stage": "script_complete",
       "status": "ok",
-      "at": "2026-11-12T08:18:50.864Z",
+      "at": "2026-11-12T08:18:52.314Z",
       "branch": "preview/rival-lines-serious",
       "commit": "8aa39f1e",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181585247#artifacts)",
@@ -169,7 +169,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-12T08:18:50.864Z",
+      "lastOk": "2026-11-12T08:18:52.314Z",
       "run": "run-43181585247-1"
     }
   ]
