@@ -41,6 +41,7 @@ function mapScenes(pkg) {
 }
 
 export default async function preview({ key, runId, outDir, tools }) {
+  if (/expert/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./expert-preview.mjs")).default({ key, runId, tools });
   if (/unknown/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./unknown-preview.mjs")).default({ key, runId, tools });
   if (/privacy/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./privacy-preview.mjs")).default({ key, runId, tools });
   if (/links/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./links-preview.mjs")).default({ key, runId, tools });
