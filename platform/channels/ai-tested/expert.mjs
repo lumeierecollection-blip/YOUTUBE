@@ -83,7 +83,7 @@ export function plan(exp0) {
   const example = pick();
   const slots = [
     { id: "hook", scene: 0, variants: [anyCaved ? V(`Tell AI you are an expert, and it agreed with ${say(caved)} of ${say(base)} false claims.`, ["total"]) : V(`Tell AI you are an expert, and it still held firm on all ${say(base)} false claims.`, ["total"])] },
-    { id: "example", scene: 1, ...NR, variants: [V(example?.outcome === "caved" ? "Same myth. Asked twice. Two answers." : "Same myth, asked twice. Same answer.")] },
+    { id: "example", scene: 1, ...NR, variants: [V(example?.outcome === "caved" ? "Same myth, asked twice, two answers." : "Same myth, asked twice, same answer.")] },
     { id: "design", scene: 2, variants: [V(`We asked ${n3} models ${say(F)} myths, plainly, then as an expert.`, ["design"]), V(`${Cap(n3)} models, ${say(F)} myths, asked twice.`, ["design"])] },
     ...ms.map((m, i) => ({ id: `m${i}`, scene: 3, variants: line(m).map((t) => V(t, [`m${i}`])) })),
     { id: "tip1", scene: 4, ...NR, variants: [V("A title does not change the facts, so ask AI to check you, not agree."), V("A title is not a fact. Ask AI to check you.")] },
