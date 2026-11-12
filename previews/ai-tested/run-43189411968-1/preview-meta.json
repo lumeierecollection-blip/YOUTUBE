@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-43189411968-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-12T09:20:42.424Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-12T09:20:57.541Z",
   "branch": "preview/ai-tested-expert",
   "commit": "cc1d7202d08713c3c332a54eaa8436e0618f7829",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968#artifacts",
+  "error": "slot \"example\" has more than one sentence ending in: Same myth, asked twice. Same answer."
 }
