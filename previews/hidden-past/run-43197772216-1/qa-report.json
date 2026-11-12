@@ -1,0 +1,70 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 30.891,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -18.1,
+  "max_volume_db": -2.1,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Charon",
+    "seconds": 30.36,
+    "wpm": 128.5,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "name",
+      "start_s": 0,
+      "end_s": 5.333333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "coupons",
+      "start_s": 5.333333333333333,
+      "end_s": 12.766666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "run",
+      "start_s": 12.766666666666667,
+      "end_s": 16.7
+    },
+    {
+      "id": "s4",
+      "kind": "collapse",
+      "start_s": 16.7,
+      "end_s": 21.1
+    },
+    {
+      "id": "s5",
+      "kind": "sentence",
+      "start_s": 21.1,
+      "end_s": 25.333333333333332
+    },
+    {
+      "id": "s6",
+      "kind": "end",
+      "start_s": 25.333333333333332,
+      "end_s": 28.733333333333334
+    },
+    {
+      "id": "s7",
+      "kind": "close",
+      "start_s": 28.733333333333334,
+      "end_s": 30.833333333333332
+    }
+  ]
+}
