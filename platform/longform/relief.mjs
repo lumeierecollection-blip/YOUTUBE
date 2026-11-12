@@ -50,7 +50,9 @@ export async function bakedBase({ box, area, landD, sea, land, strength = 0.55, 
   const svg = (body) => Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${body}</svg>`);
   const base = await sharp(svg(`<rect width="${W}" height="${H}" fill="${sea}"/><path d="${landD}" fill="${land}"/>`)).png().toBuffer();
   // Relief lightened toward white by (1 - strength), so a multiply darkens the land by at most `strength`; then kept only where land is.
-  const relief = await sharp(Buffer.from(r.uri.split(",")[1], "base64")).linear(strength, 255 * (1 - strength)).extend({ top: r.y, left: r.x, bottom: Math.max(0, H - r.y - r.h), right: Math.max(0, W - r.x - r.w), background: "#ffffff" }).resize(W, H, { fit: "fill" }).png().toBuffer();
+  // sharp always resizes before it extends, whatever the call order, so pad in one pass and fit to the frame in a second.
+  const padded = await sharp(Buffer.from(r.uri.split(",")[1], "base64")).greyscale().linear(strength, 255 * (1 - strength)).extend({ top: r.y, left: r.x, bottom: Math.max(0, H - r.y - r.h), right: Math.max(0, W - r.x - r.w), background: "#ffffff" }).png().toBuffer();
+  const relief = await sharp(padded).resize(W, H, { fit: "fill" }).greyscale().png().toBuffer();
   const mask = await sharp(svg(`<rect width="${W}" height="${H}" fill="black"/><path d="${landD}" fill="white"/>`)).greyscale().png().toBuffer();
   const reliefOnLand = await sharp(relief).joinChannel(mask).png().toBuffer();
   const out = await sharp(base).composite([{ input: reliefOnLand, blend: "multiply" }]).jpeg({ quality: 84 }).toBuffer();
