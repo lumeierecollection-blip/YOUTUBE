@@ -1,0 +1,68 @@
+{
+  "measured_wpm": 152.4,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "Charles Ponzi promised fifty percent profit in forty-five days.",
+      "scene": 0,
+      "claim_ids": [
+        "K1"
+      ]
+    },
+    {
+      "text": "To pay everyone, he needed one hundred sixty million coupons, but only twenty-seven thousand existed.",
+      "scene": 1,
+      "claim_ids": [
+        "K2",
+        "K3"
+      ]
+    },
+    {
+      "text": "He paid a crowd two million dollars in three days.",
+      "scene": 2,
+      "claim_ids": [
+        "K4"
+      ]
+    },
+    {
+      "text": "His bank was seized, and investors lost about twenty million dollars.",
+      "scene": 3,
+      "claim_ids": [
+        "K5"
+      ]
+    },
+    {
+      "text": "He admitted one of eighty-six fraud counts: five years.",
+      "scene": 4,
+      "claim_ids": [
+        "K6"
+      ]
+    },
+    {
+      "text": "He died in Rio with seventy-five dollars.",
+      "scene": 5,
+      "claim_ids": [
+        "K8"
+      ]
+    },
+    {
+      "text": "Would you have invested?",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "words": 65,
+  "estimated_seconds": 29.5,
+  "inside_window": true,
+  "kept": [
+    "run",
+    "name",
+    "coupons",
+    "collapse",
+    "sentence",
+    "end",
+    "close"
+  ]
+}
