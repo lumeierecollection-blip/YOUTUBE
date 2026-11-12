@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T08:18:06.008Z",
+  "rebuilt_at": "2026-11-12T08:18:10.373Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,9 +61,9 @@
     {
       "key": "court-and-spotlight",
       "agent": "agent-court-and-spotlight",
-      "stage": "started",
-      "status": "running",
-      "at": "2026-11-12T08:17:54.235Z",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-12T08:18:10.071Z",
       "branch": "preview/court-and-spotlight-serious",
       "commit": "8aa39f1e",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181578171#artifacts)",
@@ -74,7 +74,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-10T15:03:40.437Z",
+      "lastOk": "2026-11-12T08:18:10.071Z",
       "run": "run-43181578171-1"
     },
     {
