@@ -2,10 +2,11 @@
   "channel": "hidden-past",
   "production_run": "long-43298153986-1",
   "agent": "agent-hidden-past",
-  "stage": "started",
-  "status": "running",
-  "timestamp": "2026-11-12T20:15:18.789Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-12T20:16:52.617Z",
   "branch": "longform/hidden-past-pilot",
   "commit": "6ec5b98542a515377978fbada50291fa7828dad7",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43298153986#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43298153986#artifacts",
+  "error": "Image to composite must have same dimensions or smaller"
 }

@@ -1,0 +1,6 @@
+Error: Image to composite must have same dimensions or smaller
+    at Sharp.toBuffer (/home/runner/work/YOUTUBE/YOUTUBE/node_modules/sharp/dist/output.cjs:159:17)
+    at bakedBase (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/longform/relief.mjs:56:111)
+    at async routeMap (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/longform.mjs:115:16)
+    at async hiddenPastLongform (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/longform.mjs:136:138)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/longform/run.mjs:21:3
