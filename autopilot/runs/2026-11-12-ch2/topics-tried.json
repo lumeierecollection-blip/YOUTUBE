@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Meta's Muse AI Agent Expands to Smartwatches",
+      "score": 80.7,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/meta-s-muse-ai-agent-expands-to-smartwatches-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts v"
+    },
+    {
+      "topic": "Notion and Fireworks AI Security Breach",
+      "score": 74.3,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Google Tabletop Collaborative AI Workspace",
+      "score": 73.8,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+    }
+  ],
+  "selected": null
+}
