@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-11 19:26 SAST
+Updated 2026-11-12 02:02 SAST
 
 **Next productions:** AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-11 19:26 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at script, attempts 1 |
-| Selected topic and score | The Invention of Atari's Pong (63.5/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | The 1945 opening of the Nuremberg trials (71.1/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 1 views, 0 likes, 0 comments (private) |
@@ -23,7 +23,7 @@ Updated 2026-11-11 19:26 SAST
 | Selected topic and score | Students Complete Entire University Assessments in Minutes Using AI (80.2/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 116 views, 5 likes, 0 comments (public) |
+| Performance | 121 views, 5 likes, 0 comments (public), 80.1% average viewed |
 | Analytics | available |
 
 ## Needs your attention
