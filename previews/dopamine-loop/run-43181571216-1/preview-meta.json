@@ -2,11 +2,12 @@
   "channel": "dopamine-loop",
   "production_run": "run-43181571216-1",
   "agent": "agent-dopamine-loop",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-12T08:18:29.241Z",
+  "stage": "voice_complete",
+  "status": "ok",
+  "timestamp": "2026-11-12T08:18:45.809Z",
   "branch": "preview/dopamine-loop-serious",
   "commit": "8aa39f1e053f115422b4b1f4a0deefae9d1b9805",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181571216#artifacts",
-  "note": "not reviewed by the engine critic"
+  "engine": "gemini:Charon",
+  "wpm": 159.1
 }
