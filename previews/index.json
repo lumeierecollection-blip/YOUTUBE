@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T09:35:14.099Z",
+  "rebuilt_at": "2026-11-12T09:35:15.658Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,9 +42,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "started",
-      "status": "running",
-      "at": "2026-11-12T09:34:59.712Z",
+      "stage": "research_complete",
+      "status": "ok",
+      "at": "2026-11-12T09:35:15.400Z",
       "branch": "preview/ai-tested-expert",
       "commit": "591ca92d",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43192501514#artifacts)",
@@ -55,7 +55,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-12T09:31:45.185Z",
+      "lastOk": "2026-11-12T09:35:15.400Z",
       "run": "run-43192501514-1"
     },
     {
