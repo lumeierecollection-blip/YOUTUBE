@@ -4618,9 +4618,14 @@
           "topic": "EU-OSHA Expands OSH Barometer with 2026 Workplace Accident Data",
           "slug": "eu-osha-expands-osh-barometer-2026-data",
           "reserved_at": "2026-11-11T17:42:15.863Z"
+        },
+        {
+          "topic": "ISO 11228-3:2026 Upper Limb Repetitive Movement Standards Published",
+          "slug": "iso-11228-3-2026-upper-limbs-ergonomics",
+          "reserved_at": "2026-11-12T17:55:06.226Z"
         }
       ],
-      "last_generated": "2026-11-12T16:59:53.280Z"
+      "last_generated": "2026-11-12T17:55:06.226Z"
     },
     "49": {
       "channel_name": "Picture House",
