@@ -2,11 +2,11 @@
   "channel": "hidden-past",
   "production_run": "long-43286592557-1",
   "agent": "agent-hidden-past",
-  "stage": "visual_complete",
-  "status": "ok",
-  "timestamp": "2026-11-12T19:10:18.227Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-12T19:12:10.639Z",
   "branch": "longform/hidden-past-pilot",
   "commit": "f2dc18c5084a0ce1cdf8d2f6a2d8fe0a2df9f714",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43286592557#artifacts",
-  "scenes": 16
+  "error": "node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43286592557-1/preview.mp4.job.json failed (exit 1)"
 }

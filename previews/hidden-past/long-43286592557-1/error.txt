@@ -1,0 +1,6 @@
+Error: node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43286592557-1/preview.mp4.job.json failed (exit 1)
+    at run (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:21:29)
+    at Object.renderComposition (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:52:7)
+    at runLongform (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/longform/run-longform.mjs:42:23)
+    at async hiddenPastLongform (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/hidden-past/longform.mjs:151:3)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/longform/run.mjs:21:3
