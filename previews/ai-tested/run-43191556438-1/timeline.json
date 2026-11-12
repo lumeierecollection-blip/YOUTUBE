@@ -1,0 +1,449 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "big-count-with-logos",
+      "objective": "Lead with the result (agreed count) and the models tested",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 184,
+      "start_s": 0,
+      "end_s": 6.133333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "example",
+      "treatment": "two-chat-cards",
+      "objective": "Show one myth asked plainly and as an expert, with the two real replies",
+      "background": "paper panel in saturated frame",
+      "from": 184,
+      "to": 289,
+      "start_s": 6.133333333333334,
+      "end_s": 9.633333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "design",
+      "treatment": "myth-notes",
+      "objective": "Show the myths and the two ways of asking, in one line",
+      "background": "paper panel in saturated frame",
+      "from": 289,
+      "to": 434,
+      "start_s": 9.633333333333333,
+      "end_s": 14.466666666666667
+    },
+    {
+      "id": "s4",
+      "kind": "results",
+      "treatment": "count-rows-with-logos",
+      "objective": "One square per myth for each model, coloured held or agreed, with the count",
+      "background": "paper panel in saturated frame",
+      "from": 434,
+      "to": 637,
+      "start_s": 14.466666666666667,
+      "end_s": 21.233333333333334
+    },
+    {
+      "id": "s5",
+      "kind": "tip",
+      "treatment": "title-with-stamp",
+      "objective": "Close: a title does not change the facts; ask AI to check you",
+      "background": "paper panel in saturated frame",
+      "from": 637,
+      "to": 882,
+      "start_s": 21.233333333333334,
+      "end_s": 29.4
+    }
+  ],
+  "captions": [
+    {
+      "text": "Tell AI you are an",
+      "from": 0,
+      "to": 47,
+      "words": [
+        {
+          "text": "Tell",
+          "from": 0
+        },
+        {
+          "text": "AI",
+          "from": 13
+        },
+        {
+          "text": "you",
+          "from": 22
+        },
+        {
+          "text": "are",
+          "from": 38
+        },
+        {
+          "text": "an",
+          "from": 44
+        }
+      ]
+    },
+    {
+      "text": "expert and it still held",
+      "from": 47,
+      "to": 95,
+      "words": [
+        {
+          "text": "expert",
+          "from": 47
+        },
+        {
+          "text": "and",
+          "from": 59
+        },
+        {
+          "text": "it",
+          "from": 76
+        },
+        {
+          "text": "still",
+          "from": 82
+        },
+        {
+          "text": "held",
+          "from": 88
+        }
+      ]
+    },
+    {
+      "text": "firm on all twenty-four false",
+      "from": 95,
+      "to": 154,
+      "words": [
+        {
+          "text": "firm",
+          "from": 95
+        },
+        {
+          "text": "on",
+          "from": 104
+        },
+        {
+          "text": "all",
+          "from": 114
+        },
+        {
+          "text": "twenty-four",
+          "from": 121
+        },
+        {
+          "text": "false",
+          "from": 139
+        }
+      ]
+    },
+    {
+      "text": "claims",
+      "from": 154,
+      "to": 170,
+      "words": [
+        {
+          "text": "claims",
+          "from": 154
+        }
+      ]
+    },
+    {
+      "text": "Same myth asked twice",
+      "from": 184,
+      "to": 235,
+      "words": [
+        {
+          "text": "Same",
+          "from": 184
+        },
+        {
+          "text": "myth",
+          "from": 195
+        },
+        {
+          "text": "asked",
+          "from": 215
+        },
+        {
+          "text": "twice",
+          "from": 221
+        }
+      ]
+    },
+    {
+      "text": "same answer",
+      "from": 254,
+      "to": 270,
+      "words": [
+        {
+          "text": "same",
+          "from": 254
+        },
+        {
+          "text": "answer",
+          "from": 259
+        }
+      ]
+    },
+    {
+      "text": "We asked two models twelve",
+      "from": 289,
+      "to": 330,
+      "words": [
+        {
+          "text": "We",
+          "from": 289
+        },
+        {
+          "text": "asked",
+          "from": 290
+        },
+        {
+          "text": "two",
+          "from": 297
+        },
+        {
+          "text": "models",
+          "from": 308
+        },
+        {
+          "text": "twelve",
+          "from": 318
+        }
+      ]
+    },
+    {
+      "text": "myths",
+      "from": 335,
+      "to": 347,
+      "words": [
+        {
+          "text": "myths",
+          "from": 335
+        }
+      ]
+    },
+    {
+      "text": "plainly",
+      "from": 358,
+      "to": 365,
+      "words": [
+        {
+          "text": "plainly",
+          "from": 358
+        }
+      ]
+    },
+    {
+      "text": "then as an expert",
+      "from": 386,
+      "to": 409,
+      "words": [
+        {
+          "text": "then",
+          "from": 386
+        },
+        {
+          "text": "as",
+          "from": 386
+        },
+        {
+          "text": "an",
+          "from": 396
+        },
+        {
+          "text": "expert",
+          "from": 399
+        }
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite held on all",
+      "from": 434,
+      "to": 486,
+      "words": [
+        {
+          "text": "Google's",
+          "from": 434
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 442
+        },
+        {
+          "text": "held",
+          "from": 453
+        },
+        {
+          "text": "on",
+          "from": 470
+        },
+        {
+          "text": "all",
+          "from": 478
+        }
+      ]
+    },
+    {
+      "text": "twelve OpenAI's GPT-OSS",
+      "from": 486,
+      "to": 557,
+      "words": [
+        {
+          "text": "twelve",
+          "from": 486
+        },
+        {
+          "text": "OpenAI's",
+          "from": 509
+        },
+        {
+          "text": "GPT-OSS",
+          "from": 531
+        }
+      ]
+    },
+    {
+      "text": "held on all twelve",
+      "from": 576,
+      "to": 624,
+      "words": [
+        {
+          "text": "held",
+          "from": 576
+        },
+        {
+          "text": "on",
+          "from": 590
+        },
+        {
+          "text": "all",
+          "from": 599
+        },
+        {
+          "text": "twelve",
+          "from": 606
+        }
+      ]
+    },
+    {
+      "text": "A title does not change",
+      "from": 637,
+      "to": 674,
+      "words": [
+        {
+          "text": "A",
+          "from": 637
+        },
+        {
+          "text": "title",
+          "from": 639
+        },
+        {
+          "text": "does",
+          "from": 649
+        },
+        {
+          "text": "not",
+          "from": 658
+        },
+        {
+          "text": "change",
+          "from": 665
+        }
+      ]
+    },
+    {
+      "text": "the facts",
+      "from": 674,
+      "to": 690,
+      "words": [
+        {
+          "text": "the",
+          "from": 674
+        },
+        {
+          "text": "facts",
+          "from": 681
+        }
+      ]
+    },
+    {
+      "text": "so ask AI to check",
+      "from": 704,
+      "to": 746,
+      "words": [
+        {
+          "text": "so",
+          "from": 704
+        },
+        {
+          "text": "ask",
+          "from": 709
+        },
+        {
+          "text": "AI",
+          "from": 717
+        },
+        {
+          "text": "to",
+          "from": 726
+        },
+        {
+          "text": "check",
+          "from": 737
+        }
+      ]
+    },
+    {
+      "text": "you not agree",
+      "from": 746,
+      "to": 783,
+      "words": [
+        {
+          "text": "you",
+          "from": 746
+        },
+        {
+          "text": "not",
+          "from": 761
+        },
+        {
+          "text": "agree",
+          "from": 769
+        }
+      ]
+    },
+    {
+      "text": "Has AI ever simply agreed",
+      "from": 798,
+      "to": 847,
+      "words": [
+        {
+          "text": "Has",
+          "from": 798
+        },
+        {
+          "text": "AI",
+          "from": 802
+        },
+        {
+          "text": "ever",
+          "from": 810
+        },
+        {
+          "text": "simply",
+          "from": 824
+        },
+        {
+          "text": "agreed",
+          "from": 835
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 882,
+  "duration_s": 29.4
+}

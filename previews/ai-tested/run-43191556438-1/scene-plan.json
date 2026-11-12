@@ -1,0 +1,74 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43191556438-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Tell AI you are an expert, and it still held firm on all twenty-four false claims.",
+      "main_point": "Lead with the result (agreed count) and the models tested",
+      "visual_objective": "Lead with the result (agreed count) and the models tested",
+      "treatment": "big-count-with-logos",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "total"
+      ],
+      "start_s": 0,
+      "end_s": 6.133333333333334
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Same myth, asked twice, same answer.",
+      "main_point": "Show one myth asked plainly and as an expert, with the two real replies",
+      "visual_objective": "Show one myth asked plainly and as an expert, with the two real replies",
+      "treatment": "two-chat-cards",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 6.133333333333334,
+      "end_s": 9.633333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "We asked two models twelve myths, plainly, then as an expert.",
+      "main_point": "Show the myths and the two ways of asking, in one line",
+      "visual_objective": "Show the myths and the two ways of asking, in one line",
+      "treatment": "myth-notes",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 9.633333333333333,
+      "end_s": 14.466666666666667
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Google's Flash-Lite held on all twelve. OpenAI's GPT-OSS held on all twelve.",
+      "main_point": "One square per myth for each model, coloured held or agreed, with the count",
+      "visual_objective": "One square per myth for each model, coloured held or agreed, with the count",
+      "treatment": "count-rows-with-logos",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "m0",
+        "m1"
+      ],
+      "start_s": 14.466666666666667,
+      "end_s": 21.233333333333334
+    },
+    {
+      "scene_id": "s5",
+      "narration": "A title does not change the facts, so ask AI to check you, not agree. Has AI ever simply agreed?",
+      "main_point": "Close: a title does not change the facts; ask AI to check you",
+      "visual_objective": "Close: a title does not change the facts; ask AI to check you",
+      "treatment": "title-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 21.233333333333334,
+      "end_s": 29.4
+    }
+  ]
+}
