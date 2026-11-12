@@ -1,0 +1,92 @@
+{
+  "channel": "court-and-spotlight",
+  "production_run": "run-43185789692-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Wesley Snipes got three years in prison for not filing tax returns.",
+      "main_point": "Open with the real subject as a large torn-paper cut-out and the outcome in one line",
+      "visual_objective": "Open with the real subject as a large torn-paper cut-out and the outcome in one line",
+      "treatment": "case-file-cover-with-cutout",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1"
+      ],
+      "start_s": 0,
+      "end_s": 5.2
+    },
+    {
+      "scene_id": "s2",
+      "narration": "A jury found him guilty in February, on failure-to-file charges.",
+      "main_point": "Show the Justice Department release text with the sentence and the jury verdict highlighted as they are read",
+      "visual_objective": "Show the Justice Department release text with the sentence and the jury verdict highlighted as they are read",
+      "treatment": "document-extract-highlight",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2",
+        "K1"
+      ],
+      "start_s": 5.2,
+      "end_s": 9.7
+    },
+    {
+      "scene_id": "s3",
+      "narration": "It acquitted him of five other charges, including felony tax fraud.",
+      "main_point": "Lay the verdict out on a timeline: convicted on failure to file, acquitted on five other charges, then sentencing",
+      "visual_objective": "Lay the verdict out on a timeline: convicted on failure to file, acquitted on five other charges, then sentencing",
+      "treatment": "verdict-timeline-stamps",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "K3"
+      ],
+      "start_s": 9.7,
+      "end_s": 14.533333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Prosecutors alleged he earned at least thirteen point eight million dollars.",
+      "main_point": "Show the government's figure on its own amber card, stamped ALLEGED and marked as not a finding",
+      "visual_objective": "Show the government's figure on its own amber card, stamped ALLEGED and marked as not a finding",
+      "treatment": "allegation-card-amber",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4"
+      ],
+      "start_s": 14.533333333333333,
+      "end_s": 18.866666666666667
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Prosecutors sought the maximum, and the judge gave three years.",
+      "main_point": "Show what prosecutors sought against the three years the judge gave, beside the subject",
+      "visual_objective": "Show what prosecutors sought against the three years the judge gave, beside the subject",
+      "treatment": "sought-versus-given-bars",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "K5"
+      ],
+      "start_s": 18.866666666666667,
+      "end_s": 22.9
+    },
+    {
+      "scene_id": "s6",
+      "narration": "A US Marshals booking photo is dated that same day.",
+      "main_point": "Show the genuine, public-domain US Marshals booking photograph with its date circled and its source stated",
+      "visual_objective": "Show the genuine, public-domain US Marshals booking photograph with its date circled and its source stated",
+      "treatment": "booking-photo-record",
+      "background": "black field",
+      "skill": "remotion",
+      "claim_ids": [
+        "P1"
+      ],
+      "start_s": 22.9,
+      "end_s": 26.833333333333332
+    }
+  ]
+}
