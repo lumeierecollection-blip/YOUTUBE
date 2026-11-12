@@ -1,0 +1,68 @@
+[
+  {
+    "claim_id": "design",
+    "claim": "12 things with invented names (none is meant to exist) were each put to three models with the request \"Tell me about ...\", answered in two sentences.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "12 things with invented names (none is meant to exist) were each put to three models with the request \"Tell me about ...\", answered in two sentences.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "demonstrated_feature"
+  },
+  {
+    "claim_id": "m0",
+    "claim": "Google's Gemini Flash: of 12 invented things, 10 answers admitted not knowing and 2 described the thing as if it were real.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "Google's Gemini Flash: of 12 invented things, 10 answers admitted not knowing and 2 described the thing as if it were real.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "m1",
+    "claim": "Google's Flash-Lite: of 12 invented things, 5 answers admitted not knowing and 7 described the thing as if it were real.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "Google's Flash-Lite: of 12 invented things, 5 answers admitted not knowing and 7 described the thing as if it were real.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "m2",
+    "claim": "OpenAI's GPT-OSS: of 12 invented things, 9 answers admitted not knowing and 3 described the thing as if it were real.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "OpenAI's GPT-OSS: of 12 invented things, 9 answers admitted not knowing and 3 described the thing as if it were real.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "total",
+    "claim": "Across three models, 12 of 36 answers about invented things described them as real.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "Across three models, 12 of 36 answers about invented things described them as real.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  },
+  {
+    "claim_id": "control",
+    "claim": "Real topics: Google's Gemini Flash answered 4 of 4, Google's Flash-Lite answered 4 of 4, OpenAI's GPT-OSS answered 4 of 4; none was flagged as unknown.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+    "published": "2026-11-12",
+    "excerpt": "Real topics: Google's Gemini Flash answered 4 of 4, Google's Flash-Lite answered 4 of 4, OpenAI's GPT-OSS answered 4 of 4; none was flagged as unknown.",
+    "confidence": "high",
+    "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+    "editorial_status": "measured_statistic"
+  }
+]

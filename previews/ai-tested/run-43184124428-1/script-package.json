@@ -1,0 +1,159 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43184124428-1",
+  "topic": "Will AI admit when it doesn't know?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "AI described twelve of thirty-six invented things as real.",
+      "scene": 0,
+      "claim_ids": [
+        "total"
+      ]
+    },
+    {
+      "text": "Here is one of those answers, word for word, about something we invented.",
+      "scene": 1,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "We invented twelve fake things.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Then we asked three models about each.",
+      "scene": 3,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Google's Gemini Flash: two made up.",
+      "scene": 4,
+      "claim_ids": [
+        "m0"
+      ]
+    },
+    {
+      "text": "Google's Flash-Lite: seven made up.",
+      "scene": 4,
+      "claim_ids": [
+        "m1"
+      ]
+    },
+    {
+      "text": "OpenAI's GPT-OSS: three made up.",
+      "scene": 4,
+      "claim_ids": [
+        "m2"
+      ]
+    },
+    {
+      "text": "Real topics were answered normally.",
+      "scene": 5,
+      "claim_ids": [
+        "control"
+      ]
+    },
+    {
+      "text": "Confident is not true, so ask for the source.",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question, transition or recommendation drawn from the measured results"
+    },
+    {
+      "text": "Has it done this to you?",
+      "scene": 6,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "closing question for viewers, not a claim"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "title": "AI Tested fabricated-things test run"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "design",
+      "claim": "12 things with invented names (none is meant to exist) were each put to three models with the request \"Tell me about ...\", answered in two sentences.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "12 things with invented names (none is meant to exist) were each put to three models with the request \"Tell me about ...\", answered in two sentences.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "demonstrated_feature"
+    },
+    {
+      "claim_id": "m0",
+      "claim": "Google's Gemini Flash: of 12 invented things, 10 answers admitted not knowing and 2 described the thing as if it were real.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "Google's Gemini Flash: of 12 invented things, 10 answers admitted not knowing and 2 described the thing as if it were real.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m1",
+      "claim": "Google's Flash-Lite: of 12 invented things, 5 answers admitted not knowing and 7 described the thing as if it were real.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "Google's Flash-Lite: of 12 invented things, 5 answers admitted not knowing and 7 described the thing as if it were real.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "m2",
+      "claim": "OpenAI's GPT-OSS: of 12 invented things, 9 answers admitted not knowing and 3 described the thing as if it were real.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "OpenAI's GPT-OSS: of 12 invented things, 9 answers admitted not knowing and 3 described the thing as if it were real.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "total",
+      "claim": "Across three models, 12 of 36 answers about invented things described them as real.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "Across three models, 12 of 36 answers about invented things described them as real.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "control",
+      "claim": "Real topics: Google's Gemini Flash answered 4 of 4, Google's Flash-Lite answered 4 of 4, OpenAI's GPT-OSS answered 4 of 4; none was flagged as unknown.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231",
+      "published": "2026-11-12",
+      "excerpt": "Real topics: Google's Gemini Flash answered 4 of 4, Google's Flash-Lite answered 4 of 4, OpenAI's GPT-OSS answered 4 of 4; none was flagged as unknown.",
+      "confidence": "high",
+      "context": "Measured in this production's own test on 2026-11-12: 12 invented names and 4 real topics were each put to every model (\"Tell me about ...\", two sentences). A reply counts as admitted when it contains one of a fixed list of phrases saying it does not know of the thing; otherwise it counts as made up. This is a phrase count, not a check of truth. Replies are kept. Temperature 0; results change between runs and models. Models: Gemini 3.5 Flash, Gemini 3.5 Flash-Lite, GPT-OSS 120B.",
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
