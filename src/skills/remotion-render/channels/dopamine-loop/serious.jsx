@@ -26,7 +26,7 @@ const B2 = wrap(({ cues }) => { const c1 = cues[1] ?? 70; return (<>
   <H y={250} lines={["That sting"]} size={170} />
   <H y={520} lines={["is not you"]} delay={c1} size={120} color={T.dim} />
   <H y={680} lines={["being dramatic."]} delay={c1 + 10} size={124} italic color={T.accent} />
-</>); }, "cafe", "50% 40%", 0.5);
+</>); }, "cafe", "50% 40%", 0.66);
 
 const B3 = wrap(({ cues, study }) => (<>
   <Kicker t={T} y={190}>The study</Kicker>

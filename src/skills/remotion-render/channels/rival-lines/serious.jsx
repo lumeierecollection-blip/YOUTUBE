@@ -56,7 +56,7 @@ function Formation({ m, at }) {
     <Kicker t={T} y={190}>Starting shapes</Kicker>
     <Pitch />
     <Team players={m.lineup[A]} color={T.a} delay={6} /><Team players={m.lineup[B]} color={T.b} top delay={d} ink="#fff" />
-    <Chip t={T} x={90} y={1262} delay={10} size={36} color={T.a}>{A} {fmt(m.formation[A])}</Chip>
+    <Chip t={T} x={90} y={1368} delay={10} size={32} color={T.a}>{A} {fmt(m.formation[A])}</Chip>
     <Chip t={T} x={90} y={270} delay={d + 4} size={36} color={T.b}>{B} {fmt(m.formation[B])}</Chip>
   </>);
 }

@@ -15,15 +15,15 @@ function Cells({ seq, x = 70, y, delay = 0, step = 2 }) {
 }
 
 function Hook({ d, cues }) {
-  const c1 = cues[1] ?? 66;
+  const c1 = cues[1] ?? 66, hy = 800 + d.models.length * (CELL + GAP) + 30;
   return (<>
     <Kicker t={T} y={190}>One test · {d.models.length} models · {d.all} answers</Kicker>
     <Count t={T} x={60} y={250} w={520} size={470} to={d.made} delay={2} len={26} color={T.accent} />
     <Head t={T} x={d.made > 9 ? 560 : 370} y={470} w={500} size={170} lines={[`of ${d.all}`]} delay={10} color={T.ink} upper={false} />
     <Rule t={T} y={760} delay={8} />
     {d.models.map((m, i) => <Cells key={i} seq={m.seq} y={800 + i * (CELL + GAP)} delay={14 + i * 12} />)}
-    <Head t={T} y={1000} size={104} lines={["Invented things", "described as real"]} delay={c1} />
-    <Chip t={T} x={70} y={1260} delay={c1 + 22} size={48}>Made up</Chip>
+    <Head t={T} y={hy} size={104} lines={["Invented things", "described as real"]} delay={c1} />
+    <Chip t={T} x={70} y={hy + 236} delay={c1 + 22} size={48}>Made up</Chip>
   </>);
 }
 function Fakes({ d }) {
@@ -43,10 +43,10 @@ function Models({ d }) {
   return (<>
     <Kicker t={T} y={190}>The method</Kicker>
     <Head t={T} y={250} size={128} lines={["Same question,", `${d.models.length} models`]} />
-    {d.models.map((m, i) => { const a = ramp(f, 12 + i * 8, 24 + i * 8); return (
-      <div key={i} style={abs(70 + i * 480, 600, 460, 210, { border: `3px solid ${T.rule}`, background: "rgba(255,255,255,0.04)", padding: "26px 28px", boxSizing: "border-box", opacity: a, transform: `translateY(${(1 - a) * 50}px)` })}>
+    {d.models.map((m, i) => { const a = ramp(f, 12 + i * 8, 24 + i * 8), n = d.models.length, w = (940 - (n - 1) * 20) / n; return (
+      <div key={i} style={abs(70 + i * (w + 20), 600, w, 210, { border: `3px solid ${T.rule}`, background: "rgba(255,255,255,0.04)", padding: "26px 28px", boxSizing: "border-box", opacity: a, transform: `translateY(${(1 - a) * 50}px)` })}>
         <div style={{ fontFamily: MONO, fontSize: 22, letterSpacing: "0.12em", color: T.dim }}>MODEL {String.fromCharCode(65 + i)}</div>
-        <div style={{ fontFamily: COND, fontWeight: 700, fontSize: 54, lineHeight: 1.05, color: T.ink, marginTop: 14, textTransform: "uppercase" }}>{m.name}</div>
+        <div style={{ fontFamily: COND, fontWeight: 700, fontSize: n > 2 ? 40 : 54, lineHeight: 1.05, color: T.ink, marginTop: 14, textTransform: "uppercase" }}>{m.name}</div>
       </div>); })}
     <div style={abs(70, 900, 940, 330, { background: T.paper, boxShadow: `14px 14px 0 ${T.accent}`, padding: "30px 36px", boxSizing: "border-box", opacity: ramp(f, 28, 36) })}>
       <div style={{ fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: "0.12em", color: "rgba(20,22,26,0.55)" }}>PROMPT</div>
@@ -58,14 +58,14 @@ function Results({ d, cues }) {
   const f = useCurrentFrame();
   return (<>
     <Kicker t={T} y={190}>Asked about {d.fakes} invented things</Kicker>
-    {d.models.map((m, i) => { const at = i ? (cues[i] ?? 100) : 4, y = 270 + i * 520; return (
+    {d.models.map((m, i) => { const many = d.models.length > 2, at = i ? (cues[i] ?? i * 90) : 4, y = 250 + i * (many ? 372 : 520), cs = many ? 180 : 250; return (
       <div key={i} style={{ opacity: ramp(f, at, at + 8) }}>
         <div style={abs(70, y, 940, 70, { fontFamily: COND, fontWeight: 700, fontSize: 60, color: T.ink, textTransform: "uppercase" })}>{m.name}</div>
-        <Cells seq={m.seq} y={y + 92} delay={at + 6} step={2} />
-        <Count t={T} x={64} y={y + 190} w={300} size={250} to={m.made_up} delay={at + 22} len={16} color={m.made_up ? T.accent : T.ok} />
-        <Head t={T} x={m.made_up > 9 ? 350 : 220} y={y + 250} w={700} size={70} lines={[`of ${m.fakes}`, "made up"]} delay={at + 26} />
+        <Cells seq={m.seq} y={y + 84} delay={at + 6} step={2} />
+        <Count t={T} x={64} y={y + 168} w={300} size={cs} to={m.made_up} delay={at + 22} len={16} color={m.made_up ? T.accent : T.ok} />
+        <Head t={T} x={(m.made_up > 9 ? 1.4 : 0.88) * cs} y={y + 168 + cs * 0.22} w={700} size={cs * 0.28} lines={[`of ${m.fakes}`, "made up"]} delay={at + 26} />
       </div>); })}
-    <div style={abs(70, 1340, 940, 40, { display: "flex", gap: 40, fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: "0.08em", color: T.dim, textTransform: "uppercase" })}>
+    <div style={abs(70, 1378, 940, 40, { display: "flex", gap: 40, fontFamily: MONO, fontWeight: 700, fontSize: 22, letterSpacing: "0.08em", color: T.dim, textTransform: "uppercase" })}>
       <span><span style={{ display: "inline-block", width: 22, height: 22, background: T.accent, marginRight: 12, verticalAlign: "-3px" }} />described as real</span>
       <span><span style={{ display: "inline-block", width: 22, height: 22, background: T.ok, marginRight: 12, verticalAlign: "-3px" }} />said it did not know</span>
     </div>
@@ -91,7 +91,7 @@ function Example({ d }) {
   return (<>
     <Kicker t={T} y={190}>Asked: {e.label}</Kicker>
     <Doc t={T} y={270} source={e.model} meta="Reply, word for word" text={text} hl={[firstWords(text, 62)]} size={44} font={MONO} hlDelay={8} />
-    <Chip t={T} x={70} y={1250} delay={24} size={56} color={made ? T.accent : T.ok}>{made ? "This does not exist" : "Admitted"}</Chip>
+    <Chip t={T} x={70} y={1010} delay={24} size={64} color={made ? T.accent : T.ok}>{made ? "This does not exist" : "Admitted"}</Chip>
   </>);
 }
 function Tip({ d, cues }) {
