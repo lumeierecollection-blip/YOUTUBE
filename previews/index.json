@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T09:24:40.240Z",
+  "rebuilt_at": "2026-11-12T09:28:22.794Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-12T09:24:39.986Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-12T09:28:08.060Z",
       "branch": "preview/ai-tested-expert",
-      "commit": "e3859d85",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43190929176#artifacts)",
+      "commit": "f2d7460a",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43191556438#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "slot \"tip1\" has more than one sentence ending in: A title is not a fact. Ask AI to check you.",
+      "blocker": "",
       "lastOk": "2026-11-12T08:56:43.594Z",
-      "run": "run-43190929176-1"
+      "run": "run-43191556438-1"
     },
     {
       "key": "court-and-spotlight",
