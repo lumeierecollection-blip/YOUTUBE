@@ -1,0 +1,104 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-43197772216-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Charles Ponzi promised fifty percent profit in forty-five days.",
+      "main_point": "Open on the name Charles Ponzi over his photograph with the promise stated at once: 50% in 45 days",
+      "visual_objective": "Open on the name Charles Ponzi over his photograph with the promise stated at once: 50% in 45 days",
+      "treatment": "name-title-with-portrait",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1"
+      ],
+      "start_s": 0,
+      "end_s": 5.333333333333333
+    },
+    {
+      "scene_id": "s2",
+      "narration": "To pay everyone, he needed one hundred sixty million coupons, but only twenty-seven thousand existed.",
+      "main_point": "Show why it could not work: 160 million coupons needed against 27,000 that existed",
+      "visual_objective": "Show why it could not work: 160 million coupons needed against 27,000 that existed",
+      "treatment": "giant-numbers-and-desk-photo",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2",
+        "K3"
+      ],
+      "start_s": 5.333333333333333,
+      "end_s": 12.766666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "He paid a crowd two million dollars in three days.",
+      "main_point": "Quote the source sentence on the two million dollars paid out in three days to the crowd",
+      "visual_objective": "Quote the source sentence on the two million dollars paid out in three days to the crowd",
+      "treatment": "quote-slip-with-number",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4"
+      ],
+      "start_s": 12.766666666666667,
+      "end_s": 16.7
+    },
+    {
+      "scene_id": "s4",
+      "narration": "His bank was seized, and investors lost about twenty million dollars.",
+      "main_point": "Show the twenty million dollars investors lost and the bank seized",
+      "visual_objective": "Show the twenty million dollars investors lost and the bank seized",
+      "treatment": "giant-number-and-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K5"
+      ],
+      "start_s": 16.7,
+      "end_s": 21.1
+    },
+    {
+      "scene_id": "s5",
+      "narration": "He admitted one of eighty-six fraud counts: five years.",
+      "main_point": "Draw eighty-six counts as dots, the one he pleaded guilty to in the accent colour, with the booking photograph and the five-year sentence",
+      "visual_objective": "Draw eighty-six counts as dots, the one he pleaded guilty to in the accent colour, with the booking photograph and the five-year sentence",
+      "treatment": "counted-dots-and-photo",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K6"
+      ],
+      "start_s": 21.1,
+      "end_s": 25.333333333333332
+    },
+    {
+      "scene_id": "s6",
+      "narration": "He died in Rio with seventy-five dollars.",
+      "main_point": "Show the seventy-five dollars he left, his death in Rio de Janeiro and his 1934 deportation",
+      "visual_objective": "Show the seventy-five dollars he left, his death in Rio de Janeiro and his 1934 deportation",
+      "treatment": "number-and-portrait",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K8"
+      ],
+      "start_s": 25.333333333333332,
+      "end_s": 28.733333333333334
+    },
+    {
+      "scene_id": "s7",
+      "narration": "Would you have invested?",
+      "main_point": "Close on a question viewers can answer in the comments: would you have invested",
+      "visual_objective": "Close on a question viewers can answer in the comments: would you have invested",
+      "treatment": "title-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 28.733333333333334,
+      "end_s": 30.833333333333332
+    }
+  ]
+}
