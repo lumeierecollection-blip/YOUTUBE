@@ -1,0 +1,74 @@
+{
+  "channel": "dopamine-loop",
+  "production_run": "run-43184131975-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Being left out may feel, to your brain, a lot like physical pain.",
+      "main_point": "Show a figure standing apart while two others talk together, one hand lifting to join and then lowering",
+      "visual_objective": "Show a figure standing apart while two others talk together, one hand lifting to join and then lowering",
+      "treatment": "figure-stands-apart-hand-lowers",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2"
+      ],
+      "start_s": 0,
+      "end_s": 5.5
+    },
+    {
+      "scene_id": "s2",
+      "narration": "So that sting when the group goes quiet is not you being dramatic.",
+      "main_point": "Show a seated figure watching a phone as chat bubbles stop appearing and the screen goes still",
+      "visual_objective": "Show a seated figure watching a phone as chat bubbles stop appearing and the screen goes still",
+      "treatment": "figure-with-phone-chat-goes-quiet",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 5.5,
+      "end_s": 10.233333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "In one study, people left out of a game showed brain activity that rose with their distress.",
+      "main_point": "Show the virtual ball game with two avatars passing to each other, the figure watching, and one small bar rising with distress",
+      "visual_objective": "Show the virtual ball game with two avatars passing to each other, the figure watching, and one small bar rising with distress",
+      "treatment": "figure-watching-virtual-game",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E1",
+        "E3"
+      ],
+      "start_s": 10.233333333333333,
+      "end_s": 16.533333333333335
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Another region was active too, and linked to less distress.",
+      "main_point": "Show the tangle loosening and a soft ring forming around the head",
+      "visual_objective": "Show the tangle loosening and a soft ring forming around the head",
+      "treatment": "scribble-loosens-ring-forms",
+      "background": "dark soft-lit room",
+      "skill": "remotion",
+      "claim_ids": [
+        "E4"
+      ],
+      "start_s": 16.533333333333335,
+      "end_s": 20.7
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Feeling it doesn't mean something is wrong, it means people matter to you.",
+      "main_point": "Show another figure sitting down beside, a hand on the shoulder, the room warming and the heart mending",
+      "visual_objective": "Show another figure sitting down beside, a hand on the shoulder, the room warming and the heart mending",
+      "treatment": "second-figure-sits-beside",
+      "background": "dark soft-lit room, warming",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 20.7,
+      "end_s": 25.633333333333333
+    }
+  ]
+}
