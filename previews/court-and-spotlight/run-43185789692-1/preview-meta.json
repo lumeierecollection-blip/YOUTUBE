@@ -2,10 +2,11 @@
   "channel": "court-and-spotlight",
   "production_run": "run-43185789692-1",
   "agent": "agent-court-and-spotlight",
-  "stage": "script_complete",
-  "status": "ok",
-  "timestamp": "2026-11-12T08:49:03.177Z",
+  "stage": "script_approved",
+  "status": "pending",
+  "timestamp": "2026-11-12T08:49:05.132Z",
   "branch": "preview/court-and-spotlight-serious-long",
   "commit": "e80097194f05d16db692157e7eb19fac48b337c4",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43185789692#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43185789692#artifacts",
+  "note": "not reviewed by the engine critic"
 }
