@@ -48,6 +48,7 @@ async function prepareAssets({ tools, ASSETS = [] }) {
 
 export default async function preview({ key, runId, tools }) {
   const branch = process.env.GITHUB_REF_NAME || "";
+  if (/serious/.test(branch)) return (await import("./serious-preview.mjs")).default({ key, runId, tools });
   if (/collage/.test(branch)) return (await import("./collage-preview.mjs")).default({ key, runId, tools });
   if (/grammy/.test(branch)) return (await import("./grammy-preview.mjs")).default({ key, runId, tools });
   const guess = Object.keys(FORMATS).find((f) => branch.includes(f.replace(/_/g, "-")) || branch.includes(f)) || (branch.includes("magazine") ? "entertainment_magazine" : branch.includes("vox") ? "vox_explainer" : "investigation");

@@ -33,9 +33,17 @@ async function verifyWikipedia(claims, title) {
   return text.length;
 }
 
+/** Props for RivalSerious, taken field by field from match-data.json. */
+function seriousMatch(md) {
+  const [A, B] = Object.keys(md.score), pick = (k) => ({ [A]: md.stats[A][k], [B]: md.stats[B][k] });
+  return { teams: [A, B], title: ["The 2022", "World Cup", "final"], stage: md.stage, competition: md.competition, dateLabel: new Date(md.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }), score: md.score, pens: md.penalties, formation: md.formation, lineup: md.lineup, passes: pick("first_40_completed_passes"), shots78: pick("shots_before_79"), first: pick("first_shot_minute"), xg: pick("xg_series"), goals: pick("goal_minutes") };
+}
+
 export default async function preview({ key, runId, tools }) {
   const branch = process.env.GITHUB_REF_NAME || "";
   const mode = /messi|player/.test(branch) ? "player" : "match";
+  // Serious cut (branch preview/rival-lines-serious): the dark tactics board, about 30 seconds, every graphic drawn from match-data.json.
+  const SERIOUS = mode === "match" && /serious/.test(branch), FIT = SERIOUS ? { targetSeconds: 29.7, minSeconds: 28.8, maxSeconds: 31 } : { targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 };
   const story = await import(mode === "player" ? "./messi-story.mjs" : "./final-story.mjs");
   const adir = join(tools.outDir, "analysis"), cache = join(ROOT, "output/sb-cache");
 
@@ -74,11 +82,11 @@ export default async function preview({ key, runId, tools }) {
   let sentences = story.sentences, scenes = story.scenes;
   if (story.slots) {
     const cal = await narrate({ text: CALIBRATION, edgeVoice: channel.voice.tts, outDir: tools.outDir, name: "calibration", style: channel.voice.style });
-    const fit = fitScript({ slots: story.slots, wpm: cal.wpm * 0.88, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 });
+    const fit = fitScript({ slots: story.slots, wpm: cal.wpm * 0.88, ...FIT });
     ({ scenes, sentences } = compactScenes({ scenes: story.scenes, sentences: fit.sentences }));
     tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
     console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
   }
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: 34, maxSeconds: 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 }).sentences }) : undefined, makeProps: () => ({ images, credits, data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: SERIOUS ? "RivalSerious" : mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, minSeconds: SERIOUS ? 28 : 34, maxSeconds: SERIOUS ? 32 : 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, ...FIT }).sentences }) : undefined, makeProps: () => (SERIOUS ? { logo: images.sbLogo, m: seriousMatch(data) } : { images, credits, data }) } });
   tools.write("quality-report.json", { format: mode === "player" ? "player_documentary" : "match_analysis", technical: result.qa, data_note: "event data only; locations are where events were recorded" });
 }

@@ -25,6 +25,15 @@ async function logo(title) {
   }
 }
 
+/** Reorders the planned scenes so the example reply is second, and gives its line enough words for the reply to be read. */
+function evidenceFirst(p) {
+  const order = ["hook", "example", "fakes", "models", "results", "control", "tip"].map((k) => p.scenes.findIndex((s) => s.kind === k));
+  if (order.includes(-1) || !p.data.example) return p;
+  const to = new Map(order.map((old, now) => [old, now]));
+  const slots = p.slots.map((s) => ({ ...s, scene: to.get(s.scene), ...(s.id === "example" ? { optional: false, variants: [{ text: "Here is one of those answers, word for word, about something we invented.", claim_ids: [] }, { text: "Here is one of those answers, word for word.", claim_ids: [] }] } : {}) })).sort((a, b) => a.scene - b.scene);
+  return { ...p, scenes: order.map((i) => p.scenes[i]), slots };
+}
+
 export default async function unknownPreview({ key, runId, tools }) {
   const repo = process.env.GITHUB_REPOSITORY, runUrl = repo ? `https://github.com/${repo}/actions/runs/${process.env.GITHUB_RUN_ID}` : "local";
   const today = new Date().toISOString().slice(0, 10);
@@ -38,7 +47,10 @@ export default async function unknownPreview({ key, runId, tools }) {
   const exp = earlier || await measure({ runUrl });
   tools.write("experiment.json", exp);
   tools.stage("research_complete", "ok");
-  const p = plan(exp);
+  // Serious cut (branch preview/ai-tested-serious): the dark kit, and the evidence moved up. The retention report of 12 Nov 2026 showed the 3 to 9 second
+  // bridge losing viewers fastest, so the real invented reply is shown straight after the hook and the method follows it.
+  const SERIOUS = /serious/.test(process.env.GITHUB_REF_NAME || "");
+  const p = SERIOUS ? evidenceFirst(plan(exp)) : plan(exp);
   const images = {}, entries = [];
   for (const [k, t] of Object.entries(LOGOS)) { const l = await logo(t); images[k] = l.uri; entries.push({ id: k, ...l.entry }); }
   tools.write("asset-manifest.json", { note: "Logos are Wikimedia Commons files with their licences recorded, shown only to name the company. Nothing is AI-generated.", assets: entries });
@@ -54,6 +66,6 @@ export default async function unknownPreview({ key, runId, tools }) {
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s, ${first.sentences.length} beats`);
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Will AI admit when it doesn't know?", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: "AiTestedUnknown", edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 28, maxSeconds: 32, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ images, data: p.data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Will AI admit when it doesn't know?", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: SERIOUS ? "AiTestedSerious" : "AiTestedUnknown", edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 28, maxSeconds: 32, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ images, data: p.data }) } });
   tools.write("quality-report.json", { format: "ai_tested_unknown_30s", technical: result.qa });
 }

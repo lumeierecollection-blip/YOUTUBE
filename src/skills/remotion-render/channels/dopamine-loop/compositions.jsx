@@ -5,6 +5,7 @@ import { AbsoluteFill, Sequence, interpolate, useCurrentFrame } from "remotion";
 import { FONT_FACES } from "../../fonts-loader.js";
 import { abs, Captions, clamp, Scene } from "../_shared/parts.jsx";
 import { Figure, POSES, Room } from "./rig.jsx";
+import { seriousCompositions } from "./serious.jsx";
 
 const SANS = '"Space Grotesk", sans-serif', MONO = '"JetBrains Mono", monospace';
 const TEXT = "#F2F2F4", DIM = "#9A9AA2", COOL = "#9CC0E0";
@@ -142,4 +143,4 @@ function DopamineLoopShort({ durationInFrames, scenes, captions }) {
   );
 }
 
-export const compositions = [{ id: "DopamineLoopShort", component: DopamineLoopShort, durationInFrames: 780, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 780, scenes: [], captions: [] } }];
+export const compositions = [...seriousCompositions, { id: "DopamineLoopShort", component: DopamineLoopShort, durationInFrames: 780, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 780, scenes: [], captions: [] } }];
