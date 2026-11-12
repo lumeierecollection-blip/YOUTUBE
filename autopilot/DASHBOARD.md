@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-12 10:42 SAST
+Updated 2026-11-12 19:51 SAST
 
-**Next productions:** AI Tested 2026-11-12 11:00 SAST, AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST
+**Next productions:** AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,11 +19,11 @@ Updated 2026-11-12 10:42 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed-final at research, attempts 2 |
-| Selected topic and score | Google Gemini AI Lands on Apple CarPlay for Hands-Free Use (73.5/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Google Tabletop Collaborative AI Workspace (73.8/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 127 views, 5 likes, 0 comments (public), 80.1% average viewed |
+| Performance | 129 views, 5 likes, 0 comments (public), 80.1% average viewed |
 | Analytics | available |
 
 ## Needs your attention
