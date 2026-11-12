@@ -1,0 +1,430 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (66/66 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Being",
+   "start": 0.0,
+   "end": 0.5,
+   "sentence": 0
+  },
+  {
+   "text": "left",
+   "start": 0.5,
+   "end": 0.72,
+   "sentence": 0
+  },
+  {
+   "text": "out",
+   "start": 0.72,
+   "end": 1.1,
+   "sentence": 0
+  },
+  {
+   "text": "may",
+   "start": 1.1,
+   "end": 1.54,
+   "sentence": 0
+  },
+  {
+   "text": "feel",
+   "start": 1.54,
+   "end": 1.94,
+   "sentence": 0
+  },
+  {
+   "text": "to",
+   "start": 1.94,
+   "end": 2.36,
+   "sentence": 0
+  },
+  {
+   "text": "your",
+   "start": 2.36,
+   "end": 2.54,
+   "sentence": 0
+  },
+  {
+   "text": "brain",
+   "start": 2.54,
+   "end": 2.84,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.84,
+   "end": 3.4,
+   "sentence": 0
+  },
+  {
+   "text": "lot",
+   "start": 3.4,
+   "end": 3.56,
+   "sentence": 0
+  },
+  {
+   "text": "like",
+   "start": 3.56,
+   "end": 3.88,
+   "sentence": 0
+  },
+  {
+   "text": "physical",
+   "start": 3.88,
+   "end": 4.28,
+   "sentence": 0
+  },
+  {
+   "text": "pain",
+   "start": 4.28,
+   "end": 4.84,
+   "sentence": 0
+  },
+  {
+   "text": "So",
+   "start": 5.52,
+   "end": 5.64,
+   "sentence": 1
+  },
+  {
+   "text": "that",
+   "start": 5.64,
+   "end": 5.82,
+   "sentence": 1
+  },
+  {
+   "text": "sting",
+   "start": 5.82,
+   "end": 6.3,
+   "sentence": 1
+  },
+  {
+   "text": "when",
+   "start": 6.3,
+   "end": 6.84,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 6.84,
+   "end": 6.98,
+   "sentence": 1
+  },
+  {
+   "text": "group",
+   "start": 6.98,
+   "end": 7.16,
+   "sentence": 1
+  },
+  {
+   "text": "goes",
+   "start": 7.16,
+   "end": 7.42,
+   "sentence": 1
+  },
+  {
+   "text": "quiet",
+   "start": 7.42,
+   "end": 7.8,
+   "sentence": 1
+  },
+  {
+   "text": "is",
+   "start": 7.8,
+   "end": 8.44,
+   "sentence": 1
+  },
+  {
+   "text": "not",
+   "start": 8.44,
+   "end": 8.68,
+   "sentence": 1
+  },
+  {
+   "text": "you",
+   "start": 8.68,
+   "end": 9.02,
+   "sentence": 1
+  },
+  {
+   "text": "being",
+   "start": 9.02,
+   "end": 9.32,
+   "sentence": 1
+  },
+  {
+   "text": "dramatic",
+   "start": 9.32,
+   "end": 9.62,
+   "sentence": 1
+  },
+  {
+   "text": "In",
+   "start": 10.58,
+   "end": 10.68,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 10.68,
+   "end": 10.84,
+   "sentence": 2
+  },
+  {
+   "text": "study",
+   "start": 10.84,
+   "end": 11.24,
+   "sentence": 2
+  },
+  {
+   "text": "people",
+   "start": 11.62,
+   "end": 11.78,
+   "sentence": 2
+  },
+  {
+   "text": "left",
+   "start": 11.78,
+   "end": 12.12,
+   "sentence": 2
+  },
+  {
+   "text": "out",
+   "start": 12.12,
+   "end": 12.4,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 12.4,
+   "end": 12.52,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 12.52,
+   "end": 12.6,
+   "sentence": 2
+  },
+  {
+   "text": "game",
+   "start": 12.6,
+   "end": 12.88,
+   "sentence": 2
+  },
+  {
+   "text": "showed",
+   "start": 12.88,
+   "end": 13.3,
+   "sentence": 2
+  },
+  {
+   "text": "brain",
+   "start": 13.3,
+   "end": 13.66,
+   "sentence": 2
+  },
+  {
+   "text": "activity",
+   "start": 13.66,
+   "end": 14.12,
+   "sentence": 2
+  },
+  {
+   "text": "that",
+   "start": 14.12,
+   "end": 14.54,
+   "sentence": 2
+  },
+  {
+   "text": "rose",
+   "start": 14.54,
+   "end": 14.84,
+   "sentence": 2
+  },
+  {
+   "text": "with",
+   "start": 14.84,
+   "end": 15.3,
+   "sentence": 2
+  },
+  {
+   "text": "their",
+   "start": 15.3,
+   "end": 15.48,
+   "sentence": 2
+  },
+  {
+   "text": "distress",
+   "start": 15.48,
+   "end": 15.78,
+   "sentence": 2
+  },
+  {
+   "text": "Another",
+   "start": 16.6,
+   "end": 16.8,
+   "sentence": 3
+  },
+  {
+   "text": "region",
+   "start": 16.8,
+   "end": 17.16,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 17.16,
+   "end": 17.4,
+   "sentence": 3
+  },
+  {
+   "text": "active",
+   "start": 17.4,
+   "end": 17.7,
+   "sentence": 3
+  },
+  {
+   "text": "too",
+   "start": 17.7,
+   "end": 18.02,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 18.02,
+   "end": 18.58,
+   "sentence": 3
+  },
+  {
+   "text": "linked",
+   "start": 18.58,
+   "end": 18.8,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 18.8,
+   "end": 19.1,
+   "sentence": 3
+  },
+  {
+   "text": "less",
+   "start": 19.1,
+   "end": 19.36,
+   "sentence": 3
+  },
+  {
+   "text": "distress",
+   "start": 19.36,
+   "end": 19.74,
+   "sentence": 3
+  },
+  {
+   "text": "Feeling",
+   "start": 20.64,
+   "end": 20.92,
+   "sentence": 4
+  },
+  {
+   "text": "it",
+   "start": 20.92,
+   "end": 21.16,
+   "sentence": 4
+  },
+  {
+   "text": "doesn't",
+   "start": 21.16,
+   "end": 21.6,
+   "sentence": 4
+  },
+  {
+   "text": "mean",
+   "start": 21.6,
+   "end": 21.78,
+   "sentence": 4
+  },
+  {
+   "text": "something",
+   "start": 21.78,
+   "end": 22.06,
+   "sentence": 4
+  },
+  {
+   "text": "is",
+   "start": 22.06,
+   "end": 22.28,
+   "sentence": 4
+  },
+  {
+   "text": "wrong",
+   "start": 22.28,
+   "end": 22.56,
+   "sentence": 4
+  },
+  {
+   "text": "it",
+   "start": 23.2,
+   "end": 23.26,
+   "sentence": 4
+  },
+  {
+   "text": "means",
+   "start": 23.26,
+   "end": 23.42,
+   "sentence": 4
+  },
+  {
+   "text": "people",
+   "start": 23.42,
+   "end": 23.92,
+   "sentence": 4
+  },
+  {
+   "text": "matter",
+   "start": 23.92,
+   "end": 24.36,
+   "sentence": 4
+  },
+  {
+   "text": "to",
+   "start": 24.36,
+   "end": 24.72,
+   "sentence": 4
+  },
+  {
+   "text": "you",
+   "start": 24.72,
+   "end": 24.94,
+   "sentence": 4
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Being left out may feel, to your brain, a lot like physical pain.",
+   "start": 0.0,
+   "end": 4.84
+  },
+  {
+   "text": "So that sting when the group goes quiet is not you being dramatic.",
+   "start": 5.52,
+   "end": 9.62
+  },
+  {
+   "text": "In one study, people left out of a game showed brain activity that rose with their distress.",
+   "start": 10.58,
+   "end": 15.78
+  },
+  {
+   "text": "Another region was active too, and linked to less distress.",
+   "start": 16.6,
+   "end": 19.74
+  },
+  {
+   "text": "Feeling it doesn't mean something is wrong, it means people matter to you.",
+   "start": 20.64,
+   "end": 24.94
+  }
+ ]
+}
