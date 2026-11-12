@@ -1,0 +1,7 @@
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/vo-01.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/.gap.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/vo-02.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/.gap.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/vo-03.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/.gap.mp3'
+file '/home/runner/work/YOUTUBE/YOUTUBE/output/previews/hidden-past/long-43298984194-1/vo-04.mp3'

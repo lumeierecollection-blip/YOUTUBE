@@ -1,0 +1,513 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (69/79 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "On",
+   "start": 0.0,
+   "end": 0.34,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 0.34,
+   "end": 0.44,
+   "sentence": 0
+  },
+  {
+   "text": "twenty-sixth",
+   "start": 0.44,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "of",
+   "start": 1.2,
+   "end": 1.25,
+   "sentence": 0
+  },
+  {
+   "text": "July",
+   "start": 1.2,
+   "end": 1.5,
+   "sentence": 0
+  },
+  {
+   "text": "1920",
+   "start": 1.84,
+   "end": 2.4,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 3.12,
+   "end": 3.26,
+   "sentence": 0
+  },
+  {
+   "text": "Boston",
+   "start": 3.26,
+   "end": 3.48,
+   "sentence": 0
+  },
+  {
+   "text": "Post",
+   "start": 3.48,
+   "end": 3.98,
+   "sentence": 0
+  },
+  {
+   "text": "started",
+   "start": 3.98,
+   "end": 4.52,
+   "sentence": 0
+  },
+  {
+   "text": "asking",
+   "start": 4.52,
+   "end": 5.06,
+   "sentence": 0
+  },
+  {
+   "text": "hard",
+   "start": 5.06,
+   "end": 5.56,
+   "sentence": 0
+  },
+  {
+   "text": "questions",
+   "start": 5.56,
+   "end": 6.12,
+   "sentence": 0
+  },
+  {
+   "text": "Investors",
+   "start": 6.82,
+   "end": 7.18,
+   "sentence": 1
+  },
+  {
+   "text": "lost",
+   "start": 7.18,
+   "end": 7.7,
+   "sentence": 1
+  },
+  {
+   "text": "about",
+   "start": 7.7,
+   "end": 8.0,
+   "sentence": 1
+  },
+  {
+   "text": "twenty",
+   "start": 8.0,
+   "end": 8.18,
+   "sentence": 1
+  },
+  {
+   "text": "million",
+   "start": 8.36,
+   "end": 8.98,
+   "sentence": 1
+  },
+  {
+   "text": "dollars",
+   "start": 8.98,
+   "end": 9.06,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 8.98,
+   "end": 9.86,
+   "sentence": 1
+  },
+  {
+   "text": "nineteen-twenty",
+   "start": 9.86,
+   "end": 10.22,
+   "sentence": 1
+  },
+  {
+   "text": "money",
+   "start": 10.58,
+   "end": 11.04,
+   "sentence": 1
+  },
+  {
+   "text": "Charged",
+   "start": 11.68,
+   "end": 12.18,
+   "sentence": 2
+  },
+  {
+   "text": "with",
+   "start": 12.18,
+   "end": 12.26,
+   "sentence": 2
+  },
+  {
+   "text": "eighty-six",
+   "start": 12.26,
+   "end": 12.47,
+   "sentence": 2
+  },
+  {
+   "text": "counts",
+   "start": 12.68,
+   "end": 13.26,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 13.26,
+   "end": 13.52,
+   "sentence": 2
+  },
+  {
+   "text": "mail",
+   "start": 13.52,
+   "end": 13.72,
+   "sentence": 2
+  },
+  {
+   "text": "fraud",
+   "start": 13.72,
+   "end": 14.18,
+   "sentence": 2
+  },
+  {
+   "text": "Ponzi",
+   "start": 14.66,
+   "end": 15.06,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 15.06,
+   "end": 15.18,
+   "sentence": 2
+  },
+  {
+   "text": "sentenced",
+   "start": 15.18,
+   "end": 15.44,
+   "sentence": 2
+  },
+  {
+   "text": "to",
+   "start": 15.44,
+   "end": 15.92,
+   "sentence": 2
+  },
+  {
+   "text": "five",
+   "start": 15.92,
+   "end": 16.26,
+   "sentence": 2
+  },
+  {
+   "text": "years",
+   "start": 16.26,
+   "end": 16.64,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 16.64,
+   "end": 17.0,
+   "sentence": 2
+  },
+  {
+   "text": "federal",
+   "start": 17.0,
+   "end": 17.22,
+   "sentence": 2
+  },
+  {
+   "text": "prison",
+   "start": 17.22,
+   "end": 17.68,
+   "sentence": 2
+  },
+  {
+   "text": "Released",
+   "start": 18.36,
+   "end": 18.5,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 18.5,
+   "end": 18.86,
+   "sentence": 3
+  },
+  {
+   "text": "1934",
+   "start": 18.86,
+   "end": 19.5,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 20.24,
+   "end": 20.42,
+   "sentence": 3
+  },
+  {
+   "text": "told",
+   "start": 20.42,
+   "end": 20.6,
+   "sentence": 3
+  },
+  {
+   "text": "reporters",
+   "start": 20.6,
+   "end": 20.92,
+   "sentence": 3
+  },
+  {
+   "text": "that",
+   "start": 20.92,
+   "end": 21.46,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 21.46,
+   "end": 21.56,
+   "sentence": 3
+  },
+  {
+   "text": "went",
+   "start": 21.56,
+   "end": 21.72,
+   "sentence": 3
+  },
+  {
+   "text": "looking",
+   "start": 21.72,
+   "end": 22.08,
+   "sentence": 3
+  },
+  {
+   "text": "for",
+   "start": 22.08,
+   "end": 22.28,
+   "sentence": 3
+  },
+  {
+   "text": "trouble",
+   "start": 22.28,
+   "end": 22.56,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 22.56,
+   "end": 23.1,
+   "sentence": 3
+  },
+  {
+   "text": "found",
+   "start": 23.1,
+   "end": 23.4,
+   "sentence": 3
+  },
+  {
+   "text": "it",
+   "start": 23.4,
+   "end": 23.64,
+   "sentence": 3
+  },
+  {
+   "text": "He",
+   "start": 23.64,
+   "end": 24.28,
+   "sentence": 4
+  },
+  {
+   "text": "died",
+   "start": 24.28,
+   "end": 24.52,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 24.52,
+   "end": 24.78,
+   "sentence": 4
+  },
+  {
+   "text": "Rio",
+   "start": 24.78,
+   "end": 24.96,
+   "sentence": 4
+  },
+  {
+   "text": "de",
+   "start": 24.96,
+   "end": 25.24,
+   "sentence": 4
+  },
+  {
+   "text": "Janeiro",
+   "start": 25.24,
+   "end": 25.46,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 25.46,
+   "end": 26.02,
+   "sentence": 4
+  },
+  {
+   "text": "1949",
+   "start": 26.02,
+   "end": 26.98,
+   "sentence": 4
+  },
+  {
+   "text": "leaving",
+   "start": 27.54,
+   "end": 27.84,
+   "sentence": 4
+  },
+  {
+   "text": "an",
+   "start": 27.84,
+   "end": 28.02,
+   "sentence": 4
+  },
+  {
+   "text": "estate",
+   "start": 28.02,
+   "end": 28.26,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 28.26,
+   "end": 28.64,
+   "sentence": 4
+  },
+  {
+   "text": "seventy-five",
+   "start": 28.64,
+   "end": 29.193,
+   "sentence": 4
+  },
+  {
+   "text": "dollars",
+   "start": 29.193,
+   "end": 29.747,
+   "sentence": 4
+  },
+  {
+   "text": "Would",
+   "start": 30.3,
+   "end": 30.66,
+   "sentence": 5
+  },
+  {
+   "text": "you",
+   "start": 30.66,
+   "end": 30.9,
+   "sentence": 5
+  },
+  {
+   "text": "have",
+   "start": 30.9,
+   "end": 31.12,
+   "sentence": 5
+  },
+  {
+   "text": "trusted",
+   "start": 31.12,
+   "end": 31.4,
+   "sentence": 5
+  },
+  {
+   "text": "a",
+   "start": 31.4,
+   "end": 31.58,
+   "sentence": 5
+  },
+  {
+   "text": "promise",
+   "start": 31.58,
+   "end": 31.84,
+   "sentence": 5
+  },
+  {
+   "text": "of",
+   "start": 31.84,
+   "end": 32.12,
+   "sentence": 5
+  },
+  {
+   "text": "fifty",
+   "start": 32.12,
+   "end": 32.367,
+   "sentence": 5
+  },
+  {
+   "text": "percent",
+   "start": 32.367,
+   "end": 32.613,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 32.86,
+   "end": 33.28,
+   "sentence": 5
+  },
+  {
+   "text": "forty-five",
+   "start": 33.28,
+   "end": 33.42,
+   "sentence": 5
+  },
+  {
+   "text": "days",
+   "start": 33.56,
+   "end": 34.16,
+   "sentence": 5
+  }
+ ],
+ "sentences": [
+  {
+   "text": "On the twenty-sixth of July 1920, the Boston Post started asking hard questions.",
+   "start": 0.0,
+   "end": 6.12
+  },
+  {
+   "text": "Investors lost about twenty million dollars in nineteen-twenty money.",
+   "start": 6.82,
+   "end": 11.04
+  },
+  {
+   "text": "Charged with eighty-six counts of mail fraud, Ponzi was sentenced to five years in federal prison.",
+   "start": 11.68,
+   "end": 17.68
+  },
+  {
+   "text": "Released in 1934, he told reporters that he went looking for trouble and found it.",
+   "start": 18.36,
+   "end": 23.64
+  },
+  {
+   "text": "He died in Rio de Janeiro in 1949, leaving an estate of seventy-five dollars.",
+   "start": 23.64,
+   "end": 29.747
+  },
+  {
+   "text": "Would you have trusted a promise of fifty percent in forty-five days?",
+   "start": 30.3,
+   "end": 34.16
+  }
+ ]
+}

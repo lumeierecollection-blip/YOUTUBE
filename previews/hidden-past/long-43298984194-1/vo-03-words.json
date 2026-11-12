@@ -1,0 +1,473 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (57/74 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "His",
+   "start": 0.0,
+   "end": 0.4,
+   "sentence": 0
+  },
+  {
+   "text": "story",
+   "start": 0.4,
+   "end": 0.84,
+   "sentence": 0
+  },
+  {
+   "text": "was",
+   "start": 0.84,
+   "end": 1.28,
+   "sentence": 0
+  },
+  {
+   "text": "that",
+   "start": 1.28,
+   "end": 1.44,
+   "sentence": 0
+  },
+  {
+   "text": "he",
+   "start": 1.44,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "bought",
+   "start": 1.56,
+   "end": 1.82,
+   "sentence": 0
+  },
+  {
+   "text": "international",
+   "start": 1.82,
+   "end": 2.38,
+   "sentence": 0
+  },
+  {
+   "text": "reply",
+   "start": 2.38,
+   "end": 3.06,
+   "sentence": 0
+  },
+  {
+   "text": "coupons",
+   "start": 3.06,
+   "end": 3.5,
+   "sentence": 0
+  },
+  {
+   "text": "cheaply",
+   "start": 3.5,
+   "end": 4.14,
+   "sentence": 0
+  },
+  {
+   "text": "abroad",
+   "start": 4.14,
+   "end": 4.6,
+   "sentence": 0
+  },
+  {
+   "text": "and",
+   "start": 4.6,
+   "end": 5.34,
+   "sentence": 0
+  },
+  {
+   "text": "redeemed",
+   "start": 5.34,
+   "end": 5.6,
+   "sentence": 0
+  },
+  {
+   "text": "them",
+   "start": 5.6,
+   "end": 5.96,
+   "sentence": 0
+  },
+  {
+   "text": "at",
+   "start": 5.96,
+   "end": 6.08,
+   "sentence": 0
+  },
+  {
+   "text": "face",
+   "start": 6.08,
+   "end": 6.36,
+   "sentence": 0
+  },
+  {
+   "text": "value",
+   "start": 6.36,
+   "end": 6.88,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 6.88,
+   "end": 7.2,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 7.2,
+   "end": 7.3,
+   "sentence": 0
+  },
+  {
+   "text": "United",
+   "start": 7.3,
+   "end": 7.48,
+   "sentence": 0
+  },
+  {
+   "text": "States",
+   "start": 7.48,
+   "end": 8.06,
+   "sentence": 0
+  },
+  {
+   "text": "Between",
+   "start": 8.78,
+   "end": 8.98,
+   "sentence": 1
+  },
+  {
+   "text": "February",
+   "start": 8.98,
+   "end": 9.5,
+   "sentence": 1
+  },
+  {
+   "text": "and",
+   "start": 9.5,
+   "end": 9.9,
+   "sentence": 1
+  },
+  {
+   "text": "March",
+   "start": 9.9,
+   "end": 10.2,
+   "sentence": 1
+  },
+  {
+   "text": "1920",
+   "start": 10.2,
+   "end": 10.9,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 11.56,
+   "end": 11.74,
+   "sentence": 1
+  },
+  {
+   "text": "money",
+   "start": 11.74,
+   "end": 11.94,
+   "sentence": 1
+  },
+  {
+   "text": "invested",
+   "start": 11.94,
+   "end": 12.4,
+   "sentence": 1
+  },
+  {
+   "text": "rose",
+   "start": 12.4,
+   "end": 12.7,
+   "sentence": 1
+  },
+  {
+   "text": "from",
+   "start": 12.7,
+   "end": 13.1,
+   "sentence": 1
+  },
+  {
+   "text": "five",
+   "start": 13.1,
+   "end": 13.387,
+   "sentence": 1
+  },
+  {
+   "text": "thousand",
+   "start": 13.387,
+   "end": 13.673,
+   "sentence": 1
+  },
+  {
+   "text": "to",
+   "start": 13.96,
+   "end": 14.6,
+   "sentence": 1
+  },
+  {
+   "text": "twenty-five",
+   "start": 14.6,
+   "end": 15.05,
+   "sentence": 1
+  },
+  {
+   "text": "thousand",
+   "start": 15.05,
+   "end": 15.5,
+   "sentence": 1
+  },
+  {
+   "text": "dollars",
+   "start": 15.5,
+   "end": 15.95,
+   "sentence": 1
+  },
+  {
+   "text": "By",
+   "start": 16.4,
+   "end": 16.82,
+   "sentence": 2
+  },
+  {
+   "text": "late",
+   "start": 16.82,
+   "end": 17.0,
+   "sentence": 2
+  },
+  {
+   "text": "July",
+   "start": 17.0,
+   "end": 17.42,
+   "sentence": 2
+  },
+  {
+   "text": "Ponzi",
+   "start": 17.86,
+   "end": 18.24,
+   "sentence": 2
+  },
+  {
+   "text": "was",
+   "start": 18.24,
+   "end": 18.36,
+   "sentence": 2
+  },
+  {
+   "text": "taking",
+   "start": 18.36,
+   "end": 18.64,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 18.64,
+   "end": 18.86,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 18.86,
+   "end": 19.149,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 19.149,
+   "end": 19.437,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 19.437,
+   "end": 19.726,
+   "sentence": 2
+  },
+  {
+   "text": "fifty",
+   "start": 19.726,
+   "end": 20.014,
+   "sentence": 2
+  },
+  {
+   "text": "thousand",
+   "start": 20.014,
+   "end": 20.303,
+   "sentence": 2
+  },
+  {
+   "text": "dollars",
+   "start": 20.303,
+   "end": 20.591,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 20.88,
+   "end": 21.36,
+   "sentence": 2
+  },
+  {
+   "text": "day",
+   "start": 21.36,
+   "end": 21.72,
+   "sentence": 2
+  },
+  {
+   "text": "But",
+   "start": 22.28,
+   "end": 22.5,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 22.5,
+   "end": 22.92,
+   "sentence": 3
+  },
+  {
+   "text": "cover",
+   "start": 22.92,
+   "end": 23.0,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 23.0,
+   "end": 23.1,
+   "sentence": 3
+  },
+  {
+   "text": "money",
+   "start": 23.1,
+   "end": 23.32,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 23.32,
+   "end": 23.584,
+   "sentence": 3
+  },
+  {
+   "text": "hundred",
+   "start": 23.584,
+   "end": 23.848,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 23.848,
+   "end": 24.112,
+   "sentence": 3
+  },
+  {
+   "text": "sixty",
+   "start": 24.112,
+   "end": 24.376,
+   "sentence": 3
+  },
+  {
+   "text": "million",
+   "start": 24.64,
+   "end": 25.24,
+   "sentence": 3
+  },
+  {
+   "text": "coupons",
+   "start": 25.24,
+   "end": 25.64,
+   "sentence": 3
+  },
+  {
+   "text": "would",
+   "start": 25.64,
+   "end": 26.18,
+   "sentence": 3
+  },
+  {
+   "text": "have",
+   "start": 26.18,
+   "end": 26.24,
+   "sentence": 3
+  },
+  {
+   "text": "had",
+   "start": 26.24,
+   "end": 26.44,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 26.44,
+   "end": 26.6,
+   "sentence": 3
+  },
+  {
+   "text": "exist",
+   "start": 26.6,
+   "end": 26.88,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 26.88,
+   "end": 27.6,
+   "sentence": 3
+  },
+  {
+   "text": "only",
+   "start": 27.6,
+   "end": 27.84,
+   "sentence": 3
+  },
+  {
+   "text": "about",
+   "start": 27.84,
+   "end": 28.0,
+   "sentence": 3
+  },
+  {
+   "text": "twenty-seven",
+   "start": 28.0,
+   "end": 28.447,
+   "sentence": 3
+  },
+  {
+   "text": "thousand",
+   "start": 28.447,
+   "end": 28.893,
+   "sentence": 3
+  },
+  {
+   "text": "did",
+   "start": 29.34,
+   "end": 29.66,
+   "sentence": 3
+  }
+ ],
+ "sentences": [
+  {
+   "text": "His story was that he bought international reply coupons cheaply abroad and redeemed them at face value in the United States.",
+   "start": 0.0,
+   "end": 8.06
+  },
+  {
+   "text": "Between February and March 1920, the money invested rose from five thousand to twenty-five thousand dollars.",
+   "start": 8.78,
+   "end": 15.95
+  },
+  {
+   "text": "By late July, Ponzi was taking in two hundred and fifty thousand dollars a day.",
+   "start": 16.4,
+   "end": 21.72
+  },
+  {
+   "text": "But to cover the money, a hundred and sixty million coupons would have had to exist, and only about twenty-seven thousand did.",
+   "start": 22.28,
+   "end": 29.66
+  }
+ ]
+}
