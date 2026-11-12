@@ -1149,12 +1149,12 @@
       "attempts": 2,
       "run_id": "43182847480",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T08:28:14.940Z",
+      "updated_at": "2026-11-12T08:28:45.326Z",
       "stage": "research",
-      "topic": "Indie Gaming World in Disarray After Studio Uses AI to Fix a Bug in 'Big Walk'",
-      "score": 77.2,
-      "pillar": "Unexpected AI abilities and limits",
-      "hook": "An indie game developer used AI to fix a bug, and now the entire gaming community is having a meltdown.",
+      "topic": "United Airlines Bans Autonomous AI Agents From Booking Flights for Travelers",
+      "score": 75.1,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "United Airlines just officially banned autonomous AI bots from booking tickets for humans.",
       "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/students-complete-entire-university-assessments-in-minutes-u-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     },
     "2026-11-11-ch1": {
@@ -2237,6 +2237,15 @@
       "at_ms": 1794472094940,
       "score": 77.2,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "2",
+      "topic": "United Airlines Bans Autonomous AI Agents From Booking Flights for Travelers",
+      "slug": "united-airlines-bans-autonomous-ai-agents-from-booking-fligh",
+      "slot": "2026-11-11-ch2",
+      "at_ms": 1794472125326,
+      "score": 75.1,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
