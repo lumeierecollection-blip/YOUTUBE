@@ -1,0 +1,422 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (48/63 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Ponzi",
+   "start": 0.0,
+   "end": 0.72,
+   "sentence": 0
+  },
+  {
+   "text": "promised",
+   "start": 0.72,
+   "end": 0.96,
+   "sentence": 0
+  },
+  {
+   "text": "fifty",
+   "start": 0.96,
+   "end": 1.313,
+   "sentence": 0
+  },
+  {
+   "text": "percent",
+   "start": 1.313,
+   "end": 1.667,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 2.02,
+   "end": 2.38,
+   "sentence": 0
+  },
+  {
+   "text": "forty-five",
+   "start": 2.38,
+   "end": 2.53,
+   "sentence": 0
+  },
+  {
+   "text": "days",
+   "start": 2.68,
+   "end": 3.42,
+   "sentence": 0
+  },
+  {
+   "text": "To",
+   "start": 4.18,
+   "end": 4.26,
+   "sentence": 1
+  },
+  {
+   "text": "pay",
+   "start": 4.26,
+   "end": 4.44,
+   "sentence": 1
+  },
+  {
+   "text": "everyone",
+   "start": 4.44,
+   "end": 4.78,
+   "sentence": 1
+  },
+  {
+   "text": "he",
+   "start": 5.24,
+   "end": 5.36,
+   "sentence": 1
+  },
+  {
+   "text": "needed",
+   "start": 5.36,
+   "end": 5.62,
+   "sentence": 1
+  },
+  {
+   "text": "one",
+   "start": 5.62,
+   "end": 5.72,
+   "sentence": 1
+  },
+  {
+   "text": "hundred",
+   "start": 5.72,
+   "end": 5.82,
+   "sentence": 1
+  },
+  {
+   "text": "sixty",
+   "start": 5.82,
+   "end": 5.92,
+   "sentence": 1
+  },
+  {
+   "text": "million",
+   "start": 6.02,
+   "end": 7.34,
+   "sentence": 1
+  },
+  {
+   "text": "coupons",
+   "start": 7.34,
+   "end": 7.64,
+   "sentence": 1
+  },
+  {
+   "text": "but",
+   "start": 8.32,
+   "end": 8.58,
+   "sentence": 1
+  },
+  {
+   "text": "only",
+   "start": 8.58,
+   "end": 8.86,
+   "sentence": 1
+  },
+  {
+   "text": "twenty-seven",
+   "start": 8.86,
+   "end": 9.313,
+   "sentence": 1
+  },
+  {
+   "text": "thousand",
+   "start": 9.313,
+   "end": 9.767,
+   "sentence": 1
+  },
+  {
+   "text": "existed",
+   "start": 10.22,
+   "end": 10.72,
+   "sentence": 1
+  },
+  {
+   "text": "He",
+   "start": 11.54,
+   "end": 11.62,
+   "sentence": 2
+  },
+  {
+   "text": "paid",
+   "start": 11.62,
+   "end": 11.78,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 11.78,
+   "end": 11.9,
+   "sentence": 2
+  },
+  {
+   "text": "crowd",
+   "start": 11.9,
+   "end": 12.18,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 12.18,
+   "end": 12.42,
+   "sentence": 2
+  },
+  {
+   "text": "million",
+   "start": 12.66,
+   "end": 13.06,
+   "sentence": 2
+  },
+  {
+   "text": "dollars",
+   "start": 13.06,
+   "end": 13.14,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 13.06,
+   "end": 13.82,
+   "sentence": 2
+  },
+  {
+   "text": "three",
+   "start": 13.82,
+   "end": 14.12,
+   "sentence": 2
+  },
+  {
+   "text": "days",
+   "start": 14.12,
+   "end": 14.58,
+   "sentence": 2
+  },
+  {
+   "text": "His",
+   "start": 15.32,
+   "end": 15.44,
+   "sentence": 3
+  },
+  {
+   "text": "bank",
+   "start": 15.44,
+   "end": 15.64,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 15.64,
+   "end": 15.94,
+   "sentence": 3
+  },
+  {
+   "text": "seized",
+   "start": 15.94,
+   "end": 16.24,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 16.24,
+   "end": 16.82,
+   "sentence": 3
+  },
+  {
+   "text": "investors",
+   "start": 16.82,
+   "end": 17.16,
+   "sentence": 3
+  },
+  {
+   "text": "lost",
+   "start": 17.16,
+   "end": 17.48,
+   "sentence": 3
+  },
+  {
+   "text": "about",
+   "start": 17.48,
+   "end": 17.86,
+   "sentence": 3
+  },
+  {
+   "text": "twenty",
+   "start": 17.86,
+   "end": 18.05,
+   "sentence": 3
+  },
+  {
+   "text": "million",
+   "start": 18.24,
+   "end": 18.78,
+   "sentence": 3
+  },
+  {
+   "text": "dollars",
+   "start": 18.78,
+   "end": 19.15,
+   "sentence": 3
+  },
+  {
+   "text": "He",
+   "start": 19.52,
+   "end": 19.88,
+   "sentence": 4
+  },
+  {
+   "text": "admitted",
+   "start": 19.88,
+   "end": 20.0,
+   "sentence": 4
+  },
+  {
+   "text": "one",
+   "start": 20.0,
+   "end": 20.54,
+   "sentence": 4
+  },
+  {
+   "text": "of",
+   "start": 20.54,
+   "end": 20.84,
+   "sentence": 4
+  },
+  {
+   "text": "eighty-six",
+   "start": 20.84,
+   "end": 21.07,
+   "sentence": 4
+  },
+  {
+   "text": "fraud",
+   "start": 21.3,
+   "end": 21.84,
+   "sentence": 4
+  },
+  {
+   "text": "counts",
+   "start": 21.84,
+   "end": 22.08,
+   "sentence": 4
+  },
+  {
+   "text": "five",
+   "start": 22.68,
+   "end": 23.0,
+   "sentence": 4
+  },
+  {
+   "text": "years",
+   "start": 23.0,
+   "end": 23.26,
+   "sentence": 4
+  },
+  {
+   "text": "He",
+   "start": 23.94,
+   "end": 24.02,
+   "sentence": 5
+  },
+  {
+   "text": "died",
+   "start": 24.02,
+   "end": 24.22,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 24.22,
+   "end": 24.52,
+   "sentence": 5
+  },
+  {
+   "text": "Rio",
+   "start": 24.52,
+   "end": 24.72,
+   "sentence": 5
+  },
+  {
+   "text": "with",
+   "start": 24.72,
+   "end": 25.4,
+   "sentence": 5
+  },
+  {
+   "text": "seventy-five",
+   "start": 25.4,
+   "end": 25.567,
+   "sentence": 5
+  },
+  {
+   "text": "dollars",
+   "start": 25.567,
+   "end": 25.733,
+   "sentence": 5
+  },
+  {
+   "text": "Would",
+   "start": 25.9,
+   "end": 27.24,
+   "sentence": 6
+  },
+  {
+   "text": "you",
+   "start": 27.24,
+   "end": 27.5,
+   "sentence": 6
+  },
+  {
+   "text": "have",
+   "start": 27.5,
+   "end": 27.98,
+   "sentence": 6
+  },
+  {
+   "text": "invested",
+   "start": 27.98,
+   "end": 28.28,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Ponzi promised fifty percent in forty-five days.",
+   "start": 0.0,
+   "end": 3.42
+  },
+  {
+   "text": "To pay everyone, he needed one hundred sixty million coupons, but only twenty-seven thousand existed.",
+   "start": 4.18,
+   "end": 10.72
+  },
+  {
+   "text": "He paid a crowd two million dollars in three days.",
+   "start": 11.54,
+   "end": 14.58
+  },
+  {
+   "text": "His bank was seized, and investors lost about twenty million dollars.",
+   "start": 15.32,
+   "end": 19.15
+  },
+  {
+   "text": "He admitted one of eighty-six fraud counts: five years.",
+   "start": 19.52,
+   "end": 23.26
+  },
+  {
+   "text": "He died in Rio with seventy-five dollars.",
+   "start": 23.94,
+   "end": 25.733
+  },
+  {
+   "text": "Would you have invested?",
+   "start": 25.9,
+   "end": 28.28
+  }
+ ]
+}

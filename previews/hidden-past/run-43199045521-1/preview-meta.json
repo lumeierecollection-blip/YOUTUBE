@@ -2,11 +2,12 @@
   "channel": "hidden-past",
   "production_run": "run-43199045521-1",
   "agent": "agent-hidden-past",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-12T10:19:40.594Z",
+  "stage": "voice_complete",
+  "status": "ok",
+  "timestamp": "2026-11-12T10:20:42.337Z",
   "branch": "preview/hidden-past-ponzi",
   "commit": "1d3f8f8f5cf56c2d11044c1db84c79f8e797f4e9",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43199045521#artifacts",
-  "note": "not reviewed by the engine critic"
+  "engine": "gemini:Charon",
+  "wpm": 130.7
 }
