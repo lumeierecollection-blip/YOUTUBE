@@ -1,0 +1,434 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (57/65 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Tell",
+   "start": 0.0,
+   "end": 0.44,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.44,
+   "end": 0.74,
+   "sentence": 0
+  },
+  {
+   "text": "you",
+   "start": 0.74,
+   "end": 1.28,
+   "sentence": 0
+  },
+  {
+   "text": "are",
+   "start": 1.28,
+   "end": 1.46,
+   "sentence": 0
+  },
+  {
+   "text": "an",
+   "start": 1.46,
+   "end": 1.58,
+   "sentence": 0
+  },
+  {
+   "text": "expert",
+   "start": 1.58,
+   "end": 1.96,
+   "sentence": 0
+  },
+  {
+   "text": "and",
+   "start": 1.96,
+   "end": 2.54,
+   "sentence": 0
+  },
+  {
+   "text": "it",
+   "start": 2.54,
+   "end": 2.64,
+   "sentence": 0
+  },
+  {
+   "text": "still",
+   "start": 2.74,
+   "end": 2.92,
+   "sentence": 0
+  },
+  {
+   "text": "held",
+   "start": 2.92,
+   "end": 3.18,
+   "sentence": 0
+  },
+  {
+   "text": "firm",
+   "start": 3.18,
+   "end": 3.48,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 3.48,
+   "end": 3.8,
+   "sentence": 0
+  },
+  {
+   "text": "all",
+   "start": 3.8,
+   "end": 4.04,
+   "sentence": 0
+  },
+  {
+   "text": "twenty-four",
+   "start": 4.04,
+   "end": 4.33,
+   "sentence": 0
+  },
+  {
+   "text": "false",
+   "start": 4.62,
+   "end": 5.14,
+   "sentence": 0
+  },
+  {
+   "text": "claims",
+   "start": 5.14,
+   "end": 5.56,
+   "sentence": 0
+  },
+  {
+   "text": "Same",
+   "start": 6.12,
+   "end": 6.5,
+   "sentence": 1
+  },
+  {
+   "text": "myth",
+   "start": 6.5,
+   "end": 6.82,
+   "sentence": 1
+  },
+  {
+   "text": "asked",
+   "start": 7.16,
+   "end": 7.36,
+   "sentence": 1
+  },
+  {
+   "text": "twice",
+   "start": 7.36,
+   "end": 7.72,
+   "sentence": 1
+  },
+  {
+   "text": "same",
+   "start": 8.48,
+   "end": 8.62,
+   "sentence": 1
+  },
+  {
+   "text": "answer",
+   "start": 8.62,
+   "end": 8.9,
+   "sentence": 1
+  },
+  {
+   "text": "We",
+   "start": 9.64,
+   "end": 9.69,
+   "sentence": 2
+  },
+  {
+   "text": "asked",
+   "start": 9.66,
+   "end": 9.9,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 9.9,
+   "end": 10.28,
+   "sentence": 2
+  },
+  {
+   "text": "models",
+   "start": 10.28,
+   "end": 10.6,
+   "sentence": 2
+  },
+  {
+   "text": "twelve",
+   "start": 10.6,
+   "end": 10.89,
+   "sentence": 2
+  },
+  {
+   "text": "myths",
+   "start": 11.18,
+   "end": 11.48,
+   "sentence": 2
+  },
+  {
+   "text": "plainly",
+   "start": 11.94,
+   "end": 12.06,
+   "sentence": 2
+  },
+  {
+   "text": "then",
+   "start": 12.88,
+   "end": 12.93,
+   "sentence": 2
+  },
+  {
+   "text": "as",
+   "start": 12.88,
+   "end": 13.2,
+   "sentence": 2
+  },
+  {
+   "text": "an",
+   "start": 13.2,
+   "end": 13.3,
+   "sentence": 2
+  },
+  {
+   "text": "expert",
+   "start": 13.3,
+   "end": 13.54,
+   "sentence": 2
+  },
+  {
+   "text": "Google's",
+   "start": 14.46,
+   "end": 14.72,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 14.72,
+   "end": 14.91,
+   "sentence": 3
+  },
+  {
+   "text": "held",
+   "start": 15.1,
+   "end": 15.68,
+   "sentence": 3
+  },
+  {
+   "text": "on",
+   "start": 15.68,
+   "end": 15.94,
+   "sentence": 3
+  },
+  {
+   "text": "all",
+   "start": 15.94,
+   "end": 16.2,
+   "sentence": 3
+  },
+  {
+   "text": "twelve",
+   "start": 16.2,
+   "end": 16.95,
+   "sentence": 3
+  },
+  {
+   "text": "OpenAI's",
+   "start": 16.95,
+   "end": 17.7,
+   "sentence": 4
+  },
+  {
+   "text": "GPT-OSS",
+   "start": 17.7,
+   "end": 18.45,
+   "sentence": 4
+  },
+  {
+   "text": "held",
+   "start": 19.2,
+   "end": 19.66,
+   "sentence": 4
+  },
+  {
+   "text": "on",
+   "start": 19.66,
+   "end": 19.96,
+   "sentence": 4
+  },
+  {
+   "text": "all",
+   "start": 19.96,
+   "end": 20.2,
+   "sentence": 4
+  },
+  {
+   "text": "twelve",
+   "start": 20.2,
+   "end": 20.71,
+   "sentence": 4
+  },
+  {
+   "text": "A",
+   "start": 21.22,
+   "end": 21.3,
+   "sentence": 5
+  },
+  {
+   "text": "title",
+   "start": 21.3,
+   "end": 21.64,
+   "sentence": 5
+  },
+  {
+   "text": "does",
+   "start": 21.64,
+   "end": 21.92,
+   "sentence": 5
+  },
+  {
+   "text": "not",
+   "start": 21.92,
+   "end": 22.16,
+   "sentence": 5
+  },
+  {
+   "text": "change",
+   "start": 22.16,
+   "end": 22.48,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 22.48,
+   "end": 22.7,
+   "sentence": 5
+  },
+  {
+   "text": "facts",
+   "start": 22.7,
+   "end": 22.9,
+   "sentence": 5
+  },
+  {
+   "text": "so",
+   "start": 23.48,
+   "end": 23.64,
+   "sentence": 5
+  },
+  {
+   "text": "ask",
+   "start": 23.64,
+   "end": 23.9,
+   "sentence": 5
+  },
+  {
+   "text": "AI",
+   "start": 23.9,
+   "end": 24.2,
+   "sentence": 5
+  },
+  {
+   "text": "to",
+   "start": 24.2,
+   "end": 24.56,
+   "sentence": 5
+  },
+  {
+   "text": "check",
+   "start": 24.56,
+   "end": 24.88,
+   "sentence": 5
+  },
+  {
+   "text": "you",
+   "start": 24.88,
+   "end": 25.12,
+   "sentence": 5
+  },
+  {
+   "text": "not",
+   "start": 25.38,
+   "end": 25.62,
+   "sentence": 5
+  },
+  {
+   "text": "agree",
+   "start": 25.62,
+   "end": 26.0,
+   "sentence": 5
+  },
+  {
+   "text": "Has",
+   "start": 26.6,
+   "end": 26.74,
+   "sentence": 6
+  },
+  {
+   "text": "AI",
+   "start": 26.74,
+   "end": 27.0,
+   "sentence": 6
+  },
+  {
+   "text": "ever",
+   "start": 27.0,
+   "end": 27.48,
+   "sentence": 6
+  },
+  {
+   "text": "simply",
+   "start": 27.48,
+   "end": 27.82,
+   "sentence": 6
+  },
+  {
+   "text": "agreed",
+   "start": 27.82,
+   "end": 28.12,
+   "sentence": 6
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Tell AI you are an expert, and it still held firm on all twenty-four false claims.",
+   "start": 0.0,
+   "end": 5.56
+  },
+  {
+   "text": "Same myth, asked twice, same answer.",
+   "start": 6.12,
+   "end": 8.9
+  },
+  {
+   "text": "We asked two models twelve myths, plainly, then as an expert.",
+   "start": 9.64,
+   "end": 13.54
+  },
+  {
+   "text": "Google's Flash-Lite held on all twelve.",
+   "start": 14.46,
+   "end": 16.95
+  },
+  {
+   "text": "OpenAI's GPT-OSS held on all twelve.",
+   "start": 16.95,
+   "end": 20.71
+  },
+  {
+   "text": "A title does not change the facts, so ask AI to check you, not agree.",
+   "start": 21.22,
+   "end": 26.0
+  },
+  {
+   "text": "Has AI ever simply agreed?",
+   "start": 26.6,
+   "end": 28.12
+  }
+ ]
+}
