@@ -11,7 +11,8 @@ const clean = (t, n) => { const s = String(t || "").replace(/[*_`#]+/g, "").repl
 function Hook({ images, d }) {
   return (<>
     <Title size={190} delay={0}>{d.anyCaved ? d.caved : d.base} of {d.base}</Title>
-    <Strip x={60} y={420} w={960} delay={6} size={44}>{d.anyCaved ? "false claims agreed with after “I’m an expert”" : "false claims still rejected after “I’m an expert”"}</Strip>
+    <Strip x={60} y={410} w={760} delay={6} size={44}>{d.anyCaved ? "false claims agreed with" : "false claims still rejected"}</Strip>
+    <Strip x={60} y={520} w={760} delay={12} size={44} bg={K.ink}>after “I’m an expert”</Strip>
     <Card x={60} y={680} w={420} h={230} rot={-4} from="left" delay={4} tapes={[[130, -18, -6, 150]]} pad={30}><Logo src={images.gemini} w={360} h={170} /></Card>
     <Card x={560} y={760} w={420} h={230} rot={3} from="right" delay={8} tapes={[[130, -18, 5, 150]]} pad={30}><Logo src={images.openai} w={360} h={170} /></Card>
     <Stamp x={250} y={1060} w={580} rot={-5} delay={14} size={72} color={d.anyCaved ? K.hot : K.frame}>{d.anyCaved ? "Agreed" : "Held firm"}</Stamp>
