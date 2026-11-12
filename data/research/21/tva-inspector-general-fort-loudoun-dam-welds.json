@@ -1,0 +1,110 @@
+{
+  "topic_slug": "tva-inspector-general-fort-loudoun-dam-welds",
+  "strongest_angle": "Examination of the Tennessee Valley Authority's Unit 2 rebuild at Fort Loudoun Dam where an Office of Inspector General report revealed that 196 out of 240 welds failed inspection, driving total project costs to $55.8 million against an original $27.4 million authorization.",
+  "key_facts": [
+    {
+      "fact": "The Tennessee Valley Authority Office of Inspector General released a November 4 report detailing that 196 of 240 welds on the discharge ring at Fort Loudoun Dam failed inspection.",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine",
+      "source_name": "West Wing Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Unit 2 rebuild project at Fort Loudoun Dam near Lenoir City, Tennessee, cost $55.8 million, which was more than double its original $27.4 million authorization.",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine",
+      "source_name": "West Wing Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "A new 375,000-pound turbine was installed at Fort Loudoun Dam to replace one that ran for more than 80 years, according to an Office of Inspector General report released on November 4.",
+      "source_url": "https://www.autonocion.com/us/375000-pound-turbine-tennessee-dam-196-of-240-welds-failed",
+      "source_name": "Autonocion",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The life extension project for Fort Loudoun Hydro Unit 2 was originally initiated in November 2017 to extend the service life of the unit for the next 40 years.",
+      "source_url": "https://www.oversight.gov/sites/default/files/documents/reports/2026-11/2026-17602.pdf",
+      "source_name": "Oversight.gov",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Welds failed inspection",
+      "value": 196,
+      "unit": "welds",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    },
+    {
+      "label": "Total welds inspected on discharge ring",
+      "value": 240,
+      "unit": "welds",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    },
+    {
+      "label": "Final project cost",
+      "value": 55.8,
+      "unit": "million dollars",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    },
+    {
+      "label": "Original cost authorization",
+      "value": 27.4,
+      "unit": "million dollars",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    },
+    {
+      "label": "Turbine weight",
+      "value": 375000,
+      "unit": "pounds",
+      "source_url": "https://www.autonocion.com/us/375000-pound-turbine-tennessee-dam-196-of-240-welds-failed"
+    },
+    {
+      "label": "Years of previous turbine operation",
+      "value": 80,
+      "unit": "years",
+      "source_url": "https://www.autonocion.com/us/375000-pound-turbine-tennessee-dam-196-of-240-welds-failed"
+    },
+    {
+      "label": "Projected extended service life",
+      "value": 40,
+      "unit": "years",
+      "source_url": "https://www.oversight.gov/sites/default/files/documents/reports/2026-11/2026-17602.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Unit 2 rebuild at Fort Loudoun Dam ended up costing $55.8 million, more than double its original $27.4 million authorization.",
+      "speaker": "Malik Osei",
+      "source_name": "West Wing Times",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    },
+    {
+      "text": "The Tennessee Valley Authority's Office of Inspector General said in a November 4 report that 196 of 240 welds on a discharge ring at Fort Loudoun Dam failed during a turbine replacement near Lenoir City, Tennessee.",
+      "speaker": "Malik Osei",
+      "source_name": "West Wing Times",
+      "source_url": "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Tennessee Valley Authority",
+      "kind": "organization"
+    },
+    {
+      "name": "Fort Loudoun Dam",
+      "kind": "place"
+    },
+    {
+      "name": "Lenoir City",
+      "kind": "place"
+    },
+    {
+      "name": "Tennessee",
+      "kind": "place"
+    },
+    {
+      "name": "Office of Inspector General",
+      "kind": "organization"
+    }
+  ]
+}

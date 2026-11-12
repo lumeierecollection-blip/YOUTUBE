@@ -1,0 +1,75 @@
+{
+  "channel_id": "21",
+  "topic_slug": "tva-inspector-general-fort-loudoun-dam-welds",
+  "format": "shorts",
+  "hook": "At Fort Loudoun Dam, 196 failed welds on the discharge ring drove costs to $55.8 million.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "At Fort Loudoun Dam, 196 failed welds on the discharge ring drove costs to $55.8 million.",
+      "visual_cue": "Close-up of a damaged industrial weld on a large metal ring.",
+      "sfx_cue": "Metallic clinking sound followed by a low hum.",
+      "b_roll": [
+        "Industrial footage of dam machinery"
+      ],
+      "text_overlay": {
+        "text": "196 Failed Welds"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Tennessee Valley Authority began a rebuild of Unit 2 near Lenoir City, Tennessee, to extend its life by 40 years. Why did this project balloon to $55.8 million?",
+      "visual_cue": "Map showing Lenoir City, Tennessee, followed by a wide shot of the dam interior.",
+      "sfx_cue": "Environmental sound of rushing water.",
+      "b_roll": [
+        "Map of Tennessee",
+        "Exterior of Fort Loudoun Dam"
+      ],
+      "text_overlay": {
+        "text": "Unit 2 Rebuild"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "A November 4 Office of Inspector General report revealed 196 of 240 discharge ring welds failed.",
+      "visual_cue": "Document graphic highlighting the Office of Inspector General report findings.",
+      "sfx_cue": "Paper rustling sound.",
+      "b_roll": [
+        "Official government report document"
+      ],
+      "text_overlay": {
+        "text": "Failed Inspection"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Tennessee Valley Authority installed a 375,000-pound turbine to replace the 80-year-old original unit.",
+      "visual_cue": "Split screen showing the cost escalation graph.",
+      "sfx_cue": "Digital ticking sound.",
+      "b_roll": [
+        "Chart showing 27.4 million vs 55.8 million dollars",
+        "Archive photo of old turbine"
+      ],
+      "text_overlay": {
+        "text": "Costs Doubled"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These failures pushed costs to $55.8 million, far exceeding the original $27.4 million project authorization.",
+      "visual_cue": "Graphic showing the final cost figure $55.8 million.",
+      "sfx_cue": "Final thud sound.",
+      "b_roll": [
+        "Dam turbine industrial shot"
+      ],
+      "text_overlay": {
+        "text": "$55.8 Million Total"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.westwingtimes.com/oversight/tva-inspector-general-finds-196-of-240-welds-failed-on-fort-loudoun-dam-turbine",
+    "https://www.oversight.gov/sites/default/files/documents/reports/2026-11/2026-17602.pdf",
+    "https://www.autonocion.com/us/375000-pound-turbine-tennessee-dam-196-of-240-welds-failed"
+  ]
+}
