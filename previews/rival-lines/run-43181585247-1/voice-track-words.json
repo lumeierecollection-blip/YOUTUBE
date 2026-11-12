@@ -1,0 +1,445 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (52/66 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.3,
+   "sentence": 0
+  },
+  {
+   "text": "2022",
+   "start": 0.3,
+   "end": 0.9,
+   "sentence": 0
+  },
+  {
+   "text": "World",
+   "start": 0.9,
+   "end": 1.8,
+   "sentence": 0
+  },
+  {
+   "text": "Cup",
+   "start": 1.8,
+   "end": 2.12,
+   "sentence": 0
+  },
+  {
+   "text": "final",
+   "start": 2.12,
+   "end": 2.52,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 3.1,
+   "end": 3.4,
+   "sentence": 0
+  },
+  {
+   "text": "against",
+   "start": 3.4,
+   "end": 4.12,
+   "sentence": 0
+  },
+  {
+   "text": "France",
+   "start": 4.12,
+   "end": 4.48,
+   "sentence": 0
+  },
+  {
+   "text": "three-all",
+   "start": 4.48,
+   "end": 5.32,
+   "sentence": 0
+  },
+  {
+   "text": "then",
+   "start": 6.16,
+   "end": 6.21,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 6.2,
+   "end": 6.62,
+   "sentence": 0
+  },
+  {
+   "text": "won",
+   "start": 6.62,
+   "end": 7.24,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 7.24,
+   "end": 7.48,
+   "sentence": 0
+  },
+  {
+   "text": "penalties",
+   "start": 7.48,
+   "end": 7.78,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 8.72,
+   "end": 9.0,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 9.0,
+   "end": 9.5,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 9.5,
+   "end": 9.55,
+   "sentence": 1
+  },
+  {
+   "text": "four-three-three",
+   "start": 9.54,
+   "end": 10.13,
+   "sentence": 1
+  },
+  {
+   "text": "France",
+   "start": 10.72,
+   "end": 11.0,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 11.0,
+   "end": 11.34,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 11.34,
+   "end": 11.4,
+   "sentence": 1
+  },
+  {
+   "text": "four-two-three-one",
+   "start": 11.4,
+   "end": 12.18,
+   "sentence": 1
+  },
+  {
+   "text": "In",
+   "start": 12.96,
+   "end": 13.18,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 13.18,
+   "end": 13.28,
+   "sentence": 2
+  },
+  {
+   "text": "first",
+   "start": 13.28,
+   "end": 13.6,
+   "sentence": 2
+  },
+  {
+   "text": "forty",
+   "start": 13.6,
+   "end": 13.79,
+   "sentence": 2
+  },
+  {
+   "text": "minutes",
+   "start": 13.98,
+   "end": 14.36,
+   "sentence": 2
+  },
+  {
+   "text": "Argentina",
+   "start": 14.68,
+   "end": 15.02,
+   "sentence": 2
+  },
+  {
+   "text": "completed",
+   "start": 15.02,
+   "end": 15.7,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 15.7,
+   "end": 15.792,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 15.792,
+   "end": 15.884,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 15.884,
+   "end": 15.976,
+   "sentence": 2
+  },
+  {
+   "text": "thirty",
+   "start": 15.976,
+   "end": 16.068,
+   "sentence": 2
+  },
+  {
+   "text": "passes",
+   "start": 16.16,
+   "end": 17.3,
+   "sentence": 2
+  },
+  {
+   "text": "to",
+   "start": 17.3,
+   "end": 17.68,
+   "sentence": 2
+  },
+  {
+   "text": "France's",
+   "start": 17.68,
+   "end": 18.14,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 18.14,
+   "end": 18.464,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 18.464,
+   "end": 18.788,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 18.788,
+   "end": 19.112,
+   "sentence": 2
+  },
+  {
+   "text": "sixteen",
+   "start": 19.112,
+   "end": 19.436,
+   "sentence": 2
+  },
+  {
+   "text": "By",
+   "start": 19.76,
+   "end": 19.94,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 19.94,
+   "end": 20.06,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-eighth",
+   "start": 20.06,
+   "end": 20.39,
+   "sentence": 3
+  },
+  {
+   "text": "minute",
+   "start": 20.72,
+   "end": 20.86,
+   "sentence": 3
+  },
+  {
+   "text": "Argentina",
+   "start": 21.1,
+   "end": 21.38,
+   "sentence": 3
+  },
+  {
+   "text": "had",
+   "start": 21.38,
+   "end": 21.84,
+   "sentence": 3
+  },
+  {
+   "text": "ten",
+   "start": 21.84,
+   "end": 21.99,
+   "sentence": 3
+  },
+  {
+   "text": "shots",
+   "start": 22.14,
+   "end": 22.4,
+   "sentence": 3
+  },
+  {
+   "text": "France",
+   "start": 22.82,
+   "end": 23.04,
+   "sentence": 4
+  },
+  {
+   "text": "had",
+   "start": 23.04,
+   "end": 23.32,
+   "sentence": 4
+  },
+  {
+   "text": "two",
+   "start": 23.32,
+   "end": 23.58,
+   "sentence": 4
+  },
+  {
+   "text": "Then",
+   "start": 24.38,
+   "end": 24.44,
+   "sentence": 5
+  },
+  {
+   "text": "France",
+   "start": 24.44,
+   "end": 24.8,
+   "sentence": 5
+  },
+  {
+   "text": "scored",
+   "start": 24.8,
+   "end": 25.1,
+   "sentence": 5
+  },
+  {
+   "text": "twice",
+   "start": 25.1,
+   "end": 25.42,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 25.42,
+   "end": 25.78,
+   "sentence": 5
+  },
+  {
+   "text": "two",
+   "start": 25.78,
+   "end": 26.04,
+   "sentence": 5
+  },
+  {
+   "text": "minutes",
+   "start": 26.04,
+   "end": 26.34,
+   "sentence": 5
+  },
+  {
+   "text": "Argentina",
+   "start": 26.34,
+   "end": 27.34,
+   "sentence": 6
+  },
+  {
+   "text": "built",
+   "start": 27.34,
+   "end": 27.92,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 27.92,
+   "end": 28.12,
+   "sentence": 6
+  },
+  {
+   "text": "lead",
+   "start": 28.12,
+   "end": 28.32,
+   "sentence": 6
+  },
+  {
+   "text": "France",
+   "start": 28.8,
+   "end": 28.9,
+   "sentence": 7
+  },
+  {
+   "text": "built",
+   "start": 28.9,
+   "end": 29.38,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 29.38,
+   "end": 29.56,
+   "sentence": 7
+  },
+  {
+   "text": "comeback",
+   "start": 29.56,
+   "end": 29.84,
+   "sentence": 7
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The 2022 World Cup final: Argentina against France, three-all, then Argentina won on penalties.",
+   "start": 0.0,
+   "end": 7.78
+  },
+  {
+   "text": "Argentina in a four-three-three, France in a four-two-three-one.",
+   "start": 8.72,
+   "end": 12.18
+  },
+  {
+   "text": "In the first forty minutes, Argentina completed two hundred and thirty passes to France's one hundred and sixteen.",
+   "start": 12.96,
+   "end": 19.436
+  },
+  {
+   "text": "By the seventy-eighth minute, Argentina had ten shots.",
+   "start": 19.76,
+   "end": 22.4
+  },
+  {
+   "text": "France had two.",
+   "start": 22.82,
+   "end": 23.58
+  },
+  {
+   "text": "Then France scored twice in two minutes.",
+   "start": 24.38,
+   "end": 26.34
+  },
+  {
+   "text": "Argentina built the lead.",
+   "start": 26.34,
+   "end": 28.32
+  },
+  {
+   "text": "France built the comeback.",
+   "start": 28.8,
+   "end": 29.84
+  }
+ ]
+}

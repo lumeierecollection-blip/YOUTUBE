@@ -2,11 +2,12 @@
   "channel": "rival-lines",
   "production_run": "run-43181585247-1",
   "agent": "agent-rival-lines",
-  "stage": "script_approved",
-  "status": "pending",
-  "timestamp": "2026-11-12T08:18:54.539Z",
+  "stage": "voice_complete",
+  "status": "ok",
+  "timestamp": "2026-11-12T08:19:10.258Z",
   "branch": "preview/rival-lines-serious",
   "commit": "8aa39f1e053f115422b4b1f4a0deefae9d1b9805",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181585247#artifacts",
-  "note": "not reviewed by the engine critic"
+  "engine": "gemini:Rasalgethi",
+  "wpm": 129.5
 }
