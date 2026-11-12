@@ -1,0 +1,66 @@
+name: Long-form Stills
+
+# Visual approval gate for long form: renders single frames (Remotion renderStill) of the real long-form compositions for every channel, plus labelled contact
+# sheets. It renders no video, holds no YouTube credentials and cannot upload. Push to stills/<anything>, or stills/<channel-key> to render one channel.
+on:
+  push:
+    branches:
+      - "stills/**"
+
+concurrency:
+  group: stills-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; echo "retrying in ${pause}s"; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq unzip curl
+          pip3 install --quiet -r platform/channels/hidden-past/requirements.txt
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Render the stills
+        timeout-minutes: 45
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          b="${GITHUB_REF_NAME#stills/}"
+          keys="hidden-past,ai-tested,court-and-spotlight,rival-lines"
+          for k in ${keys//,/ }; do case "$b" in "$k"*) keys="$k";; esac; done
+          echo "channels: $keys"
+          node platform/longform/stills/run.mjs "$keys"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: longform-stills-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          path: |
+            output/longform-approval/**/*.jpg
+            output/longform-approval/**/*.json
+            !output/longform-approval/**/raw/**

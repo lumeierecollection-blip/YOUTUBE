@@ -95,9 +95,36 @@ function Captions({ captions }) {
   return <div style={abs(260, 950, 1400, 70, { display: "flex", justifyContent: "center", alignItems: "center", fontFamily: TEXT, fontSize: 38, color: K.ink, textAlign: "center" })}><span style={{ background: "rgba(239,230,210,0.92)", padding: "6px 18px", borderRadius: 4 }}>{c.text}</span></div>;
 }
 
+/** Dated events on a line that draws from the left; each event drops in when its turn comes. s.events: [{ year, label }]. */
+function TimelineScene({ s }) {
+  const f = useCurrentFrame(), n = s.events.length, x0 = 200, x1 = 1720, line = ramp(f, 0, 40 + n * 6);
+  return (<>
+    <AbsoluteFill style={{ background: K.paper }} />
+    {s.heading && <Label x={200} y={150} size={56} delay={4}>{s.heading}</Label>}
+    <div style={abs(x0, 560, (x1 - x0) * line, 6, { background: K.ink })} />
+    {s.events.map((e, i) => { const x = x0 + ((x1 - x0) * i) / Math.max(1, n - 1), a = ramp(f, 14 + i * 12, 28 + i * 12), up = i % 2 === 0; return (<div key={i} style={{ opacity: a }}>
+      <div style={abs(x - 11, 549, 28, 28, { borderRadius: 14, background: K.frame, border: `5px solid ${K.paper}`, boxShadow: `0 0 0 3px ${K.ink}` })} />
+      <div style={abs(x - 160, up ? 400 : 620, 320, 120, { textAlign: "center", fontFamily: SERIF, fontWeight: 700, fontSize: 64, color: K.frame, transform: `translateY(${(1 - a) * (up ? 20 : -20)}px)` })}>{e.year}</div>
+      <div style={abs(x - 170, up ? 470 : 700, 340, 160, { textAlign: "center", fontFamily: TEXT, fontSize: 30, lineHeight: 1.25, color: K.ink })}>{e.label}</div></div>); })}
+  </>);
+}
+/** Two or more quantities drawn to one scale from zero, each labelled with its own figure. s.items: [{ label, value, display, hot? }] */
+function CompareScene({ s }) {
+  const f = useCurrentFrame(), max = Math.max(...s.items.map((i) => i.value));
+  return (<>
+    <AbsoluteFill style={{ background: K.paper }} />
+    {s.heading && <Label x={160} y={110} size={54} delay={2}>{s.heading}</Label>}
+    {s.items.map((it, i) => { const y = 260 + i * 230, w = Math.max(6, (1360 * it.value) / max) * ramp(f, 8 + i * 12, 40 + i * 12); return (<div key={i}>
+      <div style={abs(160, y, 1400, 50, { fontFamily: SERIF, fontVariant: "small-caps", fontSize: 40, color: K.dim, letterSpacing: "0.05em", opacity: ramp(f, 4 + i * 10, 16 + i * 10) })}>{it.label}</div>
+      <div style={abs(160, y + 56, w, 100, { background: it.hot ? K.frame : K.ink })} />
+      <div style={abs(160 + w + 24, y + 56, 500, 100, { fontFamily: COND, fontWeight: 700, fontSize: 84, lineHeight: "100px", color: it.hot ? K.frame : K.ink, opacity: ramp(f, 30 + i * 12, 44 + i * 12) })}>{it.display}</div></div>); })}
+    {s.note && <div style={abs(160, 960, 1600, 50, { fontFamily: MONO, fontSize: 24, color: K.dim })}>{s.note}</div>}
+  </>);
+}
+
 function Fade({ dur, children }) { const f = useCurrentFrame(); return <AbsoluteFill style={{ opacity: interpolate(f, [0, 8, dur - 6, dur], [0, 1, 1, 0], clamp) }}>{children}</AbsoluteFill>; }
 
-const KINDS = { map: MapScene, photo: PhotoScene, number: NumberScene, quote: QuoteScene, title: TitleScene };
+const KINDS = { timeline: TimelineScene, compare: CompareScene, map: MapScene, photo: PhotoScene, number: NumberScene, quote: QuoteScene, title: TitleScene };
 export function HiddenPastLongform({ durationInFrames, scenes, captions, images = {}, credits = {}, maps = {} }) {
   const f = useCurrentFrame();
   return (
@@ -128,3 +155,9 @@ export const longformCompositions = [
   { id: "HiddenPastLongform", component: HiddenPastLongform, ...wide, durationInFrames: 900, defaultProps: { durationInFrames: 900, scenes: [], captions: [], images: {}, credits: {}, maps: {} } },
   { id: "HiddenPastLongThumb", component: HiddenPastLongThumb, ...wide, durationInFrames: 1, defaultProps: { image: "", words: [], maps: {}, map: "" } },
 ];
+
+/** One scene on its own (the visual approval gallery and the transition stage use this). */
+export function HiddenPastSceneOnly({ scene, images = {}, credits = {}, maps = {} }) {
+  const B = KINDS[scene.kind];
+  return <AbsoluteFill style={{ background: K.paper }}><style>{FONT_FACES}</style>{B ? <B s={{ id: "g", ...scene }} images={images} credits={credits} maps={maps} /> : null}<Year year={scene.year} /></AbsoluteFill>;
+}
