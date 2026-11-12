@@ -1,0 +1,463 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "name",
+      "treatment": "name-title-with-portrait",
+      "objective": "Open on the name Charles Ponzi over his photograph with the promise stated at once: 50% in 45 days",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 125,
+      "start_s": 0,
+      "end_s": 4.166666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "coupons",
+      "treatment": "giant-numbers-and-desk-photo",
+      "objective": "Show why it could not work: 160 million coupons needed against 27,000 that existed",
+      "background": "paper panel in saturated frame",
+      "from": 125,
+      "to": 346,
+      "start_s": 4.166666666666667,
+      "end_s": 11.533333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "run",
+      "treatment": "quote-slip-with-number",
+      "objective": "Quote the source sentence on the two million dollars paid out in three days to the crowd",
+      "background": "paper panel in saturated frame",
+      "from": 346,
+      "to": 460,
+      "start_s": 11.533333333333333,
+      "end_s": 15.333333333333334
+    },
+    {
+      "id": "s4",
+      "kind": "collapse",
+      "treatment": "giant-number-and-stamp",
+      "objective": "Show the twenty million dollars investors lost and the bank seized",
+      "background": "paper panel in saturated frame",
+      "from": 460,
+      "to": 586,
+      "start_s": 15.333333333333334,
+      "end_s": 19.533333333333335
+    },
+    {
+      "id": "s5",
+      "kind": "sentence",
+      "treatment": "counted-dots-and-photo",
+      "objective": "Draw eighty-six counts as dots, the one he pleaded guilty to in the accent colour, with the booking photograph and the five-year sentence",
+      "background": "paper panel in saturated frame",
+      "from": 586,
+      "to": 718,
+      "start_s": 19.533333333333335,
+      "end_s": 23.933333333333334
+    },
+    {
+      "id": "s6",
+      "kind": "end",
+      "treatment": "number-and-portrait",
+      "objective": "Show the seventy-five dollars he left, his death in Rio de Janeiro and his 1934 deportation",
+      "background": "paper panel in saturated frame",
+      "from": 718,
+      "to": 777,
+      "start_s": 23.933333333333334,
+      "end_s": 25.9
+    },
+    {
+      "id": "s7",
+      "kind": "close",
+      "treatment": "title-with-stamp",
+      "objective": "Close on a question viewers can answer in the comments: would you have invested",
+      "background": "paper panel in saturated frame",
+      "from": 777,
+      "to": 882,
+      "start_s": 25.9,
+      "end_s": 29.4
+    }
+  ],
+  "captions": [
+    {
+      "text": "Ponzi promised fifty percent",
+      "from": 0,
+      "to": 53,
+      "words": [
+        {
+          "text": "Ponzi",
+          "from": 0
+        },
+        {
+          "text": "promised",
+          "from": 22
+        },
+        {
+          "text": "fifty",
+          "from": 29
+        },
+        {
+          "text": "percent",
+          "from": 39
+        }
+      ]
+    },
+    {
+      "text": "in forty-five days",
+      "from": 61,
+      "to": 106,
+      "words": [
+        {
+          "text": "in",
+          "from": 61
+        },
+        {
+          "text": "forty-five",
+          "from": 71
+        },
+        {
+          "text": "days",
+          "from": 80
+        }
+      ]
+    },
+    {
+      "text": "To pay everyone",
+      "from": 125,
+      "to": 146,
+      "words": [
+        {
+          "text": "To",
+          "from": 125
+        },
+        {
+          "text": "pay",
+          "from": 128
+        },
+        {
+          "text": "everyone",
+          "from": 133
+        }
+      ]
+    },
+    {
+      "text": "he needed one hundred sixty",
+      "from": 157,
+      "to": 181,
+      "words": [
+        {
+          "text": "he",
+          "from": 157
+        },
+        {
+          "text": "needed",
+          "from": 161
+        },
+        {
+          "text": "one",
+          "from": 169
+        },
+        {
+          "text": "hundred",
+          "from": 172
+        },
+        {
+          "text": "sixty",
+          "from": 175
+        }
+      ]
+    },
+    {
+      "text": "million coupons",
+      "from": 181,
+      "to": 232,
+      "words": [
+        {
+          "text": "million",
+          "from": 181
+        },
+        {
+          "text": "coupons",
+          "from": 220
+        }
+      ]
+    },
+    {
+      "text": "but only twenty-seven thousand",
+      "from": 250,
+      "to": 296,
+      "words": [
+        {
+          "text": "but",
+          "from": 250
+        },
+        {
+          "text": "only",
+          "from": 257
+        },
+        {
+          "text": "twenty-seven",
+          "from": 266
+        },
+        {
+          "text": "thousand",
+          "from": 279
+        }
+      ]
+    },
+    {
+      "text": "existed",
+      "from": 307,
+      "to": 325,
+      "words": [
+        {
+          "text": "existed",
+          "from": 307
+        }
+      ]
+    },
+    {
+      "text": "He paid a crowd two",
+      "from": 346,
+      "to": 376,
+      "words": [
+        {
+          "text": "He",
+          "from": 346
+        },
+        {
+          "text": "paid",
+          "from": 349
+        },
+        {
+          "text": "a",
+          "from": 353
+        },
+        {
+          "text": "crowd",
+          "from": 357
+        },
+        {
+          "text": "two",
+          "from": 365
+        }
+      ]
+    },
+    {
+      "text": "million dollars in three days",
+      "from": 380,
+      "to": 440,
+      "words": [
+        {
+          "text": "million",
+          "from": 380
+        },
+        {
+          "text": "dollars",
+          "from": 392
+        },
+        {
+          "text": "in",
+          "from": 392
+        },
+        {
+          "text": "three",
+          "from": 415
+        },
+        {
+          "text": "days",
+          "from": 424
+        }
+      ]
+    },
+    {
+      "text": "His bank was seized and",
+      "from": 460,
+      "to": 505,
+      "words": [
+        {
+          "text": "His",
+          "from": 460
+        },
+        {
+          "text": "bank",
+          "from": 463
+        },
+        {
+          "text": "was",
+          "from": 469
+        },
+        {
+          "text": "seized",
+          "from": 478
+        },
+        {
+          "text": "and",
+          "from": 487
+        }
+      ]
+    },
+    {
+      "text": "investors lost about twenty million",
+      "from": 505,
+      "to": 563,
+      "words": [
+        {
+          "text": "investors",
+          "from": 505
+        },
+        {
+          "text": "lost",
+          "from": 515
+        },
+        {
+          "text": "about",
+          "from": 524
+        },
+        {
+          "text": "twenty",
+          "from": 536
+        },
+        {
+          "text": "million",
+          "from": 547
+        }
+      ]
+    },
+    {
+      "text": "dollars",
+      "from": 563,
+      "to": 578,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 563
+        }
+      ]
+    },
+    {
+      "text": "He admitted one of eighty-six",
+      "from": 586,
+      "to": 635,
+      "words": [
+        {
+          "text": "He",
+          "from": 586
+        },
+        {
+          "text": "admitted",
+          "from": 596
+        },
+        {
+          "text": "one",
+          "from": 600
+        },
+        {
+          "text": "of",
+          "from": 616
+        },
+        {
+          "text": "eighty-six",
+          "from": 625
+        }
+      ]
+    },
+    {
+      "text": "fraud counts",
+      "from": 639,
+      "to": 665,
+      "words": [
+        {
+          "text": "fraud",
+          "from": 639
+        },
+        {
+          "text": "counts",
+          "from": 655
+        }
+      ]
+    },
+    {
+      "text": "five years",
+      "from": 680,
+      "to": 701,
+      "words": [
+        {
+          "text": "five",
+          "from": 680
+        },
+        {
+          "text": "years",
+          "from": 690
+        }
+      ]
+    },
+    {
+      "text": "He died in Rio with",
+      "from": 718,
+      "to": 762,
+      "words": [
+        {
+          "text": "He",
+          "from": 718
+        },
+        {
+          "text": "died",
+          "from": 721
+        },
+        {
+          "text": "in",
+          "from": 727
+        },
+        {
+          "text": "Rio",
+          "from": 736
+        },
+        {
+          "text": "with",
+          "from": 742
+        }
+      ]
+    },
+    {
+      "text": "seventy-five dollars Would you have",
+      "from": 762,
+      "to": 839,
+      "words": [
+        {
+          "text": "seventy-five",
+          "from": 762
+        },
+        {
+          "text": "dollars",
+          "from": 767
+        },
+        {
+          "text": "Would",
+          "from": 777
+        },
+        {
+          "text": "you",
+          "from": 817
+        },
+        {
+          "text": "have",
+          "from": 825
+        }
+      ]
+    },
+    {
+      "text": "invested",
+      "from": 839,
+      "to": 851,
+      "words": [
+        {
+          "text": "invested",
+          "from": 839
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 882,
+  "duration_s": 29.4
+}
