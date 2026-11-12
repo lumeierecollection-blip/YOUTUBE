@@ -2496,9 +2496,14 @@
           "topic": "Massive 1.56km Rose Coral Colony Discovered Off Cocos (Keeling) Islands",
           "slug": "cocos-keeling-islands-massive-rose-coral-colony",
           "reserved_at": "2026-11-11T17:35:31.778Z"
+        },
+        {
+          "topic": "Super El Niño Rains Trigger Atacama Desert's Biggest Floral Bloom in Decades",
+          "slug": "super-el-nino-atacama-desert-floral-bloom",
+          "reserved_at": "2026-11-12T16:56:38.767Z"
         }
       ],
-      "last_generated": "2026-11-11T17:35:31.778Z"
+      "last_generated": "2026-11-12T16:56:38.767Z"
     },
     "10": {
       "channel_name": "Margin Note",
