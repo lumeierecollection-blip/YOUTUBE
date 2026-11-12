@@ -1170,6 +1170,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "For the first time in history, fallen dictators and war criminals were put on trial before an international tribunal.",
       "error": "4 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 3 \"Who directed the 20 present?\" — The narration asks a question rather than providing information, and it is unclear who the '20' are.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But the case needed a self-taught New York lawyer.\" — It is unclear what 'the case' refers to or why a self-taught lawyer was"
+    },
+    "2026-11-12-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "43271634609",
+      "trigger": "schedule",
+      "updated_at": "2026-11-12T17:39:04.233Z"
     }
   },
   "uploads": [
@@ -2345,5 +2353,5 @@
     "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT ",
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
-  "last_poll_at": "2026-11-12T08:26:00.012Z"
+  "last_poll_at": "2026-11-12T17:39:04.232Z"
 }
