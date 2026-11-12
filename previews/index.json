@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T20:16:53.017Z",
+  "rebuilt_at": "2026-11-12T20:20:32.201Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,21 +118,21 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-12T20:16:52.617Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-12T20:20:12.891Z",
       "branch": "longform/hidden-past-pilot",
-      "commit": "6ec5b985",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43298153986#artifacts)",
+      "commit": "1e6d1933",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43298984194#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "Image to composite must have same dimensions or smaller",
+      "blocker": "",
       "lastOk": "2026-11-12T19:26:15.892Z",
-      "run": "long-43298153986-1"
+      "run": "long-43298984194-1"
     },
     {
       "key": "red-space-facts",
