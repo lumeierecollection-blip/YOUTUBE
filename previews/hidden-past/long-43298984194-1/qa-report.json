@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 112.96,
+  "width": 1920,
+  "height": 1080,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -20.2,
+  "max_volume_db": -2.3,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Charon",
+    "seconds": 111.699592,
+    "words": 259,
+    "wpm": 139.1,
+    "playback_speed": 1,
+    "fallback_notes": []
+  },
+  "format": "long",
+  "minutes": 1.86,
+  "gate": {
+    "chapters": 4,
+    "sentences": 18,
+    "words": 259,
+    "minutes_at_slow": 1.9,
+    "minutes_at_fast": 1.5,
+    "quotations": 2,
+    "unclaimed_sentences": 2,
+    "first_question_at_word": 54
+  }
+}
