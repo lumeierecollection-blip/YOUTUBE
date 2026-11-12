@@ -1177,12 +1177,12 @@
       "attempts": 1,
       "run_id": "43271634609",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T17:43:48.078Z",
-      "stage": "script",
-      "topic": "Meta's Muse AI Agent Expands to Smartwatches",
-      "score": 80.7,
-      "pillar": "New AI features and releases",
-      "hook": "Meta is bringing its conversational AI agent, Muse, directly to your smartwatch."
+      "updated_at": "2026-11-12T17:45:49.703Z",
+      "stage": "research",
+      "topic": "Notion and Fireworks AI Security Breach",
+      "score": 74.3,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "A major security breach at Fireworks AI exposed private chat transcripts for Notion users."
     }
   },
   "uploads": [
@@ -2277,6 +2277,15 @@
       "at_ms": 1794505418362,
       "score": 80.7,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "Notion and Fireworks AI Security Breach",
+      "slug": "notion-and-fireworks-ai-security-breach",
+      "slot": "2026-11-12-ch2",
+      "at_ms": 1794505549703,
+      "score": 74.3,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
