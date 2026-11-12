@@ -1887,9 +1887,14 @@
           "topic": "Edgar Allan Poe and Arthur Conan Doyle Detective Origins Explored",
           "slug": "poe-and-doyle-detective-origins",
           "reserved_at": "2026-11-11T17:36:26.469Z"
+        },
+        {
+          "topic": "Sherlock Holmes and A Study in Scarlet Canon Origins Examined",
+          "slug": "sherlock-holmes-study-in-scarlet-canon-origins",
+          "reserved_at": "2026-11-12T17:00:08.268Z"
         }
       ],
-      "last_generated": "2026-11-11T17:36:26.469Z"
+      "last_generated": "2026-11-12T17:00:08.269Z"
     },
     "8": {
       "channel_name": "Ledger",
