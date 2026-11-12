@@ -38,7 +38,7 @@ jobs:
           cd src/skills/remotion-render
           retry install
           cd "$GITHUB_WORKSPACE"
-          sudo apt-get update -qq && sudo apt-get install -y -qq unzip curl
+          sudo apt-get update -qq && sudo apt-get install -y -qq unzip curl ffmpeg
           pip3 install --quiet -r platform/channels/hidden-past/requirements.txt
       - uses: browser-actions/setup-chrome@v1
         id: chrome

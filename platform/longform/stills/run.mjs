@@ -7,7 +7,7 @@
  * Where a scene is a layout demonstration the label says so.
  */
 import { spawnSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
@@ -18,6 +18,8 @@ const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const only = (process.argv[2] || "hidden-past,ai-tested,court-and-spotlight,rival-lines").split(",");
 const OUT = join(ROOT, "output/longform-approval"), REMOTION = join(ROOT, "src/skills/remotion-render");
 mkdirSync(OUT, { recursive: true });
+// The Remotion bundle imports ./vo.mp3 (the video pipeline puts the narration there); a stills run needs only a placeholder.
+if (!existsSync(join(REMOTION, "vo.mp3"))) spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", join(REMOTION, "vo.mp3")]);
 const jpg = async (file, w = 1500) => `data:image/jpeg;base64,${(await sharp(file).resize({ width: w, withoutEnlargement: true }).jpeg({ quality: 86 }).toBuffer()).toString("base64")}`;
 const ctx = { OUT, ROOT, jpg, commons: async (title, id, dir) => { const { file, entry } = await commonsAsset({ title, dir, id, role: "preview photograph" }); return { file, entry }; }, sharp };
 
