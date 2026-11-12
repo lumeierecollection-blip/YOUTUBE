@@ -1159,16 +1159,17 @@
     },
     "2026-11-11-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "43120297762",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T23:59:01.198Z",
+      "updated_at": "2026-11-12T00:02:40.981Z",
       "stage": "script",
       "topic": "The 1945 opening of the Nuremberg trials",
       "score": 71.1,
       "pillar": "Events that changed the modern world",
-      "hook": "For the first time in history, fallen dictators and war criminals were put on trial before an international tribunal."
+      "hook": "For the first time in history, fallen dictators and war criminals were put on trial before an international tribunal.",
+      "error": "4 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 3 \"Who directed the 20 present?\" — The narration asks a question rather than providing information, and it is unclear who the '20' are.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But the case needed a self-taught New York lawyer.\" — It is unclear what 'the case' refers to or why a self-taught lawyer was"
     }
   },
   "uploads": [

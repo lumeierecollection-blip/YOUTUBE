@@ -1,0 +1,29 @@
+{
+  "tried": [
+    {
+      "topic": "The 1970 Florence Sperm Whale Dynamite Disaster",
+      "score": 76.9,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Rosa Parks' 1955 arrest sparking the Montgomery bus boycott",
+      "score": 76.9,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research."
+    },
+    {
+      "topic": "The 1978 Jonestown mass murder and suicide",
+      "score": 75.5,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-1978-jonestown-mass-murder-and-suicide-shorts:\n  - SCR-16: 61 words implies ~29s duration â€” outside the 20-27s target. This channel needs 42-55 words of voiceover (at 135 wpm): CUT at least 6 words. Count the words in every section's voiceover and hit that range â€” shorter is NOT safer, under 42 fails exactly like over 55."
+    },
+    {
+      "topic": "The 1945 opening of the Nuremberg trials",
+      "score": 71.1,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 3 \"Who directed the 20 present?\" — The narration asks a question rather than providing information, and it is unclear who the '20' are.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But the case needed a self-taught New York lawyer.\" — It is unclear what 'the case' refers to or why a self-taught lawyer was"
+    }
+  ],
+  "selected": null
+}
