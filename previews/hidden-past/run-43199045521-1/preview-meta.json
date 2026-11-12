@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-43199045521-1",
   "agent": "agent-hidden-past",
-  "stage": "awaiting_approval",
+  "stage": "finished",
   "status": "ok",
-  "timestamp": "2026-11-12T10:24:53.062Z",
+  "timestamp": "2026-11-12T10:24:54.642Z",
   "branch": "preview/hidden-past-ponzi",
   "commit": "1d3f8f8f5cf56c2d11044c1db84c79f8e797f4e9",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43199045521#artifacts"
