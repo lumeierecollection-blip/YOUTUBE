@@ -1,0 +1,21 @@
+{
+  "note": "Logos are Wikimedia Commons files with their licences recorded, shown only to name the company. Nothing is AI-generated.",
+  "assets": [
+    {
+      "id": "gemini",
+      "title": "File:Google Gemini logo.svg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Google_Gemini_logo.svg",
+      "licence": "Public domain",
+      "author": "Google",
+      "note": "A company logo shown only to name the company; trademark of its owner."
+    },
+    {
+      "id": "openai",
+      "title": "File:OpenAI logo 2025 (wordmark).svg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:OpenAI_logo_2025_(wordmark).svg",
+      "licence": "Public domain",
+      "author": "OpenAI",
+      "note": "A company logo shown only to name the company; trademark of its owner."
+    }
+  ]
+}
