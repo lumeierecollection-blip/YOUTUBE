@@ -2,12 +2,10 @@
   "channel": "ai-tested",
   "production_run": "run-43181563231-1",
   "agent": "agent-ai-tested",
-  "stage": "voice_complete",
+  "stage": "visual_complete",
   "status": "ok",
-  "timestamp": "2026-11-12T08:22:49.940Z",
+  "timestamp": "2026-11-12T08:22:51.878Z",
   "branch": "preview/ai-tested-serious",
   "commit": "8aa39f1e053f115422b4b1f4a0deefae9d1b9805",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231#artifacts",
-  "engine": "gemini:Charon",
-  "wpm": 137.5
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43181563231#artifacts"
 }
