@@ -1145,11 +1145,11 @@
     },
     "2026-11-11-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43066412899",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "43182847480",
       "trigger": "schedule",
-      "updated_at": "2026-11-11T17:26:54.821Z",
+      "updated_at": "2026-11-12T08:26:00.013Z",
       "stage": "script",
       "topic": "Students Complete Entire University Assessments in Minutes Using AI",
       "score": 80.2,
@@ -2317,5 +2317,5 @@
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou",
     "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT "
   ],
-  "last_poll_at": "2026-11-11T23:30:26.792Z"
+  "last_poll_at": "2026-11-12T08:26:00.012Z"
 }
