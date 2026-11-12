@@ -1,0 +1,5 @@
+Error: slot "tip1" has more than one sentence ending in: A title is not a fact. Ask AI to check you.
+    at fitScript (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fitscript.mjs:11:171)
+    at fitFor (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/expert-preview.mjs:53:41)
+    at Module.expertPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/expert-preview.mjs:54:17)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

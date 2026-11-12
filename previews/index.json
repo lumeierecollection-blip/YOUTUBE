@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T09:24:26.097Z",
+  "rebuilt_at": "2026-11-12T09:24:40.240Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,9 +42,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-12T09:24:25.841Z",
+      "stage": "failed",
+      "status": "failed",
+      "at": "2026-11-12T09:24:39.986Z",
       "branch": "preview/ai-tested-expert",
       "commit": "e3859d85",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43190929176#artifacts)",
@@ -54,8 +54,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-12T09:24:25.841Z",
+      "blocker": "slot \"tip1\" has more than one sentence ending in: A title is not a fact. Ask AI to check you.",
+      "lastOk": "2026-11-12T08:56:43.594Z",
       "run": "run-43190929176-1"
     },
     {

@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-43190929176-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-12T09:24:25.841Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-12T09:24:39.986Z",
   "branch": "preview/ai-tested-expert",
   "commit": "e3859d8589cb8792442579f77b83f6f0e43f837a",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43190929176#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43190929176#artifacts",
+  "error": "slot \"tip1\" has more than one sentence ending in: A title is not a fact. Ask AI to check you."
 }
