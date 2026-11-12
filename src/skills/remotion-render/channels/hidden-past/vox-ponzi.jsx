@@ -46,7 +46,7 @@ function Run({ text }) {
     <Title size={96} delay={0} w={940}>The run</Title>
     <Slip text={text} hl="$2 million in three days" x={70} y={330} w={940} size={48} delay={4} />
     <Num x={50} y={760} size={380} delay={16} w={560}>$2M</Num>
-    <Strip x={560} y={880} w={460} delay={22} size={36}>paid out in 3 days</Strip>
+    <Strip x={60} y={1110} w={600} delay={22} size={38}>paid out in 3 days</Strip>
     <Strip x={70} y={1250} w={800} delay={14} size={30} bg={K.ink}>Source: Wikipedia, “Charles Ponzi”</Strip>
   </>);
 }
