@@ -64,19 +64,19 @@ function Sentence({ images, credits }) {
     <Num x={50} y={70} size={400} delay={0} w={520}>86</Num>
     <Strip x={500} y={170} w={520} delay={6} size={36}>counts of mail fraud</Strip>
     <Strip x={500} y={290} w={520} delay={12} size={30} bg={K.ink}>pleaded guilty to one</Strip>
-    <Dots count={86} accentFrom={85} cols={14} x={64} y={560} gap={65} r={22} delay={8} />
-    <Sticker src={images.mug} x={190} y={1060} w={600} h={412} rot={1.5} from="bottom" delay={20} tapes={[[-20, -10, -30, 120], [470, 360, -28, 120]]} credit={credit(credits, "mug")} />
-    <Stamp x={560} y={1330} w={470} rot={-6} delay={34} size={50}>Five years<br />in prison</Stamp>
+    <Dots count={86} accentFrom={85} cols={14} x={64} y={520} gap={62} r={21} delay={8} />
+    <Sticker src={images.mug} x={80} y={1000} w={520} h={357} rot={1.5} from="bottom" delay={20} tapes={[[-20, -10, -30, 120], [470, 360, -28, 120]]} credit={credit(credits, "mug")} />
+    <Stamp x={640} y={1060} w={380} rot={-6} delay={34} size={50}>Five years<br />in prison</Stamp>
   </>);
 }
 function End({ images, credits }) {
   return (<>
-    <Num x={60} y={70} size={330} delay={0} w={500} color={K.ink}>$75</Num>
-    <Strip x={520} y={170} w={500} delay={6} size={36}>estate at his death</Strip>
-    <Strip x={520} y={290} w={500} delay={10} size={32} bg={K.ink}>Rio de Janeiro, 1949</Strip>
-    <Sticker src={images.face} x={60} y={480} w={430} h={598} rot={-3} from="left" delay={4} filter="grayscale(1) contrast(0.92)" tapes={[[100, -16, -8, 130]]} credit={credit(credits, "face")} />
-    <Strip x={540} y={580} w={480} delay={16} size={32}>Deported to Italy, 1934</Strip>
-    <Strip x={540} y={720} w={480} delay={24} size={30} bg={K.ink}>Charity ward, one eye blind</Strip>
+    <Num x={60} y={70} size={300} delay={0} w={520} color={K.ink}>$75</Num>
+    <Strip x={600} y={150} w={420} delay={6} size={32}>estate at his death</Strip>
+    <Strip x={600} y={260} w={420} delay={10} size={30} bg={K.ink}>Rio de Janeiro, 1949</Strip>
+    <Sticker src={images.face} x={60} y={440} w={500} h={695} rot={-3} from="left" delay={4} filter="grayscale(1) contrast(0.92)" tapes={[[100, -16, -8, 130]]} credit={credit(credits, "face")} />
+    <Strip x={600} y={560} w={420} delay={16} size={30}>Deported to Italy, 1934</Strip>
+    <Strip x={600} y={690} w={420} delay={24} size={30} bg={K.ink}>Died in a charity ward</Strip>
   </>);
 }
 function Close({ images }) {
