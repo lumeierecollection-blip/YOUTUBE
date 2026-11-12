@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T08:59:02.928Z",
+  "rebuilt_at": "2026-11-12T08:59:12.750Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -61,20 +61,20 @@
     {
       "key": "court-and-spotlight",
       "agent": "agent-court-and-spotlight",
-      "stage": "render_complete",
+      "stage": "qa_passed",
       "status": "ok",
-      "at": "2026-11-12T08:59:02.289Z",
+      "at": "2026-11-12T08:59:12.431Z",
       "branch": "preview/court-and-spotlight-serious-long",
       "commit": "e8009719",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43185789692#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "sheet": "[contact-sheet.jpg](court-and-spotlight/run-43185789692-1/contact-sheet.jpg)",
+      "scenes": "[scene-s1.jpg](court-and-spotlight/run-43185789692-1/scene-s1.jpg) [scene-s2.jpg](court-and-spotlight/run-43185789692-1/scene-s2.jpg) [scene-s3.jpg](court-and-spotlight/run-43185789692-1/scene-s3.jpg) [scene-s4.jpg](court-and-spotlight/run-43185789692-1/scene-s4.jpg)",
       "voice": "",
       "script": "",
       "plan": "[scene-plan.json](court-and-spotlight/run-43185789692-1/scene-plan.json)",
-      "qa": "",
+      "qa": "[qa-report.json](court-and-spotlight/run-43185789692-1/qa-report.json)",
       "blocker": "",
-      "lastOk": "2026-11-12T08:59:02.289Z",
+      "lastOk": "2026-11-12T08:59:12.431Z",
       "run": "run-43185789692-1"
     },
     {
