@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-12T09:20:58.043Z",
+  "rebuilt_at": "2026-11-12T09:24:24.382Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-12T09:20:57.541Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-12T09:24:08.922Z",
       "branch": "preview/ai-tested-expert",
-      "commit": "cc1d7202",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43189411968#artifacts)",
+      "commit": "e3859d85",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43190929176#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "slot \"example\" has more than one sentence ending in: Same myth, asked twice. Same answer.",
+      "blocker": "",
       "lastOk": "2026-11-12T08:56:43.594Z",
-      "run": "run-43189411968-1"
+      "run": "run-43190929176-1"
     },
     {
       "key": "court-and-spotlight",
