@@ -2952,9 +2952,14 @@
           "topic": "Panama Metro Line 3 Monorail Tunnels Beneath the Panama Canal",
           "slug": "panama-metro-line-3-tunnels-panama-canal",
           "reserved_at": "2026-11-11T17:10:36.135Z"
+        },
+        {
+          "topic": "TVA Inspector General Finds 196 of 240 Welds Failed on Fort Loudoun Dam Turbine",
+          "slug": "tva-inspector-general-fort-loudoun-dam-welds",
+          "reserved_at": "2026-11-12T17:12:41.224Z"
         }
       ],
-      "last_generated": "2026-11-11T17:10:36.135Z"
+      "last_generated": "2026-11-12T17:12:41.225Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
