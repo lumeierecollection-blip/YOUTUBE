@@ -1,0 +1,135 @@
+{
+  "channel": "hidden-past",
+  "production_run": "long-43279075199-1",
+  "format": "long",
+  "scenes": [
+    {
+      "scene_id": "c1s1",
+      "chapter": "Fifty percent in forty-five days",
+      "treatment": "portrait-with-name",
+      "visual_objective": "Who and where",
+      "start_s": 0,
+      "end_s": 9.333333333333334
+    },
+    {
+      "scene_id": "c1s2",
+      "chapter": "Fifty percent in forty-five days",
+      "treatment": "stakes-number",
+      "visual_objective": "The promise and the first money",
+      "start_s": 9.333333333333334,
+      "end_s": 19.633333333333333
+    },
+    {
+      "scene_id": "c1s3",
+      "chapter": "Fifty percent in forty-five days",
+      "treatment": "central-question",
+      "visual_objective": "Central question",
+      "start_s": 19.633333333333333,
+      "end_s": 25
+    },
+    {
+      "scene_id": "c2s1",
+      "chapter": "From Lugo to Boston",
+      "treatment": "route-map",
+      "visual_objective": "Where he came from",
+      "start_s": 25,
+      "end_s": 34.766666666666666
+    },
+    {
+      "scene_id": "c2s2",
+      "chapter": "From Lugo to Boston",
+      "treatment": "stakes-number",
+      "visual_objective": "How little he had",
+      "start_s": 34.766666666666666,
+      "end_s": 38.8
+    },
+    {
+      "scene_id": "c2s3",
+      "chapter": "From Lugo to Boston",
+      "treatment": "quote-card",
+      "visual_objective": "His own words",
+      "start_s": 38.8,
+      "end_s": 45.2
+    },
+    {
+      "scene_id": "c3s1",
+      "chapter": "The coupons",
+      "treatment": "framed-photo",
+      "visual_objective": "The man at work",
+      "start_s": 45.2,
+      "end_s": 54
+    },
+    {
+      "scene_id": "c3s2",
+      "chapter": "The coupons",
+      "treatment": "growth-numbers",
+      "visual_objective": "How fast it grew",
+      "start_s": 54,
+      "end_s": 61.5
+    },
+    {
+      "scene_id": "c3s3",
+      "chapter": "The coupons",
+      "treatment": "stakes-number",
+      "visual_objective": "The peak",
+      "start_s": 61.5,
+      "end_s": 67.73333333333333
+    },
+    {
+      "scene_id": "c3s4",
+      "chapter": "The coupons",
+      "treatment": "needed-vs-existed",
+      "visual_objective": "Why it could not work",
+      "start_s": 67.73333333333333,
+      "end_s": 76.76666666666667
+    },
+    {
+      "scene_id": "c4s1",
+      "chapter": "The fall",
+      "treatment": "date-card",
+      "visual_objective": "The turn",
+      "start_s": 76.76666666666667,
+      "end_s": 83.8
+    },
+    {
+      "scene_id": "c4s2",
+      "chapter": "The fall",
+      "treatment": "stakes-number",
+      "visual_objective": "What it cost",
+      "start_s": 83.8,
+      "end_s": 88.63333333333334
+    },
+    {
+      "scene_id": "c4s3",
+      "chapter": "The fall",
+      "treatment": "framed-photo",
+      "visual_objective": "The charge and sentence",
+      "start_s": 88.63333333333334,
+      "end_s": 95.63333333333334
+    },
+    {
+      "scene_id": "c4s4",
+      "chapter": "The fall",
+      "treatment": "quote-card",
+      "visual_objective": "His own words on leaving",
+      "start_s": 95.63333333333334,
+      "end_s": 101.2
+    },
+    {
+      "scene_id": "c4s5",
+      "chapter": "The fall",
+      "treatment": "route-map",
+      "visual_objective": "Where it ended",
+      "start_s": 101.2,
+      "end_s": 108.03333333333333
+    },
+    {
+      "scene_id": "c4s6",
+      "chapter": "The fall",
+      "treatment": "comment-question",
+      "visual_objective": "Question for the comments",
+      "start_s": 108.03333333333333,
+      "end_s": 113.76666666666667
+    }
+  ]
+}

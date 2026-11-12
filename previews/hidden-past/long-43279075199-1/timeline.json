@@ -1,0 +1,1660 @@
+{
+  "scenes": [
+    {
+      "kind": "photo",
+      "image": "portrait",
+      "portrait": true,
+      "name": "Charles Ponzi",
+      "note": "Securities Exchange Company, Boston",
+      "year": "1920",
+      "treatment": "portrait-with-name",
+      "objective": "Who and where",
+      "chapter": 0,
+      "chapter_title": "Fifty percent in forty-five days",
+      "id": "c1s1",
+      "from": 0,
+      "to": 280,
+      "start_s": 0,
+      "end_s": 9.333333333333334
+    },
+    {
+      "kind": "number",
+      "big": "50%",
+      "label": "profit promised within 45 days",
+      "big2": "$1,800",
+      "label2": "from 18 investors in the first month",
+      "year": "1920",
+      "treatment": "stakes-number",
+      "objective": "The promise and the first money",
+      "chapter": 0,
+      "chapter_title": "Fifty percent in forty-five days",
+      "id": "c1s2",
+      "from": 280,
+      "to": 589,
+      "start_s": 9.333333333333334,
+      "end_s": 19.633333333333333
+    },
+    {
+      "kind": "title",
+      "kicker": "The question",
+      "text": "How could a promise that big fall so fast?",
+      "treatment": "central-question",
+      "objective": "Central question",
+      "chapter": 0,
+      "chapter_title": "Fifty percent in forty-five days",
+      "id": "c1s3",
+      "from": 589,
+      "to": 750,
+      "start_s": 19.633333333333333,
+      "end_s": 25
+    },
+    {
+      "kind": "map",
+      "map": "arrival",
+      "caption": "Lugo to Boston",
+      "year": "1903",
+      "treatment": "route-map",
+      "objective": "Where he came from",
+      "chapter": 1,
+      "chapter_title": "From Lugo to Boston",
+      "id": "c2s1",
+      "from": 750,
+      "to": 1043,
+      "start_s": 25,
+      "end_s": 34.766666666666666
+    },
+    {
+      "kind": "number",
+      "big": "$2.50",
+      "label": "in his pocket on arrival, by his own account",
+      "year": "1903",
+      "treatment": "stakes-number",
+      "objective": "How little he had",
+      "chapter": 1,
+      "chapter_title": "From Lugo to Boston",
+      "id": "c2s2",
+      "from": 1043,
+      "to": 1164,
+      "start_s": 34.766666666666666,
+      "end_s": 38.8
+    },
+    {
+      "kind": "quote",
+      "quote": "I landed in this country with $2.50 in cash and $1 million in hopes, and those hopes never left me",
+      "speaker": "Charles Ponzi",
+      "source": "Wikipedia, Charles Ponzi",
+      "year": "1903",
+      "treatment": "quote-card",
+      "objective": "His own words",
+      "chapter": 1,
+      "chapter_title": "From Lugo to Boston",
+      "id": "c2s3",
+      "from": 1164,
+      "to": 1356,
+      "start_s": 38.8,
+      "end_s": 45.2
+    },
+    {
+      "kind": "photo",
+      "image": "desk",
+      "name": "Charles Ponzi at his desk",
+      "year": "1920",
+      "treatment": "framed-photo",
+      "objective": "The man at work",
+      "chapter": 2,
+      "chapter_title": "The coupons",
+      "id": "c3s1",
+      "from": 1356,
+      "to": 1620,
+      "start_s": 45.2,
+      "end_s": 54
+    },
+    {
+      "kind": "number",
+      "big": "$5,000",
+      "label": "invested by February 1920",
+      "big2": "$25,000",
+      "label2": "by March",
+      "year": "1920",
+      "treatment": "growth-numbers",
+      "objective": "How fast it grew",
+      "chapter": 2,
+      "chapter_title": "The coupons",
+      "id": "c3s2",
+      "from": 1620,
+      "to": 1845,
+      "start_s": 54,
+      "end_s": 61.5
+    },
+    {
+      "kind": "number",
+      "big": "$250,000",
+      "label": "taken in a day, late July 1920",
+      "year": "1920",
+      "treatment": "stakes-number",
+      "objective": "The peak",
+      "chapter": 2,
+      "chapter_title": "The coupons",
+      "id": "c3s3",
+      "from": 1845,
+      "to": 2032,
+      "start_s": 61.5,
+      "end_s": 67.73333333333333
+    },
+    {
+      "kind": "number",
+      "big": "160,000,000",
+      "label": "coupons needed to cover the money",
+      "big2": "27,000",
+      "label2": "actually in circulation",
+      "year": "1920",
+      "treatment": "needed-vs-existed",
+      "objective": "Why it could not work",
+      "chapter": 2,
+      "chapter_title": "The coupons",
+      "id": "c3s4",
+      "from": 2032,
+      "to": 2303,
+      "start_s": 67.73333333333333,
+      "end_s": 76.76666666666667
+    },
+    {
+      "kind": "title",
+      "kicker": "26 July 1920",
+      "text": "The Boston Post starts asking questions",
+      "year": "1920",
+      "treatment": "date-card",
+      "objective": "The turn",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s1",
+      "from": 2303,
+      "to": 2514,
+      "start_s": 76.76666666666667,
+      "end_s": 83.8
+    },
+    {
+      "kind": "number",
+      "big": "$20,000,000",
+      "label": "lost by investors, in 1920 dollars",
+      "year": "1920",
+      "treatment": "stakes-number",
+      "objective": "What it cost",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s2",
+      "from": 2514,
+      "to": 2659,
+      "start_s": 83.8,
+      "end_s": 88.63333333333334
+    },
+    {
+      "kind": "photo",
+      "image": "mug",
+      "name": "Booking photograph of Charles Ponzi",
+      "year": "1920",
+      "treatment": "framed-photo",
+      "objective": "The charge and sentence",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s3",
+      "from": 2659,
+      "to": 2869,
+      "start_s": 88.63333333333334,
+      "end_s": 95.63333333333334
+    },
+    {
+      "kind": "quote",
+      "quote": "I went looking for trouble, and I found it.",
+      "speaker": "Charles Ponzi, to reporters, 1934",
+      "source": "Wikipedia, Charles Ponzi",
+      "year": "1934",
+      "treatment": "quote-card",
+      "objective": "His own words on leaving",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s4",
+      "from": 2869,
+      "to": 3036,
+      "start_s": 95.63333333333334,
+      "end_s": 101.2
+    },
+    {
+      "kind": "map",
+      "map": "exile",
+      "caption": "Boston to Rio de Janeiro",
+      "year": "1949",
+      "treatment": "route-map",
+      "objective": "Where it ended",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s5",
+      "from": 3036,
+      "to": 3241,
+      "start_s": 101.2,
+      "end_s": 108.03333333333333
+    },
+    {
+      "kind": "title",
+      "kicker": "Tell us below",
+      "text": "Would you have trusted fifty percent in forty-five days?",
+      "treatment": "comment-question",
+      "objective": "Question for the comments",
+      "chapter": 3,
+      "chapter_title": "The fall",
+      "id": "c4s6",
+      "from": 3241,
+      "to": 3413,
+      "start_s": 108.03333333333333,
+      "end_s": 113.76666666666667
+    }
+  ],
+  "captions": [
+    {
+      "text": "In January 1920",
+      "from": 0,
+      "to": 52,
+      "words": [
+        {
+          "text": "In",
+          "from": 0
+        },
+        {
+          "text": "January",
+          "from": 12
+        },
+        {
+          "text": "1920",
+          "from": 19
+        }
+      ]
+    },
+    {
+      "text": "a man in Boston named Charles Ponzi",
+      "from": 68,
+      "to": 149,
+      "words": [
+        {
+          "text": "a",
+          "from": 68
+        },
+        {
+          "text": "man",
+          "from": 74
+        },
+        {
+          "text": "in",
+          "from": 81
+        },
+        {
+          "text": "Boston",
+          "from": 86
+        },
+        {
+          "text": "named",
+          "from": 94
+        },
+        {
+          "text": "Charles",
+          "from": 112
+        },
+        {
+          "text": "Ponzi",
+          "from": 128
+        }
+      ]
+    },
+    {
+      "text": "started a firm called the Securities Exchange",
+      "from": 149,
+      "to": 242,
+      "words": [
+        {
+          "text": "started",
+          "from": 149
+        },
+        {
+          "text": "a",
+          "from": 167
+        },
+        {
+          "text": "firm",
+          "from": 175
+        },
+        {
+          "text": "called",
+          "from": 183
+        },
+        {
+          "text": "the",
+          "from": 195
+        },
+        {
+          "text": "Securities",
+          "from": 206
+        },
+        {
+          "text": "Exchange",
+          "from": 218
+        }
+      ]
+    },
+    {
+      "text": "Company",
+      "from": 242,
+      "to": 262,
+      "words": [
+        {
+          "text": "Company",
+          "from": 242
+        }
+      ]
+    },
+    {
+      "text": "He promised clients a fifty percent profit",
+      "from": 280,
+      "to": 349,
+      "words": [
+        {
+          "text": "He",
+          "from": 280
+        },
+        {
+          "text": "promised",
+          "from": 281
+        },
+        {
+          "text": "clients",
+          "from": 289
+        },
+        {
+          "text": "a",
+          "from": 305
+        },
+        {
+          "text": "fifty",
+          "from": 312
+        },
+        {
+          "text": "percent",
+          "from": 319
+        },
+        {
+          "text": "profit",
+          "from": 334
+        }
+      ]
+    },
+    {
+      "text": "within forty-five days",
+      "from": 349,
+      "to": 401,
+      "words": [
+        {
+          "text": "within",
+          "from": 349
+        },
+        {
+          "text": "forty-five",
+          "from": 363
+        },
+        {
+          "text": "days",
+          "from": 377
+        }
+      ]
+    },
+    {
+      "text": "In the first month eighteen people invested",
+      "from": 423,
+      "to": 496,
+      "words": [
+        {
+          "text": "In",
+          "from": 423
+        },
+        {
+          "text": "the",
+          "from": 425
+        },
+        {
+          "text": "first",
+          "from": 428
+        },
+        {
+          "text": "month",
+          "from": 434
+        },
+        {
+          "text": "eighteen",
+          "from": 442
+        },
+        {
+          "text": "people",
+          "from": 463
+        },
+        {
+          "text": "invested",
+          "from": 482
+        }
+      ]
+    },
+    {
+      "text": "a total of one thousand eight hundred",
+      "from": 496,
+      "to": 567,
+      "words": [
+        {
+          "text": "a",
+          "from": 496
+        },
+        {
+          "text": "total",
+          "from": 504
+        },
+        {
+          "text": "of",
+          "from": 514
+        },
+        {
+          "text": "one",
+          "from": 521
+        },
+        {
+          "text": "thousand",
+          "from": 533
+        },
+        {
+          "text": "eight",
+          "from": 544
+        },
+        {
+          "text": "hundred",
+          "from": 555
+        }
+      ]
+    },
+    {
+      "text": "dollars",
+      "from": 567,
+      "to": 581,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 567
+        }
+      ]
+    },
+    {
+      "text": "So how could a promise that big",
+      "from": 589,
+      "to": 655,
+      "words": [
+        {
+          "text": "So",
+          "from": 589
+        },
+        {
+          "text": "how",
+          "from": 606
+        },
+        {
+          "text": "could",
+          "from": 617
+        },
+        {
+          "text": "a",
+          "from": 623
+        },
+        {
+          "text": "promise",
+          "from": 625
+        },
+        {
+          "text": "that",
+          "from": 634
+        },
+        {
+          "text": "big",
+          "from": 644
+        }
+      ]
+    },
+    {
+      "text": "fall apart so fast",
+      "from": 655,
+      "to": 714,
+      "words": [
+        {
+          "text": "fall",
+          "from": 655
+        },
+        {
+          "text": "apart",
+          "from": 671
+        },
+        {
+          "text": "so",
+          "from": 680
+        },
+        {
+          "text": "fast",
+          "from": 698
+        }
+      ]
+    },
+    {
+      "text": "Ponzi was born in Lugo in Italy",
+      "from": 750,
+      "to": 826,
+      "words": [
+        {
+          "text": "Ponzi",
+          "from": 750
+        },
+        {
+          "text": "was",
+          "from": 769
+        },
+        {
+          "text": "born",
+          "from": 775
+        },
+        {
+          "text": "in",
+          "from": 784
+        },
+        {
+          "text": "Lugo",
+          "from": 791
+        },
+        {
+          "text": "in",
+          "from": 814
+        },
+        {
+          "text": "Italy",
+          "from": 817
+        }
+      ]
+    },
+    {
+      "text": "On the fifteenth of November 1903",
+      "from": 850,
+      "to": 912,
+      "words": [
+        {
+          "text": "On",
+          "from": 850
+        },
+        {
+          "text": "the",
+          "from": 850
+        },
+        {
+          "text": "fifteenth",
+          "from": 853
+        },
+        {
+          "text": "of",
+          "from": 871
+        },
+        {
+          "text": "November",
+          "from": 871
+        },
+        {
+          "text": "1903",
+          "from": 882
+        }
+      ]
+    },
+    {
+      "text": "he arrived in Boston aboard the steamship",
+      "from": 929,
+      "to": 996,
+      "words": [
+        {
+          "text": "he",
+          "from": 929
+        },
+        {
+          "text": "arrived",
+          "from": 931
+        },
+        {
+          "text": "in",
+          "from": 940
+        },
+        {
+          "text": "Boston",
+          "from": 948
+        },
+        {
+          "text": "aboard",
+          "from": 959
+        },
+        {
+          "text": "the",
+          "from": 974
+        },
+        {
+          "text": "steamship",
+          "from": 982
+        }
+      ]
+    },
+    {
+      "text": "Vancouver",
+      "from": 996,
+      "to": 1008,
+      "words": [
+        {
+          "text": "Vancouver",
+          "from": 996
+        }
+      ]
+    },
+    {
+      "text": "By his own account",
+      "from": 1043,
+      "to": 1068,
+      "words": [
+        {
+          "text": "By",
+          "from": 1043
+        },
+        {
+          "text": "his",
+          "from": 1048
+        },
+        {
+          "text": "own",
+          "from": 1053
+        },
+        {
+          "text": "account",
+          "from": 1059
+        }
+      ]
+    },
+    {
+      "text": "he had two dollars and fifty cents",
+      "from": 1078,
+      "to": 1118,
+      "words": [
+        {
+          "text": "he",
+          "from": 1078
+        },
+        {
+          "text": "had",
+          "from": 1080
+        },
+        {
+          "text": "two",
+          "from": 1084
+        },
+        {
+          "text": "dollars",
+          "from": 1091
+        },
+        {
+          "text": "and",
+          "from": 1097
+        },
+        {
+          "text": "fifty",
+          "from": 1103
+        },
+        {
+          "text": "cents",
+          "from": 1109
+        }
+      ]
+    },
+    {
+      "text": "in his pocket",
+      "from": 1122,
+      "to": 1153,
+      "words": [
+        {
+          "text": "in",
+          "from": 1122
+        },
+        {
+          "text": "his",
+          "from": 1130
+        },
+        {
+          "text": "pocket",
+          "from": 1141
+        }
+      ]
+    },
+    {
+      "text": "Later he said he landed with two",
+      "from": 1164,
+      "to": 1218,
+      "words": [
+        {
+          "text": "Later",
+          "from": 1164
+        },
+        {
+          "text": "he",
+          "from": 1185
+        },
+        {
+          "text": "said",
+          "from": 1186
+        },
+        {
+          "text": "he",
+          "from": 1191
+        },
+        {
+          "text": "landed",
+          "from": 1195
+        },
+        {
+          "text": "with",
+          "from": 1203
+        },
+        {
+          "text": "two",
+          "from": 1212
+        }
+      ]
+    },
+    {
+      "text": "dollars fifty in cash and a million",
+      "from": 1218,
+      "to": 1285,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 1218
+        },
+        {
+          "text": "fifty",
+          "from": 1225
+        },
+        {
+          "text": "in",
+          "from": 1239
+        },
+        {
+          "text": "cash",
+          "from": 1245
+        },
+        {
+          "text": "and",
+          "from": 1253
+        },
+        {
+          "text": "a",
+          "from": 1272
+        },
+        {
+          "text": "million",
+          "from": 1275
+        }
+      ]
+    },
+    {
+      "text": "dollars in hopes",
+      "from": 1285,
+      "to": 1320,
+      "words": [
+        {
+          "text": "dollars",
+          "from": 1285
+        },
+        {
+          "text": "in",
+          "from": 1300
+        },
+        {
+          "text": "hopes",
+          "from": 1309
+        }
+      ]
+    },
+    {
+      "text": "His story was that he bought international",
+      "from": 1356,
+      "to": 1427,
+      "words": [
+        {
+          "text": "His",
+          "from": 1356
+        },
+        {
+          "text": "story",
+          "from": 1366
+        },
+        {
+          "text": "was",
+          "from": 1379
+        },
+        {
+          "text": "that",
+          "from": 1390
+        },
+        {
+          "text": "he",
+          "from": 1395
+        },
+        {
+          "text": "bought",
+          "from": 1399
+        },
+        {
+          "text": "international",
+          "from": 1407
+        }
+      ]
+    },
+    {
+      "text": "reply coupons cheaply abroad and redeemed them",
+      "from": 1427,
+      "to": 1535,
+      "words": [
+        {
+          "text": "reply",
+          "from": 1427
+        },
+        {
+          "text": "coupons",
+          "from": 1448
+        },
+        {
+          "text": "cheaply",
+          "from": 1460
+        },
+        {
+          "text": "abroad",
+          "from": 1478
+        },
+        {
+          "text": "and",
+          "from": 1492
+        },
+        {
+          "text": "redeemed",
+          "from": 1516
+        },
+        {
+          "text": "them",
+          "from": 1524
+        }
+      ]
+    },
+    {
+      "text": "at face value in the United States",
+      "from": 1535,
+      "to": 1601,
+      "words": [
+        {
+          "text": "at",
+          "from": 1535
+        },
+        {
+          "text": "face",
+          "from": 1542
+        },
+        {
+          "text": "value",
+          "from": 1550
+        },
+        {
+          "text": "in",
+          "from": 1563
+        },
+        {
+          "text": "the",
+          "from": 1574
+        },
+        {
+          "text": "United",
+          "from": 1578
+        },
+        {
+          "text": "States",
+          "from": 1584
+        }
+      ]
+    },
+    {
+      "text": "Between February and March 1920",
+      "from": 1620,
+      "to": 1687,
+      "words": [
+        {
+          "text": "Between",
+          "from": 1620
+        },
+        {
+          "text": "February",
+          "from": 1628
+        },
+        {
+          "text": "and",
+          "from": 1643
+        },
+        {
+          "text": "March",
+          "from": 1655
+        },
+        {
+          "text": "1920",
+          "from": 1664
+        }
+      ]
+    },
+    {
+      "text": "the money invested rose from five thousand",
+      "from": 1703,
+      "to": 1778,
+      "words": [
+        {
+          "text": "the",
+          "from": 1703
+        },
+        {
+          "text": "money",
+          "from": 1713
+        },
+        {
+          "text": "invested",
+          "from": 1719
+        },
+        {
+          "text": "rose",
+          "from": 1735
+        },
+        {
+          "text": "from",
+          "from": 1746
+        },
+        {
+          "text": "five",
+          "from": 1758
+        },
+        {
+          "text": "thousand",
+          "from": 1766
+        }
+      ]
+    },
+    {
+      "text": "to twenty-five thousand dollars",
+      "from": 1783,
+      "to": 1835,
+      "words": [
+        {
+          "text": "to",
+          "from": 1783
+        },
+        {
+          "text": "twenty-five",
+          "from": 1793
+        },
+        {
+          "text": "thousand",
+          "from": 1806
+        },
+        {
+          "text": "dollars",
+          "from": 1819
+        }
+      ]
+    },
+    {
+      "text": "By late July",
+      "from": 1845,
+      "to": 1887,
+      "words": [
+        {
+          "text": "By",
+          "from": 1845
+        },
+        {
+          "text": "late",
+          "from": 1861
+        },
+        {
+          "text": "July",
+          "from": 1867
+        }
+      ]
+    },
+    {
+      "text": "Ponzi was taking in two hundred and",
+      "from": 1895,
+      "to": 1952,
+      "words": [
+        {
+          "text": "Ponzi",
+          "from": 1895
+        },
+        {
+          "text": "was",
+          "from": 1907
+        },
+        {
+          "text": "taking",
+          "from": 1911
+        },
+        {
+          "text": "in",
+          "from": 1919
+        },
+        {
+          "text": "two",
+          "from": 1926
+        },
+        {
+          "text": "hundred",
+          "from": 1935
+        },
+        {
+          "text": "and",
+          "from": 1944
+        }
+      ]
+    },
+    {
+      "text": "fifty thousand dollars a day",
+      "from": 1952,
+      "to": 2015,
+      "words": [
+        {
+          "text": "fifty",
+          "from": 1952
+        },
+        {
+          "text": "thousand",
+          "from": 1961
+        },
+        {
+          "text": "dollars",
+          "from": 1970
+        },
+        {
+          "text": "a",
+          "from": 1987
+        },
+        {
+          "text": "day",
+          "from": 2002
+        }
+      ]
+    },
+    {
+      "text": "But to cover the money a hundred",
+      "from": 2032,
+      "to": 2079,
+      "words": [
+        {
+          "text": "But",
+          "from": 2032
+        },
+        {
+          "text": "to",
+          "from": 2040
+        },
+        {
+          "text": "cover",
+          "from": 2048
+        },
+        {
+          "text": "the",
+          "from": 2054
+        },
+        {
+          "text": "money",
+          "from": 2060
+        },
+        {
+          "text": "a",
+          "from": 2067
+        },
+        {
+          "text": "hundred",
+          "from": 2073
+        }
+      ]
+    },
+    {
+      "text": "and sixty million coupons would have had",
+      "from": 2079,
+      "to": 2160,
+      "words": [
+        {
+          "text": "and",
+          "from": 2079
+        },
+        {
+          "text": "sixty",
+          "from": 2084
+        },
+        {
+          "text": "million",
+          "from": 2096
+        },
+        {
+          "text": "coupons",
+          "from": 2127
+        },
+        {
+          "text": "would",
+          "from": 2137
+        },
+        {
+          "text": "have",
+          "from": 2153
+        },
+        {
+          "text": "had",
+          "from": 2155
+        }
+      ]
+    },
+    {
+      "text": "to exist",
+      "from": 2160,
+      "to": 2175,
+      "words": [
+        {
+          "text": "to",
+          "from": 2160
+        },
+        {
+          "text": "exist",
+          "from": 2164
+        }
+      ]
+    },
+    {
+      "text": "and only about twenty-seven thousand",
+      "from": 2197,
+      "to": 2246,
+      "words": [
+        {
+          "text": "and",
+          "from": 2197
+        },
+        {
+          "text": "only",
+          "from": 2199
+        },
+        {
+          "text": "about",
+          "from": 2209
+        },
+        {
+          "text": "twenty-seven",
+          "from": 2214
+        },
+        {
+          "text": "thousand",
+          "from": 2229
+        }
+      ]
+    },
+    {
+      "text": "did",
+      "from": 2258,
+      "to": 2270,
+      "words": [
+        {
+          "text": "did",
+          "from": 2258
+        }
+      ]
+    },
+    {
+      "text": "On the twenty-sixth",
+      "from": 2303,
+      "to": 2337,
+      "words": [
+        {
+          "text": "On",
+          "from": 2303
+        },
+        {
+          "text": "the",
+          "from": 2316
+        },
+        {
+          "text": "twenty-sixth",
+          "from": 2321
+        }
+      ]
+    },
+    {
+      "text": "of July 1920",
+      "from": 2347,
+      "to": 2390,
+      "words": [
+        {
+          "text": "of",
+          "from": 2347
+        },
+        {
+          "text": "July",
+          "from": 2347
+        },
+        {
+          "text": "1920",
+          "from": 2368
+        }
+      ]
+    },
+    {
+      "text": "the Boston Post started asking hard questions",
+      "from": 2407,
+      "to": 2498,
+      "words": [
+        {
+          "text": "the",
+          "from": 2407
+        },
+        {
+          "text": "Boston",
+          "from": 2411
+        },
+        {
+          "text": "Post",
+          "from": 2420
+        },
+        {
+          "text": "started",
+          "from": 2434
+        },
+        {
+          "text": "asking",
+          "from": 2451
+        },
+        {
+          "text": "hard",
+          "from": 2465
+        },
+        {
+          "text": "questions",
+          "from": 2478
+        }
+      ]
+    },
+    {
+      "text": "Investors lost about twenty million dollars in",
+      "from": 2514,
+      "to": 2609,
+      "words": [
+        {
+          "text": "Investors",
+          "from": 2514
+        },
+        {
+          "text": "lost",
+          "from": 2523
+        },
+        {
+          "text": "about",
+          "from": 2540
+        },
+        {
+          "text": "twenty",
+          "from": 2553
+        },
+        {
+          "text": "million",
+          "from": 2571
+        },
+        {
+          "text": "dollars",
+          "from": 2585
+        },
+        {
+          "text": "in",
+          "from": 2585
+        }
+      ]
+    },
+    {
+      "text": "nineteen-twenty money",
+      "from": 2609,
+      "to": 2648,
+      "words": [
+        {
+          "text": "nineteen-twenty",
+          "from": 2609
+        },
+        {
+          "text": "money",
+          "from": 2622
+        }
+      ]
+    },
+    {
+      "text": "Charged with eighty-six counts of mail fraud",
+      "from": 2659,
+      "to": 2739,
+      "words": [
+        {
+          "text": "Charged",
+          "from": 2659
+        },
+        {
+          "text": "with",
+          "from": 2674
+        },
+        {
+          "text": "eighty-six",
+          "from": 2676
+        },
+        {
+          "text": "counts",
+          "from": 2689
+        },
+        {
+          "text": "of",
+          "from": 2706
+        },
+        {
+          "text": "mail",
+          "from": 2714
+        },
+        {
+          "text": "fraud",
+          "from": 2722
+        }
+      ]
+    },
+    {
+      "text": "Ponzi was sentenced to five years in",
+      "from": 2750,
+      "to": 2823,
+      "words": [
+        {
+          "text": "Ponzi",
+          "from": 2750
+        },
+        {
+          "text": "was",
+          "from": 2762
+        },
+        {
+          "text": "sentenced",
+          "from": 2765
+        },
+        {
+          "text": "to",
+          "from": 2774
+        },
+        {
+          "text": "five",
+          "from": 2789
+        },
+        {
+          "text": "years",
+          "from": 2800
+        },
+        {
+          "text": "in",
+          "from": 2812
+        }
+      ]
+    },
+    {
+      "text": "federal prison",
+      "from": 2823,
+      "to": 2848,
+      "words": [
+        {
+          "text": "federal",
+          "from": 2823
+        },
+        {
+          "text": "prison",
+          "from": 2831
+        }
+      ]
+    },
+    {
+      "text": "Released in 1934",
+      "from": 2869,
+      "to": 2903,
+      "words": [
+        {
+          "text": "Released",
+          "from": 2869
+        },
+        {
+          "text": "in",
+          "from": 2869
+        },
+        {
+          "text": "1934",
+          "from": 2880
+        }
+      ]
+    },
+    {
+      "text": "he told reporters that he went looking",
+      "from": 2925,
+      "to": 2984,
+      "words": [
+        {
+          "text": "he",
+          "from": 2925
+        },
+        {
+          "text": "told",
+          "from": 2930
+        },
+        {
+          "text": "reporters",
+          "from": 2936
+        },
+        {
+          "text": "that",
+          "from": 2946
+        },
+        {
+          "text": "he",
+          "from": 2961
+        },
+        {
+          "text": "went",
+          "from": 2966
+        },
+        {
+          "text": "looking",
+          "from": 2970
+        }
+      ]
+    },
+    {
+      "text": "for trouble and found it He died",
+      "from": 2984,
+      "to": 3063,
+      "words": [
+        {
+          "text": "for",
+          "from": 2984
+        },
+        {
+          "text": "trouble",
+          "from": 2991
+        },
+        {
+          "text": "and",
+          "from": 3000
+        },
+        {
+          "text": "found",
+          "from": 3021
+        },
+        {
+          "text": "it",
+          "from": 3029
+        },
+        {
+          "text": "He",
+          "from": 3036
+        },
+        {
+          "text": "died",
+          "from": 3054
+        }
+      ]
+    },
+    {
+      "text": "in Rio de Janeiro in 1949",
+      "from": 3063,
+      "to": 3140,
+      "words": [
+        {
+          "text": "in",
+          "from": 3063
+        },
+        {
+          "text": "Rio",
+          "from": 3071
+        },
+        {
+          "text": "de",
+          "from": 3077
+        },
+        {
+          "text": "Janeiro",
+          "from": 3086
+        },
+        {
+          "text": "in",
+          "from": 3094
+        },
+        {
+          "text": "1949",
+          "from": 3108
+        }
+      ]
+    },
+    {
+      "text": "leaving an estate of seventy-five dollars",
+      "from": 3152,
+      "to": 3226,
+      "words": [
+        {
+          "text": "leaving",
+          "from": 3152
+        },
+        {
+          "text": "an",
+          "from": 3162
+        },
+        {
+          "text": "estate",
+          "from": 3169
+        },
+        {
+          "text": "of",
+          "from": 3177
+        },
+        {
+          "text": "seventy-five",
+          "from": 3188
+        },
+        {
+          "text": "dollars",
+          "from": 3206
+        }
+      ]
+    },
+    {
+      "text": "Would you have trusted a promise of",
+      "from": 3241,
+      "to": 3299,
+      "words": [
+        {
+          "text": "Would",
+          "from": 3241
+        },
+        {
+          "text": "you",
+          "from": 3252
+        },
+        {
+          "text": "have",
+          "from": 3260
+        },
+        {
+          "text": "trusted",
+          "from": 3266
+        },
+        {
+          "text": "a",
+          "from": 3277
+        },
+        {
+          "text": "promise",
+          "from": 3282
+        },
+        {
+          "text": "of",
+          "from": 3289
+        }
+      ]
+    },
+    {
+      "text": "fifty percent in forty-five days",
+      "from": 3299,
+      "to": 3365,
+      "words": [
+        {
+          "text": "fifty",
+          "from": 3299
+        },
+        {
+          "text": "percent",
+          "from": 3307
+        },
+        {
+          "text": "in",
+          "from": 3321
+        },
+        {
+          "text": "forty-five",
+          "from": 3333
+        },
+        {
+          "text": "days",
+          "from": 3342
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 3413,
+  "duration_s": 113.76666666666667,
+  "chapters": [
+    {
+      "title": "Fifty percent in forty-five days",
+      "from": 0
+    },
+    {
+      "title": "From Lugo to Boston",
+      "from": 750
+    },
+    {
+      "title": "The coupons",
+      "from": 1356
+    },
+    {
+      "title": "The fall",
+      "from": 2303
+    }
+  ]
+}
