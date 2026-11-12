@@ -1,0 +1,388 @@
+[
+  {
+    "id": "messi-evolution",
+    "title": "Lionel Messi: from finisher to creator",
+    "category": "player documentary",
+    "question": "How did Messi's game change between 2009 and 2018?",
+    "thesis": "In matched samples of league starts, his shooting stayed the same while his chance creation more than doubled.",
+    "why": "The most decorated player's change is visible in the event data.",
+    "format": "player_documentary",
+    "coverage": {
+      "competition": "La Liga",
+      "seasons": [
+        "2009/2010",
+        "2018/2019"
+      ],
+      "team": "Barcelona"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "layered photographs, heatmaps, per-90 comparison",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 69,
+      "seasons_found": [
+        "2018/2019",
+        "2009/2010"
+      ],
+      "note": "69 matches involving Barcelona"
+    },
+    "data_score": 5,
+    "score": 95,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 5,
+      "evidence": 4,
+      "feasibility": 4
+    }
+  },
+  {
+    "id": "argentina-france-2022",
+    "title": "Argentina vs France: Breaking Down the Greatest Final",
+    "category": "historic match",
+    "question": "How did a final that looked controlled turn into a 3-3 draw?",
+    "thesis": "Argentina built the lead; France built the comeback.",
+    "why": "A final with a clear two-part shape in the recorded events.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "FIFA World Cup",
+      "seasons": [
+        "2022"
+      ],
+      "team": "Argentina"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 7,
+      "seasons_found": [
+        "2022"
+      ],
+      "note": "7 matches involving Argentina"
+    },
+    "data_score": 3,
+    "score": 94,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 5,
+      "evidence": 5,
+      "feasibility": 5
+    }
+  },
+  {
+    "id": "leicester-2016",
+    "title": "Leicester City's Premier League title",
+    "category": "club achievement",
+    "question": "How did Leicester win the 2015/16 title?",
+    "thesis": "The data can test which style of play won it.",
+    "why": "Football's most famous upset.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "Premier League",
+      "seasons": [
+        "2015/2016"
+      ],
+      "team": "Leicester City"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 38,
+      "seasons_found": [
+        "2015/2016"
+      ],
+      "note": "38 matches involving Leicester City"
+    },
+    "data_score": 5,
+    "score": 92,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 4,
+      "evidence": 4,
+      "feasibility": 4
+    }
+  },
+  {
+    "id": "xavi-iniesta",
+    "title": "The tactical importance of Xavi and Iniesta",
+    "category": "tactical innovation",
+    "question": "What did Barcelona's midfield pair do that others could not?",
+    "thesis": "Their passing created the possession structure Barcelona's attack relied on.",
+    "why": "The engine of a defining era.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "La Liga",
+      "seasons": [
+        "2009/2010",
+        "2010/2011"
+      ],
+      "team": "Barcelona"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 68,
+      "seasons_found": [
+        "2010/2011",
+        "2009/2010"
+      ],
+      "note": "68 matches involving Barcelona"
+    },
+    "data_score": 5,
+    "score": 86,
+    "editorial_scores": {
+      "story": 4,
+      "audience": 4,
+      "significance": 5,
+      "visual": 4,
+      "evidence": 4,
+      "feasibility": 4
+    }
+  },
+  {
+    "id": "ronaldo-winger-to-scorer",
+    "title": "Cristiano Ronaldo: from winger to goalscorer",
+    "category": "player documentary",
+    "question": "How did Ronaldo's role shift across his career?",
+    "thesis": "He moved from dribbling winger to penalty-box finisher; the question is how much the data in the open set can show.",
+    "why": "A defining career transformation.",
+    "format": "player_documentary",
+    "coverage": {
+      "competition": "La Liga",
+      "seasons": [
+        "2009/2010",
+        "2012/2013",
+        "2017/2018"
+      ],
+      "team": "Real Madrid"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 6,
+      "seasons_found": [
+        "2017/2018",
+        "2012/2013",
+        "2009/2010"
+      ],
+      "note": "6 matches involving Real Madrid"
+    },
+    "data_score": 3,
+    "score": 81,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 4,
+      "evidence": 3,
+      "feasibility": 3
+    }
+  },
+  {
+    "id": "goalkeeper-build-up",
+    "title": "How goalkeepers became playmakers",
+    "category": "modern development",
+    "question": "Why do goalkeepers now start attacks?",
+    "thesis": "Goalkeepers' pass share and distance have changed, and the event data can show it.",
+    "why": "A modern positional revolution.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "FIFA World Cup",
+      "seasons": [
+        "2018",
+        "2022"
+      ],
+      "team": null
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 128,
+      "seasons_found": [
+        "2022",
+        "2018"
+      ],
+      "note": "128 matches"
+    },
+    "data_score": 5,
+    "score": 81,
+    "editorial_scores": {
+      "story": 4,
+      "audience": 3,
+      "significance": 4,
+      "visual": 4,
+      "evidence": 4,
+      "feasibility": 4
+    }
+  },
+  {
+    "id": "counter-pressing",
+    "title": "Why counter-pressing took over football",
+    "category": "tactical innovation",
+    "question": "Why do teams now press right after losing the ball?",
+    "thesis": "Winning the ball back high creates better chances than a settled attack.",
+    "why": "A change in how the game is played.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "FIFA World Cup",
+      "seasons": [
+        "2022"
+      ],
+      "team": null
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 64,
+      "seasons_found": [
+        "2022"
+      ],
+      "note": "64 matches"
+    },
+    "data_score": 5,
+    "score": 78,
+    "editorial_scores": {
+      "story": 4,
+      "audience": 4,
+      "significance": 4,
+      "visual": 4,
+      "evidence": 3,
+      "feasibility": 3
+    }
+  },
+  {
+    "id": "two-striker-return",
+    "title": "The return of two-striker systems",
+    "category": "modern development",
+    "question": "Why are two-striker formations back?",
+    "thesis": "Formation records can show how common they are in recent tournaments.",
+    "why": "A tactical trend that can be counted.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "FIFA World Cup",
+      "seasons": [
+        "2018",
+        "2022"
+      ],
+      "team": null
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": true,
+      "matches": 128,
+      "seasons_found": [
+        "2022",
+        "2018"
+      ],
+      "note": "128 matches"
+    },
+    "data_score": 5,
+    "score": 74,
+    "editorial_scores": {
+      "story": 3,
+      "audience": 3,
+      "significance": 3,
+      "visual": 4,
+      "evidence": 4,
+      "feasibility": 4
+    }
+  },
+  {
+    "id": "barca-psg-2017",
+    "title": "Barcelona vs PSG, 2017",
+    "category": "historic match",
+    "question": "How did Barcelona overturn a 4-0 first-leg deficit?",
+    "thesis": "A comeback told through the second leg's events.",
+    "why": "One of the great European comebacks.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "UEFA Champions League",
+      "seasons": [
+        "2016/2017"
+      ],
+      "team": "Barcelona"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": false,
+      "matches": 0,
+      "note": "no UEFA Champions League 2016/2017 in the open data"
+    },
+    "data_score": 0,
+    "score": 72,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 4,
+      "evidence": 3,
+      "feasibility": 3
+    }
+  },
+  {
+    "id": "liverpool-milan-2005",
+    "title": "Liverpool vs AC Milan, 2005",
+    "category": "historic match",
+    "question": "How did Liverpool recover from 3-0 down?",
+    "thesis": "A comeback told from match reports and any available event data.",
+    "why": "The Istanbul final.",
+    "format": "match_analysis",
+    "coverage": {
+      "competition": "UEFA Champions League",
+      "seasons": [
+        "2004/2005"
+      ],
+      "team": "Liverpool"
+    },
+    "sources": [],
+    "photos": "Wikimedia Commons (to be searched and licence-checked per image)",
+    "visual": "",
+    "licensing": "Photographs: Commons licences recorded per image. Stats: StatsBomb credit and logo required. No broadcast footage.",
+    "coverage_result": {
+      "available": false,
+      "matches": 0,
+      "note": "no UEFA Champions League 2004/2005 in the open data"
+    },
+    "data_score": 0,
+    "score": 72,
+    "editorial_scores": {
+      "story": 5,
+      "audience": 5,
+      "significance": 5,
+      "visual": 4,
+      "evidence": 3,
+      "feasibility": 3
+    }
+  }
+]
