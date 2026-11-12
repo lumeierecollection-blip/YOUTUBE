@@ -1,0 +1,341 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (43/52 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Ponzi",
+   "start": 0.0,
+   "end": 0.66,
+   "sentence": 0
+  },
+  {
+   "text": "was",
+   "start": 0.66,
+   "end": 0.84,
+   "sentence": 0
+  },
+  {
+   "text": "born",
+   "start": 0.84,
+   "end": 1.14,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 1.14,
+   "end": 1.38,
+   "sentence": 0
+  },
+  {
+   "text": "Lugo",
+   "start": 1.38,
+   "end": 1.88,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 2.14,
+   "end": 2.24,
+   "sentence": 0
+  },
+  {
+   "text": "Italy",
+   "start": 2.24,
+   "end": 2.46,
+   "sentence": 0
+  },
+  {
+   "text": "On",
+   "start": 3.34,
+   "end": 3.39,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 3.34,
+   "end": 3.44,
+   "sentence": 1
+  },
+  {
+   "text": "fifteenth",
+   "start": 3.44,
+   "end": 3.75,
+   "sentence": 1
+  },
+  {
+   "text": "of",
+   "start": 4.06,
+   "end": 4.11,
+   "sentence": 1
+  },
+  {
+   "text": "November",
+   "start": 4.06,
+   "end": 4.4,
+   "sentence": 1
+  },
+  {
+   "text": "1903",
+   "start": 4.4,
+   "end": 5.3,
+   "sentence": 1
+  },
+  {
+   "text": "he",
+   "start": 5.98,
+   "end": 6.06,
+   "sentence": 1
+  },
+  {
+   "text": "arrived",
+   "start": 6.06,
+   "end": 6.36,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 6.36,
+   "end": 6.62,
+   "sentence": 1
+  },
+  {
+   "text": "Boston",
+   "start": 6.62,
+   "end": 6.98,
+   "sentence": 1
+  },
+  {
+   "text": "aboard",
+   "start": 6.98,
+   "end": 7.48,
+   "sentence": 1
+  },
+  {
+   "text": "the",
+   "start": 7.48,
+   "end": 7.74,
+   "sentence": 1
+  },
+  {
+   "text": "steamship",
+   "start": 7.74,
+   "end": 8.22,
+   "sentence": 1
+  },
+  {
+   "text": "Vancouver",
+   "start": 8.22,
+   "end": 8.52,
+   "sentence": 1
+  },
+  {
+   "text": "By",
+   "start": 9.78,
+   "end": 9.94,
+   "sentence": 2
+  },
+  {
+   "text": "his",
+   "start": 9.94,
+   "end": 10.12,
+   "sentence": 2
+  },
+  {
+   "text": "own",
+   "start": 10.12,
+   "end": 10.3,
+   "sentence": 2
+  },
+  {
+   "text": "account",
+   "start": 10.3,
+   "end": 10.5,
+   "sentence": 2
+  },
+  {
+   "text": "he",
+   "start": 10.94,
+   "end": 11.0,
+   "sentence": 2
+  },
+  {
+   "text": "had",
+   "start": 11.0,
+   "end": 11.16,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 11.16,
+   "end": 11.367,
+   "sentence": 2
+  },
+  {
+   "text": "dollars",
+   "start": 11.367,
+   "end": 11.573,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 11.573,
+   "end": 11.78,
+   "sentence": 2
+  },
+  {
+   "text": "fifty",
+   "start": 11.78,
+   "end": 11.987,
+   "sentence": 2
+  },
+  {
+   "text": "cents",
+   "start": 11.987,
+   "end": 12.193,
+   "sentence": 2
+  },
+  {
+   "text": "in",
+   "start": 12.4,
+   "end": 12.68,
+   "sentence": 2
+  },
+  {
+   "text": "his",
+   "start": 12.68,
+   "end": 13.06,
+   "sentence": 2
+  },
+  {
+   "text": "pocket",
+   "start": 13.06,
+   "end": 13.36,
+   "sentence": 2
+  },
+  {
+   "text": "Later",
+   "start": 13.82,
+   "end": 14.24,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 14.5,
+   "end": 14.55,
+   "sentence": 3
+  },
+  {
+   "text": "said",
+   "start": 14.54,
+   "end": 14.72,
+   "sentence": 3
+  },
+  {
+   "text": "he",
+   "start": 14.72,
+   "end": 14.86,
+   "sentence": 3
+  },
+  {
+   "text": "landed",
+   "start": 14.86,
+   "end": 15.1,
+   "sentence": 3
+  },
+  {
+   "text": "with",
+   "start": 15.1,
+   "end": 15.4,
+   "sentence": 3
+  },
+  {
+   "text": "two",
+   "start": 15.4,
+   "end": 15.63,
+   "sentence": 3
+  },
+  {
+   "text": "dollars",
+   "start": 15.63,
+   "end": 15.86,
+   "sentence": 3
+  },
+  {
+   "text": "fifty",
+   "start": 15.86,
+   "end": 16.09,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 16.32,
+   "end": 16.52,
+   "sentence": 3
+  },
+  {
+   "text": "cash",
+   "start": 16.52,
+   "end": 16.78,
+   "sentence": 3
+  },
+  {
+   "text": "and",
+   "start": 16.78,
+   "end": 17.4,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 17.4,
+   "end": 17.5,
+   "sentence": 3
+  },
+  {
+   "text": "million",
+   "start": 17.5,
+   "end": 17.84,
+   "sentence": 3
+  },
+  {
+   "text": "dollars",
+   "start": 17.84,
+   "end": 18.34,
+   "sentence": 3
+  },
+  {
+   "text": "in",
+   "start": 18.34,
+   "end": 18.64,
+   "sentence": 3
+  },
+  {
+   "text": "hopes",
+   "start": 18.64,
+   "end": 18.9,
+   "sentence": 3
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Ponzi was born in Lugo, in Italy.",
+   "start": 0.0,
+   "end": 2.46
+  },
+  {
+   "text": "On the fifteenth of November 1903, he arrived in Boston aboard the steamship Vancouver.",
+   "start": 3.34,
+   "end": 8.52
+  },
+  {
+   "text": "By his own account, he had two dollars and fifty cents in his pocket.",
+   "start": 9.78,
+   "end": 13.36
+  },
+  {
+   "text": "Later he said he landed with two dollars fifty in cash and a million dollars in hopes.",
+   "start": 13.82,
+   "end": 18.9
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+  "engine": "gemini:Charon",
+  "seconds": 112.53551,
+  "wpm": 138.1,
+  "playback_speed": 1,
+  "chapter_starts_s": [
+    0,
+    24.984,
+    45.21600000000001,
+    76.77600000000001
+  ],
+  "notes": []
+}

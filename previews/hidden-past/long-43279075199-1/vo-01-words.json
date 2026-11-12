@@ -1,0 +1,353 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (45/54 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "In",
+   "start": 0.0,
+   "end": 0.4,
+   "sentence": 0
+  },
+  {
+   "text": "January",
+   "start": 0.4,
+   "end": 0.64,
+   "sentence": 0
+  },
+  {
+   "text": "1920",
+   "start": 0.64,
+   "end": 1.64,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 2.26,
+   "end": 2.48,
+   "sentence": 0
+  },
+  {
+   "text": "man",
+   "start": 2.48,
+   "end": 2.7,
+   "sentence": 0
+  },
+  {
+   "text": "in",
+   "start": 2.7,
+   "end": 2.88,
+   "sentence": 0
+  },
+  {
+   "text": "Boston",
+   "start": 2.88,
+   "end": 3.14,
+   "sentence": 0
+  },
+  {
+   "text": "named",
+   "start": 3.14,
+   "end": 3.72,
+   "sentence": 0
+  },
+  {
+   "text": "Charles",
+   "start": 3.72,
+   "end": 4.28,
+   "sentence": 0
+  },
+  {
+   "text": "Ponzi",
+   "start": 4.28,
+   "end": 4.98,
+   "sentence": 0
+  },
+  {
+   "text": "started",
+   "start": 4.98,
+   "end": 5.56,
+   "sentence": 0
+  },
+  {
+   "text": "a",
+   "start": 5.56,
+   "end": 5.82,
+   "sentence": 0
+  },
+  {
+   "text": "firm",
+   "start": 5.82,
+   "end": 6.1,
+   "sentence": 0
+  },
+  {
+   "text": "called",
+   "start": 6.1,
+   "end": 6.5,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 6.5,
+   "end": 6.86,
+   "sentence": 0
+  },
+  {
+   "text": "Securities",
+   "start": 6.86,
+   "end": 7.26,
+   "sentence": 0
+  },
+  {
+   "text": "Exchange",
+   "start": 7.26,
+   "end": 8.08,
+   "sentence": 0
+  },
+  {
+   "text": "Company",
+   "start": 8.08,
+   "end": 8.62,
+   "sentence": 0
+  },
+  {
+   "text": "He",
+   "start": 9.34,
+   "end": 9.39,
+   "sentence": 1
+  },
+  {
+   "text": "promised",
+   "start": 9.38,
+   "end": 9.62,
+   "sentence": 1
+  },
+  {
+   "text": "clients",
+   "start": 9.62,
+   "end": 10.18,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 10.18,
+   "end": 10.4,
+   "sentence": 1
+  },
+  {
+   "text": "fifty",
+   "start": 10.4,
+   "end": 10.64,
+   "sentence": 1
+  },
+  {
+   "text": "percent",
+   "start": 10.64,
+   "end": 10.88,
+   "sentence": 1
+  },
+  {
+   "text": "profit",
+   "start": 11.12,
+   "end": 11.62,
+   "sentence": 1
+  },
+  {
+   "text": "within",
+   "start": 11.62,
+   "end": 12.1,
+   "sentence": 1
+  },
+  {
+   "text": "forty-five",
+   "start": 12.1,
+   "end": 12.33,
+   "sentence": 1
+  },
+  {
+   "text": "days",
+   "start": 12.56,
+   "end": 13.28,
+   "sentence": 1
+  },
+  {
+   "text": "In",
+   "start": 14.1,
+   "end": 14.18,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 14.18,
+   "end": 14.28,
+   "sentence": 2
+  },
+  {
+   "text": "first",
+   "start": 14.28,
+   "end": 14.48,
+   "sentence": 2
+  },
+  {
+   "text": "month",
+   "start": 14.48,
+   "end": 14.74,
+   "sentence": 2
+  },
+  {
+   "text": "eighteen",
+   "start": 14.74,
+   "end": 15.09,
+   "sentence": 2
+  },
+  {
+   "text": "people",
+   "start": 15.44,
+   "end": 16.08,
+   "sentence": 2
+  },
+  {
+   "text": "invested",
+   "start": 16.08,
+   "end": 16.52,
+   "sentence": 2
+  },
+  {
+   "text": "a",
+   "start": 16.52,
+   "end": 16.8,
+   "sentence": 2
+  },
+  {
+   "text": "total",
+   "start": 16.8,
+   "end": 17.12,
+   "sentence": 2
+  },
+  {
+   "text": "of",
+   "start": 17.12,
+   "end": 17.38,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 17.38,
+   "end": 17.757,
+   "sentence": 2
+  },
+  {
+   "text": "thousand",
+   "start": 17.757,
+   "end": 18.133,
+   "sentence": 2
+  },
+  {
+   "text": "eight",
+   "start": 18.133,
+   "end": 18.51,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 18.51,
+   "end": 18.887,
+   "sentence": 2
+  },
+  {
+   "text": "dollars",
+   "start": 18.887,
+   "end": 19.263,
+   "sentence": 2
+  },
+  {
+   "text": "So",
+   "start": 19.64,
+   "end": 20.2,
+   "sentence": 3
+  },
+  {
+   "text": "how",
+   "start": 20.2,
+   "end": 20.58,
+   "sentence": 3
+  },
+  {
+   "text": "could",
+   "start": 20.58,
+   "end": 20.76,
+   "sentence": 3
+  },
+  {
+   "text": "a",
+   "start": 20.76,
+   "end": 20.82,
+   "sentence": 3
+  },
+  {
+   "text": "promise",
+   "start": 20.82,
+   "end": 21.14,
+   "sentence": 3
+  },
+  {
+   "text": "that",
+   "start": 21.14,
+   "end": 21.48,
+   "sentence": 3
+  },
+  {
+   "text": "big",
+   "start": 21.48,
+   "end": 21.82,
+   "sentence": 3
+  },
+  {
+   "text": "fall",
+   "start": 21.82,
+   "end": 22.38,
+   "sentence": 3
+  },
+  {
+   "text": "apart",
+   "start": 22.38,
+   "end": 22.68,
+   "sentence": 3
+  },
+  {
+   "text": "so",
+   "start": 22.68,
+   "end": 23.26,
+   "sentence": 3
+  },
+  {
+   "text": "fast",
+   "start": 23.26,
+   "end": 23.7,
+   "sentence": 3
+  }
+ ],
+ "sentences": [
+  {
+   "text": "In January 1920, a man in Boston named Charles Ponzi started a firm called the Securities Exchange Company.",
+   "start": 0.0,
+   "end": 8.62
+  },
+  {
+   "text": "He promised clients a fifty percent profit within forty-five days.",
+   "start": 9.34,
+   "end": 13.28
+  },
+  {
+   "text": "In the first month, eighteen people invested a total of one thousand eight hundred dollars.",
+   "start": 14.1,
+   "end": 19.263
+  },
+  {
+   "text": "So how could a promise that big fall apart so fast?",
+   "start": 19.64,
+   "end": 23.7
+  }
+ ]
+}
