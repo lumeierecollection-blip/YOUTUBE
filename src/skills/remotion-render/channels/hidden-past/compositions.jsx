@@ -7,7 +7,6 @@ import { collageCompositions } from "./collage.jsx";
 import { voxBeatsCompositions } from "./vox-beats.jsx";
 import { voxCrimeCompositions } from "./vox-crime.jsx";
 import { voxCaponeCompositions } from "./vox-capone.jsx";
-import { longformCompositions } from "./longform.jsx";
 import { abs, Captions, clamp, From, Scene } from "../_shared/parts.jsx";
 
 const SERIF = '"Playfair Display", serif', SANS = '"DM Sans", sans-serif';
@@ -78,4 +77,4 @@ export function HiddenPastDocShort({ durationInFrames, scenes, captions, images,
   );
 }
 const base = { fps: 30, width: 1080, height: 1920, durationInFrames: 780, defaultProps: { durationInFrames: 780, scenes: [], captions: [] } };
-export const compositions = [...collageCompositions, ...voxBeatsCompositions, ...voxCrimeCompositions, ...voxCaponeCompositions, ...longformCompositions, { id: "HiddenPastDocShort", component: HiddenPastDocShort, ...base, defaultProps: { ...base.defaultProps, images: {}, credits: {}, dates: {} } }];
+export const compositions = [...collageCompositions, ...voxBeatsCompositions, ...voxCrimeCompositions, ...voxCaponeCompositions, { id: "HiddenPastDocShort", component: HiddenPastDocShort, ...base, defaultProps: { ...base.defaultProps, images: {}, credits: {}, dates: {} } }];

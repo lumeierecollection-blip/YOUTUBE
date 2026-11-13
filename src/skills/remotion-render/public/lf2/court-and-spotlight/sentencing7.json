@@ -1,0 +1,133 @@
+{
+ "id": "sentencing7",
+ "pdf": "R-v-Becker-Sentencing-remarks.pdf",
+ "pages": {
+  "7": {
+   "file": "sentencing7-p7.png",
+   "w": 1310,
+   "h": 1853
+  }
+ },
+ "rects": {
+  "you have shown no remorse or acceptance of your guilt": [
+   {
+    "page": 7,
+    "x": 574,
+    "y": 1055,
+    "w": 331,
+    "h": 24
+   },
+   {
+    "page": 7,
+    "x": 906,
+    "y": 1057,
+    "w": 114,
+    "h": 21
+   },
+   {
+    "page": 7,
+    "x": 1021,
+    "y": 1055,
+    "w": 90,
+    "h": 24
+   },
+   {
+    "page": 7,
+    "x": 238,
+    "y": 1100,
+    "w": 48,
+    "h": 24
+   }
+  ],
+  "you did not heed the warning you were given and the suspended sentence": [
+   {
+    "page": 7,
+    "x": 238,
+    "y": 810,
+    "w": 626,
+    "h": 24
+   },
+   {
+    "page": 7,
+    "x": 865,
+    "y": 810,
+    "w": 37,
+    "h": 19
+   },
+   {
+    "page": 7,
+    "x": 903,
+    "y": 810,
+    "w": 19,
+    "h": 19
+   },
+   {
+    "page": 7,
+    "x": 924,
+    "y": 812,
+    "w": 89,
+    "h": 16
+   }
+  ],
+  "there has been no humility": [
+   {
+    "page": 7,
+    "x": 1058,
+    "y": 1146,
+    "w": 59,
+    "h": 19
+   },
+   {
+    "page": 7,
+    "x": 238,
+    "y": 1191,
+    "w": 42,
+    "h": 19
+   },
+   {
+    "page": 7,
+    "x": 279,
+    "y": 1191,
+    "w": 116,
+    "h": 19
+   },
+   {
+    "page": 7,
+    "x": 395,
+    "y": 1191,
+    "w": 35,
+    "h": 18
+   },
+   {
+    "page": 7,
+    "x": 431,
+    "y": 1191,
+    "w": 27,
+    "h": 24
+   }
+  ],
+  "The total sentence is therefore one of 2 years 6 months": [
+   {
+    "page": 7,
+    "x": 238,
+    "y": 1535,
+    "w": 28,
+    "h": 18
+   },
+   {
+    "page": 7,
+    "x": 268,
+    "y": 1535,
+    "w": 450,
+    "h": 24
+   },
+   {
+    "page": 7,
+    "x": 719,
+    "y": 1535,
+    "w": 95,
+    "h": 19
+   }
+  ]
+ }
+}

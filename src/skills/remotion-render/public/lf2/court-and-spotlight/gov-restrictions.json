@@ -1,0 +1,74 @@
+{
+ "id": "gov-restrictions",
+ "url": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/beckers-bankruptcy-restrictions-extended",
+ "final_url": "https://web.archive.org/web/20230407212557id_/https://www.gov.uk/government/news/beckers-bankruptcy-restrictions-extended",
+ "title": "Becker’s bankruptcy restrictions extended - GOV.UK",
+ "captured": "2026-11-13T05:12:13.519Z",
+ "viewport": {
+  "width": 1280,
+  "height": 900
+ },
+ "scale": 2,
+ "page_height": 3111,
+ "shots": [
+  {
+   "file": "gov-restrictions-0.png",
+   "label": "loaded",
+   "scrollY": 0,
+   "at_ms": 10064
+  }
+ ],
+ "rects": {
+  "Becker’s bankruptcy restrictions extended": [
+   {
+    "x": 160,
+    "y": 192,
+    "w": 530,
+    "h": 45
+   },
+   {
+    "x": 160,
+    "y": 232,
+    "w": 156,
+    "h": 45
+   }
+  ],
+  "totalling over £4.5m": [
+   {
+    "x": 475,
+    "y": 860,
+    "w": 166,
+    "h": 23
+   }
+  ],
+  "accepted on 17 October 2019 and lasts until 16 October 2031": [
+   {
+    "x": 573,
+    "y": 980,
+    "w": 194,
+    "h": 23
+   },
+   {
+    "x": 160,
+    "y": 1005,
+    "w": 299,
+    "h": 23
+   }
+  ],
+  "was made bankrupt on 21 June 2017 in the High Court": [
+   {
+    "x": 466,
+    "y": 690,
+    "w": 311,
+    "h": 23
+   },
+   {
+    "x": 160,
+    "y": 715,
+    "w": 121,
+    "h": 23
+   }
+  ]
+ },
+ "cursor_log": []
+}

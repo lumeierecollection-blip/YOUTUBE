@@ -1,0 +1,53 @@
+{
+ "id": "gemini-models",
+ "url": "https://ai.google.dev/gemini-api/docs/models",
+ "final_url": "https://aistudio.google.com/docs/models",
+ "title": "Models - Gemini API | Google AI Studio",
+ "captured": "2026-11-13T05:18:22.648Z",
+ "viewport": {
+  "width": 1440,
+  "height": 900
+ },
+ "scale": 2,
+ "page_height": 900,
+ "shots": [
+  {
+   "file": "gemini-models-0.png",
+   "label": "loaded",
+   "scrollY": 0,
+   "at_ms": 8855
+  },
+  {
+   "file": "gemini-models-1.png",
+   "label": "top",
+   "scrollY": 0,
+   "at_ms": 10661
+  },
+  {
+   "file": "gemini-models-2.png",
+   "label": "flash-lite",
+   "scrollY": 0,
+   "at_ms": 13264
+  }
+ ],
+ "rects": {
+  "Gemini 3.1 Flash-Lite": [
+   {
+    "x": 602,
+    "y": 692,
+    "w": 144,
+    "h": 20
+   }
+  ],
+  "Gemini 3.5 Flash": [
+   {
+    "x": 322,
+    "y": 692,
+    "w": 116,
+    "h": 20
+   }
+  ]
+ },
+ "cursor_log": [],
+ "video": "gemini-models.webm"
+}

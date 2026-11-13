@@ -37,6 +37,8 @@ async function sheet(files, out, cols, w) {
 for (const ch of only) {
   const dir = join(OUT, ch), raw = join(dir, "raw"); mkdirSync(raw, { recursive: true });
   const spec = await SPECS[ch](ctx, dir);
+  // SHOTS=<regex> renders a subset (local checks and re-renders of fixed frames).
+  if (process.env.SHOTS) { const re = new RegExp(process.env.SHOTS); spec.shots = spec.shots.filter((s) => re.test(s.name)); spec.storyboard = (spec.storyboard || []).filter((s) => re.test(s.name)); }
   writeFileSync(join(dir, "assets.json"), JSON.stringify(spec.assets, null, 2));
   const job = join(dir, "job.json");
   writeFileSync(job, JSON.stringify({ outDir: raw, shots: spec.shots.map((s) => ({ name: s.name, id: s.id, props: s.props, frame: s.frame, scale: s.scale || 1, durationInFrames: s.id === "LfThumb" ? 1 : undefined })) }));
@@ -49,6 +51,18 @@ for (const ch of only) {
     (groups[s.group] ||= []).push(lab);
   }
   for (const [g, files] of Object.entries(groups)) await sheet(files, join(dir, `sheet-${g}.jpg`), g === "transitions" ? 3 : g === "thumbs" ? 3 : 2, g === "transitions" ? 640 : g === "thumbs" ? 640 : 960);
+  // Contact sheet of everything, and a storyboard sheet: the beat frames in episode order with the narration under each.
+  if (spec.shots.length) await sheet(spec.shots.map((s) => join(dir, `${s.name}.jpg`)), join(dir, "contact-sheet.jpg"), 4, 600);
+  if (spec.storyboard?.length) {
+    const wrap = (t, n) => t.split(" ").reduce((ls, w) => { const l = ls[ls.length - 1]; if ((l + " " + w).trim().length > n) ls.push(w); else ls[ls.length - 1] = (l + " " + w).trim(); return ls; }, [""]);
+    const cards = [];
+    for (const [i, s] of spec.storyboard.entries()) {
+      const img = await sharp(join(raw, `${s.name}.png`)).resize(640, 360).toBuffer(), lines = wrap(`${i + 1}. [${s.beat}] ${s.vo}`, 62).slice(0, 6);
+      const txt = Buffer.from(`<svg width="640" height="150"><rect width="640" height="150" fill="#101317"/>${lines.map((l, k) => `<text x="12" y="${24 + k * 22}" font-family="sans-serif" font-size="17" fill="${k === 0 ? "#ffd34d" : "#e6e9ee"}">${esc(l)}</text>`).join("")}</svg>`);
+      const f = join(raw, `sb-${i}.jpg`); await sharp({ create: { width: 640, height: 510, channels: 3, background: "#000" } }).composite([{ input: img, top: 0, left: 0 }, { input: txt, top: 360, left: 0 }]).jpeg({ quality: 82 }).toFile(f); cards.push(f);
+    }
+    await sheet(cards, join(dir, "storyboard.jpg"), 4, 640);
+  }
   writeFileSync(join(dir, "shots.json"), JSON.stringify(spec.shots.map(({ props, ...s }) => s), null, 2));
   console.log(ch, "done:", spec.shots.length, "stills");
 }

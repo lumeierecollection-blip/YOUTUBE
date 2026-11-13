@@ -1,0 +1,54 @@
+{
+ "id": "judiciary",
+ "url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+ "final_url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+ "title": "Sentencing remarks: R -v- Boris Becker - Courts and Tribunals Judiciary",
+ "captured": "2026-11-13T05:37:01.788Z",
+ "viewport": {
+  "width": 1280,
+  "height": 900
+ },
+ "scale": 2,
+ "page_height": 1922,
+ "shots": [
+  {
+   "file": "judiciary-0.png",
+   "label": "loaded",
+   "scrollY": 0,
+   "at_ms": 6732
+  },
+  {
+   "file": "judiciary-1.png",
+   "label": "cookies closed",
+   "scrollY": 0,
+   "at_ms": 8460
+  }
+ ],
+ "rects": {
+  "Sentencing remarks: R -v- Boris Becker": [
+   {
+    "x": 186,
+    "y": 286,
+    "w": 843,
+    "h": 59
+   }
+  ],
+  "Sentencing remarks by Her Honour Judge Deborah Taylor, Recorder of Westminster": [
+   {
+    "x": 292,
+    "y": 626,
+    "w": 695,
+    "h": 23
+   }
+  ]
+ },
+ "cursor_log": [
+  {
+   "cursor": [
+    172.953125,
+    311.90625
+   ],
+   "at_ms": 7066
+  }
+ ]
+}
