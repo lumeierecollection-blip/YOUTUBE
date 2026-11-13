@@ -49,3 +49,17 @@ Still open: ship icon in the roster is one generic drawing; footage push-ins and
 | Wikimedia Commons API | per file | integrated (`platform/longform/v2/assets.mjs`) | photographs, licence manifests | 15 files, licences recorded, refusals enforced |
 | Claude-Code-Video-Toolkit, motion-skills (iart-ai) | various | found by search, not installed | — | overlap with what the repo has; not evaluated further |
 | yt-dlp, ffmpeg, faster-whisper | Unlicense / LGPL / MIT | used | reference study only | clips kept locally, never committed |
+
+## Phase 2 additions (13 Nov 2026)
+
+| Tool / skill | Licence | Status | Used for | Result |
+|---|---|---|---|---|
+| three.js via @remotion/three (already installed) | MIT | integrated in `lf2/space.jsx` | 3D planet with real texture and tilt | works; first-still texture race found and fixed |
+| Solar System Scope textures | CC BY 4.0 | downloaded, credited | planet textures, star field | works |
+| NASA Scientific Visualization Studio API | public domain media | integrated (download + frames) | real Uranus magnetosphere visualisations | works; files kept outside git |
+| NASA images API (images-api.nasa.gov) | public domain | tried | video search | unreachable from this PC (connection failed); SVS used instead |
+| metafor dataset dat.raudenbush1985 (Raudenbush 1984 Table 1) | data from a published paper | integrated | effect-size plot | works |
+| arXiv API | metadata | used | source for the AI Tested explanation beat | works |
+| yt-dlp flat listings + per-video metadata | Unlicense | used for research only | 24-channel catalogues, thumbnails | works; no video reused |
+| `anthropic-skills:dataviz`, `yt-hook-scripter`, `scene-director` | skills | listed, **not invoked** in phase 2 | — | charts and openings were built from the measured references instead |
+| `mograph-critic` | skill | invoked in phase 1; motion checks still need a video render | — | static checks repeated by eye on all seven contact sheets |
