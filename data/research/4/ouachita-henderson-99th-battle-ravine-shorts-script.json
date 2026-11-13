@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "ouachita-henderson-99th-battle-ravine",
+  "format": "shorts",
+  "hook": "The 99th Battle of the Ravine is a historic college football rivalry between two Arkansas universities.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The 99th Battle of the Ravine is a historic college football rivalry between two Arkansas universities.",
+      "text_overlay": {
+        "text": "99th Battle of the Ravine"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 14, 2026, Ouachita Baptist University walks across U.S. Will the 25th-ranked Ouachita Baptist Tigers maintain their narrow lead over the Henderson State Reddies?",
+      "text_overlay": {
+        "text": "8-2 Records Collide"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Ouachita Baptist holds a 47-45-6 lead, but both teams enter this game with identical 8-2 records.",
+      "text_overlay": {
+        "text": "Historical Lead: 47-45-6"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Fans will pack Carpenter-Haygood Stadium at GeoSurfaces Field to witness this intense, long-standing football tradition. This 99th edition determines which university gains ground in the historic Battle of the Ravine series.",
+      "text_overlay": {
+        "text": "$10 Adult Tickets"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 99th Battle of the Ravine starts this Saturday.",
+      "text_overlay": {
+        "text": "99th Edition"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx",
+    "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+  ]
+}

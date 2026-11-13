@@ -1,0 +1,129 @@
+{
+  "topic_slug": "ouachita-henderson-99th-battle-ravine",
+  "strongest_angle": "Break down the unique 99th walking rivalry tradition on November 14, 2026, across U.S. Highway 67 to Carpenter-Haygood Stadium at GeoSurfaces Field with historical data and matchup stats.",
+  "key_facts": [
+    {
+      "fact": "The 99th Battle of the Ravine is scheduled for Saturday, November 14, 2026, with Ouachita Baptist holding a slight historical lead of 47-45-6 over Henderson State.",
+      "source_url": "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx",
+      "source_name": "Henderson State University Athletics",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 25th-ranked Ouachita Baptist University football team walks across U.S. Highway 67 on November 14, 2026, to take on Henderson State University at Carpenter-Haygood Stadium.",
+      "source_url": "https://obutigers.com/news/2026/11/12/football-no-25-ouachita-set-for-99th-battle-of-the-ravine.aspx",
+      "source_name": "Ouachita Baptist University Athletics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Both Henderson State and 25th-ranked Ouachita Baptist enter the 99th edition of the matchup with identical records of 8-2.",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx",
+      "source_name": "Henderson State University Athletics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tickets for the 99th Battle of the Ravine at Carpenter-Haygood Stadium and GeoSurfaces Field are priced at $10 for adults and $7 for students K-12.",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx",
+      "source_name": "Henderson State University Athletics",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Game edition",
+      "value": 99,
+      "unit": "edition",
+      "source_url": "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx"
+    },
+    {
+      "label": "Ouachita Baptist wins",
+      "value": 47,
+      "unit": "wins",
+      "source_url": "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx"
+    },
+    {
+      "label": "Henderson State wins",
+      "value": 45,
+      "unit": "wins",
+      "source_url": "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx"
+    },
+    {
+      "label": "Ties",
+      "value": 6,
+      "unit": "ties",
+      "source_url": "https://hsusports.com/news/2026/11/12/football-game-notes-the-99th-battle-of-the-ravine.aspx"
+    },
+    {
+      "label": "Ouachita Baptist ranking",
+      "value": 25,
+      "unit": "ranking",
+      "source_url": "https://obutigers.com/news/2026/11/12/football-no-25-ouachita-set-for-99th-battle-of-the-ravine.aspx"
+    },
+    {
+      "label": "Ouachita Baptist wins season",
+      "value": 8,
+      "unit": "wins",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    },
+    {
+      "label": "Ouachita Baptist losses season",
+      "value": 2,
+      "unit": "losses",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    },
+    {
+      "label": "Henderson State wins season",
+      "value": 8,
+      "unit": "wins",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    },
+    {
+      "label": "Henderson State losses season",
+      "value": 2,
+      "unit": "losses",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    },
+    {
+      "label": "Adult ticket price",
+      "value": 10,
+      "unit": "dollars",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    },
+    {
+      "label": "Student ticket price",
+      "value": 7,
+      "unit": "dollars",
+      "source_url": "https://hsusports.com/news/2026/11/9/football-the-99th-battle-of-the-ravine-information-guide.aspx"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ouachita Baptist University",
+      "kind": "organization"
+    },
+    {
+      "name": "Henderson State University",
+      "kind": "organization"
+    },
+    {
+      "name": "Carpenter-Haygood Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "GeoSurfaces Field",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Highway 67",
+      "kind": "place"
+    },
+    {
+      "name": "Arkadelphia",
+      "kind": "place"
+    },
+    {
+      "name": "Wayne Cavadi",
+      "kind": "person"
+    }
+  ]
+}
