@@ -1159,17 +1159,17 @@
     },
     "2026-11-11-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "43348519456",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T01:59:57.135Z",
+      "updated_at": "2026-11-13T02:17:56.645Z",
       "stage": "script",
       "topic": "The Discovery of the Lost Sanctuary of Asclepius",
       "score": 73.4,
       "pillar": "Archaeological discoveries",
       "hook": "Archaeologists in Greece just uncovered the lost sanctuary of the ancient god of medicine.",
-      "error": "4 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - CLARITY: sentence 3 \"Who directed the 20 present?\" — The narration asks a question rather than providing information, and it is unclear who the '20' are.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But the case needed a self-taught New York lawyer.\" — It is unclear what 'the case' refers to or why a self-taught lawyer was"
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why was the sanctuary located 20 metres from a theatre?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence "
     },
     "2026-11-12-ch2": {
       "channel": "2",
@@ -2393,7 +2393,8 @@
     "Hidden Past kick-815e89f172-ch1 failed at discover: 1 topic(s) tried, none usable. Last: no freely licensed image of the actual subject",
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou",
     "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT ",
-    "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
+    "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
+    "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th"
   ],
   "last_poll_at": "2026-11-13T01:56:26.750Z"
 }
