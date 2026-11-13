@@ -4,7 +4,7 @@
 // hold rights to, so the proof layer here is the match's own event data (StatsBomb open data) animated on the pitch.
 // The pitch is a real 3D plane: every point is projected through a camera (focus, yaw, tilt, distance) that can move per frame.
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp } from "./kit.jsx";
 
 const L = 120, Wd = 80;
@@ -290,4 +290,20 @@ export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName,
   );
 }
 
-export const RIVAL = { number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb };
+/** 11. Real photograph (licensed: Commons / government press photo) with the credit on screen and one capital callout. The proof layer the references
+ * get from broadcast clips, which we cannot license; a still is the honest substitute and is labelled as such. */
+export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur = 240 }) {
+  const f = useCurrentFrame(), s = interpolate(f, [0, dur], [1.02, 1.09], clamp);
+  return (
+    <AbsoluteFill style={{ background: "#000" }}><Fonts />
+      <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transform: `scale(${s})`, filter: "saturate(0.95) contrast(1.05)" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0) 70%)" }} />
+      {kicker && <div style={{ position: "absolute", left: 110, top: 760, fontFamily: F.cond, fontWeight: 700, fontSize: 30, letterSpacing: "0.2em", color: t.accent }}>{kicker}</div>}
+      {callout && <Callout t={t} text={callout} y={810} from={10} />}
+      <div style={{ position: "absolute", right: 30, bottom: 22, fontFamily: F.sans, fontSize: 17, color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px #000" }}>Photo: {credit}</div>
+      <Finish grain={0.05} vignette={0.35} />
+    </AbsoluteFill>
+  );
+}
+
+export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb };

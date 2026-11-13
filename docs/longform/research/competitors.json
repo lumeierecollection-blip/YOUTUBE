@@ -1,0 +1,4406 @@
+{
+ "collected": "2026-11-13",
+ "method": "yt-dlp flat listing of the channel Videos tab (newest <=250 long videos, Shorts excluded); top 5 by views among those and the 5 newest fetched individually for upload date and subscriber count; median_views_recent30 = median views of the newest 30; x_median = views / that median; uploads_per_month from the dates of the newest and the 30th newest video. Lifetime views of old videos are NOT compared with new ones without this normalisation.",
+ "channels": [
+  {
+   "niche": "space",
+   "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+   "channel": "Astrum",
+   "subs": 2910000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 249,
+   "median_views_recent30": 998000,
+   "uploads_per_month": 5.2,
+   "median_duration_min": 26.5,
+   "top": [
+    {
+     "i": 184,
+     "id": "6EbuAEagQj4",
+     "views": 11000000,
+     "dur": 1139,
+     "title": "The Deepest We Have Ever Seen Into the Sun | SDO 4K",
+     "date": "20231123",
+     "likes": 130719,
+     "comments": 5700,
+     "x_median": 11
+    },
+    {
+     "i": 141,
+     "id": "UyzBoUvN3PM",
+     "views": 8300000,
+     "dur": 3063,
+     "title": "What Voyager Detected at the Edge of the Solar System",
+     "date": "20240819",
+     "likes": 91498,
+     "comments": 4700,
+     "x_median": 8.3
+    },
+    {
+     "i": 215,
+     "id": "mggRl80WzbE",
+     "views": 7000000,
+     "dur": 902,
+     "title": "What El Ni�o Will Do to Earth",
+     "date": "20230505",
+     "likes": 90098,
+     "comments": 5900,
+     "x_median": 7
+    },
+    {
+     "i": 102,
+     "id": "u4tzK89ZfmA",
+     "views": 6800000,
+     "dur": 1873,
+     "title": "Everything We Know About 'Oumuamua",
+     "date": "20250422",
+     "likes": 92276,
+     "comments": 5200,
+     "x_median": 6.8
+    },
+    {
+     "i": 248,
+     "id": "YpyXVkqkQgg",
+     "views": 5700000,
+     "dur": 967,
+     "title": "Time Does Not Exist. Let me explain with a graph.",
+     "date": "20221007",
+     "likes": 123060,
+     "comments": 12000,
+     "x_median": 5.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "MS8eLbSvb3c",
+     "views": 296000,
+     "dur": 1401,
+     "title": "We Detected an Unusual Signal Coming From Our Galaxy's Core",
+     "date": "20261111",
+     "likes": 3937,
+     "comments": 203,
+     "x_median": 0.3
+    },
+    {
+     "i": 2,
+     "id": "aCZosHTmyPY",
+     "views": 1000000,
+     "dur": 1750,
+     "title": "We Found a Chemical on Titan We've Never Seen Before",
+     "date": "20261104",
+     "likes": 10825,
+     "comments": 525,
+     "x_median": 1
+    },
+    {
+     "i": 3,
+     "id": "TOJAKmAk3NY",
+     "views": 661000,
+     "dur": 1517,
+     "title": "The Impossible Reality Inside a Black Hole",
+     "date": "20261029",
+     "likes": 8458,
+     "comments": 640,
+     "x_median": 0.66
+    },
+    {
+     "i": 4,
+     "id": "pZh5BWCNmmE",
+     "views": 3000000,
+     "dur": 2397,
+     "title": "Uranus: The Weirdest Planet in the Solar System",
+     "date": "20261027",
+     "likes": 17518,
+     "comments": 2500,
+     "x_median": 3.01
+    },
+    {
+     "i": 5,
+     "id": "T9HLYPn59S4",
+     "views": 576000,
+     "dur": 1347,
+     "title": "The Most Detailed Image Ever Taken of the Milky Way's Core",
+     "date": "20261021",
+     "likes": 6783,
+     "comments": 304,
+     "x_median": 0.58
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "pZh5BWCNmmE",
+     "title": "Uranus: The Weirdest Planet in the Solar System",
+     "views": 3000000,
+     "x_median": 3
+    },
+    {
+     "id": "YQ7DWNhjOpk",
+     "title": "Why Is the Closest Planet to the Sun So Cold?",
+     "views": 2800000,
+     "x_median": 2.8
+    },
+    {
+     "id": "IUaQOelVGUg",
+     "title": "What NASA Found Below Jupiter's Clouds",
+     "views": 2500000,
+     "x_median": 2.5
+    },
+    {
+     "id": "k9vJLkpxrik",
+     "title": "Is This the Largest Star In the Universe?",
+     "views": 3000000,
+     "x_median": 3
+    },
+    {
+     "id": "NEHssvf9goQ",
+     "title": "The Most Bizarre Exoplanets We've Ever Found",
+     "views": 3600000,
+     "x_median": 3.6
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UC-9b7aDP6ZN0coj9-xFnrtw"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UC-mP1nlk0qOutA08zuQHORA",
+   "channel": "Patrick Cc:",
+   "subs": 2580000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 1500000,
+   "uploads_per_month": 4.2,
+   "median_duration_min": 34.6,
+   "top": [
+    {
+     "i": 90,
+     "id": "Rnfv15oHWUY",
+     "views": 9700000,
+     "dur": 1964,
+     "title": "The Dark Life After 15 Minutes of Fame",
+     "date": "20250324",
+     "likes": 139622,
+     "comments": 12000,
+     "x_median": 6.5
+    },
+    {
+     "i": 11,
+     "id": "5hEZMr-zB28",
+     "views": 7800000,
+     "dur": 2332,
+     "title": "Investigating The Most Suspicious Man in Las Vegas",
+     "date": "20260831",
+     "likes": 60887,
+     "comments": 11000,
+     "x_median": 5.2
+    },
+    {
+     "i": 110,
+     "id": "8r3RQD8rE9E",
+     "views": 7800000,
+     "dur": 2609,
+     "title": "The Awakening of Jim Carrey: Hollywood's Worst Nightmare",
+     "date": "20241014",
+     "likes": 191663,
+     "comments": 19000,
+     "x_median": 5.2
+    },
+    {
+     "i": 139,
+     "id": "HwU1MQyOIhU",
+     "views": 7600000,
+     "dur": 1940,
+     "title": "When Comedians Cause Chaos at Award Shows",
+     "date": "20240325",
+     "likes": 155031,
+     "comments": 10000,
+     "x_median": 5.1
+    },
+    {
+     "i": 172,
+     "id": "Gzn8-KbyGlo",
+     "views": 7200000,
+     "dur": 993,
+     "title": "Keanu Reeves Refused to Sell His Soul to Hollywood",
+     "date": "20230807",
+     "likes": 222901,
+     "comments": 12000,
+     "x_median": 4.8
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "azjpDRLFWQM",
+     "views": 1800000,
+     "dur": 1876,
+     "title": "Pok�mon Scalpers Are Completely F*cked",
+     "date": "20261109",
+     "likes": 27865,
+     "comments": 6400,
+     "x_median": 1.2
+    },
+    {
+     "i": 2,
+     "id": "k5ybiDRnR5Y",
+     "views": 681000,
+     "dur": 2448,
+     "title": "Bob Saget Was NOT Who They Thought He Was",
+     "date": "20261102",
+     "likes": 13544,
+     "comments": 2300,
+     "x_median": 0.45
+    },
+    {
+     "i": 3,
+     "id": "5DOp7RD8Rn4",
+     "views": 1200000,
+     "dur": 2168,
+     "title": "Megan Fox Won't Shut Her Mouth",
+     "date": "20261026",
+     "likes": 25131,
+     "comments": 3500,
+     "x_median": 0.8
+    },
+    {
+     "i": 4,
+     "id": "DWWNhwxccJE",
+     "views": 1100000,
+     "dur": 2056,
+     "title": "The Undertaker Situation is Really Sad",
+     "date": "20261019",
+     "likes": 20362,
+     "comments": 3900,
+     "x_median": 0.73
+    },
+    {
+     "i": 5,
+     "id": "cH6Qy0DGz2w",
+     "views": 866000,
+     "dur": 2344,
+     "title": "Another Child Star Died & We Know Who To Blame",
+     "date": "20261012",
+     "likes": 13359,
+     "comments": 1800,
+     "x_median": 0.58
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "5hEZMr-zB28",
+     "title": "Investigating The Most Suspicious Man in Las Vegas",
+     "views": 7800000,
+     "x_median": 5.2
+    },
+    {
+     "id": "nIp_Ktqt9eE",
+     "title": "Pawn Stars is the Fakest Show on TV. Here's The Evidence",
+     "views": 4600000,
+     "x_median": 3.1
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UC-mP1nlk0qOutA08zuQHORA"
+  },
+  {
+   "niche": "psych",
+   "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+   "channel": "Sprouts",
+   "subs": 1950000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 137,
+   "median_views_recent30": 46000,
+   "uploads_per_month": 1,
+   "median_duration_min": 4.8,
+   "top": [
+    {
+     "i": 140,
+     "id": "4aN5TbGW5JA",
+     "views": 19000000,
+     "dur": 287,
+     "title": "The Pygmalion Effect",
+     "date": "20190529",
+     "likes": 865628,
+     "comments": 21000,
+     "x_median": 413
+    },
+    {
+     "i": 150,
+     "id": "WjOowWxOXCg",
+     "views": 11000000,
+     "dur": 456,
+     "title": "The Attachment Theory: How Childhood Affects Life",
+     "date": "20180531",
+     "likes": 299036,
+     "comments": 10000,
+     "x_median": 239.1
+    },
+    {
+     "i": 173,
+     "id": "eVlvxHJdql8",
+     "views": 8400000,
+     "dur": 323,
+     "title": "13 Study Tips: The Science of Better Learning",
+     "date": "20161003",
+     "likes": 306564,
+     "comments": 4700,
+     "x_median": 182.6
+    },
+    {
+     "i": 114,
+     "id": "fyO8pvpnTdE",
+     "views": 7700000,
+     "dur": 415,
+     "title": "5 Parenting Styles and Their Effects on Life",
+     "date": "20210430",
+     "likes": 201684,
+     "comments": 9400,
+     "x_median": 167.4
+    },
+    {
+     "i": 148,
+     "id": "IhcgYgx7aAA",
+     "views": 7700000,
+     "dur": 416,
+     "title": "Piaget's Theory of Cognitive Development",
+     "date": "20180801",
+     "likes": 106956,
+     "comments": 1800,
+     "x_median": 167.4
+    }
+   ],
+   "recent": [
+    {
+     "i": 4,
+     "id": "LPw0BZOm0bU",
+     "views": 10000,
+     "dur": 256,
+     "title": "How Money Is Created and How This Makes Some Rich and Some Poor",
+     "date": "20260602",
+     "likes": 444,
+     "comments": 38,
+     "x_median": 0.22
+    },
+    {
+     "i": 6,
+     "id": "ofweqU0Lz4I",
+     "views": 26000,
+     "dur": 291,
+     "title": "Correlation vs Causation Explained: Why Patterns Can Mislead Us",
+     "date": "20260323",
+     "likes": 632,
+     "comments": 34,
+     "x_median": 0.57
+    },
+    {
+     "i": 7,
+     "id": "qWjZAnmSGn4",
+     "views": 23000,
+     "dur": 279,
+     "title": "The Cycle of Abuse : 4 Phases of a Toxic Relationship",
+     "date": "20260223",
+     "likes": 667,
+     "comments": 64,
+     "x_median": 0.5
+    },
+    {
+     "i": 8,
+     "id": "RKtG70DFXU4",
+     "views": 16000,
+     "dur": 252,
+     "title": "5 Developmental Windows That Shape Your Life Forever",
+     "date": "20260126",
+     "likes": 732,
+     "comments": 39,
+     "x_median": 0.35
+    },
+    {
+     "i": 9,
+     "id": "qAN6iQyhlLk",
+     "views": 20000,
+     "dur": 358,
+     "title": "What Depression Feels Like",
+     "date": "20251222",
+     "likes": 645,
+     "comments": 69,
+     "x_median": 0.43
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "MOkip7IamH0",
+     "title": "Living with Bipolar Disorder: Signs, Symptoms & Everyday Life",
+     "views": 331000,
+     "x_median": 7.2
+    },
+    {
+     "id": "TohYugHlB8I",
+     "title": "Capitalism vs. Socialism: Which Works Better? [Deep Dive into Public Data Analysis]",
+     "views": 301000,
+     "x_median": 6.5
+    },
+    {
+     "id": "nnwkX6u9tFo",
+     "title": "The 5 Stages of Burnout [How To Recognize Them]",
+     "views": 179000,
+     "x_median": 3.9
+    },
+    {
+     "id": "PrbzuV2Paw0",
+     "title": "The 4 Stages of Adaptation [Culture Shock]",
+     "views": 155000,
+     "x_median": 3.4
+    },
+    {
+     "id": "R57ocxW3faA",
+     "title": "Why Are Teens Tired In School [Changing Circadian Rhythms]",
+     "views": 443000,
+     "x_median": 9.6
+    },
+    {
+     "id": "gM0Zaf6oXAA",
+     "title": "Sex Differences [Cognition, Education, and Biology]",
+     "views": 270000,
+     "x_median": 5.9
+    },
+    {
+     "id": "Eqw0K676F5M",
+     "title": "ADHD from Childhood to Adulthood [Symptoms and Traits]",
+     "views": 413000,
+     "x_median": 9
+    },
+    {
+     "id": "JYSX88h-qIc",
+     "title": "Borderline Personality Disorder",
+     "views": 808000,
+     "x_median": 17.6
+    },
+    {
+     "id": "P3rbadeF9AI",
+     "title": "7 Principles of Psychological Persuasion",
+     "views": 128000,
+     "x_median": 2.8
+    },
+    {
+     "id": "Q7yyYdiNTIo",
+     "title": "Linguistic Relativity: How Language Shapes Thought",
+     "views": 123000,
+     "x_median": 2.7
+    },
+    {
+     "id": "pAsRu1ghd2A",
+     "title": "The 10 Stages of Genocide",
+     "views": 878000,
+     "x_median": 19.1
+    },
+    {
+     "id": "8N9Y7OY7cXk",
+     "title": "Obsessive-Compulsive Disorder (OCD)",
+     "views": 125000,
+     "x_median": 2.7
+    },
+    {
+     "id": "QPtrDt_VybY",
+     "title": "Myers�Briggs Type Indicator: What�s Your Personality Type?",
+     "views": 385000,
+     "x_median": 8.4
+    },
+    {
+     "id": "d8Y6A6Dg2Fk",
+     "title": "Would You Save A Boy From Drowning?",
+     "views": 378000,
+     "x_median": 8.2
+    },
+    {
+     "id": "qPGbl2gxGqI",
+     "title": "Chesterton Fence: Don�t Destroy What You Don�t Understand!",
+     "views": 724000,
+     "x_median": 15.7
+    },
+    {
+     "id": "Oph9i3bAp4A",
+     "title": "The Multi-Store Model: How We Make Memories",
+     "views": 146000,
+     "x_median": 3.2
+    },
+    {
+     "id": "7ReBJfxHjFU",
+     "title": "The Universe 25 Experiment [All Mice Died]",
+     "views": 1100000,
+     "x_median": 23.9
+    },
+    {
+     "id": "qt2f5_Pg_QE",
+     "title": "Darwin's Theory of Evolution: Natural Selection",
+     "views": 311000,
+     "x_median": 6.8
+    },
+    {
+     "id": "9W0Txe-bhFE",
+     "title": "Robbers Cave Experiment: Unmasking the Roots of Tribal Conflicts",
+     "views": 151000,
+     "x_median": 3.3
+    },
+    {
+     "id": "TGr8bMTSD4s",
+     "title": "Cipolla�s 5 Laws of Human Stupidity Explained",
+     "views": 1600000,
+     "x_median": 34.8
+    },
+    {
+     "id": "jJajz9n9Oi4",
+     "title": "Sunk Cost Fallacy: Not Knowing When It�s Time to Stop",
+     "views": 117000,
+     "x_median": 2.5
+    },
+    {
+     "id": "YY35a_eTRW0",
+     "title": "Social Intelligence: 5 Mental Gifts to Succeed in Society",
+     "views": 156000,
+     "x_median": 3.4
+    },
+    {
+     "id": "xaJuFbtuK7E",
+     "title": "The Legal Systems We Live In Today",
+     "views": 266000,
+     "x_median": 5.8
+    },
+    {
+     "id": "5Pc0GW7jsDo",
+     "title": "The Effects of Weed on Teenage Brains",
+     "views": 1400000,
+     "x_median": 30.4
+    },
+    {
+     "id": "_juPDoa3GBY",
+     "title": "Self-Determination Theory Explained",
+     "views": 487000,
+     "x_median": 10.6
+    },
+    {
+     "id": "GxAu7BTZQRY",
+     "title": "Cognitive Dissonance: Your Response to Conflicting Beliefs",
+     "views": 256000,
+     "x_median": 5.6
+    },
+    {
+     "id": "0jq-givtdqA",
+     "title": "Graham's Hierarchy of Disagreement",
+     "views": 166000,
+     "x_median": 3.6
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UC-RKpEc4eE9PwJaupN91xYQ"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+   "channel": "Nicki Swift",
+   "subs": 3180000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 174,
+   "median_views_recent30": 4100,
+   "uploads_per_month": 17.3,
+   "median_duration_min": 11.1,
+   "top": [
+    {
+     "i": 133,
+     "id": "nOZQlDg_Ei4",
+     "views": 214000,
+     "dur": 645,
+     "title": "News Anchors Who Vanished After Getting Fired",
+     "date": "20260522",
+     "likes": 1988,
+     "comments": 191,
+     "x_median": 52.2
+    },
+    {
+     "i": 228,
+     "id": "SE8wtPwQWBA",
+     "views": 168000,
+     "dur": 971,
+     "title": "These HGTV Shows Are Faker Than You May Realize",
+     "date": "20260310",
+     "likes": 1817,
+     "comments": 321,
+     "x_median": 41
+    },
+    {
+     "i": 214,
+     "id": "_0DdnLkiUx0",
+     "views": 157000,
+     "dur": 609,
+     "title": "Jarring Images Of Celebrities With 'Ozempic Face'",
+     "date": "20260317",
+     "likes": 977,
+     "comments": 139,
+     "x_median": 38.3
+    },
+    {
+     "i": 242,
+     "id": "X-KzfQMAjPw",
+     "views": 97000,
+     "dur": 2445,
+     "title": "General Hospital Stars Who Sadly Passed Away",
+     "date": "20260302",
+     "likes": 1042,
+     "comments": 92,
+     "x_median": 23.7
+    },
+    {
+     "i": 11,
+     "id": "Uqes-z6hTLg",
+     "views": 94000,
+     "dur": 651,
+     "title": "What These Former Dancing With The Stars Pros Are Doing Now",
+     "date": "20261023",
+     "likes": 357,
+     "comments": 20,
+     "x_median": 22.9
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "MS59ZK2hiz0",
+     "views": 1900,
+     "dur": 734,
+     "title": "The Remarkable Evolution Of Grace Kelly's 6 Granddaughters",
+     "date": "20261111",
+     "likes": 16,
+     "comments": 3,
+     "x_median": 0.46
+    },
+    {
+     "i": 3,
+     "id": "xWU0B1ReRog",
+     "views": 18000,
+     "dur": 652,
+     "title": "Celebrities Who Are Rumored To Be Not-So-Great Neighbors",
+     "date": "20261106",
+     "likes": 88,
+     "comments": 7,
+     "x_median": 4.39
+    },
+    {
+     "i": 5,
+     "id": "PYLhLjJ0iXE",
+     "views": 11000,
+     "dur": 814,
+     "title": "From Season 1 To 34: DWTS Contestants Who Didn't Land With Fans",
+     "date": "20261102",
+     "likes": 40,
+     "comments": 5,
+     "x_median": 2.68
+    },
+    {
+     "i": 6,
+     "id": "DHS2RGvsK4s",
+     "views": 8900,
+     "dur": 674,
+     "title": "Where These VH1 Stars Are Today",
+     "date": "20261030",
+     "likes": 54,
+     "comments": 5,
+     "x_median": 2.17
+    },
+    {
+     "i": 7,
+     "id": "FOQAK4-gaV0",
+     "views": 4100,
+     "dur": 705,
+     "title": "'80s Heartthrobs Who Married Much Younger Women",
+     "date": "20261029",
+     "likes": 23,
+     "comments": 1,
+     "x_median": 1
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "xWU0B1ReRog",
+     "title": "Celebrities Who Are Rumored To Be Not-So-Great Neighbors",
+     "views": 18000,
+     "x_median": 4.4
+    },
+    {
+     "id": "PYLhLjJ0iXE",
+     "title": "From Season 1 To 34: DWTS Contestants Who Didn't Land With Fans",
+     "views": 11000,
+     "x_median": 2.7
+    },
+    {
+     "id": "YsnsnApMgy0",
+     "title": "What These Popular Dancing With The Stars Winners Are Doing Now",
+     "views": 12000,
+     "x_median": 2.9
+    },
+    {
+     "id": "Uqes-z6hTLg",
+     "title": "What These Former Dancing With The Stars Pros Are Doing Now",
+     "views": 94000,
+     "x_median": 22.9
+    },
+    {
+     "id": "_4RO_12jxyg",
+     "title": "The Messiest Celebrity Affairs Of The 1980s",
+     "views": 70000,
+     "x_median": 17.1
+    },
+    {
+     "id": "CPGyT2lfPM8",
+     "title": "The Cast Of Chicago Fire & Their Off-Screen Loves",
+     "views": 20000,
+     "x_median": 4.9
+    },
+    {
+     "id": "b7EsyQEQV4Q",
+     "title": "What These Popular Stars Of MTV's Real World Look Like Now",
+     "views": 44000,
+     "x_median": 10.7
+    },
+    {
+     "id": "Dc_1m2CiZlY",
+     "title": "What These Project Runway Winners Look Like Today",
+     "views": 18000,
+     "x_median": 4.4
+    },
+    {
+     "id": "PPyL_xhx4E4",
+     "title": "My Lottery Dream Home Episodes That Didn't Land With HGTV Fans",
+     "views": 50000,
+     "x_median": 12.2
+    },
+    {
+     "id": "0DD_ii16WyU",
+     "title": "David Muir's Transformation Has Everyone Staring",
+     "views": 24000,
+     "x_median": 5.9
+    },
+    {
+     "id": "WEg-zLlXNlE",
+     "title": "Real Housewife Stars Who Can't Afford Their Fancy Lifestyles",
+     "views": 12000,
+     "x_median": 2.9
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UC1DGpYiEiqBrQtYXFbLhMVQ"
+  },
+  {
+   "niche": "psych",
+   "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+   "channel": "PsychToons",
+   "subs": 231000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 146,
+   "median_views_recent30": 53000,
+   "uploads_per_month": 14.7,
+   "median_duration_min": 15.7,
+   "top": [
+    {
+     "i": 61,
+     "id": "CkP_8bkjf1E",
+     "views": 5100000,
+     "dur": 885,
+     "title": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+     "date": "20260730",
+     "likes": 102831,
+     "comments": 1800,
+     "x_median": 96.2
+    },
+    {
+     "i": 37,
+     "id": "f1gkkzHZxNg",
+     "views": 3500000,
+     "dur": 904,
+     "title": "Psychology of Intelligence: Learn Anything So Fast It's Almost Unfair",
+     "date": "20260830",
+     "likes": 53307,
+     "comments": 1100,
+     "x_median": 66
+    },
+    {
+     "i": 44,
+     "id": "D0SGbomVuKc",
+     "views": 3500000,
+     "dur": 818,
+     "title": "Psychology of Polymaths: Why Having Multiple Interests Is an Unfair Advantage",
+     "date": "20260816",
+     "likes": 90891,
+     "comments": 6700,
+     "x_median": 66
+    },
+    {
+     "i": 111,
+     "id": "N95Tb2sDWVs",
+     "views": 2300000,
+     "dur": 627,
+     "title": "Psychology of People Who Go Quiet When They�re Hurt",
+     "date": "20260309",
+     "likes": 63402,
+     "comments": 3800,
+     "x_median": 43.4
+    },
+    {
+     "i": 23,
+     "id": "6wPcR6MrsIk",
+     "views": 2000000,
+     "dur": 825,
+     "title": "Psychology of Verbal Intelligence: How To Articulate Your Thoughts Intelligently",
+     "date": "20260927",
+     "likes": 32550,
+     "comments": 630,
+     "x_median": 37.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "ltFkUizYdR0",
+     "views": 5400,
+     "dur": 978,
+     "title": "10 Boring Habits That Will Make You Scary Disciplined",
+     "date": "20261112",
+     "likes": 144,
+     "comments": 11,
+     "x_median": 0.1
+    },
+    {
+     "i": 2,
+     "id": "NhuCb-PirBo",
+     "views": 10000,
+     "dur": 940,
+     "title": "Psychology of Lust (And How To Defeat It Overnight)",
+     "date": "20261110",
+     "likes": 249,
+     "comments": 64,
+     "x_median": 0.19
+    },
+    {
+     "i": 3,
+     "id": "7ICGcKz99_A",
+     "views": 14000,
+     "dur": 945,
+     "title": "Psychology of Ghost Profiles (Why Some People Don't Post Their Photos Online)",
+     "date": "20261108",
+     "likes": 186,
+     "comments": 68,
+     "x_median": 0.26
+    },
+    {
+     "i": 4,
+     "id": "FwwyZ6IMrHg",
+     "views": 14000,
+     "dur": 947,
+     "title": "Psychology of Insecurities (And How To Drop Them For Good)",
+     "date": "20261106",
+     "likes": 265,
+     "comments": 62,
+     "x_median": 0.26
+    },
+    {
+     "i": 5,
+     "id": "s9HFeU37CK8",
+     "views": 19000,
+     "dur": 947,
+     "title": "The Psychology of JOMO (Joy of Missing Out)",
+     "date": "20261104",
+     "likes": 334,
+     "comments": 69,
+     "x_median": 0.36
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "vIH0GS_cXv0",
+     "title": "Psychology of Sleep: How To Sleep Less Hours And Wake Up Fresh",
+     "views": 262000,
+     "x_median": 4.9
+    },
+    {
+     "id": "AACwyjlk8ko",
+     "title": "Psychology of Mechanical Intelligence (Why Some People Can Fix Anything)",
+     "views": 1500000,
+     "x_median": 28.3
+    },
+    {
+     "id": "1dzUVXPj4yE",
+     "title": "The Psychology of Not Giving A F*ck",
+     "views": 718000,
+     "x_median": 13.5
+    },
+    {
+     "id": "6wPcR6MrsIk",
+     "title": "Psychology of Verbal Intelligence: How To Articulate Your Thoughts Intelligently",
+     "views": 2000000,
+     "x_median": 37.7
+    },
+    {
+     "id": "0nBvAYO-DGg",
+     "title": "Psychology of Self-Worth (And How To Stop Seeking External Validation)",
+     "views": 522000,
+     "x_median": 9.8
+    },
+    {
+     "id": "opyoqoddtBc",
+     "title": "Psychology of Addiction (And How to Beat It Without Willpower)",
+     "views": 864000,
+     "x_median": 16.3
+    },
+    {
+     "id": "uw61C_qbgNg",
+     "title": "Psychology of Charisma: How To Actually Make People Like You",
+     "views": 812000,
+     "x_median": 15.3
+    },
+    {
+     "id": "f1gkkzHZxNg",
+     "title": "Psychology of Intelligence: Learn Anything So Fast It's Almost Unfair",
+     "views": 3500000,
+     "x_median": 66
+    },
+    {
+     "id": "CwhUi9A8LeE",
+     "title": "Psychology of Rest: Recover So Well It Makes You Dangerous",
+     "views": 776000,
+     "x_median": 14.6
+    },
+    {
+     "id": "wq8TrxPYN7A",
+     "title": "Psychology of Composure: Be So Calm It Makes People Nervous",
+     "views": 846000,
+     "x_median": 16
+    },
+    {
+     "id": "D0SGbomVuKc",
+     "title": "Psychology of Polymaths: Why Having Multiple Interests Is an Unfair Advantage",
+     "views": 3500000,
+     "x_median": 66
+    },
+    {
+     "id": "UhxZFzeo0bA",
+     "title": "10 Signs of a Dark Empath (The Most Dangerous Personality Type)",
+     "views": 417000,
+     "x_median": 7.9
+    },
+    {
+     "id": "TRd1kuUGazE",
+     "title": "Psychology of Resilience: Build a Mind So Strong It Scares People",
+     "views": 1600000,
+     "x_median": 30.2
+    },
+    {
+     "id": "J9I2d9uRJGc",
+     "title": "The Day You Stop Romanticizing People",
+     "views": 284000,
+     "x_median": 5.4
+    },
+    {
+     "id": "POqCOvbJFbE",
+     "title": "Why Some People Are Meant to Walk Alone (Psychology Explains)",
+     "views": 1000000,
+     "x_median": 18.9
+    },
+    {
+     "id": "qIJ2943Bzko",
+     "title": "10 Signs You Have Survivor's Intelligence (The Rarest Kind of Smart)",
+     "views": 343000,
+     "x_median": 6.5
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UC7ogBsKt4AoJBu8bObb0QiA"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+   "channel": "As Told by JP",
+   "subs": 34800,
+   "collected": "2026-11-13",
+   "long_videos_listed": 34,
+   "median_views_recent30": 156000,
+   "uploads_per_month": 3.1,
+   "median_duration_min": 30.8,
+   "top": [
+    {
+     "i": 29,
+     "id": "x_d9A5W2940",
+     "views": 1100000,
+     "dur": 2192,
+     "title": "Beyonc� Has Us All Fooled.",
+     "date": "20260130",
+     "likes": null,
+     "comments": 12000,
+     "x_median": 7.1
+    },
+    {
+     "i": 26,
+     "id": "4KrF8UN4RIo",
+     "views": 513000,
+     "dur": 2598,
+     "title": "They�ve Been Selling You the Same Song for Decades",
+     "date": "20260404",
+     "likes": null,
+     "comments": 2800,
+     "x_median": 3.3
+    },
+    {
+     "i": 12,
+     "id": "PV8xpSHzNyc",
+     "views": 470000,
+     "dur": 2507,
+     "title": "Whitney Houston Had Secrets.",
+     "date": "20260819",
+     "likes": null,
+     "comments": 2000,
+     "x_median": 3
+    },
+    {
+     "i": 25,
+     "id": "2v487vtetks",
+     "views": 435000,
+     "dur": 1821,
+     "title": "Jennifer Lopez: The World's Greatest Industry Plant",
+     "date": "20260424",
+     "likes": null,
+     "comments": 3000,
+     "x_median": 2.8
+    },
+    {
+     "i": 27,
+     "id": "dUuSmqnpCIQ",
+     "views": 424000,
+     "dur": 2471,
+     "title": "We�re Watching Britney Spears Fade Away",
+     "date": "20260227",
+     "likes": null,
+     "comments": 4100,
+     "x_median": 2.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "1gTQBQ-MhVA",
+     "views": 66000,
+     "dur": 2043,
+     "title": "You've Been Lied To About Michael Jackson's Death",
+     "date": "20261106",
+     "likes": 1157,
+     "comments": 340,
+     "x_median": 0.42
+    },
+    {
+     "i": 2,
+     "id": "2MOST0VlRN8",
+     "views": 103000,
+     "dur": 2509,
+     "title": "Wendy Williams Messed With The Wrong People",
+     "date": "20261031",
+     "likes": 1930,
+     "comments": 689,
+     "x_median": 0.66
+    },
+    {
+     "i": 3,
+     "id": "0-1FoxrYoGg",
+     "views": 191000,
+     "dur": 1829,
+     "title": "Rihanna�s Life Is FAR DARKER Than You Think.",
+     "date": "20261024",
+     "likes": 2808,
+     "comments": 793,
+     "x_median": 1.22
+    },
+    {
+     "i": 4,
+     "id": "1VdBZYWTWWs",
+     "views": 151000,
+     "dur": 2740,
+     "title": "They Let Kelly Rowland Lose.",
+     "date": "20261018",
+     "likes": 3706,
+     "comments": 1400,
+     "x_median": 0.97
+    },
+    {
+     "i": 5,
+     "id": "iD-Xyly4UEo",
+     "views": 87000,
+     "dur": 2179,
+     "title": "Ariana Grande is NOT OK.",
+     "date": "20261009",
+     "likes": null,
+     "comments": 604,
+     "x_median": 0.56
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "PV8xpSHzNyc",
+     "title": "Whitney Houston Had Secrets.",
+     "views": 470000,
+     "x_median": 3
+    },
+    {
+     "id": "Xr2F6v1iDDA",
+     "title": "They Let Beyonc� Win.",
+     "views": 409000,
+     "x_median": 2.6
+    },
+    {
+     "id": "2v487vtetks",
+     "title": "Jennifer Lopez: The World's Greatest Industry Plant",
+     "views": 435000,
+     "x_median": 2.8
+    },
+    {
+     "id": "4KrF8UN4RIo",
+     "title": "They�ve Been Selling You the Same Song for Decades",
+     "views": 513000,
+     "x_median": 3.3
+    },
+    {
+     "id": "dUuSmqnpCIQ",
+     "title": "We�re Watching Britney Spears Fade Away",
+     "views": 424000,
+     "x_median": 2.7
+    },
+    {
+     "id": "x_d9A5W2940",
+     "title": "Beyonc� Has Us All Fooled.",
+     "views": 1100000,
+     "x_median": 7.1
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCe5uygqW3ZwKcqQz99tMACA"
+  },
+  {
+   "niche": "space",
+   "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+   "channel": "The Space Race",
+   "subs": 936000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 238,
+   "median_views_recent30": 738000,
+   "uploads_per_month": 5,
+   "median_duration_min": 16.2,
+   "top": [
+    {
+     "i": 58,
+     "id": "FXF-nD4U5zk",
+     "views": 7100000,
+     "dur": 810,
+     "title": "Jupiter Is Not What You Think",
+     "date": "20251115",
+     "likes": 116480,
+     "comments": 5300,
+     "x_median": 9.6
+    },
+    {
+     "i": 80,
+     "id": "b2_M-1YqnNI",
+     "views": 6400000,
+     "dur": 1199,
+     "title": "The Object That Will Change Your View of Space Forever",
+     "date": "20250816",
+     "likes": 52881,
+     "comments": 4500,
+     "x_median": 8.7
+    },
+    {
+     "i": 79,
+     "id": "1ozN_0gYTBk",
+     "views": 6200000,
+     "dur": 929,
+     "title": "What NASA Found on Pluto",
+     "date": "20250823",
+     "likes": 51584,
+     "comments": 3300,
+     "x_median": 8.4
+    },
+    {
+     "i": 7,
+     "id": "ASEchqxT_5I",
+     "views": 5400000,
+     "dur": 891,
+     "title": "Something Weird Is Happening On Europa",
+     "date": "20260926",
+     "likes": 28197,
+     "comments": 1600,
+     "x_median": 7.3
+    },
+    {
+     "i": 45,
+     "id": "s0mNlXGd2Bc",
+     "views": 5400000,
+     "dur": 725,
+     "title": "What NASA Found on Io",
+     "date": "20260214",
+     "likes": 79476,
+     "comments": 2900,
+     "x_median": 7.3
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "64ZgzunmPOU",
+     "views": 671000,
+     "dur": 769,
+     "title": "NASA Could Win The Space Race This Month",
+     "date": "20261107",
+     "likes": 10220,
+     "comments": 770,
+     "x_median": 0.91
+    },
+    {
+     "i": 2,
+     "id": "bb4KirnWsB4",
+     "views": 899000,
+     "dur": 1204,
+     "title": "NASA Is Making Big Changes To Artemis",
+     "date": "20261031",
+     "likes": 14334,
+     "comments": 1800,
+     "x_median": 1.22
+    },
+    {
+     "i": 3,
+     "id": "_I3KAaI__-M",
+     "views": 2400000,
+     "dur": 979,
+     "title": "Jupiter isn't a planet",
+     "date": "20261024",
+     "likes": 29164,
+     "comments": 1800,
+     "x_median": 3.25
+    },
+    {
+     "i": 4,
+     "id": "FX6GYpj-PnA",
+     "views": 1900000,
+     "dur": 1003,
+     "title": "The Real Reason Starship Has 33 Engines",
+     "date": "20261017",
+     "likes": 11109,
+     "comments": 830,
+     "x_median": 2.57
+    },
+    {
+     "i": 5,
+     "id": "qQAM7FvLVio",
+     "views": 3000000,
+     "dur": 1233,
+     "title": "Why is everyone going to this hole in the Moon",
+     "date": "20261010",
+     "likes": 18607,
+     "comments": 3900,
+     "x_median": 4.07
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "_I3KAaI__-M",
+     "title": "Jupiter isn't a planet",
+     "views": 2400000,
+     "x_median": 3.3
+    },
+    {
+     "id": "FX6GYpj-PnA",
+     "title": "The Real Reason Starship Has 33 Engines",
+     "views": 1900000,
+     "x_median": 2.6
+    },
+    {
+     "id": "qQAM7FvLVio",
+     "title": "Why is everyone going to this hole in the Moon",
+     "views": 3000000,
+     "x_median": 4.1
+    },
+    {
+     "id": "ASEchqxT_5I",
+     "title": "Something Weird Is Happening On Europa",
+     "views": 5400000,
+     "x_median": 7.3
+    },
+    {
+     "id": "DW-aL_MiUz4",
+     "title": "How Starlink Actually Works",
+     "views": 4400000,
+     "x_median": 6
+    },
+    {
+     "id": "0lnQW47gFtI",
+     "title": "We Need to Talk About Uranus",
+     "views": 1900000,
+     "x_median": 2.6
+    },
+    {
+     "id": "4N3GJnDiqCU",
+     "title": "What Exactly Happened on Artemis 2",
+     "views": 3200000,
+     "x_median": 4.3
+    },
+    {
+     "id": "zNv7o8wEJdc",
+     "title": "How NASA Will Build The Artemis Moon Base",
+     "views": 3900000,
+     "x_median": 5.3
+    },
+    {
+     "id": "LV3pAQXVciE",
+     "title": "What is Actually Happening on Artemis 2",
+     "views": 2900000,
+     "x_median": 3.9
+    },
+    {
+     "id": "yjnLNzqTWng",
+     "title": "What NASA Found on Neptune",
+     "views": 2300000,
+     "x_median": 3.1
+    },
+    {
+     "id": "PMFE_I6xseA",
+     "title": "Saturn Is The Scariest Planet In Our Solar System",
+     "views": 2400000,
+     "x_median": 3.3
+    },
+    {
+     "id": "s0mNlXGd2Bc",
+     "title": "What NASA Found on Io",
+     "views": 5400000,
+     "x_median": 7.3
+    },
+    {
+     "id": "-_L5ZN-VnD0",
+     "title": "How SpaceX Will Build a City on Mars",
+     "views": 4800000,
+     "x_median": 6.5
+    },
+    {
+     "id": "4_iTuvomj0Y",
+     "title": "What The Soviets Found On Venus",
+     "views": 4500000,
+     "x_median": 6.1
+    },
+    {
+     "id": "FXF-nD4U5zk",
+     "title": "Jupiter Is Not What You Think",
+     "views": 7100000,
+     "x_median": 9.6
+    },
+    {
+     "id": "BNfIPVjQwEA",
+     "title": "What Is Actually Happening With 3I Atlas",
+     "views": 4200000,
+     "x_median": 5.7
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCeMcDx6-rOq_RlKSPehk2tQ"
+  },
+  {
+   "niche": "base",
+   "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+   "channel": "Football Made Simple",
+   "subs": 810000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 219000,
+   "uploads_per_month": 4.3,
+   "median_duration_min": 8.8,
+   "top": [
+    {
+     "i": 65,
+     "id": "Dki5tjN0rDE",
+     "views": 1300000,
+     "dur": 5024,
+     "title": "The Tactics Of Every Post-Ferguson United Manager",
+     "date": "20250812",
+     "likes": 23012,
+     "comments": 1500,
+     "x_median": 5.9
+    },
+    {
+     "i": 40,
+     "id": "fB8gT9TvKXs",
+     "views": 1200000,
+     "dur": 1017,
+     "title": "Why Football's Most Effective Tactic Died Over Night",
+     "date": "20260120",
+     "likes": 27184,
+     "comments": 2200,
+     "x_median": 5.5
+    },
+    {
+     "i": 45,
+     "id": "-g03xcSrPtw",
+     "views": 1200000,
+     "dur": 9693,
+     "title": "The Complete Tactical Evolution Of Pep Guardiola",
+     "date": "20251214",
+     "likes": 15192,
+     "comments": 721,
+     "x_median": 5.5
+    },
+    {
+     "i": 95,
+     "id": "-izMUUfGnso",
+     "views": 1100000,
+     "dur": 614,
+     "title": "The System Era Is Collapsing (And It's Beautiful)",
+     "date": "20250118",
+     "likes": 32538,
+     "comments": 1200,
+     "x_median": 5
+    },
+    {
+     "i": 170,
+     "id": "_qwbNY7wVDU",
+     "views": 951000,
+     "dur": 2045,
+     "title": "How Mourinho Conquered Guardiola And Spain",
+     "date": "20231015",
+     "likes": 22510,
+     "comments": 1600,
+     "x_median": 4.3
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "gpgYLJrPP2M",
+     "views": 265000,
+     "dur": 798,
+     "title": "How To Analyse Football - A Guide For Beginners",
+     "date": "20261110",
+     "likes": 3453,
+     "comments": 86,
+     "x_median": 1.21
+    },
+    {
+     "i": 2,
+     "id": "Nx8h403Sj_s",
+     "views": 312000,
+     "dur": 500,
+     "title": "This Was Elite Tactical Problem Solving",
+     "date": "20261102",
+     "likes": 2668,
+     "comments": 251,
+     "x_median": 1.42
+    },
+    {
+     "i": 3,
+     "id": "KC2Vgjw282s",
+     "views": 127000,
+     "dur": 536,
+     "title": "How Chelsea's Tactics Beat United",
+     "date": "20261101",
+     "likes": 1787,
+     "comments": 116,
+     "x_median": 0.58
+    },
+    {
+     "i": 4,
+     "id": "oZaPKaIVIA0",
+     "views": 699000,
+     "dur": 521,
+     "title": "How Mourinho's Tactics Won El Classico",
+     "date": "20261026",
+     "likes": 7426,
+     "comments": 557,
+     "x_median": 3.19
+    },
+    {
+     "i": 5,
+     "id": "pc-_0XaVEDo",
+     "views": 588000,
+     "dur": 604,
+     "title": "Barca Have Been Unplayable - PSG Didn't Care",
+     "date": "20261021",
+     "likes": 6839,
+     "comments": 713,
+     "x_median": 2.68
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "oZaPKaIVIA0",
+     "title": "How Mourinho's Tactics Won El Classico",
+     "views": 699000,
+     "x_median": 3.2
+    },
+    {
+     "id": "pc-_0XaVEDo",
+     "title": "Barca Have Been Unplayable - PSG Didn't Care",
+     "views": 588000,
+     "x_median": 2.7
+    },
+    {
+     "id": "N8PZt_9_adI",
+     "title": "Flick's Barcelona Tactics Are Crazy",
+     "views": 677000,
+     "x_median": 3.1
+    },
+    {
+     "id": "fB8gT9TvKXs",
+     "title": "Why Football's Most Effective Tactic Died Over Night",
+     "views": 1200000,
+     "x_median": 5.5
+    },
+    {
+     "id": "-g03xcSrPtw",
+     "title": "The Complete Tactical Evolution Of Pep Guardiola",
+     "views": 1200000,
+     "x_median": 5.5
+    },
+    {
+     "id": "1FfYzl4dygc",
+     "title": "Did Kompany Show Us How To Break Modern Football?",
+     "views": 786000,
+     "x_median": 3.6
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCFY0YHhxiIQWYYsLgeUBcbg"
+  },
+  {
+   "niche": "space",
+   "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+   "channel": "SEA",
+   "subs": 782000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 88,
+   "median_views_recent30": 729000,
+   "uploads_per_month": 0.6,
+   "median_duration_min": 34.3,
+   "top": [
+    {
+     "i": 37,
+     "id": "-ybiXR2WCFQ",
+     "views": 7100000,
+     "dur": 2119,
+     "title": "Journey to the Andromeda Galaxy [4K]",
+     "date": "20220105",
+     "likes": 81585,
+     "comments": 4100,
+     "x_median": 9.7
+    },
+    {
+     "i": 47,
+     "id": "4iC9Qi3y9q8",
+     "views": 6900000,
+     "dur": 1992,
+     "title": "The Cosmic Scale",
+     "date": "20210116",
+     "likes": 120368,
+     "comments": 9600,
+     "x_median": 9.5
+    },
+    {
+     "i": 81,
+     "id": "kZ3M6ko9pes",
+     "views": 4900000,
+     "dur": 1133,
+     "title": "Beyond the Cosmic Horizon",
+     "date": "20190117",
+     "likes": 65839,
+     "comments": 7700,
+     "x_median": 6.7
+    },
+    {
+     "i": 46,
+     "id": "W9ME-WBlkeM",
+     "views": 4200000,
+     "dur": 1615,
+     "title": "The Largest Star (Stephenson 2-18)",
+     "date": "20210211",
+     "likes": 59738,
+     "comments": 3500,
+     "x_median": 5.8
+    },
+    {
+     "i": 59,
+     "id": "BCjWmfWq0pU",
+     "views": 4100000,
+     "dur": 964,
+     "title": "The Jaw-Dropping Scale of Voids and Supervoids",
+     "date": "20200323",
+     "likes": 88316,
+     "comments": 4700,
+     "x_median": 5.6
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "-nIsOi-tVKM",
+     "views": 344000,
+     "dur": 1814,
+     "title": "The Real Largest Star",
+     "date": "20261025",
+     "likes": 6893,
+     "comments": 523,
+     "x_median": 0.47
+    },
+    {
+     "i": 2,
+     "id": "tDWT9IZtPk4",
+     "views": 0,
+     "dur": 258,
+     "title": "Giant Stars in the Early Universe",
+     "date": null,
+     "x_median": 0
+    },
+    {
+     "i": 4,
+     "id": "yXLtdakY3gI",
+     "views": 0,
+     "dur": 257,
+     "title": "Webb's New Black Hole Star",
+     "date": null,
+     "x_median": 0
+    },
+    {
+     "i": 5,
+     "id": "7oR0Pmd-WIk",
+     "views": 562000,
+     "dur": 2236,
+     "title": "Higgs Boson: The God Particle",
+     "date": "20260823",
+     "likes": 8643,
+     "comments": 671,
+     "x_median": 0.77
+    },
+    {
+     "i": 6,
+     "id": "OhXFLqnwzh8",
+     "views": 508000,
+     "dur": 1904,
+     "title": "You Live in a Supervoid",
+     "date": "20260628",
+     "likes": 10586,
+     "comments": 838,
+     "x_median": 0.7
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "qX6h72IyKSo",
+     "title": "The Insane Science of Neutron Stars [4K]",
+     "views": 2100000,
+     "x_median": 2.9
+    },
+    {
+     "id": "mty0srmLhTk",
+     "title": "Beyond the Observable Universe",
+     "views": 3200000,
+     "x_median": 4.4
+    },
+    {
+     "id": "QhM5zAVvOI4",
+     "title": "The Ultimate Journey to the Edge of the Universe (4K)",
+     "views": 2600000,
+     "x_median": 3.6
+    },
+    {
+     "id": "5iA7wZfxglE",
+     "title": "The Dark Matter Mystery [4K]",
+     "views": 1900000,
+     "x_median": 2.6
+    },
+    {
+     "id": "-ybiXR2WCFQ",
+     "title": "Journey to the Andromeda Galaxy [4K]",
+     "views": 7100000,
+     "x_median": 9.7
+    },
+    {
+     "id": "ZVPsNDonA84",
+     "title": "The Other Side of a Black Hole [4K]",
+     "views": 2700000,
+     "x_median": 3.7
+    },
+    {
+     "id": "xMy2O1RVkMI",
+     "title": "Large Quasar Groups",
+     "views": 2000000,
+     "x_median": 2.7
+    },
+    {
+     "id": "0w4OTD4L0GQ",
+     "title": "The Great Attractor",
+     "views": 3300000,
+     "x_median": 4.5
+    },
+    {
+     "id": "W9ME-WBlkeM",
+     "title": "The Largest Star (Stephenson 2-18)",
+     "views": 4200000,
+     "x_median": 5.8
+    },
+    {
+     "id": "4iC9Qi3y9q8",
+     "title": "The Cosmic Scale",
+     "views": 6900000,
+     "x_median": 9.5
+    },
+    {
+     "id": "q4mc-alL92U",
+     "title": "The Oort Cloud: The Solar System's Shell (No AI) ",
+     "views": 2900000,
+     "x_median": 4
+    },
+    {
+     "id": "rJLtT0QXoPo",
+     "title": "When Black Holes Collide",
+     "views": 1900000,
+     "x_median": 2.6
+    },
+    {
+     "id": "BCjWmfWq0pU",
+     "title": "The Jaw-Dropping Scale of Voids and Supervoids",
+     "views": 4100000,
+     "x_median": 5.6
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCG9ShGbASoiwHwFcLcAh9EA"
+  },
+  {
+   "niche": "base",
+   "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+   "channel": "Tifo Football by The Athletic",
+   "subs": 1830000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 248,
+   "median_views_recent30": 147000,
+   "uploads_per_month": 13.6,
+   "median_duration_min": 70.7,
+   "top": [
+    {
+     "i": 205,
+     "id": "fhpYejFXTC4",
+     "views": 1300000,
+     "dur": 357,
+     "title": "The most complicated football league in the world",
+     "date": "20250331",
+     "likes": 17291,
+     "comments": 1200,
+     "x_median": 8.8
+    },
+    {
+     "i": 244,
+     "id": "SVMz6Of4U-8",
+     "views": 1000000,
+     "dur": 357,
+     "title": "How FIFA lost their video game franchise",
+     "date": "20240429",
+     "likes": 21601,
+     "comments": 1200,
+     "x_median": 6.8
+    },
+    {
+     "i": 203,
+     "id": "K6KhzmxVWJc",
+     "views": 933000,
+     "dur": 403,
+     "title": "Why is football so hard to analyse?",
+     "date": "20250407",
+     "likes": 23205,
+     "comments": 1100,
+     "x_median": 6.3
+    },
+    {
+     "i": 34,
+     "id": "TPlm_LirWvI",
+     "views": 773000,
+     "dur": 402,
+     "title": "How Barcelona beat Real Madrid to Rodri's transfer",
+     "date": "20260831",
+     "likes": 8388,
+     "comments": 448,
+     "x_median": 5.3
+    },
+    {
+     "i": 82,
+     "id": "O1m_JRR7XUw",
+     "views": 771000,
+     "dur": 340,
+     "title": "Why did Italian football fall?",
+     "date": "20260406",
+     "likes": 13656,
+     "comments": 948,
+     "x_median": 5.2
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "5zVWPCHU3CU",
+     "views": 75000,
+     "dur": 4671,
+     "title": "Is Pochettino good for Man Utd? INEOS promises 3 years later & Kane�s big record",
+     "date": "20261112",
+     "likes": 965,
+     "comments": 175,
+     "x_median": 0.51
+    },
+    {
+     "i": 2,
+     "id": "1ycYSrRORIg",
+     "views": 104000,
+     "dur": 4704,
+     "title": "Crystal Palace sack manager - who's next? Man City lose big & Bournemouth's incredible record",
+     "date": "20261110",
+     "likes": 1139,
+     "comments": 225,
+     "x_median": 0.71
+    },
+    {
+     "i": 3,
+     "id": "1qNn8gHJ0Yg",
+     "views": 370000,
+     "dur": 449,
+     "title": "How football finally fixed its ranking problem",
+     "date": "20261109",
+     "likes": 3725,
+     "comments": 256,
+     "x_median": 2.52
+    },
+    {
+     "i": 4,
+     "id": "8N2xAOv6_dc",
+     "views": 109000,
+     "dur": 3967,
+     "title": "Man Utd�s dramatic comeback, Ronaldo retires from Portugal & Emery contract",
+     "date": "20261105",
+     "likes": 1128,
+     "comments": 165,
+     "x_median": 0.74
+    },
+    {
+     "i": 5,
+     "id": "plD13yGy_uQ",
+     "views": 130000,
+     "dur": 4354,
+     "title": "How to fix Man Utd, De Zerbi's Tottenham resurgence & Glasner's hard truths",
+     "date": "20261103",
+     "likes": 1482,
+     "comments": 247,
+     "x_median": 0.88
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "1qNn8gHJ0Yg",
+     "title": "How football finally fixed its ranking problem",
+     "views": 370000,
+     "x_median": 2.5
+    },
+    {
+     "id": "DQyJUP_BDJo",
+     "title": "How much does it cost to sack a manager?",
+     "views": 370000,
+     "x_median": 2.5
+    },
+    {
+     "id": "8Q-4qJK2uLw",
+     "title": "Ronaldo's 1740-word statement explained",
+     "views": 707000,
+     "x_median": 4.8
+    },
+    {
+     "id": "jCQ401VHXmY",
+     "title": "What have Manchester City actually been found guilty of?",
+     "views": 707000,
+     "x_median": 4.8
+    },
+    {
+     "id": "TPlm_LirWvI",
+     "title": "How Barcelona beat Real Madrid to Rodri's transfer",
+     "views": 773000,
+     "x_median": 5.3
+    },
+    {
+     "id": "mVhHRp230EM",
+     "title": "The problem with Roberto De Zerbi's football",
+     "views": 535000,
+     "x_median": 3.6
+    },
+    {
+     "id": "43t6w9vQ5i8",
+     "title": "How Jose Mourinho returned to Real Madrid",
+     "views": 551000,
+     "x_median": 3.7
+    },
+    {
+     "id": "xeqvDXv9T2E",
+     "title": "Why Xabi Alonso to Chelsea actually works",
+     "views": 406000,
+     "x_median": 2.8
+    },
+    {
+     "id": "8BNc7IWwbkc",
+     "title": "When did Tottenham�s downfall start?",
+     "views": 445000,
+     "x_median": 3
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCGYYNGmyhZ_kwBF_lqqXdAQ"
+  },
+  {
+   "niche": "base",
+   "cid": "UChpleBmo18P08aKCIgti38g",
+   "channel": "Matt Wolfe",
+   "subs": 1030000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 249,
+   "median_views_recent30": 132000,
+   "uploads_per_month": 7.5,
+   "median_duration_min": 28.9,
+   "top": [
+    {
+     "i": 133,
+     "id": "sXamQXKgSeU",
+     "views": 597000,
+     "dur": 1672,
+     "title": "27 FREE Things You Can Do With Gemini",
+     "date": "20250702",
+     "likes": 18663,
+     "comments": 801,
+     "x_median": 4.5
+    },
+    {
+     "i": 20,
+     "id": "GGzT7zVrRTU",
+     "views": 504000,
+     "dur": 1172,
+     "title": "GPT-6 Astra Is Finally Here (And It�s REALLY Good)",
+     "date": "20260903",
+     "likes": 6935,
+     "comments": 527,
+     "x_median": 3.8
+    },
+    {
+     "i": 221,
+     "id": "jEpbb_gAviw",
+     "views": 431000,
+     "dur": 1681,
+     "title": "How To Make A VIRAL AI Music Video (For Free)",
+     "date": "20240619",
+     "likes": 13816,
+     "comments": 1200,
+     "x_median": 3.3
+    },
+    {
+     "i": 113,
+     "id": "exWEkRHmhKU",
+     "views": 424000,
+     "dur": 1620,
+     "title": "50+ INSANE Ways To Use Nano Banana (For FREE)",
+     "date": "20250902",
+     "likes": 18161,
+     "comments": 595,
+     "x_median": 3.2
+    },
+    {
+     "i": 125,
+     "id": "aa-Fu5Qw91M",
+     "views": 388000,
+     "dur": 1763,
+     "title": "Making An Actually Fun Game (NO Coding experience)",
+     "date": "20250801",
+     "likes": 8114,
+     "comments": 543,
+     "x_median": 2.9
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "pvl3z_GyU2Y",
+     "views": 0,
+     "dur": 1664,
+     "title": "How To Build An AI Operating System For Your Life",
+     "date": "20261111",
+     "likes": 1340,
+     "comments": 80,
+     "x_median": 0
+    },
+    {
+     "i": 2,
+     "id": "2TM8W66NI_8",
+     "views": 153000,
+     "dur": 1247,
+     "title": "Anthropic's Fable 5.2 is the World�s Best AI Model",
+     "date": "20261109",
+     "likes": 2242,
+     "comments": 200,
+     "x_median": 1.16
+    },
+    {
+     "i": 3,
+     "id": "IrAHINf0M6E",
+     "views": 128000,
+     "dur": 1484,
+     "title": "AI News: New ChatGPT & Google Models (14 Updates Worth Knowing)",
+     "date": "20261106",
+     "likes": 2294,
+     "comments": 153,
+     "x_median": 0.97
+    },
+    {
+     "i": 4,
+     "id": "ep4psgAFOqc",
+     "views": 101000,
+     "dur": 1965,
+     "title": "How I Get Claude To Edit My Videos (Step-By-Step)",
+     "date": "20261104",
+     "likes": 1545,
+     "comments": 140,
+     "x_median": 0.77
+    },
+    {
+     "i": 5,
+     "id": "eDiQNFa-zYg",
+     "views": 132000,
+     "dur": 1761,
+     "title": "AI News: The Only 6 Stories Worth Knowing This Week",
+     "date": "20261030",
+     "likes": 2367,
+     "comments": 224,
+     "x_median": 1
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "GGzT7zVrRTU",
+     "title": "GPT-6 Astra Is Finally Here (And It�s REALLY Good)",
+     "views": 504000,
+     "x_median": 3.8
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UChpleBmo18P08aKCIgti38g"
+  },
+  {
+   "niche": "base",
+   "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+   "channel": "AI Search",
+   "subs": 774000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 365000,
+   "uploads_per_month": 9.3,
+   "median_duration_min": 33.6,
+   "top": [
+    {
+     "i": 153,
+     "id": "IrWtw9ehB2g",
+     "views": 1800000,
+     "dur": 2153,
+     "title": "GPT-5 is a freak",
+     "date": "20250809",
+     "likes": 51850,
+     "comments": 4700,
+     "x_median": 4.9
+    },
+    {
+     "i": 20,
+     "id": "Ji4amrxrzVM",
+     "views": 1500000,
+     "dur": 2018,
+     "title": "GPT 6 Astra is a freak",
+     "date": "20260907",
+     "likes": 16888,
+     "comments": 2300,
+     "x_median": 4.1
+    },
+    {
+     "i": 6,
+     "id": "1Aqhg0FVm-w",
+     "views": 1000000,
+     "dur": 1642,
+     "title": "Deepseek strikes again",
+     "date": "20261023",
+     "likes": 11284,
+     "comments": 1400,
+     "x_median": 2.7
+    },
+    {
+     "i": 10,
+     "id": "h5zkzon0gM4",
+     "views": 1000000,
+     "dur": 869,
+     "title": "AI is reverse engineering everything",
+     "date": "20261006",
+     "likes": 22913,
+     "comments": 3700,
+     "x_median": 2.7
+    },
+    {
+     "i": 13,
+     "id": "gX0L0aFA2xg",
+     "views": 1000000,
+     "dur": 1555,
+     "title": "Claude Opus 5.5 is ridiculous",
+     "date": "20260924",
+     "likes": 9831,
+     "comments": 1000,
+     "x_median": 2.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "Er0740eVIEw",
+     "views": 129000,
+     "dur": 1228,
+     "title": "New top local AI image editor is here! Minimax Image",
+     "date": "20261112",
+     "likes": 2881,
+     "comments": 460,
+     "x_median": 0.35
+    },
+    {
+     "i": 2,
+     "id": "S7lpCyZSdJQ",
+     "views": 344000,
+     "dur": 1966,
+     "title": "Claude Fable 5.2 is a freak",
+     "date": "20261111",
+     "likes": 5442,
+     "comments": 954,
+     "x_median": 0.94
+    },
+    {
+     "i": 3,
+     "id": "9RIK3A24ZxA",
+     "views": 301000,
+     "dur": 2888,
+     "title": "Weight space programming, new 3D models, Gemini Omni 1.2, GPT Image 2.6: AI NEWS",
+     "date": "20261108",
+     "likes": 5175,
+     "comments": 403,
+     "x_median": 0.82
+    },
+    {
+     "i": 4,
+     "id": "IGICYFyP_EI",
+     "views": 479000,
+     "dur": 3234,
+     "title": "AI finally sleeps, Gemini 4 Carbon, ETH cracked, energy-based models, Anthropic IPO: AI NEWS",
+     "date": "20261101",
+     "likes": 7634,
+     "comments": 702,
+     "x_median": 1.31
+    },
+    {
+     "i": 5,
+     "id": "EfyQOAJjx1A",
+     "views": 394000,
+     "dur": 2586,
+     "title": "Cybersecurity chaos, AI for DNA, Kimi K3.1, Claude Duet, Dessa, Fibo 2, Minimax 3.1: AI NEWS",
+     "date": "20261025",
+     "likes": 6016,
+     "comments": 630,
+     "x_median": 1.08
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "1Aqhg0FVm-w",
+     "title": "Deepseek strikes again",
+     "views": 1000000,
+     "x_median": 2.7
+    },
+    {
+     "id": "h5zkzon0gM4",
+     "title": "AI is reverse engineering everything",
+     "views": 1000000,
+     "x_median": 2.7
+    },
+    {
+     "id": "gX0L0aFA2xg",
+     "title": "Claude Opus 5.5 is ridiculous",
+     "views": 1000000,
+     "x_median": 2.7
+    },
+    {
+     "id": "Ji4amrxrzVM",
+     "title": "GPT 6 Astra is a freak",
+     "views": 1500000,
+     "x_median": 4.1
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCIgnGlGkVRhd4qNFcEwLL4A"
+  },
+  {
+   "niche": "psych",
+   "cid": "UCir93b_ftqInEaDpsWYbo_g",
+   "channel": "Practical Psychology",
+   "subs": 2360000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 249,
+   "median_views_recent30": 105000,
+   "uploads_per_month": 1.7,
+   "median_duration_min": 6.8,
+   "top": [
+    {
+     "i": 248,
+     "id": "fxK_H-IhC4g",
+     "views": 23000000,
+     "dur": 378,
+     "title": "10 Psychological Tricks To Get Her To Like You - How To Make a Girl ATTRACTED To Me?",
+     "date": "20160929",
+     "likes": 358769,
+     "comments": 24000,
+     "x_median": 219
+    },
+    {
+     "i": 238,
+     "id": "vU-ibdHkz4Y",
+     "views": 11000000,
+     "dur": 459,
+     "title": "How to Never Run out of Things to Say - Keep a Conversation Flowing!",
+     "date": "20161213",
+     "likes": 327348,
+     "comments": 11000,
+     "x_median": 104.8
+    },
+    {
+     "i": 212,
+     "id": "d9W2GO1LhP4",
+     "views": 4800000,
+     "dur": 242,
+     "title": "4 Best Things Do in your Free Time - What to do when you�re bored",
+     "date": "20170512",
+     "likes": 158782,
+     "comments": 3700,
+     "x_median": 45.7
+    },
+    {
+     "i": 231,
+     "id": "MnIPpUiTcRc",
+     "views": 3400000,
+     "dur": 424,
+     "title": "HOW TO Give a Great Presentation - 7 Presentation Skills and Tips to Leave an Impression",
+     "date": "20170117",
+     "likes": 50327,
+     "comments": 946,
+     "x_median": 32.4
+    },
+    {
+     "i": 201,
+     "id": "ifGg5JykgQo",
+     "views": 2900000,
+     "dur": 600,
+     "title": "10 Morning Routine Habits of Successful People",
+     "date": "20170826",
+     "likes": 78748,
+     "comments": 1400,
+     "x_median": 27.6
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "8T_N7KQRnWQ",
+     "views": 105000,
+     "dur": 419,
+     "title": "Experimenter Bias (Definition + Examples)",
+     "date": "20220816",
+     "likes": 1798,
+     "comments": 104,
+     "x_median": 1
+    },
+    {
+     "i": 2,
+     "id": "mQKhAue2Js0",
+     "views": 50000,
+     "dur": 578,
+     "title": "What is a Double Blind Study? (Definition + Examples)",
+     "date": "20220723",
+     "likes": 1034,
+     "comments": 54,
+     "x_median": 0.48
+    },
+    {
+     "i": 3,
+     "id": "W6G5typ5u0c",
+     "views": 32000,
+     "dur": 370,
+     "title": "Perceptual Reasoning (Definition + Examples)",
+     "date": "20220705",
+     "likes": 952,
+     "comments": 23,
+     "x_median": 0.3
+    },
+    {
+     "i": 4,
+     "id": "p5pe7EGtjMw",
+     "views": 185000,
+     "dur": 407,
+     "title": "Lewin�s Change Theory - UnFreeze, Change, ReFreeze Method",
+     "date": "20220622",
+     "likes": 2281,
+     "comments": 55,
+     "x_median": 1.76
+    },
+    {
+     "i": 5,
+     "id": "fyOUgwDbvdY",
+     "views": 128000,
+     "dur": 417,
+     "title": "Stimulus Response Theory - Edward Thorndike (Definition + Examples)",
+     "date": "20220613",
+     "likes": 2202,
+     "comments": 56,
+     "x_median": 1.22
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "3YOox59J0Bk",
+     "title": "The Milgram Experiment - Shock Study on Obedience Conclusions",
+     "views": 503000,
+     "x_median": 4.8
+    },
+    {
+     "id": "iXv91xFipLM",
+     "title": "The Stanford Prison Experiment (Summary + Lessons)",
+     "views": 867000,
+     "x_median": 8.3
+    },
+    {
+     "id": "6lYsmt9qUVI",
+     "title": "The Bobo Doll Experiment - Albert Bandura on Social Learning",
+     "views": 515000,
+     "x_median": 4.9
+    },
+    {
+     "id": "mBDULN6Jtn0",
+     "title": "Social Identity Theory - Definition + 3 Components",
+     "views": 353000,
+     "x_median": 3.4
+    },
+    {
+     "id": "cw3e_XFIeQI",
+     "title": "What is Social Psychology? An Introduction",
+     "views": 621000,
+     "x_median": 5.9
+    },
+    {
+     "id": "YoZLa-lGGH8",
+     "title": "How to Talk to Strangers - The Ping Pong Method",
+     "views": 2700000,
+     "x_median": 25.7
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCir93b_ftqInEaDpsWYbo_g"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+   "channel": "The List",
+   "subs": 1970000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 133,
+   "median_views_recent30": 3000,
+   "uploads_per_month": 23.8,
+   "median_duration_min": 10.7,
+   "top": [
+    {
+     "i": 20,
+     "id": "kMMCum-Mvvg",
+     "views": 217000,
+     "dur": 572,
+     "title": "Christian Siriano's Red Carpet Dresses That Stole The Show",
+     "date": "20261020",
+     "likes": 1697,
+     "comments": 50,
+     "x_median": 72.3
+    },
+    {
+     "i": 103,
+     "id": "A59cEGZ7bmc",
+     "views": 141000,
+     "dur": 829,
+     "title": "Where The Most Successful Project Runway Stars Are Today",
+     "date": "20260909",
+     "likes": 722,
+     "comments": 43,
+     "x_median": 47
+    },
+    {
+     "i": 31,
+     "id": "yxoUnvPOyt4",
+     "views": 124000,
+     "dur": 548,
+     "title": "Fans Are Calling Out Dancing With The Stars Season 35",
+     "date": "20261014",
+     "likes": 630,
+     "comments": 201,
+     "x_median": 41.3
+    },
+    {
+     "i": 13,
+     "id": "mzudB0ZgoYI",
+     "views": 117000,
+     "dur": 620,
+     "title": "How Tall Is The Royal Family? Their Height From Shortest To Tallest",
+     "date": "20261028",
+     "likes": 463,
+     "comments": 54,
+     "x_median": 39
+    },
+    {
+     "i": 227,
+     "id": "7c5s6MWxO-E",
+     "views": 75000,
+     "dur": 678,
+     "title": "The Dancing With The Stars Pros Have Gorgeous Real Life Partners",
+     "date": "20260522",
+     "likes": 137,
+     "comments": 8,
+     "x_median": 25
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "SlO4DU97Xlw",
+     "views": 812,
+     "dur": 520,
+     "title": "What Tom Cruise's Co-Stars Have Said About Working With Him",
+     "date": "20261112",
+     "likes": 21,
+     "comments": 1,
+     "x_median": 0.27
+    },
+    {
+     "i": 2,
+     "id": "iw4RS93SX9A",
+     "views": 1300,
+     "dur": 661,
+     "title": "The Biggest Complaints About The Voice Season 30 So Far",
+     "date": "20261112",
+     "likes": 8,
+     "comments": 1,
+     "x_median": 0.43
+    },
+    {
+     "i": 4,
+     "id": "zNuGM7xKJe4",
+     "views": 983,
+     "dur": 331,
+     "title": "Hallmark's Highest-Rated Fall Movies Of All Time, Ranked By Reviews",
+     "date": "20261110",
+     "likes": 12,
+     "comments": 3,
+     "x_median": 0.33
+    },
+    {
+     "i": 6,
+     "id": "6_9XTz8e3sE",
+     "views": 1900,
+     "dur": 660,
+     "title": "Things Princess Diana Couldn't Do After She Married Prince Charles",
+     "date": "20261106",
+     "likes": 30,
+     "comments": 2,
+     "x_median": 0.63
+    },
+    {
+     "i": 8,
+     "id": "N-oj-czJiDk",
+     "views": 1400,
+     "dur": 550,
+     "title": "The Dancing With The Stars Scandals That Completely Rocked The Show",
+     "date": "20261104",
+     "likes": 10,
+     "comments": 1,
+     "x_median": 0.47
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "Ej32dGbBeS0",
+     "title": "Remember Austin Scarlett From Project Runway? This Is Him Now",
+     "views": 35000,
+     "x_median": 11.7
+    },
+    {
+     "id": "4k06yoa6lq8",
+     "title": "Strict Rules Project Runway Contestants Are Forced To Follow",
+     "views": 15000,
+     "x_median": 5
+    },
+    {
+     "id": "mzudB0ZgoYI",
+     "title": "How Tall Is The Royal Family? Their Height From Shortest To Tallest",
+     "views": 117000,
+     "x_median": 39
+    },
+    {
+     "id": "kMMCum-Mvvg",
+     "title": "Christian Siriano's Red Carpet Dresses That Stole The Show",
+     "views": 217000,
+     "x_median": 72.3
+    },
+    {
+     "id": "RcZ-Hcr6iB8",
+     "title": "The Untold Truth Of Prince William And Princess Kate's Nanny",
+     "views": 74000,
+     "x_median": 24.7
+    },
+    {
+     "id": "yxoUnvPOyt4",
+     "title": "Fans Are Calling Out Dancing With The Stars Season 35",
+     "views": 124000,
+     "x_median": 41.3
+    },
+    {
+     "id": "3kU3nEcqZQs",
+     "title": "Where Are Project Runway's Most Memorable Villains Now?",
+     "views": 33000,
+     "x_median": 11
+    },
+    {
+     "id": "PWlYjZN2Z0o",
+     "title": "The Transformation Of Project Runway's Michael Costello",
+     "views": 8000,
+     "x_median": 2.7
+    },
+    {
+     "id": "WZOr5HvuA7A",
+     "title": "The Most Successful Project Runway Contestants Who Never Won",
+     "views": 20000,
+     "x_median": 6.7
+    },
+    {
+     "id": "FR4d8i1H7Xw",
+     "title": "The Biggest Project Runway Stars And Their Real-Life Partners",
+     "views": 17000,
+     "x_median": 5.7
+    },
+    {
+     "id": "nnlVpaibfP8",
+     "title": "The Real-Life Loves Of The Chicago Fire Stars",
+     "views": 7500,
+     "x_median": 2.5
+    },
+    {
+     "id": "1wBmXHX0NlY",
+     "title": "Christian Siriano's Incredible Transformation Is Turning Heads",
+     "views": 56000,
+     "x_median": 18.7
+    },
+    {
+     "id": "76HRqxWvT4I",
+     "title": "The Truth About Princess Beatrice's Husband Edoardo Mapelli Mozzi",
+     "views": 8100,
+     "x_median": 2.7
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCJ7dtuZhjFSJvb_CZjWJkng"
+  },
+  {
+   "niche": "psych",
+   "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+   "channel": "Psych2Go",
+   "subs": 13200000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 224,
+   "median_views_recent30": 65000,
+   "uploads_per_month": 5.8,
+   "median_duration_min": 6,
+   "top": [
+    {
+     "i": 123,
+     "id": "dIIxtmhW69E",
+     "views": 1400000,
+     "dur": 386,
+     "title": "Weird Habits That Actually Reveal High Intelligence",
+     "date": "20260114",
+     "likes": 56713,
+     "comments": 5000,
+     "x_median": 21.5
+    },
+    {
+     "i": 208,
+     "id": "AuPMCXRFO4w",
+     "views": 1300000,
+     "dur": 484,
+     "title": "What is Your Mental Age?- Test",
+     "date": "20251108",
+     "likes": 46681,
+     "comments": 10000,
+     "x_median": 20
+    },
+    {
+     "i": 222,
+     "id": "FS3P8Bc5Xv8",
+     "views": 829000,
+     "dur": 257,
+     "title": "What Happens If You Stop Masturbating?",
+     "date": "20251018",
+     "likes": 27320,
+     "comments": 3000,
+     "x_median": 12.8
+    },
+    {
+     "i": 247,
+     "id": "QASBKMS8iY4",
+     "views": 651000,
+     "dur": 736,
+     "title": "QUIZ: Are You Bottling Your Emotions? (self test)",
+     "date": "20250912",
+     "likes": 33864,
+     "comments": 4400,
+     "x_median": 10
+    },
+    {
+     "i": 134,
+     "id": "4ffJdac9vNQ",
+     "views": 650000,
+     "dur": 354,
+     "title": "What Happens When You Orgasm Without Porn? ",
+     "date": "20260101",
+     "likes": 23552,
+     "comments": 2200,
+     "x_median": 10
+    }
+   ],
+   "recent": [
+    {
+     "i": 2,
+     "id": "Tsm45ihesTk",
+     "views": 97000,
+     "dur": 367,
+     "title": "Can Being Too Self-Aware Make You Mentally Exhausted?",
+     "date": "20261108",
+     "likes": 2854,
+     "comments": 465,
+     "x_median": 1.49
+    },
+    {
+     "i": 3,
+     "id": "kED0CRzTf9k",
+     "views": 85000,
+     "dur": 392,
+     "title": "7 Subtle Habits of People Who See Right Through Everyone",
+     "date": "20261107",
+     "likes": 2193,
+     "comments": 381,
+     "x_median": 1.31
+    },
+    {
+     "i": 4,
+     "id": "POUF4fhMZ6c",
+     "views": 171000,
+     "dur": 357,
+     "title": "Smart People Can't Find Love. Here's Why",
+     "date": "20261102",
+     "likes": 4569,
+     "comments": 987,
+     "x_median": 2.63
+    },
+    {
+     "i": 5,
+     "id": "t-FOflqGq-o",
+     "views": 65000,
+     "dur": 330,
+     "title": "Traumatic Intelligence, the \"Rarest Type\" Discourse",
+     "date": "20261024",
+     "likes": 1394,
+     "comments": 267,
+     "x_median": 1
+    },
+    {
+     "i": 6,
+     "id": "77qczL2i7Hs",
+     "views": 75000,
+     "dur": 311,
+     "title": "Why Intimacy Feels So Hard (5 Types Explained)",
+     "date": "20261021",
+     "likes": 1713,
+     "comments": 266,
+     "x_median": 1.15
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "POUF4fhMZ6c",
+     "title": "Smart People Can't Find Love. Here's Why",
+     "views": 171000,
+     "x_median": 2.6
+    },
+    {
+     "id": "aK-8RoZ7qNw",
+     "title": "7 Signs You Might Be Less Intelligent Than You Think",
+     "views": 202000,
+     "x_median": 3.1
+    },
+    {
+     "id": "2KAri3P0YE4",
+     "title": "You Don�t Know What You Feel Anymore",
+     "views": 498000,
+     "x_median": 7.7
+    },
+    {
+     "id": "15V-OJU6-gk",
+     "title": "How to Beat Sexually Intrusive Thoughts",
+     "views": 296000,
+     "x_median": 4.6
+    },
+    {
+     "id": "6nuBQh5LVX0",
+     "title": "The Unspoken Rules of Dating Someone with These Traits",
+     "views": 430000,
+     "x_median": 6.6
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCkJEpR7JmS36tajD34Gp4VA"
+  },
+  {
+   "niche": "base",
+   "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+   "channel": "Johnny Harris",
+   "subs": 8020000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 212,
+   "median_views_recent30": 3400000,
+   "uploads_per_month": 1.8,
+   "median_duration_min": 43.1,
+   "top": [
+    {
+     "i": 83,
+     "id": "2r5eKpptixo",
+     "views": 17000000,
+     "dur": 1697,
+     "title": "Why People Think The Government Killed JFK",
+     "date": "20231122",
+     "likes": 248661,
+     "comments": 30000,
+     "x_median": 5
+    },
+    {
+     "i": 71,
+     "id": "tWxh2oS7Ays",
+     "views": 14000000,
+     "dur": 1852,
+     "title": "The �Deep State� Explained",
+     "date": "20240313",
+     "likes": 341048,
+     "comments": 33000,
+     "x_median": 4.1
+    },
+    {
+     "i": 203,
+     "id": "IwJzsE8CvzQ",
+     "views": 14000000,
+     "dur": 1123,
+     "title": "Why People Think the World is Flat",
+     "date": "20200218",
+     "likes": 296122,
+     "comments": 115000,
+     "x_median": 4.1
+    },
+    {
+     "i": 171,
+     "id": "SrDEtSlqJC4",
+     "views": 13000000,
+     "dur": 1786,
+     "title": "The REAL Reason McDonalds Ice Cream Machines Are Always Broken",
+     "date": "20210423",
+     "likes": 558127,
+     "comments": 65000,
+     "x_median": 3.8
+    },
+    {
+     "i": 111,
+     "id": "czQrU0OPIR8",
+     "views": 11000000,
+     "dur": 855,
+     "title": "The Worst War You Never Learned About, Mapped",
+     "date": "20230315",
+     "likes": 222406,
+     "comments": 18000,
+     "x_median": 3.2
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "20CgG5pUv9Q",
+     "views": 2400000,
+     "dur": 2487,
+     "title": "Why Egypt Guards This River With an Army",
+     "date": "20261107",
+     "likes": 39506,
+     "comments": 2400,
+     "x_median": 0.71
+    },
+    {
+     "i": 2,
+     "id": "axRhjqd-rus",
+     "views": 0,
+     "dur": 3026,
+     "title": "The REAL reason China built so much",
+     "date": "20261015",
+     "likes": 84427,
+     "comments": 13000,
+     "x_median": 0
+    },
+    {
+     "i": 4,
+     "id": "WFzFT2wW9sI",
+     "views": 789000,
+     "dur": 10824,
+     "title": "The world's most extreme places, explained",
+     "date": "20260924",
+     "likes": 6312,
+     "comments": 311,
+     "x_median": 0.23
+    },
+    {
+     "i": 5,
+     "id": "O7LvhSQ5Te4",
+     "views": 3700000,
+     "dur": 3071,
+     "title": "I don't get democracy",
+     "date": "20260910",
+     "likes": 46931,
+     "comments": 5300,
+     "x_median": 1.09
+    },
+    {
+     "i": 6,
+     "id": "XXpqejgnaB0",
+     "views": 3700000,
+     "dur": 10711,
+     "title": "How Money Actually Works",
+     "date": "20260813",
+     "likes": 47477,
+     "comments": 2700,
+     "x_median": 1.09
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "WYQxG4KEzvo",
+     "title": "The Problem With Elon Musk",
+     "views": 8600000,
+     "x_median": 2.5
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCmGSJVG3mCRXVOP4yZrU1Dw"
+  },
+  {
+   "niche": "psych",
+   "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+   "channel": "Aperture",
+   "subs": 2710000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 240000,
+   "uploads_per_month": 4.3,
+   "median_duration_min": 33.6,
+   "top": [
+    {
+     "i": 54,
+     "id": "IqXpzcfdtn4",
+     "views": 3500000,
+     "dur": 1871,
+     "title": "Every Level of Consciousness",
+     "date": "20251102",
+     "likes": 93585,
+     "comments": 4400,
+     "x_median": 14.6
+    },
+    {
+     "i": 21,
+     "id": "DAN9mpLnOqA",
+     "views": 2300000,
+     "dur": 2868,
+     "title": "The Quantum Theory of Dreams and Consciousness",
+     "date": "20260621",
+     "likes": 29189,
+     "comments": 2200,
+     "x_median": 9.6
+    },
+    {
+     "i": 38,
+     "id": "5HgxcEEjQoA",
+     "views": 1900000,
+     "dur": 2523,
+     "title": "The Quantum Theory That Says Your Brain Creates Reality",
+     "date": "20260222",
+     "likes": 29327,
+     "comments": 2700,
+     "x_median": 7.9
+    },
+    {
+     "i": 50,
+     "id": "NFcSqAruzwg",
+     "views": 1900000,
+     "dur": 902,
+     "title": "The Psychology of People Who Don't Post Their Photos on Social Media",
+     "date": "20251130",
+     "likes": 41230,
+     "comments": 3300,
+     "x_median": 7.9
+    },
+    {
+     "i": 184,
+     "id": "50bUVhQtZGw",
+     "views": 1800000,
+     "dur": 823,
+     "title": "BlackRock: the Company That Controls* the World's Governments",
+     "date": "20230510",
+     "likes": 42358,
+     "comments": 2700,
+     "x_median": 7.5
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "VFzbU6wMLwM",
+     "views": 161000,
+     "dur": 2154,
+     "title": "The highest levels of dreams explained in detail",
+     "date": "20261108",
+     "likes": 1631,
+     "comments": 160,
+     "x_median": 0.67
+    },
+    {
+     "i": 2,
+     "id": "2p6M-BMPrP8",
+     "views": 207000,
+     "dur": 1989,
+     "title": "The Nobel Prize Discovery that Exposed the Secret to Mind Control",
+     "date": "20261101",
+     "likes": 2285,
+     "comments": 307,
+     "x_median": 0.86
+    },
+    {
+     "i": 3,
+     "id": "FTklJbzycPo",
+     "views": 303000,
+     "dur": 1964,
+     "title": "The disturbing theory that claims everything is conscious",
+     "date": "20261025",
+     "likes": 3178,
+     "comments": 590,
+     "x_median": 1.26
+    },
+    {
+     "i": 4,
+     "id": "qW8uadCtn_s",
+     "views": 270000,
+     "dur": 2006,
+     "title": "Every Level of Awareness",
+     "date": "20261018",
+     "likes": 4117,
+     "comments": 281,
+     "x_median": 1.13
+    },
+    {
+     "i": 5,
+     "id": "utrkutzLcA8",
+     "views": 422000,
+     "dur": 2010,
+     "title": "The Quantum theory of Synchronicity | Carl Jung's Strangest Idea",
+     "date": "20261011",
+     "likes": 5130,
+     "comments": 494,
+     "x_median": 1.76
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "Hv7f1bedXOE",
+     "title": "The theory of time that proves your past self still exists",
+     "views": 1000000,
+     "x_median": 4.2
+    },
+    {
+     "id": "DAN9mpLnOqA",
+     "title": "The Quantum Theory of Dreams and Consciousness",
+     "views": 2300000,
+     "x_median": 9.6
+    },
+    {
+     "id": "NRTH809cCIs",
+     "title": "You are the Universe Experiencing Itself | Spinoza's God",
+     "views": 1100000,
+     "x_median": 4.6
+    },
+    {
+     "id": "ZvO5kikFVOk",
+     "title": "Quantum Computing and the end of the Internet as we know it",
+     "views": 1000000,
+     "x_median": 4.2
+    },
+    {
+     "id": "jexg0umv_yo",
+     "title": "You Are Losing the Ability to Think, and an MIT Study Shows How",
+     "views": 1300000,
+     "x_median": 5.4
+    },
+    {
+     "id": "hV-blfKF4Po",
+     "title": "The Terrifying Quantum Entanglement Theory That Breaks Reality",
+     "views": 1600000,
+     "x_median": 6.7
+    },
+    {
+     "id": "xZO01FCcPE4",
+     "title": "The Terrifying Theory of Quantum Immortality",
+     "views": 1300000,
+     "x_median": 5.4
+    },
+    {
+     "id": "Ku9JFyFFIxQ",
+     "title": "The terrifying secrets of the 4th dimension",
+     "views": 1100000,
+     "x_median": 4.6
+    },
+    {
+     "id": "3x6hiS0E_7w",
+     "title": "The Terrifying Paradox of Self-Awareness",
+     "views": 1400000,
+     "x_median": 5.8
+    },
+    {
+     "id": "5HgxcEEjQoA",
+     "title": "The Quantum Theory That Says Your Brain Creates Reality",
+     "views": 1900000,
+     "x_median": 7.9
+    },
+    {
+     "id": "vSz_VHoIeVc",
+     "title": "Everything you shouldn't know about the world",
+     "views": 936000,
+     "x_median": 3.9
+    },
+    {
+     "id": "59eIYcw01jk",
+     "title": "The Psychology of People Who Never Leave Home",
+     "views": 734000,
+     "x_median": 3.1
+    },
+    {
+     "id": "uq1C6RoQN3U",
+     "title": "The highest levels of dimension and its terrifying consequences",
+     "views": 1200000,
+     "x_median": 5
+    },
+    {
+     "id": "9WI-afcUsdg",
+     "title": "The Psychology of The Former Gifted Child",
+     "views": 806000,
+     "x_median": 3.4
+    },
+    {
+     "id": "HraPf_MCcps",
+     "title": "Every Level of Thinking: Most People Never Reach Level 4",
+     "views": 1100000,
+     "x_median": 4.6
+    },
+    {
+     "id": "NFcSqAruzwg",
+     "title": "The Psychology of People Who Don't Post Their Photos on Social Media",
+     "views": 1900000,
+     "x_median": 7.9
+    },
+    {
+     "id": "7ZR1GTRWEfg",
+     "title": "this video will find you when you need it the most*",
+     "views": 683000,
+     "x_median": 2.8
+    },
+    {
+     "id": "IqXpzcfdtn4",
+     "title": "Every Level of Consciousness",
+     "views": 3500000,
+     "x_median": 14.6
+    },
+    {
+     "id": "ETQwiYQYoSg",
+     "title": "The Death of Critical Thinking: How Stupidity Took Over",
+     "views": 878000,
+     "x_median": 3.7
+    },
+    {
+     "id": "sOU_xmtRGu0",
+     "title": "Your Brain's Ancient Warning System is About to Fail",
+     "views": 656000,
+     "x_median": 2.7
+    },
+    {
+     "id": "stPzgS0fdYk",
+     "title": "Reality is Hidden From You",
+     "views": 744000,
+     "x_median": 3.1
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCO5QSoES5yn2Dw7YixDYT5Q"
+  },
+  {
+   "niche": "base",
+   "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+   "channel": "RealLifeLore",
+   "subs": 7930000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 1200000,
+   "uploads_per_month": 3.5,
+   "median_duration_min": 32.9,
+   "top": [
+    {
+     "i": 121,
+     "id": "jlX7tl1QvJs",
+     "views": 21000000,
+     "dur": 1595,
+     "title": "How North Korea Finally Made It Impossible to Escape",
+     "date": "20230804",
+     "likes": 318213,
+     "comments": 30000,
+     "x_median": 17.5
+    },
+    {
+     "i": 181,
+     "id": "If61baWF4GE",
+     "views": 21000000,
+     "dur": 1916,
+     "title": "Why Russia is Invading Ukraine",
+     "date": "20220226",
+     "likes": 520259,
+     "comments": 42000,
+     "x_median": 17.5
+    },
+    {
+     "i": 203,
+     "id": "OQ9zng2S810",
+     "views": 21000000,
+     "dur": 1278,
+     "title": "Why North Korea is the Hardest Country to Escape",
+     "date": "20210827",
+     "likes": 457915,
+     "comments": 25000,
+     "x_median": 17.5
+    },
+    {
+     "i": 146,
+     "id": "si9Phc9ArpU",
+     "views": 19000000,
+     "dur": 1572,
+     "title": "Why Finland Joining NATO Checkmates Russia",
+     "date": "20221125",
+     "likes": 220023,
+     "comments": 36000,
+     "x_median": 15.8
+    },
+    {
+     "i": 169,
+     "id": "TnB_8Zm9lPk",
+     "views": 14000000,
+     "dur": 1847,
+     "title": "Why 95% of Australia is Empty",
+     "date": "20220604",
+     "likes": 161694,
+     "comments": 16000,
+     "x_median": 11.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "3IVbe0xrRt8",
+     "views": 941000,
+     "dur": 2466,
+     "title": "Why \"Nobody\" Lives on the Pacific Northwest Coast",
+     "date": "20261031",
+     "likes": 9166,
+     "comments": 965,
+     "x_median": 0.78
+    },
+    {
+     "i": 2,
+     "id": "40LcIZKsp18",
+     "views": 181000,
+     "dur": 2271,
+     "title": "How To Save a Child's Life From Gaza",
+     "date": "20261029",
+     "likes": 6751,
+     "comments": 1700,
+     "x_median": 0.15
+    },
+    {
+     "i": 3,
+     "id": "FA-oEtccS_k",
+     "views": 1400000,
+     "dur": 2623,
+     "title": "Why Russia Thinks It Can Attack Europe and WIN",
+     "date": "20261023",
+     "likes": 22214,
+     "comments": 3900,
+     "x_median": 1.17
+    },
+    {
+     "i": 4,
+     "id": "R60ZGwd3n9E",
+     "views": 1100000,
+     "dur": 3183,
+     "title": "Why The US Is Suddenly Attacking Canada",
+     "date": "20261015",
+     "likes": 19431,
+     "comments": 6200,
+     "x_median": 0.92
+    },
+    {
+     "i": 5,
+     "id": "U_UoAZrOTNU",
+     "views": 1800000,
+     "dur": 1521,
+     "title": "Why Everything is Going Wrong for Saudi Arabia",
+     "date": "20260930",
+     "likes": 21297,
+     "comments": 2000,
+     "x_median": 1.5
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "NQSndaDIvcs",
+     "title": "Why The Taliban Are Begging The US To Come Back",
+     "views": 3700000,
+     "x_median": 3.1
+    },
+    {
+     "id": "d-Mh-ndtqAY",
+     "title": "Why The US & Venezuela Are On The Brink of War",
+     "views": 3800000,
+     "x_median": 3.2
+    },
+    {
+     "id": "dmvB7KW7WJA",
+     "title": "How The US & Iran Became Arch-Enemies",
+     "views": 3600000,
+     "x_median": 3
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCP5tjEmvPItGyLhmjdwP7Ww"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+   "channel": "SWOOP",
+   "subs": 1020000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 193,
+   "median_views_recent30": 864000,
+   "uploads_per_month": 0.9,
+   "median_duration_min": 115,
+   "top": [
+    {
+     "i": 37,
+     "id": "e2F3zLTM58k",
+     "views": 6300000,
+     "dur": 14296,
+     "title": "The DEVIL In Colleen Ballinger�s Shadow: He LIED to EVERYONE | Downfall",
+     "date": "20230817",
+     "likes": 104248,
+     "comments": 16000,
+     "x_median": 7.3
+    },
+    {
+     "i": 36,
+     "id": "HPXzZVd8HcM",
+     "views": 4700000,
+     "dur": 13184,
+     "title": "Colleen Ballinger�s Ex TELLS ALL: Joshua David Evans EXCLUSIVE Interview what NO ONE Knew | Downfall",
+     "date": "20230914",
+     "likes": 113316,
+     "comments": 16000,
+     "x_median": 5.4
+    },
+    {
+     "i": 39,
+     "id": "yw2BEjyUVvM",
+     "views": 3300000,
+     "dur": 10210,
+     "title": "The END of Colleen Ballinger : She Has ALWAYS Been This Way... a NIGHTMARE Downfall",
+     "date": "20230630",
+     "likes": 86998,
+     "comments": 10000,
+     "x_median": 3.8
+    },
+    {
+     "i": 140,
+     "id": "nIvvxtKn2Jc",
+     "views": 2400000,
+     "dur": 816,
+     "title": "I WENT TO THE WORST REVIEWED NAIL SALON IN MY CITY LOS ANGELES",
+     "date": "20190627",
+     "likes": 39802,
+     "comments": 2700,
+     "x_median": 2.8
+    },
+    {
+     "i": 105,
+     "id": "MiNn1cxT77g",
+     "views": 2300000,
+     "dur": 4016,
+     "title": "How Glam&Gore used James Charles, Jeffree Star & Black community: why I'm DONE with Mykie *receipts",
+     "date": "20201011",
+     "likes": 138611,
+     "comments": 27000,
+     "x_median": 2.7
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "Q0X53mvRCKQ",
+     "views": 565000,
+     "dur": 6958,
+     "title": "The Depravity of Chris Hansen: He Has ALWAYS Been This Way | Downfall",
+     "date": "20261019",
+     "likes": 16514,
+     "comments": 1700,
+     "x_median": 0.65
+    },
+    {
+     "i": 2,
+     "id": "HEZ4geTTUWo",
+     "views": 1100000,
+     "dur": 6535,
+     "title": "The Endless Depravity of Ellen DeGeneres: She Has ALWAYS Been This Way | Downfall",
+     "date": "20260831",
+     "likes": 27640,
+     "comments": 2900,
+     "x_median": 1.27
+    },
+    {
+     "i": 3,
+     "id": "F_1e6t7I0tE",
+     "views": 608000,
+     "dur": 6802,
+     "title": "The Depravity of Dr. Oz: I Found His DELETED VIDEO� (WORSE Than Dr. Phil) | Downfall",
+     "date": "20260706",
+     "likes": 30216,
+     "comments": 4000,
+     "x_median": 0.7
+    },
+    {
+     "i": 4,
+     "id": "AijAujgleFM",
+     "views": 715000,
+     "dur": 7480,
+     "title": "The TOXIC Tale of Becca Bloom: TikTok�s MOST HATED Rich Girl | Downfall",
+     "date": "20260602",
+     "likes": 21765,
+     "comments": 2700,
+     "x_median": 0.83
+    },
+    {
+     "i": 5,
+     "id": "j7XCIBeyTUg",
+     "views": 569000,
+     "dur": 6409,
+     "title": "The DISTURBING World of Jeffrey Epstein: Lies, COVER-UP & what NO ONE is Talking About | Downfall",
+     "date": "20260421",
+     "likes": 28752,
+     "comments": 2800,
+     "x_median": 0.66
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "HPXzZVd8HcM",
+     "title": "Colleen Ballinger�s Ex TELLS ALL: Joshua David Evans EXCLUSIVE Interview what NO ONE Knew | Downfall",
+     "views": 4700000,
+     "x_median": 5.4
+    },
+    {
+     "id": "e2F3zLTM58k",
+     "title": "The DEVIL In Colleen Ballinger�s Shadow: He LIED to EVERYONE | Downfall",
+     "views": 6300000,
+     "x_median": 7.3
+    },
+    {
+     "id": "yw2BEjyUVvM",
+     "title": "The END of Colleen Ballinger : She Has ALWAYS Been This Way... a NIGHTMARE Downfall",
+     "views": 3300000,
+     "x_median": 3.8
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCqHZdrDcZhhRO11m67Tgz4A"
+  },
+  {
+   "niche": "space",
+   "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+   "channel": "Kurzgesagt � In a Nutshell",
+   "subs": 25800000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 235,
+   "median_views_recent30": 5600000,
+   "uploads_per_month": 1.9,
+   "median_duration_min": 12.9,
+   "top": [
+    {
+     "i": 144,
+     "id": "BtN-goy9VOY",
+     "views": 89000000,
+     "dur": 515,
+     "title": "The Coronavirus Explained & What You Should Do",
+     "date": "20200319",
+     "likes": 1165826,
+     "comments": 71000,
+     "x_median": 15.9
+    },
+    {
+     "i": 242,
+     "id": "zQGOcOUBi6s",
+     "views": 54000000,
+     "dur": 469,
+     "title": "The Immune System Explained I � Bacteria Infection",
+     "date": "20140701",
+     "likes": 543132,
+     "comments": 32000,
+     "x_median": 9.6
+    },
+    {
+     "i": 156,
+     "id": "h6fcK_fRYaI",
+     "views": 36000000,
+     "dur": 486,
+     "title": "The Egg - A Short Story",
+     "date": "20190901",
+     "likes": 2050948,
+     "comments": 184000,
+     "x_median": 6.4
+    },
+    {
+     "i": 177,
+     "id": "9tbxDgcv74c",
+     "views": 36000000,
+     "dur": 363,
+     "title": "What If You Detonated a Nuclear Bomb In The Marianas Trench? (Science not Fantasy)",
+     "date": "20180722",
+     "likes": 704831,
+     "comments": 29000,
+     "x_median": 6.4
+    },
+    {
+     "i": 135,
+     "id": "3mnSDifDSxQ",
+     "views": 35000000,
+     "dur": 719,
+     "title": "The Largest Star in the Universe � Size Comparison",
+     "date": "20200922",
+     "likes": 783996,
+     "comments": 40000,
+     "x_median": 6.3
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "fEjvSbI_PT4",
+     "views": 3500000,
+     "dur": 840,
+     "title": "What Actually Happens When You Die?",
+     "date": "20261110",
+     "likes": 74580,
+     "comments": 4800,
+     "x_median": 0.63
+    },
+    {
+     "i": 2,
+     "id": "5_Fayfx2NUM",
+     "views": 8600000,
+     "dur": 894,
+     "title": "How I Survived Late-Stage Cancer (A Fun Story)",
+     "date": "20261027",
+     "likes": 170275,
+     "comments": 5900,
+     "x_median": 1.54
+    },
+    {
+     "i": 4,
+     "id": "_y9JuojAIg0",
+     "views": 12000000,
+     "dur": 1051,
+     "title": "We Finally Know More About Humanity�s First Civilization",
+     "date": "20261008",
+     "likes": 173924,
+     "comments": 8600,
+     "x_median": 2.14
+    },
+    {
+     "i": 5,
+     "id": "ujkD4SxPKOI",
+     "views": 23000000,
+     "dur": 1304,
+     "title": "AI Just Crossed the Terrifying Line - Now What?",
+     "date": "20261005",
+     "likes": 524847,
+     "comments": 40000,
+     "x_median": 4.11
+    },
+    {
+     "i": 6,
+     "id": "QW_jlUn4gA8",
+     "views": 9600000,
+     "dur": 852,
+     "title": "This Is What a Godlike Civilization Would Look Like",
+     "date": "20260922",
+     "likes": 175303,
+     "comments": 7000,
+     "x_median": 1.71
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "ujkD4SxPKOI",
+     "title": "AI Just Crossed the Terrifying Line - Now What?",
+     "views": 23000000,
+     "x_median": 4.1
+    },
+    {
+     "id": "0NY2gAftzJE",
+     "title": "This Woman Cured Her Cancer with an Insane Method",
+     "views": 21000000,
+     "x_median": 3.8
+    },
+    {
+     "id": "m6KnVTYtSc0",
+     "title": "Why Does Fentanyl Feel So Good?",
+     "views": 14000000,
+     "x_median": 2.5
+    },
+    {
+     "id": "Ufmu1WD2TSk",
+     "title": "SOUTH KOREA IS OVER",
+     "views": 15000000,
+     "x_median": 2.7
+    },
+    {
+     "id": "E55uSCO5D2w",
+     "title": "The Most Insane Weapon You Never Heard About",
+     "views": 14000000,
+     "x_median": 2.5
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q"
+  },
+  {
+   "niche": "space",
+   "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+   "channel": "History of the Universe",
+   "subs": 1110000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 57,
+   "median_views_recent30": 1600000,
+   "uploads_per_month": 0.8,
+   "median_duration_min": 57.5,
+   "top": [
+    {
+     "i": 34,
+     "id": "3Illx0WkCxU",
+     "views": 17000000,
+     "dur": 8806,
+     "title": "How Did The Universe Begin?",
+     "date": "20230519",
+     "likes": 100242,
+     "comments": 7800,
+     "x_median": 10.6
+    },
+    {
+     "i": 43,
+     "id": "yPVQtvbiS4Y",
+     "views": 12000000,
+     "dur": 4519,
+     "title": "What Actually Are Space And Time?",
+     "date": "20220727",
+     "likes": 110259,
+     "comments": 6300,
+     "x_median": 7.5
+    },
+    {
+     "i": 47,
+     "id": "1jmNzlTd09E",
+     "views": 9200000,
+     "dur": 3982,
+     "title": "How Many Multiverses Are There?",
+     "date": "20220331",
+     "likes": 96090,
+     "comments": 6600,
+     "x_median": 5.8
+    },
+    {
+     "i": 21,
+     "id": "ji2KKU5NfoY",
+     "views": 8100000,
+     "dur": 9143,
+     "title": "What Is Reality?",
+     "date": "20240831",
+     "likes": 116085,
+     "comments": 4800,
+     "x_median": 5.1
+    },
+    {
+     "i": 41,
+     "id": "_IkaetPoBZM",
+     "views": 7200000,
+     "dur": 2887,
+     "title": "What Is Beyond The Edge?",
+     "date": "20220930",
+     "likes": 120051,
+     "comments": 9600,
+     "x_median": 4.5
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "cqGhCCDC_Sw",
+     "views": 584000,
+     "dur": 3448,
+     "title": "Is The Entire Universe Quantumly Entangled?",
+     "date": "20261008",
+     "likes": 6700,
+     "comments": 706,
+     "x_median": 0.36
+    },
+    {
+     "i": 2,
+     "id": "nPLKfvr_y4E",
+     "views": 1100000,
+     "dur": 9494,
+     "title": "The Final Verdict On The Theory Of Everything",
+     "date": "20260725",
+     "likes": 13083,
+     "comments": 1200,
+     "x_median": 0.69
+    },
+    {
+     "i": 3,
+     "id": "SI2IggZ3Fac",
+     "views": 482000,
+     "dur": 3363,
+     "title": "What Happens If This Isn't The Real Universe?",
+     "date": "20260611",
+     "likes": 8946,
+     "comments": 1300,
+     "x_median": 0.3
+    },
+    {
+     "i": 4,
+     "id": "uoEffocWP4A",
+     "views": 588000,
+     "dur": 3402,
+     "title": "What Happens If You Zoom All The Way Out?",
+     "date": "20260430",
+     "likes": 10530,
+     "comments": 846,
+     "x_median": 0.37
+    },
+    {
+     "i": 5,
+     "id": "sXRPkBKqp-A",
+     "views": 1100000,
+     "dur": 3531,
+     "title": "What Is Beyond The End?",
+     "date": "20260320",
+     "likes": 20612,
+     "comments": 2300,
+     "x_median": 0.69
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "2BVqksYJ2yw",
+     "title": "The Ultimate Guide To Absolutely Everything In The Universe",
+     "views": 5100000,
+     "x_median": 3.2
+    },
+    {
+     "id": "ji2KKU5NfoY",
+     "title": "What Is Reality?",
+     "views": 8100000,
+     "x_median": 5.1
+    },
+    {
+     "id": "UYW1lKNVI90",
+     "title": "What Is (Almost) Everything Made Of?",
+     "views": 4700000,
+     "x_median": 2.9
+    },
+    {
+     "id": "3Illx0WkCxU",
+     "title": "How Did The Universe Begin?",
+     "views": 17000000,
+     "x_median": 10.6
+    },
+    {
+     "id": "JXZpac6TREw",
+     "title": "Is Time Travel Possible In Our Universe?",
+     "views": 5600000,
+     "x_median": 3.5
+    },
+    {
+     "id": "bAedYtUredI",
+     "title": "How Does Light Actually Work?",
+     "views": 4900000,
+     "x_median": 3.1
+    },
+    {
+     "id": "iDqQ9qgTWmg",
+     "title": "Why Does The Universe Look Like This?",
+     "views": 5200000,
+     "x_median": 3.3
+    },
+    {
+     "id": "_IkaetPoBZM",
+     "title": "What Is Beyond The Edge?",
+     "views": 7200000,
+     "x_median": 4.5
+    },
+    {
+     "id": "yPVQtvbiS4Y",
+     "title": "What Actually Are Space And Time?",
+     "views": 12000000,
+     "x_median": 7.5
+    },
+    {
+     "id": "9If-K9R3Ka4",
+     "title": "Where Are All The Hidden Dimensions?",
+     "views": 4000000,
+     "x_median": 2.5
+    },
+    {
+     "id": "HWVnmJpEPjk",
+     "title": "What Was The First Black Hole?",
+     "views": 5000000,
+     "x_median": 3.1
+    },
+    {
+     "id": "1jmNzlTd09E",
+     "title": "How Many Multiverses Are There?",
+     "views": 9200000,
+     "x_median": 5.8
+    },
+    {
+     "id": "MOItjGpiAfo",
+     "title": "Was The Universe Born From Nothing?",
+     "views": 5500000,
+     "x_median": 3.4
+    },
+    {
+     "id": "euNr9PozCmg",
+     "title": "What Really Is Everything?",
+     "views": 4300000,
+     "x_median": 2.7
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCtRFmSyL4fSLQkn-wMqlmdA"
+  },
+  {
+   "niche": "celeb",
+   "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+   "channel": "SunnyV2",
+   "subs": 4400000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 3100000,
+   "uploads_per_month": 4.2,
+   "median_duration_min": 10.3,
+   "top": [
+    {
+     "i": 141,
+     "id": "Hvk63LADbFc",
+     "views": 24000000,
+     "dur": 650,
+     "title": "How Primitive Building Videos Are Staged",
+     "date": "20220707",
+     "likes": 630530,
+     "comments": 21000,
+     "x_median": 7.7
+    },
+    {
+     "i": 117,
+     "id": "4nqzFs9nlBM",
+     "views": 22000000,
+     "dur": 957,
+     "title": "Idiot Streamers Who Got Caught Cheating Live",
+     "date": "20221222",
+     "likes": 324473,
+     "comments": 15000,
+     "x_median": 7.1
+    },
+    {
+     "i": 119,
+     "id": "WAAj1pc48hI",
+     "views": 22000000,
+     "dur": 798,
+     "title": "Every MrBeast Member Who Got Fired (& Why)",
+     "date": "20221208",
+     "likes": 380758,
+     "comments": 11000,
+     "x_median": 7.1
+    },
+    {
+     "i": 175,
+     "id": "wJa2thBJ8Fw",
+     "views": 18000000,
+     "dur": 783,
+     "title": "The Tragic Transformation of Nikocado Avocado (From 155 to 352 lbs)",
+     "date": "20211118",
+     "likes": 359874,
+     "comments": 30000,
+     "x_median": 5.8
+    },
+    {
+     "i": 140,
+     "id": "fFArt844xaY",
+     "views": 16000000,
+     "dur": 680,
+     "title": "How Amy Schumer Became The Most Hated Human Ever",
+     "date": "20220714",
+     "likes": 379307,
+     "comments": 22000,
+     "x_median": 5.2
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "ztC2pyHymU0",
+     "views": 2800000,
+     "dur": 615,
+     "title": "How Micro-Transactions Destroyed Plants vs. Zombies",
+     "date": "20250320",
+     "likes": 61844,
+     "comments": 9500,
+     "x_median": 0.9
+    },
+    {
+     "i": 2,
+     "id": "uEk_pc0xVYc",
+     "views": 6600000,
+     "dur": 929,
+     "title": "How Scientology Destroyed A Popular Skateboarding Channel",
+     "date": "20250313",
+     "likes": 117361,
+     "comments": 11000,
+     "x_median": 2.13
+    },
+    {
+     "i": 3,
+     "id": "Lc7-lPujDjw",
+     "views": 3100000,
+     "dur": 560,
+     "title": "The Unexpected Flop Of Lazarbeam�s Video Game",
+     "date": "20250306",
+     "likes": 54465,
+     "comments": 2300,
+     "x_median": 1
+    },
+    {
+     "i": 4,
+     "id": "n8lzzNXx69E",
+     "views": 2100000,
+     "dur": 668,
+     "title": "How \"Deez Nuts\" Ended Up Becoming Homeless",
+     "date": "20250227",
+     "likes": 41848,
+     "comments": 2900,
+     "x_median": 0.68
+    },
+    {
+     "i": 5,
+     "id": "_Er7ORveNME",
+     "views": 5800000,
+     "dur": 604,
+     "title": "The Slow, Painful, Greedy Death Of Angry Birds",
+     "date": "20250220",
+     "likes": 128786,
+     "comments": 7800,
+     "x_median": 1.87
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "fwUnwrITse4",
+     "title": "He Went On Joe Rogan... Then Killed Someone 38 Days Later",
+     "views": 9000000,
+     "x_median": 2.9
+    },
+    {
+     "id": "Z2oK_dXJ8Gk",
+     "title": "New Update - Pink Sauce Has Officially Failed",
+     "views": 8500000,
+     "x_median": 2.7
+    },
+    {
+     "id": "nFWDteOZLFM",
+     "title": "The Worst �Van Life� Families On TikTok",
+     "views": 10000000,
+     "x_median": 3.2
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCuF49lP5gkkw5L8HK3H6GJg"
+  },
+  {
+   "niche": "base",
+   "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+   "channel": "Law&Crime Network",
+   "subs": 7740000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 250,
+   "median_views_recent30": 159000,
+   "uploads_per_month": 176.3,
+   "median_duration_min": 27.3,
+   "top": [
+    {
+     "i": 201,
+     "id": "v7P9fCrSjjA",
+     "views": 2400000,
+     "dur": 2042,
+     "title": "Christian Influencers' Secret EXPOSED in Shocking Abuse Case: Police",
+     "date": "20261008",
+     "likes": 20257,
+     "comments": 6500,
+     "x_median": 15.1
+    },
+    {
+     "i": 206,
+     "id": "mxLpOHlFsyE",
+     "views": 2000000,
+     "dur": 2095,
+     "title": "46-Year-Old Teacher�s Sexual Relationship With 13-Year-Old REVEALED",
+     "date": "20261007",
+     "likes": 19156,
+     "comments": 6500,
+     "x_median": 12.6
+    },
+    {
+     "i": 71,
+     "id": "obavSh86QJE",
+     "views": 1700000,
+     "dur": 2702,
+     "title": "Prime Crime: Teen Found Dead on Senior Trip to Myrtle Beach",
+     "date": "20261101",
+     "likes": 14031,
+     "comments": 1400,
+     "x_median": 10.7
+    },
+    {
+     "i": 236,
+     "id": "nMX32Ip3BR0",
+     "views": 1500000,
+     "dur": 1391,
+     "title": "TikTok Couple TORCHED Abandoned Home: Cops",
+     "date": "20261001",
+     "likes": 9797,
+     "comments": 3800,
+     "x_median": 9.4
+    },
+    {
+     "i": 150,
+     "id": "ot49UP8o-dw",
+     "views": 1400000,
+     "dur": 2719,
+     "title": "Prime Crime: Young Woman Found Murdered with Chilling Note From Killer",
+     "date": "20261018",
+     "likes": 12166,
+     "comments": 1200,
+     "x_median": 8.8
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "oZF4m94u424",
+     "views": 50000,
+     "dur": 1968,
+     "title": "7 New Shocking Details in Nvidia Affair Scandal",
+     "date": "20261113",
+     "likes": 606,
+     "comments": 177,
+     "x_median": 0.31
+    },
+    {
+     "i": 2,
+     "id": "dpgA4yXIcCs",
+     "views": 44000,
+     "dur": 1607,
+     "title": "New Twist in Doctor Mom�s Chilling Murder",
+     "date": "20261113",
+     "likes": 568,
+     "comments": 114,
+     "x_median": 0.28
+    },
+    {
+     "i": 3,
+     "id": "nzaTWYDtdSs",
+     "views": 78000,
+     "dur": 1708,
+     "title": "Dad's Chilling Text Before Burying Baby Alive in Dog Crate: Police",
+     "date": "20261113",
+     "likes": 1230,
+     "comments": 255,
+     "x_median": 0.49
+    },
+    {
+     "i": 4,
+     "id": "UkysfZ6b4d0",
+     "views": 80000,
+     "dur": 1753,
+     "title": "DNA Clues ROCK New Mom Murder Mystery: Report",
+     "date": "20261112",
+     "likes": 1071,
+     "comments": 194,
+     "x_median": 0.5
+    },
+    {
+     "i": 5,
+     "id": "8_BUBaa86go",
+     "views": 94000,
+     "dur": 1178,
+     "title": "Ex-Psychologist Had Sex in Front of Teen Girl",
+     "date": "20261112",
+     "likes": 872,
+     "comments": 132,
+     "x_median": 0.59
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "kLSQstye2fE",
+     "title": "Shocking Arrest in Texas Cruise Ship Murder",
+     "views": 928000,
+     "x_median": 5.8
+    },
+    {
+     "id": "FJnP_Y-mY34",
+     "title": "Chilling New Questions in Florida Learjet Crash",
+     "views": 444000,
+     "x_median": 2.8
+    },
+    {
+     "id": "i5wbG_MHwYk",
+     "title": "Interview With a Killer: High School Football Star Makes Deadly Decision",
+     "views": 463000,
+     "x_median": 2.9
+    },
+    {
+     "id": "JJvc1ROVcu8",
+     "title": "Man Lured Girls With $100 at Walmart: Cops",
+     "views": 538000,
+     "x_median": 3.4
+    },
+    {
+     "id": "c4fvqeTy-pw",
+     "title": "Teacher�s Husband Exposes Wife�s Relationship with Teen",
+     "views": 570000,
+     "x_median": 3.6
+    },
+    {
+     "id": "aNzXKoSbCc8",
+     "title": "YouTuber EDP445 Makes SHOCKING Confession in Child Sex Case",
+     "views": 757000,
+     "x_median": 4.8
+    },
+    {
+     "id": "cSY7Y96q0G4",
+     "title": "BREAKING: �Predator� Russell Brand Convicted of Rape",
+     "views": 691000,
+     "x_median": 4.3
+    },
+    {
+     "id": "Lzgxxg8eYkY",
+     "title": "'Pastor's Wife' Mica Miller Secret Settlement Revealed",
+     "views": 454000,
+     "x_median": 2.9
+    },
+    {
+     "id": "qUzNCEjOKKE",
+     "title": "7 New Details in Disturbing Florida Learjet Crash",
+     "views": 662000,
+     "x_median": 4.2
+    },
+    {
+     "id": "ye6YkzevnVQ",
+     "title": "Disturbing New Details in Florida Learjet Crash",
+     "views": 801000,
+     "x_median": 5
+    },
+    {
+     "id": "NT0x-jMrBDs",
+     "title": "Teacher Who Had Baby With Little Boy Gets SHOCKING Punishment",
+     "views": 638000,
+     "x_median": 4
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCz8K1occVvDTYDfFo7N5EZw"
+  },
+  {
+   "niche": "space",
+   "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+   "channel": "ElderFox Documentaries",
+   "subs": 719000,
+   "collected": "2026-11-13",
+   "long_videos_listed": 88,
+   "median_views_recent30": 170000,
+   "uploads_per_month": 0.6,
+   "median_duration_min": 10.3,
+   "top": [
+    {
+     "i": 69,
+     "id": "ZEyAs3NWH4A",
+     "views": 73000000,
+     "dur": 609,
+     "title": "New: Mars In 4K",
+     "date": "20200717",
+     "likes": 917198,
+     "comments": 91000,
+     "x_median": 429.4
+    },
+    {
+     "i": 20,
+     "id": "Vy_RPd0rblI",
+     "views": 13000000,
+     "dur": 567,
+     "title": "Mars in 4K: The Clearest Footage You Will Ever See",
+     "date": "20231121",
+     "likes": 133148,
+     "comments": 10000,
+     "x_median": 76.5
+    },
+    {
+     "i": 79,
+     "id": "weCG_yODtvM",
+     "views": 12000000,
+     "dur": 605,
+     "title": "Climbing a Martian Mountain with the Curiosity rover",
+     "date": "20200206",
+     "likes": 134603,
+     "comments": 22000,
+     "x_median": 70.6
+    },
+    {
+     "i": 26,
+     "id": "-TGH3--21_g",
+     "views": 7700000,
+     "dur": 598,
+     "title": "15 Months On Mars: We Found Eerie Spacecraft Wreckage",
+     "date": "20230331",
+     "likes": 63614,
+     "comments": 5300,
+     "x_median": 45.3
+    },
+    {
+     "i": 63,
+     "id": "7V54LRRJaGk",
+     "views": 6700000,
+     "dur": 965,
+     "title": "Mars: What happened to the Spirit Rover?",
+     "date": "20201123",
+     "likes": 113450,
+     "comments": 9200,
+     "x_median": 39.4
+    }
+   ],
+   "recent": [
+    {
+     "i": 1,
+     "id": "M5owwhDKT7k",
+     "views": 29000,
+     "dur": 307,
+     "title": "47 Months On Mars: A Video Recording by the rover!",
+     "date": "20260602",
+     "likes": 814,
+     "comments": 62,
+     "x_median": 0.17
+    },
+    {
+     "i": 2,
+     "id": "vfbQ7gw3Pm0",
+     "views": 142000,
+     "dur": 485,
+     "title": "46 Months on Mars: Parked on the Crater Rim!",
+     "date": "20251203",
+     "likes": 2997,
+     "comments": 181,
+     "x_median": 0.84
+    },
+    {
+     "i": 3,
+     "id": "yL_AwgH8s2c",
+     "views": 41000,
+     "dur": 703,
+     "title": "45 Months On Mars: Did we find Bones?",
+     "date": "20251127",
+     "likes": 1111,
+     "comments": 100,
+     "x_median": 0.24
+    },
+    {
+     "i": 4,
+     "id": "8e0HIOIcDz4",
+     "views": 72000,
+     "dur": 633,
+     "title": "Mars Has Pits. They�re Terrifying.",
+     "date": "20250720",
+     "likes": 2198,
+     "comments": 165,
+     "x_median": 0.42
+    },
+    {
+     "i": 5,
+     "id": "Lk1z4c1EgS4",
+     "views": 120000,
+     "dur": 372,
+     "title": "Why is Mars Covered in 'Spiders'?",
+     "date": "20250717",
+     "likes": 2389,
+     "comments": 302,
+     "x_median": 0.71
+    }
+   ],
+   "outliers_recent60": [
+    {
+     "id": "kCIYcWcBkVE",
+     "title": "There's a Doorway On Mars",
+     "views": 497000,
+     "x_median": 2.9
+    },
+    {
+     "id": "eeWy5dpGClQ",
+     "title": "What Is SCRATCHING on Mars? New Rover Audio Stuns NASA",
+     "views": 847000,
+     "x_median": 5
+    },
+    {
+     "id": "6-Tt-3viios",
+     "title": "How NASA's Perseverance Mars Rover Shocked Scientists, and Made People Cry...",
+     "views": 1000000,
+     "x_median": 5.9
+    },
+    {
+     "id": "8Yrk-Fvjd6M",
+     "title": "41 Months On Mars: Ancient Life Found?",
+     "views": 443000,
+     "x_median": 2.6
+    },
+    {
+     "id": "DR2YY0lGp50",
+     "title": "36 Months on Mars: A Bright Object Really Is Following Us!",
+     "views": 703000,
+     "x_median": 4.1
+    },
+    {
+     "id": "Vy_RPd0rblI",
+     "title": "Mars in 4K: The Clearest Footage You Will Ever See",
+     "views": 13000000,
+     "x_median": 76.5
+    },
+    {
+     "id": "bkV1Gdo9zO8",
+     "title": "30 Months On Mars: A Bright Object Is Following Us",
+     "views": 2700000,
+     "x_median": 15.9
+    },
+    {
+     "id": "S_-wvpNZ3PY",
+     "title": "24 Months On Mars: Objects Are Passing the Sun",
+     "views": 1200000,
+     "x_median": 7.1
+    },
+    {
+     "id": "9iSwCxaIaI8",
+     "title": "21 Months On Mars: A Scratched Rock!",
+     "views": 1000000,
+     "x_median": 5.9
+    },
+    {
+     "id": "ddSrP2HhBxQ",
+     "title": "18 Months On Mars: We Found A Spider-like Object",
+     "views": 2000000,
+     "x_median": 11.8
+    },
+    {
+     "id": "-TGH3--21_g",
+     "title": "15 Months On Mars: We Found Eerie Spacecraft Wreckage",
+     "views": 7700000,
+     "x_median": 45.3
+    },
+    {
+     "id": "n--9w6zt9MM",
+     "title": "10 Years On Mars: The Full Journey",
+     "views": 2900000,
+     "x_median": 17.1
+    },
+    {
+     "id": "W1uBYqKwjvk",
+     "title": "10 Years On Mars (Ep 2): Curiosity Sees a Strange Light",
+     "views": 1400000,
+     "x_median": 8.2
+    },
+    {
+     "id": "wZr9Nnw5Hlo",
+     "title": "10 Years On Mars (Ep 1): Curiosity Finds Plastic Debris!",
+     "views": 3500000,
+     "x_median": 20.6
+    },
+    {
+     "id": "i7nuVYSLX9U",
+     "title": "12 Months On Mars: Rover Chokes on a Rock",
+     "views": 459000,
+     "x_median": 2.7
+    },
+    {
+     "id": "74Bp7r-RjLY",
+     "title": "9 Months On Mars: Perseverance Gets a Speeding Ticket!",
+     "views": 477000,
+     "x_median": 2.8
+    },
+    {
+     "id": "PSIwnOKJXuw",
+     "title": "6 Months on Mars: Perseverance",
+     "views": 934000,
+     "x_median": 5.5
+    },
+    {
+     "id": "XIsCQjZGmuk",
+     "title": "Why did NASA Pour Dirt on their Mars Lander?",
+     "views": 623000,
+     "x_median": 3.7
+    },
+    {
+     "id": "lizT3uonZHg",
+     "title": "Does Planet X Actually Exist?",
+     "views": 506000,
+     "x_median": 3
+    },
+    {
+     "id": "WNrTttvdIMc",
+     "title": "3 Months On Mars: Perseverance",
+     "views": 5000000,
+     "x_median": 29.4
+    },
+    {
+     "id": "ZVWBwXuQIf0",
+     "title": "New: Mars Anomalies in 4K",
+     "views": 3600000,
+     "x_median": 21.2
+    }
+   ],
+   "url": "https://www.youtube.com/channel/UCZvxw99l3xDC6BIHb8nJKGg"
+  }
+ ]
+}

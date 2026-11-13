@@ -10,9 +10,13 @@ const d = JSON.parse(readFileSync(join(ROOT, "data/longform/rival/euro2024-final
 const xi = (team) => d.xi.find((x) => x.team === team), [g1, g2, g3] = d.goals, S = d.stats.Spain, E = d.stats.England;
 const id = (team, last) => xi(team).players.find((p) => p.name.endsWith(last)).id;
 const FULL = { fx: 60, fy: 40, yaw: 0, tilt: 40, dist: 160, scale: 12.6, cx: 960, cy: 575 };
+const att = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/lf2/rival-lines/ATTRIBUTIONS.json"), "utf8"));
+const PH = (id) => `lf2/rival-lines/${att[id].file}`, PC = (id) => `${att[id].author}, ${att[id].licence}, via Wikimedia Commons`;
 const NOTE_SEQ = "positions at each event: StatsBomb 360 freeze-frames; movement between events interpolated; player links estimated";
 
 export const SOURCES = {
+  WEF: { title: "Wikipedia: UEFA Euro 2024 final", url: "https://en.wikipedia.org/wiki/UEFA_Euro_2024_final", retrieved: "2026-11-13" },
+  PHOTO: { title: "Licensed photographs via Wikimedia Commons (La Moncloa government press photos; CC licences): public/lf2/rival-lines/ATTRIBUTIONS.json", url: "https://commons.wikimedia.org/" },
   SB: { title: "StatsBomb open data: UEFA Euro 2024 final, Spain v England, match 3943043 (events, lineups, 360)", url: "https://github.com/statsbomb/open-data", note: "Free for public use with attribution to StatsBomb (repository README, Terms & Conditions)" },
 };
 
@@ -25,6 +29,9 @@ export const EPISODE = {
     { id: "R02", part: "cold open", ref: "oZaPKaIVIA0 / KC2Vgjw282s: crest scoreline card with minute, title ghosted behind, scorers under it", src: ["SB"], frames: [40],
       vo: "Spain won two-one. On the scoreboard it was close. In the data, it was not, except for one fifteen-minute spell in the second half.",
       scene: { type: "scorecard", home: "Spain", away: "England", score: "2 – 1", minute: "FULL TIME", title: "Euro 2024 final", date: "14 JULY 2024 · OLYMPIASTADION BERLIN", scorers: [{ team: "Spain", text: "Williams 47'" }, { team: "Spain", text: "Oyarzabal 86'" }, { team: "England", text: "Palmer 73'" }] } },
+    { id: "R02b", part: "cold open", ref: "Football Made Simple cuts to real pictures between graphics; ours is a licensed still because match footage is not licensable to us", src: ["WEF", "PHOTO"], frames: [60],
+      vo: "The day after the final, the Spanish squad brought the trophy to the prime minister's residence in Madrid. It was their fourth European Championship, a record. They had won all seven of their matches at the tournament and scored fifteen goals, also a record for a single Euros.",
+      scene: { type: "photo", image: PH("spain-moncloa-2024-1"), credit: PC("spain-moncloa-2024-1"), kicker: "15 JULY 2024 · MADRID", callout: "Champions\nof Europe" } },
     { id: "R03", part: "cold open", ref: "KC2Vgjw282s: dark pitch, the move animated, one capital callout, COMING UP tag", src: ["SB"], frames: [90, 360],
       vo: "This is how Spain scored first: seven passes in twenty seconds, started by a player who had only come on at half-time.",
       scene: { type: "sequence", seq: g1, teamName: "Spain", oppName: "England", cam: { ...FULL, scale: 19, tilt: 50, cy: 600 }, follow: 0.7, speed: 1.4, callout: "Seven passes.\nTwenty seconds.", calloutAt: 200, coming: "COMING UP...", note: NOTE_SEQ } },
@@ -49,6 +56,9 @@ export const EPISODE = {
     { id: "R10", part: "england's spell", ref: "KC2Vgjw282s: substitution card", src: ["SB"], frames: [70],
       vo: "Cole Palmer came on for Kobbie Mainoo with twenty minutes left. Two minutes and fifteen seconds later, he scored.",
       scene: { type: "sub", cam: FULL, minute: 70, team: "England", off: "Mainoo", on: "Palmer", fact: "On at 69:53. Goal at 72:08: his third time receiving the ball." } },
+    { id: "R10b", part: "england's spell", ref: "Licensed photograph of the player, credit on screen", src: ["PHOTO"], frames: [60],
+      vo: "Palmer had come on with England a goal down and the match drifting away from them.",
+      scene: { type: "photo", image: PH("palmer-2024"), credit: PC("palmer-2024"), kicker: "COLE PALMER · PHOTO: NOVEMBER 2024", callout: "On at 69:53", pos: "50% 25%" } },
     { id: "R11", part: "england's spell", ref: "Football Made Simple: the move animated", src: ["SB"], frames: [300],
       vo: "Saka to Bellingham, Bellingham lays it back, and Palmer shoots from outside the box.",
       scene: { type: "sequence", seq: g2, teamName: "England", oppName: "Spain", cam: { ...FULL, scale: 22, tilt: 52, cy: 600 }, follow: 0.85, speed: 1, start: 10, callout: "Bellingham to Palmer", calloutAt: 120, note: NOTE_SEQ } },

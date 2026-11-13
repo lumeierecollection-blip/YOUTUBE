@@ -1,0 +1,106 @@
+// Red Space Facts (Space) long-form sample: "Uranus: The Planet That Rolls Around the Sun".
+// Why this subject (docs/longform/research/OPPORTUNITIES.md): Astrum's "Uranus: The Weirdest Planet in the Solar System" (27 Oct 2026) is at 3.0x
+// that channel's median, The Space Race's "Jupiter isn't a planet" 3.25x; real imagery is available from both visits that matter (Voyager 2 1986,
+// JWST 2023/2025), all public domain; and the physics (tilt, 84-year orbit, 42-year seasons) can be drawn exactly from NASA's fact sheet.
+// Claim categories (registry): observation, scientific_model, hypothetical, artistic_interpretation. Every picture carries its badge.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { ROOT } from "../../../preview/lib.mjs";
+
+const att = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/lf2/red-space-facts/ATTRIBUTIONS.json"), "utf8"));
+const A = (id) => `lf2/red-space-facts/${att[id].file}`, C = (id) => att[id].credit_line;
+const URANUS = { light: "#BDF3F5", dark: "#2E6F7E" }, EARTH = { light: "#9CC9FF", dark: "#1F4E8C" };
+
+export const SOURCES = {
+  NF: { title: "NASA NSSDCA, Uranus Fact Sheet (and Earth Fact Sheet)", url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/uranusfact.html", retrieved: "2026-11-13" },
+  WU: { title: "Wikipedia: Uranus", url: "https://en.wikipedia.org/wiki/Uranus", retrieved: "2026-11-13" },
+  WV: { title: "Wikipedia: Voyager 2", url: "https://en.wikipedia.org/wiki/Voyager_2", retrieved: "2026-11-13" },
+  WR: { title: "Wikipedia: Rings of Uranus", url: "https://en.wikipedia.org/wiki/Rings_of_Uranus", retrieved: "2026-11-13" },
+  WM: { title: "Wikipedia: Moons of Uranus", url: "https://en.wikipedia.org/wiki/Moons_of_Uranus", retrieved: "2026-11-13" },
+  WP: { title: "Wikipedia: Uranus Orbiter and Probe", url: "https://en.wikipedia.org/wiki/Uranus_Orbiter_and_Probe", retrieved: "2026-11-13" },
+  SVS: { title: "NASA Scientific Visualization Studio 4666, Uranus' Magnetosphere", url: "https://svs.gsfc.nasa.gov/4666/", retrieved: "2026-11-13" },
+  IMG: { title: "NASA / JPL / STScI images via Wikimedia Commons (public domain); textures Solar System Scope (CC BY 4.0)", url: "https://commons.wikimedia.org/", retrieved: "2026-11-13" },
+};
+
+export const EPISODE = {
+  channel: "red-space-facts", slug: "uranus", title: "Uranus: The Planet That Rolls Around the Sun", target_minutes: 10,
+  title_options: ["Uranus: The Planet That Rolls Around the Sun", "The Planet With 42-Year Nights", "Why Uranus Is Knocked On Its Side (And Why We've Only Been Once)"],
+  beats: [
+    { id: "S01", part: "cold open", ref: "ElderFox ZEyAs3NWH4A: the real image first, its authenticity stated; Astrum pZh5BWCNmmE opening 'visited only once'", src: ["IMG", "WV"], frames: [10, 120],
+      vo: "This is a real photograph of Uranus. It was taken by a single spacecraft, Voyager 2, as it flew past in January 1986. Almost every close-up picture of this planet you have ever seen comes from that one visit. Nothing from Earth has been back since.",
+      scene: { type: "image", image: A("uranus-voyager2-1986"), kind: "observation", credit: C("uranus-voyager2-1986"), date: "JANUARY 1986", caption: "Uranus in true colour, from Voyager 2" } },
+    { id: "S02", part: "cold open", ref: "Astrum: the 3D planet turning, labelled facts beside it", src: ["NF", "WU"], frames: [90],
+      vo: "And yet it is one of the strangest planets we know. Uranus spins on its side. Its axis is tipped over by almost ninety-eight degrees, so as it goes round the Sun it does not spin like a top. It rolls.",
+      scene: { type: "planet", tilt: 97.77, facts: [{ label: "Axial tilt", value: "97.77°", note: "Earth: 23.44°" }, { label: "One orbit", value: "84 years" }, { label: "One day", value: "17 h 14 min" }], kind: "visualisation" } },
+    { id: "S03", part: "cold open", ref: "SEA/Kurzgesagt: the two values side by side, drawn exactly", src: ["NF"], frames: [70],
+      vo: "Earth is tilted by twenty-three and a half degrees, and that tilt is the reason we have seasons. Uranus's tilt is four times greater, and it gives the planet seasons that last for decades.",
+      scene: { type: "tilt", bodies: [{ name: "Earth", tilt: 23.44, r: 150, ...EARTH }, { name: "Uranus", tilt: 97.77, r: 150, ...URANUS }] } },
+    { id: "S04", part: "cold open", ref: "Our model scene, values from the fact sheet", src: ["NF", "WU"], frames: [200],
+      vo: "Near its solstices one pole points almost straight at the Sun for years on end, while the other half of the planet sits in darkness. Each pole gets around forty-two years of continuous sunlight, then forty-two years of night.",
+      scene: { type: "seasons", tilt: 97.77, labels: [{ at: 0, title: "Solstice", text: "one pole in constant daylight" }, { at: 1, title: "Equinox", text: "day and night across the globe" }, { at: 2, title: "Solstice", text: "the other pole's 42-year day" }] } },
+    { id: "S05", part: "a planet nobody saw", ref: "History of the Universe / Astrum: discovery history as a dated timeline with images", src: ["WU", "WR", "WM", "WV"], frames: [60],
+      vo: "For most of history nobody knew Uranus was there. It is just at the edge of what the naked eye can see, and it moves so slowly against the stars that ancient observers never picked it out as a planet. On the thirteenth of March 1781, William Herschel saw it through a home-made telescope in his garden in Bath. He reported it as a comet.",
+      scene: { type: "timeline", title: "How we learned about Uranus", active: 0, events: [{ date: "1781", text: "Herschel sees it from Bath; reports a comet", up: true }, { date: "1787", text: "Herschel finds Titania and Oberon", up: false }, { date: "1977", text: "Rings found as a star blinks behind them", up: true }, { date: "1986", text: "Voyager 2 flies past, the only visit", image: A("uranus-voyager2-1986"), up: false }, { date: "2023", text: "Webb images the rings", image: A("uranus-webb-nircam-2023"), up: true }, { date: "2025", text: "Webb finds a 29th moon", up: false }, { date: "2040s", text: "Orbiter and probe, if funded", plan: true, up: true }] } },
+    { id: "S05b", part: "a planet nobody saw", ref: "History of the Universe: the human story inside the science", src: ["WU"], frames: [40],
+      vo: "Other astronomers worked out its orbit. It was nearly circular, which is how planets move, not comets. Herschel wanted to call it Georgium Sidus, George's Star, after his patron, King George the Third. The German astronomer Johann Bode proposed Uranus instead, the Greek god of the sky and the father of Saturn, so the new planet would fit with the old ones. It took until 1850 for Uranus to become the name everyone used.",
+      scene: { type: "timeline", title: "Naming a new planet", active: 2, events: [{ date: "1781", text: "Reported as a comet", up: true }, { date: "1781", text: "Lexell computes a near-circular orbit", up: false }, { date: "1782", text: "Bode proposes 'Uranus'", up: true }, { date: "1850", text: "Last holdout adopts Uranus", up: false }] } },
+    { id: "S06", part: "a planet nobody saw", ref: "SEA scale device: true relative sizes, a marker on the small one", src: ["NF"], frames: [90],
+      vo: "Within two years astronomers accepted it as a new planet. It is big: four times Earth's width and more than fourteen times its mass. But it is so light for its size that its average density is less than a quarter of Earth's, because most of it is not rock at all.",
+      scene: { type: "scale", title: "Uranus and Earth, to scale", bodies: [{ name: "Earth", radius_km: 6371, ...EARTH }, { name: "Uranus", radius_km: 25362, ...URANUS }] } },
+    { id: "S07", part: "a planet nobody saw", ref: "Astrum: fact comparison", src: ["NF"], frames: [120],
+      vo: "NASA's fact sheet puts the numbers side by side. Uranus is about nineteen times further from the Sun than we are and receives less than a three-hundredth of the sunlight we get. Surface gravity, though, would feel almost familiar: about nine-tenths of Earth's at the cloud tops.",
+      scene: { type: "facts", names: ["Uranus", "Earth"], title: "Uranus against Earth", rows: [{ label: "Mean radius", a: 25362, b: 6371, unit: "km" }, { label: "Distance from the Sun", a: 2867, b: 150, unit: "M km" }, { label: "Gravity at 1 bar", a: 9.01, b: 9.82, unit: "m/s²" }, { label: "Mean density", a: 1270, b: 5513, unit: "kg/m³" }, { label: "Orbit", a: 84, b: 1, unit: "yr" }] } },
+    { id: "S07b", part: "the only visit", ref: "The Space Race: mission explained as a dated sequence", src: ["WV"], frames: [80],
+      vo: "Getting there at all needed luck with geometry. In the late 1970s the outer planets lined up in a way that let one spacecraft use each planet's gravity to swing on to the next. NASA began planning a grand tour, and Voyager 2 became the only probe to fly that full route: Jupiter, Saturn, then Uranus, and finally Neptune, which it passed on the twenty-fifth of August 1989.",
+      scene: { type: "timeline", title: "Voyager 2's route", active: 3, events: [{ date: "Aug 1977", text: "Launch, Cape Canaveral", up: true }, { date: "1979", text: "Jupiter", up: false }, { date: "1981", text: "Saturn", up: true }, { date: "Jan 1986", text: "Uranus", image: A("uranus-voyager2-1986"), up: false }, { date: "Aug 1989", text: "Neptune", up: true }] } },
+    { id: "S08", part: "the only visit", ref: "Astrum: real Voyager image panels side by side with column titles", src: ["WV", "IMG"], frames: [60],
+      vo: "Voyager 2 launched on the twentieth of August 1977, using a rare alignment of the outer planets to swing from world to world. It reached Uranus on the twenty-fourth of January 1986 and passed about eighty-one thousand kilometres above the clouds. What it saw was almost featureless: across the whole planet it counted just ten cloud features.",
+      scene: { type: "pair", title: "Voyager 2, January 1986", left: { image: A("uranus-voyager2-two-color"), title: "Two colour views", note: "from 9.1 million km, 17 January 1986" }, right: { image: A("uranus-rings-voyager2"), title: "The rings", note: "Voyager 2 image of the ring system" }, credit: "NASA/JPL (public domain), via Wikimedia Commons" } },
+    { id: "S08b", part: "the only visit", ref: "Real Voyager ring image, labelled", src: ["WR"], frames: [60],
+      vo: "The rings had been found nine years earlier, by accident. On the tenth of March 1977, astronomers flying on NASA's Kuiper Airborne Observatory planned to study the planet's atmosphere by watching a star pass behind it. Before and after the planet covered the star, the star briefly disappeared five times. The only explanation was a set of narrow rings. Voyager confirmed them and found two more.",
+      scene: { type: "image", image: A("uranus-rings-voyager2"), kind: "observation", credit: C("uranus-rings-voyager2"), date: "1986", caption: "The rings of Uranus, Voyager 2" } },
+    { id: "S09", part: "the only visit", ref: "Our model: magnetic field from the SVS visualisation, labelled as a visualisation", src: ["SVS", "NF", "WU"], frames: [60],
+      vo: "The real surprise was invisible. Uranus's magnetic field turned out to be tilted about fifty-nine degrees away from its spin axis and shifted far off the planet's centre. It turns with the planet, lopsided. This NASA visualisation shows how strange that geometry is.",
+      scene: { type: "image", image: A("svs4666-flyby-f2"), kind: "visualisation", credit: "NASA/GSFC Scientific Visualization Studio, item 4666", caption: "Uranus's magnetosphere in the Voyager 2 flyby geometry (visualisation from data)", fit: "cover" } },
+    { id: "S09b", part: "the only visit", ref: "SVS visualisation frame, labelled as a visualisation", src: ["WU", "SVS"], frames: [60],
+      vo: "Voyager's data is still giving up secrets. In March 2020, NASA scientists re-examining the 1986 measurements reported that the spacecraft had flown through a plasmoid, a giant bubble of magnetic field and charged gas being released from Uranus into space. It was in the data for thirty-four years before anyone noticed.",
+      scene: { type: "image", image: A("svs4666-equinox-orbit-f3"), kind: "visualisation", credit: "NASA/GSFC Scientific Visualization Studio, item 4666", caption: "Uranus's magnetosphere at equinox (visualisation from data)", fit: "cover" } },
+    { id: "S10", part: "the only visit", ref: "Astrum: real image with labels", src: ["NF", "WV"], frames: [40],
+      vo: "Voyager also arrived at an awkward moment. It came during the height of the southern summer, with the south pole facing the Sun, so it could not see the northern hemisphere at all. Half of the planet stayed hidden until telescopes on and near Earth could watch the seasons turn.",
+      scene: { type: "seasons", tilt: 97.77, highlight: 0, labels: [{ at: 0, title: "1986: Voyager 2", text: "south pole in sunlight" }, { at: 1, title: "2007: equinox", text: "both hemispheres lit" }] } },
+    { id: "S10b", part: "the only visit", ref: "Real Webb image with labels; weather as a dated observation", src: ["WU", "IMG"], frames: [60],
+      vo: "And the planet that looked so calm in 1986 turned out to have weather. From March to May 2004, large clouds appeared and observers measured winds of up to eight hundred and twenty kilometres an hour. When Uranus passed its equinox in 2007, a faint bright collar appeared in the north while the one in the south almost disappeared. The seasons were changing the sky.",
+      scene: { type: "image", image: A("uranus-webb-closeup-2023"), kind: "observation", credit: C("uranus-webb-closeup-2023"), date: "2023", caption: "Webb close-up: polar cap and storms", callouts: [{ x: 1000, y: 420, tx: 1400, ty: 300, text: "polar cap" }] } },
+    { id: "S11", part: "why it tipped over", ref: "Our model scene, marked HYPOTHESIS", src: ["WU"], frames: [90],
+      vo: "So why is Uranus on its side? Nobody knows for certain. The idea most often discussed is that something roughly the size of Earth hit it early in its history and knocked it over. That is a hypothesis, not an observation. It is also used to explain another oddity: Uranus gives off almost no heat of its own.",
+      scene: { type: "planet", tilt: 97.77, axis: "#FF7A90", kind: "hypothesis", facts: [{ label: "Leading idea", value: "A giant impact", note: "hypothesis; not observed" }, { label: "Internal heat", value: "≈ none", note: "radiates 1.06 × the sunlight it absorbs" }], credit: "Hypothesis as summarised on Wikipedia, 'Uranus' (internal heat, axial tilt)" } },
+    { id: "S12", part: "why it tipped over", ref: "Astrum: data card", src: ["WU"], frames: [80],
+      vo: "Neptune, its near twin in size, radiates more than two and a half times as much energy as it gets from the Sun. Uranus radiates about the same amount it receives, and its tropopause has been measured at forty-nine kelvin, the coldest temperature recorded on any planet. Why its interior is so quiet is still not understood.",
+      scene: { type: "facts", names: ["Uranus", "Neptune"], title: "Energy out ÷ sunlight in", rows: [{ label: "Heat out vs sunlight absorbed", a: 1.06, b: 2.61, unit: "×" }] } },
+    { id: "S13", part: "rings and moons", ref: "Real JWST image with labelled callouts", src: ["WR", "IMG"], frames: [80],
+      vo: "Uranus also has rings: thirteen of them, narrow and dark. They were found in 1977, before Voyager arrived, when astronomers watched a star blink on and off as the rings passed in front of it. In 2023 the James Webb Space Telescope photographed them glowing in infrared.",
+      scene: { type: "image", image: A("uranus-webb-nircam-2023"), kind: "observation", credit: C("uranus-webb-nircam-2023"), date: "APRIL 2023", caption: "Uranus and its rings, James Webb Space Telescope NIRCam", callouts: [{ x: 1100, y: 330, tx: 1400, ty: 210, text: "rings" }, { x: 960, y: 540, tx: 1380, ty: 620, text: "polar cap" }] } },
+    { id: "S14", part: "rings and moons", ref: "Real JWST image, annotated by NASA", src: ["WM", "IMG"], frames: [60],
+      vo: "Its moons are named after characters from Shakespeare and Alexander Pope: Miranda, Ariel, Umbriel, Titania, Oberon. In August 2025 a team using Webb announced one more, found in images from February that year, bringing the count to twenty-nine.",
+      scene: { type: "image", image: A("uranus-new-moon-2025"), kind: "observation", credit: C("uranus-new-moon-2025"), date: "AUGUST 2025", caption: "Webb image with the newly found moon annotated by NASA" } },
+    { id: "S14b", part: "rings and moons", ref: "Astrum: moon story over the 3D planet", src: ["WU"], frames: [90],
+      vo: "One of them is among the strangest objects in the Solar System. Miranda has fault canyons twenty kilometres deep, terraced layers and a patchwork of surfaces of very different ages. Scientists think it was once heated by tides when its orbit was more stretched than it is now. Ariel looks young, with few craters. Umbriel looks the oldest.",
+      scene: { type: "planet", tilt: 97.77, ringsOn: true, facts: [{ label: "Miranda", value: "20 km canyons" }, { label: "Ariel", value: "youngest surface" }, { label: "Umbriel", value: "oldest surface" }], kind: "visualisation" } },
+    { id: "S15", part: "going back", ref: "Timeline with a proposed, unfunded mission marked as such", src: ["WP"], frames: [70],
+      vo: "Scientists want to go back. A Uranus orbiter and atmospheric probe was ranked the top new flagship mission for the decade in the US planetary science survey. The original plan was to launch in 2031 and arrive in 2044. Because of a shortage of plutonium for its power source, a launch in the mid to late 2030s now looks more likely.",
+      scene: { type: "timeline", title: "The next visit", active: 4, events: [{ date: "1977", text: "Voyager 2 launches", up: true }, { date: "1986", text: "Uranus flyby", image: A("uranus-voyager2-1986"), up: false }, { date: "2023", text: "Survey ranks a Uranus mission first", up: true }, { date: "2031", text: "Original launch plan", plan: true, up: false }, { date: "2044", text: "Earliest arrival in that plan", plan: true, up: true }] } },
+    { id: "S16", part: "ending", ref: "The real image again (Astrum closes on the planet)", src: ["WV", "IMG"], frames: [60],
+      vo: "Until then, the closest look we have is still the one taken by a spacecraft built in the 1970s, which is still sending data from far beyond the planets. A planet that rolls around the Sun, and that we have seen up close for just a few days in 1986.",
+      scene: { type: "image", image: A("uranus-webb-closeup-2023"), kind: "observation", credit: C("uranus-webb-closeup-2023"), date: "DECEMBER 2023", caption: "Uranus, James Webb Space Telescope" } },
+  ],
+  transitions: [
+    { name: "tx1-photo-to-3d", a: "S01", b: "S02", kind: "dissolve", dur: 24, aAt: 140, note: "real Voyager photo dissolves into the 3D model of the same planet" },
+    { name: "tx2-zoomthrough", a: "S04", b: "S05", kind: "zoomthrough", dur: 22, aAt: 210, note: "camera pushes through the orbit into the history timeline" },
+    { name: "tx3-dip", a: "S12", b: "S13", kind: "dip", dur: 18, aAt: 90, note: "dip to black into the Webb image" },
+  ],
+  thumbs: [
+    { name: "thumb1-sideways", big: "IT ROLLS", small: "42-year nights", image: A("uranus-webb-nircam-2023"), kind: "observation" },
+    { name: "thumb2-once", big: "WE CAME\nONCE", small: "Voyager 2 · 1986", image: A("uranus-voyager2-1986"), marker: { x: 1430, y: 760, r: 70, text: "1986" }, kind: "observation" },
+    { name: "thumb3-tilt", big: "97.77°", small: "Why Uranus is on its side", image: A("svs4666-equinox-orbit-f2"), arrow: "M 300 900 Q 500 650 820 600", kind: "visualisation" },
+  ],
+};

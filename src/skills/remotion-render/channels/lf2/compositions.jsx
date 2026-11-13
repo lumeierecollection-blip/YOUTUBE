@@ -9,8 +9,11 @@ import { RIVAL } from "./rival.jsx";
 import { HIDDEN } from "./hidden.jsx";
 import { AITEST } from "./aitest.jsx";
 import { COURT } from "./court.jsx";
+import { SPACE } from "./space.jsx";
+import { PSYCH } from "./psych.jsx";
+import { CELEB } from "./celebnews.jsx";
 
-const LIB = { "rival-lines": RIVAL, "hidden-past": HIDDEN, "ai-tested": AITEST, "court-and-spotlight": COURT };
+const LIB = { "rival-lines": RIVAL, "hidden-past": HIDDEN, "ai-tested": AITEST, "court-and-spotlight": COURT, "red-space-facts": SPACE, psychology: PSYCH, "celebrity-news": CELEB };
 export function renderScene(s) {
   const C = LIB[s.ch] && LIB[s.ch][s.type];
   if (!C) return <AbsoluteFill style={{ background: "#300", color: "#fff", fontSize: 60, alignItems: "center", justifyContent: "center" }}>no scene {s.ch}/{s.type}</AbsoluteFill>;

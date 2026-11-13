@@ -8,11 +8,14 @@ import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
 
 const THEMES = JSON.parse(readFileSync(join(ROOT, "config/longform-v2.json"), "utf8"));
-const FILE = { "rival-lines": "rival", "hidden-past": "hidden", "ai-tested": "aitest", "court-and-spotlight": "court" };
+const FILE = { "rival-lines": "rival", "hidden-past": "hidden", "ai-tested": "aitest", "court-and-spotlight": "court", "red-space-facts": "space", psychology: "psych", "celebrity-news": "celebnews" };
 const COMPONENT = {
   "hidden-past": { map: "MapScene + GeoMap (MapLibre, Sentinel-2/NASA imagery, terrain)", footage: "Footage", inset: "Inset", figures: "Figures", chart: "ChartOver", roster: "Roster", scale: "Scale", thumb: "HiddenThumb" },
   "court-and-spotlight": { source: "Source (real capture, camera + highlight on real words)", quote: "Quote", photo: "Photo", transcript: "Transcript", timeline: "CaseTimeline", ledger: "Ledger", amount: "Amount", relations: "Relations", collage: "Collage", date: "DateCard", thumb: "CourtThumb" },
-  "rival-lines": { number: "NumberOpen", scorecard: "ScoreCard", formation: "Formation (3D pitch plane)", sequence: "Sequence360 (event + 360 data animation)", network: "PassNetwork", press: "PressMap", shots: "ShotMap", bars: "StatBars", timeline: "MatchTimeline", sub: "SubCard", thumb: "RivalThumb" },
+  "rival-lines": { photo: "Photo (licensed still + credit)", number: "NumberOpen", scorecard: "ScoreCard", formation: "Formation (3D pitch plane)", sequence: "Sequence360 (event + 360 data animation)", network: "PassNetwork", press: "PressMap", shots: "ShotMap", bars: "StatBars", timeline: "MatchTimeline", sub: "SubCard", thumb: "RivalThumb" },
+  "red-space-facts": { planet: "Planet3D (three.js sphere, real texture, tilt)", tilt: "Tilt (measured obliquities)", seasons: "Seasons (orbit model)", image: "ImagePlate (real image + provenance badge)", pair: "ImagePair", scale: "ScaleBodies (true relative radii)", timeline: "SpaceTimeline", facts: "FactBars (fact-sheet data)", thumb: "SpaceThumb" },
+  psychology: { cycle: "Cycle", experiment: "Experiment (study reconstruction)", study: "StudyCard", effect: "EffectPlot (real meta-analysis data)", claims: "ClaimVsEvidence", stat: "Stat", scenario: "Scenario", thumb: "PsychThumb" },
+  "celebrity-news": { cover: "Cover (magazine)", record: "Record (magazine)", flow: "Flow (VOX ownership/money)", explainer: "Explainer (VOX)", compare: "Compare", bars: "Bars", post: "Post (recreated public statement)", source: "Source (investigation)", quote: "Quote", thumb: "CelebThumb" },
   "ai-tested": { browser: "Browser (Playwright capture, camera, highlight box, cursor)", terminal: "Terminal", chat: "Chat", accuracy: "Accuracy", grid: "Grid", miss: "Miss", flow: "Flow", compare: "Compare", verdict: "Verdict", thumb: "AiThumb" },
 };
 

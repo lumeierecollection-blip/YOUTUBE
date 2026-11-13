@@ -51,7 +51,7 @@ jobs:
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: |
           b="${GITHUB_REF_NAME#stills/}"
-          keys="hidden-past,ai-tested,court-and-spotlight,rival-lines"
+          keys="hidden-past,ai-tested,court-and-spotlight,rival-lines,red-space-facts,psychology,celebrity-news"
           for k in ${keys//,/ }; do case "$b" in "$k"*) keys="$k";; esac; done
           echo "channels: $keys"
           node platform/longform/stills/run.mjs "$keys"

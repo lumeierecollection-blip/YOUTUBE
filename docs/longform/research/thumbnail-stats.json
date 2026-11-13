@@ -1,0 +1,4322 @@
+{
+ "6EbuAEagQj4": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "The Deepest We Have Ever Seen Into the Sun | SDO 4K",
+  "views": 11000000,
+  "x_median": 11,
+  "date": "20231123",
+  "kind": "top",
+  "brightness": 0.72,
+  "saturation": 0.6,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#f0e4b9",
+   "#7b3906",
+   "#c99730"
+  ]
+ },
+ "UyzBoUvN3PM": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "What Voyager Detected at the Edge of the Solar System",
+  "views": 8300000,
+  "x_median": 8.3,
+  "date": "20240819",
+  "kind": "top",
+  "brightness": 0.35,
+  "saturation": 0.26,
+  "dark_share": 0.27,
+  "bright_share": 0.02,
+  "palette": [
+   "#62634a",
+   "#28291e",
+   "#b7b698"
+  ]
+ },
+ "mggRl80WzbE": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "What El Ni�o Will Do to Earth",
+  "views": 7000000,
+  "x_median": 7,
+  "date": "20230505",
+  "kind": "top",
+  "brightness": 0.25,
+  "saturation": 0.6,
+  "dark_share": 0.39,
+  "bright_share": 0,
+  "palette": [
+   "#161315",
+   "#934f34",
+   "#2e4b50"
+  ]
+ },
+ "u4tzK89ZfmA": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "Everything We Know About 'Oumuamua",
+  "views": 6800000,
+  "x_median": 6.8,
+  "date": "20250422",
+  "kind": "top",
+  "brightness": 0.54,
+  "saturation": 0.36,
+  "dark_share": 0.02,
+  "bright_share": 0,
+  "palette": [
+   "#263c4d",
+   "#7a8174",
+   "#d4c18e"
+  ]
+ },
+ "YpyXVkqkQgg": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "Time Does Not Exist. Let me explain with a graph.",
+  "views": 5700000,
+  "x_median": 5.7,
+  "date": "20221007",
+  "kind": "top",
+  "brightness": 0.39,
+  "saturation": 0.38,
+  "dark_share": 0.27,
+  "bright_share": 0.07,
+  "palette": [
+   "#d4cfcc",
+   "#181b2c",
+   "#69656e"
+  ]
+ },
+ "MS8eLbSvb3c": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "We Detected an Unusual Signal Coming From Our Galaxy's Core",
+  "views": 296000,
+  "x_median": 0.3,
+  "date": "20261111",
+  "kind": "recent",
+  "brightness": 0.49,
+  "saturation": 0.62,
+  "dark_share": 0.22,
+  "bright_share": 0.01,
+  "palette": [
+   "#92342f",
+   "#eca273",
+   "#210d1d"
+  ]
+ },
+ "aCZosHTmyPY": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "We Found a Chemical on Titan We've Never Seen Before",
+  "views": 1000000,
+  "x_median": 1,
+  "date": "20261104",
+  "kind": "recent",
+  "brightness": 0.31,
+  "saturation": 0.37,
+  "dark_share": 0.38,
+  "bright_share": 0,
+  "palette": [
+   "#040d06",
+   "#a9be80",
+   "#3f6140"
+  ]
+ },
+ "TOJAKmAk3NY": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "The Impossible Reality Inside a Black Hole",
+  "views": 661000,
+  "x_median": 0.66,
+  "date": "20261029",
+  "kind": "recent",
+  "brightness": 0.48,
+  "saturation": 0.66,
+  "dark_share": 0.14,
+  "bright_share": 0.01,
+  "palette": [
+   "#281436",
+   "#e0a48b",
+   "#65377e"
+  ]
+ },
+ "pZh5BWCNmmE": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "Uranus: The Weirdest Planet in the Solar System",
+  "views": 3000000,
+  "x_median": 3.01,
+  "date": "20261027",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.57,
+  "dark_share": 0.13,
+  "bright_share": 0.04,
+  "palette": [
+   "#10193e",
+   "#a5d0e8",
+   "#375c98"
+  ]
+ },
+ "T9HLYPn59S4": {
+  "cid": "UC-9b7aDP6ZN0coj9-xFnrtw",
+  "channel": "Astrum",
+  "title": "The Most Detailed Image Ever Taken of the Milky Way's Core",
+  "views": 576000,
+  "x_median": 0.58,
+  "date": "20261021",
+  "kind": "recent",
+  "brightness": 0.26,
+  "saturation": 0.52,
+  "dark_share": 0.38,
+  "bright_share": 0,
+  "palette": [
+   "#826242",
+   "#1a0f0c",
+   "#57331f"
+  ]
+ },
+ "Rnfv15oHWUY": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "The Dark Life After 15 Minutes of Fame",
+  "views": 9700000,
+  "x_median": 6.5,
+  "date": "20250324",
+  "kind": "top",
+  "brightness": 0.56,
+  "saturation": 0.48,
+  "dark_share": 0.07,
+  "bright_share": 0,
+  "palette": [
+   "#382a2e",
+   "#d8aa8f",
+   "#906351"
+  ]
+ },
+ "5hEZMr-zB28": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Investigating The Most Suspicious Man in Las Vegas",
+  "views": 7800000,
+  "x_median": 5.2,
+  "date": "20260831",
+  "kind": "top",
+  "brightness": 0.43,
+  "saturation": 0.31,
+  "dark_share": 0.28,
+  "bright_share": 0.03,
+  "palette": [
+   "#886b64",
+   "#d4bab5",
+   "#1e231d"
+  ]
+ },
+ "8r3RQD8rE9E": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "The Awakening of Jim Carrey: Hollywood's Worst Nightmare",
+  "views": 7800000,
+  "x_median": 5.2,
+  "date": "20241014",
+  "kind": "top",
+  "brightness": 0.51,
+  "saturation": 0.51,
+  "dark_share": 0.12,
+  "bright_share": 0.01,
+  "palette": [
+   "#381510",
+   "#7f6d43",
+   "#cead91"
+  ]
+ },
+ "HwU1MQyOIhU": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "When Comedians Cause Chaos at Award Shows",
+  "views": 7600000,
+  "x_median": 5.1,
+  "date": "20240325",
+  "kind": "top",
+  "brightness": 0.52,
+  "saturation": 0.57,
+  "dark_share": 0.23,
+  "bright_share": 0.02,
+  "palette": [
+   "#2c1f12",
+   "#e9c493",
+   "#ac7533"
+  ]
+ },
+ "Gzn8-KbyGlo": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Keanu Reeves Refused to Sell His Soul to Hollywood",
+  "views": 7200000,
+  "x_median": 4.8,
+  "date": "20230807",
+  "kind": "top",
+  "brightness": 0.42,
+  "saturation": 0.37,
+  "dark_share": 0.22,
+  "bright_share": 0.01,
+  "palette": [
+   "#77573d",
+   "#2a221d",
+   "#caa492"
+  ]
+ },
+ "azjpDRLFWQM": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Pok�mon Scalpers Are Completely F*cked",
+  "views": 1800000,
+  "x_median": 1.2,
+  "date": "20261109",
+  "kind": "recent",
+  "brightness": 0.53,
+  "saturation": 0.48,
+  "dark_share": 0.09,
+  "bright_share": 0.01,
+  "palette": [
+   "#2b3245",
+   "#bca4a7",
+   "#9c5c46"
+  ]
+ },
+ "k5ybiDRnR5Y": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Bob Saget Was NOT Who They Thought He Was",
+  "views": 681000,
+  "x_median": 0.45,
+  "date": "20261102",
+  "kind": "recent",
+  "brightness": 0.63,
+  "saturation": 0.54,
+  "dark_share": 0.11,
+  "bright_share": 0,
+  "palette": [
+   "#98442e",
+   "#332117",
+   "#e5ac8e"
+  ]
+ },
+ "5DOp7RD8Rn4": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Megan Fox Won't Shut Her Mouth",
+  "views": 1200000,
+  "x_median": 0.8,
+  "date": "20261026",
+  "kind": "recent",
+  "brightness": 0.66,
+  "saturation": 0.14,
+  "dark_share": 0.15,
+  "bright_share": 0.32,
+  "palette": [
+   "#b79d94",
+   "#f7f1f0",
+   "#342e29"
+  ]
+ },
+ "DWWNhwxccJE": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "The Undertaker Situation is Really Sad",
+  "views": 1100000,
+  "x_median": 0.73,
+  "date": "20261019",
+  "kind": "recent",
+  "brightness": 0.43,
+  "saturation": 0.58,
+  "dark_share": 0.22,
+  "bright_share": 0.03,
+  "palette": [
+   "#0e1c34",
+   "#775661",
+   "#cfb5b4"
+  ]
+ },
+ "cH6Qy0DGz2w": {
+  "cid": "UC-mP1nlk0qOutA08zuQHORA",
+  "channel": "Patrick Cc:",
+  "title": "Another Child Star Died & We Know Who To Blame",
+  "views": 866000,
+  "x_median": 0.58,
+  "date": "20261012",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.47,
+  "dark_share": 0.14,
+  "bright_share": 0.01,
+  "palette": [
+   "#36271e",
+   "#a65741",
+   "#daa88f"
+  ]
+ },
+ "4aN5TbGW5JA": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "The Pygmalion Effect",
+  "views": 19000000,
+  "x_median": 413,
+  "date": "20190529",
+  "kind": "top",
+  "brightness": 0.88,
+  "saturation": 0.1,
+  "dark_share": 0,
+  "bright_share": 0.6,
+  "palette": [
+   "#fbf5ef",
+   "#878080",
+   "#e9dbcc"
+  ]
+ },
+ "WjOowWxOXCg": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "The Attachment Theory: How Childhood Affects Life",
+  "views": 11000000,
+  "x_median": 239.1,
+  "date": "20180531",
+  "kind": "top",
+  "brightness": 0.8,
+  "saturation": 0.09,
+  "dark_share": 0.01,
+  "bright_share": 0.31,
+  "palette": [
+   "#f0efe7",
+   "#616868",
+   "#c2c0b8"
+  ]
+ },
+ "eVlvxHJdql8": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "13 Study Tips: The Science of Better Learning",
+  "views": 8400000,
+  "x_median": 182.6,
+  "date": "20161003",
+  "kind": "top",
+  "brightness": 0.76,
+  "saturation": 0.11,
+  "dark_share": 0.04,
+  "bright_share": 0.27,
+  "palette": [
+   "#454341",
+   "#b4aca0",
+   "#eae8e4"
+  ]
+ },
+ "fyO8pvpnTdE": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "5 Parenting Styles and Their Effects on Life",
+  "views": 7700000,
+  "x_median": 167.4,
+  "date": "20210430",
+  "kind": "top",
+  "brightness": 0.79,
+  "saturation": 0.08,
+  "dark_share": 0.01,
+  "bright_share": 0.38,
+  "palette": [
+   "#f4ede4",
+   "#b5afa8",
+   "#696861"
+  ]
+ },
+ "IhcgYgx7aAA": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "Piaget's Theory of Cognitive Development",
+  "views": 7700000,
+  "x_median": 167.4,
+  "date": "20180801",
+  "kind": "top",
+  "brightness": 0.84,
+  "saturation": 0.12,
+  "dark_share": 0,
+  "bright_share": 0.41,
+  "palette": [
+   "#f4eee7",
+   "#cfc6bb",
+   "#958663"
+  ]
+ },
+ "LPw0BZOm0bU": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "How Money Is Created and How This Makes Some Rich and Some Poor",
+  "views": 10000,
+  "x_median": 0.22,
+  "date": "20260602",
+  "kind": "recent",
+  "brightness": 0.79,
+  "saturation": 0.31,
+  "dark_share": 0.01,
+  "bright_share": 0.28,
+  "palette": [
+   "#f4ebe0",
+   "#c1a18b",
+   "#508e75"
+  ]
+ },
+ "ofweqU0Lz4I": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "Correlation vs Causation Explained: Why Patterns Can Mislead Us",
+  "views": 26000,
+  "x_median": 0.57,
+  "date": "20260323",
+  "kind": "recent",
+  "brightness": 0.93,
+  "saturation": 0.7,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#aeceea",
+   "#3b9bef",
+   "#87767f"
+  ]
+ },
+ "qWjZAnmSGn4": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "The Cycle of Abuse : 4 Phases of a Toxic Relationship",
+  "views": 23000,
+  "x_median": 0.5,
+  "date": "20260223",
+  "kind": "recent",
+  "brightness": 0.54,
+  "saturation": 0.52,
+  "dark_share": 0.1,
+  "bright_share": 0,
+  "palette": [
+   "#131a23",
+   "#528bc0",
+   "#475a74"
+  ]
+ },
+ "RKtG70DFXU4": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "5 Developmental Windows That Shape Your Life Forever",
+  "views": 16000,
+  "x_median": 0.35,
+  "date": "20260126",
+  "kind": "recent",
+  "brightness": 0.9,
+  "saturation": 0.55,
+  "dark_share": 0,
+  "bright_share": 0.05,
+  "palette": [
+   "#7590b5",
+   "#c5d0df",
+   "#399bf5"
+  ]
+ },
+ "qAN6iQyhlLk": {
+  "cid": "UC-RKpEc4eE9PwJaupN91xYQ",
+  "channel": "Sprouts",
+  "title": "What Depression Feels Like",
+  "views": 20000,
+  "x_median": 0.43,
+  "date": "20251222",
+  "kind": "recent",
+  "brightness": 0.47,
+  "saturation": 0.23,
+  "dark_share": 0.11,
+  "bright_share": 0.05,
+  "palette": [
+   "#19151c",
+   "#523c4f",
+   "#bdb3b4"
+  ]
+ },
+ "nOZQlDg_Ei4": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "News Anchors Who Vanished After Getting Fired",
+  "views": 214000,
+  "x_median": 52.2,
+  "date": "20260522",
+  "kind": "top",
+  "brightness": 0.48,
+  "saturation": 0.7,
+  "dark_share": 0.13,
+  "bright_share": 0,
+  "palette": [
+   "#152b4f",
+   "#c29285",
+   "#947227"
+  ]
+ },
+ "SE8wtPwQWBA": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "These HGTV Shows Are Faker Than You May Realize",
+  "views": 168000,
+  "x_median": 41,
+  "date": "20260310",
+  "kind": "top",
+  "brightness": 0.71,
+  "saturation": 0.37,
+  "dark_share": 0.01,
+  "bright_share": 0.01,
+  "palette": [
+   "#57374d",
+   "#d1ac9c",
+   "#81629d"
+  ]
+ },
+ "_0DdnLkiUx0": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "Jarring Images Of Celebrities With 'Ozempic Face'",
+  "views": 157000,
+  "x_median": 38.3,
+  "date": "20260317",
+  "kind": "top",
+  "brightness": 0.56,
+  "saturation": 0.53,
+  "dark_share": 0.14,
+  "bright_share": 0,
+  "palette": [
+   "#2a0d25",
+   "#6a4f66",
+   "#d9a09a"
+  ]
+ },
+ "X-KzfQMAjPw": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "General Hospital Stars Who Sadly Passed Away",
+  "views": 97000,
+  "x_median": 23.7,
+  "date": "20260302",
+  "kind": "top",
+  "brightness": 0.55,
+  "saturation": 0.39,
+  "dark_share": 0.12,
+  "bright_share": 0.05,
+  "palette": [
+   "#32201e",
+   "#ced4c1",
+   "#728587"
+  ]
+ },
+ "Uqes-z6hTLg": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "What These Former Dancing With The Stars Pros Are Doing Now",
+  "views": 94000,
+  "x_median": 22.9,
+  "date": "20261023",
+  "kind": "top",
+  "brightness": 0.55,
+  "saturation": 0.57,
+  "dark_share": 0.22,
+  "bright_share": 0,
+  "palette": [
+   "#21130f",
+   "#e9b180",
+   "#985f3f"
+  ]
+ },
+ "MS59ZK2hiz0": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "The Remarkable Evolution Of Grace Kelly's 6 Granddaughters",
+  "views": 1900,
+  "x_median": 0.46,
+  "date": "20261111",
+  "kind": "recent",
+  "brightness": 0.66,
+  "saturation": 0.54,
+  "dark_share": 0.01,
+  "bright_share": 0.03,
+  "palette": [
+   "#133e7c",
+   "#a0755c",
+   "#e2baa4"
+  ]
+ },
+ "xWU0B1ReRog": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "Celebrities Who Are Rumored To Be Not-So-Great Neighbors",
+  "views": 18000,
+  "x_median": 4.39,
+  "date": "20261106",
+  "kind": "recent",
+  "brightness": 0.55,
+  "saturation": 0.49,
+  "dark_share": 0.13,
+  "bright_share": 0.01,
+  "palette": [
+   "#3a3334",
+   "#d29d8a",
+   "#b66129"
+  ]
+ },
+ "PYLhLjJ0iXE": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "From Season 1 To 34: DWTS Contestants Who Didn't Land With Fans",
+  "views": 11000,
+  "x_median": 2.68,
+  "date": "20261102",
+  "kind": "recent",
+  "brightness": 0.69,
+  "saturation": 0.49,
+  "dark_share": 0.02,
+  "bright_share": 0.01,
+  "palette": [
+   "#622795",
+   "#87653d",
+   "#d7a49e"
+  ]
+ },
+ "DHS2RGvsK4s": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "Where These VH1 Stars Are Today",
+  "views": 8900,
+  "x_median": 2.17,
+  "date": "20261030",
+  "kind": "recent",
+  "brightness": 0.49,
+  "saturation": 0.61,
+  "dark_share": 0.11,
+  "bright_share": 0.03,
+  "palette": [
+   "#224d0e",
+   "#d9b09c",
+   "#856938"
+  ]
+ },
+ "FOQAK4-gaV0": {
+  "cid": "UC1DGpYiEiqBrQtYXFbLhMVQ",
+  "channel": "Nicki Swift",
+  "title": "'80s Heartthrobs Who Married Much Younger Women",
+  "views": 4100,
+  "x_median": 1,
+  "date": "20261029",
+  "kind": "recent",
+  "brightness": 0.69,
+  "saturation": 0.44,
+  "dark_share": 0.01,
+  "bright_share": 0.02,
+  "palette": [
+   "#303acf",
+   "#4c465c",
+   "#caad99"
+  ]
+ },
+ "CkP_8bkjf1E": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Discipline (And How to Trick Your Brain Into Craving It)",
+  "views": 5100000,
+  "x_median": 96.2,
+  "date": "20260730",
+  "kind": "top",
+  "brightness": 0.27,
+  "saturation": 0.36,
+  "dark_share": 0.54,
+  "bright_share": 0,
+  "palette": [
+   "#070303",
+   "#8f3d29",
+   "#b5ba98"
+  ]
+ },
+ "f1gkkzHZxNg": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Intelligence: Learn Anything So Fast It's Almost Unfair",
+  "views": 3500000,
+  "x_median": 66,
+  "date": "20260830",
+  "kind": "top",
+  "brightness": 0.89,
+  "saturation": 0.12,
+  "dark_share": 0,
+  "bright_share": 0.67,
+  "palette": [
+   "#fefbfb",
+   "#d89d99",
+   "#684a5f"
+  ]
+ },
+ "D0SGbomVuKc": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Polymaths: Why Having Multiple Interests Is an Unfair Advantage",
+  "views": 3500000,
+  "x_median": 66,
+  "date": "20260816",
+  "kind": "top",
+  "brightness": 0.89,
+  "saturation": 0.07,
+  "dark_share": 0,
+  "bright_share": 0.61,
+  "palette": [
+   "#fdfdfc",
+   "#ccc8c0",
+   "#9b8b75"
+  ]
+ },
+ "N95Tb2sDWVs": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of People Who Go Quiet When They�re Hurt",
+  "views": 2300000,
+  "x_median": 43.4,
+  "date": "20260309",
+  "kind": "top",
+  "brightness": 0.44,
+  "saturation": 0.49,
+  "dark_share": 0.01,
+  "bright_share": 0,
+  "palette": [
+   "#394345",
+   "#cab39c",
+   "#b9af07"
+  ]
+ },
+ "6wPcR6MrsIk": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Verbal Intelligence: How To Articulate Your Thoughts Intelligently",
+  "views": 2000000,
+  "x_median": 37.7,
+  "date": "20260927",
+  "kind": "top",
+  "brightness": 0.23,
+  "saturation": 0.23,
+  "dark_share": 0.62,
+  "bright_share": 0,
+  "palette": [
+   "#050403",
+   "#754236",
+   "#abc695"
+  ]
+ },
+ "ltFkUizYdR0": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "10 Boring Habits That Will Make You Scary Disciplined",
+  "views": 5400,
+  "x_median": 0.1,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.16,
+  "saturation": 0.16,
+  "dark_share": 0.67,
+  "bright_share": 0,
+  "palette": [
+   "#040303",
+   "#583434",
+   "#9c5f5f"
+  ]
+ },
+ "NhuCb-PirBo": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Lust (And How To Defeat It Overnight)",
+  "views": 10000,
+  "x_median": 0.19,
+  "date": "20261110",
+  "kind": "recent",
+  "brightness": 0.31,
+  "saturation": 0.4,
+  "dark_share": 0.44,
+  "bright_share": 0,
+  "palette": [
+   "#221216",
+   "#6c3134",
+   "#b2998b"
+  ]
+ },
+ "7ICGcKz99_A": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Ghost Profiles (Why Some People Don't Post Their Photos Online)",
+  "views": 14000,
+  "x_median": 0.26,
+  "date": "20261108",
+  "kind": "recent",
+  "brightness": 0.77,
+  "saturation": 0.12,
+  "dark_share": 0,
+  "bright_share": 0.28,
+  "palette": [
+   "#f2f1f1",
+   "#b9ada5",
+   "#757b7f"
+  ]
+ },
+ "FwwyZ6IMrHg": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "Psychology of Insecurities (And How To Drop Them For Good)",
+  "views": 14000,
+  "x_median": 0.26,
+  "date": "20261106",
+  "kind": "recent",
+  "brightness": 0.46,
+  "saturation": 0.06,
+  "dark_share": 0.26,
+  "bright_share": 0.05,
+  "palette": [
+   "#0f0e0d",
+   "#877f78",
+   "#c9c9c9"
+  ]
+ },
+ "s9HFeU37CK8": {
+  "cid": "UC7ogBsKt4AoJBu8bObb0QiA",
+  "channel": "PsychToons",
+  "title": "The Psychology of JOMO (Joy of Missing Out)",
+  "views": 19000,
+  "x_median": 0.36,
+  "date": "20261104",
+  "kind": "recent",
+  "brightness": 0.84,
+  "saturation": 0.09,
+  "dark_share": 0,
+  "bright_share": 0.43,
+  "palette": [
+   "#f9f9f9",
+   "#c2bdbc",
+   "#ac807d"
+  ]
+ },
+ "FXF-nD4U5zk": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "Jupiter Is Not What You Think",
+  "views": 7100000,
+  "x_median": 9.6,
+  "date": "20251115",
+  "kind": "top",
+  "brightness": 0.42,
+  "saturation": 0.45,
+  "dark_share": 0.18,
+  "bright_share": 0,
+  "palette": [
+   "#734f3c",
+   "#c89a74",
+   "#2f1f1b"
+  ]
+ },
+ "b2_M-1YqnNI": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "The Object That Will Change Your View of Space Forever",
+  "views": 6400000,
+  "x_median": 8.7,
+  "date": "20250816",
+  "kind": "top",
+  "brightness": 0.22,
+  "saturation": 0.18,
+  "dark_share": 0.64,
+  "bright_share": 0.01,
+  "palette": [
+   "#2c2f34",
+   "#8897ad",
+   "#040405"
+  ]
+ },
+ "1ozN_0gYTBk": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "What NASA Found on Pluto",
+  "views": 6200000,
+  "x_median": 8.4,
+  "date": "20250823",
+  "kind": "top",
+  "brightness": 0.26,
+  "saturation": 0.19,
+  "dark_share": 0.47,
+  "bright_share": 0,
+  "palette": [
+   "#151418",
+   "#8b9497",
+   "#494d57"
+  ]
+ },
+ "ASEchqxT_5I": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "Something Weird Is Happening On Europa",
+  "views": 5400000,
+  "x_median": 7.3,
+  "date": "20260926",
+  "kind": "top",
+  "brightness": 0.16,
+  "saturation": 0.13,
+  "dark_share": 0.65,
+  "bright_share": 0,
+  "palette": [
+   "#716966",
+   "#050404",
+   "#302b2a"
+  ]
+ },
+ "s0mNlXGd2Bc": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "What NASA Found on Io",
+  "views": 5400000,
+  "x_median": 7.3,
+  "date": "20260214",
+  "kind": "top",
+  "brightness": 0.22,
+  "saturation": 0.25,
+  "dark_share": 0.59,
+  "bright_share": 0,
+  "palette": [
+   "#594b38",
+   "#0d0c0b",
+   "#b09664"
+  ]
+ },
+ "64ZgzunmPOU": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "NASA Could Win The Space Race This Month",
+  "views": 671000,
+  "x_median": 0.91,
+  "date": "20261107",
+  "kind": "recent",
+  "brightness": 0.36,
+  "saturation": 0.13,
+  "dark_share": 0.34,
+  "bright_share": 0,
+  "palette": [
+   "#0a0a0b",
+   "#5f5e5f",
+   "#8d8685"
+  ]
+ },
+ "bb4KirnWsB4": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "NASA Is Making Big Changes To Artemis",
+  "views": 899000,
+  "x_median": 1.22,
+  "date": "20261031",
+  "kind": "recent",
+  "brightness": 0.27,
+  "saturation": 0.28,
+  "dark_share": 0.49,
+  "bright_share": 0.01,
+  "palette": [
+   "#4f4e51",
+   "#a79e9b",
+   "#101115"
+  ]
+ },
+ "_I3KAaI__-M": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "Jupiter isn't a planet",
+  "views": 2400000,
+  "x_median": 3.25,
+  "date": "20261024",
+  "kind": "recent",
+  "brightness": 0.19,
+  "saturation": 0.38,
+  "dark_share": 0.54,
+  "bright_share": 0,
+  "palette": [
+   "#442f26",
+   "#776a61",
+   "#191210"
+  ]
+ },
+ "FX6GYpj-PnA": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "The Real Reason Starship Has 33 Engines",
+  "views": 1900000,
+  "x_median": 2.57,
+  "date": "20261017",
+  "kind": "recent",
+  "brightness": 0.5,
+  "saturation": 0.19,
+  "dark_share": 0.11,
+  "bright_share": 0.01,
+  "palette": [
+   "#b7b7b5",
+   "#2e3034",
+   "#737467"
+  ]
+ },
+ "qQAM7FvLVio": {
+  "cid": "UCeMcDx6-rOq_RlKSPehk2tQ",
+  "channel": "The Space Race",
+  "title": "Why is everyone going to this hole in the Moon",
+  "views": 3000000,
+  "x_median": 4.07,
+  "date": "20261010",
+  "kind": "recent",
+  "brightness": 0.38,
+  "saturation": 0.23,
+  "dark_share": 0.14,
+  "bright_share": 0,
+  "palette": [
+   "#342524",
+   "#af9488",
+   "#665b58"
+  ]
+ },
+ "-ybiXR2WCFQ": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "Journey to the Andromeda Galaxy [4K]",
+  "views": 7100000,
+  "x_median": 9.7,
+  "date": "20220105",
+  "kind": "top",
+  "brightness": 0.23,
+  "saturation": 0.29,
+  "dark_share": 0.51,
+  "bright_share": 0,
+  "palette": [
+   "#08080b",
+   "#8f8083",
+   "#3c3643"
+  ]
+ },
+ "4iC9Qi3y9q8": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "The Cosmic Scale",
+  "views": 6900000,
+  "x_median": 9.5,
+  "date": "20210116",
+  "kind": "top",
+  "brightness": 0.21,
+  "saturation": 0.56,
+  "dark_share": 0.6,
+  "bright_share": 0,
+  "palette": [
+   "#0e0707",
+   "#a2514d",
+   "#562321"
+  ]
+ },
+ "kZ3M6ko9pes": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "Beyond the Cosmic Horizon",
+  "views": 4900000,
+  "x_median": 6.7,
+  "date": "20190117",
+  "kind": "top",
+  "brightness": 0.13,
+  "saturation": 0.17,
+  "dark_share": 0.68,
+  "bright_share": 0,
+  "palette": [
+   "#09090b",
+   "#34282a",
+   "#5c4a45"
+  ]
+ },
+ "W9ME-WBlkeM": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "The Largest Star (Stephenson 2-18)",
+  "views": 4200000,
+  "x_median": 5.8,
+  "date": "20210211",
+  "kind": "top",
+  "brightness": 0.23,
+  "saturation": 0.7,
+  "dark_share": 0.54,
+  "bright_share": 0,
+  "palette": [
+   "#150707",
+   "#420e10",
+   "#952f2d"
+  ]
+ },
+ "BCjWmfWq0pU": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "The Jaw-Dropping Scale of Voids and Supervoids",
+  "views": 4100000,
+  "x_median": 5.6,
+  "date": "20200323",
+  "kind": "top",
+  "brightness": 0.15,
+  "saturation": 0.47,
+  "dark_share": 0.71,
+  "bright_share": 0,
+  "palette": [
+   "#1e2031",
+   "#505667",
+   "#090913"
+  ]
+ },
+ "-nIsOi-tVKM": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "The Real Largest Star",
+  "views": 344000,
+  "x_median": 0.47,
+  "date": "20261025",
+  "kind": "recent",
+  "brightness": 0.45,
+  "saturation": 0.83,
+  "dark_share": 0.43,
+  "bright_share": 0,
+  "palette": [
+   "#0d0204",
+   "#830c0a",
+   "#ee501c"
+  ]
+ },
+ "tDWT9IZtPk4": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "Giant Stars in the Early Universe",
+  "views": 0,
+  "x_median": 0,
+  "date": null,
+  "kind": "recent",
+  "brightness": 0.36,
+  "saturation": 0.8,
+  "dark_share": 0.58,
+  "bright_share": 0,
+  "palette": [
+   "#090612",
+   "#790d0f",
+   "#e1631f"
+  ]
+ },
+ "yXLtdakY3gI": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "Webb's New Black Hole Star",
+  "views": 0,
+  "x_median": 0,
+  "date": null,
+  "kind": "recent",
+  "brightness": 0.88,
+  "saturation": 0.89,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#87200d",
+   "#ff8336",
+   "#f64611"
+  ]
+ },
+ "7oR0Pmd-WIk": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "Higgs Boson: The God Particle",
+  "views": 562000,
+  "x_median": 0.77,
+  "date": "20260823",
+  "kind": "recent",
+  "brightness": 0.15,
+  "saturation": 0.21,
+  "dark_share": 0.75,
+  "bright_share": 0.02,
+  "palette": [
+   "#0a0c0d",
+   "#3b4549",
+   "#a4b8c0"
+  ]
+ },
+ "OhXFLqnwzh8": {
+  "cid": "UCG9ShGbASoiwHwFcLcAh9EA",
+  "channel": "SEA",
+  "title": "You Live in a Supervoid",
+  "views": 508000,
+  "x_median": 0.7,
+  "date": "20260628",
+  "kind": "recent",
+  "brightness": 0.17,
+  "saturation": 0.94,
+  "dark_share": 0.8,
+  "bright_share": 0,
+  "palette": [
+   "#01041b",
+   "#020a2f",
+   "#5297c3"
+  ]
+ },
+ "fxK_H-IhC4g": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "10 Psychological Tricks To Get Her To Like You - How To Make a Girl ATTRACTED To Me?",
+  "views": 23000000,
+  "x_median": 219,
+  "date": "20160929",
+  "kind": "top",
+  "brightness": 0.6,
+  "saturation": 0.32,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#c5aba1",
+   "#91746b",
+   "#41717e"
+  ]
+ },
+ "vU-ibdHkz4Y": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "How to Never Run out of Things to Say - Keep a Conversation Flowing!",
+  "views": 11000000,
+  "x_median": 104.8,
+  "date": "20161213",
+  "kind": "top",
+  "brightness": 0.56,
+  "saturation": 0.43,
+  "dark_share": 0.01,
+  "bright_share": 0,
+  "palette": [
+   "#634f50",
+   "#bb9f82",
+   "#1f963a"
+  ]
+ },
+ "d9W2GO1LhP4": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "4 Best Things Do in your Free Time - What to do when you�re bored",
+  "views": 4800000,
+  "x_median": 45.7,
+  "date": "20170512",
+  "kind": "top",
+  "brightness": 0.75,
+  "saturation": 0.3,
+  "dark_share": 0.01,
+  "bright_share": 0.21,
+  "palette": [
+   "#8e805e",
+   "#dddddd",
+   "#683396"
+  ]
+ },
+ "MnIPpUiTcRc": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "HOW TO Give a Great Presentation - 7 Presentation Skills and Tips to Leave an Impression",
+  "views": 3400000,
+  "x_median": 32.4,
+  "date": "20170117",
+  "kind": "top",
+  "brightness": 0.51,
+  "saturation": 0.35,
+  "dark_share": 0.05,
+  "bright_share": 0,
+  "palette": [
+   "#756e71",
+   "#ada7a7",
+   "#684c1b"
+  ]
+ },
+ "ifGg5JykgQo": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "10 Morning Routine Habits of Successful People",
+  "views": 2900000,
+  "x_median": 27.6,
+  "date": "20170826",
+  "kind": "top",
+  "brightness": 0.91,
+  "saturation": 0.54,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#f3c882",
+   "#517e51",
+   "#dd8e3c"
+  ]
+ },
+ "8T_N7KQRnWQ": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "Experimenter Bias (Definition + Examples)",
+  "views": 105000,
+  "x_median": 1,
+  "date": "20220816",
+  "kind": "recent",
+  "brightness": 0.79,
+  "saturation": 0.49,
+  "dark_share": 0.01,
+  "bright_share": 0.03,
+  "palette": [
+   "#e9d364",
+   "#665f58",
+   "#749cc6"
+  ]
+ },
+ "mQKhAue2Js0": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "What is a Double Blind Study? (Definition + Examples)",
+  "views": 50000,
+  "x_median": 0.48,
+  "date": "20220723",
+  "kind": "recent",
+  "brightness": 0.63,
+  "saturation": 0.49,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#63735f",
+   "#9c9f2f",
+   "#5da6a1"
+  ]
+ },
+ "W6G5typ5u0c": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "Perceptual Reasoning (Definition + Examples)",
+  "views": 32000,
+  "x_median": 0.3,
+  "date": "20220705",
+  "kind": "recent",
+  "brightness": 0.67,
+  "saturation": 0.19,
+  "dark_share": 0,
+  "bright_share": 0.06,
+  "palette": [
+   "#675958",
+   "#9a9a88",
+   "#e2e7cc"
+  ]
+ },
+ "p5pe7EGtjMw": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "Lewin�s Change Theory - UnFreeze, Change, ReFreeze Method",
+  "views": 185000,
+  "x_median": 1.76,
+  "date": "20220622",
+  "kind": "recent",
+  "brightness": 0.33,
+  "saturation": 0.33,
+  "dark_share": 0.02,
+  "bright_share": 0,
+  "palette": [
+   "#282b35",
+   "#67d4de",
+   "#647353"
+  ]
+ },
+ "fyOUgwDbvdY": {
+  "cid": "UCir93b_ftqInEaDpsWYbo_g",
+  "channel": "Practical Psychology",
+  "title": "Stimulus Response Theory - Edward Thorndike (Definition + Examples)",
+  "views": 128000,
+  "x_median": 1.22,
+  "date": "20220613",
+  "kind": "recent",
+  "brightness": 0.64,
+  "saturation": 0.15,
+  "dark_share": 0,
+  "bright_share": 0.07,
+  "palette": [
+   "#9aa29e",
+   "#d4dbd6",
+   "#5c4f5c"
+  ]
+ },
+ "kMMCum-Mvvg": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "Christian Siriano's Red Carpet Dresses That Stole The Show",
+  "views": 217000,
+  "x_median": 72.3,
+  "date": "20261020",
+  "kind": "top",
+  "brightness": 0.53,
+  "saturation": 0.48,
+  "dark_share": 0.19,
+  "bright_share": 0.01,
+  "palette": [
+   "#221120",
+   "#d69c9e",
+   "#7c465c"
+  ]
+ },
+ "A59cEGZ7bmc": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "Where The Most Successful Project Runway Stars Are Today",
+  "views": 141000,
+  "x_median": 47,
+  "date": "20260909",
+  "kind": "top",
+  "brightness": 0.61,
+  "saturation": 0.57,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#822e58",
+   "#8346a1",
+   "#ae83af"
+  ]
+ },
+ "yxoUnvPOyt4": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "Fans Are Calling Out Dancing With The Stars Season 35",
+  "views": 124000,
+  "x_median": 41.3,
+  "date": "20261014",
+  "kind": "top",
+  "brightness": 0.53,
+  "saturation": 0.54,
+  "dark_share": 0.11,
+  "bright_share": 0,
+  "palette": [
+   "#241e3f",
+   "#a27357",
+   "#9f73c3"
+  ]
+ },
+ "mzudB0ZgoYI": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "How Tall Is The Royal Family? Their Height From Shortest To Tallest",
+  "views": 117000,
+  "x_median": 39,
+  "date": "20261028",
+  "kind": "top",
+  "brightness": 0.56,
+  "saturation": 0.59,
+  "dark_share": 0.12,
+  "bright_share": 0.02,
+  "palette": [
+   "#3c2212",
+   "#dbae89",
+   "#9c6d31"
+  ]
+ },
+ "7c5s6MWxO-E": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "The Dancing With The Stars Pros Have Gorgeous Real Life Partners",
+  "views": 75000,
+  "x_median": 25,
+  "date": "20260522",
+  "kind": "top",
+  "brightness": 0.48,
+  "saturation": 0.46,
+  "dark_share": 0.16,
+  "bright_share": 0.01,
+  "palette": [
+   "#2c1316",
+   "#caa995",
+   "#715a53"
+  ]
+ },
+ "SlO4DU97Xlw": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "What Tom Cruise's Co-Stars Have Said About Working With Him",
+  "views": 812,
+  "x_median": 0.27,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.52,
+  "dark_share": 0.02,
+  "bright_share": 0.01,
+  "palette": [
+   "#132f5a",
+   "#d7a89a",
+   "#7f6656"
+  ]
+ },
+ "iw4RS93SX9A": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "The Biggest Complaints About The Voice Season 30 So Far",
+  "views": 1300,
+  "x_median": 0.43,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.59,
+  "saturation": 0.51,
+  "dark_share": 0.03,
+  "bright_share": 0,
+  "palette": [
+   "#8d4867",
+   "#c281a9",
+   "#482338"
+  ]
+ },
+ "zNuGM7xKJe4": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "Hallmark's Highest-Rated Fall Movies Of All Time, Ranked By Reviews",
+  "views": 983,
+  "x_median": 0.33,
+  "date": "20261110",
+  "kind": "recent",
+  "brightness": 0.48,
+  "saturation": 0.51,
+  "dark_share": 0.2,
+  "bright_share": 0.01,
+  "palette": [
+   "#8d5738",
+   "#d39d83",
+   "#291c1d"
+  ]
+ },
+ "6_9XTz8e3sE": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "Things Princess Diana Couldn't Do After She Married Prince Charles",
+  "views": 1900,
+  "x_median": 0.63,
+  "date": "20261106",
+  "kind": "recent",
+  "brightness": 0.58,
+  "saturation": 0.43,
+  "dark_share": 0.04,
+  "bright_share": 0.01,
+  "palette": [
+   "#45232b",
+   "#8d6162",
+   "#d49fa2"
+  ]
+ },
+ "N-oj-czJiDk": {
+  "cid": "UCJ7dtuZhjFSJvb_CZjWJkng",
+  "channel": "The List",
+  "title": "The Dancing With The Stars Scandals That Completely Rocked The Show",
+  "views": 1400,
+  "x_median": 0.47,
+  "date": "20261104",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.6,
+  "dark_share": 0.05,
+  "bright_share": 0,
+  "palette": [
+   "#26163e",
+   "#c58257",
+   "#7b4157"
+  ]
+ },
+ "dIIxtmhW69E": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "Weird Habits That Actually Reveal High Intelligence",
+  "views": 1400000,
+  "x_median": 21.5,
+  "date": "20260114",
+  "kind": "top",
+  "brightness": 0.86,
+  "saturation": 0.18,
+  "dark_share": 0,
+  "bright_share": 0.59,
+  "palette": [
+   "#fbe3f1",
+   "#c0aaab",
+   "#6e2b1b"
+  ]
+ },
+ "AuPMCXRFO4w": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "What is Your Mental Age?- Test",
+  "views": 1300000,
+  "x_median": 20,
+  "date": "20251108",
+  "kind": "top",
+  "brightness": 0.53,
+  "saturation": 0.51,
+  "dark_share": 0.16,
+  "bright_share": 0,
+  "palette": [
+   "#43939b",
+   "#1b1419",
+   "#d78fad"
+  ]
+ },
+ "FS3P8Bc5Xv8": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "What Happens If You Stop Masturbating?",
+  "views": 829000,
+  "x_median": 12.8,
+  "date": "20251018",
+  "kind": "top",
+  "brightness": 0.83,
+  "saturation": 0.47,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#d8555f",
+   "#f27287",
+   "#9d8f9a"
+  ]
+ },
+ "QASBKMS8iY4": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "QUIZ: Are You Bottling Your Emotions? (self test)",
+  "views": 651000,
+  "x_median": 10,
+  "date": "20250912",
+  "kind": "top",
+  "brightness": 0.53,
+  "saturation": 0.34,
+  "dark_share": 0,
+  "bright_share": 0.02,
+  "palette": [
+   "#273c52",
+   "#b1bec9",
+   "#626f89"
+  ]
+ },
+ "4ffJdac9vNQ": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "What Happens When You Orgasm Without Porn? ",
+  "views": 650000,
+  "x_median": 10,
+  "date": "20260101",
+  "kind": "top",
+  "brightness": 0.72,
+  "saturation": 0.43,
+  "dark_share": 0.02,
+  "bright_share": 0.08,
+  "palette": [
+   "#ba4b48",
+   "#553e4c",
+   "#dbc2c8"
+  ]
+ },
+ "Tsm45ihesTk": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "Can Being Too Self-Aware Make You Mentally Exhausted?",
+  "views": 97000,
+  "x_median": 1.49,
+  "date": "20261108",
+  "kind": "recent",
+  "brightness": 0.75,
+  "saturation": 0.5,
+  "dark_share": 0,
+  "bright_share": 0.07,
+  "palette": [
+   "#508293",
+   "#61a7d1",
+   "#dfdde0"
+  ]
+ },
+ "kED0CRzTf9k": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "7 Subtle Habits of People Who See Right Through Everyone",
+  "views": 85000,
+  "x_median": 1.31,
+  "date": "20261107",
+  "kind": "recent",
+  "brightness": 0.46,
+  "saturation": 0.29,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#3a485e",
+   "#546073",
+   "#8d97a5"
+  ]
+ },
+ "POUF4fhMZ6c": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "Smart People Can't Find Love. Here's Why",
+  "views": 171000,
+  "x_median": 2.63,
+  "date": "20261102",
+  "kind": "recent",
+  "brightness": 0.48,
+  "saturation": 0.02,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#5d5f61",
+   "#959596",
+   "#797a7a"
+  ]
+ },
+ "t-FOflqGq-o": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "Traumatic Intelligence, the \"Rarest Type\" Discourse",
+  "views": 65000,
+  "x_median": 1,
+  "date": "20261024",
+  "kind": "recent",
+  "brightness": 0.38,
+  "saturation": 0.31,
+  "dark_share": 0.21,
+  "bright_share": 0.03,
+  "palette": [
+   "#2d2634",
+   "#e6cfaf",
+   "#897366"
+  ]
+ },
+ "77qczL2i7Hs": {
+  "cid": "UCkJEpR7JmS36tajD34Gp4VA",
+  "channel": "Psych2Go",
+  "title": "Why Intimacy Feels So Hard (5 Types Explained)",
+  "views": 75000,
+  "x_median": 1.15,
+  "date": "20261021",
+  "kind": "recent",
+  "brightness": 0.86,
+  "saturation": 0.44,
+  "dark_share": 0,
+  "bright_share": 0.05,
+  "palette": [
+   "#f26178",
+   "#846655",
+   "#efb4be"
+  ]
+ },
+ "IqXpzcfdtn4": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "Every Level of Consciousness",
+  "views": 3500000,
+  "x_median": 14.6,
+  "date": "20251102",
+  "kind": "top",
+  "brightness": 0.39,
+  "saturation": 0.34,
+  "dark_share": 0.31,
+  "bright_share": 0.04,
+  "palette": [
+   "#594e5e",
+   "#0f090c",
+   "#b0a5b3"
+  ]
+ },
+ "DAN9mpLnOqA": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The Quantum Theory of Dreams and Consciousness",
+  "views": 2300000,
+  "x_median": 9.6,
+  "date": "20260621",
+  "kind": "top",
+  "brightness": 0.53,
+  "saturation": 0.42,
+  "dark_share": 0.26,
+  "bright_share": 0.09,
+  "palette": [
+   "#100a0a",
+   "#d1b1ae",
+   "#a6262f"
+  ]
+ },
+ "5HgxcEEjQoA": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The Quantum Theory That Says Your Brain Creates Reality",
+  "views": 1900000,
+  "x_median": 7.9,
+  "date": "20260222",
+  "kind": "top",
+  "brightness": 0.37,
+  "saturation": 0.62,
+  "dark_share": 0.34,
+  "bright_share": 0,
+  "palette": [
+   "#150e20",
+   "#c58f9c",
+   "#4e4863"
+  ]
+ },
+ "NFcSqAruzwg": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The Psychology of People Who Don't Post Their Photos on Social Media",
+  "views": 1900000,
+  "x_median": 7.9,
+  "date": "20251130",
+  "kind": "top",
+  "brightness": 0.7,
+  "saturation": 0.3,
+  "dark_share": 0.03,
+  "bright_share": 0.17,
+  "palette": [
+   "#a97980",
+   "#dbdada",
+   "#233d54"
+  ]
+ },
+ "50bUVhQtZGw": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "BlackRock: the Company That Controls* the World's Governments",
+  "views": 1800000,
+  "x_median": 7.5,
+  "date": "20230510",
+  "kind": "top",
+  "brightness": 0.27,
+  "saturation": 0.01,
+  "dark_share": 0.56,
+  "bright_share": 0.08,
+  "palette": [
+   "#555555",
+   "#080808",
+   "#cfcfcf"
+  ]
+ },
+ "VFzbU6wMLwM": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The highest levels of dreams explained in detail",
+  "views": 161000,
+  "x_median": 0.67,
+  "date": "20261108",
+  "kind": "recent",
+  "brightness": 0.41,
+  "saturation": 0.63,
+  "dark_share": 0.2,
+  "bright_share": 0.01,
+  "palette": [
+   "#262b30",
+   "#863513",
+   "#5aa3bf"
+  ]
+ },
+ "2p6M-BMPrP8": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The Nobel Prize Discovery that Exposed the Secret to Mind Control",
+  "views": 207000,
+  "x_median": 0.86,
+  "date": "20261101",
+  "kind": "recent",
+  "brightness": 0.29,
+  "saturation": 0.23,
+  "dark_share": 0.5,
+  "bright_share": 0,
+  "palette": [
+   "#131110",
+   "#bc896a",
+   "#624839"
+  ]
+ },
+ "FTklJbzycPo": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The disturbing theory that claims everything is conscious",
+  "views": 303000,
+  "x_median": 1.26,
+  "date": "20261025",
+  "kind": "recent",
+  "brightness": 0.29,
+  "saturation": 0.45,
+  "dark_share": 0.61,
+  "bright_share": 0.01,
+  "palette": [
+   "#0c1016",
+   "#1b537e",
+   "#58b6d9"
+  ]
+ },
+ "qW8uadCtn_s": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "Every Level of Awareness",
+  "views": 270000,
+  "x_median": 1.13,
+  "date": "20261018",
+  "kind": "recent",
+  "brightness": 0.34,
+  "saturation": 0.32,
+  "dark_share": 0.47,
+  "bright_share": 0,
+  "palette": [
+   "#151112",
+   "#cc8f71",
+   "#624b53"
+  ]
+ },
+ "utrkutzLcA8": {
+  "cid": "UCO5QSoES5yn2Dw7YixDYT5Q",
+  "channel": "Aperture",
+  "title": "The Quantum theory of Synchronicity | Carl Jung's Strangest Idea",
+  "views": 422000,
+  "x_median": 1.76,
+  "date": "20261011",
+  "kind": "recent",
+  "brightness": 0.41,
+  "saturation": 0.46,
+  "dark_share": 0.2,
+  "bright_share": 0.01,
+  "palette": [
+   "#162627",
+   "#526461",
+   "#b09a88"
+  ]
+ },
+ "e2F3zLTM58k": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The DEVIL In Colleen Ballinger�s Shadow: He LIED to EVERYONE | Downfall",
+  "views": 6300000,
+  "x_median": 7.3,
+  "date": "20230817",
+  "kind": "top",
+  "brightness": 0.64,
+  "saturation": 0.47,
+  "dark_share": 0.03,
+  "bright_share": 0.04,
+  "palette": [
+   "#448bc7",
+   "#d4aa9a",
+   "#513a37"
+  ]
+ },
+ "HPXzZVd8HcM": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "Colleen Ballinger�s Ex TELLS ALL: Joshua David Evans EXCLUSIVE Interview what NO ONE Knew | Downfall",
+  "views": 4700000,
+  "x_median": 5.4,
+  "date": "20230914",
+  "kind": "top",
+  "brightness": 0.61,
+  "saturation": 0.48,
+  "dark_share": 0.05,
+  "bright_share": 0.03,
+  "palette": [
+   "#d1a296",
+   "#50383a",
+   "#2b98d2"
+  ]
+ },
+ "yw2BEjyUVvM": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The END of Colleen Ballinger : She Has ALWAYS Been This Way... a NIGHTMARE Downfall",
+  "views": 3300000,
+  "x_median": 3.8,
+  "date": "20230630",
+  "kind": "top",
+  "brightness": 0.64,
+  "saturation": 0.47,
+  "dark_share": 0.01,
+  "bright_share": 0.02,
+  "palette": [
+   "#6f4337",
+   "#5088ad",
+   "#dfb29e"
+  ]
+ },
+ "nIvvxtKn2Jc": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "I WENT TO THE WORST REVIEWED NAIL SALON IN MY CITY LOS ANGELES",
+  "views": 2400000,
+  "x_median": 2.8,
+  "date": "20190627",
+  "kind": "top",
+  "brightness": 0.67,
+  "saturation": 0.32,
+  "dark_share": 0.07,
+  "bright_share": 0.03,
+  "palette": [
+   "#c0d2d0",
+   "#bc9f67",
+   "#433934"
+  ]
+ },
+ "MiNn1cxT77g": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "How Glam&Gore used James Charles, Jeffree Star & Black community: why I'm DONE with Mykie *receipts",
+  "views": 2300000,
+  "x_median": 2.7,
+  "date": "20201011",
+  "kind": "top",
+  "brightness": 0.66,
+  "saturation": 0.26,
+  "dark_share": 0.15,
+  "bright_share": 0.12,
+  "palette": [
+   "#d4cfd5",
+   "#a2786b",
+   "#291817"
+  ]
+ },
+ "Q0X53mvRCKQ": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The Depravity of Chris Hansen: He Has ALWAYS Been This Way | Downfall",
+  "views": 565000,
+  "x_median": 0.65,
+  "date": "20261019",
+  "kind": "recent",
+  "brightness": 0.68,
+  "saturation": 0.41,
+  "dark_share": 0.03,
+  "bright_share": 0.01,
+  "palette": [
+   "#446256",
+   "#ecbea3",
+   "#9a8d76"
+  ]
+ },
+ "HEZ4geTTUWo": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The Endless Depravity of Ellen DeGeneres: She Has ALWAYS Been This Way | Downfall",
+  "views": 1100000,
+  "x_median": 1.27,
+  "date": "20260831",
+  "kind": "recent",
+  "brightness": 0.76,
+  "saturation": 0.43,
+  "dark_share": 0.02,
+  "bright_share": 0.06,
+  "palette": [
+   "#bc8780",
+   "#486474",
+   "#f0cebe"
+  ]
+ },
+ "F_1e6t7I0tE": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The Depravity of Dr. Oz: I Found His DELETED VIDEO� (WORSE Than Dr. Phil) | Downfall",
+  "views": 608000,
+  "x_median": 0.7,
+  "date": "20260706",
+  "kind": "recent",
+  "brightness": 0.74,
+  "saturation": 0.45,
+  "dark_share": 0,
+  "bright_share": 0.03,
+  "palette": [
+   "#99553e",
+   "#3aa0a1",
+   "#ddb29d"
+  ]
+ },
+ "AijAujgleFM": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The TOXIC Tale of Becca Bloom: TikTok�s MOST HATED Rich Girl | Downfall",
+  "views": 715000,
+  "x_median": 0.83,
+  "date": "20260602",
+  "kind": "recent",
+  "brightness": 0.7,
+  "saturation": 0.44,
+  "dark_share": 0.06,
+  "bright_share": 0.04,
+  "palette": [
+   "#363d36",
+   "#cc8550",
+   "#a8bbb1"
+  ]
+ },
+ "j7XCIBeyTUg": {
+  "cid": "UCqHZdrDcZhhRO11m67Tgz4A",
+  "channel": "SWOOP",
+  "title": "The DISTURBING World of Jeffrey Epstein: Lies, COVER-UP & what NO ONE is Talking About | Downfall",
+  "views": 569000,
+  "x_median": 0.66,
+  "date": "20260421",
+  "kind": "recent",
+  "brightness": 0.6,
+  "saturation": 0.46,
+  "dark_share": 0.13,
+  "bright_share": 0.04,
+  "palette": [
+   "#2b2227",
+   "#7f7172",
+   "#e4bfab"
+  ]
+ },
+ "BtN-goy9VOY": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "The Coronavirus Explained & What You Should Do",
+  "views": 89000000,
+  "x_median": 15.9,
+  "date": "20200319",
+  "kind": "top",
+  "brightness": 0.6,
+  "saturation": 0.69,
+  "dark_share": 0.01,
+  "bright_share": 0.02,
+  "palette": [
+   "#24287b",
+   "#7487c6",
+   "#a93173"
+  ]
+ },
+ "zQGOcOUBi6s": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "The Immune System Explained I � Bacteria Infection",
+  "views": 54000000,
+  "x_median": 9.6,
+  "date": "20140701",
+  "kind": "top",
+  "brightness": 0.9,
+  "saturation": 0.24,
+  "dark_share": 0,
+  "bright_share": 0.22,
+  "palette": [
+   "#d76c6a",
+   "#eae3df",
+   "#e9bfac"
+  ]
+ },
+ "h6fcK_fRYaI": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "The Egg - A Short Story",
+  "views": 36000000,
+  "x_median": 6.4,
+  "date": "20190901",
+  "kind": "top",
+  "brightness": 0.32,
+  "saturation": 0.64,
+  "dark_share": 0.45,
+  "bright_share": 0,
+  "palette": [
+   "#0e0f25",
+   "#252983",
+   "#698dbd"
+  ]
+ },
+ "9tbxDgcv74c": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "What If You Detonated a Nuclear Bomb In The Marianas Trench? (Science not Fantasy)",
+  "views": 36000000,
+  "x_median": 6.4,
+  "date": "20180722",
+  "kind": "top",
+  "brightness": 0.69,
+  "saturation": 0.71,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#52b2e2",
+   "#321770",
+   "#cd7197"
+  ]
+ },
+ "3mnSDifDSxQ": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "The Largest Star in the Universe � Size Comparison",
+  "views": 35000000,
+  "x_median": 6.3,
+  "date": "20200922",
+  "kind": "top",
+  "brightness": 0.43,
+  "saturation": 0.73,
+  "dark_share": 0.31,
+  "bright_share": 0.01,
+  "palette": [
+   "#2a090d",
+   "#c69664",
+   "#a52922"
+  ]
+ },
+ "fEjvSbI_PT4": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "What Actually Happens When You Die?",
+  "views": 3500000,
+  "x_median": 0.63,
+  "date": "20261110",
+  "kind": "recent",
+  "brightness": 0.34,
+  "saturation": 0.58,
+  "dark_share": 0.36,
+  "bright_share": 0.01,
+  "palette": [
+   "#130b23",
+   "#533159",
+   "#bc8d93"
+  ]
+ },
+ "5_Fayfx2NUM": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "How I Survived Late-Stage Cancer (A Fun Story)",
+  "views": 8600000,
+  "x_median": 1.54,
+  "date": "20261027",
+  "kind": "recent",
+  "brightness": 0.36,
+  "saturation": 0.51,
+  "dark_share": 0.18,
+  "bright_share": 0,
+  "palette": [
+   "#121c27",
+   "#50a083",
+   "#2e4849"
+  ]
+ },
+ "_y9JuojAIg0": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "We Finally Know More About Humanity�s First Civilization",
+  "views": 12000000,
+  "x_median": 2.14,
+  "date": "20261008",
+  "kind": "recent",
+  "brightness": 0.3,
+  "saturation": 0.34,
+  "dark_share": 0.42,
+  "bright_share": 0.02,
+  "palette": [
+   "#120d14",
+   "#4e3d53",
+   "#aa9c9d"
+  ]
+ },
+ "ujkD4SxPKOI": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "AI Just Crossed the Terrifying Line - Now What?",
+  "views": 23000000,
+  "x_median": 4.11,
+  "date": "20261005",
+  "kind": "recent",
+  "brightness": 0.68,
+  "saturation": 0.35,
+  "dark_share": 0.05,
+  "bright_share": 0.16,
+  "palette": [
+   "#995e4b",
+   "#e3d3cd",
+   "#291d22"
+  ]
+ },
+ "QW_jlUn4gA8": {
+  "cid": "UCsXVk37bltHxD1rDPwtNM8Q",
+  "channel": "Kurzgesagt � In a Nutshell",
+  "title": "This Is What a Godlike Civilization Would Look Like",
+  "views": 9600000,
+  "x_median": 1.71,
+  "date": "20260922",
+  "kind": "recent",
+  "brightness": 0.43,
+  "saturation": 0.58,
+  "dark_share": 0.22,
+  "bright_share": 0.01,
+  "palette": [
+   "#150931",
+   "#443f72",
+   "#9898ac"
+  ]
+ },
+ "3Illx0WkCxU": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "How Did The Universe Begin?",
+  "views": 17000000,
+  "x_median": 10.6,
+  "date": "20230519",
+  "kind": "top",
+  "brightness": 0.35,
+  "saturation": 0.41,
+  "dark_share": 0.28,
+  "bright_share": 0.01,
+  "palette": [
+   "#211614",
+   "#ab9890",
+   "#674e44"
+  ]
+ },
+ "yPVQtvbiS4Y": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Actually Are Space And Time?",
+  "views": 12000000,
+  "x_median": 7.5,
+  "date": "20220727",
+  "kind": "top",
+  "brightness": 0.46,
+  "saturation": 0.56,
+  "dark_share": 0.12,
+  "bright_share": 0,
+  "palette": [
+   "#bda79e",
+   "#182141",
+   "#555e87"
+  ]
+ },
+ "1jmNzlTd09E": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "How Many Multiverses Are There?",
+  "views": 9200000,
+  "x_median": 5.8,
+  "date": "20220331",
+  "kind": "top",
+  "brightness": 0.33,
+  "saturation": 0.45,
+  "dark_share": 0.3,
+  "bright_share": 0,
+  "palette": [
+   "#16171c",
+   "#5d423b",
+   "#a08085"
+  ]
+ },
+ "ji2KKU5NfoY": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Is Reality?",
+  "views": 8100000,
+  "x_median": 5.1,
+  "date": "20240831",
+  "kind": "top",
+  "brightness": 0.51,
+  "saturation": 0.59,
+  "dark_share": 0.1,
+  "bright_share": 0,
+  "palette": [
+   "#121c2d",
+   "#2c5d86",
+   "#9e8882"
+  ]
+ },
+ "_IkaetPoBZM": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Is Beyond The Edge?",
+  "views": 7200000,
+  "x_median": 4.5,
+  "date": "20220930",
+  "kind": "top",
+  "brightness": 0.5,
+  "saturation": 0.4,
+  "dark_share": 0.11,
+  "bright_share": 0.01,
+  "palette": [
+   "#391f3b",
+   "#7e6080",
+   "#cb98ce"
+  ]
+ },
+ "cqGhCCDC_Sw": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "Is The Entire Universe Quantumly Entangled?",
+  "views": 584000,
+  "x_median": 0.36,
+  "date": "20261008",
+  "kind": "recent",
+  "brightness": 0.44,
+  "saturation": 0.49,
+  "dark_share": 0.06,
+  "bright_share": 0.01,
+  "palette": [
+   "#121f3c",
+   "#57595b",
+   "#cc998a"
+  ]
+ },
+ "nPLKfvr_y4E": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "The Final Verdict On The Theory Of Everything",
+  "views": 1100000,
+  "x_median": 0.69,
+  "date": "20260725",
+  "kind": "recent",
+  "brightness": 0.18,
+  "saturation": 0.46,
+  "dark_share": 0.63,
+  "bright_share": 0,
+  "palette": [
+   "#1d243a",
+   "#6f6295",
+   "#02030b"
+  ]
+ },
+ "SI2IggZ3Fac": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Happens If This Isn't The Real Universe?",
+  "views": 482000,
+  "x_median": 0.3,
+  "date": "20260611",
+  "kind": "recent",
+  "brightness": 0.33,
+  "saturation": 0.64,
+  "dark_share": 0.33,
+  "bright_share": 0.01,
+  "palette": [
+   "#79a17d",
+   "#05150b",
+   "#206435"
+  ]
+ },
+ "uoEffocWP4A": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Happens If You Zoom All The Way Out?",
+  "views": 588000,
+  "x_median": 0.37,
+  "date": "20260430",
+  "kind": "recent",
+  "brightness": 0.34,
+  "saturation": 0.46,
+  "dark_share": 0.38,
+  "bright_share": 0,
+  "palette": [
+   "#1e1916",
+   "#b77c14",
+   "#435770"
+  ]
+ },
+ "sXRPkBKqp-A": {
+  "cid": "UCtRFmSyL4fSLQkn-wMqlmdA",
+  "channel": "History of the Universe",
+  "title": "What Is Beyond The End?",
+  "views": 1100000,
+  "x_median": 0.69,
+  "date": "20260320",
+  "kind": "recent",
+  "brightness": 0.36,
+  "saturation": 0.59,
+  "dark_share": 0.24,
+  "bright_share": 0.01,
+  "palette": [
+   "#120b2b",
+   "#93798e",
+   "#573761"
+  ]
+ },
+ "Hvk63LADbFc": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "How Primitive Building Videos Are Staged",
+  "views": 24000000,
+  "x_median": 7.7,
+  "date": "20220707",
+  "kind": "top",
+  "brightness": 0.58,
+  "saturation": 0.48,
+  "dark_share": 0.09,
+  "bright_share": 0.01,
+  "palette": [
+   "#8aa59d",
+   "#ca856c",
+   "#46231b"
+  ]
+ },
+ "4nqzFs9nlBM": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "Idiot Streamers Who Got Caught Cheating Live",
+  "views": 22000000,
+  "x_median": 7.1,
+  "date": "20221222",
+  "kind": "top",
+  "brightness": 0.51,
+  "saturation": 0.49,
+  "dark_share": 0.29,
+  "bright_share": 0.01,
+  "palette": [
+   "#9c6251",
+   "#e3b099",
+   "#1d1010"
+  ]
+ },
+ "WAAj1pc48hI": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "Every MrBeast Member Who Got Fired (& Why)",
+  "views": 22000000,
+  "x_median": 7.1,
+  "date": "20221208",
+  "kind": "top",
+  "brightness": 0.61,
+  "saturation": 0.37,
+  "dark_share": 0.09,
+  "bright_share": 0.06,
+  "palette": [
+   "#3c3b3b",
+   "#ad796d",
+   "#deccc3"
+  ]
+ },
+ "wJa2thBJ8Fw": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "The Tragic Transformation of Nikocado Avocado (From 155 to 352 lbs)",
+  "views": 18000000,
+  "x_median": 5.8,
+  "date": "20211118",
+  "kind": "top",
+  "brightness": 0.6,
+  "saturation": 0.45,
+  "dark_share": 0.13,
+  "bright_share": 0,
+  "palette": [
+   "#341412",
+   "#ebaf91",
+   "#83655e"
+  ]
+ },
+ "fFArt844xaY": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "How Amy Schumer Became The Most Hated Human Ever",
+  "views": 16000000,
+  "x_median": 5.2,
+  "date": "20220714",
+  "kind": "top",
+  "brightness": 0.45,
+  "saturation": 0.45,
+  "dark_share": 0.33,
+  "bright_share": 0,
+  "palette": [
+   "#180f0e",
+   "#d4a695",
+   "#822d1e"
+  ]
+ },
+ "ztC2pyHymU0": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "How Micro-Transactions Destroyed Plants vs. Zombies",
+  "views": 2800000,
+  "x_median": 0.9,
+  "date": "20250320",
+  "kind": "recent",
+  "brightness": 0.48,
+  "saturation": 0.82,
+  "dark_share": 0.21,
+  "bright_share": 0,
+  "palette": [
+   "#3f110a",
+   "#8bb62d",
+   "#19a813"
+  ]
+ },
+ "uEk_pc0xVYc": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "How Scientology Destroyed A Popular Skateboarding Channel",
+  "views": 6600000,
+  "x_median": 2.13,
+  "date": "20250313",
+  "kind": "recent",
+  "brightness": 0.39,
+  "saturation": 0.19,
+  "dark_share": 0.37,
+  "bright_share": 0.02,
+  "palette": [
+   "#0d0808",
+   "#c5a59c",
+   "#665350"
+  ]
+ },
+ "Lc7-lPujDjw": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "The Unexpected Flop Of Lazarbeam�s Video Game",
+  "views": 3100000,
+  "x_median": 1,
+  "date": "20250306",
+  "kind": "recent",
+  "brightness": 0.37,
+  "saturation": 0.39,
+  "dark_share": 0.51,
+  "bright_share": 0.04,
+  "palette": [
+   "#180d0c",
+   "#daad9d",
+   "#735650"
+  ]
+ },
+ "n8lzzNXx69E": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "How \"Deez Nuts\" Ended Up Becoming Homeless",
+  "views": 2100000,
+  "x_median": 0.68,
+  "date": "20250227",
+  "kind": "recent",
+  "brightness": 0.57,
+  "saturation": 0.36,
+  "dark_share": 0.07,
+  "bright_share": 0.02,
+  "palette": [
+   "#cbcca8",
+   "#9f8868",
+   "#444f30"
+  ]
+ },
+ "_Er7ORveNME": {
+  "cid": "UCuF49lP5gkkw5L8HK3H6GJg",
+  "channel": "SunnyV2",
+  "title": "The Slow, Painful, Greedy Death Of Angry Birds",
+  "views": 5800000,
+  "x_median": 1.87,
+  "date": "20250220",
+  "kind": "recent",
+  "brightness": 0.39,
+  "saturation": 0.65,
+  "dark_share": 0.35,
+  "bright_share": 0,
+  "palette": [
+   "#2b0a0a",
+   "#c30d0b",
+   "#a1968d"
+  ]
+ },
+ "ZEyAs3NWH4A": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "New: Mars In 4K",
+  "views": 73000000,
+  "x_median": 429.4,
+  "date": "20200717",
+  "kind": "top",
+  "brightness": 0.64,
+  "saturation": 0.2,
+  "dark_share": 0,
+  "bright_share": 0.18,
+  "palette": [
+   "#f3e7e3",
+   "#a48c7d",
+   "#78665a"
+  ]
+ },
+ "Vy_RPd0rblI": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "Mars in 4K: The Clearest Footage You Will Ever See",
+  "views": 13000000,
+  "x_median": 76.5,
+  "date": "20231121",
+  "kind": "top",
+  "brightness": 0.77,
+  "saturation": 0.19,
+  "dark_share": 0,
+  "bright_share": 0.14,
+  "palette": [
+   "#d3eaf6",
+   "#b5a5a9",
+   "#a8837c"
+  ]
+ },
+ "weCG_yODtvM": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "Climbing a Martian Mountain with the Curiosity rover",
+  "views": 12000000,
+  "x_median": 70.6,
+  "date": "20200206",
+  "kind": "top",
+  "brightness": 0.64,
+  "saturation": 0.22,
+  "dark_share": 0.01,
+  "bright_share": 0.23,
+  "palette": [
+   "#eae7eb",
+   "#644546",
+   "#9d746f"
+  ]
+ },
+ "-TGH3--21_g": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "15 Months On Mars: We Found Eerie Spacecraft Wreckage",
+  "views": 7700000,
+  "x_median": 45.3,
+  "date": "20230331",
+  "kind": "top",
+  "brightness": 0.62,
+  "saturation": 0.35,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#59443c",
+   "#9e7460",
+   "#d5aa8b"
+  ]
+ },
+ "7V54LRRJaGk": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "Mars: What happened to the Spirit Rover?",
+  "views": 6700000,
+  "x_median": 39.4,
+  "date": "20201123",
+  "kind": "top",
+  "brightness": 0.46,
+  "saturation": 0.17,
+  "dark_share": 0.26,
+  "bright_share": 0,
+  "palette": [
+   "#6f6f75",
+   "#a7b0bf",
+   "#231a19"
+  ]
+ },
+ "M5owwhDKT7k": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "47 Months On Mars: A Video Recording by the rover!",
+  "views": 29000,
+  "x_median": 0.17,
+  "date": "20260602",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.13,
+  "dark_share": 0,
+  "bright_share": 0.04,
+  "palette": [
+   "#c1cbdc",
+   "#655e5e",
+   "#908783"
+  ]
+ },
+ "vfbQ7gw3Pm0": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "46 Months on Mars: Parked on the Crater Rim!",
+  "views": 142000,
+  "x_median": 0.84,
+  "date": "20251203",
+  "kind": "recent",
+  "brightness": 0.56,
+  "saturation": 0.26,
+  "dark_share": 0.02,
+  "bright_share": 0.01,
+  "palette": [
+   "#3e464f",
+   "#c2ada0",
+   "#7d716a"
+  ]
+ },
+ "yL_AwgH8s2c": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "45 Months On Mars: Did we find Bones?",
+  "views": 41000,
+  "x_median": 0.24,
+  "date": "20251127",
+  "kind": "recent",
+  "brightness": 0.52,
+  "saturation": 0.35,
+  "dark_share": 0,
+  "bright_share": 0.03,
+  "palette": [
+   "#5a4938",
+   "#d2c0af",
+   "#896850"
+  ]
+ },
+ "8e0HIOIcDz4": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "Mars Has Pits. They�re Terrifying.",
+  "views": 72000,
+  "x_median": 0.42,
+  "date": "20250720",
+  "kind": "recent",
+  "brightness": 0.51,
+  "saturation": 0.24,
+  "dark_share": 0.06,
+  "bright_share": 0,
+  "palette": [
+   "#766854",
+   "#211c19",
+   "#a28e82"
+  ]
+ },
+ "Lk1z4c1EgS4": {
+  "cid": "UCZvxw99l3xDC6BIHb8nJKGg",
+  "channel": "ElderFox Documentaries",
+  "title": "Why is Mars Covered in 'Spiders'?",
+  "views": 120000,
+  "x_median": 0.71,
+  "date": "20250717",
+  "kind": "recent",
+  "brightness": 0.54,
+  "saturation": 0.31,
+  "dark_share": 0.07,
+  "bright_share": 0,
+  "palette": [
+   "#3e342c",
+   "#d4af95",
+   "#8d735e"
+  ]
+ },
+ "x_d9A5W2940": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Beyonc� Has Us All Fooled.",
+  "views": 1100000,
+  "x_median": 7.1,
+  "date": "20260130",
+  "kind": "top",
+  "brightness": 0.58,
+  "saturation": 0.32,
+  "dark_share": 0.03,
+  "bright_share": 0.09,
+  "palette": [
+   "#5d564a",
+   "#cec0b7",
+   "#c9b627"
+  ]
+ },
+ "4KrF8UN4RIo": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "They�ve Been Selling You the Same Song for Decades",
+  "views": 513000,
+  "x_median": 3.3,
+  "date": "20260404",
+  "kind": "top",
+  "brightness": 0.56,
+  "saturation": 0.57,
+  "dark_share": 0.12,
+  "bright_share": 0.01,
+  "palette": [
+   "#3c2818",
+   "#9c7630",
+   "#e4aa95"
+  ]
+ },
+ "PV8xpSHzNyc": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Whitney Houston Had Secrets.",
+  "views": 470000,
+  "x_median": 3,
+  "date": "20260819",
+  "kind": "top",
+  "brightness": 0.67,
+  "saturation": 0.35,
+  "dark_share": 0.03,
+  "bright_share": 0.25,
+  "palette": [
+   "#eaece6",
+   "#553c2b",
+   "#ae8d53"
+  ]
+ },
+ "2v487vtetks": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Jennifer Lopez: The World's Greatest Industry Plant",
+  "views": 435000,
+  "x_median": 2.8,
+  "date": "20260424",
+  "kind": "top",
+  "brightness": 0.68,
+  "saturation": 0.54,
+  "dark_share": 0.05,
+  "bright_share": 0.01,
+  "palette": [
+   "#553726",
+   "#ba8f35",
+   "#dba48d"
+  ]
+ },
+ "dUuSmqnpCIQ": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "We�re Watching Britney Spears Fade Away",
+  "views": 424000,
+  "x_median": 2.7,
+  "date": "20260227",
+  "kind": "top",
+  "brightness": 0.66,
+  "saturation": 0.45,
+  "dark_share": 0.03,
+  "bright_share": 0.01,
+  "palette": [
+   "#4f4456",
+   "#c29637",
+   "#d1a7ae"
+  ]
+ },
+ "1gTQBQ-MhVA": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "You've Been Lied To About Michael Jackson's Death",
+  "views": 66000,
+  "x_median": 0.42,
+  "date": "20261106",
+  "kind": "recent",
+  "brightness": 0.42,
+  "saturation": 0.27,
+  "dark_share": 0.45,
+  "bright_share": 0.03,
+  "palette": [
+   "#9d8643",
+   "#181716",
+   "#e6c6b3"
+  ]
+ },
+ "2MOST0VlRN8": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Wendy Williams Messed With The Wrong People",
+  "views": 103000,
+  "x_median": 0.66,
+  "date": "20261031",
+  "kind": "recent",
+  "brightness": 0.7,
+  "saturation": 0.38,
+  "dark_share": 0.01,
+  "bright_share": 0.09,
+  "palette": [
+   "#dcd8cb",
+   "#706241",
+   "#b4996b"
+  ]
+ },
+ "0-1FoxrYoGg": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Rihanna�s Life Is FAR DARKER Than You Think.",
+  "views": 191000,
+  "x_median": 1.22,
+  "date": "20261024",
+  "kind": "recent",
+  "brightness": 0.37,
+  "saturation": 0.82,
+  "dark_share": 0.28,
+  "bright_share": 0,
+  "palette": [
+   "#27080f",
+   "#872419",
+   "#c77042"
+  ]
+ },
+ "1VdBZYWTWWs": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "They Let Kelly Rowland Lose.",
+  "views": 151000,
+  "x_median": 0.97,
+  "date": "20261018",
+  "kind": "recent",
+  "brightness": 0.5,
+  "saturation": 0.54,
+  "dark_share": 0.3,
+  "bright_share": 0,
+  "palette": [
+   "#1c130f",
+   "#dd9d68",
+   "#875d2d"
+  ]
+ },
+ "iD-Xyly4UEo": {
+  "cid": "UCe5uygqW3ZwKcqQz99tMACA",
+  "channel": "As Told by JP",
+  "title": "Ariana Grande is NOT OK.",
+  "views": 87000,
+  "x_median": 0.56,
+  "date": "20261009",
+  "kind": "recent",
+  "brightness": 0.52,
+  "saturation": 0.51,
+  "dark_share": 0.29,
+  "bright_share": 0,
+  "palette": [
+   "#110c06",
+   "#836224",
+   "#da946f"
+  ]
+ },
+ "Dki5tjN0rDE": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "The Tactics Of Every Post-Ferguson United Manager",
+  "views": 1300000,
+  "x_median": 5.9,
+  "date": "20250812",
+  "kind": "top",
+  "brightness": 0.25,
+  "saturation": 0.15,
+  "dark_share": 0.53,
+  "bright_share": 0,
+  "palette": [
+   "#1c1c1d",
+   "#b08f8c",
+   "#554645"
+  ]
+ },
+ "fB8gT9TvKXs": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "Why Football's Most Effective Tactic Died Over Night",
+  "views": 1200000,
+  "x_median": 5.5,
+  "date": "20260120",
+  "kind": "top",
+  "brightness": 0.25,
+  "saturation": 0.22,
+  "dark_share": 0.52,
+  "bright_share": 0,
+  "palette": [
+   "#0e0d0d",
+   "#4d3d39",
+   "#ab8d8d"
+  ]
+ },
+ "-g03xcSrPtw": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "The Complete Tactical Evolution Of Pep Guardiola",
+  "views": 1200000,
+  "x_median": 5.5,
+  "date": "20251214",
+  "kind": "top",
+  "brightness": 0.46,
+  "saturation": 0.08,
+  "dark_share": 0.24,
+  "bright_share": 0.19,
+  "palette": [
+   "#302f2f",
+   "#f2efed",
+   "#827572"
+  ]
+ },
+ "-izMUUfGnso": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "The System Era Is Collapsing (And It's Beautiful)",
+  "views": 1100000,
+  "x_median": 5,
+  "date": "20250118",
+  "kind": "top",
+  "brightness": 0.37,
+  "saturation": 0.25,
+  "dark_share": 0.39,
+  "bright_share": 0.02,
+  "palette": [
+   "#0d0d11",
+   "#c1aba3",
+   "#6d4844"
+  ]
+ },
+ "_qwbNY7wVDU": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "How Mourinho Conquered Guardiola And Spain",
+  "views": 951000,
+  "x_median": 4.3,
+  "date": "20231015",
+  "kind": "top",
+  "brightness": 0.36,
+  "saturation": 0.35,
+  "dark_share": 0.15,
+  "bright_share": 0.03,
+  "palette": [
+   "#291d14",
+   "#574739",
+   "#c0b8b2"
+  ]
+ },
+ "gpgYLJrPP2M": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "How To Analyse Football - A Guide For Beginners",
+  "views": 265000,
+  "x_median": 1.21,
+  "date": "20261110",
+  "kind": "recent",
+  "brightness": 0.53,
+  "saturation": 0.43,
+  "dark_share": 0.03,
+  "bright_share": 0.11,
+  "palette": [
+   "#dfdfdf",
+   "#4d3a32",
+   "#607a2a"
+  ]
+ },
+ "Nx8h403Sj_s": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "This Was Elite Tactical Problem Solving",
+  "views": 312000,
+  "x_median": 1.42,
+  "date": "20261102",
+  "kind": "recent",
+  "brightness": 0.46,
+  "saturation": 0.58,
+  "dark_share": 0.15,
+  "bright_share": 0,
+  "palette": [
+   "#322122",
+   "#b67f6f",
+   "#517613"
+  ]
+ },
+ "KC2Vgjw282s": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "How Chelsea's Tactics Beat United",
+  "views": 127000,
+  "x_median": 0.58,
+  "date": "20261101",
+  "kind": "recent",
+  "brightness": 0.5,
+  "saturation": 0.73,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#1a275a",
+   "#959299",
+   "#47770e"
+  ]
+ },
+ "oZaPKaIVIA0": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "How Mourinho's Tactics Won El Classico",
+  "views": 699000,
+  "x_median": 3.19,
+  "date": "20261026",
+  "kind": "recent",
+  "brightness": 0.47,
+  "saturation": 0.67,
+  "dark_share": 0.09,
+  "bright_share": 0,
+  "palette": [
+   "#2b2b31",
+   "#498611",
+   "#8f7f65"
+  ]
+ },
+ "pc-_0XaVEDo": {
+  "cid": "UCFY0YHhxiIQWYYsLgeUBcbg",
+  "channel": "Football Made Simple",
+  "title": "Barca Have Been Unplayable - PSG Didn't Care",
+  "views": 588000,
+  "x_median": 2.68,
+  "date": "20261021",
+  "kind": "recent",
+  "brightness": 0.4,
+  "saturation": 0.61,
+  "dark_share": 0.25,
+  "bright_share": 0.01,
+  "palette": [
+   "#161c2b",
+   "#b6837b",
+   "#4f7925"
+  ]
+ },
+ "fhpYejFXTC4": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "The most complicated football league in the world",
+  "views": 1300000,
+  "x_median": 8.8,
+  "date": "20250331",
+  "kind": "top",
+  "brightness": 0.77,
+  "saturation": 0.79,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#0a4ed0",
+   "#08c55e",
+   "#9b928f"
+  ]
+ },
+ "SVMz6Of4U-8": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "How FIFA lost their video game franchise",
+  "views": 1000000,
+  "x_median": 6.8,
+  "date": "20240429",
+  "kind": "top",
+  "brightness": 0.58,
+  "saturation": 0.62,
+  "dark_share": 0.02,
+  "bright_share": 0.02,
+  "palette": [
+   "#97155d",
+   "#c89f93",
+   "#3e4661"
+  ]
+ },
+ "K6KhzmxVWJc": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "Why is football so hard to analyse?",
+  "views": 933000,
+  "x_median": 6.3,
+  "date": "20250407",
+  "kind": "top",
+  "brightness": 0.85,
+  "saturation": 0.58,
+  "dark_share": 0,
+  "bright_share": 0.01,
+  "palette": [
+   "#5bc268",
+   "#c1c974",
+   "#e47038"
+  ]
+ },
+ "TPlm_LirWvI": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "How Barcelona beat Real Madrid to Rodri's transfer",
+  "views": 773000,
+  "x_median": 5.3,
+  "date": "20260831",
+  "kind": "top",
+  "brightness": 0.55,
+  "saturation": 0.5,
+  "dark_share": 0.03,
+  "bright_share": 0.07,
+  "palette": [
+   "#996445",
+   "#d1caca",
+   "#2c2a43"
+  ]
+ },
+ "O1m_JRR7XUw": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "Why did Italian football fall?",
+  "views": 771000,
+  "x_median": 5.2,
+  "date": "20260406",
+  "kind": "top",
+  "brightness": 0.71,
+  "saturation": 0.29,
+  "dark_share": 0.03,
+  "bright_share": 0.15,
+  "palette": [
+   "#d8cbe7",
+   "#3a4b68",
+   "#a87e74"
+  ]
+ },
+ "5zVWPCHU3CU": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "Is Pochettino good for Man Utd? INEOS promises 3 years later & Kane�s big record",
+  "views": 75000,
+  "x_median": 0.51,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.31,
+  "saturation": 0.35,
+  "dark_share": 0.38,
+  "bright_share": 0,
+  "palette": [
+   "#221b1c",
+   "#ba927b",
+   "#694b3e"
+  ]
+ },
+ "1ycYSrRORIg": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "Crystal Palace sack manager - who's next? Man City lose big & Bournemouth's incredible record",
+  "views": 104000,
+  "x_median": 0.71,
+  "date": "20261110",
+  "kind": "recent",
+  "brightness": 0.29,
+  "saturation": 0.4,
+  "dark_share": 0.49,
+  "bright_share": 0,
+  "palette": [
+   "#1c191b",
+   "#c69771",
+   "#744e38"
+  ]
+ },
+ "1qNn8gHJ0Yg": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "How football finally fixed its ranking problem",
+  "views": 370000,
+  "x_median": 2.52,
+  "date": "20261109",
+  "kind": "recent",
+  "brightness": 0.72,
+  "saturation": 0.66,
+  "dark_share": 0,
+  "bright_share": 0,
+  "palette": [
+   "#124e99",
+   "#da7575",
+   "#7bc4a8"
+  ]
+ },
+ "8N2xAOv6_dc": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "Man Utd�s dramatic comeback, Ronaldo retires from Portugal & Emery contract",
+  "views": 109000,
+  "x_median": 0.74,
+  "date": "20261105",
+  "kind": "recent",
+  "brightness": 0.37,
+  "saturation": 0.38,
+  "dark_share": 0.35,
+  "bright_share": 0,
+  "palette": [
+   "#271e19",
+   "#c59f85",
+   "#895b43"
+  ]
+ },
+ "plD13yGy_uQ": {
+  "cid": "UCGYYNGmyhZ_kwBF_lqqXdAQ",
+  "channel": "Tifo Football by The Athletic",
+  "title": "How to fix Man Utd, De Zerbi's Tottenham resurgence & Glasner's hard truths",
+  "views": 130000,
+  "x_median": 0.88,
+  "date": "20261103",
+  "kind": "recent",
+  "brightness": 0.27,
+  "saturation": 0.29,
+  "dark_share": 0.45,
+  "bright_share": 0,
+  "palette": [
+   "#574b3d",
+   "#a78b68",
+   "#1c1a1b"
+  ]
+ },
+ "sXamQXKgSeU": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "27 FREE Things You Can Do With Gemini",
+  "views": 597000,
+  "x_median": 4.5,
+  "date": "20250702",
+  "kind": "top",
+  "brightness": 0.52,
+  "saturation": 0.47,
+  "dark_share": 0.12,
+  "bright_share": 0.01,
+  "palette": [
+   "#141a2f",
+   "#5c556a",
+   "#aa82c7"
+  ]
+ },
+ "GGzT7zVrRTU": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "GPT-6 Astra Is Finally Here (And It�s REALLY Good)",
+  "views": 504000,
+  "x_median": 3.8,
+  "date": "20260903",
+  "kind": "top",
+  "brightness": 0.46,
+  "saturation": 0.44,
+  "dark_share": 0.15,
+  "bright_share": 0,
+  "palette": [
+   "#202337",
+   "#ba9dac",
+   "#8a4d59"
+  ]
+ },
+ "jEpbb_gAviw": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "How To Make A VIRAL AI Music Video (For Free)",
+  "views": 431000,
+  "x_median": 3.3,
+  "date": "20240619",
+  "kind": "top",
+  "brightness": 0.37,
+  "saturation": 0.3,
+  "dark_share": 0.26,
+  "bright_share": 0,
+  "palette": [
+   "#a49189",
+   "#5a534c",
+   "#1f161c"
+  ]
+ },
+ "exWEkRHmhKU": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "50+ INSANE Ways To Use Nano Banana (For FREE)",
+  "views": 424000,
+  "x_median": 3.2,
+  "date": "20250902",
+  "kind": "top",
+  "brightness": 0.48,
+  "saturation": 0.46,
+  "dark_share": 0.28,
+  "bright_share": 0.09,
+  "palette": [
+   "#281a2e",
+   "#957e65",
+   "#e0d5d0"
+  ]
+ },
+ "aa-Fu5Qw91M": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "Making An Actually Fun Game (NO Coding experience)",
+  "views": 388000,
+  "x_median": 2.9,
+  "date": "20250801",
+  "kind": "top",
+  "brightness": 0.62,
+  "saturation": 0.48,
+  "dark_share": 0.02,
+  "bright_share": 0,
+  "palette": [
+   "#453353",
+   "#99bcd8",
+   "#988771"
+  ]
+ },
+ "pvl3z_GyU2Y": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "How To Build An AI Operating System For Your Life",
+  "views": 0,
+  "x_median": 0,
+  "date": "20261111",
+  "kind": "recent",
+  "brightness": 0.37,
+  "saturation": 0.55,
+  "dark_share": 0.27,
+  "bright_share": 0,
+  "palette": [
+   "#170f25",
+   "#65445a",
+   "#b199aa"
+  ]
+ },
+ "2TM8W66NI_8": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "Anthropic's Fable 5.2 is the World�s Best AI Model",
+  "views": 153000,
+  "x_median": 1.16,
+  "date": "20261109",
+  "kind": "recent",
+  "brightness": 0.4,
+  "saturation": 0.44,
+  "dark_share": 0.3,
+  "bright_share": 0.01,
+  "palette": [
+   "#1b1219",
+   "#dea394",
+   "#794d51"
+  ]
+ },
+ "IrAHINf0M6E": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "AI News: New ChatGPT & Google Models (14 Updates Worth Knowing)",
+  "views": 128000,
+  "x_median": 0.97,
+  "date": "20261106",
+  "kind": "recent",
+  "brightness": 0.55,
+  "saturation": 0.42,
+  "dark_share": 0.08,
+  "bright_share": 0.07,
+  "palette": [
+   "#222540",
+   "#656172",
+   "#b8bfd1"
+  ]
+ },
+ "ep4psgAFOqc": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "How I Get Claude To Edit My Videos (Step-By-Step)",
+  "views": 101000,
+  "x_median": 0.77,
+  "date": "20261104",
+  "kind": "recent",
+  "brightness": 0.57,
+  "saturation": 0.47,
+  "dark_share": 0.06,
+  "bright_share": 0.02,
+  "palette": [
+   "#222339",
+   "#d39b94",
+   "#675b72"
+  ]
+ },
+ "eDiQNFa-zYg": {
+  "cid": "UChpleBmo18P08aKCIgti38g",
+  "channel": "Matt Wolfe",
+  "title": "AI News: The Only 6 Stories Worth Knowing This Week",
+  "views": 132000,
+  "x_median": 1,
+  "date": "20261030",
+  "kind": "recent",
+  "brightness": 0.49,
+  "saturation": 0.52,
+  "dark_share": 0.16,
+  "bright_share": 0.01,
+  "palette": [
+   "#be998b",
+   "#141932",
+   "#605064"
+  ]
+ },
+ "IrWtw9ehB2g": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "GPT-5 is a freak",
+  "views": 1800000,
+  "x_median": 4.9,
+  "date": "20250809",
+  "kind": "top",
+  "brightness": 0.75,
+  "saturation": 0.56,
+  "dark_share": 0.04,
+  "bright_share": 0.05,
+  "palette": [
+   "#68bff5",
+   "#2b245f",
+   "#8471a2"
+  ]
+ },
+ "Ji4amrxrzVM": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "GPT 6 Astra is a freak",
+  "views": 1500000,
+  "x_median": 4.1,
+  "date": "20260907",
+  "kind": "top",
+  "brightness": 0.6,
+  "saturation": 0.45,
+  "dark_share": 0.17,
+  "bright_share": 0.03,
+  "palette": [
+   "#23a9f3",
+   "#233038",
+   "#96aab9"
+  ]
+ },
+ "1Aqhg0FVm-w": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "Deepseek strikes again",
+  "views": 1000000,
+  "x_median": 2.7,
+  "date": "20261023",
+  "kind": "top",
+  "brightness": 0.67,
+  "saturation": 0.71,
+  "dark_share": 0.14,
+  "bright_share": 0.01,
+  "palette": [
+   "#4fb0f0",
+   "#be6436",
+   "#191f31"
+  ]
+ },
+ "h5zkzon0gM4": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "AI is reverse engineering everything",
+  "views": 1000000,
+  "x_median": 2.7,
+  "date": "20261006",
+  "kind": "top",
+  "brightness": 0.58,
+  "saturation": 0.49,
+  "dark_share": 0.08,
+  "bright_share": 0,
+  "palette": [
+   "#45b6ef",
+   "#a57e65",
+   "#363a37"
+  ]
+ },
+ "gX0L0aFA2xg": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "Claude Opus 5.5 is ridiculous",
+  "views": 1000000,
+  "x_median": 2.7,
+  "date": "20260924",
+  "kind": "top",
+  "brightness": 0.69,
+  "saturation": 0.41,
+  "dark_share": 0.07,
+  "bright_share": 0.03,
+  "palette": [
+   "#26acf6",
+   "#2f3e4c",
+   "#a7b6c1"
+  ]
+ },
+ "Er0740eVIEw": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "New top local AI image editor is here! Minimax Image",
+  "views": 129000,
+  "x_median": 0.35,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.81,
+  "saturation": 0.55,
+  "dark_share": 0.01,
+  "bright_share": 0.01,
+  "palette": [
+   "#2e9ee8",
+   "#a37659",
+   "#b5dcd7"
+  ]
+ },
+ "S7lpCyZSdJQ": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "Claude Fable 5.2 is a freak",
+  "views": 344000,
+  "x_median": 0.94,
+  "date": "20261111",
+  "kind": "recent",
+  "brightness": 0.6,
+  "saturation": 0.44,
+  "dark_share": 0.17,
+  "bright_share": 0.02,
+  "palette": [
+   "#2fb0f7",
+   "#a9a9b1",
+   "#2f2f33"
+  ]
+ },
+ "9RIK3A24ZxA": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "Weight space programming, new 3D models, Gemini Omni 1.2, GPT Image 2.6: AI NEWS",
+  "views": 301000,
+  "x_median": 0.82,
+  "date": "20261108",
+  "kind": "recent",
+  "brightness": 0.65,
+  "saturation": 0.57,
+  "dark_share": 0.14,
+  "bright_share": 0.02,
+  "palette": [
+   "#2ea1e9",
+   "#a1b5cc",
+   "#262f43"
+  ]
+ },
+ "IGICYFyP_EI": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "AI finally sleeps, Gemini 4 Carbon, ETH cracked, energy-based models, Anthropic IPO: AI NEWS",
+  "views": 479000,
+  "x_median": 1.31,
+  "date": "20261101",
+  "kind": "recent",
+  "brightness": 0.63,
+  "saturation": 0.47,
+  "dark_share": 0.15,
+  "bright_share": 0.02,
+  "palette": [
+   "#28aef8",
+   "#989dbc",
+   "#2c2c39"
+  ]
+ },
+ "EfyQOAJjx1A": {
+  "cid": "UCIgnGlGkVRhd4qNFcEwLL4A",
+  "channel": "AI Search",
+  "title": "Cybersecurity chaos, AI for DNA, Kimi K3.1, Claude Duet, Dessa, Fibo 2, Minimax 3.1: AI NEWS",
+  "views": 394000,
+  "x_median": 1.08,
+  "date": "20261025",
+  "kind": "recent",
+  "brightness": 0.59,
+  "saturation": 0.51,
+  "dark_share": 0.23,
+  "bright_share": 0.01,
+  "palette": [
+   "#2baff7",
+   "#9a9cb0",
+   "#1d1f27"
+  ]
+ },
+ "2r5eKpptixo": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "Why People Think The Government Killed JFK",
+  "views": 17000000,
+  "x_median": 5,
+  "date": "20231122",
+  "kind": "top",
+  "brightness": 0.6,
+  "saturation": 0.17,
+  "dark_share": 0.1,
+  "bright_share": 0.09,
+  "palette": [
+   "#dccfc3",
+   "#a89187",
+   "#414140"
+  ]
+ },
+ "tWxh2oS7Ays": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "The �Deep State� Explained",
+  "views": 14000000,
+  "x_median": 4.1,
+  "date": "20240313",
+  "kind": "top",
+  "brightness": 0.31,
+  "saturation": 0.24,
+  "dark_share": 0.43,
+  "bright_share": 0.01,
+  "palette": [
+   "#1f1616",
+   "#b6aeab",
+   "#604242"
+  ]
+ },
+ "IwJzsE8CvzQ": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "Why People Think the World is Flat",
+  "views": 14000000,
+  "x_median": 4.1,
+  "date": "20200218",
+  "kind": "top",
+  "brightness": 0.51,
+  "saturation": 0.49,
+  "dark_share": 0.03,
+  "bright_share": 0,
+  "palette": [
+   "#2f3241",
+   "#bf4a2c",
+   "#969494"
+  ]
+ },
+ "SrDEtSlqJC4": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "The REAL Reason McDonalds Ice Cream Machines Are Always Broken",
+  "views": 13000000,
+  "x_median": 3.8,
+  "date": "20210423",
+  "kind": "top",
+  "brightness": 0.22,
+  "saturation": 0.1,
+  "dark_share": 0.61,
+  "bright_share": 0,
+  "palette": [
+   "#191818",
+   "#524c45",
+   "#a7a262"
+  ]
+ },
+ "czQrU0OPIR8": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "The Worst War You Never Learned About, Mapped",
+  "views": 11000000,
+  "x_median": 3.2,
+  "date": "20230315",
+  "kind": "top",
+  "brightness": 0.38,
+  "saturation": 0.28,
+  "dark_share": 0.22,
+  "bright_share": 0.03,
+  "palette": [
+   "#1e2625",
+   "#bcb9af",
+   "#64514d"
+  ]
+ },
+ "20CgG5pUv9Q": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "Why Egypt Guards This River With an Army",
+  "views": 2400000,
+  "x_median": 0.71,
+  "date": "20261107",
+  "kind": "recent",
+  "brightness": 0.49,
+  "saturation": 0.45,
+  "dark_share": 0.11,
+  "bright_share": 0,
+  "palette": [
+   "#2a2624",
+   "#735b4c",
+   "#c39064"
+  ]
+ },
+ "axRhjqd-rus": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "The REAL reason China built so much",
+  "views": 0,
+  "x_median": 0,
+  "date": "20261015",
+  "kind": "recent",
+  "brightness": 0.48,
+  "saturation": 0.68,
+  "dark_share": 0.14,
+  "bright_share": 0.01,
+  "palette": [
+   "#2d1719",
+   "#93281c",
+   "#b19181"
+  ]
+ },
+ "WFzFT2wW9sI": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "The world's most extreme places, explained",
+  "views": 789000,
+  "x_median": 0.23,
+  "date": "20260924",
+  "kind": "recent",
+  "brightness": 0.57,
+  "saturation": 0.26,
+  "dark_share": 0.19,
+  "bright_share": 0.26,
+  "palette": [
+   "#e1dbd3",
+   "#262c2d",
+   "#9f796d"
+  ]
+ },
+ "O7LvhSQ5Te4": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "I don't get democracy",
+  "views": 3700000,
+  "x_median": 1.09,
+  "date": "20260910",
+  "kind": "recent",
+  "brightness": 0.37,
+  "saturation": 0.3,
+  "dark_share": 0.28,
+  "bright_share": 0.01,
+  "palette": [
+   "#1e1f22",
+   "#ccbbb5",
+   "#705855"
+  ]
+ },
+ "XXpqejgnaB0": {
+  "cid": "UCmGSJVG3mCRXVOP4yZrU1Dw",
+  "channel": "Johnny Harris",
+  "title": "How Money Actually Works",
+  "views": 3700000,
+  "x_median": 1.09,
+  "date": "20260813",
+  "kind": "recent",
+  "brightness": 0.57,
+  "saturation": 0.12,
+  "dark_share": 0,
+  "bright_share": 0.05,
+  "palette": [
+   "#504f53",
+   "#ccc6c6",
+   "#888689"
+  ]
+ },
+ "jlX7tl1QvJs": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "How North Korea Finally Made It Impossible to Escape",
+  "views": 21000000,
+  "x_median": 17.5,
+  "date": "20230804",
+  "kind": "top",
+  "brightness": 0.58,
+  "saturation": 0.48,
+  "dark_share": 0.04,
+  "bright_share": 0,
+  "palette": [
+   "#9a9a4b",
+   "#6ea9ac",
+   "#572b26"
+  ]
+ },
+ "If61baWF4GE": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why Russia is Invading Ukraine",
+  "views": 21000000,
+  "x_median": 17.5,
+  "date": "20220226",
+  "kind": "top",
+  "brightness": 0.57,
+  "saturation": 0.2,
+  "dark_share": 0.04,
+  "bright_share": 0,
+  "palette": [
+   "#463333",
+   "#aeaca3",
+   "#866863"
+  ]
+ },
+ "OQ9zng2S810": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why North Korea is the Hardest Country to Escape",
+  "views": 21000000,
+  "x_median": 17.5,
+  "date": "20210827",
+  "kind": "top",
+  "brightness": 0.7,
+  "saturation": 0.44,
+  "dark_share": 0.02,
+  "bright_share": 0,
+  "palette": [
+   "#4f9bb2",
+   "#cfb496",
+   "#333e42"
+  ]
+ },
+ "si9Phc9ArpU": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why Finland Joining NATO Checkmates Russia",
+  "views": 19000000,
+  "x_median": 15.8,
+  "date": "20221125",
+  "kind": "top",
+  "brightness": 0.47,
+  "saturation": 0.59,
+  "dark_share": 0.01,
+  "bright_share": 0,
+  "palette": [
+   "#45625b",
+   "#6d192b",
+   "#6b9993"
+  ]
+ },
+ "TnB_8Zm9lPk": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why 95% of Australia is Empty",
+  "views": 14000000,
+  "x_median": 11.7,
+  "date": "20220604",
+  "kind": "top",
+  "brightness": 0.57,
+  "saturation": 0.56,
+  "dark_share": 0.02,
+  "bright_share": 0,
+  "palette": [
+   "#328e88",
+   "#2b4f4c",
+   "#c6b089"
+  ]
+ },
+ "3IVbe0xrRt8": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why \"Nobody\" Lives on the Pacific Northwest Coast",
+  "views": 941000,
+  "x_median": 0.78,
+  "date": "20261031",
+  "kind": "recent",
+  "brightness": 0.38,
+  "saturation": 0.67,
+  "dark_share": 0.04,
+  "bright_share": 0,
+  "palette": [
+   "#502814",
+   "#1f5157",
+   "#7f5734"
+  ]
+ },
+ "40LcIZKsp18": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "How To Save a Child's Life From Gaza",
+  "views": 181000,
+  "x_median": 0.15,
+  "date": "20261029",
+  "kind": "recent",
+  "brightness": 0.61,
+  "saturation": 0.29,
+  "dark_share": 0.03,
+  "bright_share": 0.1,
+  "palette": [
+   "#4b4642",
+   "#e8dbcc",
+   "#9b947f"
+  ]
+ },
+ "FA-oEtccS_k": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why Russia Thinks It Can Attack Europe and WIN",
+  "views": 1400000,
+  "x_median": 1.17,
+  "date": "20261023",
+  "kind": "recent",
+  "brightness": 0.76,
+  "saturation": 0.36,
+  "dark_share": 0,
+  "bright_share": 0.29,
+  "palette": [
+   "#7ca4ad",
+   "#3d3583",
+   "#eedede"
+  ]
+ },
+ "R60ZGwd3n9E": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why The US Is Suddenly Attacking Canada",
+  "views": 1100000,
+  "x_median": 0.92,
+  "date": "20261015",
+  "kind": "recent",
+  "brightness": 0.65,
+  "saturation": 0.65,
+  "dark_share": 0.01,
+  "bright_share": 0,
+  "palette": [
+   "#8f1114",
+   "#726e7c",
+   "#3532d4"
+  ]
+ },
+ "U_UoAZrOTNU": {
+  "cid": "UCP5tjEmvPItGyLhmjdwP7Ww",
+  "channel": "RealLifeLore",
+  "title": "Why Everything is Going Wrong for Saudi Arabia",
+  "views": 1800000,
+  "x_median": 1.5,
+  "date": "20260930",
+  "kind": "recent",
+  "brightness": 0.6,
+  "saturation": 0.51,
+  "dark_share": 0.01,
+  "bright_share": 0,
+  "palette": [
+   "#caa477",
+   "#3e696e",
+   "#606b28"
+  ]
+ },
+ "v7P9fCrSjjA": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "Christian Influencers' Secret EXPOSED in Shocking Abuse Case: Police",
+  "views": 2400000,
+  "x_median": 15.1,
+  "date": "20261008",
+  "kind": "top",
+  "brightness": 0.61,
+  "saturation": 0.16,
+  "dark_share": 0.02,
+  "bright_share": 0.02,
+  "palette": [
+   "#bdbfc2",
+   "#433a44",
+   "#957c7a"
+  ]
+ },
+ "mxLpOHlFsyE": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "46-Year-Old Teacher�s Sexual Relationship With 13-Year-Old REVEALED",
+  "views": 2000000,
+  "x_median": 12.6,
+  "date": "20261007",
+  "kind": "top",
+  "brightness": 0.54,
+  "saturation": 0.26,
+  "dark_share": 0.04,
+  "bright_share": 0,
+  "palette": [
+   "#473d34",
+   "#827e79",
+   "#c9beb4"
+  ]
+ },
+ "obavSh86QJE": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "Prime Crime: Teen Found Dead on Senior Trip to Myrtle Beach",
+  "views": 1700000,
+  "x_median": 10.7,
+  "date": "20261101",
+  "kind": "top",
+  "brightness": 0.73,
+  "saturation": 0.26,
+  "dark_share": 0.01,
+  "bright_share": 0.1,
+  "palette": [
+   "#b3a185",
+   "#d1d1d4",
+   "#6b663d"
+  ]
+ },
+ "nMX32Ip3BR0": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "TikTok Couple TORCHED Abandoned Home: Cops",
+  "views": 1500000,
+  "x_median": 9.4,
+  "date": "20261001",
+  "kind": "top",
+  "brightness": 0.61,
+  "saturation": 0.44,
+  "dark_share": 0.04,
+  "bright_share": 0.01,
+  "palette": [
+   "#7d9c45",
+   "#313c2a",
+   "#bda792"
+  ]
+ },
+ "ot49UP8o-dw": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "Prime Crime: Young Woman Found Murdered with Chilling Note From Killer",
+  "views": 1400000,
+  "x_median": 8.8,
+  "date": "20261018",
+  "kind": "top",
+  "brightness": 0.66,
+  "saturation": 0.29,
+  "dark_share": 0.02,
+  "bright_share": 0.06,
+  "palette": [
+   "#e2d1c7",
+   "#6f4652",
+   "#b29182"
+  ]
+ },
+ "oZF4m94u424": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "7 New Shocking Details in Nvidia Affair Scandal",
+  "views": 50000,
+  "x_median": 0.31,
+  "date": "20261113",
+  "kind": "recent",
+  "brightness": 0.43,
+  "saturation": 0.5,
+  "dark_share": 0.22,
+  "bright_share": 0.02,
+  "palette": [
+   "#102e2c",
+   "#b7ae95",
+   "#4d755a"
+  ]
+ },
+ "dpgA4yXIcCs": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "New Twist in Doctor Mom�s Chilling Murder",
+  "views": 44000,
+  "x_median": 0.28,
+  "date": "20261113",
+  "kind": "recent",
+  "brightness": 0.61,
+  "saturation": 0.24,
+  "dark_share": 0.09,
+  "bright_share": 0.11,
+  "palette": [
+   "#9c8369",
+   "#3b3833",
+   "#ded0c3"
+  ]
+ },
+ "nzaTWYDtdSs": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "Dad's Chilling Text Before Burying Baby Alive in Dog Crate: Police",
+  "views": 78000,
+  "x_median": 0.49,
+  "date": "20261113",
+  "kind": "recent",
+  "brightness": 0.62,
+  "saturation": 0.28,
+  "dark_share": 0.01,
+  "bright_share": 0.02,
+  "palette": [
+   "#d9b8b0",
+   "#a17c79",
+   "#51383e"
+  ]
+ },
+ "UkysfZ6b4d0": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "DNA Clues ROCK New Mom Murder Mystery: Report",
+  "views": 80000,
+  "x_median": 0.5,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.59,
+  "saturation": 0.5,
+  "dark_share": 0.01,
+  "bright_share": 0.01,
+  "palette": [
+   "#373b52",
+   "#bda39f",
+   "#976d54"
+  ]
+ },
+ "8_BUBaa86go": {
+  "cid": "UCz8K1occVvDTYDfFo7N5EZw",
+  "channel": "Law&Crime Network",
+  "title": "Ex-Psychologist Had Sex in Front of Teen Girl",
+  "views": 94000,
+  "x_median": 0.59,
+  "date": "20261112",
+  "kind": "recent",
+  "brightness": 0.55,
+  "saturation": 0.29,
+  "dark_share": 0.06,
+  "bright_share": 0.02,
+  "palette": [
+   "#b6c2d7",
+   "#908574",
+   "#444535"
+  ]
+ }
+}
