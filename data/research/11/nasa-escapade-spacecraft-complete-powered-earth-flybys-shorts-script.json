@@ -1,0 +1,72 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-escapade-spacecraft-complete-powered-earth-flybys",
+  "format": "shorts",
+  "hook": "NASA's twin ESCAPADE spacecraft used Earth as a slingshot in November 2026 to reach Mars.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA's twin ESCAPADE spacecraft used Earth as a slingshot in November 2026 to reach Mars.",
+      "visual_cue": "Computer animation showing two identical spacecraft approaching Earth from space.",
+      "sfx_cue": "Deep, resonant bass swell as the Earth appears in frame.",
+      "b_roll": [
+        "NASA animation of ESCAPADE spacecraft in orbit"
+      ],
+      "text_overlay": {
+        "text": "Slingshot to Mars"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 7, 2026, the spacecraft Blue passed Earth at an altitude of 1,600 kilometers. Two days later, its partner Gold skimmed the planet at 1,050 kilometers. How did these machines use gravity to reach Mars?",
+      "visual_cue": "Diagram showing Blue and Gold trajectories with Earth in the center.",
+      "sfx_cue": "Subtle orbital telemetry beeps.",
+      "b_roll": [
+        "SpaceNews diagram of ESCAPADE flight path"
+      ],
+      "text_overlay": {
+        "text": "1,600 km vs 1,050 km"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Blue didn't just use gravity; it fired engines for 9 minutes to boost speed.",
+      "visual_cue": "Close-up of Blue spacecraft firing its engine thrusters during the flyby.",
+      "sfx_cue": "Low-frequency engine burn sound.",
+      "b_roll": [
+        "UC Berkeley CGI of engine burn"
+      ],
+      "text_overlay": {
+        "text": "9-minute engine burn"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This 48-hour gap between flybys ensures NASA's twin probes hit the perfect trajectory for Mars. Blue and Gold are now officially on their way to the Red Planet.",
+      "visual_cue": "Animation showing the two spacecraft accelerating away from Earth into deep space.",
+      "sfx_cue": "Accelerating woosh sound transitioning into silence.",
+      "b_roll": [
+        "NASA ESCAPADE Mars trajectory animation"
+      ],
+      "text_overlay": {
+        "text": "48 hours apart"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Two machines, one path, and a silent leap toward Mars.",
+      "visual_cue": "Wide shot of the two spacecraft drifting into the darkness of space.",
+      "sfx_cue": "Ethereal, ambient space music fade out.",
+      "b_roll": [
+        "Artistic rendering of deep space"
+      ],
+      "text_overlay": {
+        "text": "Next stop: Mars"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys",
+    "https://vcresearch.berkeley.edu/news/berkeleys-escapade-spacecraft-say-goodbye-earth-next-stop-mars"
+  ]
+}
