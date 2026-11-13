@@ -1177,12 +1177,12 @@
       "attempts": 2,
       "run_id": "43502324291",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T20:33:51.442Z",
-      "stage": "script",
-      "topic": "Meta's New AI Can Now Make Real Phone Calls for You",
-      "score": 80,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Don't want to make that awkward phone call? Meta's new AI agent will now call local businesses on your behalf.",
+      "updated_at": "2026-11-13T20:44:50.323Z",
+      "stage": "research",
+      "topic": "Microsoft Finally Lets Users Turn Off Bing AI Features",
+      "score": 71.7,
+      "pillar": "AI tools ordinary people can use",
+      "hook": "Tired of forced artificial intelligence in your browser? Microsoft is finally giving users a way to turn off Bing AI.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
     },
     "2026-11-13-ch2": {
@@ -2346,6 +2346,15 @@
       "at_ms": 1794601992688,
       "score": 80,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Microsoft Finally Lets Users Turn Off Bing AI Features",
+      "slug": "microsoft-finally-lets-users-turn-off-bing-ai-features",
+      "slot": "2026-11-12-ch2",
+      "at_ms": 1794602690323,
+      "score": 71.7,
+      "pillar": "AI tools ordinary people can use"
     }
   ],
   "attention": [
