@@ -2,7 +2,7 @@ name: Long-form Render
 
 # Renders long-form episodes (platform/longform/v2/episodes/<slug>.mjs) as 1920x1080 MP4s with thumbnails and publishing metadata, then runs the file QA.
 # Shorts are NOT made here: they come from the existing Shorts system. Holds no YouTube credentials, has no upload step, cannot post.
-# Push to lfr/<slug>: lfr/hidden-past-msh or lfr/ai-tested-trust renders that episode (any other branch name renders both).
+# Push to lfr/<slug>: lfr/hidden-past-hormuz, lfr/hidden-past-msh or lfr/ai-tested-trust renders exactly that episode (any other branch name renders all).
 # Speed: the beats of an episode are split over 5 parallel jobs (beat index modulo 5), each on its own runner, then one job joins them,
 # mixes the sound, makes the thumbnails and the metadata and runs the QA.
 on:
@@ -20,14 +20,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, ai-tested-trust]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust]
         shard: [0, 1, 2, 3, 4]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
         run: |
           b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
-          if [[ "$b" == hidden-past* && "$ch" != hidden-past* ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested* ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
       - uses: actions/setup-node@v4
@@ -90,13 +90,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, ai-tested-trust]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
         run: |
           b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
-          if [[ "$b" == hidden-past* && "$ch" != hidden-past* ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested* ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
       - uses: actions/setup-node@v4

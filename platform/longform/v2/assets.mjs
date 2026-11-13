@@ -31,6 +31,14 @@ export const ASSETS = {
     ["msh-johnston-0910", "File:MSH80 st helens from johnston ridge 09-10-80.jpg", "Mount St. Helens from Johnston Ridge, 10 September 1980"],
     ["msh-mailboxes", "File:MSH80 mailboxes along cowlitz river 1980.jpg", "Mailboxes sticking out of a mudflow along the Cowlitz River, 1980"],
     ["msh-mudline", "File:MSH80 mudline muddy river with USGS scientist 10-23-80.jpg", "A mudline along a river with a USGS scientist, 23 October 1980"],
+    // Strait of Hormuz 1987-88 episode (hidden-past-hormuz): US Navy photographs, all marked Public domain on Commons
+    ["hz-roberts-damage", "File:Samuel B Roberts damage.jpg", "USS Samuel B. Roberts after striking a mine, April 1988"],
+    ["hz-roberts-hole", "File:A photographer records the damage to the hull of the guided missile frigate USS SAMUEL B. ROBERTS (FFG-58) sustained when the ship struck a mine while on patrol in the Persian Gulf - DPLA - 7ec4123e38fde008f49e5c9c3550fc1e.jpeg", "A photographer records the mine damage to the hull of USS Samuel B. Roberts"],
+    ["hz-convoy", "File:Earnest Will convoy.jpg", "An Operation Earnest Will convoy"],
+    ["hz-stark", "File:USS Stark - external damage by exocet.jpg", "USS Stark, damaged by an Exocet missile, May 1987"],
+    ["hz-sahand", "File:Aerial view of Iranian frigate Sahand burning after air attack Operation Praying Mantis DN-SN-89-03125.jpg", "The Iranian frigate Sahand burning after the air attack, Operation Praying Mantis, 18 April 1988"],
+    ["hz-intruder", "File:A-6E Intruder in Operation Praying Mantis DN-SN-89-03126.jpg", "An A-6E Intruder during Operation Praying Mantis"],
+    ["hz-vincennes", "File:USS Vincennes returns to San Diego Oct 1988.jpg", "USS Vincennes returning to San Diego, October 1988"],
   ],
   "court-and-spotlight": [
     ["becker-1994", "File:Boris Becker (cropped).jpg", "Boris Becker, 1994"],

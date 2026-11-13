@@ -70,6 +70,13 @@
         "vo": "magnitude 5\\.1",
         "first": true,
         "purpose": "the earthquake that starts the collapse (Mount St. Helens episode); the only hit in the episode"
+      },
+      {
+        "type": "accent",
+        "asset": "SFX_IMPACT",
+        "vo": "fifteen-foot hole",
+        "first": true,
+        "purpose": "the mine's blow to the hull (Hormuz episode); the only hit in the episode"
       }
     ],
     "ai-tested": [
