@@ -1,0 +1,25 @@
+{
+  "format": "ai_tested_multiply_36s",
+  "technical": {
+    "pass": true,
+    "failures": [],
+    "duration_s": 35.883,
+    "width": 1080,
+    "height": 1920,
+    "frame_rate": "30/1",
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "mean_volume_db": -23.2,
+    "max_volume_db": -2.3,
+    "black_segments": 0,
+    "frozen_segments": 0,
+    "narration": {
+      "engine": "gemini:Charon",
+      "seconds": 35.352,
+      "words": 92,
+      "wpm": 156.1,
+      "playback_speed": 1,
+      "fallback_notes": []
+    }
+  }
+}
