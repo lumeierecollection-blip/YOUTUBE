@@ -176,7 +176,7 @@
     "rival-lines": [
       {
         "type": "bed",
-        "asset": "MUSIC_TECH",
+        "asset": "MUSIC_HISTORY_DOC",
         "group": [
           "sequence",
           "formation",
@@ -185,7 +185,7 @@
           "shots",
           "bars"
         ],
-        "purpose": "light rhythmic bed under tactical-data sections (the references carry a continuous low bed there)"
+        "purpose": "sober, steady documentary bed under tactical-data sections (references carry a continuous low bed there); replaces MUSIC_TECH, a comedy track rejected as wrong for a serious match analysis"
       },
       {
         "type": "action",

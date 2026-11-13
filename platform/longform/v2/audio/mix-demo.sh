@@ -10,7 +10,7 @@ M=$(ffmpeg -hide_banner -nostats -i $N -af loudnorm=I=-16:TP=-2:LRA=7:print_form
 g(){ echo "$M" | grep "\"$1\"" | sed 's/.*: "\(.*\)".*/\1/'; }
 ffmpeg -y -hide_banner -loglevel error -i $N -af "loudnorm=I=-16:TP=-2:LRA=7:measured_I=$(g input_i):measured_TP=$(g input_tp):measured_LRA=$(g input_lra):measured_thresh=$(g input_thresh):offset=$(g target_offset):linear=true" -ar 48000 -ac 2 $O/vo.wav
 # 2 pre-master: music -17 dB (before ducking) with fades and sidechain ducking keyed from the voice, effects placed by delay; no loudness stage yet. Music is attenuated first because the asset is mastered hot (+/-0 dBTP).
-ffmpeg -y -hide_banner -loglevel error -i $O/vo.wav -i $A/MUSIC_TECH.ogg -i $A/SFX_KEYBOARD.mp3 -i $A/SFX_MOUSE_CLICK.mp3 -i $A/SFX_WHOOSH.mp3 -filter_complex "
+ffmpeg -y -hide_banner -loglevel error -i $O/vo.wav -i $A/MUSIC_ATMOS_DARK.mp3 -i $A/SFX_KEYBOARD.mp3 -i $A/SFX_MOUSE_CLICK.mp3 -i $A/SFX_WHOOSH.mp3 -filter_complex "
 [1:a]atrim=0:27,asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,volume=-17dB,afade=t=in:d=1.5,afade=t=out:st=24:d=3[mus];
 [0:a]asplit=2[vo][key];
 [mus][key]sidechaincompress=threshold=0.05:ratio=2.5:attack=30:release=500[duck];
