@@ -1187,16 +1187,17 @@
     },
     "2026-11-13-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "43431880370",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T13:27:36.982Z",
+      "updated_at": "2026-11-13T13:39:09.836Z",
       "stage": "script",
       "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
       "score": 74.7,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Watch out: popular AI chatbots are accidentally recommending scam shopping sites."
+      "hook": "Watch out: popular AI chatbots are accidentally recommending scam shopping sites.",
+      "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"1 results.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLAIM: sentence 1 \"You could receive risky links across 6,795 AI responses.\" — the claim \"risky links | appear across | 6,795 AI responses\" is not in the research (F1 and N1 state that 6,795 i"
     }
   },
   "uploads": [

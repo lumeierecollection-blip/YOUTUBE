@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "Google Releases Gemini 4 Hydrogen for Faster Everyday Tasks",
+      "score": 82.6,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLAIM: sentence 7 \"Picture 0.03 grams CO2 and 0.26 milliliters water daily.\" — the claim \"0.03 grams CO2 and 0.26 milliliters water consumption | occurs | daily\" is not in the research (F4 states 0.03 grams CO2 equivalent and 0.26 milliliters water are consumed per median Gemini text prompt, not daily). Rewrite the sentence using only what the research states, or cut it."
+    },
+    {
+      "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
+      "score": 74.7,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: \"1 results.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLAIM: sentence 1 \"You could receive risky links across 6,795 AI responses.\" — the claim \"risky links | appear across | 6,795 AI responses\" is not in the research (F1 and N1 state that 6,795 i"
+    }
+  ],
+  "selected": null
+}
