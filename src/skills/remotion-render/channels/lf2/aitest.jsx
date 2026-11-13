@@ -206,7 +206,17 @@ export function Verdict({ t, line, points = [], limits = [], pill, foot }) {
 }
 
 /** Thumbnail: the real wrong digits, one verdict word. */
-export function AiThumb({ t, big, small, a, b, answer, correct }) {
+export function AiThumb({ t, big, small, a, b, answer, correct, num, of, numLabel }) {
+  // trust-test variant: a headline, one giant measured count ("12 of 36"), what it counts, and a verdict tag
+  if (num != null) return (
+    <AbsoluteFill style={{ background: "#07090c" }}><Fonts />
+      <AbsoluteFill style={{ backgroundImage: `radial-gradient(${t.dot} 2px, transparent 2px)`, backgroundSize: "44px 44px", opacity: 0.6 }} />
+      <div style={{ position: "absolute", left: 80, top: 70, fontFamily: F.sans, fontWeight: 700, fontSize: 170, lineHeight: 1, color: "#fff", letterSpacing: "-0.03em", whiteSpace: "pre-line" }}>{big}</div>
+      <div style={{ position: "absolute", left: 80, top: 520, fontFamily: F.mono, fontWeight: 700, fontSize: 330, lineHeight: 1, color: t.bad, letterSpacing: "-0.04em" }}>{num}<span style={{ fontSize: 150, color: "rgba(255,255,255,0.75)" }}> of {of}</span></div>
+      <div style={{ position: "absolute", left: 90, top: 880, fontFamily: F.sans, fontWeight: 700, fontSize: 70, color: "rgba(255,255,255,0.88)" }}>{numLabel}</div>
+      {small && <div style={{ position: "absolute", right: 80, top: 80, fontFamily: F.sans, fontWeight: 700, fontSize: 80, color: "#0a0c10", background: t.accent, padding: "4px 28px", transform: "rotate(3deg)" }}>{small}</div>}
+    </AbsoluteFill>
+  );
   return (
     <AbsoluteFill style={{ background: "#07090c" }}><Fonts />
       <AbsoluteFill style={{ backgroundImage: `radial-gradient(${t.dot} 2px, transparent 2px)`, backgroundSize: "44px 44px", opacity: 0.6 }} />
