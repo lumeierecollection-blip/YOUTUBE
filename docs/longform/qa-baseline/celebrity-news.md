@@ -1,0 +1,21 @@
+# QA: Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back (celebrity-news)
+
+Generated 2026-11-13. Assumptions: beat duration = narration words / 2.5 words per second; authentic share is an upper bound: a beat counts as real when it shows at least one authentic asset, even if graphics also appear; reference bands are provisional (see config/longform-qa-standards.json).
+
+Reference standard status: provisional (only 2 videos analysed of 4 planned).
+
+Metrics: estimated_minutes=7.1, target_minutes=9, beats=17, ai_generated_share=0, authentic_beat_share_upper_bound=0.648, longest_constructed_stretch_s=54, overlay_beat_share=0.384, assets_used=7, distinct_real_assets=7, longest_beat_s=34, scene_changes_per_min=2.4
+
+| Check | Result | Measured | Standard | Why | Evidence |
+|---|---|---|---|---|---|
+| V1 AI-generated imagery | **PASS** | 0% of estimated time | 0% (hard rule; none of the 28 non-AI-Tested reference videos shows any) | Generated pictures read as artificial when used as decoration. | VISUAL-EDITING-RESEARCH.md section 3-4 |
+| V2 Authentic media share | **FAIL** | 65% of estimated time shows at least one authentic asset (upper bound) | reference band 96-100% real captured (sampled; -12 points tolerance) (provisional) | The references that look least artificial are built on real captured material; constructed graphics should explain what real media cannot. | VISUAL-EDITING-RESEARCH.md section 3 (2 videos, Nicki Swift, Patrick Cc:) |
+| V3 All-constructed stretch | **FAIL** | 54 s (ending at beat N09) | longest in the references 30 s (sampled runs of 15 s); FAIL above 1.5x (provisional) | Long runs of graphics without any real picture are the 'AI slideshow' pattern the references avoid. | VISUAL-EDITING-RESEARCH.md section 4 |
+| V4 Caption / text overlay share | **PASS** | 38% of time on beats that carry a caption, label, kicker, badge or stamp | reference band 14-61% (+12 points) (provisional) | Text on every scene is not what the references do; labels belong to key terms, footage and credits. | CAPTION-RESEARCH.md |
+| V5 Repeated media | **WARN** | lf2/celebrity-news/swift-2019-portrait.jpg x5, lf2/celebrity-news/braun-2022.jpg x3 | no asset on more than 2 beats (author's rule; no reference measurement) (provisional) | Repeating one picture reads as generic filler. | none (judgement) |
+| V6 Credit on every third-party picture | **FAIL** | 8 without a credit field in the scene: N02:swift-2019-portrait.jpg, N05:swift-2019-portrait.jpg, N06:swift-2019-portrait.jpg, N06:braun-2022.jpg, N07:braun-2022.jpg, N08b:swift-amas-2019.png, N10:swift-2019-portrait.jpg, N10:braun-2022.jpg | 100% (hard rule; the references show credit or source lines on borrowed material) | CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen. | CAPTION-RESEARCH.md; CLAUDE.md |
+| V7 Licence and source recorded | **PASS** | 7 assets with licence and source | every asset has licence, source URL and commercial use allowed (hard rule) | CLAUDE.md hard rule. | MEDIA-MANIFEST.json |
+| V8 Long unchanging visual | **PASS** | longest single beat 34 s (beat length, not measured change) | longest static stretch in the references 28 s (frame-difference score); flag above max(60 s, that) (provisional) | A beat that long needs internal change (camera move, reveal, new panel) or a cut to real media. | VISUAL-EDITING-RESEARCH.md section 6 |
+| V9 Scene-change rate | **WARN** | 2.4 beats/min (a beat can contain several internal changes) | reference 10.5-12.1 shots/min (dissolve-aware detector, +-15%) (provisional) | Compare only as an indication: beats are not shots. | VISUAL-EDITING-RESEARCH.md section 5 |
+| V10 Visual matches narration (lexical screen only) | **CHECK** | 4 real pictures share no content word with their narration: N06:braun-2022.jpg, N07:braun-2022.jpg, N10:braun-2022.jpg, N15:swift-eras-bcplace-2024.jpg | a person confirms each flagged picture shows what is said (a word match is not proof of relevance) (provisional) | A picture unrelated to the narration is the strongest 'filler' signal. | none (a person must judge) |
+| A0 Audio checks | **SKIPPED** | no cue sheet for this channel | docs/longform/cue-sheets/<channel>.json (provisional) |  |  |

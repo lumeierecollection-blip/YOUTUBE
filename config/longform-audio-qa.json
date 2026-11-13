@@ -1,0 +1,659 @@
+{
+ "generated": "2026-11-13",
+ "note": "Machine flags only. Not a listening review.",
+ "assets": {
+  "AMB_DESERT_WIND": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -19.6,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -38.5,
+   "dc_offset": -6e-05,
+   "crest_factor_db": 13.6,
+   "last_100ms_vs_peak_db": -10.300000190734863,
+   "loop_seam_level_db": 3.5999999046325684,
+   "loop_seam_centroid_hz": 9,
+   "machine_flags": [
+    "ends without decay or fade (cut): needs a fade-out before use",
+    "loop seam: level jump 3.6 dB, centroid jump 9 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "AMB_SHORE": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -3.4,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -35.4,
+   "dc_offset": 0.0,
+   "crest_factor_db": 27.9,
+   "last_100ms_vs_peak_db": -21.399999618530273,
+   "loop_seam_level_db": 0.5,
+   "loop_seam_centroid_hz": 46,
+   "machine_flags": [],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_SHIP_HORN": {
+   "kind": "effect",
+   "clipped_samples": 195,
+   "true_peak_dbtp": -0.2,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -45.5,
+   "dc_offset": -2e-05,
+   "crest_factor_db": 18.0,
+   "last_100ms_vs_peak_db": -35.900001525878906,
+   "loop_seam_level_db": 29.799999237060547,
+   "loop_seam_centroid_hz": 678,
+   "machine_flags": [
+    "195 samples at full scale (possible hard clipping in the source: audition for distortion)"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "AMB_CLASSROOM": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -12.8,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -44.1,
+   "dc_offset": -0.00018,
+   "crest_factor_db": 26.2,
+   "last_100ms_vs_peak_db": -5.5,
+   "loop_seam_level_db": 1.5,
+   "loop_seam_centroid_hz": 94,
+   "machine_flags": [
+    "ends without decay or fade (cut): needs a fade-out before use"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "AMB_ROOM_TONE": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -39.4,
+   "head_silence_s": 198.48,
+   "tail_silence_s": 85.14,
+   "noise_floor_db": -62.0,
+   "dc_offset": -0.0,
+   "crest_factor_db": 18.7,
+   "last_100ms_vs_peak_db": -134.1999969482422,
+   "loop_seam_level_db": 2.700000047683716,
+   "loop_seam_centroid_hz": 342,
+   "machine_flags": [
+    "198.5 s of silence at the head: trim",
+    "85.1 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_KEYBOARD": {
+   "kind": "effect",
+   "clipped_samples": 2,
+   "true_peak_dbtp": -0.7,
+   "head_silence_s": 0.12,
+   "tail_silence_s": 0.3,
+   "noise_floor_db": -56.5,
+   "dc_offset": -8e-05,
+   "crest_factor_db": 29.7,
+   "last_100ms_vs_peak_db": -48.900001525878906,
+   "loop_seam_level_db": 4.599999904632568,
+   "loop_seam_centroid_hz": 1026,
+   "machine_flags": [],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "AMB_COURTROOM": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -4.2,
+   "head_silence_s": 0.2,
+   "tail_silence_s": 0.02,
+   "noise_floor_db": -52.4,
+   "dc_offset": -0.0,
+   "crest_factor_db": 22.7,
+   "last_100ms_vs_peak_db": -33.70000076293945,
+   "loop_seam_level_db": 15.800000190734863,
+   "loop_seam_centroid_hz": 462,
+   "machine_flags": [
+    "loop seam: level jump 15.8 dB, centroid jump 462 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_APPLAUSE": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -0.1,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.12,
+   "noise_floor_db": -34.7,
+   "dc_offset": -5e-05,
+   "crest_factor_db": 20.3,
+   "last_100ms_vs_peak_db": -42.70000076293945,
+   "loop_seam_level_db": 0.10000000149011612,
+   "loop_seam_centroid_hz": 378,
+   "machine_flags": [
+    "true peak -0.1 dBTP at/above ceiling: attenuate before any mix"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "AMB_STADIUM": {
+   "kind": "ambience",
+   "clipped_samples": 10,
+   "true_peak_dbtp": -2,
+   "head_silence_s": 0.66,
+   "tail_silence_s": 1.82,
+   "noise_floor_db": -28.4,
+   "dc_offset": -0.00432,
+   "crest_factor_db": 19.6,
+   "last_100ms_vs_peak_db": -72.9000015258789,
+   "loop_seam_level_db": 24.899999618530273,
+   "loop_seam_centroid_hz": 1135,
+   "machine_flags": [
+    "10 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "0.7 s of silence at the head: trim",
+    "1.8 s of silence at the tail: trim",
+    "loop seam: level jump 24.9 dB, centroid jump 1135 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "SFX_CROWD_GOAL": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -8.8,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -19.1,
+   "dc_offset": -2e-05,
+   "crest_factor_db": 11.2,
+   "last_100ms_vs_peak_db": -5.099999904632568,
+   "loop_seam_level_db": 0.10000000149011612,
+   "loop_seam_centroid_hz": 180,
+   "machine_flags": [
+    "effect still loud in its last 100 ms: tail cut, trim/fade"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_WHISTLE": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -4.3,
+   "head_silence_s": 0.1,
+   "tail_silence_s": 1.92,
+   "noise_floor_db": -80.2,
+   "dc_offset": 0.0,
+   "crest_factor_db": 14.1,
+   "last_100ms_vs_peak_db": -72.4000015258789,
+   "loop_seam_level_db": 63.29999923706055,
+   "loop_seam_centroid_hz": 1104,
+   "machine_flags": [
+    "1.9 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_BALL_KICK": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -10.4,
+   "head_silence_s": 0.04,
+   "tail_silence_s": 0.04,
+   "noise_floor_db": -54.0,
+   "dc_offset": 0.00014,
+   "crest_factor_db": 24.7,
+   "last_100ms_vs_peak_db": -31.600000381469727,
+   "loop_seam_level_db": 16.100000381469727,
+   "loop_seam_centroid_hz": 1299,
+   "machine_flags": [],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "AMB_SPACE_DRONE": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -10,
+   "head_silence_s": 0.1,
+   "tail_silence_s": 0.36,
+   "noise_floor_db": -29.7,
+   "dc_offset": 0.0,
+   "crest_factor_db": 12.8,
+   "last_100ms_vs_peak_db": -49.5,
+   "loop_seam_level_db": 6.300000190734863,
+   "loop_seam_centroid_hz": 292,
+   "machine_flags": [
+    "loop seam: level jump 6.3 dB, centroid jump 292 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "AMB_RADIO_STATIC": {
+   "kind": "ambience",
+   "clipped_samples": 239,
+   "true_peak_dbtp": 3.4,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -23.8,
+   "dc_offset": -0.00183,
+   "crest_factor_db": 20.7,
+   "last_100ms_vs_peak_db": -11.5,
+   "loop_seam_level_db": 1.600000023841858,
+   "loop_seam_centroid_hz": 64,
+   "machine_flags": [
+    "true peak 3.4 dBTP at/above ceiling: attenuate before any mix",
+    "239 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "ends without decay or fade (cut): needs a fade-out before use"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "AMB_MISSION_CONTROL": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -4.8,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.7,
+   "noise_floor_db": -36.9,
+   "dc_offset": 0.0,
+   "crest_factor_db": 24.1,
+   "last_100ms_vs_peak_db": -41.099998474121094,
+   "loop_seam_level_db": 13.5,
+   "loop_seam_centroid_hz": 614,
+   "machine_flags": [
+    "0.7 s of silence at the tail: trim",
+    "loop seam: level jump 13.5 dB, centroid jump 614 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_ROCKET": {
+   "kind": "effect",
+   "clipped_samples": 2364,
+   "true_peak_dbtp": 1.4,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.06,
+   "noise_floor_db": -21.8,
+   "dc_offset": -3e-05,
+   "crest_factor_db": 9.1,
+   "last_100ms_vs_peak_db": -46.70000076293945,
+   "loop_seam_level_db": 22.799999237060547,
+   "loop_seam_centroid_hz": 2387,
+   "machine_flags": [
+    "true peak 1.4 dBTP at/above ceiling: attenuate before any mix",
+    "2364 samples at full scale (possible hard clipping in the source: audition for distortion)"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "SFX_GAVEL": {
+   "kind": "effect",
+   "clipped_samples": 20,
+   "true_peak_dbtp": -0.4,
+   "head_silence_s": 0.12,
+   "tail_silence_s": 1.32,
+   "noise_floor_db": -59.6,
+   "dc_offset": -2e-05,
+   "crest_factor_db": 27.4,
+   "last_100ms_vs_peak_db": -52.0,
+   "loop_seam_level_db": 35.70000076293945,
+   "loop_seam_centroid_hz": 1109,
+   "machine_flags": [
+    "20 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "1.3 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "SFX_PAPER": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -0.9,
+   "head_silence_s": 0.06,
+   "tail_silence_s": 0.28,
+   "noise_floor_db": -99.8,
+   "dc_offset": -7e-05,
+   "crest_factor_db": 32.2,
+   "last_100ms_vs_peak_db": -58.0,
+   "loop_seam_level_db": 6.5,
+   "loop_seam_centroid_hz": 670,
+   "machine_flags": [],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_SHUTTER": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -0.4,
+   "head_silence_s": 0.1,
+   "tail_silence_s": 0.32,
+   "noise_floor_db": -91.3,
+   "dc_offset": 0.00014,
+   "crest_factor_db": 23.8,
+   "last_100ms_vs_peak_db": -72.0,
+   "loop_seam_level_db": 0.6000000238418579,
+   "loop_seam_centroid_hz": 1074,
+   "machine_flags": [],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_MOUSE_CLICK": {
+   "kind": "effect",
+   "clipped_samples": 34,
+   "true_peak_dbtp": 1.6,
+   "head_silence_s": 0.1,
+   "tail_silence_s": 0.08,
+   "noise_floor_db": -62.1,
+   "dc_offset": 8e-05,
+   "crest_factor_db": 30.7,
+   "last_100ms_vs_peak_db": -44.5,
+   "loop_seam_level_db": 9.600000381469727,
+   "loop_seam_centroid_hz": 456,
+   "machine_flags": [
+    "true peak 1.6 dBTP at/above ceiling: attenuate before any mix",
+    "34 samples at full scale (possible hard clipping in the source: audition for distortion)"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "SFX_PENCIL": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -25,
+   "head_silence_s": 0.14,
+   "tail_silence_s": 0.02,
+   "noise_floor_db": -50.0,
+   "dc_offset": -0.0,
+   "crest_factor_db": 18.9,
+   "last_100ms_vs_peak_db": -10.899999618530273,
+   "loop_seam_level_db": 0.0,
+   "loop_seam_centroid_hz": 212,
+   "machine_flags": [
+    "effect still loud in its last 100 ms: tail cut, trim/fade"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_CLOCK": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -23.7,
+   "head_silence_s": 0.02,
+   "tail_silence_s": 0.66,
+   "noise_floor_db": -180.0,
+   "dc_offset": -5e-05,
+   "crest_factor_db": 26.3,
+   "last_100ms_vs_peak_db": -147.0,
+   "loop_seam_level_db": 4.400000095367432,
+   "loop_seam_centroid_hz": 157,
+   "machine_flags": [
+    "0.7 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_WHOOSH": {
+   "kind": "transition",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -1.9,
+   "head_silence_s": 0.24,
+   "tail_silence_s": 1.28,
+   "noise_floor_db": -79.1,
+   "dc_offset": -0.00374,
+   "crest_factor_db": 19.5,
+   "last_100ms_vs_peak_db": -74.9000015258789,
+   "loop_seam_level_db": 44.099998474121094,
+   "loop_seam_centroid_hz": 603,
+   "machine_flags": [
+    "1.3 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_IMPACT": {
+   "kind": "effect",
+   "clipped_samples": 26,
+   "true_peak_dbtp": -0.3,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.14,
+   "noise_floor_db": -46.9,
+   "dc_offset": 1e-05,
+   "crest_factor_db": 17.2,
+   "last_100ms_vs_peak_db": -44.900001525878906,
+   "loop_seam_level_db": 37.5,
+   "loop_seam_centroid_hz": 11,
+   "machine_flags": [
+    "26 samples at full scale (possible hard clipping in the source: audition for distortion)"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "SFX_RISER": {
+   "kind": "effect",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -7.5,
+   "head_silence_s": 0.38,
+   "tail_silence_s": 1.24,
+   "noise_floor_db": -57.8,
+   "dc_offset": 4e-05,
+   "crest_factor_db": 21.1,
+   "last_100ms_vs_peak_db": -57.900001525878906,
+   "loop_seam_level_db": 6.800000190734863,
+   "loop_seam_centroid_hz": 1916,
+   "machine_flags": [
+    "1.2 s of silence at the tail: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_VINYL": {
+   "kind": "ambience",
+   "clipped_samples": 0,
+   "true_peak_dbtp": -6.1,
+   "head_silence_s": 0.14,
+   "tail_silence_s": 0.1,
+   "noise_floor_db": -50.2,
+   "dc_offset": -0.0,
+   "crest_factor_db": 36.4,
+   "last_100ms_vs_peak_db": -32.79999923706055,
+   "loop_seam_level_db": 12.600000381469727,
+   "loop_seam_centroid_hz": 1521,
+   "machine_flags": [
+    "loop seam: level jump 12.6 dB, centroid jump 1521 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  },
+  "SFX_RECORD_SCRATCH": {
+   "kind": "effect",
+   "clipped_samples": 611,
+   "true_peak_dbtp": 0.8,
+   "head_silence_s": 0.7,
+   "tail_silence_s": 0.44,
+   "noise_floor_db": -60.4,
+   "dc_offset": 0.00123,
+   "crest_factor_db": 16.4,
+   "last_100ms_vs_peak_db": -56.900001525878906,
+   "loop_seam_level_db": 8.399999618530273,
+   "loop_seam_centroid_hz": 1332,
+   "machine_flags": [
+    "true peak 0.8 dBTP at/above ceiling: attenuate before any mix",
+    "611 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "0.7 s of silence at the head: trim"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_HISTORY_DOC": {
+   "kind": "music",
+   "clipped_samples": 15774,
+   "true_peak_dbtp": -0.7,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.4,
+   "noise_floor_db": -16.2,
+   "dc_offset": -0.00012,
+   "crest_factor_db": 12.3,
+   "last_100ms_vs_peak_db": -51.400001525878906,
+   "loop_seam_level_db": 40.5,
+   "loop_seam_centroid_hz": 2410,
+   "machine_flags": [
+    "15774 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "loop seam: level jump 40.5 dB, centroid jump 2410 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_ATMOS_DARK": {
+   "kind": "music",
+   "clipped_samples": 51307,
+   "true_peak_dbtp": 0.3,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -18.2,
+   "dc_offset": -0.00028,
+   "crest_factor_db": 13.2,
+   "last_100ms_vs_peak_db": -17.600000381469727,
+   "loop_seam_level_db": 10.300000190734863,
+   "loop_seam_centroid_hz": 368,
+   "machine_flags": [
+    "true peak 0.3 dBTP at/above ceiling: attenuate before any mix",
+    "51307 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "loop seam: level jump 10.3 dB, centroid jump 368 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_SUSPENSE_STEM": {
+   "kind": "music",
+   "clipped_samples": 14855,
+   "true_peak_dbtp": 0,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 0.0,
+   "noise_floor_db": -32.3,
+   "dc_offset": -0.0041,
+   "crest_factor_db": 11.4,
+   "last_100ms_vs_peak_db": -50.79999923706055,
+   "loop_seam_level_db": 33.900001525878906,
+   "loop_seam_centroid_hz": 1659,
+   "machine_flags": [
+    "true peak 0 dBTP at/above ceiling: attenuate before any mix",
+    "14855 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "loop seam: level jump 33.9 dB, centroid jump 1659 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_SPACE_1": {
+   "kind": "music",
+   "clipped_samples": 51665,
+   "true_peak_dbtp": 0.5,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 1.0,
+   "noise_floor_db": -11.0,
+   "dc_offset": 5e-05,
+   "crest_factor_db": 11.5,
+   "last_100ms_vs_peak_db": -96.9000015258789,
+   "loop_seam_level_db": 58.5,
+   "loop_seam_centroid_hz": 462,
+   "machine_flags": [
+    "true peak 0.5 dBTP at/above ceiling: attenuate before any mix",
+    "51665 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "1.0 s of silence at the tail: trim",
+    "loop seam: level jump 58.5 dB, centroid jump 462 Hz: needs crossfade if looped",
+    "mastered very hot for a bed (above -9 LUFS): attenuate heavily under narration"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_PIANO_1": {
+   "kind": "music",
+   "clipped_samples": 6085,
+   "true_peak_dbtp": 0.4,
+   "head_silence_s": 1.0,
+   "tail_silence_s": 2.34,
+   "noise_floor_db": -25.3,
+   "dc_offset": 0.01937,
+   "crest_factor_db": 16.4,
+   "last_100ms_vs_peak_db": -82.5999984741211,
+   "loop_seam_level_db": 35.70000076293945,
+   "loop_seam_centroid_hz": 6965,
+   "machine_flags": [
+    "true peak 0.4 dBTP at/above ceiling: attenuate before any mix",
+    "6085 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "1.0 s of silence at the head: trim",
+    "2.3 s of silence at the tail: trim",
+    "loop seam: level jump 35.7 dB, centroid jump 6965 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_CORPORATE": {
+   "kind": "music",
+   "clipped_samples": 51355,
+   "true_peak_dbtp": 0.5,
+   "head_silence_s": 0.0,
+   "tail_silence_s": 2.04,
+   "noise_floor_db": -15.1,
+   "dc_offset": 0.00292,
+   "crest_factor_db": 12.8,
+   "last_100ms_vs_peak_db": -179.39999389648438,
+   "loop_seam_level_db": 168.39999389648438,
+   "loop_seam_centroid_hz": 1060,
+   "machine_flags": [
+    "true peak 0.5 dBTP at/above ceiling: attenuate before any mix",
+    "51355 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "2.0 s of silence at the tail: trim",
+    "loop seam: level jump 168.4 dB, centroid jump 1060 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_MYSTERY": {
+   "kind": "music",
+   "clipped_samples": 71611,
+   "true_peak_dbtp": 0.6,
+   "head_silence_s": 0.54,
+   "tail_silence_s": 0.36,
+   "noise_floor_db": -12.7,
+   "dc_offset": -0.00042,
+   "crest_factor_db": 11.6,
+   "last_100ms_vs_peak_db": -68.9000015258789,
+   "loop_seam_level_db": 32.29999923706055,
+   "loop_seam_centroid_hz": 290,
+   "machine_flags": [
+    "true peak 0.6 dBTP at/above ceiling: attenuate before any mix",
+    "71611 samples at full scale (possible hard clipping in the source: audition for distortion)",
+    "0.5 s of silence at the head: trim",
+    "loop seam: level jump 32.3 dB, centroid jump 290 Hz: needs crossfade if looped",
+    "mastered very hot for a bed (above -9 LUFS): attenuate heavily under narration"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "needs correction before audition"
+  },
+  "MUSIC_TECH": {
+   "kind": "music",
+   "clipped_samples": 1,
+   "true_peak_dbtp": -0.8,
+   "head_silence_s": 0.02,
+   "tail_silence_s": 0.02,
+   "noise_floor_db": -27.6,
+   "dc_offset": -0.0,
+   "crest_factor_db": 18.9,
+   "last_100ms_vs_peak_db": -14.5,
+   "loop_seam_level_db": 4.5,
+   "loop_seam_centroid_hz": 348,
+   "machine_flags": [
+    "loop seam: level jump 4.5 dB, centroid jump 348 Hz: needs crossfade if looped"
+   ],
+   "listening_review": "NOT DONE (no person has listened)",
+   "approval": "pending human audition"
+  }
+ }
+}

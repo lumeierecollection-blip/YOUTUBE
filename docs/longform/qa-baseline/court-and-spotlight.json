@@ -1,0 +1,138 @@
+{
+ "channel": "court-and-spotlight",
+ "episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+ "generated": "2026-11-13",
+ "assumptions": [
+  "beat duration = narration words / 2.5 words per second",
+  "authentic share is an upper bound: a beat counts as real when it shows at least one authentic asset, even if graphics also appear",
+  "reference bands are provisional (see config/longform-qa-standards.json)"
+ ],
+ "standards_provisional": [
+  "includes videos with <60% coverage"
+ ],
+ "metrics": {
+  "estimated_minutes": 5.9,
+  "target_minutes": 9,
+  "beats": 22,
+  "ai_generated_share": 0,
+  "authentic_beat_share_upper_bound": 0.27,
+  "longest_constructed_stretch_s": 130,
+  "overlay_beat_share": 0.497,
+  "assets_used": 8,
+  "distinct_real_assets": 8,
+  "longest_beat_s": 35,
+  "scene_changes_per_min": 3.7
+ },
+ "findings": [
+  {
+   "id": "V1",
+   "level": "PASS",
+   "name": "AI-generated imagery",
+   "measured": "0% of estimated time",
+   "standard": "0% (hard rule; none of the 28 non-AI-Tested reference videos shows any)",
+   "why": "Generated pictures read as artificial when used as decoration.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 3-4",
+   "provisional": false
+  },
+  {
+   "id": "V2",
+   "level": "INFO",
+   "name": "Authentic media share",
+   "measured": "27% of estimated time shows at least one authentic asset (upper bound)",
+   "standard": "reference band 35-99% real captured (sampled; -12 points tolerance); band wider than 60 points, advisory only",
+   "why": "The references that look least artificial are built on real captured material; constructed graphics should explain what real media cannot.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 3 (5 videos, FRONTLINE PBS | Official, SunnyV2, Themaxready)",
+   "provisional": true
+  },
+  {
+   "id": "V3",
+   "level": "INFO",
+   "name": "All-constructed stretch",
+   "measured": "130 s (ending at beat C09b)",
+   "standard": "longest in the references 90 s (sampled runs of 15 s); FAIL above 1.5x",
+   "why": "Long runs of graphics without any real picture are the 'AI slideshow' pattern the references avoid.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 4",
+   "provisional": true
+  },
+  {
+   "id": "V4",
+   "level": "PASS",
+   "name": "Caption / text overlay share",
+   "measured": "50% of time on beats that carry a caption, label, kicker, badge or stamp",
+   "standard": "reference band 9-70% (+12 points)",
+   "why": "Text on every scene is not what the references do; labels belong to key terms, footage and credits.",
+   "evidence": "CAPTION-RESEARCH.md",
+   "provisional": true
+  },
+  {
+   "id": "V5",
+   "level": "PASS",
+   "name": "Repeated media",
+   "measured": "8 distinct authentic assets across 22 beats",
+   "standard": "no asset on more than 2 beats (author's rule; no reference measurement)",
+   "why": "Repeating one picture reads as generic filler.",
+   "evidence": "none (judgement)",
+   "provisional": true
+  },
+  {
+   "id": "V6",
+   "level": "PASS",
+   "name": "Credit on every third-party picture",
+   "measured": "every authentic picture has a credit field in its scene",
+   "standard": "100% (hard rule; the references show credit or source lines on borrowed material)",
+   "why": "CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen.",
+   "evidence": "CAPTION-RESEARCH.md; CLAUDE.md",
+   "provisional": false
+  },
+  {
+   "id": "V7",
+   "level": "PASS",
+   "name": "Licence and source recorded",
+   "measured": "12 assets with licence and source",
+   "standard": "every asset has licence, source URL and commercial use allowed (hard rule)",
+   "why": "CLAUDE.md hard rule.",
+   "evidence": "MEDIA-MANIFEST.json",
+   "provisional": false
+  },
+  {
+   "id": "V8",
+   "level": "PASS",
+   "name": "Long unchanging visual",
+   "measured": "longest single beat 35 s (beat length, not measured change)",
+   "standard": "longest static stretch in the references 26 s (frame-difference score); flag above max(60 s, that)",
+   "why": "A beat that long needs internal change (camera move, reveal, new panel) or a cut to real media.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 6",
+   "provisional": true
+  },
+  {
+   "id": "V9",
+   "level": "INFO",
+   "name": "Scene-change rate",
+   "measured": "3.7 beats/min (a beat can contain several internal changes)",
+   "standard": "reference 7.4-16.6 shots/min (dissolve-aware detector, +-15%)",
+   "why": "Compare only as an indication: beats are not shots.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 5",
+   "provisional": true
+  },
+  {
+   "id": "V10",
+   "level": "CHECK-BY-PERSON",
+   "name": "Visual matches narration (lexical screen only)",
+   "measured": "5 real pictures share no content word with their narration: C01:becker-2018.jpg, C01:gov-convicted-0.jpg, C01:gov-convicted-0.jpg, C02:becker-action-1994.jpg, C10:gov-convicted-0.jpg",
+   "standard": "a person confirms each flagged picture shows what is said (a word match is not proof of relevance)",
+   "why": "A picture unrelated to the narration is the strongest 'filler' signal.",
+   "evidence": "none (a person must judge)",
+   "provisional": true
+  },
+  {
+   "id": "A0",
+   "level": "SKIPPED",
+   "name": "Audio checks",
+   "measured": "no cue sheet for this channel",
+   "standard": "docs/longform/cue-sheets/<channel>.json",
+   "why": "",
+   "evidence": "",
+   "provisional": true
+  }
+ ]
+}

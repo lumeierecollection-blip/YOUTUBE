@@ -1,0 +1,138 @@
+{
+ "channel": "celebrity-news",
+ "episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+ "generated": "2026-11-13",
+ "assumptions": [
+  "beat duration = narration words / 2.5 words per second",
+  "authentic share is an upper bound: a beat counts as real when it shows at least one authentic asset, even if graphics also appear",
+  "reference bands are provisional (see config/longform-qa-standards.json)"
+ ],
+ "standards_provisional": [
+  "only 2 videos analysed of 4 planned"
+ ],
+ "metrics": {
+  "estimated_minutes": 7.1,
+  "target_minutes": 9,
+  "beats": 17,
+  "ai_generated_share": 0,
+  "authentic_beat_share_upper_bound": 0.648,
+  "longest_constructed_stretch_s": 54,
+  "overlay_beat_share": 0.384,
+  "assets_used": 7,
+  "distinct_real_assets": 7,
+  "longest_beat_s": 34,
+  "scene_changes_per_min": 2.4
+ },
+ "findings": [
+  {
+   "id": "V1",
+   "level": "PASS",
+   "name": "AI-generated imagery",
+   "measured": "0% of estimated time",
+   "standard": "0% (hard rule; none of the 28 non-AI-Tested reference videos shows any)",
+   "why": "Generated pictures read as artificial when used as decoration.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 3-4",
+   "provisional": false
+  },
+  {
+   "id": "V2",
+   "level": "FAIL",
+   "name": "Authentic media share",
+   "measured": "65% of estimated time shows at least one authentic asset (upper bound)",
+   "standard": "reference band 96-100% real captured (sampled; -12 points tolerance)",
+   "why": "The references that look least artificial are built on real captured material; constructed graphics should explain what real media cannot.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 3 (2 videos, Nicki Swift, Patrick Cc:)",
+   "provisional": true
+  },
+  {
+   "id": "V3",
+   "level": "FAIL",
+   "name": "All-constructed stretch",
+   "measured": "54 s (ending at beat N09)",
+   "standard": "longest in the references 30 s (sampled runs of 15 s); FAIL above 1.5x",
+   "why": "Long runs of graphics without any real picture are the 'AI slideshow' pattern the references avoid.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 4",
+   "provisional": true
+  },
+  {
+   "id": "V4",
+   "level": "PASS",
+   "name": "Caption / text overlay share",
+   "measured": "38% of time on beats that carry a caption, label, kicker, badge or stamp",
+   "standard": "reference band 14-61% (+12 points)",
+   "why": "Text on every scene is not what the references do; labels belong to key terms, footage and credits.",
+   "evidence": "CAPTION-RESEARCH.md",
+   "provisional": true
+  },
+  {
+   "id": "V5",
+   "level": "WARN",
+   "name": "Repeated media",
+   "measured": "lf2/celebrity-news/swift-2019-portrait.jpg x5, lf2/celebrity-news/braun-2022.jpg x3",
+   "standard": "no asset on more than 2 beats (author's rule; no reference measurement)",
+   "why": "Repeating one picture reads as generic filler.",
+   "evidence": "none (judgement)",
+   "provisional": true
+  },
+  {
+   "id": "V6",
+   "level": "FAIL",
+   "name": "Credit on every third-party picture",
+   "measured": "8 without a credit field in the scene: N02:swift-2019-portrait.jpg, N05:swift-2019-portrait.jpg, N06:swift-2019-portrait.jpg, N06:braun-2022.jpg, N07:braun-2022.jpg, N08b:swift-amas-2019.png, N10:swift-2019-portrait.jpg, N10:braun-2022.jpg",
+   "standard": "100% (hard rule; the references show credit or source lines on borrowed material)",
+   "why": "CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen.",
+   "evidence": "CAPTION-RESEARCH.md; CLAUDE.md",
+   "provisional": false
+  },
+  {
+   "id": "V7",
+   "level": "PASS",
+   "name": "Licence and source recorded",
+   "measured": "7 assets with licence and source",
+   "standard": "every asset has licence, source URL and commercial use allowed (hard rule)",
+   "why": "CLAUDE.md hard rule.",
+   "evidence": "MEDIA-MANIFEST.json",
+   "provisional": false
+  },
+  {
+   "id": "V8",
+   "level": "PASS",
+   "name": "Long unchanging visual",
+   "measured": "longest single beat 34 s (beat length, not measured change)",
+   "standard": "longest static stretch in the references 28 s (frame-difference score); flag above max(60 s, that)",
+   "why": "A beat that long needs internal change (camera move, reveal, new panel) or a cut to real media.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 6",
+   "provisional": true
+  },
+  {
+   "id": "V9",
+   "level": "WARN",
+   "name": "Scene-change rate",
+   "measured": "2.4 beats/min (a beat can contain several internal changes)",
+   "standard": "reference 10.5-12.1 shots/min (dissolve-aware detector, +-15%)",
+   "why": "Compare only as an indication: beats are not shots.",
+   "evidence": "VISUAL-EDITING-RESEARCH.md section 5",
+   "provisional": true
+  },
+  {
+   "id": "V10",
+   "level": "CHECK-BY-PERSON",
+   "name": "Visual matches narration (lexical screen only)",
+   "measured": "4 real pictures share no content word with their narration: N06:braun-2022.jpg, N07:braun-2022.jpg, N10:braun-2022.jpg, N15:swift-eras-bcplace-2024.jpg",
+   "standard": "a person confirms each flagged picture shows what is said (a word match is not proof of relevance)",
+   "why": "A picture unrelated to the narration is the strongest 'filler' signal.",
+   "evidence": "none (a person must judge)",
+   "provisional": true
+  },
+  {
+   "id": "A0",
+   "level": "SKIPPED",
+   "name": "Audio checks",
+   "measured": "no cue sheet for this channel",
+   "standard": "docs/longform/cue-sheets/<channel>.json",
+   "why": "",
+   "evidence": "",
+   "provisional": true
+  }
+ ]
+}
