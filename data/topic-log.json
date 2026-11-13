@@ -2982,9 +2982,14 @@
           "topic": "TVA Inspector General Finds 196 of 240 Welds Failed on Fort Loudoun Dam Turbine",
           "slug": "tva-inspector-general-fort-loudoun-dam-welds",
           "reserved_at": "2026-11-12T17:12:41.224Z"
+        },
+        {
+          "topic": "Andhra Pradesh Overhauls Fireworks Safety Framework After Fatal Blasts",
+          "slug": "andhra-pradesh-fireworks-safety-framework",
+          "reserved_at": "2026-11-13T16:40:07.204Z"
         }
       ],
-      "last_generated": "2026-11-12T17:12:41.225Z"
+      "last_generated": "2026-11-13T16:40:07.205Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
