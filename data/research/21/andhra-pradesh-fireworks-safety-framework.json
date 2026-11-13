@@ -1,0 +1,59 @@
+{
+  "topic_slug": "andhra-pradesh-fireworks-safety-framework",
+  "strongest_angle": "The Andhra Pradesh government has overhauled its fireworks safety framework following fatal manufacturing unit explosions in Rayavaram and Vetlapalem by introducing a system of centralized monitoring, risk-based inspections, and a two-stage licensing process.",
+  "key_facts": [
+    {
+      "fact": "The Andhra Pradesh government issued a government order on November 7, 2026, establishing new safety frameworks and committees following explosions at Sri Ganapathi Grand Fireworks in Rayavaram and Surya Sri Fire Works in Vetlapalem.",
+      "source_url": "https://www.newindianexpress.com/states/andhra-pradesh/2026/Nov/10/ap-rolls-out-norms-for-fireworks-units",
+      "source_name": "The New Indian Express",
+      "confidence": "high"
+    },
+    {
+      "fact": "Under the new framework announced on November 7, 2026, the Director-General of State Disaster Response and Fire Services is placed in charge of fireworks safety, making inspecting officers personally accountable.",
+      "source_url": "https://teluguscope.com/andhra-pradesh-fireworks-safety-nodal-authority-two-stage-licence",
+      "source_name": "Telugu Scope",
+      "confidence": "high"
+    },
+    {
+      "fact": "The reforms introduced in Andhra Pradesh following the Rayavaram and Vetlapalem blasts feature a state-wide online portal for issuing two-stage licences with geo-tagged proof and risk-based inspections.",
+      "source_url": "https://www.thehindu.com/news/national/andhra-pradesh/andhra-pradesh-tightens-fireworks-safety-rules-after-fatal-blasts/article71681772.ece",
+      "source_name": "The Hindu",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Date of government order",
+      "value": 7,
+      "unit": "November 2026",
+      "source_url": "https://teluguscope.com/andhra-pradesh-fireworks-safety-nodal-authority-two-stage-licence"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Andhra Pradesh",
+      "kind": "place"
+    },
+    {
+      "name": "Rayavaram",
+      "kind": "place"
+    },
+    {
+      "name": "Vetlapalem",
+      "kind": "place"
+    },
+    {
+      "name": "Sri Ganapathi Grand Fireworks",
+      "kind": "organization"
+    },
+    {
+      "name": "Surya Sri Fire Works",
+      "kind": "organization"
+    },
+    {
+      "name": "Director-General of State Disaster Response and Fire Services",
+      "kind": "organization"
+    }
+  ]
+}
