@@ -1184,6 +1184,14 @@
       "pillar": "Trending AI tools and apps",
       "hook": "Google just launched Tabletop, a new experiment that lets groups build custom AI workspaces together.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+    },
+    "2026-11-13-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "43431880370",
+      "trigger": "schedule",
+      "updated_at": "2026-11-13T13:14:13.030Z"
     }
   },
   "uploads": [
@@ -2396,5 +2404,5 @@
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th"
   ],
-  "last_poll_at": "2026-11-13T01:56:26.750Z"
+  "last_poll_at": "2026-11-13T13:14:13.029Z"
 }
