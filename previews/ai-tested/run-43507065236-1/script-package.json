@@ -1,0 +1,130 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43507065236-1",
+  "topic": "Can AI multiply big numbers?",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "AI got the first four digits of a big multiplication right.",
+      "scene": 0,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "Everything after that was wrong.",
+      "scene": 0,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "Right length, wrong number.",
+      "scene": 1,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "We gave Gemini Flash-Lite ten problems at every size, from two digits to ten.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Code checked every digit.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "At two digits it was perfect, and from six digits up it got none right.",
+      "scene": 3,
+      "claim_ids": [
+        "direct"
+      ]
+    },
+    {
+      "text": "Then we asked it to show its working, and it got twenty-one of twenty-five right.",
+      "scene": 4,
+      "claim_ids": [
+        "worked"
+      ]
+    },
+    {
+      "text": "So make AI show its working, or check its sums with code.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "recommendation or question for viewers, drawn from the measured results"
+    },
+    {
+      "text": "Would you have checked?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "recommendation or question for viewers, drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+      "published": "2026-11-13",
+      "title": "AI Tested multiplication test run"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "miss",
+      "claim": "For 61739882 × 86717887 the model answered 5353855565656324; the product computed by code is 5353952110669334. Both have sixteen digits and the first four digits agree; the fifth differs.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+      "published": "2026-11-13",
+      "excerpt": "For 61739882 × 86717887 the model answered 5353855565656324; the product computed by code is 5353952110669334. Both have sixteen digits and the first four digits agree; the fifth differs.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-13: temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code."
+    },
+    {
+      "claim_id": "design",
+      "claim": "Gemini 3.1 Flash-Lite was given ten multiplication problems at every size from two to ten digits, one attempt each at temperature 0, and code checked every digit of every answer.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+      "published": "2026-11-13",
+      "excerpt": "Gemini 3.1 Flash-Lite was given ten multiplication problems at every size from two to ten digits, one attempt each at temperature 0, and code checked every digit of every answer.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-13: temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code."
+    },
+    {
+      "claim_id": "direct",
+      "claim": "Answering with only the number, Gemini 3.1 Flash-Lite got 10 of 10 right at two digits and 0 of 10 at each size from six to ten digits.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+      "published": "2026-11-13",
+      "excerpt": "Answering with only the number, Gemini 3.1 Flash-Lite got 10 of 10 right at two digits and 0 of 10 at each size from six to ten digits.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-13: temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code."
+    },
+    {
+      "claim_id": "worked",
+      "claim": "Asked to show its working, Gemini 3.1 Flash-Lite got 21 of 25 right across six to ten digits (5, 5, 4, 4 and 3 of 5).",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+      "published": "2026-11-13",
+      "excerpt": "Asked to show its working, Gemini 3.1 Flash-Lite got 21 of 25 right across six to ten digits (5, 5, 4, 4 and 3 of 5).",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-13: temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code."
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "measured_wpm": 158.2,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "AI got the first four digits of a big multiplication right.",
+      "scene": 0,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "Everything after that was wrong.",
+      "scene": 0,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "Right length, wrong number.",
+      "scene": 1,
+      "claim_ids": [
+        "miss"
+      ]
+    },
+    {
+      "text": "We gave Gemini Flash-Lite ten problems at every size, from two digits to ten.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Code checked every digit.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "At two digits it was perfect, and from six digits up it got none right.",
+      "scene": 3,
+      "claim_ids": [
+        "direct"
+      ]
+    },
+    {
+      "text": "Then we asked it to show its working, and it got twenty-one of twenty-five right.",
+      "scene": 4,
+      "claim_ids": [
+        "worked"
+      ]
+    },
+    {
+      "text": "So make AI show its working, or check its sums with code.",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "recommendation or question for viewers, drawn from the measured results"
+    },
+    {
+      "text": "Would you have checked?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "recommendation or question for viewers, drawn from the measured results"
+    }
+  ],
+  "words": 84,
+  "estimated_seconds": 36.7,
+  "inside_window": true,
+  "kept": [
+    "example",
+    "design2",
+    "ask",
+    "hook",
+    "hook2",
+    "design",
+    "results",
+    "fix",
+    "tip"
+  ]
+}
