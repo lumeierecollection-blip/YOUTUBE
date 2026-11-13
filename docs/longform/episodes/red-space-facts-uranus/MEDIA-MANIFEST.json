@@ -1,0 +1,403 @@
+{
+ "episode": "Uranus: The Planet That Rolls Around the Sun",
+ "channel": "red-space-facts",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/red-space-facts/uranus-voyager2-1986.jpg",
+   "kind": "authentic",
+   "description": "This is an image of the planet Uranus taken by the spacecraft Voyager 2 in 1986. See Uranus.jpg for how Uranus would appear in visible light.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uranus2.jpg",
+   "creator": "NASA/JPL-Caltech",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S01",
+    "S05",
+    "S07b",
+    "S15"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-voyager2-two-color.jpg",
+   "kind": "authentic",
+   "description": "Two images of Uranus taken by Voyager 2 at a distance of 9.1 million km. The picture on the left is a composite using images from the blue, green, and orange, filters, processed to approximate Uranus as the human eye would see it. The atmosphere is very clear, the blue-green color coming from absorption of red light by methane. The image on the right was produced using ultraviolet, violet, and orange filters to exaggerate the contrast. The dark polar hood is over the south pole of the planet. The doughnut shapes are camera blemishes. Uranus is about 51,000 km in diameter.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Two_color_images_of_Uranus_from_9.1_million_km_(Voyager_2,_P-29478).tif",
+   "creator": "NASA Goddard Space Flight Center",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S08"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-rings-voyager2.jpg",
+   "kind": "authentic",
+   "description": "Voyager 2 returned this picture of the Uranus rings on Jan. 22, 1986, from a distance of 2.52 million kilometers (1.56 million miles). All nine known rings are visible in this image, a 15-second exposure through the clear filter on Voyager's narrow-angle camera. The rings are quite dark and very narrow. The most prominent and outermost of the nine, called epsilon, is seen at top. The next three in toward Uranus -- called delta, gamma and eta -- are much fainter and more narrow than the epsilon ring. Then come the beta and alpha rings and finally the innermost grouping, known simply as the 4, 5 and 6 rings. The last three are very faint and are at the limit of detection for the Voyager camera. Uranus' rings range in width from about 100 km (60 mi) at the widest part of the epsilon ring to only a few kilometers for most of the others. This image was processed to enhance these narrow features; the bright dots are imperfections on the camera detector. The resolution scale is approximately 50 km (30 mi). The Voyager project is managed for NASA by the Jet Propulsion Laboratory.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uranus_Rings,_Voyager_2.tif",
+   "creator": "NASA",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S08",
+    "S08b"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-webb-nircam-2023.png",
+   "kind": "authentic",
+   "description": "The infrared image features dramatic rings as well as bright features in the planet’s atmosphere. The Webb data demonstrates the observatory's unprecedented sensitivity for the faintest dusty rings, which have only ever been imaged by two other facilities: the Voyager 2 spacecraft as it flew past the planet in 1986, and the Keck Observatory with advanced adaptive optics.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:STScI-Uranus-NIRCam.png",
+   "creator": "NASA, ESA, CSA, STScI",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S05",
+    "S13"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-webb-closeup-2023.png",
+   "kind": "authentic",
+   "description": "This image of Uranus from NIRCam (Near-Infrared Camera) on NASA’s James Webb Space Telescope shows the planet and its rings in new clarity. The Webb image exquisitely captures Uranus’s seasonal north polar cap, including the bright, white, inner cap and the dark lane in the bottom of the polar cap. Uranus’ dim inner and outer rings are also visible in this image, including the elusive Zeta ring—the extremely faint and diffuse ring closest to the planet. This Webb image also shows 9 of the planet’s 27 moons. They are the blue dots that surround the planet’s rings. Clockwise starting at 2 o’clock, they are: Rosalind, Puck, Belinda, Desdemona, Cressida, Bianca, Portia, Juliet, and Perdita. The orbits of these moons share the 98-degree tilt of their parent planet relative to the plane of the solar system. One day on Uranus is about 17 hours, so the planet’s rotation is relatively quick. This makes it supremely difficult for observatories with a sharp eye like Webb to capture one simple image of the entire planet – storms and other atmospheric features, and the planet’s moons, move visibly within minutes. This image combines several longer and shorter exposures of this dynamic system to correct for those slight changes throughout the observing time. NASA, ESA, CSA, STScI",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uranus_Close-up_(NIRCam_image)_(2023-150).png",
+   "creator": "Image: NASA, ESA, CSA, STScI",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S10b",
+    "S16"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-new-moon-2025.png",
+   "kind": "authentic",
+   "description": "Astronomers using NASA’s James Webb Space Telescope discovered a new moon orbiting Uranus in images taken by Webb’s NIRCam (Near-Infrared Camera). This image shows the moon, designated S/2025 U1, as well as 13 of the 28 other known moons orbiting the planet. (The small moon Cordelia orbits just inside the outermost ring, but is not visible in these views due to glare from the rings.) Due to the drastic differences in brightness levels, the image is a composite of three different treatments of the data, allowing the viewer to see details in the planetary atmosphere, the surrounding rings, and the orbiting moons. The data was taken with NIRCam’s wide band F150W2 filter that transmits infrared wavelengths from about 1.0 to 2.4 microns. NASA, ESA, CSA, Maryame El Moutamid (SwRI), Matthew Hedman (University of Idaho) Joseph DePasquale (STScI)",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uranus_-_New_Moon_(Annotated)_(01K2283APYH89WYXJRX28XW5RT).png",
+   "creator": "Image: NASA, ESA, CSA, Maryame El Moutamid (SwRI), Matthew Hedman (Uni",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S14"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-flyby-f1.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere during the Voyager 2 flyby geometry (scientific visualisation), frame 1 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-flyby-f2.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere during the Voyager 2 flyby geometry (scientific visualisation), frame 2 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S09"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-flyby-f3.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere during the Voyager 2 flyby geometry (scientific visualisation), frame 3 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-equinox-orbit-f1.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere at equinox, orbit view (scientific visualisation), frame 1 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-equinox-orbit-f2.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere at equinox, orbit view (scientific visualisation), frame 2 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/svs4666-equinox-orbit-f3.jpg",
+   "kind": "scientific_visualisation",
+   "description": "Uranus magnetosphere at equinox, orbit view (scientific visualisation), frame 3 of 3 at 1/4, 2/4, 3/4 of the 96 s clip",
+   "source_url": "https://svs.gsfc.nasa.gov/4666/",
+   "creator": "NASA/Goddard Space Flight Center Scientific Visualization Studio; animator Tom Bridgman",
+   "licence": "Public domain (NASA SVS media; credit requested)",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S09b"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/sss-2k_uranus.jpg",
+   "kind": "visualisation_texture",
+   "description": "Uranus surface texture (map for 3D visualisation; based on NASA imagery)",
+   "source_url": "https://www.solarsystemscope.com/textures/",
+   "creator": "Solar System Scope (INOVE)",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/sss-2k_earth_daymap.jpg",
+   "kind": "visualisation_texture",
+   "description": "Earth day map texture",
+   "source_url": "https://www.solarsystemscope.com/textures/",
+   "creator": "Solar System Scope (INOVE)",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/sss-2k_stars_milky_way.jpg",
+   "kind": "visualisation_texture",
+   "description": "Milky Way star-field background",
+   "source_url": "https://www.solarsystemscope.com/textures/",
+   "creator": "Solar System Scope (INOVE)",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/sss-2k_sun.jpg",
+   "kind": "visualisation_texture",
+   "description": "Sun surface texture",
+   "source_url": "https://www.solarsystemscope.com/textures/",
+   "creator": "Solar System Scope (INOVE)",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": []
+  }
+ ],
+ "footage_gaps": [
+  {
+   "beat": "S01",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-voyager2-1986.jpg",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S08b",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-rings-voyager2.jpg",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S09",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/svs4666-flyby-f2.jpg",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S09b",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/svs4666-equinox-orbit-f3.jpg",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S10b",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-webb-closeup-2023.png",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S13",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-webb-nircam-2023.png",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S14",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-new-moon-2025.png",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S16",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/uranus-webb-closeup-2023.png",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  }
+ ],
+ "missing_files": [],
+ "sources": {
+  "NF": {
+   "title": "NASA NSSDCA, Uranus Fact Sheet (and Earth Fact Sheet)",
+   "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/uranusfact.html",
+   "retrieved": "2026-11-13"
+  },
+  "WU": {
+   "title": "Wikipedia: Uranus",
+   "url": "https://en.wikipedia.org/wiki/Uranus",
+   "retrieved": "2026-11-13"
+  },
+  "WV": {
+   "title": "Wikipedia: Voyager 2",
+   "url": "https://en.wikipedia.org/wiki/Voyager_2",
+   "retrieved": "2026-11-13"
+  },
+  "WR": {
+   "title": "Wikipedia: Rings of Uranus",
+   "url": "https://en.wikipedia.org/wiki/Rings_of_Uranus",
+   "retrieved": "2026-11-13"
+  },
+  "WM": {
+   "title": "Wikipedia: Moons of Uranus",
+   "url": "https://en.wikipedia.org/wiki/Moons_of_Uranus",
+   "retrieved": "2026-11-13"
+  },
+  "WP": {
+   "title": "Wikipedia: Uranus Orbiter and Probe",
+   "url": "https://en.wikipedia.org/wiki/Uranus_Orbiter_and_Probe",
+   "retrieved": "2026-11-13"
+  },
+  "SVS": {
+   "title": "NASA Scientific Visualization Studio 4666, Uranus' Magnetosphere",
+   "url": "https://svs.gsfc.nasa.gov/4666/",
+   "retrieved": "2026-11-13"
+  },
+  "IMG": {
+   "title": "NASA / JPL / STScI images via Wikimedia Commons (public domain); textures Solar System Scope (CC BY 4.0)",
+   "url": "https://commons.wikimedia.org/",
+   "retrieved": "2026-11-13"
+  }
+ }
+}

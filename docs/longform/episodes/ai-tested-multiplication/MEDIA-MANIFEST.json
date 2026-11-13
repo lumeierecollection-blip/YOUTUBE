@@ -1,0 +1,132 @@
+{
+ "episode": "At What Size Does AI Multiplication Break? We Tested It",
+ "channel": "ai-tested",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/ai-tested/gemini-models-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Models - Gemini API | Google AI Studio",
+   "source_url": "https://ai.google.dev/gemini-api/docs/models",
+   "creator": "aistudio.google.com",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/ai-tested/gemini-models-1.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Models - Gemini API | Google AI Studio",
+   "source_url": "https://ai.google.dev/gemini-api/docs/models",
+   "creator": "aistudio.google.com",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/ai-tested/gemini-models-2.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Models - Gemini API | Google AI Studio",
+   "source_url": "https://ai.google.dev/gemini-api/docs/models",
+   "creator": "aistudio.google.com",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": [
+    "A05"
+   ]
+  },
+  {
+   "asset": "lf2/ai-tested/gemini-models.webm",
+   "kind": "screen recording of a real browser session",
+   "description": "Models - Gemini API | Google AI Studio",
+   "source_url": "https://ai.google.dev/gemini-api/docs/models",
+   "creator": "our capture",
+   "licence": "our recording of a third-party page",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": [
+    "A05"
+   ]
+  },
+  {
+   "asset": "lf2/ai-tested/statsbomb-readme-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "GitHub - hudl/open-data: Free football data from StatsBomb · GitHub",
+   "source_url": "https://github.com/statsbomb/open-data",
+   "creator": "github.com",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/ai-tested/statsbomb-readme-1.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "GitHub - hudl/open-data: Free football data from StatsBomb · GitHub",
+   "source_url": "https://github.com/statsbomb/open-data",
+   "creator": "github.com",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": []
+  }
+ ],
+ "footage_gaps": [],
+ "missing_files": [],
+ "sources": {
+  "RUN1": {
+   "title": "AI Tested multiplication test, run 1 (GitHub Actions)",
+   "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43343589332",
+   "date": "2026-11-13T01:30:40.728Z",
+   "file": "data/longform/ai-tested/multiply-run1.json"
+  },
+  "RUN2": {
+   "title": "AI Tested multiplication test, run 2 (GitHub Actions)",
+   "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+   "date": "2026-11-13T04:52:54.352Z",
+   "file": "data/longform/ai-tested/multiply-run2.json"
+  },
+  "FF": {
+   "title": "Dziri et al. (2023), Faith and Fate: Limits of Transformers on Compositionality (arXiv 2305.18654, NeurIPS 2023)",
+   "url": "https://arxiv.org/abs/2305.18654"
+  },
+  "MODELS": {
+   "title": "Google AI Studio: Models (captured 13 Nov 2026)",
+   "url": "https://aistudio.google.com/docs/models"
+  }
+ }
+}

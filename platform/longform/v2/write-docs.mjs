@@ -5,12 +5,12 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
 
-for (const ch of ["hidden-past", "ai-tested", "court-and-spotlight", "rival-lines"]) {
+for (const ch of ["hidden-past", "ai-tested", "court-and-spotlight", "rival-lines", "red-space-facts", "psychology", "celebrity-news"]) {
   const { EPISODE: e, SOURCES: S } = await import(`./episodes/${ch}.mjs`);
   const words = e.beats.map((b) => b.vo).join(" ").split(/\s+/).length;
   const md = [
-    `# ${e.title}`, "", `Channel: **${ch}** · sample episode for the long-form v2 visual approval · ${e.beats.length} beats · ${words} words of narration (about ${(words / 165).toFixed(1)} min at 165 wpm; target for the full episode ${e.target_minutes} min).`, "",
-    "> Status: condensed script. It covers the whole story arc in its final order, at storyboard density. Lengthening it to the target runs on the same sources and beats; every added sentence must cite a source below.", "",
+    `# ${e.title}`, "", `Channel: **${ch}** · sample episode for the long-form v2 visual approval · ${e.beats.length} beats · ${words} words of narration: about ${(words / 150).toFixed(1)} min of speech at 150 wpm, plus visual holds (maps, data animation, real images) that the storyboard plays without narration; target ${e.target_minutes} min.`, "",
+    e.title_options ? `Title options: ${e.title_options.map((t) => `"${t}"`).join(" · ")}` : "", "",
     "## Sources", ...Object.entries(S).map(([k, s]) => `- **${k}**: ${s.title}. ${s.url || ""}${s.captured_from ? ` (captured from ${s.captured_from})` : ""}${s.status ? `, ${s.status}` : ""}`), "",
     "## Script and storyboard", "| Beat | Part | Narration | Picture (scene type) | Sources | Reference technique |", "|---|---|---|---|---|---|",
     ...e.beats.map((b) => `| ${b.id} | ${b.part} | ${b.vo.replace(/\|/g, "/")} | ${b.scene.type}${b.scene.date ? ` · ${b.scene.date}` : ""} | ${b.src.join(", ")} | ${b.ref.replace(/\|/g, "/")} |`), "",

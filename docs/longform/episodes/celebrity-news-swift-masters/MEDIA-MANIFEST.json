@@ -1,0 +1,209 @@
+{
+ "episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+ "channel": "celebrity-news",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/celebrity-news/swift-eras-london-2024.jpg",
+   "kind": "authentic",
+   "description": "1989 era at the Taylor Swift Eras Tour concert in London",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_Eras_Tour_London_20240819_1989era.jpg",
+   "creator": "BrigidLIS",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N01"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-eras-bcplace-2024.jpg",
+   "kind": "authentic",
+   "description": "A friendship bracelet reading \"TAYLOR SWIFT THE ERAS TOUR\" on the side of BC Place, along with a poster for the tour.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_The_Eras_Tour_at_BC_Place,_Landscape.jpg",
+   "creator": "JazzHandsIncarnate",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N15"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-eras-red-2023.jpg",
+   "kind": "authentic",
+   "description": "Taylor Swift performing \" I Knew You Were Trouble \" at the Eras Tour",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Eras_Tour_-_Inglewood,_California_-_Red_act_7.jpg",
+   "creator": "Paolo V",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N04",
+    "N11"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-2007.jpg",
+   "kind": "authentic",
+   "description": "U.S. Country music singer Taylor Swift performing at Yahoo headquarters TaylorSwift4",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_(2007)_retouched.jpg",
+   "creator": "Brian Cantoni",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N04"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-amas-2019.png",
+   "kind": "authentic",
+   "description": "Taylor Swift at the 2019 American Music Awards red carpet",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_AMAs_2019.png",
+   "creator": "cosmopolitanuk",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N08b"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-2019-portrait.jpg",
+   "kind": "authentic",
+   "description": "Taylor Swift at the iHeartRadio Music Awards 2019 - Photo by Glenn Francis of www.PacificProDigital.com",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_2_-_2019_by_Glenn_Francis_(cropped).jpg",
+   "creator": "Toglenn",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N02",
+    "N05",
+    "N06",
+    "N10",
+    "N14"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/braun-2022.jpg",
+   "kind": "authentic",
+   "description": "Cropped headshot / portrait pic taken from a timer.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Scott_(Scooter)_Braun_2022.jpg",
+   "creator": "Braunadd (Scooter) Scott Braun",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N06",
+    "N07",
+    "N10"
+   ]
+  }
+ ],
+ "footage_gaps": [
+  {
+   "beat": "N01",
+   "scene": "cover",
+   "reference_used": "red-carpet or performance video in a magazine package",
+   "we_use": "lf2/celebrity-news/swift-eras-london-2024.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "N02",
+   "scene": "post",
+   "reference_used": "the original post or video statement",
+   "we_use": "lf2/celebrity-news/swift-2019-portrait.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "N07",
+   "scene": "post",
+   "reference_used": "the original post or video statement",
+   "we_use": "lf2/celebrity-news/braun-2022.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "N08b",
+   "scene": "post",
+   "reference_used": "the original post or video statement",
+   "we_use": "lf2/celebrity-news/swift-amas-2019.png",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "N15",
+   "scene": "cover",
+   "reference_used": "red-carpet or performance video in a magazine package",
+   "we_use": "lf2/celebrity-news/swift-eras-bcplace-2024.jpg",
+   "licensed_video_available": "no"
+  }
+ ],
+ "missing_files": [],
+ "sources": {
+  "TM": {
+   "title": "Wikipedia: Taylor Swift masters dispute (with its citations to Billboard, Variety, WSJ, Tumblr and taylorswift.com)",
+   "url": "https://en.wikipedia.org/wiki/Taylor_Swift_masters_dispute",
+   "retrieved": "2026-11-13"
+  },
+  "GMA": {
+   "title": "Good Morning America, 'Taylor Swift reclaims her masters, shares powerful letter' (30 May 2025)",
+   "url": "https://www.goodmorningamerica.com/culture/story/taylor-swift-reclaims-her-masters-shares-powerful-letter-my-greatest-dream-come-true-122348547"
+  },
+  "BB": {
+   "title": "Billboard, as cited by press reports: purchase price of nearly $360 million (not confirmed by the parties)",
+   "url": "https://www.aol.com/youre-not-prepared-much-taylor-132400767.html"
+  },
+  "US": {
+   "title": "17 U.S.C. § 114(b) (sound recordings: independent fixation)",
+   "url": "https://www.law.cornell.edu/uscode/text/17/114"
+  },
+  "COMMONS": {
+   "title": "Wikimedia Commons photographs (public/lf2/celebrity-news/ATTRIBUTIONS.json)",
+   "url": "https://commons.wikimedia.org/"
+  }
+ }
+}

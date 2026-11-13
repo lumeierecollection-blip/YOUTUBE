@@ -1,0 +1,80 @@
+{
+ "episode": "The Pygmalion Effect: What the Famous Classroom Experiment Really Found",
+ "channel": "psychology",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/psychology/rosenthal-2008.jpg",
+   "kind": "authentic",
+   "description": "Robert Rosenthal",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Robert_Rosenthal_(15615621830).jpg",
+   "creator": "Christopher Michel",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "psychology",
+   "intended_episode": "The Pygmalion Effect: What the Famous Classroom Experiment Really Found",
+   "used_in_beats": [
+    "P04"
+   ]
+  },
+  {
+   "asset": "lf2/psychology/rosenthal-2018.jpg",
+   "kind": "authentic",
+   "description": "Robert Rosenthal in 2018 by Christopher Michel",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Robert_Rosenthal_in_2018.jpg",
+   "creator": "Christopher Michel",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "psychology",
+   "intended_episode": "The Pygmalion Effect: What the Famous Classroom Experiment Really Found",
+   "used_in_beats": []
+  }
+ ],
+ "footage_gaps": [],
+ "missing_files": [],
+ "sources": {
+  "RJ": {
+   "title": "Rosenthal & Jacobson (1968), Pygmalion in the Classroom (as described in the sources below)",
+   "url": "https://en.wikipedia.org/wiki/Pygmalion_in_the_Classroom"
+  },
+  "JH": {
+   "title": "Jussim & Harber (2005), Teacher expectations and self-fulfilling prophecies: knowns and unknowns, resolved and unresolved controversies. Personality and Social Psychology Review 9(2):131-155",
+   "url": "https://doi.org/10.1207/s15327957pspr0902_3",
+   "read_from": "https://gwern.net/doc/statistics/bias/publication/2005-jussim.pdf"
+  },
+  "R84": {
+   "title": "Raudenbush (1984), Magnitude of teacher expectancy effects on pupil IQ as a function of the credibility of expectancy induction. J. Educational Psychology 76(1):85-97; data via metafor dat.raudenbush1985",
+   "url": "https://mail.metafor-project.org/doku.php/analyses:raudenbush1985"
+  },
+  "WP": {
+   "title": "Wikipedia: Pygmalion effect",
+   "url": "https://en.wikipedia.org/wiki/Pygmalion_effect",
+   "retrieved": "2026-11-13"
+  },
+  "WPC": {
+   "title": "Wikipedia: Pygmalion in the Classroom (Thorndike's critique)",
+   "url": "https://en.wikipedia.org/wiki/Pygmalion_in_the_Classroom",
+   "retrieved": "2026-11-13"
+  },
+  "CH": {
+   "title": "Wikipedia: Clever Hans",
+   "url": "https://en.wikipedia.org/wiki/Clever_Hans",
+   "retrieved": "2026-11-13"
+  },
+  "COMMONS": {
+   "title": "Robert Rosenthal photographs, Wikimedia Commons",
+   "url": "https://commons.wikimedia.org/"
+  }
+ }
+}
