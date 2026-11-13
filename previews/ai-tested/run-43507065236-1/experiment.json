@@ -1,0 +1,80 @@
+{
+  "kind": "multiply",
+  "source": "stored test run",
+  "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+  "date": "2026-11-13",
+  "seed": 20261113,
+  "method": "temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code",
+  "model": {
+    "name": "Gemini 3.1 Flash-Lite",
+    "id": "gemini-3.1-flash-lite",
+    "host": "Google AI Studio"
+  },
+  "direct": {
+    "2": {
+      "right": 10,
+      "of": 10
+    },
+    "3": {
+      "right": 8,
+      "of": 10
+    },
+    "4": {
+      "right": 8,
+      "of": 10
+    },
+    "5": {
+      "right": 1,
+      "of": 10
+    },
+    "6": {
+      "right": 0,
+      "of": 10
+    },
+    "7": {
+      "right": 0,
+      "of": 10
+    },
+    "8": {
+      "right": 0,
+      "of": 10
+    },
+    "9": {
+      "right": 0,
+      "of": 10
+    },
+    "10": {
+      "right": 0,
+      "of": 10
+    }
+  },
+  "worked": {
+    "6": {
+      "right": 5,
+      "of": 5
+    },
+    "7": {
+      "right": 5,
+      "of": 5
+    },
+    "8": {
+      "right": 4,
+      "of": 5
+    },
+    "9": {
+      "right": 4,
+      "of": 5
+    },
+    "10": {
+      "right": 3,
+      "of": 5
+    }
+  },
+  "miss": {
+    "digits": 8,
+    "a": "61739882",
+    "b": "86717887",
+    "answer": "5353855565656324",
+    "correct": "5353952110669334"
+  }
+}
