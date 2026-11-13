@@ -13,7 +13,7 @@ permissions:
 jobs:
   experiment:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -27,6 +27,8 @@ jobs:
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
           CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          LIST_GOOGLE: "1"
+          SKIP_MODELS: "gemini-3.5-flash-lite,cerebras/gpt-oss-120b,cerebras/qwen-3.8-27b"
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: node platform/longform/experiments/multiply.mjs output/longform-experiment/multiply.json
       - uses: actions/upload-artifact@v4

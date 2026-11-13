@@ -43,9 +43,34 @@ async function cerebrasModels() {
   } catch { return []; }
 }
 
+/** Other text models the Google key can call on the day (listed live, so no model name is assumed): open Gemma models and other Flash tiers. */
+async function googleListed() {
+  const keys = ["GEMINI_API_KEY_1", "GEMINI_API_KEY", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
+  if (!keys.length || !process.env.LIST_GOOGLE) return [];
+  try {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key=${keys[0]}`, { signal: AbortSignal.timeout(30000) });
+    if (!r.ok) return [];
+    const all = ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace("models/", ""));
+    console.error("google models listed:", all.join(", "));
+    const pick = all.filter((id) => /gemma|flash|pro/.test(id) && !/image|tts|audio|live|embed|vision|exp|preview|learn|latest|thinking/.test(id)).slice(0, 12);
+    const ask = (id) => async (text) => {
+      let last;
+      for (const key of keys) {
+        const q = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { temperature: 0, maxOutputTokens: 4096 } }), signal: AbortSignal.timeout(90000) });
+        if (q.ok) return ((await q.json()).candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("").trim();
+        last = Object.assign(new Error(`HTTP ${q.status}`), { status: q.status });
+        if (q.status !== 429) throw last;
+      }
+      throw last;
+    };
+    return pick.map((id) => ({ name: id, id, host: "Google AI Studio", ask: ask(id), pause: 4500 }));
+  } catch { return []; }
+}
+
 if (process.argv[1] && process.argv[1].endsWith("multiply.mjs")) {
   const out = process.argv[2] || "output/longform-experiment/multiply.json", problems = buildProblems();
-  const models = [...CANDIDATES.filter((c) => c.available()).map((c) => ({ ...c, host: c.id.startsWith("gemini") ? "Google AI Studio" : "Groq" })), ...(await cerebrasModels())];
+  const skip = (process.env.SKIP_MODELS || "").split(",").filter(Boolean);
+  const models = [...CANDIDATES.filter((c) => c.available()).map((c) => ({ ...c, host: c.id.startsWith("gemini") ? "Google AI Studio" : "Groq" })), ...(await googleListed()), ...(await cerebrasModels())].filter((m, i, all) => !skip.includes(m.id) && all.findIndex((x) => x.id === m.id) === i);
   console.error("models:", models.map((m) => m.id).join(", ") || "NONE");
   const results = [];
   for (const m of models) {
