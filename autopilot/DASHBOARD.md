@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-12 19:51 SAST
+Updated 2026-11-13 04:18 SAST
 
 **Next productions:** AI Tested 2026-11-13 11:00 SAST, Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-12 19:51 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed at script, attempts 1 |
-| Selected topic and score | The 1945 opening of the Nuremberg trials (71.1/100) |
+| Latest production | failed-final at script, attempts 2 |
+| Selected topic and score | The Discovery of the Lost Sanctuary of Asclepius (73.4/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 1 views, 0 likes, 0 comments (private) |
@@ -23,7 +23,7 @@ Updated 2026-11-12 19:51 SAST
 | Selected topic and score | Google Tabletop Collaborative AI Workspace (73.8/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 129 views, 5 likes, 0 comments (public), 80.1% average viewed |
+| Performance | 133 views, 5 likes, 0 comments (public), 71.93% average viewed |
 | Analytics | available |
 
 ## Needs your attention
@@ -126,3 +126,4 @@ Updated 2026-11-12 19:51 SAST
 - AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:
   - SCR-17 STRICT 
 - AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
+- Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th
