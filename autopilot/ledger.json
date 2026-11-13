@@ -1177,12 +1177,12 @@
       "attempts": 2,
       "run_id": "43502324291",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T20:45:20.439Z",
-      "stage": "script",
-      "topic": "Microsoft Finally Lets Users Turn Off Bing AI Features",
-      "score": 71.7,
-      "pillar": "AI tools ordinary people can use",
-      "hook": "Tired of forced artificial intelligence in your browser? Microsoft is finally giving users a way to turn off Bing AI.",
+      "updated_at": "2026-11-13T20:54:00.570Z",
+      "stage": "research",
+      "topic": "AI Unlocks Gödel's Lost Mathematical Notebooks",
+      "score": 62.9,
+      "pillar": "Unexpected AI abilities and limits",
+      "hook": "AI has just successfully unlocked long-lost notebooks containing hundreds of proved theorems by legendary mathematician Kurt Gödel.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
     },
     "2026-11-13-ch2": {
@@ -2355,6 +2355,15 @@
       "at_ms": 1794602690323,
       "score": 71.7,
       "pillar": "AI tools ordinary people can use"
+    },
+    {
+      "channel": "2",
+      "topic": "AI Unlocks Gödel's Lost Mathematical Notebooks",
+      "slug": "ai-unlocks-go-del-s-lost-mathematical-notebooks",
+      "slot": "2026-11-12-ch2",
+      "at_ms": 1794603240570,
+      "score": 62.9,
+      "pillar": "Unexpected AI abilities and limits"
     }
   ],
   "attention": [
