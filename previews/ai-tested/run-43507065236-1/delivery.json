@@ -1,0 +1,12 @@
+{
+  "title": "AI Gets Big Multiplication Wrong. We Tested It",
+  "description": "We gave Google's Gemini 3.1 Flash-Lite ten multiplication problems at every size from two to ten digits, and code checked every digit of every answer. Answering with only the number it was perfect at two digits and got none right from six digits up; asked to show its working it got 21 of 25 right at six digits and up. One test, run on 2026-11-13. Results can change between runs and as models update.\n\n#Shorts #AI #AITested #Gemini\n\nSource (test run and every reply): https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+  "tags": [
+    "AI test",
+    "AI maths",
+    "AI multiplication",
+    "Gemini Flash-Lite",
+    "can you trust AI",
+    "chain of thought"
+  ]
+}
