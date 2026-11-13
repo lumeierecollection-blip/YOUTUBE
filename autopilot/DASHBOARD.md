@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-13 15:39 SAST
+Updated 2026-11-13 22:56 SAST
 
 **Next productions:** Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST
 
@@ -19,11 +19,11 @@ Updated 2026-11-13 15:39 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed at script, attempts 1 |
-| Selected topic and score | AI Chatbots Are Secretly Recommending Fake Online Stores (74.7/100) |
+| Latest production | failed-final at tts, attempts 2 |
+| Selected topic and score | AI Unlocks Gödel's Lost Mathematical Notebooks (62.9/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 137 views, 5 likes, 0 comments (public), 71.93% average viewed |
+| Performance | 140 views, 5 likes, 0 comments (public), 69.89% average viewed |
 | Analytics | available |
 
 ## Needs your attention
@@ -127,3 +127,4 @@ Updated 2026-11-13 15:39 SAST
   - SCR-17 STRICT 
 - AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
 - Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th
+- AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1
