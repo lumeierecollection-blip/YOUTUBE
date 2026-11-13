@@ -1191,7 +1191,12 @@
       "attempts": 1,
       "run_id": "43431880370",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T13:14:13.030Z"
+      "updated_at": "2026-11-13T13:15:43.173Z",
+      "stage": "research",
+      "topic": "Google Releases Gemini 4 Hydrogen for Faster Everyday Tasks",
+      "score": 82.6,
+      "pillar": "New AI features and releases",
+      "hook": "Google just dropped Gemini 4 Hydrogen, promising lightning-fast answers."
     }
   },
   "uploads": [
@@ -2313,6 +2318,15 @@
       "at_ms": 1794535079480,
       "score": 73.4,
       "pillar": "Archaeological discoveries"
+    },
+    {
+      "channel": "2",
+      "topic": "Google Releases Gemini 4 Hydrogen for Faster Everyday Tasks",
+      "slug": "google-releases-gemini-4-hydrogen-for-faster-everyday-tasks",
+      "slot": "2026-11-13-ch2",
+      "at_ms": 1794575743173,
+      "score": 82.6,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
