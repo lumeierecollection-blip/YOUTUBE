@@ -1,0 +1,624 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "big-numeral-and-wrong-answer",
+      "objective": "Lead with the result: first four digits right, then wrong",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 224,
+      "start_s": 0,
+      "end_s": 7.466666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "example",
+      "treatment": "digit-by-digit-compare",
+      "objective": "Show the model's answer beside the correct product, digit by digit",
+      "background": "paper panel in saturated frame",
+      "from": 224,
+      "to": 367,
+      "start_s": 7.466666666666667,
+      "end_s": 12.233333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "design",
+      "treatment": "size-cards",
+      "objective": "Show the sizes tested, ten problems each",
+      "background": "paper panel in saturated frame",
+      "from": 367,
+      "to": 593,
+      "start_s": 12.233333333333333,
+      "end_s": 19.766666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "results",
+      "treatment": "bar-per-size",
+      "objective": "Right answers by size when answering with only the number",
+      "background": "paper panel in saturated frame",
+      "from": 593,
+      "to": 726,
+      "start_s": 19.766666666666666,
+      "end_s": 24.2
+    },
+    {
+      "id": "s5",
+      "kind": "fix",
+      "treatment": "paired-bars",
+      "objective": "Compare number-only with working shown, six to ten digits",
+      "background": "paper panel in saturated frame",
+      "from": 726,
+      "to": 902,
+      "start_s": 24.2,
+      "end_s": 30.066666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "tip",
+      "treatment": "title-with-stamp",
+      "objective": "Close: make AI show its working; ask if the viewer would have checked",
+      "background": "paper panel in saturated frame",
+      "from": 902,
+      "to": 1075,
+      "start_s": 30.066666666666666,
+      "end_s": 35.833333333333336
+    }
+  ],
+  "captions": [
+    {
+      "text": "Ask AI to multiply two",
+      "from": 0,
+      "to": 65,
+      "words": [
+        {
+          "text": "Ask",
+          "from": 0
+        },
+        {
+          "text": "AI",
+          "from": 17
+        },
+        {
+          "text": "to",
+          "from": 25
+        },
+        {
+          "text": "multiply",
+          "from": 37
+        },
+        {
+          "text": "two",
+          "from": 49
+        }
+      ]
+    },
+    {
+      "text": "eight-digit",
+      "from": 65,
+      "to": 79,
+      "words": [
+        {
+          "text": "eight-digit",
+          "from": 65
+        }
+      ]
+    },
+    {
+      "text": "numbers",
+      "from": 86,
+      "to": 101,
+      "words": [
+        {
+          "text": "numbers",
+          "from": 86
+        }
+      ]
+    },
+    {
+      "text": "and the first four digits",
+      "from": 112,
+      "to": 141,
+      "words": [
+        {
+          "text": "and",
+          "from": 112
+        },
+        {
+          "text": "the",
+          "from": 113
+        },
+        {
+          "text": "first",
+          "from": 116
+        },
+        {
+          "text": "four",
+          "from": 124
+        },
+        {
+          "text": "digits",
+          "from": 132
+        }
+      ]
+    },
+    {
+      "text": "come out right",
+      "from": 141,
+      "to": 167,
+      "words": [
+        {
+          "text": "come",
+          "from": 141
+        },
+        {
+          "text": "out",
+          "from": 152
+        },
+        {
+          "text": "right",
+          "from": 157
+        }
+      ]
+    },
+    {
+      "text": "Everything after that was wrong",
+      "from": 190,
+      "to": 224,
+      "words": [
+        {
+          "text": "Everything",
+          "from": 190
+        },
+        {
+          "text": "after",
+          "from": 190
+        },
+        {
+          "text": "that",
+          "from": 197
+        },
+        {
+          "text": "was",
+          "from": 209
+        },
+        {
+          "text": "wrong",
+          "from": 216
+        }
+      ]
+    },
+    {
+      "text": "Sixteen",
+      "from": 224,
+      "to": 246,
+      "words": [
+        {
+          "text": "Sixteen",
+          "from": 224
+        }
+      ]
+    },
+    {
+      "text": "digits",
+      "from": 262,
+      "to": 280,
+      "words": [
+        {
+          "text": "digits",
+          "from": 262
+        }
+      ]
+    },
+    {
+      "text": "the right length and still",
+      "from": 288,
+      "to": 332,
+      "words": [
+        {
+          "text": "the",
+          "from": 288
+        },
+        {
+          "text": "right",
+          "from": 292
+        },
+        {
+          "text": "length",
+          "from": 298
+        },
+        {
+          "text": "and",
+          "from": 318
+        },
+        {
+          "text": "still",
+          "from": 322
+        }
+      ]
+    },
+    {
+      "text": "wrong",
+      "from": 332,
+      "to": 347,
+      "words": [
+        {
+          "text": "wrong",
+          "from": 332
+        }
+      ]
+    },
+    {
+      "text": "We gave Gemini Flash-Lite ten",
+      "from": 367,
+      "to": 413,
+      "words": [
+        {
+          "text": "We",
+          "from": 367
+        },
+        {
+          "text": "gave",
+          "from": 367
+        },
+        {
+          "text": "Gemini",
+          "from": 373
+        },
+        {
+          "text": "Flash-Lite",
+          "from": 384
+        },
+        {
+          "text": "ten",
+          "from": 397
+        }
+      ]
+    },
+    {
+      "text": "problems at every size from",
+      "from": 423,
+      "to": 482,
+      "words": [
+        {
+          "text": "problems",
+          "from": 423
+        },
+        {
+          "text": "at",
+          "from": 437
+        },
+        {
+          "text": "every",
+          "from": 447
+        },
+        {
+          "text": "size",
+          "from": 455
+        },
+        {
+          "text": "from",
+          "from": 469
+        }
+      ]
+    },
+    {
+      "text": "two digits to ten",
+      "from": 482,
+      "to": 527,
+      "words": [
+        {
+          "text": "two",
+          "from": 482
+        },
+        {
+          "text": "digits",
+          "from": 488
+        },
+        {
+          "text": "to",
+          "from": 494
+        },
+        {
+          "text": "ten",
+          "from": 508
+        }
+      ]
+    },
+    {
+      "text": "Code checked every digit",
+      "from": 539,
+      "to": 578,
+      "words": [
+        {
+          "text": "Code",
+          "from": 539
+        },
+        {
+          "text": "checked",
+          "from": 539
+        },
+        {
+          "text": "every",
+          "from": 550
+        },
+        {
+          "text": "digit",
+          "from": 565
+        }
+      ]
+    },
+    {
+      "text": "At two digits it was",
+      "from": 593,
+      "to": 629,
+      "words": [
+        {
+          "text": "At",
+          "from": 593
+        },
+        {
+          "text": "two",
+          "from": 599
+        },
+        {
+          "text": "digits",
+          "from": 606
+        },
+        {
+          "text": "it",
+          "from": 614
+        },
+        {
+          "text": "was",
+          "from": 626
+        }
+      ]
+    },
+    {
+      "text": "perfect",
+      "from": 629,
+      "to": 643,
+      "words": [
+        {
+          "text": "perfect",
+          "from": 629
+        }
+      ]
+    },
+    {
+      "text": "and from six digits up",
+      "from": 651,
+      "to": 688,
+      "words": [
+        {
+          "text": "and",
+          "from": 651
+        },
+        {
+          "text": "from",
+          "from": 657
+        },
+        {
+          "text": "six",
+          "from": 662
+        },
+        {
+          "text": "digits",
+          "from": 670
+        },
+        {
+          "text": "up",
+          "from": 678
+        }
+      ]
+    },
+    {
+      "text": "it got none right Then",
+      "from": 688,
+      "to": 751,
+      "words": [
+        {
+          "text": "it",
+          "from": 688
+        },
+        {
+          "text": "got",
+          "from": 698
+        },
+        {
+          "text": "none",
+          "from": 703
+        },
+        {
+          "text": "right",
+          "from": 715
+        },
+        {
+          "text": "Then",
+          "from": 726
+        }
+      ]
+    },
+    {
+      "text": "we asked it to show",
+      "from": 751,
+      "to": 784,
+      "words": [
+        {
+          "text": "we",
+          "from": 751
+        },
+        {
+          "text": "asked",
+          "from": 760
+        },
+        {
+          "text": "it",
+          "from": 767
+        },
+        {
+          "text": "to",
+          "from": 773
+        },
+        {
+          "text": "show",
+          "from": 777
+        }
+      ]
+    },
+    {
+      "text": "its working",
+      "from": 784,
+      "to": 802,
+      "words": [
+        {
+          "text": "its",
+          "from": 784
+        },
+        {
+          "text": "working",
+          "from": 789
+        }
+      ]
+    },
+    {
+      "text": "and it got twenty-one of",
+      "from": 812,
+      "to": 848,
+      "words": [
+        {
+          "text": "and",
+          "from": 812
+        },
+        {
+          "text": "it",
+          "from": 813
+        },
+        {
+          "text": "got",
+          "from": 817
+        },
+        {
+          "text": "twenty-one",
+          "from": 820
+        },
+        {
+          "text": "of",
+          "from": 835
+        }
+      ]
+    },
+    {
+      "text": "twenty-five right",
+      "from": 848,
+      "to": 883,
+      "words": [
+        {
+          "text": "twenty-five",
+          "from": 848
+        },
+        {
+          "text": "right",
+          "from": 860
+        }
+      ]
+    },
+    {
+      "text": "So make AI show its",
+      "from": 902,
+      "to": 944,
+      "words": [
+        {
+          "text": "So",
+          "from": 902
+        },
+        {
+          "text": "make",
+          "from": 904
+        },
+        {
+          "text": "AI",
+          "from": 911
+        },
+        {
+          "text": "show",
+          "from": 921
+        },
+        {
+          "text": "its",
+          "from": 937
+        }
+      ]
+    },
+    {
+      "text": "working or check its sums",
+      "from": 944,
+      "to": 986,
+      "words": [
+        {
+          "text": "working",
+          "from": 944
+        },
+        {
+          "text": "or",
+          "from": 963
+        },
+        {
+          "text": "check",
+          "from": 967
+        },
+        {
+          "text": "its",
+          "from": 975
+        },
+        {
+          "text": "sums",
+          "from": 980
+        }
+      ]
+    },
+    {
+      "text": "with code",
+      "from": 986,
+      "to": 1007,
+      "words": [
+        {
+          "text": "with",
+          "from": 986
+        },
+        {
+          "text": "code",
+          "from": 998
+        }
+      ]
+    },
+    {
+      "text": "Would you have checked",
+      "from": 1028,
+      "to": 1047,
+      "words": [
+        {
+          "text": "Would",
+          "from": 1028
+        },
+        {
+          "text": "you",
+          "from": 1028
+        },
+        {
+          "text": "have",
+          "from": 1035
+        },
+        {
+          "text": "checked",
+          "from": 1039
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1075,
+  "duration_s": 35.833333333333336
+}

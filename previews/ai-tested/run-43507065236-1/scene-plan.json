@@ -1,0 +1,89 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43507065236-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Ask AI to multiply two eight-digit numbers, and the first four digits come out right. Everything after that was wrong.",
+      "main_point": "Lead with the result: first four digits right, then wrong",
+      "visual_objective": "Lead with the result: first four digits right, then wrong",
+      "treatment": "big-numeral-and-wrong-answer",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "miss"
+      ],
+      "start_s": 0,
+      "end_s": 7.466666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Sixteen digits, the right length, and still wrong.",
+      "main_point": "Show the model's answer beside the correct product, digit by digit",
+      "visual_objective": "Show the model's answer beside the correct product, digit by digit",
+      "treatment": "digit-by-digit-compare",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "miss"
+      ],
+      "start_s": 7.466666666666667,
+      "end_s": 12.233333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "We gave Gemini Flash-Lite ten problems at every size, from two digits to ten. Code checked every digit.",
+      "main_point": "Show the sizes tested, ten problems each",
+      "visual_objective": "Show the sizes tested, ten problems each",
+      "treatment": "size-cards",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 12.233333333333333,
+      "end_s": 19.766666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "At two digits it was perfect, and from six digits up it got none right.",
+      "main_point": "Right answers by size when answering with only the number",
+      "visual_objective": "Right answers by size when answering with only the number",
+      "treatment": "bar-per-size",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "direct"
+      ],
+      "start_s": 19.766666666666666,
+      "end_s": 24.2
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Then we asked it to show its working, and it got twenty-one of twenty-five right.",
+      "main_point": "Compare number-only with working shown, six to ten digits",
+      "visual_objective": "Compare number-only with working shown, six to ten digits",
+      "treatment": "paired-bars",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "worked"
+      ],
+      "start_s": 24.2,
+      "end_s": 30.066666666666666
+    },
+    {
+      "scene_id": "s6",
+      "narration": "So make AI show its working, or check its sums with code. Would you have checked?",
+      "main_point": "Close: make AI show its working; ask if the viewer would have checked",
+      "visual_objective": "Close: make AI show its working; ask if the viewer would have checked",
+      "treatment": "title-with-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 30.066666666666666,
+      "end_s": 35.833333333333336
+    }
+  ]
+}
