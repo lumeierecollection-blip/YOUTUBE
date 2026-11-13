@@ -12,6 +12,7 @@ import { linksCompositions } from "./links.jsx";
 import { privacyCompositions } from "./privacy.jsx";
 import { unknownCompositions } from "./unknown.jsx";
 import { expertCompositions } from "./expert.jsx";
+import { multiplyCompositions } from "./multiply.jsx";
 
 const C = { bg: "#FFFFFF", surface: "#F3F4F6", ink: "#111827", dim: "#6B7280", stroke: "#D1D5DB", accent: "#0E7490", termBg: "#111418", termHead: "#1F2429", termText: "#E5E7EB", termGreen: "#4ADE80" };
 const SANS = '"Space Grotesk", sans-serif', MONO = '"JetBrains Mono", monospace';
@@ -203,4 +204,4 @@ function AiTestedShort(props) {
 }
 
 const sample = { kind: "hook", id: "s1", from: 0, to: 90 };
-export const compositions = [...experimentCompositions, ...honestyCompositions, ...spelloutCompositions, ...randomCompositions, ...pushbackCompositions, ...linksCompositions, ...privacyCompositions, ...unknownCompositions, ...expertCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
+export const compositions = [...experimentCompositions, ...honestyCompositions, ...spelloutCompositions, ...randomCompositions, ...pushbackCompositions, ...linksCompositions, ...privacyCompositions, ...unknownCompositions, ...expertCompositions, ...multiplyCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
