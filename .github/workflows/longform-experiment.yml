@@ -1,0 +1,37 @@
+name: Long-form Experiment
+
+# Runs a real AI test for the AI Tested long-form sample and uploads the raw replies. No rendering, no YouTube credentials, no upload.
+# Push to lfx/<anything>.
+on:
+  push:
+    branches:
+      - "lfx/**"
+
+permissions:
+  contents: read
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run the multiplication test
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node platform/longform/experiments/multiply.mjs output/longform-experiment/multiply.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: longform-experiment-${{ github.run_id }}
+          retention-days: 90
+          path: output/longform-experiment/*.json
