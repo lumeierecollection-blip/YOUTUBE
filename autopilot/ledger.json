@@ -1191,12 +1191,12 @@
       "attempts": 1,
       "run_id": "43431880370",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T13:16:22.446Z",
-      "stage": "script",
-      "topic": "Google Releases Gemini 4 Hydrogen for Faster Everyday Tasks",
-      "score": 82.6,
-      "pillar": "New AI features and releases",
-      "hook": "Google just dropped Gemini 4 Hydrogen, promising lightning-fast answers."
+      "updated_at": "2026-11-13T13:27:10.907Z",
+      "stage": "research",
+      "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
+      "score": 74.7,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Watch out: popular AI chatbots are accidentally recommending scam shopping sites."
     }
   },
   "uploads": [
@@ -2327,6 +2327,15 @@
       "at_ms": 1794575743173,
       "score": 82.6,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
+      "slug": "ai-chatbots-are-secretly-recommending-fake-online-stores",
+      "slot": "2026-11-13-ch2",
+      "at_ms": 1794576430907,
+      "score": 74.7,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
