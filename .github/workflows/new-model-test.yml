@@ -1,0 +1,41 @@
+name: New Model Test
+
+# Runs the multiplication test (platform/longform/experiments/multiply.mjs: n-digit products, n = 2..10, ten problems per size, answer only; then six to ten digits again
+# with "show your working"; every reply marked by BigInt code) on the newest Google models, one model per job so they run in parallel. Holds no YouTube credentials.
+# Push to lft/<anything>.
+on:
+  push:
+    branches:
+      - "lft/**"
+permissions:
+  contents: read
+jobs:
+  multiply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        model: [gemini-4-hydrogen, gemini-4-carbon, gemini-4-argon, gemini-3.8-flash]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Run the multiplication test on one model
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          LIST_GOOGLE: "1"
+          ONLY_MODELS: ${{ matrix.model }}
+          SKIP_MODELS: "gemini-3.5-flash-lite,gemini-3.1-flash-lite,cerebras/gpt-oss-120b,cerebras/qwen-3.8-27b"
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: node platform/longform/experiments/multiply.mjs output/new-model/${{ matrix.model }}.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: new-model-${{ matrix.model }}
+          path: output/new-model/*.json

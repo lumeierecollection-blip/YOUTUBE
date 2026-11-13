@@ -70,7 +70,7 @@ async function googleListed() {
 if (process.argv[1] && process.argv[1].endsWith("multiply.mjs")) {
   const out = process.argv[2] || "output/longform-experiment/multiply.json", problems = buildProblems();
   const skip = (process.env.SKIP_MODELS || "").split(",").filter(Boolean);
-  const models = [...CANDIDATES.filter((c) => c.available()).map((c) => ({ ...c, host: c.id.startsWith("gemini") ? "Google AI Studio" : "Groq" })), ...(await googleListed()), ...(await cerebrasModels())].filter((m, i, all) => !skip.includes(m.id) && all.findIndex((x) => x.id === m.id) === i);
+  const models = [...CANDIDATES.filter((c) => c.available()).map((c) => ({ ...c, host: c.id.startsWith("gemini") ? "Google AI Studio" : "Groq" })), ...(await googleListed()), ...(await cerebrasModels())].filter((m, i, all) => !skip.includes(m.id) && (!process.env.ONLY_MODELS || process.env.ONLY_MODELS.split(",").includes(m.id)) && all.findIndex((x) => x.id === m.id) === i);
   console.error("models:", models.map((m) => m.id).join(", ") || "NONE");
   const results = [];
   for (const m of models) {
