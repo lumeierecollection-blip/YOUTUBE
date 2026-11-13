@@ -21,7 +21,7 @@ import { autoCredit } from "./credits.mjs";
 const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug; // slug = episode file name; ch = the channel it belongs to
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
-const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), NOJOIN = argv.includes("--no-join");
+const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), SHARD = opt("shard"), NOJOIN = argv.includes("--no-join") || Boolean(SHARD); // --shard i/n renders only beats whose index % n == i and never joins (a later job joins)
 const FPS = 30, PAD = 0.55, XF = 0.4;
 const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural" };
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
@@ -32,6 +32,7 @@ for (const d of [OUT, VDIR, BDIR]) mkdirSync(d, { recursive: true });
 const THEMES = JSON.parse(readFileSync(join(ROOT, "config/longform-v2.json"), "utf8"));
 const { EPISODE: ep } = await import(`./episodes/${slug}.mjs`);
 let beats = ep.beats; if (ONLY) beats = beats.filter((b) => ONLY.includes(b.id)); if (MAX) beats = beats.slice(0, MAX);
+if (SHARD) { const [si, sn] = SHARD.split("/").map(Number); beats = beats.filter((_, i) => i % sn === si); }
 
 const run = (cmd, args, o = {}) => spawnSync(cmd, args, { encoding: "utf8", maxBuffer: 1 << 28, ...o });
 const dur = (f) => Number(run("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f]).stdout.trim());

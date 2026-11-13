@@ -1,8 +1,10 @@
 name: Long-form Render
 
-# Renders the two long-form episodes (Hidden Past, AI Tested) as 1920x1080 MP4s with their thumbnails and publishing metadata, then runs the file QA. Shorts are NOT made here: they come from the existing Shorts system.
-# Push to lfr/<anything> (lfr/hidden-past or lfr/ai-tested renders one channel; anything else renders both). Holds no YouTube credentials, has no
-# upload step and cannot post. Finished beats are cached, so a re-run of the same branch resumes instead of starting over.
+# Renders long-form episodes (platform/longform/v2/episodes/<slug>.mjs) as 1920x1080 MP4s with thumbnails and publishing metadata, then runs the file QA.
+# Shorts are NOT made here: they come from the existing Shorts system. Holds no YouTube credentials, has no upload step, cannot post.
+# Push to lfr/<slug>: lfr/hidden-past-msh or lfr/ai-tested-trust renders that episode (any other branch name renders both).
+# Speed: the beats of an episode are split over 5 parallel jobs (beat index modulo 5), each on its own runner, then one job joins them,
+# mixes the sound, makes the thumbnails and the metadata and runs the QA.
 on:
   push:
     branches:
@@ -12,16 +14,16 @@ permissions:
   contents: read
 
 jobs:
-  render:
+  shards:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
+    timeout-minutes: 180
     strategy:
       fail-fast: false
-      max-parallel: 2
       matrix:
         episode: [hidden-past-msh, ai-tested-trust]
+        shard: [0, 1, 2, 3, 4]
     steps:
-      - name: Skip channels this branch did not ask for
+      - name: Skip episodes this branch did not ask for
         id: want
         run: |
           b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
@@ -56,44 +58,105 @@ jobs:
         id: chrome
         with:
           chrome-version: stable
-      - name: Restore finished beats from an earlier run
+      - name: Render this shard's beats
         if: steps.want.outputs.run == 'yes'
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            output/longform-prod/${{ matrix.episode }}/beats
-            output/longform-prod/${{ matrix.episode }}/voice
-          key: lfr-${{ matrix.episode }}-${{ github.run_id }}
-          restore-keys: lfr-${{ matrix.episode }}-
-      - name: Render the episode
-        if: steps.want.outputs.run == 'yes'
-        timeout-minutes: 300
+        timeout-minutes: 170
+        shell: bash
         env:
           CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
-          CONC: "2"
+          CONC: "3"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
-        shell: bash
-        run: node platform/longform/v2/render-episode.mjs "${{ matrix.episode }}" 2>&1 | { grep -v composed-scene || true; }
-      - name: Save finished beats
+        run: node platform/longform/v2/render-episode.mjs "${{ matrix.episode }}" --shard "${{ matrix.shard }}/5" 2>&1 | { grep -v composed-scene || true; }
+      - uses: actions/upload-artifact@v4
         if: always() && steps.want.outputs.run == 'yes'
-        uses: actions/cache/save@v4
         with:
+          name: beats-${{ matrix.episode }}-${{ matrix.shard }}
+          retention-days: 3
+          if-no-files-found: ignore
           path: |
-            output/longform-prod/${{ matrix.episode }}/beats
-            output/longform-prod/${{ matrix.episode }}/voice
-          key: lfr-${{ matrix.episode }}-${{ github.run_id }}
-      - name: Thumbnails
+            output/longform-prod/${{ matrix.episode }}/beats/*.mp4
+            output/longform-prod/${{ matrix.episode }}/voice/*
+
+  finish:
+    needs: shards
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [hidden-past-msh, ai-tested-trust]
+    steps:
+      - name: Skip episodes this branch did not ask for
+        id: want
+        run: |
+          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
+          if [[ "$b" == hidden-past* && "$ch" != hidden-past* ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested* ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
-        timeout-minutes: 30
+      - uses: actions/setup-node@v4
+        if: steps.want.outputs.run == 'yes'
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        if: steps.want.outputs.run == 'yes'
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        if: steps.want.outputs.run == 'yes'
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; echo "retrying in ${pause}s"; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        if: steps.want.outputs.run == 'yes'
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Collect the shards' beats and voices
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/download-artifact@v4
+        with:
+          pattern: beats-${{ matrix.episode }}-*
+          merge-multiple: true
+          path: output/longform-prod/${{ matrix.episode }}
+      - name: Join and mix the sound (a beat that is still missing is rendered here)
+        if: steps.want.outputs.run == 'yes'
+        timeout-minutes: 100
+        shell: bash
         env:
           CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ls output/longform-prod/${{ matrix.episode }}/beats | wc -l
+          node platform/longform/v2/render-episode.mjs "${{ matrix.episode }}" 2>&1 | { grep -v composed-scene || true; }
+      - name: Thumbnails
+        if: steps.want.outputs.run == 'yes'
+        timeout-minutes: 30
         shell: bash
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         run: node platform/longform/v2/make-thumbs.mjs "${{ matrix.episode }}" 2>&1 | { grep -v composed-scene || true; }
       - name: Publishing metadata
         if: steps.want.outputs.run == 'yes'
