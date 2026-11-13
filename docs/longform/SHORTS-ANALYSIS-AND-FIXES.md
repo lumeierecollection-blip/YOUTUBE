@@ -21,21 +21,18 @@ Data: YouTube Analytics retention report for channels 01 (Hidden Past) and 02 (A
 
 Limits of this analysis: small numbers (most public videos under 300 views), no swipe-away rate, no click-through rate, and "average viewed" over 100% means looping/replays.
 
-## Fixes applied to the new Shorts (`platform/longform/v2/make-shorts.mjs`)
+## What follows from this (decided 2026-11-13)
 
-- **Hook on the first frame.** A large on-screen line states the result or the question from 0 to 3.2 s (e.g. "AI got the first 4 digits right. Then it broke."), using only facts in the script.
-- **Start on the payoff or the tension, not the set-up.** Each Short begins on a beat that already states a result or asks the question; none opens with "here is how the test worked". Windows are chosen from the episode storyboard, not cut arbitrarily.
-- **Faster-feeling bridge.** Burned-in captions change every three words (about 1.5 s) from the first second, over a real scene with its own motion. This is a design change that has NOT been measured; it needs the next retention report to prove or disprove.
-- **Length 22-41 s**, aiming at 37 (the best Shorts here were 23-39 s). Never sped up.
-- **Titles of 60 characters or fewer, never truncated**, written as a claim or a question; the script refuses a title that ends in "..." or is over 60 characters.
-- **Hashtags always, `#Shorts` included** (checked by `platform/production/hashtags.mjs`), plus sources, image credits and the music licence line in every description.
-- **Music chosen by subject**; the comedy track is rejected (see `SOUND-LIBRARY-REGISTER.md`).
+The owner's instruction: keep the Shorts exactly as the existing Shorts system makes them (their own compositions, voice and sound), and make the long-form videos a separate thing. A first attempt at a vertical cut-down of the long-form (a 16:9 scene over a blurred copy of itself, with burned-in captions) was built, looked at, and **dropped**; it is not used and its script was deleted (it stays in git history, commit 3e4beb5f).
 
-## Known weaknesses of the new Shorts (not hidden)
+So the analytics become **script-level rules for the next Shorts written in the existing system**, not format changes:
+- Open on the result or the question in the first sentence; do not open with the set-up ("we tested...", "here is how the test worked"). The hook lost 13-32% and the bridge (seconds 3-11) lost 33-54% on AI Tested.
+- Put the first new fact or twist inside the first 8 seconds, so the bridge is not a restatement.
+- 23-39 s worked best (the owner's 35-40 s rule stays).
+- Titles 60 characters or fewer, never truncated, a claim or a question; no news-headline titles for Hidden Past.
+- Topics: about whether or how far to trust AI (AI Tested) and stories with a question in them (Hidden Past).
 
-- The scenes are 16:9 compositions shown at full width over a blurred copy of themselves; they are not re-laid-out for portrait, so small on-picture text is hard to read on a phone. The captions and hook are the readable text.
-- The bridge fix is untested on an audience.
-- The music beds and the voice have not been listened to by a person.
+None of this is tested on an audience yet.
 
 ## Open issues for the owner (outside the video files)
 

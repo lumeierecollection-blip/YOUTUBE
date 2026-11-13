@@ -1,6 +1,6 @@
 name: Long-form Render
 
-# Renders the two long-form episodes (Hidden Past, AI Tested) as 1920x1080 MP4s, their vertical Shorts, thumbnails and publishing metadata, then runs the file QA.
+# Renders the two long-form episodes (Hidden Past, AI Tested) as 1920x1080 MP4s with their thumbnails and publishing metadata, then runs the file QA. Shorts are NOT made here: they come from the existing Shorts system.
 # Push to lfr/<anything> (lfr/hidden-past or lfr/ai-tested renders one channel; anything else renders both). Holds no YouTube credentials, has no
 # upload step and cannot post. Finished beats are cached, so a re-run of the same branch resumes instead of starting over.
 on:
@@ -95,10 +95,10 @@ jobs:
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         shell: bash
         run: node platform/longform/v2/make-thumbs.mjs "${{ matrix.channel }}" 2>&1 | { grep -v composed-scene || true; }
-      - name: Shorts and publishing metadata
+      - name: Publishing metadata
         if: steps.want.outputs.run == 'yes'
-        timeout-minutes: 40
-        run: node platform/longform/v2/make-shorts.mjs "${{ matrix.channel }}"
+        timeout-minutes: 10
+        run: node platform/longform/v2/make-meta.mjs "${{ matrix.channel }}"
       - name: File QA
         if: always() && steps.want.outputs.run == 'yes'
         run: node platform/longform/v2/qa-outputs.mjs "${{ matrix.channel }}"
@@ -114,7 +114,3 @@ jobs:
             output/longform-prod/${{ matrix.channel }}/qa.json
             output/longform-prod/${{ matrix.channel }}/thumbnails/*.jpg
             output/longform-prod/${{ matrix.channel }}/thumbnails/*.json
-            output/longform-prod/${{ matrix.channel }}/shorts/**/short.mp4
-            output/longform-prod/${{ matrix.channel }}/shorts/**/cover.jpg
-            output/longform-prod/${{ matrix.channel }}/shorts/**/meta.json
-            output/longform-prod/${{ matrix.channel }}/shorts/shorts-log.json

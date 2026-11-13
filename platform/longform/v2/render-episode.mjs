@@ -4,7 +4,7 @@
  *   1. voice: one edge-tts clip per beat (cached; nothing re-voiced if the mp3 already exists), beat length = voice length + pad
  *   2. visuals: each beat rendered with the real LF2Scene component for exactly that length (cached per beat, written to .tmp then renamed)
  *   3. join: beats chained with short crossfades (ffmpeg xfade; the storyboard's bespoke LF2Tx transitions are NOT used here - a known limit)
- *   4. audio: voice + one licensed music bed ducked under the voice (bed chosen per channel in MUSIC below), two-pass loudnorm to -14 LUFS
+ *   4. audio: voice + a few light sound effects from the channel cue rules (no music bed), two-pass loudnorm to -14 LUFS
  * Usage: node platform/longform/v2/render-episode.mjs <channel> [--beats H01,H02] [--max-beats N] [--no-join]
  * Output: output/longform-prod/<channel>/ (voice/, beats/, episode.mp4, render-log.json). Nothing here uploads.
  * Known limits are written into render-log.json, not hidden.
@@ -24,8 +24,6 @@ const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), NOJOIN = argv.includes("--no-join");
 const FPS = 30, PAD = 0.55, XF = 0.4;
 const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural" };
-// Music chosen by subject, never by availability (see docs/longform/SOUND-LIBRARY-REGISTER.md; MUSIC_TECH is rejected as a comedy track).
-const MUSIC = { "hidden-past": "MUSIC_HISTORY_DOC", "ai-tested": "MUSIC_ATMOS_DARK" };
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
 const REMOTION = join(ROOT, "src/skills/remotion-render");
@@ -107,11 +105,41 @@ const silent = join(OUT, "video-silent.tmp.mp4");
 r = run("ffmpeg", ["-y", "-v", "error", ...beats.map((b) => ["-i", join(BDIR, `${b.id}.mp4`)]).flat(), "-filter_complex", vf.join(";"), "-map", vlab, "-c:v", "libx264", "-crf", "20", "-pix_fmt", "yuv420p", "-r", String(FPS), silent]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(3); }
 
-// ---- 4. audio mix: music bed (-20 dB, ducked by sidechain from voice), fades, two-pass loudnorm
-const musicFile = join(ROOT, "platform/longform/v2/audio/beds", `${MUSIC[ch]}.mp3`);
+// ---- 4. audio: narration plus a few light sound effects, placed by the channel's cue rules (config/longform-cue-rules.json). No music bed:
+// the first cloud render's piano bed sounded like random noise to the owner, so there is none. Levels follow data/sfx-library.json (SFX well under the voice).
+const SFXDIR = join(ROOT, "platform/longform/v2/audio/sfx");
+const CUE = JSON.parse(readFileSync(join(ROOT, "config/longform-cue-rules.json"), "utf8"));
+const LIBA = Object.fromEntries(JSON.parse(readFileSync(join(ROOT, "config/longform-audio-library.json"), "utf8")).assets.map((a) => [a.slot, a]));
+const vLUFS = Number([...run("ffmpeg", ["-hide_banner", "-nostats", "-i", voiceOut, "-af", "ebur128", "-f", "null", "-"]).stderr.matchAll(/I:\s+(-?[\d.]+) LUFS/g)].at(-1)?.[1]);
+const starts = []; { let t0 = 0; for (const b of beats) { starts.push(t0); t0 += b._len - XF; } }
+const events = [];
+for (const rule of CUE.rules[ch] || []) {
+  if (!["action", "accent"].includes(rule.type) || !String(rule.asset).startsWith("SFX_")) continue;
+  for (const [i, b] of beats.entries()) {
+    if (rule.scene && !rule.scene.includes(b.scene.type)) continue;
+    let off = rule.offset_s || 0;
+    if (rule.vo) {
+      const m = new RegExp(rule.vo, "i").exec(b.vo); if (!m) continue;
+      const wf = join(VDIR, `${b.id}.words.json`), w = existsSync(wf) ? (JSON.parse(readFileSync(wf, "utf8")).words || []) : [];
+      const k = b.vo.slice(0, m.index).split(/\s+/).filter(Boolean).length; off = w[k]?.start ?? off;
+    }
+    events.push({ asset: rule.asset, at: starts[i] + off, rel: CUE.levels_db_rel_speech[rule.type], why: rule.purpose, beat: b.id });
+    if (rule.first) break;
+  }
+}
+// one soft whoosh where a new part of the story starts (not at every cut)
+beats.forEach((b, i) => { if (i && b.part !== beats[i - 1].part) events.push({ asset: "SFX_WHOOSH", at: Math.max(0, starts[i] - 0.1), rel: -18, why: `new part: ${b.part}`, beat: b.id }); });
 const pre = join(OUT, "premaster.wav");
-r = run("ffmpeg", ["-y", "-v", "error", "-i", voiceOut, "-stream_loop", "-1", "-i", musicFile, "-filter_complex",
-  `[1:a]atrim=0:${total.toFixed(2)},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,volume=-19dB,afade=t=in:d=3,afade=t=out:st=${(total - 5).toFixed(2)}:d=5[mus];[0:a]asplit=2[vo][key];[mus][key]sidechaincompress=threshold=0.04:ratio=3:attack=30:release=600[duck];[vo][duck]amix=inputs=2:normalize=0:duration=first[mx]`, "-map", "[mx]", "-ar", "48000", pre]);
+const sfxIn = [], sfxF = [];
+events.forEach((e, j) => {
+  const f = join(SFXDIR, `${e.asset}.mp3`), len = e.asset === "SFX_KEYBOARD" ? 4 : 3, ms = Math.round(e.at * 1000);
+  e.gain_db = +Math.min(6, vLUFS + e.rel - (LIBA[e.asset]?.measured?.integrated_lufs ?? -16)).toFixed(1);
+  sfxIn.push("-i", f);
+  sfxF.push(`[${j + 1}:a]atrim=0:${len},asetpts=PTS-STARTPTS,aformat=sample_rates=48000:channel_layouts=stereo,volume=${e.gain_db}dB,afade=t=in:d=0.03,afade=t=out:st=${len - 0.7}:d=0.7,adelay=${ms}|${ms}[s${j}]`);
+});
+log.sfx = events;
+const mixGraph = events.length ? `${sfxF.join(";")};[0:a]${events.map((_, j) => `[s${j}]`).join("")}amix=inputs=${events.length + 1}:normalize=0:duration=first[mx]` : "[0:a]anull[mx]";
+r = run("ffmpeg", ["-y", "-v", "error", "-i", voiceOut, ...sfxIn, "-filter_complex", mixGraph.replace("[0:a]" + events.map((_, j) => `[s${j}]`).join(""), "[0:a]" + events.map((_, j) => `[s${j}]`).join("")), "-map", "[mx]", "-ar", "48000", pre]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 const m = run("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"]).stderr;
 const J = JSON.parse(m.slice(m.lastIndexOf("{"), m.lastIndexOf("}") + 1));
@@ -124,7 +152,7 @@ const tmpFinal = join(OUT, "episode.tmp.mp4");
 r = run("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", master, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", tmpFinal]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(5); }
 renameSync(tmpFinal, join(OUT, "episode.mp4"));
-log.notes.push("transitions are ffmpeg crossfades, not the storyboard's LF2Tx transitions", "music bed chosen from the licensed library by subject; not auditioned by ear", `music: ${MUSIC[ch]}`);
+log.notes.push("transitions are ffmpeg crossfades, not the storyboard's LF2Tx transitions", "no music bed (owner: the piano bed sounded like noise); a few light SFX only; nothing auditioned by ear");
 log.finished = new Date().toISOString(); log.total_s = +total.toFixed(1);
 writeFileSync(join(OUT, "render-log.json"), JSON.stringify(log, null, 2));
 console.log("DONE", join(OUT, "episode.mp4"), total.toFixed(1), "s");
