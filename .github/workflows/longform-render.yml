@@ -1,0 +1,120 @@
+name: Long-form Render
+
+# Renders the two long-form episodes (Hidden Past, AI Tested) as 1920x1080 MP4s, their vertical Shorts, thumbnails and publishing metadata, then runs the file QA.
+# Push to lfr/<anything> (lfr/hidden-past or lfr/ai-tested renders one channel; anything else renders both). Holds no YouTube credentials, has no
+# upload step and cannot post. Finished beats are cached, so a re-run of the same branch resumes instead of starting over.
+on:
+  push:
+    branches:
+      - "lfr/**"
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        channel: [hidden-past, ai-tested]
+    steps:
+      - name: Skip channels this branch did not ask for
+        id: want
+        run: |
+          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.channel }}"
+          if [[ "$b" == hidden-past* && "$ch" != hidden-past ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.want.outputs.run == 'yes'
+      - uses: actions/setup-node@v4
+        if: steps.want.outputs.run == 'yes'
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        if: steps.want.outputs.run == 'yes'
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        if: steps.want.outputs.run == 'yes'
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; echo "retrying in ${pause}s"; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        if: steps.want.outputs.run == 'yes'
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Restore finished beats from an earlier run
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            output/longform-prod/${{ matrix.channel }}/beats
+            output/longform-prod/${{ matrix.channel }}/voice
+          key: lfr-${{ matrix.channel }}-${{ github.run_id }}
+          restore-keys: lfr-${{ matrix.channel }}-
+      - name: Render the episode
+        if: steps.want.outputs.run == 'yes'
+        timeout-minutes: 300
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "2"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        shell: bash
+        run: node platform/longform/v2/render-episode.mjs "${{ matrix.channel }}" 2>&1 | { grep -v composed-scene || true; }
+      - name: Save finished beats
+        if: always() && steps.want.outputs.run == 'yes'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            output/longform-prod/${{ matrix.channel }}/beats
+            output/longform-prod/${{ matrix.channel }}/voice
+          key: lfr-${{ matrix.channel }}-${{ github.run_id }}
+      - name: Thumbnails
+        if: steps.want.outputs.run == 'yes'
+        timeout-minutes: 30
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        shell: bash
+        run: node platform/longform/v2/make-thumbs.mjs "${{ matrix.channel }}" 2>&1 | { grep -v composed-scene || true; }
+      - name: Shorts and publishing metadata
+        if: steps.want.outputs.run == 'yes'
+        timeout-minutes: 40
+        run: node platform/longform/v2/make-shorts.mjs "${{ matrix.channel }}"
+      - name: File QA
+        if: always() && steps.want.outputs.run == 'yes'
+        run: node platform/longform/v2/qa-outputs.mjs "${{ matrix.channel }}"
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.want.outputs.run == 'yes'
+        with:
+          name: longform-${{ matrix.channel }}-${{ github.run_id }}
+          retention-days: 30
+          path: |
+            output/longform-prod/${{ matrix.channel }}/episode.mp4
+            output/longform-prod/${{ matrix.channel }}/episode-meta.json
+            output/longform-prod/${{ matrix.channel }}/render-log.json
+            output/longform-prod/${{ matrix.channel }}/qa.json
+            output/longform-prod/${{ matrix.channel }}/thumbnails/*.jpg
+            output/longform-prod/${{ matrix.channel }}/thumbnails/*.json
+            output/longform-prod/${{ matrix.channel }}/shorts/**/short.mp4
+            output/longform-prod/${{ matrix.channel }}/shorts/**/cover.jpg
+            output/longform-prod/${{ matrix.channel }}/shorts/**/meta.json
+            output/longform-prod/${{ matrix.channel }}/shorts/shorts-log.json

@@ -1,0 +1,6089 @@
+{
+  "generated_at": "2026-11-13T20:09:34.288Z",
+  "reports": [
+    {
+      "slot": "01",
+      "status": "ok",
+      "channel": "Hidden Past",
+      "subscribers": 5,
+      "videos": [
+        {
+          "id": "lXg1BoE7UHo",
+          "title": "Al Capone Was Brought Down by Income Tax",
+          "published": "2026-11-12",
+          "privacy": "public",
+          "duration_s": 31,
+          "views": 13,
+          "likes": 1,
+          "comments": 0,
+          "curve": [],
+          "diagnosis": null,
+          "note": "no curve yet: YouTube has too few views to report retention"
+        },
+        {
+          "id": "Ur__66zSPk8",
+          "title": "Charles Ponzi: 50% in 45 Days. What Really Happened",
+          "published": "2026-11-12",
+          "privacy": "public",
+          "duration_s": 30,
+          "views": 5,
+          "likes": 1,
+          "comments": 0,
+          "curve": [],
+          "diagnosis": null,
+          "note": "no curve yet: YouTube has too few views to report retention"
+        },
+        {
+          "id": "Vncz7pxtkBo",
+          "title": "Pablo Escobar's Plane Bomb: The Candidate Who Wasn't on Board",
+          "published": "2026-11-11",
+          "privacy": "public",
+          "duration_s": 38,
+          "views": 99,
+          "likes": 11,
+          "comments": 0,
+          "analytics_views": 96,
+          "average_view_duration_s": 35,
+          "average_view_percentage": 94.29,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.7297
+            ],
+            [
+              0.02,
+              1.6486
+            ],
+            [
+              0.03,
+              1.5946
+            ],
+            [
+              0.04,
+              1.5134999999999998
+            ],
+            [
+              0.05,
+              1.5134999999999998
+            ],
+            [
+              0.06,
+              1.4865000000000002
+            ],
+            [
+              0.07,
+              1.4324000000000001
+            ],
+            [
+              0.08,
+              1.4324000000000001
+            ],
+            [
+              0.09,
+              1.4054
+            ],
+            [
+              0.1,
+              1.4054
+            ],
+            [
+              0.11,
+              1.3784
+            ],
+            [
+              0.12,
+              1.3514
+            ],
+            [
+              0.13,
+              1.2973
+            ],
+            [
+              0.14,
+              1.2973
+            ],
+            [
+              0.15,
+              1.2431999999999999
+            ],
+            [
+              0.16,
+              1.2431999999999999
+            ],
+            [
+              0.17,
+              1.1622
+            ],
+            [
+              0.18,
+              1.1622
+            ],
+            [
+              0.19,
+              1.1622
+            ],
+            [
+              0.2,
+              1.1351
+            ],
+            [
+              0.21,
+              1.1081
+            ],
+            [
+              0.22,
+              1.0811
+            ],
+            [
+              0.23,
+              1.0811
+            ],
+            [
+              0.24,
+              1.0811
+            ],
+            [
+              0.25,
+              1.0811
+            ],
+            [
+              0.26,
+              1.0811
+            ],
+            [
+              0.27,
+              1.0811
+            ],
+            [
+              0.28,
+              1.0541
+            ],
+            [
+              0.29,
+              1.0541
+            ],
+            [
+              0.3,
+              1.0541
+            ],
+            [
+              0.31,
+              1.0541
+            ],
+            [
+              0.32,
+              1.0541
+            ],
+            [
+              0.33,
+              1.0541
+            ],
+            [
+              0.34,
+              1.0270000000000001
+            ],
+            [
+              0.35,
+              1.0270000000000001
+            ],
+            [
+              0.36,
+              1.0270000000000001
+            ],
+            [
+              0.37,
+              1.0270000000000001
+            ],
+            [
+              0.38,
+              1
+            ],
+            [
+              0.39,
+              1
+            ],
+            [
+              0.4,
+              1
+            ],
+            [
+              0.41,
+              0.9459000000000001
+            ],
+            [
+              0.42,
+              0.9459000000000001
+            ],
+            [
+              0.43,
+              0.9459000000000001
+            ],
+            [
+              0.44,
+              0.9459000000000001
+            ],
+            [
+              0.45,
+              0.9459000000000001
+            ],
+            [
+              0.46,
+              0.9459000000000001
+            ],
+            [
+              0.47,
+              0.9459000000000001
+            ],
+            [
+              0.48,
+              0.9459000000000001
+            ],
+            [
+              0.49,
+              0.9189
+            ],
+            [
+              0.5,
+              0.9189
+            ],
+            [
+              0.51,
+              0.9189
+            ],
+            [
+              0.52,
+              0.8919
+            ],
+            [
+              0.53,
+              0.8919
+            ],
+            [
+              0.54,
+              0.8919
+            ],
+            [
+              0.55,
+              0.8649
+            ],
+            [
+              0.56,
+              0.8649
+            ],
+            [
+              0.57,
+              0.8378
+            ],
+            [
+              0.58,
+              0.8649
+            ],
+            [
+              0.59,
+              0.8649
+            ],
+            [
+              0.6,
+              0.8378
+            ],
+            [
+              0.61,
+              0.8378
+            ],
+            [
+              0.62,
+              0.8378
+            ],
+            [
+              0.63,
+              0.8378
+            ],
+            [
+              0.64,
+              0.8108
+            ],
+            [
+              0.65,
+              0.8108
+            ],
+            [
+              0.66,
+              0.8108
+            ],
+            [
+              0.67,
+              0.8108
+            ],
+            [
+              0.68,
+              0.8108
+            ],
+            [
+              0.69,
+              0.8108
+            ],
+            [
+              0.7,
+              0.8108
+            ],
+            [
+              0.71,
+              0.8108
+            ],
+            [
+              0.72,
+              0.8108
+            ],
+            [
+              0.73,
+              0.7837999999999999
+            ],
+            [
+              0.74,
+              0.7837999999999999
+            ],
+            [
+              0.75,
+              0.7837999999999999
+            ],
+            [
+              0.76,
+              0.7837999999999999
+            ],
+            [
+              0.77,
+              0.7837999999999999
+            ],
+            [
+              0.78,
+              0.7837999999999999
+            ],
+            [
+              0.79,
+              0.7568
+            ],
+            [
+              0.8,
+              0.7297
+            ],
+            [
+              0.81,
+              0.7297
+            ],
+            [
+              0.82,
+              0.7297
+            ],
+            [
+              0.83,
+              0.7297
+            ],
+            [
+              0.84,
+              0.7297
+            ],
+            [
+              0.85,
+              0.7568
+            ],
+            [
+              0.86,
+              0.7568
+            ],
+            [
+              0.87,
+              0.7568
+            ],
+            [
+              0.88,
+              0.7297
+            ],
+            [
+              0.89,
+              0.7297
+            ],
+            [
+              0.9,
+              0.7027
+            ],
+            [
+              0.91,
+              0.7027
+            ],
+            [
+              0.92,
+              0.7027
+            ],
+            [
+              0.93,
+              0.7027
+            ],
+            [
+              0.94,
+              0.6757
+            ],
+            [
+              0.95,
+              0.6757
+            ],
+            [
+              0.96,
+              0.6757
+            ],
+            [
+              0.97,
+              0.6757
+            ],
+            [
+              0.98,
+              0.6215999999999999
+            ],
+            [
+              0.99,
+              0.6215999999999999
+            ],
+            [
+              1,
+              0.6215999999999999
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.73,
+            "at_3s": 1.432,
+            "at_25": 1.081,
+            "at_50": 0.919,
+            "at_75": 0.784,
+            "at_end": 0.622,
+            "steepest_drop": {
+              "at_s": 1.1,
+              "lost": 0.081
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.297,
+                "lost_per_second": 0.0991
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 11.4,
+                "lost": 0.378,
+                "lost_per_second": 0.045
+              },
+              {
+                "name": "body",
+                "from_s": 11.4,
+                "to_s": 30.4,
+                "lost": 0.324,
+                "lost_per_second": 0.0171
+              },
+              {
+                "name": "close",
+                "from_s": 30.4,
+                "to_s": 38,
+                "lost": 0.108,
+                "lost_per_second": 0.0142
+              }
+            ],
+            "weakest_segment": "hook"
+          }
+        },
+        {
+          "id": "pRK7yA-SH2k",
+          "title": "The Bomb Pablo Escobar Planted for a Candidate Who Wasn't on Board",
+          "published": "2026-11-11",
+          "privacy": "private",
+          "duration_s": 37,
+          "views": 3,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "KiOQvgAws0o",
+          "title": "Clearing an Attic Reveals Documents Stolen from the…",
+          "published": "2026-11-10",
+          "privacy": "private",
+          "duration_s": 52,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "RB2r-dnUziI",
+          "title": "The Announcement That Came Too Early: Berlin Wall, 1989",
+          "published": "2026-11-10",
+          "privacy": "public",
+          "duration_s": 28,
+          "views": 6,
+          "likes": 5,
+          "comments": 0,
+          "analytics_views": 7,
+          "average_view_duration_s": 11,
+          "average_view_percentage": 39.29,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [],
+          "diagnosis": null,
+          "note": "no curve yet: YouTube has too few views to report retention"
+        },
+        {
+          "id": "LUfYEYsCLoQ",
+          "title": "How Sleuths Decoded the Secret Letters of Mary, Queen of…",
+          "published": "2026-11-09",
+          "privacy": "private",
+          "duration_s": 51,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "50qcoc8-s8w",
+          "title": "Whose Arrest Does This Famous 1914 Photo Really Show?",
+          "published": "2026-11-09",
+          "privacy": "public",
+          "duration_s": 30,
+          "views": 23,
+          "likes": 3,
+          "comments": 0,
+          "analytics_views": 30,
+          "average_view_duration_s": 33,
+          "average_view_percentage": 111.55,
+          "subscribers_gained": 2,
+          "shares": 0,
+          "curve": [],
+          "diagnosis": null,
+          "note": "no curve yet: YouTube has too few views to report retention"
+        },
+        {
+          "id": "ZFhtdVwK2zQ",
+          "title": "How slow biplanes sank six battleships at Taranto",
+          "published": "2026-11-09",
+          "privacy": "private",
+          "duration_s": 28,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "CZgGRLpKWys",
+          "title": "The discovery of 131 cuneiform tablets at Kayalıpınar in central Turkey provides a direct",
+          "published": "2026-11-08",
+          "privacy": "private",
+          "duration_s": 31,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "iKJhQXIcpIE",
+          "title": "Emily Hobhouse Honored 100 Years After Her Historic State…",
+          "published": "2026-11-08",
+          "privacy": "private",
+          "duration_s": 46,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "ipkcyYsaJ7I",
+          "title": "The discovery of 131 cuneiform tablets at Kayalıpınar in central Turkey provides a direct",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 31,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "7YRjJX2-M_M",
+          "title": "The discovery of 131 cuneiform tablets at Kayalıpınar in central Turkey provides a direct",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 31,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "ZSS7XKAyJ1w",
+          "title": "University of Leiden Discovers Violette Cornelius…",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 48,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "1u5zMrz-PLM",
+          "title": "The Village That Lost Its Children — And the Books That Remember Them",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 27,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "CVxPnz-_WQ0",
+          "title": "The Village That Lost Its Children — And the Books That Remember Them",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 27,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "ZQ9k0Uq9aUY",
+          "title": "The Village That Lost Its Children — And the Books That Remember Them",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 27,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "JjsB_N1zHl8",
+          "title": "Teeth Analysis Reveals African Origins of Slaves Buried on…",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 51,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "NshULBHhhqY",
+          "title": "University Archives Opens Decades of Frank Lloyd Wright…",
+          "published": "2026-11-05",
+          "privacy": "private",
+          "duration_s": 52,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "TrGV8uQwtGM",
+          "title": "Hungary Opens Communist-Era Secret Police Files After 47…",
+          "published": "2026-11-05",
+          "privacy": "public",
+          "duration_s": 47,
+          "views": 75,
+          "likes": 10,
+          "comments": 0,
+          "analytics_views": 57,
+          "average_view_duration_s": 336,
+          "average_view_percentage": 716.23,
+          "subscribers_gained": 1,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              8
+            ],
+            [
+              0.02,
+              8
+            ],
+            [
+              0.03,
+              7.9167
+            ],
+            [
+              0.04,
+              7.9167
+            ],
+            [
+              0.05,
+              7.9167
+            ],
+            [
+              0.06,
+              7.9167
+            ],
+            [
+              0.07,
+              7.9167
+            ],
+            [
+              0.08,
+              7.9167
+            ],
+            [
+              0.09,
+              7.9167
+            ],
+            [
+              0.1,
+              7.9167
+            ],
+            [
+              0.11,
+              7.9167
+            ],
+            [
+              0.12,
+              7.9167
+            ],
+            [
+              0.13,
+              7.9167
+            ],
+            [
+              0.14,
+              7.9167
+            ],
+            [
+              0.15,
+              7.9167
+            ],
+            [
+              0.16,
+              7.8333
+            ],
+            [
+              0.17,
+              7.75
+            ],
+            [
+              0.18,
+              7.6667
+            ],
+            [
+              0.19,
+              7.5833
+            ],
+            [
+              0.2,
+              7.5833
+            ],
+            [
+              0.21,
+              7.5833
+            ],
+            [
+              0.22,
+              7.5833
+            ],
+            [
+              0.23,
+              7.5833
+            ],
+            [
+              0.24,
+              7.5
+            ],
+            [
+              0.25,
+              7.5
+            ],
+            [
+              0.26,
+              7.5
+            ],
+            [
+              0.27,
+              7.5
+            ],
+            [
+              0.28,
+              7.5
+            ],
+            [
+              0.29,
+              7.5
+            ],
+            [
+              0.3,
+              7.5
+            ],
+            [
+              0.31,
+              7.5
+            ],
+            [
+              0.32,
+              7.5
+            ],
+            [
+              0.33,
+              7.4167
+            ],
+            [
+              0.34,
+              7.4167
+            ],
+            [
+              0.35,
+              7.3333
+            ],
+            [
+              0.36,
+              7.3333
+            ],
+            [
+              0.37,
+              7.3333
+            ],
+            [
+              0.38,
+              7.3333
+            ],
+            [
+              0.39,
+              7.3333
+            ],
+            [
+              0.4,
+              7.25
+            ],
+            [
+              0.41,
+              7.25
+            ],
+            [
+              0.42,
+              7.25
+            ],
+            [
+              0.43,
+              7.25
+            ],
+            [
+              0.44,
+              7.1667
+            ],
+            [
+              0.45,
+              7.1667
+            ],
+            [
+              0.46,
+              7.1667
+            ],
+            [
+              0.47,
+              7.1667
+            ],
+            [
+              0.48,
+              7.1667
+            ],
+            [
+              0.49,
+              7.1667
+            ],
+            [
+              0.5,
+              7.1667
+            ],
+            [
+              0.51,
+              7.1667
+            ],
+            [
+              0.52,
+              7.1667
+            ],
+            [
+              0.53,
+              7.1667
+            ],
+            [
+              0.54,
+              7.1667
+            ],
+            [
+              0.55,
+              7.1667
+            ],
+            [
+              0.56,
+              7.1667
+            ],
+            [
+              0.57,
+              7.1667
+            ],
+            [
+              0.58,
+              7.1667
+            ],
+            [
+              0.59,
+              7.1667
+            ],
+            [
+              0.6,
+              7.1667
+            ],
+            [
+              0.61,
+              7.1667
+            ],
+            [
+              0.62,
+              7.1667
+            ],
+            [
+              0.63,
+              7.1667
+            ],
+            [
+              0.64,
+              7.1667
+            ],
+            [
+              0.65,
+              7.1667
+            ],
+            [
+              0.66,
+              7.1667
+            ],
+            [
+              0.67,
+              7.1667
+            ],
+            [
+              0.68,
+              7.1667
+            ],
+            [
+              0.69,
+              7.1667
+            ],
+            [
+              0.7,
+              7.1667
+            ],
+            [
+              0.71,
+              7.1667
+            ],
+            [
+              0.72,
+              7.1667
+            ],
+            [
+              0.73,
+              7.0833
+            ],
+            [
+              0.74,
+              7.0833
+            ],
+            [
+              0.75,
+              7.0833
+            ],
+            [
+              0.76,
+              7.0833
+            ],
+            [
+              0.77,
+              7.0833
+            ],
+            [
+              0.78,
+              7.0833
+            ],
+            [
+              0.79,
+              7.0833
+            ],
+            [
+              0.8,
+              7.0833
+            ],
+            [
+              0.81,
+              7.0833
+            ],
+            [
+              0.82,
+              7.0833
+            ],
+            [
+              0.83,
+              7
+            ],
+            [
+              0.84,
+              7
+            ],
+            [
+              0.85,
+              7
+            ],
+            [
+              0.86,
+              7
+            ],
+            [
+              0.87,
+              7
+            ],
+            [
+              0.88,
+              7
+            ],
+            [
+              0.89,
+              6.9167
+            ],
+            [
+              0.9,
+              6.9167
+            ],
+            [
+              0.91,
+              6.9167
+            ],
+            [
+              0.92,
+              6.9167
+            ],
+            [
+              0.93,
+              6.9167
+            ],
+            [
+              0.94,
+              6.9167
+            ],
+            [
+              0.95,
+              6.9167
+            ],
+            [
+              0.96,
+              6.9167
+            ],
+            [
+              0.97,
+              6.8333
+            ],
+            [
+              0.98,
+              6.8333
+            ],
+            [
+              0.99,
+              6.75
+            ],
+            [
+              1,
+              6.6667
+            ]
+          ],
+          "diagnosis": {
+            "start": 8,
+            "at_3s": 7.917,
+            "at_25": 7.5,
+            "at_50": 7.167,
+            "at_75": 7.083,
+            "at_end": 6.667,
+            "steepest_drop": {
+              "at_s": 7,
+              "lost": 0.083
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.083,
+                "lost_per_second": 0.0278
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 14.1,
+                "lost": 0.417,
+                "lost_per_second": 0.0375
+              },
+              {
+                "name": "body",
+                "from_s": 14.1,
+                "to_s": 37.6,
+                "lost": 0.417,
+                "lost_per_second": 0.0177
+              },
+              {
+                "name": "close",
+                "from_s": 37.6,
+                "to_s": 47,
+                "lost": 0.417,
+                "lost_per_second": 0.0443
+              }
+            ],
+            "weakest_segment": "close"
+          }
+        },
+        {
+          "id": "4iTz2yv1H48",
+          "title": "Margaret Clitherow's brutal execution in York in 1586, where she was crushed to death for",
+          "published": "2026-11-04",
+          "privacy": "public",
+          "duration_s": 57,
+          "views": 265,
+          "likes": 12,
+          "comments": 0,
+          "analytics_views": 265,
+          "average_view_duration_s": 33,
+          "average_view_percentage": 58.82999999999999,
+          "subscribers_gained": 3,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.25
+            ],
+            [
+              0.02,
+              1.2417
+            ],
+            [
+              0.03,
+              1.225
+            ],
+            [
+              0.04,
+              1.1833
+            ],
+            [
+              0.05,
+              1.1582999999999999
+            ],
+            [
+              0.06,
+              1.1417
+            ],
+            [
+              0.07,
+              1.125
+            ],
+            [
+              0.08,
+              1.1167
+            ],
+            [
+              0.09,
+              1.0667
+            ],
+            [
+              0.1,
+              1.05
+            ],
+            [
+              0.11,
+              1.025
+            ],
+            [
+              0.12,
+              1.0083
+            ],
+            [
+              0.13,
+              1.0083
+            ],
+            [
+              0.14,
+              0.9833
+            ],
+            [
+              0.15,
+              0.9417
+            ],
+            [
+              0.16,
+              0.9083
+            ],
+            [
+              0.17,
+              0.875
+            ],
+            [
+              0.18,
+              0.8332999999999999
+            ],
+            [
+              0.19,
+              0.8
+            ],
+            [
+              0.2,
+              0.7667
+            ],
+            [
+              0.21,
+              0.7417
+            ],
+            [
+              0.22,
+              0.725
+            ],
+            [
+              0.23,
+              0.7
+            ],
+            [
+              0.24,
+              0.675
+            ],
+            [
+              0.25,
+              0.6667000000000001
+            ],
+            [
+              0.26,
+              0.65
+            ],
+            [
+              0.27,
+              0.6417
+            ],
+            [
+              0.28,
+              0.6417
+            ],
+            [
+              0.29,
+              0.65
+            ],
+            [
+              0.3,
+              0.6417
+            ],
+            [
+              0.31,
+              0.6333
+            ],
+            [
+              0.32,
+              0.625
+            ],
+            [
+              0.33,
+              0.625
+            ],
+            [
+              0.34,
+              0.6083
+            ],
+            [
+              0.35,
+              0.6083
+            ],
+            [
+              0.36,
+              0.6083
+            ],
+            [
+              0.37,
+              0.6083
+            ],
+            [
+              0.38,
+              0.6167
+            ],
+            [
+              0.39,
+              0.6167
+            ],
+            [
+              0.4,
+              0.6167
+            ],
+            [
+              0.41,
+              0.6167
+            ],
+            [
+              0.42,
+              0.6167
+            ],
+            [
+              0.43,
+              0.6083
+            ],
+            [
+              0.44,
+              0.6083
+            ],
+            [
+              0.45,
+              0.6
+            ],
+            [
+              0.46,
+              0.5917
+            ],
+            [
+              0.47,
+              0.6
+            ],
+            [
+              0.48,
+              0.6
+            ],
+            [
+              0.49,
+              0.5917
+            ],
+            [
+              0.5,
+              0.5832999999999999
+            ],
+            [
+              0.51,
+              0.5832999999999999
+            ],
+            [
+              0.52,
+              0.5917
+            ],
+            [
+              0.53,
+              0.575
+            ],
+            [
+              0.54,
+              0.575
+            ],
+            [
+              0.55,
+              0.575
+            ],
+            [
+              0.56,
+              0.575
+            ],
+            [
+              0.57,
+              0.5667
+            ],
+            [
+              0.58,
+              0.5417000000000001
+            ],
+            [
+              0.59,
+              0.525
+            ],
+            [
+              0.6,
+              0.5083
+            ],
+            [
+              0.61,
+              0.4833
+            ],
+            [
+              0.62,
+              0.4667
+            ],
+            [
+              0.63,
+              0.4583
+            ],
+            [
+              0.64,
+              0.44170000000000004
+            ],
+            [
+              0.65,
+              0.43329999999999996
+            ],
+            [
+              0.66,
+              0.43329999999999996
+            ],
+            [
+              0.67,
+              0.425
+            ],
+            [
+              0.68,
+              0.4167
+            ],
+            [
+              0.69,
+              0.425
+            ],
+            [
+              0.7,
+              0.425
+            ],
+            [
+              0.71,
+              0.4083
+            ],
+            [
+              0.72,
+              0.4
+            ],
+            [
+              0.73,
+              0.4
+            ],
+            [
+              0.74,
+              0.3917
+            ],
+            [
+              0.75,
+              0.3917
+            ],
+            [
+              0.76,
+              0.3833
+            ],
+            [
+              0.77,
+              0.3833
+            ],
+            [
+              0.78,
+              0.3833
+            ],
+            [
+              0.79,
+              0.375
+            ],
+            [
+              0.8,
+              0.3583
+            ],
+            [
+              0.81,
+              0.3667
+            ],
+            [
+              0.82,
+              0.3667
+            ],
+            [
+              0.83,
+              0.3583
+            ],
+            [
+              0.84,
+              0.3583
+            ],
+            [
+              0.85,
+              0.3583
+            ],
+            [
+              0.86,
+              0.3417
+            ],
+            [
+              0.87,
+              0.325
+            ],
+            [
+              0.88,
+              0.325
+            ],
+            [
+              0.89,
+              0.325
+            ],
+            [
+              0.9,
+              0.325
+            ],
+            [
+              0.91,
+              0.325
+            ],
+            [
+              0.92,
+              0.30829999999999996
+            ],
+            [
+              0.93,
+              0.2917
+            ],
+            [
+              0.94,
+              0.2833
+            ],
+            [
+              0.95,
+              0.2833
+            ],
+            [
+              0.96,
+              0.2833
+            ],
+            [
+              0.97,
+              0.275
+            ],
+            [
+              0.98,
+              0.2667
+            ],
+            [
+              0.99,
+              0.2583
+            ],
+            [
+              1,
+              0.2583
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.25,
+            "at_3s": 1.158,
+            "at_25": 0.667,
+            "at_50": 0.583,
+            "at_75": 0.392,
+            "at_end": 0.258,
+            "steepest_drop": {
+              "at_s": 4.6,
+              "lost": 0.05
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.092,
+                "lost_per_second": 0.0306
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 17.1,
+                "lost": 0.517,
+                "lost_per_second": 0.0366
+              },
+              {
+                "name": "body",
+                "from_s": 17.1,
+                "to_s": 45.6,
+                "lost": 0.283,
+                "lost_per_second": 0.0099
+              },
+              {
+                "name": "close",
+                "from_s": 45.6,
+                "to_s": 57,
+                "lost": 0.1,
+                "lost_per_second": 0.0088
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "6wUWozuzYiM",
+          "title": "Margaret Clitherow's brutal execution in York in 1586, where she was crushed to death for",
+          "published": "2026-11-04",
+          "privacy": "private",
+          "duration_s": 0,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "R9YQLFqYfHA",
+          "title": "Teeth Reveal African Origins of 27,000 People Buried on St…",
+          "published": "2026-11-04",
+          "privacy": "public",
+          "duration_s": 52,
+          "views": 46,
+          "likes": 8,
+          "comments": 0,
+          "analytics_views": 46,
+          "average_view_duration_s": 43,
+          "average_view_percentage": 84.47,
+          "subscribers_gained": 1,
+          "shares": 1,
+          "curve": [
+            [
+              0.01,
+              1.5556
+            ],
+            [
+              0.02,
+              1.5556
+            ],
+            [
+              0.03,
+              1.5185
+            ],
+            [
+              0.04,
+              1.5185
+            ],
+            [
+              0.05,
+              1.4815
+            ],
+            [
+              0.06,
+              1.4815
+            ],
+            [
+              0.07,
+              1.4444
+            ],
+            [
+              0.08,
+              1.4444
+            ],
+            [
+              0.09,
+              1.4444
+            ],
+            [
+              0.1,
+              1.3703999999999998
+            ],
+            [
+              0.11,
+              1.3333000000000002
+            ],
+            [
+              0.12,
+              1.2963
+            ],
+            [
+              0.13,
+              1.2593
+            ],
+            [
+              0.14,
+              1.2222
+            ],
+            [
+              0.15,
+              1.1852
+            ],
+            [
+              0.16,
+              1.1481000000000001
+            ],
+            [
+              0.17,
+              1.037
+            ],
+            [
+              0.18,
+              1.037
+            ],
+            [
+              0.19,
+              1.037
+            ],
+            [
+              0.2,
+              1.037
+            ],
+            [
+              0.21,
+              1
+            ],
+            [
+              0.22,
+              1
+            ],
+            [
+              0.23,
+              1
+            ],
+            [
+              0.24,
+              1
+            ],
+            [
+              0.25,
+              1
+            ],
+            [
+              0.26,
+              1
+            ],
+            [
+              0.27,
+              0.9259000000000001
+            ],
+            [
+              0.28,
+              0.9259000000000001
+            ],
+            [
+              0.29,
+              0.9259000000000001
+            ],
+            [
+              0.3,
+              0.9259000000000001
+            ],
+            [
+              0.31,
+              0.8889
+            ],
+            [
+              0.32,
+              0.8889
+            ],
+            [
+              0.33,
+              0.8148000000000001
+            ],
+            [
+              0.34,
+              0.8148000000000001
+            ],
+            [
+              0.35,
+              0.8148000000000001
+            ],
+            [
+              0.36,
+              0.8148000000000001
+            ],
+            [
+              0.37,
+              0.8148000000000001
+            ],
+            [
+              0.38,
+              0.8148000000000001
+            ],
+            [
+              0.39,
+              0.8148000000000001
+            ],
+            [
+              0.4,
+              0.8148000000000001
+            ],
+            [
+              0.41,
+              0.8148000000000001
+            ],
+            [
+              0.42,
+              0.8148000000000001
+            ],
+            [
+              0.43,
+              0.7778
+            ],
+            [
+              0.44,
+              0.7778
+            ],
+            [
+              0.45,
+              0.7778
+            ],
+            [
+              0.46,
+              0.7778
+            ],
+            [
+              0.47,
+              0.7778
+            ],
+            [
+              0.48,
+              0.7778
+            ],
+            [
+              0.49,
+              0.7406999999999999
+            ],
+            [
+              0.5,
+              0.7406999999999999
+            ],
+            [
+              0.51,
+              0.7406999999999999
+            ],
+            [
+              0.52,
+              0.7406999999999999
+            ],
+            [
+              0.53,
+              0.7406999999999999
+            ],
+            [
+              0.54,
+              0.7406999999999999
+            ],
+            [
+              0.55,
+              0.7406999999999999
+            ],
+            [
+              0.56,
+              0.7406999999999999
+            ],
+            [
+              0.57,
+              0.7406999999999999
+            ],
+            [
+              0.58,
+              0.7406999999999999
+            ],
+            [
+              0.59,
+              0.7406999999999999
+            ],
+            [
+              0.6,
+              0.7037
+            ],
+            [
+              0.61,
+              0.7037
+            ],
+            [
+              0.62,
+              0.7037
+            ],
+            [
+              0.63,
+              0.7037
+            ],
+            [
+              0.64,
+              0.7037
+            ],
+            [
+              0.65,
+              0.7037
+            ],
+            [
+              0.66,
+              0.7037
+            ],
+            [
+              0.67,
+              0.7037
+            ],
+            [
+              0.68,
+              0.7037
+            ],
+            [
+              0.69,
+              0.7037
+            ],
+            [
+              0.7,
+              0.7037
+            ],
+            [
+              0.71,
+              0.7037
+            ],
+            [
+              0.72,
+              0.7037
+            ],
+            [
+              0.73,
+              0.7037
+            ],
+            [
+              0.74,
+              0.6667000000000001
+            ],
+            [
+              0.75,
+              0.6667000000000001
+            ],
+            [
+              0.76,
+              0.6667000000000001
+            ],
+            [
+              0.77,
+              0.6667000000000001
+            ],
+            [
+              0.78,
+              0.6667000000000001
+            ],
+            [
+              0.79,
+              0.6667000000000001
+            ],
+            [
+              0.8,
+              0.6667000000000001
+            ],
+            [
+              0.81,
+              0.6667000000000001
+            ],
+            [
+              0.82,
+              0.6296
+            ],
+            [
+              0.83,
+              0.6296
+            ],
+            [
+              0.84,
+              0.6296
+            ],
+            [
+              0.85,
+              0.6296
+            ],
+            [
+              0.86,
+              0.6296
+            ],
+            [
+              0.87,
+              0.6296
+            ],
+            [
+              0.88,
+              0.6296
+            ],
+            [
+              0.89,
+              0.5926
+            ],
+            [
+              0.9,
+              0.5926
+            ],
+            [
+              0.91,
+              0.5926
+            ],
+            [
+              0.92,
+              0.5926
+            ],
+            [
+              0.93,
+              0.5926
+            ],
+            [
+              0.94,
+              0.5926
+            ],
+            [
+              0.95,
+              0.5926
+            ],
+            [
+              0.96,
+              0.5926
+            ],
+            [
+              0.97,
+              0.5926
+            ],
+            [
+              0.98,
+              0.5926
+            ],
+            [
+              0.99,
+              0.5926
+            ],
+            [
+              1,
+              0.5926
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.556,
+            "at_3s": 1.482,
+            "at_25": 1,
+            "at_50": 0.741,
+            "at_75": 0.667,
+            "at_end": 0.593,
+            "steepest_drop": {
+              "at_s": 8.3,
+              "lost": 0.111
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.074,
+                "lost_per_second": 0.0247
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 15.6,
+                "lost": 0.556,
+                "lost_per_second": 0.0441
+              },
+              {
+                "name": "body",
+                "from_s": 15.6,
+                "to_s": 41.6,
+                "lost": 0.259,
+                "lost_per_second": 0.01
+              },
+              {
+                "name": "close",
+                "from_s": 41.6,
+                "to_s": 52,
+                "lost": 0.074,
+                "lost_per_second": 0.0071
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "ZMPkAMTj02w",
+          "title": "St Helena Slave Ship Burials: DNA and Teeth Reveal Lost…",
+          "published": "2026-11-03",
+          "privacy": "private",
+          "duration_s": 50,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "t2EQ1Bm84ro",
+          "title": "Did Margaret Clitherow's 1586 Execution Shape Guy Fawkes?",
+          "published": "2026-11-01",
+          "privacy": "private",
+          "duration_s": 52,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "NmqPJm1vziM",
+          "title": "Harry Houdini's First Newly Deciphered Red Diary Reveals…",
+          "published": "2026-10-31",
+          "privacy": "private",
+          "duration_s": 56,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "NCYS7NIucwQ",
+          "title": "MI5 False Evidence in Neo-Nazi Spy Case Declared a Serious…",
+          "published": "2026-10-30",
+          "privacy": "private",
+          "duration_s": 44,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "DeeJ9qDKLpc",
+          "title": "Stolen Portchester Castle Plaque Exposes Forgotten…",
+          "published": "2026-10-28",
+          "privacy": "private",
+          "duration_s": 54,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "7qGMvi8vizM",
+          "title": "A New Discovery of Cuneiform Tablets Offers a Glimpse Into…",
+          "published": "2026-10-26",
+          "privacy": "private",
+          "duration_s": 59,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "tfw1dRMCxbI",
+          "title": "The Newly Unveiled Archive of The Snowman Creator Raymond…",
+          "published": "2026-10-25",
+          "privacy": "private",
+          "duration_s": 49,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        }
+      ]
+    },
+    {
+      "slot": "02",
+      "status": "ok",
+      "channel": "AI Tested",
+      "subscribers": 9,
+      "videos": [
+        {
+          "id": "fI2_A0TCllw",
+          "title": "Does AI Cave When You Say \"I'm an Expert\"? 24 False Claims Tested",
+          "published": "2026-11-12",
+          "privacy": "public",
+          "duration_s": 30,
+          "views": 245,
+          "likes": 1,
+          "comments": 0,
+          "curve": [],
+          "diagnosis": null,
+          "note": "no curve yet: YouTube has too few views to report retention"
+        },
+        {
+          "id": "r0Ja4vAf7Zo",
+          "title": "Will AI Admit When It Doesn't Know? 7 of 24 Answers Were Made Up",
+          "published": "2026-11-11",
+          "privacy": "public",
+          "duration_s": 29,
+          "views": 235,
+          "likes": 7,
+          "comments": 0,
+          "analytics_views": 182,
+          "average_view_duration_s": 27,
+          "average_view_percentage": 96.08,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.5833000000000002
+            ],
+            [
+              0.02,
+              1.5833000000000002
+            ],
+            [
+              0.03,
+              1.4583000000000002
+            ],
+            [
+              0.04,
+              1.4583000000000002
+            ],
+            [
+              0.05,
+              1.4583000000000002
+            ],
+            [
+              0.06,
+              1.4583000000000002
+            ],
+            [
+              0.07,
+              1.4583000000000002
+            ],
+            [
+              0.08,
+              1.4583000000000002
+            ],
+            [
+              0.09,
+              1.4583000000000002
+            ],
+            [
+              0.1,
+              1.4583000000000002
+            ],
+            [
+              0.11,
+              1.4583000000000002
+            ],
+            [
+              0.12,
+              1.4583000000000002
+            ],
+            [
+              0.13,
+              1.4583000000000002
+            ],
+            [
+              0.14,
+              1.4583000000000002
+            ],
+            [
+              0.15,
+              1.4583000000000002
+            ],
+            [
+              0.16,
+              1.4583000000000002
+            ],
+            [
+              0.17,
+              1.4166999999999998
+            ],
+            [
+              0.18,
+              1.375
+            ],
+            [
+              0.19,
+              1.3333000000000002
+            ],
+            [
+              0.2,
+              1.3333000000000002
+            ],
+            [
+              0.21,
+              1.3333000000000002
+            ],
+            [
+              0.22,
+              1.3333000000000002
+            ],
+            [
+              0.23,
+              1.25
+            ],
+            [
+              0.24,
+              1.1667
+            ],
+            [
+              0.25,
+              1.125
+            ],
+            [
+              0.26,
+              1.125
+            ],
+            [
+              0.27,
+              1.125
+            ],
+            [
+              0.28,
+              1.125
+            ],
+            [
+              0.29,
+              1.125
+            ],
+            [
+              0.3,
+              1.125
+            ],
+            [
+              0.31,
+              1.0833
+            ],
+            [
+              0.32,
+              1.0833
+            ],
+            [
+              0.33,
+              1.0833
+            ],
+            [
+              0.34,
+              1.0833
+            ],
+            [
+              0.35,
+              0.9582999999999999
+            ],
+            [
+              0.36,
+              0.9582999999999999
+            ],
+            [
+              0.37,
+              0.9582999999999999
+            ],
+            [
+              0.38,
+              0.9167000000000001
+            ],
+            [
+              0.39,
+              0.9167000000000001
+            ],
+            [
+              0.4,
+              0.9167000000000001
+            ],
+            [
+              0.41,
+              0.875
+            ],
+            [
+              0.42,
+              0.875
+            ],
+            [
+              0.43,
+              0.875
+            ],
+            [
+              0.44,
+              0.875
+            ],
+            [
+              0.45,
+              0.875
+            ],
+            [
+              0.46,
+              0.875
+            ],
+            [
+              0.47,
+              0.875
+            ],
+            [
+              0.48,
+              0.875
+            ],
+            [
+              0.49,
+              0.875
+            ],
+            [
+              0.5,
+              0.875
+            ],
+            [
+              0.51,
+              0.875
+            ],
+            [
+              0.52,
+              0.875
+            ],
+            [
+              0.53,
+              0.875
+            ],
+            [
+              0.54,
+              0.875
+            ],
+            [
+              0.55,
+              0.875
+            ],
+            [
+              0.56,
+              0.875
+            ],
+            [
+              0.57,
+              0.8332999999999999
+            ],
+            [
+              0.58,
+              0.8332999999999999
+            ],
+            [
+              0.59,
+              0.7917000000000001
+            ],
+            [
+              0.6,
+              0.7917000000000001
+            ],
+            [
+              0.61,
+              0.7917000000000001
+            ],
+            [
+              0.62,
+              0.7917000000000001
+            ],
+            [
+              0.63,
+              0.7917000000000001
+            ],
+            [
+              0.64,
+              0.7917000000000001
+            ],
+            [
+              0.65,
+              0.7917000000000001
+            ],
+            [
+              0.66,
+              0.7917000000000001
+            ],
+            [
+              0.67,
+              0.75
+            ],
+            [
+              0.68,
+              0.75
+            ],
+            [
+              0.69,
+              0.75
+            ],
+            [
+              0.7,
+              0.75
+            ],
+            [
+              0.71,
+              0.75
+            ],
+            [
+              0.72,
+              0.75
+            ],
+            [
+              0.73,
+              0.75
+            ],
+            [
+              0.74,
+              0.75
+            ],
+            [
+              0.75,
+              0.75
+            ],
+            [
+              0.76,
+              0.75
+            ],
+            [
+              0.77,
+              0.75
+            ],
+            [
+              0.78,
+              0.75
+            ],
+            [
+              0.79,
+              0.75
+            ],
+            [
+              0.8,
+              0.75
+            ],
+            [
+              0.81,
+              0.75
+            ],
+            [
+              0.82,
+              0.75
+            ],
+            [
+              0.83,
+              0.75
+            ],
+            [
+              0.84,
+              0.75
+            ],
+            [
+              0.85,
+              0.75
+            ],
+            [
+              0.86,
+              0.75
+            ],
+            [
+              0.87,
+              0.75
+            ],
+            [
+              0.88,
+              0.75
+            ],
+            [
+              0.89,
+              0.75
+            ],
+            [
+              0.9,
+              0.75
+            ],
+            [
+              0.91,
+              0.75
+            ],
+            [
+              0.92,
+              0.7082999999999999
+            ],
+            [
+              0.93,
+              0.7082999999999999
+            ],
+            [
+              0.94,
+              0.7082999999999999
+            ],
+            [
+              0.95,
+              0.7082999999999999
+            ],
+            [
+              0.96,
+              0.6667000000000001
+            ],
+            [
+              0.97,
+              0.6667000000000001
+            ],
+            [
+              0.98,
+              0.6667000000000001
+            ],
+            [
+              0.99,
+              0.6667000000000001
+            ],
+            [
+              1,
+              0.625
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.583,
+            "at_3s": 1.458,
+            "at_25": 1.125,
+            "at_50": 0.875,
+            "at_75": 0.75,
+            "at_end": 0.625,
+            "steepest_drop": {
+              "at_s": 0.6,
+              "lost": 0.125
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.125,
+                "lost_per_second": 0.0417
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 8.7,
+                "lost": 0.333,
+                "lost_per_second": 0.0585
+              },
+              {
+                "name": "body",
+                "from_s": 8.7,
+                "to_s": 23.2,
+                "lost": 0.375,
+                "lost_per_second": 0.0259
+              },
+              {
+                "name": "close",
+                "from_s": 23.2,
+                "to_s": 29,
+                "lost": 0.125,
+                "lost_per_second": 0.0216
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "WX926oYXSjw",
+          "title": "We Clicked Every Link AI Gave Us. 12 of 36 Were Dead.",
+          "published": "2026-11-11",
+          "privacy": "public",
+          "duration_s": 37,
+          "views": 752,
+          "likes": 10,
+          "comments": 0,
+          "analytics_views": 698,
+          "average_view_duration_s": 20,
+          "average_view_percentage": 56.05,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.2479
+            ],
+            [
+              0.02,
+              1.2393
+            ],
+            [
+              0.03,
+              1.188
+            ],
+            [
+              0.04,
+              1.1538
+            ],
+            [
+              0.05,
+              1.1368
+            ],
+            [
+              0.06,
+              1.1197
+            ],
+            [
+              0.07,
+              1.1111
+            ],
+            [
+              0.08,
+              1.1026
+            ],
+            [
+              0.09,
+              1.1026
+            ],
+            [
+              0.1,
+              1.0855
+            ],
+            [
+              0.11,
+              1.0769
+            ],
+            [
+              0.12,
+              1.0342
+            ],
+            [
+              0.13,
+              0.9573
+            ],
+            [
+              0.14,
+              0.9059999999999999
+            ],
+            [
+              0.15,
+              0.8718
+            ],
+            [
+              0.16,
+              0.7778
+            ],
+            [
+              0.17,
+              0.7606999999999999
+            ],
+            [
+              0.18,
+              0.7179000000000001
+            ],
+            [
+              0.19,
+              0.6923
+            ],
+            [
+              0.2,
+              0.6838
+            ],
+            [
+              0.21,
+              0.6239
+            ],
+            [
+              0.22,
+              0.6068
+            ],
+            [
+              0.23,
+              0.6068
+            ],
+            [
+              0.24,
+              0.6068
+            ],
+            [
+              0.25,
+              0.6068
+            ],
+            [
+              0.26,
+              0.5982999999999999
+            ],
+            [
+              0.27,
+              0.5982999999999999
+            ],
+            [
+              0.28,
+              0.5897
+            ],
+            [
+              0.29,
+              0.5897
+            ],
+            [
+              0.3,
+              0.5897
+            ],
+            [
+              0.31,
+              0.5897
+            ],
+            [
+              0.32,
+              0.5811999999999999
+            ],
+            [
+              0.33,
+              0.5556
+            ],
+            [
+              0.34,
+              0.547
+            ],
+            [
+              0.35,
+              0.547
+            ],
+            [
+              0.36,
+              0.5385
+            ],
+            [
+              0.37,
+              0.5214
+            ],
+            [
+              0.38,
+              0.5128
+            ],
+            [
+              0.39,
+              0.5043
+            ],
+            [
+              0.4,
+              0.5043
+            ],
+            [
+              0.41,
+              0.5043
+            ],
+            [
+              0.42,
+              0.5043
+            ],
+            [
+              0.43,
+              0.5043
+            ],
+            [
+              0.44,
+              0.5043
+            ],
+            [
+              0.45,
+              0.5043
+            ],
+            [
+              0.46,
+              0.5043
+            ],
+            [
+              0.47,
+              0.5043
+            ],
+            [
+              0.48,
+              0.49570000000000003
+            ],
+            [
+              0.49,
+              0.49570000000000003
+            ],
+            [
+              0.5,
+              0.49570000000000003
+            ],
+            [
+              0.51,
+              0.49570000000000003
+            ],
+            [
+              0.52,
+              0.49570000000000003
+            ],
+            [
+              0.53,
+              0.49570000000000003
+            ],
+            [
+              0.54,
+              0.49570000000000003
+            ],
+            [
+              0.55,
+              0.49570000000000003
+            ],
+            [
+              0.56,
+              0.49570000000000003
+            ],
+            [
+              0.57,
+              0.48719999999999997
+            ],
+            [
+              0.58,
+              0.48719999999999997
+            ],
+            [
+              0.59,
+              0.48719999999999997
+            ],
+            [
+              0.6,
+              0.48719999999999997
+            ],
+            [
+              0.61,
+              0.47859999999999997
+            ],
+            [
+              0.62,
+              0.47859999999999997
+            ],
+            [
+              0.63,
+              0.47009999999999996
+            ],
+            [
+              0.64,
+              0.47009999999999996
+            ],
+            [
+              0.65,
+              0.46149999999999997
+            ],
+            [
+              0.66,
+              0.46149999999999997
+            ],
+            [
+              0.67,
+              0.45299999999999996
+            ],
+            [
+              0.68,
+              0.45299999999999996
+            ],
+            [
+              0.69,
+              0.45299999999999996
+            ],
+            [
+              0.7,
+              0.45299999999999996
+            ],
+            [
+              0.71,
+              0.45299999999999996
+            ],
+            [
+              0.72,
+              0.44439999999999996
+            ],
+            [
+              0.73,
+              0.44439999999999996
+            ],
+            [
+              0.74,
+              0.44439999999999996
+            ],
+            [
+              0.75,
+              0.44439999999999996
+            ],
+            [
+              0.76,
+              0.44439999999999996
+            ],
+            [
+              0.77,
+              0.44439999999999996
+            ],
+            [
+              0.78,
+              0.44439999999999996
+            ],
+            [
+              0.79,
+              0.44439999999999996
+            ],
+            [
+              0.8,
+              0.44439999999999996
+            ],
+            [
+              0.81,
+              0.4359
+            ],
+            [
+              0.82,
+              0.4188
+            ],
+            [
+              0.83,
+              0.4103
+            ],
+            [
+              0.84,
+              0.4017
+            ],
+            [
+              0.85,
+              0.4017
+            ],
+            [
+              0.86,
+              0.4017
+            ],
+            [
+              0.87,
+              0.4017
+            ],
+            [
+              0.88,
+              0.4017
+            ],
+            [
+              0.89,
+              0.4017
+            ],
+            [
+              0.9,
+              0.3932
+            ],
+            [
+              0.91,
+              0.3932
+            ],
+            [
+              0.92,
+              0.3932
+            ],
+            [
+              0.93,
+              0.3846
+            ],
+            [
+              0.94,
+              0.3846
+            ],
+            [
+              0.95,
+              0.3761
+            ],
+            [
+              0.96,
+              0.3504
+            ],
+            [
+              0.97,
+              0.3419
+            ],
+            [
+              0.98,
+              0.3248
+            ],
+            [
+              0.99,
+              0.31620000000000004
+            ],
+            [
+              1,
+              0.31620000000000004
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.248,
+            "at_3s": 1.103,
+            "at_25": 0.607,
+            "at_50": 0.496,
+            "at_75": 0.444,
+            "at_end": 0.316,
+            "steepest_drop": {
+              "at_s": 5.5,
+              "lost": 0.094
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.145,
+                "lost_per_second": 0.0484
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 11.1,
+                "lost": 0.513,
+                "lost_per_second": 0.0633
+              },
+              {
+                "name": "body",
+                "from_s": 11.1,
+                "to_s": 29.6,
+                "lost": 0.145,
+                "lost_per_second": 0.0079
+              },
+              {
+                "name": "close",
+                "from_s": 29.6,
+                "to_s": 37,
+                "lost": 0.128,
+                "lost_per_second": 0.0173
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "rZuADAGfC00",
+          "title": "Can You Trust AI With Your Data? We Made It Leak Once",
+          "published": "2026-11-11",
+          "privacy": "public",
+          "duration_s": 36,
+          "views": 524,
+          "likes": 13,
+          "comments": 0,
+          "analytics_views": 443,
+          "average_view_duration_s": 24,
+          "average_view_percentage": 68.94,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.3559
+            ],
+            [
+              0.02,
+              1.3219999999999998
+            ],
+            [
+              0.03,
+              1.3219999999999998
+            ],
+            [
+              0.04,
+              1.2881
+            ],
+            [
+              0.05,
+              1.2712
+            ],
+            [
+              0.06,
+              1.2542
+            ],
+            [
+              0.07,
+              1.2542
+            ],
+            [
+              0.08,
+              1.2542
+            ],
+            [
+              0.09,
+              1.2373
+            ],
+            [
+              0.1,
+              1.2203
+            ],
+            [
+              0.11,
+              1.2034
+            ],
+            [
+              0.12,
+              1.2034
+            ],
+            [
+              0.13,
+              1.1864
+            ],
+            [
+              0.14,
+              1.1695
+            ],
+            [
+              0.15,
+              1.1356
+            ],
+            [
+              0.16,
+              1.1017000000000001
+            ],
+            [
+              0.17,
+              1.0508
+            ],
+            [
+              0.18,
+              1.0339
+            ],
+            [
+              0.19,
+              1.0169
+            ],
+            [
+              0.2,
+              0.9831
+            ],
+            [
+              0.21,
+              0.9322
+            ],
+            [
+              0.22,
+              0.9322
+            ],
+            [
+              0.23,
+              0.8475
+            ],
+            [
+              0.24,
+              0.8305
+            ],
+            [
+              0.25,
+              0.8136
+            ],
+            [
+              0.26,
+              0.7797
+            ],
+            [
+              0.27,
+              0.7797
+            ],
+            [
+              0.28,
+              0.7626999999999999
+            ],
+            [
+              0.29,
+              0.7458
+            ],
+            [
+              0.3,
+              0.7119
+            ],
+            [
+              0.31,
+              0.6779999999999999
+            ],
+            [
+              0.32,
+              0.6779999999999999
+            ],
+            [
+              0.33,
+              0.6949
+            ],
+            [
+              0.34,
+              0.6779999999999999
+            ],
+            [
+              0.35,
+              0.6609999999999999
+            ],
+            [
+              0.36,
+              0.6441
+            ],
+            [
+              0.37,
+              0.6441
+            ],
+            [
+              0.38,
+              0.6441
+            ],
+            [
+              0.39,
+              0.6441
+            ],
+            [
+              0.4,
+              0.6102000000000001
+            ],
+            [
+              0.41,
+              0.6102000000000001
+            ],
+            [
+              0.42,
+              0.6271
+            ],
+            [
+              0.43,
+              0.6271
+            ],
+            [
+              0.44,
+              0.6102000000000001
+            ],
+            [
+              0.45,
+              0.6102000000000001
+            ],
+            [
+              0.46,
+              0.5932
+            ],
+            [
+              0.47,
+              0.6102000000000001
+            ],
+            [
+              0.48,
+              0.6102000000000001
+            ],
+            [
+              0.49,
+              0.5932
+            ],
+            [
+              0.5,
+              0.5763
+            ],
+            [
+              0.51,
+              0.5593
+            ],
+            [
+              0.52,
+              0.5424
+            ],
+            [
+              0.53,
+              0.5424
+            ],
+            [
+              0.54,
+              0.5424
+            ],
+            [
+              0.55,
+              0.5424
+            ],
+            [
+              0.56,
+              0.5424
+            ],
+            [
+              0.57,
+              0.5424
+            ],
+            [
+              0.58,
+              0.5424
+            ],
+            [
+              0.59,
+              0.5424
+            ],
+            [
+              0.6,
+              0.5424
+            ],
+            [
+              0.61,
+              0.5424
+            ],
+            [
+              0.62,
+              0.5424
+            ],
+            [
+              0.63,
+              0.5424
+            ],
+            [
+              0.64,
+              0.5424
+            ],
+            [
+              0.65,
+              0.5424
+            ],
+            [
+              0.66,
+              0.5593
+            ],
+            [
+              0.67,
+              0.5593
+            ],
+            [
+              0.68,
+              0.5593
+            ],
+            [
+              0.69,
+              0.5424
+            ],
+            [
+              0.7,
+              0.5424
+            ],
+            [
+              0.71,
+              0.5424
+            ],
+            [
+              0.72,
+              0.5424
+            ],
+            [
+              0.73,
+              0.5424
+            ],
+            [
+              0.74,
+              0.5424
+            ],
+            [
+              0.75,
+              0.5424
+            ],
+            [
+              0.76,
+              0.5424
+            ],
+            [
+              0.77,
+              0.5424
+            ],
+            [
+              0.78,
+              0.5424
+            ],
+            [
+              0.79,
+              0.5593
+            ],
+            [
+              0.8,
+              0.5763
+            ],
+            [
+              0.81,
+              0.5593
+            ],
+            [
+              0.82,
+              0.5593
+            ],
+            [
+              0.83,
+              0.5593
+            ],
+            [
+              0.84,
+              0.5593
+            ],
+            [
+              0.85,
+              0.5254
+            ],
+            [
+              0.86,
+              0.5593
+            ],
+            [
+              0.87,
+              0.5424
+            ],
+            [
+              0.88,
+              0.5424
+            ],
+            [
+              0.89,
+              0.5085000000000001
+            ],
+            [
+              0.9,
+              0.5085000000000001
+            ],
+            [
+              0.91,
+              0.4746
+            ],
+            [
+              0.92,
+              0.4746
+            ],
+            [
+              0.93,
+              0.4576
+            ],
+            [
+              0.94,
+              0.4407
+            ],
+            [
+              0.95,
+              0.4407
+            ],
+            [
+              0.96,
+              0.4407
+            ],
+            [
+              0.97,
+              0.4407
+            ],
+            [
+              0.98,
+              0.4407
+            ],
+            [
+              0.99,
+              0.42369999999999997
+            ],
+            [
+              1,
+              0.42369999999999997
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.356,
+            "at_3s": 1.254,
+            "at_25": 0.814,
+            "at_50": 0.576,
+            "at_75": 0.542,
+            "at_end": 0.424,
+            "steepest_drop": {
+              "at_s": 7.9,
+              "lost": 0.085
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.102,
+                "lost_per_second": 0.0339
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 10.8,
+                "lost": 0.542,
+                "lost_per_second": 0.0695
+              },
+              {
+                "name": "body",
+                "from_s": 10.8,
+                "to_s": 28.8,
+                "lost": 0.136,
+                "lost_per_second": 0.0075
+              },
+              {
+                "name": "close",
+                "from_s": 28.8,
+                "to_s": 36,
+                "lost": 0.153,
+                "lost_per_second": 0.0212
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "Vjs9ypYOLAs",
+          "title": "AI Knew the Answer. Then We Said It Was Wrong. (We Tested It)  #artifcialintelligence #chatgpt",
+          "published": "2026-11-10",
+          "privacy": "public",
+          "duration_s": 36,
+          "views": 1255,
+          "likes": 26,
+          "comments": 0,
+          "analytics_views": 1093,
+          "average_view_duration_s": 20,
+          "average_view_percentage": 57.87,
+          "subscribers_gained": 0,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.2384
+            ],
+            [
+              0.02,
+              1.2162
+            ],
+            [
+              0.03,
+              1.1818
+            ],
+            [
+              0.04,
+              1.1515
+            ],
+            [
+              0.05,
+              1.1253
+            ],
+            [
+              0.06,
+              1.1091
+            ],
+            [
+              0.07,
+              1.0909
+            ],
+            [
+              0.08,
+              1.0848
+            ],
+            [
+              0.09,
+              1.0848
+            ],
+            [
+              0.1,
+              1.0768
+            ],
+            [
+              0.11,
+              1.0747
+            ],
+            [
+              0.12,
+              1.0727
+            ],
+            [
+              0.13,
+              1.0525
+            ],
+            [
+              0.14,
+              1.0364
+            ],
+            [
+              0.15,
+              1.004
+            ],
+            [
+              0.16,
+              0.9495
+            ],
+            [
+              0.17,
+              0.9152
+            ],
+            [
+              0.18,
+              0.8586
+            ],
+            [
+              0.19,
+              0.8201999999999999
+            ],
+            [
+              0.2,
+              0.7696999999999999
+            ],
+            [
+              0.21,
+              0.7394
+            ],
+            [
+              0.22,
+              0.7273000000000001
+            ],
+            [
+              0.23,
+              0.7152
+            ],
+            [
+              0.24,
+              0.6929000000000001
+            ],
+            [
+              0.25,
+              0.6828
+            ],
+            [
+              0.26,
+              0.6667000000000001
+            ],
+            [
+              0.27,
+              0.6545000000000001
+            ],
+            [
+              0.28,
+              0.6485
+            ],
+            [
+              0.29,
+              0.6364
+            ],
+            [
+              0.3,
+              0.6323
+            ],
+            [
+              0.31,
+              0.6283
+            ],
+            [
+              0.32,
+              0.6182
+            ],
+            [
+              0.33,
+              0.6061
+            ],
+            [
+              0.34,
+              0.6061
+            ],
+            [
+              0.35,
+              0.602
+            ],
+            [
+              0.36,
+              0.596
+            ],
+            [
+              0.37,
+              0.5939
+            ],
+            [
+              0.38,
+              0.5818
+            ],
+            [
+              0.39,
+              0.5818
+            ],
+            [
+              0.4,
+              0.5778
+            ],
+            [
+              0.41,
+              0.5758
+            ],
+            [
+              0.42,
+              0.5737
+            ],
+            [
+              0.43,
+              0.5737
+            ],
+            [
+              0.44,
+              0.5737
+            ],
+            [
+              0.45,
+              0.5717
+            ],
+            [
+              0.46,
+              0.5616
+            ],
+            [
+              0.47,
+              0.5455
+            ],
+            [
+              0.48,
+              0.5354
+            ],
+            [
+              0.49,
+              0.5333
+            ],
+            [
+              0.5,
+              0.5313
+            ],
+            [
+              0.51,
+              0.5273
+            ],
+            [
+              0.52,
+              0.5212
+            ],
+            [
+              0.53,
+              0.5071
+            ],
+            [
+              0.54,
+              0.5051
+            ],
+            [
+              0.55,
+              0.501
+            ],
+            [
+              0.56,
+              0.4949
+            ],
+            [
+              0.57,
+              0.49090000000000006
+            ],
+            [
+              0.58,
+              0.48479999999999995
+            ],
+            [
+              0.59,
+              0.4808
+            ],
+            [
+              0.6,
+              0.4768
+            ],
+            [
+              0.61,
+              0.4747
+            ],
+            [
+              0.62,
+              0.46869999999999995
+            ],
+            [
+              0.63,
+              0.46869999999999995
+            ],
+            [
+              0.64,
+              0.4646
+            ],
+            [
+              0.65,
+              0.4545
+            ],
+            [
+              0.66,
+              0.45049999999999996
+            ],
+            [
+              0.67,
+              0.45049999999999996
+            ],
+            [
+              0.68,
+              0.4485
+            ],
+            [
+              0.69,
+              0.4485
+            ],
+            [
+              0.7,
+              0.4465
+            ],
+            [
+              0.71,
+              0.43229999999999996
+            ],
+            [
+              0.72,
+              0.42219999999999996
+            ],
+            [
+              0.73,
+              0.4202
+            ],
+            [
+              0.74,
+              0.41409999999999997
+            ],
+            [
+              0.75,
+              0.41409999999999997
+            ],
+            [
+              0.76,
+              0.4081
+            ],
+            [
+              0.77,
+              0.4
+            ],
+            [
+              0.78,
+              0.39189999999999997
+            ],
+            [
+              0.79,
+              0.39189999999999997
+            ],
+            [
+              0.8,
+              0.3859
+            ],
+            [
+              0.81,
+              0.3818
+            ],
+            [
+              0.82,
+              0.37979999999999997
+            ],
+            [
+              0.83,
+              0.37579999999999997
+            ],
+            [
+              0.84,
+              0.37170000000000003
+            ],
+            [
+              0.85,
+              0.37170000000000003
+            ],
+            [
+              0.86,
+              0.3697
+            ],
+            [
+              0.87,
+              0.3677
+            ],
+            [
+              0.88,
+              0.3616
+            ],
+            [
+              0.89,
+              0.3556
+            ],
+            [
+              0.9,
+              0.34340000000000004
+            ],
+            [
+              0.91,
+              0.3333
+            ],
+            [
+              0.92,
+              0.3293
+            ],
+            [
+              0.93,
+              0.3212
+            ],
+            [
+              0.94,
+              0.31920000000000004
+            ],
+            [
+              0.95,
+              0.3131
+            ],
+            [
+              0.96,
+              0.30510000000000004
+            ],
+            [
+              0.97,
+              0.2949
+            ],
+            [
+              0.98,
+              0.2889
+            ],
+            [
+              0.99,
+              0.2869
+            ],
+            [
+              1,
+              0.2869
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.238,
+            "at_3s": 1.085,
+            "at_25": 0.683,
+            "at_50": 0.531,
+            "at_75": 0.414,
+            "at_end": 0.287,
+            "steepest_drop": {
+              "at_s": 6.1,
+              "lost": 0.057
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.154,
+                "lost_per_second": 0.0512
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 10.8,
+                "lost": 0.453,
+                "lost_per_second": 0.058
+              },
+              {
+                "name": "body",
+                "from_s": 10.8,
+                "to_s": 28.8,
+                "lost": 0.246,
+                "lost_per_second": 0.0137
+              },
+              {
+                "name": "close",
+                "from_s": 28.8,
+                "to_s": 36,
+                "lost": 0.099,
+                "lost_per_second": 0.0138
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "AvWOfh9KGq8",
+          "title": "We Told AI It Was Wrong. It Didn't Budge.",
+          "published": "2026-11-10",
+          "privacy": "public",
+          "duration_s": 39,
+          "views": 1612,
+          "likes": 27,
+          "comments": 2,
+          "analytics_views": 1443,
+          "average_view_duration_s": 33,
+          "average_view_percentage": 86.09,
+          "subscribers_gained": 3,
+          "shares": 0,
+          "curve": [
+            [
+              0.01,
+              1.5438
+            ],
+            [
+              0.02,
+              1.5013999999999998
+            ],
+            [
+              0.03,
+              1.4479
+            ],
+            [
+              0.04,
+              1.4122999999999999
+            ],
+            [
+              0.05,
+              1.3616
+            ],
+            [
+              0.06,
+              1.3300999999999998
+            ],
+            [
+              0.07,
+              1.3014
+            ],
+            [
+              0.08,
+              1.2849000000000002
+            ],
+            [
+              0.09,
+              1.2712
+            ],
+            [
+              0.1,
+              1.2548000000000001
+            ],
+            [
+              0.11,
+              1.2411
+            ],
+            [
+              0.12,
+              1.2219
+            ],
+            [
+              0.13,
+              1.2068
+            ],
+            [
+              0.14,
+              1.1795
+            ],
+            [
+              0.15,
+              1.1411
+            ],
+            [
+              0.16,
+              1.0877
+            ],
+            [
+              0.17,
+              1.0452
+            ],
+            [
+              0.18,
+              1.0137
+            ],
+            [
+              0.19,
+              0.9904000000000001
+            ],
+            [
+              0.2,
+              0.9808
+            ],
+            [
+              0.21,
+              0.9726
+            ],
+            [
+              0.22,
+              0.9589
+            ],
+            [
+              0.23,
+              0.9562
+            ],
+            [
+              0.24,
+              0.9534
+            ],
+            [
+              0.25,
+              0.9521
+            ],
+            [
+              0.26,
+              0.9479000000000001
+            ],
+            [
+              0.27,
+              0.9438
+            ],
+            [
+              0.28,
+              0.9384
+            ],
+            [
+              0.29,
+              0.937
+            ],
+            [
+              0.3,
+              0.9342
+            ],
+            [
+              0.31,
+              0.9342
+            ],
+            [
+              0.32,
+              0.9301
+            ],
+            [
+              0.33,
+              0.9274
+            ],
+            [
+              0.34,
+              0.9233
+            ],
+            [
+              0.35,
+              0.9178000000000001
+            ],
+            [
+              0.36,
+              0.9164
+            ],
+            [
+              0.37,
+              0.9096
+            ],
+            [
+              0.38,
+              0.9041
+            ],
+            [
+              0.39,
+              0.9
+            ],
+            [
+              0.4,
+              0.8959
+            ],
+            [
+              0.41,
+              0.8904000000000001
+            ],
+            [
+              0.42,
+              0.889
+            ],
+            [
+              0.43,
+              0.8822
+            ],
+            [
+              0.44,
+              0.8767
+            ],
+            [
+              0.45,
+              0.8781
+            ],
+            [
+              0.46,
+              0.8808
+            ],
+            [
+              0.47,
+              0.8740000000000001
+            ],
+            [
+              0.48,
+              0.8684999999999999
+            ],
+            [
+              0.49,
+              0.8589
+            ],
+            [
+              0.5,
+              0.8562000000000001
+            ],
+            [
+              0.51,
+              0.8521
+            ],
+            [
+              0.52,
+              0.8493
+            ],
+            [
+              0.53,
+              0.8425
+            ],
+            [
+              0.54,
+              0.8397
+            ],
+            [
+              0.55,
+              0.8356
+            ],
+            [
+              0.56,
+              0.8356
+            ],
+            [
+              0.57,
+              0.8342
+            ],
+            [
+              0.58,
+              0.8288
+            ],
+            [
+              0.59,
+              0.8247
+            ],
+            [
+              0.6,
+              0.8233
+            ],
+            [
+              0.61,
+              0.8219
+            ],
+            [
+              0.62,
+              0.8151
+            ],
+            [
+              0.63,
+              0.8137000000000001
+            ],
+            [
+              0.64,
+              0.8164
+            ],
+            [
+              0.65,
+              0.8137000000000001
+            ],
+            [
+              0.66,
+              0.8109999999999999
+            ],
+            [
+              0.67,
+              0.8109999999999999
+            ],
+            [
+              0.68,
+              0.8096
+            ],
+            [
+              0.69,
+              0.8081999999999999
+            ],
+            [
+              0.7,
+              0.8055
+            ],
+            [
+              0.71,
+              0.8
+            ],
+            [
+              0.72,
+              0.7973
+            ],
+            [
+              0.73,
+              0.7931999999999999
+            ],
+            [
+              0.74,
+              0.7931999999999999
+            ],
+            [
+              0.75,
+              0.7904000000000001
+            ],
+            [
+              0.76,
+              0.789
+            ],
+            [
+              0.77,
+              0.7848999999999999
+            ],
+            [
+              0.78,
+              0.7848999999999999
+            ],
+            [
+              0.79,
+              0.7848999999999999
+            ],
+            [
+              0.8,
+              0.7836
+            ],
+            [
+              0.81,
+              0.7795000000000001
+            ],
+            [
+              0.82,
+              0.7712
+            ],
+            [
+              0.83,
+              0.7670999999999999
+            ],
+            [
+              0.84,
+              0.7644
+            ],
+            [
+              0.85,
+              0.7589
+            ],
+            [
+              0.86,
+              0.7521
+            ],
+            [
+              0.87,
+              0.7452
+            ],
+            [
+              0.88,
+              0.7411
+            ],
+            [
+              0.89,
+              0.7329000000000001
+            ],
+            [
+              0.9,
+              0.7273999999999999
+            ],
+            [
+              0.91,
+              0.7273999999999999
+            ],
+            [
+              0.92,
+              0.7178
+            ],
+            [
+              0.93,
+              0.711
+            ],
+            [
+              0.94,
+              0.7
+            ],
+            [
+              0.95,
+              0.6862999999999999
+            ],
+            [
+              0.96,
+              0.6658
+            ],
+            [
+              0.97,
+              0.6466
+            ],
+            [
+              0.98,
+              0.6123
+            ],
+            [
+              0.99,
+              0.5863
+            ],
+            [
+              1,
+              0.5849
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.544,
+            "at_3s": 1.285,
+            "at_25": 0.952,
+            "at_50": 0.856,
+            "at_75": 0.79,
+            "at_end": 0.585,
+            "steepest_drop": {
+              "at_s": 0.8,
+              "lost": 0.053
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.259,
+                "lost_per_second": 0.0863
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 11.7,
+                "lost": 0.351,
+                "lost_per_second": 0.0403
+              },
+              {
+                "name": "body",
+                "from_s": 11.7,
+                "to_s": 31.2,
+                "lost": 0.151,
+                "lost_per_second": 0.0077
+              },
+              {
+                "name": "close",
+                "from_s": 31.2,
+                "to_s": 39,
+                "lost": 0.199,
+                "lost_per_second": 0.0255
+              }
+            ],
+            "weakest_segment": "hook"
+          }
+        },
+        {
+          "id": "epImj63Q7Kk",
+          "title": "Never Let AI Pick Your Random Winner (We Tested It)",
+          "published": "2026-11-10",
+          "privacy": "private",
+          "duration_s": 36,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "OdXfJiWkAjs",
+          "title": "Google Gemini 4 Carbon API Pricing and Token Rates Released",
+          "published": "2026-11-10",
+          "privacy": "private",
+          "duration_s": 46,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "5isUhjwsAUU",
+          "title": "Will AI Say “I Don't Know”? We Tested Models on Made-Up Products",
+          "published": "2026-11-10",
+          "privacy": "public",
+          "duration_s": 23,
+          "views": 1253,
+          "likes": 16,
+          "comments": 0,
+          "analytics_views": 1111,
+          "average_view_duration_s": 24,
+          "average_view_percentage": 107.19000000000001,
+          "subscribers_gained": 0,
+          "shares": 1,
+          "curve": [
+            [
+              0.01,
+              1.7528
+            ],
+            [
+              0.02,
+              1.736
+            ],
+            [
+              0.03,
+              1.7163
+            ],
+            [
+              0.04,
+              1.6742
+            ],
+            [
+              0.05,
+              1.6403999999999999
+            ],
+            [
+              0.06,
+              1.6096000000000001
+            ],
+            [
+              0.07,
+              1.5702
+            ],
+            [
+              0.08,
+              1.5197
+            ],
+            [
+              0.09,
+              1.5056
+            ],
+            [
+              0.1,
+              1.4719
+            ],
+            [
+              0.11,
+              1.4635
+            ],
+            [
+              0.12,
+              1.4409999999999998
+            ],
+            [
+              0.13,
+              1.4325999999999999
+            ],
+            [
+              0.14,
+              1.4128999999999998
+            ],
+            [
+              0.15,
+              1.4017
+            ],
+            [
+              0.16,
+              1.3988999999999998
+            ],
+            [
+              0.17,
+              1.3933000000000002
+            ],
+            [
+              0.18,
+              1.3847999999999998
+            ],
+            [
+              0.19,
+              1.368
+            ],
+            [
+              0.2,
+              1.3538999999999999
+            ],
+            [
+              0.21,
+              1.3343
+            ],
+            [
+              0.22,
+              1.3118
+            ],
+            [
+              0.23,
+              1.2781
+            ],
+            [
+              0.24,
+              1.2528
+            ],
+            [
+              0.25,
+              1.236
+            ],
+            [
+              0.26,
+              1.2079
+            ],
+            [
+              0.27,
+              1.1938
+            ],
+            [
+              0.28,
+              1.177
+            ],
+            [
+              0.29,
+              1.1684999999999999
+            ],
+            [
+              0.3,
+              1.1517
+            ],
+            [
+              0.31,
+              1.1461
+            ],
+            [
+              0.32,
+              1.1404
+            ],
+            [
+              0.33,
+              1.1292
+            ],
+            [
+              0.34,
+              1.1292
+            ],
+            [
+              0.35,
+              1.1208
+            ],
+            [
+              0.36,
+              1.1152
+            ],
+            [
+              0.37,
+              1.1067
+            ],
+            [
+              0.38,
+              1.0983
+            ],
+            [
+              0.39,
+              1.0955
+            ],
+            [
+              0.4,
+              1.0927
+            ],
+            [
+              0.41,
+              1.0871
+            ],
+            [
+              0.42,
+              1.0843
+            ],
+            [
+              0.43,
+              1.0843
+            ],
+            [
+              0.44,
+              1.0843
+            ],
+            [
+              0.45,
+              1.0815000000000001
+            ],
+            [
+              0.46,
+              1.0674
+            ],
+            [
+              0.47,
+              1.073
+            ],
+            [
+              0.48,
+              1.073
+            ],
+            [
+              0.49,
+              1.0702
+            ],
+            [
+              0.5,
+              1.0702
+            ],
+            [
+              0.51,
+              1.0646
+            ],
+            [
+              0.52,
+              1.0590000000000002
+            ],
+            [
+              0.53,
+              1.0534000000000001
+            ],
+            [
+              0.54,
+              1.0421
+            ],
+            [
+              0.55,
+              1.0393000000000001
+            ],
+            [
+              0.56,
+              1.0365
+            ],
+            [
+              0.57,
+              1.0309
+            ],
+            [
+              0.58,
+              1.0253
+            ],
+            [
+              0.59,
+              1.0253
+            ],
+            [
+              0.6,
+              1.0253
+            ],
+            [
+              0.61,
+              1.0197
+            ],
+            [
+              0.62,
+              1.0169
+            ],
+            [
+              0.63,
+              1.0112
+            ],
+            [
+              0.64,
+              1.0056
+            ],
+            [
+              0.65,
+              1
+            ],
+            [
+              0.66,
+              0.9972
+            ],
+            [
+              0.67,
+              0.9887999999999999
+            ],
+            [
+              0.68,
+              0.986
+            ],
+            [
+              0.69,
+              0.986
+            ],
+            [
+              0.7,
+              0.9775
+            ],
+            [
+              0.71,
+              0.9803000000000001
+            ],
+            [
+              0.72,
+              0.9775
+            ],
+            [
+              0.73,
+              0.9719
+            ],
+            [
+              0.74,
+              0.9719
+            ],
+            [
+              0.75,
+              0.9691
+            ],
+            [
+              0.76,
+              0.9691
+            ],
+            [
+              0.77,
+              0.9691
+            ],
+            [
+              0.78,
+              0.9606999999999999
+            ],
+            [
+              0.79,
+              0.9494
+            ],
+            [
+              0.8,
+              0.9438
+            ],
+            [
+              0.81,
+              0.9381999999999999
+            ],
+            [
+              0.82,
+              0.9298000000000001
+            ],
+            [
+              0.83,
+              0.9185
+            ],
+            [
+              0.84,
+              0.9073
+            ],
+            [
+              0.85,
+              0.9017000000000001
+            ],
+            [
+              0.86,
+              0.9017000000000001
+            ],
+            [
+              0.87,
+              0.8989
+            ],
+            [
+              0.88,
+              0.8904000000000001
+            ],
+            [
+              0.89,
+              0.8848
+            ],
+            [
+              0.9,
+              0.882
+            ],
+            [
+              0.91,
+              0.8736
+            ],
+            [
+              0.92,
+              0.8595999999999999
+            ],
+            [
+              0.93,
+              0.8399
+            ],
+            [
+              0.94,
+              0.8343
+            ],
+            [
+              0.95,
+              0.823
+            ],
+            [
+              0.96,
+              0.8173999999999999
+            ],
+            [
+              0.97,
+              0.8062
+            ],
+            [
+              0.98,
+              0.8034
+            ],
+            [
+              0.99,
+              0.8034
+            ],
+            [
+              1,
+              0.8034
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.753,
+            "at_3s": 1.433,
+            "at_25": 1.236,
+            "at_50": 1.07,
+            "at_75": 0.969,
+            "at_end": 0.803,
+            "steepest_drop": {
+              "at_s": 1.6,
+              "lost": 0.05
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.32,
+                "lost_per_second": 0.1067
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 6.9,
+                "lost": 0.281,
+                "lost_per_second": 0.072
+              },
+              {
+                "name": "body",
+                "from_s": 6.9,
+                "to_s": 18.4,
+                "lost": 0.208,
+                "lost_per_second": 0.0181
+              },
+              {
+                "name": "close",
+                "from_s": 18.4,
+                "to_s": 23,
+                "lost": 0.14,
+                "lost_per_second": 0.0305
+              }
+            ],
+            "weakest_segment": "hook"
+          }
+        },
+        {
+          "id": "3Juf7Wy6w3s",
+          "title": "Front Raises Autopilot Agent Pricing 680% to $0.39 a Chat",
+          "published": "2026-11-09",
+          "privacy": "private",
+          "duration_s": 45,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "W9rFiclZizA",
+          "title": "Can AI Count Letters? We Tested Two Models",
+          "published": "2026-11-09",
+          "privacy": "public",
+          "duration_s": 30,
+          "views": 222,
+          "likes": 7,
+          "comments": 3,
+          "analytics_views": 231,
+          "average_view_duration_s": 25,
+          "average_view_percentage": 85.29,
+          "subscribers_gained": 3,
+          "shares": 1,
+          "curve": [
+            [
+              0.01,
+              1.4902000000000002
+            ],
+            [
+              0.02,
+              1.4804
+            ],
+            [
+              0.03,
+              1.4706000000000001
+            ],
+            [
+              0.04,
+              1.4608
+            ],
+            [
+              0.05,
+              1.4313999999999998
+            ],
+            [
+              0.06,
+              1.4216
+            ],
+            [
+              0.07,
+              1.4216
+            ],
+            [
+              0.08,
+              1.3921999999999999
+            ],
+            [
+              0.09,
+              1.3725
+            ],
+            [
+              0.1,
+              1.3627
+            ],
+            [
+              0.11,
+              1.3627
+            ],
+            [
+              0.12,
+              1.3529
+            ],
+            [
+              0.13,
+              1.3431
+            ],
+            [
+              0.14,
+              1.3431
+            ],
+            [
+              0.15,
+              1.3137
+            ],
+            [
+              0.16,
+              1.2843
+            ],
+            [
+              0.17,
+              1.2157
+            ],
+            [
+              0.18,
+              1.1863
+            ],
+            [
+              0.19,
+              1.1176000000000001
+            ],
+            [
+              0.2,
+              1.0979999999999999
+            ],
+            [
+              0.21,
+              1.0490000000000002
+            ],
+            [
+              0.22,
+              1.0392000000000001
+            ],
+            [
+              0.23,
+              1.0195999999999998
+            ],
+            [
+              0.24,
+              1
+            ],
+            [
+              0.25,
+              0.9608
+            ],
+            [
+              0.26,
+              0.9216
+            ],
+            [
+              0.27,
+              0.9216
+            ],
+            [
+              0.28,
+              0.9216
+            ],
+            [
+              0.29,
+              0.9118
+            ],
+            [
+              0.3,
+              0.902
+            ],
+            [
+              0.31,
+              0.902
+            ],
+            [
+              0.32,
+              0.902
+            ],
+            [
+              0.33,
+              0.902
+            ],
+            [
+              0.34,
+              0.902
+            ],
+            [
+              0.35,
+              0.8922
+            ],
+            [
+              0.36,
+              0.8725
+            ],
+            [
+              0.37,
+              0.8725
+            ],
+            [
+              0.38,
+              0.8626999999999999
+            ],
+            [
+              0.39,
+              0.8626999999999999
+            ],
+            [
+              0.4,
+              0.8529000000000001
+            ],
+            [
+              0.41,
+              0.8529000000000001
+            ],
+            [
+              0.42,
+              0.8332999999999999
+            ],
+            [
+              0.43,
+              0.8332999999999999
+            ],
+            [
+              0.44,
+              0.8234999999999999
+            ],
+            [
+              0.45,
+              0.8137000000000001
+            ],
+            [
+              0.46,
+              0.8039000000000001
+            ],
+            [
+              0.47,
+              0.8039000000000001
+            ],
+            [
+              0.48,
+              0.7843000000000001
+            ],
+            [
+              0.49,
+              0.7745000000000001
+            ],
+            [
+              0.5,
+              0.7745000000000001
+            ],
+            [
+              0.51,
+              0.7646999999999999
+            ],
+            [
+              0.52,
+              0.7646999999999999
+            ],
+            [
+              0.53,
+              0.7646999999999999
+            ],
+            [
+              0.54,
+              0.7646999999999999
+            ],
+            [
+              0.55,
+              0.7548999999999999
+            ],
+            [
+              0.56,
+              0.7548999999999999
+            ],
+            [
+              0.57,
+              0.7548999999999999
+            ],
+            [
+              0.58,
+              0.7451000000000001
+            ],
+            [
+              0.59,
+              0.7451000000000001
+            ],
+            [
+              0.6,
+              0.7451000000000001
+            ],
+            [
+              0.61,
+              0.7451000000000001
+            ],
+            [
+              0.62,
+              0.7451000000000001
+            ],
+            [
+              0.63,
+              0.7353000000000001
+            ],
+            [
+              0.64,
+              0.7353000000000001
+            ],
+            [
+              0.65,
+              0.7254999999999999
+            ],
+            [
+              0.66,
+              0.7254999999999999
+            ],
+            [
+              0.67,
+              0.7254999999999999
+            ],
+            [
+              0.68,
+              0.7254999999999999
+            ],
+            [
+              0.69,
+              0.7254999999999999
+            ],
+            [
+              0.7,
+              0.7254999999999999
+            ],
+            [
+              0.71,
+              0.7059000000000001
+            ],
+            [
+              0.72,
+              0.6960999999999999
+            ],
+            [
+              0.73,
+              0.6960999999999999
+            ],
+            [
+              0.74,
+              0.6862999999999999
+            ],
+            [
+              0.75,
+              0.6667000000000001
+            ],
+            [
+              0.76,
+              0.6667000000000001
+            ],
+            [
+              0.77,
+              0.6667000000000001
+            ],
+            [
+              0.78,
+              0.6667000000000001
+            ],
+            [
+              0.79,
+              0.6667000000000001
+            ],
+            [
+              0.8,
+              0.6667000000000001
+            ],
+            [
+              0.81,
+              0.6470999999999999
+            ],
+            [
+              0.82,
+              0.6568999999999999
+            ],
+            [
+              0.83,
+              0.6568999999999999
+            ],
+            [
+              0.84,
+              0.6568999999999999
+            ],
+            [
+              0.85,
+              0.6568999999999999
+            ],
+            [
+              0.86,
+              0.6470999999999999
+            ],
+            [
+              0.87,
+              0.6470999999999999
+            ],
+            [
+              0.88,
+              0.6373
+            ],
+            [
+              0.89,
+              0.6373
+            ],
+            [
+              0.9,
+              0.6275
+            ],
+            [
+              0.91,
+              0.6175999999999999
+            ],
+            [
+              0.92,
+              0.598
+            ],
+            [
+              0.93,
+              0.598
+            ],
+            [
+              0.94,
+              0.598
+            ],
+            [
+              0.95,
+              0.5784
+            ],
+            [
+              0.96,
+              0.5784
+            ],
+            [
+              0.97,
+              0.5588000000000001
+            ],
+            [
+              0.98,
+              0.5489999999999999
+            ],
+            [
+              0.99,
+              0.5489999999999999
+            ],
+            [
+              1,
+              0.5489999999999999
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.49,
+            "at_3s": 1.363,
+            "at_25": 0.961,
+            "at_50": 0.775,
+            "at_75": 0.667,
+            "at_end": 0.549,
+            "steepest_drop": {
+              "at_s": 5.4,
+              "lost": 0.069
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.128,
+                "lost_per_second": 0.0425
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 9,
+                "lost": 0.461,
+                "lost_per_second": 0.0768
+              },
+              {
+                "name": "body",
+                "from_s": 9,
+                "to_s": 24,
+                "lost": 0.235,
+                "lost_per_second": 0.0157
+              },
+              {
+                "name": "close",
+                "from_s": 24,
+                "to_s": 30,
+                "lost": 0.118,
+                "lost_per_second": 0.0196
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "IIdYdKKUiRM",
+          "title": "Four Students Caught Using AI Glasses on Tests",
+          "published": "2026-11-09",
+          "privacy": "public",
+          "duration_s": 27,
+          "views": 140,
+          "likes": 5,
+          "comments": 0,
+          "analytics_views": 117,
+          "average_view_duration_s": 18,
+          "average_view_percentage": 69.89,
+          "subscribers_gained": 3,
+          "shares": 1,
+          "curve": [
+            [
+              0.01,
+              1.359
+            ],
+            [
+              0.02,
+              1.359
+            ],
+            [
+              0.03,
+              1.359
+            ],
+            [
+              0.04,
+              1.3333000000000002
+            ],
+            [
+              0.05,
+              1.3077
+            ],
+            [
+              0.06,
+              1.3077
+            ],
+            [
+              0.07,
+              1.2308
+            ],
+            [
+              0.08,
+              1.2308
+            ],
+            [
+              0.09,
+              1.2051
+            ],
+            [
+              0.1,
+              1.2051
+            ],
+            [
+              0.11,
+              1.2051
+            ],
+            [
+              0.12,
+              1.2051
+            ],
+            [
+              0.13,
+              1.2051
+            ],
+            [
+              0.14,
+              1.2051
+            ],
+            [
+              0.15,
+              1.2051
+            ],
+            [
+              0.16,
+              1.1795
+            ],
+            [
+              0.17,
+              1.1281999999999999
+            ],
+            [
+              0.18,
+              1.1026
+            ],
+            [
+              0.19,
+              1.0769
+            ],
+            [
+              0.2,
+              1.0769
+            ],
+            [
+              0.21,
+              1.0256
+            ],
+            [
+              0.22,
+              0.9743999999999999
+            ],
+            [
+              0.23,
+              0.9231
+            ],
+            [
+              0.24,
+              0.8974
+            ],
+            [
+              0.25,
+              0.8974
+            ],
+            [
+              0.26,
+              0.8974
+            ],
+            [
+              0.27,
+              0.8462000000000001
+            ],
+            [
+              0.28,
+              0.8462000000000001
+            ],
+            [
+              0.29,
+              0.8205
+            ],
+            [
+              0.3,
+              0.8205
+            ],
+            [
+              0.31,
+              0.8205
+            ],
+            [
+              0.32,
+              0.7692
+            ],
+            [
+              0.33,
+              0.7692
+            ],
+            [
+              0.34,
+              0.7436
+            ],
+            [
+              0.35,
+              0.7179000000000001
+            ],
+            [
+              0.36,
+              0.7179000000000001
+            ],
+            [
+              0.37,
+              0.6923
+            ],
+            [
+              0.38,
+              0.6923
+            ],
+            [
+              0.39,
+              0.6923
+            ],
+            [
+              0.4,
+              0.6923
+            ],
+            [
+              0.41,
+              0.6923
+            ],
+            [
+              0.42,
+              0.6923
+            ],
+            [
+              0.43,
+              0.6923
+            ],
+            [
+              0.44,
+              0.6667000000000001
+            ],
+            [
+              0.45,
+              0.6667000000000001
+            ],
+            [
+              0.46,
+              0.6409999999999999
+            ],
+            [
+              0.47,
+              0.6154
+            ],
+            [
+              0.48,
+              0.6154
+            ],
+            [
+              0.49,
+              0.6154
+            ],
+            [
+              0.5,
+              0.6154
+            ],
+            [
+              0.51,
+              0.6154
+            ],
+            [
+              0.52,
+              0.6154
+            ],
+            [
+              0.53,
+              0.6154
+            ],
+            [
+              0.54,
+              0.6154
+            ],
+            [
+              0.55,
+              0.6154
+            ],
+            [
+              0.56,
+              0.5897
+            ],
+            [
+              0.57,
+              0.5897
+            ],
+            [
+              0.58,
+              0.5897
+            ],
+            [
+              0.59,
+              0.5897
+            ],
+            [
+              0.6,
+              0.5640999999999999
+            ],
+            [
+              0.61,
+              0.5128
+            ],
+            [
+              0.62,
+              0.5128
+            ],
+            [
+              0.63,
+              0.5128
+            ],
+            [
+              0.64,
+              0.48719999999999997
+            ],
+            [
+              0.65,
+              0.48719999999999997
+            ],
+            [
+              0.66,
+              0.48719999999999997
+            ],
+            [
+              0.67,
+              0.48719999999999997
+            ],
+            [
+              0.68,
+              0.48719999999999997
+            ],
+            [
+              0.69,
+              0.48719999999999997
+            ],
+            [
+              0.7,
+              0.48719999999999997
+            ],
+            [
+              0.71,
+              0.48719999999999997
+            ],
+            [
+              0.72,
+              0.48719999999999997
+            ],
+            [
+              0.73,
+              0.48719999999999997
+            ],
+            [
+              0.74,
+              0.48719999999999997
+            ],
+            [
+              0.75,
+              0.48719999999999997
+            ],
+            [
+              0.76,
+              0.48719999999999997
+            ],
+            [
+              0.77,
+              0.46149999999999997
+            ],
+            [
+              0.78,
+              0.46149999999999997
+            ],
+            [
+              0.79,
+              0.46149999999999997
+            ],
+            [
+              0.8,
+              0.46149999999999997
+            ],
+            [
+              0.81,
+              0.46149999999999997
+            ],
+            [
+              0.82,
+              0.46149999999999997
+            ],
+            [
+              0.83,
+              0.46149999999999997
+            ],
+            [
+              0.84,
+              0.46149999999999997
+            ],
+            [
+              0.85,
+              0.46149999999999997
+            ],
+            [
+              0.86,
+              0.46149999999999997
+            ],
+            [
+              0.87,
+              0.4359
+            ],
+            [
+              0.88,
+              0.4359
+            ],
+            [
+              0.89,
+              0.4359
+            ],
+            [
+              0.9,
+              0.4103
+            ],
+            [
+              0.91,
+              0.4103
+            ],
+            [
+              0.92,
+              0.4103
+            ],
+            [
+              0.93,
+              0.3846
+            ],
+            [
+              0.94,
+              0.3846
+            ],
+            [
+              0.95,
+              0.3846
+            ],
+            [
+              0.96,
+              0.3846
+            ],
+            [
+              0.97,
+              0.3846
+            ],
+            [
+              0.98,
+              0.3846
+            ],
+            [
+              0.99,
+              0.3846
+            ],
+            [
+              1,
+              0.3846
+            ]
+          ],
+          "diagnosis": {
+            "start": 1.359,
+            "at_3s": 1.205,
+            "at_25": 0.897,
+            "at_50": 0.615,
+            "at_75": 0.487,
+            "at_end": 0.385,
+            "steepest_drop": {
+              "at_s": 1.6,
+              "lost": 0.077
+            },
+            "segments": [
+              {
+                "name": "hook",
+                "from_s": 0,
+                "to_s": 3,
+                "lost": 0.154,
+                "lost_per_second": 0.0513
+              },
+              {
+                "name": "bridge",
+                "from_s": 3,
+                "to_s": 8.1,
+                "lost": 0.385,
+                "lost_per_second": 0.0754
+              },
+              {
+                "name": "body",
+                "from_s": 8.1,
+                "to_s": 21.6,
+                "lost": 0.359,
+                "lost_per_second": 0.0266
+              },
+              {
+                "name": "close",
+                "from_s": 21.6,
+                "to_s": 27,
+                "lost": 0.077,
+                "lost_per_second": 0.0142
+              }
+            ],
+            "weakest_segment": "bridge"
+          }
+        },
+        {
+          "id": "6V5fQ3X-hOI",
+          "title": "What Is Model Context Protocol? Explained in 26 Seconds",
+          "published": "2026-11-08",
+          "privacy": "private",
+          "duration_s": 26,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "bve8-6r-he8",
+          "title": "Google Gemini 4 Argon vs Meta Muse Spark Open Head-to-Head",
+          "published": "2026-11-08",
+          "privacy": "private",
+          "duration_s": 58,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "nzA70D099qw",
+          "title": "What Is Model Context Protocol? Explained in 26 Seconds",
+          "published": "2026-11-08",
+          "privacy": "private",
+          "duration_s": 26,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "v0LaNcAw6WI",
+          "title": "MiniMax M3.1 Flash outperforms DeepSeek and Opus 5 on key business and software benchmarks",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 35,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "S6p20j3O8Lg",
+          "title": "Examining real-world outputs and autonomous tasks achieved with Google's Gemini 4 Argon du",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 35,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "kcOTPPfuh3I",
+          "title": "Google's October 28, 2026 announcement of the Connected Apps Platform preview brings over",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 25,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "3x2IA5wy9W8",
+          "title": "Google's October 28, 2026 announcement of the Connected Apps Platform preview brings over",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 25,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "c5ybsYCQn7o",
+          "title": "Google's October 28, 2026 announcement of the Connected Apps Platform preview brings over",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 28,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "sRgSQloB7do",
+          "title": "Amazon MWAA's New AI Agent Skills Explained",
+          "published": "2026-11-07",
+          "privacy": "private",
+          "duration_s": 30,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "GVjROsi4eaE",
+          "title": "Amazon MWAA's New AI Agent Skills Explained",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 30,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "A7eZ5vCKZ7U",
+          "title": "Amazon MWAA's New AI Agent Skills Explained",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 30,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "2Uu8Y_7N2iU",
+          "title": "Gemini 4 Argon vs GPT-6 Astra: Head-to-Head Benchmark Test",
+          "published": "2026-11-06",
+          "privacy": "private",
+          "duration_s": 55,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "WQmVHCITbzs",
+          "title": "Aina Smart Ring $399 Hardware First Look and AI Voice Test",
+          "published": "2026-11-05",
+          "privacy": "private",
+          "duration_s": 39,
+          "views": 0,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "WxaDY1C7IbE",
+          "title": "Shunta Fujii's November 2, 2026 evaluation by Shunta Fujii compares ChatGPT, Gemini, Claud",
+          "published": "2026-11-04",
+          "privacy": "private",
+          "duration_s": 44,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "kDrn6aIL1P8",
+          "title": "AI Web Search Compared: ChatGPT, Gemini, Claude and…",
+          "published": "2026-11-03",
+          "privacy": "private",
+          "duration_s": 52,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "HI9sMf9Lan0",
+          "title": "Gemini 4 Carbon vs Claude Opus 5.5 GDPx Benchmark Test…",
+          "published": "2026-11-02",
+          "privacy": "private",
+          "duration_s": 53,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "95VksrqBKRs",
+          "title": "Google Gemini Connected Apps Preview: Adobe and Peloton…",
+          "published": "2026-11-01",
+          "privacy": "private",
+          "duration_s": 52,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        },
+        {
+          "id": "piUf3nQbYmg",
+          "title": "Anthropic Claude Haiku 5.5 Pricing and Performance Breakdown",
+          "published": "2026-10-26",
+          "privacy": "private",
+          "duration_s": 53,
+          "views": 1,
+          "likes": 0,
+          "comments": 0,
+          "note": "not public: no audience data"
+        }
+      ]
+    }
+  ]
+}

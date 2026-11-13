@@ -1,0 +1,31 @@
+{
+  "schema": "phase4-ledger/1",
+  "written": "2026-11-13T20:30:00+02:00",
+  "branch": "feat/longform",
+  "head": "bd09cf15",
+  "tags": ["longform-v3-research-checkpoint", "longform-v3-approval-package"],
+  "rules": [
+    "Never mark completed without a validation result.",
+    "Write to <name>.tmp then rename after validation.",
+    "No push, merge, upload, publish or YouTube auth.",
+    "Do not touch task.txt, server.js, rix.json, signal_aggregator/lib/**, Shorts."
+  ],
+  "tasks": [
+    {"id": "R1", "name": "git state recovery", "status": "completed", "validation": "branches, tags, worktrees, status, log inspected; no tracked changes after bd09cf15", "outputs": ["docs/longform/PHASE4-RECOVERY-REPORT.md"], "deps": []},
+    {"id": "R2", "name": "session transcript recovery", "status": "completed", "validation": "a37b2a63 ends 15:58Z at Phase 3 handoff; no Phase 4 production prompt in any transcript", "outputs": [], "deps": []},
+    {"id": "R3", "name": "audio demo integrity", "status": "completed", "validation": "ffprobe + full decode of audition-reel.mp3; durations match", "outputs": ["output/longform-audio-demo/"], "deps": []},
+    {"id": "P3", "name": "Phase 3 research, QA gate, cue sheets, approval boards", "status": "completed", "validation": "commit bd09cf15 + tags; stills present", "outputs": ["docs/longform/", "output/longform-approval-p3/"], "deps": []},
+    {"id": "P3-OWNER", "name": "owner approval + listening review of 35-asset reel", "status": "blocked", "validation": null, "blocker": "needs human; no approval recorded", "deps": ["P3"]},
+    {"id": "P3-LIC", "name": "footage licensing (football, celebrity, court), judiciary.uk and StatsBomb terms", "status": "blocked", "validation": null, "blocker": "no licensed footage exists; terms unchecked", "deps": ["P3"]},
+    {"id": "P3-CN", "name": "Celebrity News channel decision", "status": "blocked", "validation": null, "blocker": "owner decision", "deps": ["P3"]},
+    {"id": "T1-7", "name": "render 7 long-form episodes", "status": "pending", "validation": null, "note": "no mp4 exists; per-episode checkpoints to be added when started", "deps": ["P3-OWNER", "P3-LIC", "P3-CN"]},
+    {"id": "T2", "name": "music selection per episode with licence record", "status": "pending", "validation": null, "deps": ["P3-OWNER"]},
+    {"id": "T3", "name": "SFX placement", "status": "pending", "validation": null, "deps": ["T2"]},
+    {"id": "T4", "name": "audio mix + QC", "status": "pending", "validation": null, "deps": ["T1-7", "T2", "T3"]},
+    {"id": "T5", "name": "3-5 vertical clips per episode", "status": "pending", "validation": null, "deps": ["T1-7"]},
+    {"id": "T6", "name": "thumbnails + cover frames", "status": "pending", "validation": null, "deps": ["T1-7"]},
+    {"id": "T7", "name": "titles, descriptions, credits, attribution", "status": "pending", "validation": null, "deps": ["T2"]},
+    {"id": "T9", "name": "video/audio/publishing QC", "status": "pending", "validation": null, "deps": ["T4", "T5", "T6"]},
+    {"id": "T10", "name": "YouTube publish workflow dry-run", "status": "pending", "validation": null, "deps": ["T7", "T9"]}
+  ]
+}
