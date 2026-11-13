@@ -7,7 +7,7 @@
  *   V1 AI-generated imagery            V2 authentic-media share (upper bound: a beat counts as real if it shows at least one authentic asset)
  *   V3 all-constructed stretch         V4 text/caption overlay share      V5 asset reuse (repetitive media)
  *   V6 attribution on every third-party asset    V7 licence recorded and commercial use allowed    V8 long unchanging visual (single beat length)
- *   V9 scene-change rate vs reference shots/min  V10 visual-narration match (lexical, flags only for a person to check)
+ *   V9 scene-change rate vs reference shots/min  V11 permissions actually cleared  V10 visual-narration match (lexical, flags only for a person to check)
  *   A1 cue purpose written   A2 cue density   A3 music/bed level vs speech   A4 unapproved or flagged assets in the mix
  *   A5 missing audio assets  A6 repetitive music (one bed on several channels)  A7 final loudness / true peak (if a measurement file exists)
  * Duration of a beat is estimated from its narration at 2.5 words/second (150 wpm): an assumption, stated in every report.
@@ -16,6 +16,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { hasCredit } from "../v2/credits.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 const CH = { "hidden-past": "hidden-past-yellow-fleet", "ai-tested": "ai-tested-multiplication", "court-and-spotlight": "court-and-spotlight-becker", "celebrity-news": "celebrity-news-swift-masters", "rival-lines": "rival-lines-euro-2024-final", "red-space-facts": "red-space-facts-uranus", psychology: "psychology-pygmalion" };
@@ -40,7 +41,7 @@ export async function qaChannel(channel, opts = {}) {
   const beats = ep.beats.map((b) => {
     const used = []; walk(b.scene, (s) => { if (/^lf2\//.test(s) && assets[s]) used.push(s); });
     const real = used.filter((a) => REAL_KINDS.test(assets[a].kind || "")), gen = used.filter((a) => GENERATED.test(assets[a].kind || ""));
-    let overlay = false; for (const k of Object.keys(b.scene)) if (/caption|kicker|badge|stamp|label/i.test(k)) overlay = true;
+    let overlay = false; for (const k of Object.keys(b.scene)) if (/^(captions?|kicker)$/i.test(k)) overlay = true; // editorial caption keys only: map/diagram labels, badges and credits are not editorial captions
     return { id: b.id, type: b.scene.type, sec: words(b.vo) / WPS, used, real: real.length > 0, gen: gen.length > 0, overlay, vo: b.vo, scene: b.scene };
   });
   const total = beats.reduce((s, b) => s + b.sec, 0), min = total / 60;
@@ -60,17 +61,20 @@ export async function qaChannel(channel, opts = {}) {
   add("V3", wide ? "INFO" : best > cmax * 1.5 ? "FAIL" : best > cmax ? "WARN" : "PASS", "All-constructed stretch", `${Math.round(best)} s (ending at beat ${bestAt})`, `longest in the references ${cmax} s (sampled runs of 15 s); FAIL above 1.5x`, "Long runs of graphics without any real picture are the 'AI slideshow' pattern the references avoid.", "VISUAL-EDITING-RESEARCH.md section 4");
   // V4 overlay share
   const ov = beats.filter((b) => b.overlay).reduce((s, b) => s + b.sec, 0) / total; metrics.overlay_beat_share = Number(ov.toFixed(3));
-  add("V4", ov > std.overlay_text_share.max + tol ? "WARN" : "PASS", "Caption / text overlay share", `${(100 * ov).toFixed(0)}% of time on beats that carry a caption, label, kicker, badge or stamp`, `reference band ${(100 * std.overlay_text_share.min).toFixed(0)}-${(100 * std.overlay_text_share.max).toFixed(0)}% (+12 points)`, "Text on every scene is not what the references do; labels belong to key terms, footage and credits.", "CAPTION-RESEARCH.md");
+  add("V4", ov > std.overlay_text_share.max + tol ? "WARN" : "PASS", "Caption / text overlay share", `${(100 * ov).toFixed(0)}% of time on beats that carry an editorial caption or kicker (labels, badges and credits are not counted)`, `reference band ${(100 * std.overlay_text_share.min).toFixed(0)}-${(100 * std.overlay_text_share.max).toFixed(0)}% (+12 points)`, "Text on every scene is not what the references do; labels belong to key terms, footage and credits.", "CAPTION-RESEARCH.md");
   // V5 reuse
   const count = {}; for (const b of beats) for (const a of new Set(b.used)) count[a] = (count[a] || 0) + 1;
   const reused = Object.entries(count).filter(([, n]) => n > 2); metrics.assets_used = Object.keys(count).length; metrics.distinct_real_assets = Object.keys(count).filter((a) => REAL_KINDS.test(assets[a].kind)).length;
   add("V5", reused.length ? "WARN" : "PASS", "Repeated media", reused.length ? reused.map(([a, n]) => `${a} x${n}`).join(", ") : `${metrics.distinct_real_assets} distinct authentic assets across ${beats.length} beats`, "no asset on more than 2 beats (author's rule; no reference measurement)", "Repeating one picture reads as generic filler.", "none (judgement)");
   // V6 attribution
-  const noCredit = []; for (const b of beats) for (const a of b.used) { const m = assets[a]; if (!REAL_KINDS.test(m.kind) || /capture|screen recording|court document/i.test(m.kind)) continue; let credited = false; walk(b.scene, (s) => { if (/CC BY|CC0|Public domain|Wikimedia|via /i.test(s) || /creator|credit/i.test(s)) credited = true; }); if (!("credit" in b.scene || "credits" in b.scene || credited)) noCredit.push(`${b.id}:${a.split("/").pop()}`); }
-  add("V6", noCredit.length ? "FAIL" : "PASS", "Credit on every third-party picture", noCredit.length ? `${noCredit.length} without a credit field in the scene: ${noCredit.join(", ")}` : "every authentic picture has a credit field in its scene", "100% (hard rule; the references show credit or source lines on borrowed material)", "CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen.", "CAPTION-RESEARCH.md; CLAUDE.md", false);
+  const noCredit = []; for (const b of beats) for (const a of b.used) { const m = assets[a]; if (!REAL_KINDS.test(m.kind) || /capture|screen recording|court document/i.test(m.kind)) continue; if (!hasCredit(channel, b.scene)) noCredit.push(`${b.id}:${a.split("/").pop()}`); }
+  add("V6", noCredit.length ? "FAIL" : "PASS", "Credit on every third-party picture", noCredit.length ? `${noCredit.length} shown without a credit line (no scene credit and none recorded in ATTRIBUTIONS.json): ${noCredit.join(", ")}` : "every authentic picture has a credit field in its scene", "100% (hard rule; the references show credit or source lines on borrowed material)", "CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen.", "CAPTION-RESEARCH.md; CLAUDE.md", false);
   // V7 licence
   const badLic = man.assets.filter((a) => !a.licence || !a.source_url || a.commercial_use === false || /NC|ND/.test(a.licence || ""));
   add("V7", badLic.length ? "FAIL" : "PASS", "Licence and source recorded", badLic.length ? badLic.map((a) => a.asset).join(", ") : `${man.assets.length} assets with licence and source`, "every asset has licence, source URL and commercial use allowed (hard rule)", "CLAUDE.md hard rule.", "MEDIA-MANIFEST.json", false);
+  // V11 permissions actually verified (a recorded licence is not the same as cleared use)
+  const unclear = man.assets.filter((a) => !/^yes/i.test(a.usable || "")), usedUnclear = unclear.filter((a) => count[a.asset]);
+  add("V11", usedUnclear.length ? "WARN" : "PASS", "Media permissions verified", usedUnclear.length ? `${usedUnclear.length} used asset(s) not cleared by licence (owner decision needed): ${usedUnclear.map((a) => a.asset.split("/").pop()).join(", ")}` : "every used asset is cleared by its recorded licence", "usable = yes for every used asset (page screenshots of third-party sites are 'owner decision': quotation/commentary, not a licence)", "A recorded source is not permission to use.", "MEDIA-MANIFEST.json (usable field); docs/longform/MEDIA-ACQUISITION.md", false);
   // V8 long unchanging visual
   const lsMax = std.longest_static_s.max, longBeats = beats.filter((b) => b.sec > Math.max(60, lsMax)); metrics.longest_beat_s = Math.round(Math.max(...beats.map((b) => b.sec)));
   add("V8", longBeats.length ? "WARN" : "PASS", "Long unchanging visual", `longest single beat ${metrics.longest_beat_s} s (beat length, not measured change)`, `longest static stretch in the references ${lsMax} s (frame-difference score); flag above max(60 s, that)`, "A beat that long needs internal change (camera move, reveal, new panel) or a cut to real media.", "VISUAL-EDITING-RESEARCH.md section 6");
@@ -93,6 +97,14 @@ export async function qaChannel(channel, opts = {}) {
     add("A4", unapproved.length ? "WARN" : "PASS", "Assets approved for use", `${unapproved.length} asset(s) not yet approved by listening: ${unapproved.map((x) => `${x.a} (${x.st})`).join(", ")}`, "every asset in a render has a recorded listening approval", "No asset has been auditioned; this stays a WARN until a person approves them.", "SOUND-LIBRARY-REGISTER.md", false);
     const missing = [...new Set(cues.map((c) => c.asset))].filter((a) => !a.startsWith("(") && !LIB.find((l) => l.slot === a)); add("A5", missing.length ? "FAIL" : "PASS", "Audio assets exist", missing.length ? missing.join(", ") : "all cue assets are in the library", "no missing assets", "A missing file produces silence or an error at render.", "config/longform-audio-library.json", false);
     metrics.cues = cues.length;
+    // A6: one music bed on several channels reads as repetitive music (checked across the cue sheets of all channels)
+    const musicHere = [...new Set(cues.filter((c) => /^MUSIC_/.test(c.asset)).map((c) => c.asset))], shared = [];
+    for (const other of Object.keys(CH)) { if (other === channel) continue; const f = join(ROOT, "docs/longform/cue-sheets", `${other}.json`); if (!existsSync(f)) continue; for (const c of JSON.parse(readFileSync(f, "utf8")).cues) if (musicHere.includes(c.asset)) shared.push(`${c.asset} also on ${other}`); }
+    add("A6", shared.length ? "WARN" : "PASS", "Music repeated across channels", shared.length ? [...new Set(shared)].join(", ") : musicHere.length ? `${musicHere.join(", ")} used on this channel only` : "no music bed in this cue sheet", "one bed per channel (hard rule from the directive: do not reuse one track across every channel)", "Identical music across channels makes the network sound templated.", "directive; SOUND-LIBRARY-REGISTER.md", false);
+    // A7: final loudness / true peak, only if a mix measurement exists for this channel
+    const mf = join(ROOT, "docs/longform/cue-sheets", `${channel}.mix.json`);
+    if (existsSync(mf)) { const mm = JSON.parse(readFileSync(mf, "utf8")); const tgt = STD.global_hard_rules.final_loudness_lufs, tp = STD.global_hard_rules.true_peak_dbtp_max; add("A7", Math.abs(mm.integrated_lufs - tgt.target) > tgt.tolerance || mm.true_peak_dbtp > tp ? "FAIL" : "PASS", "Final loudness and true peak", `${mm.integrated_lufs} LUFS, ${mm.true_peak_dbtp} dBTP (${mm.note || "measured export"})`, `${tgt.target} LUFS +-${tgt.tolerance}, true peak <= ${tp} dBTP`, "Wrong levels or clipping are audible defects.", "SOUND-DESIGN-RESEARCH.md section 5", false); }
+    else add("A7", "SKIPPED", "Final loudness and true peak", "no mix has been rendered for this channel (stills phase; only the AI Tested demo chain was exported and measured)", `${STD.global_hard_rules.final_loudness_lufs.target} LUFS +-${STD.global_hard_rules.final_loudness_lufs.tolerance}, true peak <= ${STD.global_hard_rules.true_peak_dbtp_max} dBTP`, "", "", false);
   } else add("A0", "SKIPPED", "Audio checks", "no cue sheet for this channel", "docs/longform/cue-sheets/<channel>.json", "", "");
   return { channel, episode: ep.title, generated: new Date().toISOString().slice(0, 10), assumptions: [`beat duration = narration words / ${WPS} words per second`, "authentic share is an upper bound: a beat counts as real when it shows at least one authentic asset, even if graphics also appear", "reference bands are provisional (see config/longform-qa-standards.json)"], standards_provisional: std.provisional_reasons, metrics, findings };
 }
@@ -101,7 +113,7 @@ export function toMd(r) {
   return [`# QA: ${r.episode} (${r.channel})`, "", `Generated ${r.generated}. Assumptions: ${r.assumptions.join("; ")}.`, "", `Reference standard status: provisional (${r.standards_provisional.join("; ")}).`, "", "Metrics: " + Object.entries(r.metrics).map(([k, v]) => `${k}=${v}`).join(", "), "", "| Check | Result | Measured | Standard | Why | Evidence |", "|---|---|---|---|---|---|", ...r.findings.map((f) => `| ${f.id} ${f.name} | **${icon[f.level] || f.level}** | ${f.measured} | ${f.standard}${f.provisional ? " (provisional)" : ""} | ${f.why} | ${f.evidence} |`), ""].join("\n");
 }
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
-  const arg = process.argv[2] && !process.argv[2].startsWith("--") ? process.argv[2] : "all", outDir = join(ROOT, process.argv.includes("--out") ? process.argv[process.argv.indexOf("--out") + 1] : "docs/longform/qa");
+  const arg = process.argv[2] && !process.argv[2].startsWith("--") ? process.argv[2] : "all", outDir = resolve(ROOT, process.argv.includes("--out") ? process.argv[process.argv.indexOf("--out") + 1] : "docs/longform/qa");
   mkdirSync(outDir, { recursive: true }); const list = arg === "all" ? Object.keys(CH) : [arg], summary = [];
   for (const c of list) { const r = await qaChannel(c); writeFileSync(join(outDir, `${c}.json`), JSON.stringify(r, null, 1)); writeFileSync(join(outDir, `${c}.md`), toMd(r)); summary.push(`| ${c} | ${r.findings.map((f) => `${f.id}:${f.level}`).join(" ")} |`); console.log(c.padEnd(22), r.findings.map((f) => `${f.id}:${f.level}`).join(" ")); }
   writeFileSync(join(outDir, "SUMMARY.md"), ["# QA summary", "", "| Channel | Results |", "|---|---|", ...summary, ""].join("\n"));

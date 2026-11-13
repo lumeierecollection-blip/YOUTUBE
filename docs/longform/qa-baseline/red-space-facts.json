@@ -17,11 +17,13 @@
   "ai_generated_share": 0,
   "authentic_beat_share_upper_bound": 0.481,
   "longest_constructed_stretch_s": 70,
-  "overlay_beat_share": 0.424,
+  "overlay_beat_share": 0.347,
   "assets_used": 8,
   "distinct_real_assets": 6,
   "longest_beat_s": 30,
-  "scene_changes_per_min": 2.8
+  "scene_changes_per_min": 2.8,
+  "effects_per_min": 0.1,
+  "cues": 7
  },
  "findings": [
   {
@@ -58,7 +60,7 @@
    "id": "V4",
    "level": "PASS",
    "name": "Caption / text overlay share",
-   "measured": "42% of time on beats that carry a caption, label, kicker, badge or stamp",
+   "measured": "35% of time on beats that carry an editorial caption or kicker (labels, badges and credits are not counted)",
    "standard": "reference band 8-49% (+12 points)",
    "why": "Text on every scene is not what the references do; labels belong to key terms, footage and credits.",
    "evidence": "CAPTION-RESEARCH.md",
@@ -78,7 +80,7 @@
    "id": "V6",
    "level": "FAIL",
    "name": "Credit on every third-party picture",
-   "measured": "4 without a credit field in the scene: S05:uranus-voyager2-1986.jpg, S05:uranus-webb-nircam-2023.png, S07b:uranus-voyager2-1986.jpg, S15:uranus-voyager2-1986.jpg",
+   "measured": "4 shown without a credit line (no scene credit and none recorded in ATTRIBUTIONS.json): S05:uranus-voyager2-1986.jpg, S05:uranus-webb-nircam-2023.png, S07b:uranus-voyager2-1986.jpg, S15:uranus-voyager2-1986.jpg",
    "standard": "100% (hard rule; the references show credit or source lines on borrowed material)",
    "why": "CLAUDE.md: no media without a recorded source; references credit borrowed clips on screen.",
    "evidence": "CAPTION-RESEARCH.md; CLAUDE.md",
@@ -92,6 +94,16 @@
    "standard": "every asset has licence, source URL and commercial use allowed (hard rule)",
    "why": "CLAUDE.md hard rule.",
    "evidence": "MEDIA-MANIFEST.json",
+   "provisional": false
+  },
+  {
+   "id": "V11",
+   "level": "PASS",
+   "name": "Media permissions verified",
+   "measured": "every used asset is cleared by its recorded licence",
+   "standard": "usable = yes for every used asset (page screenshots of third-party sites are 'owner decision': quotation/commentary, not a licence)",
+   "why": "A recorded source is not permission to use.",
+   "evidence": "MEDIA-MANIFEST.json (usable field); docs/longform/MEDIA-ACQUISITION.md",
    "provisional": false
   },
   {
@@ -125,14 +137,74 @@
    "provisional": true
   },
   {
-   "id": "A0",
+   "id": "A1",
+   "level": "PASS",
+   "name": "Every cue has an editorial purpose",
+   "measured": "0 of 7 cues without a written purpose",
+   "standard": "every cue states its purpose (hard rule from the directive)",
+   "why": "Random effects are the failure to avoid.",
+   "evidence": "SOUND-DESIGN-RESEARCH.md section 6",
+   "provisional": false
+  },
+  {
+   "id": "A2",
+   "level": "PASS",
+   "name": "Effect density",
+   "measured": "1 effects in 7.9 min = 0.1 per minute",
+   "standard": "provisional cap 4 per minute: author's judgement, the reference set gives no effect count",
+   "why": "Frequent effects distract from narration.",
+   "evidence": "none (no reference measurement)",
+   "provisional": true
+  },
+  {
+   "id": "A3",
+   "level": "PASS",
+   "name": "Music/ambience competes with narration",
+   "measured": "5 beds, all at least 20 dB below speech",
+   "standard": "bed at least 20 dB below speech (lowest reference value 19.7 dB)",
+   "why": "A bed louder than that competes with the voice.",
+   "evidence": "SOUND-DESIGN-RESEARCH.md section 2",
+   "provisional": true
+  },
+  {
+   "id": "A4",
+   "level": "WARN",
+   "name": "Assets approved for use",
+   "measured": "3 asset(s) not yet approved by listening: AMB_SPACE_DRONE (pending human audition), AMB_RADIO_STATIC (needs correction before audition), SFX_ROCKET (needs correction before audition)",
+   "standard": "every asset in a render has a recorded listening approval",
+   "why": "No asset has been auditioned; this stays a WARN until a person approves them.",
+   "evidence": "SOUND-LIBRARY-REGISTER.md",
+   "provisional": false
+  },
+  {
+   "id": "A5",
+   "level": "PASS",
+   "name": "Audio assets exist",
+   "measured": "all cue assets are in the library",
+   "standard": "no missing assets",
+   "why": "A missing file produces silence or an error at render.",
+   "evidence": "config/longform-audio-library.json",
+   "provisional": false
+  },
+  {
+   "id": "A6",
+   "level": "PASS",
+   "name": "Music repeated across channels",
+   "measured": "no music bed in this cue sheet",
+   "standard": "one bed per channel (hard rule from the directive: do not reuse one track across every channel)",
+   "why": "Identical music across channels makes the network sound templated.",
+   "evidence": "directive; SOUND-LIBRARY-REGISTER.md",
+   "provisional": false
+  },
+  {
+   "id": "A7",
    "level": "SKIPPED",
-   "name": "Audio checks",
-   "measured": "no cue sheet for this channel",
-   "standard": "docs/longform/cue-sheets/<channel>.json",
+   "name": "Final loudness and true peak",
+   "measured": "no mix has been rendered for this channel (stills phase; only the AI Tested demo chain was exported and measured)",
+   "standard": "-14 LUFS +-1, true peak <= -1 dBTP",
    "why": "",
    "evidence": "",
-   "provisional": true
+   "provisional": false
   }
  ]
 }

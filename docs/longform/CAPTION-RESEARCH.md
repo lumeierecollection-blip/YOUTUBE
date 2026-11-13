@@ -1,6 +1,6 @@
 # Caption research (Phase 3)
 
-Status: 33 of 35 reference videos have OCR measurements (3 windows of 60 s each = 180 s of each video); **6 windows were also reviewed by eye** (30 tiles at 2 s each). Method limits are stated beside each number. Confidence is rated per finding.
+Status: 33 of 35 reference videos have OCR measurements (3 windows of 60 s each = 180 s of each video); **7 windows (from 6 videos) were also reviewed by eye** (30 tiles at 2 s each; none from the AI Tested group). Method limits are stated beside each number. Confidence is rated per finding.
 
 ## 1. Vocabulary: a caption is not every piece of text
 
@@ -61,7 +61,7 @@ Method: RapidOCR on frames at 1 fps inside three 60 s windows per video (start, 
 
 ## 3. Manual review of 60-second windows (observed)
 
-Method: the window's 60 seconds extracted at one tile per 2 s (30 tiles, 6x5) and inspected by eye. Observed facts only; interpretation is separated. Six windows reviewed, one per channel group (Hidden Past twice).
+Method: the window's 60 seconds extracted at one tile per 2 s (30 tiles, 6x5) and inspected by eye. Observed facts only; interpretation is separated. Seven windows reviewed from six videos, covering six channel groups (Hidden Past twice); no AI Tested window was reviewed by eye.
 
 | Video and window | Observed | Caption types present | Confidence |
 |---|---|---|---|

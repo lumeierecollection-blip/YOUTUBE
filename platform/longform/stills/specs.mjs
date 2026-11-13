@@ -6,6 +6,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
+import { autoCredit } from "../v2/credits.mjs";
 
 const THEMES = JSON.parse(readFileSync(join(ROOT, "config/longform-v2.json"), "utf8"));
 const FILE = { "rival-lines": "rival", "hidden-past": "hidden", "ai-tested": "aitest", "court-and-spotlight": "court", "red-space-facts": "space", psychology: "psych", "celebrity-news": "celebnews" };
@@ -22,6 +23,7 @@ const COMPONENT = {
 /** Adds the theme and channel to a storyboard scene, in the shape LF2Scene expects. */
 function sceneProps(ch, scene) {
   const t = THEMES[ch], p = { ch, t, ...scene };
+  const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac; // authentic picture without its own credit: draw the recorded credit line (platform/longform/v2/credits.mjs)
   if (ch === "hidden-past") {
     if (scene.type === "map") p.theme = t.map;
     if (scene.type === "roster") p.groups = t.countries;

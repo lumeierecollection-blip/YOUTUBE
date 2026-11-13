@@ -116,10 +116,8 @@
    "intended_channel": "celebrity-news",
    "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
    "used_in_beats": [
-    "N02",
     "N05",
     "N06",
-    "N10",
     "N14"
    ]
   },
@@ -139,8 +137,64 @@
    "intended_channel": "celebrity-news",
    "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
    "used_in_beats": [
-    "N06",
-    "N07",
+    "N06"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/braun-techcrunch-2010.jpg",
+   "kind": "authentic",
+   "description": "Scooter Braun on stage at Tech Crunch Disrupt in 2010.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Scooter_Braun_headshot.jpg",
+   "creator": "Scooter_Braun_landscape.jpg : TCDisrupt at Flickr.com derivative work:",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N10"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/braun-interview-2020.png",
+   "kind": "authentic",
+   "description": "Scooter Braun during an interview in 2020.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Scooter_Braun_Interview_2020.png",
+   "creator": "Ashley Graham",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N07"
+   ]
+  },
+  {
+   "asset": "lf2/celebrity-news/swift-vma-2023.png",
+   "kind": "authentic",
+   "description": "Taylor Swift at the 2023 MTV Video Music Awards",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_(3).png",
+   "creator": "iHeartRadioCA",
+   "licence": "CC BY 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by/3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "celebrity-news",
+   "intended_episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+   "used_in_beats": [
+    "N02",
     "N10"
    ]
   }
@@ -157,14 +211,14 @@
    "beat": "N02",
    "scene": "post",
    "reference_used": "the original post or video statement",
-   "we_use": "lf2/celebrity-news/swift-2019-portrait.jpg",
+   "we_use": "lf2/celebrity-news/swift-vma-2023.png",
    "licensed_video_available": "no"
   },
   {
    "beat": "N07",
    "scene": "post",
    "reference_used": "the original post or video statement",
-   "we_use": "lf2/celebrity-news/braun-2022.jpg",
+   "we_use": "lf2/celebrity-news/braun-interview-2020.png",
    "licensed_video_available": "no"
   },
   {

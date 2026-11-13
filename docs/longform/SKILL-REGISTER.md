@@ -63,3 +63,14 @@ Still open: ship icon in the roster is one generic drawing; footage push-ins and
 | yt-dlp flat listings + per-video metadata | Unlicense | used for research only | 24-channel catalogues, thumbnails | works; no video reused |
 | `anthropic-skills:dataviz`, `yt-hook-scripter`, `scene-director` | skills | listed, **not invoked** in phase 2 | — | charts and openings were built from the measured references instead |
 | `mograph-critic` | skill | invoked in phase 1; motion checks still need a video render | — | static checks repeated by eye on all seven contact sheets |
+
+## Phase 3 additions (audio and quality)
+
+| Skill / tool | What was done | Verdict |
+|---|---|---|
+| `claude-video-audio` (AgriciDaniel/claude-video, MIT) | Instruction file read; its two-pass loudnorm and sidechain recipes followed by hand and run on a real narration (`platform/longform/v2/audio/mix-demo.sh`) | Recipes work; it is an FFmpeg recipe collection, not installed or invoked as a skill |
+| `mix-master` (gooseworks-ai/goose-skills, MIT) | Instruction file read only | Overlaps the above; not run |
+| `longform-audio-mix` (custom, `.claude/skills/longform-audio-mix/SKILL.md`) | Written from the tested recipe | Recipe tested via scripts; not invoked through the Skill tool (skills are discovered at session start) |
+| Openverse API | Used for about 60 anonymous queries; licence and source page of every pick re-checked | Works; 200 requests/day limit |
+| FFmpeg filters | `loudnorm` (two-pass), `sidechaincompress`, `adelay`, `amix`, `alimiter`, `afade`, `ebur128`, `showspectrumpic` run in this session | Verified |
+| SoX, pyloudnorm, librosa, pedalboard, Audacity, Ardour, Demucs, Reaper | Licence/activity read from the GitHub API or not checked; not installed or run | Not used |

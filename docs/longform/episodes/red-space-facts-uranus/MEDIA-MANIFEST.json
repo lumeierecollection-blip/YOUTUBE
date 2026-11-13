@@ -21,8 +21,6 @@
    "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
    "used_in_beats": [
     "S01",
-    "S05",
-    "S07b",
     "S15"
    ]
   },
@@ -42,6 +40,7 @@
    "intended_channel": "red-space-facts",
    "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
    "used_in_beats": [
+    "S07b",
     "S08"
    ]
   },
@@ -297,6 +296,44 @@
    "intended_channel": "red-space-facts",
    "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
    "used_in_beats": []
+  },
+  {
+   "asset": "lf2/red-space-facts/miranda-voyager2.jpg",
+   "kind": "authentic",
+   "description": "Voyager 2's images of Miranda were the highest-resolution of any of Uranus' moons, which was fortunate because Miranda turned out to have interesting and bizarre geology. The images for this mosaic were captured on January 24, 1986, between 16:37 and 16:54 UTC; in the 17 minutes that separated the first from the final images, Miranda rotated noticeably, so it has always been a challenge to assemble this mosaic. This version was created by Ted Stryk.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Voyager_2%27s_best_image_of_Miranda.jpg",
+   "creator": "NASA / JPL / Ted Stryk",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S14b"
+   ]
+  },
+  {
+   "asset": "lf2/red-space-facts/uranus-montage-voyager2.jpg",
+   "kind": "authentic",
+   "description": "Uranus and its five major moons are depicted in this montage of images acquired by the Voyager 2 spacecraft. Uranus appears as a uniformly blue globe, similar to how the eye would naturally see it; only with computer-aided image processing do subtle bands in the planet's upper atmosphere appear. The moons, from largest to smallest as they appear here, are Ariel , Miranda , Titania , Oberon and Umbriel . Voyager 2 also discovered 10 new, smaller moons and relayed images of Uranus's ring system during the planetary encounter nearly 2 billion miles from Earth .",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Uranus_Montage.jpg",
+   "creator": "NASA/JPL",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "red-space-facts",
+   "intended_episode": "Uranus: The Planet That Rolls Around the Sun",
+   "used_in_beats": [
+    "S05"
+   ]
   }
  ],
  "footage_gaps": [
@@ -347,6 +384,13 @@
    "scene": "image",
    "reference_used": "mission imagery (we have it)",
    "we_use": "lf2/red-space-facts/uranus-new-moon-2025.png",
+   "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
+  },
+  {
+   "beat": "S14b",
+   "scene": "image",
+   "reference_used": "mission imagery (we have it)",
+   "we_use": "lf2/red-space-facts/miranda-voyager2.jpg",
    "licensed_video_available": "yes: NASA SVS 4666 (public domain), frames used"
   },
   {

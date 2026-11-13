@@ -1,0 +1,297 @@
+{
+  "_note": "Rules that turn an episode's beats into cue sheets. Every rule carries the editorial purpose that will be printed next to the cue. Proposals from docs/longform/SOUND-DESIGN-RESEARCH.md section 6 (hypotheses for a person to approve; the reference evidence for each is stated there). 'first' = only the first matching beat. 'group' = one cue spanning a run of consecutive beats of the listed scene types. Levels are dB relative to the narration (negative = quieter). Timing = beat start from the narration word count at 2.5 words per second. Rules whose trigger words matched a beat that did not fit the stated purpose (record scratch, applause, clock tick) were removed after reading the narration of the matched beats; a rule stays only if the beat it fires on really is the thing the purpose says.",
+  "levels_db_rel_speech": {
+    "bed": -26,
+    "ambience": -30,
+    "action": -12,
+    "transition": -14,
+    "accent": -10,
+    "riser": -14
+  },
+  "rules": {
+    "hidden-past": [
+      {
+        "type": "ambience",
+        "asset": "AMB_DESERT_WIND",
+        "scene": [
+          "map"
+        ],
+        "vo": "Sinai|desert|east bank",
+        "first": true,
+        "purpose": "places the Sinai / east-bank map scene in an arid landscape; used once so the map sequence is not filled with sound"
+      },
+      {
+        "type": "ambience",
+        "asset": "AMB_SHORE",
+        "scene": [
+          "map",
+          "inset",
+          "footage"
+        ],
+        "vo": "dropped anchor|Great Bitter Lake",
+        "first": true,
+        "purpose": "puts the ships at anchor on the lake; used once"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_SHIP_HORN",
+        "vo": "Hamburg|arriv",
+        "first": true,
+        "offset_s": 0,
+        "purpose": "marks an arrival; tied to the narration of the ships arriving"
+      },
+      {
+        "type": "transition",
+        "asset": "SFX_WHOOSH",
+        "transitions": [
+          "wipe",
+          "zoomthrough"
+        ],
+        "purpose": "a deliberate geographic move between two map scenes"
+      },
+      {
+        "type": "accent",
+        "asset": "SFX_IMPACT",
+        "vo": "Eight countries\\. Eight years",
+        "first": true,
+        "offset_s": 3.5,
+        "purpose": "the one reveal of how long the ships were trapped ('Eight years'); no other accents"
+      },
+      {
+        "type": "silence",
+        "asset": "(none)",
+        "last_beat": true,
+        "duration_s": 2,
+        "purpose": "lets the closing statement stand without sound"
+      }
+    ],
+    "ai-tested": [
+      {
+        "type": "action",
+        "asset": "SFX_KEYBOARD",
+        "scene": [
+          "terminal"
+        ],
+        "first": true,
+        "offset_s": 0,
+        "purpose": "typing that matches the command visibly being typed in the terminal capture"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_MOUSE_CLICK",
+        "scene": [
+          "browser"
+        ],
+        "first": true,
+        "offset_s": 1,
+        "purpose": "the click visible in the real browser capture"
+      },
+      {
+        "type": "silence",
+        "asset": "(none)",
+        "scene": [
+          "verdict"
+        ],
+        "first": true,
+        "duration_s": 1.5,
+        "purpose": "a pause before the result is stated"
+      }
+    ],
+    "court-and-spotlight": [
+      {
+        "type": "ambience",
+        "asset": "AMB_ROOM_TONE",
+        "group": [
+          "source",
+          "transcript",
+          "quote"
+        ],
+        "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_PAPER",
+        "scene": [
+          "source"
+        ],
+        "first": true,
+        "offset_s": 0,
+        "purpose": "a court document is brought into view"
+      },
+      {
+        "type": "riser",
+        "asset": "SFX_RISER",
+        "vo": "charged with",
+        "scene": [
+          "ledger"
+        ],
+        "first": true,
+        "offset_s": 0,
+        "purpose": "builds to the verdict count (convicted of four, acquitted of twenty); used once"
+      },
+      {
+        "type": "accent",
+        "asset": "SFX_IMPACT",
+        "vo": "charged with",
+        "scene": [
+          "ledger"
+        ],
+        "first": true,
+        "offset_s": 5,
+        "purpose": "the verdict count is revealed (four convictions)"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_GAVEL",
+        "vo": "Two and a half years",
+        "first": true,
+        "offset_s": 0,
+        "purpose": "the sentence is stated",
+        "scene": [
+          "amount"
+        ]
+      }
+    ],
+    "celebrity-news": [
+      {
+        "type": "action",
+        "asset": "SFX_SHUTTER",
+        "scene": [
+          "cover"
+        ],
+        "first": true,
+        "offset_s": 0,
+        "purpose": "photo cut-in of the subject"
+      },
+      {
+        "type": "ambience",
+        "asset": "SFX_VINYL",
+        "scene": [
+          "record"
+        ],
+        "first": true,
+        "purpose": "archive texture under the music-career record card"
+      }
+    ],
+    "rival-lines": [
+      {
+        "type": "bed",
+        "asset": "MUSIC_TECH",
+        "group": [
+          "sequence",
+          "formation",
+          "network",
+          "press",
+          "shots",
+          "bars"
+        ],
+        "purpose": "light rhythmic bed under tactical-data sections (the references carry a continuous low bed there)"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_BALL_KICK",
+        "scene": [
+          "shots"
+        ],
+        "first": true,
+        "offset_s": 2,
+        "purpose": "the first shot shown on the shot map"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_CROWD_GOAL",
+        "scene": [
+          "sequence"
+        ],
+        "vo": "goal|scored",
+        "first": true,
+        "offset_s": 6,
+        "purpose": "the moment of the goal in the event animation"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_WHISTLE",
+        "vo": "won two-one",
+        "offset_s": 0,
+        "purpose": "the result of the match is stated (end of the match)",
+        "scene": [
+          "scorecard"
+        ]
+      }
+    ],
+    "red-space-facts": [
+      {
+        "type": "ambience",
+        "asset": "AMB_SPACE_DRONE",
+        "group": [
+          "image",
+          "planet",
+          "tilt",
+          "seasons"
+        ],
+        "purpose": "a sustained drone under image plates and the planet scenes (the Astrum reference carries one)"
+      },
+      {
+        "type": "ambience",
+        "asset": "AMB_RADIO_STATIC",
+        "scene": [
+          "image"
+        ],
+        "vo": "Voyager",
+        "first": true,
+        "purpose": "mission-transmission texture on the first Voyager beat"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_ROCKET",
+        "vo": "launch",
+        "first": true,
+        "offset_s": 0,
+        "purpose": "the launch named in the narration"
+      },
+      {
+        "type": "silence",
+        "asset": "(none)",
+        "scene": [
+          "scale"
+        ],
+        "first": true,
+        "duration_s": 2,
+        "purpose": "silence for the scale reveal (vacuum)"
+      }
+    ],
+    "psychology": [
+      {
+        "type": "bed",
+        "asset": "MUSIC_PIANO_1",
+        "group": [
+          "study",
+          "experiment",
+          "stat",
+          "effect"
+        ],
+        "purpose": "quiet piano bed under study and finding cards"
+      },
+      {
+        "type": "action",
+        "asset": "SFX_PENCIL",
+        "scene": [
+          "cycle"
+        ],
+        "first": true,
+        "offset_s": 0,
+        "purpose": "the concept cycle is being drawn on screen"
+      },
+      {
+        "type": "ambience",
+        "asset": "AMB_CLASSROOM",
+        "scene": [
+          "scenario"
+        ],
+        "vo": "class|school|teacher",
+        "first": true,
+        "purpose": "the classroom scenario"
+      }
+    ]
+  }
+}

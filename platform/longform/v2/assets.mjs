@@ -38,6 +38,8 @@ export const ASSETS = {
     ["uranus-webb-nircam-2023", "File:STScI-Uranus-NIRCam.png", "Uranus and its rings, JWST NIRCam, 6 April 2023"],
     ["uranus-webb-closeup-2023", "File:Uranus Close-up (NIRCam image) (2023-150).png", "Uranus close-up, JWST NIRCam, December 2023"],
     ["uranus-new-moon-2025", "File:Uranus - New Moon (Annotated) (01K2283APYH89WYXJRX28XW5RT).png", "JWST image with the newly found moon S/2025 U1 annotated, 19 August 2025"],
+    ["miranda-voyager2", "File:Voyager 2's best image of Miranda.jpg", "Miranda, moon of Uranus: Voyager 2 images, processed by Ted Stryk"],
+    ["uranus-montage-voyager2", "File:Uranus Montage.jpg", "Uranus and its five major moons: montage of Voyager 2 images"],
   ],
   "psychology": [
     ["rosenthal-2008", "File:Robert Rosenthal (15615621830).jpg", "Robert Rosenthal, 2008"],
@@ -48,6 +50,9 @@ export const ASSETS = {
     ["swift-eras-bcplace-2024", "File:Taylor Swift The Eras Tour at BC Place, Landscape.jpg", "Taylor Swift, Eras Tour, BC Place Vancouver, December 2024"],
     ["swift-eras-red-2023", "File:Eras Tour - Inglewood, California - Red act 7.jpg", "Taylor Swift, Eras Tour Red act, Inglewood, 9 August 2023"],
     ["swift-2007", "File:Taylor Swift (2007) retouched.jpg", "Taylor Swift, 2007"],
+    ["swift-vma-2023", "File:Taylor Swift at the 2023 MTV Video Music Awards (3).png", "Taylor Swift at the 2023 MTV Video Music Awards"],
+    ["braun-techcrunch-2010", "File:Scooter Braun headshot.jpg", "Scooter Braun on stage at TechCrunch Disrupt, 2010"],
+    ["braun-interview-2020", "File:Scooter Braun Interview 2020.png", "Scooter Braun during an interview, 2020"],
     ["swift-amas-2019", "File:Taylor Swift AMAs 2019.png", "Taylor Swift at the American Music Awards, 24 November 2019"],
     ["swift-2019-portrait", "File:Taylor Swift 2 - 2019 by Glenn Francis (cropped).jpg", "Taylor Swift, March 2019"],
     ["braun-2022", "File:Scott (Scooter) Braun 2022.jpg", "Scooter Braun, 2022"],

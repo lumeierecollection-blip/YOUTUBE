@@ -16,7 +16,7 @@ import { SPECS } from "./specs.mjs";
 
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const only = (process.argv[2] || "hidden-past,ai-tested,court-and-spotlight,rival-lines,red-space-facts,psychology,celebrity-news").split(",");
-const OUT = join(ROOT, "output/longform-approval"), REMOTION = join(ROOT, "src/skills/remotion-render");
+const OUT = join(ROOT, process.env.STILLS_OUT || "output/longform-approval"), REMOTION = join(ROOT, "src/skills/remotion-render");
 mkdirSync(OUT, { recursive: true });
 // The Remotion bundle imports ./vo.mp3 (the video pipeline puts the narration there); a stills run needs only a placeholder.
 if (!existsSync(join(REMOTION, "vo.mp3"))) spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", join(REMOTION, "vo.mp3")]);

@@ -1,0 +1,94 @@
+{
+ "channel": "hidden-past",
+ "episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+ "estimated_minutes": 5.5,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:00.0",
+   "seconds": 0,
+   "scene": "H01",
+   "cue_type": "ambience",
+   "asset": "AMB_SHORE",
+   "purpose": "puts the ships at anchor on the lake; used once",
+   "duration_s": 14,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/klankbeeld/sounds/169181 | by 4.0 | attribution: \"harbour waves calm 01.wav\" by klankbeeld is licensed under CC BY 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/.",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:39.5",
+   "seconds": 39.5,
+   "scene": "H04",
+   "cue_type": "accent",
+   "asset": "SFX_IMPACT",
+   "purpose": "the one reveal of how long the ships were trapped ('Eight years'); no other accents",
+   "duration_s": 3,
+   "level_db_rel_speech": -10,
+   "source_licence": "freesound https://freesound.org/people/AudioPapkin/sounds/430978 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "2:08.8",
+   "seconds": 128.9,
+   "scene": "H08 to H09",
+   "cue_type": "transition",
+   "asset": "SFX_WHOOSH",
+   "purpose": "a deliberate geographic move between two map scenes",
+   "duration_s": 1.2,
+   "level_db_rel_speech": -14,
+   "source_licence": "freesound https://freesound.org/people/Kinoton/sounds/351256 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "3:24.3",
+   "seconds": 204.4,
+   "scene": "H14",
+   "cue_type": "ambience",
+   "asset": "AMB_DESERT_WIND",
+   "purpose": "places the Sinai / east-bank map scene in an arid landscape; used once so the map sequence is not filled with sound",
+   "duration_s": 17.2,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/dhallcomposer/sounds/697217 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "5:07.2",
+   "seconds": 307.3,
+   "scene": "H17 to H18",
+   "cue_type": "transition",
+   "asset": "SFX_WHOOSH",
+   "purpose": "a deliberate geographic move between two map scenes",
+   "duration_s": 1.2,
+   "level_db_rel_speech": -14,
+   "source_licence": "freesound https://freesound.org/people/Kinoton/sounds/351256 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "5:07.5",
+   "seconds": 307.6,
+   "scene": "H18",
+   "cue_type": "action",
+   "asset": "SFX_SHIP_HORN",
+   "purpose": "marks an arrival; tied to the narration of the ships arriving",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/Grotelue/sounds/64601 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "5:19.9",
+   "seconds": 320,
+   "scene": "H19",
+   "cue_type": "silence",
+   "asset": "(none)",
+   "purpose": "lets the closing statement stand without sound",
+   "duration_s": 2,
+   "level_db_rel_speech": null,
+   "source_licence": "n/a",
+   "approval_status": "n/a"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

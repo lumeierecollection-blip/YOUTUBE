@@ -5,6 +5,40 @@
  "rule": "usable is decided from the recorded licence, never from downloadability",
  "assets": [
   {
+   "asset": "lf2/ai-tested/faith-and-fate-arxiv-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "[2305.18654] Faith and Fate: Limits of Transformers on Compositionality",
+   "source_url": "https://arxiv.org/abs/2305.18654",
+   "creator": "arxiv.org",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": [
+    "A09b"
+   ]
+  },
+  {
+   "asset": "lf2/ai-tested/faith-and-fate-arxiv-1.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "[2305.18654] Faith and Fate: Limits of Transformers on Compositionality",
+   "source_url": "https://arxiv.org/abs/2305.18654",
+   "creator": "arxiv.org",
+   "licence": "none (third-party page)",
+   "downloaded": "2026-11-13",
+   "commercial": "unclear",
+   "editing": "screenshot only",
+   "attribution": "name the site and date",
+   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
+   "intended_channel": "ai-tested",
+   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
+   "used_in_beats": []
+  },
+  {
    "asset": "lf2/ai-tested/gemini-models-0.jpg",
    "kind": "web page capture (Playwright, 2026-11-13)",
    "description": "Models - Gemini API | Google AI Studio",
@@ -71,38 +105,6 @@
    "used_in_beats": [
     "A05"
    ]
-  },
-  {
-   "asset": "lf2/ai-tested/statsbomb-readme-0.jpg",
-   "kind": "web page capture (Playwright, 2026-11-13)",
-   "description": "GitHub - hudl/open-data: Free football data from StatsBomb · GitHub",
-   "source_url": "https://github.com/statsbomb/open-data",
-   "creator": "github.com",
-   "licence": "none (third-party page)",
-   "downloaded": "2026-11-13",
-   "commercial": "unclear",
-   "editing": "screenshot only",
-   "attribution": "name the site and date",
-   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
-   "intended_channel": "ai-tested",
-   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
-   "used_in_beats": []
-  },
-  {
-   "asset": "lf2/ai-tested/statsbomb-readme-1.jpg",
-   "kind": "web page capture (Playwright, 2026-11-13)",
-   "description": "GitHub - hudl/open-data: Free football data from StatsBomb · GitHub",
-   "source_url": "https://github.com/statsbomb/open-data",
-   "creator": "github.com",
-   "licence": "none (third-party page)",
-   "downloaded": "2026-11-13",
-   "commercial": "unclear",
-   "editing": "screenshot only",
-   "attribution": "name the site and date",
-   "usable": "owner decision (quotation/commentary of a third-party web page; not licensed)",
-   "intended_channel": "ai-tested",
-   "intended_episode": "At What Size Does AI Multiplication Break? We Tested It",
-   "used_in_beats": []
   }
  ],
  "footage_gaps": [],

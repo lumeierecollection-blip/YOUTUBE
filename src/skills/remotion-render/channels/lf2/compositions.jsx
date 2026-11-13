@@ -17,8 +17,10 @@ const LIB = { "rival-lines": RIVAL, "hidden-past": HIDDEN, "ai-tested": AITEST, 
 export function renderScene(s) {
   const C = LIB[s.ch] && LIB[s.ch][s.type];
   if (!C) return <AbsoluteFill style={{ background: "#300", color: "#fff", fontSize: 60, alignItems: "center", justifyContent: "center" }}>no scene {s.ch}/{s.type}</AbsoluteFill>;
-  return <C {...s} />;
+  return <><C {...s} />{s.autoCredit && s.autoCredit.length ? <AutoCredit lines={s.autoCredit} /> : null}</>;
 }
+// Generic credit line for an authentic picture whose scene has no credit of its own (platform/longform/v2/credits.mjs): small, lower-left, on a soft dark strip for legibility.
+const AutoCredit = ({ lines }) => <div style={{ position: "absolute", left: 0, bottom: 0, padding: "10px 34px 14px", fontFamily: "Inter, Helvetica, Arial, sans-serif", fontSize: 18, lineHeight: 1.25, color: "rgba(255,255,255,0.92)", background: "linear-gradient(90deg, rgba(0,0,0,0.62), rgba(0,0,0,0))", maxWidth: 1300, textShadow: "0 1px 3px #000" }}>{lines.join("  ·  ")}</div>;
 const Scene = (p) => renderScene(p);
 const Tx = ({ kind, dur, aAt, a, b, dir, accent }) => <Transition kind={kind} dur={dur} aAt={aAt} dir={dir} accent={accent} a={renderScene(a)} b={renderScene(b)} />;
 

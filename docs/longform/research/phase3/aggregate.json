@@ -40,6 +40,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.075,
+  "real_media_share_sampled": 0.694,
+  "constructed_share_sampled": 0.306,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 210,
+  "longest_constructed_run_at": [
+   45,
+   6
+  ],
+  "longest_same_run": [
+   0,
+   14,
+   "V"
+  ],
+  "motion": {
+   "median_change": 0.037,
+   "static_share": 0.2,
+   "longest_static_s": 31,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.008,
   "overlay_share_sampled": 0.24,
   "shots2": {
    "n": 289,
@@ -111,6 +131,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.043,
+  "real_media_share_sampled": 0.564,
+  "constructed_share_sampled": 0.436,
+  "longest_constructed_run_s": 60,
+  "longest_same_category_run_s": 165,
+  "longest_constructed_run_at": [
+   4,
+   4
+  ],
+  "longest_same_run": [
+   37,
+   11,
+   "V"
+  ],
+  "motion": {
+   "median_change": 0.024,
+   "static_share": 0.23,
+   "longest_static_s": 34,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.109,
   "overlay_share_sampled": 0.327,
   "shots2": {
    "n": 238,
@@ -183,6 +223,26 @@
    "other B,?": 0.007
   },
   "inherited_label_share": 0.122,
+  "real_media_share_sampled": 0.707,
+  "constructed_share_sampled": 0.286,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   18,
+   6
+  ],
+  "longest_same_run": [
+   18,
+   6,
+   "M"
+  ],
+  "motion": {
+   "median_change": 0.03,
+   "static_share": 0.23,
+   "longest_static_s": 37,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.3,
   "overlay_share_sampled": 0.079,
   "shots2": {
    "n": 409,
@@ -256,6 +316,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.037,
+  "real_media_share_sampled": 0.729,
+  "constructed_share_sampled": 0.271,
+  "longest_constructed_run_s": 135,
+  "longest_same_category_run_s": 135,
+  "longest_constructed_run_at": [
+   44,
+   9
+  ],
+  "longest_same_run": [
+   44,
+   9,
+   "M"
+  ],
+  "motion": {
+   "median_change": 0.018,
+   "static_share": 0.3,
+   "longest_static_s": 35,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.121,
   "overlay_share_sampled": 0.057,
   "shots2": {
    "n": 249,
@@ -326,6 +406,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.001,
+  "real_media_share_sampled": 0.657,
+  "constructed_share_sampled": 0.343,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 180,
+  "longest_constructed_run_at": [
+   68,
+   6
+  ],
+  "longest_same_run": [
+   22,
+   12,
+   "V"
+  ],
+  "motion": {
+   "median_change": 0.036,
+   "static_share": 0.23,
+   "longest_static_s": 57,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.0,
   "shots2": {
    "n": 340,
@@ -400,6 +500,26 @@
    "other B,?": 0.029
   },
   "inherited_label_share": 0.148,
+  "real_media_share_sampled": 0.752,
+  "constructed_share_sampled": 0.22,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 480,
+  "longest_constructed_run_at": [
+   52,
+   6
+  ],
+  "longest_same_run": [
+   16,
+   32,
+   "S"
+  ],
+  "motion": {
+   "median_change": 0.002,
+   "static_share": 0.61,
+   "longest_static_s": 44,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.009,
   "overlay_share_sampled": 0.055,
   "shots2": {
    "n": 192,
@@ -472,6 +592,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.224,
+  "real_media_share_sampled": 0.741,
+  "constructed_share_sampled": 0.259,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 150,
+  "longest_constructed_run_at": [
+   4,
+   6
+  ],
+  "longest_same_run": [
+   36,
+   10,
+   "V"
+  ],
+  "motion": {
+   "median_change": 0.042,
+   "static_share": 0.41,
+   "longest_static_s": 20,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.034,
   "shots2": {
    "n": 170,
@@ -541,6 +681,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.244,
+  "real_media_share_sampled": 0.807,
+  "constructed_share_sampled": 0.193,
+  "longest_constructed_run_s": 105,
+  "longest_same_category_run_s": 255,
+  "longest_constructed_run_at": [
+   5,
+   7
+  ],
+  "longest_same_run": [
+   26,
+   17,
+   "S"
+  ],
+  "motion": {
+   "median_change": 0.002,
+   "static_share": 0.64,
+   "longest_static_s": 26,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.045,
   "shots2": {
    "n": 171,
@@ -612,6 +772,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.268,
+  "real_media_share_sampled": 0.593,
+  "constructed_share_sampled": 0.407,
+  "longest_constructed_run_s": 75,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   92,
+   5
+  ],
+  "longest_same_run": [
+   37,
+   6,
+   "X"
+  ],
+  "motion": {
+   "median_change": 0.021,
+   "static_share": 0.42,
+   "longest_static_s": 29,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.064,
   "shots2": {
    "n": 353,
@@ -683,6 +863,26 @@
    "other B,?": 0.007
   },
   "inherited_label_share": 0.153,
+  "real_media_share_sampled": 0.557,
+  "constructed_share_sampled": 0.436,
+  "longest_constructed_run_s": 135,
+  "longest_same_category_run_s": 255,
+  "longest_constructed_run_at": [
+   124,
+   9
+  ],
+  "longest_same_run": [
+   71,
+   17,
+   "X"
+  ],
+  "motion": {
+   "median_change": 0.002,
+   "static_share": 0.62,
+   "longest_static_s": 137,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.014,
   "shots2": {
    "n": 219,
@@ -755,6 +955,26 @@
    "other B,?": 0.058
   },
   "inherited_label_share": 0.08,
+  "real_media_share_sampled": 0.878,
+  "constructed_share_sampled": 0.073,
+  "longest_constructed_run_s": 30,
+  "longest_same_category_run_s": 120,
+  "longest_constructed_run_at": [
+   5,
+   2
+  ],
+  "longest_same_run": [
+   16,
+   8,
+   "X"
+  ],
+  "motion": {
+   "median_change": 0.039,
+   "static_share": 0.09,
+   "longest_static_s": 26,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.024,
   "overlay_share_sampled": 0.512,
   "shots2": {
    "n": 109,
@@ -826,6 +1046,26 @@
    "other B,?": 0.025
   },
   "inherited_label_share": 0.015,
+  "real_media_share_sampled": 0.902,
+  "constructed_share_sampled": 0.073,
+  "longest_constructed_run_s": 15,
+  "longest_same_category_run_s": 135,
+  "longest_constructed_run_at": [
+   0,
+   1
+  ],
+  "longest_same_run": [
+   27,
+   9,
+   "A"
+  ],
+  "motion": {
+   "median_change": 0.036,
+   "static_share": 0.1,
+   "longest_static_s": 12,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.488,
   "shots2": {
    "n": 83,
@@ -894,6 +1134,26 @@
    "other B,?": 0.051
   },
   "inherited_label_share": 0.012,
+  "real_media_share_sampled": 0.35,
+  "constructed_share_sampled": 0.6,
+  "longest_constructed_run_s": 90,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   12,
+   6
+  ],
+  "longest_same_run": [
+   12,
+   6,
+   "T"
+  ],
+  "motion": {
+   "median_change": 0.025,
+   "static_share": 0.25,
+   "longest_static_s": 19,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.7,
   "shots2": {
    "n": 37,
@@ -965,6 +1225,26 @@
    "other B,?": 0.113
   },
   "inherited_label_share": 0.629,
+  "real_media_share_sampled": 0.75,
+  "constructed_share_sampled": 0.15,
+  "longest_constructed_run_s": 45,
+  "longest_same_category_run_s": 60,
+  "longest_constructed_run_at": [
+   11,
+   3
+  ],
+  "longest_same_run": [
+   7,
+   4,
+   "A"
+  ],
+  "motion": {
+   "median_change": 0.155,
+   "static_share": 0.04,
+   "longest_static_s": 4,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.25,
   "shots2": {
    "n": 83,
@@ -1036,6 +1316,23 @@
    "other B,?": 0.014
   },
   "inherited_label_share": 0.097,
+  "real_media_share_sampled": 0.986,
+  "constructed_share_sampled": 0.0,
+  "longest_constructed_run_s": 0,
+  "longest_same_category_run_s": 105,
+  "longest_constructed_run_at": null,
+  "longest_same_run": [
+   67,
+   7,
+   "I"
+  ],
+  "motion": {
+   "median_change": 0.036,
+   "static_share": 0.19,
+   "longest_static_s": 15,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.421,
   "overlay_share_sampled": 0.086,
   "shots2": {
    "n": 475,
@@ -1109,6 +1406,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.095,
+  "real_media_share_sampled": 0.957,
+  "constructed_share_sampled": 0.043,
+  "longest_constructed_run_s": 30,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   22,
+   2
+  ],
+  "longest_same_run": [
+   121,
+   6,
+   "N"
+  ],
+  "motion": {
+   "median_change": 0.033,
+   "static_share": 0.11,
+   "longest_static_s": 28,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.329,
   "overlay_share_sampled": 0.143,
   "shots2": {
    "n": 369,
@@ -1177,6 +1494,23 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.486,
+  "real_media_share_sampled": 1.0,
+  "constructed_share_sampled": 0.0,
+  "longest_constructed_run_s": 0,
+  "longest_same_category_run_s": 135,
+  "longest_constructed_run_at": null,
+  "longest_same_run": [
+   22,
+   9,
+   "N"
+  ],
+  "motion": {
+   "median_change": 0.026,
+   "static_share": 0.2,
+   "longest_static_s": 8,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.023,
   "overlay_share_sampled": 0.605,
   "shots2": {
    "n": 130,
@@ -1247,6 +1581,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.164,
+  "real_media_share_sampled": 0.261,
+  "constructed_share_sampled": 0.739,
+  "longest_constructed_run_s": 105,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   2,
+   7
+  ],
+  "longest_same_run": [
+   3,
+   6,
+   "Q"
+  ],
+  "motion": {
+   "median_change": 0.024,
+   "static_share": 0.3,
+   "longest_static_s": 8,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.304,
   "shots2": {
    "n": 92,
@@ -1318,6 +1672,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.103,
+  "real_media_share_sampled": 0.25,
+  "constructed_share_sampled": 0.75,
+  "longest_constructed_run_s": 105,
+  "longest_same_category_run_s": 105,
+  "longest_constructed_run_at": [
+   1,
+   7
+  ],
+  "longest_same_run": [
+   1,
+   7,
+   "Q"
+  ],
+  "motion": {
+   "median_change": 0.018,
+   "static_share": 0.39,
+   "longest_static_s": 11,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.306,
   "shots2": {
    "n": 46,
@@ -1387,6 +1761,26 @@
    "other B,?": 0.04
   },
   "inherited_label_share": 0.095,
+  "real_media_share_sampled": 0.364,
+  "constructed_share_sampled": 0.606,
+  "longest_constructed_run_s": 75,
+  "longest_same_category_run_s": 45,
+  "longest_constructed_run_at": [
+   18,
+   5
+  ],
+  "longest_same_run": [
+   20,
+   3,
+   "Q"
+  ],
+  "motion": {
+   "median_change": 0.019,
+   "static_share": 0.38,
+   "longest_static_s": 18,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.364,
   "shots2": {
    "n": 44,
@@ -1456,6 +1850,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.125,
+  "real_media_share_sampled": 0.143,
+  "constructed_share_sampled": 0.857,
+  "longest_constructed_run_s": 150,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   5,
+   10
+  ],
+  "longest_same_run": [
+   16,
+   6,
+   "Q"
+  ],
+  "motion": {
+   "median_change": 0.015,
+   "static_share": 0.41,
+   "longest_static_s": 15,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.2,
   "shots2": {
    "n": 41,
@@ -1528,6 +1942,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.176,
+  "real_media_share_sampled": 0.4,
+  "constructed_share_sampled": 0.6,
+  "longest_constructed_run_s": 180,
+  "longest_same_category_run_s": 120,
+  "longest_constructed_run_at": [
+   6,
+   12
+  ],
+  "longest_same_run": [
+   96,
+   8,
+   "Q"
+  ],
+  "motion": {
+   "median_change": 0.035,
+   "static_share": 0.31,
+   "longest_static_s": 18,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.093,
   "overlay_share_sampled": 0.364,
   "shots2": {
    "n": 342,
@@ -1602,6 +2036,26 @@
    "other B,?": 0.015
   },
   "inherited_label_share": 0.124,
+  "real_media_share_sampled": 0.343,
+  "constructed_share_sampled": 0.643,
+  "longest_constructed_run_s": 255,
+  "longest_same_category_run_s": 195,
+  "longest_constructed_run_at": [
+   87,
+   17
+  ],
+  "longest_same_run": [
+   87,
+   13,
+   "O"
+  ],
+  "motion": {
+   "median_change": 0.013,
+   "static_share": 0.45,
+   "longest_static_s": 18,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.071,
   "overlay_share_sampled": 0.15,
   "shots2": {
    "n": 320,
@@ -1672,6 +2126,26 @@
    "other B,?": 0.019
   },
   "inherited_label_share": 0.073,
+  "real_media_share_sampled": 0.167,
+  "constructed_share_sampled": 0.812,
+  "longest_constructed_run_s": 180,
+  "longest_same_category_run_s": 180,
+  "longest_constructed_run_at": [
+   24,
+   12
+  ],
+  "longest_same_run": [
+   24,
+   12,
+   "O"
+  ],
+  "motion": {
+   "median_change": 0.018,
+   "static_share": 0.4,
+   "longest_static_s": 20,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.188,
   "shots2": {
    "n": 110,
@@ -1746,6 +2220,26 @@
    "other B,?": 0.069
   },
   "inherited_label_share": 0.017,
+  "real_media_share_sampled": 0.188,
+  "constructed_share_sampled": 0.744,
+  "longest_constructed_run_s": 330,
+  "longest_same_category_run_s": 270,
+  "longest_constructed_run_at": [
+   109,
+   22
+  ],
+  "longest_same_run": [
+   113,
+   18,
+   "O"
+  ],
+  "motion": {
+   "median_change": 0.009,
+   "static_share": 0.54,
+   "longest_static_s": 27,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.008,
   "overlay_share_sampled": 0.083,
   "shots2": {
    "n": 175,
@@ -1820,6 +2314,26 @@
    "other B,?": 0.023
   },
   "inherited_label_share": 0.102,
+  "real_media_share_sampled": 0.55,
+  "constructed_share_sampled": 0.429,
+  "longest_constructed_run_s": 210,
+  "longest_same_category_run_s": 120,
+  "longest_constructed_run_at": [
+   4,
+   14
+  ],
+  "longest_same_run": [
+   6,
+   8,
+   "O"
+  ],
+  "motion": {
+   "median_change": 0.032,
+   "static_share": 0.25,
+   "longest_static_s": 103,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.079,
   "shots2": {
    "n": 246,
@@ -1887,6 +2401,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.0,
+  "real_media_share_sampled": 0.018,
+  "constructed_share_sampled": 0.982,
+  "longest_constructed_run_s": 765,
+  "longest_same_category_run_s": 705,
+  "longest_constructed_run_at": [
+   0,
+   51
+  ],
+  "longest_same_run": [
+   0,
+   47,
+   "O"
+  ],
+  "motion": {
+   "median_change": 0.029,
+   "static_share": 0.27,
+   "longest_static_s": 8,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.455,
   "shots2": {
    "n": 142,
@@ -1953,6 +2487,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.0,
+  "real_media_share_sampled": 0.927,
+  "constructed_share_sampled": 0.073,
+  "longest_constructed_run_s": 30,
+  "longest_same_category_run_s": 540,
+  "longest_constructed_run_at": [
+   39,
+   2
+  ],
+  "longest_same_run": [
+   3,
+   36,
+   "P"
+  ],
+  "motion": {
+   "median_change": 0.021,
+   "static_share": 0.19,
+   "longest_static_s": 14,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.488,
   "shots2": {
    "n": 19,
@@ -2019,6 +2573,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.0,
+  "real_media_share_sampled": 0.0,
+  "constructed_share_sampled": 1.0,
+  "longest_constructed_run_s": 285,
+  "longest_same_category_run_s": 270,
+  "longest_constructed_run_at": [
+   0,
+   19
+  ],
+  "longest_same_run": [
+   1,
+   18,
+   "W"
+  ],
+  "motion": {
+   "median_change": 0.005,
+   "static_share": 0.74,
+   "longest_static_s": 31,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.211,
   "shots2": {
    "n": 10,
@@ -2084,6 +2658,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.638,
+  "real_media_share_sampled": 0.0,
+  "constructed_share_sampled": 1.0,
+  "longest_constructed_run_s": 885,
+  "longest_same_category_run_s": 885,
+  "longest_constructed_run_at": [
+   0,
+   59
+  ],
+  "longest_same_run": [
+   0,
+   59,
+   "D"
+  ],
+  "motion": {
+   "median_change": 0.0,
+   "static_share": 0.65,
+   "longest_static_s": 7,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.136,
   "shots2": {
    "n": 260,
@@ -2151,6 +2745,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.404,
+  "real_media_share_sampled": 0.1,
+  "constructed_share_sampled": 0.9,
+  "longest_constructed_run_s": 240,
+  "longest_same_category_run_s": 240,
+  "longest_constructed_run_at": [
+   14,
+   16
+  ],
+  "longest_same_run": [
+   14,
+   16,
+   "D"
+  ],
+  "motion": {
+   "median_change": 0.011,
+   "static_share": 0.49,
+   "longest_static_s": 27,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.1,
   "shots2": {
    "n": 73,
@@ -2217,6 +2831,26 @@
    "other B,?": 0.0
   },
   "inherited_label_share": 0.0,
+  "real_media_share_sampled": 0.0,
+  "constructed_share_sampled": 1.0,
+  "longest_constructed_run_s": 360,
+  "longest_same_category_run_s": 345,
+  "longest_constructed_run_at": [
+   0,
+   24
+  ],
+  "longest_same_run": [
+   0,
+   23,
+   "W"
+  ],
+  "motion": {
+   "median_change": 0.02,
+   "static_share": 0.41,
+   "longest_static_s": 9,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.0,
   "overlay_share_sampled": 0.042,
   "shots2": {
    "n": 37,
@@ -2290,6 +2924,26 @@
    "other B,?": 0.012
   },
   "inherited_label_share": 0.481,
+  "real_media_share_sampled": 0.76,
+  "constructed_share_sampled": 0.232,
+  "longest_constructed_run_s": 60,
+  "longest_same_category_run_s": 90,
+  "longest_constructed_run_at": [
+   25,
+   4
+  ],
+  "longest_same_run": [
+   41,
+   6,
+   "V"
+  ],
+  "motion": {
+   "median_change": 0.044,
+   "static_share": 0.15,
+   "longest_static_s": 9,
+   "method": "per second: median over 4 fps samples of the mean absolute difference between frames 0.75 s apart (64x36 RGB, 0-1); static = below 0.01"
+  },
+  "human_subject_share_sampled": 0.08,
   "overlay_share_sampled": 0.16,
   "shots2": {
    "n": 446,
