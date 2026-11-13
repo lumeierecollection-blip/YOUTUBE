@@ -1,0 +1,57 @@
+{
+  "topic_slug": "kansas-city-limestone-bluffs-irish-history",
+  "strongest_angle": "Investigating how Irish immigrant labor led by Father Bernard Donnelly carved through 120-foot limestone bluffs along the Missouri River to build Kansas City's streets.",
+  "key_facts": [
+    {
+      "fact": "Limestone bluffs up to 120 feet tall once hugged the Missouri River by Kansas City, creating a major barrier to urban expansion in the mid-1800s.",
+      "source_url": "https://www.kcur.org/history/2026-04-29/kansas-city-irish-history-streets-bluffs-father-donnelly",
+      "source_name": "KCUR",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the mid-1800s, a Catholic priest named Father Bernard Donnelly recruited hundreds of Irish immigrants to dig streets through the rocky bluffs.",
+      "source_url": "https://www.kcur.org/history/2026-04-29/kansas-city-irish-history-streets-bluffs-father-donnelly",
+      "source_name": "KCUR",
+      "confidence": "high"
+    },
+    {
+      "fact": "When Kansas City Mayor Milton Payne took office in 1855, he authorized almost an entire year's budget to cut back the edge of the bluff and pave a quarter mile of the levee.",
+      "source_url": "https://www.hmdb.org/m.asp?m=87455",
+      "source_name": "Historical Marker Database",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Bluff height",
+      "value": 120,
+      "unit": "feet",
+      "source_url": "https://www.kcur.org/history/2026-04-29/kansas-city-irish-history-streets-bluffs-father-donnelly"
+    },
+    {
+      "label": "Mayoral inauguration year",
+      "value": 1855,
+      "unit": "year",
+      "source_url": "https://www.hmdb.org/m.asp?m=87455"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Kansas City",
+      "kind": "place"
+    },
+    {
+      "name": "Missouri River",
+      "kind": "place"
+    },
+    {
+      "name": "Father Bernard Donnelly",
+      "kind": "person"
+    },
+    {
+      "name": "Milton Payne",
+      "kind": "person"
+    }
+  ]
+}
