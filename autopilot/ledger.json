@@ -1173,11 +1173,11 @@
     },
     "2026-11-12-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43271634609",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "43502324291",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T17:50:56.827Z",
+      "updated_at": "2026-11-13T20:31:36.918Z",
       "stage": "script",
       "topic": "Google Tabletop Collaborative AI Workspace",
       "score": 73.8,
@@ -2428,5 +2428,5 @@
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th"
   ],
-  "last_poll_at": "2026-11-13T13:14:13.029Z"
+  "last_poll_at": "2026-11-13T20:31:36.917Z"
 }
