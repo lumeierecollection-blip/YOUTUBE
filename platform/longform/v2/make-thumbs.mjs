@@ -11,11 +11,11 @@ import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
 import { SPECS } from "../stills/specs.mjs";
 
-const ch = process.argv[2];
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug;
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
-const REMOTION = join(ROOT, "src/skills/remotion-render"), OUT = join(ROOT, "output/longform-prod", ch, "thumbnails"), RAW = join(OUT, "raw");
+const REMOTION = join(ROOT, "src/skills/remotion-render"), OUT = join(ROOT, "output/longform-prod", slug, "thumbnails"), RAW = join(OUT, "raw");
 mkdirSync(RAW, { recursive: true });
-const spec = await SPECS[ch]();
+const spec = await SPECS[ch](slug);
 const shots = spec.shots.filter((s) => s.group === "thumbs");
 const job = join(OUT, "job.json");
 writeFileSync(job, JSON.stringify({ outDir: RAW, shots: shots.map((s) => ({ name: s.name, id: s.id, props: s.props, frame: 0, scale: 1, durationInFrames: 1 })) }));

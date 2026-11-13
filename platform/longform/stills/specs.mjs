@@ -33,8 +33,8 @@ function sceneProps(ch, scene) {
   return p;
 }
 
-async function build(ch) {
-  const { EPISODE: ep, SOURCES } = await import(`../v2/episodes/${ch}.mjs`);
+async function build(ch, slug = ch) {
+  const { EPISODE: ep, SOURCES } = await import(`../v2/episodes/${slug}.mjs`);
   const shots = [], comp = (type) => `channels/lf2/${FILE[ch]}.jsx · ${COMPONENT[ch][type] || type}`, srcLine = (b) => `sources: ${b.src.map((s) => SOURCES[s]?.title?.slice(0, 60) || s).join("; ")}`;
   const storyboard = [];
   let opening = 0;
@@ -56,4 +56,4 @@ async function build(ch) {
   return { assets: SOURCES, shots, storyboard, title: ep.title };
 }
 
-export const SPECS = Object.fromEntries(Object.keys(FILE).map((ch) => [ch, () => build(ch)]));
+export const SPECS = Object.fromEntries(Object.keys(FILE).map((ch) => [ch, (slug) => build(ch, slug || ch)]));

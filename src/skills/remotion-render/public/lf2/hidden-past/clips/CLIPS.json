@@ -1,0 +1,16 @@
+{
+  "source": "Eruption of Mount St. Helens, 1980 (USDA Forest Service film, 1986), National Archives and Records Administration, ARC 13364 / local ID 95.68",
+  "licence": "Public domain (Wikimedia Commons file record: https://commons.wikimedia.org/wiki/File:Eruption_of_Mount_St._Helens,_1980.ogv)",
+  "retrieved": "2026-11-13",
+  "credit_line": "USDA Forest Service film (1986), via National Archives · public domain",
+  "note": "The film mixes documentary footage, reenactments and interviews and does not label shot dates. Only aerial and landscape shots without people are used, and none is described as showing a specific moment.",
+  "clips": {
+    "msh-crater": {"from_s": 316, "len_s": 10, "shows": "aerial view of the summit crater with fractures"},
+    "msh-plume-far": {"from_s": 362, "len_s": 10, "shows": "a plume rising from the summit, seen from a distance, aerial"},
+    "msh-column": {"from_s": 580, "len_s": 7.5, "shows": "close view of a billowing ash column"},
+    "msh-river-ash": {"from_s": 746, "len_s": 10, "shows": "aerial view of a river valley under ash cloud, helicopter overhead"},
+    "msh-bridge-flood": {"from_s": 790, "len_s": 10, "shows": "a bridge and flooded river carrying debris"},
+    "msh-eruption-seq": {"from_s": 1004, "len_s": 10, "shows": "an eruption cloud building over the summit, seen from a distance"},
+    "msh-aerial-column": {"from_s": 1026, "len_s": 8, "shows": "aerial view of a dense ash column"}
+  }
+}

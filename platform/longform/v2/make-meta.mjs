@@ -8,9 +8,9 @@ import { spawnSync } from "node:child_process";
 import { basename, join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
 
-const ch = process.argv[2], XF = 0.4, PAD = 0.55;
-const BASE = join(ROOT, "output/longform-prod", ch), VOICE = join(BASE, "voice");
-const { EPISODE: ep, SOURCES } = await import(`./episodes/${ch}.mjs`);
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug, XF = 0.4, PAD = 0.55;
+const BASE = join(ROOT, "output/longform-prod", slug), VOICE = join(BASE, "voice");
+const { EPISODE: ep, SOURCES } = await import(`./episodes/${slug}.mjs`);
 const dur = (f) => Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }).stdout.trim());
 const attrib = (() => { try { return JSON.parse(readFileSync(join(ROOT, `src/skills/remotion-render/public/lf2/${ch}/ATTRIBUTIONS.json`), "utf8")); } catch { return {}; } })();
 const images = [...new Set(ep.beats.flatMap((b) => { const img = b.scene.image || b.scene.photo; const k = img && basename(String(img)).replace(/\.\w+$/, ""); return k && attrib[k] ? [`${attrib[k].credit_line} (${attrib[k].source_url})`] : []; }))];

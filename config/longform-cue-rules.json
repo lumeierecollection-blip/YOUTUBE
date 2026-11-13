@@ -63,6 +63,13 @@
         "last_beat": true,
         "duration_s": 2,
         "purpose": "lets the closing statement stand without sound"
+      },
+      {
+        "type": "accent",
+        "asset": "SFX_IMPACT",
+        "vo": "magnitude 5\\.1",
+        "first": true,
+        "purpose": "the earthquake that starts the collapse (Mount St. Helens episode); the only hit in the episode"
       }
     ],
     "ai-tested": [

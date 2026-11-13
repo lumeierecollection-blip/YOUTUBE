@@ -3,7 +3,7 @@
 // a small key bottom-left; credited photographs as evidence inserts with white-box black-serif captions in the source's words;
 // figures stacked early; a chart laid over a picture. Imagery here is open (EOX Sentinel-2 cloudless, NASA, Commons), not their licensed tiles.
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Freeze, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
 import { GeoMap } from "./geomap.jsx";
 import { F, Fonts, Finish, clamp, eo, expo, lerp, ramp } from "./kit.jsx";
 
@@ -46,13 +46,18 @@ export function MapScene({ key_, tags = [], captions, date, ...map }) {
 }
 
 /** 2. Credited photograph as evidence: full bleed, slow push, the credit stays on screen, captions in the source's words. */
-export function Footage({ image, credit, captions, date, dur = 240, from = 1.02, to = 1.1, pos = "50% 50%", grade = "none", fit = "cover" }) {
+export function Footage({ image, video, videoLen = 10, credit, captions, date, dur = 240, from = 1.02, to = 1.1, pos = "50% 50%", grade = "none", fit = "cover" }) {
   const f = useCurrentFrame(), s = interpolate(f, [0, dur], [from, to], clamp);
   const filter = grade === "bw" ? "grayscale(1) contrast(1.08)" : grade === "warm" ? "sepia(0.25) saturate(0.85) contrast(1.05)" : "saturate(0.9) contrast(1.04)";
   return (
     <AbsoluteFill style={{ background: "#07080a" }}><Fonts />
-      {fit === "contain" && <Img src={src(image)} style={{ position: "absolute", inset: -60, width: "calc(100% + 120px)", height: "calc(100% + 120px)", objectFit: "cover", filter: `${filter} blur(34px) brightness(0.45)` }} />}
-      <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${s})`, filter }} />
+      {fit === "contain" && image && <Img src={src(image)} style={{ position: "absolute", inset: -60, width: "calc(100% + 120px)", height: "calc(100% + 120px)", objectFit: "cover", filter: `${filter} blur(34px) brightness(0.45)` }} />}
+      {video ? (
+        // real footage: plays at its own speed; once the clip has run out it holds on its last frame (never loops, never goes black)
+        <Freeze frame={Math.min(f, Math.max(1, Math.round(videoLen * 30) - 3))}><OffthreadVideo src={src(video)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${video ? 1 + (s - 1) * 0.5 : s})`, filter }} /></Freeze>
+      ) : (
+        <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${s})`, filter }} />
+      )}
       <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.62) 100%)" }} />
       {date && <DateStamp text={date} />}
       <Captions items={captions} />

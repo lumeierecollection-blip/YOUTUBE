@@ -19,13 +19,13 @@ jobs:
       fail-fast: false
       max-parallel: 2
       matrix:
-        channel: [hidden-past, ai-tested]
+        episode: [hidden-past-msh, ai-tested-trust]
     steps:
       - name: Skip channels this branch did not ask for
         id: want
         run: |
-          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.channel }}"
-          if [[ "$b" == hidden-past* && "$ch" != hidden-past ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
+          if [[ "$b" == hidden-past* && "$ch" != hidden-past* ]] || [[ "$b" == ai-tested* && "$ch" != ai-tested* ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
       - uses: actions/setup-node@v4
@@ -61,10 +61,10 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            output/longform-prod/${{ matrix.channel }}/beats
-            output/longform-prod/${{ matrix.channel }}/voice
-          key: lfr-${{ matrix.channel }}-${{ github.run_id }}
-          restore-keys: lfr-${{ matrix.channel }}-
+            output/longform-prod/${{ matrix.episode }}/beats
+            output/longform-prod/${{ matrix.episode }}/voice
+          key: lfr-${{ matrix.episode }}-${{ github.run_id }}
+          restore-keys: lfr-${{ matrix.episode }}-
       - name: Render the episode
         if: steps.want.outputs.run == 'yes'
         timeout-minutes: 300
@@ -78,15 +78,15 @@ jobs:
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
         shell: bash
-        run: node platform/longform/v2/render-episode.mjs "${{ matrix.channel }}" 2>&1 | { grep -v composed-scene || true; }
+        run: node platform/longform/v2/render-episode.mjs "${{ matrix.episode }}" 2>&1 | { grep -v composed-scene || true; }
       - name: Save finished beats
         if: always() && steps.want.outputs.run == 'yes'
         uses: actions/cache/save@v4
         with:
           path: |
-            output/longform-prod/${{ matrix.channel }}/beats
-            output/longform-prod/${{ matrix.channel }}/voice
-          key: lfr-${{ matrix.channel }}-${{ github.run_id }}
+            output/longform-prod/${{ matrix.episode }}/beats
+            output/longform-prod/${{ matrix.episode }}/voice
+          key: lfr-${{ matrix.episode }}-${{ github.run_id }}
       - name: Thumbnails
         if: steps.want.outputs.run == 'yes'
         timeout-minutes: 30
@@ -94,23 +94,23 @@ jobs:
           CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
           REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
         shell: bash
-        run: node platform/longform/v2/make-thumbs.mjs "${{ matrix.channel }}" 2>&1 | { grep -v composed-scene || true; }
+        run: node platform/longform/v2/make-thumbs.mjs "${{ matrix.episode }}" 2>&1 | { grep -v composed-scene || true; }
       - name: Publishing metadata
         if: steps.want.outputs.run == 'yes'
         timeout-minutes: 10
-        run: node platform/longform/v2/make-meta.mjs "${{ matrix.channel }}"
+        run: node platform/longform/v2/make-meta.mjs "${{ matrix.episode }}"
       - name: File QA
         if: always() && steps.want.outputs.run == 'yes'
-        run: node platform/longform/v2/qa-outputs.mjs "${{ matrix.channel }}"
+        run: node platform/longform/v2/qa-outputs.mjs "${{ matrix.episode }}"
       - uses: actions/upload-artifact@v4
         if: always() && steps.want.outputs.run == 'yes'
         with:
-          name: longform-${{ matrix.channel }}-${{ github.run_id }}
+          name: longform-${{ matrix.episode }}-${{ github.run_id }}
           retention-days: 30
           path: |
-            output/longform-prod/${{ matrix.channel }}/episode.mp4
-            output/longform-prod/${{ matrix.channel }}/episode-meta.json
-            output/longform-prod/${{ matrix.channel }}/render-log.json
-            output/longform-prod/${{ matrix.channel }}/qa.json
-            output/longform-prod/${{ matrix.channel }}/thumbnails/*.jpg
-            output/longform-prod/${{ matrix.channel }}/thumbnails/*.json
+            output/longform-prod/${{ matrix.episode }}/episode.mp4
+            output/longform-prod/${{ matrix.episode }}/episode-meta.json
+            output/longform-prod/${{ matrix.episode }}/render-log.json
+            output/longform-prod/${{ matrix.episode }}/qa.json
+            output/longform-prod/${{ matrix.episode }}/thumbnails/*.jpg
+            output/longform-prod/${{ matrix.episode }}/thumbnails/*.json

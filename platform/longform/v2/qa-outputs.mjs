@@ -4,7 +4,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
-const ch = process.argv[2], BASE = join(ROOT, "output/longform-prod", ch);
+const slug = process.argv[2], BASE = join(ROOT, "output/longform-prod", slug);
 const run = (c, a) => spawnSync(c, a, { encoding: "utf8", maxBuffer: 1 << 28 });
 function probe(f, want) {
   const j = JSON.parse(run("ffprobe", ["-v", "error", "-print_format", "json", "-show_streams", "-show_format", f]).stdout || "{}");

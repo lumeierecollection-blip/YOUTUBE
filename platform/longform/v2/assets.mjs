@@ -22,6 +22,15 @@ export const ASSETS = {
     ["little-rock-1975", "File:Foredeck of USS Little Rock (CLG-4) on 5 June 1975 (NH 98966).jpg", "USS Little Rock in the reopening convoy, 5 June 1975"],
     ["canal-1967-a", "File:Suez Canal 997009324813105171.jpg", "Suez Canal, 1967"],
     ["canal-1967-b", "File:Suez Canal 997009324827405171.jpg", "Suez Canal, 1967"],
+    // 1980 Mount St. Helens episode (hidden-past-msh): USGS photographs, all marked Public domain on Commons
+    ["msh-bulge-0427", "File:MSH80 bulge on north side 04-27-80.jpg", "The bulge on the north side of Mount St. Helens, 27 April 1980"],
+    ["msh-early-0410", "File:MSH80 early eruption st helens from NE 04-10-80.jpg", "An early eruption of Mount St. Helens, seen from the north-east, 10 April 1980"],
+    ["msh-post-0518", "File:MSH80 eruption mount st helens 05-18-80.jpg", "The eruption of Mount St. Helens, 18 May 1980 (Austin Post)"],
+    ["msh-plume-0518", "File:MSH80 eruption mount st helens plume 05-18-80.jpg", "The ash plume of 18 May 1980 (Donald Swanson)"],
+    ["msh-debris-0916", "File:MSH80 st helens debris avalanche helicopter 09-16-80.jpg", "The debris avalanche deposit and a helicopter, 16 September 1980"],
+    ["msh-johnston-0910", "File:MSH80 st helens from johnston ridge 09-10-80.jpg", "Mount St. Helens from Johnston Ridge, 10 September 1980"],
+    ["msh-mailboxes", "File:MSH80 mailboxes along cowlitz river 1980.jpg", "Mailboxes sticking out of a mudflow along the Cowlitz River, 1980"],
+    ["msh-mudline", "File:MSH80 mudline muddy river with USGS scientist 10-23-80.jpg", "A mudline along a river with a USGS scientist, 23 October 1980"],
   ],
   "court-and-spotlight": [
     ["becker-1994", "File:Boris Becker (cropped).jpg", "Boris Becker, 1994"],

@@ -18,7 +18,7 @@ import { narrate } from "../../production/index.mjs";
 import { ROOT } from "../../preview/lib.mjs";
 import { autoCredit } from "./credits.mjs";
 
-const ch = process.argv[2];
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug; // slug = episode file name; ch = the channel it belongs to
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), NOJOIN = argv.includes("--no-join");
@@ -27,10 +27,10 @@ const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeu
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
 const REMOTION = join(ROOT, "src/skills/remotion-render");
-const OUT = join(ROOT, "output/longform-prod", ch), VDIR = join(OUT, "voice"), BDIR = join(OUT, "beats");
+const OUT = join(ROOT, "output/longform-prod", slug), VDIR = join(OUT, "voice"), BDIR = join(OUT, "beats");
 for (const d of [OUT, VDIR, BDIR]) mkdirSync(d, { recursive: true });
 const THEMES = JSON.parse(readFileSync(join(ROOT, "config/longform-v2.json"), "utf8"));
-const { EPISODE: ep } = await import(`./episodes/${ch}.mjs`);
+const { EPISODE: ep } = await import(`./episodes/${slug}.mjs`);
 let beats = ep.beats; if (ONLY) beats = beats.filter((b) => ONLY.includes(b.id)); if (MAX) beats = beats.slice(0, MAX);
 
 const run = (cmd, args, o = {}) => spawnSync(cmd, args, { encoding: "utf8", maxBuffer: 1 << 28, ...o });
