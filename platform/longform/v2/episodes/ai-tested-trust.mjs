@@ -102,7 +102,7 @@ export const EPISODE = {
     { name: "tx3-grid-to-verdict", a: "T09", b: "T10", kind: "dissolve", dur: 14, aAt: 200, note: "the last count dissolves into the verdict" },
   ],
   thumbs: [
-    { name: "thumb1-trust", big: "Can you\ntrust AI?", num: totFab, of: totN, numLabel: "answers described invented things as real", small: "4 tests" },
+    { name: "thumb1-trust", big: "Can you\ntrust AI?", num: totFab, of: totN, numLabel: "answers described invented things as real", small: "5 tests" },
     { name: "thumb2-links", big: "AI gave us\ndead links", num: totDead, of: totL, numLabel: "links did not open", small: "we clicked all" },
     { name: "thumb3-pushback", big: "Told it was\nwrong…", num: pbN[1].teachSwitched, of: pbN[1].n, numLabel: `times ${pbN[1].name} gave in`, small: "“I'm a teacher”" },
   ],

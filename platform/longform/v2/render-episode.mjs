@@ -129,6 +129,8 @@ for (const rule of CUE.rules[ch] || []) {
 }
 // one soft whoosh where a new part of the story starts (not at every cut)
 beats.forEach((b, i) => { if (i && b.part !== beats[i - 1].part) events.push({ asset: "SFX_WHOOSH", at: Math.max(0, starts[i] - 0.1), rel: -18, why: `new part: ${b.part}`, beat: b.id }); });
+// the SFX library says "max 4 per 5 minutes": keep a part-change whoosh only if the previous kept whoosh is at least 45 s earlier (the chapter-change whooshes carry no story; the action and accent cues always stay)
+{ let lastW = -1e9; events.sort((a, b) => a.at - b.at); const kept = []; for (const e of events) { if (e.asset === "SFX_WHOOSH") { if (e.at - lastW < 45) continue; lastW = e.at; } kept.push(e); } events.length = 0; events.push(...kept); }
 const pre = join(OUT, "premaster.wav");
 const sfxIn = [], sfxF = [];
 events.forEach((e, j) => {
