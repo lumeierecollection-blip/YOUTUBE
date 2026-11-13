@@ -1,0 +1,73 @@
+{
+  "topic_slug": "jason-sudeikis-olivia-wilde-nanny-arbitration-defeat",
+  "strongest_angle": "Actors Jason Sudeikis and Olivia Wilde successfully defeated all eight claims brought by their former nanny Ericka Genaro in a New York arbitration battle, resulting in a petition to confirm the award.",
+  "key_facts": [
+    {
+      "fact": "Actors Jason Sudeikis and Olivia Wilde defeated all eight claims brought by former nanny Ericka Genaro in a lengthy arbitration battle.",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+      "source_name": "The Blast",
+      "confidence": "high"
+    },
+    {
+      "fact": "Former nanny Ericka Genaro originally sued Jason Sudeikis and Olivia Wilde in the year 2023.",
+      "source_url": "https://entertainmentnow.com/celebrity/jason-sudeikis-olivia-wilde-legal-victory",
+      "source_name": "Entertainment Now",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jason Sudeikis and Olivia Wilde filed a petition asking a New York judge to formally confirm portions of the arbitration ruling.",
+      "source_url": "https://www.tmz.com/2026/11/11/jason-sudeikis-olivia-wilde-nanny-arbitration-results",
+      "source_name": "TMZ",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jason Sudeikis and Olivia Wilde were awarded more than 1.27 million dollars in damages, legal fees, and other costs in the arbitration ruling.",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+      "source_name": "The Blast",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total arbitration award and costs",
+      "value": 1270000,
+      "unit": "dollars",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow"
+    },
+    {
+      "label": "Year the nanny sued the actors",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://entertainmentnow.com/celebrity/jason-sudeikis-olivia-wilde-legal-victory"
+    },
+    {
+      "label": "Total number of claims dismissed",
+      "value": 8,
+      "unit": "claims",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Jason Sudeikis",
+      "kind": "person"
+    },
+    {
+      "name": "Olivia Wilde",
+      "kind": "person"
+    },
+    {
+      "name": "Ericka Genaro",
+      "kind": "person"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "TMZ",
+      "kind": "organization"
+    }
+  ]
+}
