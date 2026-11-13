@@ -1,0 +1,75 @@
+{
+  "topic_slug": "165-days-record-ocean-temperatures-el-nino-2026",
+  "strongest_angle": "Documenting 165 consecutive days of record-shattering ocean temperatures driven by El Niño conditions in October and November 2026 according to NOAA and Newser reports.",
+  "key_facts": [
+    {
+      "fact": "Global ocean temperature records have been broken for 165 days in a row as reported by Newser in November 2026.",
+      "source_url": "https://www.newser.com/story/399894/el-nino-has-set-ocean-records-for-165-straight-days.html",
+      "source_name": "Newser",
+      "confidence": "high"
+    },
+    {
+      "fact": "National Centers for Environmental Information reported in October 2026 that sea surface temperature departure set an all-time high for any month.",
+      "source_url": "https://www.ncei.noaa.gov/news/global-climate-202610",
+      "source_name": "National Centers for Environmental Information",
+      "confidence": "high"
+    },
+    {
+      "fact": "Pacific Ocean El Niño conditions continued to strengthen in October 2026 with Niño3.4 reaching 2.2 degrees Celsius according to NOAA Climate Prediction Center data.",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/GODAS/ocean_briefing_gif/global_ocean_monitoring_current.pdf",
+      "source_name": "Climate Prediction Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "Copernicus reported in November 2026 that the year is virtually certain to surpass 1.5 degrees Celsius above pre-industrial levels.",
+      "source_url": "https://climate.copernicus.eu/2026-and-4-year-global-temperature-average-track-exceed-15degc-above-pre-industrial-levels",
+      "source_name": "Copernicus Climate Change Service",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Record-breaking ocean temperature streak",
+      "value": 165,
+      "unit": "days",
+      "source_url": "https://www.newser.com/story/399894/el-nino-has-set-ocean-records-for-165-straight-days.html"
+    },
+    {
+      "label": "Niño3.4 temperature anomaly",
+      "value": 2.2,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/GODAS/ocean_briefing_gif/global_ocean_monitoring_current.pdf"
+    },
+    {
+      "label": "Niño 1+2 temperature anomaly",
+      "value": 5.3,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.cpc.ncep.noaa.gov/products/GODAS/ocean_briefing_gif/global_ocean_monitoring_current.pdf"
+    },
+    {
+      "label": "Global temperature departure threshold",
+      "value": 1.5,
+      "unit": "degrees Celsius",
+      "source_url": "https://climate.copernicus.eu/2026-and-4-year-global-temperature-average-track-exceed-15degc-above-pre-industrial-levels"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Newser",
+      "kind": "organization"
+    },
+    {
+      "name": "National Centers for Environmental Information",
+      "kind": "organization"
+    },
+    {
+      "name": "Climate Prediction Center",
+      "kind": "organization"
+    },
+    {
+      "name": "Copernicus Climate Change Service",
+      "kind": "organization"
+    }
+  ]
+}
