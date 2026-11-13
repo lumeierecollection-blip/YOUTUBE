@@ -52,7 +52,8 @@ async function googleListed() {
     if (!r.ok) return [];
     const all = ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace("models/", ""));
     console.error("google models listed:", all.join(", "));
-    const pick = all.filter((id) => /gemma|flash|pro/.test(id) && !/image|tts|audio|live|embed|vision|exp|preview|learn|latest|thinking/.test(id)).slice(0, 12);
+    const only = (process.env.ONLY_MODELS || "").split(",").filter(Boolean);
+    const pick = only.length ? only : all.filter((id) => /gemma|flash|pro/.test(id) && !/image|tts|audio|live|embed|vision|exp|preview|learn|latest|thinking/.test(id)).slice(0, 12);
     const ask = (id) => async (text) => {
       let last;
       for (const key of keys) {
