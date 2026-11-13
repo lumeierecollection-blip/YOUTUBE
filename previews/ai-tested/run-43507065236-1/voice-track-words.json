@@ -1,0 +1,606 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (79/92 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "Ask",
+   "start": 0.0,
+   "end": 0.58,
+   "sentence": 0
+  },
+  {
+   "text": "AI",
+   "start": 0.58,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "to",
+   "start": 0.82,
+   "end": 1.24,
+   "sentence": 0
+  },
+  {
+   "text": "multiply",
+   "start": 1.24,
+   "end": 1.62,
+   "sentence": 0
+  },
+  {
+   "text": "two",
+   "start": 1.62,
+   "end": 2.16,
+   "sentence": 0
+  },
+  {
+   "text": "eight-digit",
+   "start": 2.16,
+   "end": 2.52,
+   "sentence": 0
+  },
+  {
+   "text": "numbers",
+   "start": 2.88,
+   "end": 3.26,
+   "sentence": 0
+  },
+  {
+   "text": "and",
+   "start": 3.74,
+   "end": 3.79,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 3.78,
+   "end": 3.88,
+   "sentence": 0
+  },
+  {
+   "text": "first",
+   "start": 3.88,
+   "end": 4.12,
+   "sentence": 0
+  },
+  {
+   "text": "four",
+   "start": 4.12,
+   "end": 4.4,
+   "sentence": 0
+  },
+  {
+   "text": "digits",
+   "start": 4.4,
+   "end": 4.7,
+   "sentence": 0
+  },
+  {
+   "text": "come",
+   "start": 4.7,
+   "end": 5.06,
+   "sentence": 0
+  },
+  {
+   "text": "out",
+   "start": 5.06,
+   "end": 5.24,
+   "sentence": 0
+  },
+  {
+   "text": "right",
+   "start": 5.24,
+   "end": 5.48,
+   "sentence": 0
+  },
+  {
+   "text": "Everything",
+   "start": 6.32,
+   "end": 6.37,
+   "sentence": 1
+  },
+  {
+   "text": "after",
+   "start": 6.32,
+   "end": 6.56,
+   "sentence": 1
+  },
+  {
+   "text": "that",
+   "start": 6.56,
+   "end": 6.98,
+   "sentence": 1
+  },
+  {
+   "text": "was",
+   "start": 6.98,
+   "end": 7.2,
+   "sentence": 1
+  },
+  {
+   "text": "wrong",
+   "start": 7.2,
+   "end": 7.46,
+   "sentence": 1
+  },
+  {
+   "text": "Sixteen",
+   "start": 7.46,
+   "end": 8.1,
+   "sentence": 2
+  },
+  {
+   "text": "digits",
+   "start": 8.74,
+   "end": 9.22,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 9.6,
+   "end": 9.74,
+   "sentence": 2
+  },
+  {
+   "text": "right",
+   "start": 9.74,
+   "end": 9.92,
+   "sentence": 2
+  },
+  {
+   "text": "length",
+   "start": 9.92,
+   "end": 10.3,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 10.6,
+   "end": 10.72,
+   "sentence": 2
+  },
+  {
+   "text": "still",
+   "start": 10.72,
+   "end": 11.06,
+   "sentence": 2
+  },
+  {
+   "text": "wrong",
+   "start": 11.06,
+   "end": 11.46,
+   "sentence": 2
+  },
+  {
+   "text": "We",
+   "start": 12.22,
+   "end": 12.27,
+   "sentence": 3
+  },
+  {
+   "text": "gave",
+   "start": 12.24,
+   "end": 12.44,
+   "sentence": 3
+  },
+  {
+   "text": "Gemini",
+   "start": 12.44,
+   "end": 12.8,
+   "sentence": 3
+  },
+  {
+   "text": "Flash-Lite",
+   "start": 12.8,
+   "end": 13.233,
+   "sentence": 3
+  },
+  {
+   "text": "ten",
+   "start": 13.233,
+   "end": 13.667,
+   "sentence": 3
+  },
+  {
+   "text": "problems",
+   "start": 14.1,
+   "end": 14.58,
+   "sentence": 3
+  },
+  {
+   "text": "at",
+   "start": 14.58,
+   "end": 14.9,
+   "sentence": 3
+  },
+  {
+   "text": "every",
+   "start": 14.9,
+   "end": 15.18,
+   "sentence": 3
+  },
+  {
+   "text": "size",
+   "start": 15.18,
+   "end": 15.64,
+   "sentence": 3
+  },
+  {
+   "text": "from",
+   "start": 15.64,
+   "end": 16.06,
+   "sentence": 3
+  },
+  {
+   "text": "two",
+   "start": 16.06,
+   "end": 16.17,
+   "sentence": 3
+  },
+  {
+   "text": "digits",
+   "start": 16.28,
+   "end": 16.48,
+   "sentence": 3
+  },
+  {
+   "text": "to",
+   "start": 16.48,
+   "end": 16.94,
+   "sentence": 3
+  },
+  {
+   "text": "ten",
+   "start": 16.94,
+   "end": 17.46,
+   "sentence": 3
+  },
+  {
+   "text": "Code",
+   "start": 17.98,
+   "end": 18.03,
+   "sentence": 4
+  },
+  {
+   "text": "checked",
+   "start": 17.98,
+   "end": 18.34,
+   "sentence": 4
+  },
+  {
+   "text": "every",
+   "start": 18.34,
+   "end": 18.84,
+   "sentence": 4
+  },
+  {
+   "text": "digit",
+   "start": 18.84,
+   "end": 19.16,
+   "sentence": 4
+  },
+  {
+   "text": "At",
+   "start": 19.76,
+   "end": 19.96,
+   "sentence": 5
+  },
+  {
+   "text": "two",
+   "start": 19.96,
+   "end": 20.08,
+   "sentence": 5
+  },
+  {
+   "text": "digits",
+   "start": 20.2,
+   "end": 20.46,
+   "sentence": 5
+  },
+  {
+   "text": "it",
+   "start": 20.46,
+   "end": 20.86,
+   "sentence": 5
+  },
+  {
+   "text": "was",
+   "start": 20.86,
+   "end": 20.98,
+   "sentence": 5
+  },
+  {
+   "text": "perfect",
+   "start": 20.98,
+   "end": 21.34,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 21.7,
+   "end": 21.9,
+   "sentence": 5
+  },
+  {
+   "text": "from",
+   "start": 21.9,
+   "end": 22.08,
+   "sentence": 5
+  },
+  {
+   "text": "six",
+   "start": 22.08,
+   "end": 22.21,
+   "sentence": 5
+  },
+  {
+   "text": "digits",
+   "start": 22.34,
+   "end": 22.6,
+   "sentence": 5
+  },
+  {
+   "text": "up",
+   "start": 22.6,
+   "end": 22.92,
+   "sentence": 5
+  },
+  {
+   "text": "it",
+   "start": 22.92,
+   "end": 23.28,
+   "sentence": 5
+  },
+  {
+   "text": "got",
+   "start": 23.28,
+   "end": 23.44,
+   "sentence": 5
+  },
+  {
+   "text": "none",
+   "start": 23.44,
+   "end": 23.82,
+   "sentence": 5
+  },
+  {
+   "text": "right",
+   "start": 23.82,
+   "end": 24.2,
+   "sentence": 5
+  },
+  {
+   "text": "Then",
+   "start": 24.2,
+   "end": 25.04,
+   "sentence": 6
+  },
+  {
+   "text": "we",
+   "start": 25.04,
+   "end": 25.32,
+   "sentence": 6
+  },
+  {
+   "text": "asked",
+   "start": 25.32,
+   "end": 25.56,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 25.56,
+   "end": 25.78,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 25.78,
+   "end": 25.9,
+   "sentence": 6
+  },
+  {
+   "text": "show",
+   "start": 25.9,
+   "end": 26.14,
+   "sentence": 6
+  },
+  {
+   "text": "its",
+   "start": 26.14,
+   "end": 26.22,
+   "sentence": 6
+  },
+  {
+   "text": "working",
+   "start": 26.3,
+   "end": 26.62,
+   "sentence": 6
+  },
+  {
+   "text": "and",
+   "start": 27.08,
+   "end": 27.13,
+   "sentence": 6
+  },
+  {
+   "text": "it",
+   "start": 27.1,
+   "end": 27.22,
+   "sentence": 6
+  },
+  {
+   "text": "got",
+   "start": 27.22,
+   "end": 27.32,
+   "sentence": 6
+  },
+  {
+   "text": "twenty-one",
+   "start": 27.32,
+   "end": 27.57,
+   "sentence": 6
+  },
+  {
+   "text": "of",
+   "start": 27.82,
+   "end": 28.28,
+   "sentence": 6
+  },
+  {
+   "text": "twenty-five",
+   "start": 28.28,
+   "end": 28.47,
+   "sentence": 6
+  },
+  {
+   "text": "right",
+   "start": 28.66,
+   "end": 29.32,
+   "sentence": 6
+  },
+  {
+   "text": "So",
+   "start": 30.08,
+   "end": 30.13,
+   "sentence": 7
+  },
+  {
+   "text": "make",
+   "start": 30.12,
+   "end": 30.36,
+   "sentence": 7
+  },
+  {
+   "text": "AI",
+   "start": 30.36,
+   "end": 30.7,
+   "sentence": 7
+  },
+  {
+   "text": "show",
+   "start": 30.7,
+   "end": 31.24,
+   "sentence": 7
+  },
+  {
+   "text": "its",
+   "start": 31.24,
+   "end": 31.36,
+   "sentence": 7
+  },
+  {
+   "text": "working",
+   "start": 31.48,
+   "end": 31.8,
+   "sentence": 7
+  },
+  {
+   "text": "or",
+   "start": 32.1,
+   "end": 32.24,
+   "sentence": 7
+  },
+  {
+   "text": "check",
+   "start": 32.24,
+   "end": 32.5,
+   "sentence": 7
+  },
+  {
+   "text": "its",
+   "start": 32.5,
+   "end": 32.58,
+   "sentence": 7
+  },
+  {
+   "text": "sums",
+   "start": 32.66,
+   "end": 32.86,
+   "sentence": 7
+  },
+  {
+   "text": "with",
+   "start": 32.86,
+   "end": 33.26,
+   "sentence": 7
+  },
+  {
+   "text": "code",
+   "start": 33.26,
+   "end": 33.48,
+   "sentence": 7
+  },
+  {
+   "text": "Would",
+   "start": 34.28,
+   "end": 34.33,
+   "sentence": 8
+  },
+  {
+   "text": "you",
+   "start": 34.28,
+   "end": 34.5,
+   "sentence": 8
+  },
+  {
+   "text": "have",
+   "start": 34.5,
+   "end": 34.62,
+   "sentence": 8
+  },
+  {
+   "text": "checked",
+   "start": 34.62,
+   "end": 34.8,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "Ask AI to multiply two eight-digit numbers, and the first four digits come out right.",
+   "start": 0.0,
+   "end": 5.48
+  },
+  {
+   "text": "Everything after that was wrong.",
+   "start": 6.32,
+   "end": 7.46
+  },
+  {
+   "text": "Sixteen digits, the right length, and still wrong.",
+   "start": 7.46,
+   "end": 11.46
+  },
+  {
+   "text": "We gave Gemini Flash-Lite ten problems at every size, from two digits to ten.",
+   "start": 12.22,
+   "end": 17.46
+  },
+  {
+   "text": "Code checked every digit.",
+   "start": 17.98,
+   "end": 19.16
+  },
+  {
+   "text": "At two digits it was perfect, and from six digits up it got none right.",
+   "start": 19.76,
+   "end": 24.2
+  },
+  {
+   "text": "Then we asked it to show its working, and it got twenty-one of twenty-five right.",
+   "start": 24.2,
+   "end": 29.32
+  },
+  {
+   "text": "So make AI show its working, or check its sums with code.",
+   "start": 30.08,
+   "end": 33.48
+  },
+  {
+   "text": "Would you have checked?",
+   "start": 34.28,
+   "end": 34.8
+  }
+ ]
+}
