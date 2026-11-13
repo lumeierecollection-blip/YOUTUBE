@@ -1159,11 +1159,11 @@
     },
     "2026-11-11-ch1": {
       "channel": "1",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43120297762",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "43348519456",
       "trigger": "schedule",
-      "updated_at": "2026-11-12T00:02:40.981Z",
+      "updated_at": "2026-11-13T01:56:26.751Z",
       "stage": "script",
       "topic": "The 1945 opening of the Nuremberg trials",
       "score": 71.1,
@@ -2386,5 +2386,5 @@
     "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT ",
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
-  "last_poll_at": "2026-11-12T17:39:04.232Z"
+  "last_poll_at": "2026-11-13T01:56:26.750Z"
 }
