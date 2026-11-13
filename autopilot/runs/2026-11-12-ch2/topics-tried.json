@@ -1,22 +1,22 @@
 {
   "tried": [
     {
-      "topic": "Meta's Muse AI Agent Expands to Smartwatches",
-      "score": 80.7,
+      "topic": "Meta's New AI Can Now Make Real Phone Calls for You",
+      "score": 80,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/meta-s-muse-ai-agent-expands-to-smartwatches-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts v"
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/meta-s-new-ai-can-now-make-real-phone-calls-for-you-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw ("
     },
     {
-      "topic": "Notion and Fireworks AI Security Breach",
-      "score": 74.3,
-      "stage": "research",
-      "reason": "research holds too few drawable facts for a strict-visual channel"
+      "topic": "Microsoft Finally Lets Users Turn Off Bing AI Features",
+      "score": 71.7,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Microsoft Bing Search Blog\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/microsoft-finally-lets-users-turn-off-bing-ai-features-shorts:\n  - SCR-17 STRICT (strict_visual channel): 4 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate "
     },
     {
-      "topic": "Google Tabletop Collaborative AI Workspace",
-      "score": 73.8,
-      "stage": "script",
-      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+      "topic": "AI Unlocks Gödel's Lost Mathematical Notebooks",
+      "score": 62.9,
+      "stage": "tts",
+      "reason": "node src/utils/tts.js 2 exited 1"
     }
   ],
   "selected": null

@@ -1173,17 +1173,17 @@
     },
     "2026-11-12-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "43502324291",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T20:55:41.501Z",
-      "stage": "narration",
+      "updated_at": "2026-11-13T20:56:25.672Z",
+      "stage": "tts",
       "topic": "AI Unlocks Gödel's Lost Mathematical Notebooks",
       "score": 62.9,
       "pillar": "Unexpected AI abilities and limits",
       "hook": "AI has just successfully unlocked long-lost notebooks containing hundreds of proved theorems by legendary mathematician Kurt Gödel.",
-      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-tabletop-collaborative-ai-workspace-shorts:\n  - SCR-17 STRICT (strict_visual channel): 2 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+      "error": "3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1"
     },
     "2026-11-13-ch2": {
       "channel": "2",
@@ -2453,7 +2453,8 @@
     "Hidden Past kick-c67a596d45-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 1/the-invention-of-atari-s-pong-shorts:\n  - SCR-16: 57 words implies ~28s duration â€” ou",
     "AI Tested 2026-11-10-ch2 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/ai-coding-assistant-leaks-confidential-data-and-secrets-acro-shorts:\n  - SCR-17 STRICT ",
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
-    "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th"
+    "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th",
+    "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1"
   ],
   "last_poll_at": "2026-11-13T20:31:36.917Z"
 }
