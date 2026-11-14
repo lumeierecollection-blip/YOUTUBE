@@ -1,12 +1,163 @@
 {
-  "generated_at": "2026-11-14T12:19:20.268Z",
+  "generated_at": "2026-11-14T18:47:15.910Z",
   "waves": [
     {
       "wave": 1,
       "item_count": 170,
       "sources": [
         {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
           "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 55
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-17",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-18",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-20",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-16",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-19",
+          "ok": true,
+          "items": 14
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
           "ok": false,
           "error": "HTTP 403"
         },
@@ -21,84 +172,39 @@
           "items": 15
         },
         {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
           "source": "feed:arkeonews.net",
           "ok": false,
           "error": "HTTP 403"
         },
         {
-          "source": "reddit:archaeology",
-          "ok": false,
-          "error": "HTTP 403"
-        },
-        {
-          "source": "wikipedia-on-this-day:11-14",
+          "source": "bing-news:shipwreck found",
           "ok": true,
-          "items": 15
+          "items": 7
         },
         {
-          "source": "bing-news:declassified archives history",
+          "source": "bing-news:forgotten history",
           "ok": true,
-          "items": 0
+          "items": 8
         },
         {
-          "source": "bing-news:historians reveal new evidence",
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
           "ok": true,
           "items": 1
-        },
-        {
-          "source": "google-news:declassified archives history",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:lost city found archaeology",
-          "ok": true,
-          "items": 9
-        },
-        {
-          "source": "bing-news:ancient tomb discovered",
-          "ok": true,
-          "items": 11
-        },
-        {
-          "source": "bing-news:archaeologists discovered",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:shipwreck discovered history",
-          "ok": true,
-          "items": 9
-        },
-        {
-          "source": "google-news:lost city found archaeology",
-          "ok": true,
-          "items": 28
-        },
-        {
-          "source": "google-news:ancient tomb discovered",
-          "ok": true,
-          "items": 25
-        },
-        {
-          "source": "google-news:archaeologists discovered",
-          "ok": true,
-          "items": 58
-        },
-        {
-          "source": "google-news:shipwreck discovered history",
-          "ok": true,
-          "items": 27
-        },
-        {
-          "source": "google-news:historians reveal new evidence",
-          "ok": true,
-          "items": 15
-        },
-        {
-          "source": "hacker-news",
-          "ok": true,
-          "items": 0
         },
         {
           "source": "google-trends",
@@ -106,68 +212,273 @@
           "items": 10
         },
         {
-          "source": "feed:livescience.com",
+          "source": "google-news:medieval discovery",
           "ok": true,
-          "items": 50
+          "items": 28
         },
         {
-          "source": "wikipedia-on-this-day:11-18",
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 25
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 39
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-15",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:11-30",
           "ok": true,
           "items": 16
         },
         {
-          "source": "wikipedia-on-this-day:11-15",
+          "source": "google-news:ancient DNA study",
           "ok": true,
-          "items": 13
+          "items": 38
         },
         {
-          "source": "wikipedia-on-this-day:11-17",
+          "source": "google-news:forgotten history",
           "ok": true,
-          "items": 14
+          "items": 29
         },
         {
-          "source": "wikipedia-on-this-day:11-19",
+          "source": "google-news:World War II secret revealed",
           "ok": true,
-          "items": 14
+          "items": 28
         },
         {
-          "source": "wikipedia-on-this-day:11-16",
+          "source": "wikipedia-on-this-day:11-24",
           "ok": true,
           "items": 18
         },
         {
-          "source": "wikipedia-on-this-day:11-20",
+          "source": "wikipedia-on-this-day:12-01",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-08",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-23",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-16",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "wikipedia-on-this-day:11-22",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-09",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-17",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-04",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:11-21",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-25",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:11-26",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "wikipedia-on-this-day:12-07",
           "ok": true,
           "items": 13
         },
         {
-          "source": "feed:heritagedaily.com",
-          "ok": false,
-          "error": "fetch failed"
+          "source": "wikipedia-on-this-day:11-29",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-28",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-13",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:12-05",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-12",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:12-14",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-02",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-27",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-10",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-18",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-06",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "wikipedia-on-this-day:12-03",
+          "ok": true,
+          "items": 18
         }
       ]
     }
   ],
   "candidates": [
     {
-      "topic": "The 1,600-year-old Nasca infant skull with cyclopia",
+      "topic": "1,600-Year-Old Nasca Infant Skull with Cyclopia",
       "pillar": "Archaeological discoveries",
       "evidence_ids": [
-        96,
+        98,
         113,
         168
       ],
-      "hook": "Archaeologists in Peru unearthed a 1,600-year-old infant skull with a single eye socket.",
+      "hook": "Archaeologists in Peru unearthed a 1,600-year-old infant skull displaying an extremely rare birth defect: a single, central eye socket.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 9,
-        "relevance": 9,
+        "curiosity": 10,
+        "relevance": 7,
         "visual": 8
       },
       "wikipedia_title": "Cyclopia",
-      "commons_query": "Nasca culture pottery",
-      "youtube_query": "Nasca culture infant skull cyclopia",
+      "commons_query": "",
+      "youtube_query": "Nasca infant skull cyclopia Peru",
       "evidence": [
         {
           "title": "Archaeologists discovered in Peru the skull of a baby with cyclopia, 1,600 years old, in a tomb of the Nasca culture - Informat.ro",
@@ -175,7 +486,7 @@
           "domain": "informat.ro",
           "published_ms": 1794637392000,
           "kind": "news",
-          "id": 96
+          "id": 98
         },
         {
           "title": "1,600-Year-Old Infant Skull Featuring a Single Eye Socket Unearthed from Ancient Burial Site - People.com",
@@ -194,10 +505,10 @@
           "id": 168
         },
         {
-          "title": "A Nasca Baby with a Single Eye Socket Shared a Grave with Another Infant 1,600 Years Ago - Arkeonews",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPVEtSWWM2WFJqbktGUkJYMkFXNWItb1FvWXpHU2JLNGJQTzI4Q2RlZmJBd3J2M3pYc3FpdTVYQlhPTDNQZldOYWRHTC1sRW9xcVRpTFhEVTRUTWl6WnF2MXZDSEhRMEpUbVBJT1JuTEhFSjZCay1JV3F3amtrTVh4b3dOT1lNTTE3T0ZNdU55V0JIZjB1QzNMZ0NJT05pMlRTa29icTc0a1l4Q1NQR21J?oc=5",
-          "domain": "arkeonews.net",
-          "published_ms": 1794503079000,
+          "title": "Strange 1,600-year-old infant skull with single ‘cyclops’ eye unearthed in Peru - The Independent",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPMDc0SmFJRlVhSFNqWVF4NG5xNDBOU21vVGVSYVo0U2RZSnFEMmVDc0xKdlFvTFhSR0p1VVRrRXM3UjJfV0VFWVg2TGt0OE01bi0yTkJGbHprazFwZmpEQ3FOTGJpSHhsWkdYdFg0c0VGak0zQnBSZEdQbkJjbThoV24zTW1PbkVmNFBqVm9SY1pGNGozbVdIeUN5YlhtNXFvREY2azA5VlllYlE?oc=5",
+          "domain": "independent.co.uk",
+          "published_ms": 1794574860000,
           "kind": "news"
         },
         {
@@ -205,6 +516,13 @@
           "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBWbjhuTlNSY0oyQ0d4TUt3X1VwNjg4aHJ2MFNYbmJkUmNub0xYWDRubDJUYXVkY2thV0poODlFWWxzSlNPdlo1TmdHaklUWi1kVXo3VDZkRmFka3EtaXFpUUluamtQOEVDSHJQdThPUUVjNy0yRTF3eGRiU09kWGM?oc=5",
           "domain": "dailygalaxy.com",
           "published_ms": 1794314100000,
+          "kind": "news"
+        },
+        {
+          "title": "A Nasca Baby with a Single Eye Socket Shared a Grave with Another Infant 1,600 Years Ago - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPVEtSWWM2WFJqbktGUkJYMkFXNWItb1FvWXpHU2JLNGJQTzI4Q2RlZmJBd3J2M3pYc3FpdTVYQlhPTDNQZldOYWRHTC1sRW9xcVRpTFhEVTRUTWl6WnF2MXZDSEhRMEpUbVBJT1JuTEhFSjZCay1JV3F3amtrTVh4b3dOT1lNTTE3T0ZNdU55V0JIZjB1QzNMZ0NJT05pMlRTa29icTc0a1l4Q1NQR21J?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794503079000,
           "kind": "news"
         }
       ],
@@ -214,224 +532,224 @@
         "ratio": 2.96
       },
       "youtube": {
-        "median_views": 1101,
+        "median_views": 199,
         "competitors": [
           {
             "id": "uEITO4sWnAM",
             "title": "Why Does This Nazca Urn Have One Eye?",
             "channel": "The Untold Atlas",
-            "views": 1363
+            "views": 1370
           },
           {
             "id": "X54xuTNVEI4",
             "title": "History Mysteries #14: Born With One Eye Socket — Why a Normal Grave? #shorts 💀",
             "channel": "True Science Daily",
-            "views": 1101
+            "views": 1104
+          },
+          {
+            "id": "ueqO15KNfic",
+            "title": "The Baby With One Eye — Buried 1,600 Years Ago in Peru",
+            "channel": "Unbeatableogy",
+            "views": 1104
+          },
+          {
+            "id": "V1uEzlVIlgk",
+            "title": "पुराना दुर्लभ शिशु का कंकाल! Rare Genetic Condition Discovered :: facts #Shorts",
+            "channel": "Zk edu",
+            "views": 199
           },
           {
             "id": "pPF-WfiHPU8",
             "title": "This 1,600-Year-Old Nazca Skull Has One Eye Socket",
             "channel": "ChronoSecrets ",
-            "views": 62
+            "views": 68
           },
           {
             "id": "_CmsrzHhv5s",
             "title": "The Baby With One Eye — Found in a 1,600-Year-Old Jar?",
             "channel": "The Untold Atlas",
-            "views": 16
+            "views": 19
           }
         ]
       },
-      "commons_hits": 20,
+      "commons_hits": null,
       "score": {
         "factors": {
           "momentum": 100,
-          "reach": 52,
-          "curiosity": 90,
-          "relevance": 90,
-          "visual": 90,
+          "reach": 44,
+          "curiosity": 100,
+          "relevance": 70,
+          "visual": 80,
           "source_quality": 100
         },
-        "total": 85.8,
-        "newest_hours": 6,
+        "total": 82.3,
+        "newest_hours": 12,
         "domains": [
           "informat.ro",
           "people.com",
           "livescience.com",
-          "arkeonews.net",
-          "dailygalaxy.com"
+          "independent.co.uk",
+          "dailygalaxy.com",
+          "arkeonews.net"
         ],
         "trusted_domains": [
           "livescience.com",
+          "independent.co.uk",
           "arkeonews.net"
         ]
       },
-      "rejected": [],
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
       "wave": 1
     },
     {
-      "topic": "The discovery of the lost Sanctuary of Asclepius in Epidaurus",
-      "pillar": "Archaeological discoveries",
+      "topic": "D.B. Cooper's Daring 1971 Airplane Hijacking and Escape",
+      "pillar": "Unsolved historical mysteries",
       "evidence_ids": [
-        94,
-        125,
-        126
+        40
       ],
-      "hook": "Archaeologists have finally located the long-lost Sanctuary of Asclepius in the ancient Greek city of Epidaurus.",
-      "anniversary": false,
+      "hook": "A polite hijacker collected $200,000, jumped out of a Boeing 727 into a freezing storm, and vanished into history.",
+      "anniversary": true,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 8,
-        "relevance": 8,
-        "visual": 8
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 9
       },
-      "wikipedia_title": "Sanctuary of Asclepius at Epidaurus",
-      "commons_query": "Sanctuary of Asclepius Epidaurus",
-      "youtube_query": "Sanctuary of Asclepius Epidaurus discovered",
+      "wikipedia_title": "D. B. Cooper",
+      "commons_query": "DB Cooper",
+      "youtube_query": "DB Cooper hijacking mystery",
       "evidence": [
         {
-          "title": "Archaeologists Locate Long-Lost Sanctuary of Asclepius in Ancient Greek City of Epidaurus - GreekReporter.com",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPMVRuaW9uUTdSVDJjV3BXVVB2VTh4cDM2MUpGQU9MZG5EbEdKNUpqT3NOZkFfOVNhVXdHOEZCT2NURlVrbUozYmU3c3NpMWtfREpEQWlRX0d3YXc1QXMzNTVHTEROb1pORFQ2REZLOE1tQXJsYURJUDh3RnFMaldfQ3NNeUstbkQ1cl84aTZLUVctZVNhWEE?oc=5",
-          "domain": "greekreporter.com",
-          "published_ms": 1794654091000,
-          "kind": "news",
-          "id": 94
+          "title": "1971, 11-24: After collecting a ransom payout of $200,000, D. B. Cooper parachuted out of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+          "url": "https://en.wikipedia.org/wiki/D._B._Cooper",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 40
         },
         {
-          "title": "Lost Sanctuary of the Greek God of Medicine Identified in Greece - Arkeonews",
-          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZEpqYkR6N0Z2S3laVnhlc1AxVUo3Ql9Bc0ozNlRwRzc1OG5aN19kVmJna2EzQkVSRFlieEpxVWpqMVFZN3E2RzZIaEJRU0Y1bGFhNlVsM3MyZzlvRFBZWmw4MllVR20wTjc2QW1SVkVuTHE5UGhtYzBJd2tDV2F3VTRlQnIzV2hmNlRVN2I2UG4?oc=5",
-          "domain": "arkeonews.net",
-          "published_ms": 1794524986000,
-          "kind": "news",
-          "id": 125
-        },
-        {
-          "title": "Lost Sanctuary of Asclepius discovered at Ancient Epidaurus - HeritageDaily",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcnAydEZfaDVCZHNCWTM3RTFaQ0kwTFphRUVKWWpqOVUxSTdfVVpLa253MnRXRjJ6UFVlcnk1WUg3MWdCYWJpWmRqZ2o5SjRIaF9aWUxMekVmOFJtUHJQbGwxOHRTOTdvS1ZvNUVpQmk4djd6aVk3UTAzU2lUQ2JCc1dETkxPZXM1cFVWRWxTUE1ZZ2ZPb01FeGZySWFqUHF2NkY2WUNwTQ?oc=5",
-          "domain": "heritagedaily.com",
-          "published_ms": 1794520631000,
-          "kind": "news",
-          "id": 126
-        },
-        {
-          "title": "Lost Sanctuary of Asclepius Unearthed in Major Discovery - Σωματείο ΔΙΑΖΩΜΑ",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxON1NOZ19adXRKOTA3Q0dDVzJqNHdrWlBFMlV3MFRuaU1wWUNyQlZsU1M4SGZCaHhSYl9naXBpNWNJMFJpakNlZkYtRUdsNXBIeENtYkJLLXRhai13eWVPSTlPZC15MC1GbFNDYUVCWHZVaEV5c3FQaGVfNWhuemlHRkVZaXR3QzZPYWFZbFdsRVhDUVI3MFJKSlFB?oc=5",
-          "domain": "diazoma.gr",
-          "published_ms": 1794510986000,
+          "title": "How The Most Famous Unknown Airplane Hijacker Inspired One Of The Simplest And Cleverest Airplane Parts Ever - The Autopian",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQOE9nT1AyQ00yVG0wY3RHUm9kS05OZEQzVDJwNWdLSko4Y3hqVkJISXVmdVZmOGRzTktORzNod1luZlhGV0VoTEJZZlB0RFNaNkdtZUduMUlxNXhvRlN0TkI3a3gwaFZmVU5QUjUyMGpJNlNCeEFqT2d3Y0FkeTlmV2dpX0VIMDhrVVBEQnRMNVZ6MjNiQ2hySy04cW55Zm9vMHhVd1VXYXpyb20tZkdneU5tTzlucHVPYUJ4X2xpNi10YWVaemcxc0JRMEl2bHJFNjl3?oc=5",
+          "domain": "theautopian.com",
+          "published_ms": 1794356379000,
           "kind": "news"
         },
         {
-          "title": "Ancient Epidaurus Steps Out of the Asklepieion’s Shadow - tovima.com",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPMDNfTjRZQ1R1R0dNSEJQWFFXVU9pY0RRMHB0UElwc3AzeUtBamctRW9sUEpYcklqTl9laTlxaUkxVVV4eC16YWhUZkJPbHY5VktrZU5HbUlaTzlKRElJZU5fZ21pNFZ5akFnc3RJcDJ6b2EzQ2dyZDJuQzVtaUpvZ0l4MmpQNkNBWEctSllEWQ?oc=5",
-          "domain": "tovima.com",
-          "published_ms": 1794485703000,
-          "kind": "news"
-        },
-        {
-          "title": "Archaeological Discoveries in Epidaurus Confirm Sacred Asclepius Sanctuary and Reveal Statue of Epione - Inkorr",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQZ1FHdjJCSXMydVdRaXdrd1YzbmZqdUtDRS0yUU9wTGU2S2VnWDBObHg4SHRPcmNVcC0tdFF6dkhjQkJMQ1dpY1RybFd0Tkl0N2dnZjF1UGV5c3MzbzZtNXY0UGNiMDNlWVJ6ZXAtaWdYS19zYm5mRTctLTBJckZWQzBkV2ZGbEJldXFzcmlVU2ZESno2bVo0NDI0ZVFsR3gzYXNvOUdNRGN3WVJfQWVuT1RmUzJTbklu0gG-AUFVX3lxTE1hVWtoNXNmbVJ6c0tRQW40TDg4eUxWR1JUSTBnMzdFSVJRaXI0eFFNODBVRzdNYlphUE9yS1hVT1FkMTY5bDVIMVQ2dWstOVBrakNvSmJXSHQ5amxEa3BJTXJ6UHpGT1RyVVFkeG4xMFBXalFBc0JNYjZZRkpYQlJ0TWZsTndVVzdrTWxZVS1DaEthT3NSbWxlN1VHNkp4b3pRS0FWZXRlUmE0MVlTOXpHQk1jbHo5WklZaEVVRlE?oc=5",
-          "domain": "inkorr.com",
-          "published_ms": 1794648524000,
+          "title": "D.B. Cooper Festival will land at Burien’s Highline Heritage Museum on Saturday, Nov. 14 - B-Town Blog",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQeDdwLThpbFJyUXExcHNWZGhqUUxiYTRBU2lkdkJmTXlnZTlLTmFKWXQ1Y01VaDAtc3dCbmdlSGVrRVFMc3M1VXBaZ2xxWXdCSzloNzJldnVUOXlNSThqWVM0ZGdINnQ2RkV1WnZCXzZiRGpEZHF5aGw5aDhleVhkTFg2elJBWWEwVzFUUDI1bTA3TWFnUGwwalNrYm9QVXVxRmY1UHkyRWRMdTM0?oc=5",
+          "domain": "b-townblog.com",
+          "published_ms": 1794618660000,
           "kind": "news"
         }
       ],
-      "wikipedia": null,
+      "wikipedia": {
+        "title": "D. B. Cooper",
+        "daily_views": 2838,
+        "ratio": 0.81
+      },
       "youtube": {
-        "median_views": 193,
+        "median_views": 5075,
         "competitors": [
           {
-            "id": "q78L8qJQqbU",
-            "title": "THE TEMPLE BURIED BENEATH A FAMOUS GREEK SHRINE",
-            "channel": "Areha Hub",
-            "views": 15491
+            "id": "wic9CnF7vro",
+            "title": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+            "channel": "First Humans ",
+            "views": 937122
           },
           {
-            "id": "fw6DiAEg4JQ",
-            "title": "The Lost Sanctuary of Asclepius Has Finally Been Found #AncientGreece #Archaeology",
-            "channel": "Untold Empires",
-            "views": 1495
+            "id": "Eh0JKARWLV8",
+            "title": "After 54 Years, the D.B. Cooper Mystery May Finally Be Solved — His Identity Revealed",
+            "channel": "Phantom Expedition",
+            "views": 226118
           },
           {
-            "id": "v8UaPLHvYH4",
-            "title": "My Lost World: This Week in Archaeology. Nov 13.2026",
-            "channel": "My Lost World",
-            "views": 972
+            "id": "swMs0jA_TJM",
+            "title": "The Craziest Plane Hijacking Mystery Ever. #shorts",
+            "channel": "KaranVerse",
+            "views": 34886
           },
           {
-            "id": "wFBJ8HHS-nM",
-            "title": "Patients entered this ancient hall hoping that dreama could change their lives.What happened inside?",
-            "channel": "Time Builds",
-            "views": 920
+            "id": "eT_rNOAH3NI",
+            "title": "The Only Unsolved Skyjacking in FBI History!✈️😱 | D.B. Cooper hijacked | 💸🪂 #shorts",
+            "channel": "Muhilan Explains",
+            "views": 8282
           },
           {
-            "id": "lvafrRYM2oc",
-            "title": "The Seats at Epidaurus Filter Out Crowd Noise, and Nobody Knew Until 2007",
-            "channel": "LostToTime",
-            "views": 193
+            "id": "pXkAvGZp8bQ",
+            "title": "THE GREATEST UNSOLVED HIJACKING MYSTERY?! 😱✈️ | The Search for D.B. Cooper REACTION",
+            "channel": "E.D. ANIME",
+            "views": 5075
           },
           {
-            "id": "OCvJ0yGlw5Q",
-            "title": "How Ancient Greeks Slept in a Temple to Be Healed | Fall Asleep to Asclepius and Epidaurus",
-            "channel": "The history tales",
-            "views": 73
+            "id": "llKNvlnBwOY",
+            "title": "How Did D.B. Cooper Hijack a Plane, Jump Out With the Cash and Vanish?",
+            "channel": "HistoriaPulse",
+            "views": 1858
           }
         ]
       },
       "commons_hits": 20,
       "score": {
         "factors": {
-          "momentum": 100,
-          "reach": 38,
-          "curiosity": 80,
-          "relevance": 80,
-          "visual": 90,
-          "source_quality": 100
+          "momentum": 64,
+          "reach": 65,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 65
         },
-        "total": 79.6,
-        "newest_hours": 1,
+        "total": 78.3,
+        "newest_hours": 0,
         "domains": [
-          "greekreporter.com",
-          "arkeonews.net",
-          "heritagedaily.com",
-          "diazoma.gr",
-          "tovima.com",
-          "inkorr.com"
+          "wikipedia.org",
+          "theautopian.com",
+          "b-townblog.com"
         ],
         "trusted_domains": [
-          "arkeonews.net",
-          "heritagedaily.com"
+          "wikipedia.org"
         ]
       },
       "rejected": [
-        "too similar to recent topic: The Discovery of the Lost Sanctuary of Asclepius"
+        "too similar to recent topic: D.B. Cooper's legendary 1971 airplane hijacking and parachute escape"
       ],
-      "wave": 1
+      "wave": 2
     },
     {
-      "topic": "The massive 2,200-year-old burial mound find in Kazakhstan",
+      "topic": "2,200-Year-Old Gold Bear Figurine from Kazakhstan",
       "pillar": "Archaeological discoveries",
       "evidence_ids": [
-        152
+        100,
+        150
       ],
-      "hook": "Archaeologists uncovered a solid gold bear figurine and a mountain of bones inside a massive 2,200-year-old burial mound in Kazakhstan.",
+      "hook": "Deep inside a massive burial mound in Kazakhstan, archaeologists uncovered a stunning, perfectly preserved 2,200-year-old gold bear figurine.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 9,
-        "relevance": 8,
+        "relevance": 7,
         "visual": 9
       },
-      "wikipedia_title": "",
-      "commons_query": "Kazakhstan gold artifact archaeological",
-      "youtube_query": "Kazakhstan burial mound gold bear figurine",
+      "wikipedia_title": "Kurgan",
+      "commons_query": "",
+      "youtube_query": "gold bear figurine Kazakhstan burial mound",
       "evidence": [
+        {
+          "title": "Archaeologists Discover Turkic Khaganate-Era Settlement in East Kazakhstan - The Astana Times",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQUk85cEswa2tWSXEzOHk2ZnYtcnV6U3JEdU1YVFBxZjFXTEItVFRzWXNpaW5LOWZtcXJoTXh2cG4zUWxBU0JLTlJqSUdOWl9HLTgtM3RyRnlEVVAyVERJcVpiNWNDVnZQcHVwTlFNWWJDTWJibEdqVENTa192S1BmemQ3WTJMUFRxeUh6ZTZZcF9XdS1qWHQ0OGg1d0hPM0pWeDhsLWJpU1hGRm8?oc=5",
+          "domain": "astanatimes.com",
+          "published_ms": 1794634755000,
+          "kind": "news",
+          "id": 100
+        },
         {
           "title": "2,200-year-old gold bear figurine and surprising number of bones found in massive burial mound in Kazakhstan",
           "url": "https://www.livescience.com/archaeology/2-200-year-old-gold-bear-figurine-and-surprising-number-of-bones-found-in-massive-burial-mound-in-kazakhstan",
           "domain": "livescience.com",
           "published_ms": 1794433470000,
           "kind": "feed",
-          "id": 152
+          "id": 150
         },
         {
           "title": "2,200-year-old gold bear figurine and surprising number of bones found in massive burial mound in Kazakhstan - Live Science",
@@ -445,6 +763,13 @@
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPc0ZxNkNnbDJzeEk4N3dUdFVHZ21ra183aFRxcE94YmZmNkdSb1hNSElIcmpFTFVvUEMwRm45YzdRMlVmcnVEb3NnZy1iUHhsSGVBT3BLMnBiaFc0QWVaQVgyLVNDb1IzNW9Sa01GMWh1d1BLWnpnTk9DR0JCWjltUC13WkxoMXFHT09BNlFTZTZ3Qi02b25NUzlCRzE4RW5faUFaQ184S2NMYlUyYTZ3VlV3UGRoLVVfVUhabkxFbmdfcUhDNXNuZF9iRQ?oc=5",
           "domain": "heritagedaily.com",
           "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Thieves Missed This Gold Bear in a Burial Mound That May Hold 7 People - Discover Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQWFBIcGpPdGlCMDBPS0I3cUgyT2RfN1RGR2hBcXJlTTJhVm52MXl0TjJxM3F2UDJ2cW1xZG43OENwdXhxa3VKWGhUZkxSUGRzeGFSOXplTjc1UDFRNUlTQk0xTlFXbVUxbEFia0h3d1E2dXh6MFBrRlA1UGlrVGhRU1pWMWg1Wi1uM1BlQmtDeWFvdUVERkhEYXMzc2F2X2ctc3lVRFNZaWVPU3hucHZZckpoZlpDVzZf?oc=5",
+          "domain": "discovermagazine.com",
+          "published_ms": 1794004504000,
           "kind": "news"
         },
         {
@@ -469,41 +794,39 @@
           "kind": "news"
         },
         {
-          "title": "2,200-year-old gold bear figurine found in Kazakhstan — Live Science - UA.NEWS",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObi1KR1ktbkMxYWd0LXEzUUJncnNUOVp5aG9Yc0NJYUZ4UTk5R3ktRnNVX29KZFhsdmJScFB6NmtnSmxTZ3dQTURrWk1GNGFZYWpYbTlpdWFmbl8tMzhBSVhKRi0ybGZ0VkhKZnM3dVY3VnFwbDZTeTJ0QnFKa1VEbmVGRXZncTZuUVhyTEl6amxVOExVcVN4OTFJY2NIUkhLOV9lbFpoYw?oc=5",
-          "domain": "ua.news",
-          "published_ms": 1794437063000,
+          "title": "Rare Saka-era gold bear figurine unearthed at archaeological site in Almaty - Qazinform",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQbnJVWUFzZGVfaUJMT3pVRVdWWmg4UU9WZFNac0F2Wl9ybDJaX1RDRlJoaTZsZm5Yeld6aFlJeGxUZldBXzhxWkNsZXo0MWV4SUpDMU8wQVlPMGVSeUhzWHBkeFJoRjRKNjlhMW5zMTV2dThOX0R1Qi1iMDdvbEtWQjVyTXdXbW5yWm5rMDJEcFFnaE5RWGRKaFhIcG1zS2hNa0lUQUZuR2NiSGR1SGfSAa4BQVVfeXFMUGNJalJjTExxZllxeDRwbkZyV2xpSkxPRlJjMERnWEFZRUhqN3dUNmpkcVJ2Q2FjRUhscFlpS2wzTm9jbTE4bDh0TTY1Q1JoNXpBYTRGZjNqSEZ2QzRCV0dmejhkNGZKbXAwTVdxWkptRTl3Rk92WjBiZDBYVEozT2ItWk5sejRoUTd2ekdDTnNsNnFVOFBjX0NseW1NTUFvZVVwT1dDMHZXTGZCeWt3?oc=5",
+          "domain": "qazinform.com",
+          "published_ms": 1793872221000,
           "kind": "news"
         },
         {
-          "title": "Rare Saka-Era Gold Bear Ornament Discovered in Kazakhstan's Almaty - 24.kz",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA2QXF6eG9WYmNlbnk5SmswVmlLaExyc1hIaE5QaVgwVmtvRTJaME9rbFlvbzhvRGtvOXNvandQallpUmRIVkJ0REdhaGZDQ3FJSVhyREZxNXE3RzRCRE1ORmVtT3daT1ZYQXhXRF9OTzBZa2x1NS1Zek1PUEl1ejg?oc=5",
-          "domain": "24.kz",
-          "published_ms": 1793962841000,
+          "title": "Karagaily's Gold Bear: A Headdress Ornament From a Looted Tomb? - Ancient Origins",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQOXc2QTRMRXVaMmFxTWFLQk5kMi1TMElIazNLTkFjbTJFaHpUQ1YtZVlWbGhEa3BLc3Zqc1JEYlAxRExoQmVWT0NnRUJIRkJmcEV5WExMcEJBZHhPVllCUmliSVZ3Ujg2d2xvUDZEa1k5YkVGVnI3VHhZZ0ZaWG9CT1ctcEkzVFkzVmh5cF84Mkg1RUZqUUxTc0RUaWtVOVRrcXJIaWNZYw?oc=5",
+          "domain": "ancient-origins.net",
+          "published_ms": 1794420965000,
           "kind": "news"
         }
       ],
-      "wikipedia": null,
+      "wikipedia": {
+        "title": "Kurgan",
+        "daily_views": 185,
+        "ratio": 1.03
+      },
       "youtube": {
-        "median_views": 766,
+        "median_views": 67,
         "competitors": [
           {
             "id": "-GzuY0SQXEw",
             "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
             "channel": "Седьмой канал | NEWS",
-            "views": 24537
+            "views": 24538
           },
           {
             "id": "sCBlgyT0Bpc",
             "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
             "channel": "Седьмой канал | NEWS",
-            "views": 13802
-          },
-          {
-            "id": "eO6x9oDZFz8",
-            "title": "Ursul de aur ratat de hoți: descoperire într-un kurgan saka din Kazahstan",
-            "channel": "Arhivele Lumii",
-            "views": 1306
+            "views": 13900
           },
           {
             "id": "_Ylp_lAgEqo",
@@ -522,29 +845,37 @@
             "title": "2,200 Years Old: A Gold Bear Unlike Anything Ever Found in Kazakhstan 🐻 #Shorts",
             "channel": "Atlasya Production",
             "views": 67
+          },
+          {
+            "id": "h_GVerMLqzA",
+            "title": "Gold Bear Found in Kazakhstan Mound #Shorts",
+            "channel": "Ancient Machines",
+            "views": 41
           }
         ]
       },
-      "commons_hits": 0,
+      "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 100,
-          "reach": 48,
+          "momentum": 88,
+          "reach": 36,
           "curiosity": 90,
-          "relevance": 80,
-          "visual": 45,
+          "relevance": 70,
+          "visual": 90,
           "source_quality": 100
         },
-        "total": 79,
-        "newest_hours": 26,
+        "total": 76.9,
+        "newest_hours": 13,
         "domains": [
+          "astanatimes.com",
           "livescience.com",
           "heritagedaily.com",
+          "discovermagazine.com",
           "aroundprague.cz",
           "sana.sy",
           "timesofindia.indiatimes.com",
-          "ua.news",
-          "24.kz"
+          "qazinform.com",
+          "ancient-origins.net"
         ],
         "trusted_domains": [
           "livescience.com",
@@ -558,92 +889,124 @@
       "wave": 1
     },
     {
-      "topic": "The sinking of the whale ship Essex in 1820",
-      "pillar": "Historical disasters and survival stories",
+      "topic": "Ruby Bridges Desegregates New Orleans Schools",
+      "pillar": "Events that changed the modern world",
       "evidence_ids": [
-        82
+        9
       ],
-      "hook": "In 1820, an enraged sperm whale deliberately rammed and sank an American whaling ship 2,000 miles from land, inspiring Moby-Dick.",
+      "hook": "In 1960, a six-year-old girl walked past angry crowds to step into an all-white elementary school, changing civil rights history forever.",
       "anniversary": true,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 10,
+        "curiosity": 8,
         "relevance": 9,
-        "visual": 8
+        "visual": 9
       },
-      "wikipedia_title": "Essex (whaleship)",
-      "commons_query": "Essex whaleship attack",
-      "youtube_query": "whaleship Essex sunk by whale 1820",
+      "wikipedia_title": "Ruby Bridges",
+      "commons_query": "Ruby Bridges",
+      "youtube_query": "Ruby Bridges school desegregation",
       "evidence": [
         {
-          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick.",
-          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "title": "1960, 11-14: Ruby Bridges and the McDonogh Three became the first black children to attend an all-white elementary school in Louisiana as part of the New Orleans school desegregation crisis.",
+          "url": "https://en.wikipedia.org/wiki/Ruby_Bridges",
           "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
+          "published_ms": 1794682035910,
           "kind": "anniversary",
-          "id": 82
+          "id": 9
+        },
+        {
+          "title": "Civil rights icon Ruby Bridges tells her story of breaking racist barriers to Sarasota kids - WUSF",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxONEFxT3AxTFRDWkd5czN2R21OZUpoYW1pLWhTSUtkblFjekkxZ3RaTXRBc21yZGlLekRVLWZmeEkxZG1kcy1WRkdxblZDd0cwMVpSVmFwTmhvY01SM3h5LWVBS2c5V3VWZXZYRUN5VUN2SWN0ckdlMXVhYVM4UDUzUk56RUJPQ2tVa1BFdWtJSUplRVZFbi1uOE9LTElSTm9ZUlppRzFwN0ZhVFluaDczTTN1U1FfQQ?oc=5",
+          "domain": "wusf.org",
+          "published_ms": 1794564000000,
+          "kind": "news"
+        },
+        {
+          "title": "Ruby Bridges Day celebrated at Markham Elementary - Daily Republic",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPaDRJbEJ4ZWt2WTJ4bU5ralMzOUFQWmJQZG1ELWpXcUItWWJNOW1XU3V6eVp2dU5VYXgtUkc5RDFqazNYY1I1aTVWM2c4WGJLZGxETjVQYkhJRndVeTI2eE4tSEF1ZkZqN01NWTUyTnRUcTNFWHZHVXNISzQ1NVJjYjBvQ2ZURW5jNDlBeGlnNFdLbms2ZGpraUJPU1UxOElORFBJV1dFMGZ1Uk1GNDFsaGhpQ1gwSDNBOURhTnBJNWJfQUJhb090aGFIclVGX1E?oc=5",
+          "domain": "dailyrepublic.com",
+          "published_ms": 1794218400000,
+          "kind": "news"
+        },
+        {
+          "title": "Denny students honor Civil Rights pioneer Ruby Bridges for sixth year - Westside Seattle",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQRXZseldrMXhoVmlYaDZ5ZGRuN3RrdXRfT1p6LVY2UV8zU3U4NmtXd1VQTU5waG1uSWF2SlhfVHVTWl9QajhwbXJHSkFwTzdMUXFmWEVVT3VpMDdUUnFTdUQ2VjVmbHdlbXFnZkY5Z2xSWFlYZ0xELTJRenNUN05CT0xwNXFDdjIya0hGMlRkN1Zrenl5Z3ptSEFZLTZHamtfOVd4b19fQU5GZER4WHBSclpxbEdGT0JBajd4TTM4TkZYQQ?oc=5",
+          "domain": "westsideseattle.com",
+          "published_ms": 1794618392000,
+          "kind": "news"
+        },
+        {
+          "title": "Ruby Bridges Shares Her Story of School Desegregation During Sarasota Visit - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNbTgzNjBoMEgwRExiM3BJbFFmeFlmS0Q3bDNFRTJ5cjRkNEtpbkJPZ3Vxd0pmRVB3eHZkSkhSdGlnRkJfdmR3aVZuS3R2RHpFQ1N2UDVhOERwV2lIUG1xVld0c0NsWG5vRGFSRGJyYVFlV2MwbC1uX2hYeTNycmRSb01rNkd1OXg0RHZxV1ZWdlFINHBabTVIUkFDcThublhGNWlkRw?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1794584356000,
+          "kind": "news"
         }
       ],
       "wikipedia": {
-        "title": "Essex (whaleship)",
-        "daily_views": 2217,
-        "ratio": 4.79
+        "title": "Ruby Bridges",
+        "daily_views": 2153,
+        "ratio": 2.05
       },
       "youtube": {
-        "median_views": 165,
+        "median_views": 1165,
         "competitors": [
           {
-            "id": "VopkkSdBCd8",
-            "title": "A Whale Sank Their Ship. Only 8 Survived the Ordeal. | Essex 1820 #TheLostRecord #Essex #Whale",
-            "channel": "THE LOST RECORD",
-            "views": 698
+            "id": "HJdJ2eFTph4",
+            "title": "Ruby Bridges: The 6-Year-Old Who Prayed for Her Haters",
+            "channel": "Black History Pages",
+            "views": 248801
           },
           {
-            "id": "4UPjx_6Ukmw",
-            "title": "Whaleship Essex 1820: The Ship Sunk by a Giant Sperm Whale",
-            "channel": "Sleepy Science Nights",
-            "views": 573
+            "id": "oG1D8vCrdLA",
+            "title": "Is This The Right Way To Teach Kids About Racism?",
+            "channel": "The Daily Cookout",
+            "views": 4666
           },
           {
-            "id": "jyYq1BOOm0U",
-            "title": "A Whale Sank Their Ship — 93 Days in an Open Boat: The True Survival Story of the Essex Whaleship",
-            "channel": "STRANDED — True Survival Stories",
-            "views": 240
+            "id": "_jTqs24GZYk",
+            "title": "Ruby Bridges: The Six-Year-Old Girl Who Needed Federal Marshals to Attend School",
+            "channel": "The Picture Teller",
+            "views": 1381
           },
           {
-            "id": "9-OPH9XR43Q",
-            "title": "Sunk by a Whale: The True Horror of the Whaleship Essex (1820) | Full Documentary",
-            "channel": "Old World Story",
-            "views": 228
+            "id": "7Yx2k-RxTX8",
+            "title": "She Was Only Six Years Old When America Watched Her Walk Into History.",
+            "channel": "StoryAtlas",
+            "views": 1336
           },
           {
-            "id": "PCsWZNd7smo",
-            "title": "Your Shift on the Whaleship Essex in 1820 (The Whale That Fought Back)",
-            "channel": "NINE TO DIE",
-            "views": 165
+            "id": "xE_CtZ4SzGg",
+            "title": "Ruby Bridges Walked Back Into the School That Once Rejected Her",
+            "channel": "Story.TellerRG",
+            "views": 1165
           },
           {
-            "id": "b--ffM9qEv8",
-            "title": "Whaleship Essex: Why They Drew Lots | Animated True Story",
-            "channel": "Spookestra",
-            "views": 50
+            "id": "nHpP59MnMPM",
+            "title": "The 6-Year-Old Who Changed a School | Ruby Bridges",
+            "channel": "HystoriToday",
+            "views": 848
           }
         ]
       },
-      "commons_hits": 15,
+      "commons_hits": 20,
       "score": {
         "factors": {
-          "momentum": 58,
-          "reach": 49,
-          "curiosity": 100,
+          "momentum": 79,
+          "reach": 57,
+          "curiosity": 80,
           "relevance": 90,
-          "visual": 90,
-          "source_quality": 35
+          "visual": 95,
+          "source_quality": 65
         },
-        "total": 70.2,
+        "total": 76.6,
         "newest_hours": 0,
         "domains": [
-          "wikipedia.org"
+          "wikipedia.org",
+          "wusf.org",
+          "dailyrepublic.com",
+          "westsideseattle.com",
+          "news.ssbcrack.com"
         ],
         "trusted_domains": [
           "wikipedia.org"
@@ -653,301 +1016,189 @@
       "wave": 1
     },
     {
-      "topic": "Susan B. Anthony arrested for voting in 1872",
-      "pillar": "Forgotten historical figures",
+      "topic": "125,000-Year-Old Human Footprints in the Saudi Desert",
+      "pillar": "Ancient civilisations and discoveries",
       "evidence_ids": [
-        59
+        97,
+        130,
+        139
       ],
-      "hook": "In 1872, American suffragist Susan B. Anthony was arrested and fined $100 simply for casting a ballot in the presidential election.",
-      "anniversary": true,
+      "hook": "Researchers found human and animal footprints preserved in a Saudi Arabian desert that should have washed away in days—yet they are 120,000 years old.",
+      "anniversary": false,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 8,
-        "relevance": 9,
-        "visual": 9
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
       },
-      "wikipedia_title": "Susan B. Anthony",
-      "commons_query": "Susan B Anthony portrait",
-      "youtube_query": "Susan B Anthony arrested for voting 1872",
+      "wikipedia_title": "An-Nafud desert",
+      "commons_query": "",
+      "youtube_query": "Saudi desert ancient human footprints",
       "evidence": [
         {
-          "title": "1872, 11-18: American suffragist Susan B. Anthony (pictured) was arrested and later fined $100 for having voted in the presidential election two weeks earlier.",
-          "url": "https://en.wikipedia.org/wiki/Women's_suffrage_in_the_United_States",
-          "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
-          "kind": "anniversary",
-          "id": 59
+          "title": "Saudi archaeological discovery reveals evidence of human activity dating back 125,000 years",
+          "url": "https://www.arabnews.com/saudi-arabia/saudi-archaeological-discovery-reveals-evidence-of-human-activity-dating-back-125000-years-3011841",
+          "domain": "arabnews.com",
+          "published_ms": 1794643200000,
+          "kind": "news",
+          "id": 97
         },
         {
-          "title": "Today in History: Nov. 5, Susan B. Anthony defies law and casts vote for president - SooLeader.com",
-          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTmlfT2FHM1pYYVdlOFEtNmU2NmlzcDhmRmliUlNXQXpteUxWeG9xRUNxR0w0aTU4aUNmbTU4SWo3c0p2MXFrZGNJS0JIaFI2d3FIbm9rRHp2a25qcnN2TjhJSDJEY21KSjRmZU9oUC1GRjV3TjBKVEFQakVyY3RWQmVXMndhU3NwcEt4YWVmc3l3dTlWQW8xN25fcGRuOERmSGxBRkE3WWlCbmozVzJDbkRaQXpMUmFibGxidmJXd2xGZw?oc=5",
-          "domain": "sooleader.com",
-          "published_ms": 1793926879000,
+          "title": "125,000-year-old poisoned stone points discovered on shore of ancient lake in Saudi Arabia",
+          "url": "https://www.livescience.com/archaeology/middle-east/125-000-year-old-poisoned-stone-points-discovered-on-shore-of-ancient-lake-in-saudi-arabia",
+          "domain": "livescience.com",
+          "published_ms": 1794510000000,
+          "kind": "feed",
+          "id": 130
+        },
+        {
+          "title": "Archaeologists found human footprints in the Saudi desert that should have washed away in four days, but they’ve lasted 120,000 years",
+          "url": "https://www.msn.com/en-us/news/other/archaeologists-found-human-footprints-in-the-saudi-desert-that-should-have-washed-away-in-four-days-but-they-ve-lasted-120-000-years/ar-AA2hjpOP",
+          "domain": "msn.com",
+          "published_ms": 1794469500000,
+          "kind": "news",
+          "id": 139
+        },
+        {
+          "title": "Archaeologists Found 120,000-Year-Old Human Footprints Where They Shouldn’t Be - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPbHI3TUxENFEyX1pwSzZoaDM1XzJ2V2hKQTFjd0dmNDl2MnMwa3Z2VUp2WThlLWJDM3JjZTdGejlGRWo2Y01yU3V5U2gwZ0lzVFpaZkNPd3dYVUdxTUQ1LTVDcVVFQURMa2x1aTRFVk9hLTBxLVpPaWNRZzQ0MEs3SW0xVDduYllPSnc?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1793991600000,
           "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Susan B. Anthony",
-        "daily_views": 1179,
-        "ratio": 0.77
-      },
-      "youtube": {
-        "median_views": 41,
-        "competitors": [
-          {
-            "id": "7S1E5QoV8Ak",
-            "title": "In 1872 Susan B Anthony was arrested for voting",
-            "channel": "today in history each day in short videos",
-            "views": 310
-          },
-          {
-            "id": "4FhRDC4fzTM",
-            "title": "Did you know Susan B. Anthony was arrested for voting? #shorts",
-            "channel": "Quorumcivic App",
-            "views": 228
-          },
-          {
-            "id": "6Ic51MEj0hA",
-            "title": "She Was Put on Trial for Casting One Vote — Susan B. Anthony ⚖️",
-            "channel": "The Trial Tapes",
-            "views": 107
-          },
-          {
-            "id": "efqNw_4kgTI",
-            "title": "Susan B. Anthony Arrested for Voting in 1872",
-            "channel": "Ai shorts ",
-            "views": 79
-          },
-          {
-            "id": "YtZvvUbIp7o",
-            "title": "The Woman Arrested for Voting: Susan B. Anthony (1872) #shorts",
-            "channel": "The History Decoded Channel",
-            "views": 41
-          },
-          {
-            "id": "cq5QSX6fLIY",
-            "title": "She Voted for President in 1872 and Was Arrested for It | Today in History",
-            "channel": "TodayInhistory",
-            "views": 37
-          }
-        ]
-      },
-      "commons_hits": 20,
-      "score": {
-        "factors": {
-          "momentum": 55,
-          "reach": 41,
-          "curiosity": 80,
-          "relevance": 90,
-          "visual": 95,
-          "source_quality": 65
         },
-        "total": 67.3,
-        "newest_hours": 0,
-        "domains": [
-          "wikipedia.org",
-          "sooleader.com"
-        ],
-        "trusted_domains": [
-          "wikipedia.org"
-        ]
-      },
-      "rejected": [
-        "too similar to recent topic: Susan B. Anthony Arrested for Voting"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "Pelé scores his 1,000th career goal in 1969",
-      "pillar": "Events that changed the modern world",
-      "evidence_ids": [
-        66
-      ],
-      "hook": "In 1969 at the Maracanã Stadium, 100,000 screaming fans watched Pelé score the legendary one-thousandth goal of his career.",
-      "anniversary": true,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 8,
-        "relevance": 9,
-        "visual": 9
-      },
-      "wikipedia_title": "Pelé's 1000th goal",
-      "commons_query": "Pele footballer 1969",
-      "youtube_query": "Pele 1000th goal 1969 Maracana",
-      "evidence": [
         {
-          "title": "1969, 11-19: Playing for Santos against Vasco da Gama in the Maracanã Stadium in Rio de Janeiro, Brazilian footballer Pelé scored his thousandth goal (commemorative stamp pictured).",
-          "url": "https://en.wikipedia.org/wiki/Santos_FC",
-          "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
-          "kind": "anniversary",
-          "id": 66
+          "title": "Ancient Human Footprints Reveal Lost Migration Into Arabia - Demokratis.co.id",
+          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBlVXduRVZzVjZIVmMzcmhZZjgzb1FObmkyQVV4QTJ3N1hSYVl6aG5rWmRGZG1QbTRpdDh2YjNwZTJuQ1VxTEI1NUtJTnpkdk9sU21ROWtlcDhJQW9NWmtSbmswdmFvMTNhRWxr?oc=5",
+          "domain": "demokratis.co.id",
+          "published_ms": 1794041404000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found Human Footprints in the Saudi Desert That Should Have Washed Away in Four Days, but They’ve Lasted 120,000 Years - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9ibG1OWEhhMExabGpaWEhiU0pOdlltOTRPd3J6Rk5tdDFGVmhGWERwU24wTW9NQWo3dW5KMVc0VnViRkVVdlFIcG5rWEdlUXNXY0d6MXJZcC1WSmJnWVJ0SXFuY0xSZ1dLNWEwTlkyc0FMY1NDNTdjcw?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794498300000,
+          "kind": "news"
+        },
+        {
+          "title": "Researchers Trace 120000-Year-Old Human Footprints in Arabia - SuaraGarut.ID",
+          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE4zRVdBTkxpQklhRWpjYkNCbmtkckZEUzMxZE5RbndrelVIVzRlSEF5ajBsbnJkbWVXcFV2VkVKUFBMdUFibTNmS2xMeC1QRGE4ZUEzQWFWVkY0UkhlRGFBbHBfeGZJXzQ?oc=5",
+          "domain": "suaragarut.id",
+          "published_ms": 1794045969000,
+          "kind": "news"
+        },
+        {
+          "title": "No Bones, No Skull, Just Footprints: Scientists Find Evidence of a Giant in a Brazilian Desert, and It May Have Hunted Dinosaur - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5wZFpsb05BcVFlYWNwQXp0M0Nrc3dIdF9ZMkd1YmNmR3lONF94cnh3b3BBRkZ1RU54MWFFbWc1ODRuSThfLWZoNmNCQVVxYXlYUjlwS3Bwd3BDMTkzMDk0N1FucnZGYWpCUDFyaVVKZ1k?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794581100000,
+          "kind": "news"
         }
       ],
       "wikipedia": null,
       "youtube": {
-        "median_views": 1084,
+        "median_views": 181,
         "competitors": [
           {
-            "id": "PiMCIQOnjS4",
-            "title": "E se você tivesse 9 anos na noite em que o Pelé fez o gol mil? ⚽🏟️",
-            "channel": "Eskeleton Documentários ",
-            "views": 14032
+            "id": "V1XUCWklfz0",
+            "title": "120,000 Year Old Footprints Beside a Vanished Lake #shorts",
+            "channel": "Stick Saga",
+            "views": 1415
           },
           {
-            "id": "lEdbtaCo5n4",
-            "title": "Pelé Scored Goal No. 1,000… and the Match STOPPED! 😳⚽ #footballshorts",
-            "channel": "NINETYLORE",
-            "views": 1259
+            "id": "wzbuq4_fnoM",
+            "title": "Saudi DNA Reveals a Surprising Secret About the Arabian Peninsula",
+            "channel": "OpPohurry",
+            "views": 947
           },
           {
-            "id": "37HLfj_kz7A",
-            "title": "Stuck on 999: The Night Pelé Reached 1,000",
-            "channel": "Moments That Made Them",
-            "views": 1163
+            "id": "EQBl16F345M",
+            "title": "Humans Didn't Just Walk Out of Africa. Here's What They Actually Did",
+            "channel": "Whenkind",
+            "views": 247
           },
           {
-            "id": "X-F8WYxXswU",
-            "title": "Pelé's 1,000 goals included friendlies",
-            "channel": "Whyrd?",
-            "views": 1153
+            "id": "xHs2gY6ZKdk",
+            "title": "Scientists Found a Lost Ancient World Beneath the Arabian Desert — The Evidence Is Incredible",
+            "channel": "FactHorizonss",
+            "views": 184
           },
           {
-            "id": "Pjuxdzqpt_U",
-            "title": "The Night Pelé Scored His 1,000th Goal",
-            "channel": "BackStory FC",
-            "views": 1084
+            "id": "DAsjqO6SCEo",
+            "title": "Ancient World Found Beneath the Arabian Desert — Archaeologists Just Revealed What Was Hidden",
+            "channel": "clark 546",
+            "views": 181
           },
           {
-            "id": "e1vLqqJQxMc",
-            "title": "How Pelé Scored Goal Number 1,000 ⚽ #shorts",
-            "channel": "Pitch Mysteries",
-            "views": 869
+            "id": "_RHpYCSNsFM",
+            "title": "How Long Would You Survive in Every Ancient Human Era?",
+            "channel": "Before The Switch (Ancient Humans)",
+            "views": 173
           }
         ]
       },
-      "commons_hits": 20,
+      "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 52,
-          "reach": 51,
-          "curiosity": 80,
-          "relevance": 90,
-          "visual": 95,
-          "source_quality": 35
-        },
-        "total": 65.6,
-        "newest_hours": 0,
-        "domains": [
-          "wikipedia.org"
-        ],
-        "trusted_domains": [
-          "wikipedia.org"
-        ]
-      },
-      "rejected": [
-        "too similar to recent topic: Pelé's Milestone 1,000th Career Goal"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "Jeremy Bentham's severed head and dental pain",
-      "pillar": "Forgotten historical figures",
-      "evidence_ids": [
-        111
-      ],
-      "hook": "CT scans of the severed head of utilitarianism founder Jeremy Bentham revealed he spent his life in excruciating dental pain.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 8,
-        "relevance": 8,
-        "visual": 7
-      },
-      "wikipedia_title": "Jeremy Bentham",
-      "commons_query": "Jeremy Bentham auto-icon",
-      "youtube_query": "Jeremy Bentham head CT scan dental pain",
-      "evidence": [
-        {
-          "title": "'Godless' founder of utilitarianism had severe dental problems and was in 'excruciating pain,' CT scans of his severed head reveal",
-          "url": "https://www.livescience.com/archaeology/godless-founder-of-utilitarianism-had-severe-dental-problems-and-was-in-excruciating-pain-ct-scans-of-his-severed-head-reveal",
-          "domain": "livescience.com",
-          "published_ms": 1794591599000,
-          "kind": "feed",
-          "id": 111
-        },
-        {
-          "title": "Scans of Jeremy Bentham’s Centuries-Old Head Show the Dental Damage Behind His Accounts of Agonizing Toothache - Discover Magazine",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQMFdYSFJSckhJUVowRGtyN3BVbkRnMDdobVJzbkhfVlM3NzJudDRwTTRYZm12cl9JSElKcEZ4QUp6Nk1BTzNYazZocVRFSmwwYkt4cjlXcENJUDc5dW9BTzZIVEg1bWQwVGZqSHhoclF6MnlkVUFyWENhWHVuMHFNY0NCRURVQWVRZ2pObFF3Y0ViWU1VU0Y3M3FjZXc2QnlldjBkYVNtcnUwY1dDWWpUX09ydzdOaXNVZGRfbFZQRzZBZEd3WkFicjBfeUNFb2x3T0N5eVlHNmgwYTVOMjM2UGdfWQ?oc=5",
-          "domain": "discovermagazine.com",
-          "published_ms": 1794269088000,
-          "kind": "news"
-        },
-        {
-          "title": "‘Godless’ philosopher Jeremy Bentham, who died nearly 200 years ago, had severe dental problems - Live Science",
-          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOWGlLMEtlTlNJR3h5MWlxd1YwQWtsVEJaUVVDUW84RDhzTmZ1U3BBenVaeS1YNDdiV1hkeDRUdXFGNmgyWG1SMm1lX3VYeHpudjY3aTJiTnpZUlB4eHV1Y0FhSGxTN0dSYkhFUXk1bG5PTEk3UlNuaUdyam9RWUNRYnlRX0ZVVmtnTmpNZUdtekJCWUF2UGVHWTl4LTN2eXYwLWE0SFY5OUFhTlI1Y1JSOUxHVlcwVXR3b0wyV3paUmRnazZuSlJvbkJINGQ0ektEZ1kxWFhNRENKWmNOZmd1aDVXN0ItVWIyTVBqeVRrVnlfbER5VUd0Xw?oc=5",
-          "domain": "livescience.com",
-          "published_ms": 1794591599000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Jeremy Bentham",
-        "daily_views": 884,
-        "ratio": 1.05
-      },
-      "youtube": {
-        "median_views": 0,
-        "competitors": []
-      },
-      "commons_hits": 20,
-      "score": {
-        "factors": {
-          "momentum": 71,
-          "reach": 24,
-          "curiosity": 80,
+          "momentum": 100,
+          "reach": 38,
+          "curiosity": 90,
           "relevance": 80,
-          "visual": 85,
+          "visual": 70,
           "source_quality": 65
         },
-        "total": 65.4,
-        "newest_hours": 19,
+        "total": 76,
+        "newest_hours": 11,
         "domains": [
+          "arabnews.com",
           "livescience.com",
-          "discovermagazine.com"
+          "msn.com",
+          "popularmechanics.com",
+          "demokratis.co.id",
+          "dailygalaxy.com",
+          "suaragarut.id"
         ],
         "trusted_domains": [
           "livescience.com"
         ]
       },
-      "rejected": [],
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
       "wave": 1
     },
     {
-      "topic": "The 14th Dalai Lama assumes full temporal power at age 15",
+      "topic": "The 14th Dalai Lama Assumes Power at Age 15",
       "pillar": "Forgotten historical figures",
       "evidence_ids": [
         42
       ],
-      "hook": "In 1950, a 15-year-old boy suddenly assumed full political and spiritual control over Tibet as its supreme ruler.",
+      "hook": "In 1950, just as Chinese troops entered Tibet, a 15-year-old boy was suddenly forced to take absolute political and spiritual control of his nation.",
       "anniversary": true,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 9,
         "relevance": 8,
-        "visual": 9
+        "visual": 8
       },
       "wikipedia_title": "14th Dalai Lama",
-      "commons_query": "14th Dalai Lama young",
-      "youtube_query": "14th Dalai Lama assumes power 1950",
+      "commons_query": "Dalai Lama 1950",
+      "youtube_query": "14th Dalai Lama assumes power",
       "evidence": [
         {
           "title": "1950, 11-17: The 14th Dalai Lama (pictured) assumed full temporal power as ruler of Tibet at the age of 15.",
           "url": "https://en.wikipedia.org/wiki/14th_Dalai_Lama",
           "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
+          "published_ms": 1794682035910,
           "kind": "anniversary",
           "id": 42
+        },
+        {
+          "title": "Bringing the Dalai Lama’s story closer to home - The New Indian Express",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPYzVQTEg5Vk1ITC1Gcm9MME1iQmR3QURyb3N6ei1EVHVWejg3cmVXNzlnczNfQXBMbXdIYXJWVW9Hd045djhXWFhvRktHc1NqWWtLaWtJZnNhalBwb1lKV19Uakt1Z2FLb3VHOWlxbGNQNW15bHFqQkc2SVBvLTFzamxkWnRYMHIzeWFoXzZWUVA0RFBaN1FRS2ZNUHpwU2VvVDNrZVRmRjdsbHPSAbgBQVVfeXFMTmlBRkROY3VmRVgxVC1zc1BTR3pJa2htRk1PVWxLdDVmZ2tnNlIybmpaOS1ZWTM0a284cVdoX3NnRzUtSVdqeS1JN2hVY3BTLVZSNjJ6bHMyQ3k1Ukt1RUIyazhuYlZBLUdIZWkyczJlR3JKaFVqckF4Rjg4ak15TlpVZVh6WERUZnpIOG1Sd3JJSkFTZElPRnh4MHRYS0tlbVVhTndIQUVkSzVEYnNrNHltTjFOY08tUA?oc=5",
+          "domain": "newindianexpress.com",
+          "published_ms": 1794270600000,
+          "kind": "news"
         }
       ],
       "wikipedia": {
@@ -956,60 +1207,61 @@
         "ratio": 0.93
       },
       "youtube": {
-        "median_views": 422,
+        "median_views": 13941,
         "competitors": [
           {
-            "id": "BbFCnmrLwKE",
-            "title": "CHINA | Cities That Don’t Seem Real (Documentary)",
-            "channel": "Lifeder",
-            "views": 1605467
+            "id": "mho73j8TggI",
+            "title": "The Kid Who Became the Dalai Lama",
+            "channel": "Rennrat",
+            "views": 7073676
           },
           {
-            "id": "EhDXZaSvPnA",
-            "title": "Dalai Lama and Tai situ Rinpoche ✨🙏#song #relaxingmusic #love #peace #dalailamalesson",
-            "channel": "bekindofficial",
-            "views": 30447
+            "id": "YU00UZtQGj8",
+            "title": "The Power of Analytical Meditation",
+            "channel": "Dalai Lama",
+            "views": 48717
           },
           {
-            "id": "Z8rUwbKBFYI",
-            "title": "चीन का सबसे बड़ा धोखा। कैसे किया  तिब्बत को बर्बाद? How China Annexed Tibet? #tibet  #indiachina",
-            "channel": "Himanshu Chauhan | Unprovoked",
-            "views": 4893
+            "id": "fk3_rdqdD1U",
+            "title": "There is Real Hope",
+            "channel": "Dalai Lama",
+            "views": 47631
           },
           {
-            "id": "y2GJtfbd8IE",
-            "title": "How China Captured Tibet | 1950 Invasion, Chamdo & Dalai Lama",
-            "channel": "Tibetan Soul",
-            "views": 767
+            "id": "X2d80ziBZvM",
+            "title": "The Power of Analytical Meditation",
+            "channel": "Dalai Lama",
+            "views": 16727
           },
           {
-            "id": "snmKPVup6-g",
-            "title": "The ENTIRE History of Tibet in 12 Minutes | The Roof of the World and the Fight Over Who Rules It",
-            "channel": "Trade Chronicles",
-            "views": 422
+            "id": "SMUts9MPTfs",
+            "title": "There is Real Hope",
+            "channel": "Dalai Lama",
+            "views": 13941
           },
           {
-            "id": "wBsBMMIHTAk",
-            "title": "How China Invaded Tibet in 1950 | The Fall of Chamdo & Dalai Lama's Escape",
-            "channel": "Tibet Uncovered",
-            "views": 257
+            "id": "_jObBaYng7U",
+            "title": "The True Meaning of Non-Violence",
+            "channel": "Dalai Lama",
+            "views": 8537
           }
         ]
       },
       "commons_hits": 20,
       "score": {
         "factors": {
-          "momentum": 46,
-          "reach": 55,
+          "momentum": 55,
+          "reach": 70,
           "curiosity": 90,
           "relevance": 80,
-          "visual": 95,
-          "source_quality": 35
+          "visual": 90,
+          "source_quality": 65
         },
-        "total": 65.4,
+        "total": 73.2,
         "newest_hours": 0,
         "domains": [
-          "wikipedia.org"
+          "wikipedia.org",
+          "newindianexpress.com"
         ],
         "trusted_domains": [
           "wikipedia.org"
@@ -1021,23 +1273,545 @@
       "wave": 1
     },
     {
-      "topic": "The 17th-century Danish warship mutiny, exclusive shoes, and slave payments",
+      "topic": "Edwin Hubble Proves the Universe is Vastly Bigger Than the Milky Way",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        32
+      ],
+      "hook": "In 1924, a faint smudge in the sky shattered humanity's understanding of our place in the cosmos.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Andromeda Galaxy",
+      "commons_query": "Edwin Hubble",
+      "youtube_query": "Edwin Hubble Andromeda galaxy discovery",
+      "evidence": [
+        {
+          "title": "1924, 11-23: The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
+          "url": "https://en.wikipedia.org/wiki/The_New_York_Times",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 32
+        },
+        {
+          "title": "How did Edwin Hubble prove that the Andromeda Galaxy lies outside the Milky Way? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQRmdPSFNyZGh3WUVHZFN0N3Jza1doVjhCa01IM1RpX0cxamdBenlfRjk3VjFhdXEzRGVNVFFQNUlELU5rYjFla09aWXFBYnplMk9QYVFRNVIxSmJJNXlkV05fenhwMkRmSXB4VmpSQXNWRU9maTVNaEtWZzAyV29NQzZPVmNmRng2d0pyNUxIb05IcWN0UFJ3Q05ieGxHWGpoZFZRNUtTR0lqS0t3aXBPbU04OGs?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1793788769000,
+          "kind": "news"
+        },
+        {
+          "title": "Rubin Observatory discovers two hidden companions of the Milky Way. Hundreds more may be waiting - Science Daily",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE0yUGJCX1Z4VkE4VjY1cmFxUTlZQ05kLW9Kc3BldmpYTWZaYU1YNWhrMVdWdXY1NnZEc0dkNndnT3g2SVNQOHktS1R5Vnl6elFTRlFWUW1CclFYWTRaSFJMa1A0dm1qMzkzT1lTajlzTQ?oc=5",
+          "domain": "sciencedaily.com",
+          "published_ms": 1794042876000,
+          "kind": "news"
+        },
+        {
+          "title": "Universe - Expansion, Galaxies, Cosmology - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPVkxLdEgybXQxRFJPV2RILUZiNU5nTGJtNDFVMHdoNmc0QTZ2VmNiWjdoY0tkUnlpWUZNS3ZQcVJxaTM3bDd6Y2lEeUIzVVdkTXBuMnJVNmpQdHczS3dQVTNkMFhxU2NoekNhZnhaZGxtY19LdXZCbkJxREYteUF2ag?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794470400000,
+          "kind": "news"
+        },
+        {
+          "title": "Hubble Space Telescope (HST) | History, Discoveries, & Facts - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE11NjVabmxlS0ViQ3ZBdFU2ODRINlJLOXJLR3ctRWhHU2VzX3o3NGluRW9zQzlNUjVZMFVVUEQ2Q0c4UEt0a2dzVkVGNUMza0VmRDNBeU5vU1VydmROUi04M3ZMRU0wZw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794470400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Andromeda Galaxy",
+        "daily_views": 1984,
+        "ratio": 1
+      },
+      "youtube": {
+        "median_views": 89,
+        "competitors": [
+          {
+            "id": "E8jbJ2Txt6w",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Proof",
+            "views": 11268
+          },
+          {
+            "id": "GIMesu0hduo",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Echo x",
+            "views": 568
+          },
+          {
+            "id": "8WFT3mVDKVA",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Discoveria2.0",
+            "views": 421
+          },
+          {
+            "id": "H9kWwLfWh-I",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Voidlume",
+            "views": 312
+          },
+          {
+            "id": "qWuQDNQxDFo",
+            "title": "Hubble Actually Peered Inside Andromeda — What It Found Is AMAZING!",
+            "channel": "Webb Universe Daily",
+            "views": 89
+          },
+          {
+            "id": "03x_6VPtDFc",
+            "title": "Edward Hubble famous discovery about Andromeda",
+            "channel": "Mind Mechanic ",
+            "views": 81
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 46,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 72.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "sciencedaily.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Edwin Hubble proves the Andromeda Nebula is another galaxy"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Launch of Soviet Space Shuttle Buran",
+      "pillar": "Strange inventions and lost technology",
+      "evidence_ids": [
+        14
+      ],
+      "hook": "In 1988, the Soviet Union launched a massive reusable space shuttle that flew entirely on its own—only for the program to vanish forever.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Buran (spacecraft)",
+      "commons_query": "Buran spacecraft",
+      "youtube_query": "Soviet Buran space shuttle launch",
+      "evidence": [
+        {
+          "title": "1988, 11-15: The Soviet spacecraft Buran (pictured), a reusable vehicle built in response to NASA's Space Shuttle program, was launched, uncrewed, on its only flight.",
+          "url": "https://en.wikipedia.org/wiki/Buran_(spacecraft)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 14
+        },
+        {
+          "title": "The Soviet Union built its own space shuttle to rival NASA, only for it to end in tragedy - Starlust.org",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNSVRGbnlQT3locUJMUmZLdnZhSUFONnhIQlB4dmFOcTRfVTZEcVJ6MUxLOGFFd2ROdk13bGlGcjdUMHJ1c2w3ZkVlTkZsclB2NlhPVGtOM2o3WG8wXzZaRHlHd01pbGMzLVRWM0VkM0stZnJXS3ZEQm1uMnk4N2YtUkJmMjdzY0pTcGVjWVoyT0plV05hQmlKM1pQc3BRdFNJVnNqTlQ1aVFScnE0NEo1QXVLN2hfUWdkX2Vzdkp1UWdSa0Y1YWc?oc=5",
+          "domain": "starlust.org",
+          "published_ms": 1794254862000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Buran (spacecraft)",
+        "daily_views": 484,
+        "ratio": 1.09
+      },
+      "youtube": {
+        "median_views": 1505,
+        "competitors": [
+          {
+            "id": "7qHiXMub8AE",
+            "title": "Why the Soviet Space Shuttle Only Flew Once",
+            "channel": "Once Upon An Engine",
+            "views": 454551
+          },
+          {
+            "id": "-xRelOczyPs",
+            "title": "WESZLIŚMY DO TAJNEGO HANGARU ZSRR! Radziecki prom kosmiczny BURAN",
+            "channel": "Urbex History",
+            "views": 403659
+          },
+          {
+            "id": "YScjwGnETeU",
+            "title": "Buran: A Better Space Shuttle?? (But too late)",
+            "channel": "flaps 10",
+            "views": 50044
+          },
+          {
+            "id": "yHl4PsOxfYo",
+            "title": "Buran Flew for 206 Minutes. Then a Roof Fell on It #Shorts",
+            "channel": "Pale Blue Stories",
+            "views": 1631
+          },
+          {
+            "id": "pxw6NYXNtRM",
+            "title": "Buran: Why the Soviet Space Shuttle Flew Only Once",
+            "channel": "Hehe University",
+            "views": 1505
+          },
+          {
+            "id": "07CIVlKz2fQ",
+            "title": "Buran Did What NASA's Shuttle Never Did",
+            "channel": "Forgotten Machines",
+            "views": 1390
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 53,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 72,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "starlust.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 1988 Launch of Soviet Space Shuttle Buran"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Sinking of the Whaleship Essex",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        82
+      ],
+      "hook": "In 1820, an enraged sperm whale deliberately rammed and sank an American whaling ship, inspiring the legendary tale of Moby-Dick.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Essex (whaleship)",
+      "commons_query": "Essex whaleship",
+      "youtube_query": "whaleship Essex sinking Moby Dick",
+      "evidence": [
+        {
+          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick.",
+          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 82
+        }
+      ],
+      "wikipedia": {
+        "title": "Essex (whaleship)",
+        "daily_views": 2217,
+        "ratio": 4.79
+      },
+      "youtube": {
+        "median_views": 136,
+        "competitors": [
+          {
+            "id": "QHynS8kHQyA",
+            "title": "A Whale Sank Their Ship. Only Eight Survived. | Essex",
+            "channel": "Salt Water Dossiers",
+            "views": 1419
+          },
+          {
+            "id": "e0H08Gl4QOk",
+            "title": "Essex Shipwreck: How a Sperm Whale Sank the Whaling Ship",
+            "channel": "HistoryUnsealed",
+            "views": 1127
+          },
+          {
+            "id": "4UPjx_6Ukmw",
+            "title": "Whaleship Essex 1820: The Ship Sunk by a Giant Sperm Whale",
+            "channel": "Sleepy Science Nights",
+            "views": 574
+          },
+          {
+            "id": "ErExf1XsHT4",
+            "title": "The Ship Destroyed by a Whale: The Truth About the Essex",
+            "channel": "Bookify",
+            "views": 332
+          },
+          {
+            "id": "VU8zfO9-c3k",
+            "title": "The Whaleship Essex: 3,000 Miles the Wrong Way to Avoid Cannibals",
+            "channel": "Marvels Misplaced",
+            "views": 136
+          },
+          {
+            "id": "bDxRmBt2Sx0",
+            "title": "The Whale That Hunted a Ship. The Real Moby Dick!",
+            "channel": "Duck Lord",
+            "views": 118
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 58,
+          "reach": 48,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 70,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Enrico Fermi Initiates the First Nuclear Chain Reaction",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        142
+      ],
+      "hook": "Beneath a football stadium stands, scientists quietly launched humanity's first self-sustaining nuclear chain reaction.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Chicago Pile-1",
+      "commons_query": "Chicago Pile-1",
+      "youtube_query": "Chicago Pile 1 first nuclear reactor",
+      "evidence": [
+        {
+          "title": "1942, 12-02: Manhattan Project scientists led by Enrico Fermi initiated the first self-sustaining chain reaction in the experimental nuclear reactor Chicago Pile-1.",
+          "url": "https://en.wikipedia.org/wiki/Manhattan_Project",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 142
+        },
+        {
+          "title": "'Nuclear Energy' in Chicago, Illinois - Atlas Obscura",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBoSU5XLTV3VTBnQzUwUWc1YXd1R3BtQ0ZBaWRwMjVhSzMyY3JtRHJlbHhZYkJNY2YzQnpXQWFTcTU5RjJYODVLOVU4TnMweE1NQy1mTlVEX3VJbEdVT1Vr?oc=5",
+          "domain": "atlasobscura.com",
+          "published_ms": 1794308400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Chicago Pile-1",
+        "daily_views": 617,
+        "ratio": 1.7
+      },
+      "youtube": {
+        "median_views": 192,
+        "competitors": [
+          {
+            "id": "2tIgblkyO5Y",
+            "title": "Why Illinois Secretly buried the worlds First Nuclear Reactor",
+            "channel": "IT'S HISTORY",
+            "views": 173469
+          },
+          {
+            "id": "EM9pn58b0lM",
+            "title": "Axe Man of the First Nuclear Reactor | Chicago Pile-1 (Part 2)",
+            "channel": "Visualize Physics",
+            "views": 67346
+          },
+          {
+            "id": "6YgoLMSrg5o",
+            "title": "How Chicago Pile-1 Made a Controlled Reaction #Shorts",
+            "channel": "Rebuillt From Evidence",
+            "views": 563
+          },
+          {
+            "id": "Rm48gerN4jI",
+            "title": "The First Nuclear Reactor: The Experiment That Changed the World ⚛️",
+            "channel": "ScienceFreak",
+            "views": 285
+          },
+          {
+            "id": "yUCgZ9XY9Gw",
+            "title": "Buried Secrets of the World's First Nuclear Reactor",
+            "channel": "FORGOTTEN CHICAGO",
+            "views": 192
+          },
+          {
+            "id": "Y0wnaaBAg2g",
+            "title": "Why America Buried Two Nuclear Reactors in an Illinois Forest",
+            "channel": "America Behind the Gates",
+            "views": 113
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 59,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 65
+        },
+        "total": 68.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "atlasobscura.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Sylacauga Meteorite That Struck a Sleeping Woman",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        113
+      ],
+      "hook": "In 1954, a 4-billion-year-old space rock crashed through a roof and hit a sleeping woman in the only verified case of its kind.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Sylacauga meteorite",
+      "commons_query": "Sylacauga meteorite",
+      "youtube_query": "Sylacauga meteorite Ann Hodges",
+      "evidence": [
+        {
+          "title": "1954, 11-30: A meteorite crashed through a roof in Sylacauga, Alabama, and hit a sleeping woman in the first verified case of a human being injured by an extraterrestrial object.",
+          "url": "https://en.wikipedia.org/wiki/Sylacauga_(meteorite)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 113
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 395,
+        "competitors": [
+          {
+            "id": "ed3uChpNV9U",
+            "title": "Hit by a Meteorite in 1954, She Survived",
+            "channel": "Odd Truths",
+            "views": 2834
+          },
+          {
+            "id": "cAWyLpq5BYM",
+            "title": "A Meteorite Hit Her While She Slept | Ann Hodges",
+            "channel": "Ghosts and Grits",
+            "views": 1345
+          },
+          {
+            "id": "D8gIawoF5L8",
+            "title": "How did a meteorite hit a woman in her own home? Ann Hodges, 1954",
+            "channel": "Quit Wondering",
+            "views": 1256
+          },
+          {
+            "id": "_n2qrSL8pN8",
+            "title": "She Got Hit by a Meteorite. Then Her Landlady Sued",
+            "channel": "Real Odd",
+            "views": 1175
+          },
+          {
+            "id": "i7tuGofiaug",
+            "title": "An 8-Pound Space Rock Hit Her On Her Own Couch ☄️ #shorts",
+            "channel": "Pocket Wisdom",
+            "views": 395
+          },
+          {
+            "id": "EU59Jh9MvqI",
+            "title": "The Only Person Ever Hit by a Meteorite Was Napping on Her Couch",
+            "channel": "Odd History",
+            "views": 185
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 43,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 67.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Mutiny and Slave Payments on a 17th-Century Shipwreck",
       "pillar": "Historical disasters and survival stories",
       "evidence_ids": [
         135,
         136
       ],
-      "hook": "Divers exploring a 350-year-old shipwreck off Sweden found an exceptionally rare shoe and records of slave payments following a deadly mutiny.",
+      "hook": "Divers exploring a 350-year-old Danish shipwreck found an ultra-rare, pristine luxury shoe alongside shocking records of slave payments.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 9,
         "relevance": 8,
-        "visual": 8
+        "visual": 9
       },
-      "wikipedia_title": "",
-      "commons_query": "Danish warship shipwreck 17th century",
-      "youtube_query": "Danish shipwreck Sweden shoe slave payments mutiny",
+      "wikipedia_title": "Shipwreck archaeology",
+      "commons_query": "",
+      "youtube_query": "Danish shipwreck shoe slave payments Sweden",
       "evidence": [
         {
           "title": "Divers find nearly 350-year-old shoe and slave payments on shipwreck off Sweden - Live Science",
@@ -1064,7 +1838,7 @@
             "id": "xLmNx_ZhDX0",
             "title": "Why We Run, Celebrate and Tell Stories: History and Myth Explained",
             "channel": "What Is",
-            "views": 1450
+            "views": 1462
           },
           {
             "id": "yCV5Dm4T9Ek",
@@ -1086,18 +1860,18 @@
           }
         ]
       },
-      "commons_hits": 0,
+      "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 65,
+          "momentum": 64,
           "reach": 40,
           "curiosity": 90,
           "relevance": 80,
-          "visual": 40,
+          "visual": 90,
           "source_quality": 35
         },
-        "total": 61.7,
-        "newest_hours": 50,
+        "total": 66.3,
+        "newest_hours": 57,
         "domains": [
           "livescience.com"
         ],
@@ -1107,17 +1881,18 @@
       },
       "rejected": [
         "fewer than 2 independent source domains",
-        "too few freely licensed images (0 on Wikimedia Commons)"
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Rare 5th-Century Burials of Germanic Chieftains in France"
       ],
       "wave": 1
     },
     {
-      "topic": "Albert Hofmann synthesizes LSD in 1938",
+      "topic": "The Discovery of Sedna",
       "pillar": "Unbelievable true historical events",
       "evidence_ids": [
-        33
+        1
       ],
-      "hook": "In 1938, Swiss chemist Albert Hofmann synthesized a chemical compound in Basel, accidentally unlocking the world's first major psychedelic.",
+      "hook": "In 2003, astronomers found a mysterious, freezing world at the absolute edge of our solar system that completely rewrote what we knew about space.",
       "anniversary": true,
       "explainable_30s": true,
       "ratings": {
@@ -1125,62 +1900,62 @@
         "relevance": 8,
         "visual": 7
       },
-      "wikipedia_title": "Albert Hofmann",
-      "commons_query": "Albert Hofmann chemist",
-      "youtube_query": "Albert Hofmann synthesizes LSD 1938",
+      "wikipedia_title": "Sedna (dwarf planet)",
+      "commons_query": "Sedna dwarf planet",
+      "youtube_query": "Sedna dwarf planet discovery",
       "evidence": [
         {
-          "title": "1938, 11-16: Swiss chemist Albert Hofmann first synthesized the psychedelic drug LSD in Basel, Switzerland.",
-          "url": "https://en.wikipedia.org/wiki/Albert_Hofmann",
+          "title": "2003, 11-14: Astronomers Michael E. Brown, Chad Trujillo, and David L. Rabinowitz discovered the trans-Neptunian object Sedna.",
+          "url": "https://en.wikipedia.org/wiki/Michael_E._Brown",
           "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
+          "published_ms": 1794682035910,
           "kind": "anniversary",
-          "id": 33
+          "id": 1
         }
       ],
       "wikipedia": {
-        "title": "Albert Hofmann",
-        "daily_views": 337,
-        "ratio": 1.03
+        "title": "Sedna (dwarf planet)",
+        "daily_views": 613,
+        "ratio": 0.96
       },
       "youtube": {
-        "median_views": 64,
+        "median_views": 247,
         "competitors": [
           {
-            "id": "Wtf1FG_xgAg",
-            "title": "LSD, LA VERA STORIA: DALLA CIA ALLA SPIRITUALITÀ - EDOARDO CICCONI",
-            "channel": "Border Nights",
-            "views": 14433
+            "id": "8NIwXWwKOpw",
+            "title": "New Dwarf Planet Hiding in Our Solar System? | NOVA | PBS",
+            "channel": "NOVA PBS Official",
+            "views": 2912144
           },
           {
-            "id": "IBtdI6Fca00",
-            "title": "Salem 1692 Part 2: Was the bread to blame? 🍞 #history #salem #historyfacts #facts",
-            "channel": "Uncanny Ages",
-            "views": 173
+            "id": "XpaJ9XFFvFE",
+            "title": "A red world colder than anything you've seen #SolarSystem #DwarfPlanet #Sedna #TransNeptunian #NASA",
+            "channel": "Siddharth Choudhary",
+            "views": 344052
           },
           {
-            "id": "mvbBBM4GDWQ",
-            "title": "LSD-25 की खोज गलती से कैसे हुई? 😱💊 | Albert Hofmann | Pharma Viveka #Shorts",
-            "channel": "Pharma Viveka",
-            "views": 130
+            "id": "1tjFyqwfOtc",
+            "title": "Sedna is so far away! 🫢",
+            "channel": "Scientific chaos",
+            "views": 1038
           },
           {
-            "id": "O8v35IMvcnw",
-            "title": "A blessing or a curse | Albert Hofmann (1979)",
-            "channel": "Nautilus Chamber",
-            "views": 88
+            "id": "M7zq8mJb_y8",
+            "title": "Sedna: A Year Lasts 11,400 Years?",
+            "channel": "Universe Decoded ",
+            "views": 296
           },
           {
-            "id": "KTVrPWds1y8",
-            "title": "The Secret Psychedelic Behind the Holy Grail #psychedelics #history #hiddenhistory #holygrail",
-            "channel": "System Failure",
-            "views": 64
+            "id": "-ThSI8MP27Q",
+            "title": "This is why they kicked Sedna out of solar system",
+            "channel": "DAPOLIN",
+            "views": 247
           },
           {
-            "id": "HcmBfVPQYMQ",
-            "title": "От ЛСД до MKUltra.",
-            "channel": "Evgenij Chulkov",
-            "views": 34
+            "id": "1w8UKvOvEPE",
+            "title": "Sedna — One Year Lasts 11,000 Earth Years! #Shorts #space #sedna",
+            "channel": "Pocket Orbit",
+            "views": 70
           }
         ]
       },
@@ -1188,13 +1963,13 @@
       "score": {
         "factors": {
           "momentum": 46,
-          "reach": 38,
+          "reach": 46,
           "curiosity": 90,
           "relevance": 80,
           "visual": 85,
           "source_quality": 35
         },
-        "total": 61.2,
+        "total": 62.7,
         "newest_hours": 0,
         "domains": [
           "wikipedia.org"
@@ -1204,17 +1979,747 @@
         ]
       },
       "rejected": [
-        "too similar to recent topic: Albert Hofmann's accidental synthesis of LSD in Basel"
+        "too similar to recent topic: Wilhelm Röntgen's accidental discovery of X-rays"
       ],
       "wave": 1
     },
     {
-      "topic": "Brazilian Emperor Pedro II overthrown in 1889",
+      "topic": "The 1943 Bari Air Raid and Secret Mustard Gas Cargo",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        141
+      ],
+      "hook": "A surprise WWII air raid in Italy secretly unleashed a deadly cloud of chemical weapons the Allies swore they didn't have.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Bari air raid",
+      "commons_query": "Bari air raid 1943",
+      "youtube_query": "Bari air raid mustard gas WWII",
+      "evidence": [
+        {
+          "title": "1943, 12-02: World War II: The Luftwaffe conducted a surprise air raid on Allied ships in Bari, Italy, sinking twenty-eight vessels and releasing one ship's secret cargo of mustard gas.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 141
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 76,
+        "competitors": [
+          {
+            "id": "6TouKGKTzPA",
+            "title": "Why A Ship In Harbour Was Secretly Full Of Poison Gas #short #history #ww2",
+            "channel": "War Medals",
+            "views": 17009
+          },
+          {
+            "id": "DTzRFOYr3sA",
+            "title": "The Poison Churchill Hid",
+            "channel": "Front Notes",
+            "views": 2131
+          },
+          {
+            "id": "pkpowd8Db2U",
+            "title": "The Bari Raid: The Secret Gas Cargo Hidden in an Italian Harbour",
+            "channel": "WWII Archives Network",
+            "views": 233
+          },
+          {
+            "id": "udN9b2-eHTw",
+            "title": "The Poison Gas That Became a Cancer Drug",
+            "channel": "ClassifiedCurious",
+            "views": 151
+          },
+          {
+            "id": "0mYW-FskreQ",
+            "title": "A Wartime Gas Disaster Started Chemotherapy #Shorts #ChemotherapyOrigin #MustardGas #BariRaid #Facts",
+            "channel": "Didn'tYouknow",
+            "views": 76
+          },
+          {
+            "id": "yrRyXZAx6hw",
+            "title": "The Bari Raid 1943: The Secret Mustard-Gas Ship and the Cover-Up #Shorts",
+            "channel": "Dark pages",
+            "views": 67
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 31,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 61.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Somerton Man Unsolved Mystery",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        131
+      ],
+      "hook": "An unidentified man found dead on an Australian beach in 1948 carried a secret code that baffled investigators for decades.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Somerton Man",
+      "commons_query": "Somerton Man",
+      "youtube_query": "Somerton Man mystery unpacked",
+      "evidence": [
+        {
+          "title": "1948, 12-01: In \"one of Australia's most profound mysteries\", the body of an unidentified man was found on Somerton beach in Adelaide, a case which remains unsolved.",
+          "url": "https://en.wikipedia.org/wiki/Somerton_Man",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 131
+        }
+      ],
+      "wikipedia": {
+        "title": "Somerton Man",
+        "daily_views": 614,
+        "ratio": 0.8
+      },
+      "youtube": {
+        "median_views": 65,
+        "competitors": [
+          {
+            "id": "fmjREh0Ny-A",
+            "title": "The Mother In Law Who Hired a Hitman: The Twisted Case of Dan Markel",
+            "channel": "Clues with Kaelyn Moore",
+            "views": 144170
+          },
+          {
+            "id": "NSH6Q2wG9IE",
+            "title": "He Had No Name, No ID, and a Secret Code in His Pocket",
+            "channel": "Sunlight Within Tales",
+            "views": 236
+          },
+          {
+            "id": "Rn-1t-lkmTQ",
+            "title": "Somerton Man: Tamam Shud Mystery Revealed #shorts",
+            "channel": "Unsolved_Mysteries-HKK",
+            "views": 65
+          },
+          {
+            "id": "CDFIwGK7jOc",
+            "title": "Unknown for 73 Years — Until a Single Hair Solved the Mystery",
+            "channel": "CASE UNPACKED",
+            "views": 61
+          },
+          {
+            "id": "v6qOQY_lHqE",
+            "title": "9 Famous Historical Mysteries We Think We Understand | Until One Clue Changes the Picture",
+            "channel": "Beyond The Record Stories",
+            "views": 5
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 41,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 61.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Public Unveiling of the B-2 Spirit Stealth Bomber",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        15
+      ],
+      "hook": "When the US Air Force first rolled out the B-2 stealth bomber in 1988, its futuristic flying-wing design shocked the world.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "B-2 Spirit",
+      "commons_query": "B-2 Spirit",
+      "youtube_query": "B-2 Spirit stealth bomber rollout 1988",
+      "evidence": [
+        {
+          "title": "1988, 11-22: The B-2 Spirit stealth bomber of the United States Air Force was first displayed in public at Air Force Plant 42 in Palmdale, California.",
+          "url": "https://en.wikipedia.org/wiki/Northrop_B-2_Spirit",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 15
+        }
+      ],
+      "wikipedia": {
+        "title": "B-2 Spirit",
+        "daily_views": 214,
+        "ratio": 0.93
+      },
+      "youtube": {
+        "median_views": 292,
+        "competitors": [
+          {
+            "id": "XwP8YcO04eI",
+            "title": "B-2 Spirit: The $2 Billion Stealth Bomber the Internet Calls the Spicy Dorito",
+            "channel": "T-Minus",
+            "views": 1737
+          },
+          {
+            "id": "eD6thUY6M9k",
+            "title": "The $2 Billion Bomber Radar Can Barely See",
+            "channel": "Sky Machines",
+            "views": 1557
+          },
+          {
+            "id": "XVQ2pROXoYU",
+            "title": "The Air Force Hid Its Stealth Bomber From Everyone Except The Sky #Shorts",
+            "channel": "History Deep Dive",
+            "views": 1127
+          },
+          {
+            "id": "aLcBUKgi2Ps",
+            "title": "The Air Force Showed the B-2 Only From the Front. A Rented Cessna Ruined It",
+            "channel": "USA Military Zone",
+            "views": 348
+          },
+          {
+            "id": "U6ARkS2irFU",
+            "title": "The B-2 Decoy Trick: How Seven Bombers Reached Fordow",
+            "channel": "Classified Hardware",
+            "views": 292
+          },
+          {
+            "id": "x6RSQR3xRa8",
+            "title": "B-2 Spirit, the Full File — The Bomber Worth More Than Its Weight in Gold | Black Project Files Ep.3",
+            "channel": "Black Project Files",
+            "views": 177
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 43,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 61.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1983 Brink's-Mat Gold Heist",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        63
+      ],
+      "hook": "Six robbers expected to steal a bit of cash from a Heathrow warehouse and accidentally walked out with three tons of pure gold.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Brink's-Mat robbery",
+      "commons_query": "",
+      "youtube_query": "Brinks Mat gold robbery 1983",
+      "evidence": [
+        {
+          "title": "1983, 11-26: Six robbers broke into a Brink's-Mat warehouse at Heathrow Airport in London and stole £26 million in gold, diamonds and cash.",
+          "url": "https://en.wikipedia.org/wiki/Brink's",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 63
+        }
+      ],
+      "wikipedia": {
+        "title": "Brink's-Mat robbery",
+        "daily_views": 1394,
+        "ratio": 0.96
+      },
+      "youtube": {
+        "median_views": 90,
+        "competitors": [
+          {
+            "id": "D9p6fsqzDDw",
+            "title": "The Brink’s-Mat Heist: Britain's Biggest Gold Robbery #TrueCrime #BrinksMat #GoldHeist",
+            "channel": "Underworld Uncut",
+            "views": 2071
+          },
+          {
+            "id": "80dHAm4imDc",
+            "title": "Thieves Expected Cash But Found 3 Tons of Gold - The 1983 Brinks Mat Heist",
+            "channel": "Walid bin Musa",
+            "views": 183
+          },
+          {
+            "id": "zzKX751jP4Q",
+            "title": "The 1983 Gold Heist That Never Went Away: Brinks Mat Explained",
+            "channel": "MyWorkSecondChannel",
+            "views": 116
+          },
+          {
+            "id": "KUozyw8WekY",
+            "title": "The £26 Million Gold Heist | The Brink's-Mat Robbery (1983)",
+            "channel": "BRITAIN UNDER INVESTIGATION",
+            "views": 110
+          },
+          {
+            "id": "cGpXmaZffoo",
+            "title": "3 Tons of Gold Stolen in 1983 - One Piece of Tape Exposed the Brink's-Mat Heist",
+            "channel": "Fe Lorenzo",
+            "views": 90
+          },
+          {
+            "id": "zlw7PMEAz8E",
+            "title": "3 Tons of Gold Stolen from Brink's-Mat: How Criminals Laundered the Massive 1983 Haul",
+            "channel": "Vidz4Kidz01",
+            "views": 71
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 45,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 60.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1987 Max Headroom Broadcast Signal Intrusion",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        16
+      ],
+      "hook": "Two Chicago television stations were hijacked by an unknown person in a creepy mask, and the culprit was never found.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Max Headroom broadcast signal intrusion",
+      "commons_query": "",
+      "youtube_query": "Max Headroom broadcast signal intrusion 1987",
+      "evidence": [
+        {
+          "title": "1987, 11-22: Two television stations in Chicago had their broadcast signals hijacked with footage of an unknown person wearing a Max Headroom mask and costume.",
+          "url": "https://en.wikipedia.org/wiki/Max_Headroom_signal_hijackings",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 16
+        }
+      ],
+      "wikipedia": {
+        "title": "Max Headroom broadcast signal intrusion",
+        "daily_views": 14,
+        "ratio": 1.03
+      },
+      "youtube": {
+        "median_views": 747,
+        "competitors": [
+          {
+            "id": "KflbU9mntuY",
+            "title": "Someone Hijacked Live TV in 1987… And Was Never Caught 😳 #shorts",
+            "channel": "The Unknown Facts",
+            "views": 1680
+          },
+          {
+            "id": "KJE6qQQuj0U",
+            "title": "The Max Headroom Incident – Still Unsolved",
+            "channel": "Unsolved Archive",
+            "views": 1344
+          },
+          {
+            "id": "XhhhHkryTmw",
+            "title": "Someone Hijacked Live TV in 1987… Nobody Knows Who | Max Headroom | CASE ZERO #13",
+            "channel": "Case Zero 001",
+            "views": 1203
+          },
+          {
+            "id": "jLdMLHpB944",
+            "title": "Someone Hijacked TV in 1987… and Was NEVER Caught",
+            "channel": "WeirddMonk",
+            "views": 1155
+          },
+          {
+            "id": "aH-Mc990BX0",
+            "title": "Someone Hijacked Two Chicago TV Stations in 1987 in a Max Headroom Mask. Never Caught",
+            "channel": "Umbra - True Crime",
+            "views": 747
+          },
+          {
+            "id": "mh_bmwJvWs0",
+            "title": "Someone Hijacked TV in 1987… And Was Never Caught | The Max Headroom Mystery",
+            "channel": "Unknown Archive World",
+            "views": 391
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 38,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 60.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Launch of Mars Science Laboratory and Curiosity Rover",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        61
+      ],
+      "hook": "How NASA engineered a daring 'seven minutes of terror' to land a car-sized science lab on Mars.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Mars Science Laboratory",
+      "commons_query": "Curiosity rover",
+      "youtube_query": "Curiosity rover Mars landing seven minutes of terror",
+      "evidence": [
+        {
+          "title": "2011, 11-26: The Mars Science Laboratory mission, carrying the Curiosity rover (pictured) on board, was launched from Cape Canaveral.",
+          "url": "https://en.wikipedia.org/wiki/Mars_Science_Laboratory",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 61
+        }
+      ],
+      "wikipedia": {
+        "title": "Mars Science Laboratory",
+        "daily_views": 96,
+        "ratio": 1.11
+      },
+      "youtube": {
+        "median_views": 50,
+        "competitors": [
+          {
+            "id": "Vd3mPvYzapY",
+            "title": "The 7 Minutes Of Terror: NASA’s Real Mars Landing Footage!",
+            "channel": "UNIVERSIA",
+            "views": 5322
+          },
+          {
+            "id": "RqkFHdU87MA",
+            "title": "7 Minutes of Terror: The REAL Footage of Landing on Mars",
+            "channel": "Lightyear Log — Space Facts",
+            "views": 3500
+          },
+          {
+            "id": "ZbRFjBeYBd8",
+            "title": "Curiosity's 7 Minutes of Terror Landing on Mars",
+            "channel": "THE CLIP CAPSULES",
+            "views": 1060
+          },
+          {
+            "id": "KhNjIvjxl0A",
+            "title": "How NASA Landed Curiosity on Mars: 7 Minutes of Terror | #space #curiosityrover #mars #nasa",
+            "channel": "AI: Beyond the Surface",
+            "views": 357
+          },
+          {
+            "id": "hkUfcbmFnI4",
+            "title": "Seven Minutes of Terror: How NASA Lands a Rover on Mars",
+            "channel": "Red Planet File",
+            "views": 50
+          },
+          {
+            "id": "ilQUydT3FPA",
+            "title": "Seven Minutes of Terror: Landing Curiosity on Mars",
+            "channel": "FORGOTTEN FUTURE",
+            "views": 24
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 33,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 59.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The First Robotic Rover on Mars"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1976 Free-Diving Milestone of Jacques Mayol",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        30
+      ],
+      "hook": "In 1976, Jacques Mayol pushed the human body to an unthinkable limit by freediving 100 meters deep on a single breath.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "Jacques Mayol",
+      "commons_query": "Jacques Mayol",
+      "youtube_query": "Jacques Mayol 100 meter freedive record",
+      "evidence": [
+        {
+          "title": "1976, 11-23: Jacques Mayol became the first person to freedive to a depth of 100 metres (330 ft).",
+          "url": "https://en.wikipedia.org/wiki/Jacques_Mayol",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 30
+        }
+      ],
+      "wikipedia": {
+        "title": "Jacques Mayol",
+        "daily_views": 83,
+        "ratio": 1.1
+      },
+      "youtube": {
+        "median_views": 12,
+        "competitors": [
+          {
+            "id": "-d_46NaeFLw",
+            "title": "📻『グラン・ブルー』を観て　青さと海の映像美とシチリア島🇮🇹",
+            "channel": "江浪の庭",
+            "views": 12
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 27,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 57.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Pelé's Milestone 1,000th Career Goal"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Christiaan Barnard Performs the First Human Heart Transplant",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        154
+      ],
+      "hook": "In 1967, a South African surgeon crossed an ultimate medical frontier by moving a human heart from one body to another.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Christiaan Barnard",
+      "commons_query": "Christiaan Barnard Groote Schuur Hospital",
+      "youtube_query": "first human heart transplant Christiaan Barnard",
+      "evidence": [
+        {
+          "title": "1967, 12-03: Cardiac surgeon Christiaan Barnard (pictured) performed the first successful human heart transplant on Louis Washkansky at Groote Schuur Hospital in Cape Town, South Africa.",
+          "url": "https://en.wikipedia.org/wiki/Cardiothoracic_surgery",
+          "domain": "wikipedia.org",
+          "published_ms": 1794682035910,
+          "kind": "anniversary",
+          "id": 154
+        }
+      ],
+      "wikipedia": {
+        "title": "Christiaan Barnard",
+        "daily_views": 422,
+        "ratio": 1.17
+      },
+      "youtube": {
+        "median_views": 67,
+        "competitors": [
+          {
+            "id": "jg51tK7rhKA",
+            "title": "Grade 6 | History | Term 4 | Unit 3&4: The First Heart Transplant | Dr Chris Barnard (1967)",
+            "channel": "EduLearnSA",
+            "views": 1736
+          },
+          {
+            "id": "mH1XNACxCIA",
+            "title": "No One Had Done This Before The Surgeon Who Went First: Christiaan Barnard, 1967 #shorts",
+            "channel": "The South African Story",
+            "views": 1045
+          },
+          {
+            "id": "F1o8ZgoEXog",
+            "title": "The First Heart Transplant",
+            "channel": "It's a nice world",
+            "views": 92
+          },
+          {
+            "id": "G7z7hxcaAAM",
+            "title": "The Night Cape Town Changed Medicine: First Heart Transplant 1967",
+            "channel": "Robs Retired Getafix Lifestyle",
+            "views": 72
+          },
+          {
+            "id": "D_0x5PM_Rt0",
+            "title": "Dr.  Christiaan Barnard  The Man Behind the First Human Heart Transplant",
+            "channel": "Historical Echoes",
+            "views": 67
+          },
+          {
+            "id": "88wLvIn4tQg",
+            "title": "First Heart Transplant Surgeon Died From Asthma - The Irony of Christiaan Barnard",
+            "channel": "HistFacts",
+            "views": 60
+          }
+        ]
+      },
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 47,
+          "reach": 39,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 46,
+          "source_quality": 35
+        },
+        "total": 57.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (1 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Overthrow of the Brazilian Empire",
       "pillar": "Events that changed the modern world",
       "evidence_ids": [
         20
       ],
-      "hook": "On this day in 1889, Brazil's Emperor Pedro II was overthrown in a sudden military coup, instantly turning the empire into a republic.",
+      "hook": "In 1889, Brazil's beloved Emperor Pedro II was peacefully overthrown in a sudden military coup while he was recovering from a severe illness.",
       "anniversary": true,
       "explainable_30s": true,
       "ratings": {
@@ -1223,14 +2728,14 @@
         "visual": 9
       },
       "wikipedia_title": "Emperor Pedro II of Brazil",
-      "commons_query": "Emperor Pedro II",
-      "youtube_query": "Emperor Pedro II overthrow Brazil republic 1889",
+      "commons_query": "Pedro II of Brazil",
+      "youtube_query": "overthrow of Brazilian Empire Pedro II",
       "evidence": [
         {
           "title": "1889, 11-15: Brazilian emperor Pedro II was overthrown in a coup led by Deodoro da Fonseca (pictured), while the country was proclaimed a republic.",
           "url": "https://en.wikipedia.org/wiki/Pedro_II_of_Brazil",
           "domain": "wikipedia.org",
-          "published_ms": 1794658760268,
+          "published_ms": 1794682035910,
           "kind": "anniversary",
           "id": 20
         }
@@ -1241,13 +2746,31 @@
         "ratio": 0
       },
       "youtube": {
-        "median_views": 29,
+        "median_views": 87,
         "competitors": [
           {
             "id": "DhKjWFG7xf0",
             "title": "Dom Pedro II e o 15 de novembro",
             "channel": "Paulo Rezzutti",
-            "views": 33907
+            "views": 35355
+          },
+          {
+            "id": "5QwV_fhDWfo",
+            "title": "What Happened to Brazil's Royal Family After the Empire of Brazil Fell?",
+            "channel": "THE DARK ROYAL ARCHIVE",
+            "views": 5144
+          },
+          {
+            "id": "ItAXlNJVQYw",
+            "title": "Переворот 1889 года: Как Семья Сильнейшего Императора Бразилии Была Изгнана с Позором За 48 часов",
+            "channel": "Исторический Уголок",
+            "views": 378
+          },
+          {
+            "id": "ZpIwIzopVFw",
+            "title": "HE REIGNED FOR 58 YEARS: Why Did Brazil Kick Out Their Greatest Leader Overnight?!",
+            "channel": "Retroscope",
+            "views": 101
           },
           {
             "id": "HAeh6WuDKvs",
@@ -1256,28 +2779,10 @@
             "views": 87
           },
           {
-            "id": "Khq_kZiBUV0",
-            "title": "What Happened to Brazil's Royal Family After the Empire Fell?  #brazil",
-            "channel": "After The Empire",
-            "views": 85
-          },
-          {
-            "id": "1yCNback_Kg",
-            "title": "The Emperor Who Built Brazil's Science Empire #HistoryFacts #Shorts",
-            "channel": "MonaTV",
-            "views": 41
-          },
-          {
-            "id": "ZUvdGjb5wdo",
-            "title": "Brazil’s Empire: Why Independence Did Not End the Struggle for Unity",
-            "channel": "Atlas of Time",
-            "views": 29
-          },
-          {
-            "id": "0ZGMVN3eQ8o",
-            "title": "The Coup That Ended Pedro II's Reign | Brazil's Last Emperor",
-            "channel": "Crumbling Crowns",
-            "views": 19
+            "id": "iUcJKFSa7Yo",
+            "title": "Crowned Emperor of Brazil at Just 14 Years Old",
+            "channel": "The Anchored Past",
+            "views": 33
           }
         ]
       },
@@ -1285,13 +2790,13 @@
       "score": {
         "factors": {
           "momentum": 46,
-          "reach": 15,
+          "reach": 19,
           "curiosity": 80,
           "relevance": 80,
           "visual": 95,
           "source_quality": 35
         },
-        "total": 55.4,
+        "total": 56.4,
         "newest_hours": 0,
         "domains": [
           "wikipedia.org"
@@ -1302,69 +2807,6 @@
       },
       "rejected": [
         "too similar to recent topic: The Fall of the Brazilian Empire"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "The 1874 shipwreck discovery in Lake Huron",
-      "pillar": "Unbelievable true historical events",
-      "evidence_ids": [
-        144
-      ],
-      "hook": "Shipwreck hunters in the Great Lakes have captured the first stunning photos of a vessel that sank in Lake Huron in 1874.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 8,
-        "relevance": 7,
-        "visual": 9
-      },
-      "wikipedia_title": "",
-      "commons_query": "Great Lakes shipwreck",
-      "youtube_query": "Lake Huron 1874 shipwreck discovery photos",
-      "evidence": [
-        {
-          "title": "First photos of shipwreck discovered in Lake Huron, sunk in 1874 - The Detroit News",
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNWmxjdmxTSTE1NE96UzlYU0RzWkRvVkZnRDlRbXk5R2RYNk51S1psbzhVd3JScG1pM2EtY1hiM21pYnVlUFM2RHZkZzNiVEkzQ09JNjBDdmdaVVE4UzJNSUxINGVDVzBUU19DMkp1MUMtbGllemc0QURVbnVQSU82U0M1TlQ5cGFrNUEya0FlX21BZkh3MDJHdDVvN3BBam5iNTJvSlU1X2tkYVo5UVVVeFNJOEdUYkdLeXFXSVlDTDZvVWo1MG13cDlfbGV3NVBySXV3empjUVNudFlTMDdjTm1yN0ZDQQ?oc=5",
-          "domain": "detroitnews.com",
-          "published_ms": 1794459720000,
-          "kind": "news",
-          "id": 144
-        },
-        {
-          "title": "Shipwreck hunters find tug boat long lost in Lake Huron - The Detroit News",
-          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPUnpnakFuWHB5dXRpUy11aklSOG9FeHJrVHlsYVpXUXVJUmlpLVR5OVN1MnAxb3lCTzdqMUpRX3N2eS1BaUJ1SHVUWEg2S20zTHhPbU96VW1VTUpNcGtaRXB6WEZiOEd0NVcxSTBfWXFLdWphWmZZbWpscUszeDVvWWw3V3pPYzhvZzF4cUtXMjJodFJZd2h6V0VsMUZBcFlJWDFIZjk4SnVYVG83eTdLd2hzRnNUaTgwQXZQNmRVVXM5MzR3alJUd2ZhZHE3YlRSRnJsQjNvQV8zWTczYXQwcXhjYjF1ZWVnMG5IYUZXTFM?oc=5",
-          "domain": "detroitnews.com",
-          "published_ms": 1794461160000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": null,
-      "youtube": {
-        "median_views": 0,
-        "competitors": []
-      },
-      "commons_hits": 20,
-      "score": {
-        "factors": {
-          "momentum": 64,
-          "reach": 0,
-          "curiosity": 80,
-          "relevance": 70,
-          "visual": 95,
-          "source_quality": 0
-        },
-        "total": 52,
-        "newest_hours": 55,
-        "domains": [
-          "detroitnews.com"
-        ],
-        "trusted_domains": []
-      },
-      "rejected": [
-        "fewer than 2 independent source domains",
-        "no trusted source",
-        "no reach evidence (too obscure or unmeasured)"
       ],
       "wave": 1
     }
