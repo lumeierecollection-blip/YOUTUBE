@@ -1191,12 +1191,12 @@
       "attempts": 2,
       "run_id": "43540882209",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T01:29:37.801Z",
-      "stage": "script",
-      "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
-      "score": 74.7,
+      "updated_at": "2026-11-14T01:31:10.079Z",
+      "stage": "research",
+      "topic": "Microsoft Outage Disables Copilot and Teams",
+      "score": 82,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Watch out: popular AI chatbots are accidentally recommending scam shopping sites.",
+      "hook": "A massive Microsoft outage just took down Outlook, Teams, and Copilot for thousands of workers.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"1 results.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLAIM: sentence 1 \"You could receive risky links across 6,795 AI responses.\" — the claim \"risky links | appear across | 6,795 AI responses\" is not in the research (F1 and N1 state that 6,795 i"
     }
   },
@@ -2364,6 +2364,15 @@
       "at_ms": 1794603240570,
       "score": 62.9,
       "pillar": "Unexpected AI abilities and limits"
+    },
+    {
+      "channel": "2",
+      "topic": "Microsoft Outage Disables Copilot and Teams",
+      "slug": "microsoft-outage-disables-copilot-and-teams",
+      "slot": "2026-11-13-ch2",
+      "at_ms": 1794619870079,
+      "score": 82,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
