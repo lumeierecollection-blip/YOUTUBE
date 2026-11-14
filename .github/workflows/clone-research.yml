@@ -1,0 +1,49 @@
+name: Clone research (download + transcribe reference videos)
+
+# Push to clone/** runs it. Downloads the audio of each reference listed in data/clone/refs.txt with yt-dlp, transcribes it with faster-whisper
+# (base.en, timestamps), and uploads the transcripts as a short-lived artifact (1 day: this repository is public and the transcripts are of third-party
+# videos, kept only for structure measurement). Holds no YouTube credentials, uploads nothing anywhere else.
+on:
+  push:
+    branches:
+      - "clone/**"
+
+permissions:
+  contents: read
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet yt-dlp faster-whisper
+      - name: Download and transcribe
+        run: |
+          mkdir -p out
+          while read -r id; do
+            [ -z "$id" ] && continue
+            yt-dlp -q --no-warnings -f "ba[format_note*=original]/ba" -x --audio-format wav -o "out/$id.%(ext)s" "https://www.youtube.com/watch?v=$id" || { echo "download failed $id"; continue; }
+            python - "$id" <<'PY'
+          import sys
+          from faster_whisper import WhisperModel
+          vid=sys.argv[1]
+          m=WhisperModel("base.en",device="cpu",compute_type="int8")
+          segs,_=m.transcribe(f"out/{vid}.wav",language="en",vad_filter=True,beam_size=1)
+          open(f"out/{vid}.txt","w").write("\n".join(f"[{int(s.start//60):02d}:{int(s.start%60):02d}] {s.text.strip()}" for s in segs))
+          print("done",vid)
+          PY
+            rm -f "out/$id.wav"
+          done < data/clone/refs.txt
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clone-transcripts-${{ github.run_id }}
+          retention-days: 1
+          path: out/*.txt
