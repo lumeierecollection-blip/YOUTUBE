@@ -229,5 +229,23 @@
       "Public Enemy No. 1",
       "history"
     ]
+  },
+  "hidden-past-msh": {
+    "run_id": 43590469321,
+    "artifact": "longform-hidden-past-msh-43590469321",
+    "sha256": "66d20c63c073d769f2098337d58c0aaa1bfd6a7b7f9dc6e2cb5762f8c4c6ddbd",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "long_form": true,
+    "thumbnail": "thumbnail-1-sideways.jpg",
+    "title": "Why Mount St. Helens Exploded Sideways",
+    "description": "Why Mount St. Helens Exploded Sideways\n\nChapters:\n0:00 Cold open\n0:42 The warning\n1:44 The morning\n3:19 After\n3:57 Ending\n\nSources:\n- 1980 eruption of Mount St. Helens: https://en.wikipedia.org/wiki/1980_eruption_of_Mount_St._Helens\n- Mount St. Helens: https://en.wikipedia.org/wiki/Mount_St._Helens\n- Eruption of Mount St. Helens, 1980 (USDA Forest Service film, 1986), National Archives ARC 13364: https://commons.wikimedia.org/wiki/File:Eruption_of_Mount_St._Helens,_1980.ogv\n- USGS photographs on Wikimedia Commons (see public/lf2/hidden-past/ATTRIBUTIONS.json): https://commons.wikimedia.org/wiki/Category:Photographs_of_the_1980_eruption_of_Mount_St._Helens\n- Sentinel-2 cloudless imagery by EOX (CC BY 4.0), contains modified Copernicus Sentinel data; elevation: Mapzen terrain tiles: https://s2maps.eu\n\nImage credits:\nDonald A. Swanson, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_eruption_mount_st_helens_plume_05-18-80.jpg)\nDonald A. Swanson, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_early_eruption_st_helens_from_NE_04-10-80.jpg)\nPeter Lipman, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_bulge_on_north_side_04-27-80.jpg)\nAustin Post, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_eruption_mount_st_helens_05-18-80.jpg)\nTom Casadevall, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_st_helens_debris_avalanche_helicopter_09-16-80.jpg)\nHarry Glicken, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_st_helens_from_johnston_ridge_09-10-80.jpg)\nLyn Topinka, USGS, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_mailboxes_along_cowlitz_river_1980.jpg)\n\nSound effect: \"Deep Whoosh #1\" by Kinoton, CC0 1.0 (https://freesound.org/people/Kinoton/sounds/351256)\nSound effect: \"Low impact.wav\" by AudioPapkin, CC0 1.0 (https://freesound.org/people/AudioPapkin/sounds/430978)\n\n#HiddenPast #History #MountStHelens",
+    "tags": [
+      "Mount St. Helens",
+      "1980 eruption",
+      "volcano",
+      "lateral blast",
+      "history"
+    ]
   }
 }

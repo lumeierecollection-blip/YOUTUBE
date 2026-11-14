@@ -21,11 +21,16 @@ let t = 0, last = null; const chapters = [];
 for (const b of ep.beats) { const f = join(VOICE, `${b.id}.mp3`); if (!existsSync(f)) continue; if (b.part !== last) { chapters.push([t, b.part]); last = b.part; } t += dur(f) + PAD - XF; }
 const fmt = (s) => `${Math.floor(Math.round(s) / 60)}:${String(Math.round(s) % 60).padStart(2, "0")}`;
 const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-const hashtags = ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History #SuezCanal";
+const TOPIC = { // per-episode hashtags and tags: topic words only, no claims
+  "hidden-past-msh": { hashtags: "#HiddenPast #History #MountStHelens", tags: ["Mount St. Helens", "1980 eruption", "volcano", "lateral blast", "history"] },
+  "hidden-past-hormuz": { hashtags: "#HiddenPast #History #StraitOfHormuz", tags: ["Strait of Hormuz", "USS Samuel B. Roberts", "Operation Praying Mantis", "Iran Air 655", "history"] },
+  "hidden-past": { hashtags: "#HiddenPast #History #SuezCanal", tags: ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"] },
+}[slug] || { hashtags: ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History", tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["history"] };
+const hashtags = TOPIC.hashtags;
 const meta = {
   channel: ch, format: "long-form", title: ep.title, privacy: "private", upload_status: "NOT UPLOADED", seconds: +t.toFixed(1),
   description: [ep.title, "", "Chapters:", ...chapters.map(([s, p]) => `${fmt(s)} ${cap(p)}`), "", "Sources:", ...Object.values(SOURCES).map((s) => `- ${s.title}: ${s.url}`), "", "Image credits:", ...(images.length ? images : ["(graphics and captures made for this video)"]), ...(sounds.length ? ["", ...sounds] : []), "", hashtags].join("\n"),
-  tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"],
+  tags: TOPIC.tags,
 };
 writeFileSync(join(BASE, "episode-meta.json"), JSON.stringify(meta, null, 2));
 console.log(`${meta.title}: ${chapters.length} chapters, ${meta.seconds}s, ${sounds.length} sound credit(s)`);
