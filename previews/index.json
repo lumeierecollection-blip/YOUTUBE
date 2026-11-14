@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-14T15:18:48.999Z",
+  "rebuilt_at": "2026-11-14T15:19:03.293Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,9 +42,9 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "research_complete",
-      "status": "ok",
-      "at": "2026-11-14T15:18:48.742Z",
+      "stage": "failed",
+      "status": "failed",
+      "at": "2026-11-14T15:19:03.076Z",
       "branch": "preview/ai-tested-gemini4",
       "commit": "f2f4aab8",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43609325526#artifacts)",
@@ -54,8 +54,8 @@
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "",
-      "lastOk": "2026-11-14T15:18:48.742Z",
+      "blocker": "slot \"hook\" has more than one sentence ending in: On big multiplications, the older model got none right. Gemini 4 Hydrogen got forty-eight of fifty.",
+      "lastOk": "2026-11-13T21:08:38.871Z",
       "run": "run-43609325526-1"
     },
     {

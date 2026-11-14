@@ -1,0 +1,5 @@
+Error: slot "hook" has more than one sentence ending in: On big multiplications, the older model got none right. Gemini 4 Hydrogen got forty-eight of fifty.
+    at fitScript (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fitscript.mjs:11:171)
+    at fitFor (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/gemini4-preview.mjs:28:41)
+    at Module.gemini4Preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/gemini4-preview.mjs:29:17)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

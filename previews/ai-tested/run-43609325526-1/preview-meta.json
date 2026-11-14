@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-43609325526-1",
   "agent": "agent-ai-tested",
-  "stage": "research_complete",
-  "status": "ok",
-  "timestamp": "2026-11-14T15:18:48.742Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-14T15:19:03.076Z",
   "branch": "preview/ai-tested-gemini4",
   "commit": "f2f4aab8b88fd384981f1a355ee6f682e234ce91",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43609325526#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43609325526#artifacts",
+  "error": "slot \"hook\" has more than one sentence ending in: On big multiplications, the older model got none right. Gemini 4 Hydrogen got forty-eight of fifty."
 }
