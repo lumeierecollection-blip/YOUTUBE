@@ -82,6 +82,12 @@ export const ASSETS = {
     ["oyarzabal-2018", "File:Mikel Oyarzabal 2018.jpg", "Mikel Oyarzabal, 2018"],
     ["palmer-2024", "File:ColePalmervsLeicester.jpg", "Cole Palmer v Leicester, 23 November 2024"],
     ["yamal-2025", "File:Lamine Yamal in 2025.jpg", "Lamine Yamal, 2025"],
+    ["lei-vardy-2015", "File:Jamie Vardy 08 sierpnia 2015.jpg", "Jamie Vardy, Leicester City v Sunderland, 8 August 2015"],
+    ["lei-mahrez", "File:Riyad Mahrez.jpg", "Riyad Mahrez playing for Leicester City"],
+    ["lei-ranieri-appeal", "File:Claudio Ranieri appeals for a decision (25027423845).jpg", "Claudio Ranieri, Leicester City manager, on the touchline"],
+    ["lei-ranieri-hiddink-2016", "File:Ranieri Hiddink 2016.jpg", "Claudio Ranieri and Guus Hiddink, Chelsea 1 Leicester 1, 15 May 2016"],
+    ["lei-stadium", "File:King Power Stadium.JPG", "King Power Stadium, Leicester"],
+    ["lei-southampton-2016", "File:Leicester City FC - Southampton FC 03-Apr-2016, King Power Stadium 02.jpg", "Leicester City 1-0 Southampton, King Power Stadium, 3 April 2016"],
   ],
 };
 

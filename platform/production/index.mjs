@@ -38,7 +38,7 @@ export async function narrate({ text, edgeVoice, outDir, name = "voice-track", g
   }
   if (!engine) {
     for (let attempt = 1; attempt <= 4 && !engine; attempt++) {
-      const r = spawnSync("python3", [join(ROOT, "src/utils/tts_words.py"), "--voice", edgeVoice, "--rate", "+0%", "--pitch", "+0Hz", "--file", input, "--mp3", mp3, "--srt", srt, "--words", wordsFile], { encoding: "utf8", timeout: 180000, cwd: ROOT });
+      const r = spawnSync(process.platform === "win32" ? "python" : "python3", [join(ROOT, "src/utils/tts_words.py"), "--voice", edgeVoice, "--rate", "+0%", "--pitch", "+0Hz", "--file", input, "--mp3", mp3, "--srt", srt, "--words", wordsFile], { encoding: "utf8", timeout: 180000, cwd: ROOT });
       if (r.status === 0 && existsSync(wordsFile)) engine = `edge:${edgeVoice}`;
       else { notes.push(`edge attempt ${attempt}: ${String(r.stderr).trim().split("\n").at(-1).slice(0, 160)}`); spawnSync("sleep", [String(attempt * 15)]); }
     }

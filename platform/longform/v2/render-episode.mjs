@@ -18,12 +18,12 @@ import { narrate } from "../../production/index.mjs";
 import { ROOT } from "../../preview/lib.mjs";
 import { autoCredit } from "./credits.mjs";
 
-const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug; // slug = episode file name; ch = the channel it belongs to
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug.startsWith("rival-lines") ? "rival-lines" : slug; // slug = episode file name; ch = the channel it belongs to
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), SHARD = opt("shard"), NOJOIN = argv.includes("--no-join") || Boolean(SHARD); // --shard i/n renders only beats whose index % n == i and never joins (a later job joins)
 const FPS = 30, PAD = 0.55, XF = 0.4;
-const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural" };
+const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural" }; // Rival Lines: British, deep male voice (owner, 10 Nov 2026)
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
 const REMOTION = join(ROOT, "src/skills/remotion-render");
@@ -41,6 +41,7 @@ const log = { channel: ch, title: ep.title, started: new Date().toISOString(), b
 // scene props exactly as the stills spec builds them (platform/longform/stills/specs.mjs sceneProps)
 function sceneProps(scene) {
   const t = THEMES[ch], p = { ch, t, ...scene };
+  if (scene.credit) p.t = { ...t, credit: scene.credit }; // per-scene data credit (club stories: sources are not StatsBomb)
   const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac;
   if (ch === "hidden-past") {
     if (scene.type === "map") p.theme = t.map;
@@ -51,7 +52,7 @@ function sceneProps(scene) {
 }
 
 // ---- 1. voice (Gemini TTS when a key is present, edge-tts as the recorded fallback; one clip per beat, cached)
-const GRAV = { "hidden-past": "serious", "ai-tested": "serious" };
+const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": "serious" };
 for (const b of beats) {
   const mp3 = join(VDIR, `${b.id}.mp3`);
   if (!existsSync(mp3) || dur(mp3) < 0.5) {

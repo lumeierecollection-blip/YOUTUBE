@@ -65,7 +65,10 @@ function Dot({ P, x, y, team, t, num, name, hi, op = 1, r = 15, keeper }) {
   );
 }
 
-const Flag = ({ team, x, y, s = 150 }) => team === "Spain"
+// Any team other than Spain/England gets a plain club disc (theme colours + initials) instead of the England flag (added for club stories, 14 Nov 2026).
+const ClubDisc = ({ team, x, y, s, t }) => { const c = (t && t.teams && t.teams[team]) || { fill: "#444", ring: "#ddd", ink: "#fff" }, ini = team.split(/\s+/).map((w) => w[0]).join("").slice(0, 3).toUpperCase();
+  return <g transform={`translate(${x},${y})`}><circle cx={s / 2} cy={s / 2} r={s / 2} fill={c.fill} /><circle cx={s / 2} cy={s / 2} r={s / 2 - 8} fill="none" stroke={c.ring} strokeWidth="6" /><text x={s / 2} y={s / 2 + s * 0.14} textAnchor="middle" fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize={s * 0.38} fill={c.ink}>{ini}</text></g>; };
+const Flag = ({ team, x, y, s = 150, t }) => team !== "Spain" && team !== "England" ? <ClubDisc team={team} x={x} y={y} s={s} t={t} /> : team === "Spain"
   ? <g transform={`translate(${x},${y})`}><clipPath id="fs"><circle cx={s / 2} cy={s / 2} r={s / 2} /></clipPath><g clipPath="url(#fs)"><rect width={s} height={s} fill="#AA151B" /><rect y={s / 4} width={s} height={s / 2} fill="#F1BF00" /></g><circle cx={s / 2} cy={s / 2} r={s / 2} fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="3" /></g>
   : <g transform={`translate(${x},${y})`}><clipPath id="fe"><circle cx={s / 2} cy={s / 2} r={s / 2} /></clipPath><g clipPath="url(#fe)"><rect width={s} height={s} fill="#fff" /><rect x={s * 0.42} width={s * 0.16} height={s} fill="#CE1124" /><rect y={s * 0.42} width={s} height={s * 0.16} fill="#CE1124" /></g><circle cx={s / 2} cy={s / 2} r={s / 2} fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="3" /></g>;
 
@@ -74,7 +77,7 @@ function Tags({ t, coming, credit, note }) {
   const f = useCurrentFrame();
   return (<>
     {coming && <div style={{ position: "absolute", right: 70, bottom: 86, fontFamily: F.cond, fontWeight: 700, fontSize: 34, letterSpacing: "0.14em", color: "#fff", opacity: ramp(f, 6, 18) * (0.72 + 0.28 * Math.sin(f / 5)) }}>{coming}</div>}
-    <div style={{ position: "absolute", left: 40, bottom: 26, fontFamily: F.sans, fontSize: 16, color: "rgba(255,255,255,0.55)" }}>{credit || "Data: StatsBomb open data"}{note ? ` · ${note}` : ""}</div>
+    <div style={{ position: "absolute", left: 40, bottom: 26, fontFamily: F.sans, fontSize: 16, color: "rgba(255,255,255,0.55)" }}>{credit || (t && t.credit) || "Data: StatsBomb open data"}{note ? ` · ${note}` : ""}</div>
   </>);
 }
 /** Capital callout on the grass with an accent bar (one per moment). */
@@ -102,7 +105,7 @@ export function ScoreCard({ t, home, away, score, minute, title, scorers = [], d
   return (
     <AbsoluteFill style={{ background: "radial-gradient(70% 70% at 50% 45%, #1b1d20 0%, #0a0b0c 70%, #000 100%)" }}><Fonts />
       {title && <div style={{ position: "absolute", top: 60, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 190, letterSpacing: "0.06em", color: "rgba(255,255,255,0.06)", textTransform: "uppercase", whiteSpace: "nowrap" }}>{title}</div>}
-      <svg width="1920" height="1080" style={{ position: "absolute" }}><g opacity={a}><Flag team={home} x={lerp(f, 0, 16, 300, 380, expo)} y={390} s={240} /><Flag team={away} x={lerp(f, 0, 16, 1380, 1300, expo)} y={390} s={240} /></g></svg>
+      <svg width="1920" height="1080" style={{ position: "absolute" }}><g opacity={a}><Flag t={t} team={home} x={lerp(f, 0, 16, 300, 380, expo)} y={390} s={240} /><Flag t={t} team={away} x={lerp(f, 0, 16, 1380, 1300, expo)} y={390} s={240} /></g></svg>
       <div style={{ position: "absolute", top: 330, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 60, color: t.accent, letterSpacing: "0.08em", opacity: ramp(f, 8, 18) }}>{minute}</div>
       <div style={{ position: "absolute", top: 400, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 230, lineHeight: 1, color: "#fff", opacity: a, transform: `scale(${lerp(f, 0, 14, 1.15, 1, expo)})` }}>{score}</div>
       {strike && <div style={{ position: "absolute", top: 640, left: 760, width: 400 * ramp(f, 16, 28), height: 8, background: t.accent }} />}
@@ -225,7 +228,7 @@ export function StatBars({ t, home, away, rows, title }) {
   return (
     <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
       <div style={{ position: "absolute", top: 80, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.24em", color: "rgba(255,255,255,0.75)" }}>{title}</div>
-      <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag team={home} x={250} y={150} s={110} /><Flag team={away} x={1560} y={150} s={110} /></svg>
+      <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag t={t} team={home} x={250} y={150} s={110} /><Flag t={t} team={away} x={1560} y={150} s={110} /></svg>
       {rows.map((r, i) => { const a = ramp(f, 10 + i * 8, 34 + i * 8, expo), tot = r.a + r.b, y = 330 + i * 140, wa = (r.a / tot) * 1180 * a, wb = (r.b / tot) * 1180 * a;
         return <div key={i}>
           <div style={{ position: "absolute", top: y - 6, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}>{r.label}</div>

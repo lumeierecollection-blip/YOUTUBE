@@ -11,7 +11,7 @@ import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
 import { SPECS } from "../stills/specs.mjs";
 
-const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug;
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug.startsWith("rival-lines") ? "rival-lines" : slug;
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 const REMOTION = join(ROOT, "src/skills/remotion-render"), OUT = join(ROOT, "output/longform-prod", slug, "thumbnails"), RAW = join(OUT, "raw");
 mkdirSync(RAW, { recursive: true });

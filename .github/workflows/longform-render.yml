@@ -20,14 +20,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4, ai-tested-nvidia-chip-trail, rival-lines-leicester]
         shard: [0, 1, 2, 3, 4]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
         run: |
           b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
-          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* || "$b" == rival-lines* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
       - uses: actions/setup-node@v4
@@ -243,7 +243,7 @@ jobs:
           CHANNEL_60_CLIENT_SECRET: ${{ secrets.CHANNEL_60_CLIENT_SECRET }}
           CHANNEL_60_REFRESH_TOKEN: ${{ secrets.CHANNEL_60_REFRESH_TOKEN }}
         run: |
-          e="${{ matrix.episode }}"; ch=$([[ "$e" == hidden-past* ]] && echo hidden-past || ([[ "$e" == ai-tested* ]] && echo ai-tested || echo "$e"))
+          e="${{ matrix.episode }}"; ch=$([[ "$e" == hidden-past* ]] && echo hidden-past || ([[ "$e" == ai-tested* ]] && echo ai-tested || ([[ "$e" == rival-lines* ]] && echo rival-lines || echo "$e")))
           node platform/production/eligibility.mjs --require "$ch"
       - name: Render this shard's beats
         if: steps.want.outputs.run == 'yes'
@@ -277,13 +277,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4, ai-tested-nvidia-chip-trail, rival-lines-leicester]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
         run: |
           b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
-          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* || "$b" == rival-lines* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
       - uses: actions/checkout@v4
         if: steps.want.outputs.run == 'yes'
       - uses: actions/setup-node@v4

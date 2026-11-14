@@ -1,96 +1,145 @@
 {
-  "_note": "Long form v2 themes. Colour lives here, never in a scene spec or a script. Each look cites the references it was drawn from (docs/longform/DESIGN-LAWS.md).",
-  "hidden-past": {
-    "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
-    "map": {
-      "label": "#FFFFFF",
-      "labelBg": "rgba(12,14,18,0.86)",
-      "zone": "#D7263D",
-      "font": "\"Roboto Condensed\", sans-serif"
-    },
-    "route": "#FFD23F",
-    "route2": "#FFFFFF",
-    "held": "#D7263D",
-    "water": "#3FA9F5",
-    "accent": "#D7263D",
-    "countries": {
-      "West Germany": "#F2C14E",
-      "Sweden": "#3FA9F5",
-      "France": "#5B8DEF",
-      "United Kingdom": "#E5484D",
-      "United States": "#9AD06B",
-      "Poland": "#F28C8C",
-      "Bulgaria": "#55C2A2",
-      "Czechoslovakia": "#C69CF2"
-    }
+ "_note": "Long form v2 themes. Colour lives here, never in a scene spec or a script. Each look cites the references it was drawn from (docs/longform/DESIGN-LAWS.md).",
+ "hidden-past": {
+  "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
+  "map": {
+   "label": "#FFFFFF",
+   "labelBg": "rgba(12,14,18,0.86)",
+   "zone": "#D7263D",
+   "font": "\"Roboto Condensed\", sans-serif"
   },
-  "ai-tested": {
-    "_from": "AI Search: dark field, real screens in a browser frame, one bright highlight colour, winner outlined",
-    "bg": "#0A0C10",
-    "dot": "rgba(255,255,255,0.10)",
-    "accent": "#2BD9FE",
-    "good": "#2FBF71",
-    "bad": "#FF4D5E"
-  },
-  "court-and-spotlight": {
-    "_from": "SunnyV2 / FRONTLINE: near-black field, yellow marker on the claim line, white quote cards, pink-red date headers",
-    "bg": "#07080A",
-    "bg2": "#15181D",
-    "mark": "#FFE14D",
-    "accent": "#C8102E",
-    "accent2": "#FFE14D",
-    "date": "#FF5C7A",
-    "speaker": "#FFE14D"
-  },
-  "rival-lines": {
-    "_from": "Football Made Simple: black vignetted pitch, white markings, one accent",
-    "bg": "#050607",
-    "turfA": "#101412",
-    "turfB": "#0c100e",
-    "line": "#e9ece8",
-    "accent": "#C8F04B",
-    "keeper": "#E13CE1",
-    "teams": {
-      "Spain": {
-        "fill": "#D81E2C",
-        "ring": "#F6C700",
-        "ink": "#ffffff",
-        "heat": "#E8323F"
-      },
-      "England": {
-        "fill": "#F4F5F7",
-        "ring": "#1B2A5B",
-        "ink": "#12203f",
-        "heat": "#7FA6FF",
-        "bar": "#C9CED8"
-      }
-    }
-  },
-  "red-space-facts": {
-    "_from": "Astrum/SEA: deep-space black, one cool accent for labels and scale markers; provenance badges in fixed colours (space.jsx KIND)",
-    "accent": "#5CE1E6"
-  },
-  "psychology": {
-    "_from": "our research-notebook look (not the references cartoon styles): warm paper, ink, one red accent",
-    "paper": "#F4EEDF",
-    "rule": "#D9CFB8",
-    "margin": "#D98E7A",
-    "ink": "#1E1B16",
-    "accent": "#C4421A",
-    "accentSoft": "#F2C4A8",
-    "warn": "#C98A00"
-  },
-  "celebrity-news": {
-    "_from": "magazine black with gold, evidence yellow marker shared with investigations",
-    "bg": "#0C0A10",
-    "bg2": "#251B2E",
-    "mark": "#FFE14D",
-    "accent": "#D6336C",
-    "accent2": "#E8C06A",
-    "date": "#FF8FB1",
-    "speaker": "#E8C06A",
-    "gold": "#E8C06A",
-    "light": "#F6F1E9",
-    "highlight": "#FFE14D"
+  "route": "#FFD23F",
+  "route2": "#FFFFFF",
+  "held": "#D7263D",
+  "water": "#3FA9F5",
+  "accent": "#D7263D",
+  "countries": {
+   "West Germany": "#F2C14E",
+   "Sweden": "#3FA9F5",
+   "France": "#5B8DEF",
+   "United Kingdom": "#E5484D",
+   "United States": "#9AD06B",
+   "Poland": "#F28C8C",
+   "Bulgaria": "#55C2A2",
+   "Czechoslovakia": "#C69CF2"
   }
+ },
+ "ai-tested": {
+  "_from": "AI Search: dark field, real screens in a browser frame, one bright highlight colour, winner outlined",
+  "bg": "#0A0C10",
+  "dot": "rgba(255,255,255,0.10)",
+  "accent": "#2BD9FE",
+  "good": "#2FBF71",
+  "bad": "#FF4D5E"
+ },
+ "court-and-spotlight": {
+  "_from": "SunnyV2 / FRONTLINE: near-black field, yellow marker on the claim line, white quote cards, pink-red date headers",
+  "bg": "#07080A",
+  "bg2": "#15181D",
+  "mark": "#FFE14D",
+  "accent": "#C8102E",
+  "accent2": "#FFE14D",
+  "date": "#FF5C7A",
+  "speaker": "#FFE14D"
+ },
+ "rival-lines": {
+  "_from": "Football Made Simple: black vignetted pitch, white markings, one accent",
+  "bg": "#050607",
+  "turfA": "#101412",
+  "turfB": "#0c100e",
+  "line": "#e9ece8",
+  "accent": "#C8F04B",
+  "keeper": "#E13CE1",
+  "teams": {
+   "Spain": {
+    "fill": "#D81E2C",
+    "ring": "#F6C700",
+    "ink": "#ffffff",
+    "heat": "#E8323F"
+   },
+   "England": {
+    "fill": "#F4F5F7",
+    "ring": "#1B2A5B",
+    "ink": "#12203f",
+    "heat": "#7FA6FF",
+    "bar": "#C9CED8"
+   },
+   "Leicester City": {
+    "fill": "#0053A0",
+    "ring": "#FDBE11",
+    "ink": "#ffffff",
+    "heat": "#3C8DE0",
+    "bar": "#0053A0"
+   },
+   "Arsenal": {
+    "fill": "#EF0107",
+    "ring": "#ffffff",
+    "ink": "#ffffff",
+    "heat": "#EF5A5F",
+    "bar": "#EF0107"
+   },
+   "Tottenham Hotspur": {
+    "fill": "#F4F5F7",
+    "ring": "#132257",
+    "ink": "#132257",
+    "heat": "#8EA0D8",
+    "bar": "#C9CED8"
+   },
+   "Opposition": {
+    "fill": "#C9CED8",
+    "ring": "#555",
+    "ink": "#111",
+    "heat": "#aaa",
+    "bar": "#C9CED8"
+   },
+   "Chelsea": {
+    "fill": "#034694",
+    "ring": "#ffffff",
+    "ink": "#ffffff",
+    "heat": "#4B86D1",
+    "bar": "#034694"
+   },
+   "Sunderland": {
+    "fill": "#EB172B",
+    "ring": "#ffffff",
+    "ink": "#ffffff",
+    "heat": "#F06A75",
+    "bar": "#EB172B"
+   },
+   "Manchester United": {
+    "fill": "#DA291C",
+    "ring": "#FBE122",
+    "ink": "#ffffff",
+    "heat": "#E8635B",
+    "bar": "#DA291C"
+   }
+  }
+ },
+ "red-space-facts": {
+  "_from": "Astrum/SEA: deep-space black, one cool accent for labels and scale markers; provenance badges in fixed colours (space.jsx KIND)",
+  "accent": "#5CE1E6"
+ },
+ "psychology": {
+  "_from": "our research-notebook look (not the references cartoon styles): warm paper, ink, one red accent",
+  "paper": "#F4EEDF",
+  "rule": "#D9CFB8",
+  "margin": "#D98E7A",
+  "ink": "#1E1B16",
+  "accent": "#C4421A",
+  "accentSoft": "#F2C4A8",
+  "warn": "#C98A00"
+ },
+ "celebrity-news": {
+  "_from": "magazine black with gold, evidence yellow marker shared with investigations",
+  "bg": "#0C0A10",
+  "bg2": "#251B2E",
+  "mark": "#FFE14D",
+  "accent": "#D6336C",
+  "accent2": "#E8C06A",
+  "date": "#FF8FB1",
+  "speaker": "#E8C06A",
+  "gold": "#E8C06A",
+  "light": "#F6F1E9",
+  "highlight": "#FFE14D"
+ }
 }

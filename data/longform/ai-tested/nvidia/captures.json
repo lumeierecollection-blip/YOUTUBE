@@ -1,0 +1,176 @@
+{
+ "nv-ceo": {
+  "url": "https://nvidianews.nvidia.com/news/nvidia-announces-ceo-transition",
+  "captured": "2026-11-14T19:08:43.694Z",
+  "shots": [
+   [
+    "nv-ceo-0.png",
+    0
+   ]
+  ],
+  "rects": {
+   "Jensen Huang has resigned as President, Chief Executive Officer, and a member of the Board, effective immediately": [
+    {
+     "x": 563,
+     "y": 434,
+     "w": 328,
+     "h": 19
+    },
+    {
+     "x": 95,
+     "y": 459,
+     "w": 475,
+     "h": 19
+    }
+   ],
+   "Colette Kress, current Executive Vice President and Chief Financial Officer": [
+    {
+     "x": 95,
+     "y": 499,
+     "w": 516,
+     "h": 19
+    }
+   ]
+  }
+ },
+ "cbs-sg": {
+  "url": "https://www.cbsnews.com/news/jensen-huang-nvidia-alice-huang-singapore-investigation-china-chips/",
+  "captured": "2026-11-14T19:09:20.257Z",
+  "shots": [
+   [
+    "cbs-sg-0.png",
+    0
+   ],
+   [
+    "cbs-sg-1.png",
+    2100
+   ],
+   [
+    "cbs-sg-2.png",
+    2900
+   ]
+  ],
+  "rects": {
+   "seized the passport of then-Megaspeed chief executive Alice Huang in June 2025 and held it for eight months": [
+    {
+     "x": 397,
+     "y": 519,
+     "w": 409,
+     "h": 26
+    },
+    {
+     "x": 173,
+     "y": 549,
+     "w": 581,
+     "h": 26
+    }
+   ],
+   "had not charged Huang with any crime": [
+    {
+     "x": 678,
+     "y": 2361,
+     "w": 69,
+     "h": 26
+    },
+    {
+     "x": 173,
+     "y": 2391,
+     "w": 277,
+     "h": 26
+    }
+   ],
+   "Megaspeed has denied any wrongdoing": [
+    {
+     "x": 412,
+     "y": 3181,
+     "w": 360,
+     "h": 26
+    }
+   ],
+   "potential false declarations in relation to the purchase of servers": [
+    {
+     "x": 605,
+     "y": 2871,
+     "w": 129,
+     "h": 26
+    },
+    {
+     "x": 173,
+     "y": 2901,
+     "w": 447,
+     "h": 26
+    }
+   ]
+  }
+ },
+ "wiki-doj": {
+  "url": "https://en.wikipedia.org/wiki/Jensen_Huang_spying_scandal",
+  "captured": "2026-11-14T19:09:27.477Z",
+  "shots": [
+   [
+    "wiki-doj-0.png",
+    0
+   ]
+  ],
+  "rects": {
+   "has not yet reached a conclusion regarding whether Alice Huang was acting as a spy for Beijing": [
+    {
+     "x": 733,
+     "y": 715,
+     "w": 78,
+     "h": 17
+    },
+    {
+     "x": 264,
+     "y": 741,
+     "w": 542,
+     "h": 17
+    },
+    {
+     "x": 264,
+     "y": 767,
+     "w": 48,
+     "h": 17
+    }
+   ],
+   "the U.S. Intelligence Community was unsure if she was": [
+    {
+     "x": 630,
+     "y": 793,
+     "w": 27,
+     "h": 17
+    },
+    {
+     "x": 657,
+     "y": 793,
+     "w": 117,
+     "h": 17
+    },
+    {
+     "x": 264,
+     "y": 819,
+     "w": 81,
+     "h": 17
+    },
+    {
+     "x": 657,
+     "y": 793,
+     "w": 117,
+     "h": 17
+    },
+    {
+     "x": 264,
+     "y": 819,
+     "w": 81,
+     "h": 17
+    },
+    {
+     "x": 345,
+     "y": 819,
+     "w": 162,
+     "h": 17
+    }
+   ]
+  }
+ }
+}
