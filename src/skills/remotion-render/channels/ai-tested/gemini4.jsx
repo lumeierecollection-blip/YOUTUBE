@@ -31,9 +31,9 @@ function Hook({ d }) {
     <Label y={260} size={30} delay={4} color={C.dim}>Number only · 50 problems each</Label>
     <Rule y={340} delay={6} />
     <Big y={420} size={300} color={C.bad} delay={6}>{ob.right}<span style={{ fontSize: 130, color: C.dim }}> / {ob.of}</span></Big>
-    <Label y={720} delay={12} color={C.text}>{d.old_model}</Label>
+    <Label y={790} delay={12} color={C.text}>{d.old_model}</Label>
     <Big y={900} size={300} color={C.good} delay={20}>{hb.right}<span style={{ fontSize: 130, color: C.dim }}> / {hb.of}</span></Big>
-    <Label y={1200} delay={26} color={C.text}>{d.new_model}</Label>
+    <Label y={1290} delay={26} color={C.text}>{d.new_model}</Label>
     <Source>AI Tested · GitHub Actions · {d.date}</Source>
   </>);
 }
