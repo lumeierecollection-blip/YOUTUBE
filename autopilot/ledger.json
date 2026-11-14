@@ -1201,17 +1201,17 @@
     },
     "2026-11-14-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "43628404481",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T19:04:28.267Z",
+      "updated_at": "2026-11-14T19:08:59.178Z",
       "stage": "script",
       "topic": "The 1943 Bari Air Raid and Secret Mustard Gas Cargo",
       "score": 61.8,
       "pillar": "Historical disasters and survival stories",
       "hook": "A surprise WWII air raid in Italy secretly unleashed a deadly cloud of chemical weapons the Allies swore they didn't have.",
-      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SPECIFICITY: \"The scan revealed lower jaw arthritis causing pain.\" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.\n  - CLAIM: sentence 7 \"Remember Bentham's skeleton in Wilkins Building"
+      "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: CLOSE no specific action or number. Rewrite the close beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sent"
     }
   },
   "uploads": [
@@ -2523,7 +2523,8 @@
     "AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel",
     "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th",
     "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1",
-    "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name"
+    "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
+    "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
   ],
   "last_poll_at": "2026-11-14T18:46:09.777Z"
 }
