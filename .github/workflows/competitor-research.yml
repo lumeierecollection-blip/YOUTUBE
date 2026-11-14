@@ -1,0 +1,20 @@
+name: competitor-research
+# Read-only: public YouTube Data API search for the last N days; prints a table to the log. No OAuth, no upload, no writes.
+on:
+  workflow_dispatch:
+    inputs:
+      window_days: { description: "days", default: "10" }
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: node scripts/research-competitors.mjs
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          WINDOW_DAYS: ${{ inputs.window_days }}
