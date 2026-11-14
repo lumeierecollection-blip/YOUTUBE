@@ -1201,11 +1201,11 @@
     },
     "2026-11-14-ch1": {
       "channel": "1",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43594111522",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "43628404481",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T12:31:52.584Z",
+      "updated_at": "2026-11-14T18:46:09.778Z",
       "stage": "script",
       "topic": "Jeremy Bentham's severed head and dental pain",
       "score": 65.4,
@@ -2498,5 +2498,5 @@
     "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1",
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name"
   ],
-  "last_poll_at": "2026-11-14T12:18:12.994Z"
+  "last_poll_at": "2026-11-14T18:46:09.777Z"
 }
