@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "The 1,600-year-old Nasca infant skull with cyclopia",
+      "score": 85.8,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "The sinking of the whale ship Essex in 1820",
+      "score": 70.2,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Jeremy Bentham's severed head and dental pain",
+      "score": 65.4,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - SPECIFICITY: \"The scan revealed lower jaw arthritis causing pain.\" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.\n  - CLAIM: sentence 7 \"Remember Bentham's skeleton in Wilkins Building"
+    }
+  ],
+  "selected": null
+}

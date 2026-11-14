@@ -1201,16 +1201,17 @@
     },
     "2026-11-14-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "43594111522",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T12:20:41.732Z",
+      "updated_at": "2026-11-14T12:31:52.584Z",
       "stage": "script",
       "topic": "Jeremy Bentham's severed head and dental pain",
       "score": 65.4,
       "pillar": "Forgotten historical figures",
-      "hook": "CT scans of the severed head of utilitarianism founder Jeremy Bentham revealed he spent his life in excruciating dental pain."
+      "hook": "CT scans of the severed head of utilitarianism founder Jeremy Bentham revealed he spent his life in excruciating dental pain.",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SPECIFICITY: \"The scan revealed lower jaw arthritis causing pain.\" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.\n  - CLAIM: sentence 7 \"Remember Bentham's skeleton in Wilkins Building"
     }
   },
   "uploads": [
