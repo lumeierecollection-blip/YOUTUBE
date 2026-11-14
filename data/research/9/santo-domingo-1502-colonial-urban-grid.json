@@ -1,0 +1,107 @@
+{
+  "topic_slug": "santo-domingo-1502-colonial-urban-grid",
+  "strongest_angle": "Examining how Governor Nicolás de Ovando transferred Santo Domingo to the west bank of the Ozama River in 1502, establishing the chessboard grid pattern that influenced colonial city design across the Americas.",
+  "key_facts": [
+    {
+      "fact": "In 1502, Governor Nicolás de Ovando transferred the institutions of Santo Domingo to the west bank of the Ozama River and laid out the settlement on a grid pattern that became a model for town planners across the New World.",
+      "source_url": "https://whc.unesco.org/en/list/526",
+      "source_name": "UNESCO World Heritage Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "Originally established on the east side of the Ozama River in 1496, the colonial town of Santo Domingo was founded by Bartholomew Columbus in 1498 by order of the Catholic kings.",
+      "source_url": "https://whc.unesco.org/en/list/526",
+      "source_name": "UNESCO World Heritage Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "Santo Domingo's urban layout in 1502 established an administrative center and a spatial model featuring an orthogonal grid for later colonial cities across the New World.",
+      "source_url": "https://repository.tudelft.nl/record/uuid:f9068925-dd02-4472-8279-99564b5dfe21",
+      "source_name": "TU Delft Repository",
+      "confidence": "high"
+    },
+    {
+      "fact": "Francisco de Bobadilla arrived in 1500 and presided over a population of about 300 while reducing taxes on gold production in Hispaniola.",
+      "source_url": "https://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1029&context=hemisphere",
+      "source_name": "Digital Repository UNM",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of island arrival",
+      "value": 1492,
+      "unit": "year",
+      "source_url": "https://whc.unesco.org/en/list/526"
+    },
+    {
+      "label": "Year of initial establishment on the east side",
+      "value": 1496,
+      "unit": "year",
+      "source_url": "https://whc.unesco.org/en/list/526"
+    },
+    {
+      "label": "Year of founding by Bartholomew Columbus",
+      "value": 1498,
+      "unit": "year",
+      "source_url": "https://whc.unesco.org/en/list/526"
+    },
+    {
+      "label": "Year Bobadilla arrived",
+      "value": 1500,
+      "unit": "year",
+      "source_url": "https://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1029&context=hemisphere"
+    },
+    {
+      "label": "Year of transfer to the west bank and grid establishment",
+      "value": 1502,
+      "unit": "year",
+      "source_url": "https://whc.unesco.org/en/list/526"
+    },
+    {
+      "label": "Population under Bobadilla",
+      "value": 300,
+      "unit": "people",
+      "source_url": "https://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1029&context=hemisphere"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Santo Domingo",
+      "kind": "place"
+    },
+    {
+      "name": "Ozama River",
+      "kind": "place"
+    },
+    {
+      "name": "Nicolás de Ovando",
+      "kind": "person"
+    },
+    {
+      "name": "Bartholomew Columbus",
+      "kind": "person"
+    },
+    {
+      "name": "Christopher Columbus",
+      "kind": "person"
+    },
+    {
+      "name": "Francisco de Bobadilla",
+      "kind": "person"
+    },
+    {
+      "name": "Hispaniola",
+      "kind": "place"
+    },
+    {
+      "name": "UNESCO World Heritage Centre",
+      "kind": "organization"
+    },
+    {
+      "name": "Charles V",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

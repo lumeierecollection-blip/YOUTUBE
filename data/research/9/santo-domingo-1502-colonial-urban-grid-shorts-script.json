@@ -1,0 +1,62 @@
+{
+  "channel_id": "9",
+  "topic_slug": "santo-domingo-1502-colonial-urban-grid",
+  "format": "shorts",
+  "hook": "What if 1 grid from 1502 became the model for colonial towns?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if 1 grid from 1502 became the model for colonial towns?",
+      "b_roll": [
+        "Historical colonial urban grid map of Santo Domingo along the Ozama River"
+      ],
+      "text_overlay": {
+        "text": "1502 Grid Model"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why did Ovando build a grid across the river?",
+      "b_roll": [
+        "Map showing the Ozama River with original 1498 settlement on east bank and 1502 west bank transfer"
+      ],
+      "text_overlay": {
+        "text": "Santo Domingo 1502"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, in 1500, Francisco de Bobadilla presided over a population of just 300 people.",
+      "b_roll": [
+        "Historical portrait graphic of Francisco de Bobadilla with 1500 timeline marker"
+      ],
+      "text_overlay": {
+        "text": "300 Residents in 1500"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ovando laid out an administrative center using an orthogonal grid pattern. That layout organized colonial institutions on the west bank. The 1502 grid became a model for town planners across the New World.",
+      "b_roll": [
+        "Orthogonal grid layout diagram showing colonial town spatial center and street lines"
+      ],
+      "text_overlay": {
+        "text": "Orthogonal Grid Plan"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "In 1502, Governor Nicolás de Ovando transferred Santo Domingo to the Ozama River's west bank.",
+      "b_roll": [
+        "Map of colonial city grid layout in Santo Domingo"
+      ],
+      "text_overlay": {
+        "text": "Colonial City Grid"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://whc.unesco.org/en/list/526",
+    "https://digitalrepository.unm.edu/cgi/viewcontent.cgi?article=1029&context=hemisphere"
+  ]
+}
