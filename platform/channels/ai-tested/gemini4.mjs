@@ -33,14 +33,18 @@ export function plan(d = DATA) {
   ];
   const V = (text, claim_ids = []) => ({ text, claim_ids });
   const NR = { allow_no_claim: true, editorial: "question for viewers, drawn from the measured results" };
-  const slots = [
-    { id: "hook", scene: 0, variants: [V("On big multiplications, the older model got none right. Gemini 4 Hydrogen got forty-eight of fifty.", ["big"]), V("Older model: none right. Gemini 4 Hydrogen: forty-eight of fifty.", ["big"])] },
-    { id: "hook2", scene: 0, optional: true, variants: [V("Same problems, same test.", ["design"])] },
-    { id: "example", scene: 1, variants: [V("Take one ten-digit pair. The older model was right for four digits, then wrong. Hydrogen got all twenty.", ["example"]), V("One ten-digit pair: the older model failed after four digits. Hydrogen got all twenty.", ["example"])] },
+  const slots = [ // one sentence per variant: the fitter counts sentences
+    { id: "hook", scene: 0, variants: [V("On big multiplications, the older model got none right.", ["big"]), V("The older model got none right.", ["big"])] },
+    { id: "hook2", scene: 0, variants: [V("Gemini 4 Hydrogen got forty-eight of fifty.", ["big"]), V("Hydrogen got forty-eight of fifty.", ["big"])] },
+    { id: "ex1", scene: 1, variants: [V("Take one ten-digit pair.", ["example"]), V("One ten-digit pair.", ["example"])] },
+    { id: "ex2", scene: 1, variants: [V("The older model was right for four digits, then wrong.", ["example"]), V("The older model failed after four digits.", ["example"])] },
+    { id: "ex3", scene: 1, variants: [V("Hydrogen got all twenty.", ["example"])] },
     { id: "design", scene: 2, variants: [V("We gave both models the same ninety multiplications, from two digits to ten, and code checked every digit.", ["design"]), V("Ninety multiplications, two to ten digits, every digit checked by code.", ["design"])] },
-    { id: "small", scene: 3, variants: [V("Up to five digits, Hydrogen was perfect. The older model got twenty-seven of forty.", ["small"]), V("Up to five digits, Hydrogen got forty of forty. The older model, twenty-seven.", ["small"])] },
+    { id: "small", scene: 3, variants: [V("Up to five digits, Hydrogen was perfect.", ["small"]), V("Up to five digits, Hydrogen got forty of forty.", ["small"])] },
+    { id: "small2", scene: 3, variants: [V("The older model got twenty-seven of forty.", ["small"]), V("The older model, twenty-seven.", ["small"])] },
     { id: "empty", scene: 4, variants: [V("Hydrogen missed two, and both were empty replies, not wrong numbers.", ["empty"]), V("Its two misses were empty replies, not wrong numbers.", ["empty"])] },
-    { id: "limits", scene: 5, variants: [V("One run, with a reply limit that may have cut answers short. Two other Gemini 4 models could not be tested.", ["limits"]), V("One run, with a reply limit. Two other Gemini 4 models were not tested.", ["limits"])] },
+    { id: "limits", scene: 5, variants: [V("This was one run, with a reply limit that may have cut answers short.", ["limits"]), V("One run, with a reply limit.", ["limits"])] },
+    { id: "limits2", scene: 5, optional: true, variants: [V("Two other Gemini 4 models could not be tested.", ["limits"])] },
     { id: "ask", scene: 5, optional: true, ...NR, variants: [V("Would you trust it with your sums?")] },
   ];
   const scenes = [
