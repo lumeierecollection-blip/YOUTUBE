@@ -1,0 +1,91 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43610179636-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "On big multiplications, the older model got none right. Gemini 4 Hydrogen got forty-eight of fifty.",
+      "main_point": "Lead with the result: 0 of 50 against 48 of 50",
+      "visual_objective": "Lead with the result: 0 of 50 against 48 of 50",
+      "treatment": "two-big-numbers",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "big"
+      ],
+      "start_s": 0,
+      "end_s": 8.2
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Take one ten-digit pair. The older model was right for four digits, then wrong. Hydrogen got all twenty.",
+      "main_point": "One ten-digit pair, digit by digit",
+      "visual_objective": "One ten-digit pair, digit by digit",
+      "treatment": "digit-compare",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "example"
+      ],
+      "start_s": 8.2,
+      "end_s": 15.166666666666666
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Ninety multiplications, two to ten digits, every digit checked by code.",
+      "main_point": "Ninety multiplications, same problems, code checked",
+      "visual_objective": "Ninety multiplications, same problems, code checked",
+      "treatment": "big-number-card",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "design"
+      ],
+      "start_s": 15.166666666666666,
+      "end_s": 21
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Up to five digits, Hydrogen was perfect. The older model, twenty-seven.",
+      "main_point": "Right answers by size for both models, with the source line",
+      "visual_objective": "Right answers by size for both models, with the source line",
+      "treatment": "ranked-table",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "small"
+      ],
+      "start_s": 21,
+      "end_s": 26.166666666666668
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Hydrogen missed two, and both were empty replies, not wrong numbers.",
+      "main_point": "The two misses were empty replies",
+      "visual_objective": "The two misses were empty replies",
+      "treatment": "big-number-card",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "empty"
+      ],
+      "start_s": 26.166666666666668,
+      "end_s": 29.9
+    },
+    {
+      "scene_id": "s6",
+      "narration": "One run, with a reply limit. Two other Gemini 4 models could not be tested. Would you trust it with your sums?",
+      "main_point": "Known limits, then the question",
+      "visual_objective": "Known limits, then the question",
+      "treatment": "limits-list",
+      "background": "dark news card",
+      "skill": "remotion",
+      "claim_ids": [
+        "limits"
+      ],
+      "start_s": 29.9,
+      "end_s": 38.5
+    }
+  ]
+}
