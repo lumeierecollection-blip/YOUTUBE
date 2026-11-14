@@ -1187,11 +1187,11 @@
     },
     "2026-11-13-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43431880370",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "43540882209",
       "trigger": "schedule",
-      "updated_at": "2026-11-13T13:39:09.836Z",
+      "updated_at": "2026-11-14T01:29:37.801Z",
       "stage": "script",
       "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
       "score": 74.7,
@@ -2456,5 +2456,5 @@
     "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th",
     "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1"
   ],
-  "last_poll_at": "2026-11-13T20:31:36.917Z"
+  "last_poll_at": "2026-11-14T01:29:37.800Z"
 }
