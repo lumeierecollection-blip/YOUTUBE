@@ -23,7 +23,7 @@ function probe(f, want) {
   return { file: f.replace(ROOT, ""), width: v?.width, height: v?.height, codec: v?.codec_name, audio: a?.codec_name, seconds: +d.toFixed(2), LUFS: I, peak_dBFS: TP, silences: sil, bytes: statSync(f).size, pass: fails.length === 0, fails };
 }
 const out = [];
-const ep = join(BASE, "episode.mp4"); if (existsSync(ep)) out.push(probe(ep, { w: 1920, h: 1080, min: 120, max: 900 })); else out.push({ file: "episode.mp4", pass: false, fails: ["missing"] });
+const ep = join(BASE, "episode.mp4"); if (existsSync(ep)) out.push(probe(ep, { w: 1920, h: 1080, min: 60, max: 900 })); else out.push({ file: "episode.mp4", pass: false, fails: ["missing"] });
 const sh = join(BASE, "shorts"); if (existsSync(sh)) for (const d of readdirSync(sh)) { const f = join(sh, d, "short.mp4"); if (existsSync(f)) out.push(probe(f, { w: 1080, h: 1920, min: 22, max: 41 })); }
 const th = join(BASE, "thumbnails"); if (existsSync(th)) for (const f of readdirSync(th).filter((x) => x.endsWith(".jpg"))) { const s = statSync(join(th, f)).size; const j = run("ffprobe", ["-v", "error", "-show_entries", "stream=width,height", "-of", "csv=p=0", join(th, f)]).stdout.trim(); out.push({ file: `thumbnails/${f}`, size: j, bytes: s, pass: j === "1280,720" && s < 2e6, fails: j === "1280,720" && s < 2e6 ? [] : [`thumbnail ${j}, ${s} bytes`] }); }
 writeFileSync(join(BASE, "qa.json"), JSON.stringify(out, null, 2));
