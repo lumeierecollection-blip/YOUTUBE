@@ -1,0 +1,88 @@
+{
+  "channel_id": "11",
+  "topic_slug": "jupiter-mars-conjunction-november-2026",
+  "format": "shorts",
+  "hook": "Two massive planets will converge within 1 degree in November 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "Two massive planets will converge within 1 degree in November 2026.",
+      "visual_cue": "Cinematic wide rendering of Jupiter and Mars closing distance against a dark starry void.",
+      "sfx_cue": "Deep sub-bass rumble swell with subtle cosmic shimmer.",
+      "b_roll": [
+        "Night sky starry motion lapse",
+        "Planetary orbit graphic rendering"
+      ],
+      "text_overlay": {
+        "text": "NOVEMBER 2026: 1 DEGREE ALIGNMENT"
+      },
+      "transition_out": "Fast whip pan right"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:18",
+      "voiceover": "On November 16, 2026, Jupiter and Mars align in the morning sky. WhatTheStar reports they pass 1.2 degrees apart. Where will observers spot bright Jupiter near star Regulus?",
+      "visual_cue": "Telescopic simulation showing Mars and Jupiter positioning near the bright star Regulus at dawn.",
+      "sfx_cue": "Soft radio telemetry bleeps and calm ambient synth pad.",
+      "b_roll": [
+        "Astronomical observatory dome opening at dawn",
+        "Star chart map showing Leo constellation"
+      ],
+      "text_overlay": {
+        "text": "NOV 16, 2026: 1.2° CONJUNCTION"
+      },
+      "transition_out": "Cross dissolve"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18 - 0:24",
+      "voiceover": "However, EarthSky notes they'll shine in the east with the star Regulus positioned below them.",
+      "visual_cue": "Split view of red disk of Mars alongside radiant white disc of Jupiter in predawn sky.",
+      "sfx_cue": "Low frequency pulse rise.",
+      "b_roll": [
+        "East horizon twilight silhouette",
+        "High resolution Mars telescope view"
+      ],
+      "text_overlay": {
+        "text": "PREDAWN ALIGNMENT"
+      },
+      "transition_out": "Glitch cut"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24 - 0:38",
+      "voiceover": "BBC Sky at Night Magazine confirms they reach 1 degree separation. Jupiter shines at magnitude -2.1 beside red Mars. Hunt notes Chicago observers see them before sunrise.",
+      "visual_cue": "Detailed orbital diagram showing line of sight from Chicago through atmosphere to Jupiter and Mars.",
+      "sfx_cue": "Resonant metallic chime with rising synth orchestra.",
+      "b_roll": [
+        "Chicago skyline at pre-dawn twilight",
+        "Astronomical chart demonstrating planetary magnitude scale"
+      ],
+      "text_overlay": {
+        "text": "JUPITER MAG -2.1 | MARS MAG 0.7"
+      },
+      "transition_out": "Fade to black"
+    },
+    {
+      "id": "close",
+      "timing": "0:38 - 0:44",
+      "voiceover": "The planetary alignment reaches 1.2 degrees separation on November 16.",
+      "visual_cue": "Wide cinematic camera pullback from aligned planets fading into cosmic background.",
+      "sfx_cue": "Sustaining deep ambient note dying out.",
+      "b_roll": [
+        "Wide deep space starfield panning shot"
+      ],
+      "text_overlay": {
+        "text": "NOVEMBER 16, 2026"
+      },
+      "transition_out": "Fade out"
+    }
+  ],
+  "sources_used": [
+    "https://www.skyatnightmagazine.com/news/mars-jupiter-close-approach-14-17-november-2026",
+    "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16",
+    "https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury",
+    "https://whenthecurveslineup.com/2026/11/07/2026-november-16-a-jupiter-mars-conjunction-near-regulus-as-venus-shines-near-spica"
+  ]
+}
