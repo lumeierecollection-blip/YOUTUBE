@@ -6,7 +6,7 @@
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-14T12:31:56.838Z"
+      "collected_at": "2026-11-14T19:09:02.527Z"
     },
     "IIdYdKKUiRM": {
       "channel": "2",
@@ -14,7 +14,7 @@
       "views": 128,
       "likes": 5,
       "comments": 0,
-      "collected_at": "2026-11-14T12:31:57.366Z",
+      "collected_at": "2026-11-14T19:09:03.018Z",
       "average_view_duration_s": 18,
       "average_view_percentage": 69.89,
       "subscribers_gained": 3,
@@ -24,11 +24,11 @@
   "analytics_status": {
     "1": {
       "available": true,
-      "checked_at": "2026-11-14T12:31:57.133Z"
+      "checked_at": "2026-11-14T19:09:02.826Z"
     },
     "2": {
       "available": true,
-      "checked_at": "2026-11-14T12:31:57.534Z"
+      "checked_at": "2026-11-14T19:09:03.291Z"
     }
   }
 }
