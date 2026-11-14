@@ -2,7 +2,7 @@
 /**
  * Production eligibility: only channels whose YouTube credentials are configured in GitHub AND validated may produce videos (Shorts or long-form).
  *
- * Discovery is automatic: it reads the secret NAMES from ALL_SECRETS (a step's `env: ALL_SECRETS: ${{ toJSON(secrets) }}`), finds every complete
+ * Discovery is automatic: it reads every non-empty CHANNEL_NN_* variable the workflow passes (slots 01-60), finds every complete
  * CHANNEL_NN_CLIENT_ID / _CLIENT_SECRET / _REFRESH_TOKEN trio, refreshes a token and asks YouTube which channel it reaches. A slot is eligible only
  * when that channel id equals the expected id on record (config/channel-registry.json upload.youtube_channel_id, else config/autopilot.json).
  * A slot whose expected id is not on record is NOT eligible: the credential cannot be tied to a channel. No secret value is ever printed or written.
@@ -18,6 +18,7 @@ import { accessToken, ytGet } from "../../scripts/autopilot/deliver.mjs";
 
 let all = {};
 try { all = JSON.parse(process.env.ALL_SECRETS || "{}"); } catch { throw new Error("ALL_SECRETS is not valid JSON"); }
+for (const [k, v] of Object.entries(process.env)) if (/^CHANNEL_\d{2}_(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)$/.test(k) && v) all[k] = v; // workflows pass slots 01-60 explicitly; empty = not configured
 const PARTS = ["CLIENT_ID", "CLIENT_SECRET", "REFRESH_TOKEN"];
 const slots = [...new Set(Object.keys(all).map((k) => (k.match(/^CHANNEL_(\d{2})_(CLIENT_ID|CLIENT_SECRET|REFRESH_TOKEN)$/) || [])[1]).filter(Boolean))].sort();
 for (const s of slots) for (const p of PARTS) if (all[`CHANNEL_${s}_${p}`]) process.env[`CHANNEL_${s}_${p}`] = all[`CHANNEL_${s}_${p}`]; // accessToken() reads these
