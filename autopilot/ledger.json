@@ -1198,6 +1198,14 @@
       "pillar": "Trending AI tools and apps",
       "hook": "OpenAI just added a wallet to ChatGPT, letting autonomous AI agents shop and check out items with your money.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Logos of American Express\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/chatgpt-wallet-lets-ai-agents-buy-items-for-you-automaticall-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparis"
+    },
+    "2026-11-14-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "43594111522",
+      "trigger": "schedule",
+      "updated_at": "2026-11-14T12:18:12.994Z"
     }
   },
   "uploads": [
@@ -2475,5 +2483,5 @@
     "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1",
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name"
   ],
-  "last_poll_at": "2026-11-14T01:29:37.800Z"
+  "last_poll_at": "2026-11-14T12:18:12.994Z"
 }
