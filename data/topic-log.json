@@ -1897,9 +1897,14 @@
           "topic": "Edgar Allan Poe and Arthur Conan Doyle Detective Origins Explored",
           "slug": "poe-and-doyle-detective-origins",
           "reserved_at": "2026-11-11T17:36:26.469Z"
+        },
+        {
+          "topic": "Dracula Transylvanian Castle Architecture and Gothic Setting Design",
+          "slug": "dracula-transylvanian-castle-architecture-design",
+          "reserved_at": "2026-11-14T15:13:35.471Z"
         }
       ],
-      "last_generated": "2026-11-12T17:00:08.269Z"
+      "last_generated": "2026-11-14T15:13:35.471Z"
     },
     "8": {
       "channel_name": "Ledger",
