@@ -1096,6 +1096,72 @@
     "size_kb": 2586
    },
    "licence_verified_at_source": true
+  },
+  {
+   "slot": "MUSIC_DOC_WINTER",
+   "kind": "music",
+   "title": "Winter Reflections Winter Reflections Kevin MacLeod (incompetech.com)Licensed under Creative Commons: By Attribution 3.0 Licensehttp://creativecommons.org/licenses/by/3.0/",
+   "creator": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Winter_Reflections_(ISRC_USUAN1100580).mp3",
+   "attribution": "Kevin MacLeod, CC BY 3.0, via Wikimedia Commons",
+   "measured": {
+    "duration_s": 142.1,
+    "integrated_lufs": -16.2
+   },
+   "no_drums_check": {
+    "perc_share": 0.004,
+    "beat_strength": 0.096,
+    "tempo": 129,
+    "onsets_per_s": 2.97,
+    "centroid_hz": 279,
+    "verdict": "SOFT BED"
+   },
+   "status": "downloaded via Wikimedia Commons API, licence checked by platform/production/commons.mjs; NOT auditioned by ear"
+  },
+  {
+   "slot": "MUSIC_DOC_HEART",
+   "kind": "music",
+   "title": "Heart of Nowhere (synthesizer) “Calming, Mystical, Somber” Genre: Soundtrack Length: 2:52 Instrumentation: Choir, Cellos, Basses Tempo: 47 bpm",
+   "creator": "Kevin MacLeod, USA",
+   "license": "CC BY 3.0 us",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Heart_of_Nowhere_(MacLeod,_Kevin)_(ISRC_USUAN1400045).oga",
+   "attribution": "Kevin MacLeod, USA, CC BY 3.0 us, via Wikimedia Commons",
+   "measured": {
+    "duration_s": 172.3,
+    "integrated_lufs": -19.2
+   },
+   "no_drums_check": {
+    "perc_share": 0.003,
+    "beat_strength": 0.346,
+    "tempo": 129,
+    "onsets_per_s": 2.02,
+    "centroid_hz": 623,
+    "verdict": "MIXED"
+   },
+   "status": "downloaded via Wikimedia Commons API, licence checked by platform/production/commons.mjs; NOT auditioned by ear"
+  },
+  {
+   "slot": "MUSIC_DOC_PASSING",
+   "kind": "music",
+   "title": "On the Passing of Time by Kevin MacLeod",
+   "creator": "Kevin MacLeod",
+   "license": "CC BY 3.0",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_On_the_Passing_of_Time.ogg",
+   "attribution": "Kevin MacLeod, CC BY 3.0, via Wikimedia Commons",
+   "measured": {
+    "duration_s": 225.0,
+    "integrated_lufs": -25.6
+   },
+   "no_drums_check": {
+    "perc_share": 0.01,
+    "beat_strength": 0.09,
+    "tempo": 129,
+    "onsets_per_s": 0.76,
+    "centroid_hz": 480,
+    "verdict": "SOFT BED"
+   },
+   "status": "downloaded via Wikimedia Commons API, licence checked by platform/production/commons.mjs; NOT auditioned by ear"
   }
  ],
  "measured_on": "2026-11-13"

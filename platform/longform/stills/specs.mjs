@@ -39,7 +39,7 @@ async function build(ch, slug = ch) {
   const storyboard = [];
   let opening = 0;
   for (const b of ep.beats) {
-    const frames = opening < 5 ? b.frames : [b.frames[b.frames.length > 1 ? 1 : 0]];
+    const bf = b.frames || [45], frames = opening < 5 ? bf : [bf[bf.length > 1 ? 1 : 0]]; // fresh-cycle episodes carry no frames list: default one still per beat
     for (const fr of frames) {
       const group = opening < 5 ? "opening" : "scenes";
       const name = `${group === "opening" ? "o" : "s"}${String(shots.length + 1).padStart(2, "0")}-${b.id}-f${fr}`;
@@ -49,10 +49,10 @@ async function build(ch, slug = ch) {
     }
   }
   const byId = Object.fromEntries(ep.beats.map((b) => [b.id, b]));
-  for (const tx of ep.transitions) for (const [k, fr] of [["start", 0], ["middle", Math.round(tx.dur / 2)], ["end", tx.dur]]) {
+  for (const tx of ep.transitions || []) for (const [k, fr] of [["start", 0], ["middle", Math.round(tx.dur / 2)], ["end", tx.dur]]) {
     shots.push({ name: `${tx.name}-${k}`, group: "transitions", id: "LF2Tx", frame: fr, props: { kind: tx.kind, dur: tx.dur, aAt: tx.aAt, dir: tx.dir, accent: THEMES[ch].accent || "#fff", a: sceneProps(ch, byId[tx.a].scene), b: sceneProps(ch, byId[tx.b].scene) }, label: { scene: `${tx.name} · ${k} (frame ${fr} of ${tx.dur})`, component: `channels/lf2/kit.jsx · Transition "${tx.kind}" (both scenes render live)`, technique: tx.note, mode: `${tx.a} → ${tx.b}` } });
   }
-  for (const th of ep.thumbs) shots.push({ name: th.name, group: "thumbs", id: "LF2Scene", frame: 0, props: sceneProps(ch, { type: "thumb", ...th }), label: { scene: `thumbnail · ${th.name}`, component: comp("thumb"), technique: "built from the episode's real assets and data", mode: "1920x1080 (YouTube shows it at 1280x720)" } });
+  for (const th of ep.thumbs || []) shots.push({ name: th.name, group: "thumbs", id: "LF2Scene", frame: 0, props: sceneProps(ch, { type: "thumb", ...th }), label: { scene: `thumbnail · ${th.name}`, component: comp("thumb"), technique: "built from the episode's real assets and data", mode: "1920x1080 (YouTube shows it at 1280x720)" } });
   return { assets: SOURCES, shots, storyboard, title: ep.title };
 }
 

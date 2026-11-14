@@ -77,6 +77,36 @@
     "vo": "fifteen-foot hole",
     "first": true,
     "purpose": "the mine's blow to the hull (Hormuz episode); the only hit in the episode"
+   },
+   {
+    "type": "accent",
+    "asset": "SFX_IMPACT",
+    "scene": [
+     "footage"
+    ],
+    "vo": "captured the city on the ninth",
+    "first": true,
+    "purpose": "Kaliningrad: the dated capture of Königsberg, 9 April 1945, lands"
+   },
+   {
+    "type": "action",
+    "asset": "SFX_PAPER",
+    "scene": [
+     "footage"
+    ],
+    "vo": "Potsdam Conference",
+    "first": true,
+    "purpose": "Kaliningrad: the Potsdam Agreement text appears on screen as a caption"
+   },
+   {
+    "type": "accent",
+    "asset": "SFX_IMPACT",
+    "scene": [
+     "map"
+    ],
+    "vo": "cut off from the rest of the country",
+    "first": true,
+    "purpose": "Kaliningrad: the exclave is cut off (the dashed route appears)"
    }
   ],
   "ai-tested": [
@@ -208,6 +238,16 @@
     "offset_s": 1.4,
     "min_gap_s": 30,
     "purpose": "a counted figure lands on black (5,000 / 11)"
+   },
+   {
+    "type": "accent",
+    "asset": "SFX_CROWD_GOAL",
+    "scene": [
+     "sequence"
+    ],
+    "vo": "scored",
+    "min_gap_s": 40,
+    "purpose": "a goal shown in the event animation: crowd swell on the word scored, at most once per 40 s"
    }
   ],
   "red-space-facts": [

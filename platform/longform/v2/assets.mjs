@@ -13,6 +13,12 @@ import { commonsAsset } from "../../production/commons.mjs";
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 export const ASSETS = {
   "hidden-past": [
+    ["kg-castle", "File:Königsberg Castle.jpg", "Königsberg Castle and the monument to Emperor William I, before 1945"],
+    ["kg-castle-1900", "File:Schloss Königsberg Ostpreussen vor 1900.jpg", "Königsberg Castle, before 1900"],
+    ["kg-potsdam", "File:Attlee, Truman and Stalin at Potsdam.jpg", "Attlee, Truman and Stalin at the Potsdam Conference, July 1945"],
+    ["kg-cathedral-night", "File:Kaliningrad, Russia, Pregolya River, Kant Island and the Cathedral at night.jpg", "Kaliningrad: Kant Island and the cathedral on the Pregolya"],
+    ["kg-baltiysk-harbour", "File:Baltiysk - Harbour view.jpg", "Baltiysk harbour"],
+    ["kg-bunker-museum", "File:WW2 Bunker Museum (Blindage Museum Музей Бункер Battle of Königsberg Museum) Kaliningrad, Russia 2017-10-29.jpg", "The Bunker Museum of the Battle of Königsberg, Kaliningrad, 2017"],
     ["troop-carrier-1967", "File:Six Day War. An Israeli troop carrier on the east bank of the Suez Canal opposite Ismailia. June 1967. D326-110.jpg", "Israeli troop carrier on the east bank of the canal, June 1967"],
     ["boat-port-tewfik-1967", "File:Six Day War. Israeli boat on Suez Canal. In background Port Tewfik. June 1967. D326-113.jpg", "Israeli boat on the canal, Port Tewfik behind, 9 June 1967"],
     ["bitter-lake-space", "File:Great Bitter Lake from space (hires).JPG", "Great Bitter Lake photographed from orbit, 2002"],

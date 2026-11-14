@@ -17,8 +17,8 @@ const Foot = ({ text }) => text ? <div style={{ position: "absolute", left: 56, 
  * scroll, a highlight box draws round the real words, and a cursor follows a path. shots: one or more real screenshots shown in order.
  * image: { file, w, h }; cam: [{ f, x, y, zoom }]; boxes: [{ rects, from, label }]; cursor: [{ f, x, y, click }]; url: shown in the bar.
  */
-export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [], pill, foot, frame = true }) {
-  const f = useCurrentFrame(), W = 1920, H = 1080, vw = frame ? 1760 : W, vh = frame ? 900 : H, ox = (W - vw) / 2, oy = frame ? 130 : 0;
+export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [], pill, foot, frame = true, desk = false }) {
+  const f = useCurrentFrame(), W = 1920, H = 1080, vw = desk ? 1480 : frame ? 1760 : W, vh = desk ? 850 : frame ? 900 : H, ox = (W - vw) / 2, oy = desk ? 120 : frame ? 130 : 0; // desk: How Money Works-style clipping on a green desk (fresh cycle clone, 15 Nov 2026)
   const cur = shots ? shots.filter((s) => f >= (s.from || 0)).at(-1) : image;
   const keys = cam.length ? cam : [{ f: 0, x: cur.w / 2, y: (vh / 2) * (cur.w / vw), zoom: vw / cur.w }];
   let i = 0; while (i < keys.length - 2 && f > keys[i + 1].f) i++;
@@ -27,11 +27,12 @@ export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [
   const c0 = cursor[ci], c1 = cursor[Math.min(ci + 1, cursor.length - 1)], ck = c0 && c1 && c0 !== c1 ? interpolate(f, [c0.f, c1.f], [0, 1], { ...clamp, easing: eio }) : 0, cur2 = c0 ? [c0.x + (c1.x - c0.x) * ck, c0.y + (c1.y - c0.y) * ck] : null, clicking = cursor.find((c) => c.click && f >= c.f && f < c.f + 12);
   return (
     <Field t={t}>
-      {frame && <div style={{ position: "absolute", left: ox, top: oy - 58, width: vw, height: 58, background: "#1d2026", borderRadius: "14px 14px 0 0", display: "flex", alignItems: "center", gap: 10, padding: "0 20px", boxSizing: "border-box" }}>
+      {desk && <AbsoluteFill style={{ background: `radial-gradient(120% 95% at 50% 38%, ${t.desk?.felt || "#2a6e46"} 0%, ${t.desk?.mid || "#1f5638"} 58%, ${t.desk?.edge || "#11321f"} 100%)` }}><AbsoluteFill style={{ backgroundImage: `linear-gradient(${t.desk?.grid || "rgba(255,255,255,0.05)"} 1px, transparent 1px), linear-gradient(90deg, ${t.desk?.grid || "rgba(255,255,255,0.05)"} 1px, transparent 1px)`, backgroundSize: "64px 64px" }} /></AbsoluteFill>}
+      {frame && !desk && <div style={{ position: "absolute", left: ox, top: oy - 58, width: vw, height: 58, background: "#1d2026", borderRadius: "14px 14px 0 0", display: "flex", alignItems: "center", gap: 10, padding: "0 20px", boxSizing: "border-box" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map((c) => <span key={c} style={{ width: 14, height: 14, borderRadius: "50%", background: c }} />)}
         <div style={{ marginLeft: 20, flex: 1, height: 34, borderRadius: 8, background: "#0f1115", display: "flex", alignItems: "center", padding: "0 16px", fontFamily: F.mono, fontSize: 19, color: "rgba(255,255,255,0.78)", overflow: "hidden", whiteSpace: "nowrap" }}>{url}</div>
       </div>}
-      <div style={{ position: "absolute", left: ox, top: oy, width: vw, height: vh, overflow: "hidden", background: "#fff", borderRadius: frame ? "0 0 14px 14px" : 0, boxShadow: "0 30px 90px rgba(0,0,0,0.6)" }}>
+      <div style={{ position: "absolute", left: ox, top: oy, width: vw, height: vh, overflow: "hidden", background: "#fff", borderRadius: desk ? 4 : frame ? "0 0 14px 14px" : 0, transform: desk ? "rotate(-1.1deg)" : undefined, boxShadow: "0 30px 90px rgba(0,0,0,0.6)" }}>
         <div style={{ position: "absolute", left: vw / 2, top: vh / 2, transform: `scale(${z}) translate(${-cx}px, ${-cy}px)`, transformOrigin: "0 0" }}>
           <Img src={src(cur.file)} style={{ width: cur.w, height: cur.h, display: "block" }} />
           {boxes.filter((b) => f >= b.from && (!b.to || f < b.to)).map((bx, bi) => { const x0 = Math.min(...bx.rects.map((r) => r.x)) - 10, y0 = Math.min(...bx.rects.map((r) => r.y)) - 8, x1 = Math.max(...bx.rects.map((r) => r.x + r.w)) + 10, y1 = Math.max(...bx.rects.map((r) => r.y + r.h)) + 8, p = ramp(f, bx.from, bx.from + 14, eo); return (
@@ -212,7 +213,7 @@ export function AiThumb({ t, big, small, a, b, answer, correct, num, of, numLabe
     <AbsoluteFill style={{ background: "#07090c" }}><Fonts />
       <AbsoluteFill style={{ backgroundImage: `radial-gradient(${t.dot} 2px, transparent 2px)`, backgroundSize: "44px 44px", opacity: 0.6 }} />
       <div style={{ position: "absolute", left: 80, top: 70, fontFamily: F.sans, fontWeight: 700, fontSize: 170, lineHeight: 1, color: "#fff", letterSpacing: "-0.03em", whiteSpace: "pre-line" }}>{big}</div>
-      <div style={{ position: "absolute", left: 80, top: 520, fontFamily: F.mono, fontWeight: 700, fontSize: 330, lineHeight: 1, color: t.bad, letterSpacing: "-0.04em" }}>{num}<span style={{ fontSize: 150, color: "rgba(255,255,255,0.75)" }}> of {of}</span></div>
+      <div style={{ position: "absolute", left: 80, top: 520, fontFamily: F.mono, fontWeight: 700, fontSize: 330, lineHeight: 1, color: t.bad, letterSpacing: "-0.04em" }}>{num}{of != null && <span style={{ fontSize: 150, color: "rgba(255,255,255,0.75)" }}> of {of}</span>}</div>
       <div style={{ position: "absolute", left: 90, top: 880, fontFamily: F.sans, fontWeight: 700, fontSize: 70, color: "rgba(255,255,255,0.88)" }}>{numLabel}</div>
       {small && <div style={{ position: "absolute", right: 80, top: 80, fontFamily: F.sans, fontWeight: 700, fontSize: 80, color: "#0a0c10", background: t.accent, padding: "4px 28px", transform: "rotate(3deg)" }}>{small}</div>}
     </AbsoluteFill>

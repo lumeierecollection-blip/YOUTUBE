@@ -30,7 +30,14 @@
   "dot": "rgba(255,255,255,0.10)",
   "accent": "#2BD9FE",
   "good": "#2FBF71",
-  "bad": "#FF4D5E"
+  "bad": "#FF4D5E",
+  "desk": {
+   "_from": "How Money Works (WXV9emaUeo0): article clippings on a green desk",
+   "felt": "#2a6e46",
+   "mid": "#1f5638",
+   "edge": "#11321f",
+   "grid": "rgba(255,255,255,0.05)"
+  }
  },
  "court-and-spotlight": {
   "_from": "SunnyV2 / FRONTLINE: near-black field, yellow marker on the claim line, white quote cards, pink-red date headers",
