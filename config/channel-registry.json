@@ -64,7 +64,7 @@
       "foundations": ["https://github.com/GovinduSasanka/opus-motion-library", "https://github.com/haidrrrry/claude-remotion-skill", "https://github.com/remotion-dev/skills", "remotion"],
       "voice_direction": "Follows the format: serious, energetic or analytical.", "tts_voice": "en-US-GuyNeural",
       "formats": ["investigation", "entertainment_magazine", "vox_explainer"], "claim_categories": ["allegation", "charge", "conviction", "proven_fact", "disputed_claim", "public_statement", "speculation", "award_won", "nomination"],
-      "upload": { "status": "configured", "secret_prefix": "CHANNEL_03" }
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_03", "youtube_channel_id": "UCUVHRlp26j2gN_W9wgoQAxw" }
     },
     {
       "key": "world-view", "name": "World View", "legacy_channel_id": null, "priority": 3, "agent": "agent-world-view",
