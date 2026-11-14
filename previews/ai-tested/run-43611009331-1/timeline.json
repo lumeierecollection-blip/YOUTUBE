@@ -1,0 +1,614 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "two-big-numbers",
+      "objective": "Lead with the result: 0 of 50 against 48 of 50",
+      "background": "dark news card",
+      "from": 0,
+      "to": 241,
+      "start_s": 0,
+      "end_s": 8.033333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "example",
+      "treatment": "digit-compare",
+      "objective": "One ten-digit pair, digit by digit",
+      "background": "dark news card",
+      "from": 241,
+      "to": 445,
+      "start_s": 8.033333333333333,
+      "end_s": 14.833333333333334
+    },
+    {
+      "id": "s3",
+      "kind": "design",
+      "treatment": "big-number-card",
+      "objective": "Ninety multiplications, same problems, code checked",
+      "background": "dark news card",
+      "from": 445,
+      "to": 649,
+      "start_s": 14.833333333333334,
+      "end_s": 21.633333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "results",
+      "treatment": "ranked-table",
+      "objective": "Right answers by size for both models, with the source line",
+      "background": "dark news card",
+      "from": 649,
+      "to": 800,
+      "start_s": 21.633333333333333,
+      "end_s": 26.666666666666668
+    },
+    {
+      "id": "s5",
+      "kind": "empty",
+      "treatment": "big-number-card",
+      "objective": "The two misses were empty replies",
+      "background": "dark news card",
+      "from": 800,
+      "to": 936,
+      "start_s": 26.666666666666668,
+      "end_s": 31.2
+    },
+    {
+      "id": "s6",
+      "kind": "close",
+      "treatment": "limits-list",
+      "objective": "Known limits, then the question",
+      "background": "dark news card",
+      "from": 936,
+      "to": 1175,
+      "start_s": 31.2,
+      "end_s": 39.166666666666664
+    }
+  ],
+  "captions": [
+    {
+      "text": "On big multiplications the older",
+      "from": 0,
+      "to": 70,
+      "words": [
+        {
+          "text": "On",
+          "from": 0
+        },
+        {
+          "text": "big",
+          "from": 13
+        },
+        {
+          "text": "multiplications",
+          "from": 20
+        },
+        {
+          "text": "the",
+          "from": 58
+        },
+        {
+          "text": "older",
+          "from": 63
+        }
+      ]
+    },
+    {
+      "text": "model got none right",
+      "from": 70,
+      "to": 118,
+      "words": [
+        {
+          "text": "model",
+          "from": 70
+        },
+        {
+          "text": "got",
+          "from": 82
+        },
+        {
+          "text": "none",
+          "from": 94
+        },
+        {
+          "text": "right",
+          "from": 103
+        }
+      ]
+    },
+    {
+      "text": "Gemini 4 Hydrogen got forty-eight",
+      "from": 131,
+      "to": 187,
+      "words": [
+        {
+          "text": "Gemini",
+          "from": 131
+        },
+        {
+          "text": "4",
+          "from": 140
+        },
+        {
+          "text": "Hydrogen",
+          "from": 150
+        },
+        {
+          "text": "got",
+          "from": 164
+        },
+        {
+          "text": "forty-eight",
+          "from": 176
+        }
+      ]
+    },
+    {
+      "text": "of fifty",
+      "from": 191,
+      "to": 225,
+      "words": [
+        {
+          "text": "of",
+          "from": 191
+        },
+        {
+          "text": "fifty",
+          "from": 203
+        }
+      ]
+    },
+    {
+      "text": "Take one ten-digit pair",
+      "from": 241,
+      "to": 283,
+      "words": [
+        {
+          "text": "Take",
+          "from": 241
+        },
+        {
+          "text": "one",
+          "from": 241
+        },
+        {
+          "text": "ten-digit",
+          "from": 251
+        },
+        {
+          "text": "pair",
+          "from": 271
+        }
+      ]
+    },
+    {
+      "text": "The older model failed after",
+      "from": 301,
+      "to": 340,
+      "words": [
+        {
+          "text": "The",
+          "from": 301
+        },
+        {
+          "text": "older",
+          "from": 302
+        },
+        {
+          "text": "model",
+          "from": 308
+        },
+        {
+          "text": "failed",
+          "from": 317
+        },
+        {
+          "text": "after",
+          "from": 328
+        }
+      ]
+    },
+    {
+      "text": "four digits",
+      "from": 340,
+      "to": 364,
+      "words": [
+        {
+          "text": "four",
+          "from": 340
+        },
+        {
+          "text": "digits",
+          "from": 353
+        }
+      ]
+    },
+    {
+      "text": "Hydrogen got all twenty",
+      "from": 382,
+      "to": 431,
+      "words": [
+        {
+          "text": "Hydrogen",
+          "from": 382
+        },
+        {
+          "text": "got",
+          "from": 392
+        },
+        {
+          "text": "all",
+          "from": 403
+        },
+        {
+          "text": "twenty",
+          "from": 410
+        }
+      ]
+    },
+    {
+      "text": "We gave both models the",
+      "from": 445,
+      "to": 479,
+      "words": [
+        {
+          "text": "We",
+          "from": 445
+        },
+        {
+          "text": "gave",
+          "from": 448
+        },
+        {
+          "text": "both",
+          "from": 452
+        },
+        {
+          "text": "models",
+          "from": 462
+        },
+        {
+          "text": "the",
+          "from": 472
+        }
+      ]
+    },
+    {
+      "text": "same ninety multiplications from two",
+      "from": 479,
+      "to": 547,
+      "words": [
+        {
+          "text": "same",
+          "from": 479
+        },
+        {
+          "text": "ninety",
+          "from": 487
+        },
+        {
+          "text": "multiplications",
+          "from": 500
+        },
+        {
+          "text": "from",
+          "from": 524
+        },
+        {
+          "text": "two",
+          "from": 540
+        }
+      ]
+    },
+    {
+      "text": "digits to ten and code",
+      "from": 547,
+      "to": 593,
+      "words": [
+        {
+          "text": "digits",
+          "from": 547
+        },
+        {
+          "text": "to",
+          "from": 554
+        },
+        {
+          "text": "ten",
+          "from": 563
+        },
+        {
+          "text": "and",
+          "from": 571
+        },
+        {
+          "text": "code",
+          "from": 586
+        }
+      ]
+    },
+    {
+      "text": "checked every digit",
+      "from": 593,
+      "to": 627,
+      "words": [
+        {
+          "text": "checked",
+          "from": 593
+        },
+        {
+          "text": "every",
+          "from": 601
+        },
+        {
+          "text": "digit",
+          "from": 614
+        }
+      ]
+    },
+    {
+      "text": "Up to five digits",
+      "from": 649,
+      "to": 676,
+      "words": [
+        {
+          "text": "Up",
+          "from": 649
+        },
+        {
+          "text": "to",
+          "from": 650
+        },
+        {
+          "text": "five",
+          "from": 655
+        },
+        {
+          "text": "digits",
+          "from": 664
+        }
+      ]
+    },
+    {
+      "text": "Hydrogen was perfect",
+      "from": 685,
+      "to": 716,
+      "words": [
+        {
+          "text": "Hydrogen",
+          "from": 685
+        },
+        {
+          "text": "was",
+          "from": 694
+        },
+        {
+          "text": "perfect",
+          "from": 703
+        }
+      ]
+    },
+    {
+      "text": "The older model twenty-seven",
+      "from": 734,
+      "to": 777,
+      "words": [
+        {
+          "text": "The",
+          "from": 734
+        },
+        {
+          "text": "older",
+          "from": 734
+        },
+        {
+          "text": "model",
+          "from": 740
+        },
+        {
+          "text": "twenty-seven",
+          "from": 749
+        }
+      ]
+    },
+    {
+      "text": "Hydrogen missed two and both",
+      "from": 800,
+      "to": 850,
+      "words": [
+        {
+          "text": "Hydrogen",
+          "from": 800
+        },
+        {
+          "text": "missed",
+          "from": 811
+        },
+        {
+          "text": "two",
+          "from": 819
+        },
+        {
+          "text": "and",
+          "from": 831
+        },
+        {
+          "text": "both",
+          "from": 845
+        }
+      ]
+    },
+    {
+      "text": "were empty replies not wrong",
+      "from": 850,
+      "to": 902,
+      "words": [
+        {
+          "text": "were",
+          "from": 850
+        },
+        {
+          "text": "empty",
+          "from": 857
+        },
+        {
+          "text": "replies",
+          "from": 866
+        },
+        {
+          "text": "not",
+          "from": 874
+        },
+        {
+          "text": "wrong",
+          "from": 894
+        }
+      ]
+    },
+    {
+      "text": "numbers",
+      "from": 902,
+      "to": 914,
+      "words": [
+        {
+          "text": "numbers",
+          "from": 902
+        }
+      ]
+    },
+    {
+      "text": "One run with a reply",
+      "from": 936,
+      "to": 979,
+      "words": [
+        {
+          "text": "One",
+          "from": 936
+        },
+        {
+          "text": "run",
+          "from": 947
+        },
+        {
+          "text": "with",
+          "from": 953
+        },
+        {
+          "text": "a",
+          "from": 969
+        },
+        {
+          "text": "reply",
+          "from": 971
+        }
+      ]
+    },
+    {
+      "text": "limit",
+      "from": 979,
+      "to": 992,
+      "words": [
+        {
+          "text": "limit",
+          "from": 979
+        }
+      ]
+    },
+    {
+      "text": "Two other Gemini 4 models",
+      "from": 1010,
+      "to": 1053,
+      "words": [
+        {
+          "text": "Two",
+          "from": 1010
+        },
+        {
+          "text": "other",
+          "from": 1017
+        },
+        {
+          "text": "Gemini",
+          "from": 1025
+        },
+        {
+          "text": "4",
+          "from": 1033
+        },
+        {
+          "text": "models",
+          "from": 1043
+        }
+      ]
+    },
+    {
+      "text": "could not be tested",
+      "from": 1053,
+      "to": 1084,
+      "words": [
+        {
+          "text": "could",
+          "from": 1053
+        },
+        {
+          "text": "not",
+          "from": 1061
+        },
+        {
+          "text": "be",
+          "from": 1067
+        },
+        {
+          "text": "tested",
+          "from": 1073
+        }
+      ]
+    },
+    {
+      "text": "Would you trust it with",
+      "from": 1102,
+      "to": 1129,
+      "words": [
+        {
+          "text": "Would",
+          "from": 1102
+        },
+        {
+          "text": "you",
+          "from": 1105
+        },
+        {
+          "text": "trust",
+          "from": 1111
+        },
+        {
+          "text": "it",
+          "from": 1120
+        },
+        {
+          "text": "with",
+          "from": 1125
+        }
+      ]
+    },
+    {
+      "text": "your sums",
+      "from": 1129,
+      "to": 1146,
+      "words": [
+        {
+          "text": "your",
+          "from": 1129
+        },
+        {
+          "text": "sums",
+          "from": 1136
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1175,
+  "duration_s": 39.166666666666664
+}
