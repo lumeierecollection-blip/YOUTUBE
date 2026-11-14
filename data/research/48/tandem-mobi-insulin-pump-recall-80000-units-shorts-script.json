@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "tandem-mobi-insulin-pump-recall-80000-units",
+  "format": "shorts",
+  "hook": "Tandem Diabetes Care recalled 80,000 Mobi insulin pumps over false occlusion alarms suspending delivery.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Tandem Diabetes Care recalled 80,000 Mobi insulin pumps over false occlusion alarms suspending delivery.",
+      "text_overlay": {
+        "text": "80,000 PUMPS RECALLED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 23, 2026, Tandem Diabetes Care recalled 80,000 Mobi insulin pumps. Why did these Mobi drive modules trigger false occlusion alarms?",
+      "text_overlay": {
+        "text": "TANDEM MOBI RECALL"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, Tandem Diabetes Care received 230 adverse event reports requiring medical intervention from false alarms.",
+      "text_overlay": {
+        "text": "230 ADVERSE EVENTS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Increased friction within the Mobi pump's drive module reduces power, causing false occlusion alarms. Tandem Diabetes Care documented 230 adverse events linked to this hardware failure.",
+      "text_overlay": {
+        "text": "INSULIN DELIVERY SUSPENDED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That leaves 80,000 Mobi insulin pumps requiring correction.",
+      "text_overlay": {
+        "text": "80,000 UNITS AFFECTED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://medgadget.org/tandem-mobi-recall-false-occlusion-alarm",
+    "https://www.medtechdive.com/news/tandem-recalls-mobi-insulin-pump-reports-230-adverse-events/874386"
+  ]
+}
