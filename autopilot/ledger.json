@@ -1191,12 +1191,12 @@
       "attempts": 2,
       "run_id": "43540882209",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T01:31:30.591Z",
-      "stage": "script",
-      "topic": "Microsoft Outage Disables Copilot and Teams",
-      "score": 82,
-      "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "A massive Microsoft outage just took down Outlook, Teams, and Copilot for thousands of workers.",
+      "updated_at": "2026-11-14T01:37:52.857Z",
+      "stage": "research",
+      "topic": "ChatGPT Wallet Lets AI Agents Buy Items for You Automatically",
+      "score": 79.8,
+      "pillar": "Trending AI tools and apps",
+      "hook": "OpenAI just added a wallet to ChatGPT, letting autonomous AI agents shop and check out items with your money.",
       "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"1 results.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLAIM: sentence 1 \"You could receive risky links across 6,795 AI responses.\" — the claim \"risky links | appear across | 6,795 AI responses\" is not in the research (F1 and N1 state that 6,795 i"
     }
   },
@@ -2373,6 +2373,15 @@
       "at_ms": 1794619870079,
       "score": 82,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "ChatGPT Wallet Lets AI Agents Buy Items for You Automatically",
+      "slug": "chatgpt-wallet-lets-ai-agents-buy-items-for-you-automaticall",
+      "slot": "2026-11-13-ch2",
+      "at_ms": 1794620272857,
+      "score": 79.8,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
