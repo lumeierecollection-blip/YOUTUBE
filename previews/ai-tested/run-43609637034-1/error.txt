@@ -1,0 +1,4 @@
+Error: narration is 40.68s at natural speed (allowed 54 to 59.75s); change the script, never the speed
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:39:41)
+    at async Module.gemini4Preview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/gemini4-preview.mjs:32:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

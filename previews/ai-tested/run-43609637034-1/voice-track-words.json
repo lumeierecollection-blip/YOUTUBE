@@ -1,0 +1,723 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (99/109 words matched)",
+ "voice": "Charon",
+ "words": [
+  {
+   "text": "On",
+   "start": 0.0,
+   "end": 0.4,
+   "sentence": 0
+  },
+  {
+   "text": "big",
+   "start": 0.4,
+   "end": 0.62,
+   "sentence": 0
+  },
+  {
+   "text": "multiplications",
+   "start": 0.62,
+   "end": 1.56,
+   "sentence": 0
+  },
+  {
+   "text": "the",
+   "start": 1.9,
+   "end": 2.0,
+   "sentence": 0
+  },
+  {
+   "text": "older",
+   "start": 2.0,
+   "end": 2.24,
+   "sentence": 0
+  },
+  {
+   "text": "model",
+   "start": 2.24,
+   "end": 2.6,
+   "sentence": 0
+  },
+  {
+   "text": "got",
+   "start": 2.6,
+   "end": 2.98,
+   "sentence": 0
+  },
+  {
+   "text": "none",
+   "start": 2.98,
+   "end": 3.36,
+   "sentence": 0
+  },
+  {
+   "text": "right",
+   "start": 3.36,
+   "end": 3.76,
+   "sentence": 0
+  },
+  {
+   "text": "Gemini",
+   "start": 4.34,
+   "end": 4.62,
+   "sentence": 1
+  },
+  {
+   "text": "4",
+   "start": 4.62,
+   "end": 5.02,
+   "sentence": 1
+  },
+  {
+   "text": "Hydrogen",
+   "start": 5.02,
+   "end": 5.5,
+   "sentence": 1
+  },
+  {
+   "text": "got",
+   "start": 5.5,
+   "end": 5.9,
+   "sentence": 1
+  },
+  {
+   "text": "forty-eight",
+   "start": 5.9,
+   "end": 6.12,
+   "sentence": 1
+  },
+  {
+   "text": "of",
+   "start": 6.34,
+   "end": 6.8,
+   "sentence": 1
+  },
+  {
+   "text": "fifty",
+   "start": 6.8,
+   "end": 7.28,
+   "sentence": 1
+  },
+  {
+   "text": "Take",
+   "start": 7.76,
+   "end": 7.81,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 7.8,
+   "end": 8.1,
+   "sentence": 2
+  },
+  {
+   "text": "ten-digit",
+   "start": 8.1,
+   "end": 8.44,
+   "sentence": 2
+  },
+  {
+   "text": "pair",
+   "start": 8.78,
+   "end": 9.04,
+   "sentence": 2
+  },
+  {
+   "text": "The",
+   "start": 9.7,
+   "end": 9.75,
+   "sentence": 3
+  },
+  {
+   "text": "older",
+   "start": 9.7,
+   "end": 9.86,
+   "sentence": 3
+  },
+  {
+   "text": "model",
+   "start": 9.86,
+   "end": 10.18,
+   "sentence": 3
+  },
+  {
+   "text": "was",
+   "start": 10.18,
+   "end": 10.46,
+   "sentence": 3
+  },
+  {
+   "text": "right",
+   "start": 10.46,
+   "end": 10.68,
+   "sentence": 3
+  },
+  {
+   "text": "for",
+   "start": 10.68,
+   "end": 10.96,
+   "sentence": 3
+  },
+  {
+   "text": "four",
+   "start": 10.96,
+   "end": 11.34,
+   "sentence": 3
+  },
+  {
+   "text": "digits",
+   "start": 11.34,
+   "end": 11.58,
+   "sentence": 3
+  },
+  {
+   "text": "then",
+   "start": 12.06,
+   "end": 12.2,
+   "sentence": 3
+  },
+  {
+   "text": "wrong",
+   "start": 12.2,
+   "end": 12.38,
+   "sentence": 3
+  },
+  {
+   "text": "Hydrogen",
+   "start": 13.2,
+   "end": 13.4,
+   "sentence": 4
+  },
+  {
+   "text": "got",
+   "start": 13.4,
+   "end": 13.74,
+   "sentence": 4
+  },
+  {
+   "text": "all",
+   "start": 13.74,
+   "end": 14.08,
+   "sentence": 4
+  },
+  {
+   "text": "twenty",
+   "start": 14.08,
+   "end": 14.62,
+   "sentence": 4
+  },
+  {
+   "text": "We",
+   "start": 15.16,
+   "end": 15.22,
+   "sentence": 5
+  },
+  {
+   "text": "gave",
+   "start": 15.22,
+   "end": 15.38,
+   "sentence": 5
+  },
+  {
+   "text": "both",
+   "start": 15.38,
+   "end": 15.66,
+   "sentence": 5
+  },
+  {
+   "text": "models",
+   "start": 15.66,
+   "end": 16.02,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 16.02,
+   "end": 16.26,
+   "sentence": 5
+  },
+  {
+   "text": "same",
+   "start": 16.26,
+   "end": 16.5,
+   "sentence": 5
+  },
+  {
+   "text": "ninety",
+   "start": 16.5,
+   "end": 16.7,
+   "sentence": 5
+  },
+  {
+   "text": "multiplications",
+   "start": 16.9,
+   "end": 17.72,
+   "sentence": 5
+  },
+  {
+   "text": "from",
+   "start": 18.02,
+   "end": 18.22,
+   "sentence": 5
+  },
+  {
+   "text": "two",
+   "start": 18.22,
+   "end": 18.44,
+   "sentence": 5
+  },
+  {
+   "text": "digits",
+   "start": 18.44,
+   "end": 18.7,
+   "sentence": 5
+  },
+  {
+   "text": "to",
+   "start": 18.7,
+   "end": 19.04,
+   "sentence": 5
+  },
+  {
+   "text": "ten",
+   "start": 19.04,
+   "end": 19.34,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 19.64,
+   "end": 19.84,
+   "sentence": 5
+  },
+  {
+   "text": "code",
+   "start": 19.84,
+   "end": 20.08,
+   "sentence": 5
+  },
+  {
+   "text": "checked",
+   "start": 20.08,
+   "end": 20.3,
+   "sentence": 5
+  },
+  {
+   "text": "every",
+   "start": 20.3,
+   "end": 20.82,
+   "sentence": 5
+  },
+  {
+   "text": "digit",
+   "start": 20.82,
+   "end": 21.14,
+   "sentence": 5
+  },
+  {
+   "text": "Up",
+   "start": 21.84,
+   "end": 21.89,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 21.86,
+   "end": 22.0,
+   "sentence": 6
+  },
+  {
+   "text": "five",
+   "start": 22.0,
+   "end": 22.3,
+   "sentence": 6
+  },
+  {
+   "text": "digits",
+   "start": 22.3,
+   "end": 22.56,
+   "sentence": 6
+  },
+  {
+   "text": "Hydrogen",
+   "start": 22.92,
+   "end": 23.24,
+   "sentence": 6
+  },
+  {
+   "text": "got",
+   "start": 23.24,
+   "end": 23.52,
+   "sentence": 6
+  },
+  {
+   "text": "forty",
+   "start": 23.52,
+   "end": 23.67,
+   "sentence": 6
+  },
+  {
+   "text": "of",
+   "start": 23.82,
+   "end": 24.12,
+   "sentence": 6
+  },
+  {
+   "text": "forty",
+   "start": 24.12,
+   "end": 24.55,
+   "sentence": 6
+  },
+  {
+   "text": "The",
+   "start": 24.98,
+   "end": 25.06,
+   "sentence": 7
+  },
+  {
+   "text": "older",
+   "start": 25.06,
+   "end": 25.18,
+   "sentence": 7
+  },
+  {
+   "text": "model",
+   "start": 25.18,
+   "end": 25.46,
+   "sentence": 7
+  },
+  {
+   "text": "got",
+   "start": 25.46,
+   "end": 25.78,
+   "sentence": 7
+  },
+  {
+   "text": "twenty-seven",
+   "start": 25.78,
+   "end": 25.99,
+   "sentence": 7
+  },
+  {
+   "text": "of",
+   "start": 26.2,
+   "end": 26.66,
+   "sentence": 7
+  },
+  {
+   "text": "forty",
+   "start": 26.66,
+   "end": 26.77,
+   "sentence": 7
+  },
+  {
+   "text": "Hydrogen",
+   "start": 26.88,
+   "end": 27.78,
+   "sentence": 8
+  },
+  {
+   "text": "missed",
+   "start": 27.78,
+   "end": 28.02,
+   "sentence": 8
+  },
+  {
+   "text": "two",
+   "start": 28.02,
+   "end": 28.44,
+   "sentence": 8
+  },
+  {
+   "text": "and",
+   "start": 28.82,
+   "end": 28.87,
+   "sentence": 8
+  },
+  {
+   "text": "both",
+   "start": 28.84,
+   "end": 29.08,
+   "sentence": 8
+  },
+  {
+   "text": "were",
+   "start": 29.08,
+   "end": 29.28,
+   "sentence": 8
+  },
+  {
+   "text": "empty",
+   "start": 29.28,
+   "end": 29.54,
+   "sentence": 8
+  },
+  {
+   "text": "replies",
+   "start": 29.54,
+   "end": 29.94,
+   "sentence": 8
+  },
+  {
+   "text": "not",
+   "start": 30.38,
+   "end": 30.56,
+   "sentence": 8
+  },
+  {
+   "text": "wrong",
+   "start": 30.56,
+   "end": 30.82,
+   "sentence": 8
+  },
+  {
+   "text": "numbers",
+   "start": 30.82,
+   "end": 31.16,
+   "sentence": 8
+  },
+  {
+   "text": "This",
+   "start": 31.9,
+   "end": 32.1,
+   "sentence": 9
+  },
+  {
+   "text": "was",
+   "start": 32.1,
+   "end": 32.26,
+   "sentence": 9
+  },
+  {
+   "text": "one",
+   "start": 32.26,
+   "end": 32.6,
+   "sentence": 9
+  },
+  {
+   "text": "run",
+   "start": 32.6,
+   "end": 32.88,
+   "sentence": 9
+  },
+  {
+   "text": "with",
+   "start": 33.12,
+   "end": 33.32,
+   "sentence": 9
+  },
+  {
+   "text": "a",
+   "start": 33.32,
+   "end": 33.4,
+   "sentence": 9
+  },
+  {
+   "text": "reply",
+   "start": 33.4,
+   "end": 33.7,
+   "sentence": 9
+  },
+  {
+   "text": "limit",
+   "start": 33.7,
+   "end": 33.98,
+   "sentence": 9
+  },
+  {
+   "text": "that",
+   "start": 33.98,
+   "end": 34.2,
+   "sentence": 9
+  },
+  {
+   "text": "may",
+   "start": 34.2,
+   "end": 34.4,
+   "sentence": 9
+  },
+  {
+   "text": "have",
+   "start": 34.4,
+   "end": 34.58,
+   "sentence": 9
+  },
+  {
+   "text": "cut",
+   "start": 34.58,
+   "end": 34.76,
+   "sentence": 9
+  },
+  {
+   "text": "answers",
+   "start": 34.76,
+   "end": 34.96,
+   "sentence": 9
+  },
+  {
+   "text": "short",
+   "start": 34.96,
+   "end": 35.38,
+   "sentence": 9
+  },
+  {
+   "text": "Two",
+   "start": 36.08,
+   "end": 36.13,
+   "sentence": 10
+  },
+  {
+   "text": "other",
+   "start": 36.12,
+   "end": 36.38,
+   "sentence": 10
+  },
+  {
+   "text": "Gemini",
+   "start": 36.38,
+   "end": 36.64,
+   "sentence": 10
+  },
+  {
+   "text": "4",
+   "start": 36.64,
+   "end": 36.96,
+   "sentence": 10
+  },
+  {
+   "text": "models",
+   "start": 36.96,
+   "end": 37.3,
+   "sentence": 10
+  },
+  {
+   "text": "could",
+   "start": 37.3,
+   "end": 37.54,
+   "sentence": 10
+  },
+  {
+   "text": "not",
+   "start": 37.54,
+   "end": 37.78,
+   "sentence": 10
+  },
+  {
+   "text": "be",
+   "start": 37.78,
+   "end": 37.96,
+   "sentence": 10
+  },
+  {
+   "text": "tested",
+   "start": 37.96,
+   "end": 38.18,
+   "sentence": 10
+  },
+  {
+   "text": "Would",
+   "start": 38.94,
+   "end": 39.02,
+   "sentence": 11
+  },
+  {
+   "text": "you",
+   "start": 39.02,
+   "end": 39.22,
+   "sentence": 11
+  },
+  {
+   "text": "trust",
+   "start": 39.22,
+   "end": 39.48,
+   "sentence": 11
+  },
+  {
+   "text": "it",
+   "start": 39.48,
+   "end": 39.66,
+   "sentence": 11
+  },
+  {
+   "text": "with",
+   "start": 39.66,
+   "end": 39.78,
+   "sentence": 11
+  },
+  {
+   "text": "your",
+   "start": 39.78,
+   "end": 39.92,
+   "sentence": 11
+  },
+  {
+   "text": "sums",
+   "start": 39.92,
+   "end": 40.08,
+   "sentence": 11
+  }
+ ],
+ "sentences": [
+  {
+   "text": "On big multiplications, the older model got none right.",
+   "start": 0.0,
+   "end": 3.76
+  },
+  {
+   "text": "Gemini 4 Hydrogen got forty-eight of fifty.",
+   "start": 4.34,
+   "end": 7.28
+  },
+  {
+   "text": "Take one ten-digit pair.",
+   "start": 7.76,
+   "end": 9.04
+  },
+  {
+   "text": "The older model was right for four digits, then wrong.",
+   "start": 9.7,
+   "end": 12.38
+  },
+  {
+   "text": "Hydrogen got all twenty.",
+   "start": 13.2,
+   "end": 14.62
+  },
+  {
+   "text": "We gave both models the same ninety multiplications, from two digits to ten, and code checked every digit.",
+   "start": 15.16,
+   "end": 21.14
+  },
+  {
+   "text": "Up to five digits, Hydrogen got forty of forty.",
+   "start": 21.84,
+   "end": 24.55
+  },
+  {
+   "text": "The older model got twenty-seven of forty.",
+   "start": 24.98,
+   "end": 26.77
+  },
+  {
+   "text": "Hydrogen missed two, and both were empty replies, not wrong numbers.",
+   "start": 26.88,
+   "end": 31.16
+  },
+  {
+   "text": "This was one run, with a reply limit that may have cut answers short.",
+   "start": 31.9,
+   "end": 35.38
+  },
+  {
+   "text": "Two other Gemini 4 models could not be tested.",
+   "start": 36.08,
+   "end": 38.18
+  },
+  {
+   "text": "Would you trust it with your sums?",
+   "start": 38.94,
+   "end": 40.08
+  }
+ ]
+}
