@@ -1,4 +1,4 @@
-// AI Tested "Gemini 4 Hydrogen vs the older model: big multiplication" preview, about 57 seconds: a faceless news-card look, in the existing Shorts engine (same voice, timeline and QA).
+// AI Tested "Gemini 4 Hydrogen vs the older model: big multiplication" preview, about 41 seconds: a faceless news-card look, in the existing Shorts engine (same voice, timeline and QA).
 // Numbers come from the stored test runs (gemini4-data.json); nothing is measured again here.
 import { runFixedShort } from "../../production/fixed-short.mjs";
 import { compactScenes, fitScript } from "../../production/fitscript.mjs";
@@ -25,10 +25,10 @@ Earlier run on the same problems: ${DATA.earlier_run_url}`,
   };
 
   const cal = await narrate({ text: CALIBRATION, edgeVoice: "en-US-AndrewNeural", outDir: tools.outDir, name: "calibration", gravity: GRAVITY, voice: VOICE });
-  const fitFor = (wpm) => { const fit = fitScript({ slots: p.slots, wpm, targetSeconds: 57, minSeconds: 54, maxSeconds: 60 }); return { fit, ...compactScenes({ scenes: p.scenes, sentences: fit.sentences }) }; };
+  const fitFor = (wpm) => { const fit = fitScript({ slots: p.slots, wpm, targetSeconds: 41, minSeconds: 38, maxSeconds: 44.5 }); return { fit, ...compactScenes({ scenes: p.scenes, sentences: fit.sentences }) }; };
   const first = fitFor(cal.wpm * 0.88);
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s, ${first.sentences.length} beats`);
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Gemini 4 Hydrogen vs the older model: big multiplication", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: "AiTestedGemini4", edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 54, maxSeconds: 60.5, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ data: p.data }) } });
-  tools.write("quality-report.json", { format: "ai_tested_gemini4_58s", technical: result.qa });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: "Gemini 4 Hydrogen vs the older model: big multiplication", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: "AiTestedGemini4", edgeVoice: "en-US-AndrewNeural", gravity: GRAVITY, voice: VOICE, metadata, minSeconds: 38, maxSeconds: 45, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ data: p.data }) } });
+  tools.write("quality-report.json", { format: "ai_tested_gemini4_41s", technical: result.qa });
 }
