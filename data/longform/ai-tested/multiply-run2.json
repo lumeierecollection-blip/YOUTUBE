@@ -1,0 +1,2954 @@
+{
+ "test": "n-digit multiplication, n=2..10",
+ "date": "2026-11-13T04:52:54.352Z",
+ "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+ "seed": 20261113,
+ "problems": 115,
+ "method": "temperature 0; one attempt per problem; retries only on transport errors; marked by BigInt code",
+ "models": [
+  {
+   "name": "Gemini 3.5 Flash",
+   "id": "gemini-3.5-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "no Gemini key left for this model after 2 answers",
+   "direct": {
+    "2": {
+     "right": 2,
+     "of": 2
+    }
+   },
+   "worked": {},
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "2280",
+     "answer": "2280",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "90",
+     "b": "46",
+     "correct": "4140",
+     "reply": "4140",
+     "answer": "4140",
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "gemini-2.5-flash",
+   "id": "gemini-2.5-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 404 after 0 answers",
+   "direct": {},
+   "worked": {},
+   "answers": []
+  },
+  {
+   "name": "gemini-2.5-pro",
+   "id": "gemini-2.5-pro",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 404 after 0 answers",
+   "direct": {},
+   "worked": {},
+   "answers": []
+  },
+  {
+   "name": "gemma-4-26b-a4b-it",
+   "id": "gemma-4-26b-a4b-it",
+   "host": "Google AI Studio",
+   "complete": true,
+   "dropped": null,
+   "direct": {
+    "2": {
+     "right": 0,
+     "of": 10
+    },
+    "3": {
+     "right": 0,
+     "of": 10
+    },
+    "4": {
+     "right": 0,
+     "of": 10
+    },
+    "5": {
+     "right": 0,
+     "of": 10
+    },
+    "6": {
+     "right": 0,
+     "of": 10
+    },
+    "7": {
+     "right": 0,
+     "of": 10
+    },
+    "8": {
+     "right": 0,
+     "of": 10
+    },
+    "9": {
+     "right": 0,
+     "of": 10
+    },
+    "10": {
+     "right": 0,
+     "of": 10
+    }
+   },
+   "worked": {
+    "6": {
+     "right": 1,
+     "of": 5
+    },
+    "7": {
+     "right": 1,
+     "of": 5
+    },
+    "8": {
+     "right": 0,
+     "of": 5
+    },
+    "9": {
+     "right": 0,
+     "of": 5
+    },
+    "10": {
+     "right": 0,
+     "of": 5
+    }
+   },
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "*   Operation: 38 × 60\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   38 × 6 = (30 × 6) + (8 × 6)\n    *   30 × 6 = 180\n    *   8 × 6 = 48\n    *   180 + 48 = 228\n    *",
+     "answer": "38",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "90",
+     "b": "46",
+     "correct": "4140",
+     "reply": "*   Operation: 90 × 46\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   90 × 46\n    *   Method 1: 9 × 46 = 9 × (40 + 6) = 360 + 54 = 414. Then add the zero: 4140.\n    *  ",
+     "answer": "90",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "65",
+     "b": "85",
+     "correct": "5525",
+     "reply": "*   Operation: 65 × 85\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        65 * 80 = 5200\n        65 * 5 = 325\n        5200 + 325",
+     "answer": "65",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "44",
+     "b": "78",
+     "correct": "3432",
+     "reply": "*   Operation: 44 × 78\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   Method 1: Long multiplication\n        *   44 * 70 = 3080\n        *   44 * 8 = 352\n        *   3080",
+     "answer": "44",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "53",
+     "correct": "3074",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 58 and 53\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        58\n      x 53\n      ",
+     "answer": "58",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "40",
+     "b": "41",
+     "correct": "1640",
+     "reply": "*   Operation: 40 × 41\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   40 × 41 = 40 × (40 + 1)\n    *   40 × 40 = 1600\n    *   40 × 1 = 40\n    *   1600 + 40 = 1640\n\n   ",
+     "answer": "40",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "93",
+     "b": "89",
+     "correct": "8277",
+     "reply": "*   Operation: 93 × 89\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        93 * 89 = 93 * (90 - 1)\n        93 * 90 = 8370\n        9",
+     "answer": "93",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "86",
+     "correct": "4988",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 58 and 86\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        58\n      x 86\n      ",
+     "answer": "58",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "41",
+     "b": "87",
+     "correct": "3567",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 41 and 87\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        *   41 * 87\n        ",
+     "answer": "41",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "68",
+     "correct": "2584",
+     "reply": "*   Operation: 38 × 68\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   Method 1: Standard multiplication\n        38\n        x 68\n        ----\n        304 (8 * 38 = 8 * 3",
+     "answer": "38",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "298",
+     "b": "141",
+     "correct": "42018",
+     "reply": "*   Multiplication problem: 298 × 141.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Standard long multiplication.\n        *   298 * 1 = 298\n        *   29",
+     "answer": "298",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "913",
+     "b": "975",
+     "correct": "890175",
+     "reply": "The user wants the product of 913 and 975.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    913 * 975\n\n    Method 1: Long multiplication\n    913 * 900 = 821,700\n    913 * 70 = ",
+     "answer": "913",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "965",
+     "b": "662",
+     "correct": "638830",
+     "reply": "The user wants the product of 965 and 662.\nThe response must be only the number, no words, no working.\n\nCalculation:\n965 * 662\n\nMethod 1: Long multiplication\n965 * 2 = 1930\n965 * 60 = 57900\n965 * 600 ",
+     "answer": "965",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "470",
+     "b": "521",
+     "correct": "244870",
+     "reply": "*   Multiplication problem: 470 × 521.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   470 × 521\n    *   Method 1: Long multiplication\n        *   470 × 1 = 470\n      ",
+     "answer": "470",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "452",
+     "b": "536",
+     "correct": "242272",
+     "reply": "*   Multiplication problem: 452 × 536.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Long multiplication\n        ```\n          452\n        x 536\n        --",
+     "answer": "452",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "818",
+     "b": "463",
+     "correct": "378734",
+     "reply": "*   Multiplication problem: 818 × 463.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   818 * 463\n    *   Break it down:\n        *   818 * 400 = 327,200\n        *   818",
+     "answer": "818",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "734",
+     "b": "906",
+     "correct": "665004",
+     "reply": "*   Multiplication problem: 734 × 906.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   734 * 906\n    *   Method 1: Long multiplication\n        *   734 * 6 = (700 * 6) ",
+     "answer": "734",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "592",
+     "b": "652",
+     "correct": "385984",
+     "reply": "The user wants the product of 592 and 652.\nThe response must be only the number, no words, no working.\n\nCalculation:\n592 * 652\n= 592 * (600 + 50 + 2)\n= (592 * 600) + (592 * 50) + (592 * 2)\n\n592 * 600:",
+     "answer": "592",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "394",
+     "b": "715",
+     "correct": "281710",
+     "reply": "*   Multiplication problem: 394 × 715.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   Method 1: Long multiplication\n        394\n      x 715\n      -----\n        1970 (",
+     "answer": "394",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "837",
+     "b": "406",
+     "correct": "339822",
+     "reply": "*   Multiplication problem: 837 × 406.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   837 × 400 = 837 × 4 × 100\n        *   837 × 2 = 1674\n        *   1674 × 2 = 3348",
+     "answer": "837",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "6403",
+     "b": "1521",
+     "correct": "9738963",
+     "reply": "The user wants the product of 6403 and 1521.\nThe response must be only the number, no words, no working.\n\nCalculation:\n6403 * 1521\n\nMethod 1: Long multiplication\n6403 * 1 = 6403\n6403 * 20 = 128060\n640",
+     "answer": "6403",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "9725",
+     "b": "5108",
+     "correct": "49675300",
+     "reply": "The user wants the product of 9725 and 5108.\nThe response must be only the number, no words, no working.\n\nCalculation:\n9725 * 5108\n\nMethod 1: Long multiplication\n9725 * 5000 = 48,625,000\n9725 * 100 = ",
+     "answer": "9725",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7140",
+     "b": "2000",
+     "correct": "14280000",
+     "reply": "*   Multiplication problem: 7140 × 2000.\n    *   Constraint: Reply with *only* the number, no words, no working.\n\n    *   7140 × 2 = 14280\n    *   Add the three zeros from 2000: 14280 + 000 = 14,280,0",
+     "answer": "7140",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "1102",
+     "b": "9814",
+     "correct": "10815028",
+     "reply": "The user wants the product of 1102 and 9814.\n    Calculation: 1102 * 9814\n\n    1102 * 9814 = (1100 + 2) * 9814\n    = 1100 * 9814 + 2 * 9814\n\n    Step 1: 1100 * 9814\n    11 * 9814 = 11 * (9000 + 800 + ",
+     "answer": "1102",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7332",
+     "b": "5810",
+     "correct": "42598920",
+     "reply": "The user wants the product of 7332 and 5810.\n    Constraint: Reply with only the number, no words, no working.\n\n    7332 * 5810\n\n    Method 1: Long multiplication\n    7332 * 5810 = 7332 * (581 * 10)\n ",
+     "answer": "7332",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "3281",
+     "b": "3212",
+     "correct": "10538572",
+     "reply": "The user wants the product of 3281 and 3212.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    3281 * 3212\n\n    Method 1: Long Multiplication\n    3281 * 2 = 6562\n    3281 * 10 =",
+     "answer": "3281",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "2568",
+     "b": "5951",
+     "correct": "15282168",
+     "reply": "The user wants the product of 2568 and 5951.\nThe response must be only the number, no words, no working.\n\nCalculation:\n2568 * 5951\n\nMethod 1: Long multiplication\n2568 * 1 = 2568\n2568 * 50 = 128400\n256",
+     "answer": "2568",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "4453",
+     "b": "6032",
+     "correct": "26860496",
+     "reply": "The user wants the product of 4453 and 6032.\nThe response must be only the number, no words, no working.\n\nCalculation:\n4453 * 6032\n\nMethod 1: Long multiplication\n4453 * 6000 = 26,718,000\n4453 * 30 = 1",
+     "answer": "4453",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "1675",
+     "b": "6806",
+     "correct": "11400050",
+     "reply": "The user wants the product of 1675 and 6806.\n    Constraint: Reply with only the number, no words, no working.\n\n    1675 * 6806\n\n    Method 1: Long multiplication\n    1675 * 6000 = 10,050,000\n    1675",
+     "answer": "1675",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7755",
+     "b": "8337",
+     "correct": "64653435",
+     "reply": "The user wants the product of 7755 and 8337.\n    Calculation: 7755 * 8337\n\n    7755 * 8337 = 7755 * (8000 + 300 + 30 + 7)\n    7755 * 8000 = 62,040,000\n    7755 * 300 = 2,326,500\n    7755 * 30 = 232,65",
+     "answer": "7755",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "54541",
+     "b": "85577",
+     "correct": "4667455157",
+     "reply": "The user wants the product of 54541 and 85577.\n    Constraint: Reply with only the number, no words, no working.\n\n    54541 * 85577\n\n    54541 * 85577 = 54541 * (80000 + 5000 + 500 + 70 + 7)\n\n    5454",
+     "answer": "54541",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "49731",
+     "b": "72341",
+     "correct": "3597590271",
+     "reply": "The user wants the product of 49731 and 72341.\n    Constraint: Reply with only the number, no words, no working.\n\n    49731 * 72341\n\n    Method 1: Long Multiplication\n    49731 * 1 = 49731\n    49731 *",
+     "answer": "49731",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "14848",
+     "b": "62145",
+     "correct": "922728960",
+     "reply": "The user wants the product of 14848 and 62145.\n    Constraint: Reply with only the number, no words, no working.\n\n    14848 * 62145\n\n    Method 1: Long Multiplication (Mental or Scratchpad)\n    14848 ",
+     "answer": "14848",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "68997",
+     "b": "50582",
+     "correct": "3490006254",
+     "reply": "The user wants the product of 68997 and 50582.\n    Constraint: Reply with only the number, no words, no working.\n\n    68997 * 50582\n\n    68997 * 50000 = 3,449,850,000\n    68997 * 500 = 34,498,500\n    ",
+     "answer": "68997",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "32554",
+     "b": "43650",
+     "correct": "1420982100",
+     "reply": "The user wants the product of 32554 and 43650.\n    Constraint: Reply with only the number, no words, no working.\n\n    32554 * 43650\n\n    32554 * 43650 = 32554 * (4365 * 10)\n    32554 * 4365 = 32554 * ",
+     "answer": "32554",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "80200",
+     "b": "36735",
+     "correct": "2946147000",
+     "reply": "The user wants the product of 80200 and 36735.\n    Constraint: Reply with only the number, no words, no working.\n\n    80200 * 36735\n\n    Method 1: Long multiplication (mental or scratchpad)\n    80200 ",
+     "answer": "80200",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "65841",
+     "b": "13535",
+     "correct": "891157935",
+     "reply": "The user wants the product of 65841 and 13535.\n    Constraint: Reply with only the number, no words, no working.\n\n    65841 * 13535\n\n    Method 1: Long Multiplication\n    65841 * 5 = 329205\n    65841 ",
+     "answer": "65841",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "61443",
+     "b": "42007",
+     "correct": "2581036101",
+     "reply": "The user wants the product of 61443 and 42007.\n    Constraint: Reply with only the number, no words, no working.\n\n    61443 * 42007\n\n    Method 1: Long Multiplication\n    61443 * 40000 = 2,457,720,000",
+     "answer": "61443",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "69232",
+     "b": "35408",
+     "correct": "2451366656",
+     "reply": "The user wants the product of 69232 and 35408.\n    Constraint: Reply with only the number, no words, no working.\n\n    69232 * 35408\n\n    69232 * 35408 = 69232 * (35000 + 400 + 8)\n    69232 * 35000 = 6",
+     "answer": "69232",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "72558",
+     "b": "41105",
+     "correct": "2982496590",
+     "reply": "The user wants the product of 72558 and 41105.\n    Constraint: Reply with only the number, no words, no working.\n\n    72558 * 41105\n\n    Method 1: Long Multiplication\n    72558 * 40000 = 2,902,320,000",
+     "answer": "72558",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "449734",
+     "b": "951779",
+     "correct": "428047376786",
+     "reply": "The user wants the product of 449734 and 951779.\n    Calculation: 449734 * 951779\n\n    449734 * 951779\n\n    Method 1: Long Multiplication (Mental or Scratchpad)\n    449734 * 900000 = 404,760,600,000\n ",
+     "answer": "449734",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "311508",
+     "b": "360112",
+     "correct": "112177768896",
+     "reply": "The user wants the product of 311508 and 360112.\n\n    *   Number 1: 311508\n    *   Number 2: 360112\n\n    *   311508 * 360112\n    *   Let's break it down:\n        311508 * 360000 = 311508 * 36 * 10000\n",
+     "answer": "311508",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "805286",
+     "b": "494126",
+     "correct": "397912750036",
+     "reply": "The user wants the product of 805286 and 494126.\n\n    *   Number 1: 805,286\n    *   Number 2: 494,126\n\n    *   805,286 * 494,126\n\n    *   805,286 * 400,000 = 322,114,400,000\n    *   805,286 * 90,000 =",
+     "answer": "805286",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "394292",
+     "b": "716526",
+     "correct": "282520469592",
+     "reply": "The user wants the product of 394,292 and 716,526.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    394,292 * 716,526\n\n    394,292 * 716,526 = (394,292) * (716,526)\n\n    Let's ",
+     "answer": "394292",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "527486",
+     "b": "984224",
+     "correct": "519164380864",
+     "reply": "The user wants the product of 527,486 and 984,224.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    527,486 * 984,224\n\n    527,486 * 984,224 = 527,486 * (984,000 + 224)\n    Or ",
+     "answer": "527486",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "877783",
+     "b": "706144",
+     "correct": "619841198752",
+     "reply": "The user wants the product of 877783 and 706144.\n    Constraint: Reply with only the number, no words, no working.\n\n    877783 * 706144\n\n    877783 * 706144 = 877783 * (700000 + 6000 + 100 + 40 + 4)\n\n",
+     "answer": "877783",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "184215",
+     "b": "590496",
+     "correct": "108778220640",
+     "reply": "The user wants the product of 184215 and 590496.\n\n    *   Number 1: 184,215\n    *   Number 2: 590,496\n\n    *   184,215 * 590,496\n    *   Let's break it down:\n        184,215 * 590,496 = 184,215 * (590",
+     "answer": "184215",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "407624",
+     "b": "767206",
+     "correct": "312731578544",
+     "reply": "The user wants the product of 407624 and 767206.\n    Constraint: Reply with only the number, no words, no working.\n\n    407624 * 767206\n\n    407624 * 767206 = 407624 * (700000 + 60000 + 7000 + 200 + 6",
+     "answer": "407624",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "772195",
+     "b": "695942",
+     "correct": "537402932690",
+     "reply": "The user wants the product of 772195 and 695942.\n    Constraint: Reply with only the number, no words, no working.\n\n    772195 * 695942\n\n    772195 * 695942 = 772195 * (600000 + 90000 + 5000 + 900 + 4",
+     "answer": "772195",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "726139",
+     "b": "548054",
+     "correct": "397963383506",
+     "reply": "The user wants the product of 726139 and 548054.\n    Constraint: Reply with only the number, no words, no working.\n\n    726139 * 548054\n\n    726139 * 548054 = 726139 * (500000 + 48000 + 54) ... no, le",
+     "answer": "726139",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1868110",
+     "b": "9752542",
+     "correct": "18218821235620",
+     "reply": "The user wants the product of 1,868,110 and 9,752,542.\n\n    *   Number 1: 1,868,110\n    *   Number 2: 9,752,542\n\n    *   1,868,110 * 9,752,542\n    *   Let's break it down:\n        1,868,110 = 1,868,11",
+     "answer": "1868110",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "8234504",
+     "b": "1606855",
+     "correct": "13231653924920",
+     "reply": "The user wants the product of 8,234,504 and 1,606,855.\n\n    *   Number 1: 8,234,504\n    *   Number 2: 1,606,855\n\n    *   8,234,504 * 1,606,855\n    *   Let's break it down:\n        8,234,504 * 1,000,00",
+     "answer": "8234504",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "2944659",
+     "b": "6692632",
+     "correct": "19707519052488",
+     "reply": "The user wants the product of two large numbers: 2,944,659 and 6,692,632.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 2,944,659\n    Number 2: 6,692,632\n\n    2,94",
+     "answer": "2944659",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "3272815",
+     "b": "5409536",
+     "correct": "17704410563840",
+     "reply": "The user wants the product of two large numbers: 3,272,815 and 5,409,536.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 3,272,815\n    Number 2: 5,409,536\n\n    3,27",
+     "answer": "3272815",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "2441820",
+     "b": "6771336",
+     "correct": "16534383671520",
+     "reply": "The user wants the product of 2,441,820 and 6,771,336.\n\n    *   Number 1: 2,441,820\n    *   Number 2: 6,771,336\n\n    *   2,441,820 * 6,771,336\n    *   Let's break it down:\n        2,441,820 = 2,441,82",
+     "answer": "2441820",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "8121006",
+     "b": "6426413",
+     "correct": "52188938531478",
+     "reply": "The user wants the product of two large numbers: 8,121,006 and 6,426,413.\n    The constraint is to reply *only* with the number, no words, no working.\n\n    Number 1: 8,121,006\n    Number 2: 6,426,413\n",
+     "answer": "8121006",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "5328178",
+     "b": "7513531",
+     "correct": "40033430576518",
+     "reply": "The user wants the product of two large numbers: 5,328,178 and 7,513,531.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 5,328,178\n    Number 2: 7,513,531\n\n    5,32",
+     "answer": "5328178",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1998875",
+     "b": "5278448",
+     "correct": "10550957746000",
+     "reply": "The user wants the product of 1,998,875 and 5,278,448.\n\n    *   Number 1: 1,998,875\n    *   Number 2: 5,278,448\n\n    *   1,998,875 is close to 2,000,000.\n    *   5,278,448 is about 5.28 million.\n    *",
+     "answer": "1998875",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1942745",
+     "b": "3232387",
+     "correct": "6279703682315",
+     "reply": "The user wants the product of two large numbers: 1,942,745 and 3,232,387.\n    The output must be *only* the number, no words, no working.\n\n    Number 1: 1,942,745\n    Number 2: 3,232,387\n\n    1,942,74",
+     "answer": "1942745",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "9236003",
+     "b": "9085289",
+     "correct": "83911756459867",
+     "reply": "The user wants the product of two large numbers: 9,236,003 and 9,085,289.\n    The output must be *only* the number, no words, no working.\n\n    Number 1: 9,236,003\n    Number 2: 9,085,289\n\n    9,236,00",
+     "answer": "9236003",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "61739882",
+     "b": "86717887",
+     "correct": "5353952110669334",
+     "reply": "The user wants the product of two large numbers: 61,739,882 and 86,717,887.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 61,739,882\n    Number 2: 86,717,887\n\n    ",
+     "answer": "61739882",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "15251949",
+     "b": "15279975",
+     "correct": "233049399421275",
+     "reply": "The user wants the product of two large numbers: 15,251,949 and 15,279,975.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 15,251,949\n    Number 2: 15,279,975\n\n    ",
+     "answer": "15251949",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "61725549",
+     "b": "32243580",
+     "correct": "1990252677225420",
+     "reply": "The user wants the product of two large numbers: 61,725,549 and 32,243,580.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 61,725,549\n    Number 2: 32,243,580\n\n    ",
+     "answer": "61725549",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "13638140",
+     "b": "73269281",
+     "correct": "999256711977340",
+     "reply": "The user wants the product of two large numbers: 13,638,140 and 73,269,281.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 13,638,140\n    Number 2: 73,269,281\n\n    ",
+     "answer": "13638140",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "71446904",
+     "b": "56405222",
+     "correct": "4029978481332688",
+     "reply": "*   Multiplication: 71,446,904 × 56,405,222\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   A = 71,446,904\n    *   B = 56,405,222\n\n    *   71,446,904 * 56,405,222\n    * ",
+     "answer": "71446904",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "87056391",
+     "b": "10446608",
+     "correct": "909443990671728",
+     "reply": "The user wants the product of two large numbers: 87,056,391 and 10,446,608.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 87,056,391\n    Number 2: 10,446,608\n\n    ",
+     "answer": "87056391",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "74049809",
+     "b": "90549939",
+     "correct": "6705205687911651",
+     "reply": "The user wants the product of two large numbers: 74,049,809 and 90,549,939.\n    The output must be *only* the number.\n\n    Number 1: 74,049,809\n    Number 2: 90,549,939\n\n    74,049,809 * 90,549,939\n\n ",
+     "answer": "74049809",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "42778271",
+     "b": "61144874",
+     "correct": "2615671990232854",
+     "reply": "The user wants the product of two large numbers: 42,778,271 and 61,144,874.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 42,778,271\n    Number 2: 61,144,874\n\n    ",
+     "answer": "42778271",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "55559031",
+     "b": "15363794",
+     "correct": "853597507123614",
+     "reply": "The user wants the product of two large numbers: 55,559,031 and 15,363,794.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 55,559,031\n    Number 2: 15,363,794\n\n    ",
+     "answer": "55559031",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "44604718",
+     "b": "58880698",
+     "correct": "2626356929933164",
+     "reply": "The user wants the product of two large numbers: 44,604,718 and 58,880,698.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 44,604,718\n    Number 2: 58,880,698\n\n    ",
+     "answer": "44604718",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "875113740",
+     "b": "533367019",
+     "correct": "466756806789741060",
+     "reply": "The user wants the product of two large numbers: 875,113,740 and 533,367,019.\n    The output must be *only* the number, no words, no working.\n\n    Number 1: 875,113,740\n    Number 2: 533,367,019\n\n    ",
+     "answer": "875113740",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "605504456",
+     "b": "185643746",
+     "correct": "112408115431532176",
+     "reply": "The user wants the product of two large numbers: 605,504,456 and 185,643,746.\n    The output must be *only* the number.\n\n    Number 1: 605,504,456\n    Number 2: 185,643,746\n\n    605,504,456 * 185,643,",
+     "answer": "605504456",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "460494652",
+     "b": "492123888",
+     "correct": "226620418545446976",
+     "reply": "The user wants the product of two large numbers: 460,494,652 and 492,123,888.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 460,494,652\n    Number 2: 492,123,888\n\n",
+     "answer": "460494652",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "118362192",
+     "b": "694687276",
+     "correct": "82224708741868992",
+     "reply": "The user wants the product of two large numbers: 118,362,192 and 694,687,276.\n    The output must be *only* the number, no words, no working.\n\n    Number 1: 118,362,192\n    Number 2: 694,687,276\n\n    ",
+     "answer": "118362192",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "909530919",
+     "b": "512947955",
+     "correct": "466542024910320645",
+     "reply": "The user wants the product of two large numbers: 909,530,919 and 512,947,955.\n\n    *   A = 909,530,919\n    *   B = 512,947,955\n\n    *   A ≈ 9.0953 × 10^8\n    *   B ≈ 5.1295 × 10^8\n    *   Product ≈ 9 ",
+     "answer": "909530919",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "607795959",
+     "b": "856619438",
+     "correct": "520649832817251042",
+     "reply": "The user wants the product of two large numbers: 607,795,959 and 856,619,438.\n    The output must be *only* the number.\n\n    Number 1: 607,795,959\n    Number 2: 856,619,438\n\n    607,795,959 * 856,619,",
+     "answer": "607795959",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "519272221",
+     "b": "618665146",
+     "correct": "321255624418709266",
+     "reply": "The user wants the product of two large numbers: 519,272,221 and 618,665,146.\n    The output must be *only* the number, no words, no working.\n\n    Number 1: 519,272,221\n    Number 2: 618,665,146\n\n    ",
+     "answer": "519272221",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "879064366",
+     "b": "465460855",
+     "correct": "409170051398392930",
+     "reply": "The user wants the product of two large numbers: 879,064,366 and 465,460,855.\n    Constraint: Reply with *only* the number, no words, no working.\n\n    Number 1: 879,064,366\n    Number 2: 465,460,855\n\n",
+     "answer": "879064366",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "685902149",
+     "b": "441784223",
+     "correct": "303020747949995227",
+     "reply": "The user wants the product of two large numbers: 685,902,149 and 441,784,223.\n    The output must be *only* the number.\n\n    Number 1: 685,902,149\n    Number 2: 441,784,223\n\n    685,902,149 * 441,784,",
+     "answer": "685902149",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "644211580",
+     "b": "284130880",
+     "correct": "183040403131590400",
+     "reply": "The user wants the product of two large numbers: 644,211,580 and 284,130,880.\n    The constraint is to reply with *only* the number, no words, no working.\n\n    Number 1: 644,211,580\n    Number 2: 284,",
+     "answer": "644211580",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "5662017429",
+     "b": "9945771955",
+     "correct": "56313134154069403695",
+     "reply": "The user wants the product of two large numbers: 5,662,017,429 and 9,945,771,955.\n\n    *   A = 5,662,017,429\n    *   B = 9,945,771,955\n\n    *   A ≈ 5.662 × 10^9\n    *   B ≈ 9.946 × 10^9\n    *   Produc",
+     "answer": "5662017429",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7061156377",
+     "b": "5926155315",
+     "correct": "41845509393604693755",
+     "reply": "The user wants the product of two large numbers: 7,061,156,377 and 5,926,155,315.\n\n    *   A = 7,061,156,377\n    *   B = 5,926,155,315\n\n    *   A ≈ 7.061 × 10^9\n    *   B ≈ 5.926 × 10^9\n    *   A * B ",
+     "answer": "7061156377",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "3707094984",
+     "b": "7702940211",
+     "correct": "28555531018250001624",
+     "reply": "The user wants the product of two large numbers: 3,707,094,984 and 7,702,940,211.\n\n    *   A = 3,707,094,984\n    *   B = 7,702,940,211\n\n    *   A ≈ 3.707 × 10^9\n    *   B ≈ 7.703 × 10^9\n    *   A * B ",
+     "answer": "3707094984",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "4508086775",
+     "b": "8921382010",
+     "correct": "40218364254003917750",
+     "reply": "*   Multiplicand: 4,508,086,775\n    *   Multiplier: 8,921,382,010\n\n    *   4,508,086,775 * 8,921,382,010\n\n    *   4,508,086,775 * 8,921,382,010\n    *   = 4,508,086,775 * (8,921,382,01 * 10)\n    *   Le",
+     "answer": "4508086775",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7628290917",
+     "b": "6717784153",
+     "correct": "51245211836696438301",
+     "reply": "The user wants the product of two large numbers: 7,628,290,917 and 6,717,784,153.\n    The output must be *only* the number.\n\n    Number 1: 7,628,290,917\n    Number 2: 6,717,784,153\n\n    7,628,290,917 ",
+     "answer": "7628290917",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "5327551506",
+     "b": "1352335169",
+     "correct": "7204635266222714514",
+     "reply": "The user wants the product of two large numbers: 5,327,551,506 and 1,352,335,169.\n    The output must be *only* the number.\n\n    A = 5,327,551,506\n    B = 1,352,335,169\n\n    A ≈ 5.327551506 × 10^9\n   ",
+     "answer": "5327551506",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7955475102",
+     "b": "4234381334",
+     "correct": "33686515275010546068",
+     "reply": "*   Number 1: 7,955,475,102\n    *   Number 2: 4,234,381,334\n    *   Operation: Multiplication\n\n    *   7,955,475,102 ≈ 7.955 × 10^9\n    *   4,234,381,334 ≈ 4.234 × 10^9\n    *   Product ≈ (7.955 * 4.23",
+     "answer": "1",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "8368126863",
+     "b": "2537926609",
+     "correct": "21237691833095397567",
+     "reply": "The user wants the product of two large numbers: 8,368,126,863 and 2,537,926,609.\n\n    *   A = 8,368,126,863\n    *   B = 2,537,926,609\n\n    *   A ≈ 8.368 × 10^9\n    *   B ≈ 2.538 × 10^9\n    *   A * B ",
+     "answer": "8368126863",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "9503521807",
+     "b": "9111053436",
+     "correct": "86587095013768278852",
+     "reply": "The user wants the product of two large numbers: 9,503,521,807 and 9,111,053,436.\n\n    *   A = 9,503,521,807\n    *   B = 9,111,053,436\n\n    *   A ≈ 9.5035 × 10^9\n    *   B ≈ 9.1111 × 10^9\n    *   Prod",
+     "answer": "9503521807",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "2606683287",
+     "b": "8561952868",
+     "correct": "22318299445097317116",
+     "reply": "The user wants the product of two large numbers: 2,606,683,287 and 8,561,952,868.\n\n    *   A = 2,606,683,287\n    *   B = 8,561,952,868\n\n    *   A ≈ 2.606683287 × 10^9\n    *   B ≈ 8.561952868 × 10^9\n  ",
+     "answer": "2606683287",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "449734",
+     "b": "951779",
+     "correct": "428047376786",
+     "reply": "The goal is to multiply two large numbers: 449,734 and 951,779.\n\n    *   Number 1: 449,734\n    *   Number 2: 951,779\n\n    I'll use the standard long multiplication method, multiplying 449,734 by each digit of 951,779, starting from the units place.\n\n    *   **Step 1: 449,734 × 9 (Units place of 951,779)**\n        *   4 × 9 = 36 (Write 6, carry 3)\n        *   3 × 9 = 27; 27 + 3 = 30 (Write 0, carry 3)\n        *   7 × 9 = 63; 63 + 3 = 66 (Write 6, carry 6)\n        *   9 × 9 = 81; 81 + 6 = 87 (Write 7, carry 8)\n        *   4 × 9 = 36; 36 + 8 = 44 (Write 4, carry 4)\n        *   4 × 9 = 36; 36 + 4 = 40 (Write 40)\n        *   Result 1: 4,047,606\n\n    *   **Step 2: 449,734 × 70 (Tens place of 951,779)**\n        *   (First, multiply 449,734 by 7, then add a zero)\n        *   4 × 7 = 28 (Write 8, carry 2)\n        *   3 × 7 = 21; 21 + 2 = 23 (Write 3, carry 2)\n        *   7 × 7 = 49; 49 + 2 = 51 (Write 1, carry 5)\n        *   9 × 7 = 63; 63 + 5 = 68 (Write 8, carry 6)\n        *   4 × 7 = 28; 28 + 6 = 34 (Write 4, carry 3)\n        *   4 × 7 = 28; 28 + 3 = 31 (Write 31)\n        *   Result 2: 31,481,380\n\n    *   **Step 3: 449,734 × 700 (Hundreds place of 951,779)**\n        *   (Multiply 449,734 by 7, then add two zeros)\n        *   Since it's the same as Step 2 (multiplied by 7), the digits will be the same: 3148138.\n        *   Result 3: 314,813,800\n\n    *   **Step 4: 449,734 × 1,000 (Thousands place of 951,779)**\n        *   (Multiply 449,734 by 1, then add three zeros)\n        *   Resu",
+     "answer": "428047376786",
+     "ok": true
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "311508",
+     "b": "360112",
+     "correct": "112177768896",
+     "reply": "The goal is to multiply two large numbers: 311,508 and 360,112.\n\n    *   Number 1: 311,508\n    *   Number 2: 360,112\n\n    *   311,508 × 360,112 = 311,508 × (360,000 + 100 + 12)\n    *   Or, 311,508 × 360,112 = (311,508 × 360,000) + (311,508 × 100) + (311,508 × 12)\n\n    *   **Step 1: 311,508 × 360,000**\n        *   First, calculate 311,508 × 36.\n        *   311,508 × 30 = 9,345,240\n        *   311,508 × 6 = 1,869,048\n        *   9,345,240 + 1,869,048 = 11,214,288\n        *   Now, multiply by 10,000: 11,214,288 × 10,000 = 112,142,880,000\n\n    *   **Step 2: 311,508 × 100**\n        *   311,508 × 100 = 31,150,800\n\n    *   **Step 3: 311,508 × 12**\n        *   311,508 × 10 = 3,115,080\n        *   311,508 × 2 = 623,016\n        *   3,115,080 + 623,016 = 3,738,096\n\n    *   **Step 4: Sum the results**\n        *   112,142,880,000 (from Step 1)\n        *   + 31,150,800 (from Step 2)\n        *   + 3,738,096 (from Step 3)\n\n        *   112,142,880,000 + 31,150,800 = 112,174,030,800\n        *   112,174,030,800 + 3,738,096 = 112,177,768,896\n\n    *   311,508 × 360,112\n    *   Let's use the standard long multiplication method (mentally or on scratchpad):\n        ```\n                  311508\n                x 360112\n                --------\n                  623016 (311508 * 2)\n                 3115080 (311508 * 10)\n                31150800 (311508 * 100)\n                       0 (311508 * 0000)\n             18690480000 (311508 * 60000) -- Wait, let's re-check this.\n        ```\n        Wait, let's",
+     "answer": "3115",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "805286",
+     "b": "494126",
+     "correct": "397912750036",
+     "reply": "The goal is to multiply two large numbers: 805,286 and 494,126.\n\n    *   Number 1: 805,286\n    *   Number 2: 494,126\n\n    I'll use the standard long multiplication method, multiplying 805,286 by each digit of 494,126 (starting from the units place).\n\n    *   **Step 1: 805,286 × 6 (Units place)**\n        805,286 × 6 = (800,000 × 6) + (5,000 × 6) + (200 × 6) + (80 × 6) + (6 × 6)\n        800,000 × 6 = 4,800,000\n        5,000 × 6 = 30,000\n        200 × 6 = 1,200\n        80 × 6 = 480\n        6 × 6 = 36\n        Sum: 4,800,000 + 30,000 + 1,200 + 480 + 36 = 4,831,716\n\n    *   **Step 2: 805,286 × 20 (Tens place)**\n        805,286 × 2 = 1,610,572\n        805,286 × 20 = 16,105,720\n\n    *   **Step 3: 805,286 × 100 (Hundreds place)**\n        805,286 × 1 = 805,286\n        805,286 × 100 = 80,528,600\n\n    *   **Step 4: 805,286 × 4,000 (Thousands place)**\n        805,286 × 4 = (800,000 × 4) + (5,000 × 4) + (200 × 4) + (80 × 4) + (6 × 4)\n        800,000 × 4 = 3,200,000\n        5,000 × 4 = 20,000\n        200 × 4 = 800\n        80 × 4 = 320\n        6 × 4 = 24\n        Sum: 3,200,000 + 20,000 + 800 + 320 + 24 = 3,221,144\n        805,286 × 4,000 = 3,221,144,000\n\n    *   **Step 5: 805,286 × 90,000 (Ten-thousands place)**\n        805,286 × 9 = (800,000 × 9) + (5,000 × 9) + (200 × 9) + (80 × 9) + (6 × 9)\n        800,000 × 9 = 7,200,000\n        5,000 × 9 = 45,000\n        200 × 9 = 1,800\n        80 × 9 = 720\n        6 × 9 = 54\n        Sum: 7,200,000 + 45,000 + 1,800 + 720 + 54 = 7,247,574\n        805,286",
+     "answer": "322114400000",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "394292",
+     "b": "716526",
+     "correct": "282520469592",
+     "reply": "The goal is to multiply two large numbers: 394,292 and 716,526.\n\n    *   Number 1: 394,292\n    *   Number 2: 716,526\n\n    I'll use the standard long multiplication method, multiplying 394,292 by each digit of 716,526 (starting from the units place).\n\n    *   **Step 1: Multiply 394,292 by 6 (the units digit of 716,526)**\n        *   6 × 2 = 12 (Write 2, carry 1)\n        *   6 × 9 = 54; 54 + 1 = 55 (Write 5, carry 5)\n        *   6 × 2 = 12; 12 + 5 = 17 (Write 7, carry 1)\n        *   6 × 4 = 24; 24 + 1 = 25 (Write 5, carry 2)\n        *   6 × 9 = 54; 54 + 2 = 56 (Write 6, carry 5)\n        *   6 × 3 = 18; 18 + 5 = 23 (Write 23)\n        *   Result 1: 2,365,752\n\n    *   **Step 2: Multiply 394,292 by 20 (the tens digit of 716,526)**\n        *   (First, multiply 394,292 by 2, then add a zero at the end)\n        *   2 × 2 = 4\n        *   2 × 9 = 18 (Write 8, carry 1)\n        *   2 × 2 = 4; 4 + 1 = 5\n        *   2 × 4 = 8\n        *   2 × 9 = 18 (Write 8, carry 1)\n        *   2 × 3 = 6; 6 + 1 = 7\n        *   Result 2: 7,885,840\n\n    *   **Step 3: Multiply 394,292 by 500 (the hundreds digit of 716,526)**\n        *   (First, multiply 394,292 by 5, then add two zeros at the end)\n        *   5 × 2 = 10 (Write 0, carry 1)\n        *   5 × 9 = 45; 45 + 1 = 46 (Write 6, carry 4)\n        *   5 × 2 = 10; 10 + 4 = 14 (Write 4, carry 1)\n        *   5 × 4 = 20; 20 + 1 = 21 (Write 1, carry 2)\n        *   5 × 9 = 45; 45 + 2 = 47 (Write 7, carry 4)\n        *   5 × 3 = 15; 15 + 4 = 19 (Write 19)\n        ",
+     "answer": "2365752000",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "527486",
+     "b": "984224",
+     "correct": "519164380864",
+     "reply": "The goal is to multiply two large numbers: 527,486 and 984,224.\n\n    *   Number 1: 527,486\n    *   Number 2: 984,224\n\n    *   Method 1: Long multiplication (standard algorithm).\n    *   Method 2: Distributive property (breaking numbers into smaller parts).\n    *   Method 3: Using a calculator (not allowed for \"working it out step by step\" in a manual sense, but good for verification).\n\n    Let's use the standard long multiplication method.\n\n    ```\n              527,486\n    x         984,224\n    -----------------\n    ```\n\n    *   **Step 1: Multiply 527,486 by 4 (the ones digit of 984,224)**\n        4 × 6 = 24 (Write 4, carry 2)\n        4 × 8 = 32; 32 + 2 = 34 (Write 4, carry 3)\n        4 × 4 = 16; 16 + 3 = 19 (Write 9, carry 1)\n        4 × 7 = 28; 28 + 1 = 29 (Write 9, carry 2)\n        4 × 2 = 8; 8 + 2 = 10 (Write 0, carry 1)\n        4 × 5 = 20; 20 + 1 = 21 (Write 21)\n        Result 1: 2,109,944\n\n    *   **Step 2: Multiply 527,486 by 20 (the tens digit of 984,224)**\n        (This is 2 × 527,486, then add a zero at the end)\n        2 × 6 = 12 (Write 2, carry 1)\n        2 × 8 = 16; 16 + 1 = 17 (Write 7, carry 1)\n        2 × 4 = 8; 8 + 1 = 9 (Write 9)\n        2 × 7 = 14 (Write 4, carry 1)\n        2 × 2 = 4; 4 + 1 = 5 (Write 5)\n        2 × 5 = 10 (Write 10)\n        Result 2: 10,549,720\n\n    *   **Step 3: Multiply 527,486 by 200 (the hundreds digit of 984,224)**\n        (This is 2 × 527,486, then add two zeros at the end)\n        Result 3: 105,497,200\n\n    *   **Step 4: Multiply 5",
+     "answer": "51916300000",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "1868110",
+     "b": "9752542",
+     "correct": "18218821235620",
+     "reply": "The goal is to multiply two large numbers: 1,868,110 and 9,752,542.\n\n    Number 1: 1,868,110\n    Number 2: 9,752,542\n\n    Wait, let's re-examine the numbers.\n    1,868,110 = 1,868,11 * 10\n    9,752,542 = 9,752,542\n\n    Let's use the standard long multiplication method or break it down into smaller parts.\n\n    1,868,110 * 9,752,542 = 1,868,11 * 10 * 9,752,542\n    = 1,868,11 * 97,525,420\n\n    Actually, it's easier to multiply 1,868,110 by each digit of 9,752,542.\n\n    9,752,542 = 9,000,000 + 700,000 + 50,000 + 2,000 + 500 + 40 + 2\n\n    Let's multiply 1,868,110 by each part:\n\n    1.  1,868,110 * 9,000,000\n    2.  1,868,110 * 700,000\n    3.  1,868,110 * 50,000\n    4.  1,868,110 * 2,000\n    5.  1,868,110 * 500\n    6.  1,868,110 * 40\n    7.  1,868,110 * 2\n\n    *Step 1: 1,868,110 * 9,000,000*\n    1,868,11 * 9 = (1,000,000 * 9) + (800,000 * 9) + (60,000 * 9) + (8,000 * 9) + (100 * 9) + (10 * 9)\n    = 9,000,000 + 7,200,000 + 540,000 + 72,000 + 900 + 90\n    = 16,200,000 + 540,000 + 72,000 + 900 + 90\n    = 16,740,000 + 72,000 + 900 + 90\n    = 16,812,000 + 900 + 90\n    = 16,812,990\n\n    Wait, let's re-calculate 1,868,11 * 9:\n    1,868,110 * 9 = 16,812,990\n    So, 1,868,110 * 9,000,000 = 16,812,990,000,000\n\n    *Step 2: 1,868,110 * 700,000*\n    1,868,11 * 7 = (1,000,000 * 7) + (800,000 * 7) + (60,000 * 7) + (8,000 * 7) + (100 * 7) + (10 * 7)\n    = 7,000,000 + 5,600,000 + 420,000 + 56,000 + 700 + 70\n    = 12,600,000 + 420,000 + 56,000 + 700 + 70\n    = 13,020,000 + 56,000 + 700 + 70\n    = 1",
+     "answer": "9340550000",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "8234504",
+     "b": "1606855",
+     "correct": "13231653924920",
+     "reply": "The goal is to multiply two large numbers: 8,234,504 and 1,606,855.\n\n    *   Number 1: 8,234,504\n    *   Number 2: 1,606,855\n\n    *   Method 1: Long multiplication (standard algorithm).\n    *   Method 2: Breaking down the numbers (distributive property).\n    *   Method 3: Using a calculator (not allowed for the \"work it out\" part, but good for verification).\n\n    Let's use the distributive property (breaking down 1,606,855):\n    1,606,855 = 1,000,000 + 600,000 + 6,000 + 800 + 50 + 5\n\n    Wait, that's a bit tedious. Let's try breaking down 1,606,855 into 1,000,000 + 600,000 + 6,000 + 800 + 50 + 5.\n    Wait, 1,606,855 = 1,000,000 + 600,000 + 0 + 6,000 + 800 + 50 + 5.\n\n    Let's multiply 8,234,504 by each part:\n    1.  8,234,504 × 1,000,000 = 8,234,504,000,000\n    2.  8,234,504 × 600,000 = 8,234,504 × 6 × 100,000\n        8,234,504 × 6:\n        8,000,000 × 6 = 48,000,000\n        234,504 × 6:\n        200,000 × 6 = 1,200,000\n        34,000 × 6 = 204,000\n        504 × 6 = 3,024\n        Total: 48,000,000 + 1,200,000 + 204,000 + 3,024 = 49,407,024\n        So, 8,234,504 × 600,000 = 4,940,702,400,000\n    3.  8,234,504 × 6,000 = 8,234,504 × 6 × 1,000\n        From step 2, 8,234,504 × 6 = 49,407,024\n        So, 8,234,504 × 6,000 = 49,407,024,000\n    4.  8,234,504 × 800 = 8,234,504 × 8 × 100\n        8,234,504 × 8:\n        8,000,000 × 8 = 64,000,000\n        234,504 × 8:\n        200,000 × 8 = 1,600,000\n        34,000 × 8 = 272,000\n        504 × 8 = 4,032\n        Total: 64,000,000 + 1,600,000 ",
+     "answer": "800000",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "2944659",
+     "b": "6692632",
+     "correct": "19707519052488",
+     "reply": "The goal is to multiply two large numbers: 2,944,659 and 6,692,632.\n\n    *   Number 1: 2,944,659\n    *   Number 2: 6,692,632\n\n    I'll use the standard long multiplication method, multiplying 2,944,659 by each digit of 6,692,632 (starting from the units place).\n\n    *   **Step 1: Multiply 2,944,659 by 2 (the units digit of 6,692,632)**\n        2,944,659 * 2 = 5,889,318\n\n    *   **Step 2: Multiply 2,944,659 by 30 (the tens digit of 6,692,632)**\n        2,944,659 * 3 = 8,833,977\n        2,944,659 * 30 = 88,339,770\n\n    *   **Step 3: Multiply 2,944,659 by 600 (the hundreds digit of 6,692,632)**\n        2,944,659 * 6 = 17,667,954\n        2,944,659 * 600 = 1,766,795,400\n\n    *   **Step 4: Multiply 2,944,659 by 2,000 (the thousands digit of 6,692,632)**\n        2,944,659 * 2 = 5,889,318\n        2,944,659 * 2,000 = 5,889,318,000\n\n    *   **Step 5: Multiply 2,944,659 by 90,000 (the ten-thousands digit of 6,692,632)**\n        2,944,659 * 9 = 26,501,931\n        2,944,659 * 90,000 = 265,019,310,000\n\n    *   **Step 6: Multiply 2,944,659 by 600,000 (the hundred-thousands digit of 6,692,632)**\n        2,944,659 * 6 = 17,667,954\n        2,944,659 * 600,000 = 1,766,795,400,000\n\n    *   **Step 7: Multiply 2,944,659 by 6,000,000 (the millions digit of 6,692,632)**\n        2,944,659 * 6 = 17,667,954\n        2,944,659 * 6,000,000 = 17,667,954,000,000\n\n    *   Step 1: 5,889,318\n    *   Step 2: 88,339,770\n    *   Step 3: 1,766,795,400\n    *   Step 4: 5,889,318,000\n    *   Step 5: 265,019,310,000\n ",
+     "answer": "19707519052488",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "3272815",
+     "b": "5409536",
+     "correct": "17704410563840",
+     "reply": "The goal is to multiply two large numbers: 3,272,815 and 5,409,536.\n\n    *   Number 1: 3,272,815\n    *   Number 2: 5,409,536\n\n    I'll use the standard long multiplication method, multiplying 3,272,815 by each digit of 5,409,536, starting from the units place.\n\n    *   **Step 1: Multiply 3,272,815 by 6 (the units digit of 5,409,536)**\n        3,272,815 * 6 = ?\n        3,000,000 * 6 = 18,000,000\n        272,000 * 6 = 1,632,000\n        815 * 6 = 4,890\n        Wait, let's do it more carefully:\n        3,272,815 * 6:\n        5 * 6 = 30 (write 0, carry 3)\n        1 * 6 = 6 + 3 = 9\n        8 * 6 = 48 (write 8, carry 4)\n        2 * 6 = 12 + 4 = 16 (write 6, carry 1)\n        7 * 6 = 42 + 1 = 43 (write 3, carry 4)\n        2 * 6 = 12 + 4 = 16 (write 6, carry 1)\n        3 * 6 = 18 + 1 = 19\n        Result: 19,636,890\n\n    *   **Step 2: Multiply 3,272,815 by 30 (the tens digit of 5,409,536)**\n        3,272,815 * 3 = ?\n        3,000,000 * 3 = 9,000,000\n        272,000 * 3 = 816,000\n        815 * 3 = 2,445\n        9,000,000 + 816,000 + 2,445 = 9,818,445\n        Since it's 30, the result is 98,184,450.\n        Let's double-check:\n        5 * 3 = 15 (write 5, carry 1)\n        1 * 3 = 3 + 1 = 4\n        8 * 3 = 24 (write 4, carry 2)\n        2 * 3 = 6 + 2 = 8\n        7 * 3 = 21 (write 1, carry 2)\n        2 * 3 = 6 + 2 = 8\n        3 * 3 = 9\n        Result: 9,818,445. Multiply by 10: 98,184,450.\n\n    *   **Step 3: Multiply 3,272,815 by 500 (the hundreds digit of 5,409,536)**\n        3,272,815 * 5 ",
+     "answer": "3272815",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "2441820",
+     "b": "6771336",
+     "correct": "16534383671520",
+     "reply": "The goal is to multiply two large numbers: 2,441,820 and 6,771,336.\n\n    Number 1: 2,441,820\n    Number 2: 6,771,336\n\n    *Method 1: Long Multiplication (Standard Algorithm)*\n    *Method 2: Breaking down the numbers (Distributive Property)*\n\n    Let's use the distributive property to make it more manageable, or just perform the long multiplication carefully.\n\n    2,441,820 = 2,441,82 * 10\n    6,771,336 = 6,771,336\n\n    So, 2,441,820 * 6,771,336 = (2,441,82 * 6,771,336) * 10\n\n    Let's multiply 2,441,820 by each digit of 6,771,336:\n    6,771,336 = 6,000,000 + 700,000 + 70,000 + 1,000 + 300 + 30 + 6\n\n    Wait, it might be easier to multiply 6,771,336 by each digit of 2,441,820:\n    2,441,820 = 2,000,000 + 400,000 + 40,000 + 1,000 + 800 + 20 + 0\n\n    Let's try multiplying 6,771,336 by each part of 2,441,820:\n    1.  6,771,336 * 2,000,000 = 13,542,672,000,000\n    2.  6,771,336 * 400,000 = 2,708,534,400,000\n    3.  6,771,336 * 40,000 = 270,853,440,000\n    4.  6,771,336 * 1,000 = 6,771,336,000\n    5.  6,771,336 * 800 = 5,417,068,800\n    6.  6,771,336 * 20 = 135,426,720\n    7.  6,771,336 * 0 = 0\n\n    *Step 1: 6,771,336 * 2,000,000*\n    6,771,336 * 2 = 13,542,672\n    13,542,672 * 1,000,000 = 13,542,672,000,000\n\n    *Step 2: 6,771,336 * 400,000*\n    6,771,336 * 4 = 27,085,344\n    27,085,344 * 100,000 = 2,708,534,400,000\n\n    *Step 3: 6,771,336 * 40,000*\n    6,771,336 * 4 = 27,085,344\n    27,085,344 * 10,000 = 270,853,440,000\n\n    *Step 4: 6,771,336 * 1,000*\n    6,771,336 * 1,000 = 6,7",
+     "answer": "82017600",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "61739882",
+     "b": "86717887",
+     "correct": "5353952110669334",
+     "reply": "The goal is to multiply two large numbers: 61,739,882 and 86,717,887.\n\n    Number 1 (A): 61,739,882\n    Number 2 (B): 86,717,887\n\n    A = 61,739,882\n    B = 86,717,887\n\n    A = 6 * 10^7 + 1 * 10^6 + 7 * 10^5 + 3 * 10^4 + 9 * 10^3 + 8 * 10^2 + 8 * 10^1 + 2 * 10^0\n    B = 8 * 10^7 + 6 * 10^6 + 7 * 10^5 + 1 * 10^4 + 7 * 10^3 + 8 * 10^2 + 8 * 10^1 + 7 * 10^0\n\n    Wait, let's use the standard long multiplication method (multiplying A by each digit of B).\n\n    A = 61,739,882\n    B = 86,717,887\n\n    B = 80,000,000 + 6,000,000 + 700,000 + 10,000 + 7,000 + 800 + 80 + 7\n\n    *   **Step 1: 61,739,882 × 7**\n        61,739,882 * 7 = (60,000,000 * 7) + (1,000,000 * 7) + (700,000 * 7) + (30,000 * 7) + (9,000 * 7) + (800 * 7) + (80 * 7) + (2 * 7)\n        = 420,000,000 + 7,000,000 + 4,900,000 + 210,000 + 63,000 + 5,600 + 560 + 14\n        = 427,000,000 + 4,900,000 + 210,000 + 63,000 + 5,600 + 560 + 14\n        = 431,900,000 + 210,000 + 63,000 + 5,600 + 560 + 14\n        = 432,110,000 + 63,000 + 5,600 + 560 + 14\n        = 432,173,000 + 5,600 + 560 + 14\n        = 432,178,600 + 560 + 14\n        = 432,179,160 + 14\n        = 432,179,174\n\n    *   **Step 2: 61,739,882 × 80**\n        61,739,882 * 80 = (61,739,882 * 8) * 10\n        61,739,882 * 8 = (60,000,000 * 8) + (1,000,000 * 8) + (700,000 * 8) + (30,000 * 8) + (9,000 * 8) + (800 * 8) + (80 * 8) + (2 * 8)\n        = 480,000,000 + 8,000,000 + 5,600,000 + 240,000 + 72,000 + 6,400 + 640 + 16\n        = 488,000,000 + 5,600,000 + 240,000 + 72,000 + 6,400 + ",
+     "answer": "41476155066933",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "15251949",
+     "b": "15279975",
+     "correct": "233049399421275",
+     "reply": "The goal is to multiply two large numbers: 15,251,949 and 15,279,975.\n\n    Number A: 15,251,949\n    Number B: 15,279,975\n\n    Let's use the standard long multiplication method or break it down into smaller parts.\n    A = 15,251,949\n    B = 15,279,975\n\n    Wait, let's try breaking them down using the distributive property:\n    A = 15,251,949\n    B = 15,279,975\n\n    Let's express B as (15,251,949 + 28,026).\n    Wait, that's not quite right. Let's try:\n    B = 15,251,949 + (15,279,975 - 15,251,949)\n    15,279,975 - 15,251,949 = 28,026\n\n    So, A × B = A × (A + 28,026) = A² + 28,026A.\n\n    Let's calculate A² = (15,251,949)²:\n    15,251,949² = (15,251,949) * (15,251,949)\n\n    This is still a large calculation. Let's use the standard long multiplication method instead, or break it down by digits.\n\n    A = 15,251,949\n    B = 15,279,975\n\n    Let's break B into parts:\n    B = 15,000,000 + 279,975\n    Wait, let's break B into:\n    B = 15,000,000 + 200,000 + 70,000 + 9,000 + 900 + 70 + 5\n\n    A × B = A × (15,000,000 + 200,000 + 70,000 + 9,000 + 900 + 70 + 5)\n    A × 15,000,000 = 15,251,949 * 15,000,000\n    A × 200,000 = 15,251,949 * 200,000\n    A × 70,000 = 15,251,949 * 70,000\n    A × 9,000 = 15,251,949 * 9,000\n    A × 900 = 15,251,949 * 900\n    A × 70 = 15,251,949 * 70\n    A × 5 = 15,251,949 * 5\n\n    Let's calculate each part:\n\n    1.  15,251,949 * 15,000,000:\n        15,251,949 * 15 = 15,251,949 * 10 + 15,251,949 * 5\n        15,251,949 * 10 = 152,519,490\n        15,251,949 * 5 = 76,25",
+     "answer": "1479439053",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "61725549",
+     "b": "32243580",
+     "correct": "1990252677225420",
+     "reply": "The goal is to multiply two large numbers: 61,725,549 and 32,243,580.\n\n    Number 1 (A): 61,725,549\n    Number 2 (B): 32,243,580\n\n    Wait, 32,243,580 ends in a zero. This means I can multiply 61,725,549 by 3,224,358 and then add a zero at the end.\n\n    Let's re-examine the numbers:\n    A = 61,725,549\n    B = 32,243,580\n\n    Let's use the long multiplication method (or breaking it down into smaller parts).\n\n    A = 61,725,549\n    B = 32,243,580\n\n    B = 32,000,000 + 243,000 + 580 (Wait, this is not the best way)\n    B = 30,000,000 + 2,000,000 + 200,000 + 40,000 + 3,000 + 500 + 80\n\n    Let's try multiplying A by each part of B:\n    A * 30,000,000 = 61,725,549 * 3 * 10,000,000\n    A * 2,000,000 = 61,725,549 * 2 * 1,000,000\n    A * 200,000 = 61,725,549 * 2 * 100,000\n    A * 40,000 = 61,725,549 * 4 * 10,000\n    A * 3,000 = 61,725,549 * 3 * 1,000\n    A * 500 = 61,725,549 * 5 * 100\n    A * 80 = 61,725,549 * 8 * 10\n\n    Let's calculate each part:\n\n    1.  61,725,549 * 30,000,000:\n        61,725,549 * 3 = 185,176,647\n        185,176,647 * 10,000,000 = 1,851,766,470,000,000\n\n    2.  61,725,549 * 2,000,000:\n        61,725,549 * 2 = 123,451,098\n        123,451,098 * 1,000,000 = 123,451,098,000,000\n\n    3.  61,725,549 * 200,000:\n        61,725,549 * 2 = 123,451,098\n        123,451,098 * 100,000 = 12,345,109,800,000\n\n    4.  61,725,549 * 40,000:\n        61,725,549 * 4 = 246,902,196\n        246,902,196 * 10,000 = 2,469,021,960,000\n\n    5.  61,725,549 * 3,000:\n        61,725,549 * 3 = 185,1",
+     "answer": "40000",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "13638140",
+     "b": "73269281",
+     "correct": "999256711977340",
+     "reply": "The goal is to multiply two large numbers: 13,638,140 and 73,269,281.\n\n    Number 1: 13,638,140\n    Number 2: 73,269,281\n\n    Wait, let's re-examine the numbers.\n    A = 13,638,140\n    B = 73,269,281\n\n    A = 13,638,140 = 13,638,14 * 10\n    B = 73,269,281\n\n    So, A * B = (13,638,14 * 10) * 73,269,281 = (13,638,14 * 73,269,281) * 10.\n\n    Let's multiply 13,638,140 by 73,269,281 using the standard long multiplication method or by breaking it down.\n\n    Let's break 13,638,140 into parts:\n    13,638,140 = 10,000,000 + 3,000,000 + 600,000 + 30,000 + 8,000 + 100 + 40\n\n    Wait, that's a bit tedious. Let's try another way.\n    13,638,140 = 13,638,14 * 10\n    Let's multiply 13,638,14 * 73,269,281 and then add a zero at the end.\n\n    Wait, 13,638,14 is actually 13,638,140 / 10.\n    Let's use the full numbers:\n    13,638,140 * 73,269,281\n\n    Let's break 13,638,140 into:\n    13,638,140 = 13,000,000 + 638,140\n    No, let's use:\n    13,638,140 = 10,000,000 + 3,000,000 + 600,000 + 30,000 + 8,000 + 100 + 40\n\n    Let's multiply each part by 73,269,281:\n    1.  10,000,000 * 73,269,281 = 732,692,810,000,000\n    2.  3,000,000 * 73,269,281 = 219,807,843,000,000\n    3.  600,000 * 73,269,281 = 43,961,568,600,000\n    4.  30,000 * 73,269,281 = 2,198,078,430,000\n    5.  8,000 * 73,269,281 = 586,154,248,000\n    6.  100 * 73,269,281 = 7,326,928,100\n    7.  40 * 73,269,281 = 2,930,771,240\n\n    Now, let's sum these up:\n    732,692,810,000,000\n    + 219,807,843,000,000\n    ---------------------\n    952,",
+     "answer": "3668659660",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "71446904",
+     "b": "56405222",
+     "correct": "4029978481332688",
+     "reply": "The goal is to multiply two large numbers: 71,446,904 and 56,405,222.\n\n    Number 1 (A): 71,446,904\n    Number 2 (B): 56,405,222\n\n    A = 71,446,904\n    B = 56,405,222\n\n    B = 56,000,000 + 400,000 + 5,000 + 200 + 20 + 2\n    Wait, let's break it down by digits:\n    B = 5 * 10^7 + 6 * 10^6 + 4 * 10^5 + 0 * 10^4 + 5 * 10^3 + 2 * 10^2 + 2 * 10^1 + 2 * 10^0\n\n    A * B = 71,446,904 * (50,000,000 + 6,000,000 + 400,000 + 0 + 5,000 + 200 + 20 + 2)\n\n    *   **Step 1: 71,446,904 * 2**\n        71,446,904 * 2 = 142,893,808\n\n    *   **Step 2: 71,446,904 * 20**\n        71,446,904 * 20 = 1,428,938,080\n\n    *   **Step 3: 71,446,904 * 200**\n        71,446,904 * 200 = 14,289,380,800\n\n    *   **Step 4: 71,446,904 * 5,000**\n        71,446,904 * 5 = 357,234,520\n        71,446,904 * 5,000 = 357,234,520,000\n\n    *   **Step 5: 71,446,904 * 0 (for the 10,000s place)**\n        71,446,904 * 0 = 0\n\n    *   **Step 6: 71,446,904 * 400,000**\n        71,446,904 * 4 = 285,787,616\n        71,446,904 * 400,000 = 28,578,761,600,000\n\n    *   **Step 7: 71,446,904 * 6,000,000**\n        71,446,904 * 6 = 428,681,424\n        71,446,904 * 6,000,000 = 428,681,424,000,000\n\n    *   **Step 8: 71,446,904 * 50,000,000**\n        71,446,904 * 5 = 357,234,520\n        71,446,904 * 50,000,000 = 3,572,345,200,000,000\n\n    *   Sum 1 (Steps 1-3):\n        142,893,808 (2)\n        + 1,428,938,080 (20)\n        + 14,289,380,800 (200)\n        -----------------\n        15,861,212,688\n\n    *   Sum 2 (Steps 4-5):\n        357,234,520,000 (5,",
+     "answer": "14289",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "875113740",
+     "b": "533367019",
+     "correct": "466756806789741060",
+     "reply": "The goal is to multiply two large numbers: 875,113,740 and 533,367,019.\n\n    Number 1 (A): 875,113,740\n    Number 2 (B): 533,367,019\n\n    A = 875,113,740\n    B = 533,367,019\n\n    A = 875,113,740\n    B = 533,367,019\n\n    Let's break B down into its components:\n    B = 500,000,000 + 30,000,000 + 3,000,000 + 300,000 + 60,000 + 7,000 + 0 + 10 + 9\n    Wait, let's use a more standard way (digit by digit):\n    B = 5 * 10^8 + 3 * 10^7 + 3 * 10^6 + 3 * 10^5 + 6 * 10^4 + 7 * 10^3 + 0 * 10^2 + 1 * 10^1 + 9 * 10^0\n\n    A * B = A * (500,000,000 + 30,000,000 + 3,000,000 + 300,000 + 60,000 + 7,000 + 0 + 10 + 9)\n\n    1.  875,113,740 * 500,000,000 = 437,556,870,000,000,000\n    2.  875,113,740 * 30,000,000 = 26,253,412,200,000,000\n    3.  875,113,740 * 3,000,000 = 2,625,341,220,000,000\n    4.  875,113,740 * 300,000 = 262,534,122,000,000\n    5.  875,113,740 * 60,000 = 52,506,824,400,000\n    6.  875,113,740 * 7,000 = 6,125,796,180,000\n    7.  875,113,740 * 0 = 0\n    8.  875,113,740 * 10 = 8,751,137,400\n    9.  875,113,740 * 9 = 7,876,023,660\n\n    *Wait, let me re-calculate each step carefully.*\n\n    Step 1: 875,113,740 * 500,000,000\n    875,113,74 * 5 = 437,556,870\n    So, 875,113,740 * 500,000,000 = 437,556,870,000,000,000 (Correct)\n\n    Step 2: 875,113,740 * 30,000,000\n    875,113,74 * 3 = 2,625,341,22\n    So, 875,113,740 * 30,000,000 = 26,253,412,200,000,000 (Correct)\n\n    Step 3: 875,113,740 * 3,000,000\n    875,113,74 * 3 = 2,625,341,22\n    So, 875,113,740 * 3,000,000 = 2,625,341,220,000,000",
+     "answer": "875113740",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "605504456",
+     "b": "185643746",
+     "correct": "112408115431532176",
+     "reply": "The goal is to multiply two large numbers: 605,504,456 and 185,643,746.\n\n    Number 1 (A): 605,504,456\n    Number 2 (B): 185,643,746\n\n    A = 605,504,456\n    B = 185,643,746\n\n    A = 605,504,456\n    B = 185,643,746\n\n    Let's break B down into its components:\n    B = 100,000,000 + 80,000,000 + 5,000,000 + 600,000 + 40,000 + 3,000 + 700 + 40 + 6\n\n    Wait, a better way might be to use the standard long multiplication method or break it down into smaller chunks.\n\n    Let's use the chunking method (multiplying A by each digit of B):\n    A = 605,504,456\n\n    B = 185,643,746\n\n    1.  6 * 605,504,456\n    2.  40 * 605,504,456\n    3.  700 * 605,504,456\n    4.  3,000 * 605,504,456\n    5.  40,000 * 605,504,456\n    6.  600,000 * 605,504,456\n    7.  5,000,000 * 605,504,456\n    8.  80,000,000 * 605,504,456\n    9.  100,000,000 * 605,504,456\n\n    *Step 1: 6 * 605,504,456*\n    6 * 600,000,000 = 3,600,000,000\n    6 * 5,000,000 = 30,000,000\n    6 * 500,000 = 3,000,000\n    6 * 4,000 = 24,000\n    6 * 400 = 2,400\n    6 * 50 = 300\n    6 * 6 = 36\n    Sum: 3,600,000,000 + 30,000,000 + 3,000,000 + 24,000 + 2,400 + 300 + 36\n    = 3,633,026,736\n\n    *Step 2: 40 * 605,504,456*\n    4 * 605,504,456 = 4 * (605,504,456)\n    4 * 600,000,000 = 2,400,000,000\n    4 * 5,000,000 = 20,000,000\n    4 * 500,000 = 2,000,000\n    4 * 4,000 = 16,000\n    4 * 400 = 1,600\n    4 * 50 = 200\n    4 * 6 = 24\n    Sum: 2,400,000,000 + 20,000,000 + 2,000,000 + 16,000 + 1,600 + 200 + 24 = 2,422,017,824\n    Multiply by 10: 24,220,178",
+     "answer": "48440356480000000",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "460494652",
+     "b": "492123888",
+     "correct": "226620418545446976",
+     "reply": "The goal is to multiply two large numbers: 460,494,652 and 492,123,888.\n\n    Number 1 (A): 460,494,652\n    Number 2 (B): 492,123,888\n\n    A = 460,494,652\n    B = 492,123,888\n\n    A = 460,494,652\n    B = 492,123,888\n\n    Let's break B down into its components:\n    B = 400,000,000 + 90,000,000 + 2,000,000 + 100,000 + 20,000 + 3,000 + 800 + 80 + 8\n\n    Wait, that's a lot of steps. Let's try a more systematic approach.\n\n    A = 460,494,652\n    B = 492,123,888\n\n    Let's multiply A by each digit of B (from right to left):\n    B = 8 * 10^0 + 8 * 10^1 + 8 * 10^2 + 3 * 10^3 + 2 * 10^4 + 1 * 10^5 + 2 * 10^6 + 9 * 10^7 + 4 * 10^8\n\n    Wait, let's re-examine B: 492,123,888\n    B = 4 * 10^8 + 9 * 10^7 + 2 * 10^6 + 1 * 10^5 + 2 * 10^4 + 3 * 10^3 + 8 * 10^2 + 8 * 10^1 + 8 * 10^0\n\n    Let's calculate each part:\n    1.  460,494,652 * 8 = 3,683,957,216\n    2.  460,494,652 * 80 = 36,839,572,160\n    3.  460,494,652 * 800 = 368,395,721,600\n    4.  460,494,652 * 3,000 = 1,381,483,956,000\n    5.  460,494,652 * 20,000 = 9,209,893,040,000\n    6.  460,494,652 * 100,000 = 46,049,465,200,000\n    7.  460,494,652 * 2,000,000 = 920,989,304,000,000\n    8.  460,494,652 * 90,000,000 = 41,444,518,680,000,000\n    9.  460,494,652 * 400,000,000 = 184,197,860,800,000,000\n\n    Let's re-calculate each step carefully.\n\n    Step 1: 460,494,652 * 8\n    460,494,652 * 8 = (460,000,000 * 8) + (494,000 * 8) + (652 * 8)\n    460,000,000 * 8 = 3,680,000,000\n    494,000 * 8 = 3,952,000\n    652 * 8 = 5,216\n    3,680,000,000 + ",
+     "answer": "226618628142240000",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "118362192",
+     "b": "694687276",
+     "correct": "82224708741868992",
+     "reply": "The goal is to multiply two large numbers: 118,362,192 and 694,687,276.\n\n    Number A: 118,362,192\n    Number B: 694,687,276\n\n    A = 118,362,192\n    B = 694,687,276\n\n    Let's break down B into its components:\n    B = 600,000,000 + 90,000,000 + 4,000,000 + 600,000 + 80,000 + 7,000 + 200 + 70 + 6\n\n    Wait, a better way might be to use the standard long multiplication method or break it down by digits.\n\n    A = 118,362,192\n    B = 694,687,276\n\n    Let's multiply A by each digit of B:\n    B = 6 * 10^8 + 9 * 10^7 + 4 * 10^6 + 6 * 10^5 + 8 * 10^4 + 7 * 10^3 + 2 * 10^2 + 7 * 10^1 + 6 * 10^0\n\n    1.  6 * 118,362,192\n    2.  70 * 118,362,192\n    3.  200 * 118,362,192\n    4.  7,000 * 118,362,192\n    5.  80,000 * 118,362,192\n    6.  600,000 * 118,362,192\n    7.  4,000,000 * 118,362,192\n    8.  90,000,000 * 118,362,192\n    9.  600,000,000 * 118,362,192\n\n    *Step 1: 6 * 118,362,192*\n    6 * 100,000,000 = 600,000,000\n    6 * 18,000,000 = 108,000,000\n    6 * 362,000 = 2,172,000\n    6 * 192 = 1,152\n    Wait, let's do it more carefully:\n    6 * 118,362,192 = 6 * (118,000,000 + 362,000 + 192)\n    6 * 118,000,000 = 708,000,000\n    6 * 362,000 = 2,172,000\n    6 * 192 = 1,152\n    708,000,000 + 2,172,000 + 1,152 = 710,173,152\n\n    *Step 2: 70 * 118,362,192*\n    7 * 118,362,192 = 7 * (710,173,152 / 6) -- no, that's not right.\n    7 * 118,362,192 = 7 * 118,362,192\n    7 * 100,000,000 = 700,000,000\n    7 * 18,000,000 = 126,000,000\n    7 * 362,000 = 2,534,000\n    7 * 192 = 1,344\n    700,000,000 + ",
+     "answer": "118362192",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "909530919",
+     "b": "512947955",
+     "correct": "466542024910320645",
+     "reply": "The goal is to multiply two large numbers: 909,530,919 and 512,947,955.\n\n    Number 1 (A): 909,530,919\n    Number 2 (B): 512,947,955\n\n    A = 909,530,919\n    B = 512,947,955\n\n    A = 900,000,000 + 9,000,000 + 500,000 + 30,000 + 0 + 900 + 10 + 9\n    Wait, let's be more precise:\n    A = 900,000,000 + 9,000,000 + 500,000 + 30,000 + 0 + 900 + 10 + 9 (No, that's not right)\n    A = 909,530,919\n    A = 900,000,000 + 9,000,000 + 500,000 + 30,000 + 0 + 900 + 10 + 9 (Wait, 909,530,919)\n    A = 900,000,000 + 9,000,000 + 500,000 + 30,000 + 0 + 900 + 10 + 9 (Wait, let's re-list)\n    A = 900,000,000\n    + 9,000,000\n    + 500,000\n    + 30,000\n    + 0\n    + 900\n    + 10\n    + 9\n    Wait, 909,530,919:\n    900,000,000\n    09,000,000\n    00,500,000\n    00,030,000\n    00,000,000\n    00,000,900\n    00,000,010\n    00,000,009\n    Sum: 909,530,919. Correct.\n\n    B = 512,947,955\n    B = 500,000,000\n    + 10,000,000\n    + 2,000,000\n    + 900,000\n    + 40,000\n    + 7,000\n    + 900\n    + 50\n    + 5\n    Sum: 512,947,955. Correct.\n\n    A × B = (909,530,919) × (512,947,955)\n\n    Let's use the distributive property:\n    A × B = 909,530,919 × (500,000,000 + 12,000,000 + 947,000 + 955)\n    Wait, that's not easier. Let's use the standard long multiplication approach (digit by digit).\n\n    A = 909,530,919\n    B = 512,947,955\n\n    Let's break B into parts:\n    B = 500,000,000 + 10,000,000 + 2,000,000 + 900,000 + 40,000 + 7,000 + 900 + 50 + 5\n\n    Now multiply A by each part:\n\n    1.  909,530,919 × 5 = 4,547,654,",
+     "answer": "9095309",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "5662017429",
+     "b": "9945771955",
+     "correct": "56313134154069403695",
+     "reply": "The goal is to multiply two large numbers: 5,662,017,429 and 9,945,771,955.\n\n    A = 5,662,017,429\n    B = 9,945,771,955\n\n    A = 5,662,017,429\n    B = 9,945,771,955\n\n    Let's break B down into smaller parts to make multiplication easier:\n    B = 9,000,000,000 + 900,000,000 + 40,000,000 + 5,000,000 + 700,000 + 70,000 + 1,000 + 900 + 50 + 5\n    Wait, that's too many parts. Let's try a more standard approach or use a different decomposition.\n\n    Let's use the standard long multiplication method (conceptually) or break it into chunks.\n    A = 5,662,017,429\n    B = 9,945,771,955\n\n    Let's break A into:\n    A1 = 5,662,000,000\n    A2 = 17,429\n\n    Let's break B into:\n    B1 = 9,945,000,000\n    B2 = 771,955\n\n    This might still be complicated. Let's try another way.\n    A = 5,662,017,429\n    B = 9,945,771,955\n\n    Let's use the property: (A * B)\n    A = 5,662,017,429\n    B = 10,000,000,000 - 54,228,045\n\n    Wait, let's check that:\n    10,000,000,000 - 9,945,771,955 = 54,228,045\n    Yes, that's correct.\n\n    So, A * B = A * (10,000,000,000 - 54,228,045)\n    A * B = (A * 10,000,000,000) - (A * 54,228,045)\n\n    Step 1: A * 10,000,000,000 = 56,620,174,290,000,000,000\n\n    Step 2: A * 54,228,045\n    A = 5,662,017,429\n    Multiplier = 54,228,045\n\n    Let's break 54,228,045 into smaller parts:\n    54,228,045 = 54,000,000 + 228,000 + 45\n    Wait, let's try:\n    54,228,045 = 50,000,000 + 4,000,000 + 200,000 + 20,000 + 8,000 + 45\n    No, let's use:\n    54,228,045 = 54,000,000 + 228,045\n  ",
+     "answer": "113240348580000",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "7061156377",
+     "b": "5926155315",
+     "correct": "41845509393604693755",
+     "reply": "The task is to multiply two large numbers: 7,061,156,377 and 5,926,155,315.\n\n    Number 1 (A): 7,061,156,377\n    Number 2 (B): 5,926,155,315\n\n    A = 7,061,156,377\n    B = 5,926,155,315\n\n    A = 7 * 10^9 + 0 * 10^8 + 6 * 10^7 + 1 * 10^6 + 1 * 10^5 + 5 * 10^4 + 6 * 10^3 + 3 * 10^2 + 7 * 10^1 + 7 * 10^0\n    Wait, let's re-list the digits of A:\n    7, 0, 6, 1, 1, 5, 6, 3, 7, 7 (10 digits)\n    A = 7,061,156,377\n\n    B = 5, 9, 2, 6, 1, 5, 5, 3, 1, 5 (10 digits)\n    B = 5,926,155,315\n\n    Let's use the standard long multiplication method (or break it down into smaller parts).\n\n    A = 7,061,156,377\n    B = 5,926,155,315\n\n    Let's break B into parts:\n    B = 5,000,000,000 + 900,000,000 + 20,000,000 + 6,000,000 + 100,000 + 50,000 + 5,000 + 300 + 10 + 5\n\n    Wait, that's a lot of parts. Let's try another way.\n    A * B = (7,061,156,377) * (5,926,155,315)\n\n    Let's use the distributive property:\n    A * B = A * (5,000,000,000 + 926,155,315)\n    A * B = A * 5,000,000,000 + A * 926,155,315\n\n    Let's try breaking A and B into smaller chunks.\n    A = 7,061,156,377\n    B = 5,926,155,315\n\n    Let's use the method of multiplying each digit of B by A:\n    B = 5 * 10^9 + 9 * 10^8 + 2 * 10^7 + 6 * 10^6 + 1 * 10^5 + 5 * 10^4 + 5 * 10^3 + 3 * 10^2 + 1 * 10^1 + 5 * 10^0\n\n    1.  5 * 7,061,156,377 = 35,305,781,885\n    2.  10 * 3 * 7,061,156,377 = 30 * 7,061,156,377 = 211,834,691,310\n    3.  100 * 5 * 7,061,156,377 = 500 * 7,061,156,377 = 3,530,578,188,500\n    4.  1,000 * 5 * 7,061,156,377 = 5,000",
+     "answer": "70611563770",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "3707094984",
+     "b": "7702940211",
+     "correct": "28555531018250001624",
+     "reply": "The goal is to multiply two large numbers: 3,707,094,984 and 7,702,940,211.\n\n    A = 3,707,094,984\n    B = 7,702,940,211\n\n    A = 3,707,094,984\n    B = 7,702,940,211\n\n    Let's break down B into its components:\n    B = 7,000,000,000 + 700,000,000 + 2,000,000 + 900,000 + 40,000 + 0 + 200 + 10 + 1\n    Wait, that's not quite right. Let's re-examine B:\n    B = 7,702,940,211\n    B = 7 * 10^9 + 7 * 10^8 + 0 * 10^7 + 2 * 10^6 + 9 * 10^5 + 4 * 10^4 + 0 * 10^3 + 2 * 10^2 + 1 * 10^1 + 1 * 10^0\n\n    Let's try another way. Let's multiply A by each digit of B:\n    A * 1 = 3,707,094,984\n    A * 10 = 37,070,949,840\n    A * 200 = 741,418,996,800\n    A * 0 = 0\n    A * 40,000 = 148,283,799,360,000\n    A * 900,000 = 3,336,385,485,600,000\n    A * 2,000,000 = 7,414,189,968,000,000\n    A * 0 = 0\n    A * 700,000,000 = 2,594,966,488,800,000,000\n    A * 7,000,000,000 = 25,949,664,888,000,000,000\n\n    Wait, let's re-calculate each part carefully.\n\n    A = 3,707,094,984\n\n    1.  A * 1 = 3,707,094,984\n    2.  A * 10 = 37,070,949,840\n    3.  A * 200 = 3,707,094,984 * 2 * 100\n        3,707,094,984 * 2 = 7,414,189,968\n        7,414,189,968 * 100 = 741,418,996,800\n    4.  A * 0 = 0\n    5.  A * 40,000 = 3,707,094,984 * 4 * 10,000\n        3,707,094,984 * 4 = 14,828,379,936\n        14,828,379,936 * 10,000 = 148,283,799,360,000\n    6.  A * 900,000 = 3,707,094,984 * 9 * 100,000\n        3,707,094,984 * 9 = 33,363,854,856\n        33,363,854,856 * 100,000 = 3,336,385,485,600,000\n    7.  A * 2,000,000 = 3,707,094,98",
+     "answer": "28555381952253600000",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "4508086775",
+     "b": "8921382010",
+     "correct": "40218364254003917750",
+     "reply": "The goal is to multiply two large numbers: 4,508,086,775 and 8,921,382,010.\n\n    A = 4,508,086,775\n    B = 8,921,382,010\n\n    B = 8,921,382,010\n    B = 8,921,382,01 * 10 (Wait, let's just treat it as 8,921,382,010)\n\n    Let's break B down into parts to make multiplication easier:\n    B = 8,000,000,000 + 900,000,000 + 20,000,000 + 1,000,000 + 300,000 + 80,000 + 2,000 + 0 + 10\n\n    Wait, that's a bit tedious. Let's use a more systematic approach.\n    A = 4,508,086,775\n    B = 8,921,382,010\n\n    Let's multiply A by each digit of B (from right to left):\n    B = 8,921,382,010\n    Digits of B:\n    d0 = 0 (at 10^0)\n    d1 = 1 (at 10^1)\n    d2 = 0 (at 10^2)\n    d3 = 2 (at 10^3)\n    d4 = 8 (at 10^4)\n    d5 = 3 (at 10^5)\n    d6 = 1 (at 10^6)\n    d7 = 2 (at 10^7)\n    d8 = 9 (at 10^8)\n    d9 = 8 (at 10^9)\n\n    Wait, let's re-list the digits of B:\n    B = 8,921,382,010\n    B = 8 * 10^9 + 9 * 10^8 + 2 * 10^7 + 1 * 10^6 + 3 * 10^5 + 8 * 10^4 + 2 * 10^3 + 0 * 10^2 + 1 * 10^1 + 0 * 10^0\n\n    Let's calculate each term:\n    1.  A * 0 = 0\n    2.  A * 10 = 45,080,867,750\n    3.  A * 0 = 0\n    4.  A * 2,000 = 4,508,086,775 * 2,000 = 9,016,173,550,000\n    5.  A * 80,000 = 4,508,086,775 * 80,000 = 360,646,942,000,000\n    6.  A * 300,000 = 4,508,086,775 * 300,000 = 1,352,426,032,500,000\n    7.  A * 1,000,000 = 4,508,086,775 * 1,000,000 = 4,508,086,775,000,000\n    8.  A * 20,000,000 = 4,508,086,775 * 20,000,000 = 90,161,735,500,000,000\n    9.  A * 900,000,000 = 4,508,086,775 * 900,000,000 = 4,057,278,",
+     "answer": "892138201",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "7628290917",
+     "b": "6717784153",
+     "correct": "51245211836696438301",
+     "reply": "The task is to multiply two large numbers: 7,628,290,917 and 6,717,784,153.\n\n    A = 7,628,290,917\n    B = 6,717,784,153\n\n    A = 7 * 10^9 + 628 * 10^6 + 290 * 10^3 + 917 (Wait, let's be more precise)\n    A = 7,628,290,917\n    B = 6,717,784,153\n\n    Let's use the standard long multiplication method or break it down into smaller parts.\n    A = 7,628,290,917\n    B = 6,717,784,153\n\n    A = 7,628,290,917\n    B = 6,717,784,153\n\n    Let's break B into parts:\n    B = 6,000,000,000 + 717,000,000 + 784,000 + 153 (Wait, this is not quite right)\n    B = 6,000,000,000 + 717,000,000 + 784,000 + 153 (No, let's use powers of 10)\n    B = 6 * 10^9 + 7 * 10^8 + 1 * 10^7 + 7 * 10^6 + 7 * 10^5 + 8 * 10^4 + 4 * 10^3 + 1 * 10^2 + 5 * 10^1 + 3 * 10^0\n\n    Wait, let's try a different way. Let's use the distributive property:\n    A * B = (7,628,290,917) * (6,717,784,153)\n\n    Let's break A and B into smaller chunks:\n    A = 7,628 * 10^6 + 290,917\n    B = 6,717 * 10^6 + 784,153\n\n    A * B = (7,628 * 10^6 + 290,917) * (6,717 * 10^6 + 784,153)\n    A * B = (7,628 * 6,717) * 10^12 + (7,628 * 784,153) * 10^6 + (290,917 * 6,717) * 10^6 + (290,917 * 784,153)\n\n    Let's calculate each part:\n\n    Part 1: 7,628 * 6,717\n    7,628 * 6,000 = 45,768,000\n    7,628 * 700 = 5,339,600\n    7,628 * 10 = 76,280\n    7,628 * 7 = 53,396\n    Sum: 45,768,000 + 5,339,600 + 76,280 + 53,396 = 51,237,276\n\n    Part 2: 7,628 * 784,153\n    7,628 * 700,000 = 5,339,600,000\n    7,628 * 80,000 = 610,240,000\n    7,628 * 4,000 = 30,512,000",
+     "answer": "3814",
+     "ok": false
+    }
+   ]
+  },
+  {
+   "name": "gemma-4-31b-it",
+   "id": "gemma-4-31b-it",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 500 after 23 answers",
+   "direct": {
+    "2": {
+     "right": 0,
+     "of": 10
+    },
+    "3": {
+     "right": 0,
+     "of": 10
+    },
+    "4": {
+     "right": 0,
+     "of": 3
+    }
+   },
+   "worked": {},
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 38 and 60\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   38 * 60\n    *   38 * 6 = (30 * 6) + (8 * 6) = 180 + 48 = 228\n   ",
+     "answer": "38",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "90",
+     "b": "46",
+     "correct": "4140",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 90 and 46\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   90 * 46\n    *   9 * 46 = 9 * (40 + 6) = 360 + 54 = 414\n    *   9",
+     "answer": "90",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "65",
+     "b": "85",
+     "correct": "5525",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 65 and 85\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   65 * 85\n    *   (60 + 5) * (80 + 5)\n    *   60 * 80 = 4800\n    *",
+     "answer": "65",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "44",
+     "b": "78",
+     "correct": "3432",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 44 and 78\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   44 * 78\n    *   44 * 70 = 3080\n    *   44 * 8 = 352\n    *   3080",
+     "answer": "44",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "53",
+     "correct": "3074",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 58 and 53\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   58 * 50 = 2900\n    *   58 * 3 = 174\n    *   2900 + 174 = 3074\n\n ",
+     "answer": "58",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "40",
+     "b": "41",
+     "correct": "1640",
+     "reply": "*   Operation: 40 × 41\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   40 × 40 = 1600\n    *   40 × 1 = 40\n    *   1600 + 40 = 1640\n\n    *   Number only: 16401640",
+     "answer": "40",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "93",
+     "b": "89",
+     "correct": "8277",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 93 and 89\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   93 * 89\n    *   Method 1 (Standard):\n        93 * 90 = 8370\n    ",
+     "answer": "93",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "86",
+     "correct": "4988",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 58 and 86\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   58 * 86\n    *   58 * 80 = 4640\n    *   58 * 6 = 348\n    *   4640",
+     "answer": "58",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "41",
+     "b": "87",
+     "correct": "3567",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 41 and 87\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   41 * 87\n    *   40 * 87 = 3480\n    *   1 * 87 = 87\n    *   3480 ",
+     "answer": "41",
+     "ok": false
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "68",
+     "correct": "2584",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 38 and 68\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   38 * 68\n    *   (40 - 2) * 68 = 40 * 68 - 2 * 68\n    *   40 * 68",
+     "answer": "38",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "298",
+     "b": "141",
+     "correct": "42018",
+     "reply": "The user wants the result of 298 multiplied by 141.\nThe output must be only the number, no words, no working.\n\nCalculation:\n298 * 141\n= 298 * (100 + 40 + 1)\n= (298 * 100) + (298 * 40) + (298 * 1)\n= 29",
+     "answer": "298",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "913",
+     "b": "975",
+     "correct": "890175",
+     "reply": "The user wants the product of 913 and 975.\n913 * 975\n\n    *   913 * 900 = 821,700\n    *   913 * 70 = 63,910\n    *   913 * 5 = 4,565\n    *   Sum: 821,700 + 63,910 + 4,565\n    *   821,700 + 63,910 = 885",
+     "answer": "913",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "965",
+     "b": "662",
+     "correct": "638830",
+     "reply": "The user wants the result of 965 multiplied by 662.\n965 * 662\n\n    *   965 * 600 = 579,000\n    *   965 * 60 = 57,900\n    *   965 * 2 = 1,930\n    *   Sum: 579,000 + 57,900 + 1,930\n    *   579,000 + 57,",
+     "answer": "965",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "470",
+     "b": "521",
+     "correct": "244870",
+     "reply": "The user wants the result of 470 multiplied by 521.\n470 * 521\n\n    *   470 * 500 = 235,000\n    *   470 * 20 = 9,400\n    *   470 * 1 = 470\n    *   Total = 235,000 + 9,400 + 470 = 244,870\nThe user reque",
+     "answer": "470",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "452",
+     "b": "536",
+     "correct": "242272",
+     "reply": "The user wants the result of 452 multiplied by 536.\nThe output must be only the number, no words, no working.\n\nCalculation:\n452 * 536\n= 452 * (500 + 30 + 6)\n= (452 * 500) + (452 * 30) + (452 * 6)\n= (4",
+     "answer": "452",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "818",
+     "b": "463",
+     "correct": "378734",
+     "reply": "The user wants the result of 818 multiplied by 463.\n818 * 463\n\n    *   818 * 400 = 327,200\n    *   818 * 60 = 49,080\n    *   818 * 3 = 2,454\n    *   Sum: 327,200 + 49,080 + 2,454\n    *   327,200 + 49,",
+     "answer": "818",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "734",
+     "b": "906",
+     "correct": "665004",
+     "reply": "The user wants the result of 734 multiplied by 906.\n734 * 906\n\n    *   734 * 900 = 660,600\n    *   734 * 6 = 4,404\n    *   660,600 + 4,404 = 665,004\nThe user requested \"only the number, no words and n",
+     "answer": "734",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "592",
+     "b": "652",
+     "correct": "385984",
+     "reply": "The user wants the result of 592 multiplied by 652.\nThe output must be only the number, no words, no working.\n\nCalculation:\n592 * 652\n= 592 * (600 + 50 + 2)\n= (592 * 600) + (592 * 50) + (592 * 2)\n= (5",
+     "answer": "592",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "394",
+     "b": "715",
+     "correct": "281710",
+     "reply": "The user wants the result of 394 multiplied by 715.\n394 * 715\n\n    *   394 * 700 = 275,800\n    *   394 * 10 = 3,940\n    *   394 * 5 = 1,970\n    *   Total = 275,800 + 3,940 + 1,970\n    *   275,800 + 3,",
+     "answer": "394",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "837",
+     "b": "406",
+     "correct": "339822",
+     "reply": "The user wants the result of 837 multiplied by 406.The user wants the result of 837 multiplied by 406.\nThe output must be only the number, no words, no working.\n\nCalculation:\n837 * 406\n= 837 * (400 + ",
+     "answer": "837",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "6403",
+     "b": "1521",
+     "correct": "9738963",
+     "reply": "The user wants the product of 6403 and 1521.\n\n    6403 * 1521\n    = 6403 * (1000 + 500 + 20 + 1)\n    = (6403 * 1000) + (6403 * 500) + (6403 * 20) + (6403 * 1)\n\n    *   6403 * 1000 = 6,403,000\n    *   ",
+     "answer": "6403",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "9725",
+     "b": "5108",
+     "correct": "49675300",
+     "reply": "The user wants the product of 9725 and 5108.\n\n    *   9725 * 5108\n    *   9725 * 5000 = 48,625,000\n    *   9725 * 100 = 972,500\n    *   9725 * 8 = 77,800\n    *   Sum: 48,625,000 + 972,500 + 77,800\n   ",
+     "answer": "9725",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7140",
+     "b": "2000",
+     "correct": "14280000",
+     "reply": "*   Operation: Multiplication\n    *   Numbers: 7140 and 2000\n    *   Constraint: Reply with only the number, no words, no working.\n\n    *   7140 * 2 = 14280\n    *   7140 * 2000 = 14280 * 1000 = 14,280",
+     "answer": "7140",
+     "ok": false
+    }
+   ]
+  },
+  {
+   "name": "gemini-2.5-flash-lite",
+   "id": "gemini-2.5-flash-lite",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 404 after 0 answers",
+   "direct": {},
+   "worked": {},
+   "answers": []
+  },
+  {
+   "name": "gemini-3.1-flash-lite",
+   "id": "gemini-3.1-flash-lite",
+   "host": "Google AI Studio",
+   "complete": true,
+   "dropped": null,
+   "direct": {
+    "2": {
+     "right": 10,
+     "of": 10
+    },
+    "3": {
+     "right": 8,
+     "of": 10
+    },
+    "4": {
+     "right": 8,
+     "of": 10
+    },
+    "5": {
+     "right": 1,
+     "of": 10
+    },
+    "6": {
+     "right": 0,
+     "of": 10
+    },
+    "7": {
+     "right": 0,
+     "of": 10
+    },
+    "8": {
+     "right": 0,
+     "of": 10
+    },
+    "9": {
+     "right": 0,
+     "of": 10
+    },
+    "10": {
+     "right": 0,
+     "of": 10
+    }
+   },
+   "worked": {
+    "6": {
+     "right": 5,
+     "of": 5
+    },
+    "7": {
+     "right": 5,
+     "of": 5
+    },
+    "8": {
+     "right": 4,
+     "of": 5
+    },
+    "9": {
+     "right": 4,
+     "of": 5
+    },
+    "10": {
+     "right": 3,
+     "of": 5
+    }
+   },
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "2280",
+     "answer": "2280",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "90",
+     "b": "46",
+     "correct": "4140",
+     "reply": "4140",
+     "answer": "4140",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "65",
+     "b": "85",
+     "correct": "5525",
+     "reply": "5525",
+     "answer": "5525",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "44",
+     "b": "78",
+     "correct": "3432",
+     "reply": "3432",
+     "answer": "3432",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "53",
+     "correct": "3074",
+     "reply": "3074",
+     "answer": "3074",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "40",
+     "b": "41",
+     "correct": "1640",
+     "reply": "1640",
+     "answer": "1640",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "93",
+     "b": "89",
+     "correct": "8277",
+     "reply": "8277",
+     "answer": "8277",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "86",
+     "correct": "4988",
+     "reply": "4988",
+     "answer": "4988",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "41",
+     "b": "87",
+     "correct": "3567",
+     "reply": "3567",
+     "answer": "3567",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "68",
+     "correct": "2584",
+     "reply": "2584",
+     "answer": "2584",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "298",
+     "b": "141",
+     "correct": "42018",
+     "reply": "42018",
+     "answer": "42018",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "913",
+     "b": "975",
+     "correct": "890175",
+     "reply": "889175",
+     "answer": "889175",
+     "ok": false
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "965",
+     "b": "662",
+     "correct": "638830",
+     "reply": "638830",
+     "answer": "638830",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "470",
+     "b": "521",
+     "correct": "244870",
+     "reply": "244870",
+     "answer": "244870",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "452",
+     "b": "536",
+     "correct": "242272",
+     "reply": "242272",
+     "answer": "242272",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "818",
+     "b": "463",
+     "correct": "378734",
+     "reply": "378734",
+     "answer": "378734",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "734",
+     "b": "906",
+     "correct": "665004",
+     "reply": "665004",
+     "answer": "665004",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "592",
+     "b": "652",
+     "correct": "385984",
+     "reply": "385984",
+     "answer": "385984",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "394",
+     "b": "715",
+     "correct": "281710",
+     "reply": "281710",
+     "answer": "281710",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "837",
+     "b": "406",
+     "correct": "339822",
+     "reply": "340022",
+     "answer": "340022",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "6403",
+     "b": "1521",
+     "correct": "9738963",
+     "reply": "9738963",
+     "answer": "9738963",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "9725",
+     "b": "5108",
+     "correct": "49675300",
+     "reply": "49675300",
+     "answer": "49675300",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7140",
+     "b": "2000",
+     "correct": "14280000",
+     "reply": "14280000",
+     "answer": "14280000",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "1102",
+     "b": "9814",
+     "correct": "10815028",
+     "reply": "10815028",
+     "answer": "10815028",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7332",
+     "b": "5810",
+     "correct": "42598920",
+     "reply": "42598920",
+     "answer": "42598920",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "3281",
+     "b": "3212",
+     "correct": "10538572",
+     "reply": "10538572",
+     "answer": "10538572",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "2568",
+     "b": "5951",
+     "correct": "15282168",
+     "reply": "15284168",
+     "answer": "15284168",
+     "ok": false
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "4453",
+     "b": "6032",
+     "correct": "26860496",
+     "reply": "26860496",
+     "answer": "26860496",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "1675",
+     "b": "6806",
+     "correct": "11400050",
+     "reply": "11400050",
+     "answer": "11400050",
+     "ok": true
+    },
+    {
+     "digits": 4,
+     "mode": "direct",
+     "a": "7755",
+     "b": "8337",
+     "correct": "64653435",
+     "reply": "64653335",
+     "answer": "64653335",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "54541",
+     "b": "85577",
+     "correct": "4667455157",
+     "reply": "4667555357",
+     "answer": "4667555357",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "49731",
+     "b": "72341",
+     "correct": "3597590271",
+     "reply": "3597555871",
+     "answer": "3597555871",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "14848",
+     "b": "62145",
+     "correct": "922728960",
+     "reply": "922790960",
+     "answer": "922790960",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "68997",
+     "b": "50582",
+     "correct": "3490006254",
+     "reply": "3490015354",
+     "answer": "3490015354",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "32554",
+     "b": "43650",
+     "correct": "1420982100",
+     "reply": "1420982100",
+     "answer": "1420982100",
+     "ok": true
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "80200",
+     "b": "36735",
+     "correct": "2946147000",
+     "reply": "2938800000",
+     "answer": "2938800000",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "65841",
+     "b": "13535",
+     "correct": "891157935",
+     "reply": "891157235",
+     "answer": "891157235",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "61443",
+     "b": "42007",
+     "correct": "2581036101",
+     "reply": "2581055401",
+     "answer": "2581055401",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "69232",
+     "b": "35408",
+     "correct": "2451366656",
+     "reply": "2451436956",
+     "answer": "2451436956",
+     "ok": false
+    },
+    {
+     "digits": 5,
+     "mode": "direct",
+     "a": "72558",
+     "b": "41105",
+     "correct": "2982496590",
+     "reply": "2982497190",
+     "answer": "2982497190",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "449734",
+     "b": "951779",
+     "correct": "428047376786",
+     "reply": "428036555786",
+     "answer": "428036555786",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "311508",
+     "b": "360112",
+     "correct": "112177768896",
+     "reply": "112186555096",
+     "answer": "112186555096",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "805286",
+     "b": "494126",
+     "correct": "397912750036",
+     "reply": "397908555936",
+     "answer": "397908555936",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "394292",
+     "b": "716526",
+     "correct": "282520469592",
+     "reply": "282523555992",
+     "answer": "282523555992",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "527486",
+     "b": "984224",
+     "correct": "519164380864",
+     "reply": "519175566864",
+     "answer": "519175566864",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "877783",
+     "b": "706144",
+     "correct": "619841198752",
+     "reply": "619845565752",
+     "answer": "619845565752",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "184215",
+     "b": "590496",
+     "correct": "108778220640",
+     "reply": "108761556640",
+     "answer": "108761556640",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "407624",
+     "b": "767206",
+     "correct": "312731578544",
+     "reply": "312735553344",
+     "answer": "312735553344",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "772195",
+     "b": "695942",
+     "correct": "537402932690",
+     "reply": "537416555190",
+     "answer": "537416555190",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "direct",
+     "a": "726139",
+     "b": "548054",
+     "correct": "397963383506",
+     "reply": "397963556906",
+     "answer": "397963556906",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1868110",
+     "b": "9752542",
+     "correct": "18218821235620",
+     "reply": "18218655565940",
+     "answer": "18218655565940",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "8234504",
+     "b": "1606855",
+     "correct": "13231653924920",
+     "reply": "13221755565770",
+     "answer": "13221755565770",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "2944659",
+     "b": "6692632",
+     "correct": "19707519052488",
+     "reply": "19706055555888",
+     "answer": "19706055555888",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "3272815",
+     "b": "5409536",
+     "correct": "17704410563840",
+     "reply": "17704355555440",
+     "answer": "17704355555440",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "2441820",
+     "b": "6771336",
+     "correct": "16534383671520",
+     "reply": "16534355555520",
+     "answer": "16534355555520",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "8121006",
+     "b": "6426413",
+     "correct": "52188938531478",
+     "reply": "52189555666878",
+     "answer": "52189555666878",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "5328178",
+     "b": "7513531",
+     "correct": "40033430576518",
+     "reply": "40031655565118",
+     "answer": "40031655565118",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1998875",
+     "b": "5278448",
+     "correct": "10550957746000",
+     "reply": "10545155552000",
+     "answer": "10545155552000",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "1942745",
+     "b": "3232387",
+     "correct": "6279703682315",
+     "reply": "6259655555615",
+     "answer": "6259655555615",
+     "ok": false
+    },
+    {
+     "digits": 7,
+     "mode": "direct",
+     "a": "9236003",
+     "b": "9085289",
+     "correct": "83911756459867",
+     "reply": "83913355665667",
+     "answer": "83913355665667",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "61739882",
+     "b": "86717887",
+     "correct": "5353952110669334",
+     "reply": "5353855565656324",
+     "answer": "5353855565656324",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "15251949",
+     "b": "15279975",
+     "correct": "233049399421275",
+     "reply": "233045555655275",
+     "answer": "233045555655275",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "61725549",
+     "b": "32243580",
+     "correct": "1990252677225420",
+     "reply": "1990255556560220",
+     "answer": "1990255556560220",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "13638140",
+     "b": "73269281",
+     "correct": "999256711977340",
+     "reply": "999165556566340",
+     "answer": "999165556566340",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "71446904",
+     "b": "56405222",
+     "correct": "4029978481332688",
+     "reply": "4029985555668888",
+     "answer": "4029985555668888",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "87056391",
+     "b": "10446608",
+     "correct": "909443990671728",
+     "reply": "909475565565028",
+     "answer": "909475565565028",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "74049809",
+     "b": "90549939",
+     "correct": "6705205687911651",
+     "reply": "6705175665655651",
+     "answer": "6705175665655651",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "42778271",
+     "b": "61144874",
+     "correct": "2615671990232854",
+     "reply": "2615625555653854",
+     "answer": "2615625555653854",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "55559031",
+     "b": "15363794",
+     "correct": "853597507123614",
+     "reply": "853575566566114",
+     "answer": "853575566566114",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "direct",
+     "a": "44604718",
+     "b": "58880698",
+     "correct": "2626356929933164",
+     "reply": "2626555555555644",
+     "answer": "2626555555555644",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "875113740",
+     "b": "533367019",
+     "correct": "466756806789741060",
+     "reply": "466782555565556060",
+     "answer": "466782555565556060",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "605504456",
+     "b": "185643746",
+     "correct": "112408115431532176",
+     "reply": "112408355565565376",
+     "answer": "112408355565565376",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "460494652",
+     "b": "492123888",
+     "correct": "226620418545446976",
+     "reply": "226600555655556576",
+     "answer": "226600555655556576",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "118362192",
+     "b": "694687276",
+     "correct": "82224708741868992",
+     "reply": "82218555655556192",
+     "answer": "82218555655556192",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "909530919",
+     "b": "512947955",
+     "correct": "466542024910320645",
+     "reply": "466345555555555555",
+     "answer": "466345555555555555",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "607795959",
+     "b": "856619438",
+     "correct": "520649832817251042",
+     "reply": "520647555565555942",
+     "answer": "520647555565555942",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "519272221",
+     "b": "618665146",
+     "correct": "321255624418709266",
+     "reply": "321245555655655966",
+     "answer": "321245555655655966",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "879064366",
+     "b": "465460855",
+     "correct": "409170051398392930",
+     "reply": "409985555655555330",
+     "answer": "409985555655555330",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "685902149",
+     "b": "441784223",
+     "correct": "303020747949995227",
+     "reply": "303025555655555267",
+     "answer": "303025555655555267",
+     "ok": false
+    },
+    {
+     "digits": 9,
+     "mode": "direct",
+     "a": "644211580",
+     "b": "284130880",
+     "correct": "183040403131590400",
+     "reply": "183041555569902400",
+     "answer": "183041555569902400",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "5662017429",
+     "b": "9945771955",
+     "correct": "56313134154069403695",
+     "reply": "56313155556555555995",
+     "answer": "56313155556555555995",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7061156377",
+     "b": "5926155315",
+     "correct": "41845509393604693755",
+     "reply": "41846355556556555355",
+     "answer": "41846355556556555355",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "3707094984",
+     "b": "7702940211",
+     "correct": "28555531018250001624",
+     "reply": "28563655556556565644",
+     "answer": "28563655556556565644",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "4508086775",
+     "b": "8921382010",
+     "correct": "40218364254003917750",
+     "reply": "40222855556556552500",
+     "answer": "40222855556556552500",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7628290917",
+     "b": "6717784153",
+     "correct": "51245211836696438301",
+     "reply": "51247555565556555101",
+     "answer": "51247555565556555101",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "5327551506",
+     "b": "1352335169",
+     "correct": "7204635266222714514",
+     "reply": "7204795555565555144",
+     "answer": "7204795555565555144",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "7955475102",
+     "b": "4234381334",
+     "correct": "33686515275010546068",
+     "reply": "33685655556556553468",
+     "answer": "33685655556556553468",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "8368126863",
+     "b": "2537926609",
+     "correct": "21237691833095397567",
+     "reply": "21237655556556565667",
+     "answer": "21237655556556565667",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "9503521807",
+     "b": "9111053436",
+     "correct": "86587095013768278852",
+     "reply": "86583955556556556552",
+     "answer": "86583955556556556552",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "direct",
+     "a": "2606683287",
+     "b": "8561952868",
+     "correct": "22318299445097317116",
+     "reply": "22317355555555555536",
+     "answer": "22317355555555555536",
+     "ok": false
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "449734",
+     "b": "951779",
+     "correct": "428047376786",
+     "reply": "To calculate 449,734 × 951,779, we can break the multiplication down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n   449,734\n× 951,779\n-----------\n\n**Step 2: Multiply 449,734 by each digit of 951,779**\n\n*   **449,734 × 9:**\n    449,734 × 9 = 4,047,606\n*   **449,734 × 70:**\n    449,734 × 7 = 3,148,138 → 31,481,380\n*   **449,734 × 700:**\n    449,734 × 7 = 3,148,138 → 314,813,800\n*   **449,734 × 1,000:**\n    449,734 × 1,000 = 449,734,000\n*   **449,734 × 50,000:**\n    449,734 × 5 = 2,248,670 → 22,486,700,000\n*   **449,734 × 900,000:**\n    449,734 × 9 = 4,047,606 → 404,760,600,000\n\n**Step 3: Sum the partial products**\n\n      4,047,606\n     31,481,380\n    314,813,800\n    449,734,000\n 22,486,700,000\n404,760,600,000\n---------------\n\nSumming them up:\n1. 4,047,606 + 31,481,380 = 35,528,986\n2. 35,528,986 + 314,813,800 = 350,342,786\n3. 350,342,786 + 449,734,000 = 800,076,786\n4. 800,076,786 + 22,486,700,000 = 23,286,776,786\n5. 23,286,776,786 + 404,760,600,000 = 428,047,376,786\n\nVerification:\n449,734 × 951,779 = 428,047,376,786\n\nANSWER: 428047376786",
+     "answer": "428047376786",
+     "ok": true
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "311508",
+     "b": "360112",
+     "correct": "112177768896",
+     "reply": "To calculate 311,508 × 360,112, we can break the multiplication down using the distributive property or long multiplication.\n\nLet $A = 311,508$ and $B = 360,112$.\n\n**Step 1: Break down the multiplication**\n$311,508 \\times 360,112 = 311,508 \\times (360,000 + 100 + 12)$\n\n**Step 2: Multiply by each part**\n1.  **$311,508 \\times 360,000$:**\n    $311,508 \\times 36 = 11,214,288$\n    Adding the four zeros: $112,142,880,000$\n\n2.  **$311,508 \\times 100$:**\n    $31,150,800$\n\n3.  **$311,508 \\times 12$:**\n    $311,508 \\times 10 = 3,115,080$\n    $311,508 \\times 2 = 623,016$\n    $3,115,080 + 623,016 = 3,738,096$\n\n**Step 3: Sum the results**\n  $112,142,880,000$\n+ $31,150,800$\n+ $3,738,096$\n\nSumming them:\n$112,142,880,000 + 31,150,800 = 112,174,030,800$\n$112,174,030,800 + 3,738,096 = 112,177,768,896$\n\n**Verification via standard multiplication:**\n$311,508 \\times 360,112 = 112,177,768,896$\n\nANSWER: 112177768896",
+     "answer": "112177768896",
+     "ok": true
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "805286",
+     "b": "494126",
+     "correct": "397912750036",
+     "reply": "To calculate 805,286 × 494,126, we can break it down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n   805,286\n× 494,126\n-----------\n\n**Step 2: Multiply 805,286 by each digit of 494,126**\n\n*   **805,286 × 6:**\n    805,286 × 6 = 4,831,716\n\n*   **805,286 × 20:**\n    805,286 × 20 = 16,105,720\n\n*   **805,286 × 100:**\n    805,286 × 100 = 80,528,600\n\n*   **805,286 × 4,000:**\n    805,286 × 4,000 = 3,221,144,000\n\n*   **805,286 × 90,000:**\n    805,286 × 90,000 = 72,475,740,000\n\n*   **805,286 × 400,000:**\n    805,286 × 400,000 = 322,114,400,000\n\n**Step 3: Add the partial products together**\n\n      4,831,716\n     16,105,720\n     80,528,600\n  3,221,144,000\n 72,475,740,000\n322,114,400,000\n---------------\n397,912,750,036\n\n**Verification:**\n805,286 × 494,126 = 397,912,750,036\n\nANSWER: 397912750036",
+     "answer": "397912750036",
+     "ok": true
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "394292",
+     "b": "716526",
+     "correct": "282520469592",
+     "reply": "To calculate 394,292 × 716,526, we can break it down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n   394,292\n× 716,526\n-----------\n\n**Step 2: Multiply 394,292 by each digit of 716,526**\n\n*   **Multiply by 6:**\n    394,292 × 6 = 2,365,752\n*   **Multiply by 20:**\n    394,292 × 20 = 7,885,840\n*   **Multiply by 500:**\n    394,292 × 500 = 197,146,000\n*   **Multiply by 6,000:**\n    394,292 × 6,000 = 2,365,752,000\n*   **Multiply by 10,000:**\n    394,292 × 10,000 = 3,942,920,000\n*   **Multiply by 700,000:**\n    394,292 × 700,000 = 276,004,400,000\n\n**Step 3: Add the partial products together**\n\n      2,365,752\n      7,885,840\n    197,146,000\n  2,365,752,000\n  3,942,920,000\n+276,004,400,000\n------------------\n 282,520,469,592\n\n**Verification:**\n394,292 × 716,526 = 282,520,469,592\n\nANSWER: 282520469592",
+     "answer": "282520469592",
+     "ok": true
+    },
+    {
+     "digits": 6,
+     "mode": "worked",
+     "a": "527486",
+     "b": "984224",
+     "correct": "519164380864",
+     "reply": "To calculate 527,486 × 984,224, we can break it down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n   527,486\n× 984,224\n-----------\n\n**Step 2: Multiply 527,486 by each digit of 984,224**\n\n*   **Multiply by 4:**\n    527,486 × 4 = 2,109,944\n*   **Multiply by 20:**\n    527,486 × 20 = 10,549,720\n*   **Multiply by 200:**\n    527,486 × 200 = 105,497,200\n*   **Multiply by 4,000:**\n    527,486 × 4,000 = 2,109,944,000\n*   **Multiply by 80,000:**\n    527,486 × 80,000 = 42,198,880,000\n*   **Multiply by 900,000:**\n    527,486 × 900,000 = 474,737,400,000\n\n**Step 3: Add the partial products together**\n\n      2,109,944\n     10,549,720\n    105,497,200\n  2,109,944,000\n 42,198,880,000\n474,737,400,000\n---------------\n\nSumming them up:\n2,109,944 + 10,549,720 = 12,659,664\n12,659,664 + 105,497,200 = 118,156,864\n118,156,864 + 2,109,944,000 = 2,228,100,864\n2,228,100,864 + 42,198,880,000 = 44,426,980,864\n44,426,980,864 + 474,737,400,000 = 519,164,380,864\n\n**Verification:**\n527,486 × 984,224 = 519,164,380,864\n\nANSWER: 519164380864",
+     "answer": "519164380864",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "1868110",
+     "b": "9752542",
+     "correct": "18218821235620",
+     "reply": "To calculate $1,868,110 \\times 9,752,542$, we can break the multiplication down using the distributive property or standard long multiplication.\n\nGiven: $1,868,110 \\times 9,752,542$\n\nFirst, note that $1,868,110 = 186,811 \\times 10$.\nWe will calculate $186,811 \\times 9,752,542$ and then multiply the result by 10.\n\n**Step 1: Break down the multiplication**\n$186,811 \\times 9,752,542 = 186,811 \\times (9,000,000 + 700,000 + 50,000 + 2,000 + 500 + 40 + 2)$\n\n**Step 2: Perform the partial multiplications**\n*   $186,811 \\times 9,000,000 = 1,681,299,000,000$\n*   $186,811 \\times 700,000 = 130,767,700,000$\n*   $186,811 \\times 50,000 = 9,340,550,000$\n*   $186,811 \\times 2,000 = 373,622,000$\n*   $186,811 \\times 500 = 93,405,500$\n*   $186,811 \\times 40 = 7,472,440$\n*   $186,811 \\times 2 = 373,622$\n\n**Step 3: Sum the partial products**\n*   $1,681,299,000,000 + 130,767,700,000 = 1,812,066,700,000$\n*   $1,812,066,700,000 + 9,340,550,000 = 1,821,407,250,000$\n*   $1,821,407,250,000 + 373,622,000 = 1,821,780,872,000$\n*   $1,821,780,872,000 + 93,405,500 = 1,821,874,277,500$\n*   $1,821,874,277,500 + 7,472,440 = 1,821,881,749,940$\n*   $1,821,881,749,940 + 373,622 = 1,821,882,123,562$\n\n**Step 4: Multiply by 10**\n$1,821,882,123,562 \\times 10 = 18,218,821,235,620$\n\nANSWER: 18218821235620",
+     "answer": "18218821235620",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "8234504",
+     "b": "1606855",
+     "correct": "13231653924920",
+     "reply": "To calculate 8,234,504 × 1,606,855, we can break the multiplication down using the distributive property or long multiplication.\n\n**Step 1: Break down the multiplier (1,606,855)**\n1,606,855 = 1,000,000 + 600,000 + 6,000 + 800 + 50 + 5\n\n**Step 2: Multiply 8,234,504 by each part**\n*   8,234,504 × 1,000,000 = 8,234,504,000,000\n*   8,234,504 × 600,000 = 4,940,702,400,000\n*   8,234,504 × 6,000 = 49,407,024,000\n*   8,234,504 × 800 = 6,587,603,200\n*   8,234,504 × 50 = 411,725,200\n*   8,234,504 × 5 = 41,172,520\n\n**Step 3: Sum the results**\n*   8,234,504,000,000 + 4,940,702,400,000 = 13,175,206,400,000\n*   13,175,206,400,000 + 49,407,024,000 = 13,224,613,424,000\n*   13,224,613,424,000 + 6,587,603,200 = 13,231,201,027,200\n*   13,231,201,027,200 + 411,725,200 = 13,231,612,752,400\n*   13,231,612,752,400 + 41,172,520 = 13,231,653,924,920\n\n**Verification:**\n8,234,504 × 1,606,855 = 13,231,653,924,920\n\nANSWER: 13231653924920",
+     "answer": "13231653924920",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "2944659",
+     "b": "6692632",
+     "correct": "19707519052488",
+     "reply": "To calculate $2,944,659 \\times 6,692,632$, we can break the multiplication down using the distributive property or long multiplication.\n\nLet $A = 2,944,659$ and $B = 6,692,632$.\n\n**Step 1: Break down the multiplication**\n$2,944,659 \\times 6,692,632 = 2,944,659 \\times (6,000,000 + 600,000 + 90,000 + 2,000 + 600 + 30 + 2)$\n\n**Step 2: Perform the individual multiplications**\n1. $2,944,659 \\times 6,000,000 = 17,667,954,000,000$\n2. $2,944,659 \\times 600,000 = 1,766,795,400,000$\n3. $2,944,659 \\times 90,000 = 265,019,310,000$\n4. $2,944,659 \\times 2,000 = 5,889,318,000$\n5. $2,944,659 \\times 600 = 1,766,795,400$\n6. $2,944,659 \\times 30 = 88,339,770$\n7. $2,944,659 \\times 2 = 5,889,318$\n\n**Step 3: Sum the results**\n*   $17,667,954,000,000 + 1,766,795,400,000 = 19,434,749,400,000$\n*   $19,434,749,400,000 + 265,019,310,000 = 19,699,768,710,000$\n*   $19,699,768,710,000 + 5,889,318,000 = 19,705,658,028,000$\n*   $19,705,658,028,000 + 1,766,795,400 = 19,707,424,823,400$\n*   $19,707,424,823,400 + 88,339,770 = 19,707,513,163,170$\n*   $19,707,513,163,170 + 5,889,318 = 19,707,519,052,488$\n\nVerification:\n$2,944,659 \\times 6,692,632 = 19,707,519,052,488$\n\nANSWER: 19707519052488",
+     "answer": "19707519052488",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "3272815",
+     "b": "5409536",
+     "correct": "17704410563840",
+     "reply": "To calculate $3,272,815 \\times 5,409,536$, we can break the multiplication down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n$3,272,815 \\times 5,409,536$\n\n**Step 2: Break down the second number**\n$5,409,536 = 5,000,000 + 400,000 + 9,000 + 500 + 30 + 6$\n\n**Step 3: Multiply $3,272,815$ by each part**\n1. $3,272,815 \\times 6 = 19,636,890$\n2. $3,272,815 \\times 30 = 98,184,450$\n3. $3,272,815 \\times 500 = 1,636,407,500$\n4. $3,272,815 \\times 9,000 = 29,455,335,000$\n5. $3,272,815 \\times 400,000 = 1,309,126,000,000$\n6. $3,272,815 \\times 5,000,000 = 16,364,075,000,000$\n\n**Step 4: Sum the results**\n*   $19,636,890 + 98,184,450 = 117,821,340$\n*   $117,821,340 + 1,636,407,500 = 1,754,228,840$\n*   $1,754,228,840 + 29,455,335,000 = 31,209,563,840$\n*   $31,209,563,840 + 1,309,126,000,000 = 1,340,335,563,840$\n*   $1,340,335,563,840 + 16,364,075,000,000 = 17,704,410,563,840$\n\n**Verification:**\n$3,272,815 \\times 5,409,536 = 17,704,410,563,840$\n\nANSWER: 17704410563840",
+     "answer": "17704410563840",
+     "ok": true
+    },
+    {
+     "digits": 7,
+     "mode": "worked",
+     "a": "2441820",
+     "b": "6771336",
+     "correct": "16534383671520",
+     "reply": "To calculate $2,441,820 \\times 6,771,336$, we can break the multiplication down using the distributive property or standard long multiplication.\n\n**Step 1: Set up the multiplication**\n$2,441,820 \\times 6,771,336$\n\n**Step 2: Simplify the calculation**\nWe can write this as:\n$2,441,820 \\times (6,000,000 + 700,000 + 70,000 + 1,000 + 300 + 30 + 6)$\n\n**Step 3: Perform the partial multiplications**\n1. $2,441,820 \\times 6,000,000 = 14,650,920,000,000$\n2. $2,441,820 \\times 700,000 = 1,709,274,000,000$\n3. $2,441,820 \\times 70,000 = 170,927,400,000$\n4. $2,441,820 \\times 1,000 = 2,441,820,000$\n5. $2,441,820 \\times 300 = 732,546,000$\n6. $2,441,820 \\times 30 = 73,254,600$\n7. $2,441,820 \\times 6 = 14,650,920$\n\n**Step 4: Sum the partial products**\n*   $14,650,920,000,000 + 1,709,274,000,000 = 16,360,194,000,000$\n*   $16,360,194,000,000 + 170,927,400,000 = 16,531,121,400,000$\n*   $16,531,121,400,000 + 2,441,820,000 = 16,533,563,220,000$\n*   $16,533,563,220,000 + 732,546,000 = 16,534,295,766,000$\n*   $16,534,295,766,000 + 73,254,600 = 16,534,369,020,600$\n*   $16,534,369,020,600 + 14,650,920 = 16,534,383,671,520$\n\n**Verification:**\n$2,441,820 \\times 6,771,336 = 16,534,383,671,520$\n\nANSWER: 16534383671520",
+     "answer": "16534383671520",
+     "ok": true
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "61739882",
+     "b": "86717887",
+     "correct": "5353952110669334",
+     "reply": "To calculate 61,739,882 × 86,717,887, we can use the standard multiplication algorithm (or break it down into parts).\n\nGiven the size of the numbers, we perform the multiplication:\n$61,739,882 \\times 86,717,887$\n\n**Step-by-step breakdown:**\n1.  $61,739,882 \\times 7 = 432,179,174$\n2.  $61,739,882 \\times 80 = 4,939,190,560$\n3.  $61,739,882 \\times 800 = 49,391,905,600$\n4.  $61,739,882 \\times 7,000 = 432,179,174,000$\n5.  $61,739,882 \\times 10,000 = 617,398,820,000$\n6.  $61,739,882 \\times 700,000 = 43,217,917,400,000$\n7.  $61,739,882 \\times 6,000,000 = 370,439,292,000,000$\n8.  $61,739,882 \\times 80,000,000 = 4,939,190,560,000,000$\n\n**Summing the partial products:**\n*   $432,179,174$\n*   $4,939,190,560$\n*   $49,391,905,600$\n*   $432,179,174,000$\n*   $617,398,820,000$\n*   $43,217,917,400,000$\n*   $370,439,292,000,000$\n*   $4,939,190,560,000,000$\n\nSumming these values:\n$432,179,174 + 4,939,190,560 = 5,371,369,734$\n$5,371,369,734 + 49,391,905,600 = 54,763,275,334$\n$54,763,275,334 + 432,179,174,000 = 486,942,449,334$\n$486,942,449,334 + 617,398,820,000 = 1,104,341,269,334$\n$1,104,341,269,334 + 43,217,917,400,000 = 44,322,258,669,334$\n$44,322,258,669,334 + 370,439,292,000,000 = 414,761,550,669,334$\n$414,761,550,669,334 + 4,939,190,560,000,000 = 5,353,952,110,669,334$\n\nANSWER: 5353952110669334",
+     "answer": "5353952110669334",
+     "ok": true
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "15251949",
+     "b": "15279975",
+     "correct": "233049399421275",
+     "reply": "To calculate $15,251,949 \\times 15,279,975$, we can use the distributive property or break the numbers down. Given the size of these numbers, we can represent them as:\n$A = 15,251,949$\n$B = 15,279,975$\n\nLet $x = 15,265,962$ (the midpoint).\nThen $A = x - 14,013$ and $B = x + 14,013$.\nUsing the difference of squares formula: $(x - y)(x + y) = x^2 - y^2$.\n\n**Step 1: Calculate $x^2$**\n$x = 15,265,962$\n$x^2 = (15,265,962)^2$\n$15,265,962^2 = 233,049,583,522,644$\n\n**Step 2: Calculate $y^2$**\n$y = 14,013$\n$y^2 = 14,013^2$\n$14,013 \\times 14,013 = 196,364,169$\n\n**Step 3: Subtract $y^2$ from $x^2$**\n$233,049,583,522,644 - 196,364,169$\n\nLet's perform the subtraction:\n$233,049,583,522,644$\n$- \\quad \\quad \\quad \\quad 196,364,169$\n__________________________\n$233,049,387,158,475$\n\n**Verification via long multiplication (breakdown):**\n$15,251,949 \\times 15,279,975$\n$= 15,251,949 \\times (15,000,000 + 279,975)$\n$= (15,251,949 \\times 15,000,000) + (15,251,949 \\times 279,975)$\n$= 228,779,235,000,000 + 4,270,152,158,475$\n$= 233,049,387,158,475$\n\nANSWER: 233049387158475",
+     "answer": "233049387158475",
+     "ok": false
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "61725549",
+     "b": "32243580",
+     "correct": "1990252677225420",
+     "reply": "To calculate 61,725,549 × 32,243,580, we can break the multiplication down using the distributive property or standard long multiplication.\n\n**Step 1: Simplify the calculation**\nWe are multiplying $61,725,549 \\times 32,243,580$.\nNote that $32,243,580 = 32,243,58 \\times 10$.\nSo, we calculate $61,725,549 \\times 32,243,58$ and then multiply the result by 10.\n\n**Step 2: Perform the multiplication**\n$61,725,549 \\times 32,243,58$\n\nBreaking it down by parts:\n$61,725,549 \\times 30,000,000 = 1,851,766,470,000,000$\n$61,725,549 \\times 2,000,000 = 123,451,098,000,000$\n$61,725,549 \\times 200,000 = 12,345,109,800,000$\n$61,725,549 \\times 40,000 = 2,469,021,960,000$\n$61,725,549 \\times 3,000 = 185,176,647,000$\n$61,725,549 \\times 500 = 30,862,774,500$\n$61,725,549 \\times 80 = 4,938,043,920$\n\n**Step 3: Sum the partial products**\nSumming these values:\n$1,851,766,470,000,000$\n$+ 123,451,098,000,000 = 1,975,217,568,000,000$\n$+ 12,345,109,800,000 = 1,987,562,677,800,000$\n$+ 2,469,021,960,000 = 1,990,031,699,760,000$\n$+ 185,176,647,000 = 1,990,216,876,407,000$\n$+ 30,862,774,500 = 1,990,247,739,181,500$\n$+ 4,938,043,920 = 1,990,252,677,225,420$\n\n**Step 4: Multiply by 10**\n$1,990,252,677,225,420 \\times 10 = 1,990,252,677,225,420,0$\n\nWait, let's re-verify the multiplication:\n$61,725,549 \\times 32,243,580 = 1,990,252,677,225,420$\n\nCalculation check:\n$61,725,549 \\times 32,243,580 = 1,990,252,677,225,420$\n\nANSWER: 1990252677225420",
+     "answer": "1990252677225420",
+     "ok": true
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "13638140",
+     "b": "73269281",
+     "correct": "999256711977340",
+     "reply": "To calculate $13,638,140 \\times 73,269,281$, we can break the multiplication down using the distributive property or standard long multiplication.\n\nGiven: $A = 13,638,140$ and $B = 73,269,281$.\n\n**Step 1: Break down the numbers**\n$A = 13,638,140$\n$B = 73,269,281$\n\n**Step 2: Perform the multiplication**\n$13,638,140 \\times 73,269,281$\n\nWe can express this as:\n$13,638,140 \\times (70,000,000 + 3,000,000 + 200,000 + 60,000 + 9,000 + 200 + 80 + 1)$\n\nCalculating each part:\n1. $13,638,140 \\times 70,000,000 = 954,669,800,000,000$\n2. $13,638,140 \\times 3,000,000 = 40,914,420,000,000$\n3. $13,638,140 \\times 200,000 = 2,727,628,000,000$\n4. $13,638,140 \\times 60,000 = 818,288,400,000$\n5. $13,638,140 \\times 9,000 = 122,743,260,000$\n6. $13,638,140 \\times 200 = 2,727,628,000$\n7. $13,638,140 \\times 80 = 1,091,051,200$\n8. $13,638,140 \\times 1 = 13,638,140$\n\n**Step 3: Sum the results**\nSumming these values:\n$954,669,800,000,000 + 40,914,420,000,000 = 995,584,220,000,000$\n$995,584,220,000,000 + 2,727,628,000,000 = 998,311,848,000,000$\n$998,311,848,000,000 + 818,288,400,000 = 999,130,136,400,000$\n$999,130,136,400,000 + 122,743,260,000 = 999,252,879,660,000$\n$999,252,879,660,000 + 2,727,628,000 = 999,255,607,288,000$\n$999,255,607,288,000 + 1,091,051,200 = 999,256,698,339,200$\n$999,256,698,339,200 + 13,638,140 = 999,256,711,977,340$\n\nFinal verification:\n$13,638,140 \\times 73,269,281 = 999,256,711,977,340$\n\nANSWER: 999256711977340",
+     "answer": "999256711977340",
+     "ok": true
+    },
+    {
+     "digits": 8,
+     "mode": "worked",
+     "a": "71446904",
+     "b": "56405222",
+     "correct": "4029978481332688",
+     "reply": "To calculate 71,446,904 × 56,405,222, we can break the multiplication down using the distributive property or long multiplication.\n\n**Step 1: Set up the multiplication**\n   71,446,904\n× 56,405,222\n\n**Step 2: Break down the multiplier (56,405,222)**\n56,405,222 = 50,000,000 + 6,000,000 + 400,000 + 5,000 + 200 + 20 + 2\n\n**Step 3: Multiply 71,446,904 by each part**\n1. 71,446,904 × 2 = 142,893,808\n2. 71,446,904 × 20 = 1,428,938,080\n3. 71,446,904 × 200 = 14,289,380,800\n4. 71,446,904 × 5,000 = 357,234,520,000\n5. 71,446,904 × 400,000 = 28,578,761,600,000\n6. 71,446,904 × 6,000,000 = 428,681,424,000,000\n7. 71,446,904 × 50,000,000 = 3,572,345,200,000,000\n\n**Step 4: Sum the results**\n*   142,893,808\n*   1,428,938,080\n*   14,289,380,800\n*   357,234,520,000\n*   28,578,761,600,000\n*   428,681,424,000,000\n*   3,572,345,200,000,000\n\nSumming these values:\n142,893,808 + 1,428,938,080 = 1,571,831,888\n1,571,831,888 + 14,289,380,800 = 15,861,212,688\n15,861,212,688 + 357,234,520,000 = 373,095,732,688\n373,095,732,688 + 28,578,761,600,000 = 28,951,857,332,688\n28,951,857,332,688 + 428,681,424,000,000 = 457,633,281,332,688\n457,633,281,332,688 + 3,572,345,200,000,000 = 4,029,978,481,332,688\n\nANSWER: 4029978481332688",
+     "answer": "4029978481332688",
+     "ok": true
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "875113740",
+     "b": "533367019",
+     "correct": "466756806789741060",
+     "reply": "To calculate $875,113,740 \\times 533,367,019$, we can break the multiplication down using the distributive property or long multiplication.\n\nGiven the size of the numbers, we represent them as:\n$A = 875,113,740$\n$B = 533,367,019$\n\nWe can express $B$ as $(533,367,000 + 19)$.\n$A \\times B = 875,113,740 \\times (533,367,000 + 19)$\n$A \\times B = (875,113,740 \\times 533,367,000) + (875,113,740 \\times 19)$\n\n**Step 1: Calculate $875,113,740 \\times 19$**\n$875,113,740 \\times 20 = 17,502,274,800$\n$875,113,740 \\times 1 = 875,113,740$\n$17,502,274,800 - 875,113,740 = 16,627,161,060$\n\n**Step 2: Calculate $875,113,740 \\times 533,367,000$**\nThis is equivalent to $(875,113,740 \\times 533,367) \\times 1,000$.\nPerforming the multiplication $875,113,740 \\times 533,367$:\n$875,113,740 \\times 500,000 = 437,556,870,000,000$\n$875,113,740 \\times 33,000 = 28,878,753,420,000$\n$875,113,740 \\times 300 = 262,534,122,000$\n$875,113,740 \\times 60 = 52,506,824,400$\n$875,113,740 \\times 7 = 6,125,796,180$\n\nSumming these parts:\n$437,556,870,000,000 + 28,878,753,420,000 = 466,435,623,420,000$\n$466,435,623,420,000 + 262,534,122,000 = 466,698,157,542,000$\n$466,698,157,542,000 + 52,506,824,400 = 466,750,664,366,400$\n$466,750,664,366,400 + 6,125,796,180 = 466,756,790,162,580$\n\nNow multiply by 1,000:\n$466,756,790,162,580,000$\n\n**Step 3: Add the results from Step 1 and Step 2**\n$466,756,790,162,580,000 + 16,627,161,060 = 466,756,806,789,741,060$\n\nANSWER: 466756806789741060",
+     "answer": "466756806789741060",
+     "ok": true
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "605504456",
+     "b": "185643746",
+     "correct": "112408115431532176",
+     "reply": "To calculate $605,504,456 \\times 185,643,746$, we can break the multiplication down using the distributive property or long multiplication. Given the size of the numbers, we will represent them as:\n$A = 605,504,456$\n$B = 185,643,746$\n\n**Step 1: Break down the multiplication**\n$605,504,456 \\times 185,643,746$\n\nWe can express this as:\n$(605,504,456) \\times (100,000,000 + 85,000,000 + 643,000 + 746)$\n\n**Step 2: Perform the partial multiplications**\n1. $605,504,456 \\times 100,000,000 = 60,550,445,600,000,000$\n2. $605,504,456 \\times 85,000,000 = 51,467,878,760,000,000$\n3. $605,504,456 \\times 643,000 = 389,339,365,208,000$\n4. $605,504,456 \\times 746 = 451,706,324,176$\n\n**Step 3: Sum the partial products**\n*   $60,550,445,600,000,000 + 51,467,878,760,000,000 = 112,018,324,360,000,000$\n*   $112,018,324,360,000,000 + 389,339,365,208,000 = 112,407,663,725,208,000$\n*   $112,407,663,725,208,000 + 451,706,324,176 = 112,408,115,431,532,176$\n\n**Verification:**\nUsing the standard multiplication algorithm:\n$605,504,456 \\times 185,643,746 = 112,408,115,431,532,176$\n\nANSWER: 112408115431532176",
+     "answer": "112408115431532176",
+     "ok": true
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "460494652",
+     "b": "492123888",
+     "correct": "226620418545446976",
+     "reply": "To calculate $460,494,652 \\times 492,123,888$, we can use the standard multiplication algorithm or break it down into smaller parts. Given the size of these numbers, we will perform the multiplication step-by-step using the distributive property or long multiplication logic.\n\n**Step 1: Setup**\n$460,494,652 \\times 492,123,888$\n\n**Step 2: Break down the multiplication**\nLet $A = 460,494,652$ and $B = 492,123,888$.\nWe can express $B$ as $(492,000,000 + 123,000 + 888)$.\n\n$A \\times 492,000,000 = 460,494,652 \\times 492 \\times 1,000,000$\n$460,494,652 \\times 492 = 226,563,368,784$\nSo, $226,563,368,784,000,000$\n\n$A \\times 123,000 = 460,494,652 \\times 123 \\times 1,000$\n$460,494,652 \\times 123 = 56,640,842,196$\nSo, $56,640,842,196,000$\n\n$A \\times 888 = 460,494,652 \\times 888$\n$460,494,652 \\times 888 = 408,919,250,976$\n\n**Step 3: Sum the results**\n  $226,563,368,784,000,000$\n+      $56,640,842,196,000$\n+         $408,919,250,976$\n\nSumming these:\n$226,563,368,784,000,000 + 56,640,842,196,000 = 226,620,009,626,196,000$\n$226,620,009,626,196,000 + 408,919,250,976 = 226,620,418,545,446,976$\n\n**Verification:**\nUsing the property of multiplication:\n$460,494,652 \\times 492,123,888 = 226,620,418,545,446,976$\n\nANSWER: 226620418545446976",
+     "answer": "226620418545446976",
+     "ok": true
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "118362192",
+     "b": "694687276",
+     "correct": "82224708741868992",
+     "reply": "To calculate $118,362,192 \\times 694,687,276$, we can break the multiplication down using the distributive property or long multiplication. Given the size of these numbers, we will perform the multiplication by breaking them into smaller parts or using the standard algorithm.\n\n**Step 1: Set up the multiplication**\n$118,362,192 \\times 694,687,276$\n\n**Step 2: Break down the calculation**\nLet $A = 118,362,192$ and $B = 694,687,276$.\nWe can express $B$ as $(694,000,000 + 687,000 + 276)$.\n\n$118,362,192 \\times 694,000,000 = 82,143,361,248,000,000$\n$118,362,192 \\times 687,000 = 81,314,825,904,000$\n$118,362,192 \\times 276 = 32,667,964,992$\n\n**Step 3: Sum the results**\nSumming these values:\n$82,143,361,248,000,000$\n$+ 81,314,825,904,000$\n$= 82,224,676,073,904,000$\n\nNow add the final part:\n$82,224,676,073,904,000 + 32,667,964,992 = 82,224,708,741,868,992$\n\n**Verification:**\nUsing the standard multiplication algorithm:\n$118,362,192 \\times 694,687,276 = 82,224,708,741,868,992$\n\nANSWER: 82224708741868992",
+     "answer": "82224708741868992",
+     "ok": true
+    },
+    {
+     "digits": 9,
+     "mode": "worked",
+     "a": "909530919",
+     "b": "512947955",
+     "correct": "466542024910320645",
+     "reply": "To calculate $909,530,919 \\times 512,947,955$, we can break the multiplication down using the distributive property or long multiplication.\n\nGiven:\n$A = 909,530,919$\n$B = 512,947,955$\n\nWe can express $B$ as $(512,000,000 + 947,000 + 955)$ or perform the standard multiplication.\n\n**Step-by-step breakdown:**\n\n1.  **Multiply $909,530,919$ by $500,000,000$:**\n    $909,530,919 \\times 5 = 4,547,654,595$\n    Adding the 8 zeros: $454,765,459,500,000,000$\n\n2.  **Multiply $909,530,919$ by $12,000,000$:**\n    $909,530,919 \\times 12 = 10,914,371,028$\n    Adding the 6 zeros: $10,914,371,028,000,000$\n\n3.  **Multiply $909,530,919$ by $947,000$:**\n    $909,530,919 \\times 947 = 861,325,779,293$\n    Adding the 3 zeros: $861,325,779,293,000$\n\n4.  **Multiply $909,530,919$ by $955$:**\n    $909,530,919 \\times 955 = 868,602,027,645$\n\n**Summing the parts:**\n*   $454,765,459,500,000,000$\n*   $10,914,371,028,000,000$\n*   $861,325,779,293,000$\n*   $868,602,027,645$\n\nSumming these:\n$454,765,459,500,000,000 + 10,914,371,028,000,000 = 465,679,830,528,000,000$\n$465,679,830,528,000,000 + 861,325,779,293,000 = 466,541,156,307,293,000$\n$466,541,156,307,293,000 + 868,602,027,645 = 466,542,024,909,320,645$\n\nVerification:\n$909,530,919 \\times 512,947,955 = 466,542,024,909,320,645$\n\nANSWER: 466542024909320645",
+     "answer": "466542024909320645",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "5662017429",
+     "b": "9945771955",
+     "correct": "56313134154069403695",
+     "reply": "To calculate $5,662,017,429 \\times 9,945,771,955$, we can use the distributive property or long multiplication. Given the size of the numbers, we can represent them as:\n$A = 5,662,017,429$\n$B = 9,945,771,955$\n\nWe can break $B$ down into $(10,000,000,000 - 54,228,045)$.\nThen, $A \\times B = A \\times (10,000,000,000 - 54,228,045)$\n$A \\times B = (A \\times 10,000,000,000) - (A \\times 54,228,045)$\n\n**Step 1: Calculate $A \\times 10,000,000,000$**\n$5,662,017,429 \\times 10,000,000,000 = 56,620,174,290,000,000,000$\n\n**Step 2: Calculate $A \\times 54,228,045$**\n$5,662,017,429 \\times 54,228,045$\n$= 5,662,017,429 \\times (50,000,000 + 4,000,000 + 200,000 + 20,000 + 8,000 + 40 + 5)$\n\nPerforming the multiplication:\n$5,662,017,429 \\times 50,000,000 = 283,100,871,450,000,000$\n$5,662,017,429 \\times 4,000,000 = 22,648,069,716,000,000$\n$5,662,017,429 \\times 200,000 = 1,132,403,485,800,000$\n$5,662,017,429 \\times 20,000 = 113,240,348,580,000$\n$5,662,017,429 \\times 8,000 = 45,296,139,432,000$\n$5,662,017,429 \\times 40 = 226,480,697,160$\n$5,662,017,429 \\times 5 = 28,310,087,145$\n\nSumming these parts:\n$283,100,871,450,000,000 + 22,648,069,716,000,000 = 305,748,941,166,000,000$\n$305,748,941,166,000,000 + 1,132,403,485,800,000 = 306,881,344,651,800,000$\n$306,881,344,651,800,000 + 113,240,348,580,000 = 306,994,585,000,380,000$\n$306,994,585,000,380,000 + 45,296,139,432,000 = 307,039,881,139,812,000$\n$307,039,881,139,812,000 + 226,480,697,160 = 307,040,107,620,509,160$\n$307,040,107,620,509,160 + 28,310,087,1",
+     "answer": "56313134182351180695",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "7061156377",
+     "b": "5926155315",
+     "correct": "41845509393604693755",
+     "reply": "To calculate $7,061,156,377 \\times 5,926,155,315$, we can use the distributive property or long multiplication. Given the size of the numbers, we will break them down into smaller parts or perform the multiplication systematically.\n\nLet $A = 7,061,156,377$ and $B = 5,926,155,315$.\n\nWe can express these as:\n$A = 7,061,156,377$\n$B = 5,926,155,315$\n\nUsing the standard multiplication algorithm:\n$7,061,156,377 \\times 5,926,155,315$\n\n1. Multiply $7,061,156,377$ by $5$: $35,305,781,885$\n2. Multiply $7,061,156,377$ by $10$: $70,611,563,770$\n3. Multiply $7,061,156,377$ by $300$: $2,118,346,913,100$\n4. Multiply $7,061,156,377$ by $5,000$: $35,305,781,885,000$\n5. Multiply $7,061,156,377$ by $50,000$: $353,057,818,850,000$\n6. Multiply $7,061,156,377$ by $100,000$: $706,115,637,700,000$\n7. Multiply $7,061,156,377$ by $6,000,000$: $42,366,938,262,000,000$\n8. Multiply $7,061,156,377$ by $20,000,000$: $141,223,127,540,000,000$\n9. Multiply $7,061,156,377$ by $900,000,000$: $6,355,040,739,300,000,000$\n10. Multiply $7,061,156,377$ by $5,000,000,000$: $35,305,781,885,000,000,000$\n\nSumming these partial products:\n$35,305,781,885$\n$+ 70,611,563,770 = 105,917,345,655$\n$+ 2,118,346,913,100 = 2,224,264,258,755$\n$+ 35,305,781,885,000 = 37,530,046,143,755$\n$+ 353,057,818,850,000 = 390,587,864,993,755$\n$+ 706,115,637,700,000 = 1,096,703,502,693,755$\n$+ 42,366,938,262,000,000 = 43,463,641,764,693,755$\n$+ 141,223,127,540,000,000 = 184,686,769,304,693,755$\n$+ 6,355,040,739,300,000,000 = 6,539,727,508,604,6",
+     "answer": "41845509393604693755",
+     "ok": true
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "3707094984",
+     "b": "7702940211",
+     "correct": "28555531018250001624",
+     "reply": "To calculate $3,707,094,984 \\times 7,702,940,211$, we can break the multiplication down using the distributive property or standard long multiplication. Given the size of the numbers, we can represent them as:\n$A = 3,707,094,984$\n$B = 7,702,940,211$\n\n**Step 1: Break down the multiplication**\n$3,707,094,984 \\times 7,702,940,211$\n\nWe can perform this using the standard multiplication algorithm:\n$3,707,094,984 \\times (7,000,000,000 + 700,000,000 + 2,000,000 + 900,000 + 40,000 + 200 + 10 + 1)$\n\n**Step 2: Calculate partial products**\n1. $3,707,094,984 \\times 7,000,000,000 = 25,949,664,888,000,000,000$\n2. $3,707,094,984 \\times 700,000,000 = 2,594,966,488,800,000,000$\n3. $3,707,094,984 \\times 2,000,000 = 7,414,189,968,000,000$\n4. $3,707,094,984 \\times 900,000 = 3,336,385,485,600,000$\n5. $3,707,094,984 \\times 40,000 = 148,283,799,360,000$\n6. $3,707,094,984 \\times 200 = 741,418,996,800$\n7. $3,707,094,984 \\times 10 = 37,070,949,840$\n8. $3,707,094,984 \\times 1 = 3,707,094,984$\n\n**Step 3: Sum the partial products**\nSumming these values:\n$25,949,664,888,000,000,000$\n$+ 2,594,966,488,800,000,000 = 28,544,631,376,800,000,000$\n$+ 7,414,189,968,000,000 = 28,552,045,566,768,000,000$\n$+ 3,336,385,485,600,000 = 28,555,381,952,253,600,000$\n$+ 148,283,799,360,000 = 28,555,530,236,052,960,000$\n$+ 741,418,996,800 = 28,555,530,977,471,956,800$\n$+ 37,070,949,840 = 28,555,531,014,542,906,640$\n$+ 3,707,094,984 = 28,555,531,018,250,001,624$\n\nPerforming the multiplication precisely:\n$3,707,094,984 \\times ",
+     "answer": "28555531018250001624",
+     "ok": true
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "4508086775",
+     "b": "8921382010",
+     "correct": "40218364254003917750",
+     "reply": "To calculate $4,508,086,775 \\times 8,921,382,010$, we can break the numbers down or use scientific notation/long multiplication principles. Given the size of these numbers, we will perform the multiplication by treating them as products of large integers.\n\n**Step 1: Represent the numbers**\n$A = 4,508,086,775$\n$B = 8,921,382,010$\n\n**Step 2: Perform the multiplication**\nWe can express this as:\n$4,508,086,775 \\times (8,921,382,010)$\n\nUsing the distributive property or standard long multiplication:\n$4,508,086,775 \\times 8,921,382,010 = 40,223,655,555,555,555,550$\n\nLet's verify the magnitude:\n$4.5 \\times 10^9 \\times 8.9 \\times 10^9 \\approx 40.05 \\times 10^{18} = 4.005 \\times 10^{19}$.\n\nPerforming the precise calculation:\n$4,508,086,775 \\times 8,921,382,010$\n$= 4,508,086,775 \\times (8,921,382 \\times 1000 + 10)$\n$= (4,508,086,775 \\times 8,921,382,000) + (4,508,086,775 \\times 10)$\n$= 40,223,655,510,473,550,000 + 45,080,867,750$\n$= 40,223,655,555,554,417,750$\n\nWait, let's re-calculate carefully:\n$4,508,086,775 \\times 8,921,382,010 = 40,223,655,555,554,417,750$\n\n(Self-correction: Using standard multiplication algorithms for these specific digits):\n$4508086775 \\times 8921382010 = 40,223,655,555,554,417,750$\n\nANSWER: 40223655555554417750",
+     "answer": "40223655555554417750",
+     "ok": false
+    },
+    {
+     "digits": 10,
+     "mode": "worked",
+     "a": "7628290917",
+     "b": "6717784153",
+     "correct": "51245211836696438301",
+     "reply": "To calculate $7,628,290,917 \\times 6,717,784,153$, we can use the standard multiplication algorithm or break it down into parts. Given the size of the numbers, we perform the multiplication:\n\nLet $A = 7,628,290,917$ and $B = 6,717,784,153$.\n\nWe can express this as:\n$A \\times B = (7,628,290,917) \\times (6,717,784,153)$\n\nPerforming the long multiplication:\n1. $7,628,290,917 \\times 3 = 22,884,872,751$\n2. $7,628,290,917 \\times 50 = 381,414,545,850$\n3. $7,628,290,917 \\times 100 = 762,829,091,700$\n4. $7,628,290,917 \\times 4,000 = 30,513,163,668,000$\n5. $7,628,290,917 \\times 80,000 = 610,263,273,360,000$\n6. $7,628,290,917 \\times 700,000 = 5,339,803,641,900,000$\n7. $7,628,290,917 \\times 7,000,000 = 53,398,036,419,000,000$\n8. $7,628,290,917 \\times 10,000,000 = 76,282,909,170,000,000$\n9. $7,628,290,917 \\times 700,000,000 = 5,339,803,641,900,000,000$\n10. $7,628,290,917 \\times 6,000,000,000 = 45,769,745,502,000,000,000$\n\nSumming these partial products:\n$22,884,872,751$\n$+ 381,414,545,850 = 404,299,418,601$\n$+ 762,829,091,700 = 1,167,128,510,301$\n$+ 30,513,163,668,000 = 31,680,292,178,301$\n$+ 610,263,273,360,000 = 641,943,565,538,301$\n$+ 5,339,803,641,900,000 = 5,981,747,207,438,301$\n$+ 53,398,036,419,000,000 = 59,379,783,626,438,301$\n$+ 76,282,909,170,000,000 = 135,662,692,796,438,301$\n$+ 5,339,803,641,900,000,000 = 5,475,466,334,696,438,301$\n$+ 45,769,745,502,000,000,000 = 51,245,211,836,696,438,301$\n\nThe final product is 51,245,211,836,696,438,301.\n\nANSWER: 51245211836696438301",
+     "answer": "51245211836696438301",
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "gemini-omni-1.1-flash",
+   "id": "gemini-omni-1.1-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 429 after 0 answers",
+   "direct": {},
+   "worked": {},
+   "answers": []
+  },
+  {
+   "name": "gemini-omni-1.2-flash",
+   "id": "gemini-omni-1.2-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 429 after 0 answers",
+   "direct": {},
+   "worked": {},
+   "answers": []
+  },
+  {
+   "name": "gemini-3.6-flash",
+   "id": "gemini-3.6-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 429 after 12 answers",
+   "direct": {
+    "2": {
+     "right": 10,
+     "of": 10
+    },
+    "3": {
+     "right": 2,
+     "of": 2
+    }
+   },
+   "worked": {},
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "2280",
+     "answer": "2280",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "90",
+     "b": "46",
+     "correct": "4140",
+     "reply": "4140",
+     "answer": "4140",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "65",
+     "b": "85",
+     "correct": "5525",
+     "reply": "5525",
+     "answer": "5525",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "44",
+     "b": "78",
+     "correct": "3432",
+     "reply": "3432",
+     "answer": "3432",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "53",
+     "correct": "3074",
+     "reply": "3074",
+     "answer": "3074",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "40",
+     "b": "41",
+     "correct": "1640",
+     "reply": "1640",
+     "answer": "1640",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "93",
+     "b": "89",
+     "correct": "8277",
+     "reply": "8277",
+     "answer": "8277",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "58",
+     "b": "86",
+     "correct": "4988",
+     "reply": "4988",
+     "answer": "4988",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "41",
+     "b": "87",
+     "correct": "3567",
+     "reply": "3567",
+     "answer": "3567",
+     "ok": true
+    },
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "68",
+     "correct": "2584",
+     "reply": "2584",
+     "answer": "2584",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "298",
+     "b": "141",
+     "correct": "42018",
+     "reply": "42018",
+     "answer": "42018",
+     "ok": true
+    },
+    {
+     "digits": 3,
+     "mode": "direct",
+     "a": "913",
+     "b": "975",
+     "correct": "890175",
+     "reply": "890175",
+     "answer": "890175",
+     "ok": true
+    }
+   ]
+  },
+  {
+   "name": "gemini-3.7-flash",
+   "id": "gemini-3.7-flash",
+   "host": "Google AI Studio",
+   "complete": false,
+   "dropped": "HTTP 503 after 1 answers",
+   "direct": {
+    "2": {
+     "right": 1,
+     "of": 1
+    }
+   },
+   "worked": {},
+   "answers": [
+    {
+     "digits": 2,
+     "mode": "direct",
+     "a": "38",
+     "b": "60",
+     "correct": "2280",
+     "reply": "2280",
+     "answer": "2280",
+     "ok": true
+    }
+   ]
+  }
+ ]
+}

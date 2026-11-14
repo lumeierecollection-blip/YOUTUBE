@@ -41,6 +41,7 @@ function mapScenes(pkg) {
 }
 
 export default async function preview({ key, runId, outDir, tools }) {
+  if (/gemini4/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./gemini4-preview.mjs")).default({ key, runId, tools });
   if (/multiply/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./multiply-preview.mjs")).default({ key, runId, tools });
   if (/expert/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./expert-preview.mjs")).default({ key, runId, tools });
   if (/unknown/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./unknown-preview.mjs")).default({ key, runId, tools });

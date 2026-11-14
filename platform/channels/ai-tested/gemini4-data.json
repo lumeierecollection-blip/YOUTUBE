@@ -1,0 +1,118 @@
+{
+ "date": "2026-11-14",
+ "run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+ "earlier_date": "2026-11-13",
+ "earlier_run_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+ "new_model": "Gemini 4 Hydrogen",
+ "old_model": "Gemini 3.1 Flash-Lite",
+ "token_cap": 4096,
+ "hydrogen": {
+  "by": {
+   "2": {
+    "right": 10,
+    "of": 10
+   },
+   "3": {
+    "right": 10,
+    "of": 10
+   },
+   "4": {
+    "right": 10,
+    "of": 10
+   },
+   "5": {
+    "right": 10,
+    "of": 10
+   },
+   "6": {
+    "right": 10,
+    "of": 10
+   },
+   "7": {
+    "right": 10,
+    "of": 10
+   },
+   "8": {
+    "right": 9,
+    "of": 10
+   },
+   "9": {
+    "right": 10,
+    "of": 10
+   },
+   "10": {
+    "right": 9,
+    "of": 10
+   }
+  },
+  "small": {
+   "right": 40,
+   "of": 40
+  },
+  "big": {
+   "right": 48,
+   "of": 50
+  },
+  "all": {
+   "right": 88,
+   "of": 90
+  },
+  "empty": 2,
+  "wrong_numbers": 0
+ },
+ "older": {
+  "by": {
+   "2": {
+    "right": 10,
+    "of": 10
+   },
+   "3": {
+    "right": 8,
+    "of": 10
+   },
+   "4": {
+    "right": 8,
+    "of": 10
+   },
+   "5": {
+    "right": 1,
+    "of": 10
+   },
+   "6": {
+    "right": 0,
+    "of": 10
+   },
+   "7": {
+    "right": 0,
+    "of": 10
+   },
+   "8": {
+    "right": 0,
+    "of": 10
+   },
+   "9": {
+    "right": 0,
+    "of": 10
+   },
+   "10": {
+    "right": 0,
+    "of": 10
+   }
+  },
+  "small": {
+   "right": 27,
+   "of": 40
+  },
+  "big": {
+   "right": 0,
+   "of": 50
+  }
+ },
+ "example": {
+  "a": "7061156377",
+  "b": "5926155315",
+  "older": "41846355556556555355",
+  "hydrogen": "41845509393604693755",
+  "correct": "41845509393604693755"
+ }
+}
