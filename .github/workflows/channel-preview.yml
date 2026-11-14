@@ -65,6 +65,10 @@ jobs:
         id: chrome
         with:
           chrome-version: stable
+      - name: Eligibility gate (channel credentials configured in GitHub and validated)
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+        run: node platform/production/eligibility.mjs --require "${{ steps.channel.outputs.key }}"
       - name: Build the preview
         timeout-minutes: 55
         env:

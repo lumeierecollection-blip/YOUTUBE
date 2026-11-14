@@ -1,0 +1,34 @@
+name: Channel Eligibility
+
+# Pre-production check: discovers every channel whose CHANNEL_NN_* credentials are configured in GitHub, validates each against YouTube, and
+# records which channels may produce Shorts and long-form. Writes eligibility.json (no secret values). Read-only towards YouTube; uploads nothing.
+on:
+  push:
+    branches:
+      - "eligibility/**"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund --ignore-scripts || npm install --no-audit --no-fund --ignore-scripts
+      - name: Check every configured channel
+        env:
+          ALL_SECRETS: ${{ toJSON(secrets) }}
+        run: node platform/production/eligibility.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eligibility-${{ github.run_id }}
+          path: eligibility.json
+          retention-days: 90
