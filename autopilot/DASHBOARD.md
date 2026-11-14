@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-13 22:56 SAST
+Updated 2026-11-14 03:41 SAST
 
 **Next productions:** Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST
 
@@ -19,11 +19,11 @@ Updated 2026-11-13 22:56 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed-final at tts, attempts 2 |
-| Selected topic and score | AI Unlocks Gödel's Lost Mathematical Notebooks (62.9/100) |
+| Latest production | failed-final at script, attempts 2 |
+| Selected topic and score | ChatGPT Wallet Lets AI Agents Buy Items for You Automatically (79.8/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 140 views, 5 likes, 0 comments (public), 69.89% average viewed |
+| Performance | 124 views, 5 likes, 0 comments (public), 69.89% average viewed |
 | Analytics | available |
 
 ## Needs your attention
@@ -128,3 +128,4 @@ Updated 2026-11-13 22:56 SAST
 - AI Tested 2026-11-11-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel
 - Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th
 - AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1
+- AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Map of United States" is not named in the research artifact â€” use the research's own name, or drop the name
