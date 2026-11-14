@@ -23,7 +23,7 @@ jobs:
       - name: Install
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install --quiet yt-dlp faster-whisper
+          pip install --quiet yt-dlp faster-whisper pillow
       - name: Download and transcribe
         run: |
           mkdir -p out
@@ -42,8 +42,20 @@ jobs:
             rm -f "out/$id.wav"
           done < data/clone/refs.txt
           ls -la out
+      - name: Shot lists and keyframe sheets (refs in data/clone/shots.txt)
+        run: |
+          mkdir -p src shots
+          while read -r id; do
+            [ -z "$id" ] && continue
+            yt-dlp -q --no-warnings -f "bv*[height<=480][ext=mp4]+ba/b[height<=480]" --merge-output-format mp4 -o "src/$id.%(ext)s" "https://www.youtube.com/watch?v=$id" || { echo "video download failed $id"; continue; }
+            python scripts/clone/shots.py "$id"
+            rm -rf "shots/$id/f"
+          done < data/clone/shots.txt
       - uses: actions/upload-artifact@v4
         with:
           name: clone-transcripts-${{ github.run_id }}
           retention-days: 1
-          path: out/*.txt
+          path: |
+            out/*.txt
+            shots/**/shots.json
+            shots/**/sheet-*.jpg
