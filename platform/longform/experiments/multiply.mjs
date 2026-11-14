@@ -57,7 +57,7 @@ async function googleListed() {
     const ask = (id) => async (text) => {
       let last;
       for (const key of keys) {
-        const q = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { temperature: 0, maxOutputTokens: 4096 } }), signal: AbortSignal.timeout(90000) });
+        const q = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${id}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text }] }], generationConfig: { temperature: 0, maxOutputTokens: Number(process.env.MAX_OUTPUT_TOKENS || 4096) } }), signal: AbortSignal.timeout(90000) });
         if (q.ok) return ((await q.json()).candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("").trim();
         last = Object.assign(new Error(`HTTP ${q.status}`), { status: q.status });
         if (q.status !== 429) throw last;
