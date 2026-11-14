@@ -1205,7 +1205,12 @@
       "attempts": 1,
       "run_id": "43594111522",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T12:18:12.994Z"
+      "updated_at": "2026-11-14T12:20:24.745Z",
+      "stage": "research",
+      "topic": "Jeremy Bentham's severed head and dental pain",
+      "score": 65.4,
+      "pillar": "Forgotten historical figures",
+      "hook": "CT scans of the severed head of utilitarianism founder Jeremy Bentham revealed he spent his life in excruciating dental pain."
     }
   },
   "uploads": [
@@ -2390,6 +2395,15 @@
       "at_ms": 1794620272857,
       "score": 79.8,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "1",
+      "topic": "Jeremy Bentham's severed head and dental pain",
+      "slug": "jeremy-bentham-s-severed-head-and-dental-pain",
+      "slot": "2026-11-14-ch1",
+      "at_ms": 1794658824745,
+      "score": 65.4,
+      "pillar": "Forgotten historical figures"
     }
   ],
   "attention": [

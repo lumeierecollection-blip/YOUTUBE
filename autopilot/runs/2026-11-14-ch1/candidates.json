@@ -1,0 +1,1372 @@
+{
+  "generated_at": "2026-11-14T12:19:20.268Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day:11-14",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 25
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 58
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 27
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day:11-18",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-15",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-17",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-19",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-16",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-20",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": false,
+          "error": "fetch failed"
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "The 1,600-year-old Nasca infant skull with cyclopia",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        96,
+        113,
+        168
+      ],
+      "hook": "Archaeologists in Peru unearthed a 1,600-year-old infant skull with a single eye socket.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Cyclopia",
+      "commons_query": "Nasca culture pottery",
+      "youtube_query": "Nasca culture infant skull cyclopia",
+      "evidence": [
+        {
+          "title": "Archaeologists discovered in Peru the skull of a baby with cyclopia, 1,600 years old, in a tomb of the Nasca culture - Informat.ro",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPYnA5d1lYV0djeUs3Si11V21vM3FBZHBGTkQ2M2VDZ1doV0hhdGs0VTZNc2dXbjRoQkp5S1NVbld2cHJpVER6LUZGb25uQmtySUwxXzFramwxWUQwQ0JsamhqYkNlNERETmdqVnY0Z0VGN1NHaGU2aGFqYWdnRUNNRUJFaWhXT2UwSFZxSXhfYVNTaE1fV2NhLWViRXo2Wmgy?oc=5",
+          "domain": "informat.ro",
+          "published_ms": 1794637392000,
+          "kind": "news",
+          "id": 96
+        },
+        {
+          "title": "1,600-Year-Old Infant Skull Featuring a Single Eye Socket Unearthed from Ancient Burial Site - People.com",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNZFotM0RkaGhpSllSb09aTTRpSEhjQWZWX0RNcHdwV3dWZzRCNzExb0pxN1QzaVFwMFVhOHIzb2xraGNGMElNVWxxdm1WbGNnbHc0al9sNVpzUVhXYzhtaTl1S2N5T012a2hXOHQ4Z3dZd2luZHNsVUhkSTM4NUZOQ1VuOFRPcTZNaHRIdm5FNEZwd2x0dXhEWGItSkRLcHVESXE5X0UwTzdieTEzYU9KWGZuZEt1dklFVHFudw?oc=5",
+          "domain": "people.com",
+          "published_ms": 1794587910000,
+          "kind": "news",
+          "id": 113
+        },
+        {
+          "title": "Nazca infant had rare, fatal birth defect that left her with one central eye 1,600 years ago",
+          "url": "https://www.livescience.com/archaeology/americas/nazca-infant-had-rare-fatal-birth-defect-that-left-her-with-one-central-eye-1-600-years-ago",
+          "domain": "livescience.com",
+          "published_ms": 1794267650000,
+          "kind": "feed",
+          "id": 168
+        },
+        {
+          "title": "A Nasca Baby with a Single Eye Socket Shared a Grave with Another Infant 1,600 Years Ago - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxPVEtSWWM2WFJqbktGUkJYMkFXNWItb1FvWXpHU2JLNGJQTzI4Q2RlZmJBd3J2M3pYc3FpdTVYQlhPTDNQZldOYWRHTC1sRW9xcVRpTFhEVTRUTWl6WnF2MXZDSEhRMEpUbVBJT1JuTEhFSjZCay1JV3F3amtrTVh4b3dOT1lNTTE3T0ZNdU55V0JIZjB1QzNMZ0NJT05pMlRTa29icTc0a1l4Q1NQR21J?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794503079000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists Found a Baby Girl Born With a Single Central Eye Buried Beside Another Infant in a 1,600-Year-Old Nazca Urn - The Daily Galaxy",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBWbjhuTlNSY0oyQ0d4TUt3X1VwNjg4aHJ2MFNYbmJkUmNub0xYWDRubDJUYXVkY2thV0poODlFWWxzSlNPdlo1TmdHaklUWi1kVXo3VDZkRmFka3EtaXFpUUluamtQOEVDSHJQdThPUUVjNy0yRTF3eGRiU09kWGM?oc=5",
+          "domain": "dailygalaxy.com",
+          "published_ms": 1794314100000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Cyclopia",
+        "daily_views": 438,
+        "ratio": 2.96
+      },
+      "youtube": {
+        "median_views": 1101,
+        "competitors": [
+          {
+            "id": "uEITO4sWnAM",
+            "title": "Why Does This Nazca Urn Have One Eye?",
+            "channel": "The Untold Atlas",
+            "views": 1363
+          },
+          {
+            "id": "X54xuTNVEI4",
+            "title": "History Mysteries #14: Born With One Eye Socket — Why a Normal Grave? #shorts 💀",
+            "channel": "True Science Daily",
+            "views": 1101
+          },
+          {
+            "id": "pPF-WfiHPU8",
+            "title": "This 1,600-Year-Old Nazca Skull Has One Eye Socket",
+            "channel": "ChronoSecrets ",
+            "views": 62
+          },
+          {
+            "id": "_CmsrzHhv5s",
+            "title": "The Baby With One Eye — Found in a 1,600-Year-Old Jar?",
+            "channel": "The Untold Atlas",
+            "views": 16
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 52,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 85.8,
+        "newest_hours": 6,
+        "domains": [
+          "informat.ro",
+          "people.com",
+          "livescience.com",
+          "arkeonews.net",
+          "dailygalaxy.com"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "arkeonews.net"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The discovery of the lost Sanctuary of Asclepius in Epidaurus",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        94,
+        125,
+        126
+      ],
+      "hook": "Archaeologists have finally located the long-lost Sanctuary of Asclepius in the ancient Greek city of Epidaurus.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Sanctuary of Asclepius at Epidaurus",
+      "commons_query": "Sanctuary of Asclepius Epidaurus",
+      "youtube_query": "Sanctuary of Asclepius Epidaurus discovered",
+      "evidence": [
+        {
+          "title": "Archaeologists Locate Long-Lost Sanctuary of Asclepius in Ancient Greek City of Epidaurus - GreekReporter.com",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPMVRuaW9uUTdSVDJjV3BXVVB2VTh4cDM2MUpGQU9MZG5EbEdKNUpqT3NOZkFfOVNhVXdHOEZCT2NURlVrbUozYmU3c3NpMWtfREpEQWlRX0d3YXc1QXMzNTVHTEROb1pORFQ2REZLOE1tQXJsYURJUDh3RnFMaldfQ3NNeUstbkQ1cl84aTZLUVctZVNhWEE?oc=5",
+          "domain": "greekreporter.com",
+          "published_ms": 1794654091000,
+          "kind": "news",
+          "id": 94
+        },
+        {
+          "title": "Lost Sanctuary of the Greek God of Medicine Identified in Greece - Arkeonews",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOZEpqYkR6N0Z2S3laVnhlc1AxVUo3Ql9Bc0ozNlRwRzc1OG5aN19kVmJna2EzQkVSRFlieEpxVWpqMVFZN3E2RzZIaEJRU0Y1bGFhNlVsM3MyZzlvRFBZWmw4MllVR20wTjc2QW1SVkVuTHE5UGhtYzBJd2tDV2F3VTRlQnIzV2hmNlRVN2I2UG4?oc=5",
+          "domain": "arkeonews.net",
+          "published_ms": 1794524986000,
+          "kind": "news",
+          "id": 125
+        },
+        {
+          "title": "Lost Sanctuary of Asclepius discovered at Ancient Epidaurus - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcnAydEZfaDVCZHNCWTM3RTFaQ0kwTFphRUVKWWpqOVUxSTdfVVpLa253MnRXRjJ6UFVlcnk1WUg3MWdCYWJpWmRqZ2o5SjRIaF9aWUxMekVmOFJtUHJQbGwxOHRTOTdvS1ZvNUVpQmk4djd6aVk3UTAzU2lUQ2JCc1dETkxPZXM1cFVWRWxTUE1ZZ2ZPb01FeGZySWFqUHF2NkY2WUNwTQ?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1794520631000,
+          "kind": "news",
+          "id": 126
+        },
+        {
+          "title": "Lost Sanctuary of Asclepius Unearthed in Major Discovery - Σωματείο ΔΙΑΖΩΜΑ",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxON1NOZ19adXRKOTA3Q0dDVzJqNHdrWlBFMlV3MFRuaU1wWUNyQlZsU1M4SGZCaHhSYl9naXBpNWNJMFJpakNlZkYtRUdsNXBIeENtYkJLLXRhai13eWVPSTlPZC15MC1GbFNDYUVCWHZVaEV5c3FQaGVfNWhuemlHRkVZaXR3QzZPYWFZbFdsRVhDUVI3MFJKSlFB?oc=5",
+          "domain": "diazoma.gr",
+          "published_ms": 1794510986000,
+          "kind": "news"
+        },
+        {
+          "title": "Ancient Epidaurus Steps Out of the Asklepieion’s Shadow - tovima.com",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPMDNfTjRZQ1R1R0dNSEJQWFFXVU9pY0RRMHB0UElwc3AzeUtBamctRW9sUEpYcklqTl9laTlxaUkxVVV4eC16YWhUZkJPbHY5VktrZU5HbUlaTzlKRElJZU5fZ21pNFZ5akFnc3RJcDJ6b2EzQ2dyZDJuQzVtaUpvZ0l4MmpQNkNBWEctSllEWQ?oc=5",
+          "domain": "tovima.com",
+          "published_ms": 1794485703000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeological Discoveries in Epidaurus Confirm Sacred Asclepius Sanctuary and Reveal Statue of Epione - Inkorr",
+          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQZ1FHdjJCSXMydVdRaXdrd1YzbmZqdUtDRS0yUU9wTGU2S2VnWDBObHg4SHRPcmNVcC0tdFF6dkhjQkJMQ1dpY1RybFd0Tkl0N2dnZjF1UGV5c3MzbzZtNXY0UGNiMDNlWVJ6ZXAtaWdYS19zYm5mRTctLTBJckZWQzBkV2ZGbEJldXFzcmlVU2ZESno2bVo0NDI0ZVFsR3gzYXNvOUdNRGN3WVJfQWVuT1RmUzJTbklu0gG-AUFVX3lxTE1hVWtoNXNmbVJ6c0tRQW40TDg4eUxWR1JUSTBnMzdFSVJRaXI0eFFNODBVRzdNYlphUE9yS1hVT1FkMTY5bDVIMVQ2dWstOVBrakNvSmJXSHQ5amxEa3BJTXJ6UHpGT1RyVVFkeG4xMFBXalFBc0JNYjZZRkpYQlJ0TWZsTndVVzdrTWxZVS1DaEthT3NSbWxlN1VHNkp4b3pRS0FWZXRlUmE0MVlTOXpHQk1jbHo5WklZaEVVRlE?oc=5",
+          "domain": "inkorr.com",
+          "published_ms": 1794648524000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 193,
+        "competitors": [
+          {
+            "id": "q78L8qJQqbU",
+            "title": "THE TEMPLE BURIED BENEATH A FAMOUS GREEK SHRINE",
+            "channel": "Areha Hub",
+            "views": 15491
+          },
+          {
+            "id": "fw6DiAEg4JQ",
+            "title": "The Lost Sanctuary of Asclepius Has Finally Been Found #AncientGreece #Archaeology",
+            "channel": "Untold Empires",
+            "views": 1495
+          },
+          {
+            "id": "v8UaPLHvYH4",
+            "title": "My Lost World: This Week in Archaeology. Nov 13.2026",
+            "channel": "My Lost World",
+            "views": 972
+          },
+          {
+            "id": "wFBJ8HHS-nM",
+            "title": "Patients entered this ancient hall hoping that dreama could change their lives.What happened inside?",
+            "channel": "Time Builds",
+            "views": 920
+          },
+          {
+            "id": "lvafrRYM2oc",
+            "title": "The Seats at Epidaurus Filter Out Crowd Noise, and Nobody Knew Until 2007",
+            "channel": "LostToTime",
+            "views": 193
+          },
+          {
+            "id": "OCvJ0yGlw5Q",
+            "title": "How Ancient Greeks Slept in a Temple to Be Healed | Fall Asleep to Asclepius and Epidaurus",
+            "channel": "The history tales",
+            "views": 73
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 38,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 79.6,
+        "newest_hours": 1,
+        "domains": [
+          "greekreporter.com",
+          "arkeonews.net",
+          "heritagedaily.com",
+          "diazoma.gr",
+          "tovima.com",
+          "inkorr.com"
+        ],
+        "trusted_domains": [
+          "arkeonews.net",
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Discovery of the Lost Sanctuary of Asclepius"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The massive 2,200-year-old burial mound find in Kazakhstan",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        152
+      ],
+      "hook": "Archaeologists uncovered a solid gold bear figurine and a mountain of bones inside a massive 2,200-year-old burial mound in Kazakhstan.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Kazakhstan gold artifact archaeological",
+      "youtube_query": "Kazakhstan burial mound gold bear figurine",
+      "evidence": [
+        {
+          "title": "2,200-year-old gold bear figurine and surprising number of bones found in massive burial mound in Kazakhstan",
+          "url": "https://www.livescience.com/archaeology/2-200-year-old-gold-bear-figurine-and-surprising-number-of-bones-found-in-massive-burial-mound-in-kazakhstan",
+          "domain": "livescience.com",
+          "published_ms": 1794433470000,
+          "kind": "feed",
+          "id": 152
+        },
+        {
+          "title": "2,200-year-old gold bear figurine and surprising number of bones found in massive burial mound in Kazakhstan - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxORUpnVGc2MVJwZWIwbWVKc2w3QUZlWlNrVU8zaFdNandBd3gxMmt6LUc4d0hYb3A0ODEwamJwUmNlY25xYXN1eWNZNXF4UmRua1JKWC1JYnNmZU81NHRySGhPVGc2VW9VaHFUWTJONld4TlQxa1FIZFdTb1NWRXJDajJzd3IzbmlaMGVMcjN3X0taaW81WEF4cnRvX1VJNUNjX1ZYb04xdTY5QXJVRkFnelpjZVZ0b0VVRnh2aklQeFdvNlNNVm1uYy00M2E2VnliSmF0LTZrN3oyd0Nland2RUZn?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794433470000,
+          "kind": "news"
+        },
+        {
+          "title": "Rare Saka-period gold bear figurine from ceremonial headdress discovered in Kazakhstan - HeritageDaily",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPc0ZxNkNnbDJzeEk4N3dUdFVHZ21ra183aFRxcE94YmZmNkdSb1hNSElIcmpFTFVvUEMwRm45YzdRMlVmcnVEb3NnZy1iUHhsSGVBT3BLMnBiaFc0QWVaQVgyLVNDb1IzNW9Sa01GMWh1d1BLWnpnTk9DR0JCWjltUC13WkxoMXFHT09BNlFTZTZ3Qi02b25NUzlCRzE4RW5faUFaQ184S2NMYlUyYTZ3VlV3UGRoLVVfVUhabkxFbmdfcUhDNXNuZF9iRQ?oc=5",
+          "domain": "heritagedaily.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "Gold Bear Figurine Found in 2,200-Year-Old Kazakhstan Burial Mound - Around Prague",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZDlDcGNzTUl6ejdGVDducEREeVlPWTB6d3VGMzZvcmlkRjhQbXNYNEFnbGU1WVZzUFhyQ1REOEF4dlRDX3lmM1hKYV9ickNUMm1oM0M1ZUFwV1l2X1RrZTZVUzZRU05ObEhVUlFObk1faDhOd2RHMDh3LXozZVpUaWZUcjA5ZmVkRnVNdGFVQ2VWNl9PQ0RMY0R4emw4YkFUX3JLRk45MXlPdw?oc=5",
+          "domain": "aroundprague.cz",
+          "published_ms": 1794440730000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists uncover 2,200-year-old gold bear figurine in Kazakhstan - سانا",
+          "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFA3aWl5dnFsMjRwdGVuWWdBaFdxV1JvS0hSUWJkWDFjeWNOS3lJdUtqYTRfZGhGYkdGR1phd2FHTGpGMU5PX3JOMnk3dkRHWU5kZWtV?oc=5",
+          "domain": "sana.sy",
+          "published_ms": 1794566370000,
+          "kind": "news"
+        },
+        {
+          "title": "Archaeologists discover rare gold bear ornament in ancient Saka burial mound in Kazakhstan, alongside hum - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMizAJBVV95cUxQTnZTYUFqRENpcThzeVA5bTE4MWxyRzloTC1kMVRQQVBPVHhOdUo3aE9mUThrYWNxYWREdXdPUlVEZUp5c2t4cWt1M3J0eGhfd2NTYk1ybkdpSTFoWF83eG1pc28wajJiQmlhX0JlNEl3Vkg0X1Jpdk5xX21JbDlXaDhUeFFXNTZ4NXp5cEpGY1ZzMEloaWpvVGV4a1A3dXRyVDFyNHJJYXhhNGdzRzV1V1ptZ0tTT3VxbDlLQ2k2OHFUU2NfUDF4czJIQkM4bEM0TlNjNm9Rc211UE15ZV9Bb0kyN1hqWlN4R05RbmE2b2R5RmtxOEJ6UHdXc09iQ2hId3laenpvYzRMSHBERDNiUWlmNTJlLWN3RGhJYzl0OHlMdTRYcU92eGNwQ21UMGZleF9wcEZQWW5SUk5XaHpYRDloRlRDb3JsQlJNbNIB0gJBVV95cUxNa1JUTXAzVzR0RTV4d3gxaHBacV9CT242QmRMLXFwM0RZQUd1b0FSWFAwemloTzlTTnlUQkxpTEthcTN3SU1qUU1tSnNDTFZEcV9wenU0TGJxQTVCaVpab0FOQk5IcUttajVjRzZ2Wm9PTXE5VE4yVGMtbVJlcUUxcENjM2xXYjNFMVFHbFVxcUJMbkIxRnFNV3dCUWI5Rk9lRUdPVDBheWFwRGl1b3YyZlp4Vzl5em9zczlHVEhoS2ZQd1k1R3NzVFc3WUdOazNTSWJjdTN4UUs4RHlyN0gxdzdsWlZnazNVSm1JTzBZM0FsYzZqaUhFUmdYZktlZ3J2SkxYU3pueDRSU0xlUnBLc0ZjeEZqMmNwUkNUeF9jRjktc1B2VTJKQlpiZ2NVU2JzNFA1UmVVRExSejB5V2g1cFlsXzc4SU0zRlFYTHRBTVdXdw?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1794115800000,
+          "kind": "news"
+        },
+        {
+          "title": "2,200-year-old gold bear figurine found in Kazakhstan — Live Science - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObi1KR1ktbkMxYWd0LXEzUUJncnNUOVp5aG9Yc0NJYUZ4UTk5R3ktRnNVX29KZFhsdmJScFB6NmtnSmxTZ3dQTURrWk1GNGFZYWpYbTlpdWFmbl8tMzhBSVhKRi0ybGZ0VkhKZnM3dVY3VnFwbDZTeTJ0QnFKa1VEbmVGRXZncTZuUVhyTEl6amxVOExVcVN4OTFJY2NIUkhLOV9lbFpoYw?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1794437063000,
+          "kind": "news"
+        },
+        {
+          "title": "Rare Saka-Era Gold Bear Ornament Discovered in Kazakhstan's Almaty - 24.kz",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFA2QXF6eG9WYmNlbnk5SmswVmlLaExyc1hIaE5QaVgwVmtvRTJaME9rbFlvbzhvRGtvOXNvandQallpUmRIVkJ0REdhaGZDQ3FJSVhyREZxNXE3RzRCRE1ORmVtT3daT1ZYQXhXRF9OTzBZa2x1NS1Zek1PUEl1ejg?oc=5",
+          "domain": "24.kz",
+          "published_ms": 1793962841000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 766,
+        "competitors": [
+          {
+            "id": "-GzuY0SQXEw",
+            "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
+            "channel": "Седьмой канал | NEWS",
+            "views": 24537
+          },
+          {
+            "id": "sCBlgyT0Bpc",
+            "title": "Золотого медведя и останки семи человек обнаружили в сакском кургане в Алматы",
+            "channel": "Седьмой канал | NEWS",
+            "views": 13802
+          },
+          {
+            "id": "eO6x9oDZFz8",
+            "title": "Ursul de aur ratat de hoți: descoperire într-un kurgan saka din Kazahstan",
+            "channel": "Arhivele Lumii",
+            "views": 1306
+          },
+          {
+            "id": "_Ylp_lAgEqo",
+            "title": "Rare Gold Bear Found in 2,300-Year-Old Tomb in Kazakhstan",
+            "channel": "Most Viral Today",
+            "views": 781
+          },
+          {
+            "id": "k-fncCSftF8",
+            "title": "Золотую фигурку медведя возрастом более 2 тысяч лет нашли в Алматы",
+            "channel": "Khabar NEWS ",
+            "views": 766
+          },
+          {
+            "id": "qcDhIhtGsN8",
+            "title": "2,200 Years Old: A Gold Bear Unlike Anything Ever Found in Kazakhstan 🐻 #Shorts",
+            "channel": "Atlasya Production",
+            "views": 67
+          }
+        ]
+      },
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 48,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 45,
+          "source_quality": 100
+        },
+        "total": 79,
+        "newest_hours": 26,
+        "domains": [
+          "livescience.com",
+          "heritagedaily.com",
+          "aroundprague.cz",
+          "sana.sy",
+          "timesofindia.indiatimes.com",
+          "ua.news",
+          "24.kz"
+        ],
+        "trusted_domains": [
+          "livescience.com",
+          "heritagedaily.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)",
+        "too similar to recent topic: Discovery of a rare gold bear ornament in an ancient Saka burial mound in Kazakhstan"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The sinking of the whale ship Essex in 1820",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        82
+      ],
+      "hook": "In 1820, an enraged sperm whale deliberately rammed and sank an American whaling ship 2,000 miles from land, inspiring Moby-Dick.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Essex (whaleship)",
+      "commons_query": "Essex whaleship attack",
+      "youtube_query": "whaleship Essex sunk by whale 1820",
+      "evidence": [
+        {
+          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick.",
+          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 82
+        }
+      ],
+      "wikipedia": {
+        "title": "Essex (whaleship)",
+        "daily_views": 2217,
+        "ratio": 4.79
+      },
+      "youtube": {
+        "median_views": 165,
+        "competitors": [
+          {
+            "id": "VopkkSdBCd8",
+            "title": "A Whale Sank Their Ship. Only 8 Survived the Ordeal. | Essex 1820 #TheLostRecord #Essex #Whale",
+            "channel": "THE LOST RECORD",
+            "views": 698
+          },
+          {
+            "id": "4UPjx_6Ukmw",
+            "title": "Whaleship Essex 1820: The Ship Sunk by a Giant Sperm Whale",
+            "channel": "Sleepy Science Nights",
+            "views": 573
+          },
+          {
+            "id": "jyYq1BOOm0U",
+            "title": "A Whale Sank Their Ship — 93 Days in an Open Boat: The True Survival Story of the Essex Whaleship",
+            "channel": "STRANDED — True Survival Stories",
+            "views": 240
+          },
+          {
+            "id": "9-OPH9XR43Q",
+            "title": "Sunk by a Whale: The True Horror of the Whaleship Essex (1820) | Full Documentary",
+            "channel": "Old World Story",
+            "views": 228
+          },
+          {
+            "id": "PCsWZNd7smo",
+            "title": "Your Shift on the Whaleship Essex in 1820 (The Whale That Fought Back)",
+            "channel": "NINE TO DIE",
+            "views": 165
+          },
+          {
+            "id": "b--ffM9qEv8",
+            "title": "Whaleship Essex: Why They Drew Lots | Animated True Story",
+            "channel": "Spookestra",
+            "views": 50
+          }
+        ]
+      },
+      "commons_hits": 15,
+      "score": {
+        "factors": {
+          "momentum": 58,
+          "reach": 49,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 70.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Susan B. Anthony arrested for voting in 1872",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        59
+      ],
+      "hook": "In 1872, American suffragist Susan B. Anthony was arrested and fined $100 simply for casting a ballot in the presidential election.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Susan B. Anthony",
+      "commons_query": "Susan B Anthony portrait",
+      "youtube_query": "Susan B Anthony arrested for voting 1872",
+      "evidence": [
+        {
+          "title": "1872, 11-18: American suffragist Susan B. Anthony (pictured) was arrested and later fined $100 for having voted in the presidential election two weeks earlier.",
+          "url": "https://en.wikipedia.org/wiki/Women's_suffrage_in_the_United_States",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 59
+        },
+        {
+          "title": "Today in History: Nov. 5, Susan B. Anthony defies law and casts vote for president - SooLeader.com",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOTmlfT2FHM1pYYVdlOFEtNmU2NmlzcDhmRmliUlNXQXpteUxWeG9xRUNxR0w0aTU4aUNmbTU4SWo3c0p2MXFrZGNJS0JIaFI2d3FIbm9rRHp2a25qcnN2TjhJSDJEY21KSjRmZU9oUC1GRjV3TjBKVEFQakVyY3RWQmVXMndhU3NwcEt4YWVmc3l3dTlWQW8xN25fcGRuOERmSGxBRkE3WWlCbmozVzJDbkRaQXpMUmFibGxidmJXd2xGZw?oc=5",
+          "domain": "sooleader.com",
+          "published_ms": 1793926879000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Susan B. Anthony",
+        "daily_views": 1179,
+        "ratio": 0.77
+      },
+      "youtube": {
+        "median_views": 41,
+        "competitors": [
+          {
+            "id": "7S1E5QoV8Ak",
+            "title": "In 1872 Susan B Anthony was arrested for voting",
+            "channel": "today in history each day in short videos",
+            "views": 310
+          },
+          {
+            "id": "4FhRDC4fzTM",
+            "title": "Did you know Susan B. Anthony was arrested for voting? #shorts",
+            "channel": "Quorumcivic App",
+            "views": 228
+          },
+          {
+            "id": "6Ic51MEj0hA",
+            "title": "She Was Put on Trial for Casting One Vote — Susan B. Anthony ⚖️",
+            "channel": "The Trial Tapes",
+            "views": 107
+          },
+          {
+            "id": "efqNw_4kgTI",
+            "title": "Susan B. Anthony Arrested for Voting in 1872",
+            "channel": "Ai shorts ",
+            "views": 79
+          },
+          {
+            "id": "YtZvvUbIp7o",
+            "title": "The Woman Arrested for Voting: Susan B. Anthony (1872) #shorts",
+            "channel": "The History Decoded Channel",
+            "views": 41
+          },
+          {
+            "id": "cq5QSX6fLIY",
+            "title": "She Voted for President in 1872 and Was Arrested for It | Today in History",
+            "channel": "TodayInhistory",
+            "views": 37
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 65
+        },
+        "total": 67.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "sooleader.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Susan B. Anthony Arrested for Voting"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Pelé scores his 1,000th career goal in 1969",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        66
+      ],
+      "hook": "In 1969 at the Maracanã Stadium, 100,000 screaming fans watched Pelé score the legendary one-thousandth goal of his career.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "Pelé's 1000th goal",
+      "commons_query": "Pele footballer 1969",
+      "youtube_query": "Pele 1000th goal 1969 Maracana",
+      "evidence": [
+        {
+          "title": "1969, 11-19: Playing for Santos against Vasco da Gama in the Maracanã Stadium in Rio de Janeiro, Brazilian footballer Pelé scored his thousandth goal (commemorative stamp pictured).",
+          "url": "https://en.wikipedia.org/wiki/Santos_FC",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 66
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1084,
+        "competitors": [
+          {
+            "id": "PiMCIQOnjS4",
+            "title": "E se você tivesse 9 anos na noite em que o Pelé fez o gol mil? ⚽🏟️",
+            "channel": "Eskeleton Documentários ",
+            "views": 14032
+          },
+          {
+            "id": "lEdbtaCo5n4",
+            "title": "Pelé Scored Goal No. 1,000… and the Match STOPPED! 😳⚽ #footballshorts",
+            "channel": "NINETYLORE",
+            "views": 1259
+          },
+          {
+            "id": "37HLfj_kz7A",
+            "title": "Stuck on 999: The Night Pelé Reached 1,000",
+            "channel": "Moments That Made Them",
+            "views": 1163
+          },
+          {
+            "id": "X-F8WYxXswU",
+            "title": "Pelé's 1,000 goals included friendlies",
+            "channel": "Whyrd?",
+            "views": 1153
+          },
+          {
+            "id": "Pjuxdzqpt_U",
+            "title": "The Night Pelé Scored His 1,000th Goal",
+            "channel": "BackStory FC",
+            "views": 1084
+          },
+          {
+            "id": "e1vLqqJQxMc",
+            "title": "How Pelé Scored Goal Number 1,000 ⚽ #shorts",
+            "channel": "Pitch Mysteries",
+            "views": 869
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 51,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 65.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Pelé's Milestone 1,000th Career Goal"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Jeremy Bentham's severed head and dental pain",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        111
+      ],
+      "hook": "CT scans of the severed head of utilitarianism founder Jeremy Bentham revealed he spent his life in excruciating dental pain.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Jeremy Bentham",
+      "commons_query": "Jeremy Bentham auto-icon",
+      "youtube_query": "Jeremy Bentham head CT scan dental pain",
+      "evidence": [
+        {
+          "title": "'Godless' founder of utilitarianism had severe dental problems and was in 'excruciating pain,' CT scans of his severed head reveal",
+          "url": "https://www.livescience.com/archaeology/godless-founder-of-utilitarianism-had-severe-dental-problems-and-was-in-excruciating-pain-ct-scans-of-his-severed-head-reveal",
+          "domain": "livescience.com",
+          "published_ms": 1794591599000,
+          "kind": "feed",
+          "id": 111
+        },
+        {
+          "title": "Scans of Jeremy Bentham’s Centuries-Old Head Show the Dental Damage Behind His Accounts of Agonizing Toothache - Discover Magazine",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQMFdYSFJSckhJUVowRGtyN3BVbkRnMDdobVJzbkhfVlM3NzJudDRwTTRYZm12cl9JSElKcEZ4QUp6Nk1BTzNYazZocVRFSmwwYkt4cjlXcENJUDc5dW9BTzZIVEg1bWQwVGZqSHhoclF6MnlkVUFyWENhWHVuMHFNY0NCRURVQWVRZ2pObFF3Y0ViWU1VU0Y3M3FjZXc2QnlldjBkYVNtcnUwY1dDWWpUX09ydzdOaXNVZGRfbFZQRzZBZEd3WkFicjBfeUNFb2x3T0N5eVlHNmgwYTVOMjM2UGdfWQ?oc=5",
+          "domain": "discovermagazine.com",
+          "published_ms": 1794269088000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Godless’ philosopher Jeremy Bentham, who died nearly 200 years ago, had severe dental problems - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOWGlLMEtlTlNJR3h5MWlxd1YwQWtsVEJaUVVDUW84RDhzTmZ1U3BBenVaeS1YNDdiV1hkeDRUdXFGNmgyWG1SMm1lX3VYeHpudjY3aTJiTnpZUlB4eHV1Y0FhSGxTN0dSYkhFUXk1bG5PTEk3UlNuaUdyam9RWUNRYnlRX0ZVVmtnTmpNZUdtekJCWUF2UGVHWTl4LTN2eXYwLWE0SFY5OUFhTlI1Y1JSOUxHVlcwVXR3b0wyV3paUmRnazZuSlJvbkJINGQ0ektEZ1kxWFhNRENKWmNOZmd1aDVXN0ItVWIyTVBqeVRrVnlfbER5VUd0Xw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794591599000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Jeremy Bentham",
+        "daily_views": 884,
+        "ratio": 1.05
+      },
+      "youtube": {
+        "median_views": 0,
+        "competitors": []
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 24,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 65.4,
+        "newest_hours": 19,
+        "domains": [
+          "livescience.com",
+          "discovermagazine.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 14th Dalai Lama assumes full temporal power at age 15",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        42
+      ],
+      "hook": "In 1950, a 15-year-old boy suddenly assumed full political and spiritual control over Tibet as its supreme ruler.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "14th Dalai Lama",
+      "commons_query": "14th Dalai Lama young",
+      "youtube_query": "14th Dalai Lama assumes power 1950",
+      "evidence": [
+        {
+          "title": "1950, 11-17: The 14th Dalai Lama (pictured) assumed full temporal power as ruler of Tibet at the age of 15.",
+          "url": "https://en.wikipedia.org/wiki/14th_Dalai_Lama",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 42
+        }
+      ],
+      "wikipedia": {
+        "title": "14th Dalai Lama",
+        "daily_views": 3634,
+        "ratio": 0.93
+      },
+      "youtube": {
+        "median_views": 422,
+        "competitors": [
+          {
+            "id": "BbFCnmrLwKE",
+            "title": "CHINA | Cities That Don’t Seem Real (Documentary)",
+            "channel": "Lifeder",
+            "views": 1605467
+          },
+          {
+            "id": "EhDXZaSvPnA",
+            "title": "Dalai Lama and Tai situ Rinpoche ✨🙏#song #relaxingmusic #love #peace #dalailamalesson",
+            "channel": "bekindofficial",
+            "views": 30447
+          },
+          {
+            "id": "Z8rUwbKBFYI",
+            "title": "चीन का सबसे बड़ा धोखा। कैसे किया  तिब्बत को बर्बाद? How China Annexed Tibet? #tibet  #indiachina",
+            "channel": "Himanshu Chauhan | Unprovoked",
+            "views": 4893
+          },
+          {
+            "id": "y2GJtfbd8IE",
+            "title": "How China Captured Tibet | 1950 Invasion, Chamdo & Dalai Lama",
+            "channel": "Tibetan Soul",
+            "views": 767
+          },
+          {
+            "id": "snmKPVup6-g",
+            "title": "The ENTIRE History of Tibet in 12 Minutes | The Roof of the World and the Fight Over Who Rules It",
+            "channel": "Trade Chronicles",
+            "views": 422
+          },
+          {
+            "id": "wBsBMMIHTAk",
+            "title": "How China Invaded Tibet in 1950 | The Fall of Chamdo & Dalai Lama's Escape",
+            "channel": "Tibet Uncovered",
+            "views": 257
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 55,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 65.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 14th Dalai Lama Assumes Temporal Power at Age 15"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 17th-century Danish warship mutiny, exclusive shoes, and slave payments",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        135,
+        136
+      ],
+      "hook": "Divers exploring a 350-year-old shipwreck off Sweden found an exceptionally rare shoe and records of slave payments following a deadly mutiny.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "Danish warship shipwreck 17th century",
+      "youtube_query": "Danish shipwreck Sweden shoe slave payments mutiny",
+      "evidence": [
+        {
+          "title": "Divers find nearly 350-year-old shoe and slave payments on shipwreck off Sweden - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxQOENIWlVqeGJsdWhrMjZsWHdwY1g1U1MxLUdRLUo1eERaUjR1d2ZsWkpXeWhLdDZlb0hRTEtiX2FoaFQyZDVkdDZVSEh3UTIxZVBxOFRvREhFb19kUm9fdV9nWTd0Z0kzQThhOUdoYkxyOUZOekVTaW8zZVNzUmJUX3ZwQWdNM0taNjItODdWWkQ4bWdubkxlM1luTnc3TXpId3VRMHFTa1pqbG94OFNNdWdhNEVvWHhvYjJqaXVjNWIzV09WVVJGQ29ubXdvMURSbTB6YWJkeWZ1UUtQYmRHMUZNeW1JMDBJZWY0Zw?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1794477600000,
+          "kind": "news",
+          "id": 135
+        },
+        {
+          "title": "'Slave payments' and 'expensive and exclusive shoe' discovered on 17th-century Danish ship that sank after deadly mutiny",
+          "url": "https://www.livescience.com/archaeology/slave-payments-and-expensive-and-exclusive-shoe-discovered-on-17th-century-danish-ship-that-sank-after-deadly-mutiny",
+          "domain": "livescience.com",
+          "published_ms": 1794477600000,
+          "kind": "feed",
+          "id": 136
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 236,
+        "competitors": [
+          {
+            "id": "xLmNx_ZhDX0",
+            "title": "Why We Run, Celebrate and Tell Stories: History and Myth Explained",
+            "channel": "What Is",
+            "views": 1450
+          },
+          {
+            "id": "yCV5Dm4T9Ek",
+            "title": "Divers Recover A 350-Year-Old Shoe From A Danish Shipwreck Off Sweden",
+            "channel": "Science!BreakingNews",
+            "views": 236
+          },
+          {
+            "id": "mIpmJWYVwPM",
+            "title": "Mutineers Threw a Governor Into the Sea. Divers May Have Found His Shoe #shorts",
+            "channel": "Hidden World Facts",
+            "views": 2
+          },
+          {
+            "id": "NpJWDrYZ23g",
+            "title": "NASA's Roman Space Telescope Will Shoot 30% Sharper And Last Twice As Long As Predicted",
+            "channel": "Science!BreakingNews",
+            "views": 0
+          }
+        ]
+      },
+      "commons_hits": 0,
+      "score": {
+        "factors": {
+          "momentum": 65,
+          "reach": 40,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 40,
+          "source_quality": 35
+        },
+        "total": 61.7,
+        "newest_hours": 50,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Albert Hofmann synthesizes LSD in 1938",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        33
+      ],
+      "hook": "In 1938, Swiss chemist Albert Hofmann synthesized a chemical compound in Basel, accidentally unlocking the world's first major psychedelic.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Albert Hofmann",
+      "commons_query": "Albert Hofmann chemist",
+      "youtube_query": "Albert Hofmann synthesizes LSD 1938",
+      "evidence": [
+        {
+          "title": "1938, 11-16: Swiss chemist Albert Hofmann first synthesized the psychedelic drug LSD in Basel, Switzerland.",
+          "url": "https://en.wikipedia.org/wiki/Albert_Hofmann",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 33
+        }
+      ],
+      "wikipedia": {
+        "title": "Albert Hofmann",
+        "daily_views": 337,
+        "ratio": 1.03
+      },
+      "youtube": {
+        "median_views": 64,
+        "competitors": [
+          {
+            "id": "Wtf1FG_xgAg",
+            "title": "LSD, LA VERA STORIA: DALLA CIA ALLA SPIRITUALITÀ - EDOARDO CICCONI",
+            "channel": "Border Nights",
+            "views": 14433
+          },
+          {
+            "id": "IBtdI6Fca00",
+            "title": "Salem 1692 Part 2: Was the bread to blame? 🍞 #history #salem #historyfacts #facts",
+            "channel": "Uncanny Ages",
+            "views": 173
+          },
+          {
+            "id": "mvbBBM4GDWQ",
+            "title": "LSD-25 की खोज गलती से कैसे हुई? 😱💊 | Albert Hofmann | Pharma Viveka #Shorts",
+            "channel": "Pharma Viveka",
+            "views": 130
+          },
+          {
+            "id": "O8v35IMvcnw",
+            "title": "A blessing or a curse | Albert Hofmann (1979)",
+            "channel": "Nautilus Chamber",
+            "views": 88
+          },
+          {
+            "id": "KTVrPWds1y8",
+            "title": "The Secret Psychedelic Behind the Holy Grail #psychedelics #history #hiddenhistory #holygrail",
+            "channel": "System Failure",
+            "views": 64
+          },
+          {
+            "id": "HcmBfVPQYMQ",
+            "title": "От ЛСД до MKUltra.",
+            "channel": "Evgenij Chulkov",
+            "views": 34
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 38,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 61.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Albert Hofmann's accidental synthesis of LSD in Basel"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Brazilian Emperor Pedro II overthrown in 1889",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        20
+      ],
+      "hook": "On this day in 1889, Brazil's Emperor Pedro II was overthrown in a sudden military coup, instantly turning the empire into a republic.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Emperor Pedro II of Brazil",
+      "commons_query": "Emperor Pedro II",
+      "youtube_query": "Emperor Pedro II overthrow Brazil republic 1889",
+      "evidence": [
+        {
+          "title": "1889, 11-15: Brazilian emperor Pedro II was overthrown in a coup led by Deodoro da Fonseca (pictured), while the country was proclaimed a republic.",
+          "url": "https://en.wikipedia.org/wiki/Pedro_II_of_Brazil",
+          "domain": "wikipedia.org",
+          "published_ms": 1794658760268,
+          "kind": "anniversary",
+          "id": 20
+        }
+      ],
+      "wikipedia": {
+        "title": "Emperor Pedro II of Brazil",
+        "daily_views": 0,
+        "ratio": 0
+      },
+      "youtube": {
+        "median_views": 29,
+        "competitors": [
+          {
+            "id": "DhKjWFG7xf0",
+            "title": "Dom Pedro II e o 15 de novembro",
+            "channel": "Paulo Rezzutti",
+            "views": 33907
+          },
+          {
+            "id": "HAeh6WuDKvs",
+            "title": "What Happened to Brazil's Royal Family After the Empire Fell in Time",
+            "channel": "After the Empire",
+            "views": 87
+          },
+          {
+            "id": "Khq_kZiBUV0",
+            "title": "What Happened to Brazil's Royal Family After the Empire Fell?  #brazil",
+            "channel": "After The Empire",
+            "views": 85
+          },
+          {
+            "id": "1yCNback_Kg",
+            "title": "The Emperor Who Built Brazil's Science Empire #HistoryFacts #Shorts",
+            "channel": "MonaTV",
+            "views": 41
+          },
+          {
+            "id": "ZUvdGjb5wdo",
+            "title": "Brazil’s Empire: Why Independence Did Not End the Struggle for Unity",
+            "channel": "Atlas of Time",
+            "views": 29
+          },
+          {
+            "id": "0ZGMVN3eQ8o",
+            "title": "The Coup That Ended Pedro II's Reign | Brazil's Last Emperor",
+            "channel": "Crumbling Crowns",
+            "views": 19
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 15,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 55.4,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Fall of the Brazilian Empire"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1874 shipwreck discovery in Lake Huron",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        144
+      ],
+      "hook": "Shipwreck hunters in the Great Lakes have captured the first stunning photos of a vessel that sank in Lake Huron in 1874.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "Great Lakes shipwreck",
+      "youtube_query": "Lake Huron 1874 shipwreck discovery photos",
+      "evidence": [
+        {
+          "title": "First photos of shipwreck discovered in Lake Huron, sunk in 1874 - The Detroit News",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNWmxjdmxTSTE1NE96UzlYU0RzWkRvVkZnRDlRbXk5R2RYNk51S1psbzhVd3JScG1pM2EtY1hiM21pYnVlUFM2RHZkZzNiVEkzQ09JNjBDdmdaVVE4UzJNSUxINGVDVzBUU19DMkp1MUMtbGllemc0QURVbnVQSU82U0M1TlQ5cGFrNUEya0FlX21BZkh3MDJHdDVvN3BBam5iNTJvSlU1X2tkYVo5UVVVeFNJOEdUYkdLeXFXSVlDTDZvVWo1MG13cDlfbGV3NVBySXV3empjUVNudFlTMDdjTm1yN0ZDQQ?oc=5",
+          "domain": "detroitnews.com",
+          "published_ms": 1794459720000,
+          "kind": "news",
+          "id": 144
+        },
+        {
+          "title": "Shipwreck hunters find tug boat long lost in Lake Huron - The Detroit News",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPUnpnakFuWHB5dXRpUy11aklSOG9FeHJrVHlsYVpXUXVJUmlpLVR5OVN1MnAxb3lCTzdqMUpRX3N2eS1BaUJ1SHVUWEg2S20zTHhPbU96VW1VTUpNcGtaRXB6WEZiOEd0NVcxSTBfWXFLdWphWmZZbWpscUszeDVvWWw3V3pPYzhvZzF4cUtXMjJodFJZd2h6V0VsMUZBcFlJWDFIZjk4SnVYVG83eTdLd2hzRnNUaTgwQXZQNmRVVXM5MzR3alJUd2ZhZHE3YlRSRnJsQjNvQV8zWTczYXQwcXhjYjF1ZWVnMG5IYUZXTFM?oc=5",
+          "domain": "detroitnews.com",
+          "published_ms": 1794461160000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 0,
+        "competitors": []
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 95,
+          "source_quality": 0
+        },
+        "total": 52,
+        "newest_hours": 55,
+        "domains": [
+          "detroitnews.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "no reach evidence (too obscure or unmeasured)"
+      ],
+      "wave": 1
+    }
+  ]
+}
