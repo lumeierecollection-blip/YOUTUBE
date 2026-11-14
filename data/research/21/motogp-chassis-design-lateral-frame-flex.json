@@ -1,0 +1,90 @@
+{
+  "topic_slug": "motogp-chassis-design-lateral-frame-flex",
+  "strongest_angle": "Break down how MotoGP motorcycle engineers balance longitudinal stiffness during heavy braking at 1.5g with controlled lateral frame flex at lean angles exceeding 60 degrees across vertical, lateral, and torsional rigidity dimensions.",
+  "key_facts": [
+    {
+      "fact": "MotoGP race bikes experience 1.5g of deceleration force during heavy braking, which requires high longitudinal frame stiffness to maintain stability.",
+      "source_url": "https://www.motorsportmagazine.com/articles/motorcycles/motogp/why-motogp-has-gone-soft/?v=7516fd43adaa",
+      "source_name": "Motorsport Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "When cornering at lean angles exceeding 60 degrees, traditional suspension cannot absorb track bumps, requiring controlled lateral chassis flex.",
+      "source_url": "https://amcn.com.au/editorial/framed-motogp-chassis-development",
+      "source_name": "Australian Motorcycle News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Motorcycle chassis rigidity is engineered across 3 structural directions: vertical rigidity, lateral flex, and torsional stiffness.",
+      "source_url": "https://www.insidemotorcycles.com/controlling-flex-in-motogp",
+      "source_name": "Inside Motorcycles Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Honda introduced the RC211V race bike for the 2002 MotoGP season to redefine chassis balance and ergonomics.",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02",
+      "source_name": "Honda Global",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Braking deceleration force",
+      "value": 1.5,
+      "unit": "g",
+      "source_url": "https://www.motorsportmagazine.com/articles/motorcycles/motogp/why-motogp-has-gone-soft/?v=7516fd43adaa"
+    },
+    {
+      "label": "Cornering lean angle",
+      "value": 60,
+      "unit": "degrees",
+      "source_url": "https://amcn.com.au/editorial/framed-motogp-chassis-development"
+    },
+    {
+      "label": "Chassis rigidity directions",
+      "value": 3,
+      "unit": "dimensions",
+      "source_url": "https://www.insidemotorcycles.com/controlling-flex-in-motogp"
+    },
+    {
+      "label": "Honda RC211V debut season",
+      "value": 2002,
+      "unit": "year",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Engineers want the frame and ancillaries to offer excellent longitudinal stiffness, so the bike stays straight and stable while pulling 1.5g during braking, and they also want enough stiffness so the bike reacts to rider steering inputs.",
+      "speaker": "Mat Oxley",
+      "source_name": "Motorsport Magazine",
+      "source_url": "https://www.motorsportmagazine.com/articles/motorcycles/motogp/why-motogp-has-gone-soft/?v=7516fd43adaa"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Honda",
+      "kind": "organization"
+    },
+    {
+      "name": "RC211V",
+      "kind": "object"
+    },
+    {
+      "name": "Motorsport Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "Mat Oxley",
+      "kind": "person"
+    },
+    {
+      "name": "Australian Motorcycle News",
+      "kind": "organization"
+    },
+    {
+      "name": "Inside Motorcycles Magazine",
+      "kind": "organization"
+    }
+  ]
+}
