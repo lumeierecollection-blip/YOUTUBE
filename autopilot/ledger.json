@@ -1205,12 +1205,12 @@
       "attempts": 2,
       "run_id": "43628404481",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T18:58:26.874Z",
-      "stage": "script",
-      "topic": "Enrico Fermi Initiates the First Nuclear Chain Reaction",
-      "score": 68.7,
-      "pillar": "Events that changed the modern world",
-      "hook": "Beneath a football stadium stands, scientists quietly launched humanity's first self-sustaining nuclear chain reaction.",
+      "updated_at": "2026-11-14T19:04:22.854Z",
+      "stage": "research",
+      "topic": "The 1943 Bari Air Raid and Secret Mustard Gas Cargo",
+      "score": 61.8,
+      "pillar": "Historical disasters and survival stories",
+      "hook": "A surprise WWII air raid in Italy secretly unleashed a deadly cloud of chemical weapons the Allies swore they didn't have.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SPECIFICITY: \"The scan revealed lower jaw arthritis causing pain.\" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.\n  - CLAIM: sentence 7 \"Remember Bentham's skeleton in Wilkins Building"
     }
   },
@@ -2423,6 +2423,15 @@
       "at_ms": 1794682690667,
       "score": 68.7,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1943 Bari Air Raid and Secret Mustard Gas Cargo",
+      "slug": "the-1943-bari-air-raid-and-secret-mustard-gas-cargo",
+      "slot": "2026-11-14-ch1",
+      "at_ms": 1794683062854,
+      "score": 61.8,
+      "pillar": "Historical disasters and survival stories"
     }
   ],
   "attention": [
