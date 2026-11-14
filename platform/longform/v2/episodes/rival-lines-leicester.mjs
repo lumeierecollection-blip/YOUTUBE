@@ -30,6 +30,7 @@ const FULL = { fx: 60, fy: 40, yaw: 0, tilt: 40, dist: 160, scale: 12.6, cx: 960
 
 export const EPISODE = {
   channel: "rival-lines", slug: "leicester-2015-16", title: "How Leicester Won the Premier League at 5,000-1", target_minutes: 6,
+  sound: { bed: "MUSIC_HISTORY_DOC", bed_rel_db: -20, dip_scenes: [] },
   beats: [
     { id: "L01", part: "cold open", ref: "Simba FC 0:00: the stakes in one line, then the question; Football Made Simple: a counted number alone on black", src: ["WPL"],
       vo: "Five thousand to one. That was the bookmakers' price on Leicester City winning the Premier League before the 2015–16 season. One punter turned a twenty-pound bet into more than a hundred thousand pounds. The bookmakers lost up to twenty-five million. This is how a club that had narrowly avoided relegation the year before became champions, and what the numbers say about how they did it.",

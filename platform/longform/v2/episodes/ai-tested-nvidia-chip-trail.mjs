@@ -28,6 +28,7 @@ const PILL = "THE RECORD";
 
 export const EPISODE = {
   channel: "ai-tested", slug: "nvidia-chip-trail", title: "Nvidia's CEO Resigned. What Is Documented, and What Is Only Reported?", target_minutes: 6,
+  sound: { bed: "MUSIC_MYSTERY", bed_rel_db: -20, dip_scenes: ["verdict"] },
   beats: [
     { id: "N01", part: "cold open", ref: "Retraced: dated cold open with the source on screen; Paper Billions: the stakes in one breath", src: ["NV", "NPR"],
       vo: "On the twelfth of November 2026, Nvidia announced that Jensen Huang had resigned as president, chief executive and board member, effective immediately. Its chief financial officer, Colette Kress, became interim chief executive. The announcement gave no reason. In the days around it, the story filled with words like spy and honey trap. This video asks a narrower question: what is documented, and what has only been reported?",
