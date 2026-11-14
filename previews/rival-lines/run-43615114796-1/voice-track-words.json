@@ -1,0 +1,612 @@
+{
+ "version": 1,
+ "source": "gemini-tts gemini-3.1-flash-tts-preview + faster-whisper alignment (70/93 words matched)",
+ "voice": "Rasalgethi",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.32,
+   "sentence": 0
+  },
+  {
+   "text": "2022",
+   "start": 0.32,
+   "end": 0.82,
+   "sentence": 0
+  },
+  {
+   "text": "World",
+   "start": 0.82,
+   "end": 1.64,
+   "sentence": 0
+  },
+  {
+   "text": "Cup",
+   "start": 1.64,
+   "end": 1.98,
+   "sentence": 0
+  },
+  {
+   "text": "final",
+   "start": 1.98,
+   "end": 2.4,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 2.9,
+   "end": 3.18,
+   "sentence": 0
+  },
+  {
+   "text": "against",
+   "start": 3.18,
+   "end": 3.92,
+   "sentence": 0
+  },
+  {
+   "text": "France",
+   "start": 3.92,
+   "end": 4.26,
+   "sentence": 0
+  },
+  {
+   "text": "three-all",
+   "start": 4.26,
+   "end": 4.93,
+   "sentence": 0
+  },
+  {
+   "text": "then",
+   "start": 5.6,
+   "end": 5.65,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 5.6,
+   "end": 6.06,
+   "sentence": 0
+  },
+  {
+   "text": "won",
+   "start": 6.06,
+   "end": 6.68,
+   "sentence": 0
+  },
+  {
+   "text": "on",
+   "start": 6.68,
+   "end": 6.92,
+   "sentence": 0
+  },
+  {
+   "text": "penalties",
+   "start": 6.92,
+   "end": 7.16,
+   "sentence": 0
+  },
+  {
+   "text": "Argentina",
+   "start": 8.1,
+   "end": 8.34,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 8.34,
+   "end": 8.84,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 8.84,
+   "end": 8.9,
+   "sentence": 1
+  },
+  {
+   "text": "four-three-three",
+   "start": 8.9,
+   "end": 9.38,
+   "sentence": 1
+  },
+  {
+   "text": "France",
+   "start": 9.86,
+   "end": 10.14,
+   "sentence": 1
+  },
+  {
+   "text": "in",
+   "start": 10.14,
+   "end": 10.48,
+   "sentence": 1
+  },
+  {
+   "text": "a",
+   "start": 10.48,
+   "end": 10.54,
+   "sentence": 1
+  },
+  {
+   "text": "four-two-three-one",
+   "start": 10.54,
+   "end": 11.23,
+   "sentence": 1
+  },
+  {
+   "text": "In",
+   "start": 11.92,
+   "end": 12.08,
+   "sentence": 2
+  },
+  {
+   "text": "the",
+   "start": 12.08,
+   "end": 12.16,
+   "sentence": 2
+  },
+  {
+   "text": "first",
+   "start": 12.16,
+   "end": 12.4,
+   "sentence": 2
+  },
+  {
+   "text": "forty",
+   "start": 12.4,
+   "end": 12.58,
+   "sentence": 2
+  },
+  {
+   "text": "minutes",
+   "start": 12.76,
+   "end": 13.08,
+   "sentence": 2
+  },
+  {
+   "text": "Argentina",
+   "start": 13.36,
+   "end": 13.72,
+   "sentence": 2
+  },
+  {
+   "text": "completed",
+   "start": 13.72,
+   "end": 14.32,
+   "sentence": 2
+  },
+  {
+   "text": "two",
+   "start": 14.32,
+   "end": 14.408,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 14.408,
+   "end": 14.496,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 14.496,
+   "end": 14.584,
+   "sentence": 2
+  },
+  {
+   "text": "thirty",
+   "start": 14.584,
+   "end": 14.672,
+   "sentence": 2
+  },
+  {
+   "text": "passes",
+   "start": 14.76,
+   "end": 15.94,
+   "sentence": 2
+  },
+  {
+   "text": "to",
+   "start": 15.94,
+   "end": 16.26,
+   "sentence": 2
+  },
+  {
+   "text": "France's",
+   "start": 16.26,
+   "end": 16.74,
+   "sentence": 2
+  },
+  {
+   "text": "one",
+   "start": 16.74,
+   "end": 17.032,
+   "sentence": 2
+  },
+  {
+   "text": "hundred",
+   "start": 17.032,
+   "end": 17.324,
+   "sentence": 2
+  },
+  {
+   "text": "and",
+   "start": 17.324,
+   "end": 17.616,
+   "sentence": 2
+  },
+  {
+   "text": "sixteen",
+   "start": 17.616,
+   "end": 17.908,
+   "sentence": 2
+  },
+  {
+   "text": "By",
+   "start": 18.2,
+   "end": 18.58,
+   "sentence": 3
+  },
+  {
+   "text": "the",
+   "start": 18.58,
+   "end": 18.7,
+   "sentence": 3
+  },
+  {
+   "text": "seventy-eighth",
+   "start": 18.7,
+   "end": 19.12,
+   "sentence": 3
+  },
+  {
+   "text": "minute",
+   "start": 19.54,
+   "end": 19.59,
+   "sentence": 3
+  },
+  {
+   "text": "Argentina",
+   "start": 19.78,
+   "end": 20.14,
+   "sentence": 3
+  },
+  {
+   "text": "had",
+   "start": 20.14,
+   "end": 20.54,
+   "sentence": 3
+  },
+  {
+   "text": "ten",
+   "start": 20.54,
+   "end": 20.68,
+   "sentence": 3
+  },
+  {
+   "text": "shots",
+   "start": 20.82,
+   "end": 21.1,
+   "sentence": 3
+  },
+  {
+   "text": "France",
+   "start": 21.56,
+   "end": 21.8,
+   "sentence": 4
+  },
+  {
+   "text": "had",
+   "start": 21.8,
+   "end": 22.14,
+   "sentence": 4
+  },
+  {
+   "text": "two",
+   "start": 22.14,
+   "end": 22.4,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 22.8,
+   "end": 22.85,
+   "sentence": 4
+  },
+  {
+   "text": "first",
+   "start": 22.84,
+   "end": 23.06,
+   "sentence": 4
+  },
+  {
+   "text": "in",
+   "start": 23.06,
+   "end": 23.3,
+   "sentence": 4
+  },
+  {
+   "text": "the",
+   "start": 23.3,
+   "end": 23.4,
+   "sentence": 4
+  },
+  {
+   "text": "sixty-seventh",
+   "start": 23.4,
+   "end": 23.91,
+   "sentence": 4
+  },
+  {
+   "text": "minute",
+   "start": 24.42,
+   "end": 24.47,
+   "sentence": 4
+  },
+  {
+   "text": "Then",
+   "start": 24.86,
+   "end": 25.16,
+   "sentence": 5
+  },
+  {
+   "text": "France",
+   "start": 25.16,
+   "end": 25.48,
+   "sentence": 5
+  },
+  {
+   "text": "scored",
+   "start": 25.48,
+   "end": 25.82,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 25.82,
+   "end": 26.1,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 26.1,
+   "end": 26.18,
+   "sentence": 5
+  },
+  {
+   "text": "seventy-ninth",
+   "start": 26.18,
+   "end": 26.56,
+   "sentence": 5
+  },
+  {
+   "text": "minute",
+   "start": 26.94,
+   "end": 27.06,
+   "sentence": 5
+  },
+  {
+   "text": "and",
+   "start": 27.28,
+   "end": 27.4,
+   "sentence": 5
+  },
+  {
+   "text": "again",
+   "start": 27.4,
+   "end": 27.6,
+   "sentence": 5
+  },
+  {
+   "text": "in",
+   "start": 27.6,
+   "end": 27.76,
+   "sentence": 5
+  },
+  {
+   "text": "the",
+   "start": 27.76,
+   "end": 28.02,
+   "sentence": 5
+  },
+  {
+   "text": "eightieth",
+   "start": 28.02,
+   "end": 28.56,
+   "sentence": 5
+  },
+  {
+   "text": "Over",
+   "start": 29.1,
+   "end": 29.15,
+   "sentence": 6
+  },
+  {
+   "text": "the",
+   "start": 29.14,
+   "end": 29.3,
+   "sentence": 6
+  },
+  {
+   "text": "whole",
+   "start": 29.3,
+   "end": 29.46,
+   "sentence": 6
+  },
+  {
+   "text": "match",
+   "start": 29.46,
+   "end": 29.72,
+   "sentence": 6
+  },
+  {
+   "text": "expected",
+   "start": 29.98,
+   "end": 30.32,
+   "sentence": 6
+  },
+  {
+   "text": "goals",
+   "start": 30.32,
+   "end": 30.72,
+   "sentence": 6
+  },
+  {
+   "text": "ended",
+   "start": 30.72,
+   "end": 31.04,
+   "sentence": 6
+  },
+  {
+   "text": "nearly",
+   "start": 31.04,
+   "end": 31.38,
+   "sentence": 6
+  },
+  {
+   "text": "level",
+   "start": 31.38,
+   "end": 31.8,
+   "sentence": 6
+  },
+  {
+   "text": "two",
+   "start": 31.8,
+   "end": 32.015,
+   "sentence": 6
+  },
+  {
+   "text": "point",
+   "start": 32.015,
+   "end": 32.23,
+   "sentence": 6
+  },
+  {
+   "text": "eight",
+   "start": 32.23,
+   "end": 32.445,
+   "sentence": 6
+  },
+  {
+   "text": "to",
+   "start": 32.66,
+   "end": 32.92,
+   "sentence": 6
+  },
+  {
+   "text": "two",
+   "start": 32.92,
+   "end": 33.335,
+   "sentence": 6
+  },
+  {
+   "text": "point",
+   "start": 33.335,
+   "end": 33.75,
+   "sentence": 6
+  },
+  {
+   "text": "three",
+   "start": 33.75,
+   "end": 34.165,
+   "sentence": 6
+  },
+  {
+   "text": "Argentina",
+   "start": 34.58,
+   "end": 34.63,
+   "sentence": 7
+  },
+  {
+   "text": "built",
+   "start": 34.58,
+   "end": 35.2,
+   "sentence": 7
+  },
+  {
+   "text": "the",
+   "start": 35.2,
+   "end": 35.42,
+   "sentence": 7
+  },
+  {
+   "text": "lead",
+   "start": 35.42,
+   "end": 35.58,
+   "sentence": 7
+  },
+  {
+   "text": "France",
+   "start": 36.34,
+   "end": 36.39,
+   "sentence": 8
+  },
+  {
+   "text": "built",
+   "start": 36.34,
+   "end": 36.86,
+   "sentence": 8
+  },
+  {
+   "text": "the",
+   "start": 36.86,
+   "end": 37.08,
+   "sentence": 8
+  },
+  {
+   "text": "comeback",
+   "start": 37.08,
+   "end": 37.34,
+   "sentence": 8
+  }
+ ],
+ "sentences": [
+  {
+   "text": "The 2022 World Cup final: Argentina against France, three-all, then Argentina won on penalties.",
+   "start": 0.0,
+   "end": 7.16
+  },
+  {
+   "text": "Argentina in a four-three-three, France in a four-two-three-one.",
+   "start": 8.1,
+   "end": 11.23
+  },
+  {
+   "text": "In the first forty minutes, Argentina completed two hundred and thirty passes to France's one hundred and sixteen.",
+   "start": 11.92,
+   "end": 17.908
+  },
+  {
+   "text": "By the seventy-eighth minute, Argentina had ten shots.",
+   "start": 18.2,
+   "end": 21.1
+  },
+  {
+   "text": "France had two, the first in the sixty-seventh minute.",
+   "start": 21.56,
+   "end": 24.47
+  },
+  {
+   "text": "Then France scored in the seventy-ninth minute, and again in the eightieth.",
+   "start": 24.86,
+   "end": 28.56
+  },
+  {
+   "text": "Over the whole match, expected goals ended nearly level: two point eight to two point three.",
+   "start": 29.1,
+   "end": 34.165
+  },
+  {
+   "text": "Argentina built the lead.",
+   "start": 34.58,
+   "end": 35.58
+  },
+  {
+   "text": "France built the comeback.",
+   "start": 36.34,
+   "end": 37.34
+  }
+ ]
+}
