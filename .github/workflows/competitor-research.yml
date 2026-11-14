@@ -1,6 +1,9 @@
 name: competitor-research
 # Read-only: public YouTube Data API search for the last N days; prints a table to the log. No OAuth, no upload, no writes.
 on:
+  push:
+    branches: [ccr-d003fff3-tnca93]
+    paths: [scripts/research-competitors.mjs]
   workflow_dispatch:
     inputs:
       window_days: { description: "days", default: "10" }

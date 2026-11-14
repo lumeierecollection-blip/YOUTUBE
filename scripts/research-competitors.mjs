@@ -29,3 +29,4 @@ for (const [ch, qs] of Object.entries(Q)) for (const kind of ["short", "long"]) 
   console.log(`## ${ch} ${kind} (top ${rows.length} by views, ${DAYS}d)`);
   for (const r of rows) console.log(`${r.v}v | ${r.subs ?? "?"}subs | x${r.subs ? (r.v / r.subs).toFixed(2) : "?"} | ${r.d} | ${r.s}s | ${r.c} | ${r.t.slice(0, 90)} | https://youtu.be/${r.id}`);
 }
+// run trigger 2026-11-14T17:21:34Z
