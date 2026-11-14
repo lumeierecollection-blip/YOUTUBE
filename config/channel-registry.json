@@ -55,7 +55,7 @@
       "foundations": ["https://github.com/andrewRowlinson/mplsoccer", "https://github.com/haidrrrry/claude-remotion-skill", "remotion"],
       "voice_direction": "Energetic when earned, professional.", "tts_voice": "en-US-AriaNeural",
       "formats": ["player_documentary", "match_analysis"], "claim_categories": ["measured_statistic", "estimate_from_video", "established_fact"],
-      "upload": { "status": "configured", "secret_prefix": "CHANNEL_04" }
+      "upload": { "status": "configured", "secret_prefix": "CHANNEL_04", "youtube_channel_id": "UC7uEcy1so9PR5VfgV8VNgEQ" }
     },
     {
       "key": "court-and-spotlight", "name": "Court & Spotlight", "legacy_channel_id": "3", "priority": 3, "agent": "agent-court-and-spotlight",
