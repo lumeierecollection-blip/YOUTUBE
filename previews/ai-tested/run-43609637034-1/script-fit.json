@@ -1,0 +1,107 @@
+{
+  "measured_wpm": 159.4,
+  "voice": "gemini:Charon",
+  "sentences": [
+    {
+      "text": "On big multiplications, the older model got none right.",
+      "scene": 0,
+      "claim_ids": [
+        "big"
+      ]
+    },
+    {
+      "text": "Gemini 4 Hydrogen got forty-eight of fifty.",
+      "scene": 0,
+      "claim_ids": [
+        "big"
+      ]
+    },
+    {
+      "text": "Take one ten-digit pair.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "The older model was right for four digits, then wrong.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "Hydrogen got all twenty.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "We gave both models the same ninety multiplications, from two digits to ten, and code checked every digit.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Up to five digits, Hydrogen got forty of forty.",
+      "scene": 3,
+      "claim_ids": [
+        "small"
+      ]
+    },
+    {
+      "text": "The older model got twenty-seven of forty.",
+      "scene": 3,
+      "claim_ids": [
+        "small"
+      ]
+    },
+    {
+      "text": "Hydrogen missed two, and both were empty replies, not wrong numbers.",
+      "scene": 4,
+      "claim_ids": [
+        "empty"
+      ]
+    },
+    {
+      "text": "This was one run, with a reply limit that may have cut answers short.",
+      "scene": 5,
+      "claim_ids": [
+        "limits"
+      ]
+    },
+    {
+      "text": "Two other Gemini 4 models could not be tested.",
+      "scene": 5,
+      "claim_ids": [
+        "limits"
+      ]
+    },
+    {
+      "text": "Would you trust it with your sums?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question for viewers, drawn from the measured results"
+    }
+  ],
+  "words": 109,
+  "estimated_seconds": 47.1,
+  "inside_window": false,
+  "kept": [
+    "limits2",
+    "ask",
+    "hook",
+    "hook2",
+    "ex1",
+    "ex2",
+    "ex3",
+    "design",
+    "small",
+    "small2",
+    "empty",
+    "limits"
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43609637034-1",
+  "topic": "Gemini 4 Hydrogen vs the older model: big multiplication",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "On big multiplications, the older model got none right.",
+      "scene": 0,
+      "claim_ids": [
+        "big"
+      ]
+    },
+    {
+      "text": "Gemini 4 Hydrogen got forty-eight of fifty.",
+      "scene": 0,
+      "claim_ids": [
+        "big"
+      ]
+    },
+    {
+      "text": "Take one ten-digit pair.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "The older model was right for four digits, then wrong.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "Hydrogen got all twenty.",
+      "scene": 1,
+      "claim_ids": [
+        "example"
+      ]
+    },
+    {
+      "text": "We gave both models the same ninety multiplications, from two digits to ten, and code checked every digit.",
+      "scene": 2,
+      "claim_ids": [
+        "design"
+      ]
+    },
+    {
+      "text": "Up to five digits, Hydrogen got forty of forty.",
+      "scene": 3,
+      "claim_ids": [
+        "small"
+      ]
+    },
+    {
+      "text": "The older model got twenty-seven of forty.",
+      "scene": 3,
+      "claim_ids": [
+        "small"
+      ]
+    },
+    {
+      "text": "Hydrogen missed two, and both were empty replies, not wrong numbers.",
+      "scene": 4,
+      "claim_ids": [
+        "empty"
+      ]
+    },
+    {
+      "text": "This was one run, with a reply limit that may have cut answers short.",
+      "scene": 5,
+      "claim_ids": [
+        "limits"
+      ]
+    },
+    {
+      "text": "Two other Gemini 4 models could not be tested.",
+      "scene": 5,
+      "claim_ids": [
+        "limits"
+      ]
+    },
+    {
+      "text": "Would you trust it with your sums?",
+      "scene": 5,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question for viewers, drawn from the measured results"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "title": "AI Tested Gemini 4 Hydrogen multiplication test run"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "big",
+      "claim": "On the fifty multiplications of six to ten digits, answering with only the number, Gemini 4 Hydrogen got 48 right and Gemini 3.1 Flash-Lite got 0 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "On the fifty multiplications of six to ten digits, answering with only the number, Gemini 4 Hydrogen got 48 right and Gemini 3.1 Flash-Lite got 0 right.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    },
+    {
+      "claim_id": "example",
+      "claim": "For 7061156377 × 5926155315, Gemini 3.1 Flash-Lite's answer matches the correct product for the first four digits and then differs; Gemini 4 Hydrogen's answer matches all twenty digits.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "For 7061156377 × 5926155315, Gemini 3.1 Flash-Lite's answer matches the correct product for the first four digits and then differs; Gemini 4 Hydrogen's answer matches all twenty digits.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    },
+    {
+      "claim_id": "design",
+      "claim": "Both models were given the same ninety multiplications, ten at each size from two to ten digits, one attempt each at temperature 0; code checked every digit.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "Both models were given the same ninety multiplications, ten at each size from two to ten digits, one attempt each at temperature 0; code checked every digit.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    },
+    {
+      "claim_id": "small",
+      "claim": "On the forty multiplications of two to five digits, Gemini 4 Hydrogen got 40 right and Gemini 3.1 Flash-Lite got 27 right.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "On the forty multiplications of two to five digits, Gemini 4 Hydrogen got 40 right and Gemini 3.1 Flash-Lite got 27 right.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    },
+    {
+      "claim_id": "empty",
+      "claim": "Gemini 4 Hydrogen missed two of the ninety; both misses were empty replies, and none of its replies was a wrong number.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "Gemini 4 Hydrogen missed two of the ninety; both misses were empty replies, and none of its replies was a wrong number.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    },
+    {
+      "claim_id": "limits",
+      "claim": "One run at temperature 0 with a 4096-token reply limit; two other Gemini 4 models could not be tested because the key had no quota for them.",
+      "source_id": "s1",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932",
+      "published": "2026-11-14",
+      "excerpt": "One run at temperature 0 with a 4096-token reply limit; two other Gemini 4 models could not be tested because the key had no quota for them.",
+      "confidence": "high",
+      "status": "measured_statistic",
+      "context": "Measured by this repository's own test, run on GitHub Actions on 2026-11-14; the older model's answers are from the earlier run on the same problems (https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304, 2026-11-13)."
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
