@@ -1,16 +1,16 @@
 {
   "tried": [
     {
-      "topic": "Google Releases Gemini 4 Hydrogen for Faster Everyday Tasks",
-      "score": 82.6,
+      "topic": "Microsoft Outage Disables Copilot and Teams",
+      "score": 82,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes:   - CLAIM: sentence 7 \"Picture 0.03 grams CO2 and 0.26 milliliters water daily.\" — the claim \"0.03 grams CO2 and 0.26 milliliters water consumption | occurs | daily\" is not in the research (F4 states 0.03 grams CO2 equivalent and 0.26 milliliters water are consumed per median Gemini text prompt, not daily). Rewrite the sentence using only what the research states, or cut it."
+      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: each_line_needs_the_last, followable, no_repetition. The weakest sentence is [rehook] 'But the blackout disabled Outlook, Teams and Copilot.' It breaks the flow because the setup line just asked why 70 countries lost email connectivity, and instead of answering it, the rehook abruptly introduces specific app names that disrupt the cause-and-effect chain. To fix it, merge the setup and rehook into a single line"
     },
     {
-      "topic": "AI Chatbots Are Secretly Recommending Fake Online Stores",
-      "score": 74.7,
+      "topic": "ChatGPT Wallet Lets AI Agents Buy Items for You Automatically",
+      "score": 79.8,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes:   - NARRATIVE: \"1 results.\" uses \"1\" as a filler count. Rewrite it with a real figure from the research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLAIM: sentence 1 \"You could receive risky links across 6,795 AI responses.\" — the claim \"risky links | appear across | 6,795 AI responses\" is not in the research (F1 and N1 state that 6,795 i"
+      "reason": "script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name.\n  - SCR-18: \"Logos of American Express\" is not named in the research artifact â€” use the research's own name, or drop the name.\nScript gate FAILED (BLOCKER) for 2/chatgpt-wallet-lets-ai-agents-buy-items-for-you-automaticall-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparis"
     }
   ],
   "selected": null
