@@ -1,0 +1,127 @@
+{
+  "topic_slug": "global-mangrove-rebound-nasa-satellite",
+  "strongest_angle": "Examining NASA Earth Observatory satellite findings and Landsat data from 1984 to 2023 showing that global mangrove forests shifted from long-term decline to a widespread expansion beginning around 2010 across Asia, Australia, and South America.",
+  "key_facts": [
+    {
+      "fact": "NASA Earth Observatory researchers analyzing Landsat imagery collected between 1984 and 2023 discovered a global mangrove forest rebound beginning around 2010, led by expansion in Asia, Australia, and South America.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves",
+      "source_name": "NASA Earth Observatory",
+      "confidence": "high"
+    },
+    {
+      "fact": "Between the 1980s and 2010, global mangrove forests shrank from around 155,000 square kilometers to 152,000 square kilometers, representing a loss equal to half of Rhode Island according to Anthropocene Magazine.",
+      "source_url": "https://www.anthropocenemagazine.org/2026/06/mangroves-are-making-a-comeback-its-a-rare-climate-success-story",
+      "source_name": "Anthropocene Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Yale E360 reported that new mangrove growth between 2010 and 2023 covered approximately 3,200 square miles, outpacing losses across locations from Louisiana to Myanmar, West Africa, and northern Australia.",
+      "source_url": "https://e360.yale.edu/features/mangrove-restoration",
+      "source_name": "Yale E360",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Researchers including Zhen Zhang, Nicholas J. Murray, Xiao-Peng Song, Pete Bunting, and Thomas A. Worthington published findings in Science showing that global mangrove loss rates reduced substantially from the 1980s to 2023 while gains increased markedly.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aec9773",
+      "source_name": "Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Starting year of Landsat imagery analysis",
+      "value": 1984,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    },
+    {
+      "label": "Ending year of Landsat imagery analysis",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    },
+    {
+      "label": "Square kilometers of global mangroves in the 1980s",
+      "value": 155000,
+      "unit": "square kilometers",
+      "source_url": "https://www.anthropocenemagazine.org/2026/06/mangroves-are-making-a-comeback-its-a-rare-climate-success-story"
+    },
+    {
+      "label": "Square kilometers of global mangroves in 2010",
+      "value": 152000,
+      "unit": "square kilometers",
+      "source_url": "https://www.anthropocenemagazine.org/2026/06/mangroves-are-making-a-comeback-its-a-rare-climate-success-story"
+    },
+    {
+      "label": "Square miles of new mangrove growth between 2010 and 2023",
+      "value": 3200,
+      "unit": "square miles",
+      "source_url": "https://e360.yale.edu/features/mangrove-restoration"
+    },
+    {
+      "label": "Start year of the global mangrove rebound",
+      "value": 2010,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Asia",
+      "kind": "place"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "South America",
+      "kind": "place"
+    },
+    {
+      "name": "Landsat",
+      "kind": "object"
+    },
+    {
+      "name": "Rhode Island",
+      "kind": "place"
+    },
+    {
+      "name": "Louisiana",
+      "kind": "place"
+    },
+    {
+      "name": "Myanmar",
+      "kind": "place"
+    },
+    {
+      "name": "West Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Zhen Zhang",
+      "kind": "person"
+    },
+    {
+      "name": "Nicholas J. Murray",
+      "kind": "person"
+    },
+    {
+      "name": "Xiao-Peng Song",
+      "kind": "person"
+    },
+    {
+      "name": "Pete Bunting",
+      "kind": "person"
+    },
+    {
+      "name": "Thomas A. Worthington",
+      "kind": "person"
+    }
+  ]
+}

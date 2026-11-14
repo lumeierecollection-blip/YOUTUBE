@@ -1,0 +1,91 @@
+{
+  "channel_id": "17",
+  "topic_slug": "global-mangrove-rebound-nasa-satellite",
+  "format": "shorts",
+  "hook": "Global mangrove forests expanded by 3,200 square miles after 2010.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "Global mangrove forests expanded by 3,200 square miles after 2010.",
+      "visual_cue": "Satellite view of green mangrove forest coastal canopy expanding over tidal waters.",
+      "sfx_cue": "Subtle low bass swell",
+      "b_roll": [
+        "Landsat satellite aerial imagery of lush coastal mangroves"
+      ],
+      "animation_cue": "Slow zoom in on expanding green shoreline",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "3,200 square miles"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:19",
+      "voiceover": "Between 1984 and 2010, mangroves shrank from 155,000 square kilometers to 152,000 square kilometers. Where did the 3,200 square miles start?",
+      "visual_cue": "Coastal map showing historical mangrove decline across global coastlines.",
+      "sfx_cue": "Soft mechanical tone tick",
+      "b_roll": [
+        "Historical map outline of coastal wetland area",
+        "Rhode Island geographic reference overlay"
+      ],
+      "animation_cue": "Red shaded loss region transitioning to a question icon",
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "155,000 to 152,000 square kilometers"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:19-00:26",
+      "voiceover": "But NASA Earth Observatory's Landsat imagery showed a rebound across Asia, Australia, and South America.",
+      "visual_cue": "High-resolution NASA Earth Observatory satellite imagery highlighting fresh mangrove growth.",
+      "sfx_cue": "Rising atmospheric chime",
+      "b_roll": [
+        "NASA Earth Observatory digital satellite rendering of coastline"
+      ],
+      "animation_cue": "Split-screen comparison showing shift in forest density",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "NASA Earth Observatory Landsat data"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:26-00:41",
+      "voiceover": "Yale E360 reported growth spanning from Louisiana to Myanmar and West Africa. Landsat data tracked 3,200 square miles of recovery by 2023.",
+      "visual_cue": "World map illustrating expanding mangrove sites across Louisiana, Myanmar, and West Africa.",
+      "sfx_cue": "Pulsing tone",
+      "b_roll": [
+        "Mangrove roots submerged in clear coastal water",
+        "Landsat imagery of tropical estuary"
+      ],
+      "animation_cue": "Animated markers pulsing across global coastlines",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Science findings 1984 to 2023"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:41-00:46",
+      "voiceover": "Global mangrove coverage reversed decades of decline after 2010.",
+      "visual_cue": "Cinematic aerial sweep over dense green mangrove trees meeting the ocean.",
+      "sfx_cue": "Warm resolving ambient chord",
+      "b_roll": [
+        "Overhead camera movement across thriving coastal mangrove canopy"
+      ],
+      "animation_cue": "Slow outward pan to wide expanse",
+      "transition_out": "None",
+      "text_overlay": {
+        "text": "Reversal after 2010"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves",
+    "https://www.anthropocenemagazine.org/2026/06/mangroves-are-making-a-comeback-its-a-rare-climate-success-story",
+    "https://e360.yale.edu/features/mangrove-restoration",
+    "https://www.science.org/doi/10.1126/science.aec9773"
+  ]
+}
