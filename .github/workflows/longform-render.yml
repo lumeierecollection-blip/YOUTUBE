@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4]
         shard: [0, 1, 2, 3, 4]
     steps:
       - name: Skip episodes this branch did not ask for
@@ -90,7 +90,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust]
+        episode: [hidden-past-msh, hidden-past-hormuz, ai-tested-trust, ai-tested-gemini4]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
