@@ -91,6 +91,7 @@ const CHANNEL_NAMES = {
   51: "Red Space Facts",
   52: "Gray Matter",
   53: "World View",
+  54: "Explained By Cats",
 };
 
 // ── OAuth URL builder ─────────────────────────────────────────────────────────

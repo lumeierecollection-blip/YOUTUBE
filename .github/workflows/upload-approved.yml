@@ -40,6 +40,15 @@ jobs:
           CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
           CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
           CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CHANNEL_03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+          CHANNEL_03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+          CHANNEL_03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+          CHANNEL_04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CHANNEL_04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CHANNEL_04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+          CHANNEL_54_CLIENT_ID: ${{ secrets.CHANNEL_54_CLIENT_ID }}
+          CHANNEL_54_CLIENT_SECRET: ${{ secrets.CHANNEL_54_CLIENT_SECRET }}
+          CHANNEL_54_REFRESH_TOKEN: ${{ secrets.CHANNEL_54_REFRESH_TOKEN }}
         run: node platform/production/upload-approved.mjs
       - uses: actions/upload-artifact@v4
         if: always()
