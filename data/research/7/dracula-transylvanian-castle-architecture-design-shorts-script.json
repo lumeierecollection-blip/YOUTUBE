@@ -1,0 +1,88 @@
+{
+  "channel_id": "7",
+  "topic_slug": "dracula-transylvanian-castle-architecture-design",
+  "format": "shorts",
+  "hook": "A stone dropped from Castle Dracula falls 1000 feet into nothingness.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "A stone dropped from Castle Dracula falls 1000 feet into nothingness.",
+      "visual_cue": "Extreme vertical tilt down a sheer cliff face from a high stone window sill into pitch black mist.",
+      "sfx_cue": "Low wind howling, heavy stone friction, distant echoing drop",
+      "b_roll": [
+        "Victorian gothic castle tower cliffside illustration",
+        "High mountain precipice misty void"
+      ],
+      "transition_out": "hard cut",
+      "text_overlay": {
+        "text": "1,000 FT VERTICAL DROP"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "In 1897, Bram Stoker designed his castle using Romanian landscape references. Journals from Jonathan Harker near Bistritz relied on the language of war. Why did an Ordnance Map fail to locate the castle?",
+      "visual_cue": "Slow zoom into vintage 1897 map of Transylvania near Bistritz, switching to handwritten journal pages with tactical defense notes.",
+      "sfx_cue": "Quill scraping parchment, subtle low ambient tone",
+      "b_roll": [
+        "19th century map of Transylvania Bistritz region",
+        "Antique journal handwritten manuscript pages"
+      ],
+      "transition_out": "whip pan right",
+      "text_overlay": {
+        "text": "BISTRITZ REGION, 1897"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:27",
+      "voiceover": "However, researcher Alexander found Harker's journals used war language without locating Castle Dracula near Bistritz.",
+      "visual_cue": "Cross-section architectural diagram highlighting defensive stone walls, secret passages, and hidden entryways.",
+      "sfx_cue": "Deep bass drop interrupt",
+      "b_roll": [
+        "Gothic castle blueprint diagram layout",
+        "Medieval military fortification schematics"
+      ],
+      "transition_out": "fade to dark",
+      "text_overlay": {
+        "text": "UNMAPPED MILITARY STRONGHOLD"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:42",
+      "voiceover": "Architectural studies by Sukdolová documented secret passages, round arches, and tall black windows. That sheer drop measures 1000 feet straight down.",
+      "visual_cue": "Cinematic camera movement through vaulted stone arches, tall black pointed windows, and over hanging battlements projecting against the sky.",
+      "sfx_cue": "Echoing footsteps in stone hall, thunder rumble",
+      "b_roll": [
+        "Gothic stone archways shadow interior",
+        "Tall pointed arched windows skyline silhouette",
+        "Broken battlements mountain peak ruin"
+      ],
+      "transition_out": "slow zoom out",
+      "text_overlay": {
+        "text": "INACCESSIBLE DESIGN"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Drop a stone from the window to watch it fall 1000 feet without touching anything.",
+      "visual_cue": "Wide dramatic shot of Castle Dracula silhouette perched atop an isolated mountain pinnacle.",
+      "sfx_cue": "Final subtle wind gust fade out",
+      "b_roll": [
+        "Castle peak silhouette misty cliff vista"
+      ],
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "CASTLE DRACULA"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://research.library.kutztown.edu/cgi/viewcontent.cgi?article=1058&context=dracula-studies",
+    "https://research.library.kutztown.edu/cgi/viewcontent.cgi?article=1008&context=dracula-studies",
+    "https://ojs.uni-eszterhazy.hu/index.php/ejes/article/view/365"
+  ]
+}
