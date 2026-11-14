@@ -1,0 +1,12 @@
+{
+  "title": "Gemini 4 vs Big Multiplication: 48 of 50, Older Model 0",
+  "description": "We gave Google's new Gemini 4 Hydrogen and the older Gemini 3.1 Flash-Lite the same ninety multiplications, from two to ten digits, answering with only the number. Code checked every digit. From six to ten digits Hydrogen got 48 of 50 right and the older model 0 of 50. Both of Hydrogen's misses were empty replies, not wrong numbers. One run at temperature 0 with a 4096-token reply limit; two other Gemini 4 models could not be tested. Results can change between runs and as models update.\n\n#Shorts #AI #AITested #Gemini\n\nSource (test run and every reply): https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43528243932\nEarlier run on the same problems: https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43346149304",
+  "tags": [
+    "Gemini 4",
+    "Gemini 4 Hydrogen",
+    "AI test",
+    "AI multiplication",
+    "can you trust AI",
+    "AI maths"
+  ]
+}
