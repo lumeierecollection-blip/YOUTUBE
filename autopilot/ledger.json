@@ -1205,12 +1205,12 @@
       "attempts": 2,
       "run_id": "43628404481",
       "trigger": "schedule",
-      "updated_at": "2026-11-14T18:48:11.849Z",
-      "stage": "script",
-      "topic": "Ruby Bridges Desegregates New Orleans Schools",
-      "score": 76.6,
+      "updated_at": "2026-11-14T18:58:10.667Z",
+      "stage": "research",
+      "topic": "Enrico Fermi Initiates the First Nuclear Chain Reaction",
+      "score": 68.7,
       "pillar": "Events that changed the modern world",
-      "hook": "In 1960, a six-year-old girl walked past angry crowds to step into an all-white elementary school, changing civil rights history forever.",
+      "hook": "Beneath a football stadium stands, scientists quietly launched humanity's first self-sustaining nuclear chain reaction.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SPECIFICITY: \"The scan revealed lower jaw arthritis causing pain.\" names nothing specific. Rewrite it to name a person, place, organization, number or physical object FROM THE RESEARCH (key_facts / numbers / named_entities) that is about THIS video's subject, or cut it. A research fact about a different story is never used to fill a sentence, and a name or figure is never invented.\n  - CLAIM: sentence 7 \"Remember Bentham's skeleton in Wilkins Building"
     }
   },
@@ -2413,6 +2413,15 @@
       "slot": "2026-11-14-ch1",
       "at_ms": 1794682067163,
       "score": 76.6,
+      "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "Enrico Fermi Initiates the First Nuclear Chain Reaction",
+      "slug": "enrico-fermi-initiates-the-first-nuclear-chain-reaction",
+      "slot": "2026-11-14-ch1",
+      "at_ms": 1794682690667,
+      "score": 68.7,
       "pillar": "Events that changed the modern world"
     }
   ],
