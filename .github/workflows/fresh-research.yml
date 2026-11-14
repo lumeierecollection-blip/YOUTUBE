@@ -1,0 +1,38 @@
+name: Fresh Research
+
+# Market research for the fresh production cycle (docs/fresh-cycle/MASTER-PROMPT.md). Reads public YouTube page data only; holds no YouTube credentials and cannot post.
+# Push a branch named research/<anything>. One job per channel, so a block on one does not stop the rest. Output: artifact research-<channel>.
+# Caveat: YouTube sometimes refuses cloud addresses. An empty result file means "could not read", never "nothing found".
+on:
+  push:
+    branches:
+      - "research/**"
+
+permissions:
+  contents: read
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        channel: [hidden-past, ai-tested, court-and-spotlight, rival-lines]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip3 install --quiet yt-dlp
+      - name: Research ${{ matrix.channel }} (last 10 days)
+        env:
+          RESEARCH_OUT: ${{ github.workspace }}/research-out
+        run: python3 platform/fresh-cycle/research.py "${{ matrix.channel }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: research-${{ matrix.channel }}
+          path: research-out/*.json
+          retention-days: 30
+          if-no-files-found: warn
