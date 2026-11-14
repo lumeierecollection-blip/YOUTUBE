@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-14T15:25:16.927Z",
+  "rebuilt_at": "2026-11-14T15:28:11.759Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -42,21 +42,21 @@
     {
       "key": "ai-tested",
       "agent": "agent-ai-tested",
-      "stage": "failed",
-      "status": "failed",
-      "at": "2026-11-14T15:25:16.555Z",
+      "stage": "started",
+      "status": "running",
+      "at": "2026-11-14T15:27:48.304Z",
       "branch": "preview/ai-tested-gemini4",
-      "commit": "b277b8a9",
-      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43609637034#artifacts)",
+      "commit": "f43515b1",
+      "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43610179636#artifacts)",
       "sheet": "",
       "scenes": "",
       "voice": "",
       "script": "",
       "plan": "",
       "qa": "",
-      "blocker": "narration is 40.68s at natural speed (allowed 54 to 59.75s); change the script, never the speed",
+      "blocker": "",
       "lastOk": "2026-11-13T21:08:38.871Z",
-      "run": "run-43609637034-1"
+      "run": "run-43610179636-1"
     },
     {
       "key": "court-and-spotlight",
