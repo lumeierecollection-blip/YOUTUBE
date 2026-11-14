@@ -2750,9 +2750,14 @@
           "topic": "NASA ESCAPADE Spacecraft Complete Powered Earth Flybys En Route to Mars",
           "slug": "nasa-escapade-spacecraft-complete-powered-earth-flybys",
           "reserved_at": "2026-11-13T17:25:17.191Z"
+        },
+        {
+          "topic": "Jupiter and Mars Conjunction in November 2026 Morning Sky",
+          "slug": "jupiter-mars-conjunction-november-2026",
+          "reserved_at": "2026-11-14T15:13:52.154Z"
         }
       ],
-      "last_generated": "2026-11-13T17:25:17.191Z"
+      "last_generated": "2026-11-14T15:13:52.154Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
