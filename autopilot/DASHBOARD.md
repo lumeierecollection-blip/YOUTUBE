@@ -1,15 +1,15 @@
 # YouTube Autopilot
 
-Updated 2026-11-14 03:41 SAST
+Updated 2026-11-14 14:31 SAST
 
-**Next productions:** Hidden Past 2026-11-14 11:00 SAST, AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST
+**Next productions:** AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST
 
 ## Hidden Past
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at script, attempts 2 |
-| Selected topic and score | The Discovery of the Lost Sanctuary of Asclepius (73.4/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Jeremy Bentham's severed head and dental pain (65.4/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 1 views, 0 likes, 0 comments (private) |
@@ -23,7 +23,7 @@ Updated 2026-11-14 03:41 SAST
 | Selected topic and score | ChatGPT Wallet Lets AI Agents Buy Items for You Automatically (79.8/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 124 views, 5 likes, 0 comments (public), 69.89% average viewed |
+| Performance | 128 views, 5 likes, 0 comments (public), 69.89% average viewed |
 | Analytics | available |
 
 ## Needs your attention
