@@ -1,0 +1,45 @@
+name: Clone proof (real AI test recording + free footage)
+# Proves the two missing visual types before any full re-render:
+#  - AI Tested: a real model run, typed and streamed, then the app it built running (scripts/clone/demo-record.mjs)
+#  - Rival Lines / Hidden Past: real moving footage from Pixabay (scripts/clone/pixabay-video.mjs)
+on:
+  push:
+    branches: ["proof/**"]
+  workflow_dispatch:
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install
+        run: |
+          npm install --no-audit --no-fund playwright@1.48.2
+          npx playwright install --with-deps chromium
+      - name: Real AI test, recorded
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          for j in data/clone/proof/*.json; do
+            n=$(basename "$j" .json)
+            node scripts/clone/demo-record.mjs "$j" "out/ai/$n" || echo "job $n failed"
+          done
+      - name: Free footage
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          node scripts/clone/pixabay-video.mjs out/footage/rival 4 "soccer match" "football stadium" "soccer pitch aerial" "football fans"
+          node scripts/clone/pixabay-video.mjs out/footage/hidden 3 "Kaliningrad" "Baltic sea" "Soviet" "old map"
+      - name: Contact frames
+        run: |
+          sudo apt-get install -y ffmpeg >/dev/null
+          for f in $(find out -name '*.webm' -o -name '*.mp4'); do
+            ffmpeg -v error -y -i "$f" -vf "fps=1/3,scale=640:-2,tile=4x2" -frames:v 1 "${f%.*}-sheet.jpg" || true
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clone-proof-${{ github.run_id }}
+          path: out

@@ -1,0 +1,2 @@
+{ "prompt": "Build a complete, playable Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter, and the snake should steer itself toward the food automatically so it plays on its own. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+  "keys": [], "app_seconds": 14 }
