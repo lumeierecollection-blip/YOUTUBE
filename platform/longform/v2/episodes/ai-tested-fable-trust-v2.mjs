@@ -38,7 +38,7 @@ const scroll = (file, down = true) => ({ type: "browser", image: { file: `lf2/ai
 const P = (vo, scene) => ({ vo, scene });
 /** Second shot of a long page sentence: a hard cut to a tight, slowly drifting close-up of the marked line (the reference cuts in on highlights the same way). */
 const closeup = (sc) => { const k = sc.cam[2], bw = box(sc.boxes.flatMap((b) => b.rects)).w, z = Math.max(k.zoom, Math.min(1.9, k.zoom * 1.6, (VW * 0.9) / (bw + 40))), c = clampC(k, z), c2 = clampC(k, z * 1.08);
-  return { ...sc, cam: [{ f: 0, ...c, zoom: z }, { f: 240, ...c2, zoom: z * 1.08 }], boxes: sc.boxes.map((bx, i) => ({ ...bx, from: 2 + i * 8 })) }; };
+  return { ...sc, dim: 0.8, cam: [{ f: 0, ...c, zoom: z }, { f: 240, ...c2, zoom: z * 1.08 }], boxes: sc.boxes.map((bx, i) => ({ ...bx, from: 0 + i * 8 })) }; }; // dimmed: the cut from the white page must read as a new picture (shots.py missed white-to-white cuts in run 43719357524)
 const SPLIT = 72; // characters, about 4.5 s of voice: a page sentence longer than this gets a second, closer shot
 let n = 0;
 const beat = (part, ref, src, pill, parts) => ({ id: `F${String(++n).padStart(2, "0")}`, part, ref, src, vo: parts.map((p) => p.vo).join(" "),
@@ -57,6 +57,7 @@ export const SOURCES = {
 export const EPISODE = {
   channel: "ai-tested", slug: "fable-trust-v2", title: "The Most Accurate AI Still Guesses When It Doesn't Know", target_minutes: 8,
   sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -21, dip_scenes: ["verdict"] },
+  xfade: 0.04, // beats join with a hard cut, like the shots inside them (render-episode and make-meta read this)
   beats: [
     beat("the claim", "S7lpCyZSdJQ 0:00: a new model just dropped, here is what we will test", ["AN", "AO"], "THE CLAIM", [
       P("On the launch page for Anthropic's newest model, a tester says it admits when it doesn't know something.", { type: "quote", who: "Adhyyan Sekhsaria", org: "Cognition · quoted on Anthropic's launch page", foot: FAN,
@@ -191,11 +192,9 @@ export const EPISODE = {
       P("And on Pro plans, Fable can use up to half of the weekly usage limit.", page("w50", ["Up to 50% of weekly limits"])),
     ]),
     beat("the answer", "S7lpCyZSdJQ 31:10: the verdict", ["AN", "AA", "AO"], "VERDICT", [
-      P("So here is where that leaves it.", { type: "verdict", line: "Knows the most. Still guesses when it doesn't.",
+      P("So here is where that leaves it. On these numbers, Fable 5.2 gets more right than any model tested,", { type: "verdict", line: "Knows the most. Still guesses when it doesn't.",
         points: ["79% accuracy on AA-Omniscience, the highest", "59% hallucination rate (Gemini 4 Carbon, high: 11%)", "$26.54 and 44.5 minutes per index task", "The launch-page benchmarks are Anthropic's own"],
         limits: ["We did not run the model ourselves", "Two sources: Anthropic and Artificial Analysis", "Captured 15 Nov 2026; scores change as tests are re-run"], foot: "Sources: Anthropic launch post; Artificial Analysis · captured 15 Nov 2026" }),
-      P("On these numbers, Fable 5.2 gets more right than any model tested,", { type: "bars", title: "Fable 5.2, measured independently", sub: "Artificial Analysis", decimals: 0, max: 100,
-        bars: [{ label: "Accuracy", value: 79, hi: true }, { label: "Hallucination rate", value: 59, hi: true, color: "#FF4D5E" }], foot: FAA }),
       P("but it is expensive and slow.", { type: "stat", value: 26.54, decimals: 2, prefix: "$", label: "and 44.5 minutes per Intelligence Index task", sub: "Artificial Analysis", foot: FAA }),
       P("When it doesn't know, it more often guesses than says so.", page("fable59", ["59%"], 0.95)),
       P("Use it for hard problems, and check what it tells you.",
@@ -210,3 +209,22 @@ export const EPISODE = {
   ],
   thumbs: [{ name: "thumb1-fable", big: "Most accurate AI\nstill guesses", num: "59%", numLabel: "wrong instead of \"I don't know\"", small: "tested" }],
 };
+
+// Alternate light and dark pictures at every cut, so that each cut reads as a new picture. Run 43719357524 had 107 planned cuts; shots.py
+// (scene score > 0.3) found 33: white page to white page and dark card to dark card scored too low. Each shot is set light or dark, opposite
+// to the shot before it: a dark page is dimmed around its box from the first frame, a light card is the dark card inverted. Unboxed pages
+// stay as captured (inverting a photo gives a negative), so they are always light and the shot before one is made dark.
+{
+  const shots = EPISODE.beats.flatMap((b) => b.scene.parts.map((p) => p.scene));
+  const fixed = (s) => s && s.type === "browser" && !s.boxes?.length;
+  const set = (s, dark) => {
+    if (s.type === "browser") { s.dim = dark ? 0.8 : 0.38; if (dark) s.boxes = s.boxes.map((bx) => ({ ...bx, from: Math.min(bx.from, -14) })); }
+    else s.invert = !dark;
+  };
+  let prev = null;
+  shots.forEach((s, i) => {
+    let dark = false;
+    if (!fixed(s)) { dark = prev === null ? true : !prev; if (fixed(shots[i + 1])) dark = true; set(s, dark); }
+    prev = dark;
+  });
+}

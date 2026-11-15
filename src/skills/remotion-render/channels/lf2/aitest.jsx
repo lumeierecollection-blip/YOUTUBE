@@ -18,7 +18,7 @@ const Foot = ({ text }) => text ? <div style={{ position: "absolute", left: 56, 
  * scroll, a highlight box draws round the real words, and a cursor follows a path. shots: one or more real screenshots shown in order.
  * image: { file, w, h }; cam: [{ f, x, y, zoom }]; boxes: [{ rects, from, label }]; cursor: [{ f, x, y, click }]; url: shown in the bar.
  */
-export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [], pill, foot, frame = true, desk = false }) {
+export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [], pill, foot, frame = true, desk = false, dim = 0.38 }) { // dim: how dark the page goes around a box (close-ups use ~0.8)
   const f = useCurrentFrame(), W = 1920, H = 1080, vw = desk ? 1480 : frame ? 1760 : W, vh = desk ? 850 : frame ? 900 : H, ox = (W - vw) / 2, oy = desk ? 120 : frame ? 130 : 0; // desk: How Money Works-style clipping on a green desk (fresh cycle clone, 15 Nov 2026)
   const cur = shots ? shots.filter((s) => f >= (s.from || 0)).at(-1) : image;
   const keys = cam.length ? cam : [{ f: 0, x: cur.w / 2, y: (vh / 2) * (cur.w / vw), zoom: vw / cur.w }];
@@ -36,10 +36,14 @@ export function Browser({ t, image, shots, url, cam = [], boxes = [], cursor = [
       <div style={{ position: "absolute", left: ox, top: oy, width: vw, height: vh, overflow: "hidden", background: "#fff", borderRadius: desk ? 4 : frame ? "0 0 14px 14px" : 0, transform: desk ? "rotate(-1.1deg)" : undefined, boxShadow: "0 30px 90px rgba(0,0,0,0.6)" }}>
         <div style={{ position: "absolute", left: vw / 2, top: vh / 2, transform: `scale(${z}) translate(${-cx}px, ${-cy}px)`, transformOrigin: "0 0" }}>
           <Img src={src(cur.file)} style={{ width: cur.w, height: cur.h, display: "block" }} />
-          {boxes.filter((b) => f >= b.from && (!b.to || f < b.to)).map((bx, bi) => { const x0 = Math.min(...bx.rects.map((r) => r.x)) - 10, y0 = Math.min(...bx.rects.map((r) => r.y)) - 8, x1 = Math.max(...bx.rects.map((r) => r.x + r.w)) + 10, y1 = Math.max(...bx.rects.map((r) => r.y + r.h)) + 8, p = ramp(f, bx.from, bx.from + 14, eo); return (
-            <div key={bi} style={{ position: "absolute", left: x0, top: y0, width: x1 - x0, height: y1 - y0, border: `${5 / z}px solid ${t.accent}`, borderRadius: 6 / z, boxShadow: `0 0 0 ${3000}px rgba(8,10,14,${0.38 * p})`, clipPath: `inset(0 ${(1 - p) * 100}% 0 0 round ${6 / z}px)`, boxSizing: "border-box" }}>
-              {bx.label && <div style={{ position: "absolute", left: 0, top: -(46 / z), fontFamily: F.sans, fontWeight: 700, fontSize: 24 / z, color: "#0a0c10", background: t.accent, padding: `${4 / z}px ${12 / z}px`, whiteSpace: "nowrap" }}>{bx.label}</div>}
-            </div>); })}
+          {boxes.filter((b) => f >= b.from && (!b.to || f < b.to)).map((bx, bi) => { const x0 = Math.min(...bx.rects.map((r) => r.x)) - 10, y0 = Math.min(...bx.rects.map((r) => r.y)) - 8, x1 = Math.max(...bx.rects.map((r) => r.x + r.w)) + 10, y1 = Math.max(...bx.rects.map((r) => r.y + r.h)) + 8, p = ramp(f, bx.from, bx.from + 14, eo), geo = { position: "absolute", left: x0, top: y0, width: x1 - x0, height: y1 - y0, borderRadius: 6 / z, boxSizing: "border-box" }; return (
+            // dim and label sit on an unclipped twin of the box: on the box itself the drawing clip-path also cut away its shadow and its label (15 Nov 2026)
+            <React.Fragment key={bi}>
+              <div style={{ ...geo, boxShadow: `0 0 0 ${3000}px rgba(8,10,14,${dim * p})` }}>
+                {bx.label && <div style={{ position: "absolute", left: 0, top: -(46 / z), fontFamily: F.sans, fontWeight: 700, fontSize: 24 / z, color: "#0a0c10", background: t.accent, padding: `${4 / z}px ${12 / z}px`, whiteSpace: "nowrap", opacity: ramp(f, bx.from + 8, bx.from + 18) }}>{bx.label}</div>}
+              </div>
+              <div style={{ ...geo, border: `${5 / z}px solid ${t.accent}`, clipPath: `inset(0 ${(1 - p) * 100}% 0 0 round ${6 / z}px)` }} />
+            </React.Fragment>); })}
           {cur2 && <svg width="40" height="40" viewBox="0 0 24 24" style={{ position: "absolute", left: cur2[0], top: cur2[1], transform: `scale(${(1.6 / z) * (clicking ? 0.85 : 1)})`, transformOrigin: "0 0", filter: "drop-shadow(0 2px 3px rgba(0,0,0,0.5))" }}><path d="M3 2 L3 19 L8 14.5 L11.5 22 L14.5 20.6 L11 13.4 L18 13.4 Z" fill="#fff" stroke="#111" strokeWidth="1.4" /></svg>}
           {clicking && cur2 && <div style={{ position: "absolute", left: cur2[0] - 30 / z, top: cur2[1] - 30 / z, width: 60 / z, height: 60 / z, borderRadius: "50%", border: `${4 / z}px solid ${t.accent}`, opacity: 1 - (f - clicking.f) / 12, transform: `scale(${1 + (f - clicking.f) / 8})` }} />}
         </div>
@@ -238,7 +242,7 @@ export function AiThumb({ t, big, small, a, b, answer, correct, num, of, numLabe
 export function Seq({ t, parts, pill, foot }) {
   const { durationInFrames: D } = useVideoConfig(), tot = parts.reduce((s, p) => s + (p.w || 1), 0);
   let acc = 0; const starts = parts.map((p) => { const s = Math.round((acc / tot) * D); acc += p.w || 1; return s; });
-  return <AbsoluteFill style={{ background: t.bg }}>{parts.map((p, i) => { const C = AITEST[p.scene.type]; const len = (starts[i + 1] ?? D) - starts[i]; return <Sequence key={i} from={starts[i]} durationInFrames={len}>{C ? <C t={t} pill={pill} foot={foot} {...p.scene} /> : null}</Sequence>; })}</AbsoluteFill>;
+  return <AbsoluteFill style={{ background: t.bg }}>{parts.map((p, i) => { const C = AITEST[p.scene.type]; const len = (starts[i + 1] ?? D) - starts[i]; return <Sequence key={i} from={starts[i]} durationInFrames={len}><AbsoluteFill style={{ filter: p.scene.invert ? "invert(1) hue-rotate(180deg)" : undefined }}>{C ? <C t={t} pill={pill} foot={foot} {...p.scene} /> : null}</AbsoluteFill></Sequence>; })}</AbsoluteFill>;
 }
 
 /** 11. Bar chart that draws itself: bars grow in turn, each value counts up, the bar under discussion is lit (AI Search benchmark charts). bars: [{ label, value, hi }] */

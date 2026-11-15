@@ -22,7 +22,7 @@ const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), SHARD = opt("shard"), NOJOIN = argv.includes("--no-join") || Boolean(SHARD); // --shard i/n renders only beats whose index % n == i and never joins (a later job joins)
-const FPS = 30, PAD = 0.55, XF = 0.4;
+const FPS = 30, PAD = 0.55;
 const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural" }; // Rival Lines: British, deep male voice (owner, 10 Nov 2026)
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
@@ -31,6 +31,7 @@ const OUT = join(ROOT, "output/longform-prod", slug), VDIR = join(OUT, "voice"),
 for (const d of [OUT, VDIR, BDIR]) mkdirSync(d, { recursive: true });
 const THEMES = JSON.parse(readFileSync(join(ROOT, "config/longform-v2.json"), "utf8"));
 const { EPISODE: ep } = await import(`./episodes/${slug}.mjs`);
+const XF = ep.xfade ?? 0.4; // crossfade between beats; an episode whose beats are cut shot by shot (seq) sets a near-hard cut
 let beats = ep.beats; if (ONLY) beats = beats.filter((b) => ONLY.includes(b.id)); if (MAX) beats = beats.slice(0, MAX);
 if (SHARD) { const [si, sn] = SHARD.split("/").map(Number); beats = beats.filter((_, i) => i % sn === si); }
 
@@ -175,7 +176,7 @@ if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 const m = run("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"]).stderr;
 const J = JSON.parse(m.slice(m.lastIndexOf("{"), m.lastIndexOf("}") + 1));
 const master = join(OUT, "master.wav");
-r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.89:level=false`, "-ar", "48000", master]);
+r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.84:level=false`, "-ar", "48000", master]); // limiter at -1.5 dBFS: at 0.89 the AAC encode overshot to -0.7 dBFS true peak (fable-trust-v2 run 43719357524) and failed the -0.9 QA limit
 if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 
 // ---- final mux, written to a temp name then renamed
