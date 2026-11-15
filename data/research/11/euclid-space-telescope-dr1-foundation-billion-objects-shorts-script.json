@@ -1,0 +1,86 @@
+{
+  "channel_id": "11",
+  "topic_slug": "euclid-space-telescope-dr1-foundation-billion-objects",
+  "format": "shorts",
+  "hook": "One space telescope captured 1 billion cosmic objects in 13 months.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "One space telescope captured 1 billion cosmic objects in 13 months.",
+      "visual_cue": "Wide panoramic shot of the deep dark cosmos filling with glowing galaxy points.",
+      "sfx_cue": "Deep low-frequency space rumble with a subtle hum.",
+      "b_roll": [
+        "ESA Euclid telescope rendering orbiting in deep space",
+        "Deep field starry galaxy cosmic background"
+      ],
+      "transition_out": "Fast whip zoom into deep stellar field",
+      "text_overlay": {
+        "text": "1 BILLION COSMIC OBJECTS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "On November 12, 2026, the European Space Agency released the DR1-Foundation dataset from Euclid. How vast is this sky map?",
+      "visual_cue": "High-resolution sky map overlay highlighting a sweeping patch of 1,900 square degrees across celestial coordinates.",
+      "sfx_cue": "Digital data scanning chimes and soft ambient swell.",
+      "b_roll": [
+        "ESA official sky map release visualization of DR1-Foundation",
+        "Euclid space telescope assembly in cleanroom"
+      ],
+      "transition_out": "Cross-dissolve into moon grid comparison graphic",
+      "text_overlay": {
+        "text": "1,900 SQUARE DEGREES"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:23",
+      "voiceover": "But that Euclid survey isn't small, covering an expanse equal to 9,500 full Moons.",
+      "visual_cue": "Scale graphic comparing the surveyed sky swath against thousands of full Moon disk shapes.",
+      "sfx_cue": "Cinematic low impact tone.",
+      "b_roll": [
+        "Night sky illustration with repeating Moon grid overlay"
+      ],
+      "transition_out": "Sharp flash cut to percentage survey gauge",
+      "text_overlay": {
+        "text": "9,500 FULL MOONS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:23-0:38",
+      "voiceover": "The Euclid Consortium confirmed this represents only 14% of the planned 6-year area. Observations from spring 2024 to spring 2025 created this dataset.",
+      "visual_cue": "3D universe map grid expanding to demonstrate 14 percent coverage against the 6-year sky plan.",
+      "sfx_cue": "Expansive orchestral brass swell and electronic pulse.",
+      "b_roll": [
+        "3D universe point cloud rendering from scientific dataset",
+        "Euclid focal plane sensor optical beam simulation"
+      ],
+      "transition_out": "Slow dissolve into wide starry expanse",
+      "text_overlay": {
+        "text": "14% OF MISSION COVERAGE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Fourteen percent of the mission revealed 1 billion objects.",
+      "visual_cue": "Dramatic static lockoff of deep space with subtle particle shimmer.",
+      "sfx_cue": "Subtle decaying reverb echo.",
+      "b_roll": [
+        "Euclid space telescope silhouette against cosmic starfield"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "DR1-FOUNDATION DATASET"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe",
+    "https://euclid-ec.net/dr1-f-press-release",
+    "https://www.cosmos.esa.int/web/euclid/euclid-dr1"
+  ]
+}
