@@ -39,7 +39,7 @@ async function generate(model) {
   if (!r.ok) throw new Error(`generate ${r.status} ${await r.text()}`);
   const chunks = []; let buf = "";
   for await (const piece of r.body) {
-    buf += Buffer.from(piece).toString("utf8");
+    buf += Buffer.from(piece).toString("utf8").replace(/\r/g, ""); // the API separates events with \r\n\r\n
     let i;
     while ((i = buf.indexOf("\n\n")) >= 0) {
       const ev = buf.slice(0, i); buf = buf.slice(i + 2);
