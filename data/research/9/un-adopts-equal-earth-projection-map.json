@@ -1,0 +1,98 @@
+{
+  "topic_slug": "un-adopts-equal-earth-projection-map",
+  "strongest_angle": "Examine how the United Nations General Assembly voted 164 to 1 on September 4, 2026, to promote map projections that replace the 16th-century Mercator projection and accurately reflect the true size of continents like Africa.",
+  "key_facts": [
+    {
+      "fact": "By 164 votes to one, Member States at the United Nations General Assembly endorsed a resolution on September 4, 2026, promoting map projections that accurately reflect the true size of continents over the 16th-century Mercator projection.",
+      "source_url": "https://www.nature.com/articles/d41586-026-02820-x",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United States cast the sole vote against the United Nations resolution, dismissing the initiative as part of a radical ideological project.",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small",
+      "source_name": "United Nations",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Mercator projection was originally developed in 1569 primarily for ship navigation, which resulted in significant size distortions near the poles.",
+      "source_url": "https://www.sco.wisc.edu/2026/09/08/un-advocates-for-new-world-map-projection",
+      "source_name": "State Cartographer's Office – UW–Madison",
+      "confidence": "high"
+    },
+    {
+      "fact": "Representing a spherical globe on a flat two-dimensional surface is a geometric challenge that humanity has attempted to solve for more than 2,000 years.",
+      "source_url": "https://english.elpais.com/international/2026-09-17/how-do-you-make-a-map-the-problem-of-flattening-the-earth-and-why-the-un-is-abandoning-mercator.html",
+      "source_name": "EL PAÍS English",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "UN General Assembly votes in favor",
+      "value": 164,
+      "unit": "votes",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small"
+    },
+    {
+      "label": "UN General Assembly vote against",
+      "value": 1,
+      "unit": "vote",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small"
+    },
+    {
+      "label": "Mercator projection development year",
+      "value": 1569,
+      "unit": "year",
+      "source_url": "https://www.sco.wisc.edu/2026/09/08/un-advocates-for-new-world-map-projection"
+    },
+    {
+      "label": "Years of attempting to flatten a spherical Earth",
+      "value": 2000,
+      "unit": "years",
+      "source_url": "https://english.elpais.com/international/2026-09-17/how-do-you-make-a-map-the-problem-of-flattening-the-earth-and-why-the-un-is-abandoning-mercator.html"
+    },
+    {
+      "label": "Resolution adoption day",
+      "value": 4,
+      "unit": "day",
+      "source_url": "https://www.nature.com/articles/d41586-026-02820-x"
+    },
+    {
+      "label": "Resolution adoption year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.scientificamerican.com/article/the-mathematical-impossibility-of-making-a-perfect-world-map"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "United Nations",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Mercator",
+      "kind": "object"
+    },
+    {
+      "name": "Esri",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The United States cast the sole vote against, dismissing the initiative as part of a “radical ideological project.”",
+      "speaker": "United States",
+      "source_name": "United Nations",
+      "source_url": "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small"
+    }
+  ]
+}
