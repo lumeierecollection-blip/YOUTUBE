@@ -13,7 +13,8 @@ import { SPACE } from "./space.jsx";
 import { PSYCH } from "./psych.jsx";
 import { CELEB } from "./celebnews.jsx";
 
-const LIB = { "rival-lines": RIVAL, "hidden-past": HIDDEN, "ai-tested": AITEST, "court-and-spotlight": COURT, "red-space-facts": SPACE, psychology: PSYCH, "celebrity-news": CELEB };
+// clip = real footage (hidden.jsx Footage): Football Made Simple is mostly footage
+const LIB = { "rival-lines": { ...RIVAL, clip: HIDDEN.footage }, "hidden-past": HIDDEN, "ai-tested": AITEST, "court-and-spotlight": COURT, "red-space-facts": SPACE, psychology: PSYCH, "celebrity-news": CELEB };
 export function renderScene(s) {
   const C = LIB[s.ch] && LIB[s.ch][s.type];
   if (!C) return <AbsoluteFill style={{ background: "#300", color: "#fff", fontSize: 60, alignItems: "center", justifyContent: "center" }}>no scene {s.ch}/{s.type}</AbsoluteFill>;
