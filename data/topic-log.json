@@ -2546,9 +2546,14 @@
           "topic": "How Santo Domingo's 1502 Colonial Urban Grid Shaped Caribbean Architecture",
           "slug": "santo-domingo-1502-colonial-urban-grid",
           "reserved_at": "2026-11-14T15:13:02.945Z"
+        },
+        {
+          "topic": "Why the UN Adopted the Equal Earth Map Projection to Replace Mercator",
+          "slug": "un-adopts-equal-earth-projection-map",
+          "reserved_at": "2026-11-15T15:44:32.361Z"
         }
       ],
-      "last_generated": "2026-11-14T15:13:02.945Z"
+      "last_generated": "2026-11-15T15:44:32.361Z"
     },
     "10": {
       "channel_name": "Margin Note",
