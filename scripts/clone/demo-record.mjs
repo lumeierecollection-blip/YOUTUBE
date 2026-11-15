@@ -104,7 +104,9 @@ async function record(name, html, seconds, act) {
 await record("chat", chatPage(model, job.prompt, gen.chunks), 0, async (p) => {
   await p.waitForFunction(() => window.__done, null, { timeout: 120000 }); await p.waitForTimeout(1500);
 });
-const m = gen.answer.match(/```html\s*([\s\S]*?)```/i);
+// fenced block (closing fence optional: long answers can end without it), else a bare <html> document
+const m = gen.answer.match(/```html\s*([\s\S]*?)(?:```|$)/i) || gen.answer.match(/(<!doctype html[\s\S]*<\/html>)/i);
+console.log("answer chars", gen.answer.length, "| start", JSON.stringify(gen.answer.slice(0, 80)), "| end", JSON.stringify(gen.answer.slice(-80)));
 if (m) {
   await record("app", m[1], 0, async (p) => {
     await p.waitForTimeout(1500);

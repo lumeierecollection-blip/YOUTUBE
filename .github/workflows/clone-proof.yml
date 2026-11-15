@@ -39,7 +39,15 @@ jobs:
           for f in $(find out -name '*.webm' -o -name '*.mp4'); do
             ffmpeg -v error -y -i "$f" -vf "fps=1/3,scale=640:-2,tile=4x2" -frames:v 1 "${f%.*}-sheet.jpg" || true
           done
+      # small artifact for checking (the owner's PC downloads large artifacts slowly); footage files stay in the full one
       - uses: actions/upload-artifact@v4
         with:
-          name: clone-proof-${{ github.run_id }}
-          path: out
+          name: clone-proof-check-${{ github.run_id }}
+          path: |
+            out/ai
+            out/**/*sheet.jpg
+            out/**/footage.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clone-proof-footage-${{ github.run_id }}
+          path: out/footage
