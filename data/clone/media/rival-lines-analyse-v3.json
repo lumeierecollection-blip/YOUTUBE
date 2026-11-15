@@ -1,0 +1,18 @@
+{ "channel": "rival-lines", "pixabay": [
+ {"name":"stadium-aerial","id":208387,"start":0,"dur":8},
+ {"name":"stadium-top","id":239964,"start":0,"dur":8},
+ {"name":"match-topdown","id":158633,"start":0,"dur":10},
+ {"name":"crowd-flags","id":165713,"start":0,"dur":8},
+ {"name":"goal-net","id":122965,"start":0,"dur":7},
+ {"name":"euro-fans","id":3482,"start":0,"dur":8},
+ {"name":"stadium-city","id":239973,"start":0,"dur":8},
+ {"name":"pitch-kids-aerial","id":202749,"start":0,"dur":8},
+ {"name":"q-soccer-dribble","query":"soccer dribble","pick":0,"dur":7},
+ {"name":"q-soccer-pass","query":"soccer pass ball","pick":0,"dur":7},
+ {"name":"q-soccer-training","query":"soccer training drone","pick":0,"dur":8},
+ {"name":"q-football-tactics","query":"football tactics board","pick":0,"dur":7},
+ {"name":"q-floodlights","query":"stadium floodlights night","pick":0,"dur":7},
+ {"name":"q-soccer-match-2","query":"soccer match","pick":4,"dur":8},
+ {"name":"q-soccer-match-3","query":"soccer game players","pick":1,"dur":8},
+ {"name":"q-ball-kick","query":"soccer ball kick","pick":0,"dur":6}
+]}
