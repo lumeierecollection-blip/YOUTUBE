@@ -3,11 +3,12 @@
 // discussion with a highlight box; results sit next to the settings that produced them; charts outline the winner; a pill label names what
 // is being tested; an explainer diagram follows the demo. Nothing on these screens is typed by hand: replies come from the run's JSON.
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp, typed } from "./kit.jsx";
 
 const src = (p) => (p.startsWith("data:") || p.startsWith("http") ? p : staticFile(p));
-const Field = ({ t, children }) => <AbsoluteFill style={{ background: t.bg }}><Fonts /><AbsoluteFill style={{ backgroundImage: `radial-gradient(${t.dot} 1.5px, transparent 1.5px)`, backgroundSize: "36px 36px", opacity: 0.5 }} />{children}</AbsoluteFill>;
+// slow push-in on every card (rebuild 15 Nov 2026, owner: "no movement"): nothing on this channel holds a dead-still frame
+const Field = ({ t, children }) => { const f = useCurrentFrame(); return <AbsoluteFill style={{ background: t.bg }}><Fonts /><AbsoluteFill style={{ backgroundImage: `radial-gradient(${t.dot} 1.5px, transparent 1.5px)`, backgroundSize: "36px 36px", opacity: 0.5 }} /><AbsoluteFill style={{ transform: `scale(${1 + Math.min(f, 450) * 0.0001})` }}>{children}</AbsoluteFill></AbsoluteFill>; };
 /** Pill label, top-right (h5zkzon0gM4 "Halo x MW2"): what is on screen right now. */
 export const Pill = ({ t, text, from = 0 }) => { const f = useCurrentFrame(), a = ramp(f, from, from + 10); return text ? <div style={{ position: "absolute", right: 56, top: 44, display: "flex", alignItems: "center", gap: 12, background: "rgba(14,16,20,0.92)", border: "1px solid rgba(255,255,255,0.22)", borderRadius: 999, padding: "10px 22px", fontFamily: F.sans, fontWeight: 700, fontSize: 24, color: "#fff", opacity: a, transform: `translateY(${(1 - a) * -12}px)` }}><span style={{ width: 12, height: 12, borderRadius: "50%", background: t.accent }} />{text}</div> : null; };
 const Foot = ({ text }) => text ? <div style={{ position: "absolute", left: 56, bottom: 28, fontFamily: F.mono, fontSize: 18, color: "rgba(255,255,255,0.55)" }}>{text}</div> : null;
@@ -229,4 +230,72 @@ export function AiThumb({ t, big, small, a, b, answer, correct, num, of, numLabe
   );
 }
 
-export const AITEST = { browser: Browser, terminal: Terminal, chat: Chat, accuracy: Accuracy, grid: Grid, miss: Miss, flow: Flow, compare: Compare, verdict: Verdict, thumb: AiThumb };
+// ---- Rebuild of 15 Nov 2026 (reference AI Search S7lpCyZSdJQ, median shot 4.2 s): the owner found the first AI Tested clone "one page, no motion".
+// Seq cuts one beat into several shots so the picture changes with every sentence; Bars, Stat and Quote add counters, drawn bars and highlighted quotes.
+
+/** 10. Several shots inside one beat, hard cuts between them. parts: [{ w, scene }]: each part's share of the beat is w / sum(w) (the episode
+ * sets w to the character count of the sentence it shows, so the cut lands close to where that sentence starts in the voice). */
+export function Seq({ t, parts, pill, foot }) {
+  const { durationInFrames: D } = useVideoConfig(), tot = parts.reduce((s, p) => s + (p.w || 1), 0);
+  let acc = 0; const starts = parts.map((p) => { const s = Math.round((acc / tot) * D); acc += p.w || 1; return s; });
+  return <AbsoluteFill style={{ background: t.bg }}>{parts.map((p, i) => { const C = AITEST[p.scene.type]; const len = (starts[i + 1] ?? D) - starts[i]; return <Sequence key={i} from={starts[i]} durationInFrames={len}>{C ? <C t={t} pill={pill} foot={foot} {...p.scene} /> : null}</Sequence>; })}</AbsoluteFill>;
+}
+
+/** 11. Bar chart that draws itself: bars grow in turn, each value counts up, the bar under discussion is lit (AI Search benchmark charts). bars: [{ label, value, hi }] */
+export function Bars({ t, title, sub, bars, unit = "%", prefix = "", max, decimals = 1, note, lower, pill, foot }) {
+  const f = useCurrentFrame(), n = bars.length, top = max ?? Math.max(...bars.map((b) => b.value)) * 1.12, bw = Math.min(220, 1400 / n - 40), gap = (1500 - n * bw) / Math.max(1, n - 1), base = 860, hMax = 520;
+  return (
+    <Field t={t}>
+      <div style={{ position: "absolute", left: 150, top: 92, fontFamily: F.sans, fontWeight: 700, fontSize: 52, color: "#fff", opacity: ramp(f, 0, 10), transform: `translateY(${(1 - ramp(f, 0, 12)) * 16}px)` }}>{title}</div>
+      {sub && <div style={{ position: "absolute", left: 152, top: 162, fontFamily: F.sans, fontSize: 26, color: "rgba(255,255,255,0.65)", opacity: ramp(f, 6, 16) }}>{sub}{lower ? " · lower is better" : ""}</div>}
+      <div style={{ position: "absolute", left: 150, top: base, width: 1620, height: 3, background: "rgba(255,255,255,0.25)" }} />
+      {bars.map((b, i) => { const a = ramp(f, 10 + i * 7, 40 + i * 7, expo), h = (b.value / top) * hMax * a, x = 210 + i * (bw + gap), col = b.hi ? (b.color || t.accent) : b.color || "#4a515c", lit = b.hi && f > 50; return (
+        <React.Fragment key={i}>
+          <div style={{ position: "absolute", left: x, top: base - h, width: bw, height: h, background: col, borderRadius: "8px 8px 0 0", boxShadow: lit ? `0 0 0 4px ${t.bg}, 0 0 0 8px ${col}` : "none" }} />
+          <div style={{ position: "absolute", left: x - 30, width: bw + 60, top: base - h - 64, textAlign: "center", fontFamily: F.mono, fontWeight: 700, fontSize: b.hi ? 48 : 38, color: b.hi ? "#fff" : "rgba(255,255,255,0.8)", opacity: ramp(f, 12 + i * 7, 20 + i * 7) }}>{prefix}{(b.value * a).toFixed(decimals)}{unit}</div>
+          <div style={{ position: "absolute", left: x - 40, width: bw + 80, top: base + 18, textAlign: "center", fontFamily: F.sans, fontWeight: b.hi ? 700 : 500, fontSize: 25, lineHeight: 1.2, color: b.hi ? "#fff" : "rgba(255,255,255,0.7)", opacity: ramp(f, 8 + i * 7, 18 + i * 7) }}>{b.label}</div>
+        </React.Fragment>); })}
+      {note && <div style={{ position: "absolute", right: 150, top: 230, maxWidth: 760, fontFamily: F.sans, fontWeight: 700, fontSize: 30, color: "#0a0c10", background: t.accent, padding: "10px 20px", opacity: ramp(f, 60, 70), transform: `translateX(${(1 - ramp(f, 60, 72)) * 40}px)` }}>{note}</div>}
+      <Pill t={t} text={pill} /><Foot text={foot} />
+    </Field>
+  );
+}
+
+/** 12. One measured number, counted up, then set against its comparison (a median, an earlier model) as two drawn bars. */
+export function Stat({ t, value, decimals = 0, prefix = "", suffix = "", label, sub, vs, pill, foot }) {
+  const f = useCurrentFrame(), k = ramp(f, 4, 34, expo), big = vs ? 230 : 300;
+  return (
+    <Field t={t}>
+      <div style={{ position: "absolute", left: 150, top: vs ? 150 : 230, fontFamily: F.mono, fontWeight: 700, fontSize: big, lineHeight: 1, color: "#fff", letterSpacing: "-0.04em" }}>{prefix}{(value * k).toFixed(decimals)}<span style={{ color: t.accent }}>{suffix}</span></div>
+      <div style={{ position: "absolute", left: 158, top: (vs ? 150 : 230) + big + 20, fontFamily: F.sans, fontWeight: 700, fontSize: 46, color: "#fff", opacity: ramp(f, 16, 28), maxWidth: 1600 }}>{label}</div>
+      {sub && <div style={{ position: "absolute", left: 160, top: (vs ? 150 : 230) + big + 84, fontFamily: F.sans, fontSize: 28, color: "rgba(255,255,255,0.62)", opacity: ramp(f, 22, 34), maxWidth: 1600 }}>{sub}</div>}
+      {vs && [{ label: vs.mine || "This model", value, hi: true }, { label: vs.label, value: vs.value }].map((r, i) => { const top = Math.max(value, vs.value), p = ramp(f, 46 + i * 10, 76 + i * 10, expo); return (
+        <div key={i} style={{ position: "absolute", left: 160, top: 690 + i * 110, display: "flex", alignItems: "center", gap: 24, opacity: ramp(f, 44 + i * 10, 52 + i * 10) }}>
+          <div style={{ width: 360, fontFamily: F.sans, fontSize: 28, color: "rgba(255,255,255,0.8)" }}>{r.label}</div>
+          <div style={{ width: (r.value / top) * 1000 * p, height: 56, background: r.hi ? t.accent : "#4a515c", borderRadius: 6 }} />
+          <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 40, color: "#fff" }}>{prefix}{(r.value * p).toFixed(decimals)}{suffix}</div>
+        </div>); })}
+      <Pill t={t} text={pill} /><Foot text={foot} />
+    </Field>
+  );
+}
+
+/** 13. A tester's quote as published on the source page: the words arrive, then a marker draws across the line that matters. hl: exact substrings of text. */
+export function Quote({ t, text, hl = [], who, org, pill, foot }) {
+  const f = useCurrentFrame(), { fps } = useVideoConfig(), words = text.split(" "), shownN = Math.floor(((f - 6) / fps) * 14), markAt = 6 + (words.length / 14) * fps + 8;
+  const size = text.length > 260 ? 40 : text.length > 160 ? 48 : 58;
+  let pos = 0; const spans = words.map((w, i) => { const s = pos; pos += w.length + 1; const inHl = hl.some((h) => { const a = text.indexOf(h); return a > -1 && s >= a && s < a + h.length; }); return { w, i, inHl }; });
+  const m = ramp(f, markAt, markAt + 16, eio);
+  return (
+    <Field t={t}>
+      <div style={{ position: "absolute", left: 140, top: 80, fontFamily: F.serif, fontSize: 240, lineHeight: 1, color: t.accent, opacity: ramp(f, 0, 8) }}>“</div>
+      <div style={{ position: "absolute", left: 200, top: 250, width: 1520, fontFamily: F.serif, fontSize: size, lineHeight: 1.35, color: "#fff" }}>
+        {spans.map(({ w, i, inHl }) => <span key={i} style={{ opacity: i < shownN ? 1 : 0.0, backgroundImage: inHl ? `linear-gradient(${t.accent}, ${t.accent})` : "none", backgroundRepeat: "no-repeat", backgroundSize: `${m * 100}% 100%`, color: inHl && m > 0.5 ? "#0a0c10" : "#fff" }}>{w} </span>)}
+      </div>
+      <div style={{ position: "absolute", left: 204, bottom: 110, fontFamily: F.sans, fontSize: 30, color: "rgba(255,255,255,0.8)", opacity: ramp(f, 14, 26) }}><b style={{ color: "#fff" }}>{who}</b>{org ? ` · ${org}` : ""}</div>
+      <Pill t={t} text={pill} /><Foot text={foot} />
+    </Field>
+  );
+}
+
+export const AITEST = { browser: Browser, terminal: Terminal, chat: Chat, accuracy: Accuracy, grid: Grid, miss: Miss, flow: Flow, compare: Compare, verdict: Verdict, thumb: AiThumb, seq: Seq, bars: Bars, stat: Stat, quote: Quote };

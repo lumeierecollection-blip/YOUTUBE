@@ -115,11 +115,13 @@ const LIBA = Object.fromEntries(JSON.parse(readFileSync(join(ROOT, "config/longf
 const vLUFS = Number([...run("ffmpeg", ["-hide_banner", "-nostats", "-i", voiceOut, "-af", "ebur128", "-f", "null", "-"]).stderr.matchAll(/I:\s+(-?[\d.]+) LUFS/g)].at(-1)?.[1]);
 const starts = []; { let t0 = 0; for (const b of beats) { starts.push(t0); t0 += b._len - XF; } }
 const events = [];
+// a "seq" beat holds several shots: a scene rule matches the first shot of that type, timed in the same proportions Seq (aitest.jsx) cuts them
+const partAt = (b, types) => { if (b.scene.type !== "seq") return types.includes(b.scene.type) ? 0 : null; const ps = b.scene.parts, tot = ps.reduce((s, p) => s + (p.w || 1), 0); let acc = 0; for (const p of ps) { if (types.includes(p.scene.type)) return (acc / tot) * b._len; acc += p.w || 1; } return null; };
 for (const rule of CUE.rules[ch] || []) {
   if (!["action", "accent"].includes(rule.type) || !String(rule.asset).startsWith("SFX_")) continue;
   for (const [i, b] of beats.entries()) {
-    if (rule.scene && !rule.scene.includes(b.scene.type)) continue;
-    let off = rule.offset_s || 0;
+    const at = rule.scene ? partAt(b, rule.scene) : 0; if (at == null) continue;
+    let off = at + (rule.offset_s || 0);
     if (rule.vo) {
       const m = new RegExp(rule.vo, "i").exec(b.vo); if (!m) continue;
       const wf = join(VDIR, `${b.id}.words.json`), w = existsSync(wf) ? (JSON.parse(readFileSync(wf, "utf8")).words || []) : [];
@@ -155,7 +157,7 @@ if (SND?.bed) {
   const idx = Array.from({ length: copies }, (_, c) => bi + c);
   let chain = `[${idx[0]}:a]aformat=sample_rates=48000:channel_layouts=stereo[b0]`;
   let last = "[b0]"; for (let c = 1; c < copies; c++) { bedChain.push(`[${idx[c]}:a]aformat=sample_rates=48000:channel_layouts=stereo[bx${c}]`); bedChain.push(`${last}[bx${c}]acrossfade=d=${XFB}:c1=tri:c2=tri[b${c}]`); last = `[b${c}]`; }
-  const dips = []; beats.forEach((b, i) => { if ((SND.dip_scenes || []).includes(b.scene.type)) dips.push([starts[i], starts[i] + 1.6]); });
+  const dips = []; beats.forEach((b, i) => { const at = partAt(b, SND.dip_scenes || []); if (at != null) dips.push([starts[i] + at, starts[i] + at + 1.6]); });
   const dipExpr = dips.reduce((acc, [a, b2]) => `if(between(t,${(a - 0.35).toFixed(2)},${(b2 + 0.6).toFixed(2)}),if(lt(t,${a.toFixed(2)}),1-0.88*(t-${(a - 0.35).toFixed(2)})/0.35,if(lt(t,${b2.toFixed(2)}),0.12,0.12+0.88*(t-${b2.toFixed(2)})/0.6)),${acc})`, "1");
   bedChain.unshift(chain);
   bedChain.push(`${last}atrim=0:${total.toFixed(2)},asetpts=PTS-STARTPTS,volume=${gain}dB,volume='${dipExpr}':eval=frame,afade=t=in:d=3,afade=t=out:st=${Math.max(0, total - 6).toFixed(2)}:d=6[bed0]`);

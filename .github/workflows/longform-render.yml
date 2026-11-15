@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [ai-tested-fable-trust-v2] # AI Tested rebuild only (15 Nov 2026); fresh-cycle clones were hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - name: Skip episodes this branch did not ask for
@@ -277,7 +277,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [ai-tested-fable-trust-v2] # AI Tested rebuild only (15 Nov 2026); fresh-cycle clones were hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
