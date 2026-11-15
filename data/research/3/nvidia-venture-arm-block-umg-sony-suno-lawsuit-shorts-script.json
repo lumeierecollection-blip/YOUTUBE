@@ -1,0 +1,66 @@
+{
+  "channel_id": "3",
+  "topic_slug": "nvidia-venture-arm-block-umg-sony-suno-lawsuit",
+  "format": "shorts",
+  "hook": "You won't believe Universal Music Group and Sony Music Entertainment subpoenaed passive investor NVentures, LLC.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You won't believe Universal Music Group and Sony Music Entertainment subpoenaed passive investor NVentures, LLC.",
+      "b_roll": [
+        "Corporate logos of Universal Music Group and Sony Music Entertainment next to NVentures, LLC logo"
+      ],
+      "text_overlay": {
+        "text": "Subpoena Issued"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 10, 2026, NVentures, LLC moved to quash a deposition subpoena. Why did record labels demand testimony from this passive minority investor?",
+      "b_roll": [
+        "United States District Court Northern District of California legal documents",
+        "Suno Inc logo with artificial intelligence graphic overlay",
+        "Courtroom gavel hitting wooden block"
+      ],
+      "text_overlay": {
+        "text": "Motion to Quash"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, NVentures, LLC claims it's just a passive minority investor that already produced pre-investment business documents.",
+      "b_roll": [
+        "Stacks of corporate legal papers and evidence files being highlighted"
+      ],
+      "text_overlay": {
+        "text": "Documents Produced"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The lawsuit concerns generative-AI music training data used by Suno Inc. Court records show the motion carries docket prefix number 3.",
+      "b_roll": [
+        "Digital audio waveforms converting into code data streams",
+        "Record label executives walking into federal courthouse building",
+        "Official court docket display featuring prefix number 3"
+      ],
+      "text_overlay": {
+        "text": "Docket Number 3"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "NVentures, LLC filed a motion on November 10, 2026, to quash the subpoena.",
+      "b_roll": [
+        "Scale of justice balanced over corporate investment documents"
+      ],
+      "text_overlay": {
+        "text": "Passive Minority Investor"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.musicbusinessworldwide.com/files/2026/11/IN-RE-SUBPOENAS-TO-NVENTURES-LLC-AND-NVIDIA-CORPORATION.pdf",
+    "https://www.musicbusinessworldwide.com/nvidias-venture-arm-asks-court-to-block-umg-and-sonys-demand-for-testimony-in-suno-lawsuit-calling-itself-a-passive-minority-investor"
+  ]
+}

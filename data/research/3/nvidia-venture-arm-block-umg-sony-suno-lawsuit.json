@@ -1,0 +1,65 @@
+{
+  "topic_slug": "nvidia-venture-arm-block-umg-sony-suno-lawsuit",
+  "strongest_angle": "NVentures, LLC filed a motion on November 10, 2026, in the United States District Court for the Northern District of California to quash a deposition subpoena from Universal Music Group and Sony Music Entertainment in their copyright lawsuit against Suno Inc.",
+  "key_facts": [
+    {
+      "fact": "On November 10, 2026, third-party NVentures, LLC filed a motion to quash a deposition subpoena in the United States District Court for the Northern District of California.",
+      "source_url": "https://www.musicbusinessworldwide.com/files/2026/11/IN-RE-SUBPOENAS-TO-NVENTURES-LLC-AND-NVIDIA-CORPORATION.pdf",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "Universal Music Group and Sony Music Entertainment are plaintiffs in a copyright lawsuit against Suno Inc. concerning generative-AI music training data.",
+      "source_url": "https://www.musicbusinessworldwide.com/files/2026/11/IN-RE-SUBPOENAS-TO-NVENTURES-LLC-AND-NVIDIA-CORPORATION.pdf",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "NVentures describes itself as a passive minority investor that has already produced documents regarding its pre-investment business relationship with Suno.",
+      "source_url": "https://www.musicbusinessworldwide.com/nvidias-venture-arm-asks-court-to-block-umg-and-sonys-demand-for-testimony-in-suno-lawsuit-calling-itself-a-passive-minority-investor",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    },
+    {
+      "fact": "The case docket in the U.S. District Court for the Northern District of California is assigned docket number 3:2026mc80342.",
+      "source_url": "https://dockets.justia.com/docket/california/candce/3:2026mc80342/483495",
+      "source_name": "Justia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Case docket number",
+      "value": 3,
+      "unit": "docket prefix",
+      "source_url": "https://dockets.justia.com/docket/california/candce/3:2026mc80342/483495"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NVentures, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "NVIDIA Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Universal Music Group",
+      "kind": "organization"
+    },
+    {
+      "name": "Sony Music Entertainment",
+      "kind": "organization"
+    },
+    {
+      "name": "Suno Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "United States District Court for the Northern District of California",
+      "kind": "place"
+    }
+  ]
+}
