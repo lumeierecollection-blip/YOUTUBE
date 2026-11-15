@@ -54,6 +54,8 @@ async function generate(model) {
 }
 
 const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
+// the answer holds HTML with </script>; escape < so it cannot end our inline script
+const js = (v) => JSON.stringify(v).replace(/</g, "\u003c");
 function chatPage(model, prompt, chunks) {
   return `<!doctype html><meta charset="utf-8"><style>
   body{margin:0;background:#1b1b1d;color:#e8e6e3;font:17px/1.55 Inter,Segoe UI,system-ui,sans-serif;height:100vh;display:flex;flex-direction:column}
@@ -64,7 +66,7 @@ function chatPage(model, prompt, chunks) {
   .cur{display:inline-block;width:9px;height:19px;background:#e8e6e3;vertical-align:-3px;animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
   </style><header>AI Tested · live run · model <b>${esc(model)}</b></header><div id="log"></div><div id="box"><span id="typed"></span><span class="cur"></span></div>
   <script>
-  const prompt=${JSON.stringify(prompt)}, chunks=${JSON.stringify(chunks)};
+  const prompt=${js(prompt)}, chunks=${js(chunks)};
   const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));
   (async()=>{await sleep(600);const ty=document.getElementById('typed');
    for(const ch of prompt){ty.textContent+=ch;await sleep(prompt.length>220?12:28);} await sleep(500);
