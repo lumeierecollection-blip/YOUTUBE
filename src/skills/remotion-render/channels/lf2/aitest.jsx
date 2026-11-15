@@ -3,7 +3,7 @@
 // discussion with a highlight box; results sit next to the settings that produced them; charts outline the winner; a pill label names what
 // is being tested; an explainer diagram follows the demo. Nothing on these screens is typed by hand: replies come from the run's JSON.
 import React from "react";
-import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Freeze, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp, typed } from "./kit.jsx";
 
 const src = (p) => (p.startsWith("data:") || p.startsWith("http") ? p : staticFile(p));
@@ -302,4 +302,47 @@ export function Quote({ t, text, hl = [], who, org, pill, foot }) {
   );
 }
 
-export const AITEST = { browser: Browser, terminal: Terminal, chat: Chat, accuracy: Accuracy, grid: Grid, miss: Miss, flow: Flow, compare: Compare, verdict: Verdict, thumb: AiThumb, seq: Seq, bars: Bars, stat: Stat, quote: Quote };
+
+/** 14. A real recorded run (scripts/clone/demo-record.mjs): the screen recording itself, full bleed, with a slow push toward `focus`
+ * (the reference zooms into the chat and the running app). The label says which provider and model; it is the run log's own values. */
+const Rec = ({ video, len, style }) => { const f = useCurrentFrame(); return <Freeze frame={Math.min(f, Math.max(1, Math.round(len * 30) - 3))}><OffthreadVideo src={src(video)} muted style={style} /></Freeze>; };
+export function Run({ t, video, videoLen = 12, label, model, tag, ok, zoom = [1.0, 1.14], focus = "50% 45%", start = 0, pill, foot }) {
+  const f = useCurrentFrame(), { durationInFrames } = useVideoConfig(), z = interpolate(f, [0, durationInFrames], zoom, clamp), a = ramp(f, 4, 16, expo);
+  return (
+    <AbsoluteFill style={{ background: "#0d0e10" }}><Fonts />
+      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: focus }}>
+        <Sequence from={-Math.round(start * 30)}><Rec video={video} len={videoLen} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} /></Sequence>
+      </AbsoluteFill>
+      {label && <div style={{ position: "absolute", left: 48, bottom: 48, display: "flex", alignItems: "center", gap: 14, background: "rgba(10,11,14,0.9)", border: "1px solid rgba(255,255,255,0.18)", borderRadius: 12, padding: "12px 20px", opacity: a, transform: `translateY(${(1 - a) * 16}px)` }}>
+        <span style={{ width: 12, height: 12, borderRadius: "50%", background: ok === false ? "#ff5d5d" : t.accent }} />
+        <span style={{ fontFamily: F.sans, fontWeight: 800, fontSize: 30, color: "#fff" }}>{label}</span>
+        {model && <span style={{ fontFamily: F.mono, fontSize: 22, color: "rgba(255,255,255,0.7)" }}>{model}</span>}
+        {tag && <span style={{ fontFamily: F.sans, fontWeight: 700, fontSize: 22, color: "#0a0c10", background: ok === false ? "#ff5d5d" : t.accent, borderRadius: 6, padding: "3px 10px" }}>{tag}</span>}
+      </div>}
+      <Pill t={t} text={pill} /><Foot text={foot} />
+    </AbsoluteFill>
+  );
+}
+
+/** 15. Four runs of the same prompt side by side (the reference's split-screen comparisons). Each cell: the recording, provider label,
+ * and a result tag from the run log (e.g. "ran", "no app"). Cells light up one after another. */
+export function Quad({ t, title, cells = [], pill, foot }) {
+  const f = useCurrentFrame(), W = 900, H = 506;
+  return (
+    <AbsoluteFill style={{ background: "#0d0e10" }}><Fonts />
+      {title && <div style={{ position: "absolute", left: 0, right: 0, top: 22, textAlign: "center", fontFamily: F.sans, fontWeight: 800, fontSize: 34, color: "#fff", opacity: ramp(f, 0, 10) }}>{title}</div>}
+      {cells.slice(0, 4).map((c, i) => { const a = ramp(f, 6 + i * 8, 20 + i * 8, expo), x = 50 + (i % 2) * (W + 20), y = 76 + Math.floor(i / 2) * (H + 18);
+        return (<div key={i} style={{ position: "absolute", left: x, top: y, width: W, height: H, borderRadius: 14, overflow: "hidden", border: `2px solid ${c.ok === false ? "#ff5d5d" : "rgba(255,255,255,0.16)"}`, opacity: a, transform: `scale(${0.94 + 0.06 * a})`, background: "#000" }}>
+          {c.video ? <Rec video={c.video} len={c.videoLen || 10} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            : <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F.sans, fontWeight: 800, fontSize: 40, color: "#ff5d5d" }}>{c.empty || "nothing ran"}</div>}
+          <div style={{ position: "absolute", left: 14, top: 12, display: "flex", gap: 10, alignItems: "center", background: "rgba(10,11,14,0.88)", borderRadius: 8, padding: "6px 12px" }}>
+            <span style={{ fontFamily: F.sans, fontWeight: 800, fontSize: 24, color: "#fff" }}>{c.label}</span>
+            {c.tag && <span style={{ fontFamily: F.sans, fontWeight: 700, fontSize: 18, color: "#0a0c10", background: c.ok === false ? "#ff5d5d" : t.accent, borderRadius: 5, padding: "2px 8px" }}>{c.tag}</span>}
+          </div>
+        </div>); })}
+      <Pill t={t} text={pill} /><Foot text={foot} />
+    </AbsoluteFill>
+  );
+}
+
+export const AITEST = { browser: Browser, terminal: Terminal, chat: Chat, accuracy: Accuracy, grid: Grid, miss: Miss, flow: Flow, compare: Compare, verdict: Verdict, thumb: AiThumb, seq: Seq, bars: Bars, stat: Stat, quote: Quote, run: Run, quad: Quad };
