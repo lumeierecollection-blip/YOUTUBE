@@ -13,7 +13,7 @@ const attributions = (ch) => (cache[ch] ||= (() => { const f = join(ROOT, `src/s
 const walk = (o, f) => { if (typeof o === "string") f(o); else if (Array.isArray(o)) o.forEach((x) => walk(x, f)); else if (o && typeof o === "object") Object.values(o).forEach((x) => walk(x, f)); };
 /** Credit lines for the authentic pictures in a scene that does not already carry its own credit. */
 export function autoCredit(ch, scene) {
-  if (!scene || scene.credit || scene.credits || scene.autoCredit) return [];
+  if (!scene || scene.credit || scene.credits || scene.autoCredit || scene.type === "montage") return []; // a montage's photo shots carry their own on-screen credit; a global overlay would sit on the graphics shots
   const att = attributions(ch), lines = [];
   walk(scene, (s) => { const m = /^lf2\/[^/]+\/([^/]+)\.(jpg|jpeg|png)$/i.exec(s); if (m && att[m[1]]?.credit_line && !lines.includes(att[m[1]].credit_line)) lines.push(att[m[1]].credit_line); });
   return lines.slice(0, 2);

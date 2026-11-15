@@ -338,7 +338,7 @@ export function StatPanel({ t, title, items = [] }) {
       <div style={{ position: "absolute", left: 210, top: 70, width: 1500, height: 4, background: t.accent, transformOrigin: "left", transform: `scaleX(${ramp(f, 0, 24, expo)})` }} />
       {items.map((it, i) => { const a = ramp(f, 6 + i * 9, 40 + i * 9, expo), col = (it.team && t.teams[it.team]) ? t.teams[it.team].fill : t.accent, v = Number(it.value) * a, x = 210 + i * W;
         return <div key={i} style={{ position: "absolute", left: x, top: 300, width: W - 40, textAlign: "center", opacity: ramp(f, 4 + i * 9, 16 + i * 9) }}>
-          <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: n > 3 ? 190 : 250, lineHeight: 0.95, color: "#fff" }}>{(it.prefix || "") + (a > 0.985 ? Number(it.value) : v).toFixed(it.dec || 0)}{it.suffix || ""}</div>
+          <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: n > 3 ? 190 : items.some((x) => String((x.prefix || "") + Number(x.value).toFixed(x.dec || 0) + (x.suffix || "")).length >= 5) ? 150 : 250, lineHeight: 0.95, color: "#fff" }}>{(it.prefix || "") + (a > 0.985 ? Number(it.value) : v).toFixed(it.dec || 0)}{it.suffix || ""}</div>
           <div style={{ height: 14, background: "rgba(255,255,255,0.1)", margin: "30px 20px 0" }}><div style={{ height: 14, width: `${(it.frac ?? 1) * 100 * a}%`, background: col }} /></div>
           <div style={{ fontFamily: F.cond, fontSize: 38, letterSpacing: "0.16em", color: "rgba(255,255,255,0.75)", marginTop: 26, textTransform: "uppercase", whiteSpace: "pre-line" }}>{it.label}</div>
         </div>; })}
@@ -371,7 +371,7 @@ export function LineupPanel({ t, team, players, formation, title, hi = [] }) {
 // A pitch camera that is a single object gets a slow push so a board is never a still; arrays (keyframed cameras) are left alone.
 const drift = (cam, len, dx = 0, dy = 0, z = 1.09) => [{ f: 0, ...cam }, { f: Math.max(30, len), ...cam, scale: (cam.scale ?? 12.5) * z, fx: (cam.fx ?? 60) + dx, fy: (cam.fy ?? 40) + dy }];
 const ShotIn = ({ s, t, ch, len, first }) => {
-  const f = useCurrentFrame(), C = RIVAL[s.type], { w, drift: dr, ...rest } = s, a = first ? 1 : ramp(f, 0, 4);
+  const f = useCurrentFrame(), C = RIVAL[s.type], { w, drift: dr, ...rest } = s, a = 1; // hard cut, like the reference; only a short scale settle below
   if (!C) return <AbsoluteFill style={{ background: "#300" }} />;
   const props = { t, ch, dur: len, ...rest };
   if (dr !== false && rest.cam && !Array.isArray(rest.cam) && s.type !== "sequence") props.cam = drift(rest.cam, len, dr?.dx || 0, dr?.dy || 0, dr?.z || 1.09);
