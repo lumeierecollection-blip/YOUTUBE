@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-15 18:26 SAST
+Updated 2026-11-15 23:53 SAST
 
 **Next productions:** AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST
 
@@ -23,7 +23,7 @@ Updated 2026-11-15 18:26 SAST
 | Selected topic and score | ChatGPT Wallet Lets AI Agents Buy Items for You Automatically (79.8/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 129 views, 5 likes, 0 comments (public), 71.34% average viewed |
+| Performance | 130 views, 5 likes, 0 comments (public), 69.4% average viewed |
 | Analytics | available |
 
 ## Needs your attention
