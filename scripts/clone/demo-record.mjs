@@ -24,8 +24,9 @@ async function pickModel() {
   const ms = (await r.json()).models.filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace("models/", ""));
   fs.writeFileSync(path.join(outDir, "models.json"), JSON.stringify(ms, null, 1));
   // newest pro, else newest flash; ids sort well enough by version number
-  const pick = (re) => ms.filter((m) => re.test(m) && !/embed|tts|image|audio|live|preview-tts/.test(m)).sort().reverse()[0];
-  return pick(/pro/) || pick(/flash/) || ms[0];
+  // text models only (first run picked "nano-banana-pro-preview", an image model, and got 429)
+  const text = ms.filter((m) => /^gemini-/.test(m) && !/embed|tts|image|audio|live|robotics|computer-use/.test(m)).sort().reverse();
+  return [...text.filter((m) => /flash/.test(m) && !/lite/.test(m)), ...text.filter((m) => /pro/.test(m)), ...text];
 }
 
 // Stream the real answer; keep arrival times so the replay runs at the model's own pace.
@@ -76,9 +77,13 @@ function chatPage(model, prompt, chunks) {
   </script>`;
 }
 
-const model = await pickModel();
+const cands = job.model ? [job.model] : await pickModel();
+let model, gen;
+for (const m of cands.slice(0, 6)) {
+  try { gen = await generate(m); model = m; break; } catch (e) { console.log("model", m, "failed:", String(e.message).slice(0, 120)); }
+}
+if (!gen) throw new Error("no model answered");
 console.log("model", model);
-const gen = await generate(model);
 const run = { model, prompt: job.prompt, started: new Date().toISOString(), generation_ms: gen.ms, chunks: gen.chunks.length, answer: gen.answer };
 fs.writeFileSync(path.join(outDir, "run.json"), JSON.stringify(run, null, 1));
 

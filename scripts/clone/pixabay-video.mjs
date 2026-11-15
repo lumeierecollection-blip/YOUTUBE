@@ -14,7 +14,8 @@ for (const q of queries) {
   const u = `https://pixabay.com/api/videos/?key=${KEY}&q=${encodeURIComponent(q)}&per_page=${Math.max(3, +per)}&safesearch=true&order=popular`;
   const r = await fetch(u);
   if (!r.ok) { console.log("search failed", q, r.status); continue; }
-  for (const h of (await r.json()).hits.slice(0, +per)) {
+  // AI-generated clips are out: the owner rejects AI-render looks, and they are not real footage
+  for (const h of (await r.json()).hits.filter((h) => !/ai generated|animation|3d|green screen/i.test(h.tags)).slice(0, +per)) {
     const v = h.videos.medium?.url ? h.videos.medium : h.videos.small;
     const file = `px-${h.id}.mp4`;
     if (!fs.existsSync(path.join(outDir, file))) {
