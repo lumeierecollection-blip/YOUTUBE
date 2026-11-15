@@ -2755,9 +2755,14 @@
           "topic": "Jupiter and Mars Conjunction in November 2026 Morning Sky",
           "slug": "jupiter-mars-conjunction-november-2026",
           "reserved_at": "2026-11-14T15:13:52.154Z"
+        },
+        {
+          "topic": "Euclid Space Telescope DR1 Foundation Maps Over a Billion Cosmic Objects",
+          "slug": "euclid-space-telescope-dr1-foundation-billion-objects",
+          "reserved_at": "2026-11-15T15:44:19.022Z"
         }
       ],
-      "last_generated": "2026-11-14T15:13:52.154Z"
+      "last_generated": "2026-11-15T15:44:19.023Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
