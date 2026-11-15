@@ -1,0 +1,52 @@
+{
+  "channel_id": "48",
+  "topic_slug": "fine-point-transportation-140000-fine-gypsum-accident",
+  "format": "shorts",
+  "hook": "A November 2025 workplace accident led to a $140,000 fine.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A November 2025 workplace accident led to a $140,000 fine.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "$140,000 Fine"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2025, a worker died in Kwai Chung. What penalty did West Kowloon Magistrates' Courts impose on Fine Point Transportation Co., Limited on November 5, 2026?",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Kwai Chung"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the Labour Department launched a prosecution after vertically stored gypsum boards crushed a male worker.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Labour Department"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On November 5, 2026, West Kowloon Magistrates' Courts reached a verdict. Fine Point Transportation Co., Limited breached the Occupational Safety and Health Ordinance. The court fined Fine Point Transportation Co., Limited $140,000.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "November 5, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That Kwai Chung accident resulted in a $140,000 fine.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "$140,000"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.info.gov.hk/gia/general/202611/05/P2026110500592.htm",
+    "https://www.labour.gov.hk/common/osh/pdf/wsa/WSA-Pressed_by_Toppled_Gypsum_Boards_EN.pdf"
+  ]
+}
