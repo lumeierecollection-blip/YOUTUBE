@@ -1,0 +1,125 @@
+{
+ "channel": "ai-tested",
+ "ai": [
+  {
+   "name": "snake-gemini",
+   "provider": "gemini",
+   "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "snake-groq",
+   "provider": "groq",
+   "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "snake-mistral",
+   "provider": "mistral",
+   "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "snake-cerebras",
+   "provider": "cerebras",
+   "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "solar-gemini",
+   "provider": "gemini",
+   "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "solar-groq",
+   "provider": "groq",
+   "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "solar-mistral",
+   "provider": "mistral",
+   "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "solar-cerebras",
+   "provider": "cerebras",
+   "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "hexagon-gemini",
+   "provider": "gemini",
+   "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "hexagon-groq",
+   "provider": "groq",
+   "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "hexagon-mistral",
+   "provider": "mistral",
+   "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "hexagon-cerebras",
+   "provider": "cerebras",
+   "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "cave-gemini",
+   "provider": "gemini",
+   "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "cave-groq",
+   "provider": "groq",
+   "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "cave-mistral",
+   "provider": "mistral",
+   "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "cave-cerebras",
+   "provider": "cerebras",
+   "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "city-gemini",
+   "provider": "gemini",
+   "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "city-groq",
+   "provider": "groq",
+   "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "city-mistral",
+   "provider": "mistral",
+   "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  },
+  {
+   "name": "city-cerebras",
+   "provider": "cerebras",
+   "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+   "app_seconds": 10
+  }
+ ]
+}

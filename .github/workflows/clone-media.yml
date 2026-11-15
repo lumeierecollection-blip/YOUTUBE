@@ -1,0 +1,52 @@
+name: Clone media (real AI runs + footage, committed back)
+# Push to media/<slug> -> runs scripts/clone/make-media.mjs <slug> and commits the clips + run logs to that branch.
+# Commits made with GITHUB_TOKEN do not trigger other workflows, so nothing renders until lfr/<slug> is pushed by hand.
+on:
+  push:
+    branches: ["media/**"]
+permissions:
+  contents: write
+jobs:
+  media:
+    if: "!contains(github.event.head_commit.message, '[media-bot]')"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Install
+        run: |
+          npm install --no-audit --no-fund --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+          sudo apt-get install -y ffmpeg >/dev/null
+      - name: Make media
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          slug="${GITHUB_REF_NAME#media/}"
+          node scripts/clone/make-media.mjs "$slug"
+          git checkout -- package.json package-lock.json 2>/dev/null || true
+      - name: Contact sheets (for checking)
+        run: |
+          slug="${GITHUB_REF_NAME#media/}"; mkdir -p sheets
+          for f in $(find src/skills/remotion-render/public/lf2 -path "*clips/$slug/*.mp4"); do
+            ffmpeg -v error -y -i "$f" -vf "fps=1/2,scale=480:-2,tile=4x2" -frames:v 1 "sheets/$(basename "${f%.*}").jpg" || true
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: media-sheets-${{ github.run_id }}
+          path: |
+            sheets
+            data/clone/runs
+      - name: Commit back
+        run: |
+          git config user.name "media-bot"; git config user.email "media-bot@users.noreply.github.com"
+          git add src/skills/remotion-render/public/lf2 data/clone/runs
+          git commit -m "media: ${GITHUB_REF_NAME#media/} clips and run logs [media-bot]" || exit 0
+          git push origin HEAD:${GITHUB_REF_NAME}

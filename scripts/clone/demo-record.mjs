@@ -12,13 +12,30 @@ import { chromium } from "playwright";
 
 const [jobPath, outDir] = process.argv.slice(2);
 const job = JSON.parse(fs.readFileSync(jobPath, "utf8"));
-const KEY = process.env.GEMINI_API_KEY;
-if (!KEY) throw new Error("GEMINI_API_KEY missing");
+const provider = job.provider || "gemini";
+// OpenAI-compatible providers we hold free keys for (GitHub secrets). `prefer` orders the live /models list; the id actually used is recorded.
+const OAI = {
+  groq: { base: "https://api.groq.com/openai/v1", env: "GROQ_API_KEY", label: "Groq", prefer: [/gpt-oss-120b/, /kimi/, /llama-4/, /llama-3\.3-70b/, /qwen/] },
+  mistral: { base: "https://api.mistral.ai/v1", env: "MISTRAL_API_KEY", label: "Mistral", prefer: [/mistral-large-latest/, /mistral-medium-latest/, /magistral-medium/, /codestral-latest/] },
+  cerebras: { base: "https://api.cerebras.ai/v1", env: "CEREBRAS_API_KEY", label: "Cerebras", prefer: [/gpt-oss-120b/, /qwen-3.*235b/, /llama-4/, /llama3\.3|llama-3\.3/, /qwen/] },
+};
+const KEY = provider === "gemini" ? process.env.GEMINI_API_KEY : process.env[OAI[provider]?.env];
+if (!KEY) throw new Error(`key for ${provider} missing`);
 fs.mkdirSync(outDir, { recursive: true });
 const API = "https://generativelanguage.googleapis.com/v1beta";
 
 async function pickModel() {
-  if (job.model) return job.model;
+  if (job.model) return [job.model];
+  if (provider !== "gemini") {
+    const p = OAI[provider];
+    const r = await fetch(`${p.base}/models`, { headers: { authorization: `Bearer ${KEY}` } });
+    if (!r.ok) throw new Error(`list models ${r.status}`);
+    const ms = (await r.json()).data.map((m) => m.id).filter((m) => !/whisper|tts|embed|guard|vision|ocr|moderation|audio|voxtral|pixtral/.test(m));
+    fs.writeFileSync(path.join(outDir, "models.json"), JSON.stringify(ms, null, 1));
+    const out = [];
+    for (const re of p.prefer) for (const m of ms) if (re.test(m) && !out.includes(m)) out.push(m);
+    return out.length ? out : ms;
+  }
   const r = await fetch(`${API}/models?pageSize=200`, { headers: { "x-goog-api-key": KEY } });
   if (!r.ok) throw new Error(`list models ${r.status}`);
   const ms = (await r.json()).models.filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace("models/", ""));
@@ -32,10 +49,16 @@ async function pickModel() {
 // Stream the real answer; keep arrival times so the replay runs at the model's own pace.
 async function generate(model) {
   const t0 = Date.now();
-  const r = await fetch(`${API}/models/${model}:streamGenerateContent?alt=sse`, {
-    method: "POST", headers: { "x-goog-api-key": KEY, "content-type": "application/json" },
-    body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: job.prompt }] }] }),
-  });
+  const oai = provider !== "gemini";
+  const r = oai
+    ? await fetch(`${OAI[provider].base}/chat/completions`, {
+        method: "POST", headers: { authorization: `Bearer ${KEY}`, "content-type": "application/json" },
+        body: JSON.stringify({ model, stream: true, messages: [{ role: "user", content: job.prompt }] }),
+      })
+    : await fetch(`${API}/models/${model}:streamGenerateContent?alt=sse`, {
+        method: "POST", headers: { "x-goog-api-key": KEY, "content-type": "application/json" },
+        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: job.prompt }] }] }),
+      });
   if (!r.ok) throw new Error(`generate ${r.status} ${await r.text()}`);
   const chunks = []; let buf = "";
   for await (const piece of r.body) {
@@ -44,9 +67,9 @@ async function generate(model) {
     while ((i = buf.indexOf("\n\n")) >= 0) {
       const ev = buf.slice(0, i); buf = buf.slice(i + 2);
       const line = ev.split("\n").find((l) => l.startsWith("data: "));
-      if (!line) continue;
+      if (!line || line === "data: [DONE]") continue;
       const d = JSON.parse(line.slice(6));
-      const text = (d.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+      const text = oai ? d.choices?.[0]?.delta?.content || "" : (d.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
       if (text) chunks.push({ t: Date.now() - t0, text });
     }
   }
@@ -64,7 +87,7 @@ function chatPage(model, prompt, chunks) {
   .a{white-space:pre-wrap}.a code,.a pre{font-family:Consolas,monospace;font-size:14px;color:#b5d7a8}
   #box{margin:0 18% 26px;background:#2a2a2e;border-radius:16px;padding:16px 18px;min-height:52px;white-space:pre-wrap;color:#cfcfd4}
   .cur{display:inline-block;width:9px;height:19px;background:#e8e6e3;vertical-align:-3px;animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
-  </style><header>AI Tested · live run · model <b>${esc(model)}</b></header><div id="log"></div><div id="box"><span id="typed"></span><span class="cur"></span></div>
+  </style><header>AI Tested · live run · ${esc(provider === "gemini" ? "Google Gemini API" : OAI[provider].label + " API")} · model <b>${esc(model)}</b></header><div id="log"></div><div id="box"><span id="typed"></span><span class="cur"></span></div>
   <script>
   const prompt=${js(prompt)}, chunks=${js(chunks)};
   const sleep=(ms)=>new Promise(r=>setTimeout(r,ms));
@@ -86,7 +109,7 @@ for (const m of cands.slice(0, 6)) {
 }
 if (!gen) throw new Error("no model answered");
 console.log("model", model);
-const run = { model, prompt: job.prompt, started: new Date().toISOString(), generation_ms: gen.ms, chunks: gen.chunks.length, answer: gen.answer };
+const run = { provider, model, prompt: job.prompt, started: new Date().toISOString(), generation_ms: gen.ms, chunks: gen.chunks.length, answer: gen.answer };
 fs.writeFileSync(path.join(outDir, "run.json"), JSON.stringify(run, null, 1));
 
 const browser = await chromium.launch();
