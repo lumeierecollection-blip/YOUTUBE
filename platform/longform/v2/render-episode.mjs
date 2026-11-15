@@ -176,7 +176,7 @@ if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 const m = run("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"]).stderr;
 const J = JSON.parse(m.slice(m.lastIndexOf("{"), m.lastIndexOf("}") + 1));
 const master = join(OUT, "master.wav");
-r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.84:level=false`, "-ar", "48000", master]); // limiter at -1.5 dBFS: at 0.89 the AAC encode overshot to -0.7 dBFS true peak (fable-trust-v2 run 43719357524) and failed the -0.9 QA limit
+r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.72:level=false`, "-ar", "48000", master]); // limiter at -2.9 dBFS (0.84 = -1.5 still gave -0.5 dBFS true peak after AAC, run 43722712026): at 0.89 the AAC encode overshot to -0.7 dBFS true peak (fable-trust-v2 run 43719357524) and failed the -0.9 QA limit
 if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 
 // ---- final mux, written to a temp name then renamed
