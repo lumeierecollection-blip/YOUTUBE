@@ -216,5 +216,17 @@
     "cancelled": true,
     "source_file": "tandem-mobi-insulin-pump-recall-80000-units-shorts-shorts-2026-11-14.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "r6jPOamCHd0",
+    "channel_id": "48",
+    "title": "Fine Point Transportation Fined 140000 Dollars in Fatal…",
+    "uploaded_at": "2026-11-15T16:53:55.121Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-15T17:53:55.121Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "fine-point-transportation-140000-fine-gypsum-accident-shorts-shorts-2026-11-15.mp4",
+    "source_queue": "approved"
   }
 ]
