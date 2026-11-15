@@ -13,7 +13,7 @@ const BASE = join(ROOT, "output/longform-prod", slug), VOICE = join(BASE, "voice
 const { EPISODE: ep, SOURCES } = await import(`./episodes/${slug}.mjs`);
 const dur = (f) => Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }).stdout.trim());
 const attrib = (() => { try { return JSON.parse(readFileSync(join(ROOT, `src/skills/remotion-render/public/lf2/${ch}/ATTRIBUTIONS.json`), "utf8")); } catch { return {}; } })();
-const images = [...new Set(ep.beats.flatMap((b) => { const img = b.scene.image || b.scene.photo; const k = img && basename(String(img)).replace(/\.\w+$/, ""); return k && attrib[k] ? [`${attrib[k].credit_line} (${attrib[k].source_url})`] : []; }))];
+const images = [...new Set(ep.beats.flatMap((b) => { return [b.scene, ...(b.scene.shots || [])].flatMap((sc) => { const img = sc.image || sc.photo; const k = img && basename(String(img)).replace(/\.\w+$/, ""); return k && attrib[k] ? [`${attrib[k].credit_line} (${attrib[k].source_url})`] : []; }); }))];
 const log = existsSync(join(BASE, "render-log.json")) ? JSON.parse(readFileSync(join(BASE, "render-log.json"), "utf8")) : {};
 const lib = Object.fromEntries(JSON.parse(readFileSync(join(ROOT, "config/longform-audio-library.json"), "utf8")).assets.map((a) => [a.slot, a]));
 const sounds = [...new Set((log.sfx || []).map((e) => e.asset))].map((k) => { const a = lib[k]; return a ? `Sound effect: "${a.title}" by ${a.creator}, ${a.license.toUpperCase().replace("BY 3.0", "CC BY 3.0")} (${a.source_page})` : null; }).filter(Boolean);
@@ -27,6 +27,7 @@ const TOPIC = { // per-episode hashtags and tags: topic words only, no claims
   "hidden-past": { hashtags: "#HiddenPast #History #SuezCanal", tags: ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"] },
   "hidden-past-kaliningrad": { hashtags: "#HiddenPast #History #Kaliningrad", tags: ["Kaliningrad", "Königsberg", "Suwałki Gap", "Potsdam Conference", "history"] },
   "ai-tested-ai-bubble": { hashtags: "#AITested #AI #AIBubble", tags: ["AI bubble", "AI debt", "KOSPI crash", "data centres", "Nvidia OpenAI"] },
+  "rival-lines-analyse-v2": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
   "rival-lines-analyse": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
 }[slug] || { hashtags: ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History", tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["history"] };
 const hashtags = TOPIC.hashtags;

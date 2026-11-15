@@ -4,7 +4,7 @@
 // hold rights to, so the proof layer here is the match's own event data (StatsBomb open data) animated on the pitch.
 // The pitch is a real 3D plane: every point is projected through a camera (focus, yaw, tilt, distance) that can move per frame.
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp } from "./kit.jsx";
 
 const L = 120, Wd = 80;
@@ -295,11 +295,14 @@ export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName,
 
 /** 11. Real photograph (licensed: Commons / government press photo) with the credit on screen and one capital callout. The proof layer the references
  * get from broadcast clips, which we cannot license; a still is the honest substitute and is labelled as such. */
-export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur = 240 }) {
-  const f = useCurrentFrame(), s = interpolate(f, [0, dur], [1.02, 1.09], clamp);
+export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur = 240, zoom = [1.04, 1.16], shift = [[0, 0], [0, 0]], pan }) {
+  // Ken Burns: zoom, translate and (optional) object-position pan, all over the shot length (dur), so a still never sits still.
+  const f = useCurrentFrame(), k = interpolate(f, [0, dur], [0, 1], clamp), s = zoom[0] + (zoom[1] - zoom[0]) * k;
+  const tx = shift[0][0] + (shift[1][0] - shift[0][0]) * k, ty = shift[0][1] + (shift[1][1] - shift[0][1]) * k;
+  const op = pan ? `${pan[0][0] + (pan[1][0] - pan[0][0]) * k}% ${pan[0][1] + (pan[1][1] - pan[0][1]) * k}%` : pos;
   return (
     <AbsoluteFill style={{ background: "#000" }}><Fonts />
-      <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transform: `scale(${s})`, filter: "saturate(0.95) contrast(1.05)" }} />
+      <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: op, transform: `translate(${tx}px, ${ty}px) scale(${s})`, filter: "saturate(0.95) contrast(1.05)" }} />
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0) 70%)" }} />
       {kicker && <div style={{ position: "absolute", left: 110, top: 760, fontFamily: F.cond, fontWeight: 700, fontSize: 30, letterSpacing: "0.2em", color: t.accent }}>{kicker}</div>}
       {callout && <Callout t={t} text={callout} y={810} from={10} />}
@@ -309,4 +312,76 @@ export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur 
   );
 }
 
-export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb };
+/** 12. Text card (reference: "DID YOU NOTICE?", "HYPOTHESIS", "WRITE IT DOWN"): lines reveal one by one over slowly moving topographic rings. Lines starting with "*" are accent coloured. */
+export function TextCard({ t, kicker, lines = [], sub, dur = 120 }) {
+  const f = useCurrentFrame(), sc = lerp(f, 0, Math.max(60, dur), 1, 1.06);
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(70% 70% at 50% 45%, #1d2023 0%, #0a0b0c 72%, #000 100%)" }}><Fonts />
+      <svg width="1920" height="1080" style={{ position: "absolute", inset: 0, opacity: 0.22 }}>{Array.from({ length: 9 }, (_, i) => <ellipse key={i} cx={1380 + Math.sin(f / 70 + i) * 24} cy={420 + Math.cos(f / 85 + i) * 18} rx={150 + i * 120 + (f % 240) * 0.35} ry={90 + i * 78 + (f % 240) * 0.22} fill="none" stroke="#fff" strokeWidth="1.5" opacity={0.7 - i * 0.07} />)}</svg>
+      <div style={{ position: "absolute", left: 150, top: 0, bottom: 0, display: "flex", flexDirection: "column", justifyContent: "center", transform: `scale(${sc})`, transformOrigin: "20% 50%" }}>
+        {kicker && <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 38, letterSpacing: "0.3em", color: t.accent, marginBottom: 26, opacity: ramp(f, 0, 10), textTransform: "uppercase" }}>{kicker}</div>}
+        {lines.map((l, i) => { const hot = l.startsWith("*"), a = ramp(f, 6 + i * 14, 18 + i * 14, expo); return <div key={i} style={{ fontFamily: F.cond, fontWeight: 700, fontSize: l.length > 24 ? 104 : l.length > 18 ? 124 : 138, lineHeight: 1.02, textTransform: "uppercase", color: hot ? t.accent : "#fff", opacity: a, transform: `translateY(${(1 - a) * 36}px)`, whiteSpace: "pre-line" }}>{hot ? l.slice(1) : l}</div>; })}
+        <div style={{ height: 8, width: 520 * ramp(f, 10, 50), background: t.accent, marginTop: 28 }} />
+        {sub && <div style={{ fontFamily: F.sans, fontSize: 40, color: "rgba(255,255,255,0.78)", marginTop: 30, maxWidth: 1250, lineHeight: 1.3, opacity: ramp(f, 24 + lines.length * 12, 40 + lines.length * 12) }}>{sub}</div>}
+      </div>
+      <Tags t={t} /><Finish grain={0.06} vignette={0.5} />
+    </AbsoluteFill>
+  );
+}
+
+/** 13. Stat panel (reference: stat panels): 2 to 4 counted figures that count up, each with a bar that fills to frac. items: [{ value, label, dec, frac, team, prefix, suffix }] */
+export function StatPanel({ t, title, items = [] }) {
+  const f = useCurrentFrame(), n = items.length, W = 1500 / n;
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
+      <div style={{ position: "absolute", top: 90, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 46, letterSpacing: "0.22em", color: "rgba(255,255,255,0.78)", textTransform: "uppercase" }}>{title}</div>
+      <div style={{ position: "absolute", left: 210, top: 70, width: 1500, height: 4, background: t.accent, transformOrigin: "left", transform: `scaleX(${ramp(f, 0, 24, expo)})` }} />
+      {items.map((it, i) => { const a = ramp(f, 6 + i * 9, 40 + i * 9, expo), col = (it.team && t.teams[it.team]) ? t.teams[it.team].fill : t.accent, v = Number(it.value) * a, x = 210 + i * W;
+        return <div key={i} style={{ position: "absolute", left: x, top: 300, width: W - 40, textAlign: "center", opacity: ramp(f, 4 + i * 9, 16 + i * 9) }}>
+          <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: n > 3 ? 190 : 250, lineHeight: 0.95, color: "#fff" }}>{(it.prefix || "") + (a > 0.985 ? Number(it.value) : v).toFixed(it.dec || 0)}{it.suffix || ""}</div>
+          <div style={{ height: 14, background: "rgba(255,255,255,0.1)", margin: "30px 20px 0" }}><div style={{ height: 14, width: `${(it.frac ?? 1) * 100 * a}%`, background: col }} /></div>
+          <div style={{ fontFamily: F.cond, fontSize: 38, letterSpacing: "0.16em", color: "rgba(255,255,255,0.75)", marginTop: 26, textTransform: "uppercase", whiteSpace: "pre-line" }}>{it.label}</div>
+        </div>; })}
+      <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+/** 14. Line-up panel from the lineup data (reference: the line-up screenshot): number, name, position, and a bar of counted touches that grows. */
+export function LineupPanel({ t, team, players, formation, title, hi = [] }) {
+  const f = useCurrentFrame(), max = Math.max(...players.map((p) => p.touches || 0)), c = t.teams[team] || { fill: "#888", ring: "#fff", ink: "#fff" };
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 30% 40%, #181b1e 0%, #08090a 78%)" }}><Fonts />
+      <div style={{ position: "absolute", left: 120, top: 70, fontFamily: F.cond, fontWeight: 700, fontSize: 64, letterSpacing: "0.1em", color: "#fff", textTransform: "uppercase" }}>{title || `${team} starting XI`}</div>
+      <div style={{ position: "absolute", left: 120, top: 150, fontFamily: F.cond, fontSize: 34, letterSpacing: "0.3em", color: t.accent }}>{formation ? formation.split("").join("-") : ""} · BARS = ON-BALL ACTIONS, FIRST HALF</div>
+      <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag t={t} team={team} x={1560} y={60} s={150} /></svg>
+      {players.map((p, i) => { const a = ramp(f, 8 + i * 4, 20 + i * 4, expo), h = hi.includes(p.name.split(" ").slice(-1)[0]), g = ramp(f, 14 + i * 4, 44 + i * 4, expo);
+        return <div key={p.id} style={{ position: "absolute", left: 120, top: 230 + i * 74, width: 1500, height: 62, display: "flex", alignItems: "center", gap: 26, opacity: a, transform: `translateX(${(1 - a) * -80}px)` }}>
+          <div style={{ width: 70, height: 56, background: c.fill, border: `3px solid ${c.ring}`, color: c.ink, fontFamily: F.cond, fontWeight: 700, fontSize: 40, textAlign: "center", lineHeight: "52px" }}>{p.number}</div>
+          <div style={{ width: 420, fontFamily: F.cond, fontWeight: 700, fontSize: 42, color: h ? t.accent : "#fff", textTransform: "uppercase", letterSpacing: "0.03em" }}>{p.name}</div>
+          <div style={{ width: 420, fontFamily: F.cond, fontSize: 28, letterSpacing: "0.12em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}>{p.position}</div>
+          <div style={{ height: 22, width: 330 * ((p.touches || 0) / max) * g, background: h ? t.accent : c.fill }} />
+          <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 34, color: "#fff" }}>{Math.round((p.touches || 0) * g)}</div>
+        </div>; })}
+      <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+// A pitch camera that is a single object gets a slow push so a board is never a still; arrays (keyframed cameras) are left alone.
+const drift = (cam, len, dx = 0, dy = 0, z = 1.09) => [{ f: 0, ...cam }, { f: Math.max(30, len), ...cam, scale: (cam.scale ?? 12.5) * z, fx: (cam.fx ?? 60) + dx, fy: (cam.fy ?? 40) + dy }];
+const ShotIn = ({ s, t, ch, len, first }) => {
+  const f = useCurrentFrame(), C = RIVAL[s.type], { w, drift: dr, ...rest } = s, a = first ? 1 : ramp(f, 0, 4);
+  if (!C) return <AbsoluteFill style={{ background: "#300" }} />;
+  const props = { t, ch, dur: len, ...rest };
+  if (dr !== false && rest.cam && !Array.isArray(rest.cam) && s.type !== "sequence") props.cam = drift(rest.cam, len, dr?.dx || 0, dr?.dy || 0, dr?.z || 1.09);
+  return <AbsoluteFill style={{ opacity: a, transform: `scale(${first ? 1 : lerp(f, 0, 6, 1.03, 1, expo)})` }}><C {...props} /></AbsoluteFill>;
+};
+/** 15. Montage: one narration paragraph cut into several shots of different scene types (the reference changes picture every 3 to 5 s). Shot lengths are weights (w) of the beat length. */
+export function Montage({ t, ch, shots }) {
+  const { durationInFrames: D } = useVideoConfig(), tot = shots.reduce((a, s) => a + (s.w || 1), 0); let at = 0;
+  return <AbsoluteFill style={{ background: "#000" }}>{shots.map((s, i) => { const from = Math.round((at / tot) * D); at += s.w || 1; const to = i === shots.length - 1 ? D : Math.round((at / tot) * D);
+    return <Sequence key={i} from={from} durationInFrames={Math.max(1, to - from)}><ShotIn s={s} t={t} ch={ch} len={to - from} first={i === 0} /></Sequence>; })}</AbsoluteFill>;
+}
+
+export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, text: TextCard, stats: StatPanel, lineup: LineupPanel, montage: Montage };

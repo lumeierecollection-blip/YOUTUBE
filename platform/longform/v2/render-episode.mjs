@@ -118,8 +118,14 @@ const events = [];
 for (const rule of CUE.rules[ch] || []) {
   if (!["action", "accent"].includes(rule.type) || !String(rule.asset).startsWith("SFX_")) continue;
   for (const [i, b] of beats.entries()) {
-    if (rule.scene && !rule.scene.includes(b.scene.type)) continue;
-    let off = rule.offset_s || 0;
+    // a montage beat (Rival Lines v2) matches a rule when one of its shots has the rule's scene type; the cue is placed at that shot's start
+    let base = 0;
+    if (rule.scene && !rule.scene.includes(b.scene.type)) {
+      const sh = b.scene.type === "montage" ? b.scene.shots : null, k = sh ? sh.findIndex((x) => rule.scene.includes(x.type)) : -1;
+      if (k < 0) continue;
+      base = (b._len * sh.slice(0, k).reduce((a, x) => a + (x.w || 1), 0)) / sh.reduce((a, x) => a + (x.w || 1), 0);
+    }
+    let off = base + (rule.offset_s || 0);
     if (rule.vo) {
       const m = new RegExp(rule.vo, "i").exec(b.vo); if (!m) continue;
       const wf = join(VDIR, `${b.id}.words.json`), w = existsSync(wf) ? (JSON.parse(readFileSync(wf, "utf8")).words || []) : [];
