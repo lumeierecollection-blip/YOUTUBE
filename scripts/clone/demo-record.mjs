@@ -55,7 +55,7 @@ async function generate(model) {
 
 const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
 // the answer holds HTML with </script>; escape < so it cannot end our inline script
-const js = (v) => JSON.stringify(v).replace(/</g, "\u003c");
+const js = (v) => JSON.stringify(v).replace(/</g, String.fromCharCode(92) + "u003c");
 function chatPage(model, prompt, chunks) {
   return `<!doctype html><meta charset="utf-8"><style>
   body{margin:0;background:#1b1b1d;color:#e8e6e3;font:17px/1.55 Inter,Segoe UI,system-ui,sans-serif;height:100vh;display:flex;flex-direction:column}
