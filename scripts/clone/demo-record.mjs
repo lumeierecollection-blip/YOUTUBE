@@ -65,7 +65,7 @@ async function generate(model) {
         body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: job.prompt }] }] }),
       });
   if (!r.ok) throw new Error(`generate ${r.status} ${await r.text()}`);
-  const chunks = []; let buf = "";
+  const chunks = []; let buf = "", finish = null, usage = null;
   for await (const piece of r.body) {
     buf += Buffer.from(piece).toString("utf8").replace(/\r/g, ""); // the API separates events with \r\n\r\n
     let i;
@@ -75,10 +75,12 @@ async function generate(model) {
       if (!line || line === "data: [DONE]") continue;
       const d = JSON.parse(line.slice(6));
       const text = oai ? d.choices?.[0]?.delta?.content || "" : (d.candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+      const fin = oai ? d.choices?.[0]?.finish_reason : d.candidates?.[0]?.finishReason;
+      if (fin) finish = fin; if (d.usage || d.usageMetadata) usage = d.usage || d.usageMetadata; // why the stream stopped: "stop" = model finished, "length" = token cap
       if (text) chunks.push({ t: Date.now() - t0, text });
     }
   }
-  return { chunks, ms: Date.now() - t0, answer: chunks.map((c) => c.text).join("") };
+  return { chunks, ms: Date.now() - t0, answer: chunks.map((c) => c.text).join(""), finish, usage };
 }
 
 const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
@@ -121,7 +123,7 @@ for (const [i, [m, k]] of tries.entries()) {
 }
 if (!gen) throw new Error("no model answered");
 console.log("model", model);
-const run = { provider, model, prompt: job.prompt, started: new Date().toISOString(), generation_ms: gen.ms, chunks: gen.chunks.length, answer: gen.answer };
+const run = { finish: gen.finish, usage: gen.usage, provider, model, prompt: job.prompt, started: new Date().toISOString(), generation_ms: gen.ms, chunks: gen.chunks.length, answer: gen.answer };
 fs.writeFileSync(path.join(outDir, "run.json"), JSON.stringify(run, null, 1));
 
 const browser = await chromium.launch();
