@@ -1,0 +1,28 @@
+{
+ "criterion": "Pass = the page shows what the prompt asked for, running on its own, judged by watching the whole recorded clip (frames every 2.5 s, full-size crops where small). One try per model; a run is re-made only when the answer was cut off by our setup (token cap / provider default), never because the result was bad.",
+ "judged_by": "Claude (Opus 5.5) from the recordings, 16 Nov 2026",
+ "reruns": [
+  "gpt-oss-20b: first answers stopped at Groq's default 2,048 output tokens (finish_reason length) -> both gpt-oss models re-run on all 5 tasks with the same 16,000 allowance; all 10 finished with finish_reason stop",
+  "Gemini: rate-limited (429) attempts on other model ids were retried; every scored Gemini run is gemini-3.8-flash"
+ ],
+ "excluded": {
+  "qwen": "Qwen 3.8 27B on Groq: our tier rejects requests reserving more than about 6,000 output tokens ('Request too large'); with a 6,000 cap every answer stopped mid-code (finish_reason length) on all 5 tasks. Not a fair test of the model, so not scored."
+ },
+ "runs": {
+  "snake-gemini": { "pass": true, "note": "snake chases the food on a small board, score climbs" },
+  "snake-gptoss": { "pass": true, "note": "plays, score reaches 5; drawn across the whole page in small squares" },
+  "snake-gptoss20": { "pass": true, "note": "plays on a small black board, score shown" },
+  "solar-gemini": { "pass": true, "note": "Sun and eight labelled planets on orbit rings, moving at different speeds, starfield" },
+  "solar-gptoss": { "pass": false, "note": "Sun, labelled planets and orbit rings drawn, but nothing moves (frames at 2 s and 11 s identical)" },
+  "solar-gptoss20": { "pass": true, "note": "planets start in a line and fan out at different speeds; slow, labels overlap" },
+  "hexagon-gemini": { "pass": true, "note": "ten balls under gravity inside a spinning hexagon" },
+  "hexagon-gptoss": { "pass": true, "note": "ten balls under gravity inside a spinning hexagon" },
+  "hexagon-gptoss20": { "pass": false, "note": "spinning hexagon with one ball, not ten" },
+  "cave-gemini": { "pass": true, "note": "ship flies through a scrolling cave, distance counter" },
+  "cave-gptoss": { "pass": true, "note": "ship follows a wave-shaped cave, distance counter climbs" },
+  "cave-gptoss20": { "pass": true, "note": "thin cave walls scroll, ship dot, distance counter climbs" },
+  "city-gemini": { "pass": true, "note": "full day-night cycle, sun and moon, stars, lit windows" },
+  "city-gptoss": { "pass": true, "note": "day-night cycle with moon, stars and lit windows" },
+  "city-gptoss20": { "pass": true, "note": "day-night cycle with lit windows, drawn in a small corner of the page" }
+ }
+}

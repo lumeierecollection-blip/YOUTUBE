@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [ai-tested-fable-trust-v2] # AI Tested rebuild only (15 Nov 2026); fresh-cycle clones were hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse
+        episode: [ai-tested-four-ais] # rebuild/ai: only this episode (16 Nov 2026)
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - name: Skip episodes this branch did not ask for
@@ -277,7 +277,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [ai-tested-fable-trust-v2] # AI Tested rebuild only (15 Nov 2026); fresh-cycle clones were hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse
+        episode: [ai-tested-four-ais] # rebuild/ai: only this episode (16 Nov 2026)
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
@@ -365,3 +365,22 @@ jobs:
             output/longform-prod/${{ matrix.episode }}/qa.json
             output/longform-prod/${{ matrix.episode }}/thumbnails/*.jpg
             output/longform-prod/${{ matrix.episode }}/thumbnails/*.json
+      - name: Small check copy (720p under 30 MiB + 16-frame sheet) for the QA look
+        if: always() && steps.want.outputs.run == 'yes'
+        shell: bash
+        run: |
+          d="output/longform-prod/${{ matrix.episode }}"; c="$d/check"; mkdir -p "$c"
+          if [ -f "$d/episode.mp4" ]; then
+            dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$d/episode.mp4")
+            echo "$dur" > "$c/duration.txt"
+            ffmpeg -y -v error -i "$d/episode.mp4" -vf scale=1280:720 -c:v libx264 -b:v 420k -maxrate 500k -bufsize 1M -preset veryfast -c:a aac -b:a 64k "$c/check-720p.mp4"
+            ffmpeg -y -v error -i "$d/episode.mp4" -vf "fps=16/$dur,scale=480:-2,tile=4x4" -frames:v 1 "$c/sheet-16.jpg"
+            ls -l "$c"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.want.outputs.run == 'yes'
+        with:
+          name: check-${{ matrix.episode }}-${{ github.run_id }}
+          retention-days: 7
+          if-no-files-found: ignore
+          path: output/longform-prod/${{ matrix.episode }}/check/*
