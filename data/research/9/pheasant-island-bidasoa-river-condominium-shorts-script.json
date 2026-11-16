@@ -1,0 +1,65 @@
+{
+  "channel_id": "9",
+  "topic_slug": "pheasant-island-bidasoa-river-condominium",
+  "format": "shorts",
+  "hook": "Did you know France and Spain alternate administration of Pheasant Island every 6 months?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know France and Spain alternate administration of Pheasant Island every 6 months?",
+      "b_roll": [
+        "graphic of map with alternating flags on a small island"
+      ],
+      "text_overlay": {
+        "text": "6 Month Country Switch"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1659, France and Spain signed the Treaty of the Pyrenees on Pheasant Island. Who controls Pheasant Island today?",
+      "b_roll": [
+        "historical treaty document map overlay",
+        "aerial graphic of Bidasoa River island"
+      ],
+      "text_overlay": {
+        "text": "Signed in 1659"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, France doesn't keep permanent control because authority flips to Spain every 6 months.",
+      "b_roll": [
+        "split screen showing French flag and Spanish flag"
+      ],
+      "text_overlay": {
+        "text": "Joint Administration"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "France and Spain alternate administration over the territory every 6 months. This shared border status has endured continuously since 1659.",
+      "b_roll": [
+        "motion chart showing 6 month administrative timeline",
+        "diagram showing island surface area stabilization"
+      ],
+      "text_overlay": {
+        "text": "2,000 m² Surface Area"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "France and Spain continue swapping Pheasant Island every 6 months.",
+      "b_roll": [
+        "graphic boundary marker of Pheasant Island"
+      ],
+      "text_overlay": {
+        "text": "Pheasant Island"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Pheasant_Island",
+    "https://www.bidasoaturismo.com/en/lugares/pheasant-island",
+    "https://www.cntraveler.com/story/why-pheasant-island-is-sometimes-in-france-sometimes-in-spain"
+  ]
+}

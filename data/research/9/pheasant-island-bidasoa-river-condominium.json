@@ -1,0 +1,67 @@
+{
+  "topic_slug": "pheasant-island-bidasoa-river-condominium",
+  "strongest_angle": "Exploring the unique geography and history of Pheasant Island, a tiny river island in the Bidasoa River jointly owned by France and Spain, alternating administration every six months.",
+  "key_facts": [
+    {
+      "fact": "Pheasant Island is an uninhabited river island located in the Bidasoa River between France and Spain, whose administration alternates between the two nations every six months.",
+      "source_url": "https://en.wikipedia.org/wiki/Pheasant_Island",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The island currently measures 2,000 square meters, and protective measures have been taken to stabilise its surface area.",
+      "source_url": "https://www.bidasoaturismo.com/en/lugares/pheasant-island",
+      "source_name": "Bidasoa Turismoa",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Pheasant Island has been administered jointly by France and Spain since the 1659 Treaty of the Pyrenees was signed there.",
+      "source_url": "https://www.cntraveler.com/story/why-pheasant-island-is-sometimes-in-france-sometimes-in-spain",
+      "source_name": "Condé Nast Traveler",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Surface area",
+      "value": 2000,
+      "unit": "square meters",
+      "source_url": "https://www.bidasoaturismo.com/en/lugares/pheasant-island"
+    },
+    {
+      "label": "Administration period",
+      "value": 6,
+      "unit": "months",
+      "source_url": "https://en.wikipedia.org/wiki/Pheasant_Island"
+    },
+    {
+      "label": "Treaty year",
+      "value": 1659,
+      "unit": "year",
+      "source_url": "https://www.cntraveler.com/story/why-pheasant-island-is-sometimes-in-france-sometimes-in-spain"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Pheasant Island",
+      "kind": "place"
+    },
+    {
+      "name": "Bidasoa River",
+      "kind": "place"
+    },
+    {
+      "name": "France",
+      "kind": "place"
+    },
+    {
+      "name": "Spain",
+      "kind": "place"
+    },
+    {
+      "name": "Treaty of the Pyrenees",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}
