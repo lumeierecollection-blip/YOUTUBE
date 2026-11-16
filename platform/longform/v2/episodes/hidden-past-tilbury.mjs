@@ -10,16 +10,25 @@
 // (it showed a flat riverside field and was anachronistic for 1588).
 // Facts: ONLY from the Wikipedia articles fetched 16 Nov 2026 (docs/longform/episodes/replicate-2026-11-16/hidden-past-sources/): Speech to the Troops at Tilbury, Spanish Armada, Elizabeth I.
 // Where those articles disagree (the date of the speech; when the army was disbanded) the narration says so and follows the article on the speech.
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { ROOT } from "../../../preview/lib.mjs";
+const NE = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/geo/ne_50m_armada_sides.geojson"), "utf8"));
+// flat political colouring, one colour per side, as the reference colours its campaign maps (Natural Earth 50m, public domain)
+const FILL = (id, name, color, from = 0) => ({ id, data: { type: "FeatureCollection", features: NE.features.filter((f) => f.properties.NAME === name) }, color, opacity: 0.78, outline: "#F4EDD8", outlineWidth: 2, from, dur: 24 });
+const SIDES = [FILL("es", "Spain", "#B5342B"), FILL("pt", "Portugal", "#B5342B"), FILL("uk", "United Kingdom", "#2F4F8F"), FILL("fr", "France", "#8C8A7A"), FILL("nl", "Netherlands", "#9A8E6A"), FILL("be", "Belgium", "#9A8E6A"), FILL("ie", "Ireland", "#4E7A5A")];
+const GRADE = { saturation: 0.3 };
 const A = (id) => `lf2/hidden-past/${id}.jpg`;
-const C = { Tilbury: [0.3582, 51.4606], London: [-0.1275, 51.5072], Dunkirk: [2.3775, 51.0383], Calais: [1.8564, 50.9481], Gravelines: [2.1283, 50.9858], Plymouth: [-4.1422, 50.3714], Dover: [1.3089, 51.1295], Lisbon: [-9.15, 38.7253], Lizard: [-5.1833, 50.0333] };
+const C = { Tilbury: [0.3582, 51.4606], London: [-0.1275, 51.5072], Dunkirk: [2.3775, 51.0383], Calais: [1.8564, 50.9481], Gravelines: [2.1283, 50.9858], Plymouth: [-4.1422, 50.3714], Dover: [1.3089, 51.1295], Lisbon: [-9.15, 38.7253], Lizard: [-5.1833, 50.0333], Finisterre: [-9.2722, 42.8825], Ushant: [-5.0833, 48.4611] };
 const W = (t, slug) => ({ title: `Wikipedia: ${t}`, url: `https://en.wikipedia.org/wiki/${slug}`, retrieved: "2026-11-16" });
 
 export const SOURCES = {
   SP: W("Speech to the Troops at Tilbury", "Speech_to_the_Troops_at_Tilbury"),
   AR: W("Spanish Armada", "Spanish_Armada"),
   EL: W("Elizabeth I", "Elizabeth_I"),
-  COORDS: { title: "Coordinates: Wikipedia API (prop=coordinates) for Tilbury, London, Dunkirk, Calais, Gravelines, Plymouth, Dover, Lisbon, The Lizard", url: "https://en.wikipedia.org/w/api.php", retrieved: "2026-11-16" },
+  COORDS: { title: "Coordinates: Wikipedia API (prop=coordinates) for Tilbury, London, Dunkirk, Calais, Gravelines, Plymouth, Dover, Lisbon, The Lizard, Cape Finisterre, Ushant", url: "https://en.wikipedia.org/w/api.php", retrieved: "2026-11-16" },
   COMMONS: { title: "Pictures via Wikimedia Commons (credits on screen; public/lf2/hidden-past/ATTRIBUTIONS.json)", url: "https://commons.wikimedia.org/", retrieved: "2026-11-16" },
+  NE: { title: "Country polygons: Natural Earth 50m (public domain)", url: "https://www.naturalearthdata.com/", retrieved: "2026-11-16" },
   EOX: { title: "Sentinel-2 cloudless imagery by EOX (CC BY 4.0), contains modified Copernicus Sentinel data", url: "https://s2maps.eu", retrieved: "2026-11-16" },
   EPIC: { title: "Structure reference (not a fact source): Epic History TV, The Greatest Speech in History? Alexander the Great and the Opis Mutiny", url: "https://www.youtube.com/watch?v=RlKJDwViNKs", retrieved: "2026-11-16" },
 };
@@ -54,7 +63,7 @@ export const EPISODE = {
       scene: F("tb-tilbury-illus", "TILBURY", "Whether she used these words, we do not know.", "Historian David Loades, quoted in Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 30%", z: [1.0, 1.14], at: 120 }) },
     { id: "T05", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the campaign map before the battle", src: ["AR", "EL", "COORDS", "EOX"],
       vo: "In the summer of 1588 a great Spanish fleet, the Armada, set out for the English Channel. Its plan was to carry an invasion force under the Duke of Parma from the Netherlands to the south-east coast of England.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "SUMMER 1588", views: [{ ...SOUTHEAST, zoom: 5.8 }, { ...SOUTHEAST, f: 330 }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "SUMMER 1588", views: [{ ...SOUTHEAST, zoom: 5.8 }, { ...SOUTHEAST, f: 330 }],
         points: [{ id: "pl", at: C.Plymouth, from: 40 }, { id: "ca", at: C.Calais, pulse: true, from: 70 }, { id: "du", at: C.Dunkirk, from: 90 }, { id: "lo", at: C.London, from: 110 }],
         labels: [L(C.Plymouth, "Plymouth", "place", 44, 18, -26), L(C.Calais, "Calais", "place", 74, 18, 30), L(C.Dunkirk, "Dunkirk", "place", 94, 18, -26), L(C.London, "London", "place", 114, -150, -10), L([-1.2, 49.6], "English Channel", "water", 30), L([4.6, 52.0], "Netherlands", "country", 60)] } },
     { id: "T06", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the size of the force, as a figure", src: ["AR", "COMMONS"],
@@ -62,11 +71,11 @@ export const EPISODE = {
       scene: F("tb-gr-left", "THE ARMADA", "141 ships · 10,138 sailors · 19,315 soldiers", "Wikipedia, 'Spanish Armada'", { pos: "40% 50%", z: [1.1, 1.0], at: 50 }) },
     { id: "T06b", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the route on the map", src: ["AR", "COORDS", "EOX"],
       vo: "It sailed from Lisbon on the twenty-first of July, new style, and was sighted off the Lizard, in Cornwall, on the twenty-ninth.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "21–29 JULY 1588 (NEW STYLE)", views: [{ f: 0, center: [-6.0, 44.5], zoom: 4.3, pitch: 0, bearing: 0 }, { f: 330, center: [-6.0, 45.0], zoom: 4.6, pitch: 0, bearing: 0 }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "21–29 JULY 1588 (NEW STYLE)", views: [{ f: 0, center: [-6.0, 44.5], zoom: 4.3, pitch: 0, bearing: 0 }, { f: 330, center: [-6.0, 45.0], zoom: 4.6, pitch: 0, bearing: 0 }],
         points: [{ id: "li", at: C.Lisbon, from: 20 }, { id: "lz", at: C.Lizard, pulse: true, from: 150 }],
-        lines: [{ id: "route", coords: [C.Lisbon, C.Lizard], color: "#D7263D", width: 7, from: 40, dur: 160, arrow: true }],
+        lines: [{ id: "route", coords: [C.Lisbon, C.Finisterre, C.Ushant, C.Lizard], color: "#D7263D", width: 7, from: 40, dur: 160, arrow: true }],
         labels: [L(C.Lisbon, "Lisbon", "place", 24, 18, -26), L(C.Lizard, "The Lizard", "place", 154, 18, 30), L([-8.5, 47.5], "Bay of Biscay", "water", 30)],
-        tags: [{ text: "Sailed 21 July · sighted 29 July", x: 1040, y: 280, from: 120 }] } },
+        tags: [{ text: "Sailed 21 July · sighted 29 July · route schematic", x: 700, y: 960, from: 120 }] } },
     { id: "T07", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the fleets meet", src: ["AR", "EL", "COMMONS"],
       vo: "An English fleet under Francis Drake and Charles Howard went out to meet it. The Armada reached Calais largely intact.",
       scene: F("tb-gr-right", "CALAIS · 1588", null, null, { pos: "60% 50%", z: [1.0, 1.14] }) },
@@ -78,25 +87,25 @@ export const EPISODE = {
       scene: F("tb-gr-low", "GRAVELINES · 8 AUGUST 1588", null, null, { pos: "50% 60%", z: [1.0, 1.12] }) },
     { id: "T09b", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the aftermath of the battle on the map", src: ["EL", "COORDS", "EOX"],
       vo: "The fireships dispersed the Spanish ships to the north-east. The Armada straggled home to Spain in shattered remnants, after disastrous losses on the coast of Ireland.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "AFTER GRAVELINES", views: [{ ...SOUTHEAST, zoom: 5.4, center: [2.0, 52.0] }, { ...SOUTHEAST, f: 330, zoom: 5.0, center: [2.0, 52.5] }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AFTER GRAVELINES", views: [{ ...SOUTHEAST, zoom: 5.4, center: [2.0, 52.0] }, { ...SOUTHEAST, f: 330, zoom: 5.0, center: [2.0, 52.5] }],
         points: [{ id: "gr", at: C.Gravelines, pulse: true, from: 20 }],
         lines: [{ id: "scatter", coords: [C.Gravelines, [4.2, 52.6]], color: "#D7263D", width: 7, from: 60, dur: 100, arrow: true }],
         labels: [L(C.Gravelines, "Gravelines", "place", 24, 18, 30), L([-1.5, 49.9], "English Channel", "water", 20), L([3.0, 55.0], "North Sea", "water", 30)],
-        tags: [{ text: "Scattered to the north-east (direction only)", x: 900, y: 280, from: 100 }] } },
+        tags: [{ text: "Scattered to the north-east (direction only)", x: 940, y: 150, from: 100 }] } },
     { id: "T10", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the move to the battlefield, on the map", src: ["AR", "COORDS", "EOX"],
       vo: "But England did not yet know. The result of the fireship attack and of Gravelines had not reached the country.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8 }, { ...THAMES, f: 300 }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8 }, { ...THAMES, f: 300 }],
         points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 40 }, { id: "lo", at: C.London, from: 70 }],
         labels: [L(C.Tilbury, "Tilbury", "place", 44, 18, 30), L(C.London, "London", "place", 74, -150, -26), L([1.0, 51.9], "North Sea", "water", 30)] } },
     { id: "T11", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the forces, as a figure on the map", src: ["AR", "COORDS", "EOX"],
       vo: "So the Earl of Leicester assembled four and a half thousand militia at West Tilbury, in Essex, to guard the Thames estuary against any attack upriver towards London.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 8.6, center: [0.4, 51.45] }, { ...THAMES, f: 330, zoom: 9.4, center: [0.3, 51.46] }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 8.6, center: [0.4, 51.45] }, { ...THAMES, f: 330, zoom: 9.4, center: [0.3, 51.46] }],
         points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 30 }, { id: "lo", at: C.London, from: 60 }],
         labels: [L(C.Tilbury, "Tilbury", "place", 34, 18, 30), L(C.London, "London", "place", 64, -150, -26)],
         tags: [{ text: "4,500 militia at West Tilbury", x: 1060, y: 260, from: 80 }] } },
     { id: "T12", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the feared route", src: ["SP", "COORDS", "EOX"],
       vo: "The fear was that the Duke of Parma's army might still try to cross from Dunkirk.",
-      scene: { type: "map", base: "s2", terrain: 0, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8, center: [1.3, 51.3] }, { ...THAMES, f: 240, zoom: 7.4, center: [1.3, 51.3] }],
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8, center: [1.3, 51.3] }, { ...THAMES, f: 240, zoom: 7.4, center: [1.3, 51.3] }],
         points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 20 }, { id: "du", at: C.Dunkirk, from: 30 }],
         lines: [{ id: "fear", coords: [C.Dunkirk, C.Tilbury], color: "#D7263D", width: 7, dash: [2, 1.5], from: 50, dur: 70, arrow: true }],
         labels: [L(C.Tilbury, "Tilbury", "place", 24, 18, 30), L(C.Dunkirk, "Dunkirk", "place", 34, 18, -26)],

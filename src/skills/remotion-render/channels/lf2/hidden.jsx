@@ -31,7 +31,7 @@ function Captions({ items = [] }) {
 }
 const Credit = ({ text, left = 34 }) => <div style={{ position: "absolute", left, bottom: 26, fontFamily: F.sans, fontSize: 19, color: "rgba(255,255,255,0.86)", textShadow: "0 1px 4px #000, 0 0 2px #000" }}>{text}</div>;
 /** Date stamp, top-left (dated cold open). */
-const DateStamp = ({ text, from = 0 }) => { const f = useCurrentFrame(); return <div style={{ position: "absolute", left: 60, top: 54, fontFamily: F.mono, fontWeight: 700, fontSize: 30, letterSpacing: "0.12em", color: "#fff", background: "rgba(0,0,0,0.6)", padding: "8px 16px", opacity: ramp(f, from, from + 10) }}>{text}</div>; };
+const DateStamp = ({ text, from = 0 }) => { const f = useCurrentFrame(); return <div style={{ position: "absolute", left: 60, top: 54, fontFamily: F.display, fontWeight: 700, fontSize: 30, letterSpacing: "0.16em", color: "#F4EDD8", background: "rgba(10,8,6,0.62)", padding: "8px 18px", borderLeft: "4px solid #C8A45A", opacity: ramp(f, from, from + 10) }}>{text}</div>; };
 
 /** 1. The map scene: everything GeoMap does, plus key, tags, captions and a date stamp. */
 export function MapScene({ key_, tags = [], captions, date, ...map }) {
@@ -90,10 +90,10 @@ export function Figures({ image, rows, title, credit, step = 26 }) {
   return (
     <AbsoluteFill style={{ background: "#07080a" }}><Fonts />
       {image && <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(0.6) brightness(0.3) blur(3px)", transform: `scale(${lerp(f, 0, 300, 1.05, 1.12)})` }} />}
-      {title && <div style={{ position: "absolute", left: 150, top: 110, fontFamily: F.cond, fontWeight: 700, fontSize: 34, letterSpacing: "0.26em", color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}>{title}</div>}
+      {title && <div style={{ position: "absolute", left: 150, top: 100, fontFamily: F.display, fontStyle: "italic", fontSize: 46, color: "#E9D9AE" }}>{title}</div>}
       {rows.map((r, i) => { const a = ramp(f, 8 + i * step, 22 + i * step, expo); return (
         <div key={i} style={{ position: "absolute", left: 150, top: 200 + i * (720 / rows.length), display: "flex", alignItems: "baseline", gap: 36, opacity: a, transform: `translateX(${(1 - a) * -50}px)` }}>
-          <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: Math.min(170, 600 / rows.length + 40), lineHeight: 1, color: "#fff", minWidth: 430, textAlign: "right" }}>{r.value}</div>
+          <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: Math.min(130, 440 / rows.length + 20), lineHeight: 1, color: "#F4EDD8", minWidth: 470, textAlign: "right", whiteSpace: "nowrap", fontVariantNumeric: "lining-nums" }}>{r.value}</div>
           <div style={{ fontFamily: F.serif, fontSize: 40, lineHeight: 1.25, color: "#fff", maxWidth: 980 }}>{r.label}{r.source && <span style={{ display: "block", fontFamily: F.sans, fontSize: 20, color: "rgba(255,255,255,0.55)", marginTop: 6 }}>{r.source}</span>}</div>
         </div>); })}
       {credit && <Credit text={credit} />}
