@@ -1,0 +1,82 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 38.229,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.5,
+  "max_volume_db": -1.7,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Rasalgethi",
+    "seconds": 37.704,
+    "wpm": 149.6,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "start_s": 0,
+      "end_s": 3.966666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "score",
+      "start_s": 3.966666666666667,
+      "end_s": 7.666666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "palmer",
+      "start_s": 7.666666666666667,
+      "end_s": 11.533333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "oya",
+      "start_s": 11.533333333333333,
+      "end_s": 16.566666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "winner",
+      "start_s": 16.566666666666666,
+      "end_s": 25.266666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "gap",
+      "start_s": 25.266666666666666,
+      "end_s": 28.366666666666667
+    },
+    {
+      "id": "s7",
+      "kind": "two",
+      "start_s": 28.366666666666667,
+      "end_s": 31.833333333333332
+    },
+    {
+      "id": "s8",
+      "kind": "cta",
+      "start_s": 31.833333333333332,
+      "end_s": 33.766666666666666
+    },
+    {
+      "id": "s9",
+      "kind": "loop",
+      "start_s": 33.766666666666666,
+      "end_s": 38.166666666666664
+    }
+  ]
+}
