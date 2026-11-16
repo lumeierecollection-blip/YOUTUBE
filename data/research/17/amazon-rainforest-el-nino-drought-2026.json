@@ -1,0 +1,63 @@
+{
+  "topic_slug": "amazon-rainforest-el-nino-drought-2026",
+  "strongest_angle": "Examining how a severe El Niño climate pattern in 2026 triggered a 253% surge in fires across Brazil's Amazonas state during October, intensifying drought around Manaus and pushing the rainforest toward a critical ecological tipping point.",
+  "key_facts": [
+    {
+      "fact": "There were 1,679 fires recorded in Brazil's Amazonas state during the first two weeks of October 2026, representing a 253 percent surge compared to the same period in 2025 according to data from the country's Amazon surveillance system.",
+      "source_url": "https://www.straitstimes.com/world/fires-surge-in-brazils-amazon-fueled-by-el-nino-and-climate-change",
+      "source_name": "The Straits Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "In October 2026, a severe drought accompanying El Niño left the Amazon rainforest primed to burn, with NASA Earth Observatory reporting that the region entered the early stages of a long and severe fire season starting in September 2026.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/fires-arrive-in-the-amazon-rainforest",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The drought linked to El Niño has been especially severe around Manaus in Brazil, causing thick smoke from fires to take over the sky and disrupting local air quality and river levels.",
+      "source_url": "https://www.earth.com/climate/amazon-rainforest-fires-surge-as-el-nino-fuels-a-dangerous-drought",
+      "source_name": "Earth.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Scientific American reported in November 2026 that the Amazon is still recovering from drought and fires linked to a strong El Niño in 2023 and 2024, leaving the rainforest weakened by decades of global warming and deforestation.",
+      "source_url": "https://www.scientificamerican.com/article/can-the-amazon-rainforest-survive-the-largest-el-nino-in-living-memory",
+      "source_name": "Scientific American",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fires in Amazonas state, first two weeks of October 2026",
+      "value": 1679,
+      "unit": "fires",
+      "source_url": "https://www.straitstimes.com/world/fires-surge-in-brazils-amazon-fueled-by-el-nino-and-climate-change"
+    },
+    {
+      "label": "Surge in fires compared to the same period in 2025",
+      "value": 253,
+      "unit": "percent",
+      "source_url": "https://www.straitstimes.com/world/fires-surge-in-brazils-amazon-fueled-by-el-nino-and-climate-change"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Amazonas state",
+      "kind": "place"
+    },
+    {
+      "name": "Manaus",
+      "kind": "place"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    }
+  ]
+}
