@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Auto‑Steering Cave Ship</title>
+<style>
+  body {margin:0;background:#111;color:#fff;font-family:sans-serif;}
+  canvas {display:block;margin:auto;background:#000;}
+  #dist {position:absolute;top:10px;left:10px;font-size:18px;}
+</style>
+</head>
+<body>
+<div id="dist">Distance: 0 m</div>
+<canvas id="c"></canvas>
+<script>
+(() => {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = 800;
+  const H = canvas.height = 400;
+
+  // Cave data
+  const top = new Array(W);
+  const bottom = new Array(W);
+  const margin = 30;           // minimum clearance for the ship
+  const maxDelta = 2;          // how fast the walls can change
+  const ceilingBase = 60;      // average ceiling height
+  const floorBase = H - 60;    // average floor height
+
+  // Init cave
+  let curTop = ceilingBase;
+  let curBot = floorBase;
+  for (let i = 0; i < W; i++) {
+    curTop = Math.max(10, Math.min(curTop + (Math.random()*2-1)*maxDelta, H/2-40));
+    curBot = Math.min(H-10, Math.max(curBot + (Math.random()*2-1)*maxDelta, H/2+40));
+    top[i] = curTop;
+    bottom[i] = curBot;
+  }
+
+  // Ship
+  const shipX = 100;               // fixed horizontal position
+  let shipY = (top[shipX] + bottom[shipX]) / 2;
+  let vy = 0;
+  const shipSpeed = 2;             // forward speed (pixels per frame)
+  const steerAccel = 0.2;          // vertical acceleration
+  const maxVy = 4;                 // max vertical speed
+
+  // Distance counter
+  let distance = 0;
+  const distDiv = document.getElementById('dist');
+
+  function updateCave() {
+    // shift left
+    for (let i = 0; i < W-1; i++) {
+      top[i] = top[i+1];
+      bottom[i] = bottom[i+1];
+    }
+    // generate new column on the right
+    curTop = Math.max(10, Math.min(curTop + (Math.random()*2-1)*maxDelta, H/2-40));
+    curBot = Math.min(H-10, Math.max(curBot + (Math.random()*2-1)*maxDelta, H/2+40));
+    top[W-1] = curTop;
+    bottom[W-1] = curBot;
+  }
+
+  function steer() {
+    const targetY = (top[shipX] + bottom[shipX]) / 2;
+    const dy = targetY - shipY;
+    vy += Math.sign(dy) * steerAccel;
+    // clamp speed
+    if (vy > maxVy) vy = maxVy;
+    if (vy < -maxVy) vy = -maxVy;
+    shipY += vy;
+  }
+
+  function checkCollision() {
+    if (shipY < top[shipX] + margin || shipY > bottom[shipX] - margin) {
+      // simple crash effect: stop the loop
+      cancelAnimationFrame(animId);
+      ctx.fillStyle = 'red';
+      ctx.font = '48px sans-serif';
+      ctx.fillText('CRASH', W/2-80, H/2);
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0,0,W,H);
+
+    // draw cave
+    ctx.fillStyle = '#444';
+    ctx.beginPath();
+    ctx.moveTo(0, top[0]);
+    for (let i=1;i<W;i++) ctx.lineTo(i, top[i]);
+    ctx.lineTo(W-1, 0);
+    ctx.lineTo(0,0);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(0, bottom[0]);
+    for (let i=1;i<W;i++) ctx.lineTo(i, bottom[i]);
+    ctx.lineTo(W-1, H);
+    ctx.lineTo(0,H);
+    ctx.closePath();
+    ctx.fill();
+
+    // draw ship
+    ctx.fillStyle = '#0f0';
+    ctx.save();
+    ctx.translate(shipX, shipY);
+    ctx.beginPath();
+    ctx.moveTo(-10, -6);
+    ctx.lineTo(-10, 6);
+    ctx.lineTo(8, 0);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function loop() {
+    updateCave();
+    steer();
+    checkCollision();
+    draw();
+    distance += shipSpeed * 0.1; // scale to metres
+    distDiv.textContent = `Distance: ${Math.floor(distance)} m`;
+    animId = requestAnimationFrame(loop);
+  }
+
+  let animId = requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
