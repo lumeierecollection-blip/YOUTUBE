@@ -1,0 +1,647 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookF",
+      "treatment": "number-bars",
+      "objective": "Open on the three AIs with their measured total times, the 434 s bar dwarfing the other two",
+      "background": "white",
+      "from": 0,
+      "to": 136,
+      "start_s": 0,
+      "end_s": 4.533333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "jobsF",
+      "treatment": "recordings-grid",
+      "objective": "Show the five real recorded apps of the five jobs",
+      "background": "white",
+      "from": 136,
+      "to": 256,
+      "start_s": 4.533333333333333,
+      "end_s": 8.533333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "soloF",
+      "job": "solar",
+      "model": "gemini",
+      "treatment": "recording",
+      "objective": "Show Gemini's real solar-system recording running",
+      "background": "white",
+      "from": 256,
+      "to": 363,
+      "start_s": 8.533333333333333,
+      "end_s": 12.1
+    },
+    {
+      "id": "s4",
+      "kind": "duelF",
+      "job": "solar",
+      "other": "gptoss",
+      "treatment": "split-recordings",
+      "objective": "Show the same job by gpt-oss-120b, frozen, under Gemini's",
+      "background": "white",
+      "from": 363,
+      "to": 453,
+      "start_s": 12.1,
+      "end_s": 15.1
+    },
+    {
+      "id": "s5",
+      "kind": "soloF",
+      "job": "hexagon",
+      "model": "gemini",
+      "treatment": "recording",
+      "objective": "Show Gemini's real hexagon recording with ten balls",
+      "background": "white",
+      "from": 453,
+      "to": 518,
+      "start_s": 15.1,
+      "end_s": 17.266666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "duelF",
+      "job": "hexagon",
+      "other": "gptoss20",
+      "treatment": "split-recordings",
+      "objective": "Show gpt-oss-20b's single ball under Gemini's ten",
+      "background": "white",
+      "from": 518,
+      "to": 620,
+      "start_s": 17.266666666666666,
+      "end_s": 20.666666666666668
+    },
+    {
+      "id": "s7",
+      "kind": "timeF",
+      "treatment": "bar-chart",
+      "objective": "Bars of total time on one scale: 434 s against 19 s and 16 s",
+      "background": "white",
+      "from": 620,
+      "to": 823,
+      "start_s": 20.666666666666668,
+      "end_s": 27.433333333333334
+    },
+    {
+      "id": "s8",
+      "kind": "scoreF",
+      "treatment": "pass-grid",
+      "objective": "One square per job per AI, with the failed jobs named",
+      "background": "white",
+      "from": 823,
+      "to": 920,
+      "start_s": 27.433333333333334,
+      "end_s": 30.666666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "questionF",
+      "treatment": "verdict-panel",
+      "objective": "Ask whether fast is good enough, with 4 of 5 in 19 s against 5 of 5 in 434 s",
+      "background": "accent panel",
+      "from": 920,
+      "to": 978,
+      "start_s": 30.666666666666668,
+      "end_s": 32.6
+    },
+    {
+      "id": "s10",
+      "kind": "ctaF",
+      "treatment": "title-card",
+      "objective": "Point to the full test on the channel with the long-form title",
+      "background": "white",
+      "from": 978,
+      "to": 1013,
+      "start_s": 32.6,
+      "end_s": 33.766666666666666
+    },
+    {
+      "id": "s11",
+      "kind": "hookF",
+      "loop": true,
+      "treatment": "number-bars",
+      "objective": "Return to the opening picture so the replay joins up",
+      "background": "white",
+      "from": 1013,
+      "to": 1124,
+      "start_s": 33.766666666666666,
+      "end_s": 37.46666666666667
+    }
+  ],
+  "captions": [
+    {
+      "text": "Seven minutes or nineteen seconds",
+      "from": 16,
+      "to": 70,
+      "words": [
+        {
+          "text": "Seven",
+          "from": 16
+        },
+        {
+          "text": "minutes",
+          "from": 16
+        },
+        {
+          "text": "or",
+          "from": 25
+        },
+        {
+          "text": "nineteen",
+          "from": 36
+        },
+        {
+          "text": "seconds",
+          "from": 45
+        }
+      ]
+    },
+    {
+      "text": "which AI would you trust",
+      "from": 82,
+      "to": 119,
+      "words": [
+        {
+          "text": "which",
+          "from": 82
+        },
+        {
+          "text": "AI",
+          "from": 88
+        },
+        {
+          "text": "would",
+          "from": 95
+        },
+        {
+          "text": "you",
+          "from": 104
+        },
+        {
+          "text": "trust",
+          "from": 109
+        }
+      ]
+    },
+    {
+      "text": "We gave three free AIs",
+      "from": 136,
+      "to": 179,
+      "words": [
+        {
+          "text": "We",
+          "from": 136
+        },
+        {
+          "text": "gave",
+          "from": 137
+        },
+        {
+          "text": "three",
+          "from": 142
+        },
+        {
+          "text": "free",
+          "from": 154
+        },
+        {
+          "text": "AIs",
+          "from": 164
+        }
+      ]
+    },
+    {
+      "text": "the same five coding jobs",
+      "from": 187,
+      "to": 236,
+      "words": [
+        {
+          "text": "the",
+          "from": 187
+        },
+        {
+          "text": "same",
+          "from": 191
+        },
+        {
+          "text": "five",
+          "from": 199
+        },
+        {
+          "text": "coding",
+          "from": 212
+        },
+        {
+          "text": "jobs",
+          "from": 222
+        }
+      ]
+    },
+    {
+      "text": "Gemini's solar system runs",
+      "from": 256,
+      "to": 298,
+      "words": [
+        {
+          "text": "Gemini's",
+          "from": 256
+        },
+        {
+          "text": "solar",
+          "from": 263
+        },
+        {
+          "text": "system",
+          "from": 269
+        },
+        {
+          "text": "runs",
+          "from": 282
+        }
+      ]
+    },
+    {
+      "text": "every planet moving",
+      "from": 316,
+      "to": 344,
+      "words": [
+        {
+          "text": "every",
+          "from": 316
+        },
+        {
+          "text": "planet",
+          "from": 320
+        },
+        {
+          "text": "moving",
+          "from": 332
+        }
+      ]
+    },
+    {
+      "text": "The big gpt-oss",
+      "from": 363,
+      "to": 386,
+      "words": [
+        {
+          "text": "The",
+          "from": 363
+        },
+        {
+          "text": "big",
+          "from": 363
+        },
+        {
+          "text": "gpt-oss",
+          "from": 371
+        }
+      ]
+    },
+    {
+      "text": "one never moved",
+      "from": 394,
+      "to": 430,
+      "words": [
+        {
+          "text": "one",
+          "from": 394
+        },
+        {
+          "text": "never",
+          "from": 402
+        },
+        {
+          "text": "moved",
+          "from": 416
+        }
+      ]
+    },
+    {
+      "text": "Gemini's hexagon had ten balls",
+      "from": 453,
+      "to": 503,
+      "words": [
+        {
+          "text": "Gemini's",
+          "from": 453
+        },
+        {
+          "text": "hexagon",
+          "from": 458
+        },
+        {
+          "text": "had",
+          "from": 471
+        },
+        {
+          "text": "ten",
+          "from": 480
+        },
+        {
+          "text": "balls",
+          "from": 491
+        }
+      ]
+    },
+    {
+      "text": "The small gpt-oss",
+      "from": 518,
+      "to": 540,
+      "words": [
+        {
+          "text": "The",
+          "from": 518
+        },
+        {
+          "text": "small",
+          "from": 520
+        },
+        {
+          "text": "gpt-oss",
+          "from": 526
+        }
+      ]
+    },
+    {
+      "text": "had a hexagon with one",
+      "from": 548,
+      "to": 586,
+      "words": [
+        {
+          "text": "had",
+          "from": 548
+        },
+        {
+          "text": "a",
+          "from": 556
+        },
+        {
+          "text": "hexagon",
+          "from": 559
+        },
+        {
+          "text": "with",
+          "from": 572
+        },
+        {
+          "text": "one",
+          "from": 577
+        }
+      ]
+    },
+    {
+      "text": "ball",
+      "from": 586,
+      "to": 598,
+      "words": [
+        {
+          "text": "ball",
+          "from": 586
+        }
+      ]
+    },
+    {
+      "text": "Gemini took four hundred thirty-four",
+      "from": 620,
+      "to": 655,
+      "words": [
+        {
+          "text": "Gemini",
+          "from": 620
+        },
+        {
+          "text": "took",
+          "from": 620
+        },
+        {
+          "text": "four",
+          "from": 629
+        },
+        {
+          "text": "hundred",
+          "from": 637
+        },
+        {
+          "text": "thirty-four",
+          "from": 644
+        }
+      ]
+    },
+    {
+      "text": "seconds",
+      "from": 660,
+      "to": 681,
+      "words": [
+        {
+          "text": "seconds",
+          "from": 660
+        }
+      ]
+    },
+    {
+      "text": "The two gpt-oss",
+      "from": 697,
+      "to": 717,
+      "words": [
+        {
+          "text": "The",
+          "from": 697
+        },
+        {
+          "text": "two",
+          "from": 698
+        },
+        {
+          "text": "gpt-oss",
+          "from": 703
+        }
+      ]
+    },
+    {
+      "text": "models each finished in under",
+      "from": 724,
+      "to": 770,
+      "words": [
+        {
+          "text": "models",
+          "from": 724
+        },
+        {
+          "text": "each",
+          "from": 733
+        },
+        {
+          "text": "finished",
+          "from": 746
+        },
+        {
+          "text": "in",
+          "from": 755
+        },
+        {
+          "text": "under",
+          "from": 763
+        }
+      ]
+    },
+    {
+      "text": "twenty seconds",
+      "from": 770,
+      "to": 799,
+      "words": [
+        {
+          "text": "twenty",
+          "from": 770
+        },
+        {
+          "text": "seconds",
+          "from": 783
+        }
+      ]
+    },
+    {
+      "text": "Gemini passed five of five",
+      "from": 823,
+      "to": 858,
+      "words": [
+        {
+          "text": "Gemini",
+          "from": 823
+        },
+        {
+          "text": "passed",
+          "from": 823
+        },
+        {
+          "text": "five",
+          "from": 833
+        },
+        {
+          "text": "of",
+          "from": 847
+        },
+        {
+          "text": "five",
+          "from": 851
+        }
+      ]
+    },
+    {
+      "text": "the fast ones four",
+      "from": 859,
+      "to": 907,
+      "words": [
+        {
+          "text": "the",
+          "from": 859
+        },
+        {
+          "text": "fast",
+          "from": 874
+        },
+        {
+          "text": "ones",
+          "from": 880
+        },
+        {
+          "text": "four",
+          "from": 887
+        }
+      ]
+    },
+    {
+      "text": "Fast or finished",
+      "from": 920,
+      "to": 959,
+      "words": [
+        {
+          "text": "Fast",
+          "from": 920
+        },
+        {
+          "text": "or",
+          "from": 930
+        },
+        {
+          "text": "finished",
+          "from": 946
+        }
+      ]
+    },
+    {
+      "text": "The full test is on",
+      "from": 978,
+      "to": 1001,
+      "words": [
+        {
+          "text": "The",
+          "from": 978
+        },
+        {
+          "text": "full",
+          "from": 979
+        },
+        {
+          "text": "test",
+          "from": 985
+        },
+        {
+          "text": "is",
+          "from": 991
+        },
+        {
+          "text": "on",
+          "from": 998
+        }
+      ]
+    },
+    {
+      "text": "our channel Seven",
+      "from": 1001,
+      "to": 1028,
+      "words": [
+        {
+          "text": "our",
+          "from": 1001
+        },
+        {
+          "text": "channel",
+          "from": 1004
+        },
+        {
+          "text": "Seven",
+          "from": 1013
+        }
+      ]
+    },
+    {
+      "text": "minutes or nineteen seconds",
+      "from": 1038,
+      "to": 1091,
+      "words": [
+        {
+          "text": "minutes",
+          "from": 1038
+        },
+        {
+          "text": "or",
+          "from": 1046
+        },
+        {
+          "text": "nineteen",
+          "from": 1060
+        },
+        {
+          "text": "seconds",
+          "from": 1070
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1124,
+  "duration_s": 37.46666666666667
+}

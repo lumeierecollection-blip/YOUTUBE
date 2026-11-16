@@ -1,0 +1,160 @@
+{
+  "channel": "ai-tested",
+  "production_run": "run-43862506704-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Seven minutes, or nineteen seconds: which AI would you trust?",
+      "main_point": "Open on the three AIs with their measured total times, the 434 s bar dwarfing the other two",
+      "visual_objective": "Open on the three AIs with their measured total times, the 434 s bar dwarfing the other two",
+      "treatment": "number-bars",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "tg",
+        "to1"
+      ],
+      "start_s": 0,
+      "end_s": 4.533333333333333
+    },
+    {
+      "scene_id": "s2",
+      "narration": "We gave three free AIs the same five coding jobs.",
+      "main_point": "Show the five real recorded apps of the five jobs",
+      "visual_objective": "Show the five real recorded apps of the five jobs",
+      "treatment": "recordings-grid",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "tasks"
+      ],
+      "start_s": 4.533333333333333,
+      "end_s": 8.533333333333333
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Gemini's solar system runs, every planet moving.",
+      "main_point": "Show Gemini's real solar-system recording running",
+      "visual_objective": "Show Gemini's real solar-system recording running",
+      "treatment": "recording",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "solarG"
+      ],
+      "start_s": 8.533333333333333,
+      "end_s": 12.1
+    },
+    {
+      "scene_id": "s4",
+      "narration": "The big gpt-oss one never moved.",
+      "main_point": "Show the same job by gpt-oss-120b, frozen, under Gemini's",
+      "visual_objective": "Show the same job by gpt-oss-120b, frozen, under Gemini's",
+      "treatment": "split-recordings",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "solarO"
+      ],
+      "start_s": 12.1,
+      "end_s": 15.1
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Gemini's hexagon had ten balls.",
+      "main_point": "Show Gemini's real hexagon recording with ten balls",
+      "visual_objective": "Show Gemini's real hexagon recording with ten balls",
+      "treatment": "recording",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "hexG"
+      ],
+      "start_s": 15.1,
+      "end_s": 17.266666666666666
+    },
+    {
+      "scene_id": "s6",
+      "narration": "The small gpt-oss had a hexagon with one ball.",
+      "main_point": "Show gpt-oss-20b's single ball under Gemini's ten",
+      "visual_objective": "Show gpt-oss-20b's single ball under Gemini's ten",
+      "treatment": "split-recordings",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "hexS"
+      ],
+      "start_s": 17.266666666666666,
+      "end_s": 20.666666666666668
+    },
+    {
+      "scene_id": "s7",
+      "narration": "Gemini took four hundred thirty-four seconds. The two gpt-oss models each finished in under twenty seconds.",
+      "main_point": "Bars of total time on one scale: 434 s against 19 s and 16 s",
+      "visual_objective": "Bars of total time on one scale: 434 s against 19 s and 16 s",
+      "treatment": "bar-chart",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "tg",
+        "to1",
+        "to2"
+      ],
+      "start_s": 20.666666666666668,
+      "end_s": 27.433333333333334
+    },
+    {
+      "scene_id": "s8",
+      "narration": "Gemini passed five of five, the fast ones four.",
+      "main_point": "One square per job per AI, with the failed jobs named",
+      "visual_objective": "One square per job per AI, with the failed jobs named",
+      "treatment": "pass-grid",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [
+        "score"
+      ],
+      "start_s": 27.433333333333334,
+      "end_s": 30.666666666666668
+    },
+    {
+      "scene_id": "s9",
+      "narration": "Fast, or finished?",
+      "main_point": "Ask whether fast is good enough, with 4 of 5 in 19 s against 5 of 5 in 434 s",
+      "visual_objective": "Ask whether fast is good enough, with 4 of 5 in 19 s against 5 of 5 in 434 s",
+      "treatment": "verdict-panel",
+      "background": "accent panel",
+      "skill": "remotion",
+      "claim_ids": [
+        "score"
+      ],
+      "start_s": 30.666666666666668,
+      "end_s": 32.6
+    },
+    {
+      "scene_id": "s10",
+      "narration": "The full test is on our channel.",
+      "main_point": "Point to the full test on the channel with the long-form title",
+      "visual_objective": "Point to the full test on the channel with the long-form title",
+      "treatment": "title-card",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 32.6,
+      "end_s": 33.766666666666666
+    },
+    {
+      "scene_id": "s11",
+      "narration": "Seven minutes, or nineteen seconds?",
+      "main_point": "Return to the opening picture so the replay joins up",
+      "visual_objective": "Return to the opening picture so the replay joins up",
+      "treatment": "number-bars",
+      "background": "white",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 33.766666666666666,
+      "end_s": 37.46666666666667
+    }
+  ]
+}
