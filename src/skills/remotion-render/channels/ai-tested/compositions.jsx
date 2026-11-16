@@ -8,6 +8,7 @@ import { honestyCompositions } from "./honesty.jsx";
 import { spelloutCompositions } from "./spellout.jsx";
 import { randomCompositions } from "./randompick.jsx";
 import { pushbackCompositions } from "./pushback.jsx";
+import { fourAisCompositions } from "./fourais.jsx";
 import { linksCompositions } from "./links.jsx";
 import { privacyCompositions } from "./privacy.jsx";
 import { unknownCompositions } from "./unknown.jsx";
@@ -203,4 +204,4 @@ function AiTestedShort(props) {
 }
 
 const sample = { kind: "hook", id: "s1", from: 0, to: 90 };
-export const compositions = [...seriousCompositions, ...experimentCompositions, ...honestyCompositions, ...spelloutCompositions, ...randomCompositions, ...pushbackCompositions, ...linksCompositions, ...privacyCompositions, ...unknownCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
+export const compositions = [...seriousCompositions, ...experimentCompositions, ...honestyCompositions, ...spelloutCompositions, ...randomCompositions, ...pushbackCompositions, ...fourAisCompositions, ...linksCompositions, ...privacyCompositions, ...unknownCompositions, { id: "AiTestedShort", component: AiTestedShort, durationInFrames: 900, fps: 30, width: 1080, height: 1920, defaultProps: { durationInFrames: 900, scenes: [sample], captionChunks: [], captures: {}, terminal: { display: "", lines: [] }, pageUrl: "", pageHost: "" } }];
