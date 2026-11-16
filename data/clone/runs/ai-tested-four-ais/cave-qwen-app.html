@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEAR-SIDE — autonomous cave pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#071a1c;
+    --paper:#f5f1e6;
+    --paper-dim:#b7c6bf;
+    --teal:#4fd6d8;
+    --amber:#ffb43a;
+    --blue:#6cc9ff;
+    --red:#ff5a52;
+    --line:rgba(70,110,105,.4);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden;background:#030a0b}
+  body{
+    font-family:'Space Mono',ui-monospace,monospace;color:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  #game{position:fixed;inset:0;width:100%;height:100%;display:block}
+
+  .layer{position:fixed;inset:0;pointer-events:none}
+  #scan{
+    z-index:3;opacity:.55;mix-blend-mode:multiply;
+    background:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0) 0 2px, rgba(0,0,0,.5) 2px 3px, rgba(0,0,0,0) 3px 5px),
+      radial-gradient(120% 120% at 50% 50%, transparent 52%, rgba(0,0,0,.6) 100%);
+  }
+
+  .hud{z-index:5;display:flex}
+  .top{top:0;justify-content:space-between;align-items:flex-start;
+       padding:22px clamp(16px,3vw,40px)}
+  .brand{display:flex;align-items:center;gap:14px}
+  .glyph{width:34px;height:34px;color:var(--teal);flex:none;
+         filter:drop-shadow(0 0 8px rgba(79,214,216,.4))}
+  .glyph svg{width:100%;height:100%;transform-origin:60% 50%}
+  .brand h1{font-family:'Chakra Petch',sans-serif;font-weight:700;
+    letter-spacing:.14em;font-size:clamp(19px,2.4vw,29px);line-height:.9}
+  .brand h1 span{color:var(--teal)}
+  .brand .sub{display:block;font-size:10px;letter-spacing:.18em;
+    color:var(--paper-dim);margin-top:6px;text-transform:uppercase}
+
+  .status{display:flex;align-items:center;gap:9px;font-size:11px;
+    letter-spacing:.16em;color:var(--paper-dim);
+    border:1px solid var(--line);border-radius:2px;padding:8px 13px;
+    background:rgba(7,22,23,.42)}
+  .led{width:8px;height:8px;border-radius:50%;background:var(--teal);
+    box-shadow:0 0 10px var(--teal)}
+
+  .bottom{bottom:0;align-items:flex-end;
+    padding:22px clamp(16px,3vw,40px);gap:26px}
+  .panel{border:1px solid var(--line);border-radius:3px;
+    background:rgba(7,22,23,.5);
+    padding:14px 18px 15px;position:relative}
+  .panel::before,.panel::after{content:"";position:absolute;width:9px;height:9px;
+    border:1px solid var(--teal);opacity:.6}
+  .panel::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .panel::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+
+  .dist{min-width:clamp(150px,20vw,230px)}
+  .label{font-size:10px;letter-spacing:.24em;color:var(--paper-dim);
+    text-transform:uppercase;margin-bottom:2px}
+  .label span{color:var(--amber)}
+  .readout{font-family:'Chakra Petch',sans-serif;font-weight:700;
+    font-size:clamp(40px,6.4vw,66px);line-height:.95;letter-spacing:.02em;
+    color:var(--paper);font-variant-numeric:tabular-nums;
+    text-shadow:0 0 22px rgba(79,214,216,.35)}
+  .mini{display:flex;gap:26px;margin-top:11px}
+  .mini .col>span{display:block}
+  .mini .k{font-size:9px;letter-spacing:.2em;color:var(--paper-dim);
+    text-transform:uppercase}
+  .mini .v{font-family:'Chakra Petch',sans-serif;font-weight:600;
+    font-size:19px;font-variant-numeric:tabular-nums;margin-top:1px}
+
+  .gauge{width:clamp(130px,17vw,190px)}
+  .track{position:relative;height:13px;border:1px solid var(--line);
+    border-radius:2px;background:rgba(7,22,23,.55);overflow:hidden;margin-top:5px}
+  .zone{position:absolute;top:0;bottom:0}
+  .zone.warn{background:rgba(255,180,58,.16)}
+  .zone.danger{background:rgba(255,90,82,.2)}
+  .tick{position:absolute;top:-2px;bottom:-2px;width:1px;background:rgba(183,198,191,.25)}
+  .needle{position:absolute;top:50%;width:2px;height:22px;
+    transform:translate(-1px,-50%);background:var(--teal);border-radius:1px;
+    box-shadow:0 0 10px var(--teal);transition:left .07s linear}
+
+  .meta{display:flex;flex-direction:column;align-items:flex-end;
+    gap:5px;font-size:10px;letter-spacing:.18em;color:var(--paper-dim);
+    text-transform:uppercase;margin-left:auto;text-align:right}
+  .meta b{color:var(--paper);font-family:'Chakra Petch',sans-serif}
+
+  .flash{position:fixed;left:20%;right:20%;top:26%;text-align:center;
+    opacity:0;transition:opacity .3s}
+  .flash .big{font-family:'Chakra Petch',sans-serif;font-weight:700;
+    letter-spacing:.26em;font-size:clamp(22px,4vw,40px);color:var(--teal);
+    text-shadow:0 0 26px rgba(79,214,216,.6)}
+  .flash .sm{font-size:11px;letter-spacing:.24em;color:var(--paper-dim);
+    text-transform:uppercase;margin-top:6px}
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="scan" class="layer"></div>
+
+<div class="hud top layer">
+  <div class="brand">
+    <div class="glyph">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4"
+           stroke-linejoin="round" stroke-linecap="round">
+        <path d="M6 20 L26 12 L34 20 L26 28 L18 20 Z"/>
+        <circle cx="25" cy="20" r="1.8" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div>
+      <h1>NEAR<span>-SIDE</span></h1>
+      <span class="sub">autonomous cave pilot · v2.7</span>
+    </div>
+  </div>
+  <div class="status"><span class="led" id="led"></span><span id="stat">LOCKING CONTROLS</span></div>
+</div>
+
+<div class="hud bottom layer">
+  <div class="panel dist">
+    <div class="label">Traversed · <span id="best">0000</span></div>
+    <div class="readout" id="dist">0000</div>
+    <div class="mini">
+      <div class="col"><span class="k">speed</span><span class="v" id="spd">000</span></div>
+      <div class="col"><span class="k">bearing</span><span class="v" id="brg">0°</span></div>
+    </div>
+  </div>
+  <div class="panel gauge">
+    <div class="label">Wall clearance</div>
+    <div class="track" id="track">
+      <span></span><span></span>
+    </div>
+  </div>
+  <div class="meta">
+    <span>run <b id="run">0</b></span>
+    <span>clearances <b id="clr">0</b></span>
+    <span>autopilot <b>ON</b></span>
+  </div>
+</div>
+
+<div class="flash layer" id="flash">
+  <div class="big" id="flBig">AUTOPILOT ENGAGED</div>
+  <div class="sm" id="flSm">no input · pilot is flying you</div>
+</div>
+
+<script>
+(() => {
+  const cv = document.getElementById('game');
+  const ctx = cv.getContext('2d');
+
+  // ---------- constants ----------
+  const MARGIN = 110, SHIP_X = 0.3, HORIZON = 1.05, BG_LAYERS = 3;
+  const K_BASE = 70;       // metres travelled per second
+  const MAX_K  = 150;      // ramp clamp
+  const PHYS = 0.0000035 / K_BASE; // world acceleration per km/px  (scales with speed)
+
+  // ---------- state ----------
+  let W=0,H=0,dpr=1, SP=0, PAD=0, SY0=0;
+  let worldX=0, camY=0, targetCamY=0, shipY=0, vy=0;
+  let acc=0, speed=K_BASE;
+  let distance=0, best=0, runs=0, clearances=0;
+  let particles=[];
+  let alertT=0, wipeT=1, bestT=0, flashT=0, shake=0;
+  let prevBestInt=0, statSet=false;
+
+  // ---------- dom ----------
+  const el = id => document.getElementById(id);
+  const elDist=el('dist'), elBest=el('best'), elSpd=el('spd'), elBrg=el('brg');
+  const elNeedle=ivt(), elLed=el('led'), elStat=el('stat');
+  const elRun=el('run'), elClr=el('clr'), elFlash=el('flash'),
+        elFlBig=el('flBig'), elFlSm=el('flSm');
+  function ivt(){ const n=document.createElement('div'); n.className='needle';
+    el('track').appendChild(n); return n; }
+
+  const pad4 = n => String(Math.floor(n)).padStart(4,'0');
+  const pad2 = n => String(Math.floor(n)).padStart(2,'0');
+  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function hex(h){h=h.replace('#','');
+    if(h.length===3)h=h.split('').map(c=>c+c).join('');
+    const n=parseInt(h,16);return [(n>>16)&255,(n>>8)&255,n&255];}
+  function mix(a,b,t){const A=hex(a),B=hex(b);
+    return `rgb(${lerp(A[0],B[0],t)|0},${lerp(A[1],B[1],t)|0},${lerp(A[2],B[2],t)|0})`;}
+
+  // ---------- terrain noise (multi-octave, tileable) ----------
+  function makeNoise(seed){
+    const size=256, p=new Uint8Array(size*2), perm=new Uint8Array(512);
+    const rng=(()=>{let a=(seed*9301+49297)%233280;
+      return()=>{a=(a*9301+49297)%233280;return a/233280;};})();
+    for(let i=0;i<size;i++) p[i]=i;
+    for(let i=size-1;i>0;i--){const j=(rng()*(i+1))|0;const t=p[i];p[i]=p[j];p[j]=t;}
+    for(let i=0;i<512;i++) perm[i]=p[i&255];
+    const fade=t=>t*t*t*(t*(t*6-15)+10), lerpF=(a,b,t)=>a+t*(b-a);
+    function grad(h,x,y){switch(h&7){
+      case 0:return x+y;case 1:return -x+y;case 2:return x-y;case 3:return -x-y;
+      case 4:return x;case 5:return -x;case 6:return y;default:return -y;}}
+    return (x,y)=>{
+      const X=Math.floor(x)&255, Y=Math.floor(y)&255;
+      x-=Math.floor(x); y-=Math.floor(y);
+      const u=fade(x), v=fade(y);
+      const A=perm[X]+Y, B_=perm[X+1]+Y;
+      return lerpF(
+        lerpF(grad(perm[A&255],x,y), grad(perm[B_&255],x-1,y), u),
+        lerpF(grad(perm[(A+1)&255],x,y-1), grad(perm[(B_+1)&255],x-1,y-1), u),
+        v);
+    };
+  }
+
+  function valAt(x){
+    const s=Math.max(0,(worldX-x)) / K_BASE;
+    const d = Math.min(1, (MAX_K-K_BASE)/(speed-K_BASE)); // 1 at low speed
+    let f=0,a=0,w=1,o=1,sc=0.00155;
+    for(let i=0;i<4;i++){
+      const ph=i*137+((i*47)%9);
+      f += w*(0.5 + 0.5*Math.sin(s*sc*o + ph));
+      a += w; w*=0.53; o*=2.05; sc*=1.72;
+    }
+    f/=a;
+    let gap = 2.4 + 1.6*((0.5+0.5*Math.sin(s*0.0030 + 2.0)));
+    const nb = (worldX-x) / K_BASE;
+    gap *= 0.82 + 0.30*makeGapNoise?0:1; // (kept simple)
+    let g = (1 - Math.exp(-2.6*f)) * (0.6+0.4*f);
+    g = clamp(g,0.03,1);
+    return lerp(H*gap, H*0.32, g*d);
+  }
+  let gapN;
+  function makeGapNoise(){ gapN = (x)=>{
+    const s=(x*0.0045)/K_BASE;
+    return 0.7 + 0.3*Math.sin(s*0.9 + Math.cos(s*0.31)*1.7);
+  };}
+  function heightAt(x){
+    return valAt(x) * makeGapNoise()(x);
+  }
+  const ceilingY = x => SY0 - heightAt(x);
+  const floorY   = x => SY0 + heightAt(x);
+
+  // ---------- spawn ----------
+  function spawn(dir, intensity){
+    for(let i=0;i<intensity;i++){
+      const yy = Math.random()*H, vx=(50+Math.random()*260)*dir;
+      particles.push({x:W*(0.5+Math.random()*0.3), y:yy,
+        vx, vy:(Math.random()*0.6-0.3)*120, life:0,
+        max:0.3+Math.random()*0.6, type:'spark', cs:2+Math.random()*3,
+        col:Math.random()<0.5?'#ffd36b':'#ffe08a'});
+    }
+  }
+  function explode(){
+    for(let i=0;i<95;i++){
+      const ang=Math.random()*Math.PI*2, sp=(80+Math.random()*460);
+      const warm=Math.random();
+      const col = warm<0.35 ? (Math.random()<0.5?'#ffb43a':'#ffcf6b')
+                : warm<0.6 ? '#ff5a3c'
+                : warm<0.82? '#4fd6d8'
+                : (Math.random()<0.5?'#f5f1e6':'#8cc7ff');
+      particles.push({x:W*SHIP_X, y:shipY, vx:Math.cos(ang)*sp, vy:Math.sin(ang)*sp,
+        life:0, max:0.5+Math.random()*0.9, type:'boom', cs:1.5+Math.random()*3.5, col});
+    }
+    for(let i=0;i<22;i++)
+      particles.push({x:W*SHIP_X, y:shipY, vx:(Math.random()*2-1)*40,
+        vy:-(10+Math.random()*40), life:0, max:1.1+Math.random(), type:'smoke',
+        cs:16+Math.random()*22, life2:0});
+  }
+
+  function recenter(){
+    worldX = Math.round(worldX/1);
+    const mid = lerp(ceilingY(0), floorY(0), 0.5);
+    camY = mid; targetCamY = mid; shipY = mid; vy = 0;
+    acc = 0; wipeT = 1; shake = 0; particles.length = 0;
+  }
+  function crash(){
+    explode(); runs++; wipeT = 0; shake = 1;
+    elStat.textContent='SIGNAL LOST · RE-ACQUIRING'; elLed.dataset.s='red';
+  }
+
+  // ---------- scenery (drawn once into offscreen) ----------
+  let starCanvas, motes=[];
+  function buildScenery(){
+    starCanvas = document.createElement('canvas');
+    starCanvas.width=W; starCanvas.height=H;
+    const g = starCanvas.getContext('2d');
+    const bg=g.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0,'#0e2a30'); bg.addColorStop(0.5,'#071a1c'); bg.addColorStop(1,'#03090a');
+    g.fillStyle=bg; g.fillRect(0,0,W,H);
+    const rg=g.createRadialGradient(W*0.15,H*0.5,0,W*0.15,H*0.5,Math.max(W,H)*0.6);
+    rg.addColorStop(0,'rgba(79,173,196,.10)'); rg.addColorStop(1,'rgba(0,0,0,0)');
+    g.fillStyle=rg; g.fillRect(0,0,W,H);
+    const cols=['#cfe9ea','#a9dedb','#8bb8b5'];
+    for(let i=0;i<52;i++){
+      const d=Math.random();
+      g.globalAlpha = 0.05 + d*0.28;
+      g.fillStyle = cols[(Math.random()*3)|0];
+      const r=(0.4+d*1.5);
+      g.fillRect(Math.random()*W, d*(H*0.9)+H*0.05, r, r*0.8);
+    }
+    g.globalAlpha=1;
+    motes=[];
+    for(let i=0;i<55;i++) motes.push({
+      x:Math.random()*W, y:Math.random()*H,
+      z:0.3+Math.random()*0.9, r:0.5+Math.random()*1.6,
+      a:0.12+Math.random()*0.3, ph:Math.random()*7});
+  }
+
+  function size(){
+    dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W*dpr; cv.height = H*dpr;
+    cv.style.width=W+'px'; cv.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    SP = Math.min(W,H)/900 * dpr; // stroke width baseline
+    PAD = Math.max(W,H)*0.6;
+    SY0 = H*0.5;
+    buildScenery();
+  }
+
+  // ---------- control ----------
+  function control(dt){
+    const shipWX = worldX + W*SHIP_X;
+    const aheadX = worldX + W*HORIZON;
+    const s0 = (worldX - W*0.2);
+    const openMid = 0.45 + 0.10*Math.sin(aheadX*0.0011+1.7);
+    const openH   = Math.max(0.30, 0.8 - Math.min(1,(speed-K_BASE)/(MAX_K-K_BASE))*0.5);
+    const attractY = camY + (openMid-0.5)*openH*H*0.9;
+
+    let a=0;
+    // 1) strong short-range wall avoidance
+    for(let o=0;o<6;o++){
+      const x = shipWX + o*55;
+      const h = heightAt(x);
+      const c = shipY - ceilingY(x);
+      if(c < h*0.4) a += (h*0.4 - c)/K_BASE * 340;
+      const ft = floorY(x) - shipY;
+      if(ft < h*0.4) a -= (h*0.4 - ft)/K_BASE * 340;
+    }
+    // 2) mid-range centre toward the opening ahead
+    for(let o=0;o<5;o++){
+      const x = shipWX + W*(0.35 + o*0.16);
+      const cy = lerp(ceilingY(x), floorY(x), 0.5);
+      a += (cy - shipY)/K_BASE * 200;
+    }
+    // 3) soft attractor (auto-recovery)
+    a += (attractY - shipY)*0.35;
+    // damping
+    a -= vy*4.5;
+
+    acc = clamp(acc + (a - acc)*Math.min(1, dt*9), -52e6, 52e6);
+    vy += acc*PHYS*dt;
+    vy = clamp(vy, -5e5, 5e5);
+    shipY += vy*PHYS*dt;
+
+    // near-miss detection
+    const h0 = heightAt(shipWX);
+    const mc = Math.min(shipY - ceilingY(shipWX), floorY(shipWX) - shipY);
+    const band = Math.min(60, h0*0.35);
+    if (mc < band){
+      if (Math.random() < 0.5) spawn(-1, 1);
+      if (Math.random() < 0.3) spawn(1, 1);
+      alertT = Math.max(alertT, 1 - mc/band);
+    } else {
+      if (mc > h0) clearances++;
+      // spark ticks when comfortably open
+      if (Math.random() < 0.35

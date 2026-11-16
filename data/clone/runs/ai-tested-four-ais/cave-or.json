@@ -1,0 +1,10 @@
+{
+ "provider": "openrouter",
+ "model": "inclusionai/ling-3.2-flash:free",
+ "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+ "started": "2026-11-16T01:39:50.725Z",
+ "generation_ms": 340988,
+ "chunks": 0,
+ "answer": "",
+ "app_recorded": false
+}

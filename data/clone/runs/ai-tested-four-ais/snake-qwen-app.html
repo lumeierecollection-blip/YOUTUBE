@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEON SNAKE // AUTO</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root{
+    --bg:#04090c;
+    --green:#39ff14;
+    --green-dim:#1f8f12;
+    --red:#ff2b4a;
+    --amber:#ffb020;
+    --ink:#d7ffe8;
+    --mono: "SFMono-Regular","SF Mono","JetBrains Mono",Consolas,"Liberation Mono","Courier New",monospace;
+  }
+  html,body{ height:100%; }
+  body{
+    background: radial-gradient(120% 120% at 50% 40%, #07161a 0%, var(--bg) 55%, #01050a 100%);
+    color: var(--ink);
+    font-family: var(--mono);
+    min-height:100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+  }
+  /* atmospheric layers */
+  .grid-bg{
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+    background-image:
+      linear-gradient(rgba(57,255,20,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,20,.045) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(120% 120% at 50% 40%, #000 40%, transparent 82%);
+            mask-image: radial-gradient(120% 120% at 50% 40%, #000 40%, transparent 82%);
+    animation: drift 40s linear infinite;
+  }
+  @keyframes drift{ to{ background-position: 46px 46px; } }
+  .vignette{
+    position: fixed; inset: 0; z-index: 2; pointer-events: none;
+    box-shadow: inset 0 0 220px 40px rgba(0,0,0,.85);
+  }
+  .scan{
+    position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: .5;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 2px, transparent 2px 4px);
+    mix-blend-mode: multiply;
+  }
+
+  .stage{
+    position: relative; z-index: 3;
+    width: min(94vw, 720px, 88vh);
+    display: flex; flex-direction: column; gap: 12px;
+    animation: rise .7s cubic-bezier(.2,.9,.2,1) both;
+  }
+  @keyframes rise{ from{ opacity:0; transform: translateY(18px) scale(.985);} to{ opacity:1; transform:none; } }
+
+  .hud{
+    width:100%;
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:16px; padding: 0 4px;
+  }
+  .meta{ display:flex; flex-direction:column; gap:2px; }
+  .brand{
+    font-weight:700; letter-spacing:.14em; font-size: clamp(20px,3.6vw,30px);
+    color: var(--ink);
+    text-shadow: 0 0 18px rgba(57,255,20,.35);
+  }
+  .brand span{ color: var(--green); text-shadow: 0 0 14px rgba(57,255,20,.8); }
+  .sub{ font-size: 10px; letter-spacing:.32em; color: rgba(148,196,172,.55); }
+  .readout{ display:flex; align-items:flex-end; gap:26px; }
+  .stat{ display:flex; flex-direction:column; align-items:flex-end; line-height:1; }
+  .stat-label{ font-size:10px; letter-spacing:.28em; color: rgba(148,196,172,.6); margin-bottom:6px; }
+  .stat-val{
+    font-size: clamp(34px,7vw,56px); font-weight:700;
+    font-variant-numeric: tabular-nums;
+  }
+  #score{ color: var(--green); text-shadow: 0 0 22px rgba(57,255,20,.6); }
+  #best{ color: var(--amber); text-shadow: 0 0 20px rgba(255,176,32,.5); }
+  .stat-val.bump{ animation: bump .34s ease; }
+  @keyframes bump{ 0%{transform:scale(1);} 35%{transform:scale(1.2) rotate(-3deg);} 100%{transform:scale(1);} }
+
+  .board{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(57,255,20,.4);
+    border-radius: 12px;
+    background: rgba(3,10,8,.55);
+    overflow: hidden;
+    box-shadow:
+      0 0 0 1px rgba(57,255,20,.08),
+      0 0 60px rgba(57,255,20,.16),
+      0 34px 90px -34px rgba(0,0,0,.95),
+      inset 0 0 70px rgba(57,255,20,.05);
+  }
+  .board::before{
+    content:""; position:absolute; left:0; right:0; height:40%;
+    background: linear-gradient(180deg, rgba(57,255,20,.07), transparent);
+    animation: sweep 7s linear infinite; pointer-events:none;
+  }
+  @keyframes sweep{ 0%{ transform: translateY(-100%);} 100%{ transform: translateY(300%);} }
+  canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+
+  .corner{ position:absolute; width:20px; height:20px; border:2px solid var(--green);
+    filter: drop-shadow(0 0 6px rgba(57,255,20,.7)); z-index:4; opacity:.85; }
+  .c-tl{ top:8px; left:8px; border-right:0; border-bottom:0; }
+  .c-tr{ top:8px; right:8px; border-left:0; border-bottom:0; }
+  .c-bl{ bottom:8px; left:8px; border-right:0; border-top:0; }
+  .c-br{ bottom:8px; right:8px; border-left:0; border-top:0; }
+
+  .overlay{
+    position:absolute; inset:0; z-index:5;
+    display:flex; align-items:center; justify-content:center;
+    background: rgba(2,7,5,.72); backdrop-filter: blur(3px);
+    opacity:0; pointer-events:none; transition: opacity .3s;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .overlay-inner{ text-align:center; }
+  .overlay-title{ font-size: clamp(26px,8vw,44px); letter-spacing:.16em; color: var(--red);
+    text-shadow: 0 0 26px rgba(255,43,74,.7); }
+  .overlay-score{ margin-top:8px; font-size:13px; letter-spacing:.14em; color: var(--ink); }
+  .overlay-score b{ color: var(--green); font-size:18px; }
+  .overlay-hint{ margin-top:18px; font-size:11px; letter-spacing:.3em; color: rgba(148,196,172,.7);
+    animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{opacity:.4;} 50%{opacity:1;} }
+
+  @media (prefers-reduced-motion: reduce){
+    .grid-bg,.board::before,.overlay-hint{ animation:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <div class="vignette"></div>
+  <div class="scan"></div>
+
+  <main class="stage">
+    <header class="hud">
+      <div class="meta">
+        <div class="brand">NEON<span>SNAKE</span></div>
+        <div class="sub">AUTONOMOUS · SELF-STEERING · NO INPUT</div>
+      </div>
+      <div class="readout">
+        <div class="stat"><span class="stat-label">SCORE</span><span class="stat-val" id="score">0</span></div>
+        <div class="stat"><span class="stat-label">BEST</span><span class="stat-val" id="best">0</span></div>
+      </div>
+    </header>
+
+    <div class="board" id="board">
+      <canvas id="game"></canvas>
+      <span class="corner c-tl"></span><span class="corner c-tr"></span>
+      <span class="corner c-bl"></span><span class="corner c-br"></span>
+      <div class="overlay" id="overlay">
+        <div class="overlay-inner">
+          <div class="overlay-title">SIGNAL LOST</div>
+          <div class="overlay-score">FINAL SCORE&nbsp; <b id="finalScore">0</b></div>
+          <div class="overlay-hint">AUTO-RESTART IN 2.2s</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+<script>
+(function(){
+  "use strict";
+  const COLS = 20, ROWS = 20;
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const board = document.getElementById('board');
+  const scoreEl = document.getElementById('score');
+  const bestEl = document.getElementById('best');
+  const overlay = document.getElementById('overlay');
+  const finalEl = document.getElementById('finalScore');
+
+  let cell, cssSize, boardPx;
+  let snake, food, score, best = 0, gameLoop, running = false, lastWallBounce;
+
+  const DIRS = { up:[0,-1], down:[0,1], left:[-1,0], right:[1,0] };
+  const allDirs = () => Object.entries(DIRS).map(([name,d]) => ({name, ...d}));
+  const key = (c,r) => c + ',' + r;
+
+  function resize(){
+    const rect = board.getBoundingClientRect();
+    cssSize = Math.max(120, Math.floor(rect.width));
+    boardPx = cssSize;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = boardPx * dpr;
+    canvas.height = boardPx * dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    cell = boardPx / COLS;
+    if(!snake) init();
+    else render();
+  }
+
+  function init(){
+    snake = [];
+    const cy = Math.floor(ROWS/2), cx = Math.floor(COLS/2);
+    snake.push([cx,cy],[cx-1,cy],[cx-2,cy]);
+    spawnFood();
+    score = 0; lastWallBounce = -999;
+    updateScore();
+    hideOverlay();
+  }
+
+  function randomCell(){
+    const occ = new Set(snake.map(s => key(s[0],s[1])));
+    const free = [];
+    for(let c=0;c<COLS;c++) for(let r=0;r<ROWS;r++) if(!occ.has(key(c,r))) free.push([c,r]);
+    return free.length ? free[(Math.random()*free.length)|0] : null;
+  }
+
+  function spawnFood(){
+    const c = randomCell();
+    if(!c){ win(); return; }
+    food = { col:c[0], row:c[1] };
+  }
+
+  const pathStart = (path) => snake[0][0] === path[0][0] && snake[0][1] === path[0][1];
+
+  function bfs(target){
+    if(!target) return null;
+    if(snake[0][0]===target.col && snake[0][1]===target.row)
+      return [[snake[0][0],snake[0][1]]];
+    const tc = new Set(snake.map(s=>key(s[0],s[1])));
+    tc.delete(key(snake[0][0], snake[0][1]));
+    const visited = new Set([key(target.col,target.row)]);
+    const q = [[target]] ;
+    const headQ = [[target.col,target.row]];
+    const prev = {};
+    let qi = 0;
+    prev[key(target.col,target.row)] = null;
+    while(qi < headQ.length){
+      const [c,r] = headQ[qi];
+      if(c===snake[0][0] && r===snake[0][1]){
+        // reconstruct
+        const path = [];
+        let k = key(c,r);
+        while(k){
+          const [pc,pr] = k.split(',').map(Number);
+          path.push([pc,pr]);
+          const p = prev[k]; k = p;
+        }
+        path.reverse();
+        return path;
+      }
+      for(const d of allDirs()){
+        const nc = c+d.col, nr = r+d.row;
+        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
+        const kk = key(nc,nr);
+        if(visited.has(kk) || tc.has(kk)) continue;
+        visited.add(kk);
+        prev[kk] = key(c,r);
+        headQ.push([nc,nr]);
+        q[ headQ.length-1 ] = [nc,nr];
+      }
+      qi++;
+    }
+    return null;
+  }
+
+  function maxReach(){
+    const tc = new Set(snake.map(s=>key(s[0],s[1])));
+    tc.delete(key(snake[0][0], snake[0][1]));
+    const visited = new Set([key(snake[0][0],snake[0][1])]);
+    const headQ = [[snake[0][0],snake[0][1]]];
+    let qi = 0;
+    while(qi < headQ.length){
+      const [c,r] = headQ[qi];
+      for(const d of allDirs()){
+        const nc=c+d.col, nr=r+d.row;
+        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
+        const kk=key(nc,nr);
+        if(visited.has(kk)||tc.has(kk)) continue;
+        visited.add(kk);
+        headQ.push([nc,nr]);
+      }
+      qi++;
+    }
+    return visited.size - 1;
+  }
+
+  function pickMove(){
+    const tail = snake[snake.length-1];
+    let mainPath = bfs(food);
+    if(mainPath){
+      let cp = pathStart(mainPath) ? mainPath : [snake[0], ...mainPath].slice(1);
+      if((cp.length-1) > 0 && (cp.length-1) >= snake.length)
+        return { col:cp[1][0], row:cp[1][1] };
+      // escaping toward an open-tail path keeps the tail free -> chase it
+      const tl = bfs(tail);
+      if(tl){
+        let tp = pathStart(tl) ? tl : [snake[0], ...tl].slice(1);
+        if((tp.length-1) >= snake.length) return { col:tp[1][0], row:tp[1][1] };
+      }
+    }
+    // no safe forced path: grab the most space + wall-bounce cooldown + jitter
+    const occ = new Set(snake.map(s=>key(s[0],s[1])));
+    const tc = new Set(occ); tc.delete(key(tail[0],tail[1]));
+    let bestMove = null, bestScore = -Infinity;
+    const free = snake.length < (COLS*ROWS - 1);
+    for(const d of allDirs()){
+      const nc = snake[0][0]+d.col, nr = snake[0][1]+d.row;
+      let good;
+      if(nc<0||nc>=COLS||nr<0||nr>=ROWS) good = free;      // wrap => always survivable
+      else if(!free) good = false;
+      else good = !tc.has(key(nc,nr));
+      if(!good) continue;
+      if(nc<0||nc>=COLS||nr<0||nr>=ROWS && frame - lastWallBounce < 3) continue;
+      let s = maxSpace(nc,nr,tc);
+      if(s >= snake.length) s += 25; else s -= 50;          // strongly prefer safety
+      if(d.name!=='up') s += 1.6;                            // drift down slightly
+      s += Math.random()*1.5;                                // break perfect loops
+      if(s > bestScore){ bestScore = s; bestMove = {col:nc,row:nr}; }
+    }
+    if(!bestMove){
+      let cap=false; const occ2=new Set(snake.map(s=>key(s[0],s[1]))); occ2.delete(key(tail[0],tail[1]));
+      for(const d of allDirs()){
+        const nc=snake[0][0]+d.col, nr=snake[0][1]+d.row;
+        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
+        if(!occ2.has(key(nc,nr))) return {col:nc,row:nr};
+      }
+      const h = snake[0]; return { col:h[0], row:h[1] }; // nothing possible -> doom
+    }
+    return bestMove;
+  }
+
+  function maxSpace(c,r,tc){
+    const visited = new Set([key(c,r)]);
+    const q = [[c,r]]; let qi=0;
+    while(qi < q.length){
+      const [cc,cr] = q[qi++];
+      for(const d of allDirs()){
+        const nc=cc+d.col, nr=cr+d.row;
+        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
+        const kk=key(nc,nr);
+        if(visited.has(kk)||tc.has(kk)) continue;
+        visited.add(kk); q.push([nc,nr]);
+      }
+    }
+    return visited.size;
+  }
+
+  let frame;
+  function step(){
+    frame++;
+    const mv = pickMove();
+    let head = [snake[0][0]+mv.col, snake[0][1]+mv.row];
+    let wrapped = head[0]<0 || head[0]>=COLS || head[1]<0 || head[1]>=ROWS;
+    head[0] = ((head[0]%COLS)+COLS)%COLS;
+    head[1] = ((head[1]%ROWS)+ROWS)%ROWS;
+
+    const atTail = snake[snake.length-1][0]===head[0] && snake[snake.length-1][1]===head[1];
+    const willGrow = head[0]===food.col && head[1]===food.row;
+    const body = willGrow ? snake : snake.slice(0,-1);
+
+    if(body.some(s => s[0]===head[0] && s[1]===head[1])){ die(); return; }
+
+    snake.unshift(head);
+    if(willGrow){
+      addScore();
+      if(snake.length >= COLS*ROWS){ win(); return; }
+      spawnFood();
+    } else snake.pop();
+
+    if(wrapped){ lastWallBounce = frame; drawEdgeFlash(head); }
+    render();
+  }
+
+  let edgeFlash = null;
+  function drawEdgeFlash(h){
+    edgeFlash = { col:h[0], row:h[1], life:6 };
+  }
+
+  function addScore(){
+    score += 10;
+    if(score > best){ best = score; bestEl.textContent = best; }
+    scoreEl.textContent = score;
+    scoreEl.classList.remove('bump'); void scoreEl.offsetWidth; scoreEl.classList.add('bump');
+    const s = document.querySelector('.brand');
+    s.style.filter = 'drop-shadow(0 0 10px rgba(57,255,20,.9))';
+    clearTimeout(s._t); s._t = setTimeout(()=> s.style.filter='', 180);
+  }
+
+  function die(){
+    running = false;
+    clearInterval(gameLoop);
+    finalEl.textContent = score;
+    overlay.classList.add('show');
+    const b = document.querySelector('.board');
+    b.style.boxShadow = '0 0 80px rgba(255,43,74,.35), inset 0 0 70px rgba(57,255,20,.05), 0 34px 90px -34px rgba(0,0,0,.95)';
+    setTimeout(()=>{
+      b.style.boxShadow='';
+      init();
+      startLoop();
+    }, 2200);
+  }
+  function win(){ die(); }
+
+  function showOverlay(){ overlay.classList.add('show'); }
+  function hideOverlay(){ overlay.classList.remove('show'); }
+
+  function stepMs(){ return Math.max(52, 118 - Math.min(60, Math.floor(snake.length/6)*6)); }
+
+  function startLoop(){
+    clearInterval(gameLoop);
+    running = true;
+    let last = performance.now();
+    const tick = (now)=>{
+      if(!running) return;
+      if(now - last > stepMs()){ step(); last = now; }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  /* ---------- rendering ---------- */
+  function render(){
+    const S = boardPx;
+    ctx.clearRect(0,0,S,S);
+
+    // faint grid
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(57,255,20,0.055)';
+    ctx.beginPath();
+    for(let i=1;i<COLS;i++){ const x=i*cell; ctx.moveTo(x+.5,0); ctx.lineTo(x+.5,S); }
+    for(let i=1;i<ROWS;i++){ const y=i*cell; ctx.moveTo(0,y+.5); ctx.lineTo(S,y+.5); }
+    ctx.stroke();
+
+    if(edgeFlash && edgeFlash.life>0){
+      edgeFlash.life--;
+      const a = edgeFlash.life/6;
+      const xe = (edgeFlash.col===COLS-1 && snake[0][0]===0) || (edgeFlash.col===0 && snake[0][0]===COLS-1);
+      const ye = (edgeFlash.row===ROWS-1 && snake[0][1]===0) || (edgeFlash.row===0 && snake[0][1]===ROWS-1);
+      if(xe || ye){
+        ctx.save();
+        ctx.globalAlpha = a*0.6;
+        ctx.fillStyle = '#39ff14'; ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 30;
+        if(xe){ const x = edgeFlash.col===COLS-1 ? S-6 : 0; ctx.fillRect(x,0,6,S); }
+        if(ye){ const y = edgeFlash.row===ROWS-1 ? S-6 : 0; ctx.fillRect(0,y,S,6); }
+        ctx.restore();
+      }
+      if(edgeFlash.life<=0) edgeFlash=null;
+    }
+
+    drawFood();
+    drawSnake();
+  }
+
+  function drawSnake(){
+    const n = snake.length;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    for(let seg = n-1; seg >= 1; seg--){
+      const s = snake[seg], f = snake[seg-1];
+      const t = seg/Math.max(1,n-1);
+      const sx=f[0]+0.5, sy=f[1]+0.5, ex=s[0]+0.5, ey=s[1]+0.5;
+      let dx=ex-sx, dy=ey-sy;
+      if(dx===COLS-1) dx=-1; else if(dx===1
