@@ -1,0 +1,94 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 37.525,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -18.8,
+  "max_volume_db": -1.7,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Sadaltager",
+    "seconds": 36.984,
+    "wpm": 141.1,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookF",
+      "start_s": 0,
+      "end_s": 4.533333333333333
+    },
+    {
+      "id": "s2",
+      "kind": "jobsF",
+      "start_s": 4.533333333333333,
+      "end_s": 8.533333333333333
+    },
+    {
+      "id": "s3",
+      "kind": "soloF",
+      "start_s": 8.533333333333333,
+      "end_s": 12.1
+    },
+    {
+      "id": "s4",
+      "kind": "duelF",
+      "start_s": 12.1,
+      "end_s": 15.1
+    },
+    {
+      "id": "s5",
+      "kind": "soloF",
+      "start_s": 15.1,
+      "end_s": 17.266666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "duelF",
+      "start_s": 17.266666666666666,
+      "end_s": 20.666666666666668
+    },
+    {
+      "id": "s7",
+      "kind": "timeF",
+      "start_s": 20.666666666666668,
+      "end_s": 27.433333333333334
+    },
+    {
+      "id": "s8",
+      "kind": "scoreF",
+      "start_s": 27.433333333333334,
+      "end_s": 30.666666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "questionF",
+      "start_s": 30.666666666666668,
+      "end_s": 32.6
+    },
+    {
+      "id": "s10",
+      "kind": "ctaF",
+      "start_s": 32.6,
+      "end_s": 33.766666666666666
+    },
+    {
+      "id": "s11",
+      "kind": "hookF",
+      "start_s": 33.766666666666666,
+      "end_s": 37.46666666666667
+    }
+  ]
+}
