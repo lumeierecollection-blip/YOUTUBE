@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-16T12:29:51.172Z",
+  "rebuilt_at": "2026-11-16T12:30:09.052Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,20 +118,20 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "render_complete",
+      "stage": "qa_passed",
       "status": "ok",
-      "at": "2026-11-16T12:29:50.373Z",
+      "at": "2026-11-16T12:30:08.230Z",
       "branch": "preview/hidden-past-kaliningrad-short",
       "commit": "0f877ef1",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43864066442#artifacts)",
-      "sheet": "",
-      "scenes": "",
+      "sheet": "[contact-sheet.jpg](hidden-past/run-43864066442-1/contact-sheet.jpg)",
+      "scenes": "[scene-s1.jpg](hidden-past/run-43864066442-1/scene-s1.jpg) [scene-s10.jpg](hidden-past/run-43864066442-1/scene-s10.jpg) [scene-s11.jpg](hidden-past/run-43864066442-1/scene-s11.jpg) [scene-s12.jpg](hidden-past/run-43864066442-1/scene-s12.jpg)",
       "voice": "",
       "script": "",
       "plan": "[scene-plan.json](hidden-past/run-43864066442-1/scene-plan.json)",
-      "qa": "",
+      "qa": "[qa-report.json](hidden-past/run-43864066442-1/qa-report.json)",
       "blocker": "",
-      "lastOk": "2026-11-16T12:29:50.373Z",
+      "lastOk": "2026-11-16T12:30:08.230Z",
       "run": "run-43864066442-1"
     },
     {
