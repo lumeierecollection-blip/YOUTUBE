@@ -119,6 +119,69 @@
     "ink": "#ffffff",
     "heat": "#E8635B",
     "bar": "#DA291C"
+   },
+   "Italy": {
+    "fill": "#1B5FAA",
+    "ring": "#FFFFFF",
+    "ink": "#ffffff",
+    "heat": "#2F7FD8",
+    "bar": "#1B5FAA"
+   },
+   "Argentina": {
+    "fill": "#75AADB",
+    "ring": "#F6B40E",
+    "ink": "#0a0a0a",
+    "heat": "#75AADB",
+    "bar": "#75AADB"
+   },
+   "France": {
+    "fill": "#1F3A93",
+    "ring": "#E1000F",
+    "ink": "#ffffff",
+    "heat": "#4C6FE0",
+    "bar": "#4C6FE0"
+   },
+   "First kicker": {
+    "fill": "#C8F04B",
+    "ring": "#556b1a",
+    "ink": "#0a0a0a",
+    "heat": "#C8F04B",
+    "bar": "#C8F04B"
+   },
+   "Second kicker": {
+    "fill": "#C9CED8",
+    "ring": "#555555",
+    "ink": "#111111",
+    "heat": "#aaaaaa",
+    "bar": "#C9CED8"
+   },
+   "Scored": {
+    "fill": "#C8F04B",
+    "ring": "#556b1a",
+    "ink": "#0a0a0a",
+    "heat": "#C8F04B",
+    "bar": "#C8F04B"
+   },
+   "Missed": {
+    "fill": "#E8323F",
+    "ring": "#7a1018",
+    "ink": "#ffffff",
+    "heat": "#E8323F",
+    "bar": "#E8323F"
+   },
+   "Dived right": {
+    "fill": "#C8F04B",
+    "ring": "#556b1a",
+    "ink": "#0a0a0a",
+    "heat": "#C8F04B",
+    "bar": "#C8F04B"
+   },
+   "Other": {
+    "fill": "#C9CED8",
+    "ring": "#555555",
+    "ink": "#111111",
+    "heat": "#aaaaaa",
+    "bar": "#C9CED8"
    }
   }
  },

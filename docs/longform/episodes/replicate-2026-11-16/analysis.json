@@ -1,0 +1,434 @@
+{
+ "n": 32,
+ "first_won": 17,
+ "conv_by_state": {
+  "trailing": [
+   84,
+   125
+  ],
+  "level": [
+   95,
+   150
+  ],
+  "leading": [
+   39,
+   53
+  ]
+ },
+ "rows": [
+  [
+   "FIFA World Cup",
+   "2018",
+   "Round of 16",
+   "Colombia",
+   "England",
+   "Colombia",
+   "England",
+   {
+    "Colombia": 3,
+    "England": 4
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2018",
+   "Round of 16",
+   "Croatia",
+   "Denmark",
+   "Denmark",
+   "Croatia",
+   {
+    "Denmark": 2,
+    "Croatia": 3
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2018",
+   "Round of 16",
+   "Spain",
+   "Russia",
+   "Spain",
+   "Russia",
+   {
+    "Spain": 3,
+    "Russia": 4
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2018",
+   "Quarter-finals",
+   "Russia",
+   "Croatia",
+   "Russia",
+   "Croatia",
+   {
+    "Croatia": 4,
+    "Russia": 3
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2022",
+   "Quarter-finals",
+   "Netherlands",
+   "Argentina",
+   "Netherlands",
+   "Argentina",
+   {
+    "Argentina": 4,
+    "Netherlands": 3
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2022",
+   "Final",
+   "Argentina",
+   "France",
+   "France",
+   "Argentina",
+   {
+    "France": 2,
+    "Argentina": 4
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2022",
+   "Quarter-finals",
+   "Croatia",
+   "Brazil",
+   "Croatia",
+   "Croatia",
+   {
+    "Croatia": 4,
+    "Brazil": 2
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2022",
+   "Round of 16",
+   "Morocco",
+   "Spain",
+   "Morocco",
+   "Morocco",
+   {
+    "Morocco": 3
+   }
+  ],
+  [
+   "FIFA World Cup",
+   "2022",
+   "Round of 16",
+   "Japan",
+   "Croatia",
+   "Japan",
+   "Croatia",
+   {
+    "Croatia": 3,
+    "Japan": 1
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2020",
+   "Quarter-finals",
+   "Switzerland",
+   "Spain",
+   "Spain",
+   "Spain",
+   {
+    "Switzerland": 1,
+    "Spain": 3
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2020",
+   "Semi-finals",
+   "Italy",
+   "Spain",
+   "Italy",
+   "Italy",
+   {
+    "Italy": 4,
+    "Spain": 2
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2020",
+   "Final",
+   "Italy",
+   "England",
+   "Italy",
+   "Italy",
+   {
+    "Italy": 3,
+    "England": 2
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2020",
+   "Round of 16",
+   "France",
+   "Switzerland",
+   "Switzerland",
+   "Switzerland",
+   {
+    "Switzerland": 5,
+    "France": 4
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2024",
+   "Quarter-finals",
+   "England",
+   "Switzerland",
+   "England",
+   "England",
+   {
+    "England": 5,
+    "Switzerland": 3
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2024",
+   "Quarter-finals",
+   "Portugal",
+   "France",
+   "France",
+   "France",
+   {
+    "France": 5,
+    "Portugal": 3
+   }
+  ],
+  [
+   "UEFA Euro",
+   "2024",
+   "Round of 16",
+   "Portugal",
+   "Slovenia",
+   "Slovenia",
+   "Portugal",
+   {
+    "Portugal": 3
+   }
+  ],
+  [
+   "Copa America",
+   "2024",
+   "3rd Place Final",
+   "Canada",
+   "Uruguay",
+   "Canada",
+   "Uruguay",
+   {
+    "Canada": 3,
+    "Uruguay": 4
+   }
+  ],
+  [
+   "Copa America",
+   "2024",
+   "Quarter-finals",
+   "Uruguay",
+   "Brazil",
+   "Uruguay",
+   "Uruguay",
+   {
+    "Uruguay": 4,
+    "Brazil": 2
+   }
+  ],
+  [
+   "Copa America",
+   "2024",
+   "Quarter-finals",
+   "Venezuela",
+   "Canada",
+   "Venezuela",
+   "Canada",
+   {
+    "Venezuela": 3,
+    "Canada": 4
+   }
+  ],
+  [
+   "Copa America",
+   "2024",
+   "Quarter-finals",
+   "Argentina",
+   "Ecuador",
+   "Argentina",
+   "Argentina",
+   {
+    "Argentina": 4,
+    "Ecuador": 2
+   }
+  ],
+  [
+   "African Cup of Nations",
+   "2023",
+   "Round of 16",
+   "Egypt",
+   "Congo DR",
+   "Egypt",
+   "Congo DR",
+   {
+    "Egypt": 7,
+    "Congo DR": 8
+   }
+  ],
+  [
+   "African Cup of Nations",
+   "2023",
+   "Quarter-finals",
+   "Cape Verde Islands",
+   "South Africa",
+   "Cape Verde Islands",
+   "South Africa",
+   {
+    "South Africa": 2,
+    "Cape Verde Islands": 1
+   }
+  ],
+  [
+   "African Cup of Nations",
+   "2023",
+   "3rd Place Final",
+   "South Africa",
+   "Congo DR",
+   "South Africa",
+   "South Africa",
+   {
+    "Congo DR": 5,
+    "South Africa": 6
+   }
+  ],
+  [
+   "African Cup of Nations",
+   "2023",
+   "Semi-finals",
+   "Nigeria",
+   "South Africa",
+   "Nigeria",
+   "Nigeria",
+   {
+    "Nigeria": 4,
+    "South Africa": 2
+   }
+  ],
+  [
+   "African Cup of Nations",
+   "2023",
+   "Round of 16",
+   "Senegal",
+   "Côte d'Ivoire",
+   "Senegal",
+   "Côte d'Ivoire",
+   {
+    "Senegal": 4,
+    "Côte d'Ivoire": 5
+   }
+  ],
+  [
+   "Women's World Cup",
+   "2019",
+   "Round of 16",
+   "Norway Women's",
+   "Australia Women's",
+   "Norway Women's",
+   "Norway Women's",
+   {
+    "Norway Women's": 4,
+    "Australia Women's": 1
+   }
+  ],
+  [
+   "Women's World Cup",
+   "2023",
+   "Quarter-finals",
+   "Australia Women's",
+   "France Women's",
+   "France Women's",
+   "Australia Women's",
+   {
+    "Australia Women's": 7,
+    "France Women's": 6
+   }
+  ],
+  [
+   "Women's World Cup",
+   "2023",
+   "Round of 16",
+   "Sweden Women's",
+   "United States Women's",
+   "United States Women's",
+   "Sweden Women's",
+   {
+    "United States Women's": 4,
+    "Sweden Women's": 5
+   }
+  ],
+  [
+   "Women's World Cup",
+   "2023",
+   "Round of 16",
+   "England Women's",
+   "Nigeria Women's",
+   "England Women's",
+   "England Women's",
+   {
+    "England Women's": 4,
+    "Nigeria Women's": 2
+   }
+  ],
+  [
+   "UEFA Women's Euro",
+   "2025",
+   "Final",
+   "England Women's",
+   "Spain Women's",
+   "England Women's",
+   "England Women's",
+   {
+    "Spain Women's": 1,
+    "England Women's": 3
+   }
+  ],
+  [
+   "UEFA Women's Euro",
+   "2025",
+   "Quarter-finals",
+   "France Women's",
+   "Germany Women's",
+   "Germany Women's",
+   "Germany Women's",
+   {
+    "Germany Women's": 6,
+    "France Women's": 5
+   }
+  ],
+  [
+   "UEFA Women's Euro",
+   "2025",
+   "Quarter-finals",
+   "Sweden Women's",
+   "England Women's",
+   "England Women's",
+   "England Women's",
+   {
+    "England Women's": 3,
+    "Sweden Women's": 2
+   }
+  ]
+ ]
+}

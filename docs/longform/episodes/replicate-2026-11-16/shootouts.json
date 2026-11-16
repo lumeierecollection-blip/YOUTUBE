@@ -1,0 +1,1666 @@
+[
+ {
+  "match_id": 7585,
+  "comp": "FIFA World Cup",
+  "season": "2018",
+  "stage": "Round of 16",
+  "date": "2018-07-03",
+  "home": "Colombia",
+  "away": "England",
+  "kicks": [
+   [
+    "Colombia",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Colombia",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Colombia",
+    "Goal"
+   ],
+   [
+    "England",
+    "Saved"
+   ],
+   [
+    "Colombia",
+    "Post"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Colombia",
+    "Saved"
+   ],
+   [
+    "England",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 7581,
+  "comp": "FIFA World Cup",
+  "season": "2018",
+  "stage": "Round of 16",
+  "date": "2018-07-01",
+  "home": "Croatia",
+  "away": "Denmark",
+  "kicks": [
+   [
+    "Denmark",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Saved"
+   ],
+   [
+    "Denmark",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Denmark",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Denmark",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Saved"
+   ],
+   [
+    "Denmark",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 7582,
+  "comp": "FIFA World Cup",
+  "season": "2018",
+  "stage": "Round of 16",
+  "date": "2018-07-01",
+  "home": "Spain",
+  "away": "Russia",
+  "kicks": [
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 8652,
+  "comp": "FIFA World Cup",
+  "season": "2018",
+  "stage": "Quarter-finals",
+  "date": "2018-07-07",
+  "home": "Russia",
+  "away": "Croatia",
+  "kicks": [
+   [
+    "Russia",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Saved"
+   ],
+   [
+    "Russia",
+    "Off T"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Russia",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3869321,
+  "comp": "FIFA World Cup",
+  "season": "2022",
+  "stage": "Quarter-finals",
+  "date": "2022-12-09",
+  "home": "Netherlands",
+  "away": "Argentina",
+  "kicks": [
+   [
+    "Netherlands",
+    "Saved"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Netherlands",
+    "Saved"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Netherlands",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Netherlands",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Off T"
+   ],
+   [
+    "Netherlands",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3869685,
+  "comp": "FIFA World Cup",
+  "season": "2022",
+  "stage": "Final",
+  "date": "2022-12-18",
+  "home": "Argentina",
+  "away": "France",
+  "kicks": [
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "France",
+    "Saved"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "France",
+    "Off T"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3869420,
+  "comp": "FIFA World Cup",
+  "season": "2022",
+  "stage": "Quarter-finals",
+  "date": "2022-12-09",
+  "home": "Croatia",
+  "away": "Brazil",
+  "kicks": [
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Post"
+   ]
+  ]
+ },
+ {
+  "match_id": 3869220,
+  "comp": "FIFA World Cup",
+  "season": "2022",
+  "stage": "Round of 16",
+  "date": "2022-12-06",
+  "home": "Morocco",
+  "away": "Spain",
+  "kicks": [
+   [
+    "Morocco",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Post"
+   ],
+   [
+    "Morocco",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ],
+   [
+    "Morocco",
+    "Saved"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ],
+   [
+    "Morocco",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3869219,
+  "comp": "FIFA World Cup",
+  "season": "2022",
+  "stage": "Round of 16",
+  "date": "2022-12-05",
+  "home": "Japan",
+  "away": "Croatia",
+  "kicks": [
+   [
+    "Japan",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Japan",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ],
+   [
+    "Japan",
+    "Goal"
+   ],
+   [
+    "Croatia",
+    "Post"
+   ],
+   [
+    "Japan",
+    "Saved"
+   ],
+   [
+    "Croatia",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3795108,
+  "comp": "UEFA Euro",
+  "season": "2020",
+  "stage": "Quarter-finals",
+  "date": "2021-07-02",
+  "home": "Switzerland",
+  "away": "Spain",
+  "kicks": [
+   [
+    "Spain",
+    "Post"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Saved"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ],
+   [
+    "Switzerland",
+    "Saved"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Off T"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3795220,
+  "comp": "UEFA Euro",
+  "season": "2020",
+  "stage": "Semi-finals",
+  "date": "2021-07-06",
+  "home": "Italy",
+  "away": "Spain",
+  "kicks": [
+   [
+    "Italy",
+    "Saved"
+   ],
+   [
+    "Spain",
+    "Off T"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Goal"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "Spain",
+    "Saved"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3795506,
+  "comp": "UEFA Euro",
+  "season": "2020",
+  "stage": "Final",
+  "date": "2021-07-11",
+  "home": "Italy",
+  "away": "England",
+  "kicks": [
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Italy",
+    "Saved"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "England",
+    "Post"
+   ],
+   [
+    "Italy",
+    "Goal"
+   ],
+   [
+    "England",
+    "Saved"
+   ],
+   [
+    "Italy",
+    "Saved to Post"
+   ],
+   [
+    "England",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 3794691,
+  "comp": "UEFA Euro",
+  "season": "2020",
+  "stage": "Round of 16",
+  "date": "2021-06-28",
+  "home": "France",
+  "away": "Switzerland",
+  "kicks": [
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "France",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 3942227,
+  "comp": "UEFA Euro",
+  "season": "2024",
+  "stage": "Quarter-finals",
+  "date": "2024-07-06",
+  "home": "England",
+  "away": "Switzerland",
+  "kicks": [
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Saved"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ],
+   [
+    "Switzerland",
+    "Goal"
+   ],
+   [
+    "England",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3942349,
+  "comp": "UEFA Euro",
+  "season": "2024",
+  "stage": "Quarter-finals",
+  "date": "2024-07-05",
+  "home": "Portugal",
+  "away": "France",
+  "kicks": [
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Portugal",
+    "Post"
+   ],
+   [
+    "France",
+    "Goal"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ],
+   [
+    "France",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3941020,
+  "comp": "UEFA Euro",
+  "season": "2024",
+  "stage": "Round of 16",
+  "date": "2024-07-01",
+  "home": "Portugal",
+  "away": "Slovenia",
+  "kicks": [
+   [
+    "Slovenia",
+    "Saved"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ],
+   [
+    "Slovenia",
+    "Saved"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ],
+   [
+    "Slovenia",
+    "Saved"
+   ],
+   [
+    "Portugal",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3943076,
+  "comp": "Copa America",
+  "season": "2024",
+  "stage": "3rd Place Final",
+  "date": "2024-07-14",
+  "home": "Canada",
+  "away": "Uruguay",
+  "kicks": [
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Saved"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Post"
+   ]
+  ]
+ },
+ {
+  "match_id": 3942415,
+  "comp": "Copa America",
+  "season": "2024",
+  "stage": "Quarter-finals",
+  "date": "2024-07-07",
+  "home": "Uruguay",
+  "away": "Brazil",
+  "kicks": [
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Saved"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Goal"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ],
+   [
+    "Brazil",
+    "Post"
+   ],
+   [
+    "Uruguay",
+    "Saved"
+   ],
+   [
+    "Brazil",
+    "Goal"
+   ],
+   [
+    "Uruguay",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3942229,
+  "comp": "Copa America",
+  "season": "2024",
+  "stage": "Quarter-finals",
+  "date": "2024-07-06",
+  "home": "Venezuela",
+  "away": "Canada",
+  "kicks": [
+   [
+    "Venezuela",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Venezuela",
+    "Post"
+   ],
+   [
+    "Canada",
+    "Off T"
+   ],
+   [
+    "Venezuela",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Venezuela",
+    "Saved to Post"
+   ],
+   [
+    "Canada",
+    "Saved"
+   ],
+   [
+    "Venezuela",
+    "Goal"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ],
+   [
+    "Venezuela",
+    "Saved"
+   ],
+   [
+    "Canada",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3942228,
+  "comp": "Copa America",
+  "season": "2024",
+  "stage": "Quarter-finals",
+  "date": "2024-07-05",
+  "home": "Argentina",
+  "away": "Ecuador",
+  "kicks": [
+   [
+    "Argentina",
+    "Post"
+   ],
+   [
+    "Ecuador",
+    "Saved"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Ecuador",
+    "Saved"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Ecuador",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ],
+   [
+    "Ecuador",
+    "Goal"
+   ],
+   [
+    "Argentina",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3922240,
+  "comp": "African Cup of Nations",
+  "season": "2023",
+  "stage": "Round of 16",
+  "date": "2024-01-28",
+  "home": "Egypt",
+  "away": "Congo DR",
+  "kicks": [
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Off T"
+   ],
+   [
+    "Congo DR",
+    "Off T"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "Egypt",
+    "Post"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3922658,
+  "comp": "African Cup of Nations",
+  "season": "2023",
+  "stage": "Quarter-finals",
+  "date": "2024-02-03",
+  "home": "Cape Verde Islands",
+  "away": "South Africa",
+  "kicks": [
+   [
+    "Cape Verde Islands",
+    "Saved"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Cape Verde Islands",
+    "Saved"
+   ],
+   [
+    "South Africa",
+    "Post"
+   ],
+   [
+    "Cape Verde Islands",
+    "Saved"
+   ],
+   [
+    "South Africa",
+    "Saved"
+   ],
+   [
+    "Cape Verde Islands",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Cape Verde Islands",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 3923880,
+  "comp": "African Cup of Nations",
+  "season": "2023",
+  "stage": "3rd Place Final",
+  "date": "2024-02-10",
+  "home": "South Africa",
+  "away": "Congo DR",
+  "kicks": [
+   [
+    "South Africa",
+    "Post"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Saved"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Congo DR",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 3922837,
+  "comp": "African Cup of Nations",
+  "season": "2023",
+  "stage": "Semi-finals",
+  "date": "2024-02-07",
+  "home": "Nigeria",
+  "away": "South Africa",
+  "kicks": [
+   [
+    "Nigeria",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Saved"
+   ],
+   [
+    "Nigeria",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Nigeria",
+    "Off T"
+   ],
+   [
+    "South Africa",
+    "Saved"
+   ],
+   [
+    "Nigeria",
+    "Goal"
+   ],
+   [
+    "South Africa",
+    "Goal"
+   ],
+   [
+    "Nigeria",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3922242,
+  "comp": "African Cup of Nations",
+  "season": "2023",
+  "stage": "Round of 16",
+  "date": "2024-01-29",
+  "home": "Senegal",
+  "away": "Côte d'Ivoire",
+  "kicks": [
+   [
+    "Senegal",
+    "Goal"
+   ],
+   [
+    "Côte d'Ivoire",
+    "Goal"
+   ],
+   [
+    "Senegal",
+    "Goal"
+   ],
+   [
+    "Côte d'Ivoire",
+    "Goal"
+   ],
+   [
+    "Senegal",
+    "Post"
+   ],
+   [
+    "Côte d'Ivoire",
+    "Goal"
+   ],
+   [
+    "Senegal",
+    "Goal"
+   ],
+   [
+    "Côte d'Ivoire",
+    "Goal"
+   ],
+   [
+    "Senegal",
+    "Goal"
+   ],
+   [
+    "Côte d'Ivoire",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 68357,
+  "comp": "Women's World Cup",
+  "season": "2019",
+  "stage": "Round of 16",
+  "date": "2019-06-22",
+  "home": "Norway Women's",
+  "away": "Australia Women's",
+  "kicks": [
+   [
+    "Norway Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Off T"
+   ],
+   [
+    "Norway Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Saved"
+   ],
+   [
+    "Norway Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "Norway Women's",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3902968,
+  "comp": "Women's World Cup",
+  "season": "2023",
+  "stage": "Quarter-finals",
+  "date": "2023-08-12",
+  "home": "Australia Women's",
+  "away": "France Women's",
+  "kicks": [
+   [
+    "France Women's",
+    "Saved"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Saved"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Saved to Post"
+   ],
+   [
+    "Australia Women's",
+    "Post"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Saved"
+   ],
+   [
+    "Australia Women's",
+    "Saved"
+   ],
+   [
+    "France Women's",
+    "Post"
+   ],
+   [
+    "Australia Women's",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3901797,
+  "comp": "Women's World Cup",
+  "season": "2023",
+  "stage": "Round of 16",
+  "date": "2023-08-06",
+  "home": "Sweden Women's",
+  "away": "United States Women's",
+  "kicks": [
+   [
+    "United States Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "United States Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "United States Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Off T"
+   ],
+   [
+    "United States Women's",
+    "Off T"
+   ],
+   [
+    "Sweden Women's",
+    "Saved"
+   ],
+   [
+    "United States Women's",
+    "Off T"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "United States Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "United States Women's",
+    "Post"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 3901735,
+  "comp": "Women's World Cup",
+  "season": "2023",
+  "stage": "Round of 16",
+  "date": "2023-08-07",
+  "home": "England Women's",
+  "away": "Nigeria Women's",
+  "kicks": [
+   [
+    "England Women's",
+    "Off T"
+   ],
+   [
+    "Nigeria Women's",
+    "Off T"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Nigeria Women's",
+    "Off T"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Nigeria Women's",
+    "Goal"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Nigeria Women's",
+    "Goal"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 4020846,
+  "comp": "UEFA Women's Euro",
+  "season": "2025",
+  "stage": "Final",
+  "date": "2025-07-27",
+  "home": "England Women's",
+  "away": "Spain Women's",
+  "kicks": [
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Spain Women's",
+    "Goal"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Spain Women's",
+    "Saved"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Spain Women's",
+    "Saved"
+   ],
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Spain Women's",
+    "Off T"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ]
+  ]
+ },
+ {
+  "match_id": 4018357,
+  "comp": "UEFA Women's Euro",
+  "season": "2025",
+  "stage": "Quarter-finals",
+  "date": "2025-07-19",
+  "home": "France Women's",
+  "away": "Germany Women's",
+  "kicks": [
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Saved"
+   ],
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Germany Women's",
+    "Post"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Goal"
+   ],
+   [
+    "Germany Women's",
+    "Goal"
+   ],
+   [
+    "France Women's",
+    "Saved"
+   ]
+  ]
+ },
+ {
+  "match_id": 4018355,
+  "comp": "UEFA Women's Euro",
+  "season": "2025",
+  "stage": "Quarter-finals",
+  "date": "2025-07-17",
+  "home": "Sweden Women's",
+  "away": "England Women's",
+  "kicks": [
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Saved"
+   ],
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Sweden Women's",
+    "Post"
+   ],
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Sweden Women's",
+    "Goal"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Off T"
+   ],
+   [
+    "England Women's",
+    "Saved"
+   ],
+   [
+    "Sweden Women's",
+    "Saved to Post"
+   ],
+   [
+    "England Women's",
+    "Goal"
+   ],
+   [
+    "Sweden Women's",
+    "Off T"
+   ]
+  ]
+ }
+]

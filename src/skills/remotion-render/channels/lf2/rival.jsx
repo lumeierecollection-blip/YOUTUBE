@@ -281,7 +281,17 @@ export function SubCard({ t, cam, minute, off, on, team, fact }) {
 }
 
 /** Thumbnail: pitch fragment, one giant claim, one figure. */
-export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName, at = 12 }) {
+export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName, at = 12, image }) {
+  // photo variant (no tracking data): a licensed still behind the same type block
+  if (image) return (
+    <AbsoluteFill style={{ background: "#000" }}><Fonts />
+      <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "saturate(0.9) contrast(1.08) brightness(0.8)" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0) 68%)" }} />
+      <div style={{ position: "absolute", left: 90, top: 150, fontFamily: F.cond, fontWeight: 700, fontSize: 210, lineHeight: 0.95, color: "#fff", textTransform: "uppercase", whiteSpace: "pre-line", letterSpacing: "-0.01em" }}>{big}</div>
+      {small && <div style={{ position: "absolute", left: 96, top: 800, fontFamily: F.cond, fontWeight: 700, fontSize: 84, color: "#0a0a0a", background: t.accent, padding: "6px 26px", textTransform: "uppercase" }}>{small}</div>}
+      {figure && <div style={{ position: "absolute", right: 90, top: 90, fontFamily: F.cond, fontWeight: 700, fontSize: 150, color: "#fff", textShadow: "0 6px 30px #000" }}>{figure}</div>}
+    </AbsoluteFill>
+  );
   const state = dotsAt(seq.frames, at), trails = seq.frames.filter((e) => e.type === "Pass" && e.to && e.t <= at);
   return (
     <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => (<>{trails.map((e, i) => <path key={i} d={path(P, [e.from, e.to])} stroke={t.accent} strokeWidth="9" strokeLinecap="round" fill="none" />)}{state.dots.map((d, i) => <Dot key={i} P={P} x={d.x} y={d.y} team={d.mate ? teamName : oppName} t={t} r={20} keeper={d.keeper} />)}</>)}</Pitch>

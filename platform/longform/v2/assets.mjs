@@ -13,6 +13,15 @@ import { commonsAsset } from "../../production/commons.mjs";
 const sharp = createRequire(join(ROOT, "package.json"))("sharp");
 export const ASSETS = {
   "hidden-past": [
+    // Tilbury 1588 episode (hidden-past-tilbury)
+    ["tb-armada-portrait", "File:Elizabeth I Armada Portrait British School.jpg", "The Armada Portrait of Elizabeth I, made to commemorate the defeat of the Spanish Armada"],
+    ["tb-tilbury-illus", "File:Speech to the Troops at Tilbury.jpg", "Illustration of Elizabeth I at Tilbury"],
+    ["tb-bodleian", "File:Bodleian Libraries, Queen Elizabeth at Tilbury Fort.jpg", "Print: Queen Elizabeth at Tilbury Fort (Bodleian Libraries)"],
+    ["tb-gravelines", "File:English Ships and the Spanish Armada, August 1588 RMG BHC0262.jpg", "English Ships and the Spanish Armada, August 1588 (Royal Museums Greenwich)"],
+    ["tb-leicester", "File:Robert Dudley, 1st Earl of Leicester.jpg", "Portrait of Robert Dudley, 1st Earl of Leicester"],
+    ["tb-apothecaries", "File:La batalla de Gravelinas, por Nicholas Hilliard.jpg", "Elizabeth I and the Spanish Armada (Worshipful Society of Apothecaries painting): the beacons, Tilbury and Gravelines"],
+    ["tb-fireships", "File:Spanish Armada fireships.jpg", "English fireships launched at the Spanish Armada off Calais"],
+    ["tb-fort", "File:Tilbury Fort - 48957434083.jpg", "Tilbury Fort, Essex, photographed 22 October 2019"],
     ["kg-castle", "File:Königsberg Castle.jpg", "Königsberg Castle and the monument to Emperor William I, before 1945"],
     ["kg-castle-1900", "File:Schloss Königsberg Ostpreussen vor 1900.jpg", "Königsberg Castle, before 1900"],
     ["kg-potsdam", "File:Attlee, Truman and Stalin at Potsdam.jpg", "Attlee, Truman and Stalin at the Potsdam Conference, July 1945"],
@@ -81,6 +90,12 @@ export const ASSETS = {
     ["braun-2022", "File:Scott (Scooter) Braun 2022.jpg", "Scooter Braun, 2022"],
   ],
   "rival-lines": [
+    // Penalty shoot-out episode (rival-lines-shootout-first)
+    ["ps-wembley-2021", "File:UEFA Euro 2020 Final, Wembley Stadium.jpg", "Wembley Stadium before the kick-off of the UEFA Euro 2020 final, 11 July 2021"],
+    ["ps-lusail-final", "File:2022 wc final 08.jpg", "Lusail Stadium on the day of the 2022 World Cup final"],
+    ["ps-penalty-bernier", "File:Bernier penalty kick 2013-09-08.jpg", "A penalty kick in an MLS match, 2013 (illustrative)"],
+    ["ps-penalty-1920", "File:1920 Olympic football final (Belgium v. Czechoslovakia), penalty Coppée.jpg", "A penalty kick in the 1920 Olympic football final"],
+    ["ps-boothferry", "File:Former Boothferry Park Centre Spot, Kingston upon Hull Apr26.jpg", "The site of the centre spot of the former Boothferry Park, Hull"],
     ["spain-moncloa-2024-1", "File:Sánchez se reunió con los futbolistas de la selección española tras ganar la Eurocopa 2024 (1).jpg", "Spain's squad at La Moncloa after winning Euro 2024, 15 July 2024"],
     ["spain-moncloa-2024-2", "File:Sánchez se reunió con los futbolistas de la selección española tras ganar la Eurocopa 2024 (2).jpg", "Spain's squad at La Moncloa after winning Euro 2024, 15 July 2024"],
     ["spain-moncloa-2024-3", "File:Sánchez se reunió con los futbolistas de la selección española tras ganar la Eurocopa 2024 (3).jpg", "Spain's squad at La Moncloa after winning Euro 2024, 15 July 2024"],
