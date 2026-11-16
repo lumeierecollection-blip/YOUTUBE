@@ -1,0 +1,17 @@
+{
+  "central_question": "How does a substitute win a final in under nineteen minutes?",
+  "thesis": "Both goals after the 60th minute were scored by substitutes; Spain's winner came 18 minutes 37 seconds after Oyarzabal came on.",
+  "why_it_matters": "The long-form teaches how to read substitutions from event data; this is the clearest case in the Euro 2024 final.",
+  "structure": [
+    "hook question",
+    "the score",
+    "Palmer",
+    "Oyarzabal on",
+    "the winner on the pitch board",
+    "the gap",
+    "two of three",
+    "pointer to the full breakdown",
+    "loop"
+  ],
+  "format": "match_analysis"
+}

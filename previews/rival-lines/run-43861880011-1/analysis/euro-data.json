@@ -1,0 +1,150 @@
+{
+ "match_id": 3943043,
+ "competition": "UEFA Euro 2024",
+ "stage": "Final",
+ "date": "2024-07-14",
+ "score": {
+  "Spain": 2,
+  "England": 1
+ },
+ "goals": [
+  {
+   "team": "Spain",
+   "player": "Nicholas Williams Arthuer",
+   "t": 2769,
+   "minute": 47,
+   "xy": [
+    109.9,
+    28.0
+   ],
+   "end": [
+    120.0,
+    42.4
+   ],
+   "xg": 0.11,
+   "foot": "Left Foot",
+   "pass_by": "Lamine Yamal Nasraoui Ebana",
+   "pass_t": 2768,
+   "pass_from": [
+    100.6,
+    47.0
+   ],
+   "pass_to": [
+    109.9,
+    28.0
+   ],
+   "pass_height": "Low Pass"
+  },
+  {
+   "team": "England",
+   "player": "Cole Palmer",
+   "t": 4328,
+   "minute": 73,
+   "xy": [
+    98.4,
+    49.0
+   ],
+   "end": [
+    120.0,
+    37.1
+   ],
+   "xg": 0.04,
+   "foot": "Left Foot",
+   "pass_by": "Jude Bellingham",
+   "pass_t": 4327,
+   "pass_from": [
+    107.6,
+    47.0
+   ],
+   "pass_to": [
+    98.4,
+    51.8
+   ],
+   "pass_height": "Ground Pass"
+  },
+  {
+   "team": "Spain",
+   "player": "Mikel Oyarzabal Ugarte",
+   "t": 5156,
+   "minute": 86,
+   "xy": [
+    111.2,
+    36.3
+   ],
+   "end": [
+    120.0,
+    38.4
+   ],
+   "xg": 0.28,
+   "foot": "Right Foot",
+   "pass_by": "Marc Cucurella Saseta",
+   "pass_t": 5155,
+   "pass_from": [
+    100.0,
+    12.7
+   ],
+   "pass_to": [
+    111.2,
+    36.3
+   ],
+   "pass_height": "Ground Pass"
+  }
+ ],
+ "subs": [
+  {
+   "team": "Spain",
+   "off": "Rodrigo Hernández Cascante",
+   "on": "Martín Zubimendi Ibáñez",
+   "t": 2700
+  },
+  {
+   "team": "England",
+   "off": "Harry Kane",
+   "on": "Ollie Watkins",
+   "t": 3641
+  },
+  {
+   "team": "Spain",
+   "off": "Álvaro Borja Morata Martín",
+   "on": "Mikel Oyarzabal Ugarte",
+   "t": 4039
+  },
+  {
+   "team": "England",
+   "off": "Kobbie Mainoo",
+   "on": "Cole Palmer",
+   "t": 4193
+  },
+  {
+   "team": "Spain",
+   "off": "Robin Aime Robert Le Normand",
+   "on": "José Ignacio Fernández Iglesias",
+   "t": 4958
+  },
+  {
+   "team": "Spain",
+   "off": "Lamine Yamal Nasraoui Ebana",
+   "on": "Mikel Merino Zazón",
+   "t": 5320
+  },
+  {
+   "team": "England",
+   "off": "Phil Foden",
+   "on": "Ivan Toney",
+   "t": 5352
+  }
+ ],
+ "palmer": {
+  "on_t": 4193,
+  "goal_t": 4328,
+  "gap_s": 135,
+  "off": "Kobbie Mainoo"
+ },
+ "oyarzabal": {
+  "on_t": 4039,
+  "goal_t": 5156,
+  "gap_s": 1117,
+  "off": "Álvaro Borja Morata Martín"
+ },
+ "data_note": "StatsBomb Open Data event data. Locations are where events were recorded, not continuous tracking. xG is StatsBomb's modelled value."
+}
