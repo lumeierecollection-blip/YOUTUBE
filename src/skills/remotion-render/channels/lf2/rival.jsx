@@ -4,7 +4,10 @@
 // hold rights to, so the proof layer here is the match's own event data (StatsBomb open data) animated on the pitch.
 // The pitch is a real 3D plane: every point is projected through a camera (focus, yaw, tilt, distance) that can move per frame.
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { ThreeCanvas } from "@remotion/three";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp } from "./kit.jsx";
 
 const L = 120, Wd = 80;
@@ -115,27 +118,24 @@ function Backdrop({ v, children }) {
   );
 }
 
-/** Our own wireframe figure (original drawing): a jointed mannequin with a glowing outline, as the hero visual on the teal look.
- * pose: swing 0..1 (kicking leg back to follow-through); scale s; rot degrees; arms: "kick" | "up". */
-function Mannequin({ x, y, s = 1, rot = 0, swing = 0, arms = "kick", col = "#fff", glow = "#7FE3D6" }) {
-  const rad = (d) => (d * Math.PI) / 180, pt = (o, len, deg) => [o[0] + len * Math.sin(rad(deg)), o[1] + len * Math.cos(rad(deg))];
-  const hip = [0, 0], chest = [0, -150], neck = [0, -185], head = [0, -225];
-  const thighA = -20 + 95 * swing, kneeA = thighA - (70 - 55 * swing), plantHipA = 8, plantKneeA = 4;
-  const k1 = pt(hip, 95, thighA), f1 = pt(k1, 92, kneeA), k2 = pt(hip, 95, plantHipA), f2 = pt(k2, 92, plantKneeA);
-  const shL = [-24, -168], shR = [24, -168];
-  const armsPts = arms === "up" ? [[shL, [-70, -250], [-85, -320]], [shR, [70, -250], [85, -320]]] : [[shL, pt(shL, 72, -62 - 22 * swing), pt(pt(shL, 72, -62 - 22 * swing), 66, -88 - 22 * swing)], [shR, pt(shR, 72, 70 + 26 * swing), pt(pt(shR, 72, 70 + 26 * swing), 66, 104 + 26 * swing)]];
-  const line = (a, b, w = 9) => <line x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke={col} strokeWidth={w} strokeLinecap="round" />;
-  const body = (
-    <g>
-      <path d={`M ${shL[0]} ${shL[1]} Q -34 -90 -20 0 L 20 0 Q 34 -90 ${shR[0]} ${shR[1]} Z`} fill="none" stroke={col} strokeWidth="7" strokeLinejoin="round" />
-      <path d={`M ${-14} -150 Q 0 -120 14 -150 M -18 -118 Q 0 -96 18 -118 M -20 -86 Q 0 -66 20 -86`} fill="none" stroke={col} strokeWidth="2.5" opacity="0.7" />
-      {line(neck, chest, 8)}<ellipse cx={head[0]} cy={head[1]} rx="30" ry="36" fill="none" stroke={col} strokeWidth="7" /><ellipse cx={head[0]} cy={head[1]} rx="30" ry="12" fill="none" stroke={col} strokeWidth="2.5" opacity="0.6" />
-      {armsPts.map(([a, b, c], i) => <g key={i}>{line(a, b)}{line(b, c)}<circle cx={b[0]} cy={b[1]} r="8" fill="none" stroke={col} strokeWidth="4" /><circle cx={c[0]} cy={c[1]} r="10" fill="none" stroke={col} strokeWidth="4" /></g>)}
-      {[[hip, k1, f1], [hip, k2, f2]].map(([a, b, c], i) => <g key={i}>{line(a, b, 12)}{line(b, c, 10)}<circle cx={b[0]} cy={b[1]} r="10" fill="none" stroke={col} strokeWidth="4" /><ellipse cx={c[0] + 12} cy={c[1] + 4} rx="26" ry="9" fill="none" stroke={col} strokeWidth="5" /></g>)}
-      <circle cx={hip[0]} cy={hip[1]} r="14" fill="none" stroke={col} strokeWidth="5" />
-    </g>
+/** A real 3D human (CesiumMan.glb, (c) 2017 Cesium, CC BY 4.0, credit drawn by the scene) shown as a glowing wireframe, animated from its own walk cycle by frame number.
+ * Replaces an earlier hand-drawn stick figure, which looked like a toy next to the reference's mannequin. */
+function WireFigure({ color = "#fff", glow = "#7FE3D6", px = -0.62, py = -0.72, scale = 0.86, yaw = 1.05, speed = 1, opacity = 0.95 }) {
+  const f = useCurrentFrame(), [model, setModel] = React.useState(null), [h] = React.useState(() => delayRender("wire-figure"));
+  React.useEffect(() => { new GLTFLoader().load(staticFile("lf2/models/CesiumMan.glb"), (g) => {
+    const wire = new THREE.MeshBasicMaterial({ color, wireframe: true, transparent: true, opacity });
+    g.scene.traverse((o) => { if (o.isMesh) { o.material = wire; o.frustumCulled = false; } });
+    const mixer = new THREE.AnimationMixer(g.scene); const clip = g.animations[0]; if (clip) mixer.clipAction(clip).play();
+    setModel({ scene: g.scene, mixer, dur: clip ? clip.duration : 1 }); continueRender(h);
+  }, undefined, () => continueRender(h)); }, []);
+  if (model) model.mixer.setTime(((f / 30) * speed) % model.dur);
+  return (
+    <div style={{ position: "absolute", inset: 0, filter: `drop-shadow(0 0 16px ${glow}) drop-shadow(0 0 40px ${glow})` }}>
+      <ThreeCanvas width={1920} height={1080} camera={{ position: [0, 0, 3.4], fov: 30 }} style={{ background: "transparent" }}>
+        {model && <group position={[px, py, 0]} scale={scale} rotation={[0, yaw + f * 0.006, 0]}><primitive object={model.scene} /></group>}
+      </ThreeCanvas>
+    </div>
   );
-  return <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`}><g style={{ filter: `drop-shadow(0 0 14px ${glow})` }}>{body}</g></g>;
 }
 
 /** Framed pictures on a section look, with a drop shadow (the reference shows its clips as framed cards on the plum pitch). cards: [{ image, credit, pos }] */
@@ -161,9 +161,10 @@ export function Hero({ t, value, countFrom, label, sub, v = "teal", figure = "ki
     <Backdrop v={v}>
       <svg width="1920" height="1080" style={{ position: "absolute" }}>
         <circle cx="600" cy="560" r="400" fill="none" stroke={P.fg} strokeWidth="2" opacity="0.35" /><circle cx="600" cy="560" r="330" fill="none" stroke={P.fg} strokeWidth="1" opacity="0.2" strokeDasharray="6 10" />
-        <Mannequin x={600} y={690} s={1.5} swing={figure === "kick" ? sw : 0.2} arms={figure === "keeper" ? "up" : "kick"} glow={P.a} />
         <line x1="820" y1="420" x2="1070" y2="330" stroke={P.fg} strokeWidth="2" opacity={ramp(f, 14, 30)} /><circle cx="820" cy="420" r="8" fill="none" stroke={P.fg} strokeWidth="2" opacity={ramp(f, 14, 30)} />
       </svg>
+      <WireFigure glow={P.a} color={P.fg} />
+      <div style={{ position: "absolute", left: 40, bottom: 20, fontFamily: F.sans, fontSize: 15, color: P.faint }}>3D model: CesiumMan, © 2017 Cesium, CC BY 4.0</div>
       <div style={{ position: "absolute", left: 1090, top: 190, fontFamily: SER, fontWeight: 700, fontSize: 250, lineHeight: 1, color: P.fg, opacity: ramp(f, 8, 24) }}>{n}</div>
       <div style={{ position: "absolute", left: 1100, top: 450, fontFamily: SER, fontStyle: "italic", fontSize: 58, color: P.a, maxWidth: 700, opacity: ramp(f, 20, 36) }}>{sentence(label)}</div>
       {sub && <div style={{ position: "absolute", left: 1100, top: 560, fontFamily: SER, fontSize: 30, color: P.mute, maxWidth: 700, opacity: ramp(f, 30, 46) }}>{sub}</div>}
@@ -493,6 +494,7 @@ export function OrderStrip({ t, rows, title, step = 5, v }) {
   );
 }
 
+const other0 = (g) => 100 - g.right;
 /** 15. Goal seen from the front with the goalkeeper's dive drawn as a wireframe figure (a diagram of the cited percentages, not tracking data).
  * goals: [{ label, right }]  right = percent of dives to the right; the rest is shown as "another way". */
 export function GoalDiagram({ t, goals, title, step = 22, v }) {
@@ -507,7 +509,10 @@ export function GoalDiagram({ t, goals, title, step = 22, v }) {
             <rect x={x} y={300} width={W} height={Hh} fill="none" stroke={P.fg} strokeWidth="14" />
             {Array.from({ length: 11 }, (_, k) => <line key={k} x1={x + (k + 1) * (W / 12)} y1={300} x2={x + (k + 1) * (W / 12)} y2={300 + Hh} stroke={P.faint} strokeWidth="1.5" />)}
             {Array.from({ length: 6 }, (_, k) => <line key={k} x1={x} y1={300 + (k + 1) * (Hh / 7)} x2={x + W} y2={300 + (k + 1) * (Hh / 7)} stroke={P.faint} strokeWidth="1.5" />)}
-            <Mannequin x={x + W / 2 + dive * (g.right / 80) * W * 0.22} y={300 + Hh - 40 - dive * 30} s={W / 1100 + 0.1} rot={dive * (g.right / 80) * 64} swing={0.1} arms="up" glow={P.a} col={P.fg} />
+            <circle cx={x + W / 2} cy={300 + Hh - 24} r="16" fill={P.fg} />
+            <path d={`M ${x + W / 2} ${300 + Hh / 2} L ${x + W / 2 + (W * 0.36) * dive * (g.right / 100)} ${300 + Hh / 2 - 20 * dive}`} stroke={P.a} strokeWidth={10 + g.right / 5} strokeLinecap="round" />
+            <path d={`M ${x + W / 2} ${300 + Hh / 2} L ${x + W / 2 - (W * 0.36) * dive * (other0(g) / 100)} ${300 + Hh / 2 - 20 * dive}`} stroke={P.b} strokeWidth={6 + other0(g) / 8} strokeLinecap="round" opacity="0.8" />
+            <text x={x + W / 2} y={300 + Hh / 2 + 16} textAnchor="middle" fontFamily="Playfair Display, Georgia, serif" fontStyle="italic" fontSize="30" fill={P.fg} opacity={ramp(f, 30 + i * step, 46 + i * step)}>keeper</text>
           </svg>
           <div style={{ position: "absolute", left: x, top: 300 + Hh + 30, width: W, textAlign: "center", fontFamily: SER, fontWeight: 700, fontSize: 120, lineHeight: 1, color: P.fg }}>{Math.round(g.right * a)}<span style={{ fontSize: 56 }}>%</span></div>
           <div style={{ position: "absolute", left: x, top: 300 + Hh + 160, width: W, textAlign: "center", fontFamily: SER, fontStyle: "italic", fontSize: 38, color: P.a }}>dived right · {sentence(g.label)}</div>

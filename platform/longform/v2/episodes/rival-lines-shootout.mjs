@@ -41,7 +41,7 @@ export const EPISODE = {
   beats: [
     { id: "S01", part: "the number", ref: "gp4cftwGLcQ 0:00: a counted figure said to the viewer first", src: ["SB"],
       vo: "Seventeen out of thirty-two. That is how many penalty shoot-outs were won by the team that kicked first, in free match data from nine recent tournaments.",
-      scene: { type: "hero", value: 17, countFrom: 0, label: "first kicker won", sub: "of 32 shoot-outs · " + OUR, v: "teal", figure: "kick" } },
+      scene: { type: "hero", value: 17, countFrom: 0, label: "first kicker won", sub: "of 32 shoot-outs · our count from StatsBomb open data, 2018–2025", v: "teal", figure: "kick" } },
     { id: "S02", part: "the number", ref: "gp4cftwGLcQ 0:45: the question, with the stakes", src: ["SB"],
       vo: "A little over half. So is going first a real advantage, or are we just looking at luck?",
       scene: GRIDSCENE({ step: 7 }) },
