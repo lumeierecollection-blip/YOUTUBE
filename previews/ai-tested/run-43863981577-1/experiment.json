@@ -1,0 +1,20 @@
+{
+  "note": "numbers read from data/clone/runs/ai-tested-four-ais",
+  "models": [
+    {
+      "name": "Gemini 3.8 Flash",
+      "seconds": 434.16499999999996,
+      "passed": 5
+    },
+    {
+      "name": "gpt-oss-120b",
+      "seconds": 18.735,
+      "passed": 4
+    },
+    {
+      "name": "gpt-oss-20b",
+      "seconds": 16.069,
+      "passed": 4
+    }
+  ]
+}
