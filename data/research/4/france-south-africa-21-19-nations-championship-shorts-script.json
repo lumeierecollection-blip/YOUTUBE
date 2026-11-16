@@ -1,0 +1,68 @@
+{
+  "channel_id": "4",
+  "topic_slug": "france-south-africa-21-19-nations-championship",
+  "format": "shorts",
+  "hook": "France ended South Africa's 21-year streak with a 21-19 victory.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "France ended South Africa's 21-year streak with a 21-19 victory.",
+      "b_roll": [
+        "historic stadium photo of Stade de France under lights",
+        "scoreboard graphic displaying France 21 South Africa 19"
+      ],
+      "text_overlay": {
+        "text": "France 21 - 19 South Africa"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At Stade de France in Saint-Denis, France built a 21-7 halftime lead. Captain Antoine Dupont teamed with Maxime Lucu after just one training session together. Where did the 19-point Springboks fall short?",
+      "b_roll": [
+        "halftime score breakdown graphic showing 21 to 7",
+        "tactical diagram of half-back pairing Dupont and Lucu",
+        "bar chart of head-to-head records across 11 matches"
+      ],
+      "text_overlay": {
+        "text": "Halftime: France 21 - 7 South Africa"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "France had only 2 wins across 11 meetings against South Africa.",
+      "b_roll": [
+        "trend line graphic showing 2 wins in 11 meetings"
+      ],
+      "text_overlay": {
+        "text": "2 Wins in 11 Meetings"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The French squad held off world champion South Africa in Paris. France earned their second win across 11 stadium meetings. Dupont produced a standout individual performance as France secured a famous 21-19 win.",
+      "b_roll": [
+        "flow diagram of French defensive positioning",
+        "match record chart highlighting 2nd historic win",
+        "full-time match score summary graphic"
+      ],
+      "text_overlay": {
+        "text": "Final: France 21 - 19 South Africa"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That ended 21 years of Springbok domination at Stade de France.",
+      "b_roll": [
+        "timeline graphic marking 21-year winless streak end"
+      ],
+      "text_overlay": {
+        "text": "21-Year Streak Ended"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter",
+    "https://apnews.com/article/south-africa-springboks-france-nations-rugby-4c2ed5fa9df4a56da40fecd130c02677",
+    "https://www.rugbypass.com/plus/if-you-want-to-beat-the-boks-give-them-the-ball-how-france-conquered-the-world-champions-in-pulsing-paris"
+  ]
+}
