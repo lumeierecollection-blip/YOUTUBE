@@ -1219,12 +1219,12 @@
       "attempts": 1,
       "run_id": "43942061759",
       "trigger": "schedule",
-      "updated_at": "2026-11-16T19:45:32.493Z",
-      "stage": "script",
-      "topic": "Why a Caltech Professor Stopped Grading Homework Because of AI",
-      "score": 79.4,
-      "pillar": "AI changing everyday work",
-      "hook": "A Caltech math professor completely stopped grading student homework because everyone is just using AI to do it anyway."
+      "updated_at": "2026-11-16T19:52:32.287Z",
+      "stage": "research",
+      "topic": "Google Maps AI Trip Planner",
+      "score": 78.1,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Google Maps can now build your entire vacation itinerary with real-time stops."
     }
   },
   "uploads": [
@@ -2454,6 +2454,15 @@
       "at_ms": 1794858289932,
       "score": 79.4,
       "pillar": "AI changing everyday work"
+    },
+    {
+      "channel": "2",
+      "topic": "Google Maps AI Trip Planner",
+      "slug": "google-maps-ai-trip-planner",
+      "slot": "2026-11-16-ch2",
+      "at_ms": 1794858752287,
+      "score": 78.1,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
