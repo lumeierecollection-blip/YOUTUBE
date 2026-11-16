@@ -25,14 +25,12 @@ const score = (m) => TASKS.filter((t) => V[`${t}-${m}`].pass).length;
 const FOOT = "Live run · recorded 16 Nov 2026 · same prompt, one try, no edits";
 
 // where each app draws on its page (from the recordings): zoom toward it so the result fills the shot
-const FRAME = {
-  "snake-gemini": [1.9, 2.1, "50% 48%"], "snake-gptoss20": [2.0, 2.2, "50% 30%"], "hexagon-gemini": [1.7, 1.85, "50% 55%"],
-  "hexagon-gptoss20": [1.8, 1.95, "50% 50%"], "solar-gptoss20": [1.7, 1.85, "34% 30%"], "cave-gptoss20": [2.0, 2.15, "0% 4%"], "city-gptoss20": [2.0, 2.15, "0% 100%"],
-};
+// zoom + focus per app clip, measured from where each page actually draws (content box over the whole clip; FRAMES.json)
+const FRAME = JSON.parse(readFileSync(join(ROOT, DIR, "FRAMES.json"), "utf8"));
 const app = (n, extra = {}) => { const [a, b, focus] = FRAME[n] || [1.0, 1.08, "50% 50%"], m = n.split("-")[1], s = sec(n);
   return { type: "run", video: CLIP(n), videoLen: 12.5, start: 1.5, zoom: [a, b], focus, label: M[m]?.label, tag: `${say(s)} s`, ok: V[n]?.pass, foot: FOOT, ...extra }; };
 const chat = (n, start = 4.5, extra = {}) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start, zoom: [1.3, 1.42], focus: "50% 38%", label: M[n.split("-")[1]]?.label, model: RUN(n).model, foot: FOOT, ...extra });
-const typing = (n) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start: 0.4, zoom: [1.45, 1.55], focus: "50% 96%", foot: FOOT });
+const typing = (n) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start: 0.4, zoom: [1.55, 1.6], focus: "50% 100%", foot: FOOT }); // prompt box sits at the bottom of the chat page
 const quad = (t, title) => ({ type: "quad", title, foot: FOOT, cells: SCORED.map((m) => ({ video: CLIP(`${t}-${m}`), videoLen: 12.5, label: M[m].label, tag: V[`${t}-${m}`].pass ? `ran · ${say(sec(`${t}-${m}`))} s` : `failed · ${say(sec(`${t}-${m}`))} s`, ok: V[`${t}-${m}`].pass })) });
 
 const P = (vo, scene) => ({ vo, scene });

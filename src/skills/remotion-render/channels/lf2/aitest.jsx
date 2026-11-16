@@ -256,7 +256,7 @@ export function Bars({ t, title, sub, bars, unit = "%", prefix = "", max, decima
       {bars.map((b, i) => { const a = ramp(f, 10 + i * 7, 40 + i * 7, expo), h = (b.value / top) * hMax * a, x = 210 + i * (bw + gap), col = b.hi ? (b.color || t.accent) : b.color || "#4a515c", lit = b.hi && f > 50; return (
         <React.Fragment key={i}>
           <div style={{ position: "absolute", left: x, top: base - h, width: bw, height: h, background: col, borderRadius: "8px 8px 0 0", boxShadow: lit ? `0 0 0 4px ${t.bg}, 0 0 0 8px ${col}` : "none" }} />
-          <div style={{ position: "absolute", left: x - 30, width: bw + 60, top: base - h - 64, textAlign: "center", fontFamily: F.mono, fontWeight: 700, fontSize: b.hi ? 48 : 38, color: b.hi ? "#fff" : "rgba(255,255,255,0.8)", opacity: ramp(f, 12 + i * 7, 20 + i * 7) }}>{prefix}{(b.value * a).toFixed(decimals)}{unit}</div>
+          <div style={{ position: "absolute", left: x - 30, width: bw + 60, top: base - h - 64, textAlign: "center", fontFamily: F.mono, fontWeight: 700, fontSize: b.hi ? 48 : 38, color: b.hi ? "#fff" : "rgba(255,255,255,0.8)", opacity: ramp(f, 12 + i * 7, 20 + i * 7) }}>{prefix}{(b.value * (a > 0.97 ? 1 : a)).toFixed(decimals)}{unit}</div>
           <div style={{ position: "absolute", left: x - 40, width: bw + 80, top: base + 18, textAlign: "center", fontFamily: F.sans, fontWeight: b.hi ? 700 : 500, fontSize: 25, lineHeight: 1.2, color: b.hi ? "#fff" : "rgba(255,255,255,0.7)", opacity: ramp(f, 8 + i * 7, 18 + i * 7) }}>{b.label}</div>
         </React.Fragment>); })}
       {note && <div style={{ position: "absolute", right: 150, top: 230, maxWidth: 760, fontFamily: F.sans, fontWeight: 700, fontSize: 30, color: "#0a0c10", background: t.accent, padding: "10px 20px", opacity: ramp(f, 60, 70), transform: `translateX(${(1 - ramp(f, 60, 72)) * 40}px)` }}>{note}</div>}
@@ -265,19 +265,20 @@ export function Bars({ t, title, sub, bars, unit = "%", prefix = "", max, decima
   );
 }
 
+const fmt = (v, d) => Number(v.toFixed(d)).toLocaleString("en-GB", { minimumFractionDigits: d, maximumFractionDigits: d });
 /** 12. One measured number, counted up, then set against its comparison (a median, an earlier model) as two drawn bars. */
 export function Stat({ t, value, decimals = 0, prefix = "", suffix = "", label, sub, vs, pill, foot }) {
   const f = useCurrentFrame(), k = ramp(f, 4, 34, expo), big = vs ? 230 : 300;
   return (
     <Field t={t}>
-      <div style={{ position: "absolute", left: 150, top: vs ? 150 : 230, fontFamily: F.mono, fontWeight: 700, fontSize: big, lineHeight: 1, color: "#fff", letterSpacing: "-0.04em" }}>{prefix}{(value * k).toFixed(decimals)}<span style={{ color: t.accent }}>{suffix}</span></div>
+      <div style={{ position: "absolute", left: 150, top: vs ? 150 : 230, fontFamily: F.mono, fontWeight: 700, fontSize: big, lineHeight: 1, color: "#fff", letterSpacing: "-0.04em" }}>{prefix}{fmt(value * (k > 0.97 ? 1 : k), decimals)}<span style={{ color: t.accent }}>{suffix}</span></div>
       <div style={{ position: "absolute", left: 158, top: (vs ? 150 : 230) + big + 20, fontFamily: F.sans, fontWeight: 700, fontSize: 46, color: "#fff", opacity: ramp(f, 16, 28), maxWidth: 1600 }}>{label}</div>
       {sub && <div style={{ position: "absolute", left: 160, top: (vs ? 150 : 230) + big + 84, fontFamily: F.sans, fontSize: 28, color: "rgba(255,255,255,0.62)", opacity: ramp(f, 22, 34), maxWidth: 1600 }}>{sub}</div>}
       {vs && [{ label: vs.mine || "This model", value, hi: true }, { label: vs.label, value: vs.value }].map((r, i) => { const top = Math.max(value, vs.value), p = ramp(f, 46 + i * 10, 76 + i * 10, expo); return (
         <div key={i} style={{ position: "absolute", left: 160, top: 690 + i * 110, display: "flex", alignItems: "center", gap: 24, opacity: ramp(f, 44 + i * 10, 52 + i * 10) }}>
           <div style={{ width: 360, fontFamily: F.sans, fontSize: 28, color: "rgba(255,255,255,0.8)" }}>{r.label}</div>
           <div style={{ width: (r.value / top) * 1000 * p, height: 56, background: r.hi ? t.accent : "#4a515c", borderRadius: 6 }} />
-          <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 40, color: "#fff" }}>{prefix}{(r.value * p).toFixed(decimals)}{suffix}</div>
+          <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 40, color: "#fff" }}>{prefix}{fmt(r.value * (p > 0.97 ? 1 : p), decimals)}{suffix}</div>
         </div>); })}
       <Pill t={t} text={pill} /><Foot text={foot} />
     </Field>
