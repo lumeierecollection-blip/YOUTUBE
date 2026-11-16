@@ -66,11 +66,11 @@
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10,
-   "max_tokens": 4500,
+   "max_tokens": 3500,
    "extra": {
     "reasoning_effort": "none"
    },
-   "delay_s": 90
+   "delay_s": 60
   },
   {
    "name": "solar-gptoss20",
@@ -203,12 +203,6 @@
   }
  ],
  "only": [
-  "solar-qwen",
-  "city-qwen",
-  "snake-gptoss20",
-  "solar-gptoss20",
-  "hexagon-gptoss20",
-  "cave-gptoss20",
-  "city-gptoss20"
+  "solar-qwen"
  ]
 }
