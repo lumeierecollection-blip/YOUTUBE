@@ -2780,9 +2780,14 @@
           "topic": "Euclid Space Telescope DR1 Foundation Maps Over a Billion Cosmic Objects",
           "slug": "euclid-space-telescope-dr1-foundation-billion-objects",
           "reserved_at": "2026-11-15T15:44:19.022Z"
+        },
+        {
+          "topic": "DESI and Gaia Data Measure Milky Way Mass Using Over 10000 Stars",
+          "slug": "desi-gaia-milky-way-mass-measurement",
+          "reserved_at": "2026-11-16T18:47:56.083Z"
         }
       ],
-      "last_generated": "2026-11-15T15:44:19.023Z"
+      "last_generated": "2026-11-16T18:47:56.083Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
