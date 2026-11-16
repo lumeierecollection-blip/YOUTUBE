@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Day‑Night City Skyline</title>
+<style>
+  body{margin:0;background:#111;display:flex;justify-content:center;align-items:center;height:100vh;}
+  canvas{display:block;}
+</style>
+</head>
+<body>
+<canvas id="sky" width="800" height="400"></canvas>
+<script>
+(() => {
+  const canvas = document.getElementById('sky');
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width, height = canvas.height;
+  const cycle = 10000; // 10 seconds
+  const daySky = [135, 206, 235];   // light blue
+  const nightSky = [0, 17, 34];     // dark navy
+
+  // Buildings definition
+  const buildings = [
+    {x: 50,  w: 80,  h: 200, color:'#555'},
+    {x: 200, w: 120, h: 280, color:'#444'},
+    {x: 350, w: 100, h: 240, color:'#333'},
+    {x: 520, w: 140, h: 320, color:'#222'},
+    {x: 700, w: 60,  h: 160, color:'#555'}
+  ];
+
+  // Generate random stars
+  const stars = Array.from({length:120},()=>({
+    x: Math.random()*width,
+    y: Math.random()*height*0.6, // upper part of sky
+    r: Math.random()*1.5+0.5,
+    alpha: 1
+  }));
+
+  function lerpColor(a,b,t){
+    return [
+      Math.round(a[0]+(b[0]-a[0])*t),
+      Math.round(a[1]+(b[1]-a[1])*t),
+      Math.round(a[2]+(b[2]-a[2])*t)
+    ];
+  }
+
+  function draw(){
+    const now = performance.now();
+    const t = ((now%cycle)/cycle); // 0..1
+    const isNight = t>=0.5;
+    const dayT = t*2; // 0..1 for day
+    const nightT = (t-0.5)*2; // 0..1 for night
+
+    // Sky
+    const skyCol = lerpColor(daySky, nightSky, Math.min(dayT,1));
+    ctx.fillStyle = `rgb(${skyCol.join(',')})`;
+    ctx.fillRect(0,0,width,height);
+
+    // Sun
+    if(!isNight){
+      const sunX = width*dayT;
+      const sunY = 80;
+      ctx.beginPath();
+      ctx.arc(sunX,sunY,30,0,Math.PI*2);
+      ctx.fillStyle='#FFD700';
+      ctx.fill();
+    }
+
+    // Moon
+    if(isNight){
+      const moonX = width*nightT;
+      const moonY = 80;
+      ctx.beginPath();
+      ctx.arc(moonX,moonY,20,0,Math.PI*2);
+      ctx.fillStyle='#F0F8FF';
+      ctx.fill();
+    }
+
+    // Stars fade in/out
+    const starAlpha = isNight ? (nightT<=0.5?nightT*2: (1-nightT)*2) : 0;
+    ctx.globalAlpha = starAlpha;
+    stars.forEach(s=>{
+      ctx.beginPath();
+      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle='white';
+      ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+
+    // Buildings
+    buildings.forEach(b=>{
+      ctx.fillStyle=b.color;
+      ctx.fillRect(b.x, height-b.h, b.w, b.h);
+
+      // Windows
+      const rows = 6, cols = Math.floor(b.w/20)-1;
+      const winW = 12, winH = 12;
+      const spacingX = (b.w - cols*winW)/(cols+1);
+      const spacingY = (b.h - rows*winH)/(rows+1);
+
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const winX = b.x+spacingX*(c+1)+c*winW;
+          const winY = height-b.h+spacingY*(r+1)+r*winH;
+          const lit = isNight && Math.random()<0.3;
+          ctx.fillStyle= lit ? '#FFFF00' : '#111';

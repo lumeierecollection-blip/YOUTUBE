@@ -1,0 +1,10 @@
+{
+ "provider": "groq",
+ "model": "openai/gpt-oss-20b",
+ "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
+ "started": "2026-11-16T01:55:02.223Z",
+ "generation_ms": 2477,
+ "chunks": 102,
+ "answer": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Auto‑Steered Ship Cave Game</title>\n<style>body{margin:0;background:#000}canvas{display:block;}</style>\n</head>\n<body>\n<canvas id=\"game\"></canvas>\n<script>\nconst canvas=document.getElementById('game'),ctx=canvas.getContext('2d');\ncanvas.width=800;canvas.height=600;\n\nconst shipX=150;",
+ "app_recorded": true
+}

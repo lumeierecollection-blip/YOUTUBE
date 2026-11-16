@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bouncing Balls in Rotating Hexagon</title>
+<style>body{margin:0;overflow:hidden;background:#fafafa}</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script>
+(() => {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width = window.innerWidth;
+  const H = canvas.height = window.innerHeight;
+  const center = {x: W/2, y: H/2};
+
+  // Hexagon parameters
+  const hexRadius = Math.min(W, H) * 0.3;
+  const hexSide = hexRadius;
+  let hexAngle = 0;          // rotation angle
+  const hexSpeed = 0.002;    // rotation speed
+
+  // Physics parameters
+  const g = 200;             // gravity px/s^2
+  const dt = 1/60;           // time step in seconds
+  const friction = 0.995;    // global friction
+  const restitution = 0.9;   // ball-ball and ball-wall restitution
+  const ballFriction = 0.98; // friction on collision
+
+  // Ball class
+  class Ball {
+    constructor(x,y,vx,vy,r,color) {
+      this.pos = {x, y};
+      this.vel = {x: vx, y: vy};
+      this.r = r;
+      this.color = color;
+      this.mass = r * r; // mass proportional to area
+    }
+    update() {
+      // Gravity
+      this.vel.y += g * dt;
+      // Velocity damping
+      this.vel.x *= friction;
+      this.vel.y *= friction;
+      // Position update
+      this.pos.x += this.vel.x * dt;
+      this.pos.y += this.vel.y * dt;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.pos.x, this.pos.y, this.r, 0, Math.PI*2);
+      ctx.fillStyle = this.color;
+      ctx.fill();
+    }
+  }
+
+  // Generate random color
+  const randColor = () => `hsl(${Math.random()*360},70%,60%)`;
+

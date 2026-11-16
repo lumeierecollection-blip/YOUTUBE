@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skyline — a ten-second day</title>
+<style>
+  html, body {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background: #05070f;
+    overflow: hidden;
+    cursor: none;
+    user-select: none;
+    font-family: system-ui, sans-serif;
+  }
+  canvas#view { display: block; width: 100vw; height: 100vh; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<style>
+  .cap {
+    position: fixed; left: 26px; bottom: 24px;
+    padding-top: 12px;
+    pointer-events: none; z-index: 3;
+    color: #f2ead8;
+    text-shadow: 0 2px 22px rgba(0,0,0,.95);
+    animation: rise 1.2s ease .25s both;
+  }
+  .label { font-size: 11px; letter-spacing: span; letter-spacing: .28em; text-transform: uppercase; opacity: .8; }
+  .clock {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    font-size: clamp(46px, 8vw, 86px); line-height: .85; letter-spacing: -.02em;
+    margin: 4px 0 3px;
+    text-shadow: 0 4px 32px rgba(0,0,0,.85);
+  }
+  .sub { font-size: clamp(12px, 1.4vw, 15px); letter-spacing: .1em; opacity: .52; }
+</style>
+<script>
+(function () {
+  "use strict";
+
+  // ---------- helpers ----------
+  const TAU = Math.PI * 2;
+  const lerp  = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
+  const smooth = t => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
+  const lerpC = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
+  const rgb = (c, a) => (a === undefined)
+    ? `rgb(${c[0]|0},${c[1]|0},${c[2]|0})`
+    : `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;
+  function mulberry32(seed) {
+    let a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // ---------- setup ----------
+  const canvas = document.getElementById("view");
+  const ctx = canvas.getContext("2d");
+  let W = 0, H = 0, groundY = 0, dpr = 1;
+
+  let sun, moon, buildings = [], stars = [], twinklers = [], glow = [], birds = [];
+  let capEl, labelEl, clockEl, subEl, lastPhase = -1;
+  const DAY = 10; // seconds per full cycle
+
+  // ---------- colour / light schedules (keyed to phase 0..1) ----------
+  function genSky() {
+    const mk = (g, b, t) => [
+      60, 62, 78,
+      lerpC(g, b, t)[0], lerpC(g, b, t)[1], lerpC(g, b, t)[2],
+      g[0] * 0.66, lerpC(g, b, t)[1], lerpC(g, b, t)[2]
+    ];
+    const k1=(b,a,t)=>[lerpC(b,a,t)[0],lerpC(b,a,t)[1],lerpC(b,a,t)[2]];
+    const k2=(b,a,t)=>[lerpC(b,a,t)[0],lerpC(b,a,t)[1],lerpC(b,a,t)[2]];
+    return [
+      { ph: 0.00, k1: k1([14,18,36],[22,26,44],0),   k2: k2([30,35,64],[44,48,84],0) },
+      { ph: 0.20, k1: k1([26,30,54],[26,30,54],0),   k2: k2([52,58,92],[52,58,92],0) },
+      { ph: 0.275,k1: k1([44,52,78],[44,52,78],0),   k2: k2([158,92,96],[158,92,96],0) },
+      { ph: 0.36, k1: k1([122,94,104],[122,94,104],0),k2: k2([255,150,84],[255,150,84],0) },
+      { ph: 0.50, k1: k1([136,176,210],[136,176,210],0),k2: k2([214,238,240],[214,238,240],0) },
+      { ph: 0.64, k1: k1([120,166,204],[120,166,204],0),k2: k2([190,214,214],[190,214,214],0) },
+      { ph: 0.74, k1: k1([108,94,120],[108,94,120],0),k2: k2([225,142,92],[225,142,92],0) },
+      { ph: 0.84, k1: k1([56,50,80],[56,50,80],0),   k2: k2([146,74,84],[146,74,84],0) },
+      { ph: 1.00, k1: k1([14,18,36],[14,18,36],0),   k2: k2([30,35,64],[30,35,64],0) }
+    ];
+  }
+  function skyAt(p) {
+    const S = genSky();
+    let i = 0;
+    while (i < S.length - 1 && S[i + 1].ph <= p) i++;
+    const a = S[i], b = S[Math.min(i + 1, S.length - 1)];
+    const span = b.ph - a.ph;
+    const t = span > 0 ? clamp((p - a.ph) / span, 0, 1) : 0;
+    return { c1: lerpC(a.k1, b.k1, t), c2: lerpC(a.k2, b.k2, t) };
+  }
+  function lightLevel(p) {
+    if (p < 0.24) return 1;
+    if (p < 0.34) return 1 - smooth((p - 0.24) / 0.10);
+    if (p < 0.70) return 0;
+    if (p < 0.80) return smooth((p - 0.70) / 0.10);
+    return 1;
+  }
+  function skyFactor(p) {
+    const mid = 0.5, dist = Math.abs(p - mid);
+    return Math.max(0, 1 - smooth((dist - 0.24) / 0.26));
+  }
+
+  // ---------- world generation ----------
+  function makeCap() {
+    const w = 14, h = 8, bg = "#0a0d16", win = "#ffcf80";
+    for (let c = 0; c < w; c++) for (let r = 0; r < h; r++) bg[r * w + c] = (c > 1 && c < w - 2 && r < 6) ? win : bg[r * w + c];
+    bg[3 * w + 2] = bg[3 * w + 3] = bg[3 * w + 4] = "#ff8a55";
+    for (let r = 4; r < 7; r++) for (let c = 0; c < w; c++) bg[r * w + c] = (r - 2) % 2 ? win : bg[r * w + c];
+    return { w, h, bg };
+  }
+  function genSkyline() {
+    buildings = [];
+    const rng = mulberry32(1337);
+    const span = W * 1.02, bw = 28, margin = W * 0.03;
+    const n = Math.max(1, Math.floor(span / bw) + 1);
+    for (let i = 0; i < n; i++) {
+      const bw0 = margin + i * bw;
+      const bw1 = margin + (i + 1) * bw;
+      const baseH = groundY * (0.22 + 0.42 * Math.abs(Math.sin(i * 0.51 + 0.7)));
+      const rx = 0.75 + 0.5 * Math.sin(i * 1.31) * Math.sin(i * 0.37);
+      const rh = baseH * (0.66 + 0.5 * rx);
+      const shade = 12 + Math.floor(rng() * 16);
+      const cap = (rh > groundY * 0.44 && rng() < 0.24) ? makeCap() : null;
+      buildings.push({
+        left: bw0, right: bw1, windowX0: bw0 + 4, windowX1: bw1 - 4,
+        curBase: groundY - rh, targetBase: groundY - rh,
+        lit: 0.12 + rng() * 0.10,
+        h: [shade, shade * 0.96, shade * 1.08],
+        cap
+      });
+    }
+  }
+  function genStars() {
+    const n = Math.round(W / 6);
+    stars = [];
+    for (let i = 0; i < n; i++)
+      stars.push({ x: Math.random() * W, y: Math.random() * groundY * 0.92,
+        r: Math.random() < 0.85 ? Math.random() * 0.9 + 0.4 : Math.random() * 1.5 + 1.0,
+        base: Math.random() * 0.55 + 0.4, tw: Math.random() * TAU });
+    const n2 = Math.round(W * 0.05) + 5;
+    twinklers = [];
+    for (let i = 0; i < n2; i++)
+      twinklers.push({ x: Math.random() * W, y: Math.random() * groundY * 0.8,
+        base: Math.random() * 0.28 + 0.5, a: Math.random() * 0.6 + 0.5,
+        sp: Math.random() * 1.4 + 0.6, off: Math.random() * TAU });
+  }
+  function genBirds() {
+    birds = [];
+    const n = Math.min(4, Math.max(1, Math.round(W / 220) - 1));
+    for (let i = 0; i < n; i++) {
+      const dur = 16 + Math.random() * 18;
+      birds.push({
+        x: Math.random() * W,
+        y: groundY * (0.10 + Math.random() * 0.22),
+        s: Math.random() * 0.13 + 0.08,
+        dir: Math.random() < 0.5 ? 1 : -1,
+        bob: Math.random() * TAU, flapPh: Math.random() * TAU,
+        t: (Math.random() * dur - i * 1.5 - Math.floor(i * 1.5 / dur) * dur) / dur,
+        off: i * 3.0, speed: 1 / dur
+      });
+    }
+  }
+  function build() {
+    glow = glow.filter(g => g.x > 0 && g.x < W);
+    const want = Math.round(W * 2.3);
+    while (glow.length < want)
+      glow.push({ x: Math.random() * W, y: groundY * (0.55 + Math.random() * 0.42),
+        r: Math.random() * 1.6 + 0.55, a: Math.random() * 0.45 + 0.18,
+        tw: Math.random() * TAU, sp: Math.random() * 0.5 + 0.12 });
+  }
+
+  // ---------- resize ----------
+  function resize() {
+    const w = window.innerWidth, h = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.max(1, Math.round(w * dpr));
+    canvas.height = Math.max(1, Math.round(h * dpr));
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    W = w; H = h;
+    groundY = Math.round(H * 0.82);
+    const sy = H * 0.46, rS = Math.min(W, H) * 0.06;
+    sun  = { cx: W / 2, cy: sy, rx: W * 0.43, ry: H * 0.40, r: rS * 0.16 };
+    moon = { cx: W / 2, cy: sy, rx: W * 0.43, ry: H * 0.40, r: rS * 0.13 };
+    genSkyline();
+    genStars();
+    genBirds();
+    build();
+  }
+
+  // ---------- sub-draws ----------
+  function drawSky(p, light) {
+    const s = skyAt(p), top = s.c1, bot = s.c2;
+    const g = ctx.createLinearGradient(0, 0, 0, groundY);
+    g.addColorStop(0, rgb(top));
+    g.addColorStop(0.45, rgb(lerpC(top, bot, 0.5)));
+    g.addColorStop(0.8, rgb(lerpC(top, bot, 0.85)));
+    g.addColorStop(1, rgb(bot));
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, groundY);
+
+    const ef = (1 - skyFactor(p)) * 0.85;
+    const a2 = p < 0.5 ? (0.20 - p) / 0.20 : (p - 0.80) / 0.20;
+    if (a2 > 0.01) {
+      const ax = W * 0.5, ay = groundY - H * 0.03;
+      const rad = Math.min(W * 0.8, H * 0.9);
+      const ag = ctx.createRadialGradient(ax, ay, 0, ax, ay, rad);
+      const cr = p < 0.5 ? "226,128,88" : "255,176,116";
+      ag.addColorStop(0, `rgba(${cr},${0.68 * ef * a2})`);
+      ag.addColorStop(0.3, `rgba(${cr},${0.28 * ef * a2})`);
+      ag.addColorStop(1, `rgba(${cr},0)`);
+      ctx.fillStyle = ag;
+      ctx.fillRect(0, 0, W, groundY);
+    }
+  }
+
+  function drawSun(p, light) {
+    const d = (0.20 - p) / 0.20;
+    const a = d > 0 ? clamp(d, 0, 1) : clamp(-d, 0, 1);
+    if (a < 0.02) return;
+    let P = p; if (p < 0.20) P = p + 1;
+    const ang = (P - 0.20) / 0.60 * Math.PI;
+    const k = sun.ry / sun.rx;
+    const x = sun.cx + sun.rx * Math.cos(ang) * 0.96;
+    const y = sun.cy - sun.ry * Math.sin(ang) * 0.96;
+    const e = smooth(clamp(a, 0, 1));
+    const warm = 0.55 * light;
+    const core = lerpC(lerpC([255, 246, 214], [255, 214, 138], warm), [255, 190, 92], warm * 0.5);
+    const rad = sun.r * (3.0 + 2.8 * light);
+    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
+    g.addColorStop(0, rgb(core, e));
+    g.addColorStop(0.16, rgb(lerpC(core, [255, 162, 82], 0.5), 
