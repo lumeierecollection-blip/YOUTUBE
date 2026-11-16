@@ -44,7 +44,7 @@ function sceneProps(scene) {
   if (scene.credit) p.t = { ...t, credit: scene.credit }; // per-scene data credit (club stories: sources are not StatsBomb)
   const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac;
   if (ch === "hidden-past") {
-    if (scene.type === "map") p.theme = t.map;
+    if (scene.type === "map") { p.theme = t.map; if (scene.base === "political") { p.political = t.political; p.lines = (scene.lines || []).map((l) => ({ ...l, color: t[l.color] || l.color })); } }
     if (scene.type === "roster") p.groups = t.countries;
     if (scene.type === "chart") p.accent = t.accent;
   }

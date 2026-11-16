@@ -8,6 +8,18 @@
    "zone": "#D7263D",
    "font": "\"Roboto Condensed\", sans-serif"
   },
+    "political": {
+   "_note": "flat ownership map in the reference's style (FA-oEtccS_k): red Russia, blue NATO, maroon Belarus, green others; borders from Natural Earth admin-0 10m + admin-1 Kaliningrad (public domain)",
+   "sea": "#07121c",
+   "russia": "#B3202A",
+   "kaliningrad": "#D7263D",
+   "kaliningradOutline": "#FFFFFF",
+   "belarus": "#6E1D26",
+   "nato": "#3B78B0",
+   "other": "#40693A",
+   "border": "rgba(214,224,214,0.75)",
+   "natoMembers": ["Poland", "Lithuania", "Latvia", "Estonia", "Finland", "Sweden", "Germany", "Norway", "Denmark", "Netherlands", "Belgium", "Luxembourg", "France", "Italy", "Czechia", "Slovakia", "Hungary", "Romania", "Bulgaria", "Albania", "North Macedonia", "Montenegro", "Croatia", "Slovenia", "Turkey"]
+  },
   "route": "#FFD23F",
   "route2": "#FFFFFF",
   "held": "#D7263D",

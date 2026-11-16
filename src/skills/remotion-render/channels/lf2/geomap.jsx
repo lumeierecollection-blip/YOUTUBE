@@ -5,16 +5,25 @@
 // Imagery: Sentinel-2 cloudless 2016 by EOX (CC BY 4.0) or NASA Blue Marble (public domain). Elevation: Mapzen terrain tiles on AWS (open data).
 // Attribution is always drawn (props.credit). Labels are our own DOM type, placed by projecting lon/lat each frame.
 import React, { useEffect, useRef, useState } from "react";
-import { AbsoluteFill, Easing, interpolate, useCurrentFrame, useDelayRender, useVideoConfig } from "remotion";
+import { AbsoluteFill, Easing, interpolate, staticFile, useCurrentFrame, useDelayRender, useVideoConfig } from "remotion";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import * as turf from "@turf/turf";
 import { FONT_FACES } from "../../fonts-loader.js";
 
 const BASES = {
+  political: { tiles: [], maxzoom: 0, credit: "Borders: Natural Earth (public domain), admin-0 10m and admin-1 Kaliningrad" },
   s2: { tiles: ["https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg"], maxzoom: 13, credit: "Sentinel-2 cloudless 2016 by EOX (CC BY 4.0), contains modified Copernicus Sentinel data" },
   bluemarble: { tiles: ["https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg"], maxzoom: 8, credit: "NASA Blue Marble (public domain)" },
 };
+
+/** Flat political style (reference FA-oEtccS_k): one GeoJSON, colours come from the theme (config/longform-v2.json "political"), none are chosen here. */
+const polStyle = (P) => ({ version: 8, sources: { pol: { type: "geojson", data: new URL(staticFile("lf2/hidden-past/political-europe.geojson"), window.location.href).href } }, layers: [
+  { id: "bg", type: "background", paint: { "background-color": P.sea } },
+  { id: "pol-fill", type: "fill", source: "pol", paint: { "fill-color": ["match", ["get", "NAME"], P.natoMembers, P.nato, ["Russia"], P.russia, ["Belarus"], P.belarus, ["Kaliningrad Oblast"], P.kaliningrad, P.other] } },
+  { id: "pol-line", type: "line", source: "pol", paint: { "line-color": P.border, "line-width": 1.1 } },
+  { id: "pol-kgd", type: "line", source: "pol", filter: ["==", ["get", "NAME"], "Kaliningrad Oblast"], paint: { "line-color": P.kaliningradOutline, "line-width": 2.6 } },
+] });
 const DEM = { type: "raster-dem", tiles: ["https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"], encoding: "terrarium", tileSize: 256, maxzoom: 12 };
 /** Waits until every source (imagery, terrain, GeoJSON) has its tiles for this view; idle alone fired early with terrain on, leaving fills missing tile by tile. */
 const settled = (m, cb, t0 = Date.now()) => m.once("idle", () => { if (m.areTilesLoaded() && m.isStyleLoaded()) { m.triggerRepaint(); m.once("render", () => setTimeout(cb, 60)); } else if (Date.now() - t0 > 60000) cb(); else { m.triggerRepaint(); settled(m, cb, t0); } });
@@ -47,7 +56,7 @@ function lineFeature(coords, progress) {
  */
 // KNOWN LIMIT (tested 13 Nov 2026): with 3D terrain on, GeoJSON fills render only partly under software GL (Chrome swangle, which our
 // renders use). Scenes that fill an area therefore pass terrain: 0 (flat, tilted, hillshade kept); line, point and label scenes keep 3D terrain.
-export function GeoMap({ views, base = "s2", terrain = 1.4, hillshade = true, grade = {}, fills = [], lines = [], points = [], labels = [], credit, vignette = 0.55, theme, children }) {
+export function GeoMap({ views, base = "s2", political, terrain = 1.4, hillshade = true, grade = {}, fills = [], lines = [], points = [], labels = [], credit, vignette = 0.55, theme, children }) {
   const ref = useRef(null), frame = useCurrentFrame(), { width, height } = useVideoConfig();
   const { delayRender, continueRender } = useDelayRender();
   const [map, setMap] = useState(null), [proj, setProj] = useState({ frame: -1, pts: [] });
@@ -59,7 +68,7 @@ export function GeoMap({ views, base = "s2", terrain = 1.4, hillshade = true, gr
     const b = BASES[base], cam = cameraAt(views, 0);
     const m = new maplibregl.Map({
       container: ref.current, interactive: false, attributionControl: false, fadeDuration: 0, canvasContextAttributes: { preserveDrawingBuffer: true }, maxPitch: 80,
-      style: { version: 8, sources: { base: { type: "raster", tiles: b.tiles, tileSize: 256, maxzoom: b.maxzoom }, dem: DEM, dem2: DEM }, layers: [
+      style: base === "political" ? polStyle(political) : { version: 8, sources: { base: { type: "raster", tiles: b.tiles, tileSize: 256, maxzoom: b.maxzoom }, dem: DEM, dem2: DEM }, layers: [
         { id: "bg", type: "background", paint: { "background-color": "#06090f" } },
         { id: "base", type: "raster", source: "base", paint: { "raster-saturation": grade.saturation ?? -0.25, "raster-contrast": grade.contrast ?? 0.12, "raster-brightness-max": grade.brightnessMax ?? 0.92, "raster-fade-duration": 0 } },
         ...(hillshade !== false ? [{ id: "hill", type: "hillshade", source: "dem2", paint: { "hillshade-exaggeration": 0.35, "hillshade-shadow-color": "#05070c", "hillshade-highlight-color": "#fff6e0", "hillshade-accent-color": "#0b0f18" } }] : []),
@@ -123,7 +132,7 @@ export function GeoMap({ views, base = "s2", terrain = 1.4, hillshade = true, gr
       {proj.frame === frame && labels.map((l, i) => { const a = fade(frame, l.from, 10, l.to), [x, y] = proj.pts[i], k = kinds[l.kind || "country"]; return a > 0 && (
         <div key={`t${i}`} style={{ position: "absolute", left: x + (l.dx || 0), top: y + (l.dy || 0), transform: `translate(-50%,-50%) translateY(${(1 - a) * 10}px)`, opacity: a, fontFamily: t.font, textTransform: "uppercase", whiteSpace: "nowrap", borderRadius: 4, lineHeight: 1.1, textShadow: l.kind === "water" ? "0 0 3px #000, 0 2px 10px rgba(0,0,0,0.95)" : "none", ...k }}>{l.text}</div>); })}
       {children}
-      {credit !== false && <div style={{ position: "absolute", right: 22, bottom: 16, fontFamily: '"Inter", sans-serif', fontSize: 15, color: "rgba(255,255,255,0.62)", textShadow: "0 1px 3px #000" }}>{credit || `${BASES[base].credit} · elevation: Mapzen terrain tiles`}</div>}
+      {credit !== false && <div style={{ position: "absolute", right: 22, bottom: 16, fontFamily: '"Inter", sans-serif', fontSize: 15, color: "rgba(255,255,255,0.62)", textShadow: "0 1px 3px #000" }}>{credit || (base === "political" ? BASES[base].credit : `${BASES[base].credit} · elevation: Mapzen terrain tiles`)}</div>}
     </AbsoluteFill>
   );
 }
