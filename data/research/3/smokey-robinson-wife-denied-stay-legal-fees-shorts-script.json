@@ -1,0 +1,67 @@
+{
+  "channel_id": "3",
+  "topic_slug": "smokey-robinson-wife-denied-stay-legal-fees",
+  "format": "shorts",
+  "hook": "A California judge refused to freeze a $1.23 million legal demand.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A California judge refused to freeze a $1.23 million legal demand.",
+      "b_roll": [
+        "Courtroom gavel striking wooden sound block during motion hearing"
+      ],
+      "text_overlay": {
+        "text": "$1.23M LEGAL DEMAND"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, Los Angeles Superior Court denied Smokey Robinson a delay. Four former workers requested $1.23 million in legal fees. Will the court pause ruling before the 2027 trial?",
+      "b_roll": [
+        "Exterior view of Los Angeles Superior Court courthouse building",
+        "Document icon highlighting legal fee request",
+        "Calendar graphic marking upcoming 2027 trial date"
+      ],
+      "text_overlay": {
+        "text": "COURT DENIES DELAY"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But on August 18, 2026, a Los Angeles Superior Court judge granted the Robinsons a temporary delay.",
+      "b_roll": [
+        "Court ruling timeline graphic highlighting August 18, 2026 date"
+      ],
+      "text_overlay": {
+        "text": "AUGUST 18 DELAY"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Six former employees now pursue claims in a $50 million lawsuit. Filings name both 86-year-old Smokey and 74-year-old Frances Gladney Robinson.",
+      "b_roll": [
+        "Data visualization displaying $50 million lawsuit total",
+        "Motion hearing symbol indicating appeal proceedings",
+        "Graphics displaying Smokey Robinson age 86 and Frances Gladney Robinson age 74"
+      ],
+      "text_overlay": {
+        "text": "$50M LAWSUIT"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Legal fees remain contested as the 2027 trial date approaches.",
+      "b_roll": [
+        "Scales of justice symbol positioning next to 2027 trial date graphic"
+      ],
+      "text_overlay": {
+        "text": "TRIAL PENDING"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion",
+    "https://mynewsla.com/business/2026/11/15/smokey-robinson-wife-denied-stay-of-fees-motion-hearing-pending-appeal",
+    "https://www.lawcommentary.com/articles/smokey-robinson-50m-sexual-assault-lawsuit-third-lawyer"
+  ]
+}
