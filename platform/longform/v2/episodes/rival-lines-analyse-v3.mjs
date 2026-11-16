@@ -13,8 +13,9 @@ import { ROOT } from "../../../preview/lib.mjs";
 
 export const SOURCES = { ...S2, PIX: { title: "Illustrative stock footage (not the match): Pixabay, Pixabay Content License", url: "https://pixabay.com/videos/", retrieved: "2026-11-16" } };
 const spec = JSON.parse(readFileSync(join(ROOT, "data/clone/media/rival-lines-analyse-v3.json"), "utf8"));
-const DROP = new Set(JSON.parse(process.env.V3_DROP || "[]").concat(["q-football-tactics"])); // clips looked at and rejected (not real football / off topic); see report
-const CLIPS = spec.pixabay.filter((p) => !DROP.has(p.name)).map((p) => ({ name: p.name, dur: p.dur }));
+// Looked at every contact sheet: dropped = not football (chess, fire graphic, foosball, green-screen ball), duplicates of another clip, a club banner that would name a team, a fence-blurred clip, and the 12 "r-*" query clips (Pixabay returned off-topic/duplicate results).
+const DROP = new Set(["q-football-tactics", "q-ball-kick", "goal-net", "crowd-flags", "q-soccer-dribble", "q-floodlights", "q-soccer-match-3"]);
+const CLIPS = spec.pixabay.filter((p) => !DROP.has(p.name) && !p.name.startsWith("r-")).map((p) => ({ name: p.name, dur: p.dur }));
 const FOOT = "Illustrative footage · Pixabay";
 let ci = 0;
 const clip = (cap, w = 1, o = {}) => { const n = ci++, c = CLIPS[(n * 5) % CLIPS.length], second = Math.floor((n * 5) / CLIPS.length) % 2, start = second ? Math.min(4, c.dur - 3) : 0;
