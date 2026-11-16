@@ -319,4 +319,83 @@ export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur 
   );
 }
 
-export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb };
+
+/** 12. Every shoot-out we counted, one tile each (our data, StatsBomb open data): top row = the team that kicked first, bottom row = the other team;
+ * filled lime dot = scored, hollow red = missed; the tile is lime-edged when the first kicker won. Tiles appear one by one and a counter tallies them.
+ * shootouts: [{ first: [bool], second: [bool], firstWon: bool, tag, score }] */
+export function ShootoutGrid({ t, shootouts, title, step = 5, hi = [], label }) {
+  const f = useCurrentFrame(), cols = 8, W = 205, H = 150, x0 = 118, y0 = 235;
+  const shown = Math.min(shootouts.length, Math.max(0, Math.floor((f - 8) / step) + 1));
+  const won = shootouts.slice(0, shown).filter((s) => s.firstWon).length;
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
+      <div style={{ position: "absolute", top: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.2em", color: "rgba(255,255,255,0.78)" }}>{title}</div>
+      <div style={{ position: "absolute", top: 140, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.12em", color: "rgba(255,255,255,0.55)" }}>{label || "TOP ROW: KICKED FIRST · BOTTOM ROW: KICKED SECOND · LIME EDGE: THE FIRST KICKER WON"}</div>
+      <svg width="1920" height="1080" style={{ position: "absolute" }}>
+        {shootouts.map((s, i) => {
+          if (i >= shown) return null;
+          const a = ramp(f, 8 + i * step, 8 + i * step + 8, expo), x = x0 + (i % cols) * (W + 8), y = y0 + Math.floor(i / cols) * (H + 10);
+          const rowDots = (arr, yy, strong) => arr.map((g, k) => <circle key={k} cx={x + 16 + k * 18.5} cy={yy} r="7" fill={g ? t.accent : "none"} stroke={g ? t.accent : "#E8323F"} strokeWidth="2.6" opacity={strong ? 1 : 0.75} />);
+          const edge = s.firstWon ? t.accent : "rgba(255,255,255,0.25)";
+          return (<g key={i} opacity={a} transform={`translate(0 ${(1 - a) * 18})`}>
+            <rect x={x} y={y} width={W} height={H} rx="6" fill="rgba(255,255,255,0.05)" stroke={hi.includes(i) ? "#fff" : edge} strokeWidth={hi.includes(i) ? 5 : s.firstWon ? 3.5 : 1.5} />
+            <text x={x + 12} y={y + 26} fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="17" letterSpacing="1.5" fill="rgba(255,255,255,0.6)">{s.tag}</text>
+            {rowDots(s.first, y + 62, s.firstWon)}{rowDots(s.second, y + 100, !s.firstWon)}
+            <text x={x + W - 12} y={y + H - 14} textAnchor="end" fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="22" fill={s.firstWon ? t.accent : "#fff"}>{s.score}</text>
+          </g>);
+        })}
+      </svg>
+      <div style={{ position: "absolute", bottom: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 84, color: "#fff" }}>{won}<span style={{ color: t.accent }}> of </span>{shown}<span style={{ fontSize: 34, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)", marginLeft: 22 }}>WON BY THE FIRST KICKER</span></div>
+      <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+/** 13. One real shoot-out, kick by kick, in the order taken (StatsBomb event data). kicks: [{ team, name, result: "GOAL"|"SAVED"|"POST"|"OFF TARGET" }]; home = kicked first. */
+export function KickBoard({ t, home, away, kicks, title, date, step = 22 }) {
+  const f = useCurrentFrame(), n = Math.min(kicks.length, Math.max(0, Math.floor((f - 10) / step) + 1));
+  const score = { [home]: 0, [away]: 0 }; kicks.slice(0, n).forEach((k) => { if (k.result === "GOAL") score[k.team]++; });
+  const rows = { [home]: [], [away]: [] }; kicks.forEach((k, i) => rows[k.team].push({ ...k, i }));
+  const col = (team, x) => rows[team].map((k, r) => {
+    const a = k.i < n ? ramp(f, 10 + k.i * step, 10 + k.i * step + 10, expo) : 0, ok = k.result === "GOAL";
+    return (
+      <div key={k.i} style={{ position: "absolute", left: x, top: 380 + r * 108, width: 560, height: 92, display: "flex", alignItems: "center", gap: 20, padding: "0 24px", background: ok ? "rgba(200,240,75,0.14)" : "rgba(232,50,63,0.16)", borderLeft: `8px solid ${ok ? t.accent : "#E8323F"}`, opacity: a, transform: `translateY(${(1 - a) * 22}px)` }}>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 30, color: "rgba(255,255,255,0.5)", width: 46 }}>{k.i + 1}</div>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 46, color: "#fff", flex: 1, textTransform: "uppercase", letterSpacing: "0.03em" }}>{k.name}</div>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 32, letterSpacing: "0.1em", color: ok ? t.accent : "#FF6B75" }}>{k.result}</div>
+      </div>);
+  });
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
+      <div style={{ position: "absolute", top: 60, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.24em", color: "rgba(255,255,255,0.7)" }}>{title}</div>
+      {date && <div style={{ position: "absolute", top: 112, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.2em", color: "rgba(255,255,255,0.5)" }}>{date}</div>}
+      <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag t={t} team={home} x={250} y={170} s={120} /><Flag t={t} team={away} x={1550} y={170} s={120} /></svg>
+      <div style={{ position: "absolute", top: 160, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 150, color: "#fff", lineHeight: 1 }}>{score[home]} – {score[away]}</div>
+      <div style={{ position: "absolute", top: 322, left: 280, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: t.accent }}>{home.toUpperCase()} · KICKED FIRST</div>
+      <div style={{ position: "absolute", top: 322, left: 1080, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)" }}>{away.toUpperCase()}</div>
+      {col(home, 280)}{col(away, 1080)}
+      <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+/** 14. Kick orders drawn as chips: A = team kicking first, B = the other. rows: [{ label, seq: "ABAB...", note }]. */
+export function OrderStrip({ t, rows, title, step = 5 }) {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
+      <div style={{ position: "absolute", top: 90, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.22em", color: "rgba(255,255,255,0.78)" }}>{title}</div>
+      {rows.map((r, ri) => (<div key={ri}>
+        <div style={{ position: "absolute", top: 290 + ri * 330, left: 150, fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.14em", color: "#fff", textTransform: "uppercase" }}>{r.label}</div>
+        {r.seq.split("").map((c, i) => {
+          const a = ramp(f, 8 + ri * 70 + i * step, 8 + ri * 70 + i * step + 8, expo), A = c === "A";
+          return (<div key={i} style={{ position: "absolute", left: 150 + i * 152, top: 360 + ri * 330, width: 128, height: 128, borderRadius: 64, background: A ? t.accent : "#C9CED8", color: "#0a0a0a", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 72, opacity: a, transform: `scale(${0.7 + 0.3 * a})` }}>{c}</div>);
+        })}
+        {r.note && <div style={{ position: "absolute", top: 510 + ri * 330, left: 150, fontFamily: F.sans, fontSize: 26, color: "rgba(255,255,255,0.65)", opacity: ramp(f, 8 + ri * 70 + r.seq.length * step, 8 + ri * 70 + r.seq.length * step + 12) }}>{r.note}</div>}
+      </div>))}
+      <Tags t={t} credit="Source: Wikipedia, Penalty shoot-out (association football)" /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, grid: ShootoutGrid, kicks: KickBoard, order: OrderStrip };

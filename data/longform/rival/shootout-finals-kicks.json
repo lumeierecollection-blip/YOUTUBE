@@ -1,0 +1,96 @@
+{
+ "wc22": [
+  {
+   "team": "France",
+   "player": "Kylian Mbappé Lottin",
+   "outcome": "Goal"
+  },
+  {
+   "team": "Argentina",
+   "player": "Lionel Andrés Messi Cuccittini",
+   "outcome": "Goal"
+  },
+  {
+   "team": "France",
+   "player": "Kingsley Coman",
+   "outcome": "Saved"
+  },
+  {
+   "team": "Argentina",
+   "player": "Paulo Bruno Exequiel Dybala",
+   "outcome": "Goal"
+  },
+  {
+   "team": "France",
+   "player": "Aurélien Djani Tchouaméni",
+   "outcome": "Off T"
+  },
+  {
+   "team": "Argentina",
+   "player": "Leandro Daniel Paredes",
+   "outcome": "Goal"
+  },
+  {
+   "team": "France",
+   "player": "Randal Kolo Muani",
+   "outcome": "Goal"
+  },
+  {
+   "team": "Argentina",
+   "player": "Gonzalo Ariel Montiel",
+   "outcome": "Goal"
+  }
+ ],
+ "euro20": [
+  {
+   "team": "Italy",
+   "player": "Domenico Berardi",
+   "outcome": "Goal"
+  },
+  {
+   "team": "England",
+   "player": "Harry Kane",
+   "outcome": "Goal"
+  },
+  {
+   "team": "Italy",
+   "player": "Andrea Belotti",
+   "outcome": "Saved"
+  },
+  {
+   "team": "England",
+   "player": "Harry Maguire",
+   "outcome": "Goal"
+  },
+  {
+   "team": "Italy",
+   "player": "Leonardo Bonucci",
+   "outcome": "Goal"
+  },
+  {
+   "team": "England",
+   "player": "Marcus Rashford",
+   "outcome": "Post"
+  },
+  {
+   "team": "Italy",
+   "player": "Federico Bernardeschi",
+   "outcome": "Goal"
+  },
+  {
+   "team": "England",
+   "player": "Jadon Sancho",
+   "outcome": "Saved"
+  },
+  {
+   "team": "Italy",
+   "player": "Jorge Luiz Frello Filho",
+   "outcome": "Saved to Post"
+  },
+  {
+   "team": "England",
+   "player": "Bukayo Saka",
+   "outcome": "Saved"
+  }
+ ]
+}
