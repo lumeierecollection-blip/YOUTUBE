@@ -1,0 +1,13 @@
+{
+  "title": "AI Speed Test: 19 Seconds vs 7 Minutes",
+  "description": "We gave three AIs the same five coding jobs, one try each. Gemini 3.8 Flash took 434 s in total and made all five work. gpt-oss-120b took about 19 s and 4 of 5 worked (the solar system never moved). gpt-oss-20b took about 16 s and 4 of 5 worked (the hexagon had 1 ball, not 10). Times are each model's generation time from our run logs; pass or fail was judged from screen recordings. One try per job on 16 November 2026, so results can change between runs and as models update. A fourth model, Qwen 3.8 27B, could not be scored on our tier.\n\nFull test: on our channel\n\n#Shorts #AI #AITested #Gemini #ChatGPT",
+  "tags": [
+    "AI test",
+    "Gemini",
+    "gpt-oss",
+    "AI speed",
+    "can you trust AI",
+    "AI coding",
+    "free AI"
+  ]
+}
