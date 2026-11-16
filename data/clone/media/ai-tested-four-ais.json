@@ -4,120 +4,180 @@
   {
    "name": "snake-gemini",
    "provider": "gemini",
+   "model": "gemini-3.8-flash",
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "snake-groq",
+   "name": "snake-gptoss",
    "provider": "groq",
+   "prefer": [
+    "gpt-oss-120b"
+   ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "snake-mistral",
-   "provider": "mistral",
+   "name": "snake-kimi",
+   "provider": "groq",
+   "prefer": [
+    "kimi"
+   ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "snake-cerebras",
-   "provider": "cerebras",
+   "name": "snake-llama",
+   "provider": "groq",
+   "prefer": [
+    "llama-4-maverick",
+    "llama-4",
+    "llama-3.3-70b"
+   ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
    "name": "solar-gemini",
    "provider": "gemini",
+   "model": "gemini-3.8-flash",
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "solar-groq",
+   "name": "solar-gptoss",
    "provider": "groq",
+   "prefer": [
+    "gpt-oss-120b"
+   ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "solar-mistral",
-   "provider": "mistral",
+   "name": "solar-kimi",
+   "provider": "groq",
+   "prefer": [
+    "kimi"
+   ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "solar-cerebras",
-   "provider": "cerebras",
+   "name": "solar-llama",
+   "provider": "groq",
+   "prefer": [
+    "llama-4-maverick",
+    "llama-4",
+    "llama-3.3-70b"
+   ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
    "name": "hexagon-gemini",
    "provider": "gemini",
+   "model": "gemini-3.8-flash",
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "hexagon-groq",
+   "name": "hexagon-gptoss",
    "provider": "groq",
+   "prefer": [
+    "gpt-oss-120b"
+   ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "hexagon-mistral",
-   "provider": "mistral",
+   "name": "hexagon-kimi",
+   "provider": "groq",
+   "prefer": [
+    "kimi"
+   ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "hexagon-cerebras",
-   "provider": "cerebras",
+   "name": "hexagon-llama",
+   "provider": "groq",
+   "prefer": [
+    "llama-4-maverick",
+    "llama-4",
+    "llama-3.3-70b"
+   ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
    "name": "cave-gemini",
    "provider": "gemini",
+   "model": "gemini-3.8-flash",
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "cave-groq",
+   "name": "cave-gptoss",
    "provider": "groq",
+   "prefer": [
+    "gpt-oss-120b"
+   ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "cave-mistral",
-   "provider": "mistral",
+   "name": "cave-kimi",
+   "provider": "groq",
+   "prefer": [
+    "kimi"
+   ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "cave-cerebras",
-   "provider": "cerebras",
+   "name": "cave-llama",
+   "provider": "groq",
+   "prefer": [
+    "llama-4-maverick",
+    "llama-4",
+    "llama-3.3-70b"
+   ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
    "name": "city-gemini",
    "provider": "gemini",
+   "model": "gemini-3.8-flash",
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "city-groq",
+   "name": "city-gptoss",
    "provider": "groq",
+   "prefer": [
+    "gpt-oss-120b"
+   ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "city-mistral",
-   "provider": "mistral",
+   "name": "city-kimi",
+   "provider": "groq",
+   "prefer": [
+    "kimi"
+   ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "city-cerebras",
-   "provider": "cerebras",
+   "name": "city-llama",
+   "provider": "groq",
+   "prefer": [
+    "llama-4-maverick",
+    "llama-4",
+    "llama-3.3-70b"
+   ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   }

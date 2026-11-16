@@ -19,7 +19,9 @@ const OAI = {
   mistral: { base: "https://api.mistral.ai/v1", env: "MISTRAL_API_KEY", label: "Mistral", prefer: [/mistral-large-latest/, /mistral-medium-latest/, /magistral-medium/, /codestral-latest/] },
   cerebras: { base: "https://api.cerebras.ai/v1", env: "CEREBRAS_API_KEY", label: "Cerebras", prefer: [/gpt-oss-120b/, /qwen-3.*235b/, /llama-4/, /llama3\.3|llama-3\.3/, /qwen/] },
 };
-const KEY = provider === "gemini" ? process.env.GEMINI_API_KEY : process.env[OAI[provider]?.env];
+// Gemini: rotate every key we hold (free tier returns 429 under load), so a pinned model can be used for every task (fair comparison)
+const GKEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
+let KEY = provider === "gemini" ? GKEYS[0] : process.env[OAI[provider]?.env];
 if (!KEY) throw new Error(`key for ${provider} missing`);
 fs.mkdirSync(outDir, { recursive: true });
 const API = "https://generativelanguage.googleapis.com/v1beta";
@@ -33,8 +35,9 @@ async function pickModel() {
     const ms = (await r.json()).data.map((m) => m.id).filter((m) => !/whisper|tts|embed|guard|vision|ocr|moderation|audio|voxtral|pixtral/.test(m));
     fs.writeFileSync(path.join(outDir, "models.json"), JSON.stringify(ms, null, 1));
     const out = [];
-    for (const re of p.prefer) for (const m of ms) if (re.test(m) && !out.includes(m)) out.push(m);
-    return out.length ? out : ms;
+    // job.prefer is strict: a job asking for a maker's model must not fall back to another maker's
+    for (const re of job.prefer ? job.prefer.map((x) => new RegExp(x)) : p.prefer) for (const m of ms) if (re.test(m) && !out.includes(m)) out.push(m);
+    return out.length ? out : job.prefer ? [] : ms;
   }
   const r = await fetch(`${API}/models?pageSize=200`, { headers: { "x-goog-api-key": KEY } });
   if (!r.ok) throw new Error(`list models ${r.status}`);
@@ -104,8 +107,14 @@ function chatPage(model, prompt, chunks) {
 
 const cands = job.model ? [job.model] : await pickModel();
 let model, gen;
-for (const m of cands.slice(0, 6)) {
-  try { gen = await generate(m); model = m; break; } catch (e) { console.log("model", m, "failed:", String(e.message).slice(0, 120)); }
+// pinned model (job.model): retry across keys and with waits instead of falling back to another model
+const tries = job.model ? (provider === "gemini" ? GKEYS : [KEY]).flatMap((k) => [k, k]).map((k) => [job.model, k]) : cands.slice(0, 6).map((m) => [m, KEY]);
+for (const [i, [m, k]] of tries.entries()) {
+  KEY = k;
+  try { gen = await generate(m); model = m; break; } catch (e) {
+    console.log("model", m, "try", i, "failed:", String(e.message).slice(0, 120));
+    if (job.model && /429|503/.test(e.message)) await new Promise((r) => setTimeout(r, 20000));
+  }
 }
 if (!gen) throw new Error("no model answered");
 console.log("model", model);
