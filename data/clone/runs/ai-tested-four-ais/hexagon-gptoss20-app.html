@@ -3,58 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <title>Bouncing Balls in Rotating Hexagon</title>
-<style>body{margin:0;overflow:hidden;background:#fafafa}</style>
+<style>
+    body{margin:0;background:#111;display:flex;justify-content:center;align-items:center;height:100vh}
+    canvas{background:#222}
+</style>
 </head>
 <body>
 <canvas id="canvas"></canvas>
 <script>
 (() => {
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width = window.innerWidth;
-  const H = canvas.height = window.innerHeight;
-  const center = {x: W/2, y: H/2};
+    const canvas=document.getElementById('canvas');
+    const ctx=canvas.getContext('2d');
+    const W=window.innerWidth, H=window.innerHeight;
+    canvas.width=W; canvas.height=H;
+    const cx=W/2, cy=H/2;
+    const hexRadius=150;
+    const hexAngleSpeed=0.002; // rad/s
+    const gravity=0.1;
+    const restitution=0.9; // ball-wall
+    const ballRest=0.85;   // ball-ball
+    const friction=0.999;  // global drag
 
-  // Hexagon parameters
-  const hexRadius = Math.min(W, H) * 0.3;
-  const hexSide = hexRadius;
-  let hexAngle = 0;          // rotation angle
-  const hexSpeed = 0.002;    // rotation speed
-
-  // Physics parameters
-  const g = 200;             // gravity px/s^2
-  const dt = 1/60;           // time step in seconds
-  const friction = 0.995;    // global friction
-  const restitution = 0.9;   // ball-ball and ball-wall restitution
-  const ballFriction = 0.98; // friction on collision
-
-  // Ball class
-  class Ball {
-    constructor(x,y,vx,vy,r,color) {
-      this.pos = {x, y};
-      this.vel = {x: vx, y: vy};
-      this.r = r;
-      this.color = color;
-      this.mass = r * r; // mass proportional to area
+    // 10 balls
+    const balls=[];
+    for(let i=0;i<10;i++){
+        const r=8+Math.random()*4;
+        let pos;
+        do{
+            const angle=Math.random()*2*Math.PI;
+            const dist=Math.random()*hexRadius*0.8;
+            pos={x:cx+dist*Math.cos(angle), y:cy+dist*Math.sin(angle)};
+        }while(!pointInHex(pos.x,pos.y));
+        balls.push({
+            x:pos.x,
+            y:pos.y,
+            vx:(Math.random()-0.5)*4,
+            vy:(Math.random()-0.5)*4,
+            r:r,
+            color:`hsl(${Math.random()*360},80%,60%)`
+        });
     }
-    update() {
-      // Gravity
-      this.vel.y += g * dt;
-      // Velocity damping
-      this.vel.x *= friction;
-      this.vel.y *= friction;
-      // Position update
-      this.pos.x += this.vel.x * dt;
-      this.pos.y += this.vel.y * dt;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.pos.x, this.pos.y, this.r, 0, Math.PI*2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  }
 
-  // Generate random color
-  const randColor = () => `hsl(${Math.random()*360},70%,60%)`;
+    let hexAngle=0;
+    let lastTime=performance.now();
 
+    function pointInHex(px,py){
+        const verts=hexVerts();
+        let inside=false;
+        for(let i=0,j=verts.length-1;i<verts.length;j=i++){
+            const xi=verts[i].x, yi=verts[i].y;
+            const xj=verts[j].x, yj=verts[j].y;
+            const intersect = ((yi>py)!=(yj>py)) && (px < (xj-xi)*(py-yi)/(yj-yi)+xi);
+            if(intersect) inside=!inside;
+        }
+        return inside;
+    }
+
+    function hexVerts(){
+        const verts=[];
+        for(let i=0;i<6;i++){
+            const angle=hexAngle+i*Math.PI/3;
+            verts.push({x:cx+hexRadius*Math.cos(angle), y:cy+hexRadius*Math.sin(angle)});
+        }
+        return verts;
+    }
+
+    function drawHex(){
+        const verts=hexVerts();
+        ctx.beginPath();
+        ctx.moveTo(verts[0].x,verts[0].y);
+        for(let i=1;i<verts.length;i++) ctx.lineTo(verts[i].x,verts[i].y);
+        ctx.closePath();
+        ctx.strokeStyle='white';
+        ctx.lineWidth=3;
+        ctx.stroke();
+    }
+
+    function update(dt){
+        hexAngle+=hexAngleSpeed*dt;
+        const verts=hexVerts();
+
+        // ball-ball collisions
+        for(let i=0;i<balls.length;i++){
+            const a=balls[i];
+            // gravity and global friction
+            a.vy+=gravity;
+            a.vx*=friction; a.vy*=friction;
+
+            for(let j=i+1;j<balls.length;j++){
+                const b=balls[j];
+                const dx=b.x-a.x, dy=b.y-a.y;
+                const dist2=dx*dx+dy*dy;
+                const radii=a.r+b.r;
+                if(dist2<radii*radii){
+                    const dist=Math.sqrt(dist2);
+                    const nx=dx/dist, ny=dy/dist; // normal
+                    // relative velocity
+                    const dvx=a.vx-b.vx, dvy=a.vy-b.vy;
+                    const relVel= dvx*nx + dvy*ny;
+                    if(relVel<0) continue; // moving apart
+                    // impulse
+                    const impulse = (1+ballRest)*relVel / (1/ a.r + 1/ b.r);
+                    const ix = impulse * nx, iy = impulse * ny;
+                    a.vx -= ix / a.r;
+                    a.vy -= iy / a.r;
+                    b.vx += ix / b.r;
+                    b.vy += iy / b.r;
+                    // separate overlapping
+                    const overlap = radii - dist;
+                    a.x += nx*overlap/2;
+                    a.y += ny*overlap/2;
+                    b.x -= nx*overlap/2;
+                    b.y -= ny*overlap/2;
+                }
+            }
+
+            // ball-wall collisions
+            for(let k=0;k<verts.length;k++){
+                const p1=verts[k];
+                const p2=verts[(k+1)%verts.length];
+                const wallV={x:p2.x-p1.x, y:p2.y-p1.y};
+                const len=Math.hypot(wallV.x, wallV.y);
+                const normal={x: -wallV.y/len, y: wallV.x/len}; // outward normal
+                // vector from p1 to ball
+                const toBall={x:a.x-p1.x, y:a.y-p1.y};
+                // projection onto wall
+                const proj= (toBall.x*wallV.x + toBall.y*wallV.y)/len;
+                const clamped=Math.max(0, Math.min(len, proj));
+                const closest={x:p1.x + wallV.x*clamped/len, y:p1.y + wallV.y*clamped/len};
+                const distX=a.x-closest.x, distY=a.y-closest.y;
+                const dist2=distX*distX+distY*distY;
+                if(dist2< a.r*a.r){
+                    const dist=Math.sqrt(dist2);
+                    const nx = distX/dist, ny = distY/dist; // collision normal
+                    const relVel = a.vx*nx + a.vy*ny;
+                    if(relVel<0){
+                        const impulse = -(1+restitution)*relVel;
+                        a.vx += impulse*nx;
+                        a.vy += impulse*ny;
+                        // separate
+                        const overlap = a.r - dist;
+                        a.x += nx*overlap;
+                        a.y += ny*overlap;
+                    }
+                }
+            }
+        }
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,W,H);
+        drawHex();
+        for(const b of balls){
+            ctx.beginPath();
+            ctx.arc(b.x,b.y,b.r

@@ -2,244 +2,327 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skyline — a ten-second day</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Day–Night Skyline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <style>
-  html, body {
-    margin: 0; padding: 0;
-    width: 100%; height: 100%;
-    background: #05070f;
-    overflow: hidden;
-    cursor: none;
-    user-select: none;
-    font-family: system-ui, sans-serif;
-  }
-  canvas#view { display: block; width: 100vw; height: 100vh; }
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{background:#05060f;overflow:hidden;font-family:'DM Sans',system-ui,sans-serif;color:#e9eefc}
+  #scene{position:fixed;inset:0;width:100%;height:100%;display:block}
+
+  .hud{position:fixed;inset:0;pointer-events:none;user-select:none}
+  .tl{position:absolute;top:22px;left:30px}
+  .label{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:rgba(235,240,255,.78);display:flex;align-items:center;gap:11px;text-shadow:0 1px 14px rgba(0,0,0,.55)}
+  .label::before{content:"";width:26px;height:1px;background:currentColor;opacity:.55}
+  .phase{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(38px,7vw,68px);line-height:1.02;margin-top:4px;color:#fbfdff;text-shadow:0 2px 22px rgba(0,0,0,.5)}
+  .clock{margin-top:9px;font-size:13px;letter-spacing:.28em;color:rgba(235,240,255,.82);font-variant-numeric:tabular-nums}
+
+  .tr{position:absolute;top:22px;right:30px;text-align:right}
+  .date{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:rgba(235,240,255,.72)}
+  .cycle{margin-top:12px;display:flex;align-items:center;gap:12px;color:rgba(235,240,255,.78);font-size:11px;letter-spacing:.2em}
+  .track{width:150px;height:3px;border-radius:2px;background:rgba(255,255,255,.14);overflow:hidden}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,rgb(255,178,110),rgb(255,241,205))}
+
+  .bl{position:absolute;left:30px;bottom:24px;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(235,240,255,.46)}
+
+  @media (max-width:520px){.phase{font-size:40px}.track{width:96px}.label{font-size:9px}}
 </style>
 </head>
 <body>
-<canvas id="view"></canvas>
-<style>
-  .cap {
-    position: fixed; left: 26px; bottom: 24px;
-    padding-top: 12px;
-    pointer-events: none; z-index: 3;
-    color: #f2ead8;
-    text-shadow: 0 2px 22px rgba(0,0,0,.95);
-    animation: rise 1.2s ease .25s both;
-  }
-  .label { font-size: 11px; letter-spacing: span; letter-spacing: .28em; text-transform: uppercase; opacity: .8; }
-  .clock {
-    font-variant-numeric: tabular-nums;
-    font-feature-settings: "tnum" 1;
-    font-size: clamp(46px, 8vw, 86px); line-height: .85; letter-spacing: -.02em;
-    margin: 4px 0 3px;
-    text-shadow: 0 4px 32px rgba(0,0,0,.85);
-  }
-  .sub { font-size: clamp(12px, 1.4vw, 15px); letter-spacing: .1em; opacity: .52; }
-</style>
+<canvas id="scene"></canvas>
+<div class="hud">
+  <div class="tl">
+    <div class="label">Urban Metropolis</div>
+    <div class="phase" id="phase">Dawn</div>
+    <div class="clock" id="clock">03:26</div>
+  </div>
+  <div class="tr">
+    <div class="date">Full day&amp;night cycle</div>
+    <div class="cycle">
+      <span>10&nbsp;sec / day</span>
+      <div class="track"><div class="bar" id="bar"></div></div>
+    </div>
+  </div>
+  <div class="bl">Rendered live on a single canvas · no input required</div>
+</div>
+
 <script>
-(function () {
+(()=>{
   "use strict";
+  const TAU=Math.PI*2;
+  const canvas=document.getElementById('scene');
+  const ctx=canvas.getContext('2d');
+  const phaseEl=document.getElementById('phase');
+  const clockEl=document.getElementById('clock');
+  const barEl=document.getElementById('bar');
 
-  // ---------- helpers ----------
-  const TAU = Math.PI * 2;
-  const lerp  = (a, b, t) => a + (b - a) * t;
-  const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
-  const smooth = t => { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); };
-  const lerpC = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
-  const rgb = (c, a) => (a === undefined)
-    ? `rgb(${c[0]|0},${c[1]|0},${c[2]|0})`
-    : `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;
-  function mulberry32(seed) {
-    let a = seed >>> 0;
-    return function () {
-      a = (a + 0x6D2B79F5) | 0;
-      let t = Math.imul(a ^ (a >>> 15), 1 | a);
-      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-    };
+  const dayLength=10000;   // ms for a full cycle
+  let w,h,horizonY,dpr;
+
+  let skyFar=[],skyMid=[];
+  let stars=[],clusters=[],glints=[],clouds=[],birds=[];
+  let far=[]; let mid=[[]];
+  let waterBaseTop,waterWaveY,waterGlowY,waterRippleRows=[];
+  let sunX=0,sunY=0,mx=0,my=0;
+  let dayDark=0,nightAmount=0,cloudAlpha=0;
+  let curTime=0,lastPhase='',lastClock='';
+
+  /* ---------- helpers ---------- */
+  const lerp=(a,b,f)=>a+(b-a)*f;
+  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const sat=(f,a,b)=> f<=a?0:f>=b?1:(f-a)/(b-a);
+  const rand=(a,b)=>a+Math.random()*(b-a);
+  const pick=a=>a[(Math.random()*a.length)|0];
+  function rgb(c){return c[0]<<16|c[1]<<8|c[2];}
+  function readColor(css){
+    const m=css.match(/rgba?\(([^)]+)\)/);
+    const p=m[1].split(',').map(s=>parseFloat(s));
+    return[r[p.length===4?p[0]:0],g,p[2]];var r=p[0],g=p[1];
+  }
+  function mix(a,b,t){return[lerp(a[0],b[0],t),lerp(a[1],b[1],t),lerp(a[2],b[2],t)];}
+  function rgba(c,a){return`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${a})`;}
+  function line(a,b,c,d){ctx.beginPath();ctx.moveTo(a,b);ctx.lineTo(c,d);ctx.stroke();}
+  function circle(x,y,r){ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.fill();}
+  function rr(x,y,wd,ht,rad){
+    rad=Math.min(rad,wd/2,ht/2);
+    ctx.beginPath();
+    ctx.moveTo(x+rad,y);
+    ctx.arcTo(x+wd,y,x+wd,y+ht,rad);
+    ctx.arcTo(x+wd,y+ht,x,y+ht,rad);
+    ctx.arcTo(x,y+ht,x,y,rad);
+    ctx.arcTo(x,y,x+wd,y,rad);
+    ctx.closePath();
+  }
+  function buildLayer(maxH,minH,minW,maxW,tier){
+    const colFar=tier===0,colMid=tier===1,seed=Math.random();
+    const colx=Math.random()*.7+(colMid?(1-seed)*.28:seed*.12);
+    const col=[mix(colFar?[66,84,120]:[46,54,80],[96,76,104],colx)];
+    const windows=[];let x=0;
+    while(x<w){
+      const bw=rand(minW,maxW)*(colMid?1:0.85);
+      const bh=(minH+Math.pow(Math.random(),1.9)*(maxH-minH))*(colFar?0.85:1);
+      const top=horizonY-bh;
+      if(colMid){
+        const cols=Math.max(2,Math.floor(bw/15)),rows=Math.max(2,Math.floor(bh/23));
+        const cw=(bw-10)/cols,ch=(bh-6)/rows;
+        for(let c=0;c<cols;c++)for(let r=0;r<rows;r++)
+          windows.push({x:x+5+c*(bw-10)/cols,y:top+4+r*(bh-6)/rows,
+                        w:cw*.62,h:ch*.6,
+                        lit:Math.random()<(colFar?0.22:0.3),
+                        t:Math.random(),sp:0.3+Math.random()*1.5});
+      }
+      if(tier===1)
+        if(Math.random()<0.28)
+          for(let k=1;k<=1+((Math.random()*2)|0);k++){
+            const sw=bw*nearRatio(k),t=top-k*4;
+            ctx.fillStyle=col;ctx.fillRect(x+(bw-sw)/2,t,sw,4);
+          }
+        else if(Math.random()<0.12){
+          const bw2=rand(30,70),bh2=rand(60,150),t=horizonY-bh2+(bh2-bh)*.4;
+          ctx.fillStyle=col;ctx.fillRect(x+bw+2,t,bw2,bh2);
+          if(Math.random()<0.5)for(let k=1;k<=2;k++){
+            const tw=bw2*.7,t2=t-k*4;ctx.fillStyle=col;ctx.fillRect(x+bw+2+(bw2-tw)/2,t2,tw,4);
+          }
+      } else
+        ctx.fillRect(x,top,bw,bh);
+      x+=bw+(colFar?rand(1,4):rand(6,20));
+    }
+    return col;
+  }
+  function nearRatio(k){return Math.max(0.15,1-k*0.3);}
+
+  function spawnBird(at){
+    const dir=Math.random()<0.5?1:-1,sw=Math.random()*.45+.4;
+    birds.unshift({x:at?rand(-80,w+80):dir>0?-40:w+40,y:rand(h*.12,h*.4),
+                   base:clamp(5+Math.random()*6,4,10),ph:Math.random()*6,sp:sw});
+    if(birds.length>7)birds.pop();
   }
 
-  // ---------- setup ----------
-  const canvas = document.getElementById("view");
-  const ctx = canvas.getContext("2d");
-  let W = 0, H = 0, groundY = 0, dpr = 1;
-
-  let sun, moon, buildings = [], stars = [], twinklers = [], glow = [], birds = [];
-  let capEl, labelEl, clockEl, subEl, lastPhase = -1;
-  const DAY = 10; // seconds per full cycle
-
-  // ---------- colour / light schedules (keyed to phase 0..1) ----------
-  function genSky() {
-    const mk = (g, b, t) => [
-      60, 62, 78,
-      lerpC(g, b, t)[0], lerpC(g, b, t)[1], lerpC(g, b, t)[2],
-      g[0] * 0.66, lerpC(g, b, t)[1], lerpC(g, b, t)[2]
-    ];
-    const k1=(b,a,t)=>[lerpC(b,a,t)[0],lerpC(b,a,t)[1],lerpC(b,a,t)[2]];
-    const k2=(b,a,t)=>[lerpC(b,a,t)[0],lerpC(b,a,t)[1],lerpC(b,a,t)[2]];
-    return [
-      { ph: 0.00, k1: k1([14,18,36],[22,26,44],0),   k2: k2([30,35,64],[44,48,84],0) },
-      { ph: 0.20, k1: k1([26,30,54],[26,30,54],0),   k2: k2([52,58,92],[52,58,92],0) },
-      { ph: 0.275,k1: k1([44,52,78],[44,52,78],0),   k2: k2([158,92,96],[158,92,96],0) },
-      { ph: 0.36, k1: k1([122,94,104],[122,94,104],0),k2: k2([255,150,84],[255,150,84],0) },
-      { ph: 0.50, k1: k1([136,176,210],[136,176,210],0),k2: k2([214,238,240],[214,238,240],0) },
-      { ph: 0.64, k1: k1([120,166,204],[120,166,204],0),k2: k2([190,214,214],[190,214,214],0) },
-      { ph: 0.74, k1: k1([108,94,120],[108,94,120],0),k2: k2([225,142,92],[225,142,92],0) },
-      { ph: 0.84, k1: k1([56,50,80],[56,50,80],0),   k2: k2([146,74,84],[146,74,84],0) },
-      { ph: 1.00, k1: k1([14,18,36],[14,18,36],0),   k2: k2([30,35,64],[30,35,64],0) }
-    ];
-  }
-  function skyAt(p) {
-    const S = genSky();
-    let i = 0;
-    while (i < S.length - 1 && S[i + 1].ph <= p) i++;
-    const a = S[i], b = S[Math.min(i + 1, S.length - 1)];
-    const span = b.ph - a.ph;
-    const t = span > 0 ? clamp((p - a.ph) / span, 0, 1) : 0;
-    return { c1: lerpC(a.k1, b.k1, t), c2: lerpC(a.k2, b.k2, t) };
-  }
-  function lightLevel(p) {
-    if (p < 0.24) return 1;
-    if (p < 0.34) return 1 - smooth((p - 0.24) / 0.10);
-    if (p < 0.70) return 0;
-    if (p < 0.80) return smooth((p - 0.70) / 0.10);
-    return 1;
-  }
-  function skyFactor(p) {
-    const mid = 0.5, dist = Math.abs(p - mid);
-    return Math.max(0, 1 - smooth((dist - 0.24) / 0.26));
-  }
-
-  // ---------- world generation ----------
-  function makeCap() {
-    const w = 14, h = 8, bg = "#0a0d16", win = "#ffcf80";
-    for (let c = 0; c < w; c++) for (let r = 0; r < h; r++) bg[r * w + c] = (c > 1 && c < w - 2 && r < 6) ? win : bg[r * w + c];
-    bg[3 * w + 2] = bg[3 * w + 3] = bg[3 * w + 4] = "#ff8a55";
-    for (let r = 4; r < 7; r++) for (let c = 0; c < w; c++) bg[r * w + c] = (r - 2) % 2 ? win : bg[r * w + c];
-    return { w, h, bg };
-  }
-  function genSkyline() {
-    buildings = [];
-    const rng = mulberry32(1337);
-    const span = W * 1.02, bw = 28, margin = W * 0.03;
-    const n = Math.max(1, Math.floor(span / bw) + 1);
-    for (let i = 0; i < n; i++) {
-      const bw0 = margin + i * bw;
-      const bw1 = margin + (i + 1) * bw;
-      const baseH = groundY * (0.22 + 0.42 * Math.abs(Math.sin(i * 0.51 + 0.7)));
-      const rx = 0.75 + 0.5 * Math.sin(i * 1.31) * Math.sin(i * 0.37);
-      const rh = baseH * (0.66 + 0.5 * rx);
-      const shade = 12 + Math.floor(rng() * 16);
-      const cap = (rh > groundY * 0.44 && rng() < 0.24) ? makeCap() : null;
-      buildings.push({
-        left: bw0, right: bw1, windowX0: bw0 + 4, windowX1: bw1 - 4,
-        curBase: groundY - rh, targetBase: groundY - rh,
-        lit: 0.12 + rng() * 0.10,
-        h: [shade, shade * 0.96, shade * 1.08],
-        cap
-      });
+  /* ---------- world build ---------- */
+  function layerSky(){
+    const pts=[[0,[6,10,30]],[0.02,[15,22,62]],[0.045,[30,42,102]],[0.075,[64,74,128]],
+               [0.11,[126,94,112]],[0.13,[172,104,110]],[0.15,[232,120,96]],[0.18,[255,148,94]],
+               [0.21,[255,186,118]], [0.28,[247,206,150]],[0.33,[214,224,216]],
+               [0.40,[154,194,224]],[0.50,[96,162,206]],[0.60,[132,196,224]],
+               [0.67,[196,226,236]],[0.73,[244,206,150]],[0.78,[252,176,108]],
+               [0.83,[238,128,86]],[0.87,[196,86,92]],[0.905,[120,62,96]],
+               [0.94,[54,42,92]],[0.97,[22,22,58]],[1,[6,10,30]]];
+    skyFar=[];skyMid=[];
+    for(let i=0;i<=100;i++){
+      const f=i/100;let a=pts[0],b=pts[pts.length-1];
+      for(let k=0;k<pts.length-1;k++)if(f>=pts[k][0]&&f<=pts[k+1][0]){a=pts[k];b=pts[k+1];break;}
+      const t=(f-a[0])/((b[0]-a[0])||1),r=mix(a[1],b[1],t);
+      skyFar[i]=rgb(r);skyMid[i]=rgb(mix(r,[0,0,0],.5));
     }
   }
-  function genStars() {
-    const n = Math.round(W / 6);
-    stars = [];
-    for (let i = 0; i < n; i++)
-      stars.push({ x: Math.random() * W, y: Math.random() * groundY * 0.92,
-        r: Math.random() < 0.85 ? Math.random() * 0.9 + 0.4 : Math.random() * 1.5 + 1.0,
-        base: Math.random() * 0.55 + 0.4, tw: Math.random() * TAU });
-    const n2 = Math.round(W * 0.05) + 5;
-    twinklers = [];
-    for (let i = 0; i < n2; i++)
-      twinklers.push({ x: Math.random() * W, y: Math.random() * groundY * 0.8,
-        base: Math.random() * 0.28 + 0.5, a: Math.random() * 0.6 + 0.5,
-        sp: Math.random() * 1.4 + 0.6, off: Math.random() * TAU });
-  }
-  function genBirds() {
-    birds = [];
-    const n = Math.min(4, Math.max(1, Math.round(W / 220) - 1));
-    for (let i = 0; i < n; i++) {
-      const dur = 16 + Math.random() * 18;
-      birds.push({
-        x: Math.random() * W,
-        y: groundY * (0.10 + Math.random() * 0.22),
-        s: Math.random() * 0.13 + 0.08,
-        dir: Math.random() < 0.5 ? 1 : -1,
-        bob: Math.random() * TAU, flapPh: Math.random() * TAU,
-        t: (Math.random() * dur - i * 1.5 - Math.floor(i * 1.5 / dur) * dur) / dur,
-        off: i * 3.0, speed: 1 / dur
-      });
+  function makeClouds(){
+    clouds=[];const n=Math.round(clamp(w/260,4,7));
+    for(let i=0;i<n;i++){
+      const puffs=[],x0=Math.random()*(w+300)-150,y=rand(h*.08,h*.34),s=rand(.7,1.35);
+      for(let k=0;k<7;k++)puffs.push({dx:(Math.random()-.5)*130*s,dy:(Math.random()-.5)*28*s,r:rand(18,48)*s});
+      clouds.push({x:x0,y,s,puffs,sp:rand(.28,.7)});
     }
   }
-  function build() {
-    glow = glow.filter(g => g.x > 0 && g.x < W);
-    const want = Math.round(W * 2.3);
-    while (glow.length < want)
-      glow.push({ x: Math.random() * W, y: groundY * (0.55 + Math.random() * 0.42),
-        r: Math.random() * 1.6 + 0.55, a: Math.random() * 0.45 + 0.18,
-        tw: Math.random() * TAU, sp: Math.random() * 0.5 + 0.12 });
+  function makeStars(){
+    const n=Math.round(w*h/6200);stars=[];
+    for(let i=0;i<n;i++){const y=Math.random()*(horizonY-h*.05)-6;
+      stars.push({x:Math.random()*w,y,r:Math.random()<.9?rand(.4,1.3):rand(1.2,2.1),
+                  b:rand(.4,1),tw:rand(0,TAU),sp:rand(.5,2.6)});}
+  }
+  function build(){
+    w=canvas.width/dpr;h=canvas.height/dpr;
+    horizonY=h*0.6;
+    layerSky();
+    makeStars();
+    clusters=[];
+    for(let i=0;i<14;i++){const cx=Math.random()*w,cy=Math.random()*(horizonY-h*.15),
+        nb=3+((Math.random()*4)|0);const a=[];
+      for(let k=0;k<nb;k++)a.push({dx:(Math.random()-.5)*60,dy:(Math.random()-.5)*40,r:rand(.5,1.6),b:rand(.4,1),tw:rand(0,TAU),sp:rand(.5,2.2)});
+      clusters.push({cx,cy,a});}
+    glints=[];
+    for(let i=0;i<28;i++)glints.push({x:Math.random()*w,y:horizonY-8-Math.random()*h*.3,r:rand(1,2.2),tw:rand(0,TAU),sp:rand(1,3)});
+    makeClouds();
+    far=[];mid=[[[],[]]];
+    far.push(buildLayer(h*.34,h*.13,26,64,0));
+    let mxw=0,i=0;
+    while(mxw<w*1.4){
+      const col=buildLayer(h*.5,h*.16,40,110,1);
+      i=(i+1)%2;mid[i].push(col);mxw+=w*.7;
+    }
+    const wt=horizonY;waterBaseTop=wt;
+    waterWaveY=new Float32Array(w);
+    for(let x=0;x<w;x++)waterWaveY[x]=wt+Math.sin(x*.02)*1.4+Math.sin(x*.05+1.3)*.8;
+    waterGlowY=wt+10;
+    waterRippleRows=[];const rows=Math.round((h-wt)/13);
+    for(let r=0;r<rows;r++)waterRippleRows.push({y:wt+6+r*13,amp:1.5+r*.12,ph:r*.6,sp:.6+r*.02});
+    birds=[];for(let i=0;i<3;i++)spawnBird(true);
   }
 
-  // ---------- resize ----------
-  function resize() {
-    const w = window.innerWidth, h = window.innerHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.max(1, Math.round(w * dpr));
-    canvas.height = Math.max(1, Math.round(h * dpr));
-    canvas.style.width = w + "px";
-    canvas.style.height = h + "px";
-    W = w; H = h;
-    groundY = Math.round(H * 0.82);
-    const sy = H * 0.46, rS = Math.min(W, H) * 0.06;
-    sun  = { cx: W / 2, cy: sy, rx: W * 0.43, ry: H * 0.40, r: rS * 0.16 };
-    moon = { cx: W / 2, cy: sy, rx: W * 0.43, ry: H * 0.40, r: rS * 0.13 };
-    genSkyline();
-    genStars();
-    genBirds();
-    build();
+  /* ---------- per-frame scene values ---------- */
+  function computeScene(){
+    const f=curTime;
+    const dayFrac=(f+0.25)%1;
+    const sunA=dayFrac*TAU-Math.PI/2;
+    const alt=Math.sin(sunA);
+    sunX=w*.5+Math.cos(sunA)*(w*.42);
+    sunY=horizonY-alt*(horizonY-h*.06);
+    const moonA=sunA+Math.PI;
+    mx=w*.5+Math.cos(moonA)*(w*.42);
+    my=horizonY-Math.sin(moonA)*(horizonY-h*.06);
+    dayDark=1-sat(alt,-.12,.15);
+    nightAmount=sat(-alt,.02,.28);
+    cloudAlpha=clamp(1-dayDark*.5,.35,1);
   }
 
-  // ---------- sub-draws ----------
-  function drawSky(p, light) {
-    const s = skyAt(p), top = s.c1, bot = s.c2;
-    const g = ctx.createLinearGradient(0, 0, 0, groundY);
-    g.addColorStop(0, rgb(top));
-    g.addColorStop(0.45, rgb(lerpC(top, bot, 0.5)));
-    g.addColorStop(0.8, rgb(lerpC(top, bot, 0.85)));
-    g.addColorStop(1, rgb(bot));
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, groundY);
-
-    const ef = (1 - skyFactor(p)) * 0.85;
-    const a2 = p < 0.5 ? (0.20 - p) / 0.20 : (p - 0.80) / 0.20;
-    if (a2 > 0.01) {
-      const ax = W * 0.5, ay = groundY - H * 0.03;
-      const rad = Math.min(W * 0.8, H * 0.9);
-      const ag = ctx.createRadialGradient(ax, ay, 0, ax, ay, rad);
-      const cr = p < 0.5 ? "226,128,88" : "255,176,116";
-      ag.addColorStop(0, `rgba(${cr},${0.68 * ef * a2})`);
-      ag.addColorStop(0.3, `rgba(${cr},${0.28 * ef * a2})`);
-      ag.addColorStop(1, `rgba(${cr},0)`);
-      ctx.fillStyle = ag;
-      ctx.fillRect(0, 0, W, groundY);
+  /* ---------- drawing ---------- */
+  function drawSky(){
+    const idx=clamp((curTime*100)|0,0,100);
+    const g=ctx.createLinearGradient(0,0,0,horizonY);
+    g.addColorStop(0,'#'+skyMid[idx].toString(16).padStart(6,'0'));
+    g.addColorStop(1,'#'+skyFar[idx].toString(16).padStart(6,'0'));
+    ctx.fillStyle=g;ctx.fillRect(0,0,w,horizonY+2);
+  }
+  function drawStars(){
+    if(nightAmount<=0.01)return;
+    for(const s of stars){
+      const a=nightAmount*s.b*(.55+.45*Math.sin(s.tw+curTime*s.sp));if(a<=0.02)continue;
+      ctx.globalAlpha=a;ctx.fillStyle='#eaf1ff';circle(s.x,s.y,s.r);
+    }
+    for(const c of clusters)for(const p of c.a){
+      const a=nightAmount*p.b*(.5+.5*Math.sin(p.tw+curTime*p.sp));if(a<=0.02)continue;
+      ctx.globalAlpha=a;ctx.fillStyle='#cfe0ff';circle(c.cx+p.dx,c.cy+p.dy,p.r);
+    }
+    ctx.globalAlpha=1;
+  }
+  function drawGlints(){
+    if(nightAmount<=0.02)return;
+    for(const g of glints){
+      const a=nightAmount*.5*(.4+.6*Math.abs(Math.sin(g.tw+curTime*g.sp)));if(a<=0.03)continue;
+      ctx.strokeStyle=`rgba(200,220,255,${a})`;ctx.lineWidth=1;
+      line(g.x-3,g.y,g.x+3,g.y);line(g.x,g.y-3,g.x,g.y+3);
     }
   }
-
-  function drawSun(p, light) {
-    const d = (0.20 - p) / 0.20;
-    const a = d > 0 ? clamp(d, 0, 1) : clamp(-d, 0, 1);
-    if (a < 0.02) return;
-    let P = p; if (p < 0.20) P = p + 1;
-    const ang = (P - 0.20) / 0.60 * Math.PI;
-    const k = sun.ry / sun.rx;
-    const x = sun.cx + sun.rx * Math.cos(ang) * 0.96;
-    const y = sun.cy - sun.ry * Math.sin(ang) * 0.96;
-    const e = smooth(clamp(a, 0, 1));
-    const warm = 0.55 * light;
-    const core = lerpC(lerpC([255, 246, 214], [255, 214, 138], warm), [255, 190, 92], warm * 0.5);
-    const rad = sun.r * (3.0 + 2.8 * light);
-    const g = ctx.createRadialGradient(x, y, 0, x, y, rad);
-    g.addColorStop(0, rgb(core, e));
-    g.addColorStop(0.16, rgb(lerpC(core, [255, 162, 82], 0.5), 
+  function drawCeleste(x,y,R,col,mul,dark){
+    const g=ctx.createRadialGradient(x,y,0,x,y,R*2.6);
+    g.addColorStop(0,rgba(col,.5*mul));g.addColorStop(.4,rgba(col,.2*mul));g.addColorStop(1,rgba(col,0));
+    ctx.fillStyle=g;ctx.fillRect(x-R*2.6,y-R*2.6,R*5.2,R*5.2);
+    const d=ctx.createRadialGradient(x-R*.3,y-R*.3,R*.2,x,y,R);
+    d.addColorStop(0,rgba(mix(col,[255,255,255],.4),1));
+    d.addColorStop(.7,rgba(col,1));
+    d.addColorStop(1,rgba(dark?mix(col,[0,0,0],.35):col,.9));
+    ctx.fillStyle=d;circle(x,y,R);
+  }
+  function drawSun(){
+    if(sunY>horizonY+h*.07)return;
+    const R=(horizonY-h*.06)*.05;
+    const t=clamp((1-altSun())*.1,.0,.6); // helper below approximates near-noon brightness
+    drawCeleste(sunX,clamp(sunY,-40,horizonY+40),R,[255,214,120],1+t,false);
+  }
+  function altSun(){return Math.sin(((curTime+0.25)%1)*TAU-Math.PI/2);}
+  function drawMoon(){
+    if(my>horizonY+h*.07)return;
+    const R=(horizonY-h*.06)*.04;
+    let m;
+    if(nightAmount>0.5){const g=ctx.createRadialGradient(mx,my,0,mx,my,R*3.2);
+      g.addColorStop(0,`rgba(180,205,255,${(nightAmount-.5)*.5})`);g.addColorStop(1,'rgba(180,205,255,0)');
+      ctx.fillStyle=g;ctx.fillRect(mx-R*3.2,my-R*3.2,R*6.4,R*6.4);}
+    ctx.globalCompositeOperation='source-over';
+    m=ctx.createRadialGradient(mx-R*.3,my-R*.3,R*.2,mx,my,R);
+    m.addColorStop(0,'#eef2fb');m.addColorStop(.7,'#cdd6ea');m.addColorStop(1,'#aeb6cd');
+    ctx.fillStyle=m;circle(mx,my,R);
+    ctx.save();ctx.beginPath();ctx.arc(mx,my,R,0,TAU);ctx.clip();
+    ctx.fillStyle='rgba(120,130,160,.35)';
+    for(const c of [[-.3,-.2,.35],[.25,.1,.28],[.05,.35,.22],[-.1,-.4,.18],[.4,-.35,.2]])
+      circle(mx+c[0]*R,my+c[1]*R,c[2]*R);
+    ctx.restore();
+  }
+  function moonPath(){
+    const rx=(horizonY-h*.06)*.04;
+    ctx.save();ctx.beginPath();ctx.arc(mx,my,rx,0,TAU);ctx.clip();
+    ctx.fillStyle='#f6f3e3';ctx.fillRect(mx-2000,my-2000,rx*2+4000,4000);
+    ctx.fillStyle='#0a1030';
+    ctx.beginPath();ctx.arc(mx+(.28+nightAmount*.06)*rx,my-.12*rx,rx*1.02,0,TAU);ctx.fill();
+    ctx.restore();
+  }
+  function sunGlow(){
+    if(sunY>horizonY+h*.07)return;
+    const R=(horizonY-h*.06);
+    const col=mix([255,241,205],[255,120,80],dayDark);
+    const st=Math.max(0,R-sunY)/R,strength=clamp(1-sunY/(R*.55),0,1)*(.25+.75*st);
+    if(strength<=0.01)return;
+    const g=ctx.createRadialGradient(sunX,horizonY,0,sunX,horizonY,R*1.1);
+    g.addColorStop(0,rgba(col,.5*strength));g.addColorStop(.5,rgba(col,.18*strength));g.addColorStop(1,rgba(col,0));
+    ctx.fillStyle=g;ctx.fillRect(0,0,w,horizonY+2);
+  }
+  function drawClouds(){
+    const col=mix([255,255,255],[30,36,66],dayDark);
+    for(const c of clouds){
+      c.x+=c.sp*(1/60);if(c.x>w+200){c.x=-200;c.y=rand(h*.08,h*.34);}
+      ctx.fillStyle=rgba(col,cloudAlpha*.5);
+      for(const p of c.puffs)circle(c.x+p.dx,c.y+p.dy,p.r);
+    }
+  }
+  function buildSilhouette(){
+    ctx.beginPath();ctx.moveTo(0,horizonY);
+    for(const col of far)for(const b of col)ctx.lineTo(b.x,horizonY-b.h);
+    ctx.lineTo(w,horizonY);ctx.closePath();
+  }
+  function drawFar(){
+    ctx.fillStyle=rgb(far[0]);buildSilhouette();ctx.fill();
+    if(nightAmount>0.02){
+      ctx.save();buildSilhouette();ctx.clip();
+      ctx.fillStyle=`rgba(255,168,96,${nightAmount*.12})`;ctx.fillRect(0,0,w,horizonY);ctx.restore();
+    }
+  }
+  function drawMid(){
+    const off=curTime*w*.02;
+    for(let i=0;i<2;i++){
+      const c=mid[i][0];
+      ctx.fillStyle=rgb(c);
+      for(const b of mid[i])ctx.fillRect(b.x-off,horizonY-b.h,b.w,b.h);
+      if(nightAmount>0.02){
+        ctx.save();
+        for(const b of mid[i]){ctx

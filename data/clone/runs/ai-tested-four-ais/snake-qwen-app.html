@@ -1,461 +1,386 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEON SNAKE // AUTO</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEON SNAKE — autonomous play</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
   :root{
-    --bg:#04090c;
-    --green:#39ff14;
-    --green-dim:#1f8f12;
-    --red:#ff2b4a;
-    --amber:#ffb020;
-    --ink:#d7ffe8;
-    --mono: "SFMono-Regular","SF Mono","JetBrains Mono",Consolas,"Liberation Mono","Courier New",monospace;
+    --bg:#051409; --panel:#071c10; --ink:#cdeff0; --muted:#6fae8a;
+    --neon:#4dff88; --neon2:#9fffc0; --red:#ff4d4d;
+    --line:rgba(77,255,136,.16); --glow:rgba(77,255,136,.5);
   }
+  *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ height:100%; }
   body{
-    background: radial-gradient(120% 120% at 50% 40%, #07161a 0%, var(--bg) 55%, #01050a 100%);
-    color: var(--ink);
-    font-family: var(--mono);
-    min-height:100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
+    font-family:"Space Grotesk",system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1100px 760px at 50% -10%, rgba(77,255,136,.12), transparent 60%),
+      radial-gradient(720px 520px at 100% 105%, rgba(255,77,77,.06), transparent 60%),
+      linear-gradient(180deg,#06170d,#04100a);
+    min-height:100%;
+    display:grid; place-items:center;
+    padding:26px 18px;
+    overflow-x:hidden;
   }
-  /* atmospheric layers */
-  .grid-bg{
-    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+  /* drifting grid */
+  body::before{
+    content:""; position:fixed; inset:-50%;
     background-image:
-      linear-gradient(rgba(57,255,20,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(57,255,20,.045) 1px, transparent 1px);
-    background-size: 46px 46px;
-    -webkit-mask-image: radial-gradient(120% 120% at 50% 40%, #000 40%, transparent 82%);
-            mask-image: radial-gradient(120% 120% at 50% 40%, #000 40%, transparent 82%);
-    animation: drift 40s linear infinite;
+      linear-gradient(rgba(77,255,136,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(77,255,136,.05) 1px, transparent 1px);
+    background-size:44px 44px;
+    animation:grid 14s linear infinite; pointer-events:none; z-index:0;
   }
-  @keyframes drift{ to{ background-position: 46px 46px; } }
-  .vignette{
-    position: fixed; inset: 0; z-index: 2; pointer-events: none;
-    box-shadow: inset 0 0 220px 40px rgba(0,0,0,.85);
-  }
-  .scan{
-    position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: .5;
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,.16) 0 2px, transparent 2px 4px);
-    mix-blend-mode: multiply;
+  @keyframes grid{ to{ transform:translate(44px,44px); } }
+
+  .app{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:minmax(0,1fr) 322px; gap:22px;
+    max-width:1120px; width:100%;
   }
 
-  .stage{
-    position: relative; z-index: 3;
-    width: min(94vw, 720px, 88vh);
-    display: flex; flex-direction: column; gap: 12px;
-    animation: rise .7s cubic-bezier(.2,.9,.2,1) both;
-  }
-  @keyframes rise{ from{ opacity:0; transform: translateY(18px) scale(.985);} to{ opacity:1; transform:none; } }
-
-  .hud{
-    width:100%;
-    display:flex; justify-content:space-between; align-items:flex-end;
-    gap:16px; padding: 0 4px;
-  }
-  .meta{ display:flex; flex-direction:column; gap:2px; }
-  .brand{
-    font-weight:700; letter-spacing:.14em; font-size: clamp(20px,3.6vw,30px);
-    color: var(--ink);
-    text-shadow: 0 0 18px rgba(57,255,20,.35);
-  }
-  .brand span{ color: var(--green); text-shadow: 0 0 14px rgba(57,255,20,.8); }
-  .sub{ font-size: 10px; letter-spacing:.32em; color: rgba(148,196,172,.55); }
-  .readout{ display:flex; align-items:flex-end; gap:26px; }
-  .stat{ display:flex; flex-direction:column; align-items:flex-end; line-height:1; }
-  .stat-label{ font-size:10px; letter-spacing:.28em; color: rgba(148,196,172,.6); margin-bottom:6px; }
-  .stat-val{
-    font-size: clamp(34px,7vw,56px); font-weight:700;
-    font-variant-numeric: tabular-nums;
-  }
-  #score{ color: var(--green); text-shadow: 0 0 22px rgba(57,255,20,.6); }
-  #best{ color: var(--amber); text-shadow: 0 0 20px rgba(255,176,32,.5); }
-  .stat-val.bump{ animation: bump .34s ease; }
-  @keyframes bump{ 0%{transform:scale(1);} 35%{transform:scale(1.2) rotate(-3deg);} 100%{transform:scale(1);} }
-
-  .board{
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 1px solid rgba(57,255,20,.4);
-    border-radius: 12px;
-    background: rgba(3,10,8,.55);
-    overflow: hidden;
+  /* ---- stage ---- */
+  .stage{ position:relative; width:100%; }
+  canvas{
+    display:block; width:100%; height:auto;
+    border-radius:18px;
+    border:1px solid var(--line);
+    background:radial-gradient(130% 130% at 50% 0%, #0a2413, #051409 72%);
     box-shadow:
-      0 0 0 1px rgba(57,255,20,.08),
-      0 0 60px rgba(57,255,20,.16),
-      0 34px 90px -34px rgba(0,0,0,.95),
-      inset 0 0 70px rgba(57,255,20,.05);
+      inset 0 0 45px rgba(77,255,136,.10),
+      inset 0 0 0 1px rgba(77,255,136,.12),
+      0 0 46px rgba(77,255,136,.18),
+      0 24px 70px rgba(0,0,0,.55);
   }
-  .board::before{
-    content:""; position:absolute; left:0; right:0; height:40%;
-    background: linear-gradient(180deg, rgba(57,255,20,.07), transparent);
-    animation: sweep 7s linear infinite; pointer-events:none;
+  .stage::before,.stage::after{
+    content:""; position:absolute; width:26px; height:26px; pointer-events:none;
+    border:1.5px solid var(--neon); opacity:.65;
   }
-  @keyframes sweep{ 0%{ transform: translateY(-100%);} 100%{ transform: translateY(300%);} }
-  canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
+  .stage::before{ top:-6px; left:-6px; border-right:none; border-bottom:none; border-top-left-radius:8px; }
+  .stage::after{ bottom:-6px; right:-6px; border-left:none; border-top:none; border-bottom-right-radius:8px; }
 
-  .corner{ position:absolute; width:20px; height:20px; border:2px solid var(--green);
-    filter: drop-shadow(0 0 6px rgba(57,255,20,.7)); z-index:4; opacity:.85; }
-  .c-tl{ top:8px; left:8px; border-right:0; border-bottom:0; }
-  .c-tr{ top:8px; right:8px; border-left:0; border-bottom:0; }
-  .c-bl{ bottom:8px; left:8px; border-right:0; border-top:0; }
-  .c-br{ bottom:8px; right:8px; border-left:0; border-top:0; }
+  .statusbar{
+    display:flex; align-items:center; justify-content:center; gap:9px;
+    margin-top:14px; font-size:.82rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted);
+  }
+  .dot{ width:9px; height:9px; border-radius:50%; background:var(--neon);
+        box-shadow:0 0 12px var(--glow); animation:pulse 1.3s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:1; } 50%{ opacity:.35; } }
+  .statusbar.hide{ visibility:hidden; }
+  .statusbar.gameover .dot{ background:var(--red); box-shadow:0 0 12px rgba(255,77,77,.6); }
 
+  /* ---- panel ---- */
+  .panel{ display:flex; flex-direction:column; gap:14px; min-width:0; }
+  .panel > *{ animation:rise .6s both; }
+  .panel > *:nth-child(1){ animation-delay:.02s; }
+  .panel > *:nth-child(2){ animation-delay:.09s; }
+  .panel > *:nth-child(3){ animation-delay:.16s; }
+  .panel > *:nth-child(4){ animation-delay:.23s; }
+  .panel > *:nth-child(5){ animation-delay:.30s; }
+  @keyframes rise{ from{ opacity:0; transform:translateY(14px); } to{ opacity:1; transform:none; } }
+
+  .head-kicker{
+    display:flex; align-items:center; gap:9px;
+    font-family:"Orbitron"; font-size:.72rem; letter-spacing:.34em; color:var(--neon);
+    text-shadow:0 0 12px var(--glow);
+  }
+  .head-kicker::before{ content:""; width:26px; height:2px; background:var(--neon); box-shadow:0 0 10px var(--glow); }
+  .head-kicker::after{ content:""; flex:1; height:1px; background:linear-gradient(90deg,rgba(77,255,136,.5),transparent); }
+  h1.brand{
+    font-family:"Orbitron"; font-weight:900; line-height:.86;
+    font-size:clamp(2.7rem,7.2vw,4.1rem); letter-spacing:.03em; margin-top:10px;
+    color:#e6fff0; text-shadow:0 0 18px rgba(77,255,136,.45); cursor:pointer; user-select:none;
+  }
+  h1.brand span{
+    display:block; font-weight:700; color:var(--neon);
+    text-shadow:0 0 22px var(--glow); transition:filter .18s, transform .18s;
+  }
+  h1.brand:hover span{ filter:brightness(1.7); transform:scale(1.06); }
+
+  .card{
+    background:linear-gradient(180deg, rgba(77,255,136,.05), rgba(0,0,0,.14)), var(--panel);
+    border:1px solid var(--line); border-radius:16px; padding:16px 18px;
+    box-shadow:inset 0 0 26px rgba(0,0,0,.5), 0 12px 26px rgba(0,0,0,.35);
+  }
+
+  .score{ display:flex; flex-direction:column; gap:10px; padding:12px 18px 16px; }
+  .score-label{
+    font-size:.68rem; letter-spacing:.32em; text-transform:uppercase; color:var(--muted);
+    display:flex; align-items:center; gap:9px;
+  }
+  .score-label::before{ content:""; width:8px; height:8px; background:var(--neon); border-radius:50%;
+       box-shadow:0 0 10px var(--glow); animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:.25; } }
+  .score-value{
+    font-family:"Orbitron"; font-weight:900; line-height:1;
+    font-variant-numeric:tabular-nums; font-size:clamp(2.7rem,9vw,3.5rem);
+    color:var(--neon2); text-shadow:0 0 22px rgba(77,255,136,.55);
+  }
+
+  .row{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .stat{
+    background:rgba(77,255,136,.04); border:1px solid var(--line); border-radius:12px;
+    padding:11px 10px; text-align:center; transition:transform .2s, border-color .2s, box-shadow .2s;
+  }
+  .stat:hover{ transform:translateY(-3px); border-color:rgba(77,255,136,.5);
+       box-shadow:0 8px 20px rgba(0,0,0,.4), 0 0 16px rgba(77,255,136,.18); }
+  .stat-num{ display:block; font-family:"Orbitron"; font-weight:700;
+       font-size:clamp(1.3rem,4vw,1.5rem); color:var(--ink); font-variant-numeric:tabular-nums; }
+  .stat-label{ display:block; margin-top:5px; font-size:.6rem; letter-spacing:.2em;
+       text-transform:uppercase; color:var(--muted); }
+
+  .log{ position:relative; overflow:hidden; padding:14px 18px; }
+  .log::before{ content:""; position:absolute; left:0; right:0; top:0; height:2px;
+       background:linear-gradient(90deg,transparent,rgba(77,255,136,.6),transparent);
+       box-shadow:0 0 12px var(--glow); opacity:.5; }
+  .log-tag{ font-size:.66rem; letter-spacing:.3em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .log-line{ min-height:1.5em; font-size:.95rem; letter-spacing:.02em; color:var(--neon2);
+       transition:color .3s; display:flex; align-items:center; gap:8px; }
+  .log-line::before{ content:"▸"; opacity:.6; font-size:.8em; }
+
+  .ctrl{ display:flex; align-items:center; justify-content:space-between; gap:12px;
+       background:rgba(77,255,136,.03); border:1px solid var(--line);
+       border-radius:12px; padding:12px 14px; transition:border-color .25s; }
+  .ctrl:hover{ border-color:rgba(77,255,136,.45); }
+  .ctrl-label{ font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); flex:1; }
+  .speed{
+    -webkit-appearance:none; appearance:none; width:88px; height:4px; border-radius:4px;
+    background:linear-gradient(90deg,var(--neon),rgba(77,255,136,.18)); outline:none; cursor:pointer;
+  }
+  .speed::-webkit-slider-thumb{ -webkit-appearance:none; width:15px; height:15px; border-radius:50%;
+    background:#04100a; border:2px solid var(--neon); box-shadow:0 0 12px var(--glow); }
+  .speed::-moz-range-thumb{ width:15px; height:15px; border-radius:50%; background:#04100a;
+    border:2px solid var(--neon); box-shadow:0 0 12px var(--glow); cursor:pointer; }
+  .ctrl-val{ font-family:"Orbitron"; font-weight:700; font-size:.95rem; color:var(--neon2);
+       font-variant-numeric:tabular-nums; min-width:2.5ch; text-align:right; }
+
+  /* game over overlay */
   .overlay{
-    position:absolute; inset:0; z-index:5;
-    display:flex; align-items:center; justify-content:center;
-    background: rgba(2,7,5,.72); backdrop-filter: blur(3px);
-    opacity:0; pointer-events:none; transition: opacity .3s;
+    position:absolute; inset:0; border-radius:18px; z-index:5;
+    background:rgba(3,12,7,.74); backdrop-filter:blur(3px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+    opacity:0; pointer-events:none; transition:opacity .4s; cursor:pointer;
   }
   .overlay.show{ opacity:1; pointer-events:auto; }
-  .overlay-inner{ text-align:center; }
-  .overlay-title{ font-size: clamp(26px,8vw,44px); letter-spacing:.16em; color: var(--red);
-    text-shadow: 0 0 26px rgba(255,43,74,.7); }
-  .overlay-score{ margin-top:8px; font-size:13px; letter-spacing:.14em; color: var(--ink); }
-  .overlay-score b{ color: var(--green); font-size:18px; }
-  .overlay-hint{ margin-top:18px; font-size:11px; letter-spacing:.3em; color: rgba(148,196,172,.7);
-    animation: pulse 1.4s ease-in-out infinite; }
-  @keyframes pulse{ 0%,100%{opacity:.4;} 50%{opacity:1;} }
+  .over-title{ font-family:"Orbitron"; font-weight:900; font-size:clamp(2rem,7vw,2.6rem);
+       letter-spacing:.16em; color:#ffd0d0; text-shadow:0 0 22px rgba(255,77,77,.6); }
+  .over-sub{ color:var(--muted); font-size:.9rem; }
+  .over-sub b{ color:var(--neon2); font-family:"Orbitron"; font-weight:700; }
+  .over-hint{ margin-top:6px; font-size:.78rem; letter-spacing:.28em; text-transform:uppercase;
+       color:var(--neon); animation:pulse 1.4s ease-in-out infinite; }
 
-  @media (prefers-reduced-motion: reduce){
-    .grid-bg,.board::before,.overlay-hint{ animation:none; }
+  /* floating particles + subtle scan texture */
+  .particle{ position:fixed; z-index:0; width:5px; height:5px; border-radius:50%;
+       background:var(--neon); box-shadow:0 0 10px var(--neon); opacity:.4;
+       animation:float linear infinite; pointer-events:none; }
+  .particle.red{ background:var(--red); box-shadow:0 0 10px var(--red); }
+  @keyframes float{
+    0%{ transform:translateY(0); opacity:0; }
+    12%{ opacity:.55; } 88%{ opacity:.55; }
+    100%{ transform:translateY(-118vh); opacity:0; }
+  }
+
+  @media (max-width:860px){
+    .app{ grid-template-columns:1fr; gap:16px; }
+    .panel{ order:2; }
+    .stage{ order:1; }
   }
 </style>
 </head>
 <body>
-  <div class="grid-bg"></div>
-  <div class="vignette"></div>
-  <div class="scan"></div>
-
-  <main class="stage">
-    <header class="hud">
-      <div class="meta">
-        <div class="brand">NEON<span>SNAKE</span></div>
-        <div class="sub">AUTONOMOUS · SELF-STEERING · NO INPUT</div>
-      </div>
-      <div class="readout">
-        <div class="stat"><span class="stat-label">SCORE</span><span class="stat-val" id="score">0</span></div>
-        <div class="stat"><span class="stat-label">BEST</span><span class="stat-val" id="best">0</span></div>
-      </div>
-    </header>
-
-    <div class="board" id="board">
+  <div class="app">
+    <section class="stage">
       <canvas id="game"></canvas>
-      <span class="corner c-tl"></span><span class="corner c-tr"></span>
-      <span class="corner c-bl"></span><span class="corner c-br"></span>
       <div class="overlay" id="overlay">
-        <div class="overlay-inner">
-          <div class="overlay-title">SIGNAL LOST</div>
-          <div class="overlay-score">FINAL SCORE&nbsp; <b id="finalScore">0</b></div>
-          <div class="overlay-hint">AUTO-RESTART IN 2.2s</div>
-        </div>
+        <div class="over-title">GAME OVER</div>
+        <div class="over-sub">Snake self-collided · score <b id="finalScore">0</b></div>
+        <div class="over-hint">Click anywhere to restart</div>
       </div>
-    </div>
-  </main>
+      <div class="statusbar hide" id="statusbar"><span class="dot"></span><span id="statusText">AI hunting…</span></div>
+    </section>
+
+    <aside class="panel">
+      <header class="panel-head">
+        <div class="head-kicker">SNAKE // AUTO-PILOT</div>
+        <h1 class="brand">NEON<span>SNAKE</span></h1>
+      </header>
+
+      <div class="card score">
+        <div class="score-label">Score</div>
+        <div class="score-value" id="score">0000</div>
+      </div>
+
+      <div class="row">
+        <div class="stat"><span class="stat-num" id="length">4</span><span class="stat-label">Length</span></div>
+        <div class="stat"><span class="stat-num" id="time">0:00</span><span class="stat-label">Time</span></div>
+        <div class="stat"><span class="stat-num" id="best">0</span><span class="stat-label">Best</span></div>
+      </div>
+
+      <div class="card log">
+        <div class="log-tag">Agent log</div>
+        <div class="log-line" id="log">Looming…</div>
+      </div>
+
+      <div class="ctrl">
+        <span class="ctrl-label">Speed</span>
+        <input type="range" id="speed" class="speed" min="1" max="10" value="6" />
+        <span class="ctrl-val" id="speedVal">6</span>
+      </div>
+    </aside>
+  </div>
 
 <script>
-(function(){
+(() => {
   "use strict";
-  const COLS = 20, ROWS = 20;
-  const canvas = document.getElementById('game');
-  const ctx = canvas.getContext('2d');
-  const board = document.getElementById('board');
-  const scoreEl = document.getElementById('score');
-  const bestEl = document.getElementById('best');
-  const overlay = document.getElementById('overlay');
-  const finalEl = document.getElementById('finalScore');
 
-  let cell, cssSize, boardPx;
-  let snake, food, score, best = 0, gameLoop, running = false, lastWallBounce;
+  const canvas = document.getElementById("game");
+  const ctx = canvas.getContext("2d");
 
-  const DIRS = { up:[0,-1], down:[0,1], left:[-1,0], right:[1,0] };
-  const allDirs = () => Object.entries(DIRS).map(([name,d]) => ({name, ...d}));
-  const key = (c,r) => c + ',' + r;
+  // ---- DOM ----
+  const scoreEl = document.getElementById("score");
+  const lengthEl = document.getElementById("length");
+  const timeEl = document.getElementById("time");
+  const bestEl = document.getElementById("best");
+  const logEl = document.getElementById("log");
+  const speedInput = document.getElementById("speed");
+  const speedVal = document.getElementById("speedVal");
+  const overlay = document.getElementById("overlay");
+  const finalScoreEl = document.getElementById("finalScore");
+  const statusbar = document.getElementById("statusbar");
+  const statusText = document.getElementById("statusText");
 
-  function resize(){
-    const rect = board.getBoundingClientRect();
-    cssSize = Math.max(120, Math.floor(rect.width));
-    boardPx = cssSize;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = boardPx * dpr;
-    canvas.height = boardPx * dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    cell = boardPx / COLS;
-    if(!snake) init();
-    else render();
-  }
+  // ---- config ----
+  const COLS = 20, ROWS = 20, SNAKE_START = 4, CELL_MULT = 24;
+  const eatInterval = 1000;                 // ms of idle time before eating
+  const messages = [
+    "Autopilot override engaged","Hunt initiated","Locking onto target","Tracking prey",
+    "Path clear — advancing","Feeding complete","Calibrating pursuit","Scanning for food"
+  ];
 
-  function init(){
-    snake = [];
-    const cy = Math.floor(ROWS/2), cx = Math.floor(COLS/2);
-    snake.push([cx,cy],[cx-1,cy],[cx-2,cy]);
-    spawnFood();
-    score = 0; lastWallBounce = -999;
-    updateScore();
-    hideOverlay();
-  }
+  // ---- persistent (survives restart) ----
+  let SPEED = +speedInput.value, lastDt = 50, gameRunning = true,
+      score = 0, best = 0, bestLast = -1, lastMsgIndex = -1;
 
-  function randomCell(){
-    const occ = new Set(snake.map(s => key(s[0],s[1])));
+  // ---- per-run state ----
+  let snake, food, dir = {x:0,y:0}, prevHead, cell, scoreT = 0, elapsed = 0;
+
+  let trail = [], pulses = [], motes = [];
+
+  // ---- helpers ----
+  const randCell = (cb) => {
+    while (true){ const c = cb(); if (!snake.some(s => s.x===c.x && s.y===c.y)) return c; }
+  };
+  const newFood = () => {
     const free = [];
-    for(let c=0;c<COLS;c++) for(let r=0;r<ROWS;r++) if(!occ.has(key(c,r))) free.push([c,r]);
+    for (let y=0; y<ROWS; y++) for (let x=0; x<COLS; x++)
+      if (!snake.some(s => s.x===x && s.y===y)) free.push({x,y});
     return free.length ? free[(Math.random()*free.length)|0] : null;
-  }
+  };
+  const key = (x,y) => x + "," + y;
+  const inBounds = (x,y) => x>=0 && x<COLS && y>=0 && y<ROWS;
 
-  function spawnFood(){
-    const c = randomCell();
-    if(!c){ win(); return; }
-    food = { col:c[0], row:c[1] };
-  }
-
-  const pathStart = (path) => snake[0][0] === path[0][0] && snake[0][1] === path[0][1];
-
-  function bfs(target){
-    if(!target) return null;
-    if(snake[0][0]===target.col && snake[0][1]===target.row)
-      return [[snake[0][0],snake[0][1]]];
-    const tc = new Set(snake.map(s=>key(s[0],s[1])));
-    tc.delete(key(snake[0][0], snake[0][1]));
-    const visited = new Set([key(target.col,target.row)]);
-    const q = [[target]] ;
-    const headQ = [[target.col,target.row]];
-    const prev = {};
-    let qi = 0;
-    prev[key(target.col,target.row)] = null;
-    while(qi < headQ.length){
-      const [c,r] = headQ[qi];
-      if(c===snake[0][0] && r===snake[0][1]){
-        // reconstruct
-        const path = [];
-        let k = key(c,r);
-        while(k){
-          const [pc,pr] = k.split(',').map(Number);
-          path.push([pc,pr]);
-          const p = prev[k]; k = p;
+  // pathfinding: BFS to a reachable head position.
+  //   withFood = false -> straightest route to the food cell itself.
+  //   withFood = true  -> reach the ring of cells adjacent to the food
+  //                      (the food cell is blocked, forcing safe turns).
+  function pathTo(withFood){
+    const start = snake[0];
+    if (withFood && !inBounds(food.x, food.y) && !food) return null;
+    if (!withFood && !inBounds(food.x, food.y)) return null;
+    const goal = withFood
+      ? [{x:food.x-1,y:food.y},{x:food.x+1,y:food.y},{x:food.x,y:food.y-1},{x:food.x,y:food.y+1}]
+      : [{x:food.x,y:food.y}];
+    const visited = new Set([key(start.x,start.y)]);
+    let frontier = [start];
+    for (let depth=0; depth<1000 && frontier.length; depth++){
+      const next = [];
+      for (const c of frontier){
+        for (const g of goal)
+          if (c.x===g.x && c.y===g.y) return c;       // best (closest) head-to-goal
+        for (const [dx,dy] of [[1,0],[-1,0],[0,1],[0,1], [1,0],[-1,0],[0,-1],[0,1]]){
+          const nx=c.x+dx, ny=c.y+dy;
+          if (nx<0||nx>=COLS||ny<0||ny>=ROWS) continue;
+          if (visited.has(key(nx,ny))) continue;
+          visited.add(key(nx,ny));
+          next.push({x:nx,y:ny});
         }
-        path.reverse();
-        return path;
       }
-      for(const d of allDirs()){
-        const nc = c+d.col, nr = r+d.row;
-        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
-        const kk = key(nc,nr);
-        if(visited.has(kk) || tc.has(kk)) continue;
-        visited.add(kk);
-        prev[kk] = key(c,r);
-        headQ.push([nc,nr]);
-        q[ headQ.length-1 ] = [nc,nr];
-      }
-      qi++;
+      frontier = next;
     }
     return null;
   }
+  const dirTo = (from,x,y) => {
+    let dx = x-from.x, dy = y-from.y;
+    if (dx>0) dx=1; else if (dx<0) dx=-1; else dx=0;
+    if (dy>0) dy=1; else if (dy<0) dy=-1; else dy=0;
+    return {x:dx,y:dy};
+  };
 
-  function maxReach(){
-    const tc = new Set(snake.map(s=>key(s[0],s[1])));
-    tc.delete(key(snake[0][0], snake[0][1]));
-    const visited = new Set([key(snake[0][0],snake[0][1])]);
-    const headQ = [[snake[0][0],snake[0][1]]];
-    let qi = 0;
-    while(qi < headQ.length){
-      const [c,r] = headQ[qi];
-      for(const d of allDirs()){
-        const nc=c+d.col, nr=r+d.row;
-        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
-        const kk=key(nc,nr);
-        if(visited.has(kk)||tc.has(kk)) continue;
-        visited.add(kk);
-        headQ.push([nc,nr]);
-      }
-      qi++;
+  // decide next direction. order: BFS toward food -> safe cell if exposed -> straight
+  function computeNext(){
+    const head = snake[0];
+    const opp = {x:-dir.x,y:-dir.y};
+    let target = pathTo(false);
+    if (target) return dirTo(head, target.x, target.y);
+    target = pathTo(true);
+    if (target) return dirTo(head, target.x, target.y);
+    for (const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){
+      if (dx===opp.x && dy===opp.y) continue;
+      const nx=head.x+dx, ny=head.y+dy;
+      if (inBounds(nx,ny) && !snake.some(s => s.x===nx && s.y===ny)) return {x:dx,y:dy};
     }
-    return visited.size - 1;
+    return { ...dir }; // only straight remains (typical terminal of an autonomous run)
+  }
+  function checkCollision(nx,ny){
+    if (nx<0||nx>=COLS||ny<0||ny>=ROWS) return true;
+    for (let i=0;i<snake.length;i++)
+      if (i===snake.length-1 && scoreT<eatInterval) continue; // tail vacates this tick
+      else if (snake[i].x===nx && snake[i].y===ny) return true;
+    return false;
   }
 
-  function pickMove(){
-    const tail = snake[snake.length-1];
-    let mainPath = bfs(food);
-    if(mainPath){
-      let cp = pathStart(mainPath) ? mainPath : [snake[0], ...mainPath].slice(1);
-      if((cp.length-1) > 0 && (cp.length-1) >= snake.length)
-        return { col:cp[1][0], row:cp[1][1] };
-      // escaping toward an open-tail path keeps the tail free -> chase it
-      const tl = bfs(tail);
-      if(tl){
-        let tp = pathStart(tl) ? tl : [snake[0], ...tl].slice(1);
-        if((tp.length-1) >= snake.length) return { col:tp[1][0], row:tp[1][1] };
-      }
-    }
-    // no safe forced path: grab the most space + wall-bounce cooldown + jitter
-    const occ = new Set(snake.map(s=>key(s[0],s[1])));
-    const tc = new Set(occ); tc.delete(key(tail[0],tail[1]));
-    let bestMove = null, bestScore = -Infinity;
-    const free = snake.length < (COLS*ROWS - 1);
-    for(const d of allDirs()){
-      const nc = snake[0][0]+d.col, nr = snake[0][1]+d.row;
-      let good;
-      if(nc<0||nc>=COLS||nr<0||nr>=ROWS) good = free;      // wrap => always survivable
-      else if(!free) good = false;
-      else good = !tc.has(key(nc,nr));
-      if(!good) continue;
-      if(nc<0||nc>=COLS||nr<0||nr>=ROWS && frame - lastWallBounce < 3) continue;
-      let s = maxSpace(nc,nr,tc);
-      if(s >= snake.length) s += 25; else s -= 50;          // strongly prefer safety
-      if(d.name!=='up') s += 1.6;                            // drift down slightly
-      s += Math.random()*1.5;                                // break perfect loops
-      if(s > bestScore){ bestScore = s; bestMove = {col:nc,row:nr}; }
-    }
-    if(!bestMove){
-      let cap=false; const occ2=new Set(snake.map(s=>key(s[0],s[1]))); occ2.delete(key(tail[0],tail[1]));
-      for(const d of allDirs()){
-        const nc=snake[0][0]+d.col, nr=snake[0][1]+d.row;
-        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
-        if(!occ2.has(key(nc,nr))) return {col:nc,row:nr};
-      }
-      const h = snake[0]; return { col:h[0], row:h[1] }; // nothing possible -> doom
-    }
-    return bestMove;
+  // ---- lifecycle ----
+  function initGame(){
+    const cx=(COLS-1)>>1, cy=(ROWS-1)>>1;
+    snake = [];
+    for (let i=0;i<SNAKE_START;i++) snake.push({x:cx-i, y:cy});
+    dir = {x:0,y:1};
+    prevHead = {x:cx, y:cy};
+    food = null;
+    scoreT = 0; elapsed = 0; score = 0;
+    trail = []; pulses = [];
+    placeFood(); logMessage("Autopilot override engaged"); updateHud();
+  }
+  function placeFood(){
+    const free = [];
+    for (let y=0;y<ROWS;y++) for (let x=0;x<COLS;x++)
+      if (!snake.some(s => s.x===x && s.y===y)) free.push({x,y});
+    if (!free.length){ gameOver(); return; }
+    food = free[(Math.random()*free.length)|0];
+    scoreT = 0;
+  }
+  function gameOver(){
+    gameRunning = false;
+    if (score>best){ best = score; }
+    finalScoreEl.textContent = score;
+    overlay.classList.add("show");
+    statusbar.classList.remove("hide");
+    statusbar.classList.add("gameover");
+    statusText.textContent = "Autopilot terminated";
+  }
+  function restart(){
+    overlay.classList.remove("show");
+    statusbar.classList.add("hide");
+    statusbar.classList.remove("gameover");
+    gameRunning = true;
+    initGame();
   }
 
-  function maxSpace(c,r,tc){
-    const visited = new Set([key(c,r)]);
-    const q = [[c,r]]; let qi=0;
-    while(qi < q.length){
-      const [cc,cr] = q[qi++];
-      for(const d of allDirs()){
-        const nc=cc+d.col, nr=cr+d.row;
-        if(nc<0||nc>=COLS||nr<0||nr>=ROWS) continue;
-        const kk=key(nc,nr);
-        if(visited.has(kk)||tc.has(kk)) continue;
-        visited.add(kk); q.push([nc,nr]);
-      }
-    }
-    return visited.size;
-  }
-
-  let frame;
-  function step(){
-    frame++;
-    const mv = pickMove();
-    let head = [snake[0][0]+mv.col, snake[0][1]+mv.row];
-    let wrapped = head[0]<0 || head[0]>=COLS || head[1]<0 || head[1]>=ROWS;
-    head[0] = ((head[0]%COLS)+COLS)%COLS;
-    head[1] = ((head[1]%ROWS)+ROWS)%ROWS;
-
-    const atTail = snake[snake.length-1][0]===head[0] && snake[snake.length-1][1]===head[1];
-    const willGrow = head[0]===food.col && head[1]===food.row;
-    const body = willGrow ? snake : snake.slice(0,-1);
-
-    if(body.some(s => s[0]===head[0] && s[1]===head[1])){ die(); return; }
-
-    snake.unshift(head);
-    if(willGrow){
-      addScore();
-      if(snake.length >= COLS*ROWS){ win(); return; }
-      spawnFood();
-    } else snake.pop();
-
-    if(wrapped){ lastWallBounce = frame; drawEdgeFlash(head); }
-    render();
-  }
-
-  let edgeFlash = null;
-  function drawEdgeFlash(h){
-    edgeFlash = { col:h[0], row:h[1], life:6 };
-  }
-
-  function addScore(){
-    score += 10;
-    if(score > best){ best = score; bestEl.textContent = best; }
-    scoreEl.textContent = score;
-    scoreEl.classList.remove('bump'); void scoreEl.offsetWidth; scoreEl.classList.add('bump');
-    const s = document.querySelector('.brand');
-    s.style.filter = 'drop-shadow(0 0 10px rgba(57,255,20,.9))';
-    clearTimeout(s._t); s._t = setTimeout(()=> s.style.filter='', 180);
-  }
-
-  function die(){
-    running = false;
-    clearInterval(gameLoop);
-    finalEl.textContent = score;
-    overlay.classList.add('show');
-    const b = document.querySelector('.board');
-    b.style.boxShadow = '0 0 80px rgba(255,43,74,.35), inset 0 0 70px rgba(57,255,20,.05), 0 34px 90px -34px rgba(0,0,0,.95)';
-    setTimeout(()=>{
-      b.style.boxShadow='';
-      init();
-      startLoop();
-    }, 2200);
-  }
-  function win(){ die(); }
-
-  function showOverlay(){ overlay.classList.add('show'); }
-  function hideOverlay(){ overlay.classList.remove('show'); }
-
-  function stepMs(){ return Math.max(52, 118 - Math.min(60, Math.floor(snake.length/6)*6)); }
-
-  function startLoop(){
-    clearInterval(gameLoop);
-    running = true;
-    let last = performance.now();
-    const tick = (now)=>{
-      if(!running) return;
-      if(now - last > stepMs()){ step(); last = now; }
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-
-  /* ---------- rendering ---------- */
-  function render(){
-    const S = boardPx;
-    ctx.clearRect(0,0,S,S);
-
-    // faint grid
-    ctx.lineWidth = 1;
-    ctx.strokeStyle = 'rgba(57,255,20,0.055)';
-    ctx.beginPath();
-    for(let i=1;i<COLS;i++){ const x=i*cell; ctx.moveTo(x+.5,0); ctx.lineTo(x+.5,S); }
-    for(let i=1;i<ROWS;i++){ const y=i*cell; ctx.moveTo(0,y+.5); ctx.lineTo(S,y+.5); }
-    ctx.stroke();
-
-    if(edgeFlash && edgeFlash.life>0){
-      edgeFlash.life--;
-      const a = edgeFlash.life/6;
-      const xe = (edgeFlash.col===COLS-1 && snake[0][0]===0) || (edgeFlash.col===0 && snake[0][0]===COLS-1);
-      const ye = (edgeFlash.row===ROWS-1 && snake[0][1]===0) || (edgeFlash.row===0 && snake[0][1]===ROWS-1);
-      if(xe || ye){
-        ctx.save();
-        ctx.globalAlpha = a*0.6;
-        ctx.fillStyle = '#39ff14'; ctx.shadowColor = '#39ff14'; ctx.shadowBlur = 30;
-        if(xe){ const x = edgeFlash.col===COLS-1 ? S-6 : 0; ctx.fillRect(x,0,6,S); }
-        if(ye){ const y = edgeFlash.row===ROWS-1 ? S-6 : 0; ctx.fillRect(0,y,S,6); }
-        ctx.restore();
-      }
-      if(edgeFlash.life<=0) edgeFlash=null;
-    }
-
-    drawFood();
-    drawSnake();
-  }
-
-  function drawSnake(){
-    const n = snake.length;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    for(let seg = n-1; seg >= 1; seg--){
-      const s = snake[seg], f = snake[seg-1];
-      const t = seg/Math.max(1,n-1);
-      const sx=f[0]+0.5, sy=f[1]+0.5, ex=s[0]+0.5, ey=s[1]+0.5;
-      let dx=ex-sx, dy=ey-sy;
-      if(dx===COLS-1) dx=-1; else if(dx===1
+  function updateHud(){
+    scoreEl.textContent = String(score).pad
