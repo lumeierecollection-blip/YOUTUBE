@@ -1,0 +1,92 @@
+[
+  {
+    "claim_id": "tasks",
+    "claim": "Three AIs (Gemini 3.8 Flash, gpt-oss-120b, gpt-oss-20b) were each given the same five jobs (Snake, Solar system, Hexagon balls, Cave flyer, Day-night city) with the same prompt, one try each.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Three AIs (Gemini 3.8 Flash, gpt-oss-120b, gpt-oss-20b) were each given the same five jobs (Snake, Solar system, Hexagon balls, Cave flyer, Day-night city) with the same prompt, one try each.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "tg",
+    "claim": "Gemini 3.8 Flash took 434.2 s in total to write the five jobs.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Gemini 3.8 Flash took 434.2 s in total to write the five jobs.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "to1",
+    "claim": "gpt-oss-120b took 18.7 s in total for the five jobs.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "gpt-oss-120b took 18.7 s in total for the five jobs.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "to2",
+    "claim": "gpt-oss-20b took 16.1 s in total for the five jobs.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "gpt-oss-20b took 16.1 s in total for the five jobs.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "solarG",
+    "claim": "Solar system, Gemini 3.8 Flash: Sun and eight labelled planets on orbit rings, moving at different speeds, starfield.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Solar system, Gemini 3.8 Flash: Sun and eight labelled planets on orbit rings, moving at different speeds, starfield.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "solarO",
+    "claim": "Solar system, gpt-oss-120b: Sun, labelled planets and orbit rings drawn, but nothing moves (frames at 2 s and 11 s identical).",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Solar system, gpt-oss-120b: Sun, labelled planets and orbit rings drawn, but nothing moves (frames at 2 s and 11 s identical).",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "hexG",
+    "claim": "Hexagon, Gemini 3.8 Flash: ten balls under gravity inside a spinning hexagon.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Hexagon, Gemini 3.8 Flash: ten balls under gravity inside a spinning hexagon.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "hexS",
+    "claim": "Hexagon, gpt-oss-20b: spinning hexagon with one ball, not ten.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Hexagon, gpt-oss-20b: spinning hexagon with one ball, not ten.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  },
+  {
+    "claim_id": "score",
+    "claim": "Jobs that worked: Gemini 3.8 Flash 5 of 5, gpt-oss-120b 4 of 5, gpt-oss-20b 4 of 5.",
+    "source_id": "s1",
+    "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/tree/media/ai-tested-four-ais/data/clone/runs/ai-tested-four-ais",
+    "published": "2026-11-16",
+    "excerpt": "Jobs that worked: Gemini 3.8 Flash 5 of 5, gpt-oss-120b 4 of 5, gpt-oss-20b 4 of 5.",
+    "confidence": "high",
+    "context": "Measured in our own recorded runs on 16 Nov 2026: one try per AI per job, generation time from each run's generation_ms, pass/fail judged from the screen recording (VERDICTS.json). Qwen 3.8 27B was not scored. Results can differ between runs."
+  }
+]

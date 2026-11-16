@@ -1,0 +1,111 @@
+{
+  "measured_wpm": 170.2,
+  "voice": "gemini:Sadaltager",
+  "sentences": [
+    {
+      "text": "Seven minutes, or nineteen seconds: which AI would you trust?",
+      "scene": 0,
+      "claim_ids": [
+        "tg",
+        "to1"
+      ]
+    },
+    {
+      "text": "We gave three free AIs the same five coding jobs.",
+      "scene": 1,
+      "claim_ids": [
+        "tasks"
+      ]
+    },
+    {
+      "text": "Gemini's solar system runs, every planet moving.",
+      "scene": 2,
+      "claim_ids": [
+        "solarG"
+      ]
+    },
+    {
+      "text": "The big gpt-oss one never moved.",
+      "scene": 3,
+      "claim_ids": [
+        "solarO"
+      ]
+    },
+    {
+      "text": "Then ten balls in a spinning hexagon, which Gemini got right.",
+      "scene": 4,
+      "claim_ids": [
+        "hexG"
+      ]
+    },
+    {
+      "text": "The small gpt-oss had one ball.",
+      "scene": 5,
+      "claim_ids": [
+        "hexS"
+      ]
+    },
+    {
+      "text": "Gemini took four hundred thirty-four seconds.",
+      "scene": 6,
+      "claim_ids": [
+        "tg"
+      ]
+    },
+    {
+      "text": "The two gpt-oss models each finished in under twenty seconds.",
+      "scene": 6,
+      "claim_ids": [
+        "to1",
+        "to2"
+      ]
+    },
+    {
+      "text": "Gemini passed five of five, the fast ones four.",
+      "scene": 7,
+      "claim_ids": [
+        "score"
+      ]
+    },
+    {
+      "text": "Fast, or finished?",
+      "scene": 8,
+      "claim_ids": [
+        "score"
+      ],
+      "allow_no_claim": true,
+      "editorial": "question or call to action drawn from the measured results"
+    },
+    {
+      "text": "The full test is on our channel.",
+      "scene": 9,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or call to action drawn from the measured results"
+    },
+    {
+      "text": "Seven minutes, or nineteen seconds?",
+      "scene": 10,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "question or call to action drawn from the measured results"
+    }
+  ],
+  "words": 90,
+  "estimated_seconds": 36.5,
+  "inside_window": true,
+  "kept": [
+    "fast",
+    "hook",
+    "tasks",
+    "solarG",
+    "solarO",
+    "hexG",
+    "hexS",
+    "time",
+    "score",
+    "q",
+    "cta",
+    "loop"
+  ]
+}
