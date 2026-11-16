@@ -1,5 +1,5 @@
 {
-  "go": false,
+  "go": true,
   "note": "Owner approved private uploads on 16 Nov 2026. go:false only prepares meta + thumbnails for review; go:true uploads PRIVATE.",
   "videos": [
     { "episode": "ai-tested-four-ais", "run": 43797638433, "slot": "02", "expect_channel": "AI Tested", "category": "28" },
