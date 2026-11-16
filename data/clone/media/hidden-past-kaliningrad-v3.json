@@ -1,20 +1,173 @@
-{ "channel": "hidden-past", "pixabay": [
- {"name":"kg-city-aerial","id":361594,"start":0,"dur":10},
- {"name":"kg-coast-sunset","id":360767,"start":0,"dur":10},
- {"name":"kg-coast-storm","id":362086,"start":0,"dur":10},
- {"name":"baltic-waves","id":219437,"start":0,"dur":8},
- {"name":"baltic-stones","id":243198,"start":0,"dur":8},
- {"name":"old-map","id":33237,"start":0,"dur":8},
- {"name":"q-kaliningrad-2","query":"kaliningrad","pick":3,"dur":10},
- {"name":"q-kaliningrad-3","query":"kaliningrad","pick":4,"dur":10},
- {"name":"q-kaliningrad-4","query":"kaliningrad","pick":5,"dur":10},
- {"name":"q-curonian","query":"curonian spit","pick":0,"dur":10},
- {"name":"q-lithuania-road","query":"lithuania road drone","pick":0,"dur":8},
- {"name":"q-poland-border","query":"poland border","pick":0,"dur":8},
- {"name":"q-amber","query":"amber stone","pick":0,"dur":7},
- {"name":"q-cathedral","query":"konigsberg cathedral","pick":0,"dur":8},
- {"name":"q-train-russia","query":"train russia","pick":0,"dur":8},
- {"name":"q-warship","query":"warship navy","pick":0,"dur":8},
- {"name":"q-ruins-war","query":"war ruins","pick":0,"dur":8},
- {"name":"q-snow-forest","query":"winter forest snow","pick":0,"dur":8}
-]}
+{
+ "channel": "hidden-past",
+ "pixabay": [
+  {
+   "name": "kg-city-aerial",
+   "id": 361594,
+   "start": 0,
+   "dur": 10
+  },
+  {
+   "name": "kg-coast-sunset",
+   "id": 360767,
+   "start": 0,
+   "dur": 10
+  },
+  {
+   "name": "kg-coast-storm",
+   "id": 362086,
+   "start": 0,
+   "dur": 10
+  },
+  {
+   "name": "baltic-waves",
+   "id": 219437,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "baltic-stones",
+   "id": 243198,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "old-map",
+   "id": 33237,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-kaliningrad-2",
+   "query": "kaliningrad",
+   "pick": 3,
+   "dur": 10
+  },
+  {
+   "name": "q-kaliningrad-3",
+   "query": "kaliningrad",
+   "pick": 4,
+   "dur": 10
+  },
+  {
+   "name": "q-kaliningrad-4",
+   "query": "kaliningrad",
+   "pick": 5,
+   "dur": 10
+  },
+  {
+   "name": "q-curonian",
+   "query": "curonian spit",
+   "pick": 0,
+   "dur": 10
+  },
+  {
+   "name": "q-lithuania-road",
+   "query": "lithuania road drone",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-poland-border",
+   "query": "poland border",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-amber",
+   "query": "amber stone",
+   "pick": 0,
+   "dur": 7
+  },
+  {
+   "name": "q-cathedral",
+   "query": "konigsberg cathedral",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-train-russia",
+   "query": "train russia",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-warship",
+   "query": "warship navy",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-ruins-war",
+   "query": "war ruins",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-snow-forest",
+   "query": "winter forest snow",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-kaliningrad-5",
+   "query": "kaliningrad",
+   "pick": 6,
+   "dur": 8
+  },
+  {
+   "name": "q-kaliningrad-6",
+   "query": "kaliningrad",
+   "pick": 7,
+   "dur": 8
+  },
+  {
+   "name": "q-kaliningrad-7",
+   "query": "kaliningrad",
+   "pick": 8,
+   "dur": 8
+  },
+  {
+   "name": "q-kaliningrad-8",
+   "query": "kaliningrad",
+   "pick": 9,
+   "dur": 8
+  },
+  {
+   "name": "q-konigsberg",
+   "query": "konigsberg",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-baltic-sunset",
+   "query": "baltic sea sunset",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-kg-winter",
+   "query": "kaliningrad winter",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-baltic-amber",
+   "query": "baltic amber",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-baltiysk",
+   "query": "baltiysk",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-pillau",
+   "query": "pillau",
+   "pick": 0,
+   "dur": 8
+  }
+ ]
+}
