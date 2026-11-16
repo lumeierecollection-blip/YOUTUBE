@@ -2,9 +2,9 @@
   "channel": "hidden-past",
   "production_run": "run-43861409626-1",
   "agent": "agent-hidden-past",
-  "stage": "preview_ready",
+  "stage": "awaiting_approval",
   "status": "ok",
-  "timestamp": "2026-11-16T12:06:19.603Z",
+  "timestamp": "2026-11-16T12:06:21.713Z",
   "branch": "preview/hidden-past-kaliningrad-short",
   "commit": "b621eb680fbf5565ee13c1fcca88076eed37fb37",
   "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43861409626#artifacts"
