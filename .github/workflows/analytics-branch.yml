@@ -1,0 +1,32 @@
+name: Analytics report (branch, read-only)
+
+# Read-only: lists recent uploads and their views/retention for slots 01, 02, 04.
+# Never uploads or edits. Runs on push of data/analytics/trigger on upload/** branches.
+on:
+  push:
+    branches: ['upload/**']
+    paths: ['data/analytics/trigger']
+
+permissions: { contents: read }
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retention report
+        env:
+          CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CHANNEL_04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CHANNEL_04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CHANNEL_04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: node scripts/analytics/retention.mjs --slots 01,02,04 --out retention --max 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: retention-report, path: retention, retention-days: 14 }
