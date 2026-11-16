@@ -1,0 +1,93 @@
+{
+  "measured_wpm": 177.6,
+  "calibration_seconds": 13.848,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "How does a substitute win a final in under nineteen minutes?",
+      "scene": 0,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Spain led, then England equalised in the seventy-third minute.",
+      "scene": 1,
+      "claim_ids": [
+        "E1"
+      ]
+    },
+    {
+      "text": "Cole Palmer, a substitute, scored two minutes after coming on.",
+      "scene": 2,
+      "claim_ids": [
+        "E3"
+      ]
+    },
+    {
+      "text": "Spain's answer: substitute Mikel Oyarzabal, on in the sixty-seventh minute.",
+      "scene": 3,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Cucurella passed along the ground, and Oyarzabal scored in the eighty-sixth.",
+      "scene": 4,
+      "claim_ids": [
+        "E1",
+        "E4"
+      ]
+    },
+    {
+      "text": "StatsBomb's model rated the chance at point two eight expected goals.",
+      "scene": 4,
+      "claim_ids": [
+        "E5"
+      ]
+    },
+    {
+      "text": "Eighteen minutes after coming on.",
+      "scene": 5,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Two of the three goals in that final came from substitutes.",
+      "scene": 6,
+      "claim_ids": [
+        "E6"
+      ]
+    },
+    {
+      "text": "Full breakdown on our channel.",
+      "scene": 7,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "pointer to the full breakdown on the channel"
+    },
+    {
+      "text": "How does a substitute win a final in under nineteen minutes?",
+      "scene": 8,
+      "claim_ids": [
+        "E2"
+      ]
+    }
+  ],
+  "words": 94,
+  "estimated_seconds": 36.5,
+  "inside_window": true,
+  "kept": [
+    "xg",
+    "two",
+    "hook",
+    "score",
+    "palmer",
+    "oya",
+    "pass",
+    "gap",
+    "cta",
+    "loop"
+  ]
+}

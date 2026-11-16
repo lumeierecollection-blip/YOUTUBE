@@ -1,0 +1,167 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-43861880011-1",
+  "topic": "Spain v England, Euro 2024 final: how a substitute decided it",
+  "format": "short",
+  "sentences": [
+    {
+      "text": "How does a substitute win a final in under nineteen minutes?",
+      "scene": 0,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Spain led, then England equalised in the seventy-third minute.",
+      "scene": 1,
+      "claim_ids": [
+        "E1"
+      ]
+    },
+    {
+      "text": "Cole Palmer, a substitute, scored two minutes after coming on.",
+      "scene": 2,
+      "claim_ids": [
+        "E3"
+      ]
+    },
+    {
+      "text": "Spain's answer: substitute Mikel Oyarzabal, on in the sixty-seventh minute.",
+      "scene": 3,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Cucurella passed along the ground, and Oyarzabal scored in the eighty-sixth.",
+      "scene": 4,
+      "claim_ids": [
+        "E1",
+        "E4"
+      ]
+    },
+    {
+      "text": "StatsBomb's model rated the chance at point two eight expected goals.",
+      "scene": 4,
+      "claim_ids": [
+        "E5"
+      ]
+    },
+    {
+      "text": "Eighteen minutes after coming on.",
+      "scene": 5,
+      "claim_ids": [
+        "E2"
+      ]
+    },
+    {
+      "text": "Two of the three goals in that final came from substitutes.",
+      "scene": 6,
+      "claim_ids": [
+        "E6"
+      ]
+    },
+    {
+      "text": "Full breakdown on our channel.",
+      "scene": 7,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "pointer to the full breakdown on the channel"
+    },
+    {
+      "text": "How does a substitute win a final in under nineteen minutes?",
+      "scene": 8,
+      "claim_ids": [
+        "E2"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "statsbomb",
+      "url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "title": "StatsBomb Open Data, UEFA Euro 2024 final events (match 3943043) and match record",
+      "licence": "StatsBomb Open Data terms: credit StatsBomb and show their logo"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "E1",
+      "claim": "Spain beat England 2-1 in the Euro 2024 final; the goals came in the 47th (Spain), 73rd (England) and 86th (Spain) minutes.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "match record 2-1; goal events at 46:09, 72:08 and 85:56 on the match clock (displayed as 47', 73', 86')",
+      "confidence": "high",
+      "context": "Counted from the recorded shot events with outcome Goal, and the match record.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "E2",
+      "claim": "Mikel Oyarzabal came on as a substitute at 67:19 and scored Spain's winner at 85:56, 18 minutes 37 seconds later.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "substitution event 67:19 (on: Oyarzabal); goal 85:56; difference 1117 seconds",
+      "confidence": "high",
+      "context": "Event data: substitution and shot events on the match clock.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "E3",
+      "claim": "Cole Palmer came on at 69:53 and scored England's equaliser at 72:08, 2 minutes 15 seconds later.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "substitution event 69:53 (on: Palmer); goal 72:08; difference 135 seconds",
+      "confidence": "high",
+      "context": "Event data: substitution and shot events on the match clock.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "E4",
+      "claim": "Marc Cucurella's pass along the ground reached Oyarzabal inside the box one second before his right-foot goal.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "key pass 85:55, Ground Pass, left foot, from (100.0, 12.7) to (111.2, 36.3); shot 85:56 from (111.2, 36.3)",
+      "confidence": "high",
+      "context": "Event data; the box is x 102 to 120, y 18 to 62 in StatsBomb units.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "E5",
+      "claim": "StatsBomb's model rated Oyarzabal's goal chance at 0.28 expected goals.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "statsbomb_xg 0.283 for the 85:56 shot",
+      "confidence": "high",
+      "context": "A modelled value for the shot, not a measured outcome.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    },
+    {
+      "claim_id": "E6",
+      "claim": "Two of the match's three goals, both after the 60th minute, were scored by substitutes; Spain's first goal was scored by a starter, Nico Williams.",
+      "source_id": "statsbomb",
+      "source_url": "https://github.com/statsbomb/open-data/blob/master/data/events/3943043.json",
+      "published": "2026-11-16",
+      "excerpt": "goal scorers: Williams (started), Palmer (on 69:53), Oyarzabal (on 67:19)",
+      "confidence": "high",
+      "context": "Event data: no substitution event brings Williams on.",
+      "contradictory_evidence": [],
+      "editorial_status": "measured_statistic"
+    }
+  ],
+  "quality_report": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  }
+}
