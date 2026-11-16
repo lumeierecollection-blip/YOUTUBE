@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Spinning Hexagon with Bouncing Balls</title>
+<title>Bouncing Balls in a Rotating Hexagon</title>
 <style>
-  body {margin:0;overflow:hidden;background:#111;}
-  canvas {display:block;margin:auto;background:#222;}
+  body{margin:0;background:#111;overflow:hidden;}
+  canvas{display:block;margin:auto;background:#222;}
 </style>
 </head>
 <body>
@@ -14,185 +14,160 @@
 (() => {
   const canvas = document.getElementById('c');
   const ctx = canvas.getContext('2d');
-  const W = canvas.width = window.innerWidth;
-  const H = canvas.height = window.innerHeight;
+  const W = canvas.width = 800;
+  const H = canvas.height = 600;
 
-  // Hexagon parameters
-  const hexCenter = {x: W/2, y: H/2};
-  const hexRadius = Math.min(W, H) * 0.35;
-  let hexAngle = 0;
-  const hexSpeed = 0.0005; // rad per ms
+  const BALL_COUNT = 10;
+  const BALL_RADIUS = 12;
+  const GRAVITY = 0.25;
+  const FRICTION = 0.998;
+  const HEX_RADIUS = 250;
+  const ROT_SPEED = 0.001; // radians per frame
 
-  // Physics
-  const gravity = 0.0008; // px/ms²
-  const ballCount = 10;
+  // create balls with random positions & colors
   const balls = [];
-  const restitution = 0.9; // bounciness
-  const friction = 0.999; // air drag
-
-  // Helper vector functions
-  const dot = (a,b)=>a.x*b.x + a.y*b.y;
-  const sub = (a,b)=>({x:a.x-b.x, y:a.y-b.y});
-  const add = (a,b)=>({x:a.x+b.x, y:a.y+b.y});
-  const mul = (a,s)=>({x:a.x*s, y:a.y*s});
-  const length = v=>Math.hypot(v.x, v.y);
-  const normalize = v=>{let l=length(v);return l?{x:v.x/l, y:v.y/l}:{x:0,y:0};};
-
-  // Initialise balls
-  for (let i=0;i<ballCount;i++){
-    const angle = Math.random()*Math.PI*2;
-    const r = 12+Math.random()*8;
+  for (let i = 0; i < BALL_COUNT; i++) {
     balls.push({
-      pos:{x:hexCenter.x + Math.cos(angle)*(hexRadius*0.6),
-           y:hexCenter.y + Math.sin(angle)*(hexRadius*0.6)},
-      vel:{x:(Math.random()-0.5)*0.3, y:(Math.random()-0.5)*0.3},
-      r,
-      col:`hsl(${Math.random()*360},80%,60%)`
+      x: W/2 + (Math.random()*2-1)*100,
+      y: H/2 + (Math.random()*2-1)*100,
+      vx: (Math.random()*2-1)*3,
+      vy: (Math.random()*2-1)*3,
+      r: BALL_RADIUS,
+      color: `hsl(${Math.random()*360},80%,60%)`
     });
   }
 
-  // Compute hexagon vertices (rotated)
-  function getHexVertices(){
+  let angle = 0; // current rotation of hexagon
+
+  // compute hexagon vertices (clockwise) for a given rotation
+  function getHexVertices(rot) {
     const verts = [];
-    for(let i=0;i<6;i++){
-      const a = hexAngle + i*Math.PI/3;
+    for (let i = 0; i < 6; i++) {
+      const a = rot + i * Math.PI/3;
       verts.push({
-        x: hexCenter.x + Math.cos(a)*hexRadius,
-        y: hexCenter.y + Math.sin(a)*hexRadius
+        x: W/2 + HEX_RADIUS * Math.cos(a),
+        y: H/2 + HEX_RADIUS * Math.sin(a)
       });
     }
     return verts;
   }
 
-  // Wall velocity at a point due to rotation
-  function wallVelocity(point){
-    // v = ω × r ; in 2D ω is scalar out of plane
-    const dx = point.x - hexCenter.x;
-    const dy = point.y - hexCenter.y;
-    return {x: -hexSpeed*dy, y: hexSpeed*dx};
+  // reflect velocity against a normalized outward normal n
+  function reflect(vx, vy, nx, ny) {
+    const dot = vx*nx + vy*ny;
+    return [vx - 2*dot*nx, vy - 2*dot*ny];
   }
 
-  // Main loop
-  let last = performance.now();
-  function animate(now){
-    const dt = now - last;
-    last = now;
-    hexAngle += hexSpeed*dt;
+  // main loop
+  function update() {
+    angle += ROT_SPEED;
+    const verts = getHexVertices(angle);
+    const edges = [];
+    for (let i = 0; i < 6; i++) {
+      const p1 = verts[i];
+      const p2 = verts[(i+1)%6];
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+      // outward normal for clockwise vertices
+      const nx = dy;
+      const ny = -dx;
+      const len = Math.hypot(nx, ny);
+      edges.push({p1,p2,nx:nx/len,ny:ny/len});
+    }
 
-    // Update balls
-    for(const b of balls){
-      // gravity & drag
-      b.vel.y += gravity*dt;
-      b.vel.x *= friction;
-      b.vel.y *= friction;
+    // ball‑ball collisions
+    for (let i = 0; i < BALL_COUNT; i++) {
+      for (let j = i+1; j < BALL_COUNT; j++) {
+        const a = balls[i], b = balls[j];
+        const dx = b.x - a.x, dy = b.y - a.y;
+        const dist = Math.hypot(dx, dy);
+        const minDist = a.r + b.r;
+        if (dist < minDist) {
+          // normal
+          const nx = dx/dist, ny = dy/dist;
+          // relative velocity
+          const rvx = b.vx - a.vx, rvy = b.vy - a.vy;
+          const rel = rvx*nx + rvy*ny;
+          if (rel < 0) {
+            // simple equal‑mass elastic response
+            const impulse = -2 * rel / 2;
+            a.vx -= impulse * nx;
+            a.vy -= impulse * ny;
+            b.vx += impulse * nx;
+            b.vy += impulse * ny;
+          }
+          // separate overlap
+          const overlap = minDist - dist;
+          a.x -= nx * overlap/2;
+          a.y -= ny * overlap/2;
+          b.x += nx * overlap/2;
+          b.y += ny * overlap/2;
+        }
+      }
+    }
+
+    // ball‑wall collisions & physics integration
+    for (const b of balls) {
+      // gravity
+      b.vy += GRAVITY;
 
       // move
-      b.pos.x += b.vel.x*dt;
-      b.pos.y += b.vel.y*dt;
-    }
+      b.x += b.vx;
+      b.y += b.vy;
 
-    // Ball‑ball collisions
-    for(let i=0;i<balls.length;i++){
-      for(let j=i+1;j<balls.length;j++){
-        const a=balls[i], c=balls[j];
-        const d=sub(c.pos,a.pos);
-        const dist=length(d);
-        const minDist=a.r+c.r;
-        if(dist<minDist && dist>0){
-          // normal
-          const n=normalize(d);
-          // relative velocity
-          const rv=sub(c.vel,a.vel);
-          const velAlongN=dot(rv,n);
-          if(velAlongN>0) continue; // separating
-          // impulse scalar
-          const e = restitution;
-          const jImpulse = -(1+e)*velAlongN/(1/a.r+1/c.r);
-          const impulse = mul(n, jImpulse);
-          // apply
-          a.vel = sub(a.vel, mul(impulse,1/a.r));
-          c.vel = add(c.vel, mul(impulse,1/c.r));
+      // friction (air)
+      b.vx *= FRICTION;
+      b.vy *= FRICTION;
 
-          // positional correction
-          const overlap = minDist - dist;
-          const correction = mul(n, overlap*0.5);
-          a.pos = sub(a.pos, correction);
-          c.pos = add(c.pos, correction);
-        }
-      }
-    }
-
-    // Ball‑wall collisions
-    const verts = getHexVertices();
-    for(const b of balls){
-      for(let i=0;i<6;i++){
-        const p1 = verts[i];
-        const p2 = verts[(i+1)%6];
-        // Edge vector
-        const edge = sub(p2,p1);
-        const edgeLen = length(edge);
-        const edgeDir = normalize(edge);
-        // Vector from p1 to ball
-        const toBall = sub(b.pos,p1);
-        // Projection length onto edge
-        const proj = Math.max(0, Math.min(edgeLen, dot(toBall, edgeDir)));
-        // Closest point on segment
-        const closest = add(p1, mul(edgeDir, proj));
-        const diff = sub(b.pos, closest);
-        const dist = length(diff);
-        if(dist < b.r){
-          const n = normalize(diff);
-          // wall point velocity (approx using midpoint)
-          const mid = {x:(p1.x+p2.x)/2, y:(p1.y+p2.y)/2};
-          const wVel = wallVelocity(mid);
-          const relVel = sub(b.vel, wVel);
-          const velAlongN = dot(relVel, n);
-          if(velAlongN < 0){
-            // reflect relative velocity
-            const newRel = sub(relVel, mul(n, 2*velAlongN));
-            // add wall velocity back
-            b.vel = add(newRel, mul(wVel, restitution));
+      // collision with rotating hexagon edges
+      for (const e of edges) {
+        const {p1, nx, ny} = e;
+        // vector from p1 to ball centre
+        const px = b.x - p1.x;
+        const py = b.y - p1.y;
+        // signed distance to edge (positive outward)
+        const dist = px*nx + py*ny;
+        if (dist < b.r) {
+          // check if moving outward
+          const vn = b.vx*nx + b.vy*ny;
+          if (vn > 0) {
+            const [rvx, rvy] = reflect(b.vx, b.vy, nx, ny);
+            b.vx = rvx;
+            b.vy = rvy;
+            // push ball inside
+            const correction = b.r - dist;
+            b.x -= nx * correction;
+            b.y -= ny * correction;
           }
-          // reposition out of wall
-          const penetration = b.r - dist;
-          b.pos = add(b.pos, mul(n, penetration+0.1));
         }
       }
     }
 
-    // Clear
+    // draw
     ctx.clearRect(0,0,W,H);
-    // Draw hexagon
-    ctx.save();
-    ctx.translate(hexCenter.x, hexCenter.y);
-    ctx.rotate(hexAngle);
+
+    // draw rotating hexagon
+    ctx.strokeStyle = '#888';
+    ctx.lineWidth = 3;
     ctx.beginPath();
-    for(let i=0;i<6;i++){
-      const a = i*Math.PI/3;
-      const x = Math.cos(a)*hexRadius;
-      const y = Math.sin(a)*hexRadius;
-      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
+    ctx.moveTo(verts[0].x, verts[0].y);
+    for (let i = 1; i < 6; i++) ctx.lineTo(verts[i].x, verts[i].y);
     ctx.closePath();
-    ctx.strokeStyle = "#888";
-    ctx.lineWidth = 4;
     ctx.stroke();
-    ctx.restore();
 
-    // Draw balls
-    for(const b of balls){
+    // draw balls
+    for (const b of balls) {
+      ctx.fillStyle = b.color;
       ctx.beginPath();
-      ctx.arc(b.pos.x,b.pos.y,b.r,0,Math.PI*2);
-      ctx.fillStyle = b.col;
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI*2);
       ctx.fill();
-      ctx.strokeStyle = "#222";
-      ctx.lineWidth = 2;
-      ctx.stroke();
     }
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(update);
   }
-  requestAnimationFrame(animate);
+
+  // start animation
+  requestAnimationFrame(update);
 })();
 </script>
 </body>

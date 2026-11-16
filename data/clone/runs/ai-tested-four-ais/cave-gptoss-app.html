@@ -2,127 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Auto‑Pilot Cave Runner</title>
+<title>Auto‑Steering Cave Ship</title>
 <style>
-  body {margin:0;overflow:hidden;background:#000;}
-  canvas {display:block;}
-  #dist {position:absolute;top:10px;left:10px;color:#0f0;font:20px monospace;}
+  body,html{margin:0;height:100%;overflow:hidden;background:#000;color:#0f0;font-family:monospace}
+  canvas{display:block;background:#111}
+  #info{position:absolute;top:8px;left:12px;pointer-events:none}
 </style>
 </head>
 <body>
-<div id="dist">0 m</div>
-<canvas id="c"></canvas>
+<canvas id="game"></canvas>
+<div id="info"></div>
 <script>
 (() => {
-  const canvas = document.getElementById('c');
+  const canvas = document.getElementById('game');
   const ctx = canvas.getContext('2d');
-  const W = canvas.width = window.innerWidth;
-  const H = canvas.height = window.innerHeight;
-  const SPEED = 2;                 // pixels per frame the cave moves left
-  const GAP = 140;                 // vertical gap for the ship
-  const SHIP_X = 100;              // fixed horizontal position of ship
-  const ship = {y: H/2, vy:0};
-  const distEl = document.getElementById('dist');
+  const info = document.getElementById('info');
+
+  const W = canvas.width = 800;
+  const H = canvas.height = 400;
+
+  const SPEED = 2;               // pixels per frame the cave scrolls
+  const GAP_MIN = 80;            // minimum vertical gap
+  const GAP_MAX = 150;           // maximum vertical gap
+  const GAP_CHANGE = 0.5;        // how fast the gap size can change per column
+  const WALL_VARIANCE = 1.2;     // max vertical change of each wall per column
+  const SHIP_X = 120;            // fixed horizontal position of the ship
+  const SHIP_R = 8;              // ship radius for collision
+  const STEER_FACTOR = 0.03;     // how strongly the ship steers toward centre
+  const DAMPING = 0.92;          // vertical velocity damping
+
+  let topWall = [];      // y coordinate of ceiling at each x column
+  let bottomWall = [];   // y coordinate of floor at each x column
+
+  // Initialise the cave profile
+  let gapSize = (GAP_MIN + GAP_MAX) / 2;
+  let gapY = H/2; // centre of gap
+
+  function addColumn() {
+    // Randomly vary the gap centre a little
+    gapY += (Math.random()*2-1) * WALL_VARIANCE;
+    gapY = Math.max(gapSize/2+10, Math.min(H - gapSize/2-10, gapY));
+
+    // Randomly vary the gap size
+    gapSize += (Math.random()*2-1) * GAP_CHANGE;
+    gapSize = Math.max(GAP_MIN, Math.min(GAP_MAX, gapSize));
+
+    const top = gapY - gapSize/2;
+    const bottom = gapY + gapSize/2;
+    topWall.push(top);
+    bottomWall.push(bottom);
+    if (topWall.length > W) { topWall.shift(); bottomWall.shift(); }
+  }
+
+  // Pre‑fill walls
+  for(let i=0;i<W;i++) addColumn();
+
+  // Ship state
+  const ship = {
+    x: SHIP_X,
+    y: H/2,
+    vy: 0,
+    alive: true
+  };
+
   let distance = 0;
+  let lastTime = performance.now();
 
-  // Cave shape stored as arrays of top and bottom y‑coordinates for each column
-  const cols = Math.ceil(W / SPEED) + 2; // enough columns to fill screen
-  const top = new Array(cols);
-  const bottom = new Array(cols);
-  let base = H/3;               // starting ceiling height
-  const maxBase = H - GAP - 50;
-  const minBase = 50;
+  function loop(now) {
+    const dt = now - lastTime;
+    lastTime = now;
 
-  // Initialise cave columns with a smooth random walk
-  for(let i=0;i<cols;i++){
-    base += (Math.random()*2-1)*3;               // small random delta
-    if(base>maxBase) base=maxBase;
-    if(base<minBase) base=minBase;
-    top[i] = base;
-    bottom[i] = base + GAP;
-  }
+    // Scroll cave
+    for(let i=0;i<Math.round(SPEED);i++) addColumn();
 
-  function addColumn(){
-    // generate next column and push to arrays, discarding the leftmost one
-    base += (Math.random()*2-1)*3;
-    if(base>maxBase) base=maxBase;
-    if(base<minBase) base=minBase;
-    top.push(base);
-    bottom.push(base+GAP);
-    top.shift();
-    bottom.shift();
-  }
+    // Ship steering (only if alive)
+    if (ship.alive) {
+      const colIdx = Math.floor(ship.x);
+      const targetY = (topWall[colIdx] + bottomWall[colIdx]) / 2;
+      ship.vy += (targetY - ship.y) * STEER_FACTOR;
+      ship.vy *= DAMPING;
+      ship.y += ship.vy;
 
-  function drawCave(){
+      // Collision detection
+      if (ship.y - SHIP_R < topWall[colIdx] || ship.y + SHIP_R > bottomWall[colIdx]) {
+        ship.alive = false;
+        setTimeout(resetGame, 2000);
+      }
+
+      distance += SPEED * (dt/16.666); // approximate per‑frame distance
+    }
+
+    // Rendering
+    ctx.clearRect(0,0,W,H);
+
+    // Draw walls
     ctx.fillStyle = '#222';
-    // top ceiling
     ctx.beginPath();
     ctx.moveTo(0,0);
-    for(let i=0;i<top.length;i++){
-      ctx.lineTo(i*SPEED, top[i]);
-    }
+    for(let x=0;x<W;x++) ctx.lineTo(x, topWall[x]);
     ctx.lineTo(W,0);
     ctx.closePath();
     ctx.fill();
-    // bottom floor
+
     ctx.beginPath();
     ctx.moveTo(0,H);
-    for(let i=0;i<bottom.length;i++){
-      ctx.lineTo(i*SPEED, bottom[i]);
-    }
+    for(let x=0;x<W;x++) ctx.lineTo(x, bottomWall[x]);
     ctx.lineTo(W,H);
     ctx.closePath();
     ctx.fill();
-  }
 
-  function drawShip(){
-    const shipSize = 12;
-    ctx.fillStyle = '#ff0';
+    // Draw ship
+    ctx.fillStyle = ship.alive ? '#0f0' : '#f00';
     ctx.beginPath();
-    ctx.moveTo(SHIP_X, ship.y);
-    ctx.lineTo(SHIP_X-shipSize, ship.y+shipSize);
-    ctx.lineTo(SHIP_X+shipSize, ship.y+shipSize);
-    ctx.closePath();
+    ctx.arc(ship.x, ship.y, SHIP_R, 0, Math.PI*2);
     ctx.fill();
-  }
 
-  function updateShip(){
-    // find column index that corresponds to the ship's X position
-    const idx = Math.floor(SHIP_X / SPEED);
-    const targetY = (top[idx] + bottom[idx]) / 2;
-    // simple proportional controller
-    ship.vy += (targetY - ship.y) * 0.06;
-    ship.vy *= 0.94;           // damping
-    ship.y += ship.vy;
-    // keep inside canvas (optional: could detect crash)
-    if(ship.y < 0) ship.y = 0;
-    if(ship.y > H) ship.y = H;
-  }
-
-  function loop(){
-    ctx.clearRect(0,0,W,H);
-    // scroll cave
-    for(let i=0;i<top.length;i++){
-      top[i] -= SPEED;
-      bottom[i] -= SPEED;
-    }
-    // when first column is off‑screen, generate a new one
-    if(top[0] <= -SPEED) addColumn();
-    drawCave();
-    updateShip();
-    drawShip();
-    distance += SPEED * 0.05; // arbitrary scaling to metres
-    distEl.textContent = Math.floor(distance) + " m";
+    // Draw distance
+    info.textContent = 'Distance: ' + Math.floor(distance) + ' m';
     requestAnimationFrame(loop);
   }
 
-  // Resize handling
-  window.addEventListener('resize',()=>{
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  function resetGame() {
+    ship.y = H/2;
+    ship.vy = 0;
+    ship.alive = true;
+    distance = 0;
+    // Re‑initialise walls to a fresh random state
+    topWall = []; bottomWall = [];
+    gapSize = (GAP_MIN + GAP_MAX) / 2;
+    gapY = H/2;
+    for(let i=0;i<W;i++) addColumn();
+  }
 
-  loop();
+  requestAnimationFrame(loop);
 })();
 </script>
 </body>
