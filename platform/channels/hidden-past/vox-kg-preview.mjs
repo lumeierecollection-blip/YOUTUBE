@@ -1,7 +1,8 @@
 // Hidden Past, layered Vox Short for the Kaliningrad long-form. Same engine as vox-beats-preview.mjs / vox-capone-preview.mjs (runFixedShort, fitScript,
 // commonsAsset, bakeStills, Natural Earth maps), different story. Facts are re-fetched from four pages and every claim's text must be found in its page
 // or nothing renders. 35 to 40 seconds at the voice's own measured pace, never sped up.
-import { mkdirSync, readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { mkdirSync, readFileSync, renameSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -51,11 +52,11 @@ function drawMap({ framing, zoom, pins, labels, nato = [], route = null }) {
   return { rect: AREA, landD, countryD, natoD, labels: labs, pins: pp, routeD, russiaInView: m.features.length > 0, map_data: "Natural Earth 1:50m (public domain); city coordinates from English Wikipedia" };
 }
 const LOCAL = () => drawMap({
-  framing: [KAL, VIL], zoom: 3.2, pins: [{ ...KAL, side: "left" }], nato: ["Poland", "Lithuania"],
+  framing: [KAL, VIL, { lat: 54.7, lon: 17.2 }], zoom: 3.0, pins: [{ ...KAL, side: "left" }], nato: ["Poland", "Lithuania"],
   labels: [["POLAND", 20.4, 52.6, 52], ["LITHUANIA", 24.1, 55.4, 46], ["BELARUS", 27.6, 53.7, 40], ["LATVIA", 24.9, 56.9, 36], ["BALTIC SEA", 18.5, 55.9, 34]],
 });
 const WIDE = () => drawMap({
-  framing: [KAL, MOS], zoom: 3.2, pins: [{ ...KAL, side: "left" }, { ...MOS, side: "left" }], nato: ["Poland", "Lithuania"],
+  framing: [KAL, MOS, { lat: 54.7, lon: 14.0 }], zoom: 3.0, pins: [{ ...KAL, side: "left" }, { ...MOS, side: "left" }], nato: ["Poland", "Lithuania"],
   labels: [["POLAND", 19.6, 52.2, 40], ["LITHUANIA", 23.9, 55.5, 36], ["BELARUS", 28.0, 53.5, 40], ["LATVIA", 24.8, 57.0, 30], ["RUSSIA", 33.0, 58.2, 44], ["UKRAINE", 31.0, 50.6, 36]],
   route: [[KAL.lon, KAL.lat], [24.0, 54.4], [27.6, 54.0], [MOS.lon, MOS.lat]],
 });
@@ -102,5 +103,13 @@ export default async function voxKgPreview({ key, runId, tools }) {
 
   const spec = { topic: TOPIC, claims, sources, sentences: first.sentences, scenes: first.scenes, compositionId: "HiddenPastVoxKg", edgeVoice: channel.voice.tts, style: STYLE, metadata: { ...METADATA }, minSeconds: 35, maxSeconds: 40, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps };
   const result = await runFixedShort({ key, runId, tools, spec });
+  // The voice track is ~-19 LUFS; a Short should sit near -14. Two-pass loudnorm on the audio only, video stream copied.
+  const ff = (args) => spawnSync("ffmpeg", args, { encoding: "utf8", maxBuffer: 1 << 26 });
+  const m = JSON.parse(ff(["-hide_banner", "-nostats", "-i", result.video, "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"]).stderr.match(/\{[^{}]*"input_i"[^{}]*\}/)[0]);
+  const tmp = result.video.replace(/\.mp4$/, ".norm.mp4");
+  const n = ff(["-y", "-i", result.video, "-c:v", "copy", "-af", `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}`, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", tmp]);
+  if (n.status !== 0) throw new Error(`loudnorm failed: ${String(n.stderr).slice(-300)}`);
+  renameSync(tmp, result.video);
+  tools.write("loudness.json", { before: m, target: "I=-14 TP=-1.5" });
   tools.write("quality-report.json", { format: "hidden_past_vox_kaliningrad_short", technical: result.qa });
 }
