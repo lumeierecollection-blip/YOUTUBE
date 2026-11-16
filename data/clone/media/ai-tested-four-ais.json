@@ -15,7 +15,9 @@
     "gpt-oss-120b"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "snake-qwen",
@@ -39,7 +41,9 @@
     "gpt-oss-20b"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "solar-gemini",
@@ -55,7 +59,9 @@
     "gpt-oss-120b"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "solar-qwen",
@@ -79,7 +85,9 @@
     "gpt-oss-20b"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "hexagon-gemini",
@@ -95,7 +103,9 @@
     "gpt-oss-120b"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "hexagon-qwen",
@@ -119,7 +129,9 @@
     "gpt-oss-20b"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "cave-gemini",
@@ -135,7 +147,9 @@
     "gpt-oss-120b"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "cave-qwen",
@@ -159,7 +173,9 @@
     "gpt-oss-20b"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "city-gemini",
@@ -175,7 +191,9 @@
     "gpt-oss-120b"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   },
   {
    "name": "city-qwen",
@@ -199,17 +217,21 @@
     "gpt-oss-20b"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 16000,
+   "delay_s": 20
   }
  ],
  "only": [
-  "cave-gptoss20",
-  "city-gptoss20",
+  "snake-gptoss",
+  "snake-gptoss20",
+  "solar-gptoss",
+  "solar-gptoss20",
+  "hexagon-gptoss",
   "hexagon-gptoss20",
-  "snake-qwen",
-  "hexagon-qwen",
-  "cave-qwen",
-  "city-qwen",
-  "solar-qwen"
+  "cave-gptoss",
+  "cave-gptoss20",
+  "city-gptoss",
+  "city-gptoss20"
  ]
 }
