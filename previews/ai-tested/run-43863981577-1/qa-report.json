@@ -1,0 +1,100 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 36.651,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -21.9,
+  "max_volume_db": -4.2,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Sadaltager",
+    "seconds": 36.144,
+    "wpm": 151.1,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hookF",
+      "start_s": 0,
+      "end_s": 4.433333333333334
+    },
+    {
+      "id": "s2",
+      "kind": "jobsF",
+      "start_s": 4.433333333333334,
+      "end_s": 8.2
+    },
+    {
+      "id": "s3",
+      "kind": "soloF",
+      "start_s": 8.2,
+      "end_s": 11.566666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "duelF",
+      "start_s": 11.566666666666666,
+      "end_s": 15.166666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "soloF",
+      "start_s": 15.166666666666666,
+      "end_s": 17.3
+    },
+    {
+      "id": "s6",
+      "kind": "duelF",
+      "start_s": 17.3,
+      "end_s": 20.633333333333333
+    },
+    {
+      "id": "s7",
+      "kind": "timeF",
+      "start_s": 20.633333333333333,
+      "end_s": 23.066666666666666
+    },
+    {
+      "id": "s8",
+      "kind": "fastF",
+      "start_s": 23.066666666666666,
+      "end_s": 25.966666666666665
+    },
+    {
+      "id": "s9",
+      "kind": "scoreF",
+      "start_s": 25.966666666666665,
+      "end_s": 30.433333333333334
+    },
+    {
+      "id": "s10",
+      "kind": "questionF",
+      "start_s": 30.433333333333334,
+      "end_s": 32.1
+    },
+    {
+      "id": "s11",
+      "kind": "ctaF",
+      "start_s": 32.1,
+      "end_s": 33.166666666666664
+    },
+    {
+      "id": "s12",
+      "kind": "hookF",
+      "start_s": 33.166666666666664,
+      "end_s": 36.6
+    }
+  ]
+}
