@@ -2957,9 +2957,14 @@
           "topic": "Severe Drought Worsens Climate Change Forecasts for Cacti in Nature Study",
           "slug": "severe-drought-worsens-cacti-climate-forecasts",
           "reserved_at": "2026-11-15T15:46:59.267Z"
+        },
+        {
+          "topic": "El Niño Drives Drought and Fire Across the Amazon Rainforest in 2026",
+          "slug": "amazon-rainforest-el-nino-drought-2026",
+          "reserved_at": "2026-11-16T18:50:13.243Z"
         }
       ],
-      "last_generated": "2026-11-15T15:46:59.268Z"
+      "last_generated": "2026-11-16T18:50:13.243Z"
     },
     "18": {
       "channel_name": "Brief History",
