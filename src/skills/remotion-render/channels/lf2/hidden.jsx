@@ -163,8 +163,37 @@ export function Scale({ title, rows, unit, source, accent = "#FFD23F" }) {
   );
 }
 
+
+/** Hidden Past thumbnails in the history reference's formula (heavy two-line title, painted hero, label box with the year, thin rule marks); our channel colours, public-domain art. */
+function ThumbPanel({ big, label, small, image, pos = "50% 25%", flip }) {
+  return (
+    <AbsoluteFill style={{ background: "#120B07" }}><Fonts />
+      <Img src={src(image)} style={{ position: "absolute", right: 0, top: 0, width: "58%", height: "100%", objectFit: "cover", objectPosition: pos, filter: "contrast(1.08) saturate(1.05)" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(90deg, #120B07 0%, #120B07 38%, rgba(18,11,7,0.85) 50%, rgba(18,11,7,0) 72%)" }} />
+      <div style={{ position: "absolute", left: 46, top: 60, bottom: 60, width: 8, background: "#D4A574" }} />
+      {(() => { const n = String(big).split("\n").length, fs = n >= 3 ? 168 : 230, top = 130; return (<>
+        <div style={{ position: "absolute", left: 90, top, fontFamily: F.display, fontWeight: 900, fontSize: fs, lineHeight: 0.98, color: "#F4EDD8", textTransform: "uppercase", whiteSpace: "pre-line", textShadow: "0 8px 40px rgba(0,0,0,0.8)" }}>{big}</div>
+        <div style={{ position: "absolute", left: 96, top: top + n * fs * 0.98 + 40, fontFamily: F.display, fontWeight: 700, fontSize: 82, color: "#120B07", background: "#D4A574", padding: "10px 30px", textTransform: "uppercase" }}>{label}</div></>); })()}
+      <div style={{ display: "none", position: "absolute", left: 96, top: 700, fontFamily: F.display, fontWeight: 700, fontSize: 82, color: "#120B07", background: "#D4A574", padding: "10px 30px", textTransform: "uppercase" }}>{label}</div>
+      {small && <div style={{ position: "absolute", left: 96, top: 850, fontFamily: F.display, fontStyle: "italic", fontSize: 64, color: "#E9D9AE" }}>{small}</div>}
+    </AbsoluteFill>
+  );
+}
+function ThumbQuote({ quote, label, image, pos = "50% 22%" }) {
+  return (
+    <AbsoluteFill style={{ background: "#000" }}><Fonts />
+      <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, filter: "contrast(1.1) saturate(1.05)" }} />
+      <AbsoluteFill style={{ background: "linear-gradient(0deg, rgba(10,6,3,0.95) 0%, rgba(10,6,3,0.7) 34%, rgba(10,6,3,0) 62%)" }} />
+      <div style={{ position: "absolute", left: 70, right: 70, bottom: 190, fontFamily: F.display, fontStyle: "italic", fontSize: 118, lineHeight: 1.05, color: "#F4EDD8", textShadow: "0 6px 30px #000" }}>{quote}</div>
+      <div style={{ position: "absolute", left: 70, bottom: 56, fontFamily: F.display, fontWeight: 900, fontSize: 84, color: "#120B07", background: "#D4A574", padding: "8px 30px", textTransform: "uppercase" }}>{label}</div>
+    </AbsoluteFill>
+  );
+}
+
 /** Thumbnail (RealLifeLore: a map or picture, a red marked zone or arrow, a few huge words). The map is the live GeoMap. */
-export function HiddenThumb({ big, small, image, map, circle, arrow }) {
+export function HiddenThumb({ big, small, image, map, circle, arrow, kind, label, quote, pos }) {
+  if (kind === "panel") return <ThumbPanel big={big} label={label} small={small} image={image} pos={pos} />;
+  if (kind === "quote") return <ThumbQuote quote={quote} label={label} image={image} pos={pos} />;
   return (
     <AbsoluteFill style={{ background: "#000" }}><Fonts />
       {map ? <GeoMap {...map} credit={false} vignette={0.3} /> : <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "contrast(1.1) saturate(1.05)" }} />}

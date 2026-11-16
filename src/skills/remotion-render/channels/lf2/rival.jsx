@@ -4,7 +4,7 @@
 // hold rights to, so the proof layer here is the match's own event data (StatsBomb open data) animated on the pitch.
 // The pitch is a real 3D plane: every point is projected through a camera (focus, yaw, tilt, distance) that can move per frame.
 import React from "react";
-import { AbsoluteFill, Img, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Img, OffthreadVideo, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { ThreeCanvas } from "@remotion/three";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
@@ -146,7 +146,7 @@ export function Cards({ t, cards, title, v = "plum", callout, dur = 300 }) {
       {title && <div style={{ position: "absolute", top: 70, left: 0, right: 0, textAlign: "center", fontFamily: SER, fontWeight: 700, fontSize: 52, color: P.fg }}>{titleCase(title)}</div>}
       {cards.map((c, i) => { const a = ramp(f, 6 + i * 10, 22 + i * 10, expo), s = interpolate(f, [0, dur], [1.02, 1.1], clamp); return (
         <div key={i} style={{ position: "absolute", left: x0 + i * (W + gap), top: 250, width: W, height: H, overflow: "hidden", boxShadow: "0 24px 60px rgba(0,0,0,0.55)", border: "3px solid rgba(255,255,255,0.85)", opacity: a, transform: `translateY(${(1 - a) * 30}px) rotate(${(i % 2 ? 0.6 : -0.6)}deg)` }}>
-          <Img src={staticFile(c.image)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos || "50% 50%", transform: `scale(${s})` }} />
+          {c.video ? <OffthreadVideo src={staticFile(c.video)} muted style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos || "50% 50%" }} /> : <Img src={staticFile(c.image)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos || "50% 50%", transform: `scale(${s})` }} />}
           <div style={{ position: "absolute", right: 10, bottom: 8, fontFamily: F.sans, fontSize: 15, color: "rgba(255,255,255,0.85)", textShadow: "0 1px 3px #000" }}>{c.credit}</div>
         </div>); })}
       {callout && <div style={{ position: "absolute", left: 0, right: 0, bottom: 90, textAlign: "center", fontFamily: SER, fontStyle: "italic", fontWeight: 600, fontSize: 56, color: P.fg, whiteSpace: "pre-line" }}>{callout}</div>}
@@ -377,15 +377,46 @@ export function SubCard({ t, cam, minute, off, on, team, fact }) {
 }
 
 /** Thumbnail: pitch fragment, one giant claim, one figure. */
-export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName, at = 12, image }) {
+
+/** Thumbnails in the reference channel's formula (light gradient, one focal subject, lower-case serif phrase with one bold word, red hand-drawn arrow, big captioned numbers); our own drawing and data. */
+const RedArrow = ({ d, w = 11 }) => <svg width="1920" height="1080" style={{ position: "absolute" }}><path d={d} stroke="#E5252A" strokeWidth={w} fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+function ThumbBase({ children }) {
+  return <AbsoluteFill style={{ background: "radial-gradient(90% 90% at 50% 45%, #FFFFFF 0%, #E9E9E6 70%, #D8D8D4 100%)", fontVariantNumeric: "lining-nums" }}><Fonts /><style>{"*{font-variant-numeric:lining-nums}"}</style>
+    <div style={{ position: "absolute", left: 46, top: 34, fontFamily: F.display, fontWeight: 700, fontSize: 56, color: "#111" }}>r</div>
+    {children}</AbsoluteFill>;
+}
+const Phrase = ({ parts, size = 150, top = 70 }) => <div style={{ position: "absolute", left: 0, right: 0, top, textAlign: "center", fontFamily: F.display, fontSize: size, lineHeight: 1.04, color: "#111", letterSpacing: "-0.01em" }}>{parts.map(([t, b], i) => <span key={i} style={{ fontWeight: b ? 900 : 400 }}>{t} </span>)}</div>;
+export function ThumbPhrase({ parts, big, sub, caption }) {
+  return (<ThumbBase>
+    <Phrase parts={parts} />
+    <div style={{ position: "absolute", left: 0, right: 0, top: 360, textAlign: "center", fontFamily: F.display, fontWeight: 900, fontSize: 470, lineHeight: 1, color: "#111" }}>{big}</div>
+    <RedArrow d="M 1380 250 C 1560 260, 1640 360, 1560 470" /><RedArrow d="M 1540 440 L 1562 478 L 1514 486" w={11} />
+    {sub && <div style={{ position: "absolute", left: 0, right: 0, bottom: 44, textAlign: "center", fontFamily: F.display, fontStyle: "italic", fontSize: 62, color: "#444" }}>{sub}</div>}
+  </ThumbBase>);
+}
+export function ThumbCompare({ a, b, phrase }) {
+  const disc = (x, n, label, col, ink) => (<>
+    <div style={{ position: "absolute", left: x, top: 250, width: 560, height: 560, borderRadius: 280, background: col, boxShadow: "0 30px 60px rgba(0,0,0,0.22)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F.display, fontWeight: 900, fontSize: 360, color: ink }}>{n}</div>
+    <div style={{ position: "absolute", left: x, width: 560, top: 830, textAlign: "center", fontFamily: F.display, fontSize: 86, color: "#222" }}>{label}</div></>);
+  return (<ThumbBase>
+    <Phrase parts={phrase} size={120} top={50} />
+    {disc(220, a.n, a.label, "#111", "#fff")}{disc(1140, b.n, b.label, "#D8D8D4", "#111")}
+    <div style={{ position: "absolute", left: 800, width: 320, top: 440, textAlign: "center", fontFamily: F.display, fontStyle: "italic", fontSize: 120, color: "#777" }}>vs</div>
+    <RedArrow d="M 800 210 C 700 200, 640 240, 600 300" /><RedArrow d="M 636 262 L 600 304 L 652 318" />
+  </ThumbBase>);
+}
+
+export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName, at = 12, image, kind, parts, sub, a, b, phrase }) {
+  if (kind === "phrase") return <ThumbPhrase parts={parts} big={big} sub={sub} />;
+  if (kind === "compare") return <ThumbCompare a={a} b={b} phrase={phrase} />;
   // photo variant (no tracking data): a licensed still behind the same type block
   if (image) return (
     <AbsoluteFill style={{ background: "#000" }}><Fonts />
       <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", filter: "saturate(0.9) contrast(1.08) brightness(0.8)" }} />
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0) 68%)" }} />
-      <div style={{ position: "absolute", left: 90, top: 150, fontFamily: F.cond, fontWeight: 700, fontSize: 210, lineHeight: 0.95, color: "#fff", textTransform: "uppercase", whiteSpace: "pre-line", letterSpacing: "-0.01em" }}>{big}</div>
-      {small && <div style={{ position: "absolute", left: 96, top: 800, fontFamily: F.cond, fontWeight: 700, fontSize: 84, color: "#0a0a0a", background: t.accent, padding: "6px 26px", textTransform: "uppercase" }}>{small}</div>}
-      {figure && <div style={{ position: "absolute", right: 90, top: 90, fontFamily: F.cond, fontWeight: 700, fontSize: 150, color: "#fff", textShadow: "0 6px 30px #000" }}>{figure}</div>}
+      <div style={{ position: "absolute", left: 90, top: 140, fontFamily: F.display, fontWeight: 900, fontSize: 200, lineHeight: 0.98, color: "#fff", whiteSpace: "pre-line", textShadow: "0 8px 40px rgba(0,0,0,0.7)" }}>{big}</div>
+      {small && <div style={{ position: "absolute", left: 96, top: 800, fontFamily: F.display, fontStyle: "italic", fontWeight: 700, fontSize: 84, color: "#111", background: "#F4F4F0", padding: "6px 28px" }}>{small}</div>}
+      {figure && <div style={{ position: "absolute", right: 90, top: 80, fontFamily: F.display, fontWeight: 900, fontSize: 190, color: "#fff", textShadow: "0 6px 30px #000" }}>{figure}</div>}
     </AbsoluteFill>
   );
   const state = dotsAt(seq.frames, at), trails = seq.frames.filter((e) => e.type === "Pass" && e.to && e.t <= at);
@@ -401,15 +432,15 @@ export function RivalThumb({ t, cam, seq, big, small, figure, teamName, oppName,
 
 /** 11. Real photograph (licensed: Commons / government press photo) with the credit on screen and one capital callout. The proof layer the references
  * get from broadcast clips, which we cannot license; a still is the honest substitute and is labelled as such. */
-export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur = 240 }) {
+export function Photo({ t, image, video, credit, callout, kicker, pos = "50% 35%", dur = 240 }) {
   const f = useCurrentFrame(), s = interpolate(f, [0, dur], [1.02, 1.09], clamp);
   return (
     <AbsoluteFill style={{ background: "#000" }}><Fonts />
-      <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transform: `scale(${s})`, filter: "saturate(0.95) contrast(1.05)" }} />
+      {video ? <OffthreadVideo src={staticFile(video)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, filter: "saturate(0.95) contrast(1.05)" }} /> : <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: pos, transform: `scale(${s})`, filter: "saturate(0.95) contrast(1.05)" }} />}
       <AbsoluteFill style={{ background: "linear-gradient(90deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0) 70%)" }} />
       {kicker && <div style={{ position: "absolute", left: 110, top: 760, fontFamily: F.cond, fontWeight: 700, fontSize: 30, letterSpacing: "0.2em", color: t.accent }}>{kicker}</div>}
       {callout && <Callout t={t} text={callout} y={810} from={10} />}
-      <div style={{ position: "absolute", right: 30, bottom: 22, fontFamily: F.sans, fontSize: 17, color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px #000" }}>Photo: {credit}</div>
+      <div style={{ position: "absolute", right: 30, bottom: 22, fontFamily: F.sans, fontSize: 17, color: "rgba(255,255,255,0.75)", textShadow: "0 1px 3px #000" }}>{video ? "Footage" : "Photo"}: {credit}</div>
       <Finish grain={0.05} vignette={0.35} />
     </AbsoluteFill>
   );

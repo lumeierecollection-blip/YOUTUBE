@@ -14,7 +14,91 @@ permissions:
   contents: read
 
 jobs:
+  voice:
+    # ONE continuous take per section of the script (platform/longform/v2/make-voice.mjs), so the narration is one voice and one conversation, not a new request per beat.
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout]
+    steps:
+      - name: Skip episodes this branch did not ask for
+        id: want
+        run: |
+          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* || "$b" == rival-lines* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.want.outputs.run == 'yes'
+      - uses: actions/setup-node@v4
+        if: steps.want.outputs.run == 'yes'
+        with:
+          node-version: "24"
+      - uses: actions/setup-python@v5
+        if: steps.want.outputs.run == 'yes'
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        if: steps.want.outputs.run == 'yes'
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Read the script in continuous takes
+        if: steps.want.outputs.run == 'yes'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/longform/v2/make-voice.mjs "${{ matrix.episode }}"
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.want.outputs.run == 'yes'
+        with:
+          name: voice-${{ matrix.episode }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: output/longform-prod/${{ matrix.episode }}/voice/*
+
+  footage:
+    # short licensed clips (Pixabay), trimmed to a few seconds each; the episode lists what it needs in its FOOTAGE export
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout]
+    steps:
+      - name: Skip episodes this branch did not ask for
+        id: want
+        run: |
+          b="${GITHUB_REF_NAME#lfr/}"; ch="${{ matrix.episode }}"
+          if [[ ( "$b" == hidden-past* || "$b" == ai-tested* || "$b" == rival-lines* ) && "$b" != "$ch" ]]; then echo "run=no" >> "$GITHUB_OUTPUT"; else echo "run=yes" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.want.outputs.run == 'yes'
+      - uses: actions/setup-node@v4
+        if: steps.want.outputs.run == 'yes'
+        with:
+          node-version: "24"
+      - name: Install ffmpeg
+        if: steps.want.outputs.run == 'yes'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Fetch the clips
+        if: steps.want.outputs.run == 'yes'
+        env:
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: node platform/longform/v2/fetch-footage.mjs "${{ matrix.episode }}"
+      - uses: actions/upload-artifact@v4
+        if: steps.want.outputs.run == 'yes'
+        with:
+          name: footage-${{ matrix.episode }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: src/skills/remotion-render/public/lf2/footage/*
+
   shards:
+    needs: [voice, footage]
     runs-on: ubuntu-latest
     timeout-minutes: 180
     strategy:
@@ -42,6 +126,19 @@ jobs:
         if: steps.want.outputs.run == 'yes'
         with:
           python-version: "3.12"
+      - name: Download the licensed clips
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: footage-${{ matrix.episode }}
+          path: src/skills/remotion-render/public/lf2/footage
+      - name: Download the continuous voice takes
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/download-artifact@v4
+        with:
+          name: voice-${{ matrix.episode }}
+          path: output/longform-prod/${{ matrix.episode }}/voice
       - name: Install tools
         if: steps.want.outputs.run == 'yes'
         run: |
@@ -316,6 +413,13 @@ jobs:
         id: chrome
         with:
           chrome-version: stable
+      - name: Download the licensed clips
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: footage-${{ matrix.episode }}
+          path: src/skills/remotion-render/public/lf2/footage
       - name: Collect the shards' beats and voices
         if: steps.want.outputs.run == 'yes'
         uses: actions/download-artifact@v4

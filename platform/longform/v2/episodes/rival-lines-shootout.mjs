@@ -35,9 +35,22 @@ const B3 = (a, b) => [{ label: "Reported by Palacios-Huerta", a: 60, b: 40 }, { 
 const FK = (rows, title = "Share of shoot-outs won, percent") => ({ type: "bars", home: "First kicker", away: "Second kicker", title, rows });
 const GRIDSCENE = (o = {}) => ({ type: "grid", shootouts: GRID.shootouts, hi: GRID.hi, title: "Every shoot-out we counted", ...o });
 
+// short licensed clips (Pixabay Content License), fetched and trimmed by platform/longform/v2/fetch-footage.mjs; generic footage, always labelled illustrative
+export const FOOTAGE = [
+  { id: "fb-penalty", q: "penalty kick soccer", alt: ["soccer penalty", "football penalty kick"] },
+  { id: "fb-keeper", q: "soccer goalkeeper", alt: ["goalkeeper save", "football goalkeeper"] },
+  { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"] },
+  { id: "fb-ball", q: "soccer ball grass", alt: ["football ball field"] },
+  { id: "fb-night", q: "football stadium floodlights", alt: ["stadium night lights", "stadium night"] },
+  { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"] },
+  { id: "fb-pitch", q: "soccer field aerial", alt: ["football pitch drone", "football field"] },
+];
+const VID = (id) => `lf2/footage/${id}.mp4`, VCRED = "Pixabay Content License · illustrative footage";
+const CLIP = (id, kicker, callout, pos = "50% 50%") => ({ type: "photo", video: VID(id), credit: VCRED, kicker, callout, pos });
+
 export const EPISODE = {
   channel: "rival-lines", slug: "shootout-first", title: "Does Going First Win a Penalty Shoot-Out? (We Counted 32)", target_minutes: 6,
-  sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -22, dip_scenes: [] },
+  sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -15, dip_scenes: [] },
   beats: [
     { id: "S01", part: "the number", ref: "gp4cftwGLcQ 0:00: a counted figure said to the viewer first", src: ["SB"],
       vo: "Seventeen out of thirty-two. That is how many penalty shoot-outs were won by the team that kicked first, in free match data from nine recent tournaments.",
@@ -50,7 +63,10 @@ export const EPISODE = {
       scene: GRIDSCENE({ step: 5, title: "Luck, or skill?", label: "Critics: luck · but team strength predicts the winner (wikipedia) · our count below" }) },
     { id: "S03", part: "the setup", ref: "gp4cftwGLcQ 1:14: the situation, in plain terms", src: ["PS", "PHOTO"],
       vo: "Here is the situation. A knockout match is level after extra time, and nothing separates the teams.",
-      scene: { type: "cards", v: "plum", title: "Euro 2020 final · Wembley", cards: [{ image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "50% 45%" }, { image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "85% 70%" }], callout: "Level after extra time" } },
+      scene: { type: "cards", v: "plum", title: "Euro 2020 final · Wembley", cards: [{ video: VID("fb-night"), credit: VCRED, pos: "50% 50%" }, { image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "50% 45%" }], callout: "Level after extra time" } },
+    { id: "S03b", part: "the setup", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
+      vo: "Picture the long walk from the halfway line to the penalty spot.",
+      scene: CLIP("fb-penalty", "Illustrative footage", "The walk to the spot") },
     { id: "S04", part: "the setup", ref: "gp4cftwGLcQ 2:08: how the thing works, shown on a real case", src: ["PS", "SB"],
       vo: "The referee tosses a coin to decide who kicks first. Then the teams alternate, five kicks each, and if it is still level, sudden death.",
       scene: { type: "kicks", home: "Italy", away: "England", kicks: KICKS("euro20"), title: "A real shoot-out, kick by kick", date: "Euro 2020 final · 11 July 2021", step: 30 } },
@@ -60,6 +76,9 @@ export const EPISODE = {
     { id: "S06", part: "the claim", ref: "gp4cftwGLcQ: the claim and its explanation", src: ["PS"],
       vo: "His evidence: the team kicking first wins in sixty percent of cases. His explanation: the team kicking second is under more pressure when it is trailing.",
       scene: FK(B3(0, 1)) },
+    { id: "S06b", part: "the claim", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
+      vo: "Every kick is a duel between one kicker and one goalkeeper.",
+      scene: CLIP("fb-keeper", "Illustrative footage", "One kicker. One keeper.") },
     { id: "S07", part: "the test", ref: "gp4cftwGLcQ 4:35: the claim checked against more data", src: ["PS"],
       vo: "But a larger analysis by InStat, covering more than two thousand shoot-outs, found the first kicker won fifty-one point four eight percent of the time.",
       scene: FK([B3(0, 1)[0], B3(2, 3)[0]]) },
@@ -84,6 +103,9 @@ export const EPISODE = {
     { id: "S13b", part: "the limit", ref: "gp4cftwGLcQ: the honest limit, back on the chart", src: ["SB", "PS"],
       vo: "So our count cannot tell fifty from sixty. Both fit inside it.",
       scene: FK(B3(0, 3), "Our result fits both · percent") },
+    { id: "S13c", part: "the limit", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
+      vo: "Behind the goal, thousands of people are watching, and every one of them has an opinion.",
+      scene: CLIP("fb-crowd", "Illustrative footage", "Thousands watching") },
     { id: "S14", part: "examples", ref: "gp4cftwGLcQ: a concrete case after the number", src: ["SB"],
       vo: "The numbers hide stories. In the 2022 World Cup final, France kicked first. Argentina scored all four of theirs, and won four to two.",
       scene: { type: "kicks", home: "France", away: "Argentina", kicks: KICKS("wc22"), title: "A real shoot-out, kick by kick", date: "World Cup final · 18 December 2022", step: 30 } },
@@ -108,6 +130,9 @@ export const EPISODE = {
     { id: "S21", part: "round by round", ref: "gp4cftwGLcQ: do not over-read it", src: ["SB"],
       vo: "A small gap in a small sample, so we would not read much into it. Seven of the thirty-two shoot-outs went to sudden death.",
       scene: { type: "number", value: 7, countFrom: 0, unit: "Went to sudden death", sub: "of 32 shoot-outs", credit: DATA } },
+    { id: "S21b", part: "round by round", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
+      vo: "Over a hundred and twenty minutes, nothing has separated these two teams.",
+      scene: CLIP("fb-night", "Illustrative footage", "Level at 120 minutes") },
     { id: "S22", part: "the goalkeeper", ref: "gp4cftwGLcQ: the other side of the duel", src: ["PS"],
       vo: "The goalkeeper is the other half of the duel. A 2011 study in Psychological Science found goalkeepers dived to the right seventy-one percent of the time when their team was losing.",
       scene: { type: "goal", title: "Goalkeeper dives · 2011 study (Wikipedia)", goals: [{ label: "Team losing", right: 71 }] } },
@@ -119,7 +144,7 @@ export const EPISODE = {
       scene: { type: "hero", value: 20, countFrom: 0, label: "% fewer goals when the keeper delays the kicker", sub: "distraction: 10% fewer · as reported in Wikipedia", v: "plum", figure: "keeper" } },
     { id: "S25", part: "the goal", ref: "gp4cftwGLcQ: one more rule shaped by the same worry", src: ["PS", "PHOTO"],
       vo: "Even the goal is decided by chance. The whole shoot-out is played at one end, so the crowd behind that goal may favour one team.",
-      scene: { type: "cards", v: "plum", title: "One goal, one crowd", cards: [{ image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "30% 60%" }, { image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "75% 35%" }], callout: "The whole shoot-out is played at one end" } },
+      scene: { type: "cards", v: "plum", title: "One goal, one crowd", cards: [{ video: VID("fb-crowd"), credit: VCRED, pos: "50% 50%" }, { video: VID("fb-fans"), credit: VCRED, pos: "50% 50%" }], callout: "The whole shoot-out is played at one end" } },
     { id: "S26", part: "the goal", ref: "gp4cftwGLcQ: the rule", src: ["PS"],
       vo: "To forestall any advantage, in 2016 the Laws of the Game were changed so that a coin toss decides which goal is used.",
       scene: { type: "number", value: 2016, unit: "Coin toss picks the goal", sub: "Laws of the Game · as reported in Wikipedia", credit: "Source: Wikipedia" } },
@@ -141,6 +166,9 @@ export const EPISODE = {
     { id: "S30c", part: "history", ref: "gp4cftwGLcQ: where the thing came from, a third date", src: ["PS"],
       vo: "The first shoot-out in a World Cup finals tournament came on the eighth of July 1982, when West Germany beat France in a semi-final.",
       scene: { type: "number", value: 1982, unit: "First World Cup shoot-out", sub: "8 July 1982 · West Germany beat France · as reported in Wikipedia", credit: "Source: Wikipedia" } },
+    { id: "S30d", part: "history", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
+      vo: "So, back to the question.",
+      scene: CLIP("fb-ball", "Illustrative footage", "Back to the question") },
     { id: "S31", part: "the verdict", ref: "gp4cftwGLcQ 15:07: a clear verdict", src: ["SB", "PS"],
       vo: "So does going first win? In our thirty-two shoot-outs, slightly more than half the time. Across more than two thousand, barely more than half.",
       scene: FK(B3(0, 3), "Who wins: the evidence so far, percent") },
@@ -149,9 +177,13 @@ export const EPISODE = {
       scene: GRIDSCENE({ step: 4, title: "17 of 32 · too few to tell", label: "Every shoot-out we counted · lime edge: the first kicker won" }) },
     { id: "S33", part: "close", ref: "gp4cftwGLcQ 16:00: the closing line, then a question", src: ["SB", "PHOTO"],
       vo: "One thing no count can measure is how it feels to lose the coin toss. If you could choose to kick first or second, which would you choose? Tell us in the comments.",
-      scene: { type: "cards", v: "teal", title: "First or second?", cards: [{ image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "50% 80%" }, { image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "20% 40%" }], callout: "Your call." } },
+      scene: { type: "cards", v: "teal", title: "First or second?", cards: [{ video: VID("fb-pitch"), credit: VCRED, pos: "50% 50%" }, { video: VID("fb-penalty"), credit: VCRED, pos: "50% 50%" }], callout: "Your call." } },
   ],
-  thumbs: [{ name: "thumb1-shootout", big: "Go first?\nOr second?", small: "We counted 32", figure: "17/32", image: PH("ps-wembley-2021") }],
+  thumbs: [
+    { name: "thumb1-phrase", kind: "phrase", parts: [["does going", false], ["first", true], ["win?", false]], big: "17/32", sub: "we counted 32 penalty shoot-outs" },
+    { name: "thumb2-compare", kind: "compare", phrase: [["who wins the", false], ["shoot-out?", true]], a: { n: "17", label: "kicked first" }, b: { n: "15", label: "kicked second" } },
+    { name: "thumb3-photo", big: "Go first?\nOr second?", small: "We counted 32", figure: "17/32", image: PH("ps-wembley-2021") },
+  ],
 };
 
 // section-coded looks, like the reference's cream / green / magenta system (our own colours; see PAL in channels/lf2/rival.jsx)

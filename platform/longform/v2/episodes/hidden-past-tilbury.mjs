@@ -45,9 +45,20 @@ const ROWS_PATH = [{ value: "1588", label: "The speech at Tilbury", source: "Wik
 const ROWS_VERDICT = [{ value: "Neale", label: "“I see no serious reason for rejecting the speech.”", source: "J. E. Neale · quoted in Wikipedia" }, { value: "Green · 1997", label: "“Substantial evidence exists for believing the Tilbury oration is genuine.”", source: "Sixteenth Century Journal · quoted in Wikipedia" }, { value: "Loades", label: "“Whether she used these words, we do not know.”", source: "David Loades · quoted in Wikipedia" }, { value: "Christy · 1919", label: "Questioned its authenticity", source: "Wikipedia, 'Speech to the Troops at Tilbury'" }];
 const ROWS_AFTER = [{ value: "Day after", label: "The army ordered disbanded", source: "Wikipedia, 'Spanish Armada'" }, { value: "Without pay", label: "The navy discharged and sent home", source: "Wikipedia, 'Spanish Armada'" }, { value: "200+ of 500", label: "Dead from the crew of the Bonaventure", source: "Wikipedia, 'Spanish Armada'" }, { value: "3,000+", label: "Men who perished in all", source: "Wikipedia, 'Spanish Armada'" }];
 
+// short licensed clips (Pixabay Content License), fetched and trimmed by platform/longform/v2/fetch-footage.mjs; generic footage of ships, sea, fire and coast, always labelled illustrative
+export const FOOTAGE = [
+  { id: "t-ship", q: "tall ship sailing", alt: ["sailing ship sea", "old sailing ship"] },
+  { id: "t-fleet", q: "sailing ships sea sunset", alt: ["sailboats sea", "ships at sea"] },
+  { id: "t-sea", q: "stormy sea waves", alt: ["dark ocean waves", "rough sea"] },
+  { id: "t-fire", q: "fire flames night", alt: ["burning flames dark", "fire"] },
+  { id: "t-coast", q: "english coast cliffs sea", alt: ["cliffs coast sea", "sea cliffs aerial"] },
+  { id: "t-beacon", q: "bonfire hill night", alt: ["campfire night", "fire night hill"] },
+];
+const FV = (id, date, text, source, o = {}) => ({ type: "footage", video: `lf2/footage/${id}.mp4`, videoLen: o.len || 9, date, grade: "warm", credit: "Pixabay Content License · illustrative footage, not the event", captions: text ? [{ text, source, from: o.at ?? 40 }] : [] });
+
 export const EPISODE = {
   channel: "hidden-past", slug: "tilbury", title: "Elizabeth I's Famous Speech: Did She Really Say It? (Tilbury, 1588)", target_minutes: 8,
-  sound: { bed: "MUSIC_DOC_PASSING", bed_rel_db: -20, dip_scenes: [] },
+  sound: { bed: "MUSIC_DOC_PASSING", bed_rel_db: -14, dip_scenes: [] },
   beats: [
     { id: "T01", part: "the words", ref: "RlKJDwViNKs 0:00: the speech first, in the speaker's own words", src: ["SP", "COMMONS"],
       vo: "“I know I have the body of a weak and feeble woman, but I have the heart and stomach of a king, and of a king of England too.” It is one of the most quoted speeches in English history.",
@@ -58,6 +69,9 @@ export const EPISODE = {
     { id: "T03", part: "the words", ref: "RlKJDwViNKs: the claim, then its limit", src: ["SP", "COMMONS"],
       vo: "And the most trusted version of those words was not printed until 1654.",
       scene: F("tb-ap-wrecks", "THE FLEET WAS GONE", "The most trusted version was printed in 1654.", "Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 40%", z: [1.0, 1.12], at: 30 }) },
+    { id: "T03b", part: "the question", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["COMMONS"],
+      vo: "Picture the south coast of England that summer.",
+      scene: FV("t-coast", "SUMMER 1588", null, null) },
     { id: "T04", part: "the question", ref: "RlKJDwViNKs 0:00-0:43: the honesty note before the speech", src: ["SP", "COMMONS"],
       vo: "So what happened at Tilbury? Who heard her, what did she actually say, and why can nobody be sure? To answer that, we have to start with the fleet she was waiting for.",
       scene: F("tb-tilbury-illus", "TILBURY", "Whether she used these words, we do not know.", "Historian David Loades, quoted in Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 30%", z: [1.0, 1.14], at: 120 }) },
@@ -82,6 +96,9 @@ export const EPISODE = {
     { id: "T08", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the night attack", src: ["AR", "COMMONS"],
       vo: "Then, in the middle of the night of the seventh to the eighth of August, new style, the English set fireships alight and sent them downwind among the anchored Spanish ships.",
       scene: F("tb-fs-left", "7–8 AUGUST 1588", "English fireships launched at the Spanish Armada off Calais.", "Wikipedia, 'Spanish Armada'", { pos: "50% 55%", z: [1.12, 1.0], at: 80 }) },
+    { id: "T08b", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Fire, in the dark, among crowded ships.",
+      scene: FV("t-fire", "ILLUSTRATIVE", null, null) },
     { id: "T09", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the result", src: ["AR", "COMMONS"],
       vo: "The Armada scattered, and it suffered further losses in the Battle of Gravelines.",
       scene: F("tb-gr-low", "GRAVELINES · 8 AUGUST 1588", null, null, { pos: "50% 60%", z: [1.0, 1.12] }) },
@@ -110,6 +127,9 @@ export const EPISODE = {
         lines: [{ id: "fear", coords: [C.Dunkirk, C.Tilbury], color: "#D7263D", width: 7, dash: [2, 1.5], from: 50, dur: 70, arrow: true }],
         labels: [L(C.Tilbury, "Tilbury", "place", 24, 18, 30), L(C.Dunkirk, "Dunkirk", "place", 34, 18, -26)],
         tags: [{ text: "The feared crossing", x: 760, y: 180, from: 100 }] } },
+    { id: "T12b", part: "the camp", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Along the south coast, a system of beacons carried the news to London.",
+      scene: FV("t-beacon", "BEACONS", "News was conveyed to London by a system of beacons along the south coast.", "Wikipedia, 'Spanish Armada'", { at: 60 }) },
     { id: "T13", part: "the camp", ref: "RlKJDwViNKs: the named commander beside the speaker", src: ["SP", "COMMONS"],
       vo: "Leicester, Robert Dudley, was the Queen's lieutenant general, and he rode at her side on the day. In the speech, she tells the troops that he will command in her place.",
       scene: F("tb-le-face", "ROBERT DUDLEY · EARL OF LEICESTER", "“My lieutenant general shall be in my stead.”", SH, { pos: "50% 25%", z: [1.0, 1.1], at: 110 }) },
@@ -182,6 +202,9 @@ export const EPISODE = {
     { id: "T36", part: "the day after", ref: "bhQe2cjr5XQ 14:25: the aftermath, in numbers", src: ["AR"],
       vo: "Typhus, scurvy and dysentery swept through the crews. Of one ship's crew of five hundred, more than two hundred died. In all, upwards of three thousand men perished.",
       scene: FIG("tb-gr-low", "After the speech", ROWS_AFTER) },
+    { id: "T36b", part: "the day after", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "The sea, for now, was quiet again.",
+      scene: FV("t-sea", "AFTER THE ARMADA", null, null) },
     { id: "T37", part: "the cost", ref: "RlKJDwViNKs: the speaker's promise against what followed", src: ["AR", "COMMONS"],
       vo: "The admiral, Lord Howard, wrote to the Queen's treasurer: it would grieve any man's heart to see them that have served so valiantly die so miserably.",
       scene: F("tb-gr-left", "AFTER THE ARMADA", "“It would grieve any man's heart to see them that have served so valiantly die so miserably.”", "Lord Howard to Lord Burghley · quoted in Wikipedia, 'Spanish Armada'", { pos: "50% 50%", z: [1.0, 1.1], at: 60 }) },
@@ -195,5 +218,9 @@ export const EPISODE = {
       vo: "And here is what is not: her exact words. Does it matter whether she said them? Tell us what you think in the comments.",
       scene: F("tb-armada-portrait", "TILBURY · 1588", "Whether she used these words, we do not know.", "David Loades, quoted in Wikipedia", { pos: "50% 35%", z: [1.0, 1.1], at: 70 }) },
   ],
-  thumbs: [{ name: "thumb1-tilbury", big: "Did she\nsay it?", small: "Tilbury 1588", image: A("tb-armada-portrait") }],
+  thumbs: [
+    { name: "thumb1-panel", kind: "panel", big: "Did she\nsay it?", label: "Tilbury 1588", small: "Elizabeth I", image: A("tb-ap-face"), pos: "50% 30%" },
+    { name: "thumb2-quote", kind: "quote", quote: "“I have the heart and stomach of a king”", label: "Which version is real?", image: A("tb-ap-face"), pos: "50% 25%" },
+    { name: "thumb3-armada", kind: "panel", big: "The speech\nafter the\nvictory", label: "Armada 1588", small: "Elizabeth at Tilbury", image: A("tb-gr-left"), pos: "50% 50%" },
+  ],
 };

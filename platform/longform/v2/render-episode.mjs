@@ -22,7 +22,7 @@ const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), SHARD = opt("shard"), NOJOIN = argv.includes("--no-join") || Boolean(SHARD); // --shard i/n renders only beats whose index % n == i and never joins (a later job joins)
-const FPS = 30, PAD = 0.55, XF = 0.4;
+const FPS = 30, XF = 0.4, PAD = XF; // PAD = XF: beats are cut from one continuous take (make-voice.mjs) at the pauses, so playing them back to back, overlapped by the crossfade, reproduces the take with no added gaps
 const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural" }; // Rival Lines: British, deep male voice (owner, 10 Nov 2026)
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
