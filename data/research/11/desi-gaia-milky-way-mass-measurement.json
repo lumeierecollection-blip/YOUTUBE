@@ -1,0 +1,87 @@
+{
+  "topic_slug": "desi-gaia-milky-way-mass-measurement",
+  "strongest_angle": "Astronomers utilized 10,036 halo stars from the Dark Energy Spectroscopic Instrument on the Mayall Telescope combined with Gaia data to precisely measure the Milky Way's mass.",
+  "key_facts": [
+    {
+      "fact": "Researchers used 10,036 stars from the Milky Way's halo selected from the Dark Energy Spectroscopic Instrument Data Release 2.",
+      "source_url": "https://astrobites.org/2026/11/11/step-on-the-scale-milky-way",
+      "source_name": "Astrobites",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Dark Energy Spectroscopic Instrument is installed on the 4-meter Mayall Telescope located in Arizona.",
+      "source_url": "https://astrobites.org/2026/11/11/step-on-the-scale-milky-way",
+      "source_name": "Astrobites",
+      "confidence": "high"
+    },
+    {
+      "fact": "Previous estimates of the total mass of the Milky Way ranged widely from 500 billion to 2 trillion solar masses including the dark matter halo.",
+      "source_url": "https://bigthink.com/starts-with-a-bang/astronomers-weigh-milky-way",
+      "source_name": "Big Think",
+      "confidence": "high"
+    },
+    {
+      "fact": "The selected halo stars are located between approximately 10 and 95 kiloparsecs from the Galactic center.",
+      "source_url": "https://arxiv.org/abs/2611.05518",
+      "source_name": "arXiv",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of halo stars analyzed",
+      "value": 10036,
+      "unit": "stars",
+      "source_url": "https://astrobites.org/2026/11/11/step-on-the-scale-milky-way"
+    },
+    {
+      "label": "Telescope mirror diameter",
+      "value": 4,
+      "unit": "meters",
+      "source_url": "https://astrobites.org/2026/11/11/step-on-the-scale-milky-way"
+    },
+    {
+      "label": "Previous lower mass estimate",
+      "value": 500000000000,
+      "unit": "solar masses",
+      "source_url": "https://bigthink.com/starts-with-a-bang/astronomers-weigh-milky-way"
+    },
+    {
+      "label": "Previous upper mass estimate",
+      "value": 2000000000000,
+      "unit": "solar masses",
+      "source_url": "https://bigthink.com/starts-with-a-bang/astronomers-weigh-milky-way"
+    },
+    {
+      "label": "Minimum distance from Galactic center",
+      "value": 10,
+      "unit": "kiloparsecs",
+      "source_url": "https://arxiv.org/abs/2611.05518"
+    },
+    {
+      "label": "Maximum distance from Galactic center",
+      "value": 95,
+      "unit": "kiloparsecs",
+      "source_url": "https://arxiv.org/abs/2611.05518"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Dark Energy Spectroscopic Instrument",
+      "kind": "organization"
+    },
+    {
+      "name": "Mayall Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "place"
+    }
+  ]
+}

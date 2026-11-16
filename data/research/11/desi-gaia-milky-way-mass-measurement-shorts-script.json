@@ -1,0 +1,87 @@
+{
+  "channel_id": "11",
+  "topic_slug": "desi-gaia-milky-way-mass-measurement",
+  "format": "shorts",
+  "hook": "Milky Way estimates ranged from 500 billion to 2 trillion solar masses.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:06",
+      "voiceover": "Milky Way estimates ranged from 500 billion to 2 trillion solar masses.",
+      "visual_cue": "Cinematic space rendering of the Milky Way galaxy glowing against a dark cosmic void.",
+      "sfx_cue": "Deep low sub-bass rumble",
+      "b_roll": [
+        "Milky Way wide view animation",
+        "Deep space starfield graphic"
+      ],
+      "transition_out": "Fast whip zoom into the galactic center",
+      "text_overlay": {
+        "text": "500 Billion to 2 Trillion Solar Masses"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06 - 0:20",
+      "voiceover": "Researchers targeted 10,036 halo stars using the Dark Energy Spectroscopic Instrument in Arizona. Didn't these halo stars extend up to 95 kiloparsecs from the Galactic center?",
+      "visual_cue": "Exterior shot of the Mayall Telescope dome atop Kitt Peak in Arizona, transitioning to high-tech spectrograph instrumentation.",
+      "sfx_cue": "Mechanical shutter click and subtle telescope swivel hum",
+      "b_roll": [
+        "Mayall Telescope Arizona exterior",
+        "Dark Energy Spectroscopic Instrument focal plane graphic"
+      ],
+      "transition_out": "Fade cut to astronomical grid display",
+      "text_overlay": {
+        "text": "10,036 Halo Stars | Mayall Telescope"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20 - 0:26",
+      "voiceover": "But these 10,036 halo stars didn't stop until 95 kiloparsecs away.",
+      "visual_cue": "3D galactic coordinate map plotting star positions stretching out into the distant stellar halo.",
+      "sfx_cue": "High-frequency data pulse chime",
+      "b_roll": [
+        "Galactic halo 3D coordinate plot",
+        "Kiloparsec scale visualization"
+      ],
+      "transition_out": "Match cut to Gaia orbital paths overlay",
+      "text_overlay": {
+        "text": "10 - 95 Kiloparsecs"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26 - 0:40",
+      "voiceover": "Astronomers combined Data Release 2 with space measurements from Gaia. This stellar survey narrowed the Milky Way's galactic weight.",
+      "visual_cue": "Dynamic animation merging DESI spectral data overlay with Gaia satellite stellar motion tracks, showing dark matter density contours.",
+      "sfx_cue": "Synthesizer swell resolving into clear crystalline resonance",
+      "b_roll": [
+        "Gaia spacecraft orbit render",
+        "Dark matter halo gravitational simulation"
+      ],
+      "transition_out": "Slow dissolve to wide Milky Way perspective",
+      "text_overlay": {
+        "text": "DESI DR2 + Gaia Orbital Analysis"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40 - 0:45",
+      "voiceover": "Astronomers now use Arizona's 4-meter Mayall Telescope to calculate the Milky Way's mass.",
+      "visual_cue": "Majestic wide shot of the spiral galaxy surrounded by its illuminated halo stars.",
+      "sfx_cue": "Soft decaying ambient echo",
+      "b_roll": [
+        "Full Milky Way galaxy with halo stars highlighted"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Measuring the Milky Way"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://astrobites.org/2026/11/11/step-on-the-scale-milky-way",
+    "https://bigthink.com/starts-with-a-bang/astronomers-weigh-milky-way",
+    "https://arxiv.org/abs/2611.05518"
+  ]
+}
