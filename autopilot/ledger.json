@@ -1219,12 +1219,12 @@
       "attempts": 1,
       "run_id": "43942061759",
       "trigger": "schedule",
-      "updated_at": "2026-11-16T19:52:32.287Z",
+      "updated_at": "2026-11-16T19:52:40.003Z",
       "stage": "research",
-      "topic": "Google Maps AI Trip Planner",
-      "score": 78.1,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Google Maps can now build your entire vacation itinerary with real-time stops."
+      "topic": "Apple Tests Daily Usage Limits for Siri AI",
+      "score": 73,
+      "pillar": "New AI features and releases",
+      "hook": "Apple is apparently putting daily limits on complex Siri AI requests—are we already breaking our phones with too much AI?"
     }
   },
   "uploads": [
@@ -2463,6 +2463,15 @@
       "at_ms": 1794858752287,
       "score": 78.1,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Apple Tests Daily Usage Limits for Siri AI",
+      "slug": "apple-tests-daily-usage-limits-for-siri-ai",
+      "slot": "2026-11-16-ch2",
+      "at_ms": 1794858760003,
+      "score": 73,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
