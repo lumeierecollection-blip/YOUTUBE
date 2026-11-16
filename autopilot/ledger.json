@@ -1215,16 +1215,17 @@
     },
     "2026-11-16-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "43942061759",
       "trigger": "schedule",
-      "updated_at": "2026-11-16T19:53:23.892Z",
+      "updated_at": "2026-11-16T19:56:05.402Z",
       "stage": "script",
       "topic": "Apple Tests Daily Usage Limits for Siri AI",
       "score": 73,
       "pillar": "New AI features and releases",
-      "hook": "Apple is apparently putting daily limits on complex Siri AI requests—are we already breaking our phones with too much AI?"
+      "hook": "Apple is apparently putting daily limits on complex Siri AI requests—are we already breaking our phones with too much AI?",
+      "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/apple-tests-daily-usage-limits-for-siri-ai-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
     }
   },
   "uploads": [

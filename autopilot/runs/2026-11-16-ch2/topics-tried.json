@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Why a Caltech Professor Stopped Grading Homework Because of AI",
+      "score": 79.4,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: each_line_needs_the_last, sounds_spoken, no_repetition. The rehook line ('But in November 2026 AI solved homework.') repeats the exact date 'November 2026' from the setup line ('Why drop accuracy grading in 2026?') and the payoff line ('He switched to completion-only grading in November 2026 at Caltech.'), making the script feel repetitive and mechanical rather than naturally spoken."
+    },
+    {
+      "topic": "Google Maps AI Trip Planner",
+      "score": 78.1,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Apple Tests Daily Usage Limits for Siri AI",
+      "score": 73,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/apple-tests-daily-usage-limits-for-siri-ai-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver"
+    }
+  ],
+  "selected": null
+}
