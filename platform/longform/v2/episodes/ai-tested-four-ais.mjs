@@ -29,8 +29,10 @@ const FOOT = "Live run · recorded 16 Nov 2026 · same prompt, one try, no edits
 const FRAME = JSON.parse(readFileSync(join(ROOT, DIR, "FRAMES.json"), "utf8"));
 const app = (n, extra = {}) => { const [a, b, focus] = FRAME[n] || [1.0, 1.08, "50% 50%"], m = n.split("-")[1], s = sec(n);
   return { type: "run", video: CLIP(n), videoLen: 12.5, start: 1.5, zoom: [a, b], focus, label: M[m]?.label, tag: `${say(s)} s`, ok: V[n]?.pass, foot: FOOT, ...extra }; };
-const chat = (n, start = 4.5, extra = {}) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start, zoom: [1.3, 1.42], focus: "50% 38%", label: M[n.split("-")[1]]?.label, model: RUN(n).model, foot: FOOT, ...extra });
-const typing = (n) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start: 0.4, zoom: [1.55, 1.6], focus: "50% 100%", foot: FOOT }); // prompt box sits at the bottom of the chat page
+const chat = (n, start = 8, extra = {}) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start, zoom: [1.3, 1.42], focus: "50% 38%", label: M[n.split("-")[1]]?.label, model: RUN(n).model, foot: FOOT, ...extra });
+// the prompt itself, full screen, word by word (the chat page's prompt box was a thin strip at the bottom: mostly empty frames in render 2)
+const HL = { snake: "steer itself toward the food automatically", solar: "orbiting at different speeds", hexagon: "bounce realistically off the rotating walls", cave: "steer itself to avoid the walls", city: "full day-night cycle every 10 seconds" };
+const typing = (n) => ({ type: "quote", text: RUN(n).prompt.replace(/ Reply with the whole file.*$/, ""), hl: [HL[n.split("-")[0]]].filter(Boolean), who: "The prompt, word for word", org: "given to every model", foot: FOOT });
 const quad = (t, title) => ({ type: "quad", title, foot: FOOT, cells: SCORED.map((m) => ({ video: CLIP(`${t}-${m}`), videoLen: 12.5, label: M[m].label, tag: V[`${t}-${m}`].pass ? `ran · ${say(sec(`${t}-${m}`))} s` : `failed · ${say(sec(`${t}-${m}`))} s`, ok: V[`${t}-${m}`].pass })) });
 
 const P = (vo, scene) => ({ vo, scene });
@@ -59,23 +61,23 @@ export const EPISODE = {
   beats: [
     beat("the result first", "S7lpCyZSdJQ 0:00: open on the model's output running", ["RUNS"], "LIVE TEST", [
       P("We gave free AI models from Google and OpenAI the exact same five jobs, and recorded every answer as it happened.", app("city-gemini")),
-      P(`One of them answered a job in ${say(sec(FAST))} seconds.`, chat(FAST, 4.2)),
-      P(`Another needed ${Math.round(sec("city-gemini"))} seconds for a single job.`, chat("city-gemini", 6)),
+      P(`One of them answered a job in ${say(sec(FAST))} seconds.`, chat(FAST, 8)),
+      P(`Another needed ${Math.round(sec("city-gemini"))} seconds for a single job.`, chat("city-gemini", 8)),
       P(`Only one built all ${TASKS.length}.`, quad("hexagon", "Same prompt · one try each")),
     ]),
     beat("the rules", "S7lpCyZSdJQ 0:20: the promise and the test", ["RUNS"], "THE RULES", [
       P("The rules are simple. Every model gets the same prompt, word for word.", typing("snake-gemini")),
-      P("It gets one try, and we don't fix anything.", chat("snake-gptoss", 4.2)),
+      P("It gets one try, and we don't fix anything.", chat("snake-gptoss", 8)),
       P("Whatever comes back, we open in a browser and record.", app("snake-gptoss")),
       P("It passes if the page shows what we asked for, running on its own.",
         { type: "flow", title: "How we score", steps: [{ title: "Same prompt", text: "Word for word, every model" }, { title: "One try", text: "No edits, no second go" }, { title: "Open it", text: "Recorded in a browser" }, { title: "Pass?", text: "Shows what was asked, running on its own" }], foot: FOOT }),
     ]),
     beat("the contenders", "S7lpCyZSdJQ 25:15: the specs from the official page", ["GEM"], "GEMINI", [
       P("First, Gemini 3.8 Flash.", { type: "stat", value: 1048576, label: "tokens of input it accepts", sub: "Gemini 3.8 Flash · Google's model page", foot: "Source: aistudio.google.com/docs/models/gemini-3.8-flash · fetched 16 Nov 2026" }),
-      P("Google calls it its most intelligent Flash model, built for software engineering and agents.", chat("solar-gemini", 5)),
+      P("Google calls it its most intelligent Flash model, built for software engineering and agents.", chat("solar-gemini", 8)),
     ]),
     beat("the contenders", "S7lpCyZSdJQ 25:56: specs and price", ["OSS", "OSS20"], "OPENAI", [
-      P("Then two of OpenAI's open-weight models, both run on Groq.", chat("hexagon-gptoss", 4.2)),
+      P("Then two of OpenAI's open-weight models, both run on Groq.", chat("hexagon-gptoss", 8)),
       P("gpt-oss-120b has a hundred and twenty billion parameters, about five billion active at a time.",
         { type: "bars", title: "Parameters", sub: "billions · total and active per step · Groq's model pages", unit: "B", decimals: 1, bars: [{ label: "gpt-oss-120b total", value: 120, hi: true }, { label: "120b active", value: 5.1 }, { label: "gpt-oss-20b total", value: 20, hi: true, color: "#9ad1ff" }, { label: "20b active", value: 3.6 }], foot: "Source: console.groq.com model pages · fetched 16 Nov 2026" }),
       P("Its smaller sibling, gpt-oss-20b, has twenty billion, and Groq lists it at about a thousand tokens a second.",
@@ -116,7 +118,7 @@ export const EPISODE = {
       const streamOf = { snake: "gptoss", solar: "gemini", hexagon: "gptoss", cave: "gemini", city: "gemini" }[t];
       return beat(`job ${i + 1}`, "S7lpCyZSdJQ: each demo = prompt typed, answer streams, output running", ["RUNS"], J.title.split(" · ")[0].toUpperCase(), [
         P(J.ask, typing(r("gemini"))),
-        P(J.stream(), chat(r(streamOf), 5)),
+        P(J.stream(), chat(r(streamOf), 8)),
         P(J.g(), app(r("gemini"))),
         P(J.o(), app(r("gptoss"))),
         P(J.o20(), app(r("gptoss20"))),
@@ -124,7 +126,7 @@ export const EPISODE = {
       ]);
     }),
     beat("the one we could not score", "honest limit of the test", ["QWEN", "RUNS"], "QWEN 3.8", [
-      P("We also tried Alibaba's Qwen 3.8, a twenty-seven billion parameter model.", chat("snake-qwen", 4.5, { label: "Qwen 3.8 27B", model: "qwen/qwen3.8-27b" })),
+      P("We also tried Alibaba's Qwen 3.8, a twenty-seven billion parameter model.", chat("snake-qwen", 8, { label: "Qwen 3.8 27B", model: "qwen/qwen3.8-27b" })),
       P("On our free tier, Groq rejected its requests as too large, so we had to cap its answers at six thousand tokens.", { type: "stat", value: 6000, label: "tokens: the most Qwen could answer on our free tier", sub: "the default request was rejected as 'Request too large'", foot: "Source: our run logs (Groq error messages), 16 Nov 2026" }),
       P("Qwen writes long code, and every one of its answers hit that limit before it finished.", chat("city-qwen", 9, { label: "Qwen 3.8 27B", model: "stopped: length limit", ok: false })),
       P("That is a limit of our account, not a fair test of the model, so it is not in the score.", { type: "verdict", line: "Qwen: not scored", points: ["Every answer cut off by our tier's limit"], limits: ["Not a judgement of the model itself"], foot: FOOT }),
@@ -140,7 +142,7 @@ export const EPISODE = {
         { type: "bars", title: "Speed Groq lists", sub: "tokens per second · Groq's model pages", unit: "", decimals: 0, bars: [{ label: "gpt-oss-120b", value: 500, hi: true }, { label: "gpt-oss-20b", value: 1000, hi: true }], foot: "Source: console.groq.com model pages · fetched 16 Nov 2026" }),
       P(`Part of it is how much each one wrote. Gemini's five answers came to ${CH("gemini")} characters. The two OpenAI models wrote ${CH("gptoss")} and ${CH("gptoss20")}.`,
         { type: "bars", title: "Characters written, all five jobs", sub: "from our run logs", unit: "", decimals: 0, bars: SCORED.map((m) => ({ label: M[m].label, value: chars(m), hi: m === "gemini" })), foot: FOOT }),
-      P("And part of it is the free tier. For every one of the five jobs, Google turned our request down at least four times, for rate limits or high demand, before one went through. Our clock only ran on the attempt that worked.", chat("cave-gemini", 7)),
+      P("And part of it is the free tier. For every one of the five jobs, Google turned our request down at least four times, for rate limits or high demand, before one went through. Our clock only ran on the attempt that worked.", chat("cave-gemini", 8)),
       P("So these times tell you what this free setup felt like, not how fast each model is everywhere.", app("cave-gptoss")),
     ]),
     beat("verdict", "S7lpCyZSdJQ: the verdict and where the limits are", ["RUNS"], "VERDICT", [
