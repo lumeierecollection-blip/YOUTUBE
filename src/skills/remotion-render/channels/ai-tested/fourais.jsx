@@ -13,7 +13,8 @@ const logoOf = (who, images) => (who === "gemini" ? images.gemini : images.opena
 /** Scene wrapper: the first scene starts fully visible and the last ends fully visible, so the replay joins up. */
 const Sc = ({ dur, first, last, children }) => {
   const f = useCurrentFrame();
-  return <AbsoluteFill style={{ opacity: interpolate(f, [0, first ? 0 : 4, last ? dur : dur - 3, dur], [first ? 1 : 0, 1, 1, last ? 1 : 0], clamp) }}>{children}</AbsoluteFill>;
+  const a = first ? 1 : interpolate(f, [0, 4], [0, 1], clamp), b = last ? 1 : interpolate(f, [dur - 3, dur], [1, 0], clamp);
+  return <AbsoluteFill style={{ opacity: Math.min(a, b) }}>{children}</AbsoluteFill>;
 };
 const Logo = ({ src, w, h }) => <img src={src} style={{ width: w, height: h, objectFit: "contain" }} />;
 
