@@ -1,0 +1,100 @@
+{
+  "checked": [
+    {
+      "claim_id": "K1",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad",
+      "text": "an exclave of Russia between Lithuania and Poland",
+      "found": true
+    },
+    {
+      "claim_id": "K2",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad_Oblast",
+      "text": "bordered by Poland to the south, Lithuania to the north and east, and the Baltic Sea to the west",
+      "found": true
+    },
+    {
+      "claim_id": "K3",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad",
+      "text": "until 1946 known in English as Königsberg",
+      "found": true
+    },
+    {
+      "claim_id": "K3",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "was a German city established in the 13th century",
+      "found": true
+    },
+    {
+      "claim_id": "K4",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "Founded in 1255 on the site of the Old Prussian settlement Twangste by the Teutonic Knights",
+      "found": true
+    },
+    {
+      "claim_id": "K5",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "By the act of coronation in Königsberg Castle on 18 January 1701",
+      "found": true
+    },
+    {
+      "claim_id": "K5",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "became Frederick I, King in Prussia",
+      "found": true
+    },
+    {
+      "claim_id": "K7",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "In 1944, Königsberg suffered heavy damage from British bombing attacks and burned for several days",
+      "found": true
+    },
+    {
+      "claim_id": "K7",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "The historic city centre",
+      "found": true
+    },
+    {
+      "claim_id": "K8",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad",
+      "text": "captured by the Soviet Union on 9 April 1945",
+      "found": true
+    },
+    {
+      "claim_id": "K9",
+      "page": "https://avalon.law.yale.edu/20th_century/decade17.asp",
+      "text": "agreed in principle to the proposal of the Soviet Government concerning the ultimate transfer to the Soviet Union of the City of Koenigsberg",
+      "found": true
+    },
+    {
+      "claim_id": "K10",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad",
+      "text": "renamed Kaliningrad in July 1946 in honour of Mikhail Kalinin",
+      "found": true
+    },
+    {
+      "claim_id": "K10",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad",
+      "text": "Kalinin was unrelated to the city",
+      "found": true
+    },
+    {
+      "claim_id": "K11",
+      "page": "https://en.wikipedia.org/wiki/Kaliningrad_Oblast",
+      "text": "All military and civilian land links between the region and the rest of Russia now must pass through members of NATO and the EU",
+      "found": true
+    },
+    {
+      "claim_id": "K12",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "after the defeat of Nazi Germany became part of the Soviet Union and was renamed to Kaliningrad in 1946",
+      "found": true
+    },
+    {
+      "claim_id": "K12",
+      "page": "https://en.wikipedia.org/wiki/K%C3%B6nigsberg",
+      "text": "After the fall of the USSR, Kaliningrad became part of Russia",
+      "found": true
+    }
+  ]
+}
