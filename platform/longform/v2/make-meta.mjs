@@ -27,6 +27,7 @@ const TOPIC = { // per-episode hashtags and tags: topic words only, no claims
   "hidden-past": { hashtags: "#HiddenPast #History #SuezCanal", tags: ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"] },
   "hidden-past-kaliningrad": { hashtags: "#HiddenPast #History #Kaliningrad", tags: ["Kaliningrad", "Königsberg", "Suwałki Gap", "Potsdam Conference", "history"] },
   "ai-tested-ai-bubble": { hashtags: "#AITested #AI #AIBubble", tags: ["AI bubble", "AI debt", "KOSPI crash", "data centres", "Nvidia OpenAI"] },
+  "rival-lines-analyse-v3": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
   "rival-lines-analyse-v2": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
   "rival-lines-analyse": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
 }[slug] || { hashtags: ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History", tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["history"] };

@@ -28,6 +28,7 @@ const mid = (g) => g.reduce((a, r) => a + r.slice(4, 8).reduce((x, y) => x + y, 
 if (mid(d.pressGrid.England) !== 75 || tot(d.pressGrid.England) !== 165) throw new Error(`press grid check: ${mid(d.pressGrid.England)} of ${tot(d.pressGrid.England)}`);
 if (maxLink !== 31 && maxLink !== 9) console.warn("network max", maxLink);
 
+export const _SIDES = { SPA, ENG }; // for v3 (ghost players behind data boards)
 export const SOURCES = { ...SRC_SOURCES, FMS: { title: "Structure reference (not a fact source): Football Made Simple, How To Analyse Football - A Guide For Beginners", url: "https://www.youtube.com/watch?v=gpgYLJrPP2M", retrieved: "2026-11-14" } };
 
 // ---- montage helpers. Narration length is estimated (about 2.4 words per second (measured on the GitHub render: 1049 words in 443 s)) only to pick the playback speed of the animated windows; the real voice length sets the cut times.

@@ -46,7 +46,7 @@ export function MapScene({ key_, tags = [], captions, date, ...map }) {
 }
 
 /** 2. Credited photograph as evidence: full bleed, slow push, the credit stays on screen, captions in the source's words. */
-export function Footage({ image, video, videoLen = 10, credit, captions, date, dur = 240, from = 1.02, to = 1.1, pos = "50% 50%", grade = "none", fit = "cover" }) {
+export function Footage({ image, video, videoLen = 10, credit, captions, date, dur = 240, from = 1.02, to = 1.1, pos = "50% 50%", grade = "none", fit = "cover", start = 0 }) {
   const f = useCurrentFrame(), s = interpolate(f, [0, dur], [from, to], clamp);
   const filter = grade === "bw" ? "grayscale(1) contrast(1.08)" : grade === "warm" ? "sepia(0.25) saturate(0.85) contrast(1.05)" : "saturate(0.9) contrast(1.04)";
   return (
@@ -54,7 +54,7 @@ export function Footage({ image, video, videoLen = 10, credit, captions, date, d
       {fit === "contain" && image && <Img src={src(image)} style={{ position: "absolute", inset: -60, width: "calc(100% + 120px)", height: "calc(100% + 120px)", objectFit: "cover", filter: `${filter} blur(34px) brightness(0.45)` }} />}
       {video ? (
         // real footage: plays at its own speed; once the clip has run out it holds on its last frame (never loops, never goes black)
-        <Freeze frame={Math.min(f, Math.max(1, Math.round(videoLen * 30) - 3))}><OffthreadVideo src={src(video)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${video ? 1 + (s - 1) * 0.5 : s})`, filter }} /></Freeze>
+        <Freeze frame={Math.min(f, Math.max(1, Math.round(videoLen * 30) - 3))}><OffthreadVideo src={src(video)} startFrom={Math.round(start * 30)} muted style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${video ? 1 + (s - 1) * 0.5 : s})`, filter }} /></Freeze>
       ) : (
         <Img src={src(image)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, transform: `scale(${s})`, filter }} />
       )}

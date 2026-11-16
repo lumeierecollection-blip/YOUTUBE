@@ -122,6 +122,22 @@
    }
   }
  },
+ "rival-lines-v3": {
+  "_from": "Football Made Simple frame spread (gpgYLJrPP2M): bright green grass boards, white thick lines, big coloured discs (v2 was near-black and was rejected)",
+  "bg": "#1f6b2c",
+  "turfA": "#2f9a3f",
+  "turfB": "#299136",
+  "line": "#ffffff",
+  "accent": "#FFE14D",
+  "keeper": "#E13CE1",
+  "disc": 1.5,
+  "lineW": 5,
+  "vig": 0.3,
+  "teams": {
+   "Spain": { "fill": "#D81E2C", "ring": "#F6C700", "ink": "#ffffff", "heat": "#FF3B3B" },
+   "England": { "fill": "#F4F5F7", "ring": "#1B2A5B", "ink": "#12203f", "heat": "#1B4FD8", "bar": "#C9CED8" }
+  }
+ },
  "red-space-facts": {
   "_from": "Astrum/SEA: deep-space black, one cool accent for labels and scale markers; provenance badges in fixed colours (space.jsx KIND)",
   "accent": "#5CE1E6"

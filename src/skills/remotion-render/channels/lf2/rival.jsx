@@ -5,6 +5,7 @@
 // The pitch is a real 3D plane: every point is projected through a camera (focus, yaw, tilt, distance) that can move per frame.
 import React from "react";
 import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { Footage } from "./hidden.jsx";
 import { F, Fonts, Finish, clamp, eio, eo, expo, lerp, ramp } from "./kit.jsx";
 
 const L = 120, Wd = 80;
@@ -26,14 +27,14 @@ const arc = (cx, cy, r, a0, a1, n = 28) => Array.from({ length: n + 1 }, (_, i) 
 /** The pitch plane: turf bands, markings, vignette. Children get the projector via render prop. */
 export function Pitch({ cam, t, children, dim = 0, reveal = 1 }) {
   const f = useCurrentFrame(), c = camAt(cam, f), P = projector(c);
-  const line = { stroke: t.line, strokeWidth: 2.6, fill: "none", strokeLinejoin: "round", opacity: 0.92 * reveal };
+  const line = { stroke: t.line, strokeWidth: t.lineW || 2.6, fill: "none", strokeLinejoin: "round", opacity: 0.92 * reveal };
   const rect = (x0, y0, x1, y1) => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
   const bands = Array.from({ length: 12 }, (_, i) => rect(i * 10, 0, i * 10 + 10, 80));
   return (
     <AbsoluteFill style={{ background: t.bg }}>
       <Fonts />
       <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
-        <defs><radialGradient id="pv" cx="50%" cy="48%" r="62%"><stop offset="0%" stopColor="#000" stopOpacity="0" /><stop offset="62%" stopColor="#000" stopOpacity="0.12" /><stop offset="100%" stopColor="#000" stopOpacity="0.9" /></radialGradient></defs>
+        <defs><radialGradient id="pv" cx="50%" cy="48%" r="62%"><stop offset="0%" stopColor="#000" stopOpacity="0" /><stop offset="62%" stopColor="#000" stopOpacity="0.12" /><stop offset="100%" stopColor="#000" stopOpacity={t.vig ?? 0.9} /></radialGradient></defs>
         {bands.map((b, i) => <path key={i} d={path(P, b, true)} fill={i % 2 ? t.turfA : t.turfB} />)}
         <g {...line}>
           <path d={path(P, rect(0, 0, 120, 80), true)} /><path d={path(P, [[60, 0], [60, 80]])} /><path d={path(P, arc(60, 40, 10, 0, Math.PI * 2, 56), true)} />
@@ -53,7 +54,7 @@ export function Pitch({ cam, t, children, dim = 0, reveal = 1 }) {
 
 /** One player dot: ellipse shadow on the turf, team disc, optional number and name tag. Sized by depth. */
 function Dot({ P, x, y, team, t, num, name, hi, op = 1, r = 15, keeper }) {
-  const [sx, sy, k] = P(x, y), col = t.teams[team] || { fill: "#888", ring: "#fff", ink: "#fff" }, R = r * k * (hi ? 1.18 : 1);
+  const [sx, sy, k] = P(x, y), col = t.teams[team] || { fill: "#888", ring: "#fff", ink: "#fff" }, R = r * (t.disc || 1) * k * (hi ? 1.18 : 1);
   return (
     <g opacity={op}>
       <ellipse cx={sx} cy={sy + R * 0.55} rx={R * 1.05} ry={R * 0.42} fill="#000" opacity="0.5" />
@@ -65,6 +66,8 @@ function Dot({ P, x, y, team, t, num, name, hi, op = 1, r = 15, keeper }) {
   );
 }
 
+/** Players behind a data layer (shots, pressures, sub card): average on-ball positions, so a board never shows an empty pitch. sides as in Formation. */
+const Ghosts = ({ P, t, sides, op = 0.9 }) => sides ? sides.flatMap((s, si) => s.players.filter((p) => p.avg).map((p) => { const [x, y] = s.mirror ? [120 - p.avg[0], 80 - p.avg[1]] : p.avg; return <Dot key={`g${si}-${p.id}`} P={P} x={x} y={y} team={s.team} t={t} num={p.number} op={op} keeper={p.position === "Goalkeeper"} />; })) : null;
 // Any team other than Spain/England gets a plain club disc (theme colours + initials) instead of the England flag (added for club stories, 14 Nov 2026).
 const ClubDisc = ({ team, x, y, s, t }) => { const c = (t && t.teams && t.teams[team]) || { fill: "#444", ring: "#ddd", ink: "#fff" }, ini = team.split(/\s+/).map((w) => w[0]).join("").slice(0, 3).toUpperCase();
   return <g transform={`translate(${x},${y})`}><circle cx={s / 2} cy={s / 2} r={s / 2} fill={c.fill} /><circle cx={s / 2} cy={s / 2} r={s / 2 - 8} fill="none" stroke={c.ring} strokeWidth="6" /><text x={s / 2} y={s / 2 + s * 0.14} textAnchor="middle" fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize={s * 0.38} fill={c.ink}>{ini}</text></g>; };
@@ -199,11 +202,11 @@ export function PassNetwork({ t, cam, side, pairs, callout, note }) {
 }
 
 /** 6. Pressure map: counted pressure events per 10 x 10 zone, drawn on the plane. */
-export function PressMap({ t, cam, grid, team, callout, mirror, note }) {
+export function PressMap({ t, cam, grid, team, callout, mirror, note, sides }) {
   const f = useCurrentFrame(), max = Math.max(...grid.flat());
   return (
-    <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => grid.flatMap((row, r) => row.map((n, c) => { if (!n) return null; const x0 = mirror ? 110 - c * 10 : c * 10, y0 = mirror ? 70 - r * 10 : r * 10, a = ramp(f, 8 + (c + r) * 1.5, 22 + (c + r) * 1.5), [tx, ty] = P(x0 + 5, y0 + 5);
-      return <g key={`${r}-${c}`} opacity={a}><path d={path(P, [[x0 + 0.4, y0 + 0.4], [x0 + 9.6, y0 + 0.4], [x0 + 9.6, y0 + 9.6], [x0 + 0.4, y0 + 9.6]], true)} fill={t.teams[team].heat} opacity={0.12 + 0.78 * (n / max)} />{n >= max * 0.45 && <text x={tx} y={ty + 8} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{n}</text>}</g>; }))}</Pitch>
+    <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => [<Ghosts key="gh" P={P} t={t} sides={sides} />, ...grid.flatMap((row, r) => row.map((n, c) => { if (!n) return null; const x0 = mirror ? 110 - c * 10 : c * 10, y0 = mirror ? 70 - r * 10 : r * 10, a = ramp(f, 8 + (c + r) * 1.5, 22 + (c + r) * 1.5), [tx, ty] = P(x0 + 5, y0 + 5);
+      return <g key={`${r}-${c}`} opacity={a}><path d={path(P, [[x0 + 0.4, y0 + 0.4], [x0 + 9.6, y0 + 0.4], [x0 + 9.6, y0 + 9.6], [x0 + 0.4, y0 + 9.6]], true)} fill={t.teams[team].heat} opacity={0.12 + 0.78 * (n / max)} />{n >= max * 0.45 && <text x={tx} y={ty + 8} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{n}</text>}</g>; })]}</Pitch>
       {callout && <Callout t={t} text={callout} from={30} />}
       <Tags t={t} note={note || `number = pressures by ${team} in that zone, whole match`} />
     </AbsoluteFill>
@@ -211,11 +214,11 @@ export function PressMap({ t, cam, grid, team, callout, mirror, note }) {
 }
 
 /** 7. Shot map: circle area = xG, filled = goal. Both teams attack the goal they attacked (home left-to-right, away mirrored). */
-export function ShotMap({ t, cam, shots, home, away, callout, note }) {
+export function ShotMap({ t, cam, shots, home, away, callout, note, sides }) {
   const f = useCurrentFrame();
   return (
-    <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => shots.map((s, i) => { const x = s.team === home ? s.x : 120 - s.x, y = s.team === home ? s.y : 80 - s.y, [sx, sy, k] = P(x, y), r = (7 + Math.sqrt(s.xg) * 46) * k, a = ramp(f, 6 + i * 2.2, 16 + i * 2.2, expo), goal = s.outcome === "Goal", col = t.teams[s.team];
-      return <g key={i} opacity={a} transform={`translate(${sx} ${sy}) scale(${0.5 + 0.5 * a})`}><circle r={r} fill={goal ? col.fill : "rgba(0,0,0,0.25)"} stroke={goal ? t.accent : col.fill} strokeWidth={goal ? 5 : 3} />{goal && <text x={s.minute > 80 ? 70 : 0} y={-r - 12 - (s.minute > 80 ? 40 : 0)} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{s.player.split(" ").slice(-1)[0].toUpperCase()} {s.minute + 1}'</text>}</g>; })}</Pitch>
+    <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => [<Ghosts key="gh" P={P} t={t} sides={sides} op={0.75} />, ...shots.map((s, i) => { const x = s.team === home ? s.x : 120 - s.x, y = s.team === home ? s.y : 80 - s.y, [sx, sy, k] = P(x, y), r = (7 + Math.sqrt(s.xg) * 46) * k, a = ramp(f, 6 + i * 2.2, 16 + i * 2.2, expo), goal = s.outcome === "Goal", col = t.teams[s.team];
+      return <g key={i} opacity={a} transform={`translate(${sx} ${sy}) scale(${0.5 + 0.5 * a})`}><circle r={r} fill={goal ? col.fill : "rgba(0,0,0,0.25)"} stroke={goal ? t.accent : col.fill} strokeWidth={goal ? 5 : 3} />{goal && <text x={s.minute > 80 ? 70 : 0} y={-r - 12 - (s.minute > 80 ? 40 : 0)} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{s.player.split(" ").slice(-1)[0].toUpperCase()} {s.minute + 1}'</text>}</g>; })]}</Pitch>
       {callout && <Callout t={t} text={callout} from={40} />}
       <Tags t={t} note={note || "circle size = expected goals (xG) of the shot; filled = goal"} />
     </AbsoluteFill>
@@ -262,10 +265,10 @@ export function MatchTimeline({ t, events, home, away, to = 95, title, focus }) 
 }
 
 /** 10. Substitution card over a dimmed pitch: who left, who came on, and what the data shows they did next. */
-export function SubCard({ t, cam, minute, off, on, team, fact }) {
+export function SubCard({ t, cam, minute, off, on, team, fact, sides }) {
   const f = useCurrentFrame(), a = ramp(f, 4, 18, expo);
   return (
-    <AbsoluteFill><Pitch cam={cam} t={t} dim={0.55} />
+    <AbsoluteFill><Pitch cam={cam} t={t} dim={0.55}>{(P) => <Ghosts P={P} t={t} sides={sides} />}</Pitch>
       <div style={{ position: "absolute", left: 260, top: 300, width: 1400, opacity: a, transform: `translateY(${(1 - a) * 30}px)`, fontFamily: F.cond }}>
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}><div style={{ background: t.accent, color: "#0a0a0a", fontWeight: 700, fontSize: 52, padding: "2px 22px" }}>{minute}'</div><div style={{ color: "rgba(255,255,255,0.7)", fontSize: 34, letterSpacing: "0.24em" }}>{team.toUpperCase()} SUBSTITUTION</div></div>
         <div style={{ display: "flex", alignItems: "center", gap: 40, marginTop: 40 }}>
@@ -371,7 +374,7 @@ export function LineupPanel({ t, team, players, formation, title, hi = [] }) {
 // A pitch camera that is a single object gets a slow push so a board is never a still; arrays (keyframed cameras) are left alone.
 const drift = (cam, len, dx = 0, dy = 0, z = 1.09) => [{ f: 0, ...cam }, { f: Math.max(30, len), ...cam, scale: (cam.scale ?? 12.5) * z, fx: (cam.fx ?? 60) + dx, fy: (cam.fy ?? 40) + dy }];
 const ShotIn = ({ s, t, ch, len, first }) => {
-  const f = useCurrentFrame(), C = RIVAL[s.type], { w, drift: dr, ...rest } = s, a = 1; // hard cut, like the reference; only a short scale settle below
+  const f = useCurrentFrame(), C = s.type === "clip" ? Footage : RIVAL[s.type], { w, drift: dr, ...rest } = s, a = 1; // hard cut, like the reference; only a short scale settle below
   if (!C) return <AbsoluteFill style={{ background: "#300" }} />;
   const props = { t, ch, dur: len, ...rest };
   if (dr !== false && rest.cam && !Array.isArray(rest.cam) && s.type !== "sequence") props.cam = drift(rest.cam, len, dr?.dx || 0, dr?.dy || 0, dr?.z || 1.09);
