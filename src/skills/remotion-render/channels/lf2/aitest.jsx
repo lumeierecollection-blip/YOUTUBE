@@ -183,7 +183,7 @@ export function Compare({ t, title, cols, pill, foot }) {
   return (
     <Field t={t}>
       <div style={{ position: "absolute", left: 130, top: 96, fontFamily: F.sans, fontWeight: 700, fontSize: 50, color: "#fff" }}>{title}</div>
-      {cols.map((c, ci) => <div key={ci} style={{ position: "absolute", left: 130 + ci * 850, top: 210, width: 810, height: 760, background: "#12151a", border: `2px solid ${c.best ? t.accent : "rgba(255,255,255,0.14)"}`, borderRadius: 16, padding: 34, boxSizing: "border-box" }}>
+      {cols.map((c, ci) => <div key={ci} style={{ position: "absolute", left: 130 + ci * (1660 / cols.length), top: 210, width: 1660 / cols.length - 40, height: 760, background: "#12151a", border: `2px solid ${c.best ? t.accent : "rgba(255,255,255,0.14)"}`, borderRadius: 16, padding: 34, boxSizing: "border-box" }}>
         <div style={{ fontFamily: F.sans, fontWeight: 700, fontSize: 36, color: c.best ? t.accent : "#fff" }}>{c.title}</div>
         <div style={{ fontFamily: F.mono, fontSize: 21, color: "rgba(255,255,255,0.6)", marginTop: 8, minHeight: 60 }}>{c.prompt}</div>
         {c.rows.map((r, ri) => { const a = ramp(f, 16 + ci * 20 + ri * 8, 40 + ci * 20 + ri * 8, expo); return <div key={ri} style={{ display: "flex", alignItems: "center", gap: 18, marginTop: 26 }}>

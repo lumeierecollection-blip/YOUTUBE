@@ -29,7 +29,8 @@ const FOOT = "Live run · recorded 16 Nov 2026 · same prompt, one try, no edits
 const FRAME = JSON.parse(readFileSync(join(ROOT, DIR, "FRAMES.json"), "utf8"));
 const app = (n, extra = {}) => { const [a, b, focus] = FRAME[n] || [1.0, 1.08, "50% 50%"], m = n.split("-")[1], s = sec(n);
   return { type: "run", video: CLIP(n), videoLen: 12.5, start: 1.5, zoom: [a, b], focus, label: M[m]?.label, tag: `${say(s)} s`, ok: V[n]?.pass, foot: FOOT, ...extra }; };
-const chat = (n, start = 8, extra = {}) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start, zoom: [1.3, 1.42], focus: "50% 38%", label: M[n.split("-")[1]]?.label, model: RUN(n).model, foot: FOOT, ...extra });
+// Gemini's answer reached us in a few large blocks late in the replay, so its code shots start later (render 3: near-empty pages at 8 s)
+const chat = (n, start = 8, extra = {}) => ({ type: "run", video: CLIP(n, "chat"), videoLen: 20, start: n.endsWith("-gemini") ? Math.max(start, 15) : start, zoom: [1.3, 1.42], focus: "50% 38%", label: M[n.split("-")[1]]?.label, model: RUN(n).model, foot: FOOT, ...extra });
 // the prompt itself, full screen, word by word (the chat page's prompt box was a thin strip at the bottom: mostly empty frames in render 2)
 const HL = { snake: "steer itself toward the food automatically", solar: "orbiting at different speeds", hexagon: "bounce realistically off the rotating walls", cave: "steer itself to avoid the walls", city: "full day-night cycle every 10 seconds" };
 const typing = (n) => ({ type: "quote", text: RUN(n).prompt.replace(/ Reply with the whole file.*$/, ""), hl: [HL[n.split("-")[0]]].filter(Boolean), who: "The prompt, word for word", org: "given to every model", foot: FOOT });
