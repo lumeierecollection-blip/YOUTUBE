@@ -91,7 +91,7 @@ export function NumberOpen({ t, value, unit, sub, countFrom }) {
   const f = useCurrentFrame(), n = countFrom == null || f >= 26 ? value : Math.round(lerp(f, 0, 26, countFrom, Number(value), expo)), a = ramp(f, 0, 8);
   return (
     <AbsoluteFill style={{ background: "#000", alignItems: "center", justifyContent: "center" }}><Fonts />
-      <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 470, lineHeight: 0.9, color: "#fff", letterSpacing: "-0.02em", opacity: a, transform: `scale(${lerp(f, 0, 40, 0.94, 1)})` }}>{n}</div>
+      <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 470, lineHeight: 0.9, color: "#fff", letterSpacing: "-0.02em", opacity: a, transform: `scale(${lerp(f, 0, 40, 0.94, 1) + f * 0.00018})` }}>{n}</div>
       {unit && <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 54, letterSpacing: "0.3em", color: t.accent, marginTop: 12, opacity: ramp(f, 14, 26), textTransform: "uppercase" }}>{unit}</div>}
       {sub && <div style={{ fontFamily: F.sans, fontSize: 30, color: "rgba(255,255,255,0.72)", marginTop: 22, opacity: ramp(f, 24, 38) }}>{sub}</div>}
       <Finish grain={0.06} vignette={0.6} />
