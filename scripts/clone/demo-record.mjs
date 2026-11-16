@@ -17,6 +17,7 @@ const provider = job.provider || "gemini";
 const OAI = {
   groq: { base: "https://api.groq.com/openai/v1", env: "GROQ_API_KEY", label: "Groq", prefer: [/gpt-oss-120b/, /kimi/, /llama-4/, /llama-3\.3-70b/, /qwen/] },
   mistral: { base: "https://api.mistral.ai/v1", env: "MISTRAL_API_KEY", label: "Mistral", prefer: [/mistral-large-latest/, /mistral-medium-latest/, /magistral-medium/, /codestral-latest/] },
+  openrouter: { base: "https://openrouter.ai/api/v1", env: "OPENROUTER_API_KEY", label: "OpenRouter", prefer: [/:free$/] },
   cerebras: { base: "https://api.cerebras.ai/v1", env: "CEREBRAS_API_KEY", label: "Cerebras", prefer: [/gpt-oss-120b/, /qwen-3.*235b/, /llama-4/, /llama3\.3|llama-3\.3/, /qwen/] },
 };
 // Gemini: rotate every key we hold (free tier returns 429 under load), so a pinned model can be used for every task (fair comparison)
@@ -56,7 +57,8 @@ async function generate(model) {
   const r = oai
     ? await fetch(`${OAI[provider].base}/chat/completions`, {
         method: "POST", headers: { authorization: `Bearer ${KEY}`, "content-type": "application/json" },
-        body: JSON.stringify({ model, stream: true, messages: [{ role: "user", content: job.prompt }] }),
+        // job.max_tokens: Groq rejects a request whose reserved output exceeds the tier's tokens-per-minute ("Request too large"); job.extra: provider options
+        body: JSON.stringify({ model, stream: true, messages: [{ role: "user", content: job.prompt }], ...(job.max_tokens ? { max_tokens: job.max_tokens } : {}), ...(job.extra || {}) }),
       })
     : await fetch(`${API}/models/${model}:streamGenerateContent?alt=sse`, {
         method: "POST", headers: { "x-goog-api-key": KEY, "content-type": "application/json" },
@@ -105,6 +107,7 @@ function chatPage(model, prompt, chunks) {
   </script>`;
 }
 
+if (job.delay_s) await new Promise((r) => setTimeout(r, job.delay_s * 1000)); // spread runs under per-minute token limits
 const cands = job.model ? [job.model] : await pickModel();
 let model, gen;
 // pinned model (job.model): retry across keys and with waits instead of falling back to another model

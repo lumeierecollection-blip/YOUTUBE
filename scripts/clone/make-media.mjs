@@ -13,6 +13,8 @@ const spec = JSON.parse(fs.readFileSync(`data/clone/media/${slug}.json`, "utf8")
 const out = `src/skills/remotion-render/public/lf2/${spec.channel}/clips/${slug}`;
 const logs = `data/clone/runs/${slug}`;
 fs.mkdirSync(out, { recursive: true }); fs.mkdirSync(logs, { recursive: true });
+// spec.only: re-make just these entries on the next push (keeps the clips already committed for the rest)
+if (!only.length && spec.only) only.push(...spec.only);
 const want = (n) => !only.length || only.includes(n);
 const ff = (...a) => execFileSync("ffmpeg", ["-v", "error", "-y", ...a], { stdio: "inherit" });
 const toMp4 = (i, o, extra = []) => ff("-i", i, ...extra, "-vf", "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,fps=30,setsar=1", "-an", "-c:v", "libx264", "-crf", "23", "-preset", "medium", "-pix_fmt", "yuv420p", "-movflags", "+faststart", o);

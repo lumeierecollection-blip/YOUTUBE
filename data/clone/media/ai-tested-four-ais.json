@@ -25,17 +25,26 @@
     "qwen"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 6000,
+   "extra": {
+    "reasoning_effort": "none"
+   },
+   "delay_s": 70
   },
   {
-   "name": "snake-minimax",
-   "provider": "groq",
+   "name": "snake-or",
+   "provider": "openrouter",
    "prefer": [
-    "minimax-m2.7",
-    "minimax"
+    "deepseek.*:free",
+    "llama.*:free",
+    "mistral.*:free",
+    "gemma.*:free",
+    ":free$"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 8000
   },
   {
    "name": "solar-gemini",
@@ -61,17 +70,26 @@
     "qwen"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 6000,
+   "extra": {
+    "reasoning_effort": "none"
+   },
+   "delay_s": 70
   },
   {
-   "name": "solar-minimax",
-   "provider": "groq",
+   "name": "solar-or",
+   "provider": "openrouter",
    "prefer": [
-    "minimax-m2.7",
-    "minimax"
+    "deepseek.*:free",
+    "llama.*:free",
+    "mistral.*:free",
+    "gemma.*:free",
+    ":free$"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 8000
   },
   {
    "name": "hexagon-gemini",
@@ -97,17 +115,26 @@
     "qwen"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 6000,
+   "extra": {
+    "reasoning_effort": "none"
+   },
+   "delay_s": 70
   },
   {
-   "name": "hexagon-minimax",
-   "provider": "groq",
+   "name": "hexagon-or",
+   "provider": "openrouter",
    "prefer": [
-    "minimax-m2.7",
-    "minimax"
+    "deepseek.*:free",
+    "llama.*:free",
+    "mistral.*:free",
+    "gemma.*:free",
+    ":free$"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 8000
   },
   {
    "name": "cave-gemini",
@@ -133,17 +160,26 @@
     "qwen"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 6000,
+   "extra": {
+    "reasoning_effort": "none"
+   },
+   "delay_s": 70
   },
   {
-   "name": "cave-minimax",
-   "provider": "groq",
+   "name": "cave-or",
+   "provider": "openrouter",
    "prefer": [
-    "minimax-m2.7",
-    "minimax"
+    "deepseek.*:free",
+    "llama.*:free",
+    "mistral.*:free",
+    "gemma.*:free",
+    ":free$"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 8000
   },
   {
    "name": "city-gemini",
@@ -169,17 +205,37 @@
     "qwen"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 6000,
+   "extra": {
+    "reasoning_effort": "none"
+   },
+   "delay_s": 70
   },
   {
-   "name": "city-minimax",
-   "provider": "groq",
+   "name": "city-or",
+   "provider": "openrouter",
    "prefer": [
-    "minimax-m2.7",
-    "minimax"
+    "deepseek.*:free",
+    "llama.*:free",
+    "mistral.*:free",
+    "gemma.*:free",
+    ":free$"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
-   "app_seconds": 10
+   "app_seconds": 10,
+   "max_tokens": 8000
   }
+ ],
+ "only": [
+  "snake-qwen",
+  "snake-or",
+  "solar-qwen",
+  "solar-or",
+  "hexagon-or",
+  "cave-qwen",
+  "cave-or",
+  "city-qwen",
+  "city-or"
  ]
 }
