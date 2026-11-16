@@ -4,150 +4,131 @@
 <meta charset="UTF-8">
 <title>City Skyline Day‑Night Cycle</title>
 <style>
-  body,html{margin:0;padding:0;height:100%;overflow:hidden;background:#000}
-  canvas{display:block;width:100%;height:100%}
+  body,html{margin:0;padding:0;overflow:hidden;background:#000;}
+  canvas{display:block;}
 </style>
 </head>
 <body>
-<canvas id="c"></canvas>
+<canvas id="sky"></canvas>
 <script>
-(() => {
-  const canvas = document.getElementById('c');
-  const ctx = canvas.getContext('2d');
+const canvas = document.getElementById('sky');
+const ctx = canvas.getContext('2d');
+let W, H;
 
-  // resize canvas
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initBuildings();
-  }
-  window.addEventListener('resize', resize);
-  resize();
+// Resize handling
+function resize(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize',resize);
+resize();
 
-  // ---------- SKY ----------
-  const dayColor = {r:135,g:206,b:235};   // #87CEEB
-  const nightColor = {r:0,g:29,b:61};     // #001d3d
-
-  function lerp(a,b,t){return a+(b-a)*t;}
-
-  function skyColor(factor){ // factor 0=day,1=night
-    const r=lerp(dayColor.r,nightColor.r,factor);
-    const g=lerp(dayColor.g,nightColor.g,factor);
-    const b=lerp(dayColor.b,nightColor.b,factor);
-    return `rgb(${r|0},${g|0},${b|0})`;
-  }
-
-  // ---------- STARS ----------
-  const starCount = 200;
-  const stars = [];
-  for(let i=0;i<starCount;i++){
-    stars.push({
-      x:Math.random()*canvas.width,
-      y:Math.random()*canvas.height*0.6,
-      r:Math.random()*1.5+0.5
-    });
-  }
-
-  // ---------- BUILDINGS ----------
-  const buildings = [];
-  function initBuildings(){
-    buildings.length=0;
-    const baseY = canvas.height*0.6;
-    let x=0;
-    while(x<canvas.width){
-      const w = 50+Math.random()*80;
-      const h = 150+Math.random()*200;
-      const b = {
-        x,
-        y: baseY - h,
-        w,
-        h,
-        rows: Math.floor(h/20),
-        cols: Math.floor(w/15)
-      };
-      buildings.push(b);
-      x+=w+20;
-    }
-    // reposition stars after resize
-    for(let s of stars){
-      s.x = Math.random()*canvas.width;
-      s.y = Math.random()*canvas.height*0.6;
+// ------- Skyline data -------
+const buildingCount = 12;
+const buildings = [];
+for(let i=0;i<buildingCount;i++){
+  const bw = Math.random()*80+60;
+  const bh = Math.random()*H*0.4+H*0.2;
+  const bx = i*(W/buildingCount)+Math.random()*20;
+  const by = H-bh;
+  // windows grid
+  const winW = 8, winH = 12, winGapX = 4, winGapY = 6;
+  const cols = Math.floor((bw-10)/(winW+winGapX));
+  const rows = Math.floor((bh-20)/(winH+winGapY));
+  const windows=[];
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      windows.push({x:10+c*(winW+winGapX), y:10+r*(winH+winGapY), lit:false});
     }
   }
+  buildings.push({x:bx, y:by, w:bw, h:bh, windows});
+}
 
-  // ---------- ANIMATION ----------
-  function draw(timestamp){
-    const t = (timestamp/1000)%10;            // 0‑10 sec loop
-    const phase = t/10;                       // 0‑1
-    const angle = phase*2*Math.PI;
-    const dayFactor = (Math.cos(angle)+1)/2; // 1 at noon, 0 at midnight
-    const nightFactor = 1 - dayFactor;
+// ------- Stars -------
+const stars = [];
+for(let i=0;i<200;i++){
+  stars.push({x:Math.random()*W, y:Math.random()*H*0.6, r:Math.random()*1.5+0.5});
+}
 
-    // SKY
-    ctx.fillStyle = skyColor(nightFactor);
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+// Cycle timing
+const CYCLE = 10000; // ms
 
-    // STARS (fade in/out)
-    ctx.fillStyle = `rgba(255,255,255,${nightFactor*0.8})`;
-    for(let s of stars){
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
-      ctx.fill();
-    }
+function lerp(a,b,t){return a+(b-a)*t;}
+function lerpColor(c1,c2,t){
+  const r=lerp(c1[0],c2[0],t);
+  const g=lerp(c1[1],c2[1],t);
+  const b=lerp(c1[2],c2[2],t);
+  return `rgb(${r|0},${g|0},${b|0})`;
+}
 
-    // SUN / MOON
-    const horizon = canvas.height*0.6;
-    const radius = canvas.width*0.4;
-    const cx = canvas.width/2;
-    const cy = horizon;
-    const sunX = cx + radius*Math.cos(angle);
-    const sunY = cy - radius*Math.sin(angle);
-    if(dayFactor>0.5){
-      // SUN
-      ctx.fillStyle = '#ffdd55';
-      ctx.beginPath();
-      ctx.arc(sunX,sunY,40,0,2*Math.PI);
-      ctx.fill();
-    }else{
-      // MOON
-      ctx.fillStyle = '#f0e6d2';
-      ctx.beginPath();
-      ctx.arc(sunX,sunY,30,0,2*Math.PI);
-      ctx.fill();
-      // crescent effect
-      ctx.fillStyle = skyColor(nightFactor);
-      ctx.beginPath();
-      ctx.arc(sunX+12,sunY-5,30,0,2*Math.PI);
-      ctx.fill();
-    }
+// Main draw
+let lastPhase = null;
+function draw(timestamp){
+  const t = timestamp % CYCLE;
+  const phase = t / CYCLE; // 0‑1
 
-    // BUILDINGS
-    for(let b of buildings){
-      ctx.fillStyle = '#222';
-      ctx.fillRect(b.x,b.y,b.w,b.h);
-      // windows
-      const winW = b.w/ b.cols *0.6;
-      const winH = b.h/ b.rows *0.6;
-      const offsetX = (b.w - b.cols*winW)/2;
-      const offsetY = (b.h - b.rows*winH)/2;
-      for(let r=0;r<b.rows;r++){
-        for(let c=0;c<b.cols;c++){
-          const wx = b.x + offsetX + c*winW*1.3;
-          const wy = b.y + offsetY + r*winH*1.3;
-          if(nightFactor>0.3 && Math.random()<0.3){ // lit window
-            ctx.fillStyle = `rgba(255,215,0,${0.6+0.4*nightFactor})`;
-          }else{
-            ctx.fillStyle = `rgba(0,0,0,${0.8})`;
-          }
-          ctx.fillRect(wx,wy,winW,winH);
-        }
+  // ---------- Sky ----------
+  const dayColor = [135,206,235];   // light sky blue
+  const nightColor = [10,10,55];    // dark blue
+  const skyColor = lerpColor(dayColor, nightColor,
+        Math.cos(phase*2*Math.PI)*0.5+0.5); // smooth transition
+  ctx.fillStyle = skyColor;
+  ctx.fillRect(0,0,W,H);
+
+  // ---------- Stars ----------
+  const isNight = phase>0.75 || phase<0.25;
+  if(isNight){
+    ctx.fillStyle = 'white';
+    stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,2*Math.PI);ctx.fill();});
+  }
+
+  // ---------- Sun / Moon ----------
+  const angle = phase*2*Math.PI - Math.PI/2; // start at left horizon
+  const radius = Math.min(W,H)/2.5;
+  const cx = W/2, cy = H*0.75;
+  const sx = cx + radius*Math.cos(angle);
+  const sy = cy + radius*Math.sin(angle);
+  if(!isNight){
+    // Sun
+    const grad = ctx.createRadialGradient(sx,sy,5,sx,sy,30);
+    grad.addColorStop(0,'rgba(255,255,200,0.9)');
+    grad.addColorStop(1,'rgba(255,200,0,0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();ctx.arc(sx,sy,30,0,2*Math.PI);ctx.fill();
+  }else{
+    // Moon
+    ctx.fillStyle = 'rgba(250,250,250,0.8)';
+    ctx.beginPath();ctx.arc(sx,sy,22,0,2*Math.PI);ctx.fill();
+    // simple crescent cut
+    ctx.fillStyle = skyColor;
+    ctx.beginPath();ctx.arc(sx+8,sy-5,20,0,2*Math.PI);ctx.fill();
+  }
+
+  // ---------- Buildings ----------
+  ctx.fillStyle = '#222';
+  buildings.forEach(b=>{
+    ctx.fillRect(b.x,b.y,b.w,b.h);
+    // windows lighting
+    if(isNight){
+      // generate new pattern once per night start
+      if(lastPhase===null || (lastPhase<0.25 && phase>=0.25) || (lastPhase>0.75 && phase<=0.75)){
+        b.windows.forEach(w=> w.lit = Math.random()<0.6);
       }
+      ctx.fillStyle = 'rgba(255,230,180,0.8)';
+      b.windows.forEach(w=>{
+        if(w.lit){
+          ctx.fillRect(b.x+w.x, b.y+w.y, 8,12);
+        }
+      });
+    }else{
+      // day: no lit windows
     }
+  });
 
-    requestAnimationFrame(draw);
-  }
+  lastPhase = phase;
   requestAnimationFrame(draw);
-})();
+}
+requestAnimationFrame(draw);
 </script>
 </body>
 </html>

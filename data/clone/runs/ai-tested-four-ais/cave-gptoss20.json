@@ -1,10 +1,23 @@
 {
+ "finish": "stop",
+ "usage": {
+  "queue_time": 0.166259112,
+  "prompt_tokens": 146,
+  "prompt_time": 0.007168524,
+  "completion_tokens": 3180,
+  "completion_time": 3.851770502,
+  "total_tokens": 3326,
+  "total_time": 3.858939026,
+  "completion_tokens_details": {
+   "reasoning_tokens": 2352
+  }
+ },
  "provider": "groq",
  "model": "openai/gpt-oss-20b",
  "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
- "started": "2026-11-16T01:55:02.223Z",
- "generation_ms": 2477,
- "chunks": 102,
- "answer": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Auto‑Steered Ship Cave Game</title>\n<style>body{margin:0;background:#000}canvas{display:block;}</style>\n</head>\n<body>\n<canvas id=\"game\"></canvas>\n<script>\nconst canvas=document.getElementById('game'),ctx=canvas.getContext('2d');\ncanvas.width=800;canvas.height=600;\n\nconst shipX=150;",
+ "started": "2026-11-16T02:27:23.927Z",
+ "generation_ms": 4056,
+ "chunks": 819,
+ "answer": "```html\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<title>Autonomous Cave Fly</title>\n<style>\n  body{margin:0;overflow:hidden;background:black}\n  canvas{display:block;background:black}\n</style>\n</head>\n<body>\n<canvas id=\"game\"></canvas>\n<script>\nconst canvas=document.getElementById('game');\nconst ctx=canvas.getContext('2d');\nconst W=800, H=400;\ncanvas.width=W; canvas.height=H;\n\n// Ship\nconst ship={x:W*0.25, y:H/2, r:8};\n\n// Cave parameters\nconst maxDelta=1.5;          // center shift per frame\nconst minGap=120, maxGap=220; // gap size bounds\nconst maxGapDelta=0.5;      // gap size change per frame\nconst safeMargin=20;        // margin ship keeps from walls\n\n// Generate initial cave shape\nlet centers=[...Array(W)].map(()=>H/2);\nlet gaps=[...Array(W)].map(()=> (minGap+maxGap)/2);\n\nlet distance=0;\n\n// Main loop\nfunction update(){\n  // Shift cave left\n  centers.shift(); gaps.shift();\n\n  // Generate new column\n  let lastC=centers[centers.length-1];\n  let lastG=gaps[gaps.length-1];\n  let newC=lastC+(Math.random()*2-1)*maxDelta;\n  newC=Math.max(minGap, Math.min(H-minGap, newC));\n  let newG=lastG+(Math.random()*2-1)*maxGapDelta;\n  newG=Math.max(minGap, Math.min(maxGap, newG));\n  centers.push(newC); gaps.push(newG);\n\n  // Ship autopilot\n  let idx=Math.floor(ship.x);\n  let floorY=centers[idx]-gaps[idx]/2;\n  let ceilY=centers[idx]+gaps[idx]/2;\n  if(ship.y>ceilY-safeMargin) ship.y-=1;\n  else if(ship.y<floorY+safeMargin) ship.y+=1;\n  ship.y=Math.max(floorY+ship.r, Math.min(ceilY-ship.r, ship.y));\n\n  // Collision?\n  if(ship.y<=floorY || ship.y>=ceilY){\n    return false;\n  }\n\n  distance+=2; // scroll speed\n  return true;\n}\n\nfunction draw(){\n  ctx.fillStyle='black'; ctx.fillRect(0,0,W,H);\n\n  // Draw cave walls\n  ctx.strokeStyle='white'; ctx.lineWidth=2;\n  ctx.beginPath(); ctx.moveTo(0,centers[0]-gaps[0]/2);\n  for(let i=1;i<W;i++) ctx.lineTo(i,centers[i]-gaps[i]/2);\n  ctx.stroke();\n\n  ctx.beginPath(); ctx.moveTo(0,centers[0]+gaps[0]/2);\n  for(let i=1;i<W;i++) ctx.lineTo(i,centers[i]+gaps[i]/2);\n  ctx.stroke();\n\n  // Draw ship\n  ctx.fillStyle='red';\n  ctx.beginPath(); ctx.arc(ship.x,ship.y,ship.r,0,Math.PI*2);\n  ctx.fill();\n\n  // Distance counter\n  ctx.fillStyle='white';\n  ctx.font='20px Arial';\n  ctx.fillText('Distance: '+Math.floor(distance),10,30);\n}\n\nfunction loop(){\n  if(!update()){\n    ctx.fillStyle='white';\n    ctx.font='40px Arial';\n    ctx.fillText('Game Over',W/2-110,H/2);\n    return;\n  }\n  draw();\n  requestAnimationFrame(loop);\n}\nloop();\n</script>\n</body>\n</html>\n```\nThe ship automatically follows the centre of the scrolling cave, steering toward the gap and incrementing a distance counter while avoiding walls.",
  "app_recorded": true
 }

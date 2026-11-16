@@ -2,105 +2,140 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Day‑Night City Skyline</title>
-<style>
-  body{margin:0;background:#111;display:flex;justify-content:center;align-items:center;height:100vh;}
-  canvas{display:block;}
-</style>
+<title>City Skyline Day‑Night Cycle</title>
+<style>body{margin:0;background:#000}</style>
 </head>
 <body>
 <canvas id="sky" width="800" height="400"></canvas>
 <script>
-(() => {
-  const canvas = document.getElementById('sky');
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width, height = canvas.height;
-  const cycle = 10000; // 10 seconds
-  const daySky = [135, 206, 235];   // light blue
-  const nightSky = [0, 17, 34];     // dark navy
+const canvas=document.getElementById('sky');
+const ctx=canvas.getContext('2d');
+const W=canvas.width, H=canvas.height;
+const DAY_COLOR={r:135,g:206,b:235};  // sky blue
+const NIGHT_COLOR={r:10,g:10,b:30};   // dark navy
+const SUN_COLOR='rgb(255,223,0)';
+const MOON_COLOR='rgb(220,220,220)';
+const BUILDING_COLOR='rgb(50,50,70)';
+const WINDOW_OFF='rgb(10,10,10)';
+const WINDOW_ON='rgb(255,255,100)';
+const STARS_COUNT=200;
+const stars=[];
 
-  // Buildings definition
-  const buildings = [
-    {x: 50,  w: 80,  h: 200, color:'#555'},
-    {x: 200, w: 120, h: 280, color:'#444'},
-    {x: 350, w: 100, h: 240, color:'#333'},
-    {x: 520, w: 140, h: 320, color:'#222'},
-    {x: 700, w: 60,  h: 160, color:'#555'}
-  ];
-
-  // Generate random stars
-  const stars = Array.from({length:120},()=>({
-    x: Math.random()*width,
-    y: Math.random()*height*0.6, // upper part of sky
-    r: Math.random()*1.5+0.5,
-    alpha: 1
-  }));
-
-  function lerpColor(a,b,t){
-    return [
-      Math.round(a[0]+(b[0]-a[0])*t),
-      Math.round(a[1]+(b[1]-a[1])*t),
-      Math.round(a[2]+(b[2]-a[2])*t)
-    ];
-  }
-
-  function draw(){
-    const now = performance.now();
-    const t = ((now%cycle)/cycle); // 0..1
-    const isNight = t>=0.5;
-    const dayT = t*2; // 0..1 for day
-    const nightT = (t-0.5)*2; // 0..1 for night
-
-    // Sky
-    const skyCol = lerpColor(daySky, nightSky, Math.min(dayT,1));
-    ctx.fillStyle = `rgb(${skyCol.join(',')})`;
-    ctx.fillRect(0,0,width,height);
-
-    // Sun
-    if(!isNight){
-      const sunX = width*dayT;
-      const sunY = 80;
-      ctx.beginPath();
-      ctx.arc(sunX,sunY,30,0,Math.PI*2);
-      ctx.fillStyle='#FFD700';
-      ctx.fill();
-    }
-
-    // Moon
-    if(isNight){
-      const moonX = width*nightT;
-      const moonY = 80;
-      ctx.beginPath();
-      ctx.arc(moonX,moonY,20,0,Math.PI*2);
-      ctx.fillStyle='#F0F8FF';
-      ctx.fill();
-    }
-
-    // Stars fade in/out
-    const starAlpha = isNight ? (nightT<=0.5?nightT*2: (1-nightT)*2) : 0;
-    ctx.globalAlpha = starAlpha;
-    stars.forEach(s=>{
-      ctx.beginPath();
-      ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle='white';
-      ctx.fill();
+// generate stars
+for(let i=0;i<STARS_COUNT;i++){
+    stars.push({
+        x:Math.random()*W,
+        y:Math.random()*H/2,   // only upper half
+        r:1+Math.random()*2
     });
-    ctx.globalAlpha = 1;
+}
 
-    // Buildings
-    buildings.forEach(b=>{
-      ctx.fillStyle=b.color;
-      ctx.fillRect(b.x, height-b.h, b.w, b.h);
+// define buildings (x,width,height)
+const buildings=[
+    {x:0,w:120,h:250},
+    {x:140,w:90,h:180},
+    {x:260,w:110,h:300},
+    {x:380,w:80,h:200},
+    {x:500,w:140,h:260},
+    {x:640,w:90,h:190}
+];
 
-      // Windows
-      const rows = 6, cols = Math.floor(b.w/20)-1;
-      const winW = 12, winH = 12;
-      const spacingX = (b.w - cols*winW)/(cols+1);
-      const spacingY = (b.h - rows*winH)/(rows+1);
+function lerp(a,b,t){return a+(b-a)*t;}
+function rgb(r,g,b){return `rgb(${r},${g},${b})`}
 
-      for(let r=0;r<rows;r++){
-        for(let c=0;c<cols;c++){
-          const winX = b.x+spacingX*(c+1)+c*winW;
-          const winY = height-b.h+spacingY*(r+1)+r*winH;
-          const lit = isNight && Math.random()<0.3;
-          ctx.fillStyle= lit ? '#FFFF00' : '#111';
+function drawSky(progress){
+    let factor, color;
+    if(progress<=0.5){ // day -> night
+        factor=progress/0.5;
+        color={
+            r:lerp(DAY_COLOR.r,NIGHT_COLOR.r,factor),
+            g:lerp(DAY_COLOR.g,NIGHT_COLOR.g,factor),
+            b:lerp(DAY_COLOR.b,NIGHT_COLOR.b,factor)
+        };
+    }else{ // night -> day
+        factor=(progress-0.5)/0.5;
+        color={
+            r:lerp(NIGHT_COLOR.r,DAY_COLOR.r,factor),
+            g:lerp(NIGHT_COLOR.g,DAY_COLOR.g,factor),
+            b:lerp(NIGHT_COLOR.b,DAY_COLOR.b,factor)
+        };
+    }
+    ctx.fillStyle=rgb(Math.round(color.r),Math.round(color.g),Math.round(color.b));
+    ctx.fillRect(0,0,W,H);
+}
+
+function drawSunMoon(progress){
+    const half=0.5;
+    if(progress<=half){ // sun
+        const t=progress/half; // 0..1
+        const angle=Math.PI*t; // 0..π
+        const x=W*t;
+        const y=(H/2)*(1-Math.cos(angle));
+        ctx.beginPath();
+        ctx.arc(x,y,30,0,2*Math.PI);
+        ctx.fillStyle=SUN_COLOR;
+        ctx.fill();
+    }else{ // moon
+        const t=(progress-half)/half; // 0..1
+        const angle=Math.PI*t;
+        const x=W*(1-t);
+        const y=(H/2)*(1-Math.cos(angle));
+        ctx.beginPath();
+        ctx.arc(x,y,25,0,2*Math.PI);
+        ctx.fillStyle=MOON_COLOR;
+        ctx.fill();
+    }
+}
+
+function drawStars(progress){
+    if(progress<=0.5)return;
+    const alpha=(progress-0.5)/0.5; // fade in
+    ctx.globalAlpha=alpha;
+    for(const s of stars){
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,2*Math.PI);
+        ctx.fillStyle='white';
+        ctx.fill();
+    }
+    ctx.globalAlpha=1;
+}
+
+function drawBuildings(progress){
+    for(const b of buildings){
+        const y=H-b.h;
+        ctx.fillStyle=BUILDING_COLOR;
+        ctx.fillRect(b.x, y, b.w, b.h);
+        // windows
+        const rows=Math.floor(b.h/30);
+        const cols=Math.floor(b.w/20);
+        const winW=b.w/cols-2;
+        const winH=b.h/rows-2;
+        for(let r=0;r<rows;r++){
+            for(let c=0;c<cols;c++){
+                const winX=b.x+2+c*(winW+2);
+                const winY=y+2+r*(winH+2);
+                if(progress>0.5 && Math.random()<0.3){
+                    ctx.fillStyle=WINDOW_ON;
+                }else{
+                    ctx.fillStyle=WINDOW_OFF;
+                }
+                ctx.fillRect(winX,winY,winW,winH);
+            }
+        }
+    }
+}
+
+let start=performance.now();
+function loop(){
+    const now=performance.now();
+    let progress=((now-start)%10000)/10000; // 0..1
+    drawSky(progress);
+    drawSunMoon(progress);
+    drawStars(progress);
+    drawBuildings(progress);
+    requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
