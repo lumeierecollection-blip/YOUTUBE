@@ -1,0 +1,71 @@
+name: Upload long-form (private)
+
+# Owner-approved private uploads of rendered long-form episodes (16 Nov 2026).
+# Plan: data/uploads/longform-16nov-plan.json. go:false = prepare only (meta + thumbnails
+# artifact for review, no credentials read). go:true = upload PRIVATE, record committed back.
+# Episodes already recorded in data/uploads/longform-16nov/<episode>.json are skipped.
+
+on:
+  push:
+    branches: ['upload/**']
+    paths: ['data/uploads/longform-16nov-plan.json']
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency: { group: upload-longform, cancel-in-progress: false }
+
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        i: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read plan
+        id: p
+        run: |
+          P=data/uploads/longform-16nov-plan.json
+          echo "go=$(jq -r .go $P)" >> $GITHUB_OUTPUT
+          for k in episode run slot expect_channel category; do echo "$k=$(jq -r ".videos[${{ matrix.i }}].$k" $P)" >> $GITHUB_OUTPUT; done
+      - name: Download render artifact
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: gh run download ${{ steps.p.outputs.run }} -n longform-${{ steps.p.outputs.episode }}-${{ steps.p.outputs.run }} -D ep
+      - name: Prepare review bundle
+        run: |
+          mkdir -p prep; cp ep/episode-meta.json prep/; cp ep/thumbnails/*.jpg prep/ 2>/dev/null || true
+          ls -la ep ep/thumbnails || true
+          jq -r '.title, (.tags|join(", ")), (.description|length)' ep/episode-meta.json
+      - uses: actions/upload-artifact@v4
+        with: { name: 'prep-${{ steps.p.outputs.episode }}', path: prep, retention-days: 7 }
+      - name: Upload private
+        if: steps.p.outputs.go == 'true'
+        env:
+          CH01_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH04_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: |
+          EP=${{ steps.p.outputs.episode }}; S=${{ steps.p.outputs.slot }}
+          REC=data/uploads/longform-16nov/$EP.json
+          if [ -f "$REC" ]; then echo "already uploaded: $(cat $REC)"; exit 0; fi
+          v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
+          OVR=data/uploads/longform-16nov/$EP.meta.json   # reviewed title/tags/description override, if present
+          if [ -f "$OVR" ]; then jq -s '.[0] * .[1]' ep/episode-meta.json "$OVR" > ep/m.json && mv ep/m.json ep/episode-meta.json; fi
+          TH=$(ls ep/thumbnails/*.jpg 2>/dev/null | sort | head -1)
+          [ -f "data/uploads/longform-16nov/$EP.thumb" ] && TH="ep/thumbnails/$(cat data/uploads/longform-16nov/$EP.thumb)"
+          node scripts/clone/upload-longform.mjs ep "$S" "${{ steps.p.outputs.expect_channel }}" "${{ steps.p.outputs.category }}" "$TH"
+          mkdir -p data/uploads/longform-16nov; cp ep/upload-record.json "$REC"
+          git config user.name "upload-bot"; git config user.email "upload-bot@users.noreply.github.com"
+          git add "$REC"; git commit -m "[upload-bot] $EP uploaded private"
+          for n in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

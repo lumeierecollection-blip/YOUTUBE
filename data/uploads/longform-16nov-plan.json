@@ -1,0 +1,9 @@
+{
+  "go": false,
+  "note": "Owner approved private uploads on 16 Nov 2026. go:false only prepares meta + thumbnails for review; go:true uploads PRIVATE.",
+  "videos": [
+    { "episode": "ai-tested-four-ais", "run": 43797638433, "slot": "02", "expect_channel": "AI Tested", "category": "28" },
+    { "episode": "rival-lines-analyse-v3", "run": 43779036286, "slot": "04", "expect_channel": "Rival", "category": "17" },
+    { "episode": "hidden-past-kaliningrad-v4", "run": 43788599152, "slot": "01", "expect_channel": "Hidden Past", "category": "27" }
+  ]
+}
