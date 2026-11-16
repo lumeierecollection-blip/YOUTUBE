@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autonomous Neon Snake</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #0b0d13;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      width: 440px;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .hud span {
+      color: #00ff66;
+      text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+    }
+    canvas {
+      background-color: #11141e;
+      border: 2px solid #1e2433;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 255, 102, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hud">
+    <div>Score: <span id="score">0</span></div>
+    <div>Best: <span id="best">0</span></div>
+  </div>
+  <canvas id="canvas" width="440" height="440"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const bestEl = document.getElementById('best');
+
+    const GRID_SIZE = 22;
+    const CELL_SIZE = canvas.width / GRID_SIZE;
+    const DIRS = [
+      { x: 0, y: -1 },
+      { x: 1, y: 0 },
+      { x: 0, y: 1 },
+      { x: -1, y: 0 }
+    ];
+
+    let snake = [];
+    let food = { x: 0, y: 0 };
+    let score = 0;
+    let bestScore = 0;
+
+    function resetGame() {
+      snake = [
+        { x: 5, y: 11 },
+        { x: 4, y: 11 },
+        { x: 3, y: 11 }
+      ];
+      score = 0;
+      scoreEl.textContent = score;
+      spawnFood();
+    }
+
+    function spawnFood() {
+      const occupied = new Set(snake.map(segment => `${segment.x},${segment.y}`));
+      const available = [];
+      for (let x = 0; x < GRID_SIZE; x++) {
+        for (let y = 0; y < GRID_SIZE; y++) {
+          if (!occupied.has(`${x},${y}`)) available.push({ x, y });
+        }
+      }
+      if (available.length > 0) {
+        food = available[Math.floor(Math.random() * available.length)];
+      }
+    }
+
+    function isSafe(cell, bodySet) {
+      return (
+        cell.x >= 0 &&
+        cell.x < GRID_SIZE &&
+        cell.y >= 0 &&
+        cell.y < GRID_SIZE &&
+        !bodySet.has(`${cell.x},${cell.y}`)
+      );
+    }
+
+    // Breadth-First Search to find the shortest path to food
+    function findPath(start, target, bodySet) {
+      const queue = [[start]];
+      const visited = new Set([`${start.x},${start.y}`]);
+
+      while (queue.length > 0) {
+        const path = queue.shift();
+        const current = path[path.length - 1];
+
+        if (current.x === target.x && current.y === target.y) {
+          return path;
+        }
+
+        for (const dir of DIRS) {
+          const next = { x: current.x + dir.x, y: current.y + dir.y };
+          const key = `${next.x},${next.y}`;
+
+          if (isSafe(next, bodySet) && !visited.has(key)) {
+            visited.add(key);
+            queue.push([...path, next]);
+          }
+        }
+      }
+      return null;
+    }
+
+    // Measures open space reachable from a given cell
+    function countFreeSpaces(start, bodySet) {
+      const queue = [start];
+      const visited = new Set([`${start.x},${start.y}`]);
+      let count = 0;
+
+      while (queue.length > 0) {
+        const current = queue.shift();
+        count++;
+
+        for (const dir of DIRS) {
+          const next = { x: current.x + dir.x, y: current.y + dir.y };
+          const key = `${next.x},${next.y}`;
+
+          if (isSafe(next, bodySet) && !visited.has(key)) {
+            visited.add(key);
+            queue.push(next);
+          }
+        }
+      }
+      return count;
+    }
+
+    function getNextStep() {
+      const head = snake[0];
+      // Tail will move away on next step, exclude last piece unless food is eaten
+      const bodySet = new Set(
+        snake.slice(0, -1).map(segment => `${segment.x},${segment.y}`)
+      );
+
+      const path = findPath(head, food, bodySet);
+
+      if (path && path.length > 1) {
+        return path[1];
+      }
+
+      // Fallback: Pick safe move with maximum accessible space to survive
+      let bestMove = null;
+      let maxSpace = -1;
+
+      for (const dir of DIRS) {
+        const neighbor = { x: head.x + dir.x, y: head.y + dir.y };
+        if (isSafe(neighbor, bodySet)) {
+          const space = countFreeSpaces(neighbor, bodySet);
+          if (space > maxSpace) {
+            maxSpace = space;
+            bestMove = neighbor;
+          }
+        }
+      }
+
+      return bestMove;
+    }
+
+    function update() {
+      const nextStep = getNextStep();
+
+      if (!nextStep) {
+        resetGame();
+        return;
+      }
+
+      snake.unshift(nextStep);
+
+      if (nextStep.x === food.x && nextStep.y === food.y) {
+        score++;
+        scoreEl.textContent = score;
+        if (score > bestScore) {
+          bestScore = score;
+          bestEl.textContent = bestScore;
+        }
+        spawnFood();
+      } else {
+        snake.pop();
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw glowing red food
+      ctx.save();
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#ff2255';
+      ctx.fillStyle = '#ff2255';
+      ctx.beginPath();
+      ctx.arc(
+        food.x * CELL_SIZE + CELL_SIZE / 2,
+        food.y * CELL_SIZE + CELL_SIZE / 2,
+        CELL_SIZE / 2.6,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+      ctx.restore();
+
+      // Draw glowing neon green snake
+      ctx.save();
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = '#00ff66';
+      snake.forEach((part, index) => {
+        ctx.fillStyle = index === 0 ? '#39ff8f' : '#00ff66';
+        ctx.fillRect(
+          part.x * CELL_SIZE + 1.5,
+          part.y * CELL_SIZE + 1.5,
+          CELL_SIZE - 3,
+          CELL_SIZE - 3
+        );
+      });
+      ctx.restore();
+    }
+
+    function loop() {
+      update();
+      draw();
+    }
+
+    resetGame();
+    setInterval(loop, 70);
+  </script>
+</body>
+</html>

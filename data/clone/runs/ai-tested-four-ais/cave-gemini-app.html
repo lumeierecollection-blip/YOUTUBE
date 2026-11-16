@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autonomous Cave Flyer</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a14;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+    #hud {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      color: #00ffcc;
+      text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+      font-size: 20px;
+      letter-spacing: 2px;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="hud">DISTANCE: <span id="dist">0</span> m</div>
+  <canvas id="game"></canvas>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const distEl = document.getElementById('dist');
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Terrain parameters
+    const step = 16;
+    const speed = 5;
+    let distance = 0;
+    const slices = [];
+
+    // Procedural noise state
+    let tMid = 0;
+    let tGap = 0;
+
+    function createSlice(x) {
+      tMid += 0.018;
+      tGap += 0.012;
+
+      // Organic cave path variation using multi-octave sines
+      const midRatio = 0.5 + Math.sin(tMid) * 0.22 + Math.sin(tMid * 2.3) * 0.12;
+      const gap = Math.max(130, Math.min(260, 180 + Math.sin(tGap) * 60 + Math.cos(tGap * 1.7) * 30));
+
+      const centerY = midRatio * height;
+      const topY = Math.max(20, centerY - gap / 2);
+      const bottomY = Math.min(height - 20, centerY + gap / 2);
+
+      return { x, topY, bottomY };
+    }
+
+    // Initialize cave profile across screen
+    for (let x = 0; x <= width + step * 2; x += step) {
+      slices.push(createSlice(x));
+    }
+
+    // Autonomous Ship
+    const ship = {
+      x: 160,
+      y: height / 2,
+      vy: 0,
+      angle: 0,
+      particles: []
+    };
+
+    function getTerrainAt(targetX) {
+      for (let i = 0; i < slices.length - 1; i++) {
+        if (slices[i].x <= targetX && slices[i + 1].x >= targetX) {
+          const ratio = (targetX - slices[i].x) / (slices[i + 1].x - slices[i].x);
+          return {
+            topY: slices[i].topY + (slices[i + 1].topY - slices[i].topY) * ratio,
+            bottomY: slices[i].bottomY + (slices[i + 1].bottomY - slices[i].bottomY) * ratio
+          };
+        }
+      }
+      return { topY: 100, bottomY: height - 100 };
+    }
+
+    function update() {
+      distance += speed * 0.1;
+      distEl.textContent = Math.floor(distance);
+
+      // Scroll terrain
+      for (let i = 0; i < slices.length; i++) {
+        slices[i].x -= speed;
+      }
+      while (slices.length && slices[0].x < -step) {
+        slices.shift();
+      }
+      const lastX = slices[slices.length - 1].x;
+      slices.push(createSlice(lastX + step));
+
+      // Ship Autopilot AI: Look ahead along the corridor
+      const lookAheadDist = 120;
+      const future = getTerrainAt(ship.x + lookAheadDist);
+      const current = getTerrainAt(ship.x);
+      
+      const targetY = (future.topY + future.bottomY) / 2;
+      const centerForce = (targetY - ship.y) * 0.055;
+
+      // Emergency proximity repulsion
+      let avoidForce = 0;
+      const margin = 35;
+      if (ship.y - current.topY < margin) {
+        avoidForce += (margin - (ship.y - current.topY)) * 0.12;
+      }
+      if (current.bottomY - ship.y < margin) {
+        avoidForce -= (margin - (current.bottomY - ship.y)) * 0.12;
+      }
+
+      ship.vy += centerForce + avoidForce;
+      ship.vy *= 0.88; // Damping
+      ship.y += ship.vy;
+
+      // Safety clamp to ensure survival
+      ship.y = Math.max(current.topY + 14, Math.min(current.bottomY - 14, ship.y));
+      ship.angle = ship.vy * 0.04;
+
+      // Thruster exhaust particles
+      ship.particles.push({
+        x: ship.x - 14,
+        y: ship.y,
+        vx: -speed - Math.random() * 3,
+        vy: (Math.random() - 0.5) * 1.5,
+        life: 1.0,
+        radius: 2 + Math.random() * 2
+      });
+
+      for (let i = ship.particles.length - 1; i >= 0; i--) {
+        const p = ship.particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.04;
+        if (p.life <= 0) ship.particles.splice(i, 1);
+      }
+    }
+
+    function render() {
+      ctx.fillStyle = '#070913';
+      ctx.fillRect(0, 0, width, height);
+
+      // Draw Ceiling
+      ctx.fillStyle = '#111728';
+      ctx.strokeStyle = '#00e5ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(slices[0].x, 0);
+      for (const s of slices) ctx.lineTo(s.x, s.topY);
+      ctx.lineTo(slices[slices.length - 1].x, 0);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Draw Floor
+      ctx.beginPath();
+      ctx.moveTo(slices[0].x, height);
+      for (const s of slices) ctx.lineTo(s.x, s.bottomY);
+      ctx.lineTo(slices[slices.length - 1].x, height);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Draw Thruster Trail
+      for (const p of ship.particles) {
+        ctx.fillStyle = `rgba(0, 255, 204, ${p.life})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius * p.life, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw Ship
+      ctx.save();
+      ctx.translate(ship.x, ship.y);
+      ctx.rotate(ship.angle);
+
+      // Cockpit glow
+      ctx.shadowColor = '#00ffcc';
+      ctx.shadowBlur = 10;
+
+      // Hull
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(14, 0);
+      ctx.lineTo(-12, -7);
+      ctx.lineTo(-6, 0);
+      ctx.lineTo(-12, 7);
+      ctx.closePath();
+      ctx.fill();
+
+      // Accent stripe
+      ctx.fillStyle = '#ff0055';
+      ctx.beginPath();
+      ctx.moveTo(2, -2);
+      ctx.lineTo(-6, -4);
+      ctx.lineTo(-6, 4);
+      ctx.lineTo(2, 2);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function loop() {
+      update();
+      render();
+      requestAnimationFrame(loop);
+    }
+    loop();
+  </script>
+</body>
+</html>

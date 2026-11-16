@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>City Skyline Day-Night Cycle</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; overflow: hidden; background: #000; }
+    canvas { display: block; width: 100vw; height: 100vh; }
+  </style>
+</head>
+<body>
+<canvas id="skyline"></canvas>
+<script>
+  const canvas = document.getElementById('skyline');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  const stars = [];
+  const buildingsBack = [];
+  const buildingsFront = [];
+
+  function rand(min, max) { return Math.random() * (max - min) + min; }
+
+  function init() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    stars.length = 0;
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: rand(0, width),
+        y: rand(0, height * 0.65),
+        size: rand(0.8, 2.2),
+        twinkle: rand(0, Math.PI * 2)
+      });
+    }
+
+    buildingsBack.length = 0;
+    let bx = -20;
+    while (bx < width + 40) {
+      const bw = rand(50, 110);
+      const bh = rand(height * 0.25, height * 0.55);
+      buildingsBack.push({ x: bx, w: bw, h: bh });
+      bx += bw - rand(5, 15);
+    }
+
+    buildingsFront.length = 0;
+    bx = -20;
+    while (bx < width + 40) {
+      const bw = rand(60, 130);
+      const bh = rand(height * 0.15, height * 0.45);
+      const windows = [];
+      const cols = Math.floor(bw / 14);
+      const rows = Math.floor(bh / 18);
+      for (let r = 1; r < rows - 1; r++) {
+        for (let c = 1; c < cols - 1; c++) {
+          if (Math.random() > 0.3) {
+            windows.push({
+              relX: (c / cols) * bw,
+              relY: (r / rows) * bh,
+              w: 5,
+              h: 7,
+              warmth: Math.random() > 0.4 ? '255, 214, 110' : '180, 230, 255'
+            });
+          }
+        }
+      }
+      buildingsFront.push({
+        x: bx, w: bw, h: bh,
+        windows,
+        hasAntenna: Math.random() > 0.6
+      });
+      bx += bw - rand(5, 15);
+    }
+  }
+
+  window.addEventListener('resize', init);
+  init();
+
+  const skyKeyframes = [
+    { t: 0.00, top: [2, 5, 20],     bottom: [10, 20, 45] },    // Midnight
+    { t: 0.20, top: [40, 25, 70],   bottom: [255, 120, 70] },  // Dawn
+    { t: 0.35, top: [30, 120, 210], bottom: [135, 206, 235] },// Morning
+    { t: 0.50, top: [20, 100, 200], bottom: [160, 220, 255] },// Noon
+    { t: 0.70, top: [50, 20, 60],   bottom: [255, 90, 50] },   // Dusk / Sunset
+    { t: 0.85, top: [5, 10, 30],    bottom: [25, 15, 45] },    // Twilight
+    { t: 1.00, top: [2, 5, 20],     bottom: [10, 20, 45] }     // Midnight loop
+  ];
+
+  function interpolateColor(c1, c2, factor) {
+    return [
+      Math.round(c1[0] + (c2[0] - c1[0]) * factor),
+      Math.round(c1[1] + (c2[1] - c1[1]) * factor),
+      Math.round(c1[2] + (c2[2] - c1[2]) * factor)
+    ];
+  }
+
+  function getSkyColors(progress) {
+    let i = 0;
+    while (i < skyKeyframes.length - 1 && skyKeyframes[i + 1].t < progress) i++;
+    const k1 = skyKeyframes[i];
+    const k2 = skyKeyframes[i + 1];
+    const factor = (progress - k1.t) / (k2.t - k1.t);
+    return {
+      top: interpolateColor(k1.top, k2.top, factor),
+      bottom: interpolateColor(k1.bottom, k2.bottom, factor)
+    };
+  }
+
+  function render(now) {
+    const progress = (now % 10000) / 10000;
+    const sky = getSkyColors(progress);
+
+    // Sky background
+    const skyGrad = ctx.createLinearGradient(0, 0, 0, height);
+    skyGrad.addColorStop(0, `rgb(${sky.top.join(',')})`);
+    skyGrad.addColorStop(1, `rgb(${sky.bottom.join(',')})`);
+    ctx.fillStyle = skyGrad;
+    ctx.fillRect(0, 0, width, height);
+
+    // Day/Night brightness factors
+    // Night is strongest around 0.0 and 1.0, Day is around 0.5
+    const nightFactor = Math.max(0, Math.min(1, (Math.cos(progress * Math.PI * 2) + 0.6) / 1.6));
+    const dayFactor = 1 - nightFactor;
+
+    // Stars
+    if (nightFactor > 0.05) {
+      ctx.save();
+      for (const s of stars) {
+        const twinkle = 0.6 + 0.4 * Math.sin(now * 0.005 + s.twinkle);
+        ctx.fillStyle = `rgba(255, 255, 255, ${nightFactor * twinkle})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    // Celestial movement (orbit circle)
+    const orbitCenterX = width * 0.5;
+    const orbitCenterY = height * 0.85;
+    const orbitRadiusX = width * 0.48;
+    const orbitRadiusY = height * 0.68;
+
+    // Sun: peaks at progress = 0.5 (top)
+    const sunAngle = (progress - 0.5) * Math.PI * 2 - Math.PI / 2;
+    const sunX = orbitCenterX + Math.cos(sunAngle) * orbitRadiusX;
+    const sunY = orbitCenterY + Math.sin(sunAngle) * orbitRadiusY;
+
+    // Moon: peaks at progress = 0.0 / 1.0 (opposite the sun)
+    const moonAngle = sunAngle + Math.PI;
+    const moonX = orbitCenterX + Math.cos(moonAngle) * orbitRadiusX;
+    const moonY = orbitCenterY + Math.sin(moonAngle) * orbitRadiusY;
+
+    // Draw Sun
+    if (sunY < height) {
+      ctx.save();
+      const sunGrad = ctx.createRadialGradient(sunX, sunY, 15, sunX, sunY, 70);
+      sunGrad.addColorStop(0, 'rgba(255, 250, 200, 1)');
+      sunGrad.addColorStop(0.3, 'rgba(255, 200, 50, 0.8)');
+      sunGrad.addColorStop(1, 'rgba(255, 140, 0, 0)');
+      ctx.fillStyle = sunGrad;
+      ctx.beginPath();
+      ctx.arc(sunX, sunY, 70, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#fffdf0';
+      ctx.beginPath();
+      ctx.arc(sunX, sunY, 24, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Draw Moon
+    if (moonY < height) {
+      ctx.save();
+      const moonGlow = ctx.createRadialGradient(moonX, moonY, 10, moonX, moonY, 45);
+      moonGlow.addColorStop(0, 'rgba(220, 235, 255, 0.6)');
+      moonGlow.addColorStop(1, 'rgba(200, 220, 255, 0)');
+      ctx.fillStyle = moonGlow;
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, 45, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Crescent moon
+      ctx.fillStyle = '#f0f5ff';
+      ctx.beginPath();
+      ctx.arc(moonX, moonY, 20, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(moonX + 8, moonY - 5, 16, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Distant background skyline
+    const bgR = Math.round(15 + 30 * dayFactor);
+    const bgG = Math.round(18 + 45 * dayFactor);
+    const bgB = Math.round(35 + 75 * dayFactor);
+    ctx.fillStyle = `rgb(${bgR}, ${bgG}, ${bgB})`;
+    for (const b of buildingsBack) {
+      ctx.fillRect(b.x, height - b.h, b.w, b.h);
+    }
+
+    // Foreground buildings
+    const fgR = Math.round(8 + 20 * dayFactor);
+    const fgG = Math.round(10 + 25 * dayFactor);
+    const fgB = Math.round(20 + 35 * dayFactor);
+    ctx.fillStyle = `rgb(${fgR}, ${fgG}, ${fgB})`;
+
+    for (const b of buildingsFront) {
+      const by = height - b.h;
+      ctx.fillStyle = `rgb(${fgR}, ${fgG}, ${fgB})`;
+      ctx.fillRect(b.x, by, b.w, b.h);
+
+      // Antenna with blinking light
+      if (b.hasAntenna) {
+        ctx.strokeStyle = `rgb(${fgR}, ${fgG}, ${fgB})`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(b.x + b.w / 2, by);
+        ctx.lineTo(b.x + b.w / 2, by - 25);
+        ctx.stroke();
+
+        const blink = Math.sin(now * 0.008) > 0.1;
+        if (blink) {
+          ctx.fillStyle = 'rgba(255, 50, 50, 0.9)';
+          ctx.beginPath();
+          ctx.arc(b.x + b.w / 2, by - 26, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Windows
+      for (const w of b.windows) {
+        // Day window appearance: dim reflection
+        // Night window appearance: glowing warm light
+        if (nightFactor > 0.15) {
+          ctx.fillStyle = `rgba(${w.warmth}, ${nightFactor * 0.9})`;
+        } else {
+          ctx.fillStyle = `rgba(180, 210, 240, ${0.15 + dayFactor * 0.15})`;
+        }
+        ctx.fillRect(b.x + w.relX, by + w.relY, w.w, w.h);
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
+</script>
+</body>
+</html>
