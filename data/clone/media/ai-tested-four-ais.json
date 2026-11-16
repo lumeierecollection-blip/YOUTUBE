@@ -18,21 +18,21 @@
    "app_seconds": 10
   },
   {
-   "name": "snake-kimi",
+   "name": "snake-qwen",
    "provider": "groq",
    "prefer": [
-    "kimi"
+    "qwen3.8-27b",
+    "qwen"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "snake-llama",
+   "name": "snake-minimax",
    "provider": "groq",
    "prefer": [
-    "llama-4-maverick",
-    "llama-4",
-    "llama-3.3-70b"
+    "minimax-m2.7",
+    "minimax"
    ],
    "prompt": "Build a complete Snake game in a single HTML file. Dark background, neon green snake, red food, a score counter. The snake must steer itself toward the food automatically so it plays on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
@@ -54,21 +54,21 @@
    "app_seconds": 10
   },
   {
-   "name": "solar-kimi",
+   "name": "solar-qwen",
    "provider": "groq",
    "prefer": [
-    "kimi"
+    "qwen3.8-27b",
+    "qwen"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "solar-llama",
+   "name": "solar-minimax",
    "provider": "groq",
    "prefer": [
-    "llama-4-maverick",
-    "llama-4",
-    "llama-3.3-70b"
+    "minimax-m2.7",
+    "minimax"
    ],
    "prompt": "Make an animated solar system in a single HTML file using canvas: the Sun and the eight planets orbiting at different speeds, each labelled, with a starfield background. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
@@ -90,21 +90,21 @@
    "app_seconds": 10
   },
   {
-   "name": "hexagon-kimi",
+   "name": "hexagon-qwen",
    "provider": "groq",
    "prefer": [
-    "kimi"
+    "qwen3.8-27b",
+    "qwen"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "hexagon-llama",
+   "name": "hexagon-minimax",
    "provider": "groq",
    "prefer": [
-    "llama-4-maverick",
-    "llama-4",
-    "llama-3.3-70b"
+    "minimax-m2.7",
+    "minimax"
    ],
    "prompt": "In a single HTML file using canvas, show 10 coloured balls bouncing inside a slowly spinning hexagon. The balls must be affected by gravity and friction and must bounce realistically off the rotating walls and each other. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
@@ -126,21 +126,21 @@
    "app_seconds": 10
   },
   {
-   "name": "cave-kimi",
+   "name": "cave-qwen",
    "provider": "groq",
    "prefer": [
-    "kimi"
+    "qwen3.8-27b",
+    "qwen"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "cave-llama",
+   "name": "cave-minimax",
    "provider": "groq",
    "prefer": [
-    "llama-4-maverick",
-    "llama-4",
-    "llama-3.3-70b"
+    "minimax-m2.7",
+    "minimax"
    ],
    "prompt": "Make a side-scrolling game in a single HTML file: a small ship flies through a scrolling cave whose ceiling and floor change shape. The ship must steer itself to avoid the walls, and a distance counter must go up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
@@ -162,21 +162,21 @@
    "app_seconds": 10
   },
   {
-   "name": "city-kimi",
+   "name": "city-qwen",
    "provider": "groq",
    "prefer": [
-    "kimi"
+    "qwen3.8-27b",
+    "qwen"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
   },
   {
-   "name": "city-llama",
+   "name": "city-minimax",
    "provider": "groq",
    "prefer": [
-    "llama-4-maverick",
-    "llama-4",
-    "llama-3.3-70b"
+    "minimax-m2.7",
+    "minimax"
    ],
    "prompt": "In a single HTML file using canvas, draw a city skyline that runs through a full day-night cycle every 10 seconds: the sky colour changes, the sun and moon move, stars appear at night and building windows light up. It must run on its own with no input. Reply with the whole file in one ```html code block, then one sentence on how it works.",
    "app_seconds": 10
