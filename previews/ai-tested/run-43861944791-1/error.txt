@@ -1,0 +1,6 @@
+Error: node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-43861944791-1/preview.mp4.job.json failed (exit 1)
+    at run (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:21:29)
+    at Object.renderComposition (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/lib.mjs:52:7)
+    at runFixedShort (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/production/fixed-short.mjs:55:23)
+    at async Module.fourAisPreview (file:///home/runner/work/YOUTUBE/YOUTUBE/platform/channels/ai-tested/fourais-preview.mjs:44:18)
+    at async file:///home/runner/work/YOUTUBE/YOUTUBE/platform/preview/run.mjs:20:3

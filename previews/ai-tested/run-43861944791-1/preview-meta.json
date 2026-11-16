@@ -2,10 +2,11 @@
   "channel": "ai-tested",
   "production_run": "run-43861944791-1",
   "agent": "agent-ai-tested",
-  "stage": "visual_complete",
-  "status": "ok",
-  "timestamp": "2026-11-16T11:58:11.310Z",
+  "stage": "failed",
+  "status": "failed",
+  "timestamp": "2026-11-16T11:58:29.920Z",
   "branch": "preview/ai-tested-four-ais-short",
   "commit": "66bb2731b6c24fe1262b4cba05c215d861d1dd7b",
-  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43861944791#artifacts"
+  "artifact_url": "https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43861944791#artifacts",
+  "error": "node render-channel-composition.mjs /home/runner/work/YOUTUBE/YOUTUBE/output/previews/ai-tested/run-43861944791-1/preview.mp4.job.json failed (exit 1)"
 }
