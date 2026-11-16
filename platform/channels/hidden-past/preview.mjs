@@ -154,6 +154,7 @@ function fixedResult(SENTENCES, claims, topic, key, blueprint) {
 }
 
 export default async function preview({ key, runId, outDir, tools, entry }) {
+  if (/kaliningrad/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./vox-kg-preview.mjs")).default({ key, runId, tools });
   if (/capone/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./vox-capone-preview.mjs")).default({ key, runId, tools });
   if (/crime/.test(process.env.GITHUB_REF_NAME || "") && /beats/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./vox-crime-preview.mjs")).default({ key, runId, tools });
   if (/hippo/.test(process.env.GITHUB_REF_NAME || "") && /beats/.test(process.env.GITHUB_REF_NAME || "")) return (await import("./vox-beats-preview.mjs")).default({ key, runId, tools });
