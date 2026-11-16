@@ -1,0 +1,672 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "counting-clock-and-photo-hook",
+      "objective": "Open on the counted 18:37 on the pitch with a labelled photograph of Oyarzabal",
+      "background": "white editorial page, club blue",
+      "from": 0,
+      "to": 119,
+      "start_s": 0,
+      "end_s": 3.966666666666667
+    },
+    {
+      "id": "s2",
+      "kind": "score",
+      "treatment": "match-timeline-two-goals",
+      "objective": "Draw the match clock with the 47th and 73rd minute goals and the score",
+      "background": "white card",
+      "from": 119,
+      "to": 230,
+      "start_s": 3.966666666666667,
+      "end_s": 7.666666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "palmer",
+      "treatment": "palmer-on-to-goal-on-the-pitch-board",
+      "objective": "Show Palmer's 2:15 from coming on to scoring, then the recorded pass and shot on the pitch board",
+      "background": "white card, green pitch board",
+      "from": 230,
+      "to": 346,
+      "start_s": 7.666666666666667,
+      "end_s": 11.533333333333333
+    },
+    {
+      "id": "s4",
+      "kind": "oya",
+      "treatment": "oyarzabal-comes-on",
+      "objective": "Show the substitution at 67:19 on the match clock and Oyarzabal's photograph",
+      "background": "white card",
+      "from": 346,
+      "to": 497,
+      "start_s": 11.533333333333333,
+      "end_s": 16.566666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "winner",
+      "treatment": "winner-on-the-pitch-board",
+      "objective": "Draw Cucurella's pass and Oyarzabal's shot at their recorded locations on the pitch board with the xG",
+      "background": "white card, green pitch board",
+      "from": 497,
+      "to": 758,
+      "start_s": 16.566666666666666,
+      "end_s": 25.266666666666666
+    },
+    {
+      "id": "s6",
+      "kind": "gap",
+      "treatment": "eighteen-thirty-seven-bar",
+      "objective": "Show the 18:37 between coming on and scoring as a bar on the match clock",
+      "background": "white card",
+      "from": 758,
+      "to": 851,
+      "start_s": 25.266666666666666,
+      "end_s": 28.366666666666667
+    },
+    {
+      "id": "s7",
+      "kind": "two",
+      "treatment": "two-of-three-goals",
+      "objective": "Show the three goals with the two substitutes' goals marked and the question to the viewer",
+      "background": "white card",
+      "from": 851,
+      "to": 955,
+      "start_s": 28.366666666666667,
+      "end_s": 31.833333333333332
+    },
+    {
+      "id": "s8",
+      "kind": "cta",
+      "treatment": "full-breakdown-pointer",
+      "objective": "Point to the full breakdown on the channel, spoken and on screen",
+      "background": "blue block",
+      "from": 955,
+      "to": 1013,
+      "start_s": 31.833333333333332,
+      "end_s": 33.766666666666666
+    },
+    {
+      "id": "s9",
+      "kind": "loop",
+      "treatment": "loop-back-to-the-clock",
+      "objective": "Repeat the opening clock and question so a replay is seamless",
+      "background": "white editorial page, club blue",
+      "from": 1013,
+      "to": 1145,
+      "start_s": 33.766666666666666,
+      "end_s": 38.166666666666664
+    }
+  ],
+  "captions": [
+    {
+      "text": "How does a substitute win",
+      "from": 0,
+      "to": 47,
+      "words": [
+        {
+          "text": "How",
+          "from": 0
+        },
+        {
+          "text": "does",
+          "from": 13
+        },
+        {
+          "text": "a",
+          "from": 18
+        },
+        {
+          "text": "substitute",
+          "from": 21
+        },
+        {
+          "text": "win",
+          "from": 36
+        }
+      ]
+    },
+    {
+      "text": "a final in under nineteen",
+      "from": 47,
+      "to": 85,
+      "words": [
+        {
+          "text": "a",
+          "from": 47
+        },
+        {
+          "text": "final",
+          "from": 50
+        },
+        {
+          "text": "in",
+          "from": 61
+        },
+        {
+          "text": "under",
+          "from": 67
+        },
+        {
+          "text": "nineteen",
+          "from": 73
+        }
+      ]
+    },
+    {
+      "text": "minutes",
+      "from": 91,
+      "to": 106,
+      "words": [
+        {
+          "text": "minutes",
+          "from": 91
+        }
+      ]
+    },
+    {
+      "text": "Spain led",
+      "from": 119,
+      "to": 139,
+      "words": [
+        {
+          "text": "Spain",
+          "from": 119
+        },
+        {
+          "text": "led",
+          "from": 126
+        }
+      ]
+    },
+    {
+      "text": "then England equalised in the",
+      "from": 149,
+      "to": 188,
+      "words": [
+        {
+          "text": "then",
+          "from": 149
+        },
+        {
+          "text": "England",
+          "from": 149
+        },
+        {
+          "text": "equalised",
+          "from": 158
+        },
+        {
+          "text": "in",
+          "from": 180
+        },
+        {
+          "text": "the",
+          "from": 185
+        }
+      ]
+    },
+    {
+      "text": "seventy-third minute",
+      "from": 188,
+      "to": 216,
+      "words": [
+        {
+          "text": "seventy-third",
+          "from": 188
+        },
+        {
+          "text": "minute",
+          "from": 208
+        }
+      ]
+    },
+    {
+      "text": "Cole Palmer a substitute",
+      "from": 230,
+      "to": 275,
+      "words": [
+        {
+          "text": "Cole",
+          "from": 230
+        },
+        {
+          "text": "Palmer",
+          "from": 237
+        },
+        {
+          "text": "a",
+          "from": 258
+        },
+        {
+          "text": "substitute",
+          "from": 261
+        }
+      ]
+    },
+    {
+      "text": "scored two minutes after coming",
+      "from": 287,
+      "to": 325,
+      "words": [
+        {
+          "text": "scored",
+          "from": 287
+        },
+        {
+          "text": "two",
+          "from": 290
+        },
+        {
+          "text": "minutes",
+          "from": 301
+        },
+        {
+          "text": "after",
+          "from": 309
+        },
+        {
+          "text": "coming",
+          "from": 315
+        }
+      ]
+    },
+    {
+      "text": "on",
+      "from": 325,
+      "to": 334,
+      "words": [
+        {
+          "text": "on",
+          "from": 325
+        }
+      ]
+    },
+    {
+      "text": "Spain's answer",
+      "from": 346,
+      "to": 370,
+      "words": [
+        {
+          "text": "Spain's",
+          "from": 346
+        },
+        {
+          "text": "answer",
+          "from": 363
+        }
+      ]
+    },
+    {
+      "text": "substitute Mikel Oyarzabal",
+      "from": 385,
+      "to": 435,
+      "words": [
+        {
+          "text": "substitute",
+          "from": 385
+        },
+        {
+          "text": "Mikel",
+          "from": 400
+        },
+        {
+          "text": "Oyarzabal",
+          "from": 416
+        }
+      ]
+    },
+    {
+      "text": "on in the sixty-seventh",
+      "from": 449,
+      "to": 482,
+      "words": [
+        {
+          "text": "on",
+          "from": 449
+        },
+        {
+          "text": "in",
+          "from": 454
+        },
+        {
+          "text": "the",
+          "from": 463
+        },
+        {
+          "text": "sixty-seventh",
+          "from": 466
+        }
+      ]
+    },
+    {
+      "text": "minute Cucurella",
+      "from": 491,
+      "to": 516,
+      "words": [
+        {
+          "text": "minute",
+          "from": 491
+        },
+        {
+          "text": "Cucurella",
+          "from": 497
+        }
+      ]
+    },
+    {
+      "text": "passed along the ground",
+      "from": 530,
+      "to": 563,
+      "words": [
+        {
+          "text": "passed",
+          "from": 530
+        },
+        {
+          "text": "along",
+          "from": 538
+        },
+        {
+          "text": "the",
+          "from": 547
+        },
+        {
+          "text": "ground",
+          "from": 554
+        }
+      ]
+    },
+    {
+      "text": "and Oyarzabal",
+      "from": 571,
+      "to": 588,
+      "words": [
+        {
+          "text": "and",
+          "from": 571
+        },
+        {
+          "text": "Oyarzabal",
+          "from": 573
+        }
+      ]
+    },
+    {
+      "text": "scored in the eighty-sixth StatsBomb's",
+      "from": 596,
+      "to": 652,
+      "words": [
+        {
+          "text": "scored",
+          "from": 596
+        },
+        {
+          "text": "in",
+          "from": 604
+        },
+        {
+          "text": "the",
+          "from": 612
+        },
+        {
+          "text": "eighty-sixth",
+          "from": 615
+        },
+        {
+          "text": "StatsBomb's",
+          "from": 632
+        }
+      ]
+    },
+    {
+      "text": "model rated the chance at",
+      "from": 666,
+      "to": 707,
+      "words": [
+        {
+          "text": "model",
+          "from": 666
+        },
+        {
+          "text": "rated",
+          "from": 679
+        },
+        {
+          "text": "the",
+          "from": 688
+        },
+        {
+          "text": "chance",
+          "from": 694
+        },
+        {
+          "text": "at",
+          "from": 700
+        }
+      ]
+    },
+    {
+      "text": "point two eight expected goals",
+      "from": 707,
+      "to": 758,
+      "words": [
+        {
+          "text": "point",
+          "from": 707
+        },
+        {
+          "text": "two",
+          "from": 713
+        },
+        {
+          "text": "eight",
+          "from": 719
+        },
+        {
+          "text": "expected",
+          "from": 731
+        },
+        {
+          "text": "goals",
+          "from": 745
+        }
+      ]
+    },
+    {
+      "text": "Eighteen",
+      "from": 758,
+      "to": 776,
+      "words": [
+        {
+          "text": "Eighteen",
+          "from": 758
+        }
+      ]
+    },
+    {
+      "text": "minutes after coming on",
+      "from": 787,
+      "to": 838,
+      "words": [
+        {
+          "text": "minutes",
+          "from": 787
+        },
+        {
+          "text": "after",
+          "from": 810
+        },
+        {
+          "text": "coming",
+          "from": 818
+        },
+        {
+          "text": "on",
+          "from": 829
+        }
+      ]
+    },
+    {
+      "text": "Two of the three goals",
+      "from": 851,
+      "to": 881,
+      "words": [
+        {
+          "text": "Two",
+          "from": 851
+        },
+        {
+          "text": "of",
+          "from": 859
+        },
+        {
+          "text": "the",
+          "from": 863
+        },
+        {
+          "text": "three",
+          "from": 867
+        },
+        {
+          "text": "goals",
+          "from": 874
+        }
+      ]
+    },
+    {
+      "text": "in that final came from",
+      "from": 881,
+      "to": 916,
+      "words": [
+        {
+          "text": "in",
+          "from": 881
+        },
+        {
+          "text": "that",
+          "from": 887
+        },
+        {
+          "text": "final",
+          "from": 890
+        },
+        {
+          "text": "came",
+          "from": 901
+        },
+        {
+          "text": "from",
+          "from": 908
+        }
+      ]
+    },
+    {
+      "text": "substitutes",
+      "from": 916,
+      "to": 932,
+      "words": [
+        {
+          "text": "substitutes",
+          "from": 916
+        }
+      ]
+    },
+    {
+      "text": "Full breakdown on our channel",
+      "from": 955,
+      "to": 997,
+      "words": [
+        {
+          "text": "Full",
+          "from": 955
+        },
+        {
+          "text": "breakdown",
+          "from": 961
+        },
+        {
+          "text": "on",
+          "from": 971
+        },
+        {
+          "text": "our",
+          "from": 982
+        },
+        {
+          "text": "channel",
+          "from": 985
+        }
+      ]
+    },
+    {
+      "text": "How does a substitute win",
+      "from": 1013,
+      "to": 1049,
+      "words": [
+        {
+          "text": "How",
+          "from": 1013
+        },
+        {
+          "text": "does",
+          "from": 1016
+        },
+        {
+          "text": "a",
+          "from": 1022
+        },
+        {
+          "text": "substitute",
+          "from": 1025
+        },
+        {
+          "text": "win",
+          "from": 1037
+        }
+      ]
+    },
+    {
+      "text": "a final in under nineteen",
+      "from": 1049,
+      "to": 1091,
+      "words": [
+        {
+          "text": "a",
+          "from": 1049
+        },
+        {
+          "text": "final",
+          "from": 1053
+        },
+        {
+          "text": "in",
+          "from": 1063
+        },
+        {
+          "text": "under",
+          "from": 1073
+        },
+        {
+          "text": "nineteen",
+          "from": 1078
+        }
+      ]
+    },
+    {
+      "text": "minutes",
+      "from": 1097,
+      "to": 1112,
+      "words": [
+        {
+          "text": "minutes",
+          "from": 1097
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1145,
+  "duration_s": 38.166666666666664
+}

@@ -1,0 +1,133 @@
+{
+  "channel": "rival-lines",
+  "production_run": "run-43861880011-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "How does a substitute win a final in under nineteen minutes?",
+      "main_point": "Open on the counted 18:37 on the pitch with a labelled photograph of Oyarzabal",
+      "visual_objective": "Open on the counted 18:37 on the pitch with a labelled photograph of Oyarzabal",
+      "treatment": "counting-clock-and-photo-hook",
+      "background": "white editorial page, club blue",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2"
+      ],
+      "start_s": 0,
+      "end_s": 3.966666666666667
+    },
+    {
+      "scene_id": "s2",
+      "narration": "Spain led, then England equalised in the seventy-third minute.",
+      "main_point": "Draw the match clock with the 47th and 73rd minute goals and the score",
+      "visual_objective": "Draw the match clock with the 47th and 73rd minute goals and the score",
+      "treatment": "match-timeline-two-goals",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "E1"
+      ],
+      "start_s": 3.966666666666667,
+      "end_s": 7.666666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Cole Palmer, a substitute, scored two minutes after coming on.",
+      "main_point": "Show Palmer's 2:15 from coming on to scoring, then the recorded pass and shot on the pitch board",
+      "visual_objective": "Show Palmer's 2:15 from coming on to scoring, then the recorded pass and shot on the pitch board",
+      "treatment": "palmer-on-to-goal-on-the-pitch-board",
+      "background": "white card, green pitch board",
+      "skill": "remotion",
+      "claim_ids": [
+        "E3"
+      ],
+      "start_s": 7.666666666666667,
+      "end_s": 11.533333333333333
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Spain's answer: substitute Mikel Oyarzabal, on in the sixty-seventh minute.",
+      "main_point": "Show the substitution at 67:19 on the match clock and Oyarzabal's photograph",
+      "visual_objective": "Show the substitution at 67:19 on the match clock and Oyarzabal's photograph",
+      "treatment": "oyarzabal-comes-on",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2"
+      ],
+      "start_s": 11.533333333333333,
+      "end_s": 16.566666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "Cucurella passed along the ground, and Oyarzabal scored in the eighty-sixth. StatsBomb's model rated the chance at point two eight expected goals.",
+      "main_point": "Draw Cucurella's pass and Oyarzabal's shot at their recorded locations on the pitch board with the xG",
+      "visual_objective": "Draw Cucurella's pass and Oyarzabal's shot at their recorded locations on the pitch board with the xG",
+      "treatment": "winner-on-the-pitch-board",
+      "background": "white card, green pitch board",
+      "skill": "remotion",
+      "claim_ids": [
+        "E1",
+        "E4",
+        "E5"
+      ],
+      "start_s": 16.566666666666666,
+      "end_s": 25.266666666666666
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Eighteen minutes after coming on.",
+      "main_point": "Show the 18:37 between coming on and scoring as a bar on the match clock",
+      "visual_objective": "Show the 18:37 between coming on and scoring as a bar on the match clock",
+      "treatment": "eighteen-thirty-seven-bar",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2"
+      ],
+      "start_s": 25.266666666666666,
+      "end_s": 28.366666666666667
+    },
+    {
+      "scene_id": "s7",
+      "narration": "Two of the three goals in that final came from substitutes.",
+      "main_point": "Show the three goals with the two substitutes' goals marked and the question to the viewer",
+      "visual_objective": "Show the three goals with the two substitutes' goals marked and the question to the viewer",
+      "treatment": "two-of-three-goals",
+      "background": "white card",
+      "skill": "remotion",
+      "claim_ids": [
+        "E6"
+      ],
+      "start_s": 28.366666666666667,
+      "end_s": 31.833333333333332
+    },
+    {
+      "scene_id": "s8",
+      "narration": "Full breakdown on our channel.",
+      "main_point": "Point to the full breakdown on the channel, spoken and on screen",
+      "visual_objective": "Point to the full breakdown on the channel, spoken and on screen",
+      "treatment": "full-breakdown-pointer",
+      "background": "blue block",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 31.833333333333332,
+      "end_s": 33.766666666666666
+    },
+    {
+      "scene_id": "s9",
+      "narration": "How does a substitute win a final in under nineteen minutes?",
+      "main_point": "Repeat the opening clock and question so a replay is seamless",
+      "visual_objective": "Repeat the opening clock and question so a replay is seamless",
+      "treatment": "loop-back-to-the-clock",
+      "background": "white editorial page, club blue",
+      "skill": "remotion",
+      "claim_ids": [
+        "E2"
+      ],
+      "start_s": 33.766666666666666,
+      "end_s": 38.166666666666664
+    }
+  ]
+}
