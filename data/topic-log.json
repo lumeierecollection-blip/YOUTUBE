@@ -3072,9 +3072,14 @@
           "topic": "Sydney Western Harbour Tunnel 7.4 Billion Dollar Cavern Excavation",
           "slug": "western-harbour-tunnel-cavern-excavation-sydney",
           "reserved_at": "2026-11-15T15:47:18.643Z"
+        },
+        {
+          "topic": "AAIB Anniversary Statement on EC135 P1 Helicopter Tail Rotor Separation",
+          "slug": "aaib-ec135-helicopter-tail-rotor-blade-separation",
+          "reserved_at": "2026-11-16T18:53:03.277Z"
         }
       ],
-      "last_generated": "2026-11-15T15:47:18.643Z"
+      "last_generated": "2026-11-16T18:53:03.277Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
