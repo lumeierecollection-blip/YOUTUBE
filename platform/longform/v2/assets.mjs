@@ -91,6 +91,9 @@ export const ASSETS = {
   ],
   "rival-lines": [
     // Penalty shoot-out episode (rival-lines-shootout-first)
+    ["ps-kane-2018-a", "File:FWC 2018 - Round of 16 - COL v ENG - Photo 098.jpg", "Harry Kane before his penalty kick in the Colombia v England shoot-out, 2018 World Cup round of 16, 3 July 2018"],
+    ["ps-kane-2018-b", "File:FWC 2018 - Round of 16 - COL v ENG - Photo 097.jpg", "Harry Kane before his penalty kick in the Colombia v England shoot-out, 2018 World Cup round of 16, 3 July 2018"],
+    ["ps-messi-2022", "File:Argentina 3-3 Francia - Copa Mundial 2022 - Messi patea un penal.jpg", "Lionel Messi kicks a penalty in the 2022 World Cup final"],
     ["ps-wembley-2021", "File:UEFA Euro 2020 Final, Wembley Stadium.jpg", "Wembley Stadium before the kick-off of the UEFA Euro 2020 final, 11 July 2021"],
     ["ps-lusail-final", "File:2022 wc final 08.jpg", "Lusail Stadium on the day of the 2022 World Cup final"],
     ["ps-penalty-bernier", "File:Bernier penalty kick 2013-09-08.jpg", "A penalty kick in an MLS match, 2013 (illustrative)"],

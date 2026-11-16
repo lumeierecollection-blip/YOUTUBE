@@ -109,6 +109,9 @@ export const EPISODE = {
     { id: "S14", part: "examples", ref: "gp4cftwGLcQ: a concrete case after the number", src: ["SB"],
       vo: "The numbers hide stories. In the 2022 World Cup final, France kicked first. Argentina scored all four of theirs, and won four to two.",
       scene: { type: "kicks", home: "France", away: "Argentina", kicks: KICKS("wc22"), title: "A real shoot-out, kick by kick", date: "World Cup final · 18 December 2022", step: 30 } },
+    { id: "S14b", part: "examples", ref: "gp4cftwGLcQ: a named player as the human case before the pressure test", src: ["SB", "PHOTO"],
+      vo: "Take Harry Kane at the 2018 World Cup. Colombia kicked first in that round-of-sixteen shoot-out. England kicked second, and won four to three.",
+      scene: { type: "photo", image: PH("ps-kane-2018-a"), credit: PC("ps-kane-2018-a"), kicker: "2018 WORLD CUP · ROUND OF 16 · COLOMBIA V ENGLAND", callout: "Kicked second.\nWon.", pos: "62% 40%" } },
     { id: "S15", part: "examples", ref: "gp4cftwGLcQ: both sides of the claim", src: ["SB"],
       vo: "In the Euro 2020 final it went the other way: Italy kicked first and won three to two. Both finals are ringed here.",
       scene: GRIDSCENE({ step: 3, title: "Two finals, two answers", label: "Ringed white: Euro 2020 final and 2022 World Cup final" }) },
@@ -180,9 +183,9 @@ export const EPISODE = {
       scene: { type: "cards", v: "teal", title: "First or second?", cards: [{ video: VID("fb-pitch"), credit: VCRED, pos: "50% 50%" }, { video: VID("fb-penalty"), credit: VCRED, pos: "50% 50%" }], callout: "Your call." } },
   ],
   thumbs: [
-    { name: "thumb1-phrase", kind: "phrase", parts: [["does going", false], ["first", true], ["win?", false]], big: "17/32", sub: "we counted 32 penalty shoot-outs" },
-    { name: "thumb2-compare", kind: "compare", phrase: [["who wins the", false], ["shoot-out?", true]], a: { n: "17", label: "kicked first" }, b: { n: "15", label: "kicked second" } },
-    { name: "thumb3-photo", big: "Go first?\nOr second?", small: "We counted 32", figure: "17/32", image: PH("ps-wembley-2021") },
+    { name: "thumb1-hero", kind: "hero", cutout: "lf2/rival-lines/ps-kane-cutout.png", parts: [["he went", false], ["second.", false], ["england", true], ["won.", true]], big: "", line2: "Harry Kane · 2018 World Cup shoot-out v Colombia", credit: "Photo: Voltmetro, CC BY-SA 4.0, via Wikimedia Commons" },
+    { name: "thumb2-phrase", kind: "phrase", parts: [["does going", false], ["first", true], ["win?", false]], big: "17/32", sub: "we counted 32 penalty shoot-outs" },
+    { name: "thumb3-compare", kind: "compare", phrase: [["who wins the", false], ["shoot-out?", true]], a: { n: "17", label: "kicked first" }, b: { n: "15", label: "kicked second" } },
   ],
 };
 
