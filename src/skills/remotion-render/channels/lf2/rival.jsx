@@ -206,7 +206,7 @@ export function PressMap({ t, cam, grid, team, callout, mirror, note, sides }) {
   const f = useCurrentFrame(), max = Math.max(...grid.flat());
   return (
     <AbsoluteFill><Pitch cam={cam} t={t}>{(P) => [<Ghosts key="gh" P={P} t={t} sides={sides} />, ...grid.flatMap((row, r) => row.map((n, c) => { if (!n) return null; const x0 = mirror ? 110 - c * 10 : c * 10, y0 = mirror ? 70 - r * 10 : r * 10, a = ramp(f, 8 + (c + r) * 1.5, 22 + (c + r) * 1.5), [tx, ty] = P(x0 + 5, y0 + 5);
-      return <g key={`${r}-${c}`} opacity={a}><path d={path(P, [[x0 + 0.4, y0 + 0.4], [x0 + 9.6, y0 + 0.4], [x0 + 9.6, y0 + 9.6], [x0 + 0.4, y0 + 9.6]], true)} fill={t.teams[team].heat} opacity={0.12 + 0.78 * (n / max)} />{n >= max * 0.45 && <text x={tx} y={ty + 8} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{n}</text>}</g>; })]}</Pitch>
+      return <g key={`${r}-${c}`} opacity={a}><path d={path(P, [[x0 + 0.4, y0 + 0.4], [x0 + 9.6, y0 + 0.4], [x0 + 9.6, y0 + 9.6], [x0 + 0.4, y0 + 9.6]], true)} fill={t.teams[team].heat} opacity={0.12 + 0.78 * (n / max)} />{n >= max * 0.45 && <text x={tx} y={ty + 8} textAnchor="middle" fontFamily={F.cond} fontWeight="700" fontSize="24" fill="#fff">{n}</text>}</g>; }))]}</Pitch>
       {callout && <Callout t={t} text={callout} from={30} />}
       <Tags t={t} note={note || `number = pressures by ${team} in that zone, whole match`} />
     </AbsoluteFill>
