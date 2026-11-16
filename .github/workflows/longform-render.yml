@@ -15,11 +15,15 @@ permissions:
 
 jobs:
   voice:
+    concurrency:
+      group: gemini-tts-voice # one voice job at a time across runs: parallel takes exceed the free per-minute quota (HTTP 429)
+      cancel-in-progress: false
     # ONE continuous take per section of the script (platform/longform/v2/make-voice.mjs), so the narration is one voice and one conversation, not a new request per beat.
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     strategy:
       fail-fast: false
+      max-parallel: 1
       matrix:
         episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout]
     steps:

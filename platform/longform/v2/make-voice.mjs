@@ -42,14 +42,15 @@ for (const [gi, group] of groups.entries()) {
   if (group.every((b) => existsSync(join(OUT, `${b.id}.mp3`)) && dur(join(OUT, `${b.id}.mp3`)) > 0.5)) { console.log("section cached", gi); continue; }
   const text = group.map((b) => b.vo).join(" ");
   let r = null, last = "";
-  for (let attempt = 1; attempt <= 5 && !r; attempt++) {
+  const WAIT = [45, 90, 150, 240, 300, 300, 300, 300]; // seconds: Gemini TTS answers HTTP 429 (per-minute quota) when two takes or two runs ask close together
+  for (let attempt = 1; attempt <= WAIT.length && !r; attempt++) {
     try {
       const x = await narrate({ text, edgeVoice: VOICE[ch], outDir: OUT, name: `section${gi}`, style: STYLE[ch], gravity: null });
-      if (hasGemini && !String(x.engine).startsWith("gemini")) { last = `engine ${x.engine}: ${x.notes.join(" | ").slice(0, 200)}`; console.log("retry: not Gemini", last); rmSync(x.mp3, { force: true }); await new Promise((s) => setTimeout(s, attempt * 20000)); continue; }
+      if (hasGemini && !String(x.engine).startsWith("gemini")) { last = `engine ${x.engine}: ${x.notes.join(" | ").slice(0, 200)}`; console.log("retry: not Gemini", last); rmSync(x.mp3, { force: true }); await new Promise((s) => setTimeout(s, WAIT[attempt - 1] * 1000)); continue; }
       r = x;
-    } catch (e) { last = String(e.message).slice(0, 200); console.log("retry:", last); await new Promise((s) => setTimeout(s, attempt * 20000)); }
+    } catch (e) { last = String(e.message).slice(0, 200); console.log("retry:", last); await new Promise((s) => setTimeout(s, WAIT[attempt - 1] * 1000)); }
   }
-  if (!r) throw new Error(`voice section ${gi} failed after 5 tries (${last}); refusing to mix engines`);
+  if (!r) throw new Error(`voice section ${gi} failed after 8 tries (${last}); refusing to mix engines`);
   // level-match the take, then cut at the middle of the pause between beats
   const lev = join(OUT, `section${gi}.lev.mp3`);
   run("ffmpeg", ["-y", "-v", "error", "-i", r.mp3, "-af", "loudnorm=I=-20:LRA=9:TP=-2", "-ar", "24000", "-ac", "1", "-b:a", "160k", lev]);
@@ -65,6 +66,7 @@ for (const [gi, group] of groups.entries()) {
     run("ffmpeg", ["-y", "-v", "error", "-ss", t0.toFixed(3), "-to", t1.toFixed(3), "-i", lev, "-ar", "24000", "-ac", "1", "-b:a", "160k", mp3]);
     writeFileSync(join(OUT, `${s.b.id}.words.json`), JSON.stringify({ version: 1, source: `${r.engine} section ${gi}`, words: s.ws.map((x) => ({ ...x, start: +(x.start - t0).toFixed(3), end: +(x.end - t0).toFixed(3) })) }));
   }
+  await new Promise((s) => setTimeout(s, 20000)); // breathe between takes to stay under the per-minute quota
   log.sections.push({ gi, engine: r.engine, beats: group.map((b) => b.id), words: allTok, seconds: +total.toFixed(1), wpm: Math.round(allTok / (total / 60)) });
   console.log(`section ${gi}: ${r.engine}, ${allTok} words, ${total.toFixed(1)} s (${Math.round(allTok / (total / 60))} wpm), beats ${group.map((b) => b.id).join(",")}`);
   rmSync(r.mp3, { force: true }); rmSync(lev, { force: true });
