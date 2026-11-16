@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-16 10:04 SAST
+Updated 2026-11-16 21:56 SAST
 
-**Next productions:** AI Tested 2026-11-16 11:00 SAST, AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST
+**Next productions:** AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,11 +19,11 @@ Updated 2026-11-16 10:04 SAST
 | | |
 |---|---|
 | Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed-final at script, attempts 2 |
-| Selected topic and score | ChatGPT Wallet Lets AI Agents Buy Items for You Automatically (79.8/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Apple Tests Daily Usage Limits for Siri AI (73/100) |
 | QA | n/a |
 | Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 130 views, 5 likes, 0 comments (public), 69.4% average viewed |
+| Performance | 133 views, 5 likes, 0 comments (public), 69.4% average viewed |
 | Analytics | available |
 
 ## Needs your attention
