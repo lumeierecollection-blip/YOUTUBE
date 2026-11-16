@@ -27,6 +27,7 @@ for (const j of spec.ai || []) {
   try { execFileSync("node", ["scripts/clone/demo-record.mjs", `${tmp}.json`, tmp], { stdio: "inherit", timeout: 600000 }); }
   catch { failures.push(j.name); if (fs.existsSync(`${tmp}/models.json`)) console.log("available", j.provider, fs.readFileSync(`${tmp}/models.json`, "utf8").replace(/\s+/g, " ")); continue; }
   const run = JSON.parse(fs.readFileSync(`${tmp}/run.json`, "utf8"));
+  if (!run.answer) { failures.push(j.name + " (empty answer)"); continue; } // OpenRouter free models streamed nothing, 16 Nov 2026
   run.app_recorded = fs.existsSync(`${tmp}/app.webm`);
   fs.writeFileSync(`${logs}/${j.name}.json`, JSON.stringify(run, null, 1));
   if (fs.existsSync(`${tmp}/app.html`)) fs.copyFileSync(`${tmp}/app.html`, `${logs}/${j.name}-app.html`);
