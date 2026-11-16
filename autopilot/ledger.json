@@ -1219,7 +1219,12 @@
       "attempts": 1,
       "run_id": "43942061759",
       "trigger": "schedule",
-      "updated_at": "2026-11-16T19:42:40.548Z"
+      "updated_at": "2026-11-16T19:44:49.932Z",
+      "stage": "research",
+      "topic": "Why a Caltech Professor Stopped Grading Homework Because of AI",
+      "score": 79.4,
+      "pillar": "AI changing everyday work",
+      "hook": "A Caltech math professor completely stopped grading student homework because everyone is just using AI to do it anyway."
     }
   },
   "uploads": [
@@ -2440,6 +2445,15 @@
       "at_ms": 1794683062854,
       "score": 61.8,
       "pillar": "Historical disasters and survival stories"
+    },
+    {
+      "channel": "2",
+      "topic": "Why a Caltech Professor Stopped Grading Homework Because of AI",
+      "slug": "why-a-caltech-professor-stopped-grading-homework-because-of-",
+      "slot": "2026-11-16-ch2",
+      "at_ms": 1794858289932,
+      "score": 79.4,
+      "pillar": "AI changing everyday work"
     }
   ],
   "attention": [
