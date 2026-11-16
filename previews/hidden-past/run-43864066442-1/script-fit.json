@@ -1,0 +1,108 @@
+{
+  "measured_wpm": 188.8,
+  "voice": "gemini:Rasalgethi",
+  "sentences": [
+    {
+      "text": "Why does Russia own land between Poland and Lithuania?",
+      "scene": 0,
+      "claim_ids": [
+        "K1",
+        "K2"
+      ]
+    },
+    {
+      "text": "It is Kaliningrad, on the Baltic Sea.",
+      "scene": 1,
+      "claim_ids": [
+        "K2"
+      ]
+    },
+    {
+      "text": "Until 1946, it was a German city called Königsberg.",
+      "scene": 2,
+      "claim_ids": [
+        "K3"
+      ]
+    },
+    {
+      "text": "Teutonic Knights founded it in 1255.",
+      "scene": 3,
+      "claim_ids": [
+        "K4"
+      ]
+    },
+    {
+      "text": "In 1701, a king was crowned in its castle.",
+      "scene": 4,
+      "claim_ids": [
+        "K5"
+      ]
+    },
+    {
+      "text": "In 1944, British bombs burned its old centre.",
+      "scene": 6,
+      "claim_ids": [
+        "K7"
+      ]
+    },
+    {
+      "text": "On 9 April 1945, the Soviets captured it.",
+      "scene": 7,
+      "claim_ids": [
+        "K8"
+      ]
+    },
+    {
+      "text": "At Potsdam, the Allies agreed, in principle, to give it to the Soviets.",
+      "scene": 8,
+      "claim_ids": [
+        "K9"
+      ]
+    },
+    {
+      "text": "Renamed Kaliningrad after Mikhail Kalinin, who was unrelated to it.",
+      "scene": 9,
+      "claim_ids": [
+        "K10"
+      ]
+    },
+    {
+      "text": "Every land link to Russia now crosses NATO and EU.",
+      "scene": 10,
+      "claim_ids": [
+        "K11"
+      ]
+    },
+    {
+      "text": "A German city became Russian.",
+      "scene": 11,
+      "claim_ids": [
+        "K12"
+      ]
+    },
+    {
+      "text": "The full story is on our channel.",
+      "scene": 12,
+      "claim_ids": [],
+      "allow_no_claim": true,
+      "editorial": "pointer to the full story on the channel, not a factual claim"
+    }
+  ],
+  "words": 101,
+  "estimated_seconds": 36.9,
+  "inside_window": true,
+  "kept": [
+    "1255",
+    "1701",
+    "hook",
+    "name",
+    "german",
+    "bombs",
+    "fall",
+    "potsdam",
+    "rename",
+    "today",
+    "answer",
+    "cta"
+  ]
+}
