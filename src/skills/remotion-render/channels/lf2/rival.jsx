@@ -86,14 +86,23 @@ function Callout({ t, text, x = 110, y = 880, from = 0, size = 58 }) {
   return <div style={{ position: "absolute", left: x, top: y, display: "flex", alignItems: "stretch", gap: 18, opacity: a, transform: `translateX(${(1 - a) * -40}px)` }}><div style={{ width: 8, background: t.accent }} /><div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: size, lineHeight: 1.05, letterSpacing: "0.02em", color: "#fff", textTransform: "uppercase", whiteSpace: "pre-line", textShadow: "0 2px 12px rgba(0,0,0,0.8)" }}>{text}</div></div>;
 }
 
+/** Section-coded looks, the system the reference uses (cream paper for abstract numbers, green for sport comparisons, plum for tactics diagrams); ours are our own colours and type. */
+const PAL = {
+  dark: { bg: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)", fg: "#fff", mute: "rgba(255,255,255,0.7)", faint: "rgba(255,255,255,0.5)", track: "rgba(255,255,255,0.07)", tile: "rgba(255,255,255,0.05)", a: "#C8F04B", b: "#C9CED8", bad: "#E8323F", ink: "#0a0a0a" },
+  paper: { bg: "#ECE7DB", fg: "#17161B", mute: "rgba(23,22,27,0.68)", faint: "rgba(23,22,27,0.5)", track: "rgba(23,22,27,0.10)", tile: "rgba(23,22,27,0.05)", a: "#D4158F", b: "#2B2A33", bad: "#C2262E", ink: "#fff" },
+  green: { bg: "radial-gradient(85% 85% at 50% 40%, #14614B 0%, #0A3B2E 80%)", fg: "#fff", mute: "rgba(255,255,255,0.78)", faint: "rgba(255,255,255,0.55)", track: "rgba(255,255,255,0.12)", tile: "rgba(255,255,255,0.08)", a: "#C8F04B", b: "#BFD9CF", bad: "#FF7A7A", ink: "#0a0a0a" },
+  plum: { bg: "radial-gradient(85% 85% at 50% 40%, #7A1257 0%, #4A0B36 80%)", fg: "#fff", mute: "rgba(255,255,255,0.8)", faint: "rgba(255,255,255,0.55)", track: "rgba(255,255,255,0.14)", tile: "rgba(255,255,255,0.09)", a: "#FFB3E0", b: "#E8D5E2", bad: "#FFD166", ink: "#2a0820" },
+};
+const pal = (v) => PAL[v] || PAL.dark;
+
 /** 1. Big-number opener (N8PZt_9_adI "168"): a counted figure alone on black, then its unit line. */
-export function NumberOpen({ t, value, unit, sub, countFrom }) {
-  const f = useCurrentFrame(), n = countFrom == null || f >= 26 ? value : Math.round(lerp(f, 0, 26, countFrom, Number(value), expo)), a = ramp(f, 0, 8);
+export function NumberOpen({ t, value, unit, sub, countFrom, v }) {
+  const P = pal(v), f = useCurrentFrame(), n = countFrom == null || f >= 26 ? value : Math.round(lerp(f, 0, 26, countFrom, Number(value), expo)), a = ramp(f, 0, 8);
   return (
-    <AbsoluteFill style={{ background: "#000", alignItems: "center", justifyContent: "center" }}><Fonts />
-      <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 470, lineHeight: 0.9, color: "#fff", letterSpacing: "-0.02em", opacity: a, transform: `scale(${lerp(f, 0, 40, 0.94, 1) + f * 0.00018})` }}>{n}</div>
-      {unit && <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 54, letterSpacing: "0.3em", color: t.accent, marginTop: 12, opacity: ramp(f, 14, 26), textTransform: "uppercase" }}>{unit}</div>}
-      {sub && <div style={{ fontFamily: F.sans, fontSize: 30, color: "rgba(255,255,255,0.72)", marginTop: 22, opacity: ramp(f, 24, 38) }}>{sub}</div>}
+    <AbsoluteFill style={{ background: v ? P.bg : "#000", alignItems: "center", justifyContent: "center" }}><Fonts />
+      <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 470, lineHeight: 0.9, color: v ? P.fg : "#fff", letterSpacing: "-0.02em", opacity: a, transform: `scale(${lerp(f, 0, 40, 0.94, 1) + f * 0.00018})` }}>{n}</div>
+      {unit && <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 54, letterSpacing: "0.3em", color: v ? P.a : t.accent, marginTop: 12, opacity: ramp(f, 14, 26), textTransform: "uppercase" }}>{unit}</div>}
+      {sub && <div style={{ fontFamily: F.sans, fontSize: 30, color: v ? P.mute : "rgba(255,255,255,0.72)", marginTop: 22, opacity: ramp(f, 24, 38) }}>{sub}</div>}
       <Finish grain={0.06} vignette={0.6} />
     </AbsoluteFill>
   );
@@ -223,19 +232,19 @@ export function ShotMap({ t, cam, shots, home, away, callout, note }) {
 }
 
 /** 8. Head-to-head bars for counted figures. rows: [{ label, a, b, dec }] */
-export function StatBars({ t, home, away, rows, title }) {
-  const f = useCurrentFrame();
+export function StatBars({ t, home, away, rows, title, v }) {
+  const P = pal(v), f = useCurrentFrame(), colA = v === "paper" ? P.a : v ? P.a : t.teams[home].fill, colB = v === "paper" ? P.b : v ? P.b : (t.teams[away].bar || t.teams[away].fill);
   return (
-    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
-      <div style={{ position: "absolute", top: 80, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.24em", color: "rgba(255,255,255,0.75)" }}>{title}</div>
+    <AbsoluteFill style={{ background: P.bg }}><Fonts />
+      <div style={{ position: "absolute", top: 80, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.24em", color: P.mute }}>{title}</div>
       <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag t={t} team={home} x={250} y={150} s={110} /><Flag t={t} team={away} x={1560} y={150} s={110} /></svg>
       {rows.map((r, i) => { const a = ramp(f, 10 + i * 8, 34 + i * 8, expo), tot = r.a + r.b, y = 330 + i * 140, wa = (r.a / tot) * 1180 * a, wb = (r.b / tot) * 1180 * a;
         return <div key={i}>
-          <div style={{ position: "absolute", top: y - 6, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)", textTransform: "uppercase" }}>{r.label}</div>
-          <div style={{ position: "absolute", top: y + 40, left: 370, width: 1180, height: 34, background: "rgba(255,255,255,0.07)" }} />
-          <div style={{ position: "absolute", top: y + 40, left: 370, width: wa, height: 34, background: t.teams[home].fill }} /><div style={{ position: "absolute", top: y + 40, left: 370 + 1180 - wb, width: wb, height: 34, background: t.teams[away].bar || t.teams[away].fill }} />
-          <div style={{ position: "absolute", top: y + 14, left: 150, width: 200, textAlign: "right", fontFamily: F.cond, fontWeight: 700, fontSize: 76, color: "#fff" }}>{(a > 0.97 ? r.a : r.a * a).toFixed(r.dec || 0)}</div>
-          <div style={{ position: "absolute", top: y + 14, left: 1570, width: 200, fontFamily: F.cond, fontWeight: 700, fontSize: 76, color: "#fff" }}>{(a > 0.97 ? r.b : r.b * a).toFixed(r.dec || 0)}</div>
+          <div style={{ position: "absolute", top: y - 6, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: P.mute, textTransform: "uppercase" }}>{r.label}</div>
+          <div style={{ position: "absolute", top: y + 40, left: 370, width: 1180, height: 34, background: P.track }} />
+          <div style={{ position: "absolute", top: y + 40, left: 370, width: wa, height: 34, background: colA }} /><div style={{ position: "absolute", top: y + 40, left: 370 + 1180 - wb, width: wb, height: 34, background: v === "paper" || v ? colB : colB }} />
+          <div style={{ position: "absolute", top: y + 14, left: 150, width: 200, textAlign: "right", fontFamily: F.cond, fontWeight: 700, fontSize: 76, color: P.fg }}>{(a > 0.97 ? r.a : r.a * a).toFixed(r.dec || 0)}</div>
+          <div style={{ position: "absolute", top: y + 14, left: 1570, width: 200, fontFamily: F.cond, fontWeight: 700, fontSize: 76, color: P.fg }}>{(a > 0.97 ? r.b : r.b * a).toFixed(r.dec || 0)}</div>
         </div>; })}
       <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
     </AbsoluteFill>
@@ -321,58 +330,58 @@ export function Photo({ t, image, credit, callout, kicker, pos = "50% 35%", dur 
 
 
 /** 12. Every shoot-out we counted, one tile each (our data, StatsBomb open data): top row = the team that kicked first, bottom row = the other team;
- * filled lime dot = scored, hollow red = missed; the tile is lime-edged when the first kicker won. Tiles appear one by one and a counter tallies them.
+ * filled dot = scored, hollow = missed; the tile is accent-edged when the first kicker won. Tiles appear one by one and a counter tallies them.
  * shootouts: [{ first: [bool], second: [bool], firstWon: bool, tag, score }] */
-export function ShootoutGrid({ t, shootouts, title, step = 5, hi = [], label }) {
-  const f = useCurrentFrame(), cols = 8, W = 205, H = 150, x0 = 118, y0 = 235;
+export function ShootoutGrid({ t, shootouts, title, step = 5, hi = [], label, v }) {
+  const P = pal(v), f = useCurrentFrame(), cols = 8, W = 205, H = 150, x0 = 118, y0 = 235;
   const shown = Math.min(shootouts.length, Math.max(0, Math.floor((f - 8) / step) + 1));
   const won = shootouts.slice(0, shown).filter((s) => s.firstWon).length;
   return (
-    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
-      <div style={{ position: "absolute", top: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.2em", color: "rgba(255,255,255,0.78)" }}>{title}</div>
-      <div style={{ position: "absolute", top: 140, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.12em", color: "rgba(255,255,255,0.55)" }}>{label || "TOP ROW: KICKED FIRST · BOTTOM ROW: KICKED SECOND · LIME EDGE: THE FIRST KICKER WON"}</div>
+    <AbsoluteFill style={{ background: P.bg }}><Fonts />
+      <div style={{ position: "absolute", top: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.2em", color: P.mute }}>{title}</div>
+      <div style={{ position: "absolute", top: 140, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.12em", color: P.faint }}>{label || "TOP ROW: KICKED FIRST · BOTTOM ROW: KICKED SECOND · EDGED: THE FIRST KICKER WON"}</div>
       <svg width="1920" height="1080" style={{ position: "absolute" }}>
         {shootouts.map((s, i) => {
           if (i >= shown) return null;
           const a = ramp(f, 8 + i * step, 8 + i * step + 8, expo), x = x0 + (i % cols) * (W + 8), y = y0 + Math.floor(i / cols) * (H + 10);
-          const rowDots = (arr, yy, strong) => arr.map((g, k) => <circle key={k} cx={x + 16 + k * 18.5} cy={yy} r="7" fill={g ? t.accent : "none"} stroke={g ? t.accent : "#E8323F"} strokeWidth="2.6" opacity={strong ? 1 : 0.75} />);
-          const edge = s.firstWon ? t.accent : "rgba(255,255,255,0.25)";
+          const rowDots = (arr, yy, strong) => arr.map((g, k) => <circle key={k} cx={x + 16 + k * 18.5} cy={yy} r="7" fill={g ? P.a : "none"} stroke={g ? P.a : P.bad} strokeWidth="2.6" opacity={strong ? 1 : 0.75} />);
+          const edge = s.firstWon ? P.a : P.faint;
           return (<g key={i} opacity={a} transform={`translate(0 ${(1 - a) * 18})`}>
-            <rect x={x} y={y} width={W} height={H} rx="6" fill="rgba(255,255,255,0.05)" stroke={hi.includes(i) ? "#fff" : edge} strokeWidth={hi.includes(i) ? 5 : s.firstWon ? 3.5 : 1.5} />
-            <text x={x + 12} y={y + 26} fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="17" letterSpacing="1.5" fill="rgba(255,255,255,0.6)">{s.tag}</text>
+            <rect x={x} y={y} width={W} height={H} rx="6" fill={P.tile} stroke={hi.includes(i) ? P.fg : edge} strokeWidth={hi.includes(i) ? 5 : s.firstWon ? 3.5 : 1.5} />
+            <text x={x + 12} y={y + 26} fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="17" letterSpacing="1.5" fill={P.mute}>{s.tag}</text>
             {rowDots(s.first, y + 62, s.firstWon)}{rowDots(s.second, y + 100, !s.firstWon)}
-            <text x={x + W - 12} y={y + H - 14} textAnchor="end" fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="22" fill={s.firstWon ? t.accent : "#fff"}>{s.score}</text>
+            <text x={x + W - 12} y={y + H - 14} textAnchor="end" fontFamily="Oswald, Impact, sans-serif" fontWeight="700" fontSize="22" fill={s.firstWon ? P.a : P.fg}>{s.score}</text>
           </g>);
         })}
       </svg>
-      <div style={{ position: "absolute", bottom: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 84, color: "#fff" }}>{won}<span style={{ color: t.accent }}> of </span>{shown}<span style={{ fontSize: 34, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)", marginLeft: 22 }}>WON BY THE FIRST KICKER</span></div>
+      <div style={{ position: "absolute", bottom: 70, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 84, color: P.fg }}>{won}<span style={{ color: P.a }}> of </span>{shown}<span style={{ fontSize: 34, letterSpacing: "0.2em", color: P.mute, marginLeft: 22 }}>WON BY THE FIRST KICKER</span></div>
       <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
     </AbsoluteFill>
   );
 }
 
 /** 13. One real shoot-out, kick by kick, in the order taken (StatsBomb event data). kicks: [{ team, name, result: "GOAL"|"SAVED"|"POST"|"OFF TARGET" }]; home = kicked first. */
-export function KickBoard({ t, home, away, kicks, title, date, step = 22 }) {
-  const f = useCurrentFrame(), n = Math.min(kicks.length, Math.max(0, Math.floor((f - 10) / step) + 1));
+export function KickBoard({ t, home, away, kicks, title, date, step = 22, v }) {
+  const P = pal(v), f = useCurrentFrame(), n = Math.min(kicks.length, Math.max(0, Math.floor((f - 10) / step) + 1));
   const score = { [home]: 0, [away]: 0 }; kicks.slice(0, n).forEach((k) => { if (k.result === "GOAL") score[k.team]++; });
   const rows = { [home]: [], [away]: [] }; kicks.forEach((k, i) => rows[k.team].push({ ...k, i }));
   const col = (team, x) => rows[team].map((k, r) => {
     const a = k.i < n ? ramp(f, 10 + k.i * step, 10 + k.i * step + 10, expo) : 0, ok = k.result === "GOAL";
     return (
-      <div key={k.i} style={{ position: "absolute", left: x, top: 380 + r * 108, width: 560, height: 92, display: "flex", alignItems: "center", gap: 20, padding: "0 24px", background: ok ? "rgba(200,240,75,0.14)" : "rgba(232,50,63,0.16)", borderLeft: `8px solid ${ok ? t.accent : "#E8323F"}`, opacity: a, transform: `translateY(${(1 - a) * 22}px)` }}>
-        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 30, color: "rgba(255,255,255,0.5)", width: 46 }}>{k.i + 1}</div>
-        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 46, color: "#fff", flex: 1, textTransform: "uppercase", letterSpacing: "0.03em" }}>{k.name}</div>
-        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 32, letterSpacing: "0.1em", color: ok ? t.accent : "#FF6B75" }}>{k.result}</div>
+      <div key={k.i} style={{ position: "absolute", left: x, top: 380 + r * 108, width: 560, height: 92, display: "flex", alignItems: "center", gap: 20, padding: "0 24px", background: P.tile, borderLeft: `8px solid ${ok ? P.a : P.bad}`, opacity: a, transform: `translateY(${(1 - a) * 22}px)` }}>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 30, color: P.faint, width: 46 }}>{k.i + 1}</div>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 46, color: P.fg, flex: 1, textTransform: "uppercase", letterSpacing: "0.03em" }}>{k.name}</div>
+        <div style={{ fontFamily: F.cond, fontWeight: 700, fontSize: 32, letterSpacing: "0.1em", color: ok ? P.a : P.bad }}>{k.result}</div>
       </div>);
   });
   return (
-    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
-      <div style={{ position: "absolute", top: 60, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.24em", color: "rgba(255,255,255,0.7)" }}>{title}</div>
-      {date && <div style={{ position: "absolute", top: 112, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.2em", color: "rgba(255,255,255,0.5)" }}>{date}</div>}
+    <AbsoluteFill style={{ background: P.bg }}><Fonts />
+      <div style={{ position: "absolute", top: 60, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.24em", color: P.mute }}>{title}</div>
+      {date && <div style={{ position: "absolute", top: 112, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontSize: 28, letterSpacing: "0.2em", color: P.faint }}>{date}</div>}
       <svg width="1920" height="1080" style={{ position: "absolute" }}><Flag t={t} team={home} x={250} y={170} s={120} /><Flag t={t} team={away} x={1550} y={170} s={120} /></svg>
-      <div style={{ position: "absolute", top: 160, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 150, color: "#fff", lineHeight: 1 }}>{score[home]} – {score[away]}</div>
-      <div style={{ position: "absolute", top: 322, left: 280, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: t.accent }}>{home.toUpperCase()} · KICKED FIRST</div>
-      <div style={{ position: "absolute", top: 322, left: 1080, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: "rgba(255,255,255,0.7)" }}>{away.toUpperCase()}</div>
+      <div style={{ position: "absolute", top: 160, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 150, color: P.fg, lineHeight: 1 }}>{score[home]} – {score[away]}</div>
+      <div style={{ position: "absolute", top: 322, left: 280, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: P.a }}>{home.toUpperCase()} · KICKED FIRST</div>
+      <div style={{ position: "absolute", top: 322, left: 1080, width: 560, fontFamily: F.cond, fontSize: 30, letterSpacing: "0.2em", color: P.mute }}>{away.toUpperCase()}</div>
       {col(home, 280)}{col(away, 1080)}
       <Tags t={t} /><Finish grain={0.05} vignette={0.4} />
     </AbsoluteFill>
@@ -380,22 +389,50 @@ export function KickBoard({ t, home, away, kicks, title, date, step = 22 }) {
 }
 
 /** 14. Kick orders drawn as chips: A = team kicking first, B = the other. rows: [{ label, seq: "ABAB...", note }]. */
-export function OrderStrip({ t, rows, title, step = 5 }) {
-  const f = useCurrentFrame();
+export function OrderStrip({ t, rows, title, step = 5, v }) {
+  const P = pal(v), f = useCurrentFrame();
   return (
-    <AbsoluteFill style={{ background: "radial-gradient(80% 80% at 50% 40%, #17191c 0%, #08090a 75%)" }}><Fonts />
-      <div style={{ position: "absolute", top: 90, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.22em", color: "rgba(255,255,255,0.78)" }}>{title}</div>
+    <AbsoluteFill style={{ background: P.bg }}><Fonts />
+      <div style={{ position: "absolute", top: 90, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.22em", color: P.mute }}>{title}</div>
       {rows.map((r, ri) => (<div key={ri}>
-        <div style={{ position: "absolute", top: 290 + ri * 330, left: 150, fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.14em", color: "#fff", textTransform: "uppercase" }}>{r.label}</div>
+        <div style={{ position: "absolute", top: 290 + ri * 330, left: 150, fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.14em", color: P.fg, textTransform: "uppercase" }}>{r.label}</div>
         {r.seq.split("").map((c, i) => {
           const a = ramp(f, 8 + ri * 70 + i * step, 8 + ri * 70 + i * step + 8, expo), A = c === "A";
-          return (<div key={i} style={{ position: "absolute", left: 150 + i * 152, top: 360 + ri * 330, width: 128, height: 128, borderRadius: 64, background: A ? t.accent : "#C9CED8", color: "#0a0a0a", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 72, opacity: a, transform: `scale(${0.7 + 0.3 * a})` }}>{c}</div>);
+          return (<div key={i} style={{ position: "absolute", left: 150 + i * 152, top: 360 + ri * 330, width: 128, height: 128, borderRadius: 64, background: A ? P.a : P.b, color: P.ink, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 72, opacity: a, transform: `scale(${0.7 + 0.3 * a})` }}>{c}</div>);
         })}
-        {r.note && <div style={{ position: "absolute", top: 510 + ri * 330, left: 150, fontFamily: F.sans, fontSize: 26, color: "rgba(255,255,255,0.65)", opacity: ramp(f, 8 + ri * 70 + r.seq.length * step, 8 + ri * 70 + r.seq.length * step + 12) }}>{r.note}</div>}
+        {r.note && <div style={{ position: "absolute", top: 510 + ri * 330, left: 150, fontFamily: F.sans, fontSize: 26, color: P.mute, opacity: ramp(f, 8 + ri * 70 + r.seq.length * step, 8 + ri * 70 + r.seq.length * step + 12) }}>{r.note}</div>}
       </div>))}
       <Tags t={t} credit="Source: Wikipedia, Penalty shoot-out (association football)" /><Finish grain={0.05} vignette={0.4} />
     </AbsoluteFill>
   );
 }
 
-export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, grid: ShootoutGrid, kicks: KickBoard, order: OrderStrip };
+/** 15. Goal seen from the front with the goalkeeper's dive drawn as an arrow (a diagram of the cited percentages, not tracking data).
+ * goals: [{ label, right }]  right = percent of dives to the right (the keeper's right is drawn on the viewer's right); the rest is shown as "other". */
+export function GoalDiagram({ t, goals, title, step = 22, v }) {
+  const P = pal(v), f = useCurrentFrame(), n = goals.length, W = 520, gap = 70, x0 = (1920 - (n * W + (n - 1) * gap)) / 2;
+  return (
+    <AbsoluteFill style={{ background: P.bg }}><Fonts />
+      <div style={{ position: "absolute", top: 80, left: 0, right: 0, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 44, letterSpacing: "0.2em", color: P.mute }}>{title}</div>
+      {goals.map((g, i) => {
+        const a = ramp(f, 8 + i * step, 8 + i * step + 12, expo), x = x0 + i * (W + gap), kx = x + W / 2 + (W * 0.28) * a, other = 100 - g.right;
+        return (<div key={i} style={{ opacity: a }}>
+          <svg width="1920" height="1080" style={{ position: "absolute" }}>
+            <rect x={x} y={330} width={W} height={300} fill="none" stroke={P.fg} strokeWidth="14" />
+            {Array.from({ length: 9 }, (_, k) => <line key={k} x1={x + (k + 1) * (W / 10)} y1={330} x2={x + (k + 1) * (W / 10)} y2={630} stroke={P.faint} strokeWidth="2" />)}
+            {Array.from({ length: 5 }, (_, k) => <line key={k} x1={x} y1={330 + (k + 1) * 50} x2={x + W} y2={330 + (k + 1) * 50} stroke={P.faint} strokeWidth="2" />)}
+            <path d={`M ${x + W / 2} 580 L ${x + W / 2 + W * 0.3 * a} 560`} stroke={P.a} strokeWidth={10 + g.right / 6} strokeLinecap="round" markerEnd="none" opacity="0.95" />
+            <circle cx={kx} cy={550} r="44" fill={P.a} /><circle cx={x + W / 2} cy={630} r="9" fill={P.fg} />
+          </svg>
+          <div style={{ position: "absolute", left: x, top: 650, width: W, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 130, lineHeight: 1, color: P.fg }}>{Math.round(g.right * a)}<span style={{ fontSize: 56 }}>%</span></div>
+          <div style={{ position: "absolute", left: x, top: 800, width: W, textAlign: "center", fontFamily: F.cond, fontSize: 32, letterSpacing: "0.16em", color: P.a }}>DIVED RIGHT</div>
+          <div style={{ position: "absolute", left: x, top: 850, width: W, textAlign: "center", fontFamily: F.cond, fontWeight: 700, fontSize: 40, letterSpacing: "0.1em", color: P.fg, textTransform: "uppercase" }}>{g.label}</div>
+          <div style={{ position: "absolute", left: x, top: 905, width: W, textAlign: "center", fontFamily: F.sans, fontSize: 24, color: P.mute }}>{other}% went another way</div>
+        </div>);
+      })}
+      <Tags t={t} credit="Source: Wikipedia, 2011 study in Psychological Science · diagram of the reported percentages" /><Finish grain={0.05} vignette={0.4} />
+    </AbsoluteFill>
+  );
+}
+
+export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, grid: ShootoutGrid, kicks: KickBoard, order: OrderStrip, goal: GoalDiagram };

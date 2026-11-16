@@ -110,10 +110,10 @@ export const EPISODE = {
       scene: { type: "number", value: 7, countFrom: 0, unit: "WENT TO SUDDEN DEATH", sub: "of 32 shoot-outs", credit: DATA } },
     { id: "S22", part: "the goalkeeper", ref: "gp4cftwGLcQ: the other side of the duel", src: ["PS"],
       vo: "The goalkeeper is the other half of the duel. A 2011 study in Psychological Science found goalkeepers dived to the right seventy-one percent of the time when their team was losing.",
-      scene: { type: "bars", home: "Dived right", away: "Other", title: "GOALKEEPER DIVES BY SCORE · 2011 STUDY (WIKIPEDIA)", rows: [{ label: "Team losing", a: 71, b: 29 }] } },
+      scene: { type: "goal", title: "GOALKEEPER DIVES · 2011 STUDY (WIKIPEDIA)", goals: [{ label: "Team losing", right: 71 }] } },
     { id: "S23", part: "the goalkeeper", ref: "gp4cftwGLcQ: the contrast", src: ["PS"],
       vo: "But only forty-eight percent when ahead, and forty-nine when tied.",
-      scene: { type: "bars", home: "Dived right", away: "Other", title: "GOALKEEPER DIVES BY SCORE · 2011 STUDY (WIKIPEDIA)", rows: [{ label: "Team losing", a: 71, b: 29 }, { label: "Team tied", a: 49, b: 51 }, { label: "Team ahead", a: 48, b: 52 }] } },
+      scene: { type: "goal", title: "GOALKEEPER DIVES · 2011 STUDY (WIKIPEDIA)", step: 14, goals: [{ label: "Team losing", right: 71 }, { label: "Team tied", right: 49 }, { label: "Team ahead", right: 48 }] } },
     { id: "S24", part: "the goalkeeper", ref: "gp4cftwGLcQ: what the keeper can do", src: ["PS"],
       vo: "The same article reports research linking goalkeeper distraction with ten percent fewer goals for the kicker, and delaying the kicker with twenty percent fewer.",
       scene: { type: "number", value: 20, countFrom: 0, unit: "% FEWER GOALS", sub: "when the goalkeeper delays the kicker · distraction: 10% fewer · as reported in Wikipedia", credit: "Source: Wikipedia" } },
@@ -153,3 +153,7 @@ export const EPISODE = {
   ],
   thumbs: [{ name: "thumb1-shootout", big: "Go first?\nOr second?", small: "We counted 32", figure: "17/32", image: PH("ps-wembley-2021") }],
 };
+
+// section-coded looks, like the reference's cream / green / magenta system (our own colours; see PAL in channels/lf2/rival.jsx)
+const LOOK = { "the number": "green", "the setup": "plum", "the claim": "paper", "the test": "paper", "our count": "green", "the result": "green", "the limit": "paper", "examples": "plum", "pressure": "green", "round by round": "green", "the goalkeeper": "plum", "the goal": "plum", "the fix": "plum", "history": "paper", "the verdict": "green" };
+for (const b of EPISODE.beats) if (LOOK[b.part] && ["number", "bars", "grid", "kicks", "order", "goal"].includes(b.scene.type)) b.scene = { ...b.scene, v: LOOK[b.part] };
