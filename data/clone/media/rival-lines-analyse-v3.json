@@ -1,18 +1,173 @@
-{ "channel": "rival-lines", "pixabay": [
- {"name":"stadium-aerial","id":208387,"start":0,"dur":8},
- {"name":"stadium-top","id":239964,"start":0,"dur":8},
- {"name":"match-topdown","id":158633,"start":0,"dur":10},
- {"name":"crowd-flags","id":165713,"start":0,"dur":8},
- {"name":"goal-net","id":122965,"start":0,"dur":7},
- {"name":"euro-fans","id":3482,"start":0,"dur":8},
- {"name":"stadium-city","id":239973,"start":0,"dur":8},
- {"name":"pitch-kids-aerial","id":202749,"start":0,"dur":8},
- {"name":"q-soccer-dribble","query":"soccer dribble","pick":0,"dur":7},
- {"name":"q-soccer-pass","query":"soccer pass ball","pick":0,"dur":7},
- {"name":"q-soccer-training","query":"soccer training drone","pick":0,"dur":8},
- {"name":"q-football-tactics","query":"football tactics board","pick":0,"dur":7},
- {"name":"q-floodlights","query":"stadium floodlights night","pick":0,"dur":7},
- {"name":"q-soccer-match-2","query":"soccer match","pick":4,"dur":8},
- {"name":"q-soccer-match-3","query":"soccer game players","pick":1,"dur":8},
- {"name":"q-ball-kick","query":"soccer ball kick","pick":0,"dur":6}
-]}
+{
+ "channel": "rival-lines",
+ "pixabay": [
+  {
+   "name": "stadium-aerial",
+   "id": 208387,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "stadium-top",
+   "id": 239964,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "match-topdown",
+   "id": 158633,
+   "start": 0,
+   "dur": 10
+  },
+  {
+   "name": "crowd-flags",
+   "id": 165713,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "goal-net",
+   "id": 122965,
+   "start": 0,
+   "dur": 7
+  },
+  {
+   "name": "euro-fans",
+   "id": 3482,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "stadium-city",
+   "id": 239973,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "pitch-kids-aerial",
+   "id": 202749,
+   "start": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-soccer-dribble",
+   "query": "soccer dribble",
+   "pick": 0,
+   "dur": 7
+  },
+  {
+   "name": "q-soccer-pass",
+   "query": "soccer pass ball",
+   "pick": 0,
+   "dur": 7
+  },
+  {
+   "name": "q-soccer-training",
+   "query": "soccer training drone",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "q-football-tactics",
+   "query": "football tactics board",
+   "pick": 0,
+   "dur": 7
+  },
+  {
+   "name": "q-floodlights",
+   "query": "stadium floodlights night",
+   "pick": 0,
+   "dur": 7
+  },
+  {
+   "name": "q-soccer-match-2",
+   "query": "soccer match",
+   "pick": 4,
+   "dur": 8
+  },
+  {
+   "name": "q-soccer-match-3",
+   "query": "soccer game players",
+   "pick": 1,
+   "dur": 8
+  },
+  {
+   "name": "q-ball-kick",
+   "query": "soccer ball kick",
+   "pick": 0,
+   "dur": 6
+  },
+  {
+   "name": "r-football-players-running-a",
+   "query": "football players running",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-football-players-running-b",
+   "query": "football players running",
+   "pick": 2,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-players-training-a",
+   "query": "soccer players training",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-players-training-b",
+   "query": "soccer players training",
+   "pick": 3,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-goalkeeper-save-a",
+   "query": "soccer goalkeeper save",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-corner-kick-a",
+   "query": "soccer corner kick",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-team-match-aerial-a",
+   "query": "soccer team match aerial",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-players-passing-drill-a",
+   "query": "soccer players passing drill",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-football-match-night-stadium-a",
+   "query": "football match night stadium",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-players-tackle-a",
+   "query": "soccer players tackle",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-soccer-penalty-a",
+   "query": "soccer penalty",
+   "pick": 0,
+   "dur": 8
+  },
+  {
+   "name": "r-football-referee-a",
+   "query": "football referee",
+   "pick": 0,
+   "dur": 8
+  }
+ ]
+}
