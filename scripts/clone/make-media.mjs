@@ -23,7 +23,7 @@ for (const j of spec.ai || []) {
   const tmp = `/tmp/ai-${j.name}`; fs.rmSync(tmp, { recursive: true, force: true });
   fs.writeFileSync(`${tmp}.json`, JSON.stringify(j));
   try { execFileSync("node", ["scripts/clone/demo-record.mjs", `${tmp}.json`, tmp], { stdio: "inherit", timeout: 600000 }); }
-  catch { failures.push(j.name); continue; }
+  catch { failures.push(j.name); if (fs.existsSync(`${tmp}/models.json`)) console.log("available", j.provider, fs.readFileSync(`${tmp}/models.json`, "utf8").replace(/\s+/g, " ")); continue; }
   const run = JSON.parse(fs.readFileSync(`${tmp}/run.json`, "utf8"));
   run.app_recorded = fs.existsSync(`${tmp}/app.webm`);
   fs.writeFileSync(`${logs}/${j.name}.json`, JSON.stringify(run, null, 1));
