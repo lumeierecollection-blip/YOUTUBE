@@ -42,25 +42,30 @@ function seriousMatch(md) {
 
 export default async function preview({ key, runId, tools }) {
   const branch = process.env.GITHUB_REF_NAME || "";
-  const mode = /messi|player/.test(branch) ? "player" : "match";
+  const mode = /messi|player/.test(branch) ? "player" : /analyse/.test(branch) ? "euro" : "match"; // euro: the Euro 2024 final substitutes Short that points to the long-form
   // Serious cut (branch preview/rival-lines-serious): the dark tactics board, about 30 seconds, every graphic drawn from match-data.json.
   const SERIOUS = mode === "match" && /serious/.test(branch), FIT = SERIOUS ? { targetSeconds: 29.7, minSeconds: 28.8, maxSeconds: 31 } : { targetSeconds: 36.5, minSeconds: 35, maxSeconds: 38.5 };
-  const story = await import(mode === "player" ? "./messi-story.mjs" : "./final-story.mjs");
+  const story = await import(mode === "player" ? "./messi-story.mjs" : mode === "euro" ? "./euro-story.mjs" : "./final-story.mjs");
   const adir = join(tools.outDir, "analysis"), cache = join(ROOT, "output/sb-cache");
 
   // 1. Topic discovery against the real data repository (writes the ranked, de-duplicated backlog).
-  try { tools.write("topic-backlog.json", (await discover()).backlog.map(({ editorial_scores, ...t }) => ({ ...t, editorial_scores }))); } catch (e) { tools.write("topic-backlog.json", { error: String(e.message || e) }); }
+  if (mode !== "euro") try { tools.write("topic-backlog.json", (await discover()).backlog.map(({ editorial_scores, ...t }) => ({ ...t, editorial_scores }))); } catch (e) { tools.write("topic-backlog.json", { error: String(e.message || e) }); }
 
   // 2. Data and mplsoccer graphics.
-  analyse(mode === "player" ? "analysis_messi.py" : "analysis_final.py", adir, cache);
-  const data = JSON.parse(readFileSync(join(adir, mode === "player" ? "messi-data.json" : "match-data.json"), "utf8"));
-  tools.write(mode === "player" ? "messi-data.json" : "match-data.json", data);
+  const dataFile = mode === "player" ? "messi-data.json" : mode === "euro" ? "euro-data.json" : "match-data.json";
+  analyse(mode === "player" ? "analysis_messi.py" : mode === "euro" ? "analysis_euro.py" : "analysis_final.py", adir, cache);
+  const data = JSON.parse(readFileSync(join(adir, dataFile), "utf8"));
+  tools.write(dataFile, data);
   tools.write("story-blueprint.json", { ...story.blueprint, format: mode === "player" ? "player_documentary" : "match_analysis" });
   tools.stage("research_complete", "ok");
 
   // 3. Images: analysis graphics, the StatsBomb logo, and (documentary) real licensed photographs.
   const images = { sbLogo: await dataUri(join(adir, "sb-logo.png")) }, credits = {}, entries = [];
-  if (mode === "match") for (const [k, f] of Object.entries({ formArg: "formation_arg.png", formFra: "formation_fra.png", netArg: "network_arg.png", netFra: "network_fra.png", shotmap: "shotmap.png" })) images[k] = await dataUri(join(adir, f));
+  if (mode === "euro") {
+    // Two photographs already licence-checked and recorded in the long-form's ATTRIBUTIONS.json (Wikimedia Commons); neither is from the final and the video says so.
+    const att = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/lf2/rival-lines/ATTRIBUTIONS.json"), "utf8"));
+    for (const [k, id] of Object.entries({ oya: "oyarzabal-2018", palmer: "palmer-2024" })) { images[k] = await dataUri(join(ROOT, "src/skills/remotion-render/public/lf2/rival-lines", att[id].file)); credits[k] = att[id].credit_line; entries.push({ ...att[id], role: "photograph (not from the final)" }); }
+  } else if (mode === "match") for (const [k, f] of Object.entries({ formArg: "formation_arg.png", formFra: "formation_fra.png", netArg: "network_arg.png", netFra: "network_fra.png", shotmap: "shotmap.png" })) images[k] = await dataUri(join(adir, f));
   else {
     await verifyWikipedia(story.claims, "Lionel_Messi");
     for (const a of story.ASSETS) {
@@ -88,6 +93,6 @@ export default async function preview({ key, runId, tools }) {
     tools.write("script-fit.json", { measured_wpm: cal.wpm, calibration_seconds: cal.seconds, voice: cal.engine, ...fit });
     console.log(`script fit: ${cal.wpm} wpm -> ${fit.words} words, about ${fit.estimated_seconds}s, kept ${fit.kept.join(",")}`);
   }
-  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: SERIOUS ? (LONG ? "RivalSeriousWide" : "RivalSerious") : mode === "player" ? "RivalPlayerShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, size: LONG ? [1920, 1080] : undefined, minSeconds: SERIOUS ? 28 : 34, maxSeconds: SERIOUS ? 32 : 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, ...FIT }).sentences }) : undefined, makeProps: () => (SERIOUS ? { logo: images.sbLogo, m: seriousMatch(data) } : { images, credits, data }) } });
+  const result = await runFixedShort({ key, runId, tools, spec: { topic: story.topic, claims: story.claims.map(({ must, ...c }) => c), sources: story.sources, sentences, scenes, compositionId: SERIOUS ? (LONG ? "RivalSeriousWide" : "RivalSerious") : mode === "player" ? "RivalPlayerShort" : mode === "euro" ? "RivalAnalyseShort" : "RivalMatchShort", edgeVoice: channel.voice.tts, style: channel.voice.style, metadata: story.metadata, size: LONG ? [1920, 1080] : undefined, minSeconds: SERIOUS ? 28 : 34, maxSeconds: SERIOUS ? 32 : 40, refit: story.slots ? (wpm) => compactScenes({ scenes: story.scenes, sentences: fitScript({ slots: story.slots, wpm: wpm * 0.98, ...FIT }).sentences }) : undefined, makeProps: () => (SERIOUS ? { logo: images.sbLogo, m: seriousMatch(data) } : { images, credits, data }) } });
   tools.write("quality-report.json", { format: mode === "player" ? "player_documentary" : "match_analysis", technical: result.qa, data_note: "event data only; locations are where events were recorded" });
 }
