@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad-v2] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [hidden-past-kaliningrad-v3] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - name: Skip episodes this branch did not ask for
@@ -277,7 +277,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad-v2] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [hidden-past-kaliningrad-v3] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
@@ -365,3 +365,21 @@ jobs:
             output/longform-prod/${{ matrix.episode }}/qa.json
             output/longform-prod/${{ matrix.episode }}/thumbnails/*.jpg
             output/longform-prod/${{ matrix.episode }}/thumbnails/*.json
+      - name: Small check copy (720p under 30 MiB + 16-frame sheet)
+        if: always() && steps.want.outputs.run == 'yes'
+        shell: bash
+        run: |
+          d=output/longform-prod/${{ matrix.episode }}; mkdir -p check
+          [ -f "$d/episode.mp4" ] || exit 0
+          D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$d/episode.mp4")
+          vb=$(python3 -c "print(int((28*8*1024*1024/$D - 96000)*0.92))")
+          ffmpeg -v error -y -i "$d/episode.mp4" -vf scale=1280:720 -c:v libx264 -b:v $vb -maxrate $vb -bufsize $((vb*2)) -preset medium -c:a aac -b:a 96k check/${{ matrix.episode }}-720p.mp4
+          ffmpeg -v error -y -i "$d/episode.mp4" -vf "fps=16/$D,scale=480:-2,tile=4x4" -frames:v 1 check/${{ matrix.episode }}-sheet.jpg
+          ls -l check
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.want.outputs.run == 'yes'
+        with:
+          name: check-${{ matrix.episode }}-${{ github.run_id }}
+          retention-days: 14
+          if-no-files-found: ignore
+          path: check/*

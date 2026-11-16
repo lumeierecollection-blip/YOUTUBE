@@ -3,7 +3,7 @@
 // a small key bottom-left; credited photographs as evidence inserts with white-box black-serif captions in the source's words;
 // figures stacked early; a chart laid over a picture. Imagery here is open (EOX Sentinel-2 cloudless, NASA, Commons), not their licensed tiles.
 import React from "react";
-import { AbsoluteFill, Freeze, Img, OffthreadVideo, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Freeze, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { GeoMap } from "./geomap.jsx";
 import { F, Fonts, Finish, clamp, eo, expo, lerp, ramp } from "./kit.jsx";
 
@@ -63,6 +63,40 @@ export function Footage({ image, video, videoLen = 10, credit, captions, date, d
       <Captions items={captions} />
       {credit && <Credit text={credit} />}
       <Finish grain={0.07} vignette={0.35} />
+    </AbsoluteFill>
+  );
+}
+
+/** 2b. Hard cuts inside one beat (reference FA-oEtccS_k: 1-6 s news/archive cuts). shots: [{ video|image, videoLen, start (s into the clip), w (share of the beat), pos, fit, grade, credit }];
+ * every shot carries its own credit line (Pixabay footage or the archive photo), so the scene itself must not be auto-credited. Clips hold their last frame, never loop. */
+export function Cuts({ shots, captions, date, from = 1.02, to = 1.09 }) {
+  const { durationInFrames: D } = useVideoConfig(), tot = shots.reduce((a, x) => a + (x.w || 1), 0);
+  let at = 0;
+  return (
+    <AbsoluteFill style={{ background: "#07080a" }}><Fonts />
+      {shots.map((x, i) => {
+        const len = i === shots.length - 1 ? D - at : Math.round((D * (x.w || 1)) / tot), st = at; at += len;
+        return <Sequence key={i} from={st} durationInFrames={len}><Shot x={x} len={len} from={i % 2 ? to : from} to={i % 2 ? from : to} /></Sequence>;
+      })}
+      <AbsoluteFill style={{ background: "linear-gradient(180deg, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 62%, rgba(0,0,0,0.62) 100%)" }} />
+      {date && <DateStamp text={date} />}
+      <Captions items={captions} />
+      <Finish grain={0.07} vignette={0.35} />
+    </AbsoluteFill>
+  );
+}
+function Shot({ x, len, from, to }) {
+  const f = useCurrentFrame(), s = interpolate(f, [0, len], [from, to], clamp), { pos = "50% 50%", grade = "none", fit = "cover" } = x;
+  const filter = grade === "warm" ? "sepia(0.25) saturate(0.85) contrast(1.05)" : "saturate(0.95) contrast(1.04)";
+  const st = { position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: fit, objectPosition: pos, filter };
+  return (
+    <AbsoluteFill>
+      {fit === "contain" && x.image && <Img src={src(x.image)} style={{ position: "absolute", inset: -60, width: "calc(100% + 120px)", height: "calc(100% + 120px)", objectFit: "cover", filter: `${filter} blur(34px) brightness(0.45)` }} />}
+      {x.video
+        ? <Freeze frame={Math.min(f, Math.max(1, Math.round((x.videoLen || 8) * 30) - 3 - Math.round((x.start || 0) * 30)))}><OffthreadVideo src={src(x.video)} startFrom={Math.round((x.start || 0) * 30)} muted style={{ ...st, transform: `scale(${1 + (s - 1) * 0.5})` }} /></Freeze>
+        : <Img src={src(x.image)} style={{ ...st, transform: `scale(${s})` }} />}
+      {x.captions && <Captions items={x.captions} />}
+      {x.credit && <Credit text={x.credit} />}
     </AbsoluteFill>
   );
 }
@@ -177,4 +211,4 @@ export function HiddenThumb({ big, small, image, map, circle, arrow }) {
   );
 }
 
-export const HIDDEN = { map: MapScene, footage: Footage, inset: Inset, figures: Figures, chart: ChartOver, roster: Roster, scale: Scale, thumb: HiddenThumb };
+export const HIDDEN = { map: MapScene, footage: Footage, cuts: Cuts, inset: Inset, figures: Figures, chart: ChartOver, roster: Roster, scale: Scale, thumb: HiddenThumb };
