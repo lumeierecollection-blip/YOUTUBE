@@ -21,7 +21,7 @@ export function load() {
   const runs = {};
   for (const [j] of JOBS) for (const a of AIS) { const n = `${j}-${a.key}`, r = rd(`${n}.json`); runs[n] = { clip: `${n}-app`, seconds: r.generation_ms / 1000, model: r.model, pass: V[n].pass, note: V[n].note, headline: HEAD[n] || (V[n].pass ? "Works" : "Fails"), zoom: [FR[n][0], FR[n][1]], focus: FR[n][2] }; }
   const models = AIS.map((a) => { const results = JOBS.map(([j]) => ({ id: j, pass: runs[`${j}-${a.key}`].pass })); return { id: a.key, key: a.key, who: a.who, name: a.name, seconds: JOBS.reduce((s, [j]) => s + runs[`${j}-${a.key}`].seconds, 0), passed: results.filter((r) => r.pass).length, results }; });
-  const jobs = JOBS.map(([id, label]) => ({ id, label, title: { solar: "Job: an animated solar system", hexagon: "Job: 10 balls in a spinning hexagon" }[id] || label, zoom: runs[`${id}-gemini`].zoom, focus: runs[`${id}-gemini`].focus, runs: { gemini: runs[`${id}-gemini`], gptoss: runs[`${id}-gptoss`], gptoss20: runs[`${id}-gptoss20`] } }));
+  const jobs = JOBS.map(([id, label]) => ({ id, label, title: { solar: "Solar system job", hexagon: "Hexagon job: 10 balls" }[id] || label, zoom: runs[`${id}-gemini`].zoom, focus: runs[`${id}-gemini`].focus, runs: { gemini: runs[`${id}-gemini`], gptoss: runs[`${id}-gptoss`], gptoss20: runs[`${id}-gptoss20`] } }));
   return { models, jobs, runs };
 }
 
@@ -54,11 +54,11 @@ export function plan() {
     { id: "hexG", scene: 4, variants: [V("Then ten balls in a spinning hexagon, which Gemini got right.", "hexG"), V("Gemini's hexagon had ten balls.", "hexG")] },
     { id: "hexS", scene: 5, variants: [V("The small gpt-oss had a hexagon with one ball.", "hexS"), V("The small gpt-oss had one ball.", "hexS")] },
     { id: "time", scene: 6, variants: [V("Gemini took four hundred thirty-four seconds for all five.", "tg"), V("Gemini took four hundred thirty-four seconds.", "tg")] },
-    { id: "fast", scene: 6, optional: true, variants: [V("The two gpt-oss models each finished in under twenty seconds.", "to1", "to2")] },
-    { id: "score", scene: 7, variants: [V("Gemini passed five of five, the fast ones four.", "score")] },
-    { id: "q", scene: 8, ...NR, variants: [V("Is fast good enough when it gets one wrong?", "score"), V("Fast, or finished?", "score")] },
-    { id: "cta", scene: 9, ...NR, variants: [V("The full test is on our channel.")] },
-    { id: "loop", scene: 10, ...NR, variants: [V("Seven minutes, or nineteen seconds?")] },
+    { id: "fast", scene: 7, optional: true, variants: [V("The two gpt-oss models each finished in under twenty seconds.", "to1", "to2")] },
+    { id: "score", scene: 8, variants: [V("Gemini passed five of five, the fast ones four.", "score")] },
+    { id: "q", scene: 9, ...NR, variants: [V("Is fast good enough when it gets one wrong?", "score"), V("Fast, or finished?", "score")] },
+    { id: "cta", scene: 10, ...NR, variants: [V("The full test is on our channel.")] },
+    { id: "loop", scene: 11, ...NR, variants: [V("Seven minutes, or nineteen seconds?")] },
   ];
   const scenes = [
     { kind: "hookF", treatment: "number-bars", objective: "Open on the three AIs with their measured total times, the 434 s bar dwarfing the other two", background: "white" },
@@ -67,7 +67,8 @@ export function plan() {
     { kind: "duelF", job: "solar", other: "gptoss", treatment: "split-recordings", objective: "Show the same job by gpt-oss-120b, frozen, under Gemini's", background: "white" },
     { kind: "soloF", job: "hexagon", model: "gemini", treatment: "recording", objective: "Show Gemini's real hexagon recording with ten balls", background: "white" },
     { kind: "duelF", job: "hexagon", other: "gptoss20", treatment: "split-recordings", objective: "Show gpt-oss-20b's single ball under Gemini's ten", background: "white" },
-    { kind: "timeF", treatment: "bar-chart", objective: "Bars of total time on one scale: 434 s against 19 s and 16 s", background: "white" },
+    { kind: "timeF", show: 1, treatment: "bar-chart", objective: "Bars of total time on one scale: 434 s against 19 s and 16 s", background: "white" },
+    { kind: "fastF", show: 3, animFrom: 1, treatment: "bar-chart", objective: "Add the two fast AIs to the same scale: 19 s and 16 s", background: "white" },
     { kind: "scoreF", treatment: "pass-grid", objective: "One square per job per AI, with the failed jobs named", background: "white" },
     { kind: "questionF", treatment: "verdict-panel", objective: "Ask whether fast is good enough, with 4 of 5 in 19 s against 5 of 5 in 434 s", background: "accent panel" },
     { kind: "ctaF", treatment: "title-card", objective: "Point to the full test on the channel with the long-form title", background: "white" },

@@ -46,12 +46,12 @@ function HookF({ dur, d, images, scene }) {
   return (
     <Sc dur={dur} first={!last} last={last}>
       <div style={abs(70, 215, 940, 330, { fontFamily: SANS, fontWeight: 800, fontSize: 100, lineHeight: 1.03, color: C.ink })}>Which AI would you trust?</div>
-      {d.models.map((m, i) => { const y = 560 + i * 330, grow = last ? 1 : interpolate(f, [0, 22], [0.0, 1], { ...clamp, easing: ease }), n = Math.round(m.seconds * (last ? 1 : Math.min(1, f / 22))); return (
+      {d.models.map((m, i) => { const y = 560 + i * 330, grow = last ? 1 : interpolate(f, [0, 22], [0.0, 1], { ...clamp, easing: ease }); return (
         <div key={m.id}>
           <div style={abs(70, y, 940, 120, { display: "flex", alignItems: "center", gap: 24 })}>
-            <div style={{ background: C.surface, borderRadius: 18, padding: "10px 22px" }}><Logo src={logoOf(m.who, images)} w={190} h={72} /></div>
-            <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 40, color: C.dim, lineHeight: 1.1 }}>{m.name}</span>
-            <span style={{ marginLeft: "auto", fontFamily: SANS, fontWeight: 800, fontSize: 112, lineHeight: 1, color: i === 0 ? C.bad : C.accent }}>{i === 0 ? m.seconds : m.seconds.toFixed(0)}<span style={{ fontSize: 48 }}> s</span></span>
+            <div style={{ background: C.surface, borderRadius: 18, padding: "10px 18px" }}><Logo src={logoOf(m.who, images)} w={150} h={64} /></div>
+            <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 34, color: C.dim, lineHeight: 1.1, whiteSpace: "nowrap" }}>{m.name}</span>
+            <span style={{ marginLeft: "auto", fontFamily: SANS, fontWeight: 800, fontSize: 104, lineHeight: 1, color: i === 0 ? C.bad : C.accent, whiteSpace: "nowrap" }}>{Math.round(m.seconds)}<span style={{ fontSize: 44 }}> s</span></span>
           </div>
           <div style={abs(70, y + 150, 940, 44, { background: C.surface, borderRadius: 22 })} />
           <div style={abs(70, y + 150, Math.max(14, 940 * (m.seconds / max)) * grow, 44, { background: i === 0 ? C.bad : C.accent, borderRadius: 22 })} />
@@ -103,12 +103,13 @@ function DuelF({ dur, d, images, scene }) {
   );
 }
 
-function TimeF({ dur, d, images }) {
-  const f = useCurrentFrame(), max = d.models[0].seconds;
+/** Total time per AI on one scale. scene.show rows are drawn; rows before scene.animFrom are already full-grown (the picture before it). */
+function TimeF({ dur, d, images, scene }) {
+  const f = useCurrentFrame(), max = d.models[0].seconds, show = scene.show || 3, from = scene.animFrom || 0, solo = show === 1;
   return (
     <Sc dur={dur}>
       <From dy={30} style={abs(70, 215, 940, 120, { fontFamily: SANS, fontWeight: 800, fontSize: 70, lineHeight: 1.05, color: C.ink })}>Time to write all 5</From>
-      {d.models.map((m, i) => { const t = interpolate(f, [4 + i * 10, 34 + i * 10], [0, 1], { ...clamp, easing: ease }), y = 400 + i * 330; return (
+      {d.models.slice(0, show).map((m, i) => { const t = i < from ? 1 : interpolate(f, [4 + (i - from) * 10, 34 + (i - from) * 10], [0, 1], { ...clamp, easing: ease }), y = solo ? 480 : 400 + i * 330; return (
         <div key={m.id}>
           <div style={abs(70, y, 940, 100, { display: "flex", alignItems: "center", gap: 22 })}>
             <div style={{ background: C.surface, borderRadius: 16, padding: "8px 18px" }}><Logo src={logoOf(m.who, images)} w={150} h={56} /></div>
@@ -116,8 +117,9 @@ function TimeF({ dur, d, images }) {
           </div>
           <div style={abs(70, y + 110, 940, 70, { background: C.surface, borderRadius: 35 })} />
           <div style={abs(70, y + 110, Math.max(16, 940 * (m.seconds / max)) * t, 70, { background: i === 0 ? C.bad : C.accent, borderRadius: 35 })} />
-          <div style={abs(70, y + 190, 940, 110, { fontFamily: SANS, fontWeight: 800, fontSize: 100, lineHeight: 1, color: i === 0 ? C.bad : C.accent })}>{(m.seconds * t).toFixed(i === 0 ? 0 : 1)}<span style={{ fontSize: 44 }}> s</span></div>
+          <div style={abs(70, y + 190, 940, solo ? 260 : 110, { fontFamily: SANS, fontWeight: 800, fontSize: solo ? 250 : 100, lineHeight: 1, color: i === 0 ? C.bad : C.accent })}>{i === 0 ? Math.round(m.seconds * t) : (m.seconds * t).toFixed(1)}<span style={{ fontSize: solo ? 90 : 44 }}> s</span></div>
         </div>); })}
+      {solo ? <From delay={Math.floor(dur * 0.45)} dy={30} style={abs(70, 1010, 940, 200, { fontFamily: SANS, fontWeight: 800, fontSize: 80, lineHeight: 1.05, color: C.ink })}>{Math.floor(d.models[0].seconds / 60)} min {Math.round(d.models[0].seconds % 60)} s<br /><span style={{ color: C.dim, fontSize: 48 }}>for all 5 jobs</span></From> : null}
     </Sc>
   );
 }
@@ -171,7 +173,7 @@ function CtaF({ dur, d }) {
   );
 }
 
-const KINDS_F = { hookF: HookF, jobsF: JobsF, soloF: SoloF, duelF: DuelF, timeF: TimeF, scoreF: ScoreF, questionF: QuestionF, ctaF: CtaF };
+const KINDS_F = { hookF: HookF, jobsF: JobsF, soloF: SoloF, duelF: DuelF, timeF: TimeF, fastF: TimeF, scoreF: ScoreF, questionF: QuestionF, ctaF: CtaF };
 function AiTestedFourAis({ durationInFrames, scenes, captions, images, data }) {
   const f = useCurrentFrame();
   return (

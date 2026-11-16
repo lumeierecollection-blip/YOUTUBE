@@ -1,5 +1,7 @@
 // AI Tested Short pointing to the long-form "We Gave Free AIs the Same 5 Jobs. One Took 7 Minutes." Facts come from our recorded run logs.
 // 35 to 40 seconds at natural voice speed (never altered), then the shared Short path.
+import { spawnSync } from "node:child_process";
+import { copyFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { ROOT } from "../../preview/lib.mjs";
@@ -42,5 +44,12 @@ export default async function fourAisPreview({ key, runId, tools }) {
   tools.write("script-fit.json", { measured_wpm: cal.wpm, voice: cal.engine, ...first.fit });
   console.log(`script fit: ${cal.wpm} wpm -> ${first.fit.words} words, about ${first.fit.estimated_seconds}s`);
   const result = await runFixedShort({ key, runId, tools, spec: { topic: "Fast AIs vs the slow one that finished every job", claims: p.claims, sources: p.sources, sentences: first.sentences, scenes: first.scenes, compositionId: "AiTestedFourAis", edgeVoice: "en-US-AndrewNeural", style: STYLE, metadata, minSeconds: 35, maxSeconds: 40, refit: (wpm) => { const x = fitFor(wpm * 0.98); return { sentences: x.sentences, scenes: x.scenes }; }, makeProps: () => ({ data: p.data, images }) } });
+  // Loudness: the voice-only track sits near -18 LUFS; bring the whole file to -14 LUFS (two-pass loudnorm), picture copied, length unchanged.
+  const ln = "I=-14:TP=-1.5:LRA=11", m = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-i", result.video, "-af", `loudnorm=${ln}:print_format=json`, "-vn", "-f", "null", "-"], { encoding: "utf8" }).stderr;
+  const j = JSON.parse(m.slice(m.lastIndexOf("{"), m.lastIndexOf("}") + 1));
+  const out = `${result.video}.norm.mp4`;
+  const r = spawnSync("ffmpeg", ["-y", "-v", "error", "-i", result.video, "-c:v", "copy", "-af", `loudnorm=${ln}:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`, "-c:a", "aac", "-b:a", "192k", out], { encoding: "utf8" });
+  if (r.status !== 0) throw new Error(`loudnorm failed: ${r.stderr}`);
+  copyFileSync(out, result.video);
   tools.write("quality-report.json", { format: "ai_tested_four_ais_short", technical: result.qa });
 }
