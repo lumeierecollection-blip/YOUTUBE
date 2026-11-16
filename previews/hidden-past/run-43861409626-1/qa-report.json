@@ -1,0 +1,106 @@
+{
+  "pass": true,
+  "failures": [],
+  "duration_s": 39.083,
+  "width": 1080,
+  "height": 1920,
+  "frame_rate": "30/1",
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "mean_volume_db": -19.4,
+  "max_volume_db": -2.2,
+  "black_segments": 0,
+  "frozen_segments": 0,
+  "narration": {
+    "engine": "gemini:Rasalgethi",
+    "seconds": 38.568,
+    "wpm": 141.6,
+    "playback_speed": 1
+  },
+  "fps": 30,
+  "script": {
+    "approved_by": "not reviewed by the engine critic",
+    "written_by": "written directly on the owner's instruction from fetched sources",
+    "independent_provider": false
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "id": "s2",
+      "kind": "name",
+      "start_s": 3.6666666666666665,
+      "end_s": 4.966666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "german",
+      "start_s": 4.966666666666667,
+      "end_s": 8.066666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "k1255",
+      "start_s": 8.066666666666666,
+      "end_s": 11.066666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "k1701",
+      "start_s": 11.066666666666666,
+      "end_s": 14.2
+    },
+    {
+      "id": "s6",
+      "kind": "kant",
+      "start_s": 14.2,
+      "end_s": 16.9
+    },
+    {
+      "id": "s7",
+      "kind": "bombs",
+      "start_s": 16.9,
+      "end_s": 20.066666666666666
+    },
+    {
+      "id": "s8",
+      "kind": "fall",
+      "start_s": 20.066666666666666,
+      "end_s": 23.166666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "potsdam",
+      "start_s": 23.166666666666668,
+      "end_s": 26.633333333333333
+    },
+    {
+      "id": "s10",
+      "kind": "rename",
+      "start_s": 26.633333333333333,
+      "end_s": 31
+    },
+    {
+      "id": "s11",
+      "kind": "today",
+      "start_s": 31,
+      "end_s": 34.43333333333333
+    },
+    {
+      "id": "s12",
+      "kind": "answer",
+      "start_s": 34.43333333333333,
+      "end_s": 37
+    },
+    {
+      "id": "s13",
+      "kind": "outro",
+      "start_s": 37,
+      "end_s": 39.03333333333333
+    }
+  ]
+}
