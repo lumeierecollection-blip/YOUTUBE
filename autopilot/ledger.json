@@ -1212,6 +1212,14 @@
       "pillar": "Historical disasters and survival stories",
       "hook": "A surprise WWII air raid in Italy secretly unleashed a deadly cloud of chemical weapons the Allies swore they didn't have.",
       "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: PAYOFF names no person, place or organization. Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - NARRATIVE: CLOSE no specific action or number. Rewrite the close beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sent"
+    },
+    "2026-11-16-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "43942061759",
+      "trigger": "schedule",
+      "updated_at": "2026-11-16T19:42:40.548Z"
     }
   },
   "uploads": [
@@ -2526,5 +2534,5 @@
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
   ],
-  "last_poll_at": "2026-11-16T08:03:58.993Z"
+  "last_poll_at": "2026-11-16T19:42:40.547Z"
 }
