@@ -1,5 +1,5 @@
 {
-  "rebuilt_at": "2026-11-16T12:14:04.326Z",
+  "rebuilt_at": "2026-11-16T12:15:21.232Z",
   "channels": [
     {
       "key": "_script-engine",
@@ -118,9 +118,9 @@
     {
       "key": "hidden-past",
       "agent": "agent-hidden-past",
-      "stage": "script_approved",
-      "status": "pending",
-      "at": "2026-11-16T12:14:03.832Z",
+      "stage": "voice_complete",
+      "status": "ok",
+      "at": "2026-11-16T12:15:20.769Z",
       "branch": "preview/hidden-past-kaliningrad-short",
       "commit": "0f877ef1",
       "mp4": "[run artifact](https://github.com/lumeierecollection-blip/YOUTUBE/actions/runs/43864066442#artifacts)",
@@ -131,7 +131,7 @@
       "plan": "",
       "qa": "",
       "blocker": "",
-      "lastOk": "2026-11-16T12:06:24.338Z",
+      "lastOk": "2026-11-16T12:15:20.769Z",
       "run": "run-43864066442-1"
     },
     {
