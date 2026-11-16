@@ -1,0 +1,669 @@
+{
+  "scenes": [
+    {
+      "id": "s1",
+      "kind": "hook",
+      "treatment": "drawn-map-with-russia-stamp",
+      "objective": "Open on the question over a drawn map of Kaliningrad Oblast between Poland and Lithuania (Natural Earth), with a Russia stamp and a pin",
+      "background": "paper panel in saturated frame",
+      "from": 0,
+      "to": 110,
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "id": "s2",
+      "kind": "name",
+      "treatment": "sticker-photo-with-title",
+      "objective": "Name Kaliningrad over a 2012 photograph of the cathedral on the Baltic coast",
+      "background": "paper panel in saturated frame",
+      "from": 110,
+      "to": 149,
+      "start_s": 3.6666666666666665,
+      "end_s": 4.966666666666667
+    },
+    {
+      "id": "s3",
+      "kind": "german",
+      "treatment": "photo-with-giant-year-and-stamp",
+      "objective": "Show Königsberg Castle before 1900 with the year 1946 and a German city stamp",
+      "background": "paper panel in saturated frame",
+      "from": 149,
+      "to": 242,
+      "start_s": 4.966666666666667,
+      "end_s": 8.066666666666666
+    },
+    {
+      "id": "s4",
+      "kind": "k1255",
+      "treatment": "giant-year-with-engraving",
+      "objective": "Giant 1255 with the Merian engraving of Königsberg and the Teutonic Knights strip",
+      "background": "paper panel in saturated frame",
+      "from": 242,
+      "to": 332,
+      "start_s": 8.066666666666666,
+      "end_s": 11.066666666666666
+    },
+    {
+      "id": "s5",
+      "kind": "k1701",
+      "treatment": "giant-year-with-coronation-picture",
+      "objective": "Giant 1701 with the coronation picture and a crowned-in-the-castle stamp",
+      "background": "paper panel in saturated frame",
+      "from": 332,
+      "to": 426,
+      "start_s": 11.066666666666666,
+      "end_s": 14.2
+    },
+    {
+      "id": "s6",
+      "kind": "kant",
+      "treatment": "portrait-sticker-with-name",
+      "objective": "Immanuel Kant portrait with the line that he lived there virtually all his life",
+      "background": "paper panel in saturated frame",
+      "from": 426,
+      "to": 507,
+      "start_s": 14.2,
+      "end_s": 16.9
+    },
+    {
+      "id": "s7",
+      "kind": "bombs",
+      "treatment": "photo-with-giant-year-and-stamp",
+      "objective": "Giant 1944 with an aerial view of the old centre and a burned-for-days stamp",
+      "background": "paper panel in saturated frame",
+      "from": 507,
+      "to": 602,
+      "start_s": 16.9,
+      "end_s": 20.066666666666666
+    },
+    {
+      "id": "s8",
+      "kind": "fall",
+      "treatment": "photo-with-date-stamp",
+      "objective": "Soviet street-fighting photograph with the date 9 April 1945",
+      "background": "paper panel in saturated frame",
+      "from": 602,
+      "to": 695,
+      "start_s": 20.066666666666666,
+      "end_s": 23.166666666666668
+    },
+    {
+      "id": "s9",
+      "kind": "potsdam",
+      "treatment": "photo-with-quote-slip",
+      "objective": "Potsdam Conference photograph with the Potsdam Agreement's own words as a quote slip",
+      "background": "paper panel in saturated frame",
+      "from": 695,
+      "to": 799,
+      "start_s": 23.166666666666668,
+      "end_s": 26.633333333333333
+    },
+    {
+      "id": "s10",
+      "kind": "rename",
+      "treatment": "portrait-sticker-with-rename-stamp",
+      "objective": "Kalinin portrait, the year 1946 and the name Kaliningrad stamped over Königsberg",
+      "background": "paper panel in saturated frame",
+      "from": 799,
+      "to": 930,
+      "start_s": 26.633333333333333,
+      "end_s": 31
+    },
+    {
+      "id": "s11",
+      "kind": "today",
+      "treatment": "drawn-map-with-route",
+      "objective": "Draw Kaliningrad and Moscow with Poland and Lithuania tinted and a schematic route between them",
+      "background": "paper panel in saturated frame",
+      "from": 930,
+      "to": 1033,
+      "start_s": 31,
+      "end_s": 34.43333333333333
+    },
+    {
+      "id": "s12",
+      "kind": "answer",
+      "treatment": "then-and-now-stickers",
+      "objective": "Then and now: the castle before 1900 against the cathedral in 2012, with the answer in a strip",
+      "background": "paper panel in saturated frame",
+      "from": 1033,
+      "to": 1110,
+      "start_s": 34.43333333333333,
+      "end_s": 37
+    },
+    {
+      "id": "s13",
+      "kind": "outro",
+      "treatment": "drawn-map-with-cta-stamp",
+      "objective": "Return to the opening map with the pointer to the full story on the channel, so a replay loops",
+      "background": "paper panel in saturated frame",
+      "from": 1110,
+      "to": 1171,
+      "start_s": 37,
+      "end_s": 39.03333333333333
+    }
+  ],
+  "captions": [
+    {
+      "text": "Why does Russia own land",
+      "from": 0,
+      "to": 44,
+      "words": [
+        {
+          "text": "Why",
+          "from": 0
+        },
+        {
+          "text": "does",
+          "from": 13
+        },
+        {
+          "text": "Russia",
+          "from": 17
+        },
+        {
+          "text": "own",
+          "from": 25
+        },
+        {
+          "text": "land",
+          "from": 37
+        }
+      ]
+    },
+    {
+      "text": "between Poland and Lithuania",
+      "from": 44,
+      "to": 85,
+      "words": [
+        {
+          "text": "between",
+          "from": 44
+        },
+        {
+          "text": "Poland",
+          "from": 56
+        },
+        {
+          "text": "and",
+          "from": 65
+        },
+        {
+          "text": "Lithuania",
+          "from": 75
+        }
+      ]
+    },
+    {
+      "text": "It is Kaliningrad",
+      "from": 110,
+      "to": 138,
+      "words": [
+        {
+          "text": "It",
+          "from": 110
+        },
+        {
+          "text": "is",
+          "from": 112
+        },
+        {
+          "text": "Kaliningrad",
+          "from": 115
+        }
+      ]
+    },
+    {
+      "text": "Until 1946 it was Königsberg",
+      "from": 149,
+      "to": 224,
+      "words": [
+        {
+          "text": "Until",
+          "from": 149
+        },
+        {
+          "text": "1946",
+          "from": 157
+        },
+        {
+          "text": "it",
+          "from": 184
+        },
+        {
+          "text": "was",
+          "from": 200
+        },
+        {
+          "text": "Königsberg",
+          "from": 204
+        }
+      ]
+    },
+    {
+      "text": "Teutonic Knights founded it in",
+      "from": 242,
+      "to": 284,
+      "words": [
+        {
+          "text": "Teutonic",
+          "from": 242
+        },
+        {
+          "text": "Knights",
+          "from": 253
+        },
+        {
+          "text": "founded",
+          "from": 262
+        },
+        {
+          "text": "it",
+          "from": 274
+        },
+        {
+          "text": "in",
+          "from": 281
+        }
+      ]
+    },
+    {
+      "text": "1255",
+      "from": 284,
+      "to": 313,
+      "words": [
+        {
+          "text": "1255",
+          "from": 284
+        }
+      ]
+    },
+    {
+      "text": "In 1701 a king was",
+      "from": 332,
+      "to": 386,
+      "words": [
+        {
+          "text": "In",
+          "from": 332
+        },
+        {
+          "text": "1701",
+          "from": 338
+        },
+        {
+          "text": "a",
+          "from": 356
+        },
+        {
+          "text": "king",
+          "from": 373
+        },
+        {
+          "text": "was",
+          "from": 379
+        }
+      ]
+    },
+    {
+      "text": "crowned there",
+      "from": 386,
+      "to": 407,
+      "words": [
+        {
+          "text": "crowned",
+          "from": 386
+        },
+        {
+          "text": "there",
+          "from": 394
+        }
+      ]
+    },
+    {
+      "text": "Kant lived there virtually all",
+      "from": 426,
+      "to": 468,
+      "words": [
+        {
+          "text": "Kant",
+          "from": 426
+        },
+        {
+          "text": "lived",
+          "from": 431
+        },
+        {
+          "text": "there",
+          "from": 441
+        },
+        {
+          "text": "virtually",
+          "from": 448
+        },
+        {
+          "text": "all",
+          "from": 455
+        }
+      ]
+    },
+    {
+      "text": "his life",
+      "from": 468,
+      "to": 486,
+      "words": [
+        {
+          "text": "his",
+          "from": 468
+        },
+        {
+          "text": "life",
+          "from": 474
+        }
+      ]
+    },
+    {
+      "text": "In 1944 bombs burned the",
+      "from": 507,
+      "to": 570,
+      "words": [
+        {
+          "text": "In",
+          "from": 507
+        },
+        {
+          "text": "1944",
+          "from": 509
+        },
+        {
+          "text": "bombs",
+          "from": 526
+        },
+        {
+          "text": "burned",
+          "from": 550
+        },
+        {
+          "text": "the",
+          "from": 565
+        }
+      ]
+    },
+    {
+      "text": "old city",
+      "from": 570,
+      "to": 584,
+      "words": [
+        {
+          "text": "old",
+          "from": 570
+        },
+        {
+          "text": "city",
+          "from": 574
+        }
+      ]
+    },
+    {
+      "text": "In April 1945 the Soviets",
+      "from": 602,
+      "to": 658,
+      "words": [
+        {
+          "text": "In",
+          "from": 602
+        },
+        {
+          "text": "April",
+          "from": 605
+        },
+        {
+          "text": "1945",
+          "from": 613
+        },
+        {
+          "text": "the",
+          "from": 632
+        },
+        {
+          "text": "Soviets",
+          "from": 652
+        }
+      ]
+    },
+    {
+      "text": "took it",
+      "from": 658,
+      "to": 679,
+      "words": [
+        {
+          "text": "took",
+          "from": 658
+        },
+        {
+          "text": "it",
+          "from": 672
+        }
+      ]
+    },
+    {
+      "text": "At Potsdam the Allies agreed",
+      "from": 695,
+      "to": 742,
+      "words": [
+        {
+          "text": "At",
+          "from": 695
+        },
+        {
+          "text": "Potsdam",
+          "from": 698
+        },
+        {
+          "text": "the",
+          "from": 713
+        },
+        {
+          "text": "Allies",
+          "from": 723
+        },
+        {
+          "text": "agreed",
+          "from": 731
+        }
+      ]
+    },
+    {
+      "text": "to give it to Moscow",
+      "from": 742,
+      "to": 768,
+      "words": [
+        {
+          "text": "to",
+          "from": 742
+        },
+        {
+          "text": "give",
+          "from": 746
+        },
+        {
+          "text": "it",
+          "from": 753
+        },
+        {
+          "text": "to",
+          "from": 755
+        },
+        {
+          "text": "Moscow",
+          "from": 759
+        }
+      ]
+    },
+    {
+      "text": "Renamed Kaliningrad after Mikhail Kalinin",
+      "from": 799,
+      "to": 856,
+      "words": [
+        {
+          "text": "Renamed",
+          "from": 799
+        },
+        {
+          "text": "Kaliningrad",
+          "from": 805
+        },
+        {
+          "text": "after",
+          "from": 827
+        },
+        {
+          "text": "Mikhail",
+          "from": 838
+        },
+        {
+          "text": "Kalinin",
+          "from": 844
+        }
+      ]
+    },
+    {
+      "text": "who was unrelated to it",
+      "from": 861,
+      "to": 907,
+      "words": [
+        {
+          "text": "who",
+          "from": 861
+        },
+        {
+          "text": "was",
+          "from": 871
+        },
+        {
+          "text": "unrelated",
+          "from": 875
+        },
+        {
+          "text": "to",
+          "from": 888
+        },
+        {
+          "text": "it",
+          "from": 899
+        }
+      ]
+    },
+    {
+      "text": "Every land link to Russia",
+      "from": 930,
+      "to": 958,
+      "words": [
+        {
+          "text": "Every",
+          "from": 930
+        },
+        {
+          "text": "land",
+          "from": 930
+        },
+        {
+          "text": "link",
+          "from": 940
+        },
+        {
+          "text": "to",
+          "from": 946
+        },
+        {
+          "text": "Russia",
+          "from": 950
+        }
+      ]
+    },
+    {
+      "text": "now crosses NATO and EU",
+      "from": 958,
+      "to": 1012,
+      "words": [
+        {
+          "text": "now",
+          "from": 958
+        },
+        {
+          "text": "crosses",
+          "from": 970
+        },
+        {
+          "text": "NATO",
+          "from": 981
+        },
+        {
+          "text": "and",
+          "from": 991
+        },
+        {
+          "text": "EU",
+          "from": 1001
+        }
+      ]
+    },
+    {
+      "text": "A German city became Russian",
+      "from": 1033,
+      "to": 1085,
+      "words": [
+        {
+          "text": "A",
+          "from": 1033
+        },
+        {
+          "text": "German",
+          "from": 1038
+        },
+        {
+          "text": "city",
+          "from": 1045
+        },
+        {
+          "text": "became",
+          "from": 1058
+        },
+        {
+          "text": "Russian",
+          "from": 1071
+        }
+      ]
+    },
+    {
+      "text": "Full story on our channel",
+      "from": 1110,
+      "to": 1144,
+      "words": [
+        {
+          "text": "Full",
+          "from": 1110
+        },
+        {
+          "text": "story",
+          "from": 1111
+        },
+        {
+          "text": "on",
+          "from": 1118
+        },
+        {
+          "text": "our",
+          "from": 1129
+        },
+        {
+          "text": "channel",
+          "from": 1132
+        }
+      ]
+    }
+  ],
+  "durationInFrames": 1171,
+  "duration_s": 39.03333333333333
+}

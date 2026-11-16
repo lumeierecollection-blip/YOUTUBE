@@ -1,0 +1,188 @@
+{
+  "channel": "hidden-past",
+  "production_run": "run-43861409626-1",
+  "format": "short",
+  "scenes": [
+    {
+      "scene_id": "s1",
+      "narration": "Why does Russia own land between Poland and Lithuania?",
+      "main_point": "Open on the question over a drawn map of Kaliningrad Oblast between Poland and Lithuania (Natural Earth), with a Russia stamp and a pin",
+      "visual_objective": "Open on the question over a drawn map of Kaliningrad Oblast between Poland and Lithuania (Natural Earth), with a Russia stamp and a pin",
+      "treatment": "drawn-map-with-russia-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K1",
+        "K2"
+      ],
+      "start_s": 0,
+      "end_s": 3.6666666666666665
+    },
+    {
+      "scene_id": "s2",
+      "narration": "It is Kaliningrad.",
+      "main_point": "Name Kaliningrad over a 2012 photograph of the cathedral on the Baltic coast",
+      "visual_objective": "Name Kaliningrad over a 2012 photograph of the cathedral on the Baltic coast",
+      "treatment": "sticker-photo-with-title",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K2"
+      ],
+      "start_s": 3.6666666666666665,
+      "end_s": 4.966666666666667
+    },
+    {
+      "scene_id": "s3",
+      "narration": "Until 1946, it was Königsberg.",
+      "main_point": "Show Königsberg Castle before 1900 with the year 1946 and a German city stamp",
+      "visual_objective": "Show Königsberg Castle before 1900 with the year 1946 and a German city stamp",
+      "treatment": "photo-with-giant-year-and-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K3"
+      ],
+      "start_s": 4.966666666666667,
+      "end_s": 8.066666666666666
+    },
+    {
+      "scene_id": "s4",
+      "narration": "Teutonic Knights founded it in 1255.",
+      "main_point": "Giant 1255 with the Merian engraving of Königsberg and the Teutonic Knights strip",
+      "visual_objective": "Giant 1255 with the Merian engraving of Königsberg and the Teutonic Knights strip",
+      "treatment": "giant-year-with-engraving",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K4"
+      ],
+      "start_s": 8.066666666666666,
+      "end_s": 11.066666666666666
+    },
+    {
+      "scene_id": "s5",
+      "narration": "In 1701, a king was crowned there.",
+      "main_point": "Giant 1701 with the coronation picture and a crowned-in-the-castle stamp",
+      "visual_objective": "Giant 1701 with the coronation picture and a crowned-in-the-castle stamp",
+      "treatment": "giant-year-with-coronation-picture",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K5"
+      ],
+      "start_s": 11.066666666666666,
+      "end_s": 14.2
+    },
+    {
+      "scene_id": "s6",
+      "narration": "Kant lived there virtually all his life.",
+      "main_point": "Immanuel Kant portrait with the line that he lived there virtually all his life",
+      "visual_objective": "Immanuel Kant portrait with the line that he lived there virtually all his life",
+      "treatment": "portrait-sticker-with-name",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K6"
+      ],
+      "start_s": 14.2,
+      "end_s": 16.9
+    },
+    {
+      "scene_id": "s7",
+      "narration": "In 1944, bombs burned the old city.",
+      "main_point": "Giant 1944 with an aerial view of the old centre and a burned-for-days stamp",
+      "visual_objective": "Giant 1944 with an aerial view of the old centre and a burned-for-days stamp",
+      "treatment": "photo-with-giant-year-and-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K7"
+      ],
+      "start_s": 16.9,
+      "end_s": 20.066666666666666
+    },
+    {
+      "scene_id": "s8",
+      "narration": "In April 1945, the Soviets took it.",
+      "main_point": "Soviet street-fighting photograph with the date 9 April 1945",
+      "visual_objective": "Soviet street-fighting photograph with the date 9 April 1945",
+      "treatment": "photo-with-date-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K8"
+      ],
+      "start_s": 20.066666666666666,
+      "end_s": 23.166666666666668
+    },
+    {
+      "scene_id": "s9",
+      "narration": "At Potsdam, the Allies agreed to give it to Moscow.",
+      "main_point": "Potsdam Conference photograph with the Potsdam Agreement's own words as a quote slip",
+      "visual_objective": "Potsdam Conference photograph with the Potsdam Agreement's own words as a quote slip",
+      "treatment": "photo-with-quote-slip",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K9"
+      ],
+      "start_s": 23.166666666666668,
+      "end_s": 26.633333333333333
+    },
+    {
+      "scene_id": "s10",
+      "narration": "Renamed Kaliningrad after Mikhail Kalinin, who was unrelated to it.",
+      "main_point": "Kalinin portrait, the year 1946 and the name Kaliningrad stamped over Königsberg",
+      "visual_objective": "Kalinin portrait, the year 1946 and the name Kaliningrad stamped over Königsberg",
+      "treatment": "portrait-sticker-with-rename-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K10"
+      ],
+      "start_s": 26.633333333333333,
+      "end_s": 31
+    },
+    {
+      "scene_id": "s11",
+      "narration": "Every land link to Russia now crosses NATO and EU.",
+      "main_point": "Draw Kaliningrad and Moscow with Poland and Lithuania tinted and a schematic route between them",
+      "visual_objective": "Draw Kaliningrad and Moscow with Poland and Lithuania tinted and a schematic route between them",
+      "treatment": "drawn-map-with-route",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K11"
+      ],
+      "start_s": 31,
+      "end_s": 34.43333333333333
+    },
+    {
+      "scene_id": "s12",
+      "narration": "A German city became Russian.",
+      "main_point": "Then and now: the castle before 1900 against the cathedral in 2012, with the answer in a strip",
+      "visual_objective": "Then and now: the castle before 1900 against the cathedral in 2012, with the answer in a strip",
+      "treatment": "then-and-now-stickers",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [
+        "K12"
+      ],
+      "start_s": 34.43333333333333,
+      "end_s": 37
+    },
+    {
+      "scene_id": "s13",
+      "narration": "Full story on our channel.",
+      "main_point": "Return to the opening map with the pointer to the full story on the channel, so a replay loops",
+      "visual_objective": "Return to the opening map with the pointer to the full story on the channel, so a replay loops",
+      "treatment": "drawn-map-with-cta-stamp",
+      "background": "paper panel in saturated frame",
+      "skill": "remotion",
+      "claim_ids": [],
+      "start_s": 37,
+      "end_s": 39.03333333333333
+    }
+  ]
+}
