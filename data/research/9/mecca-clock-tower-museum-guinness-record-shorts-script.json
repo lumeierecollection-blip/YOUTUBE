@@ -1,0 +1,69 @@
+{
+  "channel_id": "9",
+  "topic_slug": "mecca-clock-tower-museum-guinness-record",
+  "format": "shorts",
+  "hook": "What if the highest museum in a building sits 426.875 metres high?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if the highest museum in a building sits 426.875 metres high?",
+      "b_roll": [
+        "Makkah Clock Tower towering into the sky",
+        "High angle view of Makkah landscape"
+      ],
+      "text_overlay": {
+        "text": "426.875 Metres High"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Royal Commission for Makkah City and Holy Sites just set two records in Saudi Arabia? The Clock Tower Museum also features the highest outdoor observation deck at 426.875 metres above ground.",
+      "b_roll": [
+        "Guinness World Records certificate logo graphic",
+        "Royal Commission for Makkah City logo and Clock Tower entrance",
+        "Exterior shot looking up at the high observation balcony"
+      ],
+      "text_overlay": {
+        "text": "2 Guinness World Records"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the Center for Cosmos Sciences earned these records for both the museum and observation deck.",
+      "b_roll": [
+        "Center for Cosmos Sciences emblem overlay on tower exhibit",
+        "Dual record awards side by side"
+      ],
+      "text_overlay": {
+        "text": "Dual Record Recognition"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Official records confirm the Clock Tower Museum stands 426.875 metres high inside the building in Makkah. The Clock Tower Museum structure reaches 1400 feet above ground in Makkah, Saudi Arabia.",
+      "b_roll": [
+        "Digital readout showing 426.875 metres elevation",
+        "Panoramic view from the outdoor observation deck",
+        "Graphic scale showing 1400 feet height relative to ground level"
+      ],
+      "text_overlay": {
+        "text": "1400 Feet Above Ground"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Makkah claims the world's highest museum at 426.875 metres.",
+      "b_roll": [
+        "Wide cinematic view of Makkah and the Clock Tower Museum"
+      ],
+      "text_overlay": {
+        "text": "Highest Museum in a Building"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building",
+    "https://saudigazette.com.sa/article/666310/saudi-arabia/makkah-clock-tower-wins-guinness-records-for-highest-museum-observation-deck",
+    "https://english.ajel.sa/saudi-arabia/e9qc9wv8u"
+  ]
+}
