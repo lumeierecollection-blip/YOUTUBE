@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "safe-work-australia-quad-bike-safety-reforms-2026",
+  "format": "shorts",
+  "hook": "Since 2011, 245 people have died in quad bike accidents across Australia.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Since 2011, 245 people have died in quad bike accidents across Australia.",
+      "text_overlay": {
+        "text": "245 Deaths Since 2011"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 17, 2026, work health and safety ministers agreed to progress new regulatory reforms. Between 2021 and 2025, 73 people died in incidents. How many lives were lost this year?",
+      "text_overlay": {
+        "text": "Regulatory reforms agreed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "As of November 5, 2026, there have been 17 recorded quad bike fatalities.",
+      "text_overlay": {
+        "text": "17 Fatalities in 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ministers are implementing these reforms to address the 73 deaths recorded between 2021 and 2025. Safe Work Australia reports 43 of those 245 total victims were aged 19 or under.",
+      "text_overlay": {
+        "text": "43 victims aged 19 or under"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Australia records 17 quad bike deaths as of November 2026.",
+      "text_overlay": {
+        "text": "17 deaths in 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.safeworkaustralia.gov.au/media-centre/news/whs-ministers-agree-strengthen-quad-bike-safety-work",
+    "https://www.miragenews.com/whs-ministers-agree-to-strengthen-workplace-1778395"
+  ]
+}
