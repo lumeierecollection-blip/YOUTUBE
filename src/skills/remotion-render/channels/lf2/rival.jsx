@@ -406,12 +406,12 @@ export function ThumbCompare({ a, b, phrase }) {
   </ThumbBase>);
 }
 
-export function ThumbHero({ cutout, parts, line2, big, credit }) {
+export function ThumbHero({ cutout, parts, line2, big, credit, size = 168 }) {
   // the reference formula, kept clean: a cut-out player on a light gradient, one soft speed ghost, a lower-case serif phrase with one bold word, one red hand-drawn arrow
   return (<ThumbBase>
     <Img src={staticFile(cutout)} style={{ position: "absolute", right: 360, top: 20, height: 1040, filter: "blur(16px)", opacity: 0.22 }} />
     <Img src={staticFile(cutout)} style={{ position: "absolute", right: 150, top: 14, height: 1052, filter: "drop-shadow(0 22px 28px rgba(0,0,0,0.25))" }} />
-    <div style={{ position: "absolute", left: 100, top: 230, fontFamily: F.display, fontSize: 168, lineHeight: 1.0, color: "#111", letterSpacing: "-0.015em" }}>{parts.map(([t, b], i) => <div key={i} style={{ fontWeight: b ? 900 : 400 }}>{t}</div>)}</div>
+    <div style={{ position: "absolute", left: 100, top: 230, fontFamily: F.display, fontSize: size, lineHeight: 1.0, color: "#111", letterSpacing: "-0.015em" }}>{parts.map(([t, b], i) => <div key={i} style={{ fontWeight: b ? 900 : 400 }}>{t}</div>)}</div>
     {line2 && <div style={{ position: "absolute", left: 106, top: 960, fontFamily: F.display, fontStyle: "italic", fontSize: 44, color: "#555" }}>{line2}</div>}
     <RedArrow d="M 820 330 C 960 250, 1090 280, 1130 400" w={10} /><RedArrow d="M 1088 366 L 1132 404 L 1074 420" w={10} />
     {credit && <div style={{ position: "absolute", right: 22, bottom: 12, fontFamily: F.sans, fontSize: 14, color: "#888" }}>{credit}</div>}
@@ -568,4 +568,4 @@ export function GoalDiagram({ t, goals, title, step = 22, v }) {
   );
 }
 
-export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, grid: ShootoutGrid, kicks: KickBoard, order: OrderStrip, goal: GoalDiagram, hero: Hero, cards: Cards };
+export const RIVAL = { photo: Photo, number: NumberOpen, scorecard: ScoreCard, formation: Formation, sequence: Sequence360, network: PassNetwork, press: PressMap, shots: ShotMap, bars: StatBars, timeline: MatchTimeline, sub: SubCard, thumb: RivalThumb, player: ThumbHero, grid: ShootoutGrid, kicks: KickBoard, order: OrderStrip, goal: GoalDiagram, hero: Hero, cards: Cards };

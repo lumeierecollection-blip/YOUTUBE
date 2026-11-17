@@ -10,6 +10,7 @@
 // Nothing here is a measured effect: n = 32 cannot separate 50 percent from 60 percent (Wilson 95% interval 36.4-69.1), and the narration says so.
 // StatsBomb commercial-use terms still need the owner's confirmation (docs/longform/MEDIA-ACQUISITION.md).
 import { readFileSync } from "node:fs";
+import { autoCut, montage } from "../autocut.mjs";
 import { join } from "node:path";
 import { ROOT } from "../../../preview/lib.mjs";
 
@@ -47,6 +48,21 @@ export const FOOTAGE = [
   { id: "fb-run", q: "football player running ball", alt: ["soccer player dribbling", "soccer player"], pick: 1 },
   { id: "fb-train", q: "soccer players training", alt: ["football practice", "soccer team"] },
   { id: "fb-keeper2", q: "soccer goalkeeper", alt: ["goalkeeper save"], pick: 2 },
+  { id: "fb-corner", q: "soccer corner kick", optional: true },
+  { id: "fb-free", q: "soccer free kick", optional: true },
+  { id: "fb-ref", q: "soccer referee", optional: true },
+  { id: "fb-tackle", q: "soccer tackle", optional: true },
+  { id: "fb-celebrate", q: "soccer goal celebration", optional: true },
+  { id: "fb-boots", q: "football boots grass", optional: true },
+  { id: "fb-kick", q: "soccer player kicking ball", optional: true },
+  { id: "fb-aerial", q: "soccer stadium aerial", optional: true },
+  { id: "fb-flags", q: "football fans flags", optional: true },
+  { id: "fb-coach", q: "soccer coach", optional: true },
+  { id: "fb-spot", q: "soccer ball penalty spot", optional: true },
+  { id: "fb-gloves", q: "goalkeeper gloves", optional: true },
+  { id: "fb-huddle", q: "soccer team huddle", optional: true },
+  { id: "fb-slowmo", q: "soccer ball net slow motion", optional: true },
+  { id: "fb-dribble", q: "soccer dribbling", optional: true },
   { id: "fb-pitch", q: "soccer field aerial", alt: ["football pitch drone", "football field"] },
 ];
 const VID = (id) => `lf2/footage/${id}.mp4`, VCRED = "Pixabay Content License · illustrative footage";
@@ -70,7 +86,7 @@ export const EPISODE = {
       scene: { type: "cards", v: "plum", title: "Euro 2020 final · Wembley", cards: [{ video: VID("fb-night"), credit: VCRED, pos: "50% 50%" }, { image: PH("ps-wembley-2021"), credit: PC("ps-wembley-2021"), pos: "50% 45%" }], callout: "Level after extra time" } },
     { id: "S03b", part: "the setup", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Picture the long walk from the halfway line to the penalty spot.",
-      scene: CLIP("fb-penalty", "Illustrative footage", "The walk to the spot") },
+      scene: montage(["fb-penalty", "fb-spot", "fb-ball"], 3) },
     { id: "S04", part: "the setup", ref: "gp4cftwGLcQ 2:08: how the thing works, shown on a real case", src: ["PS", "SB"],
       vo: "The referee tosses a coin to decide who kicks first. Then the teams alternate, five kicks each, and if it is still level, sudden death.",
       scene: { type: "kicks", home: "Italy", away: "England", kicks: KICKS("euro20"), title: "A real shoot-out, kick by kick", date: "Euro 2020 final · 11 July 2021", step: 30 } },
@@ -82,7 +98,7 @@ export const EPISODE = {
       scene: FK(B3(0, 1)) },
     { id: "S06b", part: "the claim", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Every kick is a duel between one kicker and one goalkeeper.",
-      scene: CLIP("fb-keeper", "Illustrative footage", "One kicker. One keeper.") },
+      scene: montage(["fb-keeper", "fb-gloves", "fb-keeper2"], 3) },
     { id: "S07", part: "the test", ref: "gp4cftwGLcQ 4:35: the claim checked against more data", src: ["PS"],
       vo: "But a larger analysis by InStat, covering more than two thousand shoot-outs, found the first kicker won fifty-one point four eight percent of the time.",
       scene: FK([B3(0, 1)[0], B3(2, 3)[0]]) },
@@ -91,7 +107,7 @@ export const EPISODE = {
       scene: { type: "number", value: 2024, unit: "Study: no advantage found", sub: "in modern European football · as reported in Wikipedia", credit: "Source: Wikipedia" } },
     { id: "S08b", part: "the test", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Think how much rides on a single kick.",
-      scene: CLIP("fb-goal", "Illustrative footage", "One kick") },
+      scene: montage(["fb-goal", "fb-slowmo", "fb-kick"], 3) },
     { id: "S09", part: "our count", ref: "gp4cftwGLcQ 2:08: how it is measured, so the later numbers are earned", src: ["SB"],
       vo: "So what happens if we count for ourselves? StatsBomb publishes free event data for major tournaments, and we took nine of them.",
       scene: { type: "hero", value: 32, countFrom: 0, label: "shoot-outs, 328 kicks", sub: "nine tournaments, 2018–2025 · not every shoot-out ever played", v: "teal", figure: "kick" } },
@@ -112,13 +128,13 @@ export const EPISODE = {
       scene: FK(B3(0, 3), "Our result fits both · percent") },
     { id: "S13c", part: "the limit", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Behind the goal, thousands of people are watching, and every one of them has an opinion.",
-      scene: CLIP("fb-crowd", "Illustrative footage", "Thousands watching") },
+      scene: montage(["fb-crowd", "fb-flags", "fb-fans"], 3) },
     { id: "S14", part: "examples", ref: "gp4cftwGLcQ: a concrete case after the number", src: ["SB"],
       vo: "The numbers hide stories. In the 2022 World Cup final, France kicked first. Argentina scored all four of theirs, and won four to two.",
       scene: { type: "kicks", home: "France", away: "Argentina", kicks: KICKS("wc22"), title: "A real shoot-out, kick by kick", date: "World Cup final · 18 December 2022", step: 30 } },
     { id: "S14b", part: "examples", ref: "gp4cftwGLcQ: a named player as the human case before the pressure test", src: ["SB", "PHOTO"],
       vo: "Take Harry Kane at the 2018 World Cup. Colombia kicked first in that round-of-sixteen shoot-out. England kicked second, and won four to three.",
-      scene: { type: "photo", image: PH("ps-kane-2018-a"), credit: PC("ps-kane-2018-a"), kicker: "2018 WORLD CUP · ROUND OF 16 · COLOMBIA V ENGLAND", callout: "Kicked second.\nWon.", pos: "62% 40%" } },
+      scene: { type: "player", cutout: "lf2/rival-lines/ps-kane-cutout.png", parts: [["colombia first.", false], ["england won.", true]], size: 112, line2: "Harry Kane before his penalty · 2018 World Cup, round of 16", credit: "Photo: Voltmetro, CC BY-SA 4.0, via Wikimedia Commons" } },
     { id: "S15", part: "examples", ref: "gp4cftwGLcQ: both sides of the claim", src: ["SB"],
       vo: "In the Euro 2020 final it went the other way: Italy kicked first and won three to two. Both finals are ringed here.",
       scene: GRIDSCENE({ step: 3, title: "Two finals, two answers", label: "Ringed white: Euro 2020 final and 2022 World Cup final" }) },
@@ -133,7 +149,7 @@ export const EPISODE = {
       scene: { type: "number", value: 67, countFrom: 0, unit: "Percent scored when trailing", sub: "84 of 125 · level: 63% · leading: 74%", credit: DATA } },
     { id: "S18b", part: "pressure", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Keeping calm when you are behind is a skill of its own.",
-      scene: CLIP("fb-run", "Illustrative footage", "Nerve") },
+      scene: montage(["fb-run", "fb-dribble", "fb-train"], 3) },
     { id: "S19", part: "round by round", ref: "gp4cftwGLcQ: a second cut of the same data", src: ["SB"],
       vo: "Now round by round. Overall, two hundred and eighteen of three hundred and twenty-eight kicks went in: sixty-six point five percent.",
       scene: { type: "number", value: 66.5, unit: "Percent of kicks scored", sub: "218 of 328 kicks, 32 shoot-outs", credit: DATA } },
@@ -145,7 +161,7 @@ export const EPISODE = {
       scene: { type: "number", value: 7, countFrom: 0, unit: "Went to sudden death", sub: "of 32 shoot-outs", credit: DATA } },
     { id: "S21b", part: "round by round", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Over a hundred and twenty minutes, nothing has separated these two teams.",
-      scene: CLIP("fb-night", "Illustrative footage", "Level at 120 minutes") },
+      scene: montage(["fb-night", "fb-aerial", "fb-pitch"], 3) },
     { id: "S22", part: "the goalkeeper", ref: "gp4cftwGLcQ: the other side of the duel", src: ["PS"],
       vo: "The goalkeeper is the other half of the duel. A 2011 study in Psychological Science found goalkeepers dived to the right seventy-one percent of the time when their team was losing.",
       scene: { type: "goal", title: "Goalkeeper dives · 2011 study (Wikipedia)", goals: [{ label: "Team losing", right: 71 }] } },
@@ -154,7 +170,7 @@ export const EPISODE = {
       scene: { type: "goal", title: "Goalkeeper dives · 2011 study (Wikipedia)", step: 14, goals: [{ label: "Team losing", right: 71 }, { label: "Team tied", right: 49 }, { label: "Team ahead", right: 48 }] } },
     { id: "S23b", part: "the goalkeeper", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Now, the other side of the duel.",
-      scene: CLIP("fb-keeper2", "Illustrative footage", "The keeper") },
+      scene: montage(["fb-keeper2", "fb-gloves", "fb-keeper"], 3) },
     { id: "S24", part: "the goalkeeper", ref: "gp4cftwGLcQ: what the keeper can do", src: ["PS"],
       vo: "The same article reports research linking goalkeeper distraction with ten percent fewer goals for the kicker, and delaying the kicker with twenty percent fewer.",
       scene: { type: "hero", value: 20, countFrom: 0, label: "% fewer goals when the keeper delays the kicker", sub: "distraction: 10% fewer · as reported in Wikipedia", v: "plum", figure: "keeper" } },
@@ -169,7 +185,7 @@ export const EPISODE = {
       scene: { type: "order", title: "Who kicks when · A = kicked first", rows: [{ label: "Standard order", seq: "ABABABABAB", note: "Team A always kicks first in every pair." }, { label: "ABBA trial, 2017", seq: "ABBAABBAAB", note: "Team B kicks twice in a row, then team A twice, like a tennis tiebreak." }] } },
     { id: "S27b", part: "the fix", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "Rules, like tactics, can change.",
-      scene: CLIP("fb-train", "Illustrative footage", "Rules change") },
+      scene: montage(["fb-ref", "fb-coach", "fb-huddle"], 3) },
     { id: "S28", part: "the fix", ref: "gp4cftwGLcQ: how it ended", src: ["PS"],
       vo: "It was used at youth tournaments and in the 2017 Community Shield. In November 2018, IFAB agreed to drop it, because of a lack of strong support, mainly its complexity.",
       scene: { type: "number", value: 2018, unit: "IFAB dropped ABBA", sub: "lack of strong support, mainly its complexity · as reported in Wikipedia", credit: "Source: Wikipedia" } },
@@ -187,7 +203,7 @@ export const EPISODE = {
       scene: { type: "number", value: 1982, unit: "First World Cup shoot-out", sub: "8 July 1982 · West Germany beat France · as reported in Wikipedia", credit: "Source: Wikipedia" } },
     { id: "S30d", part: "history", ref: "gp4cftwGLcQ: a real-footage cutaway between data beats", src: ["PHOTO"],
       vo: "So, back to the question.",
-      scene: CLIP("fb-ball", "Illustrative footage", "Back to the question") },
+      scene: montage(["fb-ball", "fb-boots", "fb-spot"], 3) },
     { id: "S31", part: "the verdict", ref: "gp4cftwGLcQ 15:07: a clear verdict", src: ["SB", "PS"],
       vo: "So does going first win? In our thirty-two shoot-outs, slightly more than half the time. Across more than two thousand, barely more than half.",
       scene: FK(B3(0, 3), "Who wins: the evidence so far, percent") },
@@ -208,3 +224,6 @@ export const EPISODE = {
 // section-coded looks, like the reference's cream / green / magenta system (our own colours; see PAL in channels/lf2/rival.jsx)
 const LOOK = { "the number": "teal", "the setup": "plum", "the claim": "paper", "the test": "paper", "our count": "teal", "the result": "teal", "the limit": "paper", "examples": "plum", "pressure": "teal", "round by round": "teal", "the goalkeeper": "plum", "the goal": "plum", "the fix": "plum", "history": "paper", "the verdict": "teal" };
 for (const b of EPISODE.beats) if (LOOK[b.part] && ["number", "bars", "grid", "kicks", "order", "goal", "cards"].includes(b.scene.type) && !b.scene.v) b.scene = { ...b.scene, v: LOOK[b.part] };
+
+// the references cut to footage every few seconds: lay short clips over every data beat
+autoCut(EPISODE.beats, ["fb-crowd", "fb-penalty", "fb-run", "fb-keeper", "fb-celebrate", "fb-aerial", "fb-tackle", "fb-night", "fb-free", "fb-corner", "fb-fans", "fb-dribble", "fb-slowmo", "fb-kick", "fb-flags", "fb-train", "fb-goal", "fb-ball"], { wps: 2.35 });

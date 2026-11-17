@@ -29,10 +29,10 @@ for (const f of FOOTAGE) {
     hits = (await r.json()).hits.filter((h) => !BAD.test(h.tags) && h.duration >= 5 && (h.videos.medium?.url || h.videos.small?.url));
     if (hits.length) break;
   }
-  if (!hits.length) throw new Error(`no usable Pixabay clip for ${f.id} (${f.q})`);
+  if (!hits.length) { if (f.optional) { console.log("skip (no clip)", f.id, f.q); continue; } throw new Error(`no usable Pixabay clip for ${f.id} (${f.q})`); }
   const h = hits[Math.min(f.pick || 0, hits.length - 1)], v = h.videos.medium?.url ? h.videos.medium : h.videos.small;
   const raw = join(TMP, `${f.id}.src.mp4`), d = await fetch(v.url);
-  if (!d.ok) throw new Error(`download failed for ${f.id}: ${d.status}`);
+  if (!d.ok) { if (f.optional) { console.log("skip (download)", f.id); continue; } throw new Error(`download failed for ${f.id}: ${d.status}`); }
   writeFileSync(raw, Buffer.from(await d.arrayBuffer()));
   const ss = f.ss || 0, len = Math.min(MAXS, Math.max(3, h.duration - ss));
   const x = spawnSync("ffmpeg", ["-y", "-v", "error", "-ss", String(ss), "-i", raw, "-t", String(len), "-an", "-vf", "scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,fps=30", "-c:v", "libx264", "-crf", "24", "-preset", "veryfast", "-pix_fmt", "yuv420p", dest], { encoding: "utf8" });

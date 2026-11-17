@@ -11,6 +11,7 @@
 // Facts: ONLY from the Wikipedia articles fetched 16 Nov 2026 (docs/longform/episodes/replicate-2026-11-16/hidden-past-sources/): Speech to the Troops at Tilbury, Spanish Armada, Elizabeth I.
 // Where those articles disagree (the date of the speech; when the army was disbanded) the narration says so and follows the article on the speech.
 import { readFileSync } from "node:fs";
+import { autoCut, montage } from "../autocut.mjs";
 import { join } from "node:path";
 import { ROOT } from "../../../preview/lib.mjs";
 const NE = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/geo/ne_50m_armada_sides.geojson"), "utf8"));
@@ -52,6 +53,24 @@ export const FOOTAGE = [
   { id: "t-sea", q: "stormy sea waves", alt: ["dark ocean waves", "rough sea"] },
   { id: "t-fire", q: "fire flames night", alt: ["burning flames dark", "fire"] },
   { id: "t-coast", q: "english coast cliffs sea", alt: ["cliffs coast sea", "sea cliffs aerial"] },
+  { id: "t-castle", q: "castle fortress walls", optional: true },
+  { id: "t-candle", q: "candle flame dark", optional: true },
+  { id: "t-book", q: "old book pages", optional: true },
+  { id: "t-quill", q: "writing quill parchment", optional: true },
+  { id: "t-cannon", q: "cannon", optional: true },
+  { id: "t-sword", q: "sword medieval", optional: true },
+  { id: "t-horse", q: "horse riding gallop", optional: true },
+  { id: "t-cathedral", q: "cathedral interior", optional: true },
+  { id: "t-flag", q: "flag waving wind", optional: true },
+  { id: "t-sunset", q: "clouds sea sunset", optional: true },
+  { id: "t-wave", q: "waves ship bow", optional: true },
+  { id: "t-armor", q: "medieval armor", optional: true },
+  { id: "t-map", q: "old map", optional: true },
+  { id: "t-estuary", q: "river estuary", optional: true },
+  { id: "t-storm", q: "storm clouds sea", optional: true },
+  { id: "t-torch", q: "torch flame", optional: true },
+  { id: "t-march", q: "soldiers marching", optional: true },
+  { id: "t-ropes", q: "ship ropes rigging", optional: true },
   { id: "t-beacon", q: "bonfire hill night", alt: ["campfire night", "fire night hill"] },
 ];
 const FV = (id, date, text, source, o = {}) => ({ type: "footage", video: `lf2/footage/${id}.mp4`, videoLen: o.len || 9, date, grade: "warm", credit: "Pixabay Content License · illustrative footage, not the event", captions: text ? [{ text, source, from: o.at ?? 40 }] : [] });
@@ -71,7 +90,7 @@ export const EPISODE = {
       scene: F("tb-ap-wrecks", "THE FLEET WAS GONE", "The most trusted version was printed in 1654.", "Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 40%", z: [1.0, 1.12], at: 30 }) },
     { id: "T03b", part: "the question", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["COMMONS"],
       vo: "Picture the south coast of England that summer.",
-      scene: FV("t-coast", "SUMMER 1588", null, null) },
+      scene: montage(["t-coast", "t-estuary", "t-sunset"], 3) },
     { id: "T04", part: "the question", ref: "RlKJDwViNKs 0:00-0:43: the honesty note before the speech", src: ["SP", "COMMONS"],
       vo: "So what happened at Tilbury? Who heard her, what did she actually say, and why can nobody be sure? To answer that, we have to start with the fleet she was waiting for.",
       scene: F("tb-tilbury-illus", "TILBURY", "Whether she used these words, we do not know.", "Historian David Loades, quoted in Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 30%", z: [1.0, 1.14], at: 120 }) },
@@ -85,7 +104,7 @@ export const EPISODE = {
       scene: F("tb-gr-left", "THE ARMADA", "141 ships · 10,138 sailors · 19,315 soldiers", "Wikipedia, 'Spanish Armada'", { pos: "40% 50%", z: [1.1, 1.0], at: 50 }) },
     { id: "T06c", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
       vo: "Picture the fleet under sail.",
-      scene: FV("t-fleet", "ILLUSTRATIVE", null, null) },
+      scene: montage(["t-fleet", "t-ship", "t-ropes"], 3) },
     { id: "T06b", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the route on the map", src: ["AR", "COORDS", "EOX"],
       vo: "It sailed from Lisbon on the twenty-first of July, new style, and was sighted off the Lizard, in Cornwall, on the twenty-ninth.",
       scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "21–29 JULY 1588 (NEW STYLE)", views: [{ f: 0, center: [-6.0, 44.5], zoom: 4.3, pitch: 0, bearing: 0 }, { f: 330, center: [-6.0, 45.0], zoom: 4.6, pitch: 0, bearing: 0 }],
@@ -98,13 +117,13 @@ export const EPISODE = {
       scene: F("tb-gr-right", "CALAIS · 1588", null, null, { pos: "60% 50%", z: [1.0, 1.14] }) },
     { id: "T07b", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
       vo: "Picture a single ship among them.",
-      scene: FV("t-ship", "ILLUSTRATIVE", null, null) },
+      scene: montage(["t-ship", "t-wave", "t-ropes"], 3) },
     { id: "T08", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the night attack", src: ["AR", "COMMONS"],
       vo: "Then, in the middle of the night of the seventh to the eighth of August, new style, the English set fireships alight and sent them downwind among the anchored Spanish ships.",
       scene: F("tb-fs-left", "7–8 AUGUST 1588", "English fireships launched at the Spanish Armada off Calais.", "Wikipedia, 'Spanish Armada'", { pos: "50% 55%", z: [1.12, 1.0], at: 80 }) },
     { id: "T08b", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
       vo: "Fire, in the dark, among crowded ships.",
-      scene: FV("t-fire", "ILLUSTRATIVE", null, null) },
+      scene: montage(["t-fire", "t-torch", "t-storm"], 3) },
     { id: "T09", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the result", src: ["AR", "COMMONS"],
       vo: "The Armada scattered, and it suffered further losses in the Battle of Gravelines.",
       scene: F("tb-gr-low", "GRAVELINES · 8 AUGUST 1588", null, null, { pos: "50% 60%", z: [1.0, 1.12] }) },
@@ -135,7 +154,7 @@ export const EPISODE = {
         tags: [{ text: "The feared crossing", x: 760, y: 180, from: 100 }] } },
     { id: "T12b", part: "the camp", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
       vo: "Along the south coast, a system of beacons carried the news to London.",
-      scene: FV("t-beacon", "BEACONS", "News was conveyed to London by a system of beacons along the south coast.", "Wikipedia, 'Spanish Armada'", { at: 60 }) },
+      scene: montage(["t-beacon", "t-torch", "t-fire"], 3) },
     { id: "T13", part: "the camp", ref: "RlKJDwViNKs: the named commander beside the speaker", src: ["SP", "COMMONS"],
       vo: "Leicester, Robert Dudley, was the Queen's lieutenant general, and he rode at her side on the day. In the speech, she tells the troops that he will command in her place.",
       scene: F("tb-le-face", "ROBERT DUDLEY · EARL OF LEICESTER", "“My lieutenant general shall be in my stead.”", SH, { pos: "50% 25%", z: [1.0, 1.1], at: 110 }) },
@@ -210,7 +229,7 @@ export const EPISODE = {
       scene: FIG("tb-gr-low", "After the speech", ROWS_AFTER) },
     { id: "T36b", part: "the day after", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
       vo: "The sea, for now, was quiet again.",
-      scene: FV("t-sea", "AFTER THE ARMADA", null, null) },
+      scene: montage(["t-sea", "t-wave", "t-storm"], 3) },
     { id: "T37", part: "the cost", ref: "RlKJDwViNKs: the speaker's promise against what followed", src: ["AR", "COMMONS"],
       vo: "The admiral, Lord Howard, wrote to the Queen's treasurer: it would grieve any man's heart to see them that have served so valiantly die so miserably.",
       scene: F("tb-gr-left", "AFTER THE ARMADA", "“It would grieve any man's heart to see them that have served so valiantly die so miserably.”", "Lord Howard to Lord Burghley · quoted in Wikipedia, 'Spanish Armada'", { pos: "50% 50%", z: [1.0, 1.1], at: 60 }) },
@@ -230,3 +249,6 @@ export const EPISODE = {
     { name: "thumb3-armada", kind: "panel", big: "The speech\nafter the\nvictory", label: "Armada 1588", small: "Elizabeth at Tilbury", image: A("tb-gr-left"), pos: "50% 50%" },
   ],
 };
+
+// Epic History keeps the picture moving constantly: lay short clips over the map and figure beats too
+autoCut(EPISODE.beats, ["t-sea", "t-castle", "t-horse", "t-cannon", "t-flag", "t-candle", "t-wave", "t-sword", "t-cathedral", "t-armor", "t-march", "t-sunset"], { wps: 2.45, first: 0.3, skip: new Set(["T01", "T02", "T03"]) });

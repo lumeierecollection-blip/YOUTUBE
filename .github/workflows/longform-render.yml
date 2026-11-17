@@ -48,6 +48,17 @@ jobs:
           npm ci --no-audit --no-fund || npm install --no-audit --no-fund
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Voice cache key (the script text only, so visual edits do not re-ask Gemini)
+        id: vkey
+        if: steps.want.outputs.run == 'yes'
+        run: echo "key=$(node -e "import('./platform/longform/v2/episodes/${{ matrix.episode }}.mjs').then(m=>{const c=require('crypto');console.log(c.createHash('sha1').update(m.EPISODE.beats.map(b=>b.id+'|'+b.vo).join('
+')).digest('hex').slice(0,16))})")" >> "$GITHUB_OUTPUT"
+      - name: Restore the voice takes
+        if: steps.want.outputs.run == 'yes'
+        uses: actions/cache@v4
+        with:
+          path: output/longform-prod/${{ matrix.episode }}/voice
+          key: voice-v2-${{ matrix.episode }}-${{ steps.vkey.outputs.key }}
       - name: Read the script in continuous takes
         if: steps.want.outputs.run == 'yes'
         env:

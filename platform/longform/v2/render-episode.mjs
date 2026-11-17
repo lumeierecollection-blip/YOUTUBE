@@ -43,6 +43,10 @@ function sceneProps(scene) {
   const t = THEMES[ch], p = { ch, t, ...scene };
   if (scene.credit) p.t = { ...t, credit: scene.credit }; // per-scene data credit (club stories: sources are not StatsBomb)
   const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac;
+  // a clip that could not be fetched must not break the render: drop cutaways and montage shots whose file is missing
+  const have = (m) => !(m.video && !existsSync(join(REMOTION, "public", m.video))) && !(m.image && !existsSync(join(REMOTION, "public", m.image)));
+  if (p.cutaways) p.cutaways = p.cutaways.filter(have);
+  if (p.shots) p.shots = p.shots.filter(have);
   if (ch === "hidden-past") {
     if (scene.type === "map") p.theme = t.map;
     if (scene.type === "roster") p.groups = t.countries;
