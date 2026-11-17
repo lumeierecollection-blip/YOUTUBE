@@ -2992,9 +2992,14 @@
           "topic": "El Niño Drives Drought and Fire Across the Amazon Rainforest in 2026",
           "slug": "amazon-rainforest-el-nino-drought-2026",
           "reserved_at": "2026-11-16T18:50:13.243Z"
+        },
+        {
+          "topic": "NIST Optical Clocks Measure How Time Runs Faster on Mountains",
+          "slug": "nist-optical-clocks-time-mountains-blue-sky",
+          "reserved_at": "2026-11-17T18:09:09.932Z"
         }
       ],
-      "last_generated": "2026-11-16T18:50:13.243Z"
+      "last_generated": "2026-11-17T18:09:09.932Z"
     },
     "18": {
       "channel_name": "Brief History",
