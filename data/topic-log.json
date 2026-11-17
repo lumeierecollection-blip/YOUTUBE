@@ -3112,9 +3112,14 @@
           "topic": "AAIB Anniversary Statement on EC135 P1 Helicopter Tail Rotor Separation",
           "slug": "aaib-ec135-helicopter-tail-rotor-blade-separation",
           "reserved_at": "2026-11-16T18:53:03.277Z"
+        },
+        {
+          "topic": "Electric BMW M3 Quad-Motor 100-kWh Battery Pack and Shear Plate Design",
+          "slug": "electric-bmw-m3-quad-motor-battery-design",
+          "reserved_at": "2026-11-17T18:10:40.934Z"
         }
       ],
-      "last_generated": "2026-11-16T18:53:03.277Z"
+      "last_generated": "2026-11-17T18:10:40.934Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
