@@ -382,7 +382,7 @@ export function SubCard({ t, cam, minute, off, on, team, fact }) {
 const RedArrow = ({ d, w = 11 }) => <svg width="1920" height="1080" style={{ position: "absolute" }}><path d={d} stroke="#E5252A" strokeWidth={w} fill="none" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 function ThumbBase({ children }) {
   return <AbsoluteFill style={{ background: "radial-gradient(90% 90% at 50% 45%, #FFFFFF 0%, #E9E9E6 70%, #D8D8D4 100%)", fontVariantNumeric: "lining-nums" }}><Fonts /><style>{"*{font-variant-numeric:lining-nums}"}</style>
-    <div style={{ position: "absolute", left: 46, top: 34, fontFamily: F.display, fontWeight: 700, fontSize: 56, color: "#111" }}>r</div>
+    <div style={{ position: "absolute", left: 46, top: 34, fontFamily: F.display, fontWeight: 700, fontSize: 44, color: "#111", opacity: 0.8 }}>r</div>
     {children}</AbsoluteFill>;
 }
 const Phrase = ({ parts, size = 150, top = 70 }) => <div style={{ position: "absolute", left: 0, right: 0, top, textAlign: "center", fontFamily: F.display, fontSize: size, lineHeight: 1.04, color: "#111", letterSpacing: "-0.01em" }}>{parts.map(([t, b], i) => <span key={i} style={{ fontWeight: b ? 900 : 400 }}>{t} </span>)}</div>;
@@ -407,17 +407,14 @@ export function ThumbCompare({ a, b, phrase }) {
 }
 
 export function ThumbHero({ cutout, parts, line2, big, credit }) {
-  // the reference formula: a cut-out player on a light gradient with a speed streak behind him, a lower-case serif phrase with one bold word, a red hand-drawn arrow
+  // the reference formula, kept clean: a cut-out player on a light gradient, one soft speed ghost, a lower-case serif phrase with one bold word, one red hand-drawn arrow
   return (<ThumbBase>
-    <div style={{ position: "absolute", right: 200, top: 0, height: 1080, width: 560 }}>
-      {[0.5, 0.32, 0.18].map((o, i) => <Img key={i} src={staticFile(cutout)} style={{ position: "absolute", right: 70 * (i + 1) + 40, top: 0, height: 1080, filter: `blur(${10 + i * 8}px) grayscale(0.2)`, opacity: o }} />)}
-      <Img src={staticFile(cutout)} style={{ position: "absolute", right: 0, top: 0, height: 1080, filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.28))" }} />
-    </div>
-    <div style={{ position: "absolute", left: 90, top: 200, fontFamily: F.display, fontSize: 150, lineHeight: 1.02, color: "#111", letterSpacing: "-0.01em" }}>{parts.map(([t, b], i) => <div key={i} style={{ fontWeight: b ? 900 : 400 }}>{t}</div>)}</div>
-    {big && <div style={{ position: "absolute", left: 90, top: 700, fontFamily: F.display, fontWeight: 900, fontSize: 300, lineHeight: 1, color: "#111" }}>{big}</div>}
-    {line2 && <div style={{ position: "absolute", left: 96, top: 930, fontFamily: F.display, fontStyle: "italic", fontSize: 50, color: "#444" }}>{line2}</div>}
-    <RedArrow d="M 900 300 C 1060 220, 1180 250, 1230 380" /><RedArrow d="M 1186 340 L 1232 384 L 1172 396" />
-    {credit && <div style={{ position: "absolute", right: 24, bottom: 14, fontFamily: F.sans, fontSize: 15, color: "#666" }}>{credit}</div>}
+    <Img src={staticFile(cutout)} style={{ position: "absolute", right: 360, top: 20, height: 1040, filter: "blur(16px)", opacity: 0.22 }} />
+    <Img src={staticFile(cutout)} style={{ position: "absolute", right: 150, top: 14, height: 1052, filter: "drop-shadow(0 22px 28px rgba(0,0,0,0.25))" }} />
+    <div style={{ position: "absolute", left: 100, top: 230, fontFamily: F.display, fontSize: 168, lineHeight: 1.0, color: "#111", letterSpacing: "-0.015em" }}>{parts.map(([t, b], i) => <div key={i} style={{ fontWeight: b ? 900 : 400 }}>{t}</div>)}</div>
+    {line2 && <div style={{ position: "absolute", left: 106, top: 960, fontFamily: F.display, fontStyle: "italic", fontSize: 44, color: "#555" }}>{line2}</div>}
+    <RedArrow d="M 820 330 C 960 250, 1090 280, 1130 400" w={10} /><RedArrow d="M 1088 366 L 1132 404 L 1074 420" w={10} />
+    {credit && <div style={{ position: "absolute", right: 22, bottom: 12, fontFamily: F.sans, fontSize: 14, color: "#888" }}>{credit}</div>}
   </ThumbBase>);
 }
 
