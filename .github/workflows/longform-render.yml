@@ -51,8 +51,8 @@ jobs:
       - name: Voice cache key (the script text only, so visual edits do not re-ask Gemini)
         id: vkey
         if: steps.want.outputs.run == 'yes'
-        run: echo "key=$(node -e "import('./platform/longform/v2/episodes/${{ matrix.episode }}.mjs').then(m=>{const c=require('crypto');console.log(c.createHash('sha1').update(m.EPISODE.beats.map(b=>b.id+'|'+b.vo).join('
-')).digest('hex').slice(0,16))})")" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "key=$(node -e "import('./platform/longform/v2/episodes/${{ matrix.episode }}.mjs').then(m=>{const c=require('crypto');console.log(c.createHash('sha1').update(m.EPISODE.beats.map(b=>b.id+'|'+b.vo).join('~')).digest('hex').slice(0,16))})")" >> "$GITHUB_OUTPUT"
       - name: Restore the voice takes
         if: steps.want.outputs.run == 'yes'
         uses: actions/cache@v4
