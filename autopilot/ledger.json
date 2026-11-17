@@ -1230,6 +1230,14 @@
       "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843",
       "video_id": "cHXH_gz1mrg",
       "privacy_status": "private"
+    },
+    "2026-11-17-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "44105273926",
+      "trigger": "schedule",
+      "updated_at": "2026-11-17T14:38:33.777Z"
     }
   },
   "uploads": [
@@ -2594,5 +2602,5 @@
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
   ],
-  "last_poll_at": "2026-11-17T03:59:04.688Z"
+  "last_poll_at": "2026-11-17T14:38:33.777Z"
 }
