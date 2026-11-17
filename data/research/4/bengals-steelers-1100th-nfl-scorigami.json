@@ -1,0 +1,111 @@
+{
+  "topic_slug": "bengals-steelers-1100th-nfl-scorigami",
+  "strongest_angle": "Analyze how Cincinnati's 38-18 blowout win over Pittsburgh made NFL history by creating the 1,100th unique final score in league history after 107 years of games.",
+  "key_facts": [
+    {
+      "fact": "The Cincinnati Bengals defeated the Pittsburgh Steelers 38-18 on Sunday night, November 16, 2026, at Paycor Stadium, producing the 1,100th unique final score in NFL history.",
+      "source_url": "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami",
+      "source_name": "CBS Sports",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 38-18 final score between the Cincinnati Bengals and Pittsburgh Steelers marks the fifth unique final score of the 2026 NFL season.",
+      "source_url": "https://afcnorth.co/article/post-bengals-steelers-finish-produces-nfls-1-100th-scorigami",
+      "source_name": "AFCNORTH.CO",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Cincinnati Bengals and Pittsburgh Steelers game followed the Dallas Cowboys and San Francisco 49ers game earlier on Sunday afternoon, which recorded the 1,099th Scorigami in NFL history.",
+      "source_url": "https://www.behindthesteelcurtain.com/pittsburgh-steelers-news/177935/steelers-and-bengals-final-score-has-never-happened-before",
+      "source_name": "Behind the Steel Curtain",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Cincinnati Bengals quarterback Joe Burrow threw for 409 yards and four touchdowns during the 38-18 victory over the Pittsburgh Steelers at Paycor Stadium.",
+      "source_url": "https://www.foxnews.com/outkick-sports/aaron-rodgers-steelers-tank-primetime-cincinnati-bengals-roll-38-18-scorigami-win",
+      "source_name": "OutKick",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Pittsburgh Steelers fell to the Cincinnati Bengals with a final score of 38-18 on Sunday, November 16, 2026, at Paycor Stadium in Cincinnati.",
+      "source_url": "https://www.steelers.com/news/steelers-fall-at-bengals-38-18",
+      "source_name": "Pittsburgh Steelers Official Website",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Cincinnati Bengals score",
+      "value": 38,
+      "unit": "points",
+      "source_url": "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami"
+    },
+    {
+      "label": "Pittsburgh Steelers score",
+      "value": 18,
+      "unit": "points",
+      "source_url": "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami"
+    },
+    {
+      "label": "Total unique final scores in NFL history",
+      "value": 1100,
+      "unit": "scores",
+      "source_url": "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami"
+    },
+    {
+      "label": "Unique final scores in the 2026 season",
+      "value": 5,
+      "unit": "scores",
+      "source_url": "https://afcnorth.co/article/post-bengals-steelers-finish-produces-nfls-1-100th-scorigami"
+    },
+    {
+      "label": "NFL history duration",
+      "value": 107,
+      "unit": "years",
+      "source_url": "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami"
+    },
+    {
+      "label": "Joe Burrow passing yards",
+      "value": 409,
+      "unit": "yards",
+      "source_url": "https://www.foxnews.com/outkick-sports/aaron-rodgers-steelers-tank-primetime-cincinnati-bengals-roll-38-18-scorigami-win"
+    },
+    {
+      "label": "Joe Burrow touchdown passes",
+      "value": 4,
+      "unit": "touchdowns",
+      "source_url": "https://www.foxnews.com/outkick-sports/aaron-rodgers-steelers-tank-primetime-cincinnati-bengals-roll-38-18-scorigami-win"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Cincinnati Bengals",
+      "kind": "organization"
+    },
+    {
+      "name": "Pittsburgh Steelers",
+      "kind": "organization"
+    },
+    {
+      "name": "Paycor Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Joe Burrow",
+      "kind": "person"
+    },
+    {
+      "name": "Pat Freiermuth",
+      "kind": "person"
+    },
+    {
+      "name": "Dallas Cowboys",
+      "kind": "organization"
+    },
+    {
+      "name": "San Francisco 49ers",
+      "kind": "organization"
+    }
+  ]
+}
