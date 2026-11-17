@@ -1233,17 +1233,17 @@
     },
     "2026-11-17-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "44203110720",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T23:52:41.527Z",
-      "stage": "script",
+      "updated_at": "2026-11-17T23:54:01.960Z",
+      "stage": "discover",
       "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
       "score": 73.3,
       "pillar": "New AI features and releases",
       "hook": "Spotify just rolled out a new weapon to stop fake AI music from stealing real artists' voices.",
-      "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/spotify-s-new-tool-stops-deepfakes-of-real-artists-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (f"
+      "error": "discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
     }
   },
   "uploads": [
@@ -2624,7 +2624,8 @@
     "Hidden Past 2026-11-11-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: HOOK starts with a person's name. Rewrite the hook beat as the structure in the prompt says — using only th",
     "AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1",
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
-    "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
+    "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
+    "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature"
   ],
   "last_poll_at": "2026-11-17T23:52:41.526Z"
 }
