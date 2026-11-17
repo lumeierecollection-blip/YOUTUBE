@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-17 06:14 SAST
+Updated 2026-11-17 17:07 SAST
 
-**Next productions:** AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST
+**Next productions:** AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST, AI Tested 2026-11-20 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,9 +19,9 @@ Updated 2026-11-17 06:14 SAST
 | | |
 |---|---|
 | Last successful video | [12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge](https://www.youtube.com/watch?v=cHXH_gz1mrg) (2026-11-17T04:14 UTC) |
-| Latest production | delivered at delivered, attempts 2 |
-| Selected topic and score | Samsung and Google's new AI smart glasses let you take photos and get directions (84.3/100) |
-| QA | all gates passed |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Spotify's New Tool Stops Deepfakes of Real Artists (73.3/100) |
+| QA | n/a |
 | Upload | cHXH_gz1mrg, privacy verified: private |
 | Performance | 0 views, 0 likes, 0 comments (private) |
 | Analytics | available |
