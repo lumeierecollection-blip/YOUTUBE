@@ -2997,9 +2997,14 @@
           "topic": "NIST Optical Clocks Measure How Time Runs Faster on Mountains",
           "slug": "nist-optical-clocks-time-mountains-blue-sky",
           "reserved_at": "2026-11-17T18:09:09.932Z"
+        },
+        {
+          "topic": "California Sea Lions and Cockatoos Reveal the Evolutionary Origins of Music",
+          "slug": "sea-lions-cockatoos-origins-of-music",
+          "reserved_at": "2026-11-17T19:02:48.915Z"
         }
       ],
-      "last_generated": "2026-11-17T18:09:09.932Z"
+      "last_generated": "2026-11-17T19:02:48.915Z"
     },
     "18": {
       "channel_name": "Brief History",
