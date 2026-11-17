@@ -1215,11 +1215,11 @@
     },
     "2026-11-16-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "43942061759",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "44013932147",
       "trigger": "schedule",
-      "updated_at": "2026-11-16T19:56:05.402Z",
+      "updated_at": "2026-11-17T03:59:04.688Z",
       "stage": "script",
       "topic": "Apple Tests Daily Usage Limits for Siri AI",
       "score": 73,
@@ -2567,5 +2567,5 @@
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
   ],
-  "last_poll_at": "2026-11-16T19:42:40.547Z"
+  "last_poll_at": "2026-11-17T03:59:04.688Z"
 }
