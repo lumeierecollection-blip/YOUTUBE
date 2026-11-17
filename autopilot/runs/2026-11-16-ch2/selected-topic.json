@@ -1,0 +1,183 @@
+{
+  "topic": "Samsung and Google's new AI smart glasses let you take photos and get directions",
+  "pillar": "AI tools ordinary people can use",
+  "evidence_ids": [
+    106,
+    117,
+    158
+  ],
+  "hook": "Samsung's new Gemini-powered smart glasses let you take photos and ask for directions without touching your phone.",
+  "anniversary": false,
+  "explainable_30s": true,
+  "ratings": {
+    "curiosity": 9,
+    "relevance": 8,
+    "visual": 9
+  },
+  "wikipedia_title": "Smartglasses",
+  "commons_query": "",
+  "youtube_query": "Samsung Gemini AI smart glasses",
+  "evidence": [
+    {
+      "title": "Ask for directions and take photos without even taking out your phone—discover the features of Samsung's AI glasses.",
+      "url": "https://www.msn.com/en-in/news/other/ask-for-directions-and-take-photos-without-even-taking-out-your-phone-discover-the-features-of-samsungs-ai-glasses/ar-AA2hwATB",
+      "domain": "msn.com",
+      "published_ms": 1794783042000,
+      "kind": "news",
+      "id": 106
+    },
+    {
+      "title": "Samsung Google Smart Glasses Launch Date, Price Revealed: Gemini AI, 12MP Camera and 9-Hour Battery - Dainik Jagran MP CG",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVzBNaS1pM01yQXBBYUVoeUNlWjRPUEhmSWpjTHdWQ1Nac3lHM3JUVlRoR282TEItc1VPbDRkUFkzdm9vTXAzMjRpTERZS0ZzVkhsd0FlZDU1bjJRaVBxdjE2a01PNlUzeUFLYXZFcXdFM3pmYlZOQktjMWJzbE5CM2xJcWR2M1g2OEpmcHhPMHNORU45NnRBbG1IUEVYcVlFQWZVakpvaF9DcTQ0czJLTXBQQUNQMGwxYTJkdVJn?oc=5",
+      "domain": "english.dainikjagranmpcg.com",
+      "published_ms": 1794739231000,
+      "kind": "news",
+      "id": 117
+    },
+    {
+      "title": "Samsung unveils Gemini-powered AI glasses for December launch",
+      "url": "https://www.upi.com/Top_News/World-News/2026/11/13/samsung-google-gemini-ai-smart-glasses-gentle-monster-warby-parker/8511794603007/",
+      "domain": "upi.com",
+      "published_ms": 1794556440000,
+      "kind": "news",
+      "id": 158
+    },
+    {
+      "title": "Samsung and Google Open AI Glasses Preorders: What $395 Gets You - TechRepublic",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQXzZEcE9LQnN1elhwZXQ0aU1hVk1NcTBpTlo4YXhSbUIyYlF6Y2FUSE56ZnU3VVI0b3V0RnhhZTFzZGpHelVXY3BJRnhqVVJJZ3VZWjZnVTl4cHhCcjEzWnlRaVpKdjZHTXZ5dE5WS1N2QUNmNW1DX0hzUUZnSmZXM3h6V1U?oc=5",
+      "domain": "techrepublic.com",
+      "published_ms": 1794583825000,
+      "kind": "news"
+    },
+    {
+      "title": "Samsung Announces December Release for Intelligent Eyewear, Bringing a Smarter Way to See the World - samsung.com",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPY09CamY0ajlfLVJSMF9HcFZ3c1RHMkZGRERtaGFnWklVd1d5cHkwQld4VmZZNzhKLVdvRUZfSTVWZXJPUkRaaUdxWnZzYXduUGo5QnFPVDUzRFZGZUNqUkVieUJwMG9jRXlRNGdhcGVsc19ZRHpaQUFqMXhtbUNzWEZKUnVjRlAwaHdWQWN3OUVFS1BteWw0dFlYTndVVVJ3MnBfUw?oc=5",
+      "domain": "news.samsung.com",
+      "published_ms": 1794504346000,
+      "kind": "news"
+    },
+    {
+      "title": "Google and Samsung have unveiled AI glasses: prices start at $395 - UkrMedia News",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE01XzZYQ0w1Z0xtbUY3WnlNdDlSVEQ5MGoyRlYxb3dseEtnendIUG83TGFueUtwSkdrT242a01OcjZmZUM3eWl5NUdYaDdSQWRxejFvckozdDUzbzV5M2Q1SFozc1NNRTRENjhLNEhrb3J1aXUzMFI4?oc=5",
+      "domain": "ukrmedia.news",
+      "published_ms": 1794470400000,
+      "kind": "news"
+    },
+    {
+      "title": "Google and Samsung to Release AI Smart Glasses in December - Bloomberg.com",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNVksxWWMteVJxMEtIa0tBcjdZUXY0MGlvbGlNQWZVMGtESVliVFlwODlpWUJESHNLYmlMOFpvV3lEeVNoREdheHpDS3JQUjVqWkNYT0I2RzRrS1I5ckY3MGJqWXRrc2dEVEZhUEFxVXpxRzBvVE5ONEZhZldCbndjY1d0LVFPaEpqaGRWQmFET3lJRWlmZ1ZNQk01RFpGLWZsX0I5eDhTTm5CTWRqQXpoZ29EWFZPMURyMVFFSi1Uc3ZCT2hXeDdr?oc=5",
+      "domain": "bloomberg.com",
+      "published_ms": 1794492014000,
+      "kind": "news"
+    },
+    {
+      "title": "Google and Samsung’s Android XR Smart Glasses Are Finally Here - WIRED",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQTkdqekZoTjN6QnRSZWg0RTQyd0IybW5iRU80WnFpb0ZtZ0FHd282bVNaYURRZnVoRTlUQmlYSXR1ZVBwR21VbHBvQ2tzSEM2UnVPdTJORzdzdkVGY0NmTWFkUnpoUzNQSmp3ZVVQN0M1OVlyLUkybG9HZl9jazBmVk5KcC1hakRzT29mZGNzeDQtSnpDRWVIWkNCcGpwTFYzVnFITFRXTWNUbl9lc09wdEN3?oc=5",
+      "domain": "wired.com",
+      "published_ms": 1794492000000,
+      "kind": "news"
+    },
+    {
+      "title": "Google and Samsung are opening preorders for AI smart glasses starting at $395 - Quartz",
+      "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE90Wjh5QmR3RjBNeE5venZTUFBJYUQzRks1UFF5X2ZiU3ZneVB3VFZMdXVLTnZTa0tIV01GZTJ3N3JoQ2xndF9XSC1NNFRMYzVJeW9pNzV2NVNYYURNckYyQTFuWXlPOTduejhYbTVaOFY?oc=5",
+      "domain": "qz.com",
+      "published_ms": 1794494137000,
+      "kind": "news"
+    },
+    {
+      "title": "Samsung & Google Finally Enter AI Glasses, Prioritizing a Focused Launch Over Scale - Counterpoint Research",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPYXRqMDZBV2RBaVI4dnZqS2tra0hSZFp4MmZSOTFxU0ZhVFJZbksxbkFlM1F4MnN4enV6NFlTRkJFb0VGRVBsRUYwYVM4QnpDd251c1JKdGo5VF85cktoSjgweDdhV05PZzZPMnQ4Q1hVTUM5R0dCUi1VMThscEw2TktCNU1HT1Z5M05QTlJDcC1MTDNBWTNBYTVNUkVzMktHcEdzamRLbmV3aFFxWkJqaW9YQkFCQi1KNi1MRGpjLWY?oc=5",
+      "domain": "counterpointresearch.com",
+      "published_ms": 1794498610000,
+      "kind": "news"
+    },
+    {
+      "title": "Samsung Unveils 30 AI Smart Glasses Models - THE ELEC, Korea Electronics Industry Media",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE1SYWI0OV85RWZVTGJKN0F4eW9RdkpJa1d2MjN4VzFmaWdLWGhCMkpsTVQ5amZoWDE4d3h6QlhLY3pNU002ZmtVcmxMdlNLZTZkenpDckR4NUNYZDNSTFVjOUxjdnhJdjQ?oc=5",
+      "domain": "thelec.net",
+      "published_ms": 1794495794000,
+      "kind": "news"
+    }
+  ],
+  "wikipedia": {
+    "title": "Smartglasses",
+    "daily_views": 249,
+    "ratio": 1.72
+  },
+  "youtube": {
+    "median_views": 18778,
+    "competitors": [
+      {
+        "id": "nHzB0QHIRSc",
+        "title": "Google's Smart Glasses Are Good. That's a Problem.",
+        "channel": "C. Scott Brown",
+        "views": 49983
+      },
+      {
+        "id": "doVLeyCqTVw",
+        "title": "First look at Google's new smart glasses",
+        "channel": "CNN",
+        "views": 44325
+      },
+      {
+        "id": "xqsKt56uiMI",
+        "title": "Samsung & Google's Smart Glasses Have a Date… Meta Should Be Nervous",
+        "channel": "The Smart Glasses Guy",
+        "views": 42833
+      },
+      {
+        "id": "mR4f_xMfIAg",
+        "title": "Samsung & Google Intelligent Eyewear: Everything Revealed!",
+        "channel": "TechAvid",
+        "views": 29471
+      },
+      {
+        "id": "6_ABJP54VCo",
+        "title": "Samsung Galaxy Glasses Are You Ready?",
+        "channel": "GregglesTV",
+        "views": 18778
+      },
+      {
+        "id": "M0KpwcX8ihE",
+        "title": "Samsung AI Glasses: Start Saving, It Drops This Year.",
+        "channel": "TechAvid",
+        "views": 11557
+      }
+    ]
+  },
+  "commons_hits": null,
+  "score": {
+    "factors": {
+      "momentum": 92,
+      "reach": 62,
+      "curiosity": 90,
+      "relevance": 80,
+      "visual": 90,
+      "source_quality": 100
+    },
+    "total": 84.3,
+    "newest_hours": 29,
+    "domains": [
+      "msn.com",
+      "english.dainikjagranmpcg.com",
+      "upi.com",
+      "techrepublic.com",
+      "news.samsung.com",
+      "ukrmedia.news",
+      "bloomberg.com",
+      "wired.com",
+      "qz.com",
+      "counterpointresearch.com",
+      "thelec.net"
+    ],
+    "trusted_domains": [
+      "bloomberg.com",
+      "wired.com"
+    ]
+  },
+  "rejected": [],
+  "wave": 1,
+  "slug": "samsung-and-google-s-new-ai-smart-glasses-let-you-take-photo",
+  "angle": "Rather than focusing on competition with Meta or software features, these glasses mark the definitive return of Google Glass, resurrecting the failed futuristic concept by finally hiding the technology behind normal-looking frames.",
+  "what_others_do": "The existing titles focus primarily on release dates, hype about beating Meta, or general overviews of the hardware and AI capabilities."
+}
