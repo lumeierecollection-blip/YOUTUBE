@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-17 17:07 SAST
+Updated 2026-11-18 01:54 SAST
 
 **Next productions:** AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST, AI Tested 2026-11-20 11:00 SAST
 
@@ -19,11 +19,11 @@ Updated 2026-11-17 17:07 SAST
 | | |
 |---|---|
 | Last successful video | [12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge](https://www.youtube.com/watch?v=cHXH_gz1mrg) (2026-11-17T04:14 UTC) |
-| Latest production | failed at script, attempts 1 |
+| Latest production | failed-final at discover, attempts 2 |
 | Selected topic and score | Spotify's New Tool Stops Deepfakes of Real Artists (73.3/100) |
 | QA | n/a |
 | Upload | cHXH_gz1mrg, privacy verified: private |
-| Performance | 0 views, 0 likes, 0 comments (private) |
+| Performance | 1 views, 0 likes, 0 comments (private) |
 | Analytics | available |
 
 ## Needs your attention
@@ -130,3 +130,4 @@ Updated 2026-11-17 17:07 SAST
 - AI Tested 2026-11-12-ch2 failed at tts: 3 topic(s) tried, none usable. Last: node src/utils/tts.js 2 exited 1
 - AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: "Map of United States" is not named in the research artifact â€” use the research's own name, or drop the name
 - Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi
+- AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best "Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases" (86.2): too similar to recent topic: Claude's New Personal Finance Feature
