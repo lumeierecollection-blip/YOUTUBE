@@ -1237,12 +1237,12 @@
       "attempts": 1,
       "run_id": "44105273926",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T14:43:31.969Z",
+      "updated_at": "2026-11-17T14:47:22.689Z",
       "stage": "research",
-      "topic": "South Korea Cracks Down After Student Uses AI to Ace Exam",
-      "score": 84,
-      "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "South Korea is taking drastic action after a student used hidden AI to ace a major exam."
+      "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
+      "score": 73.3,
+      "pillar": "New AI features and releases",
+      "hook": "Spotify just rolled out a new weapon to stop fake AI music from stealing real artists' voices."
     }
   },
   "uploads": [
@@ -2522,6 +2522,15 @@
       "at_ms": 1794926611969,
       "score": 84,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
+      "slug": "spotify-s-new-tool-stops-deepfakes-of-real-artists",
+      "slot": "2026-11-17-ch2",
+      "at_ms": 1794926842689,
+      "score": 73.3,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
