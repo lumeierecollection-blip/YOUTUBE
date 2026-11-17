@@ -464,6 +464,11 @@ jobs:
       - name: File QA
         if: always() && steps.want.outputs.run == 'yes'
         run: node platform/longform/v2/qa-outputs.mjs "${{ matrix.episode }}"
+      - name: Low-quality preview (480p), encoded here instead of on the owner's PC
+        if: always() && steps.want.outputs.run == 'yes'
+        run: |
+          d="output/longform-prod/${{ matrix.episode }}"
+          [ -f "$d/episode.mp4" ] && ffmpeg -loglevel error -y -i "$d/episode.mp4" -vf scale=854:480 -c:v libx264 -preset fast -crf 33 -r 24 -c:a aac -b:a 64k -ac 1 -movflags +faststart "$d/episode-480p.mp4" || true
       - uses: actions/upload-artifact@v4
         if: always() && steps.want.outputs.run == 'yes'
         with:
@@ -471,6 +476,7 @@ jobs:
           retention-days: 30
           path: |
             output/longform-prod/${{ matrix.episode }}/episode.mp4
+            output/longform-prod/${{ matrix.episode }}/episode-480p.mp4
             output/longform-prod/${{ matrix.episode }}/episode-meta.json
             output/longform-prod/${{ matrix.episode }}/render-log.json
             output/longform-prod/${{ matrix.episode }}/credits.txt
