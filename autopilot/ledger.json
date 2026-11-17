@@ -1215,19 +1215,21 @@
     },
     "2026-11-16-ch2": {
       "channel": "2",
-      "status": "qa-passed",
+      "status": "delivered",
       "attempts": 2,
       "run_id": "44013932147",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T04:14:27.591Z",
-      "stage": "qa-passed",
+      "updated_at": "2026-11-17T04:14:32.704Z",
+      "stage": "delivered",
       "topic": "Samsung and Google's new AI smart glasses let you take photos and get directions",
       "score": 84.3,
       "pillar": "AI tools ordinary people can use",
       "hook": "Samsung's new Gemini-powered smart glasses let you take photos and ask for directions without touching your phone.",
       "error": "3 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/apple-tests-daily-usage-limits-for-siri-ai-shorts:\n  - SCR-17 STRICT (strict_visual channel): 3 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (facts ver",
       "qa": "all gates passed",
-      "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843"
+      "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843",
+      "video_id": "cHXH_gz1mrg",
+      "privacy_status": "private"
     }
   },
   "uploads": [
@@ -1258,6 +1260,20 @@
       "pillar": "AI tools ordinary people can use",
       "hook": "Students are getting caught red-handed using AI smart glasses to cheat on their exams.",
       "run_id": "42595289544"
+    },
+    {
+      "channel": "2",
+      "slot": "2026-11-16-ch2",
+      "video_id": "cHXH_gz1mrg",
+      "url": "https://www.youtube.com/watch?v=cHXH_gz1mrg",
+      "title": "12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge",
+      "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843",
+      "production_id": "ap-2026-11-16-ch2",
+      "privacy_status": "private",
+      "uploaded_at": "2026-11-17T04:14:32.704Z",
+      "pillar": "AI tools ordinary people can use",
+      "hook": "Samsung's new Gemini-powered smart glasses let you take photos and ask for directions without touching your phone.",
+      "run_id": "44013932147"
     }
   ],
   "topics": [

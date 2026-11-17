@@ -1,0 +1,20 @@
+{
+  "video_id": "cHXH_gz1mrg",
+  "url": "https://www.youtube.com/watch?v=cHXH_gz1mrg",
+  "channel_id": "UCZY_vlCgnK839ZJjhCCWuyg",
+  "channel_title": "AI Tested",
+  "title": "12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge",
+  "privacy_status": "private",
+  "upload_status": "uploaded",
+  "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843",
+  "production_id": "ap-2026-11-16-ch2",
+  "checks": {
+    "channel": true,
+    "title": true,
+    "description": true,
+    "private": true,
+    "not_scheduled": true
+  },
+  "verified": true,
+  "verified_at": "2026-11-17T04:14:32.703Z"
+}
