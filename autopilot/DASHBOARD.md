@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-16 21:56 SAST
+Updated 2026-11-17 06:14 SAST
 
 **Next productions:** AI Tested 2026-11-17 11:00 SAST, AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST
 
@@ -18,12 +18,12 @@ Updated 2026-11-16 21:56 SAST
 ## AI Tested
 | | |
 |---|---|
-| Last successful video | [Four Students Caught Using AI Glasses on Tests](https://www.youtube.com/watch?v=IIdYdKKUiRM) (2026-11-09T09:59 UTC) |
-| Latest production | failed at script, attempts 1 |
-| Selected topic and score | Apple Tests Daily Usage Limits for Siri AI (73/100) |
-| QA | n/a |
-| Upload | IIdYdKKUiRM, privacy verified: private |
-| Performance | 133 views, 5 likes, 0 comments (public), 69.4% average viewed |
+| Last successful video | [12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge](https://www.youtube.com/watch?v=cHXH_gz1mrg) (2026-11-17T04:14 UTC) |
+| Latest production | delivered at delivered, attempts 2 |
+| Selected topic and score | Samsung and Google's new AI smart glasses let you take photos and get directions (84.3/100) |
+| QA | all gates passed |
+| Upload | cHXH_gz1mrg, privacy verified: private |
+| Performance | 0 views, 0 likes, 0 comments (private) |
 | Analytics | available |
 
 ## Needs your attention
