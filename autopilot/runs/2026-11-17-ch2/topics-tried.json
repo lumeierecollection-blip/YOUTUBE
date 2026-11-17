@@ -1,0 +1,17 @@
+{
+  "tried": [
+    {
+      "topic": "South Korea Cracks Down After Student Uses AI to Ace Exam",
+      "score": 84,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
+      "score": 73.3,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/spotify-s-new-tool-stops-deepfakes-of-real-artists-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (f"
+    }
+  ],
+  "selected": null
+}

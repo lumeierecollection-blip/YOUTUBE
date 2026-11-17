@@ -1233,16 +1233,17 @@
     },
     "2026-11-17-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "44105273926",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T14:47:59.977Z",
+      "updated_at": "2026-11-17T15:07:49.860Z",
       "stage": "script",
       "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
       "score": 73.3,
       "pillar": "New AI features and releases",
-      "hook": "Spotify just rolled out a new weapon to stop fake AI music from stealing real artists' voices."
+      "hook": "Spotify just rolled out a new weapon to stop fake AI music from stealing real artists' voices.",
+      "error": "2 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/spotify-s-new-tool-stops-deepfakes-of-real-artists-shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame can draw (f"
     }
   },
   "uploads": [
