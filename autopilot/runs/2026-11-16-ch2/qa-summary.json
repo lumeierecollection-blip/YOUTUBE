@@ -1,0 +1,71 @@
+{
+  "production_id": "ap-2026-11-16-ch2",
+  "sha256": "284e01b127a629437da315eed1bd23547218aebecf1abdb39a8e60dcc684e843",
+  "technical": {
+    "pass": true,
+    "checks": {
+      "duration_le_30": true,
+      "resolution": true,
+      "fps_30": true,
+      "h264": true,
+      "aac": true,
+      "audible": true,
+      "no_black": true,
+      "no_freeze": true,
+      "no_decode_errors": true
+    },
+    "duration": 23,
+    "mean_volume_db": -20.3,
+    "black": 0,
+    "freeze": 0
+  },
+  "visual": {
+    "pass": true,
+    "failures": [],
+    "median_background_share": 0.909
+  },
+  "video_qa": {
+    "pass": true,
+    "blocking": [],
+    "superseded_for_vox": []
+  },
+  "frame_review": {
+    "pass": true,
+    "problems": [],
+    "dismissed_after_full_resolution_check": [],
+    "verdict": {
+      "clipped_text": [],
+      "overlapping_text": [],
+      "blank_or_corrupt": [],
+      "unrelated_or_broken_images": [],
+      "overall": "The video frames are clean and well-structured, with clear typography, consistent layout, and no persistent text clipping or graphical anomalies."
+    },
+    "sheet": "/home/runner/work/YOUTUBE/YOUTUBE/data/autopilot-runs/2026-11-16-ch2/full-contact-sheet.jpg"
+  },
+  "acceptance": {
+    "pass": true,
+    "failures": []
+  },
+  "vox": null,
+  "seo": {
+    "title": "12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge",
+    "description": "Samsung will release 12-megapixel glasses in December 2026, featuring 41-gram frames that light up while recording. Google’s version arrives after a two-year wait, offers 9 hours of battery life, a case that recharges the frames seven times, and weighs 10 grams less than Meta’s model.\n\n#Shorts #12MPGlasses #Samsung2026 #GoogleXR #9HourBattery\n\nSources:\n- https://news.samsung.com/global/samsung-announces-december-release-for-intelligent-eyewear-bringing-a-smarter-way-to-see-the-world\n- https://www.wired.com/story/google-samsung-intelligent-eyewear-launch-warby-parker-gentle-monster-smart-glasses\n- https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order\n- https://www.samsung.com/us/intelligent-eyewear\n\nImage credits:\n- https://www.wired.com/story/google-samsung-intelligent-eyewear-launch-warby-parker-gentle-monster-smart-glasses\n- https://blog.google/innovation-and-ai/technology/xr-ar/google-intelligent-eyewear-collections-pre-order",
+    "tags": [
+      "12MP glasses",
+      "Samsung glasses",
+      "Google XR glasses",
+      "AI Tested",
+      "smart glasses",
+      "light up frames",
+      "9 hour battery",
+      "Meta competitor"
+    ],
+    "hashtags": [
+      "#Shorts",
+      "#12MPGlasses",
+      "#Samsung2026",
+      "#GoogleXR",
+      "#9HourBattery"
+    ]
+  }
+}
