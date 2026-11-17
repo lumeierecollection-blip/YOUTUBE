@@ -1233,11 +1233,11 @@
     },
     "2026-11-17-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "44105273926",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "44203110720",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T15:07:49.860Z",
+      "updated_at": "2026-11-17T23:52:41.527Z",
       "stage": "script",
       "topic": "Spotify's New Tool Stops Deepfakes of Real Artists",
       "score": 73.3,
@@ -2626,5 +2626,5 @@
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi"
   ],
-  "last_poll_at": "2026-11-17T14:38:33.777Z"
+  "last_poll_at": "2026-11-17T23:52:41.526Z"
 }
