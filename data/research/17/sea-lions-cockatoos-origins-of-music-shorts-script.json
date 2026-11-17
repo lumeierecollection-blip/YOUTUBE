@@ -1,0 +1,55 @@
+{
+  "channel_id": "17",
+  "topic_slug": "sea-lions-cockatoos-origins-of-music",
+  "format": "shorts",
+  "hook": "Can Ronan the sea lion keep a better beat than you, according to Scientific American?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can Ronan the sea lion keep a better beat than you, according to Scientific American?",
+      "visual_cue": "Close-up of a California sea lion moving in sync with a rhythmic beat.",
+      "text_overlay": {
+        "text": "Sea lion rhythm"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Does Ronan's ability to adjust her nods to new music reveal the evolutionary origins of rhythm?",
+      "visual_cue": "Laboratory footage showing Ronan nodding her head in a timed sequence.",
+      "b_roll": [
+        "Long Marine Laboratory facility exterior",
+        "Close-up of Ronan the sea lion"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Scientific American reported in 2026 that California sea lions like Ronan sway perfectly on meter.",
+      "visual_cue": "Digital overlay showing a steady pulse wave synced to the sea lion's movement.",
+      "b_roll": [
+        "Scientific American publication graphic"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "National Geographic reports that Snowball the cockatoo adjusts dance moves when Patel changes song tempos. Patel and University of California researchers link this rhythmic control to the evolutionary origins of music.",
+      "visual_cue": "Side-by-side comparison of a cockatoo and a sea lion moving to music.",
+      "b_roll": [
+        "Cockatoo named Snowball dancing",
+        "National Geographic article snippet"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "Ronan continues to sway her upper body to the beat in 2025 scientific tests.",
+      "visual_cue": "Slow motion shot of a sea lion in the water.",
+      "b_roll": [
+        "Ronan swimming at Long Marine Laboratory"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://www.scientificamerican.com/article/what-animals-reveal-about-the-origins-of-music",
+    "https://www.universityofcalifornia.edu/news/jammin-ronan-rhythmically-trained-sea-lion-returns-encore-and-performs-well-humans",
+    "https://www.nationalgeographic.com/animals/article/140216-sea-lion-parrot-music-animal-behavior-science"
+  ]
+}
