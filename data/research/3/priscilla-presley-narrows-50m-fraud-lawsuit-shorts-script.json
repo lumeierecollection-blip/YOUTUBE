@@ -1,0 +1,64 @@
+{
+  "channel_id": "3",
+  "topic_slug": "priscilla-presley-narrows-50m-fraud-lawsuit",
+  "format": "shorts",
+  "hook": "A $50 million fraud lawsuit threatened Priscilla Presley in court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A $50 million fraud lawsuit threatened Priscilla Presley in court.",
+      "b_roll": [
+        "Priscilla Presley legal court documents"
+      ],
+      "text_overlay": {
+        "text": "$50M LAWSUIT"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Los Angeles County Superior Court, former advisers Brigitte Kruse and Kevin Fialko filed 21 claims against her. Billboard reported their dispute over contracts began in 2023. Could Presley dismiss the 21 claims?",
+      "b_roll": [
+        "Los Angeles County Superior Court courthouse",
+        "Billboard article reporting on Presley dispute"
+      ],
+      "text_overlay": {
+        "text": "21 CLAIMS FILED"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Judge Mark H. Epstein ruled from the bench on November 16, 2026.",
+      "b_roll": [
+        "Judge bench in courtroom with gavel"
+      ],
+      "text_overlay": {
+        "text": "BENCH RULING"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The court granted her motion to dismiss 4 claims. Rolling Stone confirmed the decision narrowed the fraud charges. The remaining claims in the $50 million lawsuit still proceed.",
+      "b_roll": [
+        "Court document dismissing 4 claims",
+        "Rolling Stone report text on lawsuit status"
+      ],
+      "text_overlay": {
+        "text": "4 CLAIMS DISMISSED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "4 claims were dismissed, but the $50 million lawsuit continues.",
+      "b_roll": [
+        "Scales of justice symbol"
+      ],
+      "text_overlay": {
+        "text": "LAWSUIT CONTINUES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137",
+    "https://www.billboard.com/pro/priscilla-presley-fraud-claims-lawsuit-ex-advisers"
+  ]
+}
