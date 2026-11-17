@@ -47,6 +47,7 @@ const ROWS_VERDICT = [{ value: "Neale", label: "“I see no serious reason for r
 const ROWS_AFTER = [{ value: "Day after", label: "The army ordered disbanded", source: "Wikipedia, 'Spanish Armada'" }, { value: "Without pay", label: "The navy discharged and sent home", source: "Wikipedia, 'Spanish Armada'" }, { value: "200+ of 500", label: "Dead from the crew of the Bonaventure", source: "Wikipedia, 'Spanish Armada'" }, { value: "3,000+", label: "Men who perished in all", source: "Wikipedia, 'Spanish Armada'" }];
 
 // short licensed clips (Pixabay Content License), fetched and trimmed by platform/longform/v2/fetch-footage.mjs; generic footage of ships, sea, fire and coast, always labelled illustrative
+export const FOOTAGE_REQUIRE = /ship|sail|sea|ocean|castle|fort|fire|flame|horse|sword|armor|armour|candle|book|quill|cannon|flag|cathedral|storm|wave|map|torch|march|coast|cliff|beacon|river|estuary|rigging|medieval/i;
 export const FOOTAGE = [
   { id: "t-ship", q: "tall ship sailing", alt: ["sailing ship sea", "old sailing ship"] },
   { id: "t-fleet", q: "sailing ships sea sunset", alt: ["sailboats sea", "ships at sea"] },

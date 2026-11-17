@@ -18,19 +18,26 @@ if (!FOOTAGE?.length) { console.log("no FOOTAGE list in", slug); process.exit(0)
 const ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("rival-lines") ? "rival-lines" : slug;
 const OUT = join(ROOT, "src/skills/remotion-render/public/lf2/footage"), TMP = join(ROOT, "output/footage-tmp");
 mkdirSync(OUT, { recursive: true }); mkdirSync(TMP, { recursive: true });
-const BAD = /ai generated|ai-generated|animation|3d|green screen|cartoon|render/i;
+const BAD = /ai generated|ai-generated|animation|3d|green screen|cartoon|render|cgi|foosball|table soccer|table football|pinball|arcade|kid|child|children|toy|logo|intro|particles|bokeh|trophy|vector|video game|virtual|simulation|icon|background loop|loop/i;
+const { FOOTAGE_REQUIRE } = await import(`./episodes/${slug}.mjs`);
+const USED = new Set();   // one Pixabay clip is used once across the whole pool
 const manifest = [];
 for (const f of FOOTAGE) {
   const dest = join(OUT, `${f.id}.mp4`);
   let hits = [];
   for (const q of [f.q, ...(f.alt || [])]) {
-    const r = await fetch(`https://pixabay.com/api/videos/?key=${KEY}&q=${encodeURIComponent(q)}&per_page=20&safesearch=true&order=popular`);
+    const r = await fetch(`https://pixabay.com/api/videos/?key=${KEY}&q=${encodeURIComponent(q)}&per_page=50&safesearch=true&order=popular`);
     if (!r.ok) { console.log("search failed", q, r.status); continue; }
-    hits = (await r.json()).hits.filter((h) => !BAD.test(h.tags) && h.duration >= 5 && (h.videos.medium?.url || h.videos.small?.url));
+    const toks = q.toLowerCase().split(/\s+/);
+    const scored = (await r.json()).hits
+      .filter((h) => !BAD.test(h.tags) && !USED.has(h.id) && h.duration >= 5 && (h.videos.medium?.url || h.videos.small?.url) && (!FOOTAGE_REQUIRE || FOOTAGE_REQUIRE.test(h.tags)))
+      .map((h) => ({ h, score: toks.filter((t) => h.tags.toLowerCase().includes(t)).length * 2 + (h.tags.match(/stadium|match|player|players|fans|crowd|goal|penalty|goalkeeper|sailing|ship|castle|fort|armor|horse|flag/gi) || []).length }))
+      .sort((x, y) => y.score - x.score);
+    hits = scored.map((x) => x.h);
     if (hits.length) break;
   }
-  if (!hits.length) { if (f.optional) { console.log("skip (no clip)", f.id, f.q); continue; } throw new Error(`no usable Pixabay clip for ${f.id} (${f.q})`); }
-  const h = hits[Math.min(f.pick || 0, hits.length - 1)], v = h.videos.medium?.url ? h.videos.medium : h.videos.small;
+  if (!hits.length) { if (f.optional) { console.log("skip (no relevant clip)", f.id, f.q); continue; } throw new Error(`no relevant Pixabay clip for ${f.id} (${f.q})`); }
+  const h = hits[Math.min(f.pick || 0, hits.length - 1)], _u = USED.add(h.id), v = h.videos.medium?.url ? h.videos.medium : h.videos.small;
   const raw = join(TMP, `${f.id}.src.mp4`), d = await fetch(v.url);
   if (!d.ok) { if (f.optional) { console.log("skip (download)", f.id); continue; } throw new Error(`download failed for ${f.id}: ${d.status}`); }
   writeFileSync(raw, Buffer.from(await d.arrayBuffer()));

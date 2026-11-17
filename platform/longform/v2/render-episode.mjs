@@ -177,7 +177,7 @@ if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 const m = run("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"]).stderr;
 const J = JSON.parse(m.slice(m.lastIndexOf("{"), m.lastIndexOf("}") + 1));
 const master = join(OUT, "master.wav");
-r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.89:level=false`, "-ar", "48000", master]);
+r = run("ffmpeg", ["-y", "-v", "error", "-i", pre, "-af", `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${J.input_i}:measured_TP=${J.input_tp}:measured_LRA=${J.input_lra}:measured_thresh=${J.input_thresh}:offset=${J.target_offset}:linear=true,alimiter=limit=0.62:level=false`, "-ar", "48000", master]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 
 // ---- final mux, written to a temp name then renamed

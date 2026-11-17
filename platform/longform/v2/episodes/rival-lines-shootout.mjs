@@ -37,6 +37,7 @@ const FK = (rows, title = "Share of shoot-outs won, percent") => ({ type: "bars"
 const GRIDSCENE = (o = {}) => ({ type: "grid", shootouts: GRID.shootouts, hi: GRID.hi, title: "Every shoot-out we counted", ...o });
 
 // short licensed clips (Pixabay Content License), fetched and trimmed by platform/longform/v2/fetch-footage.mjs; generic footage, always labelled illustrative
+export const FOOTAGE_REQUIRE = /soccer|football|penalty|goalkeeper|stadium/i;
 export const FOOTAGE = [
   { id: "fb-penalty", q: "penalty kick soccer", alt: ["soccer penalty", "football penalty kick"] },
   { id: "fb-keeper", q: "soccer goalkeeper", alt: ["goalkeeper save", "football goalkeeper"] },
@@ -74,7 +75,7 @@ export const EPISODE = {
   beats: [
     { id: "S01", part: "the number", ref: "gp4cftwGLcQ 0:00: a counted figure said to the viewer first", src: ["SB"],
       vo: "Seventeen out of thirty-two. That is how many penalty shoot-outs were won by the team that kicked first, in free match data from nine recent tournaments.",
-      scene: { type: "hero", value: 17, countFrom: 0, label: "first kicker won", sub: "of 32 shoot-outs · our count from StatsBomb open data, 2018–2025", v: "teal", figure: "kick" } },
+      scene: { type: "player", cutout: "lf2/rival-lines/ps-kane-cutout.png", size: 118, credit: "Photo: Voltmetro, CC BY-SA 4.0, via Wikimedia Commons", parts: [["17 of 32", true], ["shoot-outs were won", false], ["by the team that", false], ["kicked first.", true]], line2: "our count · StatsBomb open data · 2018–2025" } },
     { id: "S02", part: "the number", ref: "gp4cftwGLcQ 0:45: the question, with the stakes", src: ["SB"],
       vo: "A little over half. So is going first a real advantage, or are we just looking at luck?",
       scene: GRIDSCENE({ step: 7 }) },
@@ -110,7 +111,7 @@ export const EPISODE = {
       scene: montage(["fb-goal", "fb-slowmo", "fb-kick"], 3) },
     { id: "S09", part: "our count", ref: "gp4cftwGLcQ 2:08: how it is measured, so the later numbers are earned", src: ["SB"],
       vo: "So what happens if we count for ourselves? StatsBomb publishes free event data for major tournaments, and we took nine of them.",
-      scene: { type: "hero", value: 32, countFrom: 0, label: "shoot-outs, 328 kicks", sub: "nine tournaments, 2018–2025 · not every shoot-out ever played", v: "teal", figure: "kick" } },
+      scene: { type: "number", value: 32, countFrom: 0, unit: "Shoot-outs, 328 kicks", sub: "nine tournaments, 2018–2025 · not every shoot-out ever played", credit: DATA } },
     { id: "S10", part: "our count", ref: "gp4cftwGLcQ: the sample, named", src: ["SB"],
       vo: "The 2018 and 2022 World Cups, Euro 2020 and 2024, Copa América 2024, the 2023 Africa Cup of Nations, the Women's World Cups of 2019 and 2023, and the Women's Euros of 2025.",
       scene: GRIDSCENE({ step: 12, title: "Nine tournaments · 32 shoot-outs", label: "Wc = World Cup · Euro · COPA · AFCON · WWC = Women's World Cup · WEURO = Women's Euro" }) },
@@ -173,7 +174,7 @@ export const EPISODE = {
       scene: montage(["fb-keeper2", "fb-gloves", "fb-keeper"], 3) },
     { id: "S24", part: "the goalkeeper", ref: "gp4cftwGLcQ: what the keeper can do", src: ["PS"],
       vo: "The same article reports research linking goalkeeper distraction with ten percent fewer goals for the kicker, and delaying the kicker with twenty percent fewer.",
-      scene: { type: "hero", value: 20, countFrom: 0, label: "% fewer goals when the keeper delays the kicker", sub: "distraction: 10% fewer · as reported in Wikipedia", v: "plum", figure: "keeper" } },
+      scene: { type: "number", value: 20, countFrom: 0, unit: "% fewer goals", sub: "when the goalkeeper delays the kicker · distraction: 10% fewer · as reported in Wikipedia", credit: "Source: Wikipedia" } },
     { id: "S25", part: "the goal", ref: "gp4cftwGLcQ: one more rule shaped by the same worry", src: ["PS", "PHOTO"],
       vo: "Even the goal is decided by chance. The whole shoot-out is played at one end, so the crowd behind that goal may favour one team.",
       scene: { type: "cards", v: "plum", title: "One goal, one crowd", cards: [{ video: VID("fb-crowd"), credit: VCRED, pos: "50% 50%" }, { video: VID("fb-fans"), credit: VCRED, pos: "50% 50%" }], callout: "The whole shoot-out is played at one end" } },
