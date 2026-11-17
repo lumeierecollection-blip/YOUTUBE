@@ -1237,7 +1237,12 @@
       "attempts": 1,
       "run_id": "44105273926",
       "trigger": "schedule",
-      "updated_at": "2026-11-17T14:38:33.777Z"
+      "updated_at": "2026-11-17T14:43:31.969Z",
+      "stage": "research",
+      "topic": "South Korea Cracks Down After Student Uses AI to Ace Exam",
+      "score": 84,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "South Korea is taking drastic action after a student used hidden AI to ace a major exam."
     }
   },
   "uploads": [
@@ -2508,6 +2513,15 @@
       "at_ms": 1794888045976,
       "score": 84.3,
       "pillar": "AI tools ordinary people can use"
+    },
+    {
+      "channel": "2",
+      "topic": "South Korea Cracks Down After Student Uses AI to Ace Exam",
+      "slug": "south-korea-cracks-down-after-student-uses-ai-to-ace-exam",
+      "slot": "2026-11-17-ch2",
+      "at_ms": 1794926611969,
+      "score": 84,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
