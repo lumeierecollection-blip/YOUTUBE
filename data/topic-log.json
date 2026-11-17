@@ -2815,9 +2815,14 @@
           "topic": "DESI and Gaia Data Measure Milky Way Mass Using Over 10000 Stars",
           "slug": "desi-gaia-milky-way-mass-measurement",
           "reserved_at": "2026-11-16T18:47:56.083Z"
+        },
+        {
+          "topic": "Independent CSIRO Team Confirms M87 Star Black Hole Shadow",
+          "slug": "csiro-team-confirms-m87-black-hole-shadow",
+          "reserved_at": "2026-11-17T18:04:52.337Z"
         }
       ],
-      "last_generated": "2026-11-16T18:47:56.083Z"
+      "last_generated": "2026-11-17T18:04:52.337Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
