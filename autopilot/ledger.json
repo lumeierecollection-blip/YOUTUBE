@@ -1247,16 +1247,17 @@
     },
     "2026-11-18-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "44366948890",
       "trigger": "schedule",
-      "updated_at": "2026-11-18T18:14:22.362Z",
-      "stage": "script",
+      "updated_at": "2026-11-18T18:14:24.083Z",
+      "stage": "research",
       "topic": "Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages",
       "score": 77.8,
       "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Meta's new AI personal assistant is already mixing up messages and leaking chats from other apps."
+      "hook": "Meta's new AI personal assistant is already mixing up messages and leaking chats from other apps.",
+      "error": "3 topic(s) tried, none usable. Last: only 3 drawable facts in the research; 5 needed for a good strict-visual script"
     }
   },
   "uploads": [

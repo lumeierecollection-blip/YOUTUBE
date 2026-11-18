@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Suno AI Music Generator Now Lets You Create AI Music Videos",
+      "score": 85.6,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Disney's New Star Wars Animatronics Use AI to Chat With Visitors",
+      "score": 81.8,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages",
+      "score": 77.8,
+      "stage": "research",
+      "reason": "only 3 drawable facts in the research; 5 needed for a good strict-visual script"
+    }
+  ],
+  "selected": null
+}
