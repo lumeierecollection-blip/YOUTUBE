@@ -27,12 +27,14 @@ const TOPIC = { // per-episode hashtags and tags: topic words only, no claims
   "hidden-past": { hashtags: "#HiddenPast #History #SuezCanal", tags: ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"] },
   "hidden-past-kaliningrad": { hashtags: "#HiddenPast #History #Kaliningrad", tags: ["Kaliningrad", "Königsberg", "Suwałki Gap", "Potsdam Conference", "history"] },
   "ai-tested-ai-bubble": { hashtags: "#AITested #AI #AIBubble", tags: ["AI bubble", "AI debt", "KOSPI crash", "data centres", "Nvidia OpenAI"] },
+  "rival-lines-home-advantage": { hashtags: "#RivalLines #PremierLeague #Football", tags: ["home advantage", "premier league", "football data", "statistics", "analysis", "referee bias", "ghost games", "fulham"] },
+  "hidden-past-hastings": { hashtags: "#HiddenPast #NormanConquest #1066", tags: ["Battle of Hastings", "1066", "Norman Conquest", "Harold Godwinson", "William the Conqueror", "Harald Hardrada", "Stamford Bridge", "Bayeux Tapestry", "medieval history", "English history", "military history", "history documentary"] },
   "rival-lines-analyse": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
 }[slug] || { hashtags: ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History", tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["history"] };
 const hashtags = TOPIC.hashtags;
 const meta = {
   channel: ch, format: "long-form", title: ep.title, privacy: "private", upload_status: "NOT UPLOADED", seconds: +t.toFixed(1),
-  description: [ep.title, "", "Chapters:", ...chapters.map(([s, p]) => `${fmt(s)} ${cap(p)}`), "", "Sources:", ...Object.values(SOURCES).map((s) => `- ${s.title}: ${s.url}`), "", "Image credits:", ...(images.length ? images : ["(graphics and captures made for this video)"]), ...(sounds.length ? ["", ...sounds] : []), ...(existsSync(join(BASE, "credits.txt")) ? ["", readFileSync(join(BASE, "credits.txt"), "utf8").trim()] : []), "", hashtags].join("\n"),
+  description: [...(ep.blurb ? [...ep.blurb, ""] : [ep.title, ""]), "Chapters:", ...chapters.map(([s, p]) => `${fmt(s)} ${cap(p)}`), "", "Sources:", ...Object.values(SOURCES).map((s) => `- ${s.title}: ${s.url}`), "", "Image credits:", ...(images.length ? images : ["(graphics and captures made for this video)"]), ...(sounds.length ? ["", ...sounds] : []), ...(existsSync(join(BASE, "credits.txt")) ? ["", readFileSync(join(BASE, "credits.txt"), "utf8").trim()] : []), "", hashtags].join("\n"),
   tags: TOPIC.tags,
 };
 writeFileSync(join(BASE, "episode-meta.json"), JSON.stringify(meta, null, 2));

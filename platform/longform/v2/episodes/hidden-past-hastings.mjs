@@ -45,6 +45,12 @@ const pan = (id, from, to, plates, extra = {}) => ({ type: "eppaint", image: A(i
 
 export const EPISODE = {
   channel: "hidden-past", slug: "hastings", title: "Norman Conquest: Battle of Hastings 1066", target_minutes: 9,
+  // description opening in Epic History's formula: one-line summary of the campaign, then credits (no sponsor or Patreon lines: we have none)
+  blurb: [
+    "Norman Conquest: in 1066 three men claimed the English crown, and in less than three weeks two invasions decided it, at Stamford Bridge and at Hastings.",
+    "",
+    "Where the medieval accounts contradict each other, this video says so. The narration is a synthetic voice; no fact, quote or picture is generated.",
+  ],
   sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -14, dip_scenes: [] },
   beats: [
     // ---- prologue: text cards on black, then the dated scene

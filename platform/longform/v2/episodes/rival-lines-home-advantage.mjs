@@ -56,6 +56,14 @@ const R = D.restart_1920_empty, S21 = D.season_2021, A = D.all;
 
 export const EPISODE = {
   channel: "rival-lines", slug: "home-advantage", title: "Why Do Home Teams Win So Much?", target_minutes: 7,
+  // description opening in intrcpt's formula (narrative paragraph, "in this video", data line); their "no AI whatsoever" line is replaced by an honest disclosure
+  blurb: [
+    "Home teams have won 45.6% of all 12,704 Premier League matches since 1993/94. Away teams have won 28.8%. Everyone has a theory why: the crowd, the referee, the travel. So we tested them against every result, and against the studies of the seasons played behind closed doors. The answer was not as simple as we expected.",
+    "",
+    "In this video we take an analytical look at home advantage in the Premier League: whether it is real, whether it is shrinking, what happened when the stands were empty, and whether referees play a part. Every chart is built from our own count of the results.",
+    "",
+    "Data: football-data.co.uk (results and cards), Wikipedia, and the five published studies listed below. The narration is a synthetic voice; no fact, figure or quote in this video is generated.",
+  ],
   sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -16, dip_scenes: [] },
   beats: [
     // ---- the 45.6% mystery
