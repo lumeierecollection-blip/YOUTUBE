@@ -1,0 +1,82 @@
+{
+  "channel_id": "17",
+  "topic_slug": "ncei-october-2026-sea-surface-temperature-record",
+  "format": "shorts",
+  "hook": "In October 2026, global ocean surface temperatures hit historic highs.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In October 2026, global ocean surface temperatures hit historic highs.",
+      "visual_cue": "Global satellite map displaying sea surface temperature anomalies across oceans.",
+      "sfx_cue": "Subtle deep bass rumble sound",
+      "b_roll": [
+        "Satellite view of global ocean surface",
+        "Thermal sea surface temperature heatmap"
+      ],
+      "transition_out": "Fast cut",
+      "text_overlay": {
+        "text": "OCTOBER 2026 OCEAN TEMPERATURES"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The National Centers for Environmental Information reported ocean departures reached 1.14°C above the monthly average. Where did 75 percent of the ocean warm?",
+      "visual_cue": "Data graph showing 1.14°C temperature spike alongside latitude grid between 60°S and 60°N.",
+      "sfx_cue": "Digital data ping",
+      "b_roll": [
+        "Oceanographic research buoy floating in open ocean",
+        "Computer display with sea surface temperature readings"
+      ],
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "+1.14°C ABOVE AVERAGE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the National Centers for Environmental Information reports these record departures lasted five consecutive months.",
+      "visual_cue": "Timeline chart highlighting five consecutive monthly record markers.",
+      "sfx_cue": "Rhythmic mechanical pulse",
+      "b_roll": [
+        "Waves crashing against oceanic monitoring station",
+        "Data telemetry screen tracking ocean temperatures"
+      ],
+      "transition_out": "Wipe left",
+      "text_overlay": {
+        "text": "5 CONSECUTIVE RECORD MONTHS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The National Centers for Environmental Information reports 75 percent of the global ocean warmed above average.",
+      "visual_cue": "Historical climate baseline trendline from 1850 to 2026 surging upward.",
+      "sfx_cue": "Soft low atmospheric drone",
+      "b_roll": [
+        "Archival atmospheric research station footage",
+        "Wide shot of global ocean horizon at sunset"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "75% OF GLOBAL OCEANS ABOVE AVERAGE"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "NOAA records dating back to 1850 show no warmer ocean temperatures than those in 2026.",
+      "visual_cue": "Rotating global ocean globe showing warm anomalies fade into historical archive emblem.",
+      "sfx_cue": "Deep resonant chime fadeout",
+      "b_roll": [
+        "Global satellite projection of Earth oceans"
+      ],
+      "transition_out": "None",
+      "text_overlay": {
+        "text": "WARMEST OCEAN ON RECORD SINCE 1850"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.climatecentral.org/climate-briefings/october-2026",
+    "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026",
+    "https://yaleclimateconnections.org/2026/11/october-2026-earths-warmest-october-on-record"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "topic_slug": "ncei-october-2026-sea-surface-temperature-record",
+  "strongest_angle": "Analysis of National Centers for Environmental Information data from October 2026 showing that global ocean surface temperature departures broke all-time monthly records for a fifth consecutive month.",
+  "key_facts": [
+    {
+      "fact": "The National Centers for Environmental Information reported that October 2026 global ocean surface temperature departure reached 1.14°C above average, setting an all-time high for any month.",
+      "source_url": "https://www.climatecentral.org/climate-briefings/october-2026",
+      "source_name": "Climate Central",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mercator Ocean International stated that global sea surface temperatures between 60°S and 60°N averaged 21.01°C in October 2026, surpassing the previous record set in 2023.",
+      "source_url": "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026",
+      "source_name": "Mercator Ocean International",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the National Centers for Environmental Information, 75 percent of the global ocean showed above average mean sea surface temperatures in October 2026.",
+      "source_url": "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026",
+      "source_name": "Mercator Ocean International",
+      "confidence": "high"
+    },
+    {
+      "fact": "Yale Climate Connections reported that October 2026 was Earth's warmest October since modern record-keeping began in 1850 according to NOAA's National Centers for Environmental Information.",
+      "source_url": "https://yaleclimateconnections.org/2026/11/october-2026-earths-warmest-october-on-record",
+      "source_name": "Yale Climate Connections",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "October 2026 ocean temperature departure above average",
+      "value": 1.14,
+      "unit": "°C",
+      "source_url": "https://www.climatecentral.org/climate-briefings/october-2026"
+    },
+    {
+      "label": "October 2026 average sea surface temperature",
+      "value": 21.01,
+      "unit": "°C",
+      "source_url": "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026"
+    },
+    {
+      "label": "Global ocean area with above average mean SSTs",
+      "value": 75,
+      "unit": "percent",
+      "source_url": "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026"
+    },
+    {
+      "label": "Modern record-keeping starting year",
+      "value": 1850,
+      "unit": "year",
+      "source_url": "https://yaleclimateconnections.org/2026/11/october-2026-earths-warmest-october-on-record"
+    },
+    {
+      "label": "Southern hemisphere latitude boundary",
+      "value": 60,
+      "unit": "degrees",
+      "source_url": "https://www.mercator-ocean.eu/bulletin/ocean-temperature-bulletin-october-2026"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "National Centers for Environmental Information",
+      "kind": "organization"
+    },
+    {
+      "name": "Mercator Ocean International",
+      "kind": "organization"
+    },
+    {
+      "name": "Climate Central",
+      "kind": "organization"
+    },
+    {
+      "name": "Yale Climate Connections",
+      "kind": "organization"
+    },
+    {
+      "name": "Jeff Masters",
+      "kind": "person"
+    },
+    {
+      "name": "Bob Henson",
+      "kind": "person"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Northern Hemisphere",
+      "kind": "place"
+    },
+    {
+      "name": "Southern Hemisphere",
+      "kind": "place"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "For a fifth-consecutive month, the global ocean surface temperature departure set a new record-high, averaging 2.05°F (1.14°C) above average for October",
+      "speaker": "Timothy McGill",
+      "source_name": "The Weather Channel",
+      "source_url": "https://www.theweather.com/news/forecasts/october-sets-an-all-time-record-as-earth-continues-on-pace-for-its-second-warmest-year-since.html"
+    }
+  ]
+}
