@@ -10,7 +10,7 @@
  * Known limits are written into render-log.json, not hidden.
  */
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync, copyFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync, copyFileSync } from "node:fs";
 import { join } from "node:path";
 import { createRequire } from "node:module";
 import { pathToFileURL } from "node:url";
@@ -45,8 +45,12 @@ function sceneProps(scene) {
   const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac;
   // a clip that could not be fetched must not break the render: drop cutaways and montage shots whose file is missing
   const have = (m) => !(m.video && !existsSync(join(REMOTION, "public", m.video))) && !(m.image && !existsSync(join(REMOTION, "public", m.image)));
-  if (p.cutaways) p.cutaways = p.cutaways.filter(have);
-  if (p.shots) p.shots = p.shots.filter(have);
+  const cm = (() => { try { const d = join(REMOTION, "public/lf2/footage"); return readdirSync(d).filter((f) => f.startsWith("footage-commons-")).flatMap((f) => JSON.parse(readFileSync(join(d, f), "utf8"))); } catch { return []; } })();
+  const withCredit = (m) => { const e = cm.find((c) => m.video && m.video.endsWith(c.file.split("/").pop())); return e ? { ...m, credit: e.credit } : m; };
+  if (p.cutaways) p.cutaways = p.cutaways.filter(have).map(withCredit);
+  if (p.shots) p.shots = p.shots.filter(have).map(withCredit);
+  if (p.type === "montage") { const real = p.shots.filter((x) => !x.fallback); p.shots = real.length ? real : p.shots; }   // fallback shots only when none of the real clips exist
+  if (p.cards) p.cards = p.cards.filter(have).map(withCredit);
   if (ch === "hidden-past") {
     if (scene.type === "map") p.theme = t.map;
     if (scene.type === "roster") p.groups = t.countries;

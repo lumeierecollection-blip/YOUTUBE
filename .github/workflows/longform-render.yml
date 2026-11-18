@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout]
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout, rival-lines-home-advantage, hidden-past-hastings]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
@@ -83,7 +83,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout]
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout, rival-lines-home-advantage, hidden-past-hastings]
     steps:
       - name: Skip episodes this branch did not ask for
         id: want
@@ -106,6 +106,11 @@ jobs:
         env:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: node platform/longform/v2/fetch-footage.mjs "${{ matrix.episode }}"
+      - name: Fetch real match footage from Wikimedia Commons (CC0 / public domain / CC BY only)
+        if: steps.want.outputs.run == 'yes'
+        continue-on-error: true
+        timeout-minutes: 25
+        run: node platform/longform/v2/fetch-commons-footage.mjs "${{ matrix.episode }}"
       - uses: actions/upload-artifact@v4
         if: steps.want.outputs.run == 'yes'
         with:
@@ -121,7 +126,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout, rival-lines-home-advantage, hidden-past-hastings] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     steps:
       - name: Skip episodes this branch did not ask for
@@ -393,7 +398,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
+        episode: [hidden-past-kaliningrad, ai-tested-ai-bubble, rival-lines-analyse, hidden-past-tilbury, rival-lines-shootout, rival-lines-home-advantage, hidden-past-hastings] # fresh-cycle clones only (15 Nov 2026); earlier episodes: add back here to re-render
     steps:
       - name: Skip episodes this branch did not ask for
         id: want

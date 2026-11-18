@@ -439,5 +439,43 @@
   "file": "ps-messi-2022.jpg",
   "width": 1920,
   "height": 1080
+ },
+ "ha-crowd-cincinnati": {
+  "id": "ha-crowd-cincinnati",
+  "description": "Crowd Taken during a match between FC Cincinnati and Harrisburg City Islanders at Nippert Stadium in Cincinnati on May 28, 2016.",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:FC_Cincinnati_crowd_(27223071962).jpg",
+  "licence": "CC BY 2.0",
+  "licence_url": "https://creativecommons.org/licenses/by/2.0",
+  "author": "Hayden Schiff from Cincinnati, USA",
+  "original_credit": "Crowd",
+  "date_taken": "2016-05-28 19:55",
+  "retrieved": "2026-11-18",
+  "claim": "Supporters at a 2016 FC Cincinnati v Harrisburg City Islanders match (USL, not the Premier League); illustrates a home crowd",
+  "authenticity": "authentic",
+  "size_px": "3008x2000",
+  "credit_line": "Hayden Schiff from Cincinnati, USA, CC BY 2.0, via Wikimedia Commons",
+  "bytes": 709399,
+  "file": "ha-crowd-cincinnati.jpg"
+ },
+ "ha-yellow-card": {
+  "id": "ha-yellow-card",
+  "description": "Yellow Card of Daigo Furukawa at Takebishi Stadium Kyoto",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Yellow_Card_of_Daigo_Furukawa.jpg",
+  "licence": "CC0",
+  "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Mr.ちゅらさん",
+  "original_credit": "Own work",
+  "date_taken": "2024-08-30 19:45:14",
+  "retrieved": "2026-11-18",
+  "claim": "A referee's yellow card at a match in Japan; illustrates a booking, not an event in the data",
+  "authenticity": "authentic",
+  "size_px": "4320x3240",
+  "credit_line": "Mr.ちゅらさん, CC0, via Wikimedia Commons",
+  "bytes": 543331,
+  "file": "ha-yellow-card.jpg"
  }
 }
