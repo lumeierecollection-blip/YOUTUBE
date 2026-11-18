@@ -1,0 +1,613 @@
+{
+ "slug": "hidden-past-hastings",
+ "title": "Norman Conquest: Battle of Hastings 1066",
+ "channel": "hidden-past",
+ "beats": [
+  {
+   "id": "N01",
+   "part": "prologue",
+   "vo": "Fourteenth of October, ten sixty-six. A ridge in Sussex, north of Hastings.",
+   "sentences": [
+    "Fourteenth of October, ten sixty-six.",
+    "A ridge in Sussex, north of Hastings."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "The Norman Conquest",
+    "sub": "Hastings 1066"
+   }
+  },
+  {
+   "id": "N02",
+   "part": "prologue",
+   "vo": "Many of the accounts of what happened that day contradict each other. Where they do, we will say so.",
+   "sentences": [
+    "Many of the accounts of what happened that day contradict each other.",
+    "Where they do, we will say so."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "Many of the primary accounts contradict each other.",
+    "sub": "It is impossible to give an authoritative description of the battle. · Wikipedia, 'Battle of Hastings'"
+   }
+  },
+  {
+   "id": "N03",
+   "part": "a crown with no heir",
+   "vo": "On the fifth of January ten sixty-six, King Edward of England died with no clear heir. The richest and most powerful noble in the kingdom, Harold Godwinson, Earl of Wessex, was elected king and crowned.",
+   "sentences": [
+    "On the fifth of January ten sixty-six, King Edward of England died with no clear heir.",
+    "The richest and most powerful noble in the kingdom, Harold Godwinson, Earl of Wessex, was elected king and crowned."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-coronation.jpg",
+    "title": "Harold Godwinson",
+    "sub": "Elected king, January 1066 · as the Bayeux Tapestry shows him",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N04",
+   "part": "three claimants",
+   "vo": "He was challenged at once by two powerful neighbours. Across the Channel, William, Duke of Normandy. Across the North Sea, Harald Hardrada, King of Norway.",
+   "sentences": [
+    "He was challenged at once by two powerful neighbours.",
+    "Across the Channel, William, Duke of Normandy.",
+    "Across the North Sea, Harald Hardrada, King of Norway."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "three claimants",
+    "steps": [
+     "England",
+     "Norway"
+    ],
+    "plate": null,
+    "image": null
+   }
+  },
+  {
+   "id": "N05",
+   "part": "three claimants",
+   "vo": "William claimed that Edward had promised him the throne, and that Harold had sworn to support that promise. The Bayeux Tapestry, probably commissioned by Odo, Bishop of Bayeux, soon after the battle, shows Harold swearing an oath to William.",
+   "sentences": [
+    "William claimed that Edward had promised him the throne, and that Harold had sworn to support that promise.",
+    "The Bayeux Tapestry, probably commissioned by Odo, Bishop of Bayeux, soon after the battle, shows Harold swearing an oath to William."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-oath.jpg",
+    "title": "William, Duke of Normandy",
+    "sub": "Claimed Edward promised him the crown",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N06",
+   "part": "three claimants",
+   "vo": "Hardrada's claim rested on an agreement between his predecessor, Magnus the Good, and an earlier king of England, Harthacnut. Whichever of them died without an heir, the other would inherit both kingdoms. Both William and Hardrada began to gather ships.",
+   "sentences": [
+    "Hardrada's claim rested on an agreement between his predecessor, Magnus the Good, and an earlier king of England, Harthacnut.",
+    "Whichever of them died without an heir, the other would inherit both kingdoms.",
+    "Both William and Hardrada began to gather ships."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "three claimants",
+    "steps": [
+     "Norway",
+     "England"
+    ],
+    "plate": {
+     "name": "Harald Hardrada",
+     "role": "King of Norway · claimant",
+     "from": 40,
+     "x": 1300,
+     "y": 900
+    },
+    "image": "lf2/hidden-past/hs-harold-crop.jpg"
+   }
+  },
+  {
+   "id": "N07",
+   "part": "three claimants",
+   "vo": "In April, Halley's Comet appeared in the sky and was reported across Europe. Accounts at the time connected it with the fight for the English crown.",
+   "sentences": [
+    "In April, Halley's Comet appeared in the sky and was reported across Europe.",
+    "Accounts at the time connected it with the fight for the English crown."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-comet.jpg",
+    "title": "April 1066",
+    "sub": "The comet, as the Bayeux Tapestry shows it",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N08",
+   "part": "invasion from the north",
+   "vo": "Harold spent the summer on the south coast with an army and a fleet, waiting for William. But most of his men were militia who had harvests to bring in. On the eighth of September he sent the militia and the fleet home.",
+   "sentences": [
+    "Harold spent the summer on the south coast with an army and a fleet, waiting for William.",
+    "But most of his men were militia who had harvests to bring in.",
+    "On the eighth of September he sent the militia and the fleet home."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "invasion from the north",
+    "steps": [
+     "London"
+    ],
+    "plate": {
+     "name": "Harold Godwinson",
+     "role": "King of England",
+     "from": 50,
+     "x": 70,
+     "y": 900
+    },
+    "image": "lf2/hidden-past/hs-harold-crop.jpg"
+   }
+  },
+  {
+   "id": "N09",
+   "part": "invasion from the north",
+   "vo": "That same month, Hardrada invaded the north with more than three hundred ships, carrying perhaps fifteen thousand men, joined by Harold's own exiled brother, Tostig. On the twentieth of September, at Fulford, just south of York, they defeated the northern earls and took the city.",
+   "sentences": [
+    "That same month, Hardrada invaded the north with more than three hundred ships, carrying perhaps fifteen thousand men, joined by Harold's own exiled brother, Tostig.",
+    "On the twentieth of September, at Fulford, just south of York, they defeated the northern earls and took the city."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "invasion from the north",
+    "steps": [
+     "Orkney",
+     "York · Fulford, 20 Sept"
+    ],
+    "plate": {
+     "name": "Route schematic",
+     "role": "The sources give the fleet, not its course",
+     "from": 40,
+     "x": 70,
+     "y": 920
+    },
+    "image": null
+   }
+  },
+  {
+   "id": "N10",
+   "part": "invasion from the north",
+   "vo": "Harold rushed north, gathering men as he went, and caught the Norwegians by surprise at Stamford Bridge on the twenty-fifth of September. Hardrada and Tostig were both killed. Of the three hundred ships, only twenty-four were needed to carry the survivors home.",
+   "sentences": [
+    "Harold rushed north, gathering men as he went, and caught the Norwegians by surprise at Stamford Bridge on the twenty-fifth of September.",
+    "Hardrada and Tostig were both killed.",
+    "Of the three hundred ships, only twenty-four were needed to carry the survivors home."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "invasion from the north",
+    "steps": [
+     "London",
+     "Stamford Bridge · 25 Sept"
+    ],
+    "plate": null,
+    "image": "lf2/hidden-past/hs-harold-crop.jpg"
+   }
+  },
+  {
+   "id": "N11",
+   "part": "invasion from the north",
+   "vo": "The battle has traditionally been called the end of the Viking Age. But the victory came at great cost. Harold's army was battered and weakened, and far from the south. Three days later, William landed.",
+   "sentences": [
+    "The battle has traditionally been called the end of the Viking Age.",
+    "But the victory came at great cost.",
+    "Harold's army was battered and weakened, and far from the south.",
+    "Three days later, William landed."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "25 September 1066",
+    "sub": "Victory in the north, at great cost."
+   }
+  },
+  {
+   "id": "N12",
+   "part": "the landing",
+   "vo": "William had spent almost nine months building a fleet from nothing. He was ready to cross from Saint-Valery-sur-Somme by about the twelfth of August, but the crossing was delayed. On the twenty-eighth of September, with the English fleet gone, the Normans landed at Pevensey.",
+   "sentences": [
+    "William had spent almost nine months building a fleet from nothing.",
+    "He was ready to cross from Saint-Valery-sur-Somme by about the twelfth of August, but the crossing was delayed.",
+    "On the twenty-eighth of September, with the English fleet gone, the Normans landed at Pevensey."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "the landing",
+    "steps": [
+     "Saint-Valery-sur-Somme",
+     "Pevensey · 28 Sept"
+    ],
+    "plate": {
+     "name": "William, Duke of Normandy",
+     "role": "Lands in England, 28 September 1066",
+     "from": 60,
+     "x": 70,
+     "y": 900
+    },
+    "image": "lf2/hidden-past/hs-william-crop.jpg"
+   }
+  },
+  {
+   "id": "N13",
+   "part": "the landing",
+   "vo": "They built a wooden castle at Hastings and raided the country around it. The exact size of William's army is unknown. Writers at the time gave figures as high as a hundred and fifty thousand. Modern historians estimate between seven and twelve thousand.",
+   "sentences": [
+    "They built a wooden castle at Hastings and raided the country around it.",
+    "The exact size of William's army is unknown.",
+    "Writers at the time gave figures as high as a hundred and fifty thousand.",
+    "Modern historians estimate between seven and twelve thousand."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "the landing",
+    "steps": [
+     "Hastings · a wooden castle",
+     "Pevensey"
+    ],
+    "plate": null,
+    "image": null
+   }
+  },
+  {
+   "id": "N14",
+   "part": "the landing",
+   "vo": "About half of William's force was infantry, a quarter cavalry, and a quarter archers or crossbowmen. The English fought on foot: the fyrd, a levy of local landholders, and the housecarls, the king's own armoured men. They had few archers. Their numbers are unknown too, with estimates from five to thirteen thousand.",
+   "sentences": [
+    "About half of William's force was infantry, a quarter cavalry, and a quarter archers or crossbowmen.",
+    "The English fought on foot: the fyrd, a levy of local landholders, and the housecarls, the king's own armoured men.",
+    "They had few archers.",
+    "Their numbers are unknown too, with estimates from five to thirteen thousand."
+   ],
+   "kind": "rows",
+   "data": {
+    "title": "Order of forces",
+    "rows": [
+     [
+      "BLUE",
+      "Normans: Infantry",
+      "about one half"
+     ],
+     [
+      "BLUE",
+      "Normans: Cavalry",
+      "about one quarter"
+     ],
+     [
+      "BLUE",
+      "Normans: Archers and crossbowmen",
+      "about one quarter"
+     ],
+     [
+      "BLUE",
+      "Normans: Total",
+      "unknown · estimates 7,000 to 12,000"
+     ],
+     [
+      "RED",
+      "English: Fyrd",
+      "local levy, on foot"
+     ],
+     [
+      "RED",
+      "English: Housecarls",
+      "the king's armoured men, on foot"
+     ],
+     [
+      "RED",
+      "English: Archers",
+      "no significant number"
+     ],
+     [
+      "RED",
+      "English: Total",
+      "unknown · estimates 5,000 to 13,000"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "N15",
+   "part": "the battle",
+   "vo": "Harold marched south, stopped in London for about a week, and on the night of the thirteenth of October camped on Caldbec Hill. The battle began the next morning at nine o'clock, between two hills, in country that was heavily wooded, with a marsh nearby.",
+   "sentences": [
+    "Harold marched south, stopped in London for about a week, and on the night of the thirteenth of October camped on Caldbec Hill.",
+    "The battle began the next morning at nine o'clock, between two hills, in country that was heavily wooded, with a marsh nearby."
+   ],
+   "kind": "sketch",
+   "data": {
+    "title": "English Army",
+    "armies": [
+     "English Army · estimates 5,000 to 13,000",
+     "Norman Army · estimates 7,000 to 12,000"
+    ],
+    "arrows": 1,
+    "schematic": true
+   }
+  },
+  {
+   "id": "N16",
+   "part": "the battle",
+   "vo": "The English formed a shield wall along the top of a steep slope, shields close together or overlapping, their flanks protected by woods and marshy ground. Below them William drew up three divisions: Bretons on the left, Normans in the centre under William himself, French and Flemings on the right.",
+   "sentences": [
+    "The English formed a shield wall along the top of a steep slope, shields close together or overlapping, their flanks protected by woods and marshy ground.",
+    "Below them William drew up three divisions: Bretons on the left, Normans in the centre under William himself, French and Flemings on the right."
+   ],
+   "kind": "sketch",
+   "data": {
+    "title": "English shield wall",
+    "armies": [
+     "English shield wall",
+     "Bretons",
+     "Normans · William",
+     "French and Flemings"
+    ],
+    "arrows": 0,
+    "schematic": true
+   }
+  },
+  {
+   "id": "N17",
+   "part": "the battle",
+   "vo": "The Norman archers opened, shooting uphill into the shield wall, to little effect. The infantry went in next and met a storm of spears, axes and stones. The cavalry followed and could not break through either.",
+   "sentences": [
+    "The Norman archers opened, shooting uphill into the shield wall, to little effect.",
+    "The infantry went in next and met a storm of spears, axes and stones.",
+    "The cavalry followed and could not break through either."
+   ],
+   "kind": "sketch",
+   "data": {
+    "title": "1 · archers   2 · infantry   3 · cavalry",
+    "armies": [
+     "1 · archers   2 · infantry   3 · cavalry"
+    ],
+    "arrows": 6,
+    "schematic": true
+   }
+  },
+  {
+   "id": "N18",
+   "part": "the battle",
+   "vo": "Then a general retreat began, blamed on the Bretons on William's left. A rumour ran through the army that William had been killed. He rode through his men with his face showing, shouting that he was alive, and led a counter-attack on the English who had chased them downhill.",
+   "sentences": [
+    "Then a general retreat began, blamed on the Bretons on William's left.",
+    "A rumour ran through the army that William had been killed.",
+    "He rode through his men with his face showing, shouting that he was alive, and led a counter-attack on the English who had chased them downhill."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-helmet.jpg",
+    "title": "William lifts his helmet",
+    "sub": "To show he was alive · Bayeux Tapestry",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N19",
+   "part": "the battle",
+   "vo": "In the afternoon, the Normans appear to have turned that into a tactic: the feigned flight, a pretend retreat to draw men out of the line. Some historians have argued the story was invented afterwards, but most agree it happened. It probably thinned the housecarls, and the fyrd filled the gaps. The wall held.",
+   "sentences": [
+    "In the afternoon, the Normans appear to have turned that into a tactic: the feigned flight, a pretend retreat to draw men out of the line.",
+    "Some historians have argued the story was invented afterwards, but most agree it happened.",
+    "It probably thinned the housecarls, and the fyrd filled the gaps.",
+    "The wall held."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-cavalry.jpg",
+    "title": "The feigned flight",
+    "sub": "Disputed by some historians · most agree it was used",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N20",
+   "part": "the death of a king",
+   "vo": "Late in the day, Harold was killed. How, nobody can say for certain. The Bayeux Tapestry shows a man pulling an arrow from his eye beside a man cut down by a sword, under the words: Here King Harold has been killed. It does not say which one is Harold.",
+   "sentences": [
+    "Late in the day, Harold was killed.",
+    "How, nobody can say for certain.",
+    "The Bayeux Tapestry shows a man pulling an arrow from his eye beside a man cut down by a sword, under the words: Here King Harold has been killed.",
+    "It does not say which one is Harold."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-death.png",
+    "title": "Hic Harold Rex interfectus est",
+    "sub": "'Here King Harold has been killed' · Bayeux Tapestry",
+    "credit": "Université de Caen Normandie · CNRS · ENSICAEN d'après la campagne pho, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N21",
+   "part": "the death of a king",
+   "vo": "The story of the arrow in the eye first appears in writing in the ten-eighties, in a history by an Italian monk. Another chronicle says William killed Harold himself, which is unlikely. The chronicle of Battle Abbey says simply that no one knew who killed him.",
+   "sentences": [
+    "The story of the arrow in the eye first appears in writing in the ten-eighties, in a history by an Italian monk.",
+    "Another chronicle says William killed Harold himself, which is unlikely.",
+    "The chronicle of Battle Abbey says simply that no one knew who killed him."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "How did Harold die?",
+    "sub": "An arrow to the eye: first written in the 1080s, Amatus of Montecassino. · Killed by William himself: the Carmen. Unlikely. · 'No one knew who killed him': the Chronicle of Battle Abbey."
+   }
+  },
+  {
+   "id": "N22",
+   "part": "the death of a king",
+   "vo": "With the king dead, the English began to collapse. Many fled. The men of the royal household gathered around Harold's body and fought to the end. A last stand at a place remembered as the Malfosse, the evil ditch, wounded Count Eustace of Boulogne before it too was overrun.",
+   "sentences": [
+    "With the king dead, the English began to collapse.",
+    "Many fled.",
+    "The men of the royal household gathered around Harold's body and fought to the end.",
+    "A last stand at a place remembered as the Malfosse, the evil ditch, wounded Count Eustace of Boulogne before it too was overrun."
+   ],
+   "kind": "sketch",
+   "data": {
+    "title": "the royal household fights on around Harold",
+    "armies": [
+     "the royal household fights on around Harold"
+    ],
+    "arrows": 2,
+    "schematic": true
+   }
+  },
+  {
+   "id": "N23",
+   "part": "the death of a king",
+   "vo": "How many died is unknown. Among the English known to have fought, about half were killed, though that may be too high. One in seven of the named Norman nobles died. One historian, Peter Marren, guesses at perhaps two thousand Normans and four thousand English.",
+   "sentences": [
+    "How many died is unknown.",
+    "Among the English known to have fought, about half were killed, though that may be too high.",
+    "One in seven of the named Norman nobles died.",
+    "One historian, Peter Marren, guesses at perhaps two thousand Normans and four thousand English."
+   ],
+   "kind": "rows",
+   "data": {
+    "title": "Casualty estimates",
+    "rows": [
+     [
+      "RED",
+      "Total killed",
+      "unknown"
+     ],
+     [
+      "RED",
+      "English known to have fought",
+      "about 1 in 2 killed (may be too high)"
+     ],
+     [
+      "RED",
+      "Named Norman nobles",
+      "1 in 7 killed"
+     ],
+     [
+      "RED",
+      "Peter Marren's guess",
+      "~2,000 Normans · ~4,000 English"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "N24",
+   "part": "aftermath",
+   "vo": "The next day Harold's body was identified, by his armour or by marks on his body. A twelfth-century tradition says his face could not be recognised, and that Edith, his common-law wife, was brought to the field to find him by marks only she knew.",
+   "sentences": [
+    "The next day Harold's body was identified, by his armour or by marks on his body.",
+    "A twelfth-century tradition says his face could not be recognised, and that Edith, his common-law wife, was brought to the field to find him by marks only she knew."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-vernet.jpg",
+    "title": "Edith finds Harold",
+    "sub": "Horace Vernet, 1828 · a legend, painted over 750 years later",
+    "credit": "Horace Vernet, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N25",
+   "part": "aftermath",
+   "vo": "England did not surrender at once. The surviving leaders proclaimed the young Edgar Atheling king. William marched on London, was held at London Bridge, and went the long way round: west to cross the Thames at Wallingford, then towards the city from the north-west. At Berkhamsted the English leaders submitted.",
+   "sentences": [
+    "England did not surrender at once.",
+    "The surviving leaders proclaimed the young Edgar Atheling king.",
+    "William marched on London, was held at London Bridge, and went the long way round: west to cross the Thames at Wallingford, then towards the city from the north-west.",
+    "At Berkhamsted the English leaders submitted."
+   ],
+   "kind": "flow",
+   "data": {
+    "title": "aftermath",
+    "steps": [
+     "Southwark",
+     "Wallingford",
+     "Berkhamsted · the English…"
+    ],
+    "plate": {
+     "name": "Route schematic",
+     "role": "Places from the sources; the roads between them are not",
+     "from": 40,
+     "x": 70,
+     "y": 920
+    },
+    "image": "lf2/hidden-past/hs-william-horse-crop.jpg"
+   }
+  },
+  {
+   "id": "N26",
+   "part": "aftermath",
+   "vo": "On Christmas Day ten sixty-six, William was crowned King of England in Westminster Abbey, by Ealdred, the same archbishop who had crowned Harold less than a year before.",
+   "sentences": [
+    "On Christmas Day ten sixty-six, William was crowned King of England in Westminster Abbey, by Ealdred, the same archbishop who had crowned Harold less than a year before."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "25 December 1066",
+    "sub": "William is crowned in Westminster Abbey."
+   }
+  },
+  {
+   "id": "N27",
+   "part": "aftermath",
+   "vo": "Resistance went on for years: rebellions in Exeter, in the south and west, and in Northumbria, and a Danish fleet. William put them down ruthlessly, ending in the Harrying of the North in the winter of ten sixty-nine. He founded an abbey on the battlefield. Its high altar, later writers said, stood where Harold fell.",
+   "sentences": [
+    "Resistance went on for years: rebellions in Exeter, in the south and west, and in Northumbria, and a Danish fleet.",
+    "William put them down ruthlessly, ending in the Harrying of the North in the winter of ten sixty-nine.",
+    "He founded an abbey on the battlefield.",
+    "Its high altar, later writers said, stood where Harold fell."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/hidden-past/hs-coronation.jpg",
+    "title": "1067 to 1070",
+    "sub": "Rebellions, and the Harrying of the North",
+    "credit": "Myrabella, Public domain, via Wikimedia Commons"
+   }
+  },
+  {
+   "id": "N28",
+   "part": "epilogue",
+   "vo": "Some of the English who fought that day left England altogether, and joined the Varangian Guard of the emperor in Constantinople. In ten eighty-one, at Dyrrhachium, they faced the Normans again. And again, they were defeated.",
+   "sentences": [
+    "Some of the English who fought that day left England altogether, and joined the Varangian Guard of the emperor in Constantinople.",
+    "In ten eighty-one, at Dyrrhachium, they faced the Normans again.",
+    "And again, they were defeated."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "Dyrrhachium, 1081",
+    "sub": "The English and the Normans met again."
+   }
+  },
+  {
+   "id": "N29",
+   "part": "epilogue",
+   "vo": "Every fact in this video comes from the sources on screen.",
+   "sentences": [
+    "Every fact in this video comes from the sources on screen."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "Sources",
+    "lines": [
+     "Wikipedia: Battle of Hastings · Battle of Stamford Bridge · Battle of Fulford (retrieved 18 November 2026)",
+     "Bayeux Tapestry photographs: Myrabella; Université de Caen Normandie / CNRS / ENSICAEN · public domain, via Wikimedia Commons",
+     "Horace Vernet, Edith finds Harold's body (1828) · public domain, via Wikimedia Commons",
+     "Maps: NASA Blue Marble (public domain) · Sentinel-2 cloudless 2016 by EOX (CC BY 4.0) · outlines © OpenStreetMap contributors (modern boundaries)",
+     "Battle positions are schematic: the sources disagree on the exact site"
+    ]
+   },
+   "cta": true
+  }
+ ]
+}

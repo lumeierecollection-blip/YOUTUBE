@@ -1,0 +1,108 @@
+# Renders our long-form episodes a second time in the Blender Edit Machine's "Glass Studio" style (github.com/brodyautomates/blender-edit-machine, MIT),
+# on GitHub only (never the owner's PC), each episode in 20 parallel parts, at the repo's PREVIEW quality (540x960, 16 samples, vertical): the owner's
+# choice on 18 Nov 2026, because a full-quality part would need ~10 h, past GitHub's 6 h job limit.
+# Push a branch named blender/<anything>. The third-party repo is pinned to one reviewed commit (no network calls in it; it runs Blender, Chrome, ffmpeg).
+# Narration and facts are the episode's own: build_project.py takes the voice artifact of an earlier longform-render run (run ids in data/blender/projects.json).
+name: Blender Render (20 parts)
+on:
+  push:
+    branches: ["blender/**"]
+permissions:
+  contents: read
+  actions: read
+env:
+  BEM_SHA: f20c4430a6cc0c7a1ad27454a96951ba357da39e
+  BLENDER_URL: https://download.blender.org/release/Blender4.4/blender-4.4.3-linux-x64.tar.xz
+jobs:
+  prep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [rival-lines-home-advantage, hidden-past-hastings]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { repository: brodyautomates/blender-edit-machine, ref: "${{ env.BEM_SHA }}", path: bem }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install "faster-whisper>=1.1" numpy
+      - name: Voice run id
+        id: run
+        run: echo "id=$(python3 -c "import json;print(json.load(open('data/blender/projects.json'))['${{ matrix.episode }}']['voice_run'])")" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with: { name: "voice-${{ matrix.episode }}", path: voice, run-id: "${{ steps.run.outputs.id }}", github-token: "${{ secrets.GITHUB_TOKEN }}" }
+      - name: Build the project (narration, sourced beats, credited pictures, spec)
+        run: python3 platform/blender/build_project.py "${{ matrix.episode }}" voice "bem/projects/${{ matrix.episode }}"
+      - name: Word timings (the repo's own transcriber, faster-whisper small.en)
+        run: python3 bem/edit_machine/transcribe.py "bem/projects/${{ matrix.episode }}"
+      - uses: actions/upload-artifact@v4
+        with: { name: "project-${{ matrix.episode }}", path: "bem/projects/${{ matrix.episode }}", retention-days: 7 }
+
+  parts:
+    needs: prep
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [rival-lines-home-advantage, hidden-past-hastings]
+        part: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: brodyautomates/blender-edit-machine, ref: "${{ env.BEM_SHA }}" }
+      - uses: actions/download-artifact@v4
+        with: { name: "project-${{ matrix.episode }}", path: "projects/${{ matrix.episode }}" }
+      - uses: actions/cache@v4
+        id: bl
+        with: { path: blender, key: "blender-4.4.3-linux" }
+      - name: Install Blender 4.4.3
+        if: steps.bl.outputs.cache-hit != 'true'
+        run: mkdir -p blender && curl -sSL "$BLENDER_URL" | tar -xJ -C blender --strip-components=1
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libgl1 libxkbcommon0 libsm6 ffmpeg > /dev/null
+      - name: Render part ${{ matrix.part }}/20 (preview quality)
+        env: { BLENDER: "${{ github.workspace }}/blender/blender" }
+        run: python3 edit_machine/render.py "projects/${{ matrix.episode }}" --preview --part ${{ matrix.part }}/20
+      - name: Pack this part's frames into one near-lossless segment (raw PNGs for 40 parts would be ~12 GB of artifacts)
+        run: |
+          cd "projects/${{ matrix.episode }}"
+          lo=$(python3 -c "import glob,re;print(min(int(re.search(r'f_(\d+)\.png',f).group(1)) for f in glob.glob('frames_preview/f_*.png')))")
+          n=$(ls frames_preview/f_*.png | wc -l); echo "part ${{ matrix.part }}: $n frames from $lo"
+          ffmpeg -v error -framerate 24 -start_number "$lo" -i frames_preview/f_%04d.png -frames:v "$n" -c:v libx264 -crf 8 -preset fast -pix_fmt yuv444p "part-${{ matrix.part }}.mkv"
+          echo "$lo $n" > "part-${{ matrix.part }}.start"
+      - uses: actions/upload-artifact@v4
+        with: { name: "frames-${{ matrix.episode }}-${{ matrix.part }}", path: "projects/${{ matrix.episode }}/part-${{ matrix.part }}.*", retention-days: 7 }
+
+  join:
+    needs: parts
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        episode: [rival-lines-home-advantage, hidden-past-hastings]
+    steps:
+      - uses: actions/checkout@v4
+        with: { repository: brodyautomates/blender-edit-machine, ref: "${{ env.BEM_SHA }}" }
+      - uses: actions/download-artifact@v4
+        with: { name: "project-${{ matrix.episode }}", path: "projects/${{ matrix.episode }}" }
+      - uses: actions/download-artifact@v4
+        with: { pattern: "frames-${{ matrix.episode }}-*", path: parts, merge-multiple: true }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Unpack the 20 segments back into numbered frames
+        run: |
+          mkdir -p "projects/${{ matrix.episode }}/frames_preview"
+          for k in $(seq 1 20); do
+            [ -f "parts/part-$k.mkv" ] || { echo "part $k missing"; continue; }
+            read lo n < "parts/part-$k.start"
+            ffmpeg -v error -i "parts/part-$k.mkv" -start_number "$lo" "projects/${{ matrix.episode }}/frames_preview/f_%04d.png"
+            echo "part $k: $n frames from $lo"
+          done
+      - name: Join the 20 parts, add captions and voice
+        # render.py looks for Blender before it reaches --join; the join itself only runs ffmpeg, so any existing path satisfies the lookup
+        env: { BLENDER: /bin/true }
+        run: python3 edit_machine/render.py "projects/${{ matrix.episode }}" --preview --join
+      - uses: actions/upload-artifact@v4
+        with: { name: "blender-${{ matrix.episode }}", path: "projects/${{ matrix.episode }}/out_preview.mp4", retention-days: 30 }

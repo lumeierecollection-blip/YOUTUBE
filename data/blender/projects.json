@@ -1,0 +1,9 @@
+{
+ "rival-lines-home-advantage": {
+  "voice_run": 44382361255
+ },
+ "hidden-past-hastings": {
+  "voice_run": 44377408240
+ },
+ "_note": "longform-render runs whose voice-<slug> artifact holds the narration (same VO as the long-form render; artifacts expire after 90 days)"
+}
