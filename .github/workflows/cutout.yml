@@ -36,5 +36,6 @@ jobs:
           name: cutouts
           path: |
             src/skills/remotion-render/public/lf2/**/*-cutout*.png
+            src/skills/remotion-render/public/lf2/**/cmp-*.png
             src/skills/remotion-render/public/lf2/**/ATTRIBUTIONS.json
             src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-*.jpg

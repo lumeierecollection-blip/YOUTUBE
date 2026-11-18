@@ -39,6 +39,9 @@ def main():
     ap.add_argument("--max", type=int, default=1400)
     ap.add_argument("--crop", default="", help="left,top,right,bottom as fractions of the photo, applied before the cut-out")
     ap.add_argument("--trim", default="", help="left,top,right,bottom as fractions of the finished cut-out, kept; removes a stand or hanger the mask included")
+    ap.add_argument("--matting", action="store_true", help="refine the edge with alpha matting (hair, shirt fringes); slower")
+    ap.add_argument("--min-frac", type=float, default=0.6, help="refuse the cut-out when the largest region is a smaller share of the mask (a crowd); a team group may need less")
+    ap.add_argument("--defringe", type=int, default=1, help="pixels of colour fringe pulled in from the edge (0 = off)")
     a = ap.parse_args()
 
     from rembg import new_session, remove
@@ -47,10 +50,12 @@ def main():
         l, t, r, b = (float(v) for v in a.crop.split(","))
         img = img.crop((int(l * img.width), int(t * img.height), int(r * img.width), int(b * img.height)))
     img.thumbnail((a.max, a.max), Image.LANCZOS)
-    cut = remove(img, session=new_session(a.model), alpha_matting=False).convert("RGBA")
-    # keep the main subject: drop specks that are not part of the largest connected region
-    alpha = cut.split()[-1]
-    alpha = alpha.point(lambda v: 255 if v > 24 else 0)
+    cut = remove(img, session=new_session(a.model), alpha_matting=a.matting, alpha_matting_foreground_threshold=240, alpha_matting_background_threshold=12, alpha_matting_erode_size=8).convert("RGBA")
+    # keep the main subject: drop specks that are not part of the largest connected region.
+    # The SOFT alpha from the model is kept (18 Nov 2026: thresholding it to 0/255 gave the jagged, haloed edges the owner rejected); the binary version is
+    # only used to find the regions.
+    soft = cut.split()[-1]
+    alpha = soft.point(lambda v: 255 if v > 24 else 0)
     # keep only the largest connected region, so crowd fragments and stray objects are dropped; refuse a cut-out that is mostly fragments
     from scipy import ndimage
     arr = np.asarray(alpha) > 0
@@ -60,9 +65,19 @@ def main():
         keep = int(np.argmax(sizes)) + 1
         frac = float(sizes.max() / max(1.0, sizes.sum()))
         arr = labels == keep
-        if frac < 0.6:
+        if frac < a.min_frac:
             raise SystemExit(f"cutout rejected: the largest region is only {frac:.0%} of the mask (several subjects or a crowd)")
-        alpha = Image.fromarray((arr * 255).astype(np.uint8))
+    keep = Image.fromarray((arr * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(5))   # region mask, grown a little so soft edges survive
+    alpha = Image.fromarray((np.asarray(soft, dtype=np.float32) * (np.asarray(keep, dtype=np.float32) / 255.0)).astype(np.uint8))
+    if a.defringe > 0:
+        # pull the background colour out of semi-transparent edge pixels: replace their RGB with the nearest solid subject pixel's colour (MaxFilter on a
+        # colour image approximates that cheaply), so a white or green fringe does not show on a new background
+        solid = np.asarray(alpha) > 230
+        rgb = np.asarray(cut.convert("RGB"), dtype=np.uint8).copy()
+        spread = np.asarray(Image.fromarray(np.where(solid[..., None], rgb, 0).astype(np.uint8)).filter(ImageFilter.MaxFilter(1 + 2 * a.defringe)))
+        edge = (~solid) & (np.asarray(alpha) > 0)
+        rgb[edge] = spread[edge]
+        cut = Image.fromarray(rgb).convert("RGBA")
     cut.putalpha(alpha)
 
     if a.bw:

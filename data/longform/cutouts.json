@@ -1,38 +1,70 @@
 [
  {
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-coronation.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-harold-throne-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/rival-lines/cmp-fulham-birefnet.png",
   "args": [
    "--model",
-   "isnet-general-use",
+   "birefnet-general",
    "--crop",
-   "0.465,0.10,0.615,0.86",
+   "0.12,0.52,0.49,0.91",
    "--max",
-   "2400"
+   "3000",
+   "--min-frac",
+   "0.4"
   ]
  },
  {
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-oath.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-william-seated-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/rival-lines/cmp-fulham-birefnet-matting.png",
   "args": [
    "--model",
-   "isnet-general-use",
+   "birefnet-general",
+   "--matting",
    "--crop",
-   "0.27,0.24,0.46,0.93",
+   "0.12,0.52,0.49,0.91",
    "--max",
-   "2400"
+   "3000",
+   "--min-frac",
+   "0.4"
   ]
  },
  {
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-helmet.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-william-helmet-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/rival-lines/cmp-fulham-isnet-soft.png",
   "args": [
    "--model",
    "isnet-general-use",
    "--crop",
-   "0.11,0.17,0.43,0.86",
+   "0.12,0.52,0.49,0.91",
    "--max",
-   "2400"
+   "3000",
+   "--min-frac",
+   "0.4"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/hidden-past/cmp-vernet-birefnet.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--crop",
+   "0.06,0.18,0.64,0.99",
+   "--max",
+   "3000"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/hidden-past/cmp-vernet-birefnet-matting.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--matting",
+   "--crop",
+   "0.06,0.18,0.64,0.99",
+   "--max",
+   "3000"
   ]
  }
 ]
