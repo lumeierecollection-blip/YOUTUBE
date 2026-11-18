@@ -1,58 +1,36 @@
 [
  {
-  "fetch": [
-   "rival-lines",
-   "ha-fulham-1",
-   "File:Fulham Players Celebrating 10052025 (1).jpg",
-   "Fulham players celebrating during Fulham v Everton, Premier League, Craven Cottage, 10 May 2025 (Fulham lost 1-3: football-data.co.uk)"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-1.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-1-cutout.png",
-  "args": [
-   "--model",
-   "u2net_human_seg",
-   "--max",
-   "2400"
-  ]
- },
- {
-  "fetch": [
-   "rival-lines",
-   "ha-fulham-2",
-   "File:Fulham Players Celebrating 10052025 (2).jpg",
-   "Fulham players celebrating during Fulham v Everton, Premier League, Craven Cottage, 10 May 2025 (Fulham lost 1-3: football-data.co.uk)"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-2.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-2-cutout.png",
-  "args": [
-   "--model",
-   "u2net_human_seg",
-   "--max",
-   "2400"
-  ]
- },
- {
-  "fetch": [
-   "rival-lines",
-   "ha-fulham-3",
-   "File:Fulham Players Celebrating 10052025 (3).jpg",
-   "Fulham players celebrating during Fulham v Everton, Premier League, Craven Cottage, 10 May 2025 (Fulham lost 1-3: football-data.co.uk)"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3-cutout.png",
-  "args": [
-   "--model",
-   "u2net_human_seg",
-   "--max",
-   "2400"
-  ]
- },
- {
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-1.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-1-cutout-isnet.png",
+  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-coronation.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-harold-throne-cutout.png",
   "args": [
    "--model",
    "isnet-general-use",
+   "--crop",
+   "0.465,0.10,0.615,0.86",
+   "--max",
+   "2400"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-oath.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-william-seated-cutout.png",
+  "args": [
+   "--model",
+   "isnet-general-use",
+   "--crop",
+   "0.27,0.24,0.46,0.93",
+   "--max",
+   "2400"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-helmet.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-william-helmet-cutout.png",
+  "args": [
+   "--model",
+   "isnet-general-use",
+   "--crop",
+   "0.11,0.17,0.43,0.86",
    "--max",
    "2400"
   ]
