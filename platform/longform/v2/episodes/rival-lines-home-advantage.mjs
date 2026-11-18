@@ -34,7 +34,6 @@ export const FOOTAGE = [
   { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"] },
   { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"] },
   { id: "fb-night", q: "football stadium floodlights", alt: ["stadium night lights", "stadium night"] },
-  { id: "fb-flags", q: "football fans flags", alt: ["soccer fans flags"], optional: true },
   { id: "fb-ref", q: "soccer referee", alt: ["football referee"], optional: true },
   { id: "fb-aerial", q: "soccer stadium aerial", alt: ["football stadium drone"], optional: true },
   { id: "fb-empty", q: "empty stadium seats", alt: ["empty football stadium", "empty stadium"], optional: true },
@@ -47,6 +46,7 @@ export const FOOTAGE = [
 export const COMMONS = { queries: ["Premier League match", "football match crowd stadium", "Arsenal football match", "Liverpool football match", "Manchester City football match", "football supporters stadium"], perFile: 2, seg: 5, max: 14 };
 const VID = (id) => `lf2/footage/${id}.mp4`;
 const VCRED = "Pixabay Content License · illustrative footage";
+const CM = Array.from({ length: 14 }, (_, i) => `cm-${i}`);   // real match footage from Wikimedia Commons (fetch-commons-footage.mjs); a missing one is dropped by render-episode
 const mont = (ids, dur = 2.6) => ({ type: "montage", shots: ids.map((id, i) => ({ video: VID(id), dur, ss: (i * 1.7) % 4, zoom: i % 2 ? [1.12, 1.0] : [1.0, 1.12] })) });
 
 const pc = (n) => `${n}%`;
@@ -80,7 +80,7 @@ export const EPISODE = {
       scene: LINE({ title: "it is real, and it is shrinking", bold: "shrinking", series: [{ name: "home wins", color: "home", vals: D.home_win }, { name: "trend", color: "accent", vals: D.home_win_fit, dash: "16 12" }], ymin: 30, ymax: 55 }) },
     { id: "H06b", part: "is home advantage real?", ref: "gp4cftwGLcQ 5:00: a burst of footage as proof", src: ["PHOTO"],
       vo: "So something real is going on, and it is getting smaller. Which brings us to the suspect everyone names first: the crowd.",
-      scene: mont(["fb-crowd", "fb-fans", "fb-night"], 2.4) },
+      scene: mont(["cm-0", "fb-crowd", "cm-1", "fb-night"], 2.4) },
     // ---- the crowd test
     { id: "H07", part: "the crowd test", ref: "gp4cftwGLcQ 3:29: the popular explanation, stated fairly", src: ["HA", "PHOTO"],
       vo: "The idea is simple. Home fans vastly outnumber visiting fans. They cheer, they boo, and the players feel it. One study of five thousand Premier League games, by Ryan Boyko, then a Harvard research assistant, reported that every extra ten thousand people in the stadium added a tenth of a goal to the home advantage.",
@@ -131,7 +131,7 @@ export const EPISODE = {
       scene: { type: "ixquote", bg: "green", text: "bolivia 6–1 argentina", bold: "6–1", sub: "La Paz, 3,600 m above sea level · 1 April 2009 · Argentina ranked sixth in the world then; its heaviest defeat since 1958", source: "Wikipedia, Home advantage" } },
     { id: "H19b", part: "how big is the edge?", ref: "gp4cftwGLcQ 5:00: footage as proof", src: ["PHOTO"],
       vo: "Altitude, travel, familiar surroundings, and the crowd all stack together. The article notes that the most commonly cited factors are the hardest to measure, so even their existence is debated.",
-      scene: mont(["fb-aerial", "fb-flags", "fb-night"], 2.6) },
+      scene: mont(["cm-2", "fb-aerial", "cm-3", "fb-night"], 2.6) },
     // ---- why home still wins
     { id: "H20", part: "why home still wins", ref: "gp4cftwGLcQ 15:07: the clear verdict", src: ["FD", "FH", "EG"],
       vo: "So why do home teams win so much? Because the edge is real: about forty-six percent against twenty-nine, in thirty-two of thirty-three seasons. It is shrinking slowly. And the strongest signals point at people rather than place: what a crowd does to players, and what it may do to referees. The studies disagree on how much.",
@@ -151,4 +151,4 @@ export const EPISODE = {
 };
 
 // a new picture every few seconds (reference rhythm): short clips over the statement cards only, never over the study cards, bar charts or line charts (they must be read)
-autoCut(EPISODE.beats, ["fb-crowd", "fb-fans", "fb-run", "fb-night", "fb-celebrate", "fb-flags", "fb-tackle", "fb-aerial", "fb-ball", "fb-goal"], { wps: 2.45, types: new Set(["ixquote"]) });
+autoCut(EPISODE.beats, ["cm-4", "fb-crowd", "cm-5", "fb-run", "cm-6", "fb-night", "cm-7", "fb-celebrate", "cm-8", "fb-tackle", "cm-9", "fb-aerial", "cm-10", "fb-goal"], { wps: 2.45, types: new Set(["ixquote"]) });

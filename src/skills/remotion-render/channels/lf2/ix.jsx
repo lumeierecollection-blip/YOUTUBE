@@ -15,6 +15,8 @@ const col = (t, c, bg) => { const k = (c && t.ix[c]) || c || t.ix.accent; return
 /** Paper background. bg: cream | navy | green. A fixed grain (SVG turbulence, no animation) keeps it from looking like a flat fill. */
 function Paper({ t, bg = "cream", children }) {
   const c = t.ix, base = bg === "navy" ? c.navy : bg === "green" ? c.green : c.cream;
+  // a slow continuous push on every paper scene: the reference's explainer never sits still (measured 33% static seconds vs 65% in our first render)
+  const f = useCurrentFrame(), k = interpolate(f, [0, 420], [0, 1], { extrapolateRight: "clamp" }), drift = { transform: `scale(${1 + 0.05 * k}) translate(${-12 * k}px, ${-6 * k}px)`, transformOrigin: "50% 45%" };
   return (
     <AbsoluteFill style={{ background: base, color: bg === "cream" ? c.ink : "#F5F2EA" }}>
       <Fonts />
@@ -23,7 +25,7 @@ function Paper({ t, bg = "cream", children }) {
         <filter id="pn"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="4" /><feColorMatrix type="saturate" values="0" /></filter>
         <rect width="1920" height="1080" filter="url(#pn)" />
       </svg>
-      {children}
+      <AbsoluteFill style={drift}>{children}</AbsoluteFill>
     </AbsoluteFill>
   );
 }

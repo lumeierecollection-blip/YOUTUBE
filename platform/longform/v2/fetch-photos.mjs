@@ -3,9 +3,10 @@
  * Usage: node platform/longform/v2/fetch-photos.mjs <channel-dir> <id> "<File:Title.jpg>" "<what it shows>" [<id> "<title>" "<claim>" ...]
  * The claim is what the picture is allowed to illustrate (it is recorded; keep it literal, e.g. "a crowd at a 2016 match, not a Premier League match"). */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { commonsAsset } from "../../production/commons.mjs";
-import { ROOT } from "../../preview/lib.mjs";
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");   // not ../../preview/lib.mjs: that loads sharp, which the cutout runner does not install
 const [chDir, ...rest] = process.argv.slice(2);
 const dir = join(ROOT, "src/skills/remotion-render/public/lf2", chDir), attPath = join(dir, "ATTRIBUTIONS.json");
 const att = existsSync(attPath) ? JSON.parse(readFileSync(attPath, "utf8")) : {};

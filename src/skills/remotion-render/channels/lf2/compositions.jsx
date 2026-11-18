@@ -3,7 +3,7 @@
 //   LF2Tx:    props { kind, dur, aAt, a: scene, b: scene }   -> a real transition between two scenes
 // Scene data arrives as props from platform/longform/stills/specs.mjs now, and from an episode storyboard later. Nothing is hard-coded here.
 import React from "react";
-import { AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, OffthreadVideo, Sequence, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Transition } from "./kit.jsx";
 import { RIVAL } from "./rival.jsx";
 import { HIDDEN } from "./hidden.jsx";
@@ -33,7 +33,11 @@ const Shot = ({ sh, n }) => {
   );
 };
 const Cutaways = ({ list }) => <>{list.map((c, i) => <Sequence key={i} from={Math.round((c.at || 0) * 30)} durationInFrames={Math.max(1, Math.round((c.dur || 2.5) * 30))} layout="none"><Shot sh={c} n={i} /></Sequence>)}</>;
-const Montage = ({ shots = [] }) => { let at = 0; return <AbsoluteFill style={{ background: "#000" }}>{shots.map((sh, i) => { const from = at; at += Math.round((sh.dur || 3) * 30); return <Sequence key={i} from={from} durationInFrames={Math.round((sh.dur || 3) * 30)} layout="none"><Shot sh={sh} n={i} /></Sequence>; })}</AbsoluteFill>; };
+// The shots repeat in order until the beat ends: a beat longer than its shots used to end on the black background (2.75 s and 6.75 s of black in the
+// 18 Nov 2026 home-advantage render). Repeats start later in each clip (ss + 1.5 s per pass, wrapped at 5 s so it stays inside a 9 s clip) so a repeat is not the identical picture.
+const Montage = ({ shots = [] }) => { const { durationInFrames: total } = useVideoConfig(); const list = []; let at = 0, pass = 0;
+  while (shots.length && at < total && pass < 20) { for (const sh of shots) { if (at >= total) break; const d = Math.round((sh.dur || 3) * 30); list.push({ sh: pass ? { ...sh, ss: ((sh.ss || 0) + 1.5 * pass) % 5 } : sh, from: at, d }); at += d; } pass++; }
+  return <AbsoluteFill style={{ background: "#000" }}>{list.map((x, i) => <Sequence key={i} from={x.from} durationInFrames={x.d} layout="none"><Shot sh={x.sh} n={i} /></Sequence>)}</AbsoluteFill>; };
 
 export function renderScene(s) {
   if (s.type === "montage") return <Montage shots={s.shots} />;

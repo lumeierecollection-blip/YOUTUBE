@@ -189,7 +189,7 @@ const tmpFinal = join(OUT, "episode.tmp.mp4");
 r = run("ffmpeg", ["-y", "-v", "error", "-i", silent, "-i", master, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", tmpFinal]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(5); }
 renameSync(tmpFinal, join(OUT, "episode.mp4"));
-log.notes.push("transitions are ffmpeg crossfades, not the storyboard's LF2Tx transitions", "no music bed (owner: the piano bed sounded like noise); a few light SFX only; nothing auditioned by ear");
+log.notes.push("transitions are ffmpeg crossfades, not the storyboard's LF2Tx transitions", SND?.bed ? `music bed ${SND.bed} under the voice (see log.music); nothing auditioned by ear` : "no music bed; a few light SFX only; nothing auditioned by ear");   // the old fixed text said "no music bed" even when one was mixed in
 log.finished = new Date().toISOString(); log.total_s = +total.toFixed(1);
 writeFileSync(join(OUT, "render-log.json"), JSON.stringify(log, null, 2));
 console.log("DONE", join(OUT, "episode.mp4"), total.toFixed(1), "s");
