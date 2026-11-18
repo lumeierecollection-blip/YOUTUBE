@@ -32,13 +32,17 @@ const foot = (id) => (existsSync(join(PUB, `lf2/footage/${id}.mp4`)) ? `lf2/foot
 const att = (() => { try { return JSON.parse(readFileSync(join(PUB, "lf2/ai-tested/ATTRIBUTIONS.json"), "utf8")); } catch { return {}; } })();
 const photo = (id) => (att[id] && existsSync(join(PUB, "lf2/ai-tested", att[id].file)) ? { img: `lf2/ai-tested/${att[id].file}`, credit: att[id].credit_line } : null);
 const cap = (id, phrase) => { const f = join(PUB, "sx", slug, `${id}.json`); if (!existsSync(f)) return null; const m = JSON.parse(readFileSync(f, "utf8")), r = (m.rects || {})[phrase]; if (!r || !r.length) return null;
-  return { img: `sx/${slug}/${id}-0.png`, cw: m.viewport.width, cy: Math.max(0, r[0].y - 260), ch: 900, rects: r, credit: "Wikipedia (CC BY-SA 4.0), captured " + m.captured.slice(0, 10) }; };
+  // zoomed on the quoted line like the reference captures: a 760-px-wide window of the page around the phrase
+  const cx = Math.max(0, Math.min(r[0].x - 90, m.viewport.width - 760));
+  return { img: `sx/${slug}/${id}-0.png`, pw: m.viewport.width, cw: 760, cx, cy: Math.max(0, r[0].y - 170), ch: 560, rects: r, credit: "Wikipedia (CC BY-SA 4.0), captured " + m.captured.slice(0, 10) }; };
 const VCRED = "Pixabay · illustrative";
 
 function realise(s) {
   const o = { ...s }; delete o.at;
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
   if (s.photo) { const ph = photo(s.photo); if (ph) Object.assign(o, ph); else o.kind = "paper"; }
+  if (s.kind === "logo") { const ph = photo(s.logo); if (ph) Object.assign(o, ph); else Object.assign(o, { kind: "paper" }); }
+  if (s.kind === "cta" && s.logos) o.logos = s.logos.map((id) => photo(id)?.img).filter(Boolean);
   if (s.kind === "capture") { const c = cap(s.capture, s.phrase); if (c) Object.assign(o, c); else Object.assign(o, { kind: "page", page: s.phrase }); }
   if (o.kind === "year" && !o.video && !o.img) o.kind = "page", (o.page = s.year);
   return o;
@@ -48,13 +52,13 @@ function realise(s) {
 const shots = []; let from = 0;
 for (const s of S.SHOTS) { const i = toks.findIndex((t, k) => k >= from && norm(t.w) === norm(s.at)); if (i < 0) { console.log("shot word not found:", s.at); continue; } shots.push({ ...realise(s), f0: Math.round(toks[i].t0 * FPS), wi: i }); from = i + 1; }
 // fill: a new picture every ~0.45/0.5 s between key shots, on word starts, cycling the pool
-const gap = S.STYLE === "v1" ? 0.45 : 0.5, out = []; let q = 0;
+const gap = S.STYLE === "v1" ? 0.35 : 0.38, out = [];   // first render measured 0.81 / 1.06 s per shot; the references cut every 0.49-0.53 s let q = 0;
 const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "full" }, { kind: "inset", w: 900, top: 520 }, { kind: "paper" }][k % 5];
 for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
   if (shots[a].kind === "cta") continue;
   // captures, white pages and strobe key words hold (as in the references), but never longer than 1.5 s before the rhythm resumes
-  let last = shots[a].f0 + (shots[a].kind === "capture" || shots[a].kind === "page" || shots[a].strobe ? Math.round(1.5 * FPS) - Math.round(gap * FPS) : 0);
+  let last = shots[a].f0 + (shots[a].kind === "capture" || shots[a].kind === "page" || shots[a].strobe ? Math.round(1.0 * FPS) - Math.round(gap * FPS) : 0);
   for (const w of words) { const f0 = Math.round(w.t0 * FPS); if (f0 <= last + gap * FPS || f0 >= end - 6) continue;
     const base = S.STYLE === "v1" ? v1(q) : { kind: "full" }, id = S.POOL[q % S.POOL.length]; q++;
     const s = base.kind === "paper" ? base : realise({ ...base, media: id }); out.push({ ...s, f0, auto: true }); last = f0; }

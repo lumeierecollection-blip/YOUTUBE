@@ -4,7 +4,7 @@
 // Facts ONLY from Wikipedia "Anthropic" and "Dario Amodei", retrieved 19 Nov 2026 (channel-reverse/research/shorts/*.wiki). Note: Anthropic makes
 // the assistant that wrote this script; the wording stays with the encyclopedia's.
 export const STYLE = "v3";
-export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. He worked on GPT-2, GPT-3, and reinforcement learning from human feedback. In January 2021, he left with his sister Daniela and five other former OpenAI employees, over disagreements on AI safety. Together they founded Anthropic. In May 2026, it was valued at 965 billion dollars, which Wikipedia calls the world's most valuable AI pure play. And it plans to go public this November. Same research. A different bet on safety. So which one do you trust more? Comment OpenAI or Claude.";
+export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. Before that, he worked on machine learning at Baidu and Google Brain. At OpenAI, he worked on GPT-2, GPT-3, and reinforcement learning from human feedback. In January 2021, he left with his sister Daniela and five other former OpenAI employees, over disagreements on AI safety. Together they founded Anthropic. In May 2026, it was valued at 965 billion dollars, which Wikipedia calls the world's most valuable AI pure play. And it plans to go public this November. Same research. A different bet on safety. So which one do you trust more? Comment OpenAI or Claude.";
 export const KEYS = {};
 export const SOURCES = { A: { title: "Wikipedia: Anthropic", url: "https://en.wikipedia.org/wiki/Anthropic", retrieved: "2026-11-19" }, D: { title: "Wikipedia: Dario Amodei", url: "https://en.wikipedia.org/wiki/Dario_Amodei", retrieved: "2026-11-19" } };
 export const FOOTAGE_REQUIRE = /computer|code|keyboard|laptop|screen|server|data|technology|office|city|business|meeting|stock|chart|typing/i;
@@ -18,6 +18,9 @@ export const PHOTOS = [
   ["da-tc2", "File:Dario Amodei at TechCrunch Disrupt 2023 02.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-tc4", "File:Dario Amodei at TechCrunch Disrupt 2023 04.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-uk", "File:Dario Amodei in 2023.jpg", "Dario Amodei in London, 24 May 2023 (UK Prime Minister's office photo)"],
+  ["logo-openai", "File:OpenAI Logo.png", "OpenAI logo (identifies the company named)"],
+  ["logo-anthropic", "File:Anthropic Logo 2.webp", "Anthropic logo (identifies the company named)"],
+  ["logo-claude", "File:Claude AI logo.png", "Claude logo (identifies the product named)"],
 ];
 export const CAPTURES = [
   { id: "wiki-anth", url: "https://en.wikipedia.org/wiki/Anthropic", viewport: { width: 1280, height: 900 }, scale: 1, phrases: ["Valued at $965 billion", "former members of OpenAI over disagreements on AI safety", "plans an initial public offering in November 2026"], steps: [{ do: "wait", ms: 1500 }], fullPage: true },
@@ -26,19 +29,21 @@ export const CAPTURES = [
 export const SHOTS = [
   { at: "Five", kind: "full", photo: "da-tc6", cap: "Five years ago" },
   { at: "Dario", kind: "full", photo: "da-tc2", cap: "Dario Amodei" },
+  { at: "OpenAI's", kind: "logo", logo: "logo-openai", white: true },
   { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI", glitch: true },
+  { at: "Baidu", kind: "full", media: "sx-server", cap: "Baidu · Google Brain" },
   { at: "GPT-2,", kind: "full", media: "sx-code", cap: "GPT-2 · GPT-3" },
   { at: "January", kind: "year", media: "sx-door", year: "2021" },
   { at: "sister", kind: "page", page: "Daniela" },
   { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety", glitch: true },
-  { at: "founded", kind: "page", page: "Anthropic" },
+  { at: "founded", kind: "logo", logo: "logo-anthropic", white: true, glitch: true },
   { at: "May", kind: "year", photo: "da-uk", year: "2026" },
   { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
   { at: "public", kind: "capture", capture: "wiki-anth", phrase: "plans an initial public offering in November 2026" },
   { at: "Same", kind: "full", media: "sx-server", cap: "Same research." },
   { at: "different", kind: "full", photo: "da-tc4", cap: "A different bet." },
   { at: "So", kind: "page", page: "So" },
-  { at: "Comment", kind: "cta" },
+  { at: "Comment", kind: "cta", logos: ["logo-openai", "logo-claude"] },
 ];
 export const POOL = ["sx-typing", "sx-server", "sx-city", "sx-office", "sx-code", "sx-laptop", "sx-stock"];
 export const TAG = "AI TESTED";

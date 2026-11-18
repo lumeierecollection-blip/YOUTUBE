@@ -7,7 +7,8 @@ import { fileURLToPath } from "node:url";
 import { narrate } from "../production/index.mjs";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../.."), slug = process.argv[2], S = await import(`./specs/${slug}.mjs`);
 const OUT = join(ROOT, "output/sx", slug); mkdirSync(OUT, { recursive: true });
-const style = S.STYLE === "v1" ? "Say in a fast, punchy, curious American voice, like a creator explaining something surprising, no pauses between sentences:" : "Say in a confident, brisk American storytelling voice, quick but clear, with emphasis on the names, years and numbers:";
+// first render: 183 and 141 wpm against the references 214 and 172; faster DELIVERY is asked for, the audio is never sped up
+const style = S.STYLE === "v1" ? "Say very fast and punchy, like an energetic short-form creator, about 210 words a minute, no pauses between sentences:" : "Say fast and confident, like a quick-cut short-form storyteller, about 175 words a minute, short pauses only, emphasis on names, years and numbers:";
 const r = await narrate({ text: S.SCRIPT.replace(/\*/g, ""), edgeVoice: "en-US-AndrewNeural", outDir: OUT, name: "voice.tmp", style });
 renameSync(r.mp3, join(OUT, "voice.mp3"));
 console.log(`voice ${slug}: ${r.engine}, ${r.wpm} wpm`);
