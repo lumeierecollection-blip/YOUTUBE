@@ -1251,7 +1251,12 @@
       "attempts": 1,
       "run_id": "44366948890",
       "trigger": "schedule",
-      "updated_at": "2026-11-18T18:11:38.259Z"
+      "updated_at": "2026-11-18T18:13:30.313Z",
+      "stage": "research",
+      "topic": "Suno AI Music Generator Now Lets You Create AI Music Videos",
+      "score": 85.6,
+      "pillar": "Trending AI tools and apps",
+      "hook": "The viral AI song generator Suno can now build full music videos for your tracks."
     }
   },
   "uploads": [
@@ -2540,6 +2545,15 @@
       "at_ms": 1794926842689,
       "score": 73.3,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "Suno AI Music Generator Now Lets You Create AI Music Videos",
+      "slug": "suno-ai-music-generator-now-lets-you-create-ai-music-videos",
+      "slot": "2026-11-18-ch2",
+      "at_ms": 1795025610312,
+      "score": 85.6,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [

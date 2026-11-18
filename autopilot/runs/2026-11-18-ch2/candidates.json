@@ -1,0 +1,1746 @@
+{
+  "generated_at": "2026-11-18T18:12:33.356Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1410
+        },
+        {
+          "source": "bing-news:free AI tools",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:viral AI tool",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:AI hallucination mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:ChatGPT new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 25
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:AI scam deepfake",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI agent uses computer",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:AI replacing jobs",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "bing-news:Gemini AI new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:Claude AI new feature",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 36
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1410
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:AI phone feature new",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "google-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "bing-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:AI tool saves money",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:Meta AI app",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI agent mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI video generator viral",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:AI photo editing app",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:Copilot new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI customer service replaced",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:AI voice clone",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "bing-news:AI browser privacy",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "bing-news:free AI app launch",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:AI agent mistake",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:AI browser privacy",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "bing-news:students using AI",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:free AI app launch",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:AI phone feature new",
+          "ok": true,
+          "items": 35
+        },
+        {
+          "source": "google-news:Copilot new feature",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:AI video generator viral",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-news:Meta AI app",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:AI customer service replaced",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:AI tool saves money",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "bing-news:AI voice clone",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:students using AI",
+          "ok": true,
+          "items": 100
+        },
+        {
+          "source": "google-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:AI photo editing app",
+          "ok": true,
+          "items": 33
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Suno AI Music Generator Now Lets You Create AI Music Videos",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        64,
+        134
+      ],
+      "hook": "The viral AI song generator Suno can now build full music videos for your tracks.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Suno AI music video generator",
+      "evidence": [
+        {
+          "title": "Suno now lets you make AI videos for your AI music",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1036415/suno-visuals-ai-generated-video-images-feature",
+          "domain": "theverge.com",
+          "published_ms": 1795000613000,
+          "kind": "feed",
+          "id": 64
+        },
+        {
+          "title": "AI music generator Suno to let users create music videos - The Boston Globe",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQbTB2Y0Y3UnQ4U2dlcWlwQlVteUxlcGJBTV9ySnRHVUZyTjZxR19iWTdaN0pfbzBkS09FWWVzRnNlbUFpV0Z6SU9RSDZZWlI0SUE1LUpWSmN6Xy10WmJOSXJabk85X3llYTdORU1RYUtEVWNiRERac1hfZVUxakFrVnF0Y1BianFSWjJvdzFYTGM4c2x3UDBRTHVqazktTkptcW9icQ?oc=5",
+          "domain": "bostonglobe.com",
+          "published_ms": 1794950647000,
+          "kind": "news",
+          "id": 134
+        },
+        {
+          "title": "Suno now lets you make AI videos for your AI music - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNRVh3djJ4NHdxd01DeUpybHdQejBaYUpoYzJ0UG5yOUVZbkVIdjk4N3oxNU84UUs4S2xyMURRamVYX2E4ek9NQXhSQU9nV1c4MmtSUTFkODRpVFU0RHZpWGlrZi1ZakY0R3dDYXA4aVRCN2VHQ2JPcnN1ZXNpTmN4QUVfNGJ6dzIyZGJzOTQzUlQxRi10ZWh3TVR0M0Z2dTJOLXNzWEp3M1lfUQ?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1795000613000,
+          "kind": "news"
+        },
+        {
+          "title": "9 Best Suno Music Video Generator Tools in 2026 - New Wave Magazine",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNRWRQTUpqT3dkQmh3ZldlSXhicTRRS2NwNkQtaUNydl9YSmFrU1Q4T25PdG95SUFMeGx1dXhaVzdkNmVzZUNETkdGYjhXSHJ4NXA3bEIzYlQ3QWVQclJpWkxsZG9MS25LOXVuNV9IXzh5aHlIZVZNOUU4dDc5YTJJNC00WTNuS0VtT3ZITkszby1UVUNnS2c?oc=5",
+          "domain": "newwavemagazine.com",
+          "published_ms": 1794504520000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Music Generator Suno to Let Users Create Music Videos - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQdnpHaGdtSS1QSnNMekFIc3daQzJ5UTljaWZiazhKS2h4WlRnXzM0ck5aM1hWUm9RZERtSlhIbENRV1hvS0Rub3ZMX3RoNXJwVDZ5cUpIS19jNG83T3ZyQWNobW5ELUpFcTNDMHJORjNUZVZfekx4dHAwWUN4WFhZQW12LTFpdGlsR2JsRE9UVGJieVlRVVFacWd6ZVhlcE5FbGJrUWJnOGVmZms?oc=5",
+          "domain": "bloomberg.com",
+          "published_ms": 1794927600000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Music Service Suno Launches Music Video Generation - mediasat.info",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQUk5FMTEwcjIxX09VdFYwa3U4VkVEMnFfczhPT1VRVHBndmJUR0VqblFpcVlnckc4VndKVjg1OFlmN0lKLUtkMzZSZC1ydXhhakl0Tng4eFlsalNKd0haOXdlX2FIY2tsOWF2VnltZWNwNUVCVjQtT0dLZUJrUk1wdU52TFZIcFJnSFBqZEJIUHNmV3pk?oc=5",
+          "domain": "mediasat.info",
+          "published_ms": 1794995978000,
+          "kind": "news"
+        },
+        {
+          "title": "Suno AI Music Generator Review 2026: AI Song Composition Tested on Every Mode - Techiexpert.com",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE1la1BsNXJBektBTTBwWU14NGZJR0xKUlZTaThscGh3THZyb09SZlJMaldUT01CbnVNbTVPbWxVZUtLR1JCel9GR2tJQ1FvSXpmeHlxTnFHSE5jUHgtaWY2WlBZRzBDUQ?oc=5",
+          "domain": "techiexpert.com",
+          "published_ms": 1794645196000,
+          "kind": "news"
+        },
+        {
+          "title": "9 Best Suno Music Video Generators in 2026 - NetNewsLedger",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQLVExRGNsYVUzam9YUHVONGU2MDR6bGJ5ZGVqTTB1Y0NjcEg4TGZiVEYwRTdqUnYtNm0zSGFzUFN6RzVGQThhbVJzNjNrcXhzeHVld1U0azBCV0ZBQ3RFZWVaa2lybExJLXY5a0FLenRKWFFVbzBMU1kyblFZQk9rX1JtQk1IQzBDb2tQag?oc=5",
+          "domain": "netnewsledger.com",
+          "published_ms": 1794565261000,
+          "kind": "news"
+        },
+        {
+          "title": "Suno Brings AI Music Videos to Creators with New Visuals Feature: What You Need to Know - Analytics Insight",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOY0pXNUZEZmh5cXhkUk9GZVFEdTZGb3BxZVZfbTRMczVhZlF3Q2p3QW9MMkhkSDdrMW5yZzZ4MTdmS1hWWnFDNGF2Ynk0Y0JMWHFudTBVQmM1NUk3aTJ2Q1dRei1jMHE1RlZlU3ZqSHNyYnZTdjBreXBKZjl6UlRTaHQ4a3dMZnRWYnl2WlhVUVhxQVpHb3ZaYUN5Uk1TbUJNNEJqUFMwMFRTMzh4WkpvLWlDMUQ0c3ctcHh1NHlhME5Zd9IBzwFBVV95cUxQZzFIeW9MWndVOEllZU9RcDRhaFhZS3ZrMEVtTTNrWXZQOWx5NFNKSjNaVGcybExUZkRYRFNPTjBWTWIwWEZMQkxwOG8wVVhfMmNheTZuUzI3VjlNUmVSQVMyNjU0NmdjRFdvaWl2WXViUkw1bm03OUxVUnREWGlMUm9EQjB1TE00cjVwZWFWQkNUNXcxSWpMcHhDVjZIWlIzbjFtbk9Rb0wxTWFkaFdybG5YTU1YTWtFQVhBcGxVZndVRGxHUERlbEV2Tk1Oclk?oc=5",
+          "domain": "analyticsinsight.net",
+          "published_ms": 1795010400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 12059,
+        "competitors": [
+          {
+            "id": "BKDrtzJktO0",
+            "title": "Suno v6 + Seedance 2.5 is NUTS at Making AI Music Videos",
+            "channel": "Dan Kieft",
+            "views": 223208
+          },
+          {
+            "id": "xYb-sBSqK_Q",
+            "title": "Make Money with Suno AI Music Videos on YouTube Shorts",
+            "channel": "MoneOnDaBeat",
+            "views": 39088
+          },
+          {
+            "id": "5zFY3KkmSiE",
+            "title": "Suno Visuals Tutorial: Create Videos for Your Music (Web + Mobile)",
+            "channel": "Suno Music",
+            "views": 25902
+          },
+          {
+            "id": "y8AQbd9u7FU",
+            "title": "How to Make SUNO AI Music Videos for Any Song in 3 Minutes (Pop & Rock Demo)",
+            "channel": "MoneOnDaBeat",
+            "views": 12421
+          },
+          {
+            "id": "gcHnXUd3gkM",
+            "title": "I Made a Full Suno AI Music Video in 3 MINUTES (Plus Shorts)",
+            "channel": "MoneOnDaBeat",
+            "views": 12059
+          },
+          {
+            "id": "YSuoXkP4RVY",
+            "title": "How To Make A Full Suno AI Music Video In Under 5 Minutes",
+            "channel": "MoneOnDaBeat",
+            "views": 10717
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 68,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 85.6,
+        "newest_hours": 4,
+        "domains": [
+          "theverge.com",
+          "bostonglobe.com",
+          "newwavemagazine.com",
+          "bloomberg.com",
+          "mediasat.info",
+          "techiexpert.com",
+          "netnewsledger.com",
+          "analyticsinsight.net"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "bloomberg.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Government Watchdog Finds Major AI Chatbots Assist in Terror Plot Planning",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        13,
+        15,
+        44,
+        67,
+        78,
+        79,
+        110
+      ],
+      "hook": "A government report reveals ChatGPT, Claude, and Gemini easily drafted viable mass-casualty attack plans during tests.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "GAO report AI chat bots terror plans",
+      "evidence": [
+        {
+          "title": "US senator eyes AI safety hearings after ChatGPT, Claude, Gemini and Grok aided terror plots in test - Tom's Guide",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPdXptTEh6SnI5MVJsMDBpV2JwbjB2aG5rNmIxeDV6dTVmaUM0SndhZHY5ck5DWHJBR2hacnh5YThaZ0FOWkJQZ3RNcXVEbU90SmhyNXozdDhjTTFqSGxjRUpWLVNvRGs2SmFrbEhaVTVlamQ0ZFdxa2lJb1B4U251Z09Oc3JDZmZUSExQdzBGNHdqTW1USTFUUTBkLS1QN2xERkhFaE84MlN0UWJBaFNLVGJHSDlmQTc5cWZPOEFCV2VnVnFDTTZwY2RaOUdxUVp1ODAzVGJxMXJ2QjFBYk9SR1RWS1RnZw?oc=5",
+          "domain": "tomsguide.com",
+          "published_ms": 1795024560000,
+          "kind": "news",
+          "id": 13
+        },
+        {
+          "title": "GAO says ChatGPT, Claude, Gemini and Grok produced viable attack plans in covert tests - MLQ.ai",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQODZJMjB3MXluNzd3Ry1QV2F1OW9HWU9IRWhkYmNKYnkxdU1HTlFhU3BtTk9zNklsb3I5RGdNdEtURzlmak5QTTZNTHBiWERYMnpDRjRCV3VUTUtfX1hPeFQxRGRQZWtxS0Nzbnk3cjM1UE1na21oc0YwZ3JDVlMyYTJpaC1NLVJFd2pQN2NYMnRNTHZzQ2JFa2FBUUdsSnFBaWpBM0ZDSUY?oc=5",
+          "domain": "mlq.ai",
+          "published_ms": 1795024377000,
+          "kind": "news",
+          "id": 15
+        },
+        {
+          "title": "Claude, ChatGPT, Gemini and Grok produced attack plans in covert tests: GAO report - Washington Times",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUlBOU2ZUdGdwZ0xpVGRUR0dHajBwemxIX0VhMmY5TkJLbTNMSmM0LWZaclB5R3p1NmRCRnBWeGtROTRjemdkTnlUNkpXQ1RQWXdNcGtvMUhqVXA4bGNwWTZJX1FoV1ZTemtRX0dIdUV5X1R6aUxnZGFEUDZJZjBDNl9RWXNjTzRfSlNBZ2F6M2pZN0dQdXVEM1lJM1IzTmZ6TjdNYWx1ZmxsNTR4a0s0cWVQanJqQQ?oc=5",
+          "domain": "washingtontimes.com",
+          "published_ms": 1795018294000,
+          "kind": "news",
+          "id": 44
+        },
+        {
+          "title": "ChatGPT, Claude, Gemini, Grok gave blueprints for mass-casualty attacks: US watchdog",
+          "url": "https://www.msn.com/en-in/news/other/chatgpt-claude-gemini-grok-gave-blueprints-for-mass-casualty-attacks-us-watchdog/ar-AA2hHYZw",
+          "domain": "msn.com",
+          "published_ms": 1794994320000,
+          "kind": "news",
+          "id": 67
+        },
+        {
+          "title": "ChatGPT, Gemini, Grok, Claude give terrorism plans to undercover US investigators",
+          "url": "https://www.geo.tv/latest/691685-chatgpt-gemini-grok-claude-provide-terrorism-plans-to-undercover-us-investigators",
+          "domain": "geo.tv",
+          "published_ms": 1794989460000,
+          "kind": "news",
+          "id": 78
+        },
+        {
+          "title": "ChatGPT, Gemini, Claude and Grok fail US safety tests: Congressional watchdog reveals they generated terror attack plans",
+          "url": "https://www.msn.com/en-in/news/other/chatgpt-gemini-claude-and-grok-fail-us-safety-tests-congressional-watchdog-reveals-they-generated-terror-attack-plans/ar-AA2hHEY3",
+          "domain": "msn.com",
+          "published_ms": 1794989359000,
+          "kind": "news",
+          "id": 79
+        },
+        {
+          "title": "AI models used to plan 'viable' attack plots in test despite safeguards: Gov't report",
+          "url": "https://www.msn.com/en-us/news/other/ai-models-used-to-plan-viable-attack-plots-in-test-despite-safeguards-govt-report/ar-AA2hGbUS",
+          "domain": "msn.com",
+          "published_ms": 1794967809000,
+          "kind": "news",
+          "id": 110
+        },
+        {
+          "title": "Congressional Investigators Got Top AI Chatbots to Plan Terror Attacks - notus.org",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPWXZDbnpPMEpINXVMUzktODZmVTJVc1g4dWNDUGUwNUg2MVhRWTVQXy01YlduXzNjbVYyTmc1UTJ0N1Q2dmdJUUR0VVVWc3VOd3Jlakp5WHpmazU0Q2N6OGZTVmJiRTRWc0lnUFp4dl9xNldmZHBYOVNULTNZWWJRcXFuREh4OWUwdHBFc2NRTno?oc=5",
+          "domain": "notus.org",
+          "published_ms": 1794996250000,
+          "kind": "news"
+        },
+        {
+          "title": "Chatbots helped plan terrorist attacks in tests by congressional watchdog - The Washington Post",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPN0xITjFMTlBQUW0xWTVQNkNGQ085U21fYXM4VXZvMGV4blNjRjQwaGtkWDY0aEV4M2F1d1V6WE9JNmtRRmdUdGgwSDIyRFZ4ZkRUSzRoUGZkTFJrLWZTVHhrTl94ZW9xbFVKalBlVXZocTYyMGlaRjVyUHZCZmRtY2t0ZFdOeUljSWprQV94akpzOG1KVXNqLS01Y2tLclEyZ01hWUN1b19aNzdmWnV5RjRpMHNyQXAwNldDdHFlb1N6dw?oc=5",
+          "domain": "washingtonpost.com",
+          "published_ms": 1795024997000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Chatbots Assisted in Providing Detailed Terrorist Attack Plans Maximizing Casualties, New Report Finds - Mediaite",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPNmlSMmRkX0NkX2cycXhYdkpteTNSTGhTdDdwNjZYV3B2MFU3My1xNVRiT3QxM1ZLSUx1LUh6aVRIWDFnb0FtRVc4dnpfbWNUX0psV25XV0pJX1dDOTViVEVSTEx4RUstUkx2NTk0MEZqOC16dG1EQ0VyRTkycmRnM0p5SzlZSmRxTU43aC0xZjlIQmxjTzNFY1llRzJUZzVYeGQxd05fYUw5U1VHMEc4a292SUtXblpqTXhGaDBIYlBFdjRWNWdUWkpqRm1aMFhEbVoxaUswaU4?oc=5",
+          "domain": "mediaite.com",
+          "published_ms": 1795025040000,
+          "kind": "news"
+        },
+        {
+          "title": "From Bombs to Power Grid Attacks: AI Chatbots Provide Plans to Plot Terror Attacks - Times Now",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNOXg3UXkxc0puR2pqZ0hlcWVIekoyNXowQ1hXMDIxUEQ3d2pldndfNkFLaGxUS0k1dUpaMHRWUWpaR2ttZl9BZlRKXzdZU3EzRWptRGxlU0VhMjJYRWRJUUJFOEdiVWpPQTdnZVV0SjhuUkx0V1B1SEdVeDZWbVRiaGtLVGcyTEZVZEI3eFdHd0Rhcm1GcnFlTzY0aHJtaDdPckdCaE9IX0ppcFNDV0U3dndESlVpNnFLTDNLdlZwa1dPc2Z2ZEY5SkEzZGo1WTBVRnAtQkhFUmdrWURTa3I4U3plMnEyOEJHaFZpai1hYUpBUdIB9wFBVV95cUxNalNROUYxdDJVUHdtR2huRzhpRWpyc2tja0FTWTdXemt1cVZBblF3a1BFM1RPd0szempjOTQxWDZrUXVOMEV6Y0Zsb3hfT05MUW1tbEFiYVZHRjNvekMxMjZsRVp1QjNlT3JnZTBaNFpRWmFKUDRhZVpQeXdNZUN4UFl4SjBYYzNyZXRTcXpBb1ZlOUh1Y2pYSGplRE5FQnJuNVFLSk1rdG5MczNLaVBuMVFwVy11VXdJdXNtVEFxYmRBYlRwN2RSYWw4ZXd5OHBpWWdzQWpKZFhrWUFQU2VMaTJRUnNfX2gzU0VOZG5taDdXRmtzcWtV?oc=5",
+          "domain": "timesnownews.com",
+          "published_ms": 1795023559000,
+          "kind": "news"
+        },
+        {
+          "title": "US Watchdog Got Four Popular AI Chatbots To Help Plan Terror Attacks Despite Initial Safety Refusals - International Business Times UK",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPUGFuTHBad2ZmbXJlalpNYmlQcTJRMTNPRHBjaXpwVURFUkx5S3ZlOVpUVDM4djN4OF96S1FqYUF5WE04ZHZMbDNyRkcxM1JyaEs0UVQ3cWpZUTdIUU5SWVMyNkMyTXVVVTR0TUZid2tpNy13QVlXMXNMMkRuRS1OdW5XS3h0dnRx?oc=5",
+          "domain": "ibtimes.co.uk",
+          "published_ms": 1795011900000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 10938,
+        "competitors": [
+          {
+            "id": "dCvqBjpSvRU",
+            "title": "Multi SUB💥【魔女校花从无绯闻，直到遇上了我】笑到跺脚！国防大佬穿越躺平当学渣，系统逼吻30秒否则原地爆炸！强吻零绯闻魔女校花，高冷女神破防，后期倒追上头，直接绑走男友求贴贴#漫剧 #搞笑爽文",
+            "channel": "YOYO漫话",
+            "views": 71201
+          },
+          {
+            "id": "nYTsTBjmbmA",
+            "title": "【Chinese Drama 4K】Enemy Warships Hunted a Special Forces Team—But the Hunters Became the Hunted!",
+            "channel": "大片抢先看",
+            "views": 34664
+          },
+          {
+            "id": "0SWEqCyhb6I",
+            "title": "WHY IS CHINA TALKINH ABOUT LADAKH ? 🔥 #shorts #palkisharma #geopolitics",
+            "channel": "Anyug Waves ",
+            "views": 23411
+          },
+          {
+            "id": "udf4jsei3LY",
+            "title": "前世她竟淪為受盡欺辱的豪門棄婦！浴火重生歸來，她當場甩掉薄情渣夫，果斷離婚淨身出戶，轉身竟讓冷血禁慾的財閥九爺為她徹底淪陷！這一世她不再錯付真心，只想被他捧在手心，寵成獨一無二的心尖寶！",
+            "channel": "心悅劇場ShortTV",
+            "views": 12815
+          },
+          {
+            "id": "U0hiIWQ8dOo",
+            "title": "最強特警偽裝牧羊人深入恐怖分子基地救人，身分暴露遭圍剿，最強女狙擊手600公尺外極限支援，成功完成任務！#chinese television dramas #逆袭 #爽剧 #现代 #动作 #爽文",
+            "channel": "芒果熱播",
+            "views": 10938
+          },
+          {
+            "id": "kJHhMTyFmjE",
+            "title": "Terrorists Launch a Deadly Attack—Unaware a Retired Commando Is Coming for Them!",
+            "channel": "Action Movie Craft",
+            "views": 1203
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 67,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 85.5,
+        "newest_hours": 0,
+        "domains": [
+          "tomsguide.com",
+          "mlq.ai",
+          "washingtontimes.com",
+          "msn.com",
+          "geo.tv",
+          "notus.org",
+          "washingtonpost.com",
+          "mediaite.com",
+          "timesnownews.com",
+          "ibtimes.co.uk"
+        ],
+        "trusted_domains": [
+          "tomsguide.com",
+          "washingtonpost.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: AI Chatbots Are Secretly Recommending Fake Online Stores"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Disney's New Star Wars Animatronics Use AI to Chat With Visitors",
+      "pillar": "Viral AI demos and experiments",
+      "evidence_ids": [
+        14
+      ],
+      "hook": "Disney's newest Star Wars park animatronics can hold actual real-time conversations using AI.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 9
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Disney Star Wars AI animatronics",
+      "evidence": [
+        {
+          "title": "Disney’s new Star Wars animatronics interact with guests using AI",
+          "url": "https://www.theverge.com/tech/1036729/disney-star-wars-anzellans-animatronic-amazon-aws-cloud-ai",
+          "domain": "theverge.com",
+          "published_ms": 1795024428000,
+          "kind": "feed",
+          "id": 14
+        },
+        {
+          "title": "Disney and AWS Team Up to Create AI-Powered ‘Star Wars’ Robots - The Hollywood Reporter",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOQW5ZMFNzVEJGQUdqWnVtTTJYRHJaaWdnX1hWeHY2Mnk5MkdielQ4a0pOekV3ZjE4TndQZmRNbW9UUHhucGZ1bGNxbXFzdDRhaHh1R3RjQnl1MmRtU1lfOWlWc0M1ZFZLQjJuTF9aZXl5bkN1SjlvUDR3OF84RU5JVDFuRzhaUmFPbUkzcnhNeDVNWWpQZXR1S1ZRU0lTc1RXWTR0a3pmZkdxOUk2VG93?oc=5",
+          "domain": "hollywoodreporter.com",
+          "published_ms": 1794994132000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney Imagineers Have Built AI-Powered ‘Star Wars’ Alien Audio-Animatronics With AWS - CNET",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOZXRRVmZIM1RWQWtLZm1JRExqNzgzX0hvbGVTdzh5TDh0eENHOHoxczF1QVdSaFRNdnBsMUhpanhGc2x0QVVOcUxKV2FHNm84Wi1jdXZ2YjR4Wi1yNllGX21qN1d0R2xBX1NoT3JoZXVEdmllTzVGTkNBeUYtWjF6UWNmUnluT1ZoS1dhYThvMS15U1hSNkROeUVTd0stRWRRUUJBNkt3cjZyZw?oc=5",
+          "domain": "cnet.com",
+          "published_ms": 1795010400000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney’s new Star Wars animatronics use AWS AI to react to guests - The Next Web",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5BUm0wS216cWIwVGhKdl9Hc2s4Q241UHFCVWNSUm1nOWprd0JETEZjeXNJb0duWkxKQ2NBZXNtU0tBbDdLYW9TWmlVbVhxOTZZQVJXY2ZRTWN4eFVhaXVJZmlwSFNJM05fNTZkMmtPN1Y4TU9DeXREd2VSU29ETzA?oc=5",
+          "domain": "thenextweb.com",
+          "published_ms": 1795016979000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney’s new Star Wars animatronics interact with guests using AI - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxObERmeE5IbE0yd1JIQW1QNDk5QjBCSXZoSExwQWpHSFIwcUZxY2wwejgzQVh0RThkOGlTaTBPR00yYTdwNFZuZ1F4OWFtMmJTQ3A2cm1VRDZwc0FJalRCMk9MZ0VqYWJtcXphMk9oMElUcmtYTkNTSGhITGtXTUEtOUJQN19JeFZKVERpamRaR1p3ZTNEdGdNekdMUFA?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1795024257000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Our most advanced Audio-Animatronics in the world’ — Disney Imagineering reveals how AWS AI brings the Star Wars Anzellans to life - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxPSG95VU1LT3hxZm1jcm9lc242N2IydzVrdVJfUmpsUmZmYWVvNUR3RmV0alJEWW1laU5MejR1LWpucVRRTW9oRC11TGZEMkRIWmNEOWdXeGt6c3JueXlzYnFUeGdQNS1WdVlRUHB0VlVCYVNxZjJldGE3dlA4Ukg3X1lTV1ViUmR6SHdBdDFkNVNnNVFjdlc2emJCTzNoRWZzMndoMmJxVGhDQmMtSkpLV2FvcUdSLWZ6V3F5aEV4UzZlZGFDQlVYd2xGTnNwOWUxUWFlcGlKY1F5aWRkZGdwTVc0NDljX2tWRHcwNlZnckdPcmdISkNzMXN4bzZVWFU?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1795010400000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney Introduces Autonomous Star Wars Audio-Animatronics With AWS - Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOdkRTbjhLZTB4VmJWU1h5UXF1OVM0bWl6ZkF4Y3p3VXNmc3ZiY2lmb3dYUWMzZGxSeDd1Zk1pZ1RjUk0wTGt5Y3FPOS01Rmt3aVoyTXhBN0RUVklIRnBYWUZCWWJjb1FWbjdDQ2RrZ1BXWGNUOXh0RS1UN0lhc3I1SF9YMDJRcVNnbFE2SHlkdFhFdw?oc=5",
+          "domain": "unite.ai",
+          "published_ms": 1795013343000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney and AWS develop AI-powered Star Wars animatronics - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBOUTdvY21haDBHbEt6SG5fR2dqUXNvbS1BSHBpMTB3WTZDSUsza0RnOUk1Q2lmTEpkYm82X2VZYVRNZFBLdnd1ZnM3a3NEbDBLUjZLaHhOa3lpM1BBcTZac0doUERxUTR2MDR5SzR5dS1vV3NCSnNBNXNuUGt3QQ?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1795011053000,
+          "kind": "news"
+        },
+        {
+          "title": "Disney and Aws Team Up to Create AI-Powered ‘Star Wars’ Robots - IMDb",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1wY2FjZGhkS0FvOU1MX0p5ZEF0M1lHd2Z3MEo3M3ZYaVZuYW52aHJ3dU9WVnVOS2xoeXhWdk93LUtUX2pGZHprN0dVQnVVY3BJMHhMUmRyRDBidDhXczZDeHZmUE1SWFJsUnc?oc=5",
+          "domain": "imdb.com",
+          "published_ms": 1795011305000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 632,
+        "competitors": [
+          {
+            "id": "M1ucIzMGaP8",
+            "title": "Disney Has a Secret Button for This Sword",
+            "channel": "Oddly Entertaining ",
+            "views": 31396
+          },
+          {
+            "id": "f3ZwaNki7bg",
+            "title": "My Olaf animatronic backlash, explained ☃️ #disneyworld",
+            "channel": "Guide2WDW",
+            "views": 23138
+          },
+          {
+            "id": "L1yNzLyDKOs",
+            "title": "VADER VS. BABU FRIK?! 😂",
+            "channel": "Ejay's Adventures",
+            "views": 4427
+          },
+          {
+            "id": "2HYDtOHWREg",
+            "title": "Star Wars Darth Vader mask collectible item #goldhunter137",
+            "channel": "GoldHunter",
+            "views": 1066
+          },
+          {
+            "id": "W-8_K72Svno",
+            "title": "Give your Home Depot R2-D2 a BRAIN TRANSPLANT + WIFI! #shorts #r2d2 #starwars #brain #wifi #diy",
+            "channel": "Props88",
+            "views": 632
+          },
+          {
+            "id": "EzfCMXPbfog",
+            "title": "Toy story 2 ruined by AI",
+            "channel": "KAM'S AI",
+            "views": 110
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 47,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 81.8,
+        "newest_hours": 0,
+        "domains": [
+          "theverge.com",
+          "hollywoodreporter.com",
+          "cnet.com",
+          "thenextweb.com",
+          "techradar.com",
+          "unite.ai",
+          "mezha.net",
+          "imdb.com"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "cnet.com",
+          "techradar.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Google Gemini Can Now Make Phone Calls and Shop For You",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        49,
+        150
+      ],
+      "hook": "Google's new AI agent will literally call businesses and buy things on your behalf.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Google Gemini task mode phone calls",
+      "evidence": [
+        {
+          "title": "Gemini Can Now Call Auto Shops and Shop Online for You with Google’s New Task Mode - Android Headlines",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNWUhwV3Y3eUhrZFpEa0w4V0pkbkFzRmxKcE1UUVJ1cmRYcENmY1RxQjZJWjJrbHdFSUlZcXIyQThZU0dmbFZFUC1rRlYzNTlmZ3c5SGpMODVQUXVMeUhuS3duQnF3bWhqTTdwalVrQ2VtaHVCSGZHUVRIWDI3Qmw5YTZ4UXRkbHpMaEhOT0ZtcEFNLWc?oc=5",
+          "domain": "androidheadlines.com",
+          "published_ms": 1795016025000,
+          "kind": "news",
+          "id": 49
+        },
+        {
+          "title": "Google Gemini Can Now Call Businesses and Complete Purchases on Users’ Behalf - Thurrott.com",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOQWJ2ODBPY2xtQW1rM2FMYlZJMDBWcE9lMlRlVkJNZFNMWjB2ckZqWEl3NVgzUHFaMDNTVVJkWjFtMGhmUmVVWXBVdHBfVnF1WFdYSU1ELWx3aGxxQmhIY1g0OFE2TUlvaHFDS09PUDRIZkxDWlJzUC11S2RXSTZ5bXBicUZJaVFRRVd4SDgwem9rV1FzakxyYkJ1VVpsVm81aUZGRldfNDdOazIyd1dyWDVR?oc=5",
+          "domain": "thurrott.com",
+          "published_ms": 1794942168000,
+          "kind": "news",
+          "id": 150
+        },
+        {
+          "title": "Google expands access to Gemini Tasks, which can help with calls, purchases - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPa01kNklOVVFtVHM5aTFrWTB2TXJPX19IckFoYkdxQnNEd3ZoaHVlVmJtNUxGWFZiV09NcHFXNjlYV0doX1F5eWdzMjU1dDRtb21BRlh4TDhXejRoSzlKSHFvZHBNODlkT001UkZvaVAyMHN0NG9VNXlLMV81TXM1dXJtYndUcE9ReGRuR2h3bS1Zenl4d182RjViSWx6Q0RrTUl3V05OQXpDWU5I?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1794942140000,
+          "kind": "news"
+        },
+        {
+          "title": "Put Gemini to work for you - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUWF2N1A4NTZkR3ZDemlDLUIyYlUwNVY2bmRKeEdCaEluLVg5MUJXWU1BY2VZNjhZdWRSRUZ4ZDNnb0xwWVRabXVuby1CNmJUdFJzNmJnd3RyeGZJUk9EVVFGeFUxb2FxVG42XzhpOGtsYkxnVEpmaFZiYThJaktNMW5SM0ppaFE3MlFIazFacXd1b3ZySHJV?oc=5",
+          "domain": "blog.google",
+          "published_ms": 1794934985000,
+          "kind": "news"
+        },
+        {
+          "title": "Google updates Gemini to handle calls, payments and daily tasks - Investing.com",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNbDhaMWQ5d0FXcmZCN1dqdG1JRUVTYlFMSXhYejU2bHNZV2psOHZnUU96cHhHYk05Y0MwVXYydzd4NUM2X0NUZGE4SThpanB6elNxZ25ySHlEUXZENW1rS3RGMXgwWUM2ck1abUJLQU8teGQ0b25PTXZyYTNEOG00NWFzWGQ2RWxkN181ZVE3RWR1RFlNaF8yQkdMQkpQSjB1RkZWLWlRa3IxQ28zbE5FWjlNNGI1WTJFV1ZwWmhNQld6UQ?oc=5",
+          "domain": "investing.com",
+          "published_ms": 1794939615000,
+          "kind": "news"
+        },
+        {
+          "title": "Google expands access to Gemini Tasks feature that can make calls and make purchases - dev.ua",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOQ1o0SEV4MDh2cWFSVUtUVWNTN21EMG5OSGJGNFo2TWVURTFQbjU3SkJDNzBheklIeUowbEFZOUZsY2FhR1puYk83bG1jVXcwOUUtZk8xQ3p4Nmh3LVZiNUhRbTExSkprZks4Sk1MNmRvOF92M3FNU2JhbEhiczZDWGRhS24xRjRpMHYxQQ?oc=5",
+          "domain": "dev.ua",
+          "published_ms": 1794981600000,
+          "kind": "news"
+        },
+        {
+          "title": "Google makes its always-on AI agent free, adds phone calls, shopping, and more - Neowin",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNNkxlM1BhekUzX3lFSUFjSW5FbDZEMmx0eUJGZC1abVFpQTJBUjhmVS1Od0Y3RVVUVmFUSWZCaW9GU09WRDZBYVdVZUpPbzJLMTI1eTlleEEybmpvRlhqMk9WVWJieHdtZFhVWVlWY2Q0d294eTdtbUdwMGxzNWlLajJjb3A0TVJ5QkVLSTdtNUp5UFlnNWduNGJUR1lDM3ozdURVSEZnNA?oc=5",
+          "domain": "neowin.net",
+          "published_ms": 1794939057000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini Tasks for Free: Google's AI Agent Runs Errands and Makes Calls, but Germany Is Left Out - Basic Tutorials",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSUZZb3g0S3p5NG9jWHJVX3FEYk5HTjhQUEpRVkQwQUlybll5NDlxODlmZzdXU2l4VFhsOXRuWHgyczBSUnJIVTlKS0tZY041aDQzbEw1d0V0SGdNM2ZQQVY1M3pFWUNEZlkyWG9FMWw5UVlSYzUyQ2lsZjdvY3E3U1NINzhjaDJDNy14eTVDY2dacDBCX1hMamtVYlhnMmdUUzZtdXNNanQtTmFNeTZmWG1faTFUNVFLZkI2b1I0NV85V3c?oc=5",
+          "domain": "basic-tutorials.com",
+          "published_ms": 1794978044000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Gemini gets agentic features to make calls, pay bills, shop and complete tasks in several countries including India - FoneArena.com",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1YTFVNMFNTaHQxemM5OG5nMldlcUNPLW9EeTM0ZWlYZG9SOW83WUxONjZpRnUyOHZ1X3hwSTRtYmhFOEhmbEpWd2tOYmNMbnFjZXAxOFNKbEVvT0cwTkI3b0o3dW50Tk5aZlBTR0htdURBZXN3QktN0gF8QVVfeXFMT0YtNnlDUzZ2ZmR5aUtQLTJhZlFGYXQzU3pkRUU3bmF1VV9Ed0lxQ1ZITU53bVZnODJaMnlwMWZ2T3lHei1FaDFWaHk3NDNBd1EzYVYyV2RqZnI1bjByYTVsZ0l4YXFLTkJQSGsyYzF1SllwQURVWnlUbDYxNA?oc=5",
+          "domain": "fonearena.com",
+          "published_ms": 1794979400000,
+          "kind": "news"
+        },
+        {
+          "title": "Google upgrades Gemini tasks to handle calls appointments and logins - NewsBytes",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOSlB5ellpdEQ3ZFRTVlYyRUgzMEJHMkp3d2FjN09FQUdpdnktY0JMRzVYYlY0YmdEd1AtSDRWS1E2bF9yZno0amdvLU5XQlh0b1lYYWhJRG42Q3RmS0ZWRHU2MFZQUXFzZUZrOTE4amhVOWFMaHAySkkxUFJpVFJvajZKa0RsNlhCQ0NQQ0otWUFSVUV0MWRNSzNuNVcwNndMMzBuYk4zaV81NENFSHFQVzMxXzFyZw?oc=5",
+          "domain": "newsbytesapp.com",
+          "published_ms": 1794943469000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 12,
+        "competitors": [
+          {
+            "id": "ntVTAaHL5KM",
+            "title": "How to Use Google Gemini Step by Step (It Can Do Your Work Now)",
+            "channel": "Teacher's Tech",
+            "views": 90121
+          },
+          {
+            "id": "q7mEDMHZ74A",
+            "title": "Gemini Tasks Is Free Now: How to Turn It On",
+            "channel": "Ctrl+Alt+News",
+            "views": 132
+          },
+          {
+            "id": "zEFnSSkRnmk",
+            "title": "What if your phone could do your boring jobs for you? Gemini Tasks explained",
+            "channel": "avatar leo chun",
+            "views": 67
+          },
+          {
+            "id": "oj2A2N7rIO8",
+            "title": "Gemini Now Makes Your Calls. And Pays.",
+            "channel": "unZappedTV",
+            "views": 15
+          },
+          {
+            "id": "YGmhF4A4Vo0",
+            "title": "Google Gemini Tasks Is NOW FREE! 🤯 AI Agent That Works for You! #Shorts",
+            "channel": "Cognitive Techie",
+            "views": 12
+          },
+          {
+            "id": "FHt1bTDo73w",
+            "title": "Gemini Tasks Is Now Free: Google's Agent Calls And Pays For You 🤖 #Shorts",
+            "channel": "AI for Work",
+            "views": 5
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 19,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 78.2,
+        "newest_hours": 3,
+        "domains": [
+          "androidheadlines.com",
+          "thurrott.com",
+          "techcrunch.com",
+          "blog.google",
+          "investing.com",
+          "dev.ua",
+          "neowin.net",
+          "basic-tutorials.com",
+          "fonearena.com",
+          "newsbytesapp.com"
+        ],
+        "trusted_domains": [
+          "techcrunch.com",
+          "blog.google"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Meta's New AI Can Now Make Real Phone Calls for You"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        48,
+        63,
+        86,
+        105
+      ],
+      "hook": "Meta's new AI personal assistant is already mixing up messages and leaking chats from other apps.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Meta Muse AI agent safety mishaps",
+      "evidence": [
+        {
+          "title": "​Meta AI Agent Muse Faces Privacy Scrutiny Over Unprompted Messages and App Access - The 420.in",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNbU1BaFpwOFNfX2FWZFFLb3h3WEpmX1JucVUyT0t0SUlZbzlCQjBBZ0c3M1dwb0hSU0lKVE85U1V4UmRrVE1oUUR6eWcyd3dRRmJjbnRyekwyYXh2MkVfNTcyTlJoWVczaTh1allJdl9yNVY5eUtZVTVyT3ZlaFJfXzdPM2pFUFdWUU1IRUs1ZzBtRDhhblpaeHh4cUd5aUxLSHc?oc=5",
+          "domain": "the420.in",
+          "published_ms": 1795016606000,
+          "kind": "news",
+          "id": 48
+        },
+        {
+          "title": "As Meta bets big on Muse AI agent, early safety mishaps surface - WTVB",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPUWQ2dVlDbWlvbG9ublhKMUVXWWlzMlhIcUNGWlRROERFTEJGYWNSWTdFOW5SejAxaG9mc1NmYWh1Mk50a0k3eU9xenZDXzVuN0F0NHExRnFIWDFqUWNzN193WkM4VVhpZFFsNWRYQkdTZmRteUFaRHBma3ZRdklMMmhFQXVqd3FpbVMzdUVjN1ctOU1VTXR1bw?oc=5",
+          "domain": "wtvbam.com",
+          "published_ms": 1795001038000,
+          "kind": "news",
+          "id": 63
+        },
+        {
+          "title": "In employee testing, Meta’s Muse agents mixed up messages and pulled in unexpected chats from other apps.",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1036541/in-employee-testing-metas-muse-agents-mixed-up-messages-and-pulled-in-unexpected-chats-from-other-apps",
+          "domain": "theverge.com",
+          "published_ms": 1794984900000,
+          "kind": "news",
+          "id": 86
+        },
+        {
+          "title": "As Meta bets big on Muse AI agent, early safety mishaps surface",
+          "url": "https://www.msn.com/en-us/news/other/as-meta-bets-big-on-muse-ai-agent-early-safety-mishaps-surface/ar-AA2hGQQe",
+          "domain": "msn.com",
+          "published_ms": 1794973250000,
+          "kind": "news",
+          "id": 105
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 447,
+        "competitors": [
+          {
+            "id": "1CiobARXtVc",
+            "title": "Meta Muse AI Explained: Setup, Features & 12 Use Cases",
+            "channel": "Taha El Harti | Making AI Useful",
+            "views": 40008
+          },
+          {
+            "id": "7UabM3KStc0",
+            "title": "EVERYONE is right about Meta Muse",
+            "channel": "Eric Michaud",
+            "views": 32340
+          },
+          {
+            "id": "HytNZfilDJs",
+            "title": "Meta’s Muse AI agent: a hilarious security disaster",
+            "channel": "Pivot to AI",
+            "views": 32090
+          },
+          {
+            "id": "6V-mzZ8ToLI",
+            "title": "Meta Muse AI Has Risks We’re Not Talking About #aimedia",
+            "channel": "TechInHerStep",
+            "views": 6339
+          },
+          {
+            "id": "puqg9SabQQ0",
+            "title": "Before You Let an AI Agent Touch Your Money (Meta Muse) Safety Tips",
+            "channel": "Grow2Invest",
+            "views": 447
+          },
+          {
+            "id": "BOJDqF_y_mo",
+            "title": "Can You Trust Muse With Your Data? Inside Meta’s Security Design",
+            "channel": "Intellectually Curious Podcast",
+            "views": 100
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 77.8,
+        "newest_hours": 2,
+        "domains": [
+          "the420.in",
+          "wtvbam.com",
+          "theverge.com",
+          "msn.com"
+        ],
+        "trusted_domains": [
+          "theverge.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Police Warn About Holiday Voice Cloning Scams",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        65,
+        90
+      ],
+      "hook": "Police are issuing urgent warnings about AI voice cloning scams targeting families this holiday season.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "AI voice cloning scam police warning",
+      "evidence": [
+        {
+          "title": "Scams involving AI-generated voice cloning have become prevalent in recent months, according to Surrey's police and crime commissioner. More here: https://bbc.in/4eCYy2W - Facebook",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNSktpNlJLYzJBS1ZFVVZiT2lGSVgyWjZvM2NHLTlFRlIxUEdjYnBPRVhKaUxtbkNIOGlCc09FeGhyR0hXVnlvWjFkSk0taVJ6Y1Vnb3ZsVEFNTWhEQlJKY1c0WnJjbHNMM29MOHQ3clJueTJORkdpWFdORnlzMzhBa0M1UXFqbkVySlViZHFjUEdWbXZTUXEwWXpBOXV0RUhHS2FDNmNPdWlNTzVDa0lrcmxjZkptWmhNN0pJcjJ6VEhxWmZlSlVzUzR0MUJMbWE0REREemhDOA?oc=5",
+          "domain": "facebook.com",
+          "published_ms": 1794997390000,
+          "kind": "news",
+          "id": 65
+        },
+        {
+          "title": "Surrey PCC warns about AI voice cloning scams ahead of Christmas - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE5CWUlrNmpTZG9Vamhrd1phaGpOVlFlS2pTTGc3c3FKZk40cUpTV2lyU2Jtdm1aTktUTXJ6a2hBY1pjdlg5bWtyT05Bdk9QaE8ycFRLOVhlbE1aZDg?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1794982339000,
+          "kind": "news",
+          "id": 90
+        },
+        {
+          "title": "From Fake CEO Calls To Garland Police Briefings: Texas And Federal Moves Against AI Impersonation - Dallas Express",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNRzlsblR5ZkNJLXc0d29HNl90TUM0OFBUMXVfYjZLY01VQkp5WFlsNVBpcjJJRmJmSEQ1WV9pbHlhci1NMFBrTkdBWXl4YWMxdm1SdkpnUFo2dGxJV0RyVWZSZTBFaVFMQnY1a1BMd0ZfclVCTE85dllFdVNrWlhTc0dXdW9PeEM0ck1oRXZxaEZPS3U1UW9lbWlMQ2p3VDdMTkhlS2Q4NTRueU5SQlJLR09HQ0ZPNU85RFk2X0tpQ2dYU3M5eTg2Wg?oc=5",
+          "domain": "dallasexpress.com",
+          "published_ms": 1794124800000,
+          "kind": "news"
+        },
+        {
+          "title": "Holiday scams surge as experts warn of fake delivery emails, gift cards and charities - KRCG",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQMUFFS1JvRktFanpQRk1NYjFHZjQ0OG9tZ0dUS1c0OGlIak1mc3lBdU1NVGFBVWt2aUI1RUNHSUJTNGNqU3kxRUt5cXIyNEF0N2ttQVBKOXRDY2lpVTJ0dVZKNGlaMDRyV3NnYndPX2pRZi0zbG1WYmFjMGpZbThiaDJwaWw2TU5DcXRLSmRTSlV6aEZncnlBQlVvTTJZczVzVnFmR1ZaRURyRXVKMEw4T19JeUZiU25uQ1laLWEyV3RtMkdKUnZsRVNESGNRQWs?oc=5",
+          "domain": "krcgtv.com",
+          "published_ms": 1794923095000,
+          "kind": "news"
+        },
+        {
+          "title": "Surrey PCC warns about AI voice cloning scams ahead of Christmas - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFB0VzJ3RmtHMFg2TEhNSnZzeEd3bFFvaFpHUWwtVnNCTjFxU202NWF1Y1RuM3RmTE9ySEpOWU0yRHZQWk9Tc3BYVGpUQ0Z0V1hUazlaRmdhWWpaNmFL?oc=5",
+          "domain": "bbc.co.uk",
+          "published_ms": 1794982339000,
+          "kind": "news"
+        },
+        {
+          "title": "Danbury Police Warn Residents About Two Scams Targeting Local Victims - 105.5 The Wolf",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBxa1praWI0cmkzTW9wcHR4TkxGNGFWaUh4SWgxcURsSGU4ZFA3Sk9NYlNINHhKbG5POWdTWUNzdGZUZzBRVDVhRFEzR2RmRHRPaVNtLVFsUG96NjZBeTZCRGlsUWxSYUVTUXZHNHB6eHdqNlBN?oc=5",
+          "domain": "danburycountry.com",
+          "published_ms": 1794573923000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 71,
+        "competitors": [
+          {
+            "id": "idCT5btmDns",
+            "title": "AI VOICE CLONE SCAM",
+            "channel": "Cybersecurity Girl",
+            "views": 2018
+          },
+          {
+            "id": "1JN-QZAY7tQ",
+            "title": "Create a “safe phrase” with your family to beat AI voice-cloning scams, a money expert says",
+            "channel": "WCCO - CBS Minnesota",
+            "views": 735
+          },
+          {
+            "id": "2w3rY1eQmhY",
+            "title": "AI voice-cloning scam targets Orlando woman with fake jailhouse emergency",
+            "channel": "WKMG News 6 ClickOrlando",
+            "views": 601
+          },
+          {
+            "id": "6REnHQNC6zQ",
+            "title": "🚨 scam alert.. new AI voice cloning scams pretending to be your one of your family member or police",
+            "channel": "Word president Mr flora",
+            "views": 203
+          },
+          {
+            "id": "tW3DJ_B_gLM",
+            "title": "AI Voice Clone Scam Call",
+            "channel": "Red Flag Files",
+            "views": 71
+          },
+          {
+            "id": "TBqSTmYzcgE",
+            "title": "The Scary Truth About AI Voice-Cloning Scams (And How to Protect Yourself)",
+            "channel": "Know Your Rights & Resources",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 31,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 77.7,
+        "newest_hours": 8,
+        "domains": [
+          "facebook.com",
+          "bbc.com",
+          "dallasexpress.com",
+          "krcgtv.com",
+          "bbc.co.uk",
+          "danburycountry.com"
+        ],
+        "trusted_domains": [
+          "bbc.com",
+          "bbc.co.uk"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: AI Voice Cloning Fraud Scheme and $129M Scam"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Google Search Incognito Mode for AI Features",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        12
+      ],
+      "hook": "Google is finally giving its Search AI feature its own private incognito mode.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Google Search AI incognito mode",
+      "evidence": [
+        {
+          "title": "Google&#8217;s AI feature in Search gets its own incognito mode",
+          "url": "https://techcrunch.com/2026/11/18/googles-ai-feature-in-search-gets-its-own-incognito-mode/",
+          "domain": "techcrunch.com",
+          "published_ms": 1795025045000,
+          "kind": "feed",
+          "id": 12
+        },
+        {
+          "title": "Google’s AI feature in Search gets its own incognito mode - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQVFpFb2I5OWNrdjN1cXg1UU8wMWJMSzRQYkhUbGM5NThUSFNKLTV1MXhYTWEtSUwwX2dNU05uclN1bmlGc3M5dTNxTlBIM3ZSWG5JcHZyWXV4aDNvU3VBcnloTDlla3k3a01tQ1FtQkVtV3lEd0RSWE8wTExEb3lONHpZOTRFTTVGUDNEV3lpNzZERHNvTVE?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1795025045000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Makes Gemini 4 Hydrogen The Default Model In AI Mode - Search Engine Journal",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaUZhYVRaYmRkWlY1UkJWV1pZV3phamYtSHpTY0pkT1JmNDRUc3RhanpPbEt6ZTJlZ29Zc3YzQXJRckhJWVNBX0xOYl9BeW9IYW1PTzR6Z0ozaHFiRUNYWTVnVVdXRzRXQmR1RU13Q0NwWC1YeDZGdXM1SjlJZkk3dEViZlhZeUVKenBmWA?oc=5",
+          "domain": "searchenginejournal.com",
+          "published_ms": 1794514158000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini Incognito Mode: Temporary Chat and the 72-Hour Catch - Fello AI",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNTk9mSlI5N3RSNklSeldPcU5vN24wQ2hpOWgzSmE4UmozaHZpZG44SE91UURwam52Q2NIUEhkNVVRNXJvQU9BbVZkRFVNZEkyYThCdE1vUThzRTVxM3hlUUItWFJYM2FhUkFjUk80R054Vi1NMFVYMEtYbnE4SzZjeVo1UQ?oc=5",
+          "domain": "felloai.com",
+          "published_ms": 1794038400000,
+          "kind": "news"
+        },
+        {
+          "title": "Google AI Mode Start Temporary Thread - Search Engine Roundtable",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaRW9DWHhYUkZpT1R1TUJUSlUyNU95NlRnMk10WnpUU1FCSXJtMFlBdGhDMzZjcmQxMzBHM05Ud2NxYkdjWElzNEpnMXZFMF9UcXpzWkpZUmhzNEtOcm13NVNxaU5NUHMzYXJmQmJuZGwwX0pyMkpybVVIUQ?oc=5",
+          "domain": "seroundtable.com",
+          "published_ms": 1794831660000,
+          "kind": "news"
+        },
+        {
+          "title": "Is Google Losing The AI Search Battle To Itself? - Forbes",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPd2tiNjRPYUxqSlVyT3dMMmdIODNtamdtdjRMdGpuVGlqd25MRUxkSFNzaGFKMDhwam1QWFhkNVlJX1lra1lJcG5vQTl1X3o1UklHWnY4cVpVMUxHbHhnbVFyS014RmZUMmhuLTVuS1NfTnRvM0hZakFTc2hGN1RoX1pfdGgxYnpFME1Sb28zUk5BYk5WMWRVUUh2NDVmcXdBbkE?oc=5",
+          "domain": "forbes.com",
+          "published_ms": 1794211200000,
+          "kind": "news"
+        },
+        {
+          "title": "Edtech experts scratch their heads as Google Search becomes unavailable to classrooms banning AI - Fortune",
+          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQYmhodTNqdHM2UjVIYjdUSnBPRnRTWUtXV3lSWnBoeUdlcnhzN0tCd2NCMXI1bFJ6cGFsMWhGQUhabDhNaDNfODQ3dElFc0hNcEZuSWVYMGJaTlI2QndFNThVN0t6THBUS2wxMDdXblA4NlpyN0s0TmtUN0RCaHhSYmxaajZpYXM?oc=5",
+          "domain": "fortune.com",
+          "published_ms": 1793952000000,
+          "kind": "news"
+        },
+        {
+          "title": "Temporary threads are now available in AI Mode in Search. - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQR2h4a3RBSWR6SVVORWlYejRYdExrVG5pMDB0MDgtc2YtcTU5MGE0SUJGVVpZQlRrZUJqQmZnQjR5dGlnaFJyckxfWnlHS1VuTl9veHh2ZGpUQ1NMSklsZURyWGo3MWd2TENxMHRHV1lsUVd6Ym9sNWZzM3Yya05uQWt3cEdZQkdDaFJTS1BR?oc=5",
+          "domain": "blog.google",
+          "published_ms": 1794935011000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Plans Chrome Incognito Safe Browsing Security Fix - eSecurity Planet",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPYUROSUN4ZUNZVlpET1VVOXBCMGlOWFFHbnMzYnIwT0VqLXRFMFc5TTVBcjNLbjcwck5JTWJnR1lycTNZRkdDUURNcHI4Q2xiMGNEcEpzUldRS091enFkMHdqOHgyMjF2bWdNTktXRm9VVTVhU1I3cEQtVExnczBnYmgwQXljOHJUQU1DQlNYN05fWlVkU19UX1JlWUs1ZnRp?oc=5",
+          "domain": "esecurityplanet.com",
+          "published_ms": 1794350553000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 150,
+        "competitors": [
+          {
+            "id": "E2UVtgIymlI",
+            "title": "Google was sued for $5 billion over Incognito mode",
+            "channel": "Low Battery",
+            "views": 1276
+          },
+          {
+            "id": "QguvWEgMMwI",
+            "title": "Google AI Mode Button Missing? It's Just a Test",
+            "channel": "Online Tech Tips",
+            "views": 556
+          },
+          {
+            "id": "VwbzlGF2bmQ",
+            "title": "How To Go Incognito On Google",
+            "channel": "GlobalTechFix",
+            "views": 336
+          },
+          {
+            "id": "87ZCrx84880",
+            "title": "Incognito Mode Doesn't Hide You: Google's Real Rules",
+            "channel": "SkillStack AI",
+            "views": 242
+          },
+          {
+            "id": "3F0WKuTyQyI",
+            "title": "What Chrome Incognito Actually Hides",
+            "channel": "Layrift",
+            "views": 150
+          },
+          {
+            "id": "ffnXwAP25e0",
+            "title": "Incognito mode doesn't hide you 🕵️",
+            "channel": "Clicksplained",
+            "views": 93
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 36,
+          "curiosity": 70,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 76.8,
+        "newest_hours": 0,
+        "domains": [
+          "techcrunch.com",
+          "searchenginejournal.com",
+          "felloai.com",
+          "seroundtable.com",
+          "forbes.com",
+          "fortune.com",
+          "blog.google",
+          "esecurityplanet.com"
+        ],
+        "trusted_domains": [
+          "techcrunch.com",
+          "forbes.com",
+          "fortune.com",
+          "blog.google"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Microsoft Copilot Is Becoming Your PC's Ultimate Tech Support",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        89,
+        92,
+        109,
+        114,
+        144
+      ],
+      "hook": "Microsoft's Copilot can now dive into your Windows files and fix your PC problems automatically.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Microsoft Copilot Windows PC diagnostics",
+      "evidence": [
+        {
+          "title": "Good luck Windows users: Copilot will manage files and diagnose problems on Copilot+ PCs.",
+          "url": "https://tbreak.com/copilot-plus-pcs-file-management-pc-diagnostics/",
+          "domain": "tbreak.com",
+          "published_ms": 1794982800000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Microsoft Copilot Will Soon Manage Your Files and Diagnose Windows PC Problems - Windows Report",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxONHlFNVhHRFRJZXN0Z2lRcm1ZUFV0VTJiT2xUNFVNMXMzNTQyQ1k2Qm15VFhIVzdpWkJESlB4eUhyMXYtQWV1ejkzTlBTbWV2RFlNNVhGM1BKUVY5MnlxUmpKbjk0MjZDSzhGTi1adUNieW4teHR2aTM2Qng4cWo4ZDUwelZ5ZzZTaEZFdzl0bUJwRV9Lc0Vwa2NoR19zb2VjdjZsUFVQa2U?oc=5",
+          "domain": "windowsreport.com",
+          "published_ms": 1794981427000,
+          "kind": "news",
+          "id": 92
+        },
+        {
+          "title": "Windows 11 Copilot adds PC diagnostics to identify causes of failures",
+          "url": "https://www.digitaltoday.co.kr/en/view/127266/windows-11-copilot-adds-pc-diagnostics-to-identify-causes-of-failures",
+          "domain": "digitaltoday.co.kr",
+          "published_ms": 1794969360000,
+          "kind": "news",
+          "id": 109
+        },
+        {
+          "title": "What is Meta AI? How is it different from ChatGPT? | Episode 31",
+          "url": "https://note.com/uniika_ai/n/nca43dca6e0e8?hl=en",
+          "domain": "note.com",
+          "published_ms": 1794965100000,
+          "kind": "news",
+          "id": 114
+        },
+        {
+          "title": "Copilot is about to become Windows 11’s AI tech support, and I can see the appeal - Windows Central",
+          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZF9XV3daUGE2c19CUkE1enp3bkt4RXIzdzExbmVjdzFVR2ZKai1TUURiNUlQckIwQ2Y3bjBmR0ZmMWhYSnJKTlUydTl3T2JBS1RyUTgwS19yWmcwRWVuTjk3VmI5NXhjY19HbzR5MGFkV1UwbW9GSjIxcGlNRk41NXZRckl0ZGZnUEJHYXI0ZEs2M2VNbHAxU3o3UTI0V20xdHpEb0lnNHpDVVFRLVJ4RXZVLXktUEZTRFdRMVhzQlVreEtPNlQxV3JyckRqYjBRQ3ctUk93?oc=5",
+          "domain": "windowscentral.com",
+          "published_ms": 1794943982000,
+          "kind": "news",
+          "id": 144
+        },
+        {
+          "title": "“Helpful AI doesn’t stop at answers”: Microsoft’s Copilot scan for Windows 11 finds what’s wrong with your PC, then leaves the fixing to you - Windows Latest",
+          "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxNRm9vQWQxc0JrXy00Y0dUbkJMSUZUU3RWaXBRRGdkSWxCTUVWbnMwYnZuMnlHLWZfR1ZiVWlwd2pWeU9sb3dXOElPa3RtbjIwVnliS2pna21TVV9MMXZhcUFRZ2tfd1ZUWlpWUEZFWUo2SFJ3TG85MFNlQ1VoVGt0UGdvRV94c0RidG9Hbmo4WS1TWnUzS3E2TTJtckFMVEVnbkl3dlc5WHNGTzhqTWVJZmloSzZvdlRSemdNT0lleFBya1Jtb1JJNUhxd1RCR3dLd1k5V1VDWkdaN24xYXAtNE41a1lyS04wUEpPdDJJSlVYamFld2tGQWZIRE80SktHLXdPUnJ3?oc=5",
+          "domain": "windowslatest.com",
+          "published_ms": 1794951134000,
+          "kind": "news"
+        },
+        {
+          "title": "Copilot Windows 11 troubleshooting for Copilot+ PCs - NeoTeo",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOeFYxWVFfV3FzRjlRcTlmZ0l4cWZ2NzZ2eWxHMVl3YkxpeExvSUN5djdiZlpNcmdxMEVoY2RyQmtROEFXdHlPcC1pSHZ2czE1dEZCaGNib3FoN25QcXlnb25KTHk0Y1Y0QzdjbWZuYl94U3BDQUJxTjR1a25NWWtoVnctb3k?oc=5",
+          "domain": "neoteo.com",
+          "published_ms": 1795003915000,
+          "kind": "news"
+        },
+        {
+          "title": "'Hey Copilot, Outlook.com isn't working. Can you fix that?': Microsoft shows off AI troubleshooting a Windows 11 PC — and the haters are out in force - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxNTTd1SFFVSXlkX3lpUHExTzNIaC15SzdQSVRURUJSaVFPNF92NmhOejhzSFk1Z3h1aWdDd3BjYTM3SjBOQkJ4NzNXNEw0VzlaTHFoUUNyV0xDUjNjUy1WVjBBLUlmdVpUX2UyeVZyN0w4dEhSZ0NoUlpDMndnNGZpWHo3aUpQSHJXS2dZay1lUHVtZGFaM0dBdTByUjY1dmdXcnI0SG5JM0ZoTmpMU1I4TlVEaHNGN1l6WXpnMURINUtCWUxWZVdDamEzZTF1aU93NWZrSE1YMmRWdzc5enB1YmxWWHVoTkROXzQyS1VPdGM3b2UzTVc0Qkw0WlhaQQ?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1795022927000,
+          "kind": "news"
+        },
+        {
+          "title": "Good luck Windows users: Copilot will manage files and diagnose problems on Copilot+ PCs. - Tbreak UAE",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1jbURnMm5FeVQ4Rk8yRUdfNW5qNnpLVi1mN1FIcjV1X0E0MmFQaTJPTHplU3pNcGdTSkNuVHhWdkp6WUwwUWUzMjUxR185R1E4T2RFZkZZa0dsb3VzTGt0R2t5dWotYThFOUhyMlFyVzRZdmFUcVE?oc=5",
+          "domain": "tbreak.com",
+          "published_ms": 1795011600000,
+          "kind": "news"
+        },
+        {
+          "title": "Microsoft shows Copilot diagnosing a Windows PC problem - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPTDQyQTU5WS1ZMG1Sd0ZlWVZfcWlhUFZMNFZaTkc1NDIxSDFCVU5yelAxU2dLNjNzYWhkVHMxaDctT1BfR1B3UkRZdFpsTjJUUnc4STU1UzV0UGZSeFdCTFlkY1V6cGpuMVE1ZHdPWXNFaXNhdzNmLWJ3akozZEoyalZLMUpRNWpaX1E?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1794945020000,
+          "kind": "news"
+        },
+        {
+          "title": "Copilot is learning to troubleshoot Windows 11 problems for you - How-To Geek",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE10c2VzeFloVDdqTFJlcHZOWWhkejhVSW04WFlPWG85dnhtc2p2bjlhdGxXbklNWjNCUEQ0TXlYS1RCa2U1QUlBYnVEckZROGxGMV96UktQUVl0M2x4Y3JFcXlwZ1hGMnFpWGpMUC1HWHdKYkN3WEJ1eFFydXI?oc=5",
+          "domain": "howtogeek.com",
+          "published_ms": 1794948819000,
+          "kind": "news"
+        },
+        {
+          "title": "Windows 11 Copilot adds PC diagnostics to identify causes of failures - 디지털투데이",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdGRsQVJMa3pYZzZZUjZOa1RlMU5xVE5KY3NWTmpQTlhtNml6Z2RQX1FZMW5rdXFwWEd0aWVQTDFFX0xab2hBMHdrZmRucEhTdW9HV1dJS2xzRGZqM3JGUHIyMEFEWkdoQU8xRlJudG40R2dsX1gxSzY0S1BxdGFBanQzM0hGYVQxdlZzSHlRVWRuVTA4WkNXV3JvV25zXzlvWlNzMGRIaUVnRkxKcWYtc2J5bjRDUQ?oc=5",
+          "domain": "digitaltoday.co.kr",
+          "published_ms": 1794963623000,
+          "kind": "news"
+        },
+        {
+          "title": "Microsoft is making Copilot more useful by helping you manage files and PC problems - Digital Trends",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQMEEtN3Y5RXhfYzhxSk8xNl9RSjdLNEFoY0JDdWtsQnd2TVRnS2p2ejR0bkduWHBrdEw0Z05KcS1MWV82X0gwZUdXRlJZNVZFUnNSN09Zcm82bmlOeGNXWFhkMWV2bUxkejFnVXBBSXo4cndob25yZEwtblZJSU1vX2w2MzBEUGpfaDZhcy0wZ0NmSEhSRFBPUUREc3gySGU3dkJnUkNXUXduX0VVUEJGYmZVaElHRVVCUF9NZlJ5YmpYZw?oc=5",
+          "domain": "digitaltrends.com",
+          "published_ms": 1795008606000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 188,
+        "competitors": [
+          {
+            "id": "5gNN3OskPsM",
+            "title": "Windows 11 can log which coding agents you use. A fake Codex counts",
+            "channel": "waterboat",
+            "views": 1758
+          },
+          {
+            "id": "Cf-jSH7RjB8",
+            "title": "If You Own A Windows PC, Turn This OFF Immediately!",
+            "channel": "Spencer Knows!",
+            "views": 1086
+          },
+          {
+            "id": "rvMBjBoG4JM",
+            "title": "🚨 Microsoft has been tracking your data. There are privacy and personalization settings to change.",
+            "channel": "Computer Geeks",
+            "views": 591
+          },
+          {
+            "id": "MaSLxqgi7rY",
+            "title": "VS Code 1.143 Update: Copilot Is Now the Default + On-Device AI",
+            "channel": "Tech Square Binary",
+            "views": 323
+          },
+          {
+            "id": "qrUzizwFc5w",
+            "title": "Windows 11 Tracks Your AI Coding Tools — Turn It Off #shorts",
+            "channel": "Techtonica",
+            "views": 188
+          },
+          {
+            "id": "qgnC2ZNZZTM",
+            "title": "Windows 11 can log which AI coding agents you run",
+            "channel": "Code on Boat",
+            "views": 151
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 38,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 65
+        },
+        "total": 76.6,
+        "newest_hours": 1,
+        "domains": [
+          "tbreak.com",
+          "windowsreport.com",
+          "digitaltoday.co.kr",
+          "note.com",
+          "windowscentral.com",
+          "windowslatest.com",
+          "neoteo.com",
+          "techradar.com",
+          "mezha.net",
+          "howtogeek.com",
+          "digitaltrends.com"
+        ],
+        "trusted_domains": [
+          "techradar.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Microsoft Outage Disables Copilot and Teams"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "A Third of Chatbot Users Admit to Swearing at Their AI",
+      "pillar": "Unexpected AI abilities and limits",
+      "evidence_ids": [
+        149
+      ],
+      "hook": "New data shows a massive chunk of people are losing their patience and screaming profanities at their AI chatbots.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "people swearing at AI chatbots",
+      "evidence": [
+        {
+          "title": "Don't get irrit-AI-ted — new report claims a third of US chatbot users have sworn at or insulted their LLMs - TechRadar",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQZzI1Z2R6WmtESFowcFpSVGdoYjJJYi1TdlBGZFQ1eWRXamNXWGJkYlZ6Z2UyZFp2QkJ3MjJPZS1qTUgzeHdGb3QwRmlhdWotQ1ZvdkRxZ1E2SkZkWnF6eDloZmtzcWI2MGE1UXN6M3pNWVZEMzBlaHllSmxiTEdteTlBNFVULVlFeHlRd1BTcURaaFNvZzBTT19wRlpWM1ZicDdISzhHT004emxTckdEUEw5Uzk0TV9ObnJ2TWlUbjdwNkpoWFNjN2UtcGU2TkE?oc=5",
+          "domain": "techradar.com",
+          "published_ms": 1794942300000,
+          "kind": "news",
+          "id": 149
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 1052,
+        "competitors": [
+          {
+            "id": "XfbH-A70WbU",
+            "title": "Do NOT trust AI 😭",
+            "channel": "John Casterline",
+            "views": 7587391
+          },
+          {
+            "id": "HRpM2QiPqhY",
+            "title": "Bro got roasted by ChatGPT 💀",
+            "channel": "Jammy Shorts",
+            "views": 76908
+          },
+          {
+            "id": "0kYhbhXYsn8",
+            "title": "When The AI Interviewer Gets Extremely Pissed",
+            "channel": "ShowNewTrend",
+            "views": 11338
+          },
+          {
+            "id": "Pd6Ra3ezt2c",
+            "title": "Stop Yelling at AI? Nobody Knows What That Trains It to Do",
+            "channel": "Curious Orbit",
+            "views": 4902
+          },
+          {
+            "id": "j2YbxmJzW0k",
+            "title": "Does Being Rude to AI Help?",
+            "channel": "The Prompt Update",
+            "views": 1052
+          },
+          {
+            "id": "FUvsg_05EWM",
+            "title": "Does Yelling At AI Actually Work? #shorts",
+            "channel": "NextNormal",
+            "views": 368
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 50,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 35
+        },
+        "total": 66.1,
+        "newest_hours": 23,
+        "domains": [
+          "techradar.com"
+        ],
+        "trusted_domains": [
+          "techradar.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains"
+      ],
+      "wave": 2
+    }
+  ]
+}
