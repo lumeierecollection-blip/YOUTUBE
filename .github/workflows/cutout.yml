@@ -1,0 +1,31 @@
+# Background removal (rembg, U2-Net / IS-Net) for thumbnail subjects, run on GitHub so the owner's PC (about 2 GB free RAM) never loads the models.
+# Push a branch named cutout/<anything>: every entry of data/longform/cutouts.json is cut out with platform/production/cutout.py and uploaded as the
+# "cutouts" artifact (download it and commit the PNGs). Nothing is generated: every subject pixel comes from the input photograph or painting.
+name: Cutouts
+on:
+  push:
+    branches: ["cutout/**"]
+jobs:
+  cut:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - run: pip install "rembg[cpu]==2.0.67" pillow numpy scipy
+      - name: Cut out every listed subject
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          ok = True
+          for j in json.load(open("data/longform/cutouts.json")):
+              r = subprocess.run([sys.executable, "platform/production/cutout.py", j["src"], j["dst"], *j.get("args", [])])
+              print(("OK " if r.returncode == 0 else "FAILED ") + j["dst"], flush=True); ok &= r.returncode == 0
+          sys.exit(0 if ok else 1)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cutouts
+          path: src/skills/remotion-render/public/lf2/**/*-cutout*.png

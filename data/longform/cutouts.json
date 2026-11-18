@@ -1,0 +1,5 @@
+[
+ { "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-benrahma.jpg", "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-benrahma-cutout.png", "args": ["--model", "u2net_human_seg", "--crop", "0.19,0.57,0.335,0.93", "--max", "2000"] },
+ { "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet.jpg", "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet-cutout.png", "args": ["--model", "isnet-general-use", "--crop", "0.06,0.18,0.64,0.99", "--max", "2000"] },
+ { "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet.jpg", "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet-cutout-hs.png", "args": ["--model", "u2net_human_seg", "--crop", "0.06,0.18,0.64,0.99", "--max", "2000"] }
+]

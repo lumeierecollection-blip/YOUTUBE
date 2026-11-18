@@ -1090,5 +1090,24 @@
   "file": "tb-le-face.jpg",
   "width": 1313,
   "height": 1747
+ },
+ "hs-vernet": {
+  "id": "hs-vernet",
+  "description": "Edith Swanneck discovering King Harold's corpse on the battle field of Hastings",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Vernet_Edith_discovering_King_Harold%27s_corpse_on_the_battle_field_of_Hastings.jpg",
+  "licence": "Public domain",
+  "licence_url": "",
+  "author": "Horace Vernet",
+  "original_credit": "[1]",
+  "date_taken": "1828 date QS:P571,+1828-00-00T00:00:00Z/9",
+  "retrieved": "2026-11-18",
+  "claim": "Horace Vernet, 1828 painting: Edith Swanneck discovering King Harold's corpse at Hastings (a 19th-century imagining, not a record)",
+  "authenticity": "authentic",
+  "size_px": "1280x1021",
+  "credit_line": "Horace Vernet, Public domain, via Wikimedia Commons",
+  "bytes": 313538,
+  "file": "hs-vernet.jpg"
  }
 }

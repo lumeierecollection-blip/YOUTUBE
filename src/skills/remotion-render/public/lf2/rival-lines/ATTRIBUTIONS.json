@@ -477,5 +477,24 @@
   "credit_line": "Mr.ちゅらさん, CC0, via Wikimedia Commons",
   "bytes": 543331,
   "file": "ha-yellow-card.jpg"
+ },
+ "ha-benrahma": {
+  "id": "ha-benrahma",
+  "description": "West Ham United player, Saïd Benrahma celebrates with West Ham fans after scoring against Manchester United at the London Stadium, the only goal of the game.",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Benrahma_celebrates.jpeg",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0",
+  "author": "Egghead06",
+  "original_credit": "Own work",
+  "date_taken": "7 May 2023",
+  "retrieved": "2026-11-18",
+  "claim": "Said Benrahma (West Ham United) celebrating with West Ham fans after scoring the only goal against Manchester United at the London Stadium, 7 May 2023 (a home win)",
+  "authenticity": "authentic",
+  "size_px": "2094x2198",
+  "credit_line": "Egghead06, CC BY 4.0, via Wikimedia Commons",
+  "bytes": 784391,
+  "file": "ha-benrahma.jpg"
  }
 }
