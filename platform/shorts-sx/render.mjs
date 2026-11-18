@@ -25,6 +25,8 @@ const [si, sn] = (arg("shard") || "0/1").split("/").map(Number), F = props.frame
 const req = createRequire(join(REMOTION, "package.json")), imp = (m) => import(pathToFileURL(req.resolve(m)).href);
 const { bundle } = await imp("@remotion/bundler"), { renderMedia, selectComposition } = await imp("@remotion/renderer");
 const { findChrome } = await import(pathToFileURL(join(REMOTION, "find-chrome.js")).href), chrome = findChrome();
+// Root.jsx imports ./vo.mp3; a fresh checkout has none (it is git-ignored), so make the same 1 s silent placeholder render-episode.mjs makes
+if (!existsSync(join(REMOTION, "vo.mp3"))) spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", join(REMOTION, "vo.mp3")]);
 const serveUrl = await bundle({ entryPoint: join(REMOTION, "Root.jsx"), publicDir: join(REMOTION, "public"), onProgress: () => {} });
 const composition = await selectComposition({ serveUrl, id: "SX", inputProps: props, timeoutInMilliseconds: 180000, ...(chrome ? { browserExecutable: chrome } : {}) });
 composition.durationInFrames = F;
