@@ -1,0 +1,71 @@
+{
+ "_source": "Wikipedia API prop=coordinates, retrieved 2026-11-18",
+ "Battle, East Sussex": [
+  0.48,
+  50.92
+ ],
+ "Battle Abbey": [
+  0.4858,
+  50.915
+ ],
+ "Berkhamsted": [
+  -0.56,
+  51.76
+ ],
+ "Hastings": [
+  0.58333333,
+  50.855
+ ],
+ "London": [
+  -0.1275,
+  51.50722222
+ ],
+ "Pevensey": [
+  0.3381,
+  50.8206
+ ],
+ "Saint-Valery-sur-Somme": [
+  1.6306,
+  50.1889
+ ],
+ "Stamford Bridge, East Riding of Yorkshire": [
+  -0.91166667,
+  53.99
+ ],
+ "Westminster Abbey": [
+  -0.1275,
+  51.49944444
+ ],
+ "York": [
+  -1.08,
+  53.96
+ ],
+ "Bergen": [
+  5.33,
+  60.38944444
+ ],
+ "England": [
+  -1.38,
+  53.13
+ ],
+ "Normandy": [
+  0.17,
+  48.88
+ ],
+ "Norway": [
+  8,
+  61
+ ],
+ "Orkney": [
+  -3,
+  59
+ ],
+ "Southwark": [
+  -0.0901,
+  51.4988
+ ],
+ "Wallingford, Oxfordshire": [
+  -1.125,
+  51.599
+ ]
+}

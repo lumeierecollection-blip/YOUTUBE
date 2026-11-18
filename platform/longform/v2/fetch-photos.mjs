@@ -11,8 +11,11 @@ const dir = join(ROOT, "src/skills/remotion-render/public/lf2", chDir), attPath 
 const att = existsSync(attPath) ? JSON.parse(readFileSync(attPath, "utf8")) : {};
 for (let i = 0; i < rest.length; i += 3) {
   const [id, title, claim] = rest.slice(i, i + 3);
-  const { file, entry } = await commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026" });
-  att[id] = { ...entry, file: basename(file), credit_line: `${entry.author}, ${entry.licence}, via Wikimedia Commons`, authenticity: "authentic" };
-  console.log(id, "->", basename(file), "|", att[id].credit_line);
+  try {
+    const { file, entry } = await commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026" });
+    att[id] = { ...entry, file: basename(file), credit_line: `${entry.author}, ${entry.licence}, via Wikimedia Commons`, authenticity: "authentic" };
+    writeFileSync(attPath, JSON.stringify(att, null, 1));   // after every picture: a later failure (HTTP 429) must not lose the credits already fetched
+    console.log(id, "->", basename(file), "|", att[id].credit_line);
+  } catch (e) { console.log("FAILED", id, String(e.message).slice(0, 120)); process.exitCode = 1; }
+  await new Promise((r) => setTimeout(r, 4000));   // Commons rate-limits bursts
 }
-writeFileSync(attPath, JSON.stringify(att, null, 1));

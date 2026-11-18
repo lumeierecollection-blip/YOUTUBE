@@ -171,25 +171,28 @@ export function IxQuote({ t, bg = "cream", text, bold, sub, source }) {
 }
 
 
-/** Thumbnail in the channel's measured thumbnail formula (5 of 5 reference hits): paper gradient, lowercase serif headline with one bold word, one real photo with a soft
- *  edge, a hand-drawn red arrow to the subject, a tiny mark top-left and a small italic aside. Rendered at frame 0, exported 1280x720. */
-export function IxThumb({ t, headline, bold, aside, image, credit, arrow = { x1: 640, y1: 350, x2: 900, y2: 520 }, imagePos = "50% 50%" }) {
-  const c = t.ix, parts = headline.split(bold ? new RegExp(`(${bold})`) : /$^/);
-  const a = arrow, mx = (a.x1 + a.x2) / 2 - 80, my = (a.y1 + a.y2) / 2 - 110;
-  return <AbsoluteFill style={{ background: `radial-gradient(90% 110% at 30% 20%, #FFFFFF 0%, ${c.cream} 55%, ${c.cream2} 100%)` }}>
+/** Thumbnail in the channel's measured thumbnail formula (5 of 5 reference hits, channel-reverse/spec/thumbs): white-to-paper gradient, a lowercase serif
+ *  headline with one bold word, ONE real subject cut out of its photograph (background removed by platform/production/cutout.py, never generated), a horizontal
+ *  motion-blur trail behind it, a hand-drawn red arrow from a small italic aside to the subject, and a tiny mark top-left. Rendered at frame 0, exported 1280x720.
+ *  cut: { src, x (left px), bottom (px from the bottom), h (height px) }; arrow: { x1, y1, x2, y2 } (tail at the aside, head at the subject). */
+export function IxThumb({ t, headline, bold, aside, cut, credit, arrow, asideAt = { x: 120, y: 820 } }) {
+  const c = t.ix, parts = headline.split(bold ? new RegExp(`(${bold})`) : /$^/), a = arrow;
+  const img = { position: "absolute", left: cut.x, bottom: cut.bottom || 0, height: cut.h };
+  const mx = a ? (a.x1 + a.x2) / 2 + (a.bend ?? -70) : 0, my = a ? (a.y1 + a.y2) / 2 + (a.bend ?? -70) : 0;
+  return <AbsoluteFill style={{ background: `radial-gradient(110% 120% at 50% 35%, #FFFFFF 0%, #FBFAF6 45%, ${c.cream} 80%, ${c.cream2} 100%)` }}>
     <Fonts />
-    <div style={{ position: "absolute", left: 60, top: 36, fontFamily: SERIF, fontStyle: "italic", fontSize: 40, color: c.mute }}>rival lines</div>
-    <div style={{ position: "absolute", left: 80, top: 100, right: 80, fontFamily: SERIF, fontSize: 196, lineHeight: 1.0, color: c.ink, whiteSpace: "nowrap" }}>
+    <svg width="0" height="0" style={{ position: "absolute" }}><filter id="mblur" x="-50%" y="-10%" width="200%" height="120%"><feGaussianBlur stdDeviation="26 0" /></filter></svg>
+    <div style={{ position: "absolute", left: 46, top: 30, fontFamily: SERIF, fontWeight: 800, fontSize: 54, color: c.ink }}>r</div>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 46, textAlign: "center", fontFamily: SERIF, fontSize: 132, lineHeight: 1.0, color: c.ink, whiteSpace: "nowrap" }}>
       {parts.map((p, i) => <span key={i} style={{ fontWeight: bold && p === bold ? 800 : 400 }}>{p}</span>)}
     </div>
-    {aside && <div style={{ position: "absolute", left: 96, top: 335, fontFamily: SERIF, fontStyle: "italic", fontSize: 62, color: c.mute }}>{aside}</div>}
-    <div style={{ position: "absolute", left: 360, right: 0, bottom: 0, height: 700, WebkitMaskImage: "radial-gradient(ellipse 62% 70% at 55% 60%, #000 55%, transparent 100%)", maskImage: "radial-gradient(ellipse 62% 70% at 55% 60%, #000 55%, transparent 100%)" }}>
-      <Img src={src(image)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: imagePos }} />
-    </div>
-    <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
-      <path d={`M${a.x1} ${a.y1} Q${mx} ${my} ${a.x2} ${a.y2}`} fill="none" stroke={c.arrow} strokeWidth={14} strokeLinecap="round" />
-      <path d={`M${a.x2 - 58} ${a.y2 - 4} L${a.x2} ${a.y2} L${a.x2 - 12} ${a.y2 - 62}`} fill="none" stroke={c.arrow} strokeWidth={14} strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    {[3, 2, 1].map((k) => <Img key={k} src={src(cut.src)} style={{ ...img, left: cut.x - k * 70, opacity: 0.16 * (4 - k), filter: "url(#mblur)" }} />)}
+    <Img src={src(cut.src)} style={{ ...img, filter: "drop-shadow(0 18px 24px rgba(0,0,0,0.18))" }} />
+    {aside && <div style={{ position: "absolute", left: asideAt.x, top: asideAt.y, fontFamily: SERIF, fontStyle: "italic", fontSize: 50, color: c.ink }}>{aside}</div>}
+    {a && <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
+      <path d={`M${a.x1} ${a.y1} Q${mx} ${my} ${a.x2} ${a.y2}`} fill="none" stroke={c.arrow} strokeWidth={13} strokeLinecap="round" />
+      {(() => { const ang = Math.atan2(a.y2 - my, a.x2 - mx), L = 52, s = 0.55; return <path d={`M${a.x2 - L * Math.cos(ang - s)} ${a.y2 - L * Math.sin(ang - s)} L${a.x2} ${a.y2} L${a.x2 - L * Math.cos(ang + s)} ${a.y2 - L * Math.sin(ang + s)}`} fill="none" stroke={c.arrow} strokeWidth={13} strokeLinecap="round" strokeLinejoin="round" />; })()}
+    </svg>}
     {credit && <div style={{ position: "absolute", right: 14, bottom: 8, fontFamily: F.sans, fontSize: 15, color: "rgba(0,0,0,0.45)" }}>{credit}</div>}
   </AbsoluteFill>;
 }

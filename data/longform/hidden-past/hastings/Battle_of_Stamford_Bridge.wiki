@@ -1,0 +1,124 @@
+{{Short description|1066 battle in England}}
+{{About|the battle in 1066|the Premier League match on 2 May 2016|Chelsea F.C.–Tottenham Hotspur F.C. rivalry#2016: 'Battle of the Bridge'}}
+{{Use British English|date=December 2016}}
+{{Use dmy dates|date=December 2023}}
+{{Infobox military conflict
+| conflict       = Battle of Stamford Bridge
+| part_of        = the [[Viking activity in the British Isles|Viking invasions of England]]
+| image          = Battle of Stamford Bridge, full.png
+| image_size     = 300
+| caption        = 
+| pushpin_map    = England
+| pushpin_relief = 1
+| coordinates    = {{coord|53|59|33|N|00|54|45|W|type:event_region:GB|display=it}}
+| date           = 25 September 1066 (Monday)
+| location       = [[Stamford Bridge, East Riding of Yorkshire]], England
+| result         = English victory
+| combatant1     = [[Kingdom of England]]
+| combatant2     = {{unbulleted list|[[Kingdom of Norway (872–1397)|Kingdom of Norway]]|[[Earldom of Orkney]]|English rebels}}
+| commander1     = {{unbulleted list| [[Harold Godwinson]]|[[Morcar|Morcar, Earl of Northumbria]]|[[Edwin, Earl of Mercia]]}}
+| commander2     = {{unbulleted list|[[Harald Hardrada]]{{KIA}}|[[Tostig Godwinson]]{{KIA}}|[[Eystein Orre]]{{KIA}}}}
+
+| 
+| strength1   = {{unbulleted list|10,500–15,000}}
+| strength2   = {{unbulleted list|9,000–11,000 (of which 3,000 engaged late in battle)|300 transport ships}}
+| casualties1 = Unknown
+| casualties2 = 6,000–8,000+ dead or missing<ref name="Anglo-Saxon Chronicles, p. 199"/><ref>While the initial invasion force required 300 longships to carry 10,000 troops (Jones, Charles (2011). ''Finding Fulford.'' London: WritersPrintShop. pp. 202–203), only 24 ships, or 8% of the fleet, were needed to carry back the survivors after Stamford Bridge ("Anglo-Saxon Chronicles", p. 199).</ref>
+}}
+{{Campaignbox Viking invasions of England| state=collapsed}}
+{{Campaignbox Norman Conquest|state=collapsed}}
+The '''Battle of Stamford Bridge'''<ref>({{langx|ang|Gefeoht æt Stanfordbrycge/Stængfordesbrycge}})</ref> took place at the village of [[Stamford Bridge, East Riding of Yorkshire]], in England, on 25 September 1066, between an English army under [[Harold Godwinson|King Harold Godwinson]] and an invading [[Norway|Norwegian]] force led by [[Harald Hardrada|King Harald Hardrada]] and the English king's brother [[Tostig Godwinson]]. After a bloody battle, both Hardrada and Tostig, along with most of the Norwegians, were killed. Although Harold Godwinson repelled the Norwegian invaders, his army was defeated by the [[Normans]] at [[Battle of Hastings|Hastings]] less than three weeks later.
+
+The battle has traditionally been presented as marking the end of the [[Viking Age]], although major [[Scandinavia]]n campaigns in Britain and [[Ireland]] occurred in the following decades, such as those of [[Sweyn II of Denmark|King Sweyn Estrithson of Denmark]] in 1069–1070 and [[Magnus III of Norway|King Magnus Barefoot of Norway]] in 1098 and 1102–1103.
+
+==Background==
+The death of the childless [[Edward the Confessor|King Edward the Confessor]] of England in January 1066 had triggered a succession struggle in which a variety of contenders from across [[Northwestern Europe]] fought for the English throne. These claimants included [[Harald Hardrada|King Harald Hardrada]] of Norway. According to the ''[[Anglo-Saxon Chronicle]]'' Manuscript D, the Norwegians assembled a fleet of 300 ships to invade England.<ref>{{cite book |title=The Anglo-Saxon Chronicle |publisher=Routledge |year=1998 |editor=Michael Swanton |location=New York}}</ref> The authors, however, did not seem to differentiate between [[warship]]s and supply ships. In ''[[Heimskringla|King Harald's Saga]]'', [[Snorri Sturluson]] states, "It is said that King Harald had over two hundred ships, apart from supply ships and smaller craft."<ref>{{cite book|title=King Harald's Saga |date=1966 |publisher=Penguin Group|author=Snorri Sturluson|translator-last1=Magnusson |translator-first1=M. | translator-link1=Magnus Magnusson |translator-link2=Hermann Pálsson |translator-first2=H |translator-last2=Palsson |page=139}}</ref> Combined with reinforcements picked up in [[Orkney]], the Norwegian army most likely numbered between 7,000 and 9,000 men. Arriving off the English coast in September, King Hardrada was joined by further forces recruited in [[Flanders (county)|Flanders]] and [[Scotland]] by [[Tostig Godwinson]].<ref>''The Anglo-Saxon Chronicles'', ed. and tr. [[Michael Swanton]], 2nd ed. (London 2000), pp. 196–197.</ref> Tostig was at odds with his elder brother Harold (who had been elected king by the [[Witenagemot]] on the death of King Edward). Having been [[Northumbrian Revolt of 1065|ousted from his position]] as [[Earl of Northumbria]] and exiled in 1065, Tostig had mounted a series of abortive attacks on England in the spring of 1066.<ref>''Anglo-Saxon Chronicles'', pp. 190–197.</ref>
+
+In the late summer of 1066, the invaders sailed up the [[River Ouse, Yorkshire|Ouse]] before advancing on [[York]]. On 20 September they defeated a northern English army led by [[Edwin, Earl of Mercia]], and his brother [[Morcar, Earl of Northumbria]], at the [[Battle of Fulford]], outside York. Following this victory they received the surrender of York. Having briefly occupied the city and taken hostages and supplies from the city, they returned towards their ships at [[Riccall]]. They offered peace to the Northumbrians in exchange for their support for Hardrada's bid for the throne, and demanded further hostages from the whole of [[Yorkshire]].<ref>''Anglo-Saxon Chronicles'', pp. 196–197.</ref>
+
+At this time King Harold was in [[Southern England]], anticipating an invasion from France by [[William the Conqueror|William, Duke of Normandy]], another contender for the English throne. Learning of the Norwegian invasion, King Harold headed north at great speed with his [[housecarl]]s and as many [[thegn]]s as he could gather, travelling day and night. He made the journey from London to Yorkshire, a distance of about {{convert|185|mi|km}}, in only four days, enabling him to take the Norwegians completely by surprise. Having learned that the Northumbrians had been ordered to send the additional hostages and supplies to the Norwegians at Stamford Bridge, King Harold hurried on through York to attack them at this rendezvous on 25 September.<ref>''Anglo-Saxon Chronicles'', pp. 196–198.</ref> Until the English army came into view, the invaders remained unaware of the presence of a hostile army anywhere in the vicinity.<ref>{{cite book |last=DeVries |first=Kelly |title=The Norwegian Invasion of England in 1066 |publisher=Boydell Press |location=Woodbridge, UK |year=1999 |isbn=1-84383-027-2 |page=268}}</ref>
+
+==Location==
+
+Manuscripts C, D and E of the ''[[Anglo-Saxon Chronicle]]'' all mention Stamford Bridge by name. Manuscript C contains a passage which states, "Then Harold, king of the English, came upon them beyond the bridge by surprise; and there they joined battle and were fighting very hard long in the day."<ref>Swanton (1998), p. 198.</ref> Though often interpreted to mean the main battle took place east of the [[River Derwent, Yorkshire|Derwent River]] after the English army had crossed the bridge, [[Charles Plummer (historian)|Charles Plummer]] explains that the phrase "beyond the bridge" must be viewed "from the point of view of the enemy. To the English coming from York, they [the Norwegians] would be on the hither [near] side of the bridge."<ref>Plummer, Charles and John Earle, eds. (1899, repr. 1965).''Two of the Saxon Chronicles Parallel: with supplementary extracts from the other'', 2 vols., Oxford: Clarendon, 1899; repr. Oxford: Oxford University Press. p. 2:256.</ref> According to [[Henry of Huntingdon|Henry of Huntington]], after many "fearful assaults on both sides," the English superiority in numbers forced the Norwegians "to give way but not to flee. Driven back beyond the river, the living crossing over the dead, they resisted stoutheartedly."<ref>Greenway, Diana E., trans. (2009). ''The History of the English People 1000–1154''. Oxford: Oxford University Press, p. 25.</ref> Like the ''Chronicle'' account, Henry's description suggests the main battle may have been fought west of the bridge.
+
+In 2020 Simon Richardson and John Benfield, metal detectorists, and the Battle of Stamford Bridge Heritage Society, located Viking military artifacts on the banks of the River Derwent, about a mile south of Stamford Bridge and near the village of [[Low Catton]] on the east side of the river. Since no similar archeological remains have been discovered near Stamford Bridge itself, they believe that these finds come from the battlefield of 1066.<ref name="gbnews/detectorists-stamford-b">{{cite web |title=Archaeology breakthrough: Metal detectorists uncover location of one of most significant moments in English history |url=https://www.gbnews.com/science/archaeology-breakthrough-metal-detectorists-stamford-bridge |website=[[GB News]] |language=en}}</ref> A documentary on the new finds, titled "1066: The Lost Battlefield", fronted by historian and television presenter [[Dan Snow]], was released in September 2026.<ref name="historyhit/re-story-stamford-b">{{cite web |title=Rewriting the Story of Stamford Bridge |url=https://www.historyhit.com/rewriting-the-story-of-stamford-bridge/ |website=History Hit |access-date=12 September 2026}}</ref>
+
+==Battle==
+[[File:Arbo_-_Battle_of_Stamford_Bridge_(1870).jpg|thumb|320px|''Battle of Stamford Bridge'', 1870, by [[Peter Nicolai Arbo]]]]
+According to Sturluson's ''King Harald's Saga'', a lone rider approached King Hardrada and Tostig shortly before the battle. The rider, who did not give his name, offered Tostig the restoration of his [[earl]]dom if he would abandon King Hardrada and rejoin his brother, [[Harold Godwinson|King Harold Godwinson of England]]. When Tostig asked what King Harold would offer King Hardrada in return, the rider replied that King Hardrada would receive "six feet of ground, or as much more as he needs, as he is taller than most men," meaning a grave in English soil.<ref>{{cite book |last1=Whittock |first1=Martyn |title=1018 and 1066: Why the Vikings Caused the Norman Conquest |last2=Whittock |first2=Hannah |publisher=The Crowood Press |year=2016 |isbn=978-0-7198-2050-2 |language=en |chapter=Autumn 1066: the Norwegian invasion |access-date=2 June 2024 |chapter-url=https://books.google.com/books?id=ZA5SDQAAQBAJ&dq=Six+feet+of+ground+or+as+much+more+as+he+needs,+as+he+is+taller+than+most+men&pg=PT125}}</ref> King Hardrada, impressed by the boldness of the envoy, asked Tostig who the rider was, and Tostig identified him as King Harold Godwinson himself.<ref>Sturluson, ''King Harald's Saga'' p. 149.</ref>
+
+The sudden appearance of the English army caught the Norwegians by surprise.<ref>{{cite book|title=The Anglo-Saxon Chronicles|pages=197–98}}</ref> The English advance was then delayed by the need to pass through the choke-point presented by the bridge itself. The ''Anglo-Saxon Chronicle'' and the ''Chronicle of Henry of Huntingdon'' has it that one of the Norwegians, armed with an [[Dane Axe|axe]], blocked the narrow crossing and single-handedly held up the entire English army. This Norwegian alone cut down more than 40 Englishmen and was defeated only when an English soldier floated under the bridge and thrust his [[spear]] through the planks in the bridge and under the warrior's [[Chain mail|mail shirt]].<ref>''Anglo-Saxon Chronicles'', p. 198. "Then was there one of the Norwegians who withstood the English people, so that they might not pass over the bridge, nor obtain the victory. Then an Englishman aimed at him with a javelin, but it availed nothing; and then came another under the bridge, and pierced him terribly inwards under the coat of mail."</ref><ref>''The chronicle of Henry of Huntingdon'', p. 209. "Here a single Norwegian, whose name ought to have been preserved, took post on a bridge, and hewing down more than forty of the English with a battle-axe, his country's weapon, stayed the advance of the whole English army till the ninth hour. At last some one came under the bridge in a boat, and thrust a spear into him, through the chinks of the flooring."</ref>
+
+This delay had allowed the bulk of the Norse army to form a [[shieldwall|shield wall]] to face the English attack. King Harold's army poured across the bridge, forming a line just short of the Norse army, locked [[shield]]s and charged. The battle went far beyond the bridge itself, and although it raged for hours, the Norse army's decision to leave their [[armour]] behind left them at a distinct disadvantage. Eventually, the Norse army began to fragment and fracture, allowing the English troops to force their way in and break up the Scandinavians' shield wall. Completely outflanked, and with King Hardrada killed with an arrow to his [[Trachea|windpipe]] and Tostig slain, the Norwegian army disintegrated and was virtually annihilated.<ref>Larsen, Karen ''A History of Norway'' (New York: Princeton University Press, 1948).</ref>
+
+In the later stages of the battle, the Norwegians were reinforced by troops led by [[Eystein Orre]], King Hardrada's prospective son-in-law. They had been some {{Convert|16|mi|km}} to the south, guarding the ships at [[Riccall]], to the west of the River Derwent on the [[River Ouse, Yorkshire|River Ouse]]. They had run all the way, fully armed for battle, and some of Orre's men were said to have collapsed and died of exhaustion upon reaching the battlefield. Their counter-attack, described in the Norwegian tradition as "Orre's Storm," briefly checked the English advance, but was soon overwhelmed and Orre was slain. The Norwegian army were routed. As given in the ''Chronicles'', pursued by the English army, some of the fleeing Norsemen drowned whilst crossing rivers.<ref name="Anglo-Saxon Chronicles, p. 199">''Anglo-Saxon Chronicles'', p. 199.</ref>
+
+So many died in an area so small that the field was said to have been still whitened with bleached bones 50 years after the battle.<ref>{{cite book|last=Wade|first=John|title=British history, chronologically arranged; comprehending a classified analysis of events and occurrences in church and state |publisher=Bohn |year=1843 |edition=2nd |page=19 |url=https://books.google.com/books?id=vTFOAAAAYAAJ}}</ref><ref>{{cite book |last1=Morgan |first1=Phillip |editor1-last=Dunn |editor1-first=Diana |title=War and Society in Medieval and Early Modern Britain |date=2000 |publisher=Liverpool University Press |location=Liverpool |isbn=0-85323-885-5 |page=36 |chapter=3. The Naming of the Battlefields in the Middle Ages}}</ref>
+
+==Aftermath==
+[[Image:Harald Hardraades saga-Pil i strupen-W. Wetlesen.jpg|right|thumb|A 19th-century illustration of the Harald Hardrada saga, ''[[Heimskringla]]'']]
+
+King Harold accepted a truce with the surviving Norwegians, including King Hardrada's son [[Olaf III of Norway|Olaf]] and [[Paul and Erlend Thorfinnsson|Paul Thorfinnsson]], [[Earl of Orkney]]. They were allowed to leave after giving pledges not to attack England again. The losses the Norwegians had suffered were so severe that only 24 ships from the fleet of over 300 were needed to carry the survivors away.<ref name="Anglo-Saxon Chronicles, p. 199" /> They withdrew to Orkney, where they spent the winter, and in the spring Olaf returned to Norway. After King Hardrada's death, the Norwegian kingdom was divided between Olaf and his brother [[Magnus II of Norway|Magnus]], whom King Hardrada had left behind to govern in his absence. The heavy casualties suffered by both sides at Stamford Bridge were noted by later chroniclers; the English-born Norman historian [[Orderic Vitalis]], writing decades after the event, reported that the battlefield was still "easily recognizable by the piles of bones that still bear witness to the heavy losses on both sides."<ref>{{Cite web |title=The Battle of Hastings |url=https://penelope.uchicago.edu/encyclopaedia_romana/britannia/anglo-saxon/hastings/hastings.html |access-date=2026-01-11 |website=penelope.uchicago.edu}}</ref>
+
+King Harold’s victory was short-lived. Three days after the battle, on 28 September 1066, a Norman invasion army led by [[William the Conqueror]] landed at [[Pevensey|Pevensey, Sussex]], on the south coast of England. King Harold immediately led his troops on a forced march southwards to intercept the Norman army.<ref>{{cite book |author=Bennett, Matthew |author-link=Matthew Bennett (historian) |title=Campaigns of the Norman Conquest |publisher=Osprey |year=2001 |isbn=978-1-84176-228-9 |series=Essential Histories |location=Oxford, UK |pages=37–40}}</ref> On 14 October 1066, Harold, commanding an army variously estimated between 5,000 and 13,000 men, confronted William's forces at the [[Battle of Hastings]], where he was decisively defeated and killed, allowing William to march on London and ultimately [[Norman Conquest|take control of all England]].<ref>{{cite book |author=Huscroft, Richard |title=Ruling England 1042–1217 |publisher=Pearson/Longman |year=2005 |isbn=0-582-84882-2 |location=London |pages=16–18}}</ref>
+
+==Monuments==
+[[File:StamfordBridge1066.JPG|thumb|Village monument]] [[File:Stamford Bridge Battlefield Memorial.jpg|thumb|Stamford Bridge battlefield memorial near Whiterose Drive]]
+Two monuments to the battle have been erected in and around the village of Stamford Bridge.
+
+===Village monument===
+The first memorial is located in the village on Main Street ([[A166 road|A166]]) to the east of Church Road.<ref>{{citation |url=http://www.ukniwm.org.uk/server/show/conMemorial.51690/fromUkniwmSearch/1 |archive-url=https://archive.today/20121225004130/http://www.ukniwm.org.uk/server/show/conMemorial.51690/fromUkniwmSearch/1 |url-status=dead |archive-date=25 December 2012 |title=Battle of Stamford Bridge |publisher=[[UK National Inventory of War Memorials]] (www.ukniwm.org.uk) |access-date=4 March 2012 }}</ref> The monument's inscription reads (in both English and Norwegian):
+
+<blockquote><poem>
+THE BATTLE OF STAMFORD BRIDGE
+WAS FOUGHT IN THIS NEIGHBOURHOOD
+ON SEPTEMBER 25TH, 1066
+
+SLAGET VED STAMFORD BRU BLE UTKJEMPET I DISSE TRAKTER DEN 25. SEPTEMBER 1066
+</poem></blockquote>
+
+The inscription on the accompanying marble tablet reads:
+<blockquote><poem>
+THE BATTLE OF STAMFORD BRIDGE
+KING HAROLD OF ENGLAND DEFEATED
+HIS BROTHER TOSTIG AND KING
+HARDRAADA OF NORWAY HERE ON
+25 SEPTEMBER 1066
+</poem></blockquote>
+
+The memorial is a roadside headless cross in a brick enclosure with two wooden benches, two cast bronze plaques, and a granite panel with the inscription highlighted in gold.<ref>{{cite web |title=Battle of Stamford Bridge Memorial | url=https://www.warmemorialsonline.org.uk/memorial/242788 | publisher=War Memorials Online | access-date=2026-09-10}}</ref>
+
+===Battlefield monument===
+A second monument is located at the battlefield site, at the end of Whiterose Drive. It has memorial stone and plaque that shows the events and the outcome of the battle.<ref>{{cite web |url=http://www.yorkshireguides.com/stamford_bridge.html |access-date=15 August 2021 |title=Stamford Bridge |publisher=Yorkshire Guide}}</ref>
+
+==References==
+{{Reflist}}
+
+==External links==
+* [https://web.archive.org/web/20140413145154/http://www.stamford-bridge.dk/ The Battle of Stamford Bridge by Michael C. Blundell]
+* [https://geoffboxell.tripod.com/stamford.htm Description of battle] by Geoff Boxell
+* [http://www.britainexpress.com/History/battles/stamford-bridge.htm The Battle of Stamford Bridge]
+* [http://mcllibrary.org/Heimskringla/hardrade1.html Saga of Harald Hardrade]
+* [https://www.bbc.co.uk/programmes/b011jvlt The Battle of Stamford Bridge, BBC "In Our Time" 2 June 2011]
+* [https://web.archive.org/web/20130309171350/http://www.utexas.edu/cola/centers/lrc/eieol/norol-7-X.html Old Norse description of the battle, with translation]
+
+{{Norman conquest of England}}
+{{Viking}}
+{{Viking Invasion of England}}
+{{Authority control}}
+
+{{DEFAULTSORT:Stamford Bridge, Battle Of}}
+[[Category:1066 in England]]
+[[Category:Battles involving the Kingdom of England]]
+[[Category:Battles involving Norway]]
+[[Category:Battles involving the Anglo-Saxons]]
+[[Category:Battles involving the Vikings]]
+[[Category:Battles involving Yorkshire]]
+[[Category:1066 conflicts]]
+[[Category:History of the East Riding of Yorkshire]]
+[[Category:History of York]]
+[[Category:Registered historic battlefields in England]]
+[[Category:Stamford Bridge]]
+[[Category:Harald Hardrada]]
+[[Category:Harold Godwinson]]

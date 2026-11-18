@@ -1,0 +1,104 @@
+{{Short description|1066 battle near York, England}}
+{{bots|deny=InternetArchiveBot}}
+{{Use British English|date=August 2022}}
+{{Use dmy dates|date=October 2020}}
+{{Infobox military conflict
+| conflict    = Battle of Fulford
+| part_of     = the [[Viking activity in the British Isles|Viking invasions of England]]
+| image       = Battle of Fulford.png
+| image_size  = 300px
+| caption     = The Battle of Fulford by [[Matthew Paris]]
+| date        = 20 September 1066
+| location    = [[Fulford, North Yorkshire|Fulford]], [[East Riding of Yorkshire]] (present-day [[North Yorkshire]]), England
+| coordinates = {{Coord|53|55|57|N|1|4|15|W|type:event_region:GB-ERY|display=inline,title}}
+| territory   = Norwegians gain [[Fulford, North Yorkshire|Fulford]] and later [[York]]
+| result      = Norwegian victory
+| combatant1  = {{Tree list}}
+* [[Kingdom of Norway (872–1397)|Kingdom of Norway]]
+** [[Earldom of Orkney]]
+** [[Kingdom of the Isles]]
+{{Tree list/end}}
+English rebels
+| combatant2  = {{Tree list}}
+* [[Kingdom of England]]
+** [[Earl of Northumbria|Earldom of Northumberland]]
+** [[Earldom of Mercia]]
+{{Tree list/end}}
+| commander1  = [[Harald III of Norway|Harald Hardrada]]<br/>[[Tostig Godwinson]]
+| commander2  = [[Morcar|Morcar of Northumbria]]<br/>[[Edwin, Earl of Mercia|Edwin of Mercia]]
+| strength1   = ~10,000 (6,000 deployed)
+| strength2   = ~3,000 from Northumbria<br/>~1,800 from Mercia
+| casualties1 = <1,000
+| casualties2 = Unknown, purportedly heavy losses.
+| campaignbox = {{Campaignbox Viking invasions of England|state=collapsed}}{{Campaignbox Norman Conquest}}
+}}
+
+The '''Battle of Fulford''' was fought on the outskirts of the village of [[Fulford, North Yorkshire|Fulford]],{{sfn|DeVries|2003|page=255}} just south of [[York]] in England, on 20 September 1066. King [[Harald III of Norway]], also known as ''Harald Hardrada'',{{efn|Hardrada or "harðráði" in Old Norse, means"hard ruler"}} a claimant to the English throne, and [[Tostig Godwinson]],{{efn|Tostig was the English king [[Harold Godwinson|Harold II]]'s banished brother.{{sfn|Howarth|1977|page=29}}}} his English ally, fought and defeated the Northern Earls [[Edwin, Earl of Mercia|Edwin]] and [[Morcar]].<ref>{{cite web |title=Battle of Fulford |url=http://www.battlefieldstrust.com/resource-centre/viking/battleview.asp?BattleFieldId=52 |website=UK Battlefield's Resource |publisher=The Battlefields Trust |access-date=13 January 2016 }}</ref>{{sfn|DeVries|2003|pages=255–259}}
+
+Hardrada's army consisted of allies from [[Orkney]] and a contingent with Tostig, as well as those coming from Norway. They crossed the sea in a fleet of ships and made their base south of York at [[Riccall]]. On 20 September 1066 the Vikings advanced towards York. The largely inexperienced Saxon army led by Morcar at York and Edwin at Tadcaster moved to block the invaders.  The [[Anglo-Saxon Chronicle]] says that the opposing armies met on the east bank of the River Ouse and that initially the Saxons caused heavy losses on the Viking army. Ultimately, the Norse army overwhelmed the Saxon army although the earls themselves survived this defeat. After winning, the victorious Norwegians entered York, gathered supplies, and asked for hostages.{{sfn|Jones|2011|pages=197–214}}
+
+==Background==
+The [[Anglo-Saxon]] king [[Edward the Confessor]] died on 5 January 1066 without an heir.{{sfn|Douglas|1964|page=181.}} The only surviving male member of the royal family was [[Edgar the Ætheling]], the young son of [[Edward the Exile]], who was aged about fourteen. On the day of King Edward's funeral, 6 January, [[Harold Godwinson]], the Earl of [[Wessex]], rushed to London, where he was crowned king in [[Westminster Abbey|the Abbey of Saint Peter of Westminster]], by [[Ealdred (archbishop of York)|Ealdred]], [[Archbishop of York]].{{sfn|Barlow|1970|pages=244–245}} Harold Godwinson was elected as King by the [[Witenagemot]], who had gathered in Westminster to celebrate the feast of [[Epiphany (holiday)|Epiphany]]. However, two powerful earls, brothers Edwin of Mercia and Morcar of [[Northumbria]], challenged his authority. Sources indicate that Harold moved north to confront them; however, in the end he secured their loyalty by marrying their sister, Edith, the widow of Griffith of Wales. By securing the loyalty of Edwin and Morcar, Godwinson increased his strength in the north. These men were, in fact, the first barrier between Harold Godwinson and [[Harald Hardrada]].{{sfn|Douglas|1964|pages=182–183}}
+
+Tostig, the exiled brother of Godwinson, also felt he had a claim to the English throne. During his exile, he lived in [[Flanders]], from where, according to the Anglo-Saxon Chronicle, he invaded England in May 1066 against his brother.{{sfn|Barlow|2002|page=134}} At [[Sandwich, Kent|Sandwich]], Tostig is said to have enlisted and [[Impressment|impressed]] sailors.{{sfn|Barlow|2002|page=134}}  He then sailed north, where he battled Edwin, the Earl of Mercia. After a quick defeat at the mouth of the [[Humber]], he arrived in Scotland under the protection of King [[Malcolm III]]. Later he met, and made a pact with, Harald Hardrada, King of Norway, whereby he agreed to support Hardrada in his invasion of England.{{sfn|Barlow|2002|page=134}}  The medieval historian [[Orderic Vitalis]] has a different version of this story; he says that Tostig travelled to Normandy to enlist the help of [[William the Conqueror|William, Duke of Normandy]].{{sfn|Wood|2005|pages= 233–238}}{{sfn|Barlow|2002|loc=Chapter 5}} Then, as William was not ready to get involved at that stage, Tostig sailed from the [[Cotentin Peninsula]], but because of storms ended up in Norway, and made his pact with Harald Hardrada there.{{sfn|Barlow|2002|pages=134–135}} Whether in Norway or Scotland, it is certain that Tostig allied himself with Hardrada, as they fought side by side at the Battle of Fulford. Tostig was a useful ally for Hardrada not only because he was the brother of his adversary, but also because he knew the terrain.{{sfn|Douglas|1964|pages= 189–190}}
+
+Hardrada was a claimant to the throne, just like Tostig, William and Harold Godwinson; he set sail for England in September 1066, stopping in [[Orkney]] to resupply, before merging his forces with Tostig's soldiers and ships. Together they sailed along the [[River Ouse, Yorkshire|River Ouse]] towards the city of [[York]].{{sfn|DeVries|2003|pages= 236–252}} In Orderic Vitalis's version, it says that in the month of August Hardrada and Tostig set sail across the wide sea with a favourable wind and landed in [[Yorkshire]].{{sfn|Jones|2011|page= 39}} They arrived at the mouth of the [[Humber]] on 18 September. Having disembarked from their ships, their armies quickly moved towards York. On 20 September 1066, they were confronted by Harold Godwinson's earls, Edwin and Morcar.{{sfn|Douglas|1964|page= 193}}
+
+==Battle==
+
+===Deployment===
+Edwin had brought some soldiers to the east to prepare for an invasion by the [[Norwegian people|Norwegian]]s. The battle started with the English spreading their forces out to secure their flanks. On their right flank was the [[River Ouse, Yorkshire|River Ouse]], and on the left was the [[Ford (crossing)|Fordland]], a [[swamp]]y area. The disadvantage to the position was that it gave Harald higher ground, which was perfect for seeing the battle from a distance. Another disadvantage was that if one flank were to give way, the other one would be in trouble.{{sfn|DeVries|2003|page=255}} If the Anglo-Saxon army had to retreat, it would not be able to because of the [[marshland]]s. They would have to hold off the Norwegians as long as possible.{{sfn|Schofield|1966}}
+
+Harald's army approached from three routes to the south. Harald lined his army up to oppose the Anglo-Saxons, but he knew it would take hours for all of his troops to arrive. His least experienced troops were sent to the right and his best troops were on the riverbank.{{sfn|DeVries|2003|page=255}}
+
+===English charge===
+The English struck first, advancing on the Norwegian army before it could fully deploy. Morcar's troops pushed Harald's back into the marshlands, making progress against the weaker section of the Norwegian line. However, this initial success proved insufficient for victory to the English army, as the Norwegians brought their better troops to bear upon them, still fresh against the weakened Anglo-Saxons.{{sfn|DeVries|2003|page=255}}
+
+===Harald's counter-move===
+Harald brought more of his troops from the right flank to attack the centre, and sent more men to the river. The invaders were outnumbered, but they kept pushing and shoving the defenders back. The Anglo-Saxons were forced to give ground. Edwin's soldiers who were defending the bank now were cut off from the rest of the army by the marsh, so they headed back to the city to make a final stand. Within another hour, the men on the [[Gill (stream)|beck]] were forced off by the Norwegians. Other invading Norwegians, who were still arriving, found a way to get around the thick fighting and opened a third front against the Anglo-Saxons. Outnumbered and outmanoeuvred, the defenders were defeated. Edwin and Morcar however, managed to survive the fight.{{sfn|DeVries|2003|page=255}}
+
+York surrendered to the Norwegians under the promise that the victors would not force entry to their city, perhaps because Tostig would not want his capital looted.{{sfn|Schofield|1966}} It was arranged that the various hostages should be brought in and the Norwegian army retired to [[Stamford Bridge, East Riding of Yorkshire|Stamford Bridge]], {{convert|7|mi|km}} east of York, to await their arrival.{{sfn|Schofield|1966}}
+
+==Aftermath==
+[[File:Battle of Fulford memorial stone.jpg|thumb|Stone at the Fulford Parish Council Playing Field commemorating the battle]]
+It has been estimated that at Fulford the Norwegians had about 10,000 troops, of whom 6,000 were deployed in the battle, and the defenders 5,000.{{sfn|Jones|2011|pages=202–203}} During the battle, casualties were heavy on both sides. Some estimates claim 15% dead giving a total of 1,650 (based on 11,000 troops being deployed in the battle).{{sfn|Jones|2011|page= 235}} From all accounts, it is clear that the mobilised power of Mercia and Northumbria was cut to pieces at Fulford.{{sfn|Schofield|1966}}
+
+Because of the defeat at Fulford, King Harold II had to force-march his troops {{convert|190|mi|km}}, from London to York.{{sfn|Brown|1980|pages=7–9}} He did this within a week of Fulford and managed to surprise the Viking army and defeat them at the [[Battle of Stamford Bridge]].{{sfn|Wood|2005|pages=238–240}} In the meantime William, Duke of Normandy, had landed his army in Sussex on the south coast. Harold marched his army back down to the south coast where he met William's army, at a place now called [[Battle, East Sussex|Battle]] just outside Hastings.{{sfn|Barlow|2002|loc=Chapter 7}} It is probable that Harold's intention was to repeat his success at Stamford Bridge by catching Duke William unawares.{{sfn|Brown|1980|pages=7–9}} The Anglo-Norman chronicler [[Florence of Worcester]] commented that although the king was aware that some of the bravest men in England had fallen in two recent battles and that half of his troops were not assembled, he did not hesitate to meet the enemy in Sussex. It is likely that the engagements at Fulford and at the Battle of Stamford Bridge, fought within a week of each other, seriously affected Harold's strength at the [[Battle of Hastings]] some three weeks later and may have contributed to his defeat.{{sfn|Schofield|1966}}{{sfn|Brown|1980|pages=7–9}}
+
+==Notes==
+{{notelist}}
+==Citations==
+{{reflist}}
+
+==References==
+{{refbegin}}
+* {{Cite book |last=Barlow |first=Frank |title=The Godwins |author-link=Frank Barlow (historian) |year=2002 |location=London |publisher=Pearson Longman |isbn=978-0-582-78440-6 }}
+* {{Cite book |last=Barlow |first=Frank |title=Edward the Confessor |author-link=Frank Barlow (historian) |year=1970 |location=Berkeley, CA |publisher=California University Press |isbn=978-0-520-01671-2 }}
+* {{Cite book |editor-last=Brown |editor-first=R. Allen |title=Anglo-Norman Studies III: Proceedings of the Battle Conference 1980 |publisher=Boydell Press |year=1980 |isbn=978-0-85115-141-0 |location=Woodbridge, UK }}
+* {{Cite book |last=DeVries |first=Kelly |title=The Norwegian Invasion of England in 1066 |author-link=Kelly DeVries |publisher=Boydell Press |location=Woodbridge, UK |isbn=978-1-84383-027-6 |year=2003 }}
+* {{Cite book |last=Douglas |first=David C. |title=William the Conqueror |author-link=David C. Douglas |publisher=University of California |location=Berkeley, CA |year=1964 |oclc=317644230 }}
+* {{Cite book |last=Howarth |first=David |title=1066: The Year of the Conquest |author-link=David Howarth (author) |publisher=Dorset Press |year=1977 |isbn=978-0-88029-014-2 }}
+* {{Cite book |last=Jones |first=Charles |title=Finding Fulford&nbsp;– the Search for the First Battle of 1066: The Report on the Work to Find the Site of the Battle of Fulford |publisher=WritersPrintShop |year=2011 |location=London |isbn=978-1-78018-050-2 }}
+* {{Cite journal |last=Schofield |first=Guy |title=The Third Battle of 1066 |journal=[[History Today]] |volume=16 |issue=10 October |year=1966 |url=http://www.battleoffulford.org.uk/a_third_battle.htm |location=London |url-status=dead |archive-url=https://web.archive.org/web/20120205061705/http://www.battleoffulford.org.uk/a_third_battle.htm |archive-date=5 February 2012 }}
+* {{Cite book |last=Wood |first=Michael |year=2005 |title=In Search of the Dark Ages |author-link=Michael Wood (historian) |publisher=BBC |location=London |isbn=978-0-563-52276-8 }}
+{{refend}}
+
+==External links==
+* [http://www.battlefieldstrust.com/resource-centre/viking/battleview.asp?BattleFieldId=52 Details from the Battlefields Trust]
+* [https://web.archive.org/web/20051226204334/http://www.battleoffulford.org.uk/a_battle.htm Battle of Fulford]
+
+{{Norman conquest of England}}
+{{Authority control}}
+
+{{DEFAULTSORT:Fulford 1066}}
+[[Category:1066 conflicts]]
+[[Category:1066 in England]]
+[[Category:Battles involving the Kingdom of England]]
+[[Category:Battles involving Norway]]
+[[Category:Battles involving the Vikings]]
+[[Category:Battles involving the Anglo-Saxons]]
+[[Category:Norman conquest of England]]
+[[Category:History of North Yorkshire]]
+[[Category:History of York]]
+[[Category:Battles involving Yorkshire|Fulford]]
+[[Category:Harald Hardrada]]
