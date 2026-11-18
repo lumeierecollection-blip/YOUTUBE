@@ -144,9 +144,10 @@ export const EPISODE = {
       scene: { type: "ixclip", bg: "cream", image: PH("ha-crowd-cincinnati"), flip: true, head: "first leg, or second?", bold: "second", body: "In two-legged ties the team hosting the second leg has the home advantage (Wikipedia, Home advantage).", credit: `${PC("ha-crowd-cincinnati")} · a 2016 FC Cincinnati match, not the Premier League` } },
   ],
   thumbs: [
-    { name: "thumb1-crowd", type: "ixthumb", headline: "the 12th man.", bold: "12th", aside: "(is it real?)", image: PH("ha-crowd-cincinnati"), imagePos: "50% 40%", credit: PC("ha-crowd-cincinnati"), arrow: { x1: 640, y1: 430, x2: 980, y2: 620 } },
-    { name: "thumb2-number", type: "ixthumb", headline: "45.6% of matches.", bold: "45.6%", aside: "(at home)", image: PH("ha-crowd-cincinnati"), imagePos: "20% 40%", credit: PC("ha-crowd-cincinnati"), arrow: { x1: 640, y1: 430, x2: 980, y2: 620 } },
-    { name: "thumb3-win", type: "ixthumb", headline: "why they win.", bold: "win", aside: "(at home)", image: PH("ha-crowd-cincinnati"), imagePos: "70% 35%", credit: PC("ha-crowd-cincinnati"), arrow: { x1: 640, y1: 430, x2: 1000, y2: 640 } },
+    // the measured intrcpt thumbnail formula: one background-removed subject (Fulham players, at home, Craven Cottage, 10 May 2025; CC0), motion trail, red arrow, serif headline
+    { name: "thumb1-home", type: "ixthumb", headline: "home advantage.", bold: "home", aside: "(is it real?)", asideAt: { x: 150, y: 640 }, cut: { src: "lf2/rival-lines/ha-fulham-3-cutout.png", x: 760, bottom: 40, h: 760 }, arrow: { x1: 520, y1: 650, x2: 800, y2: 560, bend: -90 }, credit: `${PC("ha-fulham-3")} · Fulham v Everton, 10 May 2025` },
+    { name: "thumb2-number", type: "ixthumb", headline: "45.6% at home.", bold: "45.6%", aside: "(28.8% away)", asideAt: { x: 150, y: 640 }, cut: { src: "lf2/rival-lines/ha-fulham-3-cutout.png", x: 820, bottom: 40, h: 740 }, arrow: { x1: 540, y1: 650, x2: 860, y2: 560, bend: -90 }, credit: `${PC("ha-fulham-3")} · Fulham v Everton, 10 May 2025` },
+    { name: "thumb3-twelfth", type: "ixthumb", headline: "the 12th man.", bold: "12th", aside: "(the data says...)", asideAt: { x: 150, y: 640 }, cut: { src: "lf2/rival-lines/ha-fulham-3-cutout.png", x: 780, bottom: 40, h: 760 }, arrow: { x1: 560, y1: 650, x2: 820, y2: 560, bend: -90 }, credit: `${PC("ha-fulham-3")} · Fulham v Everton, 10 May 2025` },
   ],
 };
 
