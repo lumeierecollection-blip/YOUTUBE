@@ -1251,12 +1251,12 @@
       "attempts": 1,
       "run_id": "44366948890",
       "trigger": "schedule",
-      "updated_at": "2026-11-18T18:14:01.507Z",
+      "updated_at": "2026-11-18T18:14:10.156Z",
       "stage": "research",
-      "topic": "Disney's New Star Wars Animatronics Use AI to Chat With Visitors",
-      "score": 81.8,
-      "pillar": "Viral AI demos and experiments",
-      "hook": "Disney's newest Star Wars park animatronics can hold actual real-time conversations using AI."
+      "topic": "Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages",
+      "score": 77.8,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Meta's new AI personal assistant is already mixing up messages and leaking chats from other apps."
     }
   },
   "uploads": [
@@ -2563,6 +2563,15 @@
       "at_ms": 1795025641507,
       "score": 81.8,
       "pillar": "Viral AI demos and experiments"
+    },
+    {
+      "channel": "2",
+      "topic": "Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages",
+      "slug": "meta-s-new-ai-agent-keeps-pulling-in-random-chats-and-messin",
+      "slot": "2026-11-18-ch2",
+      "at_ms": 1795025650156,
+      "score": 77.8,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
