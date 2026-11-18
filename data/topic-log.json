@@ -2835,9 +2835,14 @@
           "topic": "Independent CSIRO Team Confirms M87 Star Black Hole Shadow",
           "slug": "csiro-team-confirms-m87-black-hole-shadow",
           "reserved_at": "2026-11-17T18:04:52.337Z"
+        },
+        {
+          "topic": "NASA Voyager 1 Spacecraft Reaches Milestone of One Light-Day From Earth",
+          "slug": "voyager-1-one-light-day-from-earth",
+          "reserved_at": "2026-11-18T17:38:47.734Z"
         }
       ],
-      "last_generated": "2026-11-17T18:04:52.337Z"
+      "last_generated": "2026-11-18T17:38:47.734Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
