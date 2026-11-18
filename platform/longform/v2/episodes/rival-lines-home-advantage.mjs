@@ -32,17 +32,17 @@ export const SOURCES = {
 export const FOOTAGE_REQUIRE = /stadium|match|players|game/i;
 export const FOOTAGE_EXCLUDE = /flag|world cup|argentina|nigeria|brazil|qatar|national|motorcycle|motorbike|street|ball close|closeup ball|rugby|american football|golden|gold|sparkle|chroma|greenscreen|green background|falling|balls|isolated|cgi|3d/i;   // render 5: a golden American-football ball, falling CGI balls, a chroma-key ball   // render 4: six of ten clips were flags, national balls or street scenes   // "fans|crowd" let a waving national flag through twice (renders 1 and 2)
 export const FOOTAGE = [
-  { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"] },
-  { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"] },
-  { id: "fb-night", q: "football stadium floodlights", alt: ["stadium night lights", "stadium night"] },
+  { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"], optional: true },
+  { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"], optional: true },
+  { id: "fb-night", q: "football stadium floodlights", alt: ["stadium night lights", "stadium night"], optional: true },
   { id: "fb-ref", q: "soccer referee", alt: ["football referee"], optional: true },
   { id: "fb-aerial", q: "soccer stadium aerial", alt: ["football stadium drone"], optional: true },
   { id: "fb-empty", q: "empty stadium seats", alt: ["empty football stadium", "empty stadium"], optional: true },
-  { id: "fb-run", q: "football player running ball", alt: ["soccer player dribbling", "soccer player"], pick: 1 },
+  { id: "fb-run", q: "football player running ball", alt: ["soccer player dribbling", "soccer player"], pick: 1, optional: true },
   { id: "fb-tackle", q: "soccer tackle", optional: true },
   { id: "fb-celebrate", q: "soccer goal celebration", optional: true },
-  { id: "fb-ball", q: "soccer ball grass", alt: ["football ball field"] },
-  { id: "fb-goal", q: "soccer goal net", alt: ["football goal", "goal net"] },
+  { id: "fb-ball", q: "soccer ball grass", alt: ["football ball field"], optional: true },
+  { id: "fb-goal", q: "soccer goal net", alt: ["football goal", "goal net"], optional: true },
 ];
 export const COMMONS = { queries: ["Premier League match", "football match crowd stadium", "Arsenal football match", "Liverpool football match", "Manchester City football match", "football supporters stadium"], perFile: 2, seg: 5, max: 14 };
 const VID = (id) => `lf2/footage/${id}.mp4`;
