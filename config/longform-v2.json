@@ -56,9 +56,9 @@
  },
  "rival-lines": {
  "ix": {
-  "_from": "intrcpt gp4cftwGLcQ formula (cream paper, serif, section background swap) in the channel own palette",
-  "cream": "#F4F0E6", "cream2": "#E7E0D0", "ink": "#17140F", "mute": "#6B6558", "navy": "#0F172A", "green": "#1B7A4D", "accent": "#22A455", "marker": "rgba(250,214,70,0.65)", "arrow": "#D9262E",
-  "home": "#1B7A4D", "away": "#17140F", "draw": "#B9B2A2"
+  "_from": "intrcpt gp4cftwGLcQ, measured frames (channel-reverse/spec/carbon): grey paper with grain, dark teal with a soft glow and faint grid, plum for footage windows; vivid glowing bars; serif type throughout",
+  "paper": "#E4E1D9", "paper2": "#CFCAC0", "ink": "#1A1814", "mute": "#6F6A5F", "teal": "#0B332E", "teal2": "#1C5B4F", "plum": "#4A0F33", "plum2": "#82225C",
+  "home": "#E21DAE", "away": "#3E7BEA", "draw": "#A39E90", "accent": "#8B5CF6", "red": "#E1283E", "marker": "rgba(250,214,70,0.65)", "arrow": "#D9262E", "thumbBg": "#F3F3F1"
  },
   "_from": "Football Made Simple: black vignetted pitch, white markings, one accent",
   "bg": "#050607",

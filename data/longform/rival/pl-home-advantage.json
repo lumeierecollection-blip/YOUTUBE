@@ -227,5 +227,107 @@
  },
  "first11_avg_home_win": 45.9,
  "mid11": 46.8,
- "last11": 44.3
+ "last11": 44.3,
+ "clubs_min300_home": [
+  {
+   "club": "Newcastle",
+   "home_matches": 593,
+   "home_ppg": 1.75,
+   "away_ppg": 1.05
+  },
+  {
+   "club": "Fulham",
+   "home_matches": 361,
+   "home_ppg": 1.5,
+   "away_ppg": 0.84
+  },
+  {
+   "club": "Blackburn",
+   "home_matches": 327,
+   "home_ppg": 1.68,
+   "away_ppg": 1.07
+  },
+  {
+   "club": "Liverpool",
+   "home_matches": 631,
+   "home_ppg": 2.15,
+   "away_ppg": 1.56
+  },
+  {
+   "club": "Everton",
+   "home_matches": 631,
+   "home_ppg": 1.62,
+   "away_ppg": 1.07
+  },
+  {
+   "club": "Arsenal",
+   "home_matches": 631,
+   "home_ppg": 2.19,
+   "away_ppg": 1.64
+  },
+  {
+   "club": "Tottenham",
+   "home_matches": 631,
+   "home_ppg": 1.81,
+   "away_ppg": 1.26
+  },
+  {
+   "club": "West Ham",
+   "home_matches": 574,
+   "home_ppg": 1.52,
+   "away_ppg": 0.98
+  },
+  {
+   "club": "Man City",
+   "home_matches": 536,
+   "home_ppg": 2.04,
+   "away_ppg": 1.51
+  },
+  {
+   "club": "Southampton",
+   "home_matches": 460,
+   "home_ppg": 1.39,
+   "away_ppg": 0.89
+  },
+  {
+   "club": "Sunderland",
+   "home_matches": 323,
+   "home_ppg": 1.28,
+   "away_ppg": 0.8
+  },
+  {
+   "club": "Man United",
+   "home_matches": 631,
+   "home_ppg": 2.24,
+   "away_ppg": 1.77
+  },
+  {
+   "club": "Chelsea",
+   "home_matches": 631,
+   "home_ppg": 2.06,
+   "away_ppg": 1.6
+  },
+  {
+   "club": "Aston Villa",
+   "home_matches": 574,
+   "home_ppg": 1.55,
+   "away_ppg": 1.14
+  },
+  {
+   "club": "Leicester",
+   "home_matches": 344,
+   "home_ppg": 1.43,
+   "away_ppg": 1.03
+  },
+  {
+   "club": "Crystal Palace",
+   "home_matches": 306,
+   "home_ppg": 1.21,
+   "away_ppg": 1.1
+  }
+ ],
+ "league_ppg": {
+  "home": 1.62,
+  "away": 1.12
+ }
 }
