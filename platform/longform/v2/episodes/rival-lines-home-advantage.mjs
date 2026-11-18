@@ -29,7 +29,8 @@ export const SOURCES = {
 };
 
 // short licensed clips: Pixabay (generic, labelled illustrative) and real footage from Wikimedia Commons (CC0 / public domain / CC BY only, credited on screen)
-export const FOOTAGE_REQUIRE = /soccer|football|stadium/i;   // "fans|crowd" let a waving national flag through twice (renders 1 and 2)
+export const FOOTAGE_REQUIRE = /stadium|match|players|game/i;
+export const FOOTAGE_EXCLUDE = /flag|world cup|argentina|nigeria|brazil|qatar|national|motorcycle|motorbike|street|ball close|closeup ball/i;   // render 4: six of ten clips were flags, national balls or street scenes   // "fans|crowd" let a waving national flag through twice (renders 1 and 2)
 export const FOOTAGE = [
   { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"] },
   { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"] },

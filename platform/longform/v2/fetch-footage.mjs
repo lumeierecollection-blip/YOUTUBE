@@ -19,7 +19,7 @@ const ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("riv
 const OUT = join(ROOT, "src/skills/remotion-render/public/lf2/footage"), TMP = join(ROOT, "output/footage-tmp");
 mkdirSync(OUT, { recursive: true }); mkdirSync(TMP, { recursive: true });
 const BAD = /ai generated|ai-generated|animation|3d|green screen|cartoon|render|cgi|foosball|table soccer|table football|pinball|arcade|kid|child|children|toy|logo|intro|particles|bokeh|trophy|vector|video game|virtual|simulation|icon|background loop|loop/i;
-const { FOOTAGE_REQUIRE } = await import(`./episodes/${slug}.mjs`);
+const { FOOTAGE_REQUIRE, FOOTAGE_EXCLUDE } = await import(`./episodes/${slug}.mjs`);   // EXCLUDE: per-episode tags to refuse (18 Nov 2026: flags and national balls came back for "crowd", "ref", "run")
 const USED = new Set();   // one Pixabay clip is used once across the whole pool
 const manifest = [];
 for (const f of FOOTAGE) {
@@ -30,7 +30,7 @@ for (const f of FOOTAGE) {
     if (!r.ok) { console.log("search failed", q, r.status); continue; }
     const toks = q.toLowerCase().split(/\s+/);
     const scored = (await r.json()).hits
-      .filter((h) => !BAD.test(h.tags) && !USED.has(h.id) && h.duration >= 5 && (h.videos.medium?.url || h.videos.small?.url) && (!FOOTAGE_REQUIRE || FOOTAGE_REQUIRE.test(h.tags)))
+      .filter((h) => !BAD.test(h.tags) && !USED.has(h.id) && h.duration >= 5 && (h.videos.medium?.url || h.videos.small?.url) && (!FOOTAGE_REQUIRE || FOOTAGE_REQUIRE.test(h.tags)) && !(FOOTAGE_EXCLUDE && FOOTAGE_EXCLUDE.test(h.tags)))
       .map((h) => ({ h, score: toks.filter((t) => h.tags.toLowerCase().includes(t)).length * 2 + (h.tags.match(/stadium|match|player|players|fans|crowd|goal|penalty|goalkeeper|sailing|ship|castle|fort|armor|horse|flag/gi) || []).length }))
       .sort((x, y) => y.score - x.score);
     hits = scored.map((x) => x.h);
