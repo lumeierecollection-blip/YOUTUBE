@@ -1244,6 +1244,14 @@
       "pillar": "New AI features and releases",
       "hook": "Spotify just rolled out a new weapon to stop fake AI music from stealing real artists' voices.",
       "error": "discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
+    },
+    "2026-11-18-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "44366948890",
+      "trigger": "schedule",
+      "updated_at": "2026-11-18T18:11:38.259Z"
     }
   },
   "uploads": [
@@ -2627,5 +2635,5 @@
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature"
   ],
-  "last_poll_at": "2026-11-18T08:38:24.685Z"
+  "last_poll_at": "2026-11-18T18:11:38.259Z"
 }
