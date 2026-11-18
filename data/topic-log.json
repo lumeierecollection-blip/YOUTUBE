@@ -3142,9 +3142,14 @@
           "topic": "Electric BMW M3 Quad-Motor 100-kWh Battery Pack and Shear Plate Design",
           "slug": "electric-bmw-m3-quad-motor-battery-design",
           "reserved_at": "2026-11-17T18:10:40.934Z"
+        },
+        {
+          "topic": "TSB Canada Warning on Pre-2003 Railcar Wheels",
+          "slug": "tsb-railcar-wheels-safety-concern",
+          "reserved_at": "2026-11-18T17:54:15.136Z"
         }
       ],
-      "last_generated": "2026-11-17T18:10:40.934Z"
+      "last_generated": "2026-11-18T17:54:15.136Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
