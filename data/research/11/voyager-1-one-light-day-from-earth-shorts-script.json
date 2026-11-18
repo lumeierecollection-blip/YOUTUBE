@@ -1,0 +1,53 @@
+{
+  "channel_id": "11",
+  "topic_slug": "voyager-1-one-light-day-from-earth",
+  "format": "shorts",
+  "hook": "NASA Voyager 1 just reached one light-day away, the time light takes to travel 24 hours.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA Voyager 1 just reached one light-day away, the time light takes to travel 24 hours.",
+      "visual_cue": "Deep space visualization showing the probe moving away from the Sun.",
+      "text_overlay": {
+        "text": "1 Light-Day From Earth"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 18, 2026, the spacecraft hit this milestone after traveling for nearly 50 years. This 16 billion mile gap is massive, but how does NASA keep communicating with the probe?",
+      "visual_cue": "Archival footage of the Voyager 1 launch sequence.",
+      "text_overlay": {
+        "text": "Launched: Sept 5, 1977"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Voyager 1 has pushed 26 billion kilometers into interstellar space beyond the Sun's protective bubble.",
+      "visual_cue": "Animation of the heliopause transition into deep interstellar space.",
+      "text_overlay": {
+        "text": "16 Billion Miles Away"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Light from our planet now takes 24 hours to reach the probe's sensors. Voyager 1 continues its lonely journey through the dark.",
+      "visual_cue": "Digital interface simulation showing a 24-hour signal delay timer.",
+      "text_overlay": {
+        "text": "24 Hour Signal Delay"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Voyager 1 remains a single point of light in the silence.",
+      "visual_cue": "Voyager 1 drifting into the distant starfield.",
+      "text_overlay": {
+        "text": "Voyager 1: 1 Light-Day"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://earthsky.org/space/voyager-1-1-light-day-from-earth-november-17-18-2026",
+    "https://www.space.com/space-exploration/voyager/1-light-day-from-earth-nasas-voyager-1-probe-hits-huge-milestone-in-interstellar-space",
+    "https://science.nasa.gov/mission/voyager/voyager-1/voyager-1-what-is-a-light-day"
+  ]
+}
