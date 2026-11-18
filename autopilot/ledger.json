@@ -1251,12 +1251,12 @@
       "attempts": 1,
       "run_id": "44366948890",
       "trigger": "schedule",
-      "updated_at": "2026-11-18T18:13:30.313Z",
+      "updated_at": "2026-11-18T18:14:01.507Z",
       "stage": "research",
-      "topic": "Suno AI Music Generator Now Lets You Create AI Music Videos",
-      "score": 85.6,
-      "pillar": "Trending AI tools and apps",
-      "hook": "The viral AI song generator Suno can now build full music videos for your tracks."
+      "topic": "Disney's New Star Wars Animatronics Use AI to Chat With Visitors",
+      "score": 81.8,
+      "pillar": "Viral AI demos and experiments",
+      "hook": "Disney's newest Star Wars park animatronics can hold actual real-time conversations using AI."
     }
   },
   "uploads": [
@@ -2554,6 +2554,15 @@
       "at_ms": 1795025610312,
       "score": 85.6,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Disney's New Star Wars Animatronics Use AI to Chat With Visitors",
+      "slug": "disney-s-new-star-wars-animatronics-use-ai-to-chat-with-visi",
+      "slot": "2026-11-18-ch2",
+      "at_ms": 1795025641507,
+      "score": 81.8,
+      "pillar": "Viral AI demos and experiments"
     }
   ],
   "attention": [
