@@ -3,7 +3,7 @@
  "hidden-past": {
  "ep": {
   "_from": "Epic History TV bhQe2cjr5XQ formula (text cards on black, caption plates, flat-colour campaign map, orange casualty card, red credits) in the channel own palette",
-  "paper": "#EBE1CA", "ink": "#24190F", "black": "#0B0A09", "red": "#A8201A", "blue": "#2E4C86", "gold": "#C9A24B", "orange": "#C2602A", "england": "#A8201A", "normandy": "#2E4C86", "norway": "#B98B2E", "route": "#1A1A1A",
+  "paper": "#EBE1CA", "ink": "#24190F", "black": "#0B0A09", "red": "#A8201A", "blue": "#2E4C86", "gold": "#C9A24B", "orange": "#C2602A", "england": "#A8201A", "normandy": "#2E4C86", "norway": "#B98B2E", "route": "#1A1A1A", "sea": "#A9BAC6", "land": "#D9D5CB", "border": "#B3ADA1", "mapInk": "#1F2433", "khaki": "#B5A764", "khaki2": "#CFC49A", "water": "#A9C3CF", "arrow": "#C9F28B", "cavalry": "#1F3566",
   "map": { "label": "#20170E", "labelBg": "rgba(240,231,210,0.9)", "zone": "#A8201A", "font": "\"Cormorant Garamond\", \"Noto Serif\", serif" }
  },
   "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",

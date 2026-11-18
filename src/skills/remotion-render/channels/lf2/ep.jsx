@@ -4,7 +4,8 @@
 // credits card at the end. Our own palette (config/longform-v2.json hidden-past.ep), our own maps (OpenStreetMap boundaries + Sentinel-2 / Blue Marble imagery),
 // and only public-domain or credited art. Their animated battle maps come from a licensed collaborator; ours is a schematic drawn on real terrain, labelled as such.
 import React from "react";
-import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Img, continueRender, delayRender, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { geoMercator, geoPath } from "d3-geo";
 import { MapScene } from "./hidden.jsx";
 import { F, Fonts, clamp, eio, eo, expo, lerp, ramp } from "./kit.jsx";
 
@@ -16,12 +17,13 @@ const col = (t, c) => (c && t.ep[c]) || c || t.ep.red;
 const Grain = ({ o = 0.12, id = "epg" }) => <svg width="1920" height="1080" style={{ position: "absolute", inset: 0, opacity: o, mixBlendMode: "multiply", pointerEvents: "none" }}>
   <filter id={id}><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="9" /><feColorMatrix type="saturate" values="0" /></filter><rect width="1920" height="1080" filter={`url(#${id})`} /></svg>;
 
-/** Caption plate for a named person or a place (Epic's commander plate): cream strip, dark small caps, thin rule. */
+/** Caption plate for a named person or a place, measured from Epic (aust-sheet / ep-a): a dark grey plate with a thin light inner rule, name in serif, role in
+ *  smaller serif below ("General Mikhail Kutuzov / Russian Army Commander"). */
 export const Plate = ({ t, name, role, x = 70, y = 900, from = 18, w }) => {
   const f = useCurrentFrame(), a = ramp(f, from, from + 14, expo);
-  return <div style={{ position: "absolute", left: x, top: y, width: w, background: t.ep.paper, color: t.ep.ink, padding: "12px 26px 10px", boxShadow: "0 8px 26px rgba(0,0,0,0.45)", opacity: a, transform: `translateX(${(1 - a) * -30}px)`, borderLeft: `6px solid ${t.ep.red}` }}>
-    <div style={{ fontFamily: SERIF, fontWeight: 700, fontSize: 36, letterSpacing: "0.08em", textTransform: "uppercase" }}>{name}</div>
-    {role && <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 26, marginTop: 2 }}>{role}</div>}
+  return <div style={{ position: "absolute", left: x, top: y, minWidth: w || 430, background: "linear-gradient(180deg, #4A4640 0%, #35322D 100%)", padding: "10px 26px 9px", boxShadow: "0 8px 22px rgba(0,0,0,0.5)", opacity: a, transform: `translateY(${(1 - a) * 14}px)`, outline: "1.5px solid rgba(214,205,186,0.75)", outlineOffset: -6 }}>
+    <div style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 34, color: "#F1EADB", letterSpacing: "0.02em" }}>{name}</div>
+    {role && <div style={{ fontFamily: SERIF, fontSize: 25, color: "#CFC6B3", marginTop: 1 }}>{role}</div>}
   </div>;
 };
 const Credit = ({ text }) => text ? <div style={{ position: "absolute", right: 26, bottom: 16, fontFamily: F.sans, fontSize: 17, color: "rgba(255,255,255,0.78)", textShadow: "0 1px 3px #000" }}>{text}</div> : null;
@@ -131,4 +133,119 @@ export function EpThumb({ t, big = [], series, year, bg, bgPos = "50% 50%", cut,
   </AbsoluteFill>;
 }
 
-export const EP = { eptitle: EpTitle, eppaint: EpPaint, epmap: EpMap, eporder: EpOrder, epcasualty: EpCasualty, epcredits: EpCredits, epthumb: EpThumb };
+/** Loads a JSON file from public/ once per scene (the Europe base is 0.5 MB: too big to pass as props to every beat). */
+function useJson(path) {
+  const [data, set] = React.useState(null);
+  const [h] = React.useState(() => delayRender(`json ${path}`));
+  React.useEffect(() => { fetch(staticFile(path)).then((r) => r.json()).then((j) => { set(j); continueRender(h); }); }, []);
+  return data;
+}
+
+/** Campaign map in Epic's measured style (channel-reverse/spec/carbon/ep-a.jpg): a FLAT printed map, not imagery. Pale blue-grey sea, light grey land with thin
+ *  modern borders, each power in one flat colour, big spaced serif capitals for realms, italic capitals for water, small serif for places; routes drawn as
+ *  arrows; flag tokens for armies; commander plates and cut-out figures over the map edge. Camera: views [{ f, center: [lon, lat], scale }] (Mercator).
+ *  realms: [{ key: "england"|"normandy"|"norway", color, from }] from public/lf2/hidden-past/geo/hastings-realms.json (modern outlines, said on screen). */
+export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], points = [], plates = [], figures = [], armies = [], note, credit = "Base: Natural Earth (public domain) · realm outlines: OpenStreetMap contributors, modern boundaries" }) {
+  const f = useCurrentFrame(), base = useJson("lf2/hidden-past/geo/europe-50m.json"), rl = useJson("lf2/hidden-past/geo/hastings-realms.json"), c = t.ep;
+  let i = 0; while (i < views.length - 2 && f > views[i + 1].f) i++;
+  const A = views[i], B = views[Math.min(i + 1, views.length - 1)], k = A === B ? 0 : interpolate(f, [A.f || 0, B.f], [0, 1], { ...clamp, easing: eio });
+  const proj = geoMercator().center([A.center[0] + (B.center[0] - A.center[0]) * k, A.center[1] + (B.center[1] - A.center[1]) * k]).scale(Math.exp(Math.log(A.scale) + (Math.log(B.scale) - Math.log(A.scale)) * k)).translate([960, 540]);
+  const path = geoPath(proj);
+  const draw = (coords, p) => {
+    const pts = coords.map((q) => proj(q)); let len = 0; const seg = [];
+    for (let n = 1; n < pts.length; n++) { const d = Math.hypot(pts[n][0] - pts[n - 1][0], pts[n][1] - pts[n - 1][1]); seg.push(d); len += d; }
+    let left = len * p; const out = [pts[0]];
+    for (let n = 1; n < pts.length && left > 0; n++) { const d = seg[n - 1]; if (left >= d) { out.push(pts[n]); left -= d; } else { const r = left / d; out.push([pts[n - 1][0] + (pts[n][0] - pts[n - 1][0]) * r, pts[n - 1][1] + (pts[n][1] - pts[n - 1][1]) * r]); left = 0; } }
+    return out;
+  };
+  if (!base || !rl) return <AbsoluteFill style={{ background: c.sea }} />;
+  const K = { country: { size: 58, weight: 600, sp: "0.1em", caps: true, op: 0.85 }, region: { size: 34, weight: 600, sp: "0.08em", caps: true, op: 0.8 }, place: { size: 26, weight: 600, sp: "0.04em", caps: false, op: 0.95 }, water: { size: 36, weight: 500, sp: "0.12em", caps: true, italic: true, op: 0.7 } };
+  return <AbsoluteFill style={{ background: c.sea }}>
+    <Fonts />
+    <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
+      <defs>
+        <filter id="pmg"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="3" /><feColorMatrix type="saturate" values="0" /></filter>
+        <marker id="pmah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
+      </defs>
+      {base.features.map((ft, n) => <path key={n} d={path(ft)} fill={c.land} stroke={c.border} strokeWidth={0.9} />)}
+      {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(0,0,0,0.35)" strokeWidth={1.2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18)} />)}
+      {routes.map((r, n) => {
+        const p = ramp(f, r.from || 0, (r.from || 0) + (r.dur || 60), eio), pts = draw(r.coords, p).map((q) => q.join(",")).join(" ");
+        return p > 0 && <g key={`ro${n}`}>
+          <polyline points={pts} fill="none" stroke={col(t, r.color)} strokeWidth={(r.width || 8) + 8} opacity={0.25} strokeLinecap="round" strokeLinejoin="round" />
+          <polyline points={pts} fill="none" stroke={col(t, r.color)} strokeWidth={r.width || 8} strokeLinecap="round" strokeLinejoin="round" markerEnd={p > 0.98 ? "url(#pmah)" : undefined} />
+        </g>;
+      })}
+      {points.map((q, n) => { const [x, y] = proj(q.at), a = ramp(f, q.from || 0, (q.from || 0) + 10); return <g key={`p${n}`} opacity={a}><rect x={x - 9} y={y - 9} width={18} height={18} fill="#1d1a16" /><rect x={x - 5} y={y - 5} width={10} height={10} fill="#F2EADB" /></g>; })}
+      {armies.map((q, n) => {
+        const [x, y] = proj(q.at), a = ramp(f, q.from || 0, (q.from || 0) + 12);
+        return <g key={`a${n}`} opacity={a} transform={`translate(${x} ${y})`}>
+          <line x1={0} y1={0} x2={0} y2={-58} stroke="#2a2520" strokeWidth={3} />
+          <rect x={0} y={-58} width={46} height={30} fill={col(t, q.color)} stroke="#F2EADB" strokeWidth={2} />
+          <text x={23} y={-37} textAnchor="middle" fontFamily={SERIF} fontWeight={700} fontSize={18} fill="#fff">{q.short}</text>
+        </g>;
+      })}
+      <rect width="1920" height="1080" filter="url(#pmg)" opacity={0.22} style={{ mixBlendMode: "multiply" }} />
+    </svg>
+    {labels.map((l, n) => { const [x, y] = proj(l.at), s = K[l.kind || "country"], a = ramp(f, l.from || 0, (l.from || 0) + 14); return <div key={`l${n}`} style={{ position: "absolute", left: x - 400, width: 800, top: y - s.size * 0.6, textAlign: "center", fontFamily: SERIF, fontWeight: s.weight, fontStyle: s.italic ? "italic" : "normal", fontSize: s.size, letterSpacing: s.sp, textTransform: s.caps ? "uppercase" : "none", color: c.mapInk, opacity: a * s.op, transform: `rotate(${l.rotate || 0}deg)` }}>{l.text}</div>; })}
+    {figures.map((g, n) => { const a = ramp(f, g.from || 0, (g.from || 0) + 16, expo), m = g.vignette ? "radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%)" : undefined;
+      // vignette: a rectangular crop of period art faded at the edges (background removal failed on embroidery: heads and riders vanished, 18 Nov 2026)
+      return <Img key={`g${n}`} src={staticFile(g.src)} style={{ position: "absolute", [g.side || "right"]: g.edge ?? 30, bottom: g.bottom ?? 0, height: g.h || 760, opacity: a, transform: `translateX(${(1 - a) * (g.side === "left" ? -40 : 40)}px)`, filter: g.vignette ? "sepia(0.1)" : "drop-shadow(0 0 26px rgba(0,0,0,0.55))", WebkitMaskImage: m, maskImage: m }} />; })}
+    <AbsoluteFill style={{ background: "radial-gradient(95% 90% at 50% 50%, rgba(0,0,0,0) 62%, rgba(20,16,10,0.45) 100%)", pointerEvents: "none" }} />
+    {plates.map((p, n) => <Plate key={`pl${n}`} t={t} {...p} />)}
+    {note && <div style={{ position: "absolute", left: 40, top: 30, fontFamily: SERIF, fontStyle: "italic", fontSize: 22, color: c.mapInk, opacity: 0.75 * ramp(f, note.from || 20, (note.from || 20) + 14) }}>{note.text}</div>}
+    <Credit text={credit} />
+  </AbsoluteFill>;
+}
+
+/** Battle map in Epic's measured style (ep-a.jpg rows 5-6): painted khaki ground with soft relief and fog at the edges, pale water, unit blocks in formation
+ *  rows (one colour per side, white edge), big curved glowing arrows for each attack, army names with their strength in white serif. Drawn in screen space:
+ *  a SCHEMATIC of what the sources describe (two hills, a ridge, marsh, a stream), not a surveyed map, and it says so on screen. */
+export function EpBattle({ t, hills = [], water = [], woods = [], units = [], arrows = [], armies = [], plates = [], schematic = "Schematic: the sources disagree on the exact positions", push = 0.1 }) {
+  const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), c = t.ep, k = interpolate(f, [0, Math.max(60, D)], [0, 1], { ...clamp, easing: eio });
+  const curve = (pts) => pts.length === 3 ? `M${pts[0][0]} ${pts[0][1]} Q${pts[1][0]} ${pts[1][1]} ${pts[2][0]} ${pts[2][1]}` : "M" + pts.map((q) => q.join(" ")).join(" L");
+  return <AbsoluteFill style={{ background: c.khaki2 }}>
+    <Fonts />
+    <AbsoluteFill style={{ transform: `scale(${1 + push * k})`, transformOrigin: "50% 50%" }}>
+      <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <filter id="bt1"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="7" /><feColorMatrix values="0 0 0 0 0.55  0 0 0 0 0.5  0 0 0 0 0.25  0 0 0 0.55 0" /></filter>
+          <filter id="bt2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" /><feColorMatrix type="saturate" values="0" /></filter>
+          <filter id="soft"><feGaussianBlur stdDeviation="22" /></filter>
+          <filter id="glow"><feGaussianBlur stdDeviation="9" /></filter>
+          <marker id="bah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
+        </defs>
+        <rect width="1920" height="1080" fill={c.khaki} />
+        <rect width="1920" height="1080" filter="url(#bt1)" />
+        {hills.map((h, n) => <g key={`h${n}`}>
+          <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="#3D3518" opacity={0.35} filter="url(#soft)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
+          <ellipse cx={h.x - h.rx * 0.18} cy={h.y - h.ry * 0.25} rx={h.rx * 0.7} ry={h.ry * 0.55} fill="#E8DDA6" opacity={0.3} filter="url(#soft)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
+        </g>)}
+        {woods.map((w, n) => <ellipse key={`w${n}`} cx={w.x} cy={w.y} rx={w.rx} ry={w.ry} fill="#4A5320" opacity={0.55} filter="url(#soft)" />)}
+        {water.map((w, n) => <path key={`wa${n}`} d={curve(w.pts)} fill="none" stroke={c.water} strokeWidth={w.width || 10} strokeLinecap="round" opacity={0.9} />)}
+        <rect width="1920" height="1080" filter="url(#bt2)" opacity={0.18} style={{ mixBlendMode: "multiply" }} />
+        {units.map((u, n) => {
+          const a = ramp(f, u.from || 0, (u.from || 0) + 12), mv = u.to ? ramp(f, u.to.from, u.to.from + (u.to.dur || 60), eio) : 0;
+          const x = u.x + (u.to ? (u.to.x - u.x) * mv : 0), y = u.y + (u.to ? (u.to.y - u.y) * mv : 0), cols = u.cols || 6, rows = u.rows || 2, bw = u.bw || 22, bh = u.bh || 14;
+          return <g key={`u${n}`} opacity={a} transform={`translate(${x} ${y}) rotate(${u.rot || 0})`}>
+            {Array.from({ length: cols * rows }, (_, q) => <rect key={q} x={(q % cols) * (bw + 4) - (cols * (bw + 4)) / 2} y={Math.floor(q / cols) * (bh + 4) - (rows * (bh + 4)) / 2} width={bw} height={bh} fill={col(t, u.color)} stroke="#F4EEDD" strokeWidth={1.6} />)}
+          </g>;
+        })}
+        {arrows.map((ar, n) => {
+          const p = ramp(f, ar.from || 0, (ar.from || 0) + (ar.dur || 40), eio);
+          return p > 0 && <g key={`ar${n}`}>
+            <path d={curve(ar.pts)} fill="none" stroke={col(t, ar.color || "arrow")} strokeWidth={(ar.width || 26) + 16} opacity={0.45} filter="url(#glow)" pathLength={1} strokeDasharray={`${p} 1`} />
+            <path d={curve(ar.pts)} fill="none" stroke={col(t, ar.color || "arrow")} strokeWidth={ar.width || 26} opacity={0.9} pathLength={1} strokeDasharray={`${p} 1`} markerEnd={p > 0.97 ? "url(#bah)" : undefined} />
+          </g>;
+        })}
+      </svg>
+      {hills.filter((h) => h.label).map((h, n) => <div key={`hl${n}`} style={{ position: "absolute", left: h.x - 300, width: 600, top: h.y + (h.ly || 0), textAlign: "center", fontFamily: SERIF, fontStyle: "italic", fontSize: 30, color: "#2B2412", opacity: 0.8 }}>{h.label}</div>)}
+      {armies.map((a, n) => <div key={`am${n}`} style={{ position: "absolute", left: a.x, top: a.y, fontFamily: SERIF, color: "#FFFBEF", textShadow: "0 2px 12px rgba(0,0,0,0.6)", opacity: ramp(f, a.from || 0, (a.from || 0) + 14) }}><div style={{ fontSize: a.size || 50, fontWeight: 600 }}>{a.title}</div>{a.sub && <div style={{ fontSize: (a.size || 50) * 0.6, marginLeft: a.size ? 0 : 40 }}>{a.sub}</div>}</div>)}
+    </AbsoluteFill>
+    <AbsoluteFill style={{ background: "radial-gradient(80% 75% at 50% 50%, rgba(240,232,205,0) 55%, rgba(236,228,200,0.7) 100%)", pointerEvents: "none" }} />
+    {plates.map((p, n) => <Plate key={`bp${n}`} t={t} {...p} />)}
+    {schematic && <div style={{ position: "absolute", right: 30, top: 24, fontFamily: SERIF, fontStyle: "italic", fontSize: 22, color: "#2B2412", opacity: 0.8 }}>{schematic}</div>}
+  </AbsoluteFill>;
+}
+
+export const EP = { eppmap: EpPaperMap, epbattle: EpBattle, eptitle: EpTitle, eppaint: EpPaint, epmap: EpMap, eporder: EpOrder, epcasualty: EpCasualty, epcredits: EpCredits, epthumb: EpThumb };
