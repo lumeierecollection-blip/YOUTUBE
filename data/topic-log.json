@@ -3017,9 +3017,14 @@
           "topic": "California Sea Lions and Cockatoos Reveal the Evolutionary Origins of Music",
           "slug": "sea-lions-cockatoos-origins-of-music",
           "reserved_at": "2026-11-17T19:02:48.915Z"
+        },
+        {
+          "topic": "National Centers for Environmental Information Reports October 2026 Sea Surface Record",
+          "slug": "ncei-october-2026-sea-surface-temperature-record",
+          "reserved_at": "2026-11-18T17:39:51.722Z"
         }
       ],
-      "last_generated": "2026-11-17T19:02:48.915Z"
+      "last_generated": "2026-11-18T17:39:51.722Z"
     },
     "18": {
       "channel_name": "Brief History",
