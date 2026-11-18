@@ -27,7 +27,7 @@ jobs:
         with: { repository: brodyautomates/blender-edit-machine, ref: "${{ env.BEM_SHA }}", path: bem }
       - uses: actions/setup-python@v5
         with: { python-version: "3.11" }
-      - run: pip install "faster-whisper>=1.1" numpy
+      - run: pip install "faster-whisper>=1.1" numpy && sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
       - name: Voice run id
         id: run
         run: echo "id=$(python3 -c "import json;print(json.load(open('data/blender/projects.json'))['${{ matrix.episode }}']['voice_run'])")" >> "$GITHUB_OUTPUT"
