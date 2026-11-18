@@ -32,7 +32,7 @@ def torn_edge(alpha: Image.Image, border: int, seed: int) -> Image.Image:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("src"); ap.add_argument("dst")
-    ap.add_argument("--model", default="u2net_human_seg")
+    ap.add_argument("--model", default="birefnet-general")   # 18 Nov 2026 side-by-side on magenta: BiRefNet clean; u2net left grass and a dark halo; matting smudged
     ap.add_argument("--paper", type=int, default=0)
     ap.add_argument("--bw", action="store_true")
     ap.add_argument("--seed", type=int, default=1)
