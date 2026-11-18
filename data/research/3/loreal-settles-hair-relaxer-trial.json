@@ -1,0 +1,69 @@
+{
+  "topic_slug": "loreal-settles-hair-relaxer-trial",
+  "strongest_angle": "Analyzing the mid-trial settlement reached in Chicago by L'Oreal USA with four women alleging chemical hair straighteners caused gynecologic cancers, amidst thousands of pending claims.",
+  "key_facts": [
+    {
+      "fact": "L'Oreal's U.S. subsidiary and other companies settled claims with four women on November 16 during a trial in Chicago.",
+      "source_url": "https://qz.com/loreal-settles-hair-relaxer-cancer-cases-first-trial-111726",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "More than 12,700 claims are still pending in lawsuits alleging that years of using chemical hair straighteners caused gynecologic cancers.",
+      "source_url": "https://theamericandispatchnews.com/latest/story/?id=4c81ebaf-f13f-495b-8008-fff85757e1df",
+      "source_name": "The American Dispatch",
+      "confidence": "high"
+    },
+    {
+      "fact": "Danielle Ward Mason is an attorney representing plaintiffs MaryAnne Lindsey, Surenthia Jenkins, Miranda Lofton, and Sandra Simpson.",
+      "source_url": "https://www.singletonschreiber.com/newsroom/news/ward-mason-hair-relaxer-cancer-lawsuit",
+      "source_name": "Singleton Schreiber",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Pending claims",
+      "value": 12700,
+      "unit": "claims",
+      "source_url": "https://theamericandispatchnews.com/latest/story/?id=4c81ebaf-f13f-495b-8008-fff85757e1df"
+    },
+    {
+      "label": "Plaintiffs in settled trial",
+      "value": 4,
+      "unit": "women",
+      "source_url": "https://qz.com/loreal-settles-hair-relaxer-cancer-cases-first-trial-111726"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "L'Oreal USA",
+      "kind": "organization"
+    },
+    {
+      "name": "Chicago",
+      "kind": "place"
+    },
+    {
+      "name": "Danielle Ward Mason",
+      "kind": "person"
+    },
+    {
+      "name": "MaryAnne Lindsey",
+      "kind": "person"
+    },
+    {
+      "name": "Surenthia Jenkins",
+      "kind": "person"
+    },
+    {
+      "name": "Miranda Lofton",
+      "kind": "person"
+    },
+    {
+      "name": "Sandra Simpson",
+      "kind": "person"
+    }
+  ]
+}

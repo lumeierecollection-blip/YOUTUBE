@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "loreal-settles-hair-relaxer-trial",
+  "format": "shorts",
+  "hook": "Four women sued L'Oreal over cancer claims, and then the trial settled.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Four women sued L'Oreal over cancer claims, and then the trial settled.",
+      "text_overlay": {
+        "text": "L'Oreal Settlement"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 16, L'Oreal USA settled with 4 women during a trial in Chicago. Will the 12,700 other pending claims against L'Oreal USA reach a similar settlement in court?",
+      "text_overlay": {
+        "text": "Trial in Chicago"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Over 12,700 claims remain pending, alleging that chemical hair straighteners cause various gynecologic cancers in women.",
+      "text_overlay": {
+        "text": "12,700 Claims Pending"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These 12,700 claims allege that L'Oreal USA products caused gynecologic cancers in women.",
+      "text_overlay": {
+        "text": "12,700 Claims Active"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Thousands of women continue their legal fight against L'Oreal USA to resolve these 12,700 claims.",
+      "text_overlay": {
+        "text": "Unresolved Claims"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://qz.com/loreal-settles-hair-relaxer-cancer-cases-first-trial-111726",
+    "https://theamericandispatchnews.com/latest/story/?id=4c81ebaf-f13f-495b-8008-fff85757e1df"
+  ]
+}
