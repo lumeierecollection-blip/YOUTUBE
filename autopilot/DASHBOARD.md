@@ -1,8 +1,8 @@
 # YouTube Autopilot
 
-Updated 2026-11-18 10:38 SAST
+Updated 2026-11-18 20:14 SAST
 
-**Next productions:** AI Tested 2026-11-18 11:00 SAST, Hidden Past 2026-11-18 16:00 SAST, AI Tested 2026-11-19 11:00 SAST, AI Tested 2026-11-20 11:00 SAST
+**Next productions:** AI Tested 2026-11-19 11:00 SAST, AI Tested 2026-11-20 11:00 SAST, Hidden Past 2026-11-21 11:00 SAST, AI Tested 2026-11-23 11:00 SAST
 
 ## Hidden Past
 | | |
@@ -19,8 +19,8 @@ Updated 2026-11-18 10:38 SAST
 | | |
 |---|---|
 | Last successful video | [12MP Glasses Drop in Dec 2026: 41g Frames, 9h Battery, 7x Recharge](https://www.youtube.com/watch?v=cHXH_gz1mrg) (2026-11-17T04:14 UTC) |
-| Latest production | failed-final at discover, attempts 2 |
-| Selected topic and score | Spotify's New Tool Stops Deepfakes of Real Artists (73.3/100) |
+| Latest production | failed at research, attempts 1 |
+| Selected topic and score | Meta's New AI Agent Keeps Pulling in Random Chats and Messing Up Messages (77.8/100) |
 | QA | n/a |
 | Upload | cHXH_gz1mrg, privacy verified: private |
 | Performance | 1 views, 0 likes, 0 comments (private) |
