@@ -102,6 +102,11 @@ function Plate({ s, l, ground, calm }) {
     {s.img && Array.from({ length: n }, (_, i) => <Img key={i} src={src(s.img)} style={{ position: "absolute", left: 540 + (i - (n - 1) / 2) * 230, top: 860 + Math.abs(i - (n - 1) / 2) * 60, width: 560, transform: `translateX(-50%) scale(${z}) rotate(${(i - (n - 1) / 2) * 4}deg)`, opacity: appear(i + 1, 6), filter: "drop-shadow(0 16px 24px rgba(0,0,0,0.3))" }} />)}
   </AbsoluteFill>; }
   // two people as cut-outs on their companies' colours, side by side (owner: a mix of PNG cut-outs and photos, not photos everywhere)
+  // a transparent PNG object (gavel, statue, money...) centred on the paper, the way motion designers use stock PNGs
+  if (s.kind === "object") return <AbsoluteFill style={{ background: s.bg || ground }}>
+    <Img src={src(s.img)} style={{ position: "absolute", left: 140, width: 800, top: s.top ?? 470, height: s.h ?? 860, objectFit: "contain", opacity: appear(0), transform: `scale(${z})`, filter: "drop-shadow(0 22px 30px rgba(0,0,0,0.28))" }} />
+    {s.label && <div style={{ position: "absolute", left: 60, right: 60, top: (s.top ?? 470) + (s.h ?? 860) + 30, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 40, color: "#1a1a1a", opacity: appear(1) }}>{s.label}</div>}
+  </AbsoluteFill>;
   if (s.kind === "versus") return <AbsoluteFill>
     <div style={{ position: "absolute", left: 0, top: 0, width: 540, height: 1920, background: s.bgA || "#111" }} /><div style={{ position: "absolute", left: 540, top: 0, width: 540, height: 1920, background: s.bgB || "#DD7354" }} />
     {[[s.cutA, s.labA, 0], [s.cutB, s.labB, 540]].map(([c, lab, x], i) => <React.Fragment key={i}>
@@ -156,7 +161,7 @@ export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta,
   return <AbsoluteFill style={{ background: ground }}>
     <Fonts />
     <AbsoluteFill style={{ opacity: calm && si > 0 ? Math.min(1, 0.35 + l / 8) : 1 }}><Plate s={s} l={l} ground={ground} calm={calm} /></AbsoluteFill>   {/* calm: a short fade into each picture instead of a hard flash */}
-    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : ["people", "money", "stat", "versus"].includes(s.kind) ? 1660 : s.kind === "person" ? 1700 : undefined} />}
+    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || (s.kind === "inset" && !calm)} top={s.kind === "inset" ? (calm ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) + (s.label ? 120 : 60) : (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70) : s.kind === "logo" && calm ? 1100 : s.kind === "object" ? Math.min(1680, (s.top ?? 470) + (s.h ?? 860) + (s.label ? 110 : 50)) : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : ["people", "money", "stat", "versus"].includes(s.kind) ? 1660 : s.kind === "person" ? 1700 : undefined} />}
     {s.cap && <div style={{ position: "absolute", left: 0, right: 0, top: 1040, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 78, color: "#fff", textShadow: "0 3px 18px rgba(0,0,0,0.65)" }}>{s.cap}</div>}
     {s.kind === "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 110, color: "#fff", lineHeight: 1.05 }}>{cta}</div>}
     {!calm && s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}

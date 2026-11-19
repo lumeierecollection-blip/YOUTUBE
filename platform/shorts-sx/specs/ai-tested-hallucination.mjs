@@ -43,7 +43,7 @@ export const SHOTS = [
   { at: "present", kind: "inset", photo: "ph-gpt-keyboard", w: 900, top: 520, mat: true },
   { at: "hallucination", kind: "paper" },
   { at: "2023,", kind: "inset", photo: "ph-courthouse", w: 860, top: 480, label: "Manhattan's federal courthouse" },
-  { at: "lawyer", kind: "inset", photo: "ph-avianca", w: 900, top: 520, label: "the case: Mata v. Avianca" },
+  { at: "lawyer", kind: "object", asset: "png-justice", h: 900, top: 420 },   // owner: a plane next to "lawyer" made no sense
   { at: "six", kind: "stat", value: "6", unit: "fake cases" },
   { at: "ChatGPT", kind: "cutout", cut: "photo-openai-sticker", h: 1000 },
   { at: "invented,", kind: "inset", photo: "ph-castel", w: 900, top: 520, mat: true, label: "Judge P. Kevin Castel" },

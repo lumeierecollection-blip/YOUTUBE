@@ -59,6 +59,7 @@ function realise(s) {
   if (s.kind === "people") { o.people = s.people.map((p) => { const e = entPic(p.ent); return { name: p.name || e.name, role: p.role || "", img: e.img }; }); o.credit = [...new Set(s.people.map((p) => entPic(p.ent).credit).filter(Boolean))].join(" · ").slice(0, 200); }
   if (s.kind === "person") { const e = entPic(s.ent); Object.assign(o, { name: s.name || e.name, img: e.img, cut: s.noCut ? null : e.cut, credit: e.credit }); if (!e.img) o.kind = "page", (o.page = o.name); }
   if (s.kind === "versus") { const pick = (x) => (x.ent ? entPic(x.ent).cut || entPic(x.ent).img : cutOf(x.photo)); Object.assign(o, { cutA: pick(s.a), cutB: pick(s.b), labA: s.a.label, labB: s.b.label }); o.credit = [s.a, s.b].map((x) => (x.ent ? entPic(x.ent).credit : photo(x.photo)?.credit)).filter(Boolean).join(" · "); }
+  if (s.kind === "object") { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; if (!o.img) o.kind = "paper"; }
   if ((s.kind === "money" || s.kind === "stat") && s.asset) { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; }
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
   if (s.photo) { const ph = photo(s.photo); if (ph) Object.assign(o, ph); else o.kind = "paper"; }

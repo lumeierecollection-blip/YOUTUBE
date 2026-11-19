@@ -632,5 +632,25 @@
   "licence": "CC BY 2.0",
   "credit_line": "Sam Altman, CC BY 2.0, via Wikimedia Commons",
   "retrieved": "2026-11-19"
+ },
+ "png-justice": {
+  "id": "png-justice",
+  "description": "Lady Justice statue (symbol of the courts)",
+  "file": "png-justice.png",
+  "source": "pngimg.com",
+  "source_url": "https://pngimg.com/uploads/sculpture/sculpture_PNG55.png",
+  "licence": "CC BY-NC 4.0 (pngimg.com)",
+  "credit_line": "PNG: pngimg.com, CC BY-NC 4.0",
+  "retrieved": "2026-11-19"
+ },
+ "png-gavel": {
+  "id": "png-gavel",
+  "description": "a judge's gavel (symbol)",
+  "file": "png-gavel.png",
+  "source": "pngimg.com",
+  "source_url": "https://pngimg.com/uploads/gavel/gavel_PNG46.png",
+  "licence": "CC BY-NC 4.0 (pngimg.com)",
+  "credit_line": "PNG: pngimg.com, CC BY-NC 4.0",
+  "retrieved": "2026-11-19"
  }
 }
