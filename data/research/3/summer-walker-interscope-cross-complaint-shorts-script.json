@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "summer-walker-interscope-cross-complaint",
+  "format": "shorts",
+  "hook": "Interscope Records claims Summer Walker owes them $50 million in damages.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Interscope Records claims Summer Walker owes them $50 million in damages.",
+      "text_overlay": {
+        "text": "Interscope vs. Summer Walker: $50M at stake"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October, the label filed a 7-page lawsuit alleging the artist abandoned her 2017 contract. They claim she still owes two studio albums and an EP. Will this contract dispute reach a settlement?",
+      "text_overlay": {
+        "text": "7-page lawsuit filed in October"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead of settling, Summer Walker fired back with a 10-page cross-complaint.",
+      "text_overlay": {
+        "text": "10-page cross-complaint filed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Her filing demands at least $20 million from Interscope Records. Meanwhile, the label's partner, Love Renaissance Records, denied all allegations of fraud and breach of contract in court.",
+      "text_overlay": {
+        "text": "$20 million demand"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Both the $50 million claim and $20 million counter-demand remain unresolved.",
+      "text_overlay": {
+        "text": "Legal dispute remains unresolved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.watchpreviously.com/news/summer-walker-interscope-cross-complaint",
+    "https://www.rollingstone.com/music/music-news/summer-walker-cross-complaint-interscope-lvrn-contract-1235660594"
+  ]
+}

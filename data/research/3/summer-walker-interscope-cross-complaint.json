@@ -1,0 +1,86 @@
+{
+  "topic_slug": "summer-walker-interscope-cross-complaint",
+  "strongest_angle": "Examine the escalating legal dispute between R&B artist Summer Walker and Interscope Records, detailing the label's $50 million claim and Walker's 10-page cross-complaint demanding $20 million over her 2017 recording contract.",
+  "key_facts": [
+    {
+      "fact": "Summer Walker filed a 10-page cross-complaint against Interscope Records demanding at least $20 million following an initial lawsuit filed by the label in October.",
+      "source_url": "https://www.watchpreviously.com/news/summer-walker-interscope-cross-complaint",
+      "source_name": "Previously",
+      "confidence": "high"
+    },
+    {
+      "fact": "Interscope Records sued Summer Walker in October, claiming she would owe the label $50 million if she abandoned her evolving 2017 recording contract.",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-cross-complaint-interscope-lvrn-contract-1235660594",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "Atlanta-based Love Renaissance Records, known as LVRN, issued a court filing denying allegations of breach of contract and fraud made by Summer Walker.",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-label-lvrn-breach-of-contract-interscope-1235656161",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "Interscope Records claimed in a seven-page lawsuit that Summer Walker still owes the label two studio albums and an EP under her 2017 deal.",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-record-deal-interscope-lawsuit-1235640766",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Summer Walker cross-complaint amount",
+      "value": 20,
+      "unit": "million dollars",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-cross-complaint-interscope-lvrn-contract-1235660594"
+    },
+    {
+      "label": "Interscope Records claimed debt amount",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-cross-complaint-interscope-lvrn-contract-1235660594"
+    },
+    {
+      "label": "Cross-complaint page count",
+      "value": 10,
+      "unit": "pages",
+      "source_url": "https://www.watchpreviously.com/news/summer-walker-interscope-cross-complaint"
+    },
+    {
+      "label": "Interscope lawsuit page count",
+      "value": 7,
+      "unit": "pages",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-record-deal-interscope-lawsuit-1235640766"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "At no time has LVRN acted in bad faith, been stubbornly litigious, or caused Walker unnecessary trouble and expens…",
+      "speaker": "Love Renaissance Records",
+      "source_name": "Rolling Stone",
+      "source_url": "https://www.rollingstone.com/music/music-news/summer-walker-label-lvrn-breach-of-contract-interscope-1235656161"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Summer Walker",
+      "kind": "person"
+    },
+    {
+      "name": "Interscope Records",
+      "kind": "organization"
+    },
+    {
+      "name": "Love Renaissance Records",
+      "kind": "organization"
+    },
+    {
+      "name": "LVRN",
+      "kind": "organization"
+    },
+    {
+      "name": "UMG",
+      "kind": "organization"
+    }
+  ]
+}
