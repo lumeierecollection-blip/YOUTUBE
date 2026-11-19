@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       max-parallel: 1   # one narration at a time: the free Gemini TTS quota answers 429 to parallel takes
       matrix:
-        slug: [ai-tested-amodei]   # hallucination final from run 44469810519
+        slug: [ai-tested-hallucination, ai-tested-amodei]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -67,7 +67,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slug: [ai-tested-amodei]   # hallucination final from run 44469810519
+        slug: [ai-tested-hallucination, ai-tested-amodei]
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - uses: actions/checkout@v4
@@ -94,7 +94,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slug: [ai-tested-amodei]   # hallucination final from run 44469810519
+        slug: [ai-tested-hallucination, ai-tested-amodei]
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg

@@ -21,8 +21,29 @@ if (process.argv.includes("--join")) {
   // two-pass loudnorm (measured, then linear): the one-pass filter left the Shorts at -15.4 / -16.0 LUFS
   const LN = "loudnorm=I=-14:TP=-1.5:LRA=11";
   const m = JSON.parse((spawnSync("ffmpeg", ["-hide_banner", "-i", join(OUT, "voice.mp3"), "-af", `${LN}:print_format=json`, "-f", "null", "-"], { encoding: "utf8" }).stderr.match(/\{[\s\S]*?\}/) || ["{}"])[0]);
-  const af = m.input_i ? `${LN}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true,apad` : `${LN},apad`;
-  const r = spawnSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", join(PARTS, "list.txt"), "-i", join(OUT, "voice.mp3"), "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", join(OUT, "short.mp4")], { stdio: "inherit" });
+  const vf = m.input_i ? `${LN}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true` : LN;
+  // SFX (owner, 19 Nov 2026: the Shorts must have SFX), placed from the shot timeline. Files are CC0 / Mixkit free licence, credits in
+  // public/sfx/CREDITS.md and public/sfx/interface-kenney/LICENSE.txt. Levels sit under the voice (measured voice at -14 LUFS).
+  const SFX = { whoosh: ["sfx/whoosh.mp3", 0.55], thud: ["sfx/impact.mp3", 0.7], pop: ["sfx/pop.mp3", 0.45], tick: ["sfx/number-count.mp3", 0.3], sweep: ["sfx/interface-kenney/maximize_001.wav", 0.25], chime: ["sfx/reveal.mp3", 0.5] };
+  const ev = [];
+  for (const s of props.shots) {
+    const t = s.f0 / 30;
+    if (s.auto) ev.push(["tick", t]);
+    else if (s.kind === "cta") ev.push(["chime", t]);
+    else if (s.strobe || s.kind === "brand" || s.kind === "year") ev.push(["thud", t], ["whoosh", Math.max(0, t - 0.08)]);
+    else ev.push(["whoosh", Math.max(0, t - 0.08)]);
+    if (s.kind === "capture") ev.push(["sweep", t + 0.2]);
+  }
+  for (const w of props.words) if (w.key) ev.push(["pop", w.t0]);
+  ev.sort((a, b) => a[1] - b[1]);
+  const kept = ev.filter((e, i) => !ev.slice(0, i).some((p) => p[0] === e[0] && e[1] - p[1] < 0.12));   // no doubled hits
+  const used = [...new Set(kept.map((e) => e[0]))], ins = [], fc = [`[1:a]${vf}[v]`], mix = ["[v]"];
+  used.forEach((k, ui) => { ins.push("-i", join(REMOTION, "public", SFX[k][0])); const mine = kept.filter((e) => e[0] === k);
+    fc.push(`[${ui + 2}:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=${mine.length}${mine.map((_, j) => `[${k}${j}]`).join("")}`);
+    mine.forEach((e, j) => { const ms = Math.round(e[1] * 1000); fc.push(`[${k}${j}]adelay=${ms}|${ms},volume=${SFX[k][1]}[${k}d${j}]`); mix.push(`[${k}d${j}]`); }); });
+  fc.push(`${mix.join("")}amix=inputs=${mix.length}:normalize=0:duration=longest,alimiter=limit=0.89,apad[a]`);
+  console.log(`sfx: ${kept.length} events (${used.map((k) => `${k} ${kept.filter((e) => e[0] === k).length}`).join(", ")})`);
+  const r = spawnSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", join(PARTS, "list.txt"), "-i", join(OUT, "voice.mp3"), ...ins, "-filter_complex", fc.join(";"), "-map", "0:v", "-map", "[a]", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", join(OUT, "short.mp4")], { stdio: "inherit" });
   console.log(`joined ${parts.length} parts -> ${join(OUT, "short.mp4")}`); process.exit(r.status);
 }
 const [si, sn] = (arg("shard") || "0/1").split("/").map(Number), F = props.frames, a = Math.floor((si * F) / sn), b = Math.floor(((si + 1) * F) / sn) - 1;

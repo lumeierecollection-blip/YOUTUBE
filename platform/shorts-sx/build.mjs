@@ -69,7 +69,7 @@ for (const s of S.SHOTS) { const i = toks.findIndex((t, k) => k >= from && norm(
 // first render measured 0.81 / 1.06 s per shot; the references cut every 0.49-0.53 s
 // round 7 measured 0.61 / 0.76 s per shot against the references 0.49-0.53 s: tighter fill gap and shorter holds
 const gap = S.STYLE === "v1" ? 0.33 : 0.2, out = []; let q = 0;
-const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "full" }, { kind: "inset", w: 900, top: 520 }, { kind: "paper" }][k % 5];
+const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "inset", w: 900, top: 520, mat: true }, { kind: "paper" }][k % 4];   // 19 Nov: no full-bleed stock in v1 (owner: not clean); the reference frames every picture
 for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
   if (shots[a].kind === "cta") continue;
@@ -77,11 +77,12 @@ for (let a = 0; a < shots.length; a++) {
   let last = shots[a].f0 + (["capture", "page", "brand", "logo", "collage", "cutout"].includes(shots[a].kind) || shots[a].strobe ?   /* brand/logo/collage/cut-out hold too: at 0.2 s fill the Anthropic card lasted one frame */ Math.round(0.8 * FPS) - Math.round(gap * FPS) : 0);
   for (const w of words) { const f0 = Math.round(w.t0 * FPS); if (f0 <= last + gap * FPS || f0 >= end - 6) continue;
     const base = S.STYLE === "v1" ? v1(q) : { kind: "full" }, id = S.POOL[q % S.POOL.length]; q++;
-    const s = base.kind === "paper" ? base : realise({ ...base, media: id }); out.push({ ...s, f0, auto: true }); last = f0; }
+    const s = base.kind === "paper" ? base : realise({ ...base, ...(id.startsWith("photo:") ? { photo: id.slice(6), pos: ["50% 30%", "40% 40%", "60% 35%"][q % 3] } : { media: id }) }); out.push({ ...s, f0, auto: true }); last = f0; }
 }
 out.sort((x, y) => x.f0 - y.f0);
-// owner rule: every Short 35-40 s. Gemini takes of the same script vary (hallucination: 33.8-40.4 s), so a fast take holds its last shot to 35.2 s
-const frames = Math.max(Math.round((words[words.length - 1].t1 + 0.7) * FPS), Math.round(35.2 * FPS));
+// owner rule since 19 Nov 2026: every Short 30 s max (voice.mjs re-takes a narration that would run longer)
+const frames = Math.min(Math.round((words[words.length - 1].t1 + 0.7) * FPS), 30 * FPS);
+if ((words[words.length - 1].t1 + 0.3) * FPS > frames) throw new Error(`narration runs ${words[words.length - 1].t1.toFixed(1)} s: over the 30 s limit, shorten the script`);
 const props = { styleName: S.STYLE, words, shots: out, tag: S.TAG || null, cta: S.CTA || null, frames };
 writeFileSync(join(OUT, "props.json"), JSON.stringify(props));
 const gaps = out.slice(1).map((s, i) => (s.f0 - out[i].f0) / FPS);
