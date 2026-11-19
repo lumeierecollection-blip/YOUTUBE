@@ -74,7 +74,7 @@ for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
   if (shots[a].kind === "cta") continue;
   // captures, white pages and strobe key words hold (as in the references), but never longer than 1.5 s before the rhythm resumes
-  let last = shots[a].f0 + (shots[a].kind === "capture" || shots[a].kind === "page" || shots[a].strobe ? Math.round(0.8 * FPS) - Math.round(gap * FPS) : 0);
+  let last = shots[a].f0 + (["capture", "page", "brand", "logo", "collage", "cutout"].includes(shots[a].kind) || shots[a].strobe ?   /* brand/logo/collage/cut-out hold too: at 0.2 s fill the Anthropic card lasted one frame */ Math.round(0.8 * FPS) - Math.round(gap * FPS) : 0);
   for (const w of words) { const f0 = Math.round(w.t0 * FPS); if (f0 <= last + gap * FPS || f0 >= end - 6) continue;
     const base = S.STYLE === "v1" ? v1(q) : { kind: "full" }, id = S.POOL[q % S.POOL.length]; q++;
     const s = base.kind === "paper" ? base : realise({ ...base, media: id }); out.push({ ...s, f0, auto: true }); last = f0; }
