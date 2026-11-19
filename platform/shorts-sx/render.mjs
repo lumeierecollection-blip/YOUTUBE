@@ -62,5 +62,7 @@ if (!existsSync(join(REMOTION, "vo.mp3"))) spawnSync("ffmpeg", ["-y", "-v", "err
 const serveUrl = await bundle({ entryPoint: join(REMOTION, "Root.jsx"), publicDir: join(REMOTION, "public"), onProgress: () => {} });
 const composition = await selectComposition({ serveUrl, id: "SX", inputProps: props, timeoutInMilliseconds: 180000, ...(chrome ? { browserExecutable: chrome } : {}) });
 composition.durationInFrames = F;
-await renderMedia({ composition, serveUrl, codec: "h264", inputProps: props, frameRange: [a, b], outputLocation: join(PARTS, `part-${si}.mp4`), crf: 16, pixelFormat: "yuv420p", concurrency: 2, timeoutInMilliseconds: 180000, chromiumOptions: { gl: "swangle" }, ...(chrome ? { browserExecutable: chrome } : {}) });
+// Chrome sometimes fails to start on a runner ("Timed out after 25000 ms while trying to connect to the browser", runs 44436176648,
+// 44493239812, 44512615699): retry the shard up to 3 times instead of failing the run
+for (let attempt = 1; ; attempt++) try { await renderMedia({ composition, serveUrl, codec: "h264", inputProps: props, frameRange: [a, b], outputLocation: join(PARTS, `part-${si}.mp4`), crf: 16, pixelFormat: "yuv420p", concurrency: 2, timeoutInMilliseconds: 180000, chromiumOptions: { gl: "swangle" }, ...(chrome ? { browserExecutable: chrome } : {}) }); break; } catch (e) { if (attempt >= 3 || !/connect to the browser|Target closed|Protocol error/i.test(String(e.message))) throw e; console.log(`shard ${si}: browser start failed (attempt ${attempt}), retrying`); }
 console.log(`shard ${si}/${sn}: frames ${a}-${b} -> part-${si}.mp4`);
