@@ -1261,16 +1261,17 @@
     },
     "2026-11-18-ch1": {
       "channel": "1",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "44445834077",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T02:54:56.436Z",
+      "updated_at": "2026-11-19T02:56:48.987Z",
       "stage": "script",
       "topic": "Enos the Chimpanzee Orbits Earth",
       "score": 61,
       "pillar": "Events that changed the modern world",
-      "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space."
+      "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space.",
+      "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
     }
   },
   "uploads": [

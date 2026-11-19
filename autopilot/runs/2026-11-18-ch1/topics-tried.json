@@ -1,0 +1,35 @@
+{
+  "tried": [
+    {
+      "topic": "The Eradication of Smallpox",
+      "score": 74.5,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 1 \"During the Cold War, rivals donated 180 million doses.\" — The term 'rivals' is not defined until sentence 3.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 3 \"But global smallpox eradication required massive, coordinated action between these two nuclear powers.\" — The 'two nuclear powers' are not explicitly"
+    },
+    {
+      "topic": "The Somerton Man Mystery",
+      "score": 69.8,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Yukio Mishima's Dramatic Coup Attempt and Ritual Suicide",
+      "score": 65.8,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: each_line_needs_the_last, no_repetition. The rehook ('But he brought 4 Tatenokai militia cadets to force a violent confrontation.') and setup ('On November 25, 1970, he invaded a military base. Why?') are slightly repetitive and out of chronological order, since the invasion happens before the details of the cadets. Fixing the script requires swapping the setup and rehook lines so the invasion introduces the e"
+    },
+    {
+      "topic": "The 1983 Brink's-Mat Robbery",
+      "score": 64.1,
+      "stage": "image-precheck",
+      "reason": "no freely licensed image of the actual subject"
+    },
+    {
+      "topic": "Enos the Chimpanzee Orbits Earth",
+      "score": 61,
+      "stage": "script",
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
+    }
+  ],
+  "selected": null
+}
