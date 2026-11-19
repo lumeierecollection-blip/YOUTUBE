@@ -4,8 +4,8 @@
 // Facts ONLY from Wikipedia "Anthropic" and "Dario Amodei", retrieved 19 Nov 2026 (channel-reverse/research/shorts/*.wiki). Note: Anthropic makes
 // the assistant that wrote this script; the wording stays with the encyclopedia's.
 export const STYLE = "v3";
-export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. He worked on GPT-2 and GPT-3. In 2021, he left with his sister Daniela and five others, over disagreements on AI safety. They founded Anthropic. In May 2026, it was valued at 965 billion dollars. Same research. A different bet. Which one do you trust? Comment OpenAI or Claude.";
-// 19 Nov 2026 owner: max 30 s, voice must not rush -> 59 words. The calm read measured 112-120 wpm, so a 67-word script would pass 30 s.
+export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. In 2021, he left with his sister Daniela and five others, over disagreements on AI safety. They founded Anthropic. In May 2026, it was valued at 965 billion dollars. Same research, a different bet. Which do you trust? Comment OpenAI or Claude.";
+// 19 Nov 2026 owner: max 30 s and no rushing. The calm read measures 105-117 wpm whatever pace is asked, so the script is sized for it: 51 words (~28 s).
 export const KEYS = {};
 export const SOURCES = { A: { title: "Wikipedia: Anthropic", url: "https://en.wikipedia.org/wiki/Anthropic", retrieved: "2026-11-19" }, D: { title: "Wikipedia: Dario Amodei", url: "https://en.wikipedia.org/wiki/Dario_Amodei", retrieved: "2026-11-19" } };
 export const FOOTAGE_REQUIRE = /computer|code|keyboard|laptop|screen|server|data|technology|office|city|business|meeting|stock|chart|typing/i;
@@ -37,14 +37,13 @@ export const SHOTS = [
   { at: "Dario", kind: "full", photo: "da-tc4", sil: "da-tc4", cap: "Dario Amodei" },   // cut-outs: da-tc6 isolates the interviewer and da-tc2 keeps a second person's arm, so only da-tc4 and da-uk flash
   { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
   { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI", glitch: true },
-  { at: "GPT-2", kind: "split", photo: "da-tc4", photo2: "da-tc2", pos2: "60% 40%", cap: "GPT-2 · GPT-3" },
   { at: "2021,", kind: "year", media: "sx-door", year: "2021" },
   { at: "sister", kind: "page", page: "Daniela" },
   { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety", glitch: true },
   { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354", glitch: true },
   { at: "May", kind: "year", photo: "da-uk", sil: "da-uk", year: "2026" },
   { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
-  { at: "Same", kind: "full", photo: "da-tc2", cap: "Same research." },
+  { at: "Same", kind: "split", photo: "da-tc4", photo2: "da-tc2", pos2: "60% 40%", cap: "Same research." },
   { at: "different", kind: "brand", logo: "logo-anthropic", bg: "#DD7354" },
   { at: "Which", kind: "collage", items: [{ photo: "shot-chatgpt", x: 90, y: 430, w: 520, h: 560, top: true, rot: -3 }, { photo: "shot-claude", x: 330, y: 820, w: 680, h: 330, rot: 2 }] },
   { at: "Comment", kind: "cta", logos: ["logo-openai", "logo-claude"] },

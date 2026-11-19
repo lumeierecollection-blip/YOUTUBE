@@ -9,7 +9,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../.."), slug = p
 const OUT = join(ROOT, "output/sx", slug); mkdirSync(OUT, { recursive: true });
 // first render: 183 and 141 wpm against the references 214 and 172; faster DELIVERY is asked for, the audio is never sped up
 // 19 Nov 2026 owner: "speaking too fast... rushing", must be clearly audible -> calm, clear delivery at about 150 wpm for both styles
-// the first calm prompt ("about 150 words a minute") came out at 112-120 wpm, too slow for 30 s: Gemini reads under the asked pace
+// calm prompts measured 105-120 wpm whatever number is asked; scripts are sized for that (about 51 words for 30 s)
 const style = "Say it clearly, like a friendly, confident explainer: an unhurried but lively pace of about 165 words a minute, every word easy to hear, a short pause at each full stop, light emphasis on names, years and numbers. Never rushed:";
 // owner rule 30 s max: Gemini takes of one script vary in pace, so a take that would run past 29.5 s is re-taken (up to 3 takes, the
 // fastest kept). The audio itself is never sped up.
