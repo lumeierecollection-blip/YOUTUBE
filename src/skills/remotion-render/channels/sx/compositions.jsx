@@ -110,7 +110,7 @@ function Plate({ s, l, ground, calm }) {
   if (s.kind === "versus") return <AbsoluteFill>
     <div style={{ position: "absolute", left: 0, top: 0, width: 540, height: 1920, background: s.bgA || "#111" }} /><div style={{ position: "absolute", left: 540, top: 0, width: 540, height: 1920, background: s.bgB || "#DD7354" }} />
     {[[s.cutA, s.labA, 0], [s.cutB, s.labB, 540]].map(([c, lab, x], i) => <React.Fragment key={i}>
-      {c && <Img src={src(c)} style={{ position: "absolute", left: x - 60, bottom: 0, width: 660, height: 1150, objectFit: "contain", objectPosition: "50% 100%", opacity: appear(i, 9), transform: `scale(${z})`, transformOrigin: "50% 100%", filter: "drop-shadow(0 16px 26px rgba(0,0,0,0.35))" }} />}
+      {c && <Img src={src(c)} style={{ position: "absolute", left: x - 210, bottom: 0, width: 960, height: 1250, objectFit: "contain", objectPosition: "50% 100%", opacity: appear(i, 9), transform: `scale(${z})`, transformOrigin: "50% 100%", filter: "drop-shadow(0 16px 26px rgba(0,0,0,0.35))" }} />}
       {[s.logoA, s.logoB][i] && <Img src={src([s.logoA, s.logoB][i])} style={{ position: "absolute", left: x + 190, top: 150, width: 160, height: 160, objectFit: "contain", filter: [s.lfA, s.lfB][i] || "brightness(0) invert(1)", opacity: appear(i, 9) }} />}
       <div style={{ position: "absolute", left: x + 20, width: 500, top: 340, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 46, color: "#fff", lineHeight: 1.15, opacity: appear(i, 9) }}>{lab}</div></React.Fragment>)}
   </AbsoluteFill>;
