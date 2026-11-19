@@ -1,15 +1,9 @@
-[{ "dir": "ai-tested", "items": [
-  ["ph-gpt-hand", "File:Hand holding smartphone with ChatGPT (52917076309).jpg", "a phone showing ChatGPT (illustrative)"],
-  ["ph-gpt-laptop", "File:Smartphone with ChatGPT app and laptop (52917381683).jpg", "the ChatGPT app on a phone beside a laptop (illustrative)"],
-  ["ph-gpt-keyboard", "File:Smartphone with ChatGPT on keyboard (52917311050).jpg", "a phone showing ChatGPT on a keyboard (illustrative)"],
-  ["ph-gpt-openai", "File:Hand holding smartphone with ChatGPT and OpenAI text (52917312010).jpg", "a phone showing ChatGPT and OpenAI (illustrative)"],
-  ["ph-gpt-app", "File:Smartphone with ChatGPT app (52917381673).jpg", "the ChatGPT app on a phone (illustrative)"],
-  ["ph-courthouse", "File:Daniel Patrick Moynihan U.S. Courthouse, Manhattan, New York (7237347688).jpg", "the Daniel Patrick Moynihan U.S. Courthouse in Manhattan"],
-  ["ph-avianca", "File:Airbus A320-251N - Avianca - N942AV.jpg", "an Avianca aircraft (the airline in Mata v. Avianca)"],
-  ["ph-castel", "File:Judge Kevin Castel.jpg", "Judge P. Kevin Castel"],
-  ["da-tc1", "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
-  ["da-tc3", "File:Dario Amodei at TechCrunch Disrupt 2023 03.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
-  ["da-tc5", "File:Dario Amodei at TechCrunch Disrupt 2023 05.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
-  ["ph-altman", "File:Sam Altman TechCrunch SF 2019 Day 2 Oct 3 (cropped).jpg", "Sam Altman, OpenAI's CEO"],
-  ["ph-anthropic-hq", "File:Slack offices, Howard Street, San Francisco (viewed from the south-west, January 2020).jpg", "500 Howard Street, San Francisco: Anthropic's headquarters"]
+[{ "dir": "hidden-past", "items": [
+  ["hs-arbo-stamford", "File:Arbo - Battle of Stamford Bridge (1870).jpg", "Peter Nicolai Arbo, The Battle of Stamford Bridge (1870), public domain"],
+  ["hs-woolmer-morning", "File:Alfred Joseph Woolmer (1805-1892) - The Morning after the Battle of Hastings - WAG 3084 - Walker Art Gallery.jpg", "Woolmer, The Morning after the Battle of Hastings, public domain"],
+  ["hs-wilkins-hastings", "File:Francis William Wilkins (1800-1842) - The Battle of Hastings - 88227225 - Battle Abbey.jpg", "Wilkins, The Battle of Hastings, public domain"],
+  ["hs-vernet-edith", "File:Vernet Edith discovering King Harold's corpse on the battle field of Hastings.jpg", "Vernet, Edith finds Harold's body, public domain"],
+  ["hs-william-npg", "File:King William I ('The Conqueror') from NPG.jpg", "King William I, National Portrait Gallery, public domain"],
+  ["hs-harold-crowned", "File:Harold Godwinson being coronated in the Cambridge University Library.jpg", "Harold crowned, Cambridge University Library manuscript, public domain"],
+  ["hs-hardrada-saga", "File:Harald Hardraades saga-Harald og Svein-W. Wetlesen.jpg", "Harald Hardrada, saga illustration by W. Wetlesen, public domain"]
 ] }]
