@@ -1279,12 +1279,12 @@
       "attempts": 1,
       "run_id": "44544500381",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T14:44:41.272Z",
-      "stage": "script",
-      "topic": "Google Makes Gemini AI Task Mode Free for Everyone",
-      "score": 78.2,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Google just made its advanced Gemini AI task features completely free, letting you delegate real-world chores like booking and shopping."
+      "updated_at": "2026-11-19T15:15:14.469Z",
+      "stage": "research",
+      "topic": "90% of Employers Reject AI-Looking Resumes While Using AI to Interview",
+      "score": 75.6,
+      "pillar": "AI changing everyday work",
+      "hook": "Job hunting is broken: 90% of employers reject resumes that look written by AI, even though companies use AI to interview you."
     }
   },
   "uploads": [
@@ -2636,6 +2636,15 @@
       "at_ms": 1795099454980,
       "score": 78.2,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "90% of Employers Reject AI-Looking Resumes While Using AI to Interview",
+      "slug": "90-of-employers-reject-ai-looking-resumes-while-using-ai-to-",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795101314469,
+      "score": 75.6,
+      "pillar": "AI changing everyday work"
     }
   ],
   "attention": [
