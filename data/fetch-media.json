@@ -1,5 +1,15 @@
-[{ "dir": "music", "items": [
-  ["music-inspired", "File:Inspired (ISRC USUAN1600022).mp3", "light upbeat bed for football analysis long forms"],
-  ["music-wallpaper", "File:Wallpaper (ISRC USUAN1100843).mp3", "light upbeat bed for football analysis long forms"],
-  ["music-carefree", "File:Carefree (ISRC USUAN1400037).mp3", "light upbeat bed for football analysis long forms"]
+[{ "dir": "ai-tested", "items": [
+  ["ph-gpt-hand", "File:Hand holding smartphone with ChatGPT (52917076309).jpg", "a phone showing ChatGPT (illustrative)"],
+  ["ph-gpt-laptop", "File:Smartphone with ChatGPT app and laptop (52917381683).jpg", "the ChatGPT app on a phone beside a laptop (illustrative)"],
+  ["ph-gpt-keyboard", "File:Smartphone with ChatGPT on keyboard (52917311050).jpg", "a phone showing ChatGPT on a keyboard (illustrative)"],
+  ["ph-gpt-openai", "File:Hand holding smartphone with ChatGPT and OpenAI text (52917312010).jpg", "a phone showing ChatGPT and OpenAI (illustrative)"],
+  ["ph-gpt-app", "File:Smartphone with ChatGPT app (52917381673).jpg", "the ChatGPT app on a phone (illustrative)"],
+  ["ph-courthouse", "File:Daniel Patrick Moynihan U.S. Courthouse, Manhattan, New York (7237347688).jpg", "the Daniel Patrick Moynihan U.S. Courthouse in Manhattan"],
+  ["ph-avianca", "File:Airbus A320-251N - Avianca - N942AV.jpg", "an Avianca aircraft (the airline in Mata v. Avianca)"],
+  ["ph-castel", "File:Judge Kevin Castel.jpg", "Judge P. Kevin Castel"],
+  ["da-tc1", "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["da-tc3", "File:Dario Amodei at TechCrunch Disrupt 2023 03.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["da-tc5", "File:Dario Amodei at TechCrunch Disrupt 2023 05.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["ph-altman", "File:Sam Altman TechCrunch SF 2019 Day 2 Oct 3 (cropped).jpg", "Sam Altman, OpenAI's CEO"],
+  ["ph-anthropic-hq", "File:Slack offices, Howard Street, San Francisco (viewed from the south-west, January 2020).jpg", "500 Howard Street, San Francisco: Anthropic's headquarters"]
 ] }]
