@@ -1,0 +1,2676 @@
+{
+  "generated_at": "2026-11-19T02:46:49.376Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "wikipedia-on-this-day:11-19",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:declassified archives history",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:declassified archives history",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:shipwreck discovered history",
+          "ok": true,
+          "items": 29
+        },
+        {
+          "source": "bing-news:historians reveal new evidence",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:ancient tomb discovered",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:lost city found archaeology",
+          "ok": true,
+          "items": 5
+        },
+        {
+          "source": "bing-news:archaeologists discovered",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:shipwreck discovered history",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:historians reveal new evidence",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:ancient tomb discovered",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "google-news:lost city found archaeology",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "wikipedia-on-this-day:11-22",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-23",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:11-24",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "wikipedia-on-this-day:11-20",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:11-21",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-25",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "google-news:archaeologists discovered",
+          "ok": true,
+          "items": 61
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:arkeonews.net",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:AskHistorians",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:archaeology",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:history",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:smithsonianmag.com",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "feed:livescience.com",
+          "ok": true,
+          "items": 50
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:unearthed ancient",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:museum reveals artifact",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "bing-news:mystery solved historians",
+          "ok": true,
+          "items": 2
+        },
+        {
+          "source": "bing-news:forgotten history",
+          "ok": true,
+          "items": 6
+        },
+        {
+          "source": "bing-news:shipwreck found",
+          "ok": true,
+          "items": 5
+        },
+        {
+          "source": "bing-news:World War II secret revealed",
+          "ok": true,
+          "items": 1
+        },
+        {
+          "source": "bing-news:Roman discovery",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:museum reveals artifact",
+          "ok": true,
+          "items": 4
+        },
+        {
+          "source": "bing-news:Egypt discovery",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:medieval discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:Roman discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:ancient DNA study",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "bing-news:Viking discovery",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:medieval discovery",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:archaeology discovery",
+          "ok": true,
+          "items": 36
+        },
+        {
+          "source": "bing-news:ancient DNA study",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:shipwreck found",
+          "ok": true,
+          "items": 29
+        },
+        {
+          "source": "google-news:unearthed ancient",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "bing-news:archaeology discovery",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:mystery solved historians",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "google-news:Viking discovery",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:Egypt discovery",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:World War II secret revealed",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "google-news:forgotten history",
+          "ok": true,
+          "items": 29
+        },
+        {
+          "source": "wikipedia-on-this-day:12-14",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "feed:heritagedaily.com",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "wikipedia-on-this-day:11-29",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-07",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-02",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-04",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-11",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-12",
+          "ok": true,
+          "items": 14
+        },
+        {
+          "source": "wikipedia-on-this-day:11-26",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-23",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-19",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-01",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:11-27",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-13",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-30",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-08",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-03",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-21",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "wikipedia-on-this-day:12-05",
+          "ok": true,
+          "items": 13
+        },
+        {
+          "source": "wikipedia-on-this-day:12-15",
+          "ok": true,
+          "items": 19
+        },
+        {
+          "source": "wikipedia-on-this-day:12-22",
+          "ok": true,
+          "items": 16
+        },
+        {
+          "source": "wikipedia-on-this-day:11-28",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "wikipedia-on-this-day:12-20",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "wikipedia-on-this-day:12-16",
+          "ok": true,
+          "items": 23
+        },
+        {
+          "source": "wikipedia-on-this-day:12-09",
+          "ok": true,
+          "items": 21
+        },
+        {
+          "source": "wikipedia-on-this-day:12-06",
+          "ok": true,
+          "items": 26
+        },
+        {
+          "source": "wikipedia-on-this-day:12-17",
+          "ok": true,
+          "items": 18
+        },
+        {
+          "source": "wikipedia-on-this-day:12-18",
+          "ok": true,
+          "items": 15
+        },
+        {
+          "source": "wikipedia-on-this-day:12-10",
+          "ok": true,
+          "items": 21
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Mass Grave of 8,000 Ancient Frogs Solved by Scientists",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        136
+      ],
+      "hook": "Why were 8,000 ancient frogs neatly piled together in a prehistoric layer? Scientists finally cracked the bizarre 4,000-year-old mystery.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 7,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "mass grave of 8000 ancient frogs",
+      "evidence": [
+        {
+          "title": "Archaeologists Found a Mass Grave of 8,000 Ancient Frogs. Scientists Finally Know Who Killed Them.",
+          "url": "https://www.popularmechanics.com/science/archaeology/a74442422/mass-grave-of-8000-ancient-frogs/",
+          "domain": "popularmechanics.com",
+          "published_ms": 1794979740000,
+          "kind": "news",
+          "id": 136
+        },
+        {
+          "title": "Archaeologists Found a Mass Grave of 8,000 Ancient Frogs. Scientists Finally Know Who Killed Them. - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOSU01MGNwRFNpZ0ZRMVFGZkhMXzVJcmNEa0RldGpMb2NYemNyOUtkcFZtem1ONWpGM3FLOFA5bXFac2t3Njd0UXlnR0RaUTBYUFE4Y0FzRi02XzdLbGh2ZWtodnVmRHdqTlBORHV3LUNVWXl3bWh1VVd6bnNvLWxDbS11V3VZc2VZZHpna1I0Tkl6WC1HTjdtLUFJYU0?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1795008600000,
+          "kind": "news"
+        },
+        {
+          "title": "Dorset scientists find owls behind ancient 'feast of frogs' mystery - BBC",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9WWFdVWmgyTXdHTTlzNU9SRDUyMW5YcUNCTXJSWmJKU3FPZjU4N3FpV0NxMTBkOEVSeVlHT2JFTlQwQ1pBM09qdEY3NkQ2VktIZ1dxRzdxV3lJeDg?oc=5",
+          "domain": "bbc.com",
+          "published_ms": 1794292046000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 11264,
+        "competitors": [
+          {
+            "id": "heFXeuondIc",
+            "title": "Poor guy sell picked seafood for fortune!Reborn fishing master—get rich & marry beauty!",
+            "channel": "虚实剧场ShortTV",
+            "views": 84387
+          },
+          {
+            "id": "u_lkBvIY1Hk",
+            "title": "They Dumped Me on My Wedding Day—Now I Hunt Beasts & Lead My Village to Wealth!",
+            "channel": "The Lion Returns",
+            "views": 43659
+          },
+          {
+            "id": "P_cAE_hBB50",
+            "title": "和我開黑多年的網友兄弟，見面竟是絕色美女！請她假扮女友上戀綜，誰料她竟是頂級大小姐，豪擲頂級資源將我捧成頂流巨星！最後假戲真做，直接拿下大结果！#短剧 #短劇 #逆袭 #系统  #drama",
+            "channel": "裂變劇場Club",
+            "views": 20854
+          },
+          {
+            "id": "1cQTfWPjHNQ",
+            "title": "[Multi SUB] ｜他帮妻子逆袭成首富，没想到妻子为了跟白月光约会抛弃女儿！他彻底死心，果断离婚给三年荒唐画句号，转身逆袭让她悔断肠！！#剧能充电站 #MiniDrama#精彩大陆短剧",
+            "channel": "剧能充电站",
+            "views": 13361
+          },
+          {
+            "id": "87ZSZr_LQ9E",
+            "title": "Aldous Huxley - The Human Situation, Part I",
+            "channel": "Intellectual Deep Web",
+            "views": 11264
+          },
+          {
+            "id": "hC_jus90b0g",
+            "title": "UNREAL PLANET | Strangest Places on Earth You Must Visit Once in Your Life | 4K Travel Documentary",
+            "channel": "Unknown Planet",
+            "views": 5345
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 80,
+          "reach": 68,
+          "curiosity": 90,
+          "relevance": 70,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 75.5,
+        "newest_hours": 13,
+        "domains": [
+          "popularmechanics.com",
+          "bbc.com"
+        ],
+        "trusted_domains": [
+          "bbc.com"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1952 Great Smog of London",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        112
+      ],
+      "hook": "A thick, toxic fog descended on London in 1952, turning day into night and trapping a city in a silent environmental disaster.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Great Smog of London",
+      "commons_query": "Great Smog of London 1952",
+      "youtube_query": "Great Smog of London 1952 history",
+      "evidence": [
+        {
+          "title": "1952, 12-05: The \"Great Smog of London\" (pictured) began and lasted for five days, causing 12,000 deaths and leading to the Clean Air Act 1956.",
+          "url": "https://en.wikipedia.org/wiki/Great_Smog_of_London",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 112
+        },
+        {
+          "title": "Great Smog of London | 1952, Cause, Deaths, & Facts - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1tUWJ6bnVFemttRVQtYkZDZXJLZ2FBUmtFM180M0o1NlRUREowb0FtXzZCMV9sT2M3bTBicmdKYU9NS3NOeldVN3h5OV9hVkl2c2pYYWlwLTExNkE3MzJBamdOZw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794470400000,
+          "kind": "news"
+        },
+        {
+          "title": "Bharat Ek Soch: Who is really responsible for Delhi's toxic air? Lessons to learn from the Great Smog of London in 1952 - News24Online",
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxObEhoQm9VWkJSc0xtaV9Fa2VUN1RZcFlaSUxjZHBDTVJQSjMyNlJPV3BKME9sYVpEX0J3ZHQ1dVVMbXFwejZyVVpvRUFGbkFtUlZPVVY5dnNXY2loUjVPRFNNaGpGQUZyUjdVVWhPSTd5Sk9JLVhSM2l6cGliUXZDNnkwTDJOY1p3aWFnTEpvMzVDcUp0aFNVQkFmWWlmU1dpdk5UOE1uOHFsSkVmWm9IYW5DQ21Kbl8ySkxNX3lCa210b1drWG5JTlgweFk1OGJjeVZBSUlHT1hRakE1c3ByNEtVMjJkal9IdmlwZi1ZZjFHVUNkUUHSAfoBQVVfeXFMTnVjcHFwaE1icU0tejJ1VTZYc2RSLVpDc3Y2WV9RR3FxbkJqaFB3d1VaRko3NTZDRUZMWjNteHBHU1g2N09GLWl3NmpCSkpYWnh4Ulo4SkZvNGhRUTR0bFp6bWk5YWJicDJNM2JZelEyZDc1MXViUWdnamI3UUNIeHQ3VXZXcGllYjNERGdVYlI2dnJVd1RrbVJGMU9DZTRMc24zR2lyUVZyVFh0UWprb3Z6R2syUGNhWWhWNHYyTE9IQ2JibFVKYUp2TXYzRnlGNklTT2phR1J4SU9JWmZKV3dWQnM0R1ZJN3c1clFMRGx2bFdzZmZwbnRZUQ?oc=5",
+          "domain": "news24online.com",
+          "published_ms": 1794672868000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Great Smog of London",
+        "daily_views": 735,
+        "ratio": 0.97
+      },
+      "youtube": {
+        "median_views": 523,
+        "competitors": [
+          {
+            "id": "yVcA06nPt_E",
+            "title": "🌫️🇬🇧 **The Great Smog of London — 1952**",
+            "channel": "old history",
+            "views": 1272
+          },
+          {
+            "id": "kAmFsRTc9TE",
+            "title": "The Great Smog of London (1952) #shorts",
+            "channel": "Buried Past",
+            "views": 1229
+          },
+          {
+            "id": "CpKEzYewPps",
+            "title": "The Great Smog of London: A Deadly 1952 Event",
+            "channel": "Tales Time Forgot",
+            "views": 977
+          },
+          {
+            "id": "aVvPFo9Z238",
+            "title": "The Great Smog of 1952: Five Days That Brought London to Its Knees",
+            "channel": "Jack MindFlick",
+            "views": 952
+          },
+          {
+            "id": "k_o1rIFWuqo",
+            "title": "The Fog That Swallowed London | The Great Smog of 1952",
+            "channel": "Nexovault",
+            "views": 523
+          },
+          {
+            "id": "eH0i5A8JmBU",
+            "title": "The Great Smog of London (1952) | The Fog That Killed a City",
+            "channel": "The Past Was Dark",
+            "views": 465
+          }
+        ]
+      },
+      "commons_hits": 17,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 50,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 74.9,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "news24online.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Unveiling of the London Cenotaph"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The Eradication of Smallpox",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        162
+      ],
+      "hook": "For centuries, smallpox killed millions of people across the globe—until a massive international effort made it the only human disease completely wiped out.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Smallpox",
+      "commons_query": "Smallpox eradication WHO",
+      "youtube_query": "how smallpox was eradicated history",
+      "evidence": [
+        {
+          "title": "1979, 12-09: A World Health Organization commission of scientists certified the global eradication of smallpox (virus pictured), making it the only human infectious disease to date to have been completely eradicated.",
+          "url": "https://en.wikipedia.org/wiki/World_Health_Organization",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 162
+        },
+        {
+          "title": "How did ring vaccination help eradicate smallpox? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPZ3JSU2pKU2Eza0RfdExUYjdXOVZDX3JCVFktWDNPenczd0p6dUQtTUhsZjNCTnhHZTAtNEVpUWo5Q0Z3RDItT24zUlJBRXp1ZzRpbEF0SG15SWJ3d3c4dEZzVmwzSVVZVFVveTVQQ2RRamQ3ZWk5aHUyTGFvSWE0aEhGc0ZYU3VsODJ3?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794623641000,
+          "kind": "news"
+        },
+        {
+          "title": "Diseases eradicated by humans: smallpox and near misses - qz.com",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5fdG03bTNwcTBub0ZjalBqdWNMelVpQ1RZT1UwOGtBTWxUelVyNzl6eVFMRmVOWVJDTUZpbTFTSEpMWGQ1bFV4UkpOZFlPNHhLWGMtVEZJQzBacUx1SDFjSWpsYW5OZw?oc=5",
+          "domain": "qz.com",
+          "published_ms": 1794329429000,
+          "kind": "news"
+        },
+        {
+          "title": "Why did routine smallpox vaccination end after global eradication? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPS0NaekhKb3M3cDJSV3lEZjVRYkJZN1ZZd3pDOEhRRVR6RzFrcnlwTUpya2NIejlHOFhxdDF3U0tfczd2RENTd3JVWkdJS0twcW9ydzh3S2JuYkRIMWVVSXZlOW51VUZOOTk2blVTMmhaMUxlc05Lanp5QVhaQ290TnFuV1NpUjRfWmpjLUtlVFh0YXBCTnhQOFZuSGg1YzRfc1E?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794428478000,
+          "kind": "news"
+        },
+        {
+          "title": "Why did routine smallpox vaccination end after smallpox was eradicated? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPQ0dFYldnSUx2QmxsdFh4RmFKQktJaG9KYVRNTXRtLXpQQ1NQMkZrR1lUMHN6QXlzLUczN0x0cE9JeDljRlQwVWlaVklLQnViaUJEV0Vsd1R1ajZpeVpDYXRrR0JyYkY4cTZyTnViNWVQd2kwcDdPakl6Y2dJOHFfMWRTMTdYdzZfOVFXSlc5WlRFUmRJVld0aTdRU3EtMzhsRnE1aHpsUjg?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794633562000,
+          "kind": "news"
+        },
+        {
+          "title": "Delic warns about the spread of smallpox: One infected person can infect as many as 15 people - KoSSev",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPVnBlZnNUV0YzZG9HeV9XODUyTnAwQS1zSmtRaFNmbnFlZV9BYWV0cEVSQ3BfR3dTUml0RWtGZ2o4WEhwdGFia0pJUTI3WmkxYkRwVWJiaE8tcVpLLTBlMnlaWWRRZVdRbUYyWFByT3NycGxXcjRRX0ozQVN5dFNNYmdUSFFGd0dmT3RFTnJlRE1hZWFUajNJWkg5ZG01Y3IxVTllQVpmMmV2dHNYeFdyZHlZWFc4UQ?oc=5",
+          "domain": "kossev.info",
+          "published_ms": 1794474030000,
+          "kind": "news"
+        },
+        {
+          "title": "How did widespread vaccination lead to the eradication of smallpox? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQeWJzMDhMaFowdTYzRG8zLUxrZVc5eEpnLUdIZG5yTjlNY0VRc2pBaXZKMzltbmtaUlpJR3Q5QWxMVUJjM3QwRGlsSWJhLVE5cWxRUUVDQzcwUi1BWldyZlY0aThLZjM2NGxLWGNEOEJ1ZnRyX29ieWdmejJMdUZWVy1oQS1GdVdJQ2lTT0JPLWMyQnNvUXNhdUJwRHhKWEZCWXMw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794976608000,
+          "kind": "news"
+        },
+        {
+          "title": "Why was ring vaccination especially effective against smallpox? - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNSkxJZWR5Ync5c21lWFF0dVAxeVJvNlJ6SFVlSkhSZEZHZ0FWUjNibE85YndoN1pER3ktNWg3MlNHVnM4NWhQbDhWcXd6ZmhDT1RVckwxZU9BSEo0bTNBTThFNmR6MDh5S2dKTE5lcGZLUWRUNTNTTW95UDJWeWxDaTlFZ0hKakVuVnp3NmtxRzFkQUlLWUJ4Nm1qQkY0dw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794629892000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Smallpox",
+        "daily_views": 2008,
+        "ratio": 0.99
+      },
+      "youtube": {
+        "median_views": 19,
+        "competitors": [
+          {
+            "id": "tzxYsIEMlwM",
+            "title": "WHO and the End of Smallpox",
+            "channel": "Origins OSU",
+            "views": 508
+          },
+          {
+            "id": "pgF6mIDNcew",
+            "title": "The Complete History of Smallpox: Three Hundred Million Dead and the Decade That Ended It",
+            "channel": "The Ether Hour",
+            "views": 227
+          },
+          {
+            "id": "TcpvoU0BIIE",
+            "title": "The Last Smallpox Case: How Humanity Eradicated a Deadly Virus",
+            "channel": "Medical History Archive",
+            "views": 41
+          },
+          {
+            "id": "zJDf3-lic1g",
+            "title": "How Humanity Engineered the Death of Smallpox",
+            "channel": "Simply Curious",
+            "views": 30
+          },
+          {
+            "id": "27tHeBBE1zk",
+            "title": "How did Humanity Eradicate Smallpox?",
+            "channel": "Maff Dark",
+            "views": 19
+          },
+          {
+            "id": "dJAcdjix7qM",
+            "title": "Smallpox: How Humanity Defeated a Global Killer",
+            "channel": "Microbe Atlas",
+            "views": 6
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 39,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 74.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com",
+          "qz.com",
+          "kossev.info"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1954 Sylacauga Meteorite Hit",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        52
+      ],
+      "hook": "A woman was taking a nap on her couch when a space rock crashed through her roof and hit her directly—the only verified case in history.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Sylacauga meteorite",
+      "commons_query": "Sylacauga meteorite Hodges house",
+      "youtube_query": "Sylacauga meteorite Ann Hodges",
+      "evidence": [
+        {
+          "title": "1954, 11-30: A meteorite crashed through a roof in Sylacauga, Alabama, and hit a sleeping woman in the first verified case of a human being injured by an extraterrestrial object.",
+          "url": "https://en.wikipedia.org/wiki/Sylacauga_(meteorite)",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 52
+        },
+        {
+          "title": "In 1954, a grapefruit-sized meteorite crashed through a roof in Sylacauga, Alabama, and struck Ann Hodges as she napped on her couch - The Watchers - Watching the world evolve and transform",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNclBZZERIbjd6V2oyMjJKdUZCNUdzcEtydlhVTDczVmVUWTN2UzlQVkYtQ1Q3NjdLdXR0bHRqS2MyN2Y0MUtyUm9nWGJRdGdQOXJnOFVQLXk5Sm5QbmVBQjkzOUJBLThycFNFd195VlV2aXRCV0Y1dTNNYWtJX3R4NlJsbHhEbkpHOGtEMlo1R3c4dFBoRDQxVUZ5dDU5Rll1bzlHZVM4ZDA3NGVwMTh5REFJZThVUkhFYVE4eGItbzdOb2NTaTAtV0o4MUNqNkZacHJXclZTdEhvVHkzUmF1djRKWjRNdG4xRW84S1RHTXdHclFt?oc=5",
+          "domain": "watchers.news",
+          "published_ms": 1794284380000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Falling Star’ in Sylacauga - Atlas Obscura",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE84TUlBa25sU1JqaENQdXZMZEV0c3NreTEtTTJGRjJRQzBhZUtDRFpHbmptMWx0MVR1bmlmcFNfZ1d5OFBOWEJTUG9zeXd2ZFd5eWY3UC1BLThJYWo2N3QyYTd0U29abnZjamFDc05iQ1NIVUFRdTduckJpVQ?oc=5",
+          "domain": "atlasobscura.com",
+          "published_ms": 1794492900000,
+          "kind": "news"
+        },
+        {
+          "title": "The Hodges Meteorite in Tuscaloosa - Atlas Obscura",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQeTFHa1FFTER0bE9xaEpfMENUVlZINGtfV0JpaXRKOHprOUh4S284Z0E3REdMM2RDam9RRkJLbE5aajNRVzdvYWlJaENybzlFd25Pa0dqa1RQTWRQVU5oRXBHUGVhczBZQ3F2d1RpTC1ET3paMEV6Q2xGZGR1NkpGVQ?oc=5",
+          "domain": "atlasobscura.com",
+          "published_ms": 1794492900000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 646,
+        "competitors": [
+          {
+            "id": "ngHlinpkNfs",
+            "title": "Ann Hodges got hit by a meteorite, then her landlady sued",
+            "channel": "LearnDaily",
+            "views": 15802
+          },
+          {
+            "id": "ed3uChpNV9U",
+            "title": "Hit by a Meteorite in 1954, She Survived",
+            "channel": "Odd Truths",
+            "views": 2836
+          },
+          {
+            "id": "HrPopgGHhiI",
+            "title": "She Got Hit by a Meteorite on Her Own Couch",
+            "channel": "Too Wild To Be Fake",
+            "views": 1270
+          },
+          {
+            "id": "FNLTveAV1_c",
+            "title": "First Known Person Hit by a Meteorite: Ann Hodges ☄️",
+            "channel": "SHOCK IN 30",
+            "views": 977
+          },
+          {
+            "id": "Ic0AcdHOwWM",
+            "title": "The Meteorite That Hit a Woman Sleeping on Her Couch in 1954",
+            "channel": "ForCuriousMinds",
+            "views": 646
+          },
+          {
+            "id": "cjSpZj7IdTA",
+            "title": "She Got Hit by a Meteorite. A Farmer Got Rich.",
+            "channel": "Pointless Statistics",
+            "views": 562
+          }
+        ]
+      },
+      "commons_hits": 2,
+      "score": {
+        "factors": {
+          "momentum": 72,
+          "reach": 47,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 53,
+          "source_quality": 65
+        },
+        "total": 72.6,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "watchers.news",
+          "atlasobscura.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (2 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Edwin Hubble Proves the Universe is Vastly Larger",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        56
+      ],
+      "hook": "Until November 1924, astronomers thought the Milky Way was the entire universe—until Edwin Hubble proved the Andromeda Nebula was a completely separate galaxy.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Edwin Hubble",
+      "commons_query": "Edwin Hubble",
+      "youtube_query": "edwin hubble andromeda nebula discovery",
+      "evidence": [
+        {
+          "title": "1924, 11-23: The New York Times published evidence from Edwin Hubble (pictured) stating that the Andromeda Nebula, previously believed to be part of the Milky Way, is in fact another galaxy.",
+          "url": "https://en.wikipedia.org/wiki/The_New_York_Times",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 56
+        },
+        {
+          "title": "Hubble revisits Crab Nebula to track 25 years of expansion - ESA",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNb1FmWmdmSTU3QlNoX05ZMENweGpoaW9fU0Q3TVEzZ25COXF6cVVvX2pOS2dXb0lyUDVYdEtWMDkyc0VSVEdwZVYtR1B4TnFia0o2U3k1U3ZPZ0d6c1hHcEhLQWJVeE9xVTZEZkRRS09OX3lvMThJbi0wZUFRRmEyZVcwb0V5NlNaM2FTelhtTlY?oc=5",
+          "domain": "esa.int",
+          "published_ms": 1794682954000,
+          "kind": "news"
+        },
+        {
+          "title": "Hubble Space Telescope (HST) | History, Discoveries, & Facts - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE11NjVabmxlS0ViQ3ZBdFU2ODRINlJLOXJLR3ctRWhHU2VzX3o3NGluRW9zQzlNUjVZMFVVUEQ2Q0c4UEt0a2dzVkVGNUMza0VmRDNBeU5vU1VydmROUi04M3ZMRU0wZw?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794816000000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Edwin Hubble",
+        "daily_views": 418,
+        "ratio": 0.95
+      },
+      "youtube": {
+        "median_views": 89,
+        "competitors": [
+          {
+            "id": "E8jbJ2Txt6w",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Proof",
+            "views": 11282
+          },
+          {
+            "id": "GIMesu0hduo",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Echo x",
+            "views": 570
+          },
+          {
+            "id": "H9kWwLfWh-I",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Voidlume",
+            "views": 313
+          },
+          {
+            "id": "6NzahvdBspc",
+            "title": "The Single Star That Proved Our Universe is Expanding",
+            "channel": "Discover the Universe Daily.",
+            "views": 109
+          },
+          {
+            "id": "qWuQDNQxDFo",
+            "title": "Hubble Actually Peered Inside Andromeda — What It Found Is AMAZING!",
+            "channel": "Webb Universe Daily",
+            "views": 89
+          },
+          {
+            "id": "G7cjR1y7rBU",
+            "title": "Hubble Actually PEERED INSIDE Andromeda — What It Found Is INTERESTING?",
+            "channel": "Stray Photons",
+            "views": 88
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 64,
+          "reach": 41,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 72.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "esa.int",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Edwin Hubble proves the Andromeda Nebula is another galaxy"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Somerton Man Mystery",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        70
+      ],
+      "hook": "An impeccably dressed man found dead on an Australian beach with a mysterious torn-up book code in his pocket—a puzzle that baffled investigators for decades.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Somerton Man",
+      "commons_query": "Somerton Man",
+      "youtube_query": "Somerton Man mystery history",
+      "evidence": [
+        {
+          "title": "1948, 12-01: In \"one of Australia's most profound mysteries\", the body of an unidentified man was found on Somerton beach in Adelaide, a case which remains unsolved.",
+          "url": "https://en.wikipedia.org/wiki/Somerton_Man",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 70
+        },
+        {
+          "title": "The Somerton Man Is Identified. He's Still A Mystery. Brian Mcfadden (bwpRPBWixD) - Unisba Media",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTFBqMnFBZ1g0UksxX1NWLXN2ZzBHTTUySDE2SEd2c2VCR2UwRjNwbTRIX0Z5UWNOTU9PenlCWnJHaDM4QXJzSGRkOXVnQ2lyY0ZsdkZvdjI5aEQ1emNkelJ1SlQ5Ym92dw?oc=5",
+          "domain": "media.unisba.ac.id",
+          "published_ms": 1794766493000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Somerton Man",
+        "daily_views": 638,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 197,
+        "competitors": [
+          {
+            "id": "QBdl9oPZv4Q",
+            "title": "The Unsolved Mystery of the Somerton Man",
+            "channel": "Frames Per 2nd",
+            "views": 22178
+          },
+          {
+            "id": "hlNUjwQtJek",
+            "title": "The Somerton Man Mystery Finally Solved? | Australia's 1948 Mystery #history #facts #youtubeshorts",
+            "channel": "History Uncovered Daily",
+            "views": 2518
+          },
+          {
+            "id": "tCmqFEe2tzQ",
+            "title": "The Man Nobody Could Identify 😨 |Somerton Man Mystery #shorts #short #mystery",
+            "channel": "Himanshu Gupta",
+            "views": 415
+          },
+          {
+            "id": "14Uk4cHU6b0",
+            "title": "The Somerton Man: Two Words — \"It Is Ended\" | Cold Trail Files",
+            "channel": "Cold Trail Files",
+            "views": 386
+          },
+          {
+            "id": "N75oOrOnE7A",
+            "title": "The Man With No Past: The Mystery of the Somerton Man 🕵️",
+            "channel": "ChronoToons world ",
+            "views": 197
+          },
+          {
+            "id": "WG0OPBe29DU",
+            "title": "The Somerton Man: A Dead Stranger, an Unbroken Code, 74 Years Unnamed",
+            "channel": "Inked History",
+            "views": 153
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 45,
+          "curiosity": 100,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 65
+        },
+        "total": 69.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "media.unisba.ac.id"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "A 3,300-Year-Old Bronze Sword Found in an Italian Lake",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        114,
+        120
+      ],
+      "hook": "Archaeologists diving in an Italian lake pulled up a remarkably preserved 3,300-year-old Bronze Age sword that looks fresh out of a forge.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Bronze Age sword",
+      "commons_query": "",
+      "youtube_query": "3300 year old bronze sword found italy lake",
+      "evidence": [
+        {
+          "title": "Archaeologists Recover 3300-Year-Old Bronze Sword in Italy - bsinews.id",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE90clZBczV2YjMyYWRJa1JvcUlpM3pUUGMwWnI3cE45N21tbDBCSGdQTVdsLS10OVVfVFUwU0FNc3JjOXkxdUJYUUpTT0Z4VkNKWXlSRnZzRmthRVlsaGFSajZXNEpLbnNIV2c?oc=5",
+          "domain": "bsinews.id",
+          "published_ms": 1795020442000,
+          "kind": "news",
+          "id": 114
+        },
+        {
+          "title": "3,300-year-old bronze sword discovered in lake stuns with remarkable feature - New York Post",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOMzZBTTQtTlRnTURlZ1IxQWtzN1RoVlpsTWoxYk1XQnRFOWpwVlNHOTA0NTJjQkpNN1l4SlU5ZllkbVdEYUJPb3EwSVhnNG00WUJ5eUFvNWhKZWlzSXpVd2RTZFhVLWJKR3liSVYwcmJ2b0h0U1NqWkRFOUNpRlhUUklnQWtMcUV0VTl0bDhjQ3A4U3IwRExhVFh6OWRXR0tCS1E1bHpLX29iSUhLMk9CenRwa2Q4b3RqTVE?oc=5",
+          "domain": "nypost.com",
+          "published_ms": 1795015560000,
+          "kind": "news",
+          "id": 120
+        }
+      ],
+      "wikipedia": {
+        "title": "Bronze Age sword",
+        "daily_views": 104,
+        "ratio": 1.04
+      },
+      "youtube": {
+        "median_views": 581,
+        "competitors": [
+          {
+            "id": "-Hc0BQlVkzo",
+            "title": "A 3,300-Year-Old Bronze Sword Discovered at the Bottom of an Italian Lake",
+            "channel": "This is Ancient",
+            "views": 17676
+          },
+          {
+            "id": "bE9ugdQNFfM",
+            "title": "Divers Pulled a 3,300-Year-Old Bronze Age Sword From an Italian Lake, and Its Edge Is Still Sharp",
+            "channel": "ECOnews – Science, Nature & Space News",
+            "views": 1762
+          },
+          {
+            "id": "Bho320iHzxs",
+            "title": "3,300-Year-Old Bronze Age Sword Discovered in Italian Lake (Still Sharp!)",
+            "channel": "Endless Reality ",
+            "views": 1309
+          },
+          {
+            "id": "I7M51reoqAw",
+            "title": "3,300-Year-Old Bronze Sword Found in Italian Lake Is Still Sharp",
+            "channel": "THE BLIP",
+            "views": 1040
+          },
+          {
+            "id": "krnUZxYuInA",
+            "title": "3,300-Year-Old Sword Found in a Lake Is Still Sharp ⚔️ #shorts",
+            "channel": "BlitzFacts",
+            "views": 581
+          },
+          {
+            "id": "6kPLgklBWIk",
+            "title": "3,300-Year-Old Bronze Age Sword Discovered in Italian Volcanic Lake",
+            "channel": "B.C. Begley",
+            "views": 478
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 71,
+          "reach": 44,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 30
+        },
+        "total": 68.5,
+        "newest_hours": 10,
+        "domains": [
+          "bsinews.id",
+          "nypost.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Whale That Sank the Whaleship Essex",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        22
+      ],
+      "hook": "In 1820, an enraged 80-foot sperm whale deliberately rammed and sank an American ship, creating the real-life nightmare that inspired Moby-Dick.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Essex (whaleship)",
+      "commons_query": "Essex whaleship",
+      "youtube_query": "whaleship essex sperm whale attack",
+      "evidence": [
+        {
+          "title": "1820, 11-20: The American whaleship Essex sank 2,000 nautical miles (3,700 km) west of the western coast of South America after it was attacked by a sperm whale, an event which inspired the novel Moby-Dick.",
+          "url": "https://en.wikipedia.org/wiki/Essex_(whaleship)",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 22
+        }
+      ],
+      "wikipedia": {
+        "title": "Essex (whaleship)",
+        "daily_views": 1822,
+        "ratio": 2.33
+      },
+      "youtube": {
+        "median_views": 649,
+        "competitors": [
+          {
+            "id": "qQRTn38vN7k",
+            "title": "A Whale Rammed Their Ship. Twice. #shorts",
+            "channel": "DroppedPin",
+            "views": 1407
+          },
+          {
+            "id": "g0GXlmioje8",
+            "title": "What A Sperm Whale Did To The Essex Will Shock You?",
+            "channel": "Mathieu Media",
+            "views": 1317
+          },
+          {
+            "id": "e0H08Gl4QOk",
+            "title": "Essex Shipwreck: How a Sperm Whale Sank the Whaling Ship",
+            "channel": "HistoryUnsealed",
+            "views": 1144
+          },
+          {
+            "id": "uoK7aJzI7w8",
+            "title": "Sank by a Sperm Whale",
+            "channel": "Written by Reality",
+            "views": 1011
+          },
+          {
+            "id": "R6T4utcvPR8",
+            "title": "This Sperm Whale Sank a Ship: The True Story of the Essex",
+            "channel": "The Terravore",
+            "views": 649
+          },
+          {
+            "id": "4UPjx_6Ukmw",
+            "title": "Whaleship Essex 1820: The Ship Sunk by a Giant Sperm Whale",
+            "channel": "Sleepy Science Nights",
+            "views": 580
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 54,
+          "reach": 54,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 68.3,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Daring RAF Raid That Sank the Battleship Tirpitz"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "D.B. Cooper's 1971 Air Hijacking and Parachute Escape",
+      "pillar": "Unsolved historical mysteries",
+      "evidence_ids": [
+        64
+      ],
+      "hook": "On Thanksgiving Eve in 1971, a man in a suit hijacked a commercial plane, collected $200,000, and parachuted into a freezing wilderness—never to be seen again.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "D. B. Cooper",
+      "commons_query": "DB Cooper",
+      "youtube_query": "db cooper hijacking parachute mystery",
+      "evidence": [
+        {
+          "title": "1971, 11-24: After collecting a ransom payout of $200,000, D. B. Cooper parachuted out of the airplane he had hijacked over the Pacific Northwest and disappeared.",
+          "url": "https://en.wikipedia.org/wiki/D._B._Cooper",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 64
+        }
+      ],
+      "wikipedia": {
+        "title": "D. B. Cooper",
+        "daily_views": 2963,
+        "ratio": 0.91
+      },
+      "youtube": {
+        "median_views": 241,
+        "competitors": [
+          {
+            "id": "wic9CnF7vro",
+            "title": "The D.B. Cooper Mystery Finally Solved — After 54 Years",
+            "channel": "First Humans ",
+            "views": 949624
+          },
+          {
+            "id": "EgTXEeseujU",
+            "title": "D.B. Cooper: jumped with the ransom, never landed",
+            "channel": "The True Crime",
+            "views": 1406
+          },
+          {
+            "id": "4SKrayh6Fsk",
+            "title": "D.B. Cooper — The Hijacker Who Parachuted Into a Storm With $200,000 and Vanished Forever",
+            "channel": "The History Lens",
+            "views": 1036
+          },
+          {
+            "id": "Cyf95hMBXTY",
+            "title": "200,000 and a Parachute: The D.B. Cooper Heist #animation #historyshorts#TrueCrimeStory #HistoryTok",
+            "channel": "LittleLore",
+            "views": 1009
+          },
+          {
+            "id": "CCnOPvN0UO0",
+            "title": "He Jumped With $200,000. Then He Vanished. | D. B. Cooper",
+            "channel": "Beta Uncovered",
+            "views": 241
+          },
+          {
+            "id": "y6DcKhQqlgE",
+            "title": "The Man Who Vanished in the Sky | D.B. Cooper",
+            "channel": "MY Unsolved",
+            "views": 166
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 52,
+          "curiosity": 100,
+          "relevance": 90,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 67.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: D.B. Cooper's legendary 1971 airplane hijacking and parachute escape"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Jocelyn Bell Burnell Discovers Pulsars",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        29
+      ],
+      "hook": "A graduate student noticed a tiny 'bit of scruff' in her telescope data—and accidentally discovered the universe's most precise ticking clocks.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Jocelyn Bell Burnell",
+      "commons_query": "Jocelyn Bell Burnell pulsar",
+      "youtube_query": "Jocelyn Bell Burnell pulsar discovery",
+      "evidence": [
+        {
+          "title": "1967, 11-28: Jocelyn Bell Burnell noticed a \"bit of scruff\" in data from a radio telescope, which turned out to be from PSR B1919+21, the first discovered pulsar.",
+          "url": "https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 29
+        },
+        {
+          "title": "Jocelyn Bell Burnell | Biography, Nobel Prize, Contributions, Astronomy, & Facts - Britannica",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9GYnIyNG1rNEw3elgyNzBldXo0VWZUZGVMUjR2YURMTHQ0SlBSekt3QXh1X1RMWGt3eFNISTQyTzEydFA5eDJKQmJFNWkwb2V1X1YyNUoyRWl2bTZXUlJ5ZFJTRkw0enp2?oc=5",
+          "domain": "britannica.com",
+          "published_ms": 1794038400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Jocelyn Bell Burnell",
+        "daily_views": 247,
+        "ratio": 0.81
+      },
+      "youtube": {
+        "median_views": 43,
+        "competitors": [
+          {
+            "id": "janHsd1Oe1A",
+            "title": "She Found the First Pulsar — Her Supervisor Won the Nobel",
+            "channel": "H.I.N.K",
+            "views": 6461
+          },
+          {
+            "id": "a4U2-k2C-L4",
+            "title": "Jocelyn Bell Burnell — The Student Who Found Pulsars #shorts",
+            "channel": "60 Second Legends",
+            "views": 459
+          },
+          {
+            "id": "_4dP60cHE6w",
+            "title": "The Discovery of Pulsars and Jocelyn Bell Burnell",
+            "channel": "Curious2D",
+            "views": 92
+          },
+          {
+            "id": "Oe4WQr_Mp1E",
+            "title": "Jocelyn Bell Burnell: The Squiggle That Led to the First Pulsar",
+            "channel": "Badly Drawn Biographies",
+            "views": 82
+          },
+          {
+            "id": "wFxva4uDPOg",
+            "title": "How Jocelyn Bell Burnell Found the First Pulsars",
+            "channel": "Intellectual Rigour",
+            "views": 43
+          },
+          {
+            "id": "JmQ8SqmY3tM",
+            "title": "The Woman the Nobel Prize Left Out | Jocelyn Bell Burnell in 5 Minutes",
+            "channel": "分分鐘猴子打字機",
+            "views": 35
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 55,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 100
+        },
+        "total": 67.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ],
+        "trusted_domains": [
+          "wikipedia.org",
+          "britannica.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Jocelyn Bell Burnell Discovers Pulsars"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Yukio Mishima's Dramatic Coup Attempt and Ritual Suicide",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        76
+      ],
+      "hook": "In 1970, one of Japan's most celebrated authors staged a bizarre military takeover, gave a speech to protesting soldiers, and committed ritual suicide.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Yukio Mishima",
+      "commons_query": "Yukio Mishima",
+      "youtube_query": "yukio mishima seppuku speech",
+      "evidence": [
+        {
+          "title": "1970, 11-25: After failing to instigate a military coup to restore the powers of the Emperor of Japan, author Yukio Mishima and a member of his militia committed ritual suicide.",
+          "url": "https://en.wikipedia.org/wiki/Mishima_incident",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 76
+        }
+      ],
+      "wikipedia": {
+        "title": "Yukio Mishima",
+        "daily_views": 2311,
+        "ratio": 0.95
+      },
+      "youtube": {
+        "median_views": 1596,
+        "competitors": [
+          {
+            "id": "7frFj_HmQQM",
+            "title": "Mishima's letters to US publisher foundーNHK WORLD-JAPAN NEWS",
+            "channel": "NHK WORLD-JAPAN",
+            "views": 32487
+          },
+          {
+            "id": "4NSfbd02S9k",
+            "title": "Yukio Mishima | Tatenokai - EDIT",
+            "channel": "Le Poète ",
+            "views": 12551
+          },
+          {
+            "id": "_JJiDkk8vh8",
+            "title": "Why writer Yukio Mishima turned to bodybuilding . #yukiomishima  #bodybuilding",
+            "channel": "Yash Baisla",
+            "views": 2080
+          },
+          {
+            "id": "9WtsHtRkU2w",
+            "title": "The Dark Story Behind Yukio Mishima’s Final Work",
+            "channel": "Raza Jafri ",
+            "views": 1982
+          },
+          {
+            "id": "iGe9X5kBVbA",
+            "title": "\"Ordiarnry life is more horrible than war.\"   ~Yukio Mishima",
+            "channel": "Greater Will Remain ",
+            "views": 1596
+          },
+          {
+            "id": "h1kjB9-tNUs",
+            "title": "Yukio Mishima Edit | Tatenokai",
+            "channel": "Le Poète ",
+            "views": 1222
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 59,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 65.8,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "The 1983 Brink's-Mat Robbery",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        3
+      ],
+      "hook": "Six ordinary robbers broke into a London warehouse expecting cash—and walked out with 26 million pounds in solid gold.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Brink's-Mat robbery",
+      "commons_query": "Brinks Mat robbery",
+      "youtube_query": "Brinks Mat gold robbery history",
+      "evidence": [
+        {
+          "title": "1983, 11-26: Six robbers broke into a Brink's-Mat warehouse at Heathrow Airport in London and stole £26 million in gold, diamonds and cash.",
+          "url": "https://en.wikipedia.org/wiki/Brink's",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 3
+        }
+      ],
+      "wikipedia": {
+        "title": "Brink's-Mat robbery",
+        "daily_views": 1381,
+        "ratio": 0.87
+      },
+      "youtube": {
+        "median_views": 358,
+        "competitors": [
+          {
+            "id": "D9p6fsqzDDw",
+            "title": "The Brink’s-Mat Heist: Britain's Biggest Gold Robbery #TrueCrime #BrinksMat #GoldHeist",
+            "channel": "Underworld Uncut",
+            "views": 2106
+          },
+          {
+            "id": "31ny-qh7-6s",
+            "title": "The Heist That Happened By Mistake: Brink's-Mat Gold Robbery",
+            "channel": "FactLab",
+            "views": 1384
+          },
+          {
+            "id": "jRjDKQ_-sUk",
+            "title": "They Expected Cash But Found 3 Tons of Gold: Brink's Mat Heist",
+            "channel": "Mind maze",
+            "views": 1222
+          },
+          {
+            "id": "Tm4wDN8iw-Y",
+            "title": "The Brink's-Mat Heist: 6,800 Gold Bars and a Deadly Curse",
+            "channel": "Ihate Tummy",
+            "views": 441
+          },
+          {
+            "id": "b68vDaNO70w",
+            "title": "The Brink's-Mat Gold Heist That Cursed Everyone Who Touched It",
+            "channel": "True Crime Oracle",
+            "views": 358
+          },
+          {
+            "id": "RIgOZU9Kgdo",
+            "title": "The Heist That Sparked Decades of Murder — The Brink's-Mat Gold Story",
+            "channel": "True History Stories ",
+            "views": 115
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 51,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 64.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Elite Nomad Tomb Reveals Roman Glass and Han Dynasty Jade",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        128,
+        129
+      ],
+      "hook": "A 2,000-year-old elite nomad tomb discovered in Mongolia contained incredible imported treasures: Roman glassware and Han Dynasty jade.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Xiongnu",
+      "commons_query": "",
+      "youtube_query": "mongolia elite nomad tomb roman glass han jade",
+      "evidence": [
+        {
+          "title": "2,000-year-old tomb of Huns' predecessors has 9 levels and is brimming with riches - Live Science",
+          "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxQMXdsNFI0OGtWakdpckE0eDBrVk1EMDZXRUFQWjZlTmxMN2JUYkpISV93S3VzM01tTG9kc09lY0VHNW54SEhQeWxsX09RS3VJOFh3NlNwb3BDcGtqbHNZdGZxNHc4TU5ycW1ZV19YQS1tQjZPRm9zVWphd3otX0NldmhfX3duaEtSdGlIM2c4U1dlYnM1Q3ZhcFlMNXlkcnNtSDlBd3M2NldNV19fb1ZuaW1oajBsVlBPT0FLTmpUWEVCeWVPQXdyWktEanRQQ0hSZmJiSXFIWGJTMmhMWV9zSXpKTHpLREsyU1NlMk5XaWk?oc=5",
+          "domain": "livescience.com",
+          "published_ms": 1795001400000,
+          "kind": "news",
+          "id": 128
+        },
+        {
+          "title": "2,000-year-old tomb of an elite nomad in Mongolia contained a Roman glass cup and Han-dynasty-inspired jade decorations",
+          "url": "https://www.livescience.com/archaeology/2-000-year-old-tomb-of-an-elite-nomad-in-mongolia-contained-a-roman-glass-cup-and-han-dynasty-inspired-jade-decorations",
+          "domain": "livescience.com",
+          "published_ms": 1795001400000,
+          "kind": "feed",
+          "id": 129
+        }
+      ],
+      "wikipedia": {
+        "title": "Xiongnu",
+        "daily_views": 991,
+        "ratio": 0.96
+      },
+      "youtube": {
+        "median_views": 15,
+        "competitors": [
+          {
+            "id": "P0n70vlyUsA",
+            "title": "🔥穿越大秦當時空獵頭，祖龍要誰我薅誰，華夏歷史名人齊聚搞事業",
+            "channel": "九天劇場",
+            "views": 32291
+          },
+          {
+            "id": "Y-9l8y2q9P4",
+            "title": "ROMAN CUP FOUND IN MONGOLIA | 2,000-year-old tomb of an elite nomad in Mongolia contained a #Shorts",
+            "channel": "Hotsciencenews",
+            "views": 15
+          },
+          {
+            "id": "cqZzQfZjWUE",
+            "title": "Live Science Reports A 2,000-Year-Old Xiongnu Tomb In Mongolia Held A Roman Glass Cup And Han Jade",
+            "channel": "Science!BreakingNews",
+            "views": 1
+          },
+          {
+            "id": "3NJKPEFYL-w",
+            "title": "Live Science Reports WHO Authorities Say Measles Is Back In The United States",
+            "channel": "Science!BreakingNews",
+            "views": 0
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 36,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 63.1,
+        "newest_hours": 15,
+        "domains": [
+          "livescience.com"
+        ],
+        "trusted_domains": [
+          "livescience.com"
+        ]
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Mutiny of the Brazilian 'Whip Rebellion'",
+      "pillar": "Forgotten historical figures",
+      "evidence_ids": [
+        47
+      ],
+      "hook": "In 1910, African-descended sailors on brand-new Brazilian warships mutinied against naval 'slavery' and threatened to bombard Rio de Janeiro unless corporal punishment ended.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Revolta da Chibata",
+      "commons_query": "Revolta da Chibata",
+      "youtube_query": "revolta da chibata brazil navy mutiny",
+      "evidence": [
+        {
+          "title": "1910, 11-22: The crews of three Brazilian warships – all commissioned only months before – and several smaller vessels mutinied against perceived \"slavery\" being practised in the Brazilian Navy.",
+          "url": "https://en.wikipedia.org/wiki/South_American_dreadnought_race",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 47
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 414,
+        "competitors": [
+          {
+            "id": "CKDY1rIqEJY",
+            "title": "REVOLTA DA CHIBATA: como marinheiros negros tomaram a esquadra mais poderosa do Brasil",
+            "channel": "Historiando Sem Limites",
+            "views": 364987
+          },
+          {
+            "id": "c1s2PjyId9M",
+            "title": "Revolta da Chibata: por que os marinheiros tomaram os navios",
+            "channel": "Anteontem",
+            "views": 877
+          },
+          {
+            "id": "oRU0a2wYpis",
+            "title": "A Revolta da Chibata: O Motim de 1910! ⚓🇧🇷",
+            "channel": "CuriosoDeVerdadeBR",
+            "views": 585
+          },
+          {
+            "id": "in2-7tc-CSg",
+            "title": "Revolta da Chibata: motim e traição na Marinha",
+            "channel": "Brasil Mal Contado",
+            "views": 481
+          },
+          {
+            "id": "VJtYJPo0vhk",
+            "title": "Revolta da Chibata: os navios que miraram o Rio",
+            "channel": "Arquivo de Guerra · História",
+            "views": 414
+          },
+          {
+            "id": "nlWBDxd1FAs",
+            "title": "Revolt of the Lash (1910): Brazil's Sailors Aimed Guns at Rio",
+            "channel": "MADFLY",
+            "views": 352
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 44,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 61.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Fall of the Brazilian Empire"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The 1987 Max Headroom Broadcast Signal Intrusion",
+      "pillar": "Unbelievable true historical events",
+      "evidence_ids": [
+        40
+      ],
+      "hook": "In 1987, two Chicago television stations were hijacked mid-broadcast by a creepy individual wearing a Max Headroom mask who remains completely unidentified.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 10,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Max Headroom broadcast signal intrusion",
+      "commons_query": "",
+      "youtube_query": "max headroom broadcast signal intrusion chicago",
+      "evidence": [
+        {
+          "title": "1987, 11-22: Two television stations in Chicago had their broadcast signals hijacked with footage of an unknown person wearing a Max Headroom mask and costume.",
+          "url": "https://en.wikipedia.org/wiki/Max_Headroom_signal_hijackings",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 40
+        }
+      ],
+      "wikipedia": {
+        "title": "Max Headroom broadcast signal intrusion",
+        "daily_views": 13,
+        "ratio": 0.89
+      },
+      "youtube": {
+        "median_views": 165,
+        "competitors": [
+          {
+            "id": "vE4CKNnjbiI",
+            "title": "Max Headroom: la señal pirata que interrumpió Chicago en 1987",
+            "channel": "Estaba Investigando",
+            "views": 1792
+          },
+          {
+            "id": "DUqMGEAM_4k",
+            "title": "Max Headroom: The Stranger Who Hijacked Chicago TV",
+            "channel": "Vault 9",
+            "views": 1379
+          },
+          {
+            "id": "V3Q0MeQ0KMc",
+            "title": "The Max Headroom Incident: The 1987 TV Hijacking That Shocked America #americanhistory  #shorts",
+            "channel": "TechByte Vision",
+            "views": 1008
+          },
+          {
+            "id": "aH-Mc990BX0",
+            "title": "Someone Hijacked Two Chicago TV Stations in 1987 in a Max Headroom Mask. Never Caught",
+            "channel": "Umbra - True Crime",
+            "views": 751
+          },
+          {
+            "id": "YVnt-idlHKk",
+            "title": "The Max Headroom Intrusions: Two Broadcasts, One Night (1987)",
+            "channel": "Unsolved Files USA",
+            "views": 165
+          },
+          {
+            "id": "hTGocZMpgVI",
+            "title": "The Masked Hacker Who Hijacked Live Television in Chicago",
+            "channel": "The Wrongful File",
+            "views": 112
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 31,
+          "curiosity": 100,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 35
+        },
+        "total": 61.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Release of Atari's Pong",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        41
+      ],
+      "hook": "Two paddles, a bouncing square, and a virtual net—how a simple arcade game launched a multi-billion-dollar industry.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 7,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Pong",
+      "commons_query": "Atari Pong arcade cabinet",
+      "youtube_query": "history of Atari Pong 1972",
+      "evidence": [
+        {
+          "title": "1972, 11-29: Atari announced the release of Pong (screenshot pictured), one of the first video games to achieve widespread popularity in both the arcade and home-console markets.",
+          "url": "https://en.wikipedia.org/wiki/Atari%2C_Inc.",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 41
+        }
+      ],
+      "wikipedia": {
+        "title": "Pong",
+        "daily_views": 618,
+        "ratio": 1.05
+      },
+      "youtube": {
+        "median_views": 1077,
+        "competitors": [
+          {
+            "id": "elp00XTJZZs",
+            "title": "Pong 1972 - Hai vạch trắng tạo ra ngành game 200 tỷ đô #lichsu #Atari #Pong #Game  #nguocdonglichsu",
+            "channel": "Lọ Tv",
+            "views": 2078
+          },
+          {
+            "id": "z_4DOCns7Qw",
+            "title": "PONG BROKE DOWN?!",
+            "channel": "MindNuggetsMedia",
+            "views": 1272
+          },
+          {
+            "id": "GOH4dlwR_5M",
+            "title": "Pong Was So Cracked It Literally Broke",
+            "channel": "Cubestalgia",
+            "views": 1253
+          },
+          {
+            "id": "YkJ6utgmGbM",
+            "title": "The first Pong machine broke because it was full of quarters #shorts",
+            "channel": "Top Gaming Society",
+            "views": 1090
+          },
+          {
+            "id": "RY5MlN1Tlzk",
+            "title": "This Game Started the ENTIRE Video Game Industry 🤯",
+            "channel": "Mr History",
+            "views": 1077
+          },
+          {
+            "id": "9wAcCaaOocI",
+            "title": "The First Pong Machine Broke From Too Much Money 🪙",
+            "channel": "AI Reveal",
+            "views": 1069
+          }
+        ]
+      },
+      "commons_hits": 12,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 53,
+          "curiosity": 70,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 61.1,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The Invention of Atari's Pong"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Enos the Chimpanzee Orbits Earth",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        43
+      ],
+      "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 9
+      },
+      "wikipedia_title": "Enos (chimpanzee)",
+      "commons_query": "Enos chimpanzee Mercury-Atlas 5",
+      "youtube_query": "Enos the chimpanzee space flight",
+      "evidence": [
+        {
+          "title": "1961, 11-29: Aboard the Mercury-Atlas 5 spacecraft, Enos (pictured) became the first chimpanzee to orbit the Earth.",
+          "url": "https://en.wikipedia.org/wiki/Mercury-Atlas_5",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 43
+        }
+      ],
+      "wikipedia": {
+        "title": "Enos (chimpanzee)",
+        "daily_views": 61,
+        "ratio": 1.09
+      },
+      "youtube": {
+        "median_views": 549,
+        "competitors": [
+          {
+            "id": "_AHpMGUqpP8",
+            "title": "Where Are Ham the Chimp and His Capsule Now",
+            "channel": "Forgotten Orbit",
+            "views": 92693
+          },
+          {
+            "id": "w5jroZVLQQQ",
+            "title": "This Chimp Orbited Earth Before Any American Did",
+            "channel": "Old Walt's Porch",
+            "views": 3628
+          },
+          {
+            "id": "7-8PC8y6yhU",
+            "title": "The First Chimp in Orbit Got Shocked for Pulling the Right Lever",
+            "channel": "Second Look Space",
+            "views": 2287
+          },
+          {
+            "id": "9mN8lqBIKSQ",
+            "title": "Before America Sent a Man, It Sent Ham | Real Footage (1961)",
+            "channel": "TheHistoryVault",
+            "views": 1029
+          },
+          {
+            "id": "7x7AAsoObIw",
+            "title": "NASA Sent a Chimp to Space Before Any American | Real NASA Footage",
+            "channel": "Orbit Archive",
+            "views": 549
+          },
+          {
+            "id": "k5g8560aKRE",
+            "title": "1 CHIMP ORBITED EARTH. THE MACHINE PUNISHED HIM FOR GETTING IT RIGHT.",
+            "channel": "The Forgotten Front",
+            "views": 283
+          }
+        ]
+      },
+      "commons_hits": 12,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 42,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 95,
+          "source_quality": 35
+        },
+        "total": 61,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The 1943 Bari Secret Mustard Gas Disaster",
+      "pillar": "Secret operations and evidence-backed conspiracies",
+      "evidence_ids": [
+        81
+      ],
+      "hook": "A surprise air raid on an Italian port sank Allied ships, secretly unleashing a deadly cargo of mustard gas the military tried to cover up.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Bari air raid",
+      "commons_query": "Bari air raid 1943",
+      "youtube_query": "Bari air raid mustard gas secret",
+      "evidence": [
+        {
+          "title": "1943, 12-02: World War II: The Luftwaffe conducted a surprise air raid on Allied ships in Bari, Italy, sinking twenty-eight vessels and releasing one ship's secret cargo of mustard gas.",
+          "url": "https://en.wikipedia.org/wiki/World_War_II",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 81
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 51,
+        "competitors": [
+          {
+            "id": "__ekgRGimOI",
+            "title": "⚓ Bari 1943: 2,000 Mustard Gas Bombs. Doctors Weren't Told — Shouldn't Exist #178",
+            "channel": "Shouldn't Exist",
+            "views": 757
+          },
+          {
+            "id": "5LDM0APMZm4",
+            "title": "The Allies Secretly Shipped Mustard Gas. Then the Harbour Exploded. #shorts",
+            "channel": "Notable Shadows of History",
+            "views": 357
+          },
+          {
+            "id": "pkpowd8Db2U",
+            "title": "The Bari Raid: The Secret Gas Cargo Hidden in an Italian Harbour",
+            "channel": "WWII Archives Network",
+            "views": 238
+          },
+          {
+            "id": "ggO9FvPTCkI",
+            "title": "The Allies' Secret Poison Gas Disaster of WWII (Bari, 1943)",
+            "channel": "Forgotten Fronts",
+            "views": 56
+          },
+          {
+            "id": "tsltkQPn5ZU",
+            "title": "The Explosion That Gave Us Chemotherapy?",
+            "channel": "The Attic Letters",
+            "views": 51
+          },
+          {
+            "id": "Ws2VZlrI9_8",
+            "title": "Why Did a Secret U.S. Cargo Poison 628 Allied Men at Bari? – BARI, DECEMBER 2, 1943",
+            "channel": "Unsealed History",
+            "views": 29
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 52,
+          "reach": 29,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 85,
+          "source_quality": 35
+        },
+        "total": 60.7,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: The 1943 Bari Air Raid and Secret Mustard Gas Cargo"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "The 1944 RAF Fauld Explosion",
+      "pillar": "Historical disasters and survival stories",
+      "evidence_ids": [
+        21
+      ],
+      "hook": "An underground munitions depot in Britain suffered a catastrophic explosion so massive it registered as an earthquake and left a crater visible today.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 7,
+        "visual": 8
+      },
+      "wikipedia_title": "RAF Fauld explosion",
+      "commons_query": "RAF Fauld explosion crater",
+      "youtube_query": "RAF Fauld underground munitions explosion",
+      "evidence": [
+        {
+          "title": "1944, 11-27: Between 3,500 and 4,000 tonnes of ordnance exploded at the RAF Fauld underground munitions storage depot in the largest non-nuclear explosion in the United Kingdom.",
+          "url": "https://en.wikipedia.org/wiki/RAF_Fauld_explosion",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 21
+        }
+      ],
+      "wikipedia": {
+        "title": "RAF Fauld explosion",
+        "daily_views": 67,
+        "ratio": 0.61
+      },
+      "youtube": {
+        "median_views": 1129,
+        "competitors": [
+          {
+            "id": "FPs344AsIWU",
+            "title": "They Dropped Nuclear Waste Down a Hole. Then It Exploded | The Buried Story of Dounreay",
+            "channel": "Fault Line Docs",
+            "views": 125610
+          },
+          {
+            "id": "C7526m4KRg4",
+            "title": "The RAF Fauld Explosion 1944: Britain's Largest Blast, Hidden Inside a Staffordshire Hill",
+            "channel": "Geofacts",
+            "views": 1279
+          },
+          {
+            "id": "jSLeMHCzHE4",
+            "title": "We Found a Hidden WW2 Crater on Remembrance Sunday",
+            "channel": "HIPPOS ADVENTURES",
+            "views": 1129
+          },
+          {
+            "id": "FwIGfGEf9R0",
+            "title": "RAF Fauld | The Day a Hill Exploded in Staffordshire 1944",
+            "channel": "Gigi Georgiades",
+            "views": 82
+          },
+          {
+            "id": "pMpN6rRqKx8",
+            "title": "The Halifax Explosion: One Knot, Then 2.9 Kilotons (1917)",
+            "channel": "Chronicle Vault",
+            "views": 3
+          }
+        ]
+      },
+      "commons_hits": 20,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 45,
+          "curiosity": 80,
+          "relevance": 70,
+          "visual": 90,
+          "source_quality": 35
+        },
+        "total": 59.5,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "The Forgotten 6,000-Year-Old Megasites of Ukraine",
+      "pillar": "Ancient civilisations and discoveries",
+      "evidence_ids": [
+        110
+      ],
+      "hook": "Long before Mesopotamia built its first cities, ancient farmers in Ukraine constructed massive settlements housing up to 15,000 people over 790 acres.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Cucuteni–Trypillia culture",
+      "commons_query": "",
+      "youtube_query": "ukraine tryptillian culture ancient megasites",
+      "evidence": [
+        {
+          "title": "About 6,000 years ago, farmers in what is now Ukraine built settlements covering up to 790 acres. Up to 15,000 people may have lived in each, centuries before Mesopotamia’s first cities - Futura, le média qui explore le monde",
+          "url": "https://news.google.com/rss/articles/CBMixAJBVV95cUxQZTNMMl9SQnFIVnJGVWdPRDZ5bW11NDJpdWwyLWFVWFgyVGdrV3FrTGlTZVYzQjY4Q01XaW5iaHdGdDZFLVBFOG9vc0VCT1FMbzNMaWF6bzdjcFloWC1La2tyY0ppa0lmY0RsTUFnZ3Q4aXBqVDNkVnFNMVAxNGZnai0yaWo4c0x3dDdlSXRnRGY1cVpqT0FsYWh6ZUwtT1dabVhERWRnUURNUTJYakNxQjN4MkJ1TXRNYThPUWNMcEp3TlR6aURWNHpSTUNzdnowU2gwUDk3b1BmRnVrZXdPRkJZdV9MaUhlZXpnem9OamkyM2VVcXZTYzlpRlJNV1ZfT0JzMTV5U2NValZUUmFoY1RETXhkZUFnYXRZVkJJX193NDBTbUtPd1JmbDdmNGJqbk9aUXYtOUhnb0JUd0Q3MjBUaUc?oc=5",
+          "domain": "futura-sciences.com",
+          "published_ms": 1795036048000,
+          "kind": "news",
+          "id": 110
+        }
+      ],
+      "wikipedia": {
+        "title": "Cucuteni–Trypillia culture",
+        "daily_views": 212,
+        "ratio": 0.94
+      },
+      "youtube": {
+        "median_views": 131,
+        "competitors": [
+          {
+            "id": "prg3Cy9TJ4Y",
+            "title": "Complete Story of Cucuteni-Trypillia",
+            "channel": "Timeless with Fred Snyder",
+            "views": 82484
+          },
+          {
+            "id": "OBBiiKwjRSE",
+            "title": "Who Were The Trypillians?",
+            "channel": "Para Bellum",
+            "views": 33283
+          },
+          {
+            "id": "Fku0WT6Dvaw",
+            "title": "This Ancient Civilization Existed BEFORE Recorded History",
+            "channel": "What the Earth Hid",
+            "views": 1113
+          },
+          {
+            "id": "L73qaLgGSXA",
+            "title": "Cucuteni–Trypillia: Europe’s Forgotten Megasites | The 6,000-Year-Old Mystery",
+            "channel": "Hidden History & Secrets",
+            "views": 183
+          },
+          {
+            "id": "YzAek5TkXX0",
+            "title": "They Built Europe's First Cities, Then Set Them on Fire",
+            "channel": "Deep Yesterday",
+            "views": 131
+          },
+          {
+            "id": "z837Infq4ek",
+            "title": "3 HOURS of Truly MIND-BLOWING Unexplained Ancient Enigmas Defying Human Comprehension",
+            "channel": "BEFORE MEMORY",
+            "views": 76
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 59.4,
+        "newest_hours": 6,
+        "domains": [
+          "futura-sciences.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Subway Workers Unearth an Ancient City of the Dead",
+      "pillar": "Archaeological discoveries",
+      "evidence_ids": [
+        124
+      ],
+      "hook": "While digging a subway line under a bustling modern street, construction workers accidentally broke into a vast, untouched ancient necropolis.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Necropolis",
+      "commons_query": "",
+      "youtube_query": "subway workers find ancient city of the dead necropolis",
+      "evidence": [
+        {
+          "title": "Subway Workers Dug Under a Busy Street and Found an Ancient City of the Dead - Popular Mechanics",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQN3ZKOEdXcE1iVlptVmFIYzR1aDl4SE0zS210ZS1VaG5vbVNxclZnXzFCZlJnRWNaOUIzUndUTGlZUHZKRXoxRlVKckh0SXR1LU1lY1I2SHEtR2JvNFgxOHlhanAxTUphQlh3dVRYNHZIWEFaLTVJSjc0OVI0VFNuRW1uZ3lNaF9Yb1JrY2lNcEMxb013eTVDM2dhTVB0enZNY1E?oc=5",
+          "domain": "popularmechanics.com",
+          "published_ms": 1795006800000,
+          "kind": "news",
+          "id": 124
+        }
+      ],
+      "wikipedia": {
+        "title": "Necropolis",
+        "daily_views": 273,
+        "ratio": 0.95
+      },
+      "youtube": {
+        "median_views": 0,
+        "competitors": []
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 62,
+          "reach": 20,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 57.3,
+        "newest_hours": 14,
+        "domains": [
+          "popularmechanics.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too few freely licensed images (0 on Wikimedia Commons)"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "The Mother of All Demos",
+      "pillar": "Events that changed the modern world",
+      "evidence_ids": [
+        164
+      ],
+      "hook": "In 1968, one man stepped on stage and accidentally showed the world the future by publicly debuting the computer mouse and hypertext.",
+      "anniversary": true,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 9
+      },
+      "wikipedia_title": "The Mother of All Demos",
+      "commons_query": "Douglas Engelbart mouse NLS",
+      "youtube_query": "The Mother of All Demos 1968",
+      "evidence": [
+        {
+          "title": "1968, 12-09: Douglas Engelbart gave what became known as \"The Mother of All Demos\", publicly debuting the computer mouse (pictured), hypertext, and the bit-mapped graphical user interface using the computer system NLS.",
+          "url": "https://en.wikipedia.org/wiki/Douglas_Engelbart",
+          "domain": "wikipedia.org",
+          "published_ms": 1795056409376,
+          "kind": "anniversary",
+          "id": 164
+        }
+      ],
+      "wikipedia": {
+        "title": "The Mother of All Demos",
+        "daily_views": 131,
+        "ratio": 0.98
+      },
+      "youtube": {
+        "median_views": 121,
+        "competitors": [
+          {
+            "id": "yssyA7rTxkE",
+            "title": "The Mother of All Demos in 1968",
+            "channel": "Marketing With Jeff",
+            "views": 1054
+          },
+          {
+            "id": "3pJNEaktz8s",
+            "title": "The Mother of All Demos",
+            "channel": "Isabel on Startups",
+            "views": 983
+          },
+          {
+            "id": "I3cY1hUEVC0",
+            "title": "This 1968 Demo Looks Like a Modern Computer 🖱️",
+            "channel": "Declassified Corp",
+            "views": 639
+          },
+          {
+            "id": "nwwprEiU_7g",
+            "title": "The Mother of All Demos Still Feels Familiar",
+            "channel": "GIANT Moves Media",
+            "views": 511
+          },
+          {
+            "id": "DCE9yGjtA5g",
+            "title": "The Mother of All Demos: The Tech History They Don't Tell You",
+            "channel": "The Cranky Cynic Tom Peracchio ",
+            "views": 121
+          },
+          {
+            "id": "JiUl3RfoFjA",
+            "title": "Douglas Engelbart's 1968 Mother of All Demos",
+            "channel": "TechShakeHQ",
+            "views": 60
+          }
+        ]
+      },
+      "commons_hits": 1,
+      "score": {
+        "factors": {
+          "momentum": 46,
+          "reach": 38,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 51,
+          "source_quality": 35
+        },
+        "total": 57.2,
+        "newest_hours": 0,
+        "domains": [
+          "wikipedia.org"
+        ],
+        "trusted_domains": [
+          "wikipedia.org"
+        ]
+      },
+      "rejected": [
+        "too few freely licensed images (1 on Wikimedia Commons)"
+      ],
+      "wave": 2
+    }
+  ]
+}

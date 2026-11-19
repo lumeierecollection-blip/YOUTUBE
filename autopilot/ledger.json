@@ -1265,7 +1265,12 @@
       "attempts": 1,
       "run_id": "44445834077",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T02:39:11.898Z"
+      "updated_at": "2026-11-19T02:47:20.175Z",
+      "stage": "research",
+      "topic": "The Eradication of Smallpox",
+      "score": 74.5,
+      "pillar": "Events that changed the modern world",
+      "hook": "For centuries, smallpox killed millions of people across the globe—until a massive international effort made it the only human disease completely wiped out."
     }
   },
   "uploads": [
@@ -2581,6 +2586,15 @@
       "at_ms": 1795025650156,
       "score": 77.8,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "1",
+      "topic": "The Eradication of Smallpox",
+      "slug": "the-eradication-of-smallpox",
+      "slot": "2026-11-18-ch1",
+      "at_ms": 1795056440175,
+      "score": 74.5,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
