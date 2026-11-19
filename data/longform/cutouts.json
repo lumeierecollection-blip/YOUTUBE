@@ -1,28 +1,52 @@
 [
  {
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-3-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/da-tc2.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/da-tc2-cutout.png",
   "args": [
    "--model",
    "birefnet-general",
-   "--crop",
-   "0.12,0.52,0.49,0.91",
    "--max",
-   "3000",
-   "--min-frac",
-   "0.4"
+   "2400"
   ]
  },
  {
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/hs-vernet-cutout-hs.png",
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/da-tc6.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/da-tc6-cutout.png",
   "args": [
    "--model",
    "birefnet-general",
-   "--crop",
-   "0.06,0.18,0.64,0.99",
    "--max",
-   "3000"
+   "2400"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/da-tc4.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/da-tc4-cutout.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--max",
+   "2400"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/da-uk.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/da-uk-cutout.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--max",
+   "2400"
+  ]
+ },
+ {
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/photo-openai-sticker.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/photo-openai-sticker-cutout.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--max",
+   "2400"
   ]
  }
 ]
