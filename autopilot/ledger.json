@@ -1279,7 +1279,12 @@
       "attempts": 1,
       "run_id": "44544500381",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T14:30:53.281Z"
+      "updated_at": "2026-11-19T14:44:14.980Z",
+      "stage": "research",
+      "topic": "Google Makes Gemini AI Task Mode Free for Everyone",
+      "score": 78.2,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Google just made its advanced Gemini AI task features completely free, letting you delegate real-world chores like booking and shopping."
     }
   },
   "uploads": [
@@ -2622,6 +2627,15 @@
       "at_ms": 1795056890243,
       "score": 61,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Google Makes Gemini AI Task Mode Free for Everyone",
+      "slug": "google-makes-gemini-ai-task-mode-free-for-everyone",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795099454980,
+      "score": 78.2,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
