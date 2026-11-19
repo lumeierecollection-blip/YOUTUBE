@@ -53,7 +53,7 @@ export async function commonsAsset({ title, dir, id, claim = "", role = "", kind
   mkdirSync(dir, { recursive: true });
   // the extension must match the bytes: Chrome will not draw an SVG or WebP that is served as image/jpeg (logos, 19 Nov 2026)
   // taken from the downloaded URL, not the mime: a large SVG comes back as a PNG thumbnail ("...svg.png")
-  const ext = (String(meta.url).match(/\.(png|svg|webp|gif|jpe?g)(?:\?|$)/i)?.[1] || "jpg").toLowerCase().replace("jpeg", "jpg");
+  const ext = (String(meta.url).match(/\.(png|svg|webp|gif|jpe?g|mp3|ogg|oga|opus|wav|webm|mp4)(?:\?|$)/i)?.[1] || "jpg").toLowerCase().replace("jpeg", "jpg");
   const file = join(dir, `${id}.${ext}`);
   writeFileSync(file, buf);
   return { file, entry: { id, description: meta.description || title, role, source: "Wikimedia Commons", source_url: meta.page, licence: meta.licence, licence_url: meta.licence_url, author: meta.author, original_credit: meta.credit, date_taken: meta.date, retrieved: new Date().toISOString().slice(0, 10), claim, authenticity: kind, size_px: `${meta.width}x${meta.height}`, credit_line: `${meta.author || "Unknown author"}, ${meta.licence}, via Wikimedia Commons`, bytes: buf.length } };
