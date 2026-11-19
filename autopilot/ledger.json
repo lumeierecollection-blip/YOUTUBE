@@ -1279,12 +1279,12 @@
       "attempts": 1,
       "run_id": "44544500381",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T15:19:56.146Z",
-      "stage": "script",
-      "topic": "90% of Employers Reject AI-Looking Resumes While Using AI to Interview",
-      "score": 75.6,
-      "pillar": "AI changing everyday work",
-      "hook": "Job hunting is broken: 90% of employers reject resumes that look written by AI, even though companies use AI to interview you."
+      "updated_at": "2026-11-19T15:57:56.804Z",
+      "stage": "research",
+      "topic": "Canva Adds an AI 'Off' Button",
+      "score": 71.6,
+      "pillar": "Trending AI tools and apps",
+      "hook": "Tired of AI popping up everywhere? Canva just added a literal 'off' button to turn off its built-in AI tools."
     }
   },
   "uploads": [
@@ -2645,6 +2645,15 @@
       "at_ms": 1795101314469,
       "score": 75.6,
       "pillar": "AI changing everyday work"
+    },
+    {
+      "channel": "2",
+      "topic": "Canva Adds an AI 'Off' Button",
+      "slug": "canva-adds-an-ai-off-button",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795103876804,
+      "score": 71.6,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
