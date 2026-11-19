@@ -6,15 +6,15 @@
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-19T02:56:52.280Z"
+      "collected_at": "2026-11-19T16:11:59.902Z"
     },
     "IIdYdKKUiRM": {
       "channel": "2",
       "privacy": "public",
-      "views": 137,
+      "views": 138,
       "likes": 5,
       "comments": 0,
-      "collected_at": "2026-11-19T02:56:52.712Z",
+      "collected_at": "2026-11-19T16:12:00.557Z",
       "average_view_duration_s": 18,
       "average_view_percentage": 67.73,
       "subscribers_gained": 3,
@@ -26,17 +26,17 @@
       "views": 1,
       "likes": 0,
       "comments": 0,
-      "collected_at": "2026-11-19T02:56:52.712Z"
+      "collected_at": "2026-11-19T16:12:00.557Z"
     }
   },
   "analytics_status": {
     "1": {
       "available": true,
-      "checked_at": "2026-11-19T02:56:52.556Z"
+      "checked_at": "2026-11-19T16:12:00.304Z"
     },
     "2": {
       "available": true,
-      "checked_at": "2026-11-19T02:56:52.890Z"
+      "checked_at": "2026-11-19T16:12:00.947Z"
     }
   }
 }
