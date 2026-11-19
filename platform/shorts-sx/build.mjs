@@ -52,7 +52,8 @@ function realise(s) {
 const shots = []; let from = 0;
 for (const s of S.SHOTS) { const i = toks.findIndex((t, k) => k >= from && norm(t.w) === norm(s.at)); if (i < 0) { console.log("shot word not found:", s.at); continue; } shots.push({ ...realise(s), f0: Math.round(toks[i].t0 * FPS), wi: i }); from = i + 1; }
 // fill: a new picture every ~0.45/0.5 s between key shots, on word starts, cycling the pool
-const gap = S.STYLE === "v1" ? 0.35 : 0.38, out = [];   // first render measured 0.81 / 1.06 s per shot; the references cut every 0.49-0.53 s let q = 0;
+// first render measured 0.81 / 1.06 s per shot; the references cut every 0.49-0.53 s
+const gap = S.STYLE === "v1" ? 0.35 : 0.38, out = []; let q = 0;
 const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "full" }, { kind: "inset", w: 900, top: 520 }, { kind: "paper" }][k % 5];
 for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
