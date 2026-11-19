@@ -12,8 +12,9 @@ const dir = join(ROOT, "src/skills/remotion-render/public/lf2", chDir), attPath 
 const att = existsSync(attPath) ? JSON.parse(readFileSync(attPath, "utf8")) : {};
 for (let i = 0; i < rest.length; i += 3) {
   const [id, title, claim] = rest.slice(i, i + 3);
+  if (att[id] && existsSync(join(dir, att[id].file))) { console.log(id, "already here:", att[id].file); continue; }   // committed files are not re-fetched (Commons 429s)
   try {
-    const get = () => commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026", minBytes: id.startsWith("logo-") ? 1000 : 8000 });
+    const get = () => commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026", minBytes: id.startsWith("logo-") ? 400 : 8000   /* the ChatGPT SVG is 972 bytes */ });
     let r; try { r = await get(); } catch (e) { if (!/429/.test(e.message)) throw e; await new Promise((ok) => setTimeout(ok, 30000)); r = await get(); }   // one retry after a rate limit
     const { file, entry } = r;
     att[id] = { ...entry, file: basename(file), credit_line: `${entry.author}, ${entry.licence}, via Wikimedia Commons`, authenticity: "authentic" };

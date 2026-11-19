@@ -21,6 +21,9 @@ export const PHOTOS = [
   ["logo-openai", "File:OpenAI Logo.png", "OpenAI logo (identifies the company named)"],
   ["logo-anthropic", "File:Anthropic Logo 2.webp", "Anthropic logo (identifies the company named)"],
   ["logo-claude", "File:Claude AI logo.png", "Claude logo (identifies the product named)"],
+  ["logo-claude-symbol", "File:Claude AI symbol.svg", "Claude symbol (identifies the product named)"],
+  ["logo-chatgpt", "File:ChatGPT logo.svg", "ChatGPT logo (identifies the product named)"],
+  ["logo-google", "File:Google 2015 logo.svg", "Google logo (identifies the company named)"],
 ];
 export const CAPTURES = [
   { id: "wiki-anth", url: "https://en.wikipedia.org/wiki/Anthropic", viewport: { width: 1280, height: 900 }, scale: 1, phrases: ["Valued at $965 billion", "former members of OpenAI over disagreements on AI safety", "plans an initial public offering in November 2026"], steps: [{ do: "wait", ms: 1500 }], fullPage: true },
@@ -28,22 +31,23 @@ export const CAPTURES = [
 ];
 export const SHOTS = [
   { at: "Five", kind: "full", photo: "da-tc6", cap: "Five years ago" },
-  { at: "Dario", kind: "full", photo: "da-tc2", cap: "Dario Amodei" },
-  { at: "OpenAI's", kind: "logo", logo: "logo-openai", white: true },
+  { at: "Dario", kind: "full", photo: "da-tc4", sil: "da-tc4", cap: "Dario Amodei" },   // cut-outs: da-tc6 isolates the interviewer and da-tc2 keeps a second person's arm, so only da-tc4 and da-uk flash
+  { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
   { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI", glitch: true },
-  { at: "Baidu", kind: "full", media: "sx-server", cap: "Baidu · Google Brain" },
-  { at: "GPT-2,", kind: "full", media: "sx-code", cap: "GPT-2 · GPT-3" },
+  { at: "Baidu", kind: "full", media: "sx-server", cap: "Baidu" },
+  { at: "Google", kind: "logo", logo: "logo-google", white: true },
+  { at: "GPT-2,", kind: "split", photo: "da-tc4", photo2: "da-tc2", pos2: "60% 40%", cap: "GPT-2 · GPT-3" },
   { at: "January", kind: "year", media: "sx-door", year: "2021" },
   { at: "sister", kind: "page", page: "Daniela" },
   { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety", glitch: true },
-  { at: "founded", kind: "logo", logo: "logo-anthropic", white: true, glitch: true },
-  { at: "May", kind: "year", photo: "da-uk", year: "2026" },
+  { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354", glitch: true },
+  { at: "May", kind: "year", photo: "da-uk", sil: "da-uk", year: "2026" },
   { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
   { at: "public", kind: "capture", capture: "wiki-anth", phrase: "plans an initial public offering in November 2026" },
   { at: "Same", kind: "full", media: "sx-server", cap: "Same research." },
-  { at: "different", kind: "full", photo: "da-tc4", cap: "A different bet." },
+  { at: "different", kind: "full", photo: "da-tc2", cap: "A different bet." },
   { at: "So", kind: "page", page: "So" },
-  { at: "Comment", kind: "cta", logos: ["logo-openai", "logo-claude"] },
+  { at: "Comment", kind: "cta", logos: ["logo-chatgpt", "logo-claude-symbol"] },
 ];
 export const POOL = ["sx-typing", "sx-server", "sx-city", "sx-office", "sx-code", "sx-laptop", "sx-stock"];
 export const TAG = "AI TESTED";

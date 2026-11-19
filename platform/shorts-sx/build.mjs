@@ -36,12 +36,26 @@ const cap = (id, phrase) => { const f = join(PUB, "sx", slug, `${id}.json`); if 
   const cx = Math.max(0, Math.min(r[0].x - 90, m.viewport.width - 760));
   return { img: `sx/${slug}/${id}-0.png`, pw: m.viewport.width, cw: 760, cx, cy: Math.max(0, r[0].y - 170), ch: 560, rects: r, credit: "Wikipedia (CC BY-SA 4.0), captured " + m.captured.slice(0, 10) }; };
 const VCRED = "Pixabay · illustrative";
+// background-removed version of a credited photo (BiRefNet on GitHub, platform/production/cutout.py): same credit as the original
+const cut = (id) => { const p = photo(id); if (!p) return null; const f = p.img.replace(/\.[a-z]+$/i, "-cutout.png"); return existsSync(join(PUB, f)) ? { img: f, credit: p.credit } : null; };
+// one collage item: a photo, a cut-out, a logo, a page capture (top of the real page) or a clip; null if the file is missing
+const item = (it) => {
+  if (it.cut) { const c = cut(it.cut); return c && { ...it, img: c.img, cut: true, credit: c.credit }; }
+  if (it.logo) { const p = photo(it.logo); return p && { ...it, img: p.img, logo: true, credit: p.credit }; }
+  if (it.photo) { const p = photo(it.photo); return p && { ...it, img: p.img, credit: p.credit }; }
+  if (it.page) { const f = `sx/${slug}/${it.page}-0.png`; return existsSync(join(PUB, f)) && { ...it, img: f, top: true, credit: "page capture" }; }
+  if (it.media) { const v = foot(it.media); return v && { ...it, video: v, credit: VCRED }; }
+  return null; };
 
 function realise(s) {
   const o = { ...s }; delete o.at;
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
   if (s.photo) { const ph = photo(s.photo); if (ph) Object.assign(o, ph); else o.kind = "paper"; }
-  if (s.kind === "logo") { const ph = photo(s.logo); if (ph) Object.assign(o, ph); else Object.assign(o, { kind: "paper" }); }
+  if (s.photo2) { const ph = photo(s.photo2); if (ph) o.img2 = ph.img; else if (o.kind === "split") o.kind = "full"; }
+  if (s.kind === "logo" || s.kind === "brand") { const ph = photo(s.logo); if (ph) Object.assign(o, ph); else Object.assign(o, { kind: "paper" }); }
+  if (s.sil) { const c = cut(s.sil); if (c) o.sil = c.img; else delete o.sil; }
+  if (s.kind === "cutout") { const c = cut(s.cut); if (c) Object.assign(o, c); else { const ph = photo(s.cut); Object.assign(o, ph ? { kind: "inset", mat: true, ...ph } : { kind: "paper" }); } }
+  if (s.kind === "collage") { o.items = s.items.map(item).filter(Boolean); if (!o.items.length) o.kind = "paper"; else o.credit = [...new Set(o.items.map((i) => i.credit).filter((c) => c && c !== "page capture"))].join(" · ").slice(0, 160); }
   if (s.kind === "cta" && s.logos) o.logos = s.logos.map((id) => photo(id)?.img).filter(Boolean);
   if (s.kind === "capture") { const c = cap(s.capture, s.phrase); if (c) Object.assign(o, c); else Object.assign(o, { kind: "page", page: s.phrase }); }
   if (o.kind === "year" && !o.video && !o.img) o.kind = "page", (o.page = s.year);

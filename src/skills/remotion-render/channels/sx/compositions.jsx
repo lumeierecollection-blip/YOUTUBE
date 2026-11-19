@@ -34,9 +34,23 @@ function Plate({ s, l, ground }) {
     {g && <div style={{ ...ins(s.w || 760, s.top || 560), mixBlendMode: "screen", transform: "translateX(14px)", background: "rgba(255,0,90,0.35)" }} />}
   </AbsoluteFill>;
   if (s.kind === "full" || s.kind === "year") return <AbsoluteFill style={{ background: "#000", ...fx }}>
-    <div style={{ position: "absolute", inset: 0, transform: `scale(${z})` }}><Media s={s} ss={s.ss} style={s.kind === "year" ? { filter: "brightness(0.55)" } : {}} /></div>
+    <div style={{ position: "absolute", inset: 0, transform: `scale(${z})` }}><Media s={s} ss={s.ss} style={s.kind === "year" || (s.sil && l < 4) ? { filter: "brightness(0.55)" } : {}} /></div>
+    {/* v3 reference: the person's cut-out flashes as a flat white silhouette for ~4 frames before the photo shows (frames 12.75 s, 16.25 s) */}
+    {s.sil && l < 4 && <Img src={src(s.sil)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: s.pos || "50% 40%", filter: "brightness(0) invert(1)" }} />}
     {s.kind === "year" && <div style={{ position: "absolute", left: 0, right: 0, top: 700, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 330, color: "#fff", letterSpacing: -12, textShadow: "0 8px 40px rgba(0,0,0,0.5)" }}>{s.year}</div>}
   </AbsoluteFill>;
+  // v3 reference: a full-frame brand card, the wordmark in white on the brand colour (Anthropic card measured #DD7354 at 15.6 s)
+  if (s.kind === "brand") { const k = Math.min(1, step(l) / 6); return <AbsoluteFill style={{ background: s.bg || "#111", display: "flex", alignItems: "center", justifyContent: "center", ...fx }}>
+    <Img src={src(s.img)} style={{ width: s.lw || 820, maxHeight: 360, objectFit: "contain", filter: "brightness(0) invert(1)", transform: `scale(${0.94 + 0.06 * k})` }} /></AbsoluteFill>; }
+  // v1 reference: pictures (photos, logos, page captures, cut-outs) pile up one every 3 frames on the paper, each slightly offset ("plan", "a team from Google")
+  if (s.kind === "collage") return <AbsoluteFill style={{ background: ground }}>
+    {(s.items || []).filter((_, i) => step(l) >= i * 3).map((it, i) => <div key={i} style={{ position: "absolute", left: it.x, top: it.y, width: it.w, height: it.h || it.w * 0.72, background: it.cut || it.logo ? "transparent" : "#fff", padding: it.cut || it.logo ? 0 : 10, boxShadow: it.cut ? "none" : "0 8px 26px rgba(0,0,0,0.2)", transform: `rotate(${it.rot || 0}deg) scale(${z})`, filter: it.cut ? "drop-shadow(0 10px 18px rgba(0,0,0,0.3))" : "none" }}>
+      {it.logo ? <div style={{ width: "100%", height: "100%", background: it.tile ? "#0d0d0d" : "#fff", borderRadius: it.tile ? 40 : 6, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 26px rgba(0,0,0,0.2)" }}><Img src={src(it.img)} style={{ maxWidth: "74%", maxHeight: "74%", objectFit: "contain", filter: it.tile ? "invert(1)" : "none" }} /></div>
+        : <div style={{ width: "100%", height: "100%", overflow: "hidden" }}><Media s={it} style={it.cut ? { objectFit: "contain" } : it.top ? { objectPosition: "50% 0%" } : {}} /></div>}
+    </div>)}</AbsoluteFill>;
+  // a background-removed photo standing on the paper ground (cut-out), steps up on threes
+  if (s.kind === "cutout") return <AbsoluteFill style={{ background: ground }}>
+    <Img src={src(s.img)} style={{ position: "absolute", left: 90, right: 90, bottom: s.bottom ?? 0, width: 900, height: s.h || 1150, objectFit: "contain", objectPosition: "50% 100%", transform: `scale(${z})`, transformOrigin: "50% 100%", filter: "drop-shadow(0 16px 30px rgba(0,0,0,0.28))", ...fx }} /></AbsoluteFill>;
   if (s.kind === "split") { const k = interpolate(step(l), [0, 9], [0, 1], { extrapolateRight: "clamp" }); return <AbsoluteFill style={{ background: "#000" }}>
     <div style={{ position: "absolute", left: 0, top: 0, width: 1080 - 520 * k, height: 1920, overflow: "hidden" }}><Media s={{ img: s.img, pos: s.pos }} /></div>
     <div style={{ position: "absolute", left: 1080 - 520 * k, top: 0, width: 540, height: 1920, overflow: "hidden" }}><Media s={{ img: s.img2, pos: s.pos2 }} /></div>
@@ -56,7 +70,7 @@ function Plate({ s, l, ground }) {
     <div style={{ position: "absolute", left: (1080 - (s.tile ? 340 : 760)) / 2, top: s.tile ? 640 : 720, width: s.tile ? 340 : 760, height: s.tile ? 340 : 220, borderRadius: s.tile ? 64 : 0, background: s.tile ? "#0d0d0d" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${0.9 + 0.1 * k})`, boxShadow: s.tile ? "0 10px 30px rgba(0,0,0,0.25)" : "none" }}>
       <Img src={src(s.img)} style={{ maxWidth: s.tile ? "78%" : "100%", maxHeight: s.tile ? "78%" : "100%", objectFit: "contain", filter: s.tile ? "invert(1)" : "none" }} /></div></AbsoluteFill>; }
   if (s.kind === "cta") return <AbsoluteFill style={{ background: "#3A3A3A" }}>
-    {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "invert(1)" }} />)}</AbsoluteFill>;
+    {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "brightness(0) invert(1)" }} />)}</AbsoluteFill>;
   return <AbsoluteFill style={{ background: ground }} />;
 }
 
@@ -91,11 +105,11 @@ export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta 
   let si = 0; for (let i = 0; i < shots.length; i++) if (shots[i].f0 <= f) si = i;
   const s = shots[si] || { kind: "paper" }, l = f - (s.f0 || 0);
   const strobe = s.strobe && l < 15, ground = strobe ? (Math.floor(l / 2) % 2 ? "#050505" : PAPER) : s.kind === "black" ? "#050505" : PAPER;
-  const dark = ["full", "year", "split", "black", "cta"].includes(s.kind) || ground === "#050505";
+  const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || ground === "#050505";
   return <AbsoluteFill style={{ background: ground }}>
     <Fonts />
     <Plate s={s} l={l} ground={ground} />
-    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && !s.cap && <Captions words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : undefined} />}
+    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : undefined} />}
     {s.cap && <div style={{ position: "absolute", left: 0, right: 0, top: 1040, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 78, color: "#fff", textShadow: "0 3px 18px rgba(0,0,0,0.65)" }}>{s.cap}</div>}
     {s.kind === "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 110, color: "#fff", lineHeight: 1.05 }}>{cta}</div>}
     {s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}

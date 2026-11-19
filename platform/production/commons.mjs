@@ -51,7 +51,9 @@ export async function commonsAsset({ title, dir, id, claim = "", role = "", kind
   const buf = Buffer.from(await r.arrayBuffer());
   if (buf.length < minBytes) throw new Error(`${title} is implausibly small (${buf.length} bytes)`);
   mkdirSync(dir, { recursive: true });
-  const ext = meta.mime === "image/png" ? "png" : "jpg";
+  // the extension must match the bytes: Chrome will not draw an SVG or WebP that is served as image/jpeg (logos, 19 Nov 2026)
+  // taken from the downloaded URL, not the mime: a large SVG comes back as a PNG thumbnail ("...svg.png")
+  const ext = (String(meta.url).match(/\.(png|svg|webp|gif|jpe?g)(?:\?|$)/i)?.[1] || "jpg").toLowerCase().replace("jpeg", "jpg");
   const file = join(dir, `${id}.${ext}`);
   writeFileSync(file, buf);
   return { file, entry: { id, description: meta.description || title, role, source: "Wikimedia Commons", source_url: meta.page, licence: meta.licence, licence_url: meta.licence_url, author: meta.author, original_credit: meta.credit, date_taken: meta.date, retrieved: new Date().toISOString().slice(0, 10), claim, authenticity: kind, size_px: `${meta.width}x${meta.height}`, credit_line: `${meta.author || "Unknown author"}, ${meta.licence}, via Wikimedia Commons`, bytes: buf.length } };
