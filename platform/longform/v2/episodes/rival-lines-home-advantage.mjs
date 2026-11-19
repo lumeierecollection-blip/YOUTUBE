@@ -89,7 +89,7 @@ export const EPISODE = {
       scene: LINE({ title: "Real, And Shrinking", bold: "Shrinking", series: [{ name: "home wins", color: "home", vals: D.home_win }, { name: "trend", color: "accent", vals: D.home_win_fit, dash: "16 12" }], ymin: 30, ymax: 55 }) },
     { id: "H06b", part: "is home advantage real?", ref: "gp4cftwGLcQ 5:00: a burst of footage as proof", src: ["PHOTO"],
       vo: "So something real is going on, and it is getting smaller. Which brings us to the suspect everyone names first: the crowd.",
-      scene: mont(["fb-crowd", "fb-night", "fb-celebrate", "fb-run"], 2.4) },
+      scene: mont(["fb-aerial", "fb-night", "fb-fans", "fb-ref"], 2.4) },
     // ---- the crowd test
     { id: "H07", part: "the crowd test", ref: "gp4cftwGLcQ 3:29: the popular explanation, stated fairly", src: ["HA", "PHOTO"],
       vo: "The idea is simple. Home fans vastly outnumber visiting fans. They cheer, they boo, and the players feel it. One study of five thousand Premier League games, by Ryan Boyko, then a Harvard research assistant, reported that every extra ten thousand people in the stadium added a tenth of a goal to the home advantage.",
@@ -140,7 +140,7 @@ export const EPISODE = {
       scene: { type: "ixquote", bg: "teal", text: "bolivia 6–1 argentina", bold: "6–1", sub: "La Paz, 3,600 m above sea level · 1 April 2009 · Argentina ranked sixth in the world then; its heaviest defeat since 1958", source: "Wikipedia, Home advantage" } },
     { id: "H19b", part: "how big is the edge?", ref: "gp4cftwGLcQ 5:00: footage as proof", src: ["PHOTO"],
       vo: "Altitude, travel, familiar surroundings, and the crowd all stack together. The article notes that the most commonly cited factors are the hardest to measure, so even their existence is debated.",
-      scene: { type: "ixclip", bg: "plum", video: VID("fb-aerial"), video2: VID("fb-crowd"), credit: VCRED } },
+      scene: { type: "ixclip", bg: "plum", video: VID("fb-aerial"), video2: VID("fb-night"), credit: VCRED } },
     // ---- why home still wins
     { id: "H20", part: "why home still wins", ref: "gp4cftwGLcQ 15:07: the clear verdict", src: ["FD", "FH", "EG"],
       vo: "So why do home teams win so much? Because the edge is real: about forty-six percent against twenty-nine, in thirty-two of thirty-three seasons. It is shrinking slowly. And the strongest signals point at people rather than place: what a crowd does to players, and what it may do to referees. The studies disagree on how much.",
@@ -160,5 +160,6 @@ export const EPISODE = {
   ],
 };
 
+// render 6 checked clip by clip: only fb-aerial, fb-fans, fb-night and fb-ref are real football footage (others: chroma-key ball, CGI pitch and balls, a news graphic, a desert, a park), so only these rotate.
 // a new picture every few seconds (reference rhythm): short clips over the statement cards only, never over the study cards, bar charts or line charts (they must be read)
-autoCut(EPISODE.beats, ["fb-crowd", "fb-run", "fb-night", "fb-celebrate", "fb-tackle", "fb-aerial", "fb-goal", "fb-ball", "fb-ref", "fb-empty"], { wps: 2.45, types: new Set(["ixquote"]) });
+autoCut(EPISODE.beats, ["fb-aerial", "fb-night", "fb-fans", "fb-ref"], { wps: 2.45, types: new Set(["ixquote"]) });
