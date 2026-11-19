@@ -58,6 +58,7 @@ function realise(s) {
   if (S.CALM && s.kind === "capture" && !s.allowCapture) throw new Error(`page screenshot at "${s.at}": not allowed in calm Shorts; show the thing itself (people, money, a number, a logo)`);
   if (s.kind === "people") { o.people = s.people.map((p) => { const e = entPic(p.ent); return { name: p.name || e.name, role: p.role || "", img: e.img }; }); o.credit = [...new Set(s.people.map((p) => entPic(p.ent).credit).filter(Boolean))].join(" · ").slice(0, 200); }
   if (s.kind === "person") { const e = entPic(s.ent); Object.assign(o, { name: s.name || e.name, img: e.img, cut: s.noCut ? null : e.cut, credit: e.credit }); if (!e.img) o.kind = "page", (o.page = o.name); }
+  if (s.kind === "versus") { const pick = (x) => (x.ent ? entPic(x.ent).cut || entPic(x.ent).img : cutOf(x.photo)); Object.assign(o, { cutA: pick(s.a), cutB: pick(s.b), labA: s.a.label, labB: s.b.label }); o.credit = [s.a, s.b].map((x) => (x.ent ? entPic(x.ent).credit : photo(x.photo)?.credit)).filter(Boolean).join(" · "); }
   if ((s.kind === "money" || s.kind === "stat") && s.asset) { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; }
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
   if (s.photo) { const ph = photo(s.photo); if (ph) Object.assign(o, ph); else o.kind = "paper"; }
@@ -99,7 +100,7 @@ const small = (w) => { const t = w.toLowerCase().replace(/[^a-z0-9.-]/g, ""); if
 const shownNums = (txt) => [...txt.replace(/,/g, "").matchAll(/([0-9]+(?:\.[0-9]+)?)\s*(k|m|bn|b|thousand|million|billion|trillion)?/gi)].map(([, n, u]) => +n * ({ k: 1e3, m: 1e6, b: 1e9, bn: 1e9, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }[(u || "").toLowerCase()] || 1));
 for (let i = 0; i < out.length; i++) {
   const sh = out[i], end = i + 1 < out.length ? out[i + 1].f0 : 1e9;
-  const shown = [sh.cap, sh.year, sh.label, sh.lab1, sh.lab2, sh.page, sh.value, sh.unit, sh.name, sh.role, sh.title, ...(sh.people || []).flatMap((p) => [p.name, p.role])].filter(Boolean).join(" ");
+  const shown = [sh.cap, sh.year, sh.label, sh.lab1, sh.lab2, sh.labA, sh.labB, sh.page, sh.value, sh.unit, sh.name, sh.role, sh.title, ...(sh.people || []).flatMap((p) => [p.name, p.role])].filter(Boolean).join(" ");
   if (!shown || sh.cap) continue;   // a cap already replaces the captions for its shot
   const toks = new Set(shown.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean)), nums = shownNums(shown);
   const inShot = words.filter((w) => { const f = Math.round(w.t0 * FPS); return f >= sh.f0 && f < end; });

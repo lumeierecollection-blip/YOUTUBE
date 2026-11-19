@@ -101,6 +101,13 @@ function Plate({ s, l, ground, calm }) {
     {s.unit && <div style={{ position: "absolute", left: 0, right: 0, top: 600, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 52, color: s.bg ? "rgba(255,255,255,0.85)" : "#444", opacity: appear(1) }}>{s.unit}</div>}
     {s.img && Array.from({ length: n }, (_, i) => <Img key={i} src={src(s.img)} style={{ position: "absolute", left: 540 + (i - (n - 1) / 2) * 230, top: 860 + Math.abs(i - (n - 1) / 2) * 60, width: 560, transform: `translateX(-50%) scale(${z}) rotate(${(i - (n - 1) / 2) * 4}deg)`, opacity: appear(i + 1, 6), filter: "drop-shadow(0 16px 24px rgba(0,0,0,0.3))" }} />)}
   </AbsoluteFill>; }
+  // two people as cut-outs on their companies' colours, side by side (owner: a mix of PNG cut-outs and photos, not photos everywhere)
+  if (s.kind === "versus") return <AbsoluteFill>
+    <div style={{ position: "absolute", left: 0, top: 0, width: 540, height: 1920, background: s.bgA || "#111" }} /><div style={{ position: "absolute", left: 540, top: 0, width: 540, height: 1920, background: s.bgB || "#DD7354" }} />
+    {[[s.cutA, s.labA, 0], [s.cutB, s.labB, 540]].map(([c, lab, x], i) => <React.Fragment key={i}>
+      {c && <Img src={src(c)} style={{ position: "absolute", left: x - 60, bottom: 0, width: 660, height: 1150, objectFit: "contain", objectPosition: "50% 100%", opacity: appear(i, 9), transform: `scale(${z})`, transformOrigin: "50% 100%", filter: "drop-shadow(0 16px 26px rgba(0,0,0,0.35))" }} />}
+      <div style={{ position: "absolute", left: x + 20, width: 500, top: 330, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 46, color: "#fff", lineHeight: 1.15, opacity: appear(i, 9) }}>{lab}</div></React.Fragment>)}
+  </AbsoluteFill>;
   if (s.kind === "stat") { const pct = s.pct, a = appear(0), R = 230, C = 2 * Math.PI * R, k = Math.min(1, l / 24); return <AbsoluteFill style={{ background: s.bg || ground }}>
     {pct != null && <svg width="1080" height="1920" style={{ position: "absolute", inset: 0 }}><circle cx="540" cy="900" r={R} fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="56" /><circle cx="540" cy="900" r={R} fill="none" stroke={s.color || RED} strokeWidth="56" strokeDasharray={`${C * pct / 100 * k} ${C}`} transform="rotate(-90 540 900)" /></svg>}
     <div style={{ position: "absolute", left: 0, right: 0, top: pct != null ? 790 : 640, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: pct != null ? 170 : 260, color: "#111", opacity: a }}>{s.value}</div>
@@ -145,11 +152,11 @@ export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta,
   let si = 0; for (let i = 0; i < shots.length; i++) if (shots[i].f0 <= f) si = i;
   const s = shots[si] || { kind: "paper" }, l = f - (s.f0 || 0);
   const strobe = !calm && s.strobe && l < 15, ground = strobe ? (Math.floor(l / 2) % 2 ? "#050505" : PAPER) : s.kind === "black" ? "#050505" : PAPER;
-  const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || (["people", "person", "money", "stat"].includes(s.kind) && !!s.bg) || ground === "#050505";
+  const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || (["people", "person", "money", "stat"].includes(s.kind) && !!s.bg) || s.kind === "versus" || ground === "#050505";
   return <AbsoluteFill style={{ background: ground }}>
     <Fonts />
     <AbsoluteFill style={{ opacity: calm && si > 0 ? Math.min(1, 0.35 + l / 8) : 1 }}><Plate s={s} l={l} ground={ground} calm={calm} /></AbsoluteFill>   {/* calm: a short fade into each picture instead of a hard flash */}
-    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : ["people", "money", "stat"].includes(s.kind) ? 1660 : s.kind === "person" ? 1700 : undefined} />}
+    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : ["people", "money", "stat", "versus"].includes(s.kind) ? 1660 : s.kind === "person" ? 1700 : undefined} />}
     {s.cap && <div style={{ position: "absolute", left: 0, right: 0, top: 1040, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 78, color: "#fff", textShadow: "0 3px 18px rgba(0,0,0,0.65)" }}>{s.cap}</div>}
     {s.kind === "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 110, color: "#fff", lineHeight: 1.05 }}>{cta}</div>}
     {!calm && s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}
