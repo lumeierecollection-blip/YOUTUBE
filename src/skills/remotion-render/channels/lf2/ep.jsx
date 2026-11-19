@@ -191,7 +191,7 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
       return <Img key={`g${n}`} src={staticFile(g.src)} style={{ position: "absolute", [g.side || "right"]: g.edge ?? 30, bottom: g.bottom ?? 0, height: g.h || 760, opacity: a, transform: `translateX(${(1 - a) * (g.side === "left" ? -40 : 40)}px)`, filter: g.vignette ? "sepia(0.1)" : "drop-shadow(0 0 26px rgba(0,0,0,0.55))", WebkitMaskImage: m, maskImage: m }} />; })}
     {/* parchment: ONE full-frame texture layer (a per-shape pattern with blend modes made map beats miss their shard time limit, run 44585504340) */}
     <Img src={staticFile("lf2/hidden-past/tex-terrain.jpg")} style={{ position: "absolute", inset: 0, width: 1920, height: 1080, objectFit: "cover", opacity: 0.22, pointerEvents: "none" }} />
-    <AbsoluteFill style={{ background: "radial-gradient(80% 75% at 50% 45%, rgba(255,190,90,0.06) 0%, rgba(214,120,30,0.16) 60%, rgba(60,25,5,0.55) 100%)", pointerEvents: "none" }} />   {/* Epic: warm orange-brown vignette */}
+    <AbsoluteFill style={{ background: "radial-gradient(90% 85% at 50% 45%, rgba(0,0,0,0) 65%, rgba(30,28,25,0.35) 100%)", pointerEvents: "none" }} />   {/* Epic political maps: neutral paper, soft dark edge */}   {/* Epic: warm orange-brown vignette */}
     <Grain o={0.2} />
     {plates.map((p, n) => <Plate key={`pl${n}`} t={t} {...p} />)}
     {note && <div style={{ position: "absolute", left: 40, top: 30, fontFamily: SERIF, fontStyle: "italic", fontSize: 22, color: c.mapInk, opacity: 0.75 * ramp(f, note.from || 20, (note.from || 20) + 14) }}>{note.text}</div>}
@@ -217,6 +217,7 @@ export function EpBattle({ t, hills = [], water = [], woods = [], units = [], ar
           <marker id="bah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
         </defs>
         <rect width="1920" height="1080" fill={c.khaki} />
+        <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" opacity={0.55} />   {/* Epic battle maps: real terrain texture under the units, not a flat field */}
         <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} x="0" y="0" width="1920" height="1080" preserveAspectRatio="none" />
         {hills.map((h, n) => <g key={`h${n}`}>
           <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="url(#hd)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
