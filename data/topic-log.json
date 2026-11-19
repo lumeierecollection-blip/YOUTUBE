@@ -4878,9 +4878,14 @@
           "topic": "Toyota Recalls 314,000 U.S. Vehicles Over Takata Airbag Inflators",
           "slug": "toyota-314000-vehicle-takata-airbag-recall-nov-2026",
           "reserved_at": "2026-11-18T17:36:18.956Z"
+        },
+        {
+          "topic": "November 2026 Recall Analysis: 247 Consumer Safety Incidents Tracked",
+          "slug": "november-2026-recall-analysis-safety-incidents",
+          "reserved_at": "2026-11-19T18:58:25.213Z"
         }
       ],
-      "last_generated": "2026-11-18T17:36:18.956Z"
+      "last_generated": "2026-11-19T18:58:25.213Z"
     },
     "49": {
       "channel_name": "Picture House",
