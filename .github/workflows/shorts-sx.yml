@@ -77,7 +77,7 @@ jobs:
       fail-fast: false
       matrix:
         slug: [ai-tested-hallucination, ai-tested-amodei]
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]   # owner, 19 Nov 2026: 20 pieces per video
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -91,8 +91,8 @@ jobs:
         with: { chrome-version: stable }
       - uses: actions/download-artifact@v4
         with: { name: "sx-prep-${{ matrix.slug }}", path: . }
-      - name: Render shard ${{ matrix.shard }}/10
-        run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --shard ${{ matrix.shard }}/10
+      - name: Render shard ${{ matrix.shard }}/20
+        run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --shard ${{ matrix.shard }}/20
       - uses: actions/upload-artifact@v4
         with: { name: "sx-part-${{ matrix.slug }}-${{ matrix.shard }}", path: "output/sx/${{ matrix.slug }}/parts/part-${{ matrix.shard }}.mp4", retention-days: 7 }
 
@@ -111,7 +111,7 @@ jobs:
         with: { name: "sx-prep-${{ matrix.slug }}", path: . }
       - uses: actions/download-artifact@v4
         with: { pattern: "sx-part-${{ matrix.slug }}-*", path: "output/sx/${{ matrix.slug }}/parts", merge-multiple: true }
-      - name: Join the 10 shards with the narration
+      - name: Join the 20 shards with the narration
         run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --join
       - uses: actions/upload-artifact@v4
         with: { name: "sx-short-${{ matrix.slug }}", path: "output/sx/${{ matrix.slug }}/short.mp4", retention-days: 30 }

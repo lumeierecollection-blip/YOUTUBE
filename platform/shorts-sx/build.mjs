@@ -97,7 +97,7 @@ out.sort((x, y) => x.f0 - y.f0);
 const NUM = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
 const MUL = { hundred: 100, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }, UNIT = new Set(["percent", "dollars", "dollar"]);
 const small = (w) => { const t = w.toLowerCase().replace(/[^a-z0-9.-]/g, ""); if (/^[0-9][0-9.]*$/.test(t)) return +t; const parts = t.split("-"); return parts.length && parts.every((x) => x in NUM) ? parts.reduce((a, x) => a + NUM[x], 0) : null; };
-const shownNums = (txt) => [...txt.replace(/,/g, "").matchAll(/([0-9]+(?:\.[0-9]+)?)\s*(k|m|bn|b|thousand|million|billion|trillion)?/gi)].map(([, n, u]) => +n * ({ k: 1e3, m: 1e6, b: 1e9, bn: 1e9, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }[(u || "").toLowerCase()] || 1));
+const shownNums = (txt) => [...txt.replace(/,/g, "").matchAll(/([0-9]+(?:\.[0-9]+)?)\s*(k|m|bn|b|thousand|million|billion|trillion)?\b/gi)].map(([, n, u]) => +n * ({ k: 1e3, m: 1e6, b: 1e9, bn: 1e9, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }[(u || "").toLowerCase()] || 1));
 for (let i = 0; i < out.length; i++) {
   const sh = out[i], end = i + 1 < out.length ? out[i + 1].f0 : 1e9;
   const shown = [sh.cap, sh.year, sh.label, sh.lab1, sh.lab2, sh.labA, sh.labB, sh.page, sh.value, sh.unit, sh.name, sh.role, sh.title, ...(sh.people || []).flatMap((p) => [p.name, p.role])].filter(Boolean).join(" ");
