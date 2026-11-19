@@ -12,7 +12,7 @@ export const ENTITIES = [
   { id: "clark", name: "Jack Clark", file: "File:Jack Clark, co-founder of Anthropic, giving a talk on AI at the Schwarzman Centre in Oxford.jpg", kind: "person" },
   { id: "olah", wiki: "Chris Olah", kind: "person" }, { id: "mann", name: "Ben Mann", kind: "person" }, { id: "mccandlish", name: "Sam McCandlish", kind: "person" },
 ];
-export const CUTOUTS = ["ph-altman2"];
+export const CUTOUTS = ["ph-altman3"];   // head-and-shoulders photos make full-size cut-outs (stage photos left tiny figures)
 // founders' pictures: Anthropic's official press portraits (leadership page), Ben Mann from his Lenny's Podcast cover; owner-approved press use, 19 Nov 2026
 export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. In 2021, he and his sister Daniela founded Anthropic with five other former OpenAI staff, over disagreements on AI safety. In May 2026, it was valued at 965 billion dollars. Same research, a different bet. Which do you trust?";
 // 48 words for the calm read. "Founded in 2021" is from the Anthropic article; his own article dates his leaving OpenAI to 2020, so the script dates the founding, not the leaving.
@@ -46,7 +46,7 @@ export const PHOTOS = [
 export const CAPTURES = [];   // owner, 19 Nov 2026: no page screenshots
 export const SHOTS = [
   { at: "Five", kind: "full", photo: "da-tc6", cap: "Five years ago" },
-  { at: "Dario", kind: "person", ent: "dario", bg: "#1d1d1f" },
+  { at: "Dario", kind: "full", photo: "da-tc2", cap: "Dario Amodei" },
   { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
   { at: "vice", kind: "full", photo: "da-tc1", cap: "VP of Research, OpenAI" },
   { at: "2021,", kind: "year", photo: "da-tc5", year: "2021" },
@@ -56,7 +56,7 @@ export const SHOTS = [
   { at: "disagreements", kind: "page", page: "Over AI safety" },
   { at: "May", kind: "year", photo: "da-uk", year: "2026" },
   { at: "965", kind: "money", value: "$965B", unit: "valuation, May 2026", asset: "png-money-stack", stacks: 3 },
-  { at: "Same", kind: "versus", a: { photo: "ph-altman2", label: "Sam Altman, OpenAI CEO" }, b: { photo: "da-tc4", label: "Dario Amodei, Anthropic CEO" }, bgA: "#111111", bgB: "#DD7354" },
+  { at: "Same", kind: "versus", a: { photo: "ph-altman3", label: "Sam Altman, OpenAI CEO" }, b: { ent: "dario", label: "Dario Amodei, Anthropic CEO" }, bgA: "#111111", bgB: "#DD7354" },
   { at: "different", kind: "full", photo: "ph-anthropic-hq", cap: "Anthropic HQ · San Francisco" },
   { at: "Which", kind: "collage", items: [{ photo: "shot-chatgpt", x: 90, y: 430, w: 520, h: 560, top: true, rot: -3 }, { photo: "shot-claude", x: 330, y: 820, w: 680, h: 330, rot: 2 }] },
 ];

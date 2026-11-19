@@ -605,7 +605,7 @@
  },
  "png-money-bundle": {
   "id": "png-money-bundle",
-  "description": "a strapped bundle of $20 bills (illustrative)",
+  "description": "a strapped bundle of US $20 bills (illustrative)",
   "file": "png-money-bundle.png",
   "source": "pngimg.com",
   "source_url": "https://pngimg.com/images/miscellaneous/money",
@@ -621,6 +621,16 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Sam_Altman_speaking_at_TED_(cropped).jpg",
   "licence": "CC BY 2.0",
   "credit_line": "Sam Altman at TED, CC BY 2.0, via Wikimedia Commons",
+  "retrieved": "2026-11-19"
+ },
+ "ph-altman3": {
+  "id": "ph-altman3",
+  "description": "Sam Altman, OpenAI's CEO",
+  "file": "ph-altman3.jpg",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg",
+  "licence": "CC BY 2.0",
+  "credit_line": "Sam Altman, CC BY 2.0, via Wikimedia Commons",
   "retrieved": "2026-11-19"
  }
 }
