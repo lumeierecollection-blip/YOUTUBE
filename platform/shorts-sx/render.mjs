@@ -18,7 +18,7 @@ const arg = (k) => { const i = process.argv.indexOf(`--${k}`); return i > -1 ? p
 if (process.argv.includes("--join")) {
   const parts = readdirSync(PARTS).filter((f) => /^part-\d+\.mp4$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
   writeFileSync(join(PARTS, "list.txt"), parts.map((f) => `file '${join(PARTS, f).replace(/\\/g, "/")}'`).join("\n"));
-  const r = spawnSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", join(PARTS, "list.txt"), "-i", join(OUT, "voice.mp3"), "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", join(OUT, "short.mp4")], { stdio: "inherit" });
+  const r = spawnSync("ffmpeg", ["-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", join(PARTS, "list.txt"), "-i", join(OUT, "voice.mp3"), "-map", "0:v", "-map", "1:a", "-c:v", "libx264", "-crf", "18", "-pix_fmt", "yuv420p", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,apad", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", join(OUT, "short.mp4")], { stdio: "inherit" });
   console.log(`joined ${parts.length} parts -> ${join(OUT, "short.mp4")}`); process.exit(r.status);
 }
 const [si, sn] = (arg("shard") || "0/1").split("/").map(Number), F = props.frames, a = Math.floor((si * F) / sn), b = Math.floor(((si + 1) * F) / sn) - 1;

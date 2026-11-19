@@ -240,5 +240,24 @@
   "credit_line": "Screenshot by VulcanSphere (software: Anthropic PBC), Public domain, via Wikimedia Commons",
   "authenticity": "authentic",
   "note": "1200-px Commons thumbnail fetched from the PC (the full file returned HTTP 429 in CI)"
+ },
+ "logo-aircanada": {
+  "id": "logo-aircanada",
+  "description": "Logo of Air Canada from 2004 to 2017.",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Air_Canada_logo.svg",
+  "licence": "Public domain",
+  "licence_url": "",
+  "author": "Air Canada",
+  "original_credit": "http://en.wikipedia.org/wiki/File:Air_Canada_Logo.svg and http://www.brandsoftheworld.com/node/122534",
+  "date_taken": "2004-10",
+  "retrieved": "2026-11-19",
+  "claim": "Air Canada logo (identifies the company named)",
+  "authenticity": "authentic",
+  "size_px": "301x39",
+  "credit_line": "Air Canada, Public domain, via Wikimedia Commons",
+  "bytes": 6773,
+  "file": "logo-aircanada.svg"
  }
 }

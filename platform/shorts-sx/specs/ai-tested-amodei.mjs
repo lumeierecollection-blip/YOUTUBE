@@ -44,8 +44,8 @@ export const SHOTS = [
   { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354", glitch: true },
   { at: "May", kind: "year", photo: "da-uk", sil: "da-uk", year: "2026" },
   { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
+  { at: "valuable", kind: "inset", photo: "shot-claude", w: 1000, ratio: 0.476, top: 640 },   // key shots must follow script order: "valuable" comes before "public"
   { at: "public", kind: "capture", capture: "wiki-anth", phrase: "plans an initial public offering in November 2026" },
-  { at: "valuable", kind: "inset", photo: "shot-claude", w: 1000, ratio: 0.476, top: 640 },
   { at: "Same", kind: "full", media: "sx-server", cap: "Same research." },
   { at: "different", kind: "full", photo: "da-tc2", cap: "A different bet." },
   { at: "So", kind: "page", page: "So" },

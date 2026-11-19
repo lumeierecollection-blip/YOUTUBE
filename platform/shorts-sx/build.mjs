@@ -79,7 +79,8 @@ for (let a = 0; a < shots.length; a++) {
     const s = base.kind === "paper" ? base : realise({ ...base, media: id }); out.push({ ...s, f0, auto: true }); last = f0; }
 }
 out.sort((x, y) => x.f0 - y.f0);
-const frames = Math.round((words[words.length - 1].t1 + 0.7) * FPS);
+// owner rule: every Short 35-40 s. Gemini takes of the same script vary (hallucination: 33.8-40.4 s), so a fast take holds its last shot to 35.2 s
+const frames = Math.max(Math.round((words[words.length - 1].t1 + 0.7) * FPS), Math.round(35.2 * FPS));
 const props = { styleName: S.STYLE, words, shots: out, tag: S.TAG || null, cta: S.CTA || null, frames };
 writeFileSync(join(OUT, "props.json"), JSON.stringify(props));
 const gaps = out.slice(1).map((s, i) => (s.f0 - out[i].f0) / FPS);
