@@ -1265,12 +1265,12 @@
       "attempts": 2,
       "run_id": "44639326734",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T23:38:28.029Z",
-      "stage": "script",
-      "topic": "Enos the Chimpanzee Orbits Earth",
-      "score": 61,
+      "updated_at": "2026-11-19T23:40:27.167Z",
+      "stage": "research",
+      "topic": "The Occupation of Alcatraz Island by Native American Activists",
+      "score": 65.1,
       "pillar": "Events that changed the modern world",
-      "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space.",
+      "hook": "In 1969, a group of Native American activists occupied the abandoned Alcatraz prison for 19 months.",
       "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
     },
     "2026-11-19-ch2": {
@@ -2655,6 +2655,15 @@
       "at_ms": 1795103876804,
       "score": 71.6,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "1",
+      "topic": "The Occupation of Alcatraz Island by Native American Activists",
+      "slug": "the-occupation-of-alcatraz-island-by-native-american-activis",
+      "slot": "2026-11-18-ch1",
+      "at_ms": 1795131627166,
+      "score": 65.1,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
