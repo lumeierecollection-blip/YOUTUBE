@@ -1265,12 +1265,12 @@
       "attempts": 1,
       "run_id": "44445834077",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T02:52:47.588Z",
-      "stage": "script",
-      "topic": "Yukio Mishima's Dramatic Coup Attempt and Ritual Suicide",
-      "score": 65.8,
-      "pillar": "Unbelievable true historical events",
-      "hook": "In 1970, one of Japan's most celebrated authors staged a bizarre military takeover, gave a speech to protesting soldiers, and committed ritual suicide."
+      "updated_at": "2026-11-19T02:54:50.243Z",
+      "stage": "research",
+      "topic": "Enos the Chimpanzee Orbits Earth",
+      "score": 61,
+      "pillar": "Events that changed the modern world",
+      "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space."
     }
   },
   "uploads": [
@@ -2604,6 +2604,15 @@
       "at_ms": 1795056761077,
       "score": 65.8,
       "pillar": "Unbelievable true historical events"
+    },
+    {
+      "channel": "1",
+      "topic": "Enos the Chimpanzee Orbits Earth",
+      "slug": "enos-the-chimpanzee-orbits-earth",
+      "slot": "2026-11-18-ch1",
+      "at_ms": 1795056890243,
+      "score": 61,
+      "pillar": "Events that changed the modern world"
     }
   ],
   "attention": [
