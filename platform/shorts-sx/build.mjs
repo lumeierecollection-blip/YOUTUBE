@@ -47,8 +47,18 @@ const item = (it) => {
   if (it.media) { const v = foot(it.media); return v && { ...it, video: v, credit: VCRED }; }
   return null; };
 
+// entity pictures resolved by entities.mjs (Wikidata P18 / P154, licence-checked); people also have a cut-out when cutout.py managed one
+const ENT = (() => { try { return JSON.parse(readFileSync(join(OUT, "entities.json"), "utf8")); } catch { return {}; } })();
+const entPic = (id) => { const e = ENT[id] || { name: id }; const c = e.img && e.img.replace(/\.[a-z]+$/i, "-cutout.png"); return { name: e.name, img: e.img || null, cut: c && existsSync(join(PUB, c)) ? c : null, credit: e.credit || null }; };
+const cutOf = (id) => { const p = photo(id); if (!p) return null; const c = p.img.replace(/\.[a-z]+$/i, "-cutout.png"); return existsSync(join(PUB, c)) ? c : p.img; };
+
 function realise(s) {
   const o = { ...s }; delete o.at;
+  // owner, 19 Nov 2026: "don't fall to wiki screenshots, no one is going to read that" - page captures are refused in calm Shorts
+  if (S.CALM && s.kind === "capture" && !s.allowCapture) throw new Error(`page screenshot at "${s.at}": not allowed in calm Shorts; show the thing itself (people, money, a number, a logo)`);
+  if (s.kind === "people") { o.people = s.people.map((p) => { const e = entPic(p.ent); return { name: p.name || e.name, role: p.role || "", img: e.img }; }); o.credit = [...new Set(s.people.map((p) => entPic(p.ent).credit).filter(Boolean))].join(" · ").slice(0, 200); }
+  if (s.kind === "person") { const e = entPic(s.ent); Object.assign(o, { name: s.name || e.name, img: e.img, cut: s.noCut ? null : e.cut, credit: e.credit }); if (!e.img) o.kind = "page", (o.page = o.name); }
+  if ((s.kind === "money" || s.kind === "stat") && s.asset) { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; }
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
   if (s.photo) { const ph = photo(s.photo); if (ph) Object.assign(o, ph); else o.kind = "paper"; }
   if (s.photo2) { const ph = photo(s.photo2); if (ph) o.img2 = ph.img; else if (o.kind === "split") o.kind = "full"; }
@@ -80,6 +90,18 @@ for (let a = 0; a < shots.length; a++) {
     const s = base.kind === "paper" ? base : realise({ ...base, ...(id.startsWith("photo:") ? { photo: id.slice(6), pos: ["50% 30%", "40% 40%", "60% 35%"][q % 3] } : { media: id }) }); out.push({ ...s, f0, auto: true }); last = f0; }
 }
 out.sort((x, y) => x.f0 - y.f0);
+// no doubling (owner, 19 Nov 2026): while a shot shows a word or number as a graphic, the same spoken word is left out of the captions
+const NUM = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const asNum = (w) => { const t = w.toLowerCase().replace(/[^a-z-]/g, ""); if (!t) return null; const parts = t.split("-"); if (!parts.every((x) => x in NUM)) return null; return String(parts.reduce((a, x) => a + NUM[x], 0)); };
+const SCALE = { thousand: ["k", "thousand", "000"], million: ["m", "million"], billion: ["b", "bn", "billion"], percent: ["%"], dollars: ["$"], dollar: ["$"] };
+for (let i = 0; i < out.length; i++) {
+  const sh = out[i], end = i + 1 < out.length ? out[i + 1].f0 : 1e9;
+  const shown = [sh.cap, sh.year, sh.label, sh.lab1, sh.lab2, sh.page, sh.value, sh.unit, sh.name, sh.role, sh.title, ...(sh.people || []).flatMap((p) => [p.name, p.role])].filter(Boolean).join(" ");
+  if (!shown || sh.cap) continue;   // a cap already replaces the captions for its shot
+  const toks = new Set(shown.toLowerCase().replace(/,/g, "").split(/[^a-z0-9$%]+|(?<=[0-9])(?=[a-z$%])|(?<=[$%])(?=[0-9])/).filter(Boolean));
+  for (const w of words) { const f = Math.round(w.t0 * FPS); if (f < sh.f0 || f >= end) continue; const n = norm(w.w);
+    if (toks.has(n) || toks.has(asNum(w.w) || "#") || (SCALE[n] || []).some((k) => toks.has(k) || ((k === "$" || k === "%") && shown.includes(k)) || new RegExp(`[0-9]${k}\b`, "i").test(shown))) w.hide = true; }
+}
 // owner rule since 19 Nov 2026: every Short 30 s max (voice.mjs re-takes a narration that would run longer)
 const frames = Math.min(Math.round((words[words.length - 1].t1 + 0.7) * FPS), 30 * FPS);
 if ((words[words.length - 1].t1 + 0.3) * FPS > frames) throw new Error(`narration runs ${words[words.length - 1].t1.toFixed(1)} s: over the 30 s limit, shorten the script`);

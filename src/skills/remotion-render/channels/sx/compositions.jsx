@@ -75,6 +75,38 @@ function Plate({ s, l, ground, calm }) {
       <Img src={src(s.img)} style={s.tile ? { maxWidth: "78%", maxHeight: "78%", objectFit: "contain", filter: s.lf || "invert(1)" } : { width: "100%", height: "100%", objectFit: "contain" }} /></div></AbsoluteFill>; }   {/* lf: per-logo filter (the ChatGPT knot sits on its own teal square) */}
   if (s.kind === "cta") return <AbsoluteFill style={{ background: "#3A3A3A" }}>
     {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "invert(1)" }} />)}</AbsoluteFill>;
+  // ---- system kinds (owner, 19 Nov 2026: show the people named, numbers as objects, no page screenshots); calm motion, one element at a time
+  const appear = (i, gap = 7) => Math.max(0, Math.min(1, (l - i * gap) / 8));
+  if (s.kind === "people") { const n = s.people.length, cols = n <= 2 ? n : n <= 4 ? 2 : 3, D = n <= 2 ? 420 : n <= 4 ? 340 : 260, cw = 1000 / cols, rows = Math.ceil(n / cols), top0 = 960 - (rows * (D + 120)) / 2 + 40;
+    return <AbsoluteFill style={{ background: s.bg || ground }}>
+      {s.title && <div style={{ position: "absolute", left: 60, right: 60, top: top0 - 150, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 64, color: s.bg ? "#fff" : "#111" }}>{s.title}</div>}
+      {s.people.map((pp, i) => { const r = Math.floor(i / cols), inRow = Math.min(cols, n - r * cols), c = i % cols, x = 40 + (1000 - inRow * cw) / 2 + c * cw + (cw - D) / 2, y = top0 + r * (D + 120), a = appear(i);
+        return <div key={i} style={{ position: "absolute", left: x, top: y + (1 - a) * 24, width: D, opacity: a }}>
+          <div style={{ width: D, height: D, borderRadius: "50%", overflow: "hidden", background: "#cfcfcd", boxShadow: "0 10px 30px rgba(0,0,0,0.22)", border: "6px solid #fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {pp.img ? <Img src={src(pp.img)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: pp.pos || "50% 22%" }} /> : <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: D * 0.32, color: "#666" }}>{pp.name.split(" ").map((w) => w[0]).join("")}</span>}
+          </div>
+          <div style={{ marginTop: 14, textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: D > 300 ? 40 : 30, color: s.bg ? "#fff" : "#111", lineHeight: 1.1 }}>{pp.name}</div>
+          {pp.role && <div style={{ textAlign: "center", fontFamily: SANS, fontSize: D > 300 ? 30 : 22, color: s.bg ? "rgba(255,255,255,0.8)" : "#555" }}>{pp.role}</div>}
+        </div>; })}
+    </AbsoluteFill>; }
+  if (s.kind === "person") { const a = appear(0); return <AbsoluteFill style={{ background: s.bg || ground }}>
+    {s.cut ? <Img src={src(s.cut)} style={{ position: "absolute", left: 40, right: 40, bottom: 0, width: 1000, height: 1250, objectFit: "contain", objectPosition: "50% 100%", transform: `scale(${z})`, transformOrigin: "50% 100%", opacity: a, filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.25))" }} />
+      : <div style={{ ...ins(820, 520), transform: `scale(${z})`, opacity: a }}><div style={{ width: "100%", height: "100%", overflow: "hidden" }}><Media s={s} /></div></div>}
+    <div style={{ position: "absolute", left: 60, right: 60, top: 300, textAlign: "center", opacity: appear(1) }}>
+      <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 72, color: s.bg ? "#fff" : "#111" }}>{s.name}</div>
+      {s.role && <div style={{ fontFamily: SANS, fontWeight: 500, fontSize: 44, color: s.bg ? "rgba(255,255,255,0.85)" : "#444", marginTop: 8 }}>{s.role}</div>}
+    </div></AbsoluteFill>; }
+  if (s.kind === "money") { const n = s.stacks || 3; return <AbsoluteFill style={{ background: s.bg || ground }}>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 380, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: s.value.length > 7 ? 150 : 190, letterSpacing: -4, color: s.bg ? "#fff" : "#111", opacity: appear(0) }}>{s.value}</div>
+    {s.unit && <div style={{ position: "absolute", left: 0, right: 0, top: 600, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 52, color: s.bg ? "rgba(255,255,255,0.85)" : "#444", opacity: appear(1) }}>{s.unit}</div>}
+    {s.img && Array.from({ length: n }, (_, i) => <Img key={i} src={src(s.img)} style={{ position: "absolute", left: 90 + (i - (n - 1) / 2) * 200 + 160, top: 860 + Math.abs(i - (n - 1) / 2) * 60, width: 560, transform: `translateX(-50%) scale(${z}) rotate(${(i - (n - 1) / 2) * 4}deg)`, opacity: appear(i + 1, 6), filter: "drop-shadow(0 16px 24px rgba(0,0,0,0.3))" }} />)}
+  </AbsoluteFill>; }
+  if (s.kind === "stat") { const pct = s.pct, a = appear(0), R = 230, C = 2 * Math.PI * R, k = Math.min(1, l / 24); return <AbsoluteFill style={{ background: s.bg || ground }}>
+    {pct != null && <svg width="1080" height="1920" style={{ position: "absolute", inset: 0 }}><circle cx="540" cy="900" r={R} fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="56" /><circle cx="540" cy="900" r={R} fill="none" stroke={s.color || RED} strokeWidth="56" strokeDasharray={`${C * pct / 100 * k} ${C}`} transform="rotate(-90 540 900)" /></svg>}
+    <div style={{ position: "absolute", left: 0, right: 0, top: pct != null ? 790 : 640, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: pct != null ? 170 : 260, color: "#111", opacity: a }}>{s.value}</div>
+    {s.unit && <div style={{ position: "absolute", left: 60, right: 60, top: pct != null ? 1200 : 960, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 56, color: "#333", opacity: appear(1) }}>{s.unit}</div>}
+    {s.img && <Img src={src(s.img)} style={{ position: "absolute", left: 240, width: 600, top: 1300, objectFit: "contain", opacity: appear(2), filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.25))" }} />}
+  </AbsoluteFill>; }
   return <AbsoluteFill style={{ background: ground }} />;
 }
 
@@ -99,8 +131,8 @@ function KeyWord({ w, l, hl, brush, counter, calm }) {
 function Captions({ words, f, styleName, dark, top, calm }) {
   const t = f / 30, cur = words.findIndex((w, i) => t >= w.t0 && (i + 1 >= words.length || t < words[i + 1].t0));
   if (cur < 0) return null;
-  const ph = words[cur].p, list = words.filter((w) => w.p === ph && w.t0 <= t);
-  if (styleName === "v3") return <div style={{ position: "absolute", left: 60, right: 60, top: 1000, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 76, color: dark ? "#fff" : "#111", textShadow: dark ? "0 3px 16px rgba(0,0,0,0.6)" : "none", lineHeight: 1.1 }}>{list.map((w) => w.w).join(" ")}</div>;
+  const ph = words[cur].p, list = words.filter((w) => w.p === ph && w.t0 <= t && !w.hide);   // hide: the word is already on screen as a graphic (no doubling)
+  if (styleName === "v3") return <div style={{ position: "absolute", left: 60, right: 60, top: top ?? 1000, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 76, color: dark ? "#fff" : "#111", textShadow: dark ? "0 3px 16px rgba(0,0,0,0.6)" : "none", lineHeight: 1.1 }}>{list.map((w) => w.w).join(" ")}</div>;
   return <div style={{ position: "absolute", left: 40, right: 40, top: top ?? 860, textAlign: "center", lineHeight: 1.05, textShadow: dark ? "0 3px 14px rgba(0,0,0,0.75)" : "none" }}>
     {list.map((w, i) => w.key
       ? <KeyWord key={i} w={w.w} l={f - Math.round(w.t0 * 30)} hl={w.hl} brush={w.brush} counter={calm ? null : w.counter} calm={calm} />
@@ -113,11 +145,11 @@ export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta,
   let si = 0; for (let i = 0; i < shots.length; i++) if (shots[i].f0 <= f) si = i;
   const s = shots[si] || { kind: "paper" }, l = f - (s.f0 || 0);
   const strobe = !calm && s.strobe && l < 15, ground = strobe ? (Math.floor(l / 2) % 2 ? "#050505" : PAPER) : s.kind === "black" ? "#050505" : PAPER;
-  const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || ground === "#050505";
+  const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || (["people", "person", "money", "stat"].includes(s.kind) && !!s.bg) || ground === "#050505";
   return <AbsoluteFill style={{ background: ground }}>
     <Fonts />
     <AbsoluteFill style={{ opacity: calm && si > 0 ? Math.min(1, 0.35 + l / 8) : 1 }}><Plate s={s} l={l} ground={ground} calm={calm} /></AbsoluteFill>   {/* calm: a short fade into each picture instead of a hard flash */}
-    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : undefined} />}
+    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : ["people", "money", "stat"].includes(s.kind) ? 1660 : s.kind === "person" ? 1700 : undefined} />}
     {s.cap && <div style={{ position: "absolute", left: 0, right: 0, top: 1040, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 78, color: "#fff", textShadow: "0 3px 18px rgba(0,0,0,0.65)" }}>{s.cap}</div>}
     {s.kind === "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 110, color: "#fff", lineHeight: 1.05 }}>{cta}</div>}
     {!calm && s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}

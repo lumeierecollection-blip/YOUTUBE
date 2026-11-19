@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       max-parallel: 1   # one narration at a time: the free Gemini TTS quota answers 429 to parallel takes
       matrix:
-        slug: [ai-tested-hallucination]   # amodei final from run 44493239812
+        slug: [ai-tested-hallucination, ai-tested-amodei]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,6 +34,13 @@ jobs:
         run: |
           node -e 'import("./platform/shorts-sx/specs/${{ matrix.slug }}.mjs").then(m=>{const a=m.PHOTOS.flat();require("fs").writeFileSync("photos.args",JSON.stringify(a))})'
           if [ "$(cat photos.args)" != "[]" ]; then node -e 'const a=JSON.parse(require("fs").readFileSync("photos.args"));require("child_process").spawnSync("node",["platform/longform/v2/fetch-photos.mjs","ai-tested",...a],{stdio:"inherit"})'; fi
+      - name: People, companies and places named (Wikidata picture, licence-checked) and their cut-outs
+        run: |
+          node platform/shorts-sx/entities.mjs "${{ matrix.slug }}"
+          if [ -s "output/sx/${{ matrix.slug }}/cutouts.txt" ]; then
+            pip3 install --quiet "rembg[cpu]==2.0.67" pillow numpy scipy
+            while read -r f; do o="${f%.*}-cutout.png"; [ -f "$o" ] || python3 platform/production/cutout.py "$f" "$o" --model birefnet-general --max 1600 || echo "cutout failed: $f"; done < "output/sx/${{ matrix.slug }}/cutouts.txt"
+          fi
       - name: Real page captures (Playwright), with the on-page boxes of the quoted phrases
         run: |
           node -e 'import("./platform/shorts-sx/specs/${{ matrix.slug }}.mjs").then(m=>require("fs").writeFileSync("captures.json",JSON.stringify(m.CAPTURES)))'
@@ -67,7 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slug: [ai-tested-hallucination]   # amodei final from run 44493239812
+        slug: [ai-tested-hallucination, ai-tested-amodei]
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - uses: actions/checkout@v4
@@ -94,7 +101,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        slug: [ai-tested-hallucination]   # amodei final from run 44493239812
+        slug: [ai-tested-hallucination, ai-tested-amodei]
     steps:
       - uses: actions/checkout@v4
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg

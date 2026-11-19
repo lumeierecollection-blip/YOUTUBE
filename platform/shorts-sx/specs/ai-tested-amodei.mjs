@@ -6,6 +6,13 @@
 export const STYLE = "v3";
 // calm (owner, 19 Nov 2026): no strobes or glitches, every shot a different real picture held until the next one, no comment call-to-action
 export const CALM = true, FILL = false;
+// Anthropic's seven founders as the Anthropic article's infobox lists them; pictures from each person's Wikidata item (P18), or the exact Commons file
+export const ENTITIES = [
+  { id: "dario", wiki: "Dario Amodei", kind: "person" }, { id: "daniela", wiki: "Daniela Amodei", kind: "person" }, { id: "kaplan", wiki: "Jared Kaplan", kind: "person" },
+  { id: "clark", name: "Jack Clark", file: "File:Jack Clark, co-founder of Anthropic, giving a talk on AI at the Schwarzman Centre in Oxford.jpg", kind: "person" },
+  { id: "olah", wiki: "Chris Olah", kind: "person" }, { id: "mann", name: "Ben Mann", kind: "person" }, { id: "mccandlish", name: "Sam McCandlish", kind: "person" },
+];
+export const CUTOUTS = ["ph-money"];
 export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. In 2021, he and his sister Daniela founded Anthropic with five other former OpenAI staff, over disagreements on AI safety. In May 2026, it was valued at 965 billion dollars. Same research, a different bet. Which do you trust?";
 // 48 words for the calm read. "Founded in 2021" is from the Anthropic article; his own article dates his leaving OpenAI to 2020, so the script dates the founding, not the leaving.
 export const KEYS = {};
@@ -17,6 +24,7 @@ export const FOOTAGE = [
   { id: "sx-door", q: "man walking out office door", optional: true }, { id: "sx-laptop", q: "laptop night office" },
 ];
 export const PHOTOS = [
+  ["ph-money", "File:Over $1,000,000 dollars in USD $100 bill stacks.png", "stacks of $100 bills (illustrative)"],
   ["da-tc1", "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-tc3", "File:Dario Amodei at TechCrunch Disrupt 2023 03.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-tc5", "File:Dario Amodei at TechCrunch Disrupt 2023 05.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
@@ -35,22 +43,19 @@ export const PHOTOS = [
   ["shot-claude", "File:Claude AI website screenshot.webp", "The Claude web app (shows the product named)"],
   ["logo-google", "File:Google 2015 logo.svg", "Google logo (identifies the company named)"],
 ];
-export const CAPTURES = [
-  { id: "wiki-anth", url: "https://en.wikipedia.org/wiki/Anthropic", viewport: { width: 1280, height: 900 }, scale: 1, phrases: ["Valued at $965 billion", "former members of OpenAI over disagreements on AI safety", "plans an initial public offering in November 2026"], steps: [{ do: "wait", ms: 1500 }], fullPage: true },
-  { id: "wiki-dario", url: "https://en.wikipedia.org/wiki/Dario_Amodei", viewport: { width: 1280, height: 900 }, scale: 1, phrases: ["he was the vice president of research at OpenAI"], steps: [{ do: "wait", ms: 1500 }], fullPage: true },
-];
+export const CAPTURES = [];   // owner, 19 Nov 2026: no page screenshots
 export const SHOTS = [
   { at: "Five", kind: "full", photo: "da-tc6", cap: "Five years ago" },
   { at: "Dario", kind: "full", photo: "da-tc4", cap: "Dario Amodei" },
   { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
-  { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI" },
-  { at: "2021,", kind: "year", photo: "da-tc1", year: "2021" },
-  { at: "sister", kind: "page", page: "Daniela Amodei" },
+  { at: "vice", kind: "full", photo: "da-tc1", cap: "VP of Research, OpenAI" },
+  { at: "2021,", kind: "year", photo: "da-tc5", year: "2021" },
+  { at: "sister", kind: "person", ent: "daniela", role: "his sister, co-founder" },
   { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354" },
-  { at: "former", kind: "full", photo: "da-tc5", cap: "Seven former OpenAI staff" },
-  { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety" },
+  { at: "five", kind: "people", title: "Anthropic's seven founders", people: [{ ent: "dario" }, { ent: "daniela" }, { ent: "kaplan" }, { ent: "clark" }, { ent: "olah" }, { ent: "mann" }, { ent: "mccandlish" }] },
+  { at: "disagreements", kind: "page", page: "Over AI safety" },
   { at: "May", kind: "year", photo: "da-uk", year: "2026" },
-  { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion" },
+  { at: "965", kind: "money", value: "$965B", unit: "valuation, May 2026", asset: "ph-money", stacks: 3 },
   { at: "Same", kind: "split", photo: "ph-altman", photo2: "da-tc3", pos2: "60% 35%", lab1: "Sam Altman · OpenAI CEO", lab2: "Dario Amodei · Anthropic" },
   { at: "different", kind: "full", photo: "ph-anthropic-hq", cap: "Anthropic HQ · San Francisco" },
   { at: "Which", kind: "collage", items: [{ photo: "shot-chatgpt", x: 90, y: 430, w: 520, h: 560, top: true, rot: -3 }, { photo: "shot-claude", x: 330, y: 820, w: 680, h: 330, rot: 2 }] },
