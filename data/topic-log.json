@@ -2845,9 +2845,14 @@
           "topic": "NASA Voyager 1 Spacecraft Reaches Milestone of One Light-Day From Earth",
           "slug": "voyager-1-one-light-day-from-earth",
           "reserved_at": "2026-11-18T17:38:47.734Z"
+        },
+        {
+          "topic": "Vulcan Rocket Failure Destroys Forty Amazon Leo Satellites",
+          "slug": "vulcan-rocket-failure-amazon-leo-satellites",
+          "reserved_at": "2026-11-19T17:49:26.367Z"
         }
       ],
-      "last_generated": "2026-11-18T17:38:47.734Z"
+      "last_generated": "2026-11-19T17:49:26.367Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
