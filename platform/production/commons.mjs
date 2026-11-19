@@ -44,12 +44,12 @@ export async function commonsMeta(title) {
 }
 
 /** Downloads one asset and returns its manifest entry. `claim` says which story claim it illustrates; `kind` is authentic | illustrative. */
-export async function commonsAsset({ title, dir, id, claim = "", role = "", kind = "authentic" }) {
+export async function commonsAsset({ title, dir, id, claim = "", role = "", kind = "authentic", minBytes = 8000 }) {   // minBytes: logos are legitimately small files
   const meta = await commonsMeta(title);
   const r = await polite(meta.url);
   if (!r.ok) throw new Error(`download failed ${r.status} for ${title}`);
   const buf = Buffer.from(await r.arrayBuffer());
-  if (buf.length < 8000) throw new Error(`${title} is implausibly small (${buf.length} bytes)`);
+  if (buf.length < minBytes) throw new Error(`${title} is implausibly small (${buf.length} bytes)`);
   mkdirSync(dir, { recursive: true });
   const ext = meta.mime === "image/png" ? "png" : "jpg";
   const file = join(dir, `${id}.${ext}`);

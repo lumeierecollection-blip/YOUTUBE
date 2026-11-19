@@ -13,10 +13,12 @@ const att = existsSync(attPath) ? JSON.parse(readFileSync(attPath, "utf8")) : {}
 for (let i = 0; i < rest.length; i += 3) {
   const [id, title, claim] = rest.slice(i, i + 3);
   try {
-    const { file, entry } = await commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026" });
+    const get = () => commonsAsset({ title, dir, id, claim, role: "reference clone 18 Nov 2026", minBytes: id.startsWith("logo-") ? 1000 : 8000 });
+    let r; try { r = await get(); } catch (e) { if (!/429/.test(e.message)) throw e; await new Promise((ok) => setTimeout(ok, 30000)); r = await get(); }   // one retry after a rate limit
+    const { file, entry } = r;
     att[id] = { ...entry, file: basename(file), credit_line: `${entry.author}, ${entry.licence}, via Wikimedia Commons`, authenticity: "authentic" };
     writeFileSync(attPath, JSON.stringify(att, null, 1));   // after every picture: a later failure (HTTP 429) must not lose the credits already fetched
     console.log(id, "->", basename(file), "|", att[id].credit_line);
   } catch (e) { console.log("FAILED", id, String(e.message).slice(0, 120)); process.exitCode = 1; }
-  await new Promise((r) => setTimeout(r, 4000));   // Commons rate-limits bursts
+  await new Promise((r) => setTimeout(r, 8000));   // Commons rate-limits bursts (429 seen at 4 s spacing)
 }
