@@ -1261,11 +1261,11 @@
     },
     "2026-11-18-ch1": {
       "channel": "1",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "44445834077",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "44639326734",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T02:56:48.987Z",
+      "updated_at": "2026-11-19T23:38:28.029Z",
       "stage": "script",
       "topic": "Enos the Chimpanzee Orbits Earth",
       "score": 61,
@@ -1275,7 +1275,7 @@
     },
     "2026-11-19-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "44544500381",
       "trigger": "schedule",
@@ -1284,7 +1284,8 @@
       "topic": "Canva Adds an AI 'Off' Button",
       "score": 71.6,
       "pillar": "Trending AI tools and apps",
-      "hook": "Tired of AI popping up everywhere? Canva just added a literal 'off' button to turn off its built-in AI tools."
+      "hook": "Tired of AI popping up everywhere? Canva just added a literal 'off' button to turn off its built-in AI tools.",
+      "error": "run 44544500381 ended without reporting a result (last stage: script)"
     }
   },
   "uploads": [
@@ -2749,5 +2750,5 @@
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature"
   ],
-  "last_poll_at": "2026-11-19T14:30:53.281Z"
+  "last_poll_at": "2026-11-19T23:38:28.026Z"
 }
