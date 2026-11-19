@@ -31,7 +31,8 @@ export const SOURCES = {
 // short licensed clips: Pixabay (generic, labelled illustrative) and real footage from Wikimedia Commons (CC0 / public domain / CC BY only, credited on screen)
 export const FOOTAGE_REQUIRE = /stadium|match|players|game/i;
 export const FOOTAGE_EXCLUDE = /flag|world cup|argentina|nigeria|brazil|qatar|national|motorcycle|motorbike|street|ball close|closeup ball|rugby|american football|golden|gold|sparkle|chroma|greenscreen|green background|falling|balls|isolated|cgi|3d/i;   // render 5: a golden American-football ball, falling CGI balls, a chroma-key ball   // render 4: six of ten clips were flags, national balls or street scenes   // "fans|crowd" let a waving national flag through twice (renders 1 and 2)
-export const FOOTAGE = [
+// 19 Nov 2026 rebuild: no Pixabay stock (owner: "the usage of clips is bad"); short real match clips instead (MC below), so nothing is fetched
+export const FOOTAGE_UNUSED = [
   { id: "fb-crowd", q: "soccer stadium crowd", alt: ["football fans stadium", "stadium crowd"], optional: true },
   { id: "fb-fans", q: "soccer fans celebrating", alt: ["football fans cheering", "fans cheering stadium"], optional: true },
   { id: "fb-night", q: "football stadium floodlights", alt: ["stadium night lights", "stadium night"], optional: true },
@@ -46,6 +47,10 @@ export const FOOTAGE = [
 ];
 export const COMMONS = { queries: ["Premier League match", "football match crowd stadium", "Arsenal football match", "Liverpool football match", "Manchester City football match", "football supporters stadium"], perFile: 2, seg: 5, max: 14 };
 const VID = (id) => `lf2/footage/${id}.mp4`;
+// real match clips (owner-chosen, used sparingly, reframed): ~3-8 s each, logos cropped out; supplied on the render branch only (never on work/main)
+export const FOOTAGE = [];
+const MCRED = { fu: "Fulham 5-0 Nottingham Forest, Craven Cottage (Fulham FC highlights)", bo: "Bolivia 6-1 Argentina, La Paz, 1 April 2009", em: "LASK v Manchester United, behind closed doors, 2020", rf: "Premier League match footage" };
+const MC = (id) => `lf2/footage/mc-${id}.mp4`, MCC = (...ids) => [...new Set(ids.map((x) => MCRED[x.slice(0, 2)]))].join(" · ");
 const VCRED = "Pixabay Content License · illustrative footage";
 // Commons match footage (COMMONS below) found 0 usable files in render 2 (62 candidates, none CC0/PD/CC BY and on topic), so no cm-* clip is relied on
 const mont = (ids, dur = 2.6) => ({ type: "montage", shots: ids.map((id, i) => ({ video: VID(id), dur, ss: (i * 1.7) % 4, zoom: i % 2 ? [1.12, 1.0] : [1.0, 1.12] })) });
@@ -65,7 +70,7 @@ export const EPISODE = {
     "",
     "Data: football-data.co.uk (results and cards), Wikipedia, and the five published studies listed below. The narration is a synthetic voice; no fact, figure or quote in this video is generated.",
   ],
-  sound: { bed: "MUSIC_DOC_WINTER", bed_rel_db: -16, dip_scenes: [] },
+  sound: { bed: null, dip_scenes: [] },   // owner's music track is mixed in after the render (the repo is public); "Winter Reflections" read as horror
   beats: [
     // ---- the 45.6% mystery
     { id: "H01", part: "the 45.6% mystery", ref: "gp4cftwGLcQ 0:00: a figure said to the viewer first", src: ["FD"],
@@ -89,17 +94,17 @@ export const EPISODE = {
       scene: LINE({ title: "Real, And Shrinking", bold: "Shrinking", series: [{ name: "home wins", color: "home", vals: D.home_win }, { name: "trend", color: "accent", vals: D.home_win_fit, dash: "16 12" }], ymin: 30, ymax: 55 }) },
     { id: "H06b", part: "is home advantage real?", ref: "gp4cftwGLcQ 5:00: a burst of footage as proof", src: ["PHOTO"],
       vo: "So something real is going on, and it is getting smaller. Which brings us to the suspect everyone names first: the crowd.",
-      scene: mont(["fb-aerial", "fb-night", "fb-fans", "fb-ref"], 2.4) },
+      scene: { type: "montage", shots: [{ video: MC("fu1"), dur: 2.6, zoom: [1.0, 1.1] }, { video: MC("bo3"), dur: 2.6, zoom: [1.1, 1.0] }, { video: MC("fu2"), dur: 3.0, zoom: [1.0, 1.08] }], credit: MCC("fu", "bo") } },
     // ---- the crowd test
     { id: "H07", part: "the crowd test", ref: "gp4cftwGLcQ 3:29: the popular explanation, stated fairly", src: ["HA", "PHOTO"],
       vo: "The idea is simple. Home fans vastly outnumber visiting fans. They cheer, they boo, and the players feel it. One study of five thousand Premier League games, by Ryan Boyko, then a Harvard research assistant, reported that every extra ten thousand people in the stadium added a tenth of a goal to the home advantage.",
-      scene: { type: "ixclip", bg: "plum", image: PH("ha-crowd-cincinnati"), head: "The Twelfth Man", bold: "Twelfth", body: "Home fans vastly outnumber visiting fans in most matches (Wikipedia, Home advantage).", credit: `${PC("ha-crowd-cincinnati")} · a 2016 FC Cincinnati match, not the Premier League` } },
+      scene: { type: "ixclip", bg: "plum", video: MC("fu3"), head: "The Twelfth Man", bold: "Twelfth", credit: MCC("fu") } },
     { id: "H08", part: "the crowd test", ref: "gp4cftwGLcQ 4:00: so there is no real evidence", src: ["JO"],
       vo: "But a replication in the same journal, using more recent data, found no evidence to sustain either of his claims, not the crowd size and not the referee bias. So the crowd story was already shaky before twenty twenty.",
       scene: { type: "ixcard", bg: "teal", journal: "Journal of Sports Sciences · 2008", title: "On referee bias, crowd size, and home advantage in the English soccer Premiership", authors: "Johnston", abstract: "[...] identified differences in attendance and referee bias as factors influencing home advantage at soccer matches in the English Premiership. A replication of their study using more recent data [[found no evidence to sustain either of their claims.]]", doi: "doi.org/10.1080/02640410701736780", via: "Crossref / OpenAlex" } },
     { id: "H09", part: "the crowd test", ref: "gp4cftwGLcQ: the natural experiment, set up", src: ["W19"],
       vo: "Then twenty twenty happened. When the league restarted on the seventeenth of June, every match was played behind closed doors, with no more than three hundred key people inside the stadium. It was the experiment nobody could have designed.",
-      scene: { type: "ixquote", bg: "teal", text: "an experiment nobody designed", bold: "experiment", sub: "17 June 2020: all matches behind closed doors, at most 300 key people inside (Wikipedia, 2019-20 Premier League)", source: "" } },
+      scene: { type: "ixclip", bg: "plum", video: MC("em1"), video2: MC("em2"), head: "An Experiment Nobody Designed", bold: "Experiment", credit: `${MCC("em")} · 17 June 2020: every Premier League match behind closed doors (Wikipedia)` } },
     { id: "H10", part: "the crowd test", ref: "gp4cftwGLcQ: two samples, two answers", src: ["FD", "W19", "W20"],
       vo: `Here is what our results say. In the ninety-two matches after the restart, home teams won forty-six point seven percent. No drop at all. But across the whole of twenty twenty-one, a season largely played behind closed doors, they won just thirty-seven point nine.`,
       scene: { type: "ixbars", bg: "teal", title: "When The Stands Were Empty", bold: "Empty", items: [{ label: "33 seasons", sub: "12,704 matches", value: A.home_win, color: "draw" }, { label: "Summer 2020", sub: "92 matches, no fans", value: R.home_win, color: "home" }, { label: "2020/21", sub: "380, mostly no fans", value: S21.home_win, color: "accent" }], max: 60, source: "Our count · football-data.co.uk · closed-doors facts: Wikipedia, 2019-20 and 2020-21 Premier League" } },
@@ -124,7 +129,7 @@ export const EPISODE = {
       scene: { type: "ixcard", bg: "teal", journal: "SSRN · 2020 (working paper)", title: "Home-Bias in Referee Decisions: Evidence from 'Ghost Matches' During the COVID-19 Pandemic", authors: "Endrich, Gesche", abstract: "We find that [[pre-Covid19 referees gave fewer fouls and yellow cards for the home team]] relative to the away team. These differences in fouls and cards changed during the ghost matches so that [[home teams were treated less favorably than before.]]", doi: "doi.org/10.2139/ssrn.3639500", via: "Crossref / OpenAlex" } },
     { id: "H17", part: "the referee question", ref: "gp4cftwGLcQ 9:02: bias and adaptability, the honest reading", src: ["FD", "FH"],
       vo: "A card gap alone does not prove bias. Away teams might simply foul more, or chase games more desperately when they are behind. Our numbers cannot separate those. A before-and-after comparison, like the German one, is the better test. And the Fischer and Haucap paper found no strong evidence for it. So this one is open.",
-      scene: { type: "ixquote", bg: "paper", text: "a card gap is not proof of bias", bold: "not proof", sub: "away teams may foul more, or chase games harder when behind. Our data cannot tell which.", source: "" } },
+      scene: { type: "ixclip", bg: "plum", video: MC("rf1"), video2: MC("rf2"), head: "A Card Gap Is Not Proof Of Bias", bold: "Not Proof", credit: MCC("rf") } },
     // ---- how big is the edge
     { id: "H18", part: "how big is the edge?", ref: "gp4cftwGLcQ 11:54: the size of the effect", src: ["FD", "HA"],
       vo: "How big is the edge in goals? Home teams averaged one point five three goals a match, away teams one point one seven. That is about thirty-one percent more. A two thousand and six study by The Times, quoted on Wikipedia, put it at thirty-seven percent.",
@@ -137,10 +142,10 @@ export const EPISODE = {
       scene: { type: "ixquote", bg: "paper", text: "why does one club get more?", bold: "more", sub: "the crowd, the stadium, or just the squads? Our data cannot say.", source: "" } },
     { id: "H19", part: "how big is the edge?", ref: "gp4cftwGLcQ: a vivid extreme case", src: ["HA"],
       vo: "And for the extreme case, go up. La Paz sits at three thousand six hundred metres. On the first of April two thousand and nine, Bolivia beat Argentina, then ranked sixth in the world, six goals to one. Argentina's heaviest defeat since nineteen fifty-eight.",
-      scene: { type: "ixquote", bg: "teal", text: "bolivia 6–1 argentina", bold: "6–1", sub: "La Paz, 3,600 m above sea level · 1 April 2009 · Argentina ranked sixth in the world then; its heaviest defeat since 1958", source: "Wikipedia, Home advantage" } },
+      scene: { type: "ixclip", bg: "plum", video: MC("bo1"), video2: MC("bo2"), head: "Bolivia 6–1 Argentina", bold: "6–1", credit: `${MCC("bo")} · 3,600 m above sea level (Wikipedia, Home advantage)` } },
     { id: "H19b", part: "how big is the edge?", ref: "gp4cftwGLcQ 5:00: footage as proof", src: ["PHOTO"],
       vo: "Altitude, travel, familiar surroundings, and the crowd all stack together. The article notes that the most commonly cited factors are the hardest to measure, so even their existence is debated.",
-      scene: { type: "ixclip", bg: "plum", video: VID("fb-aerial"), video2: VID("fb-night"), credit: VCRED } },
+      scene: { type: "ixclip", bg: "plum", video: MC("em3"), head: "Hard To Measure", bold: "Measure", credit: MCC("em") } },
     // ---- why home still wins
     { id: "H20", part: "why home still wins", ref: "gp4cftwGLcQ 15:07: the clear verdict", src: ["FD", "FH", "EG"],
       vo: "So why do home teams win so much? Because the edge is real: about forty-six percent against twenty-nine, in thirty-two of thirty-three seasons. It is shrinking slowly. And the strongest signals point at people rather than place: what a crowd does to players, and what it may do to referees. The studies disagree on how much.",
@@ -150,9 +155,11 @@ export const EPISODE = {
       scene: { type: "ixquote", bg: "paper", text: "not gone. just no longer a guarantee.", bold: "no longer a guarantee", sub: "", source: "" } },
     { id: "H22", part: "why home still wins", ref: "gp4cftwGLcQ: closing question to the viewer", src: ["HA", "PHOTO"],
       vo: "One last thing. In a two-legged tie, the team hosting the second leg gets the home advantage. Given everything you have just seen, would you rather host the first leg or the second? Tell us in the comments.",
-      scene: { type: "ixclip", bg: "plum", image: PH("ha-crowd-cincinnati"), flip: true, head: "First Leg, Or Second?", bold: "Second", body: "In two-legged ties the team hosting the second leg has the home advantage (Wikipedia, Home advantage).", credit: `${PC("ha-crowd-cincinnati")} · a 2016 FC Cincinnati match, not the Premier League` } },
+      scene: { type: "ixclip", bg: "plum", video: MC("fu2"), ss: 3.5, head: "First Leg, Or Second?", bold: "Second", credit: MCC("fu") } },
   ],
   thumbs: [
+    // clone of intrcpt's top thumbnail (b96B2R6OtB8, 639k views): league-table rows, faded rows, red arrows, light + bold serif headline. Our data.
+    { name: "thumb0-table", type: "ixtable", light: "home teams", bold: "win more.", rows: [...D.clubs_min300_home].map((c) => ({ club: c.club, h: c.home_ppg, a: c.away_ppg })).sort((x, y) => (y.h - y.a) - (x.h - x.a)).slice(0, 18).map((r, i) => ({ ...r, rank: i + 1, fade: [2, 4, 7, 10, 13, 15].includes(i) })), arrows: [{ x1: 1010, y1: 150, x2: 860, y2: 110 }, { x1: 1000, y1: 520, x2: 860, y2: 490 }, { x1: 1010, y1: 840, x2: 860, y2: 880 }] },
     // the measured intrcpt thumbnail formula: one background-removed subject (Fulham players, at home, Craven Cottage, 10 May 2025; CC0), motion trail, red arrow, serif headline
     { name: "thumb1-home", type: "ixthumb", headline: "home advantage.", bold: "home", aside: "(is it real?)", asideAt: { x: 150, y: 640 }, cut: { src: "lf2/rival-lines/ha-fulham-3-cutout.png", x: 760, bottom: 40, h: 760 }, arrow: { x1: 520, y1: 650, x2: 800, y2: 560, bend: -90 }, credit: `${PC("ha-fulham-3")} · Fulham v Everton, 10 May 2025` },
     { name: "thumb2-number", type: "ixthumb", headline: "45.6% at home.", bold: "45.6%", aside: "(28.8% away)", asideAt: { x: 150, y: 640 }, cut: { src: "lf2/rival-lines/ha-fulham-3-cutout.png", x: 820, bottom: 40, h: 740 }, arrow: { x1: 540, y1: 650, x2: 860, y2: 560, bend: -90 }, credit: `${PC("ha-fulham-3")} · Fulham v Everton, 10 May 2025` },
@@ -162,4 +169,5 @@ export const EPISODE = {
 
 // render 6 checked clip by clip: only fb-aerial, fb-fans, fb-night and fb-ref are real football footage (others: chroma-key ball, CGI pitch and balls, a news graphic, a desert, a park), so only these rotate.
 // a new picture every few seconds (reference rhythm): short clips over the statement cards only, never over the study cards, bar charts or line charts (they must be read)
-autoCut(EPISODE.beats, ["fb-aerial", "fb-night", "fb-fans", "fb-ref"], { wps: 2.45, types: new Set(["ixquote"]) });
+// no stock cut-ins any more (19 Nov 2026 rebuild): the real clips appear only in their own beats
+void autoCut;

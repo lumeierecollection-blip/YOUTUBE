@@ -60,11 +60,13 @@ function sceneProps(scene) {
 }
 
 // ---- 1. voice (Gemini TTS when a key is present, edge-tts as the recorded fallback; one clip per beat, cached)
-const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": "serious" };
+const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": null };
+// owner, 19 Nov 2026: the football narration "sounds more of a horror story" -> an upbeat analyst read for Rival Lines (pace from delivery, never sped up)
+const STYLE = { "rival-lines": "Read this like an upbeat, curious football analyst on a YouTube explainer, in a natural British English accent: bright, warm and engaged, a confident steady pace, a little smile in the voice, energy on numbers and club names. Never dark, never dramatic, never slow:" };
 for (const b of beats) {
   const mp3 = join(VDIR, `${b.id}.mp3`);
   if (!existsSync(mp3) || dur(mp3) < 0.5) {
-    const r = await narrate({ text: b.vo, edgeVoice: VOICE[ch], outDir: VDIR, name: `${b.id}.tmp`, gravity: GRAV[ch] });
+    const r = await narrate({ text: b.vo, edgeVoice: VOICE[ch], outDir: VDIR, name: `${b.id}.tmp`, gravity: GRAV[ch], style: STYLE[ch] || null });
     renameSync(r.mp3, mp3); renameSync(r.wordsFile, join(VDIR, `${b.id}.words.json`));
     log.notes.push(`voice ${b.id}: ${r.engine}, ${r.wpm} wpm`);
   }

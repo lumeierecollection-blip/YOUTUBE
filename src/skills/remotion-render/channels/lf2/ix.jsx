@@ -240,4 +240,27 @@ export function IxThumb({ t, headline, bold, aside, cut, credit, arrow, asideAt 
   </AbsoluteFill>;
 }
 
-export const IX = { ixthumb: IxThumb, ixtitle: IxTitle, ixstat: IxStat, ixline: IxLine, ixbars: IxBars, ixscatter: IxScatter, ixdots: IxDots, ixcard: IxCard, ixclip: IxClip, ixquote: IxQuote };
+/** Thumbnail cloned from intrcpt's best performer ("The Premier League Is Evolving Again", 639k): a league-table list (rank circles, club
+ *  names, coloured result pills, a points column), some rows faded, red hand-drawn arrows pointing at rows, and a two-line serif headline on
+ *  the right, light then bold. Ours shows OUR data: home vs away points per game, ranked by the home boost. rows: [{ rank, club, h, a, fade }] */
+export function IxTableThumb({ t, rows, light, bold, arrows = [] }) {
+  const c = t.ix, Y0 = 26, RH = 56;
+  const pill = (txt, fill, w) => <div style={{ width: w, height: 42, background: fill, color: "#fff", fontFamily: F.sans, fontWeight: 800, fontSize: 22, display: "flex", alignItems: "center", justifyContent: "center" }}>{txt}</div>;
+  return <AbsoluteFill style={{ background: `radial-gradient(90% 100% at 60% 45%, #FFFFFF 0%, ${c.thumbBg} 60%, #E2E2E0 100%)` }}>
+    <Fonts />
+    <div style={{ position: "absolute", left: 40, top: 26, fontFamily: SERIF, fontWeight: 800, fontSize: 60, color: c.ink }}>r</div>
+    {rows.map((r, i) => <div key={i} style={{ position: "absolute", left: 190, top: Y0 + i * RH, height: RH - 6, display: "flex", alignItems: "center", gap: 22, opacity: r.fade ? 0.42 : 1 }}>
+      <div style={{ width: 44, height: 44, borderRadius: 22, background: r.fade ? "#A39E90" : "#1F9D55", color: "#fff", fontFamily: F.sans, fontWeight: 800, fontSize: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>{r.rank}</div>
+      <div style={{ width: 210, fontFamily: F.sans, fontWeight: 600, fontSize: 28, color: "#222" }}>{r.club}</div>
+      <div style={{ display: "flex", gap: 3 }}>{pill(`H ${r.h.toFixed(2)}`, "#1F9D55", 120)}{pill(`A ${r.a.toFixed(2)}`, r.fade ? "#9C8F8F" : "#D7263D", 120)}</div>
+      <div style={{ width: 70, textAlign: "right", fontFamily: F.sans, fontWeight: 700, fontSize: 26, color: "#222" }}>+{(r.h - r.a).toFixed(2)}</div>
+    </div>)}
+    <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>{arrows.map((a, i) => { const mx = (a.x1 + a.x2) / 2 + 40, my = (a.y1 + a.y2) / 2 - 50, ang = Math.atan2(a.y2 - my, a.x2 - mx), L = 34, s = 0.55;
+      return <g key={i} fill="none" stroke={c.arrow} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round"><path d={`M${a.x1} ${a.y1} Q${mx} ${my} ${a.x2} ${a.y2}`} /><path d={`M${a.x2 - L * Math.cos(ang - s)} ${a.y2 - L * Math.sin(ang - s)} L${a.x2} ${a.y2} L${a.x2 - L * Math.cos(ang + s)} ${a.y2 - L * Math.sin(ang + s)}`} /></g>; })}</svg>
+    <div style={{ position: "absolute", right: 70, top: 330, width: 820, textAlign: "left", fontFamily: SERIF, color: c.ink, lineHeight: 0.95 }}>
+      <div style={{ fontSize: 150, fontWeight: 400 }}>{light}</div><div style={{ fontSize: 170, fontWeight: 800 }}>{bold}</div>
+    </div>
+  </AbsoluteFill>;
+}
+
+export const IX = { ixtable: IxTableThumb, ixthumb: IxThumb, ixtitle: IxTitle, ixstat: IxStat, ixline: IxLine, ixbars: IxBars, ixscatter: IxScatter, ixdots: IxDots, ixcard: IxCard, ixclip: IxClip, ixquote: IxQuote };
