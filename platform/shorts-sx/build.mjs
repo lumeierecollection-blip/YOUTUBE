@@ -90,17 +90,29 @@ for (let a = 0; a < shots.length; a++) {
     const s = base.kind === "paper" ? base : realise({ ...base, ...(id.startsWith("photo:") ? { photo: id.slice(6), pos: ["50% 30%", "40% 40%", "60% 35%"][q % 3] } : { media: id }) }); out.push({ ...s, f0, auto: true }); last = f0; }
 }
 out.sort((x, y) => x.f0 - y.f0);
-// no doubling (owner, 19 Nov 2026): while a shot shows a word or number as a graphic, the same spoken word is left out of the captions
+// no doubling (owner, 19 Nov 2026): while a shot shows a word or number as a graphic, the same spoken word is left out of the captions.
+// Numbers are compared by value: a run of spoken number words ("five thousand", "forty-seven percent", "965 billion dollars") is read as one
+// number and hidden when that number is on screen ("$5,000", "47%", "$965B").
 const NUM = { zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
-const asNum = (w) => { const t = w.toLowerCase().replace(/[^a-z-]/g, ""); if (!t) return null; const parts = t.split("-"); if (!parts.every((x) => x in NUM)) return null; return String(parts.reduce((a, x) => a + NUM[x], 0)); };
-const SCALE = { thousand: ["k", "thousand", "000"], million: ["m", "million"], billion: ["b", "bn", "billion"], percent: ["%"], dollars: ["$"], dollar: ["$"] };
+const MUL = { hundred: 100, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }, UNIT = new Set(["percent", "dollars", "dollar"]);
+const small = (w) => { const t = w.toLowerCase().replace(/[^a-z0-9.-]/g, ""); if (/^[0-9][0-9.]*$/.test(t)) return +t; const parts = t.split("-"); return parts.length && parts.every((x) => x in NUM) ? parts.reduce((a, x) => a + NUM[x], 0) : null; };
+const shownNums = (txt) => [...txt.replace(/,/g, "").matchAll(/([0-9]+(?:\.[0-9]+)?)\s*(k|m|bn|b|thousand|million|billion|trillion)?/gi)].map(([, n, u]) => +n * ({ k: 1e3, m: 1e6, b: 1e9, bn: 1e9, thousand: 1e3, million: 1e6, billion: 1e9, trillion: 1e12 }[(u || "").toLowerCase()] || 1));
 for (let i = 0; i < out.length; i++) {
   const sh = out[i], end = i + 1 < out.length ? out[i + 1].f0 : 1e9;
   const shown = [sh.cap, sh.year, sh.label, sh.lab1, sh.lab2, sh.page, sh.value, sh.unit, sh.name, sh.role, sh.title, ...(sh.people || []).flatMap((p) => [p.name, p.role])].filter(Boolean).join(" ");
   if (!shown || sh.cap) continue;   // a cap already replaces the captions for its shot
-  const toks = new Set(shown.toLowerCase().replace(/,/g, "").split(/[^a-z0-9$%]+|(?<=[0-9])(?=[a-z$%])|(?<=[$%])(?=[0-9])/).filter(Boolean));
-  for (const w of words) { const f = Math.round(w.t0 * FPS); if (f < sh.f0 || f >= end) continue; const n = norm(w.w);
-    if (toks.has(n) || toks.has(asNum(w.w) || "#") || (SCALE[n] || []).some((k) => toks.has(k) || ((k === "$" || k === "%") && shown.includes(k)) || new RegExp(`[0-9]${k}\b`, "i").test(shown))) w.hide = true; }
+  const toks = new Set(shown.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean)), nums = shownNums(shown);
+  const inShot = words.filter((w) => { const f = Math.round(w.t0 * FPS); return f >= sh.f0 && f < end; });
+  for (let k = 0; k < inShot.length; k++) {
+    const w = inShot[k], n = norm(w.w);
+    if (small(w.w) != null) {   // read the whole spoken number
+      let v = 0, cur = small(w.w), m = k + 1;
+      while (m < inShot.length) { const x = norm(inShot[m].w), sv = small(inShot[m].w); if (x in MUL) { cur = (cur || 1) * MUL[x]; if (MUL[x] >= 1e3) { v += cur; cur = 0; } m++; } else if (sv != null && cur % 100 === 0 && sv < 100) { cur += sv; m++; } else break; }
+      v += cur;
+      if (nums.some((x) => Math.abs(x - v) < 1e-6)) { for (let q = k; q < m; q++) inShot[q].hide = true; if (m < inShot.length && UNIT.has(norm(inShot[m].w))) inShot[m].hide = true; k = m - 1; continue; }
+    }
+    if (toks.has(n) || (n === "dollars" && shown.includes("$")) || (n === "percent" && shown.includes("%"))) w.hide = true;
+  }
 }
 // owner rule since 19 Nov 2026: every Short 30 s max (voice.mjs re-takes a narration that would run longer)
 const frames = Math.min(Math.round((words[words.length - 1].t1 + 0.7) * FPS), 30 * FPS);
