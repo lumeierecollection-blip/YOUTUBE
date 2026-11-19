@@ -1283,5 +1283,44 @@
   "bytes": 970702,
   "file": "hs-william-horse-crop.jpg",
   "treatment": "rectangular crop of the credited photograph, nothing generated"
+ },
+ "hs-arbo-stamford": {
+  "id": "hs-arbo-stamford",
+  "description": "Peter Nicolai Arbo, The Battle of Stamford Bridge (1870), public domain",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Arbo_-_Battle_of_Stamford_Bridge_(1870).jpg",
+  "licence": "Public domain",
+  "author": "Peter Nicolai Arbo",
+  "retrieved": "2026-11-19",
+  "claim": "Peter Nicolai Arbo, The Battle of Stamford Bridge (1870), public domain",
+  "file": "hs-arbo-stamford.jpg",
+  "credit_line": "Peter Nicolai Arbo, Public domain, via Wikimedia Commons",
+  "authenticity": "authentic"
+ },
+ "hs-william-npg": {
+  "id": "hs-william-npg",
+  "description": "King William I, National Portrait Gallery, public domain",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:King_William_I_(%27The_Conqueror%27)_from_NPG.jpg",
+  "licence": "Public domain",
+  "author": "Unknown authorUnknown author",
+  "retrieved": "2026-11-19",
+  "claim": "King William I, National Portrait Gallery, public domain",
+  "file": "hs-william-npg.jpg",
+  "credit_line": "Unknown authorUnknown author, Public domain, via Wikimedia Commons",
+  "authenticity": "authentic"
+ },
+ "hs-woolmer-morning": {
+  "id": "hs-woolmer-morning",
+  "description": "Woolmer, The Morning after the Battle of Hastings, public domain",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Alfred_Joseph_Woolmer_(1805-1892)_-_The_Morning_after_the_Battle_of_Hastings_-_WAG_3084_-_Walker_Art_Gallery.jpg",
+  "licence": "Public domain",
+  "author": "Alfred Woolmer",
+  "retrieved": "2026-11-19",
+  "claim": "Woolmer, The Morning after the Battle of Hastings, public domain",
+  "file": "hs-woolmer-morning.jpg",
+  "credit_line": "Alfred Woolmer, Public domain, via Wikimedia Commons",
+  "authenticity": "authentic"
  }
 }
