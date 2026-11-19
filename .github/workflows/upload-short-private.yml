@@ -1,0 +1,37 @@
+# Owner-approved PRIVATE upload of one finished Short (19 Nov 2026). Push a branch named upload/short-<anything> carrying
+# data/uploads/<dir>/episode.mp4 + episode-meta.json and data/uploads/short-plan.json { dir, slot, expect_channel, category }.
+# scripts/clone/upload-longform.mjs hard-codes privacy "private" and refuses unless the token's channel title contains expect_channel.
+name: Upload Short (private)
+on:
+  push:
+    branches: ["upload/short-**"]
+permissions:
+  contents: read
+concurrency: { group: upload-short, cancel-in-progress: false }
+jobs:
+  up:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Upload private
+        env:
+          CH01_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH04_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: |
+          P=data/uploads/short-plan.json; D=data/uploads/$(jq -r .dir $P); S=$(jq -r .slot $P)
+          v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
+          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)"
+          cat "$D/upload-record.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: upload-record, path: "data/uploads/*/upload-record.json", if-no-files-found: ignore }
