@@ -1272,6 +1272,14 @@
       "pillar": "Events that changed the modern world",
       "hook": "Before humans stepped foot in orbit, a chimpanzee named Enos paved the way—surviving a terrifying malfunction in space.",
       "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
+    },
+    "2026-11-19-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "44544500381",
+      "trigger": "schedule",
+      "updated_at": "2026-11-19T14:30:53.281Z"
     }
   },
   "uploads": [
@@ -2709,5 +2717,5 @@
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature"
   ],
-  "last_poll_at": "2026-11-19T02:39:11.897Z"
+  "last_poll_at": "2026-11-19T14:30:53.281Z"
 }
