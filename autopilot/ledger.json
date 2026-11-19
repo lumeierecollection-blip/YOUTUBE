@@ -1265,12 +1265,12 @@
       "attempts": 2,
       "run_id": "44639326734",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T23:40:51.984Z",
-      "stage": "script",
-      "topic": "The Occupation of Alcatraz Island by Native American Activists",
-      "score": 65.1,
+      "updated_at": "2026-11-19T23:50:30.137Z",
+      "stage": "research",
+      "topic": "The 1967 First Human Heart Transplant by Christiaan Barnard",
+      "score": 63.5,
       "pillar": "Events that changed the modern world",
-      "hook": "In 1969, a group of Native American activists occupied the abandoned Alcatraz prison for 19 months.",
+      "hook": "The breathtaking moment a surgeon successfully transplanted a human heart for the very first time.",
       "error": "5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
     },
     "2026-11-19-ch2": {
@@ -2663,6 +2663,15 @@
       "slot": "2026-11-18-ch1",
       "at_ms": 1795131627166,
       "score": 65.1,
+      "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "1",
+      "topic": "The 1967 First Human Heart Transplant by Christiaan Barnard",
+      "slug": "the-1967-first-human-heart-transplant-by-christiaan-barnard",
+      "slot": "2026-11-18-ch1",
+      "at_ms": 1795132230137,
+      "score": 63.5,
       "pillar": "Events that changed the modern world"
     }
   ],
