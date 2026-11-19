@@ -23,6 +23,7 @@ export const PHOTOS = [
   ["logo-claude", "File:Claude AI logo.png", "Claude logo (identifies the product named)"],
   ["logo-claude-symbol", "File:Claude AI symbol.svg", "Claude symbol (identifies the product named)"],
   ["logo-chatgpt", "File:ChatGPT logo.svg", "ChatGPT logo (identifies the product named)"],
+  ["shot-claude", "File:Claude AI website screenshot.webp", "The Claude web app (shows the product named)"],
   ["logo-google", "File:Google 2015 logo.svg", "Google logo (identifies the company named)"],
 ];
 export const CAPTURES = [
@@ -44,10 +45,11 @@ export const SHOTS = [
   { at: "May", kind: "year", photo: "da-uk", sil: "da-uk", year: "2026" },
   { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
   { at: "public", kind: "capture", capture: "wiki-anth", phrase: "plans an initial public offering in November 2026" },
+  { at: "valuable", kind: "inset", photo: "shot-claude", w: 1000, ratio: 0.476, top: 640 },
   { at: "Same", kind: "full", media: "sx-server", cap: "Same research." },
   { at: "different", kind: "full", photo: "da-tc2", cap: "A different bet." },
   { at: "So", kind: "page", page: "So" },
-  { at: "Comment", kind: "cta", logos: ["logo-chatgpt", "logo-claude-symbol"] },
+  { at: "Comment", kind: "cta", logos: ["logo-openai", "logo-claude"] },
 ];
 export const POOL = ["sx-typing", "sx-server", "sx-city", "sx-office", "sx-code", "sx-laptop", "sx-stock"];
 export const TAG = "AI TESTED";

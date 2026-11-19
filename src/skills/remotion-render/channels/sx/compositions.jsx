@@ -45,7 +45,7 @@ function Plate({ s, l, ground }) {
   // v1 reference: pictures (photos, logos, page captures, cut-outs) pile up one every 3 frames on the paper, each slightly offset ("plan", "a team from Google")
   if (s.kind === "collage") return <AbsoluteFill style={{ background: ground }}>
     {(s.items || []).filter((_, i) => step(l) >= i * 3).map((it, i) => <div key={i} style={{ position: "absolute", left: it.x, top: it.y, width: it.w, height: it.h || it.w * 0.72, background: it.cut || it.logo ? "transparent" : "#fff", padding: it.cut || it.logo ? 0 : 10, boxShadow: it.cut ? "none" : "0 8px 26px rgba(0,0,0,0.2)", transform: `rotate(${it.rot || 0}deg) scale(${z})`, filter: it.cut ? "drop-shadow(0 10px 18px rgba(0,0,0,0.3))" : "none" }}>
-      {it.logo ? <div style={{ width: "100%", height: "100%", background: it.tile ? "#0d0d0d" : "#fff", borderRadius: it.tile ? 40 : 6, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 26px rgba(0,0,0,0.2)" }}><Img src={src(it.img)} style={{ maxWidth: "74%", maxHeight: "74%", objectFit: "contain", filter: it.tile ? "invert(1)" : "none" }} /></div>
+      {it.logo ? <div style={{ width: "100%", height: "100%", background: it.tile ? "#0d0d0d" : "#fff", borderRadius: it.tile ? 40 : 6, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 26px rgba(0,0,0,0.2)" }}><Img src={src(it.img)} style={{ maxWidth: "74%", maxHeight: "74%", objectFit: "contain", filter: it.tile ? it.lf || "invert(1)" : "none" }} /></div>
         : <div style={{ width: "100%", height: "100%", overflow: "hidden" }}><Media s={it} style={it.cut ? { objectFit: "contain" } : it.top ? { objectPosition: "50% 0%" } : {}} /></div>}
     </div>)}</AbsoluteFill>;
   // a background-removed photo standing on the paper ground (cut-out), steps up on threes
@@ -68,7 +68,7 @@ function Plate({ s, l, ground }) {
       <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 46, color: "#111", marginTop: 12 }}>{b.label} · {b.prefix || ""}{Math.round(b.value * k)}{b.suffix || ""}</div></div>)}</AbsoluteFill>; }
   if (s.kind === "logo") { const k = Math.min(1, step(l) / 6); return <AbsoluteFill style={{ background: s.white ? "#F7F7F5" : ground }}>
     <div style={{ position: "absolute", left: (1080 - (s.tile ? 340 : 760)) / 2, top: s.tile ? 640 : 720, width: s.tile ? 340 : 760, height: s.tile ? 340 : 220, borderRadius: s.tile ? 64 : 0, background: s.tile ? "#0d0d0d" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${0.9 + 0.1 * k})`, boxShadow: s.tile ? "0 10px 30px rgba(0,0,0,0.25)" : "none" }}>
-      <Img src={src(s.img)} style={{ maxWidth: s.tile ? "78%" : "100%", maxHeight: s.tile ? "78%" : "100%", objectFit: "contain", filter: s.tile ? "invert(1)" : "none" }} /></div></AbsoluteFill>; }
+      <Img src={src(s.img)} style={s.tile ? { maxWidth: "78%", maxHeight: "78%", objectFit: "contain", filter: s.lf || "invert(1)" } : { width: "100%", height: "100%", objectFit: "contain" }} /></div></AbsoluteFill>; }   {/* lf: per-logo filter (the ChatGPT knot sits on its own teal square) */}
   if (s.kind === "cta") return <AbsoluteFill style={{ background: "#3A3A3A" }}>
     {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "brightness(0) invert(1)" }} />)}</AbsoluteFill>;
   return <AbsoluteFill style={{ background: ground }} />;

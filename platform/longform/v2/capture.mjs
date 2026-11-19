@@ -39,7 +39,11 @@ export async function capture(job, outDir) {
   const t0 = Date.now();
   await page.goto(job.url, { waitUntil: "domcontentloaded", timeout: 90000 }); await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {}); await page.evaluate(() => document.fonts && document.fonts.ready);
   for (const sel of job.hide || []) await page.addStyleTag({ content: `${sel}{display:none !important}` });
+  // full page: scroll through once so lazy images load and the layout stops moving, then measure the phrases against the SAME layout as the
+  // screenshot (19 Nov 2026: rects were measured after the images loaded, the screenshot had blank gaps, highlights landed ~700 px off)
+  if (job.fullPage) { await page.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 800) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } scrollTo(0, 0); }); await page.waitForLoadState("networkidle", { timeout: 20000 }).catch(() => {}); await page.waitForTimeout(800); }
   await shot("loaded");
+  const rects0 = job.fullPage && job.phrases?.length ? await page.evaluate(findRects, job.phrases) : null;
   for (const s of job.steps || []) {
     if (s.do === "scroll") await page.evaluate(([y, smooth]) => window.scrollTo({ top: y, behavior: smooth ? "smooth" : "instant" }), [s.y, !!job.record]);
     else if (s.do === "scrollTo") await page.getByText(s.text, { exact: false }).first().scrollIntoViewIfNeeded();
@@ -50,7 +54,7 @@ export async function capture(job, outDir) {
     await page.waitForTimeout(s.wait ?? 700);
     if (s.shot !== false) await shot(s.label || s.do);
   }
-  const rects = job.phrases?.length ? await page.evaluate(findRects, job.phrases) : {};
+  const rects = rects0 || (job.phrases?.length ? await page.evaluate(findRects, job.phrases) : {});
   const meta = { id: job.id, url: job.url, final_url: page.url(), title: await page.title(), captured: new Date().toISOString(), viewport: vp, scale, page_height: await page.evaluate(() => document.documentElement.scrollHeight), shots, rects, cursor_log: log };
   const video = job.record ? page.video() : null;
   await ctx.close(); await browser.close();
