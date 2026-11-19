@@ -42,8 +42,16 @@ export async function capture(job, outDir) {
   // full page: scroll through once so lazy images load and the layout stops moving, then measure the phrases against the SAME layout as the
   // screenshot (19 Nov 2026: rects were measured after the images loaded, the screenshot had blank gaps, highlights landed ~700 px off)
   if (job.fullPage) { await page.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 800) { scrollTo(0, y); await new Promise((r) => setTimeout(r, 120)); } scrollTo(0, 0); }); await page.waitForLoadState("networkidle", { timeout: 20000 }).catch(() => {}); await page.waitForTimeout(800); }
-  await shot("loaded");
-  const rects0 = job.fullPage && job.phrases?.length ? await page.evaluate(findRects, job.phrases) : null;
+  // round 5 still missed: Playwright's fullPage screenshot resizes the page and the layout changes again. So for full pages the viewport itself is
+  // made as tall as the page, lazy images get time to load, and the screenshot and the phrase boxes both come from that one layout.
+  let rects0 = null;
+  if (job.fullPage) {
+    const H = Math.min(16000, await page.evaluate(() => document.documentElement.scrollHeight));   // shortcut: pages taller than 16000 px are cut there (Chrome texture limit)
+    await page.setViewportSize({ width: vp.width, height: H }); await page.waitForLoadState("networkidle", { timeout: 20000 }).catch(() => {}); await page.waitForTimeout(2500);
+    const file = `${job.id}-0.png`; await page.screenshot({ path: join(outDir, file) }); shots.push({ file, label: "loaded", scrollY: 0, at_ms: Date.now() - t0, height: H });
+    if (job.phrases?.length) rects0 = await page.evaluate(findRects, job.phrases);
+    await page.setViewportSize(vp);
+  } else await shot("loaded");
   for (const s of job.steps || []) {
     if (s.do === "scroll") await page.evaluate(([y, smooth]) => window.scrollTo({ top: y, behavior: smooth ? "smooth" : "instant" }), [s.y, !!job.record]);
     else if (s.do === "scrollTo") await page.getByText(s.text, { exact: false }).first().scrollIntoViewIfNeeded();

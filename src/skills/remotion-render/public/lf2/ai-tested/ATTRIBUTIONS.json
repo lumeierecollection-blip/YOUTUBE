@@ -207,5 +207,38 @@
   "credit_line": "Original: OpenAI Vector: Zhing Za, Public domain, via Wikimedia Commons",
   "bytes": 972,
   "file": "logo-chatgpt.svg"
+ },
+ "shot-chatgpt": {
+  "id": "shot-chatgpt",
+  "description": "ChatGPT response screenshot",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:ChatGPT_response_screenshot_1.jpg",
+  "licence": "Public domain",
+  "licence_url": "",
+  "author": "Abdallah zeadnh",
+  "original_credit": "File:Mazda miata black hole edition.jpg",
+  "date_taken": "2025-11-16",
+  "retrieved": "2026-11-19",
+  "claim": "A ChatGPT conversation screenshot (shows the product, illustrative)",
+  "authenticity": "authentic",
+  "size_px": "1080x1150",
+  "credit_line": "Abdallah zeadnh, Public domain, via Wikimedia Commons",
+  "bytes": 152219,
+  "file": "shot-chatgpt.jpg"
+ },
+ "shot-claude": {
+  "id": "shot-claude",
+  "description": "The Claude web app (shows the product named)",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Claude_AI_website_screenshot.webp",
+  "licence": "Public domain",
+  "author": "Software: Anthropic PBC Screenshot: VulcanSphere",
+  "retrieved": "2026-11-19",
+  "claim": "The Claude web app (shows the product named)",
+  "file": "shot-claude.webp",
+  "credit_line": "Screenshot by VulcanSphere (software: Anthropic PBC), Public domain, via Wikimedia Commons",
+  "authenticity": "authentic",
+  "note": "1200-px Commons thumbnail fetched from the PC (the full file returned HTTP 429 in CI)"
  }
 }

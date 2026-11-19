@@ -70,7 +70,7 @@ function Plate({ s, l, ground }) {
     <div style={{ position: "absolute", left: (1080 - (s.tile ? 340 : 760)) / 2, top: s.tile ? 640 : 720, width: s.tile ? 340 : 760, height: s.tile ? 340 : 220, borderRadius: s.tile ? 64 : 0, background: s.tile ? "#0d0d0d" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${0.9 + 0.1 * k})`, boxShadow: s.tile ? "0 10px 30px rgba(0,0,0,0.25)" : "none" }}>
       <Img src={src(s.img)} style={s.tile ? { maxWidth: "78%", maxHeight: "78%", objectFit: "contain", filter: s.lf || "invert(1)" } : { width: "100%", height: "100%", objectFit: "contain" }} /></div></AbsoluteFill>; }   {/* lf: per-logo filter (the ChatGPT knot sits on its own teal square) */}
   if (s.kind === "cta") return <AbsoluteFill style={{ background: "#3A3A3A" }}>
-    {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "brightness(0) invert(1)" }} />)}</AbsoluteFill>;
+    {(s.logos || []).map((g, i, all) => <Img key={i} src={src(g)} style={{ position: "absolute", left: 540 - (all.length * 330) / 2 + i * 330 + 15, top: 1130, width: 300, height: 110, objectFit: "contain", filter: "invert(1)" }} />)}</AbsoluteFill>;
   return <AbsoluteFill style={{ background: ground }} />;
 }
 
