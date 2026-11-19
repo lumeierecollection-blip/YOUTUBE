@@ -33,7 +33,7 @@ export function EpTitle({ t, lines = [], rule = true }) {
   const f = useCurrentFrame();
   return <AbsoluteFill style={{ background: t.ep.black, alignItems: "center", justifyContent: "center" }}>
     <Fonts />
-    <div style={{ width: 1400, textAlign: "center", color: "#EFE7D6" }}>
+    <div style={{ width: 1400, textAlign: "center", color: "#EFE7D6", transform: `scale(${1 + 0.0004 * f})` }}>
       {lines.map((l, i) => { const from = l.from ?? 6 + i * 16, a = ramp(f, from, from + 18); return <div key={i} style={{ fontFamily: SERIF, fontSize: l.size || 44, fontStyle: l.italic ? "italic" : "normal", fontWeight: l.caps ? 700 : 500, letterSpacing: l.caps ? "0.18em" : "0.01em", textTransform: l.caps ? "uppercase" : "none", lineHeight: 1.3, marginBottom: 22, opacity: a, transform: `translateY(${(1 - a) * 10}px)` }}>{l.text}</div>; })}
       {rule && <div style={{ width: 220 * ramp(f, 20, 50), height: 2, background: t.ep.gold, margin: "10px auto 0" }} />}
     </div>
@@ -167,7 +167,7 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
         <marker id="pmah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
       </defs>
       {base.features.map((ft, n) => <path key={n} d={path(ft)} fill={c.land} stroke={c.border} strokeWidth={0.9} />)}
-      {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(0,0,0,0.35)" strokeWidth={1.2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18)} />)}
+      {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(0,0,0,0.35)" strokeWidth={1.2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18) * (r.alpha ?? 1)} />)}
       {routes.map((r, n) => {
         const p = ramp(f, r.from || 0, (r.from || 0) + (r.dur || 60), eio), pts = draw(r.coords, p).map((q) => q.join(",")).join(" ");
         return p > 0 && <g key={`ro${n}`}>
