@@ -1258,6 +1258,14 @@
       "pillar": "AI failures, hallucinations, security problems and scams",
       "hook": "Meta's new AI personal assistant is already mixing up messages and leaking chats from other apps.",
       "error": "3 topic(s) tried, none usable. Last: only 3 drawable facts in the research; 5 needed for a good strict-visual script"
+    },
+    "2026-11-18-ch1": {
+      "channel": "1",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "44445834077",
+      "trigger": "schedule",
+      "updated_at": "2026-11-19T02:39:11.898Z"
     }
   },
   "uploads": [
@@ -2668,5 +2676,5 @@
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature"
   ],
-  "last_poll_at": "2026-11-18T18:11:38.259Z"
+  "last_poll_at": "2026-11-19T02:39:11.897Z"
 }
