@@ -1,0 +1,53 @@
+{
+  "channel_id": "17",
+  "topic_slug": "el-nino-rains-paint-atacama-desert-2026",
+  "format": "shorts",
+  "hook": "Did you know that northern Chile's Atacama Desert turned into a blooming garden in 2026?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know that northern Chile's Atacama Desert turned into a blooming garden in 2026?",
+      "visual_cue": "Wide aerial shot transitioning from barren brown desert to purple flowers.",
+      "text_overlay": {
+        "text": "Atacama Desert, 2026"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Could this rare event turn the Atacama Desert landscape into shades of red, purple, and white?",
+      "visual_cue": "Satellite time-lapse footage showing green patches spreading across the desert floor.",
+      "text_overlay": {
+        "text": "2026 Flowering Event"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, these heavy rains caused floods that destroyed dozens of homes and forced hundreds to evacuate.",
+      "visual_cue": "Ground-level shots of flood-damaged terrain in the Atacama region.",
+      "text_overlay": {
+        "text": "Severe Flooding"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "NASA Earth Observatory documented this massive flowering event driven by a 2026 El Niño super cycle. NASA Earth Observatory images from November 19, 2026, show the most extensive bloom ever recorded.",
+      "visual_cue": "Comparison graphic showing Landsat imagery provided by NASA.",
+      "text_overlay": {
+        "text": "NASA Satellite Data"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The NASA Earth Observatory documented this massive flowering event across the Atacama Desert in 2026.",
+      "visual_cue": "Close-up of a single purple desert flower blooming against cracked earth.",
+      "text_overlay": {
+        "text": "Atacama 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama",
+    "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+    "https://elnino.news/news/atacama-desierto-florido-landsat-el-nino"
+  ]
+}
