@@ -36,8 +36,7 @@ export const PHOTOS = [
 // key shots by the word they start on (first occurrence after the previous key shot); everything between is filled automatically every ~0.45 s
 export const SHOTS = [
   { at: "Have", kind: "inset", photo: "ph-gpt-hand", mat: true, w: 860 },
-  { at: "ChatGPT", kind: "logo", logo: "logo-chatgpt", tile: true, lf: "grayscale(1) brightness(0.75) contrast(10)" },
-  { at: "making", kind: "inset", photo: "ph-gpt-laptop", w: 900, top: 520 },
+  { at: "ChatGPT", kind: "logo", logo: "logo-chatgpt", tile: true,   /* holds to "Even" (~1.5 s): owner barely saw it at 0.6 s */ lf: "grayscale(1) brightness(0.75) contrast(10)" },
   { at: "Even", kind: "inset", photo: "shot-chatgpt", w: 760, ratio: 1.0, top: 420, pos: "50% 0%", mat: true },
   { at: "present", kind: "capture", capture: "wiki-hall", phrase: "false or misleading information presented as fact" },
   { at: "hallucination", kind: "inset", photo: "ph-gpt-keyboard", w: 900, top: 520, mat: true },
