@@ -58,7 +58,10 @@ function realise(s) {
   if (S.CALM && s.kind === "capture" && !s.allowCapture) throw new Error(`page screenshot at "${s.at}": not allowed in calm Shorts; show the thing itself (people, money, a number, a logo)`);
   if (s.kind === "people") { o.people = s.people.map((p) => { const e = entPic(p.ent); return { name: p.name || e.name, role: p.role || "", img: e.img }; }); o.credit = [...new Set(s.people.map((p) => entPic(p.ent).credit).filter(Boolean))].join(" · ").slice(0, 200); }
   if (s.kind === "person") { const e = entPic(s.ent); Object.assign(o, { name: s.name || e.name, img: e.img, cut: s.noCut ? null : e.cut, credit: e.credit }); if (!e.img) o.kind = "page", (o.page = o.name); }
-  if (s.kind === "versus") { const pick = (x) => (x.ent ? entPic(x.ent).cut || entPic(x.ent).img : cutOf(x.photo)); Object.assign(o, { cutA: pick(s.a), cutB: pick(s.b), labA: s.a.label, labB: s.b.label }); o.credit = [s.a, s.b].map((x) => (x.ent ? entPic(x.ent).credit : photo(x.photo)?.credit)).filter(Boolean).join(" · "); }
+  // a shot meant to be a cut-out never silently falls back to a photo with its background (owner, 19 Nov 2026)
+  const needCut = (pth, what) => { if (!pth || !/\.png$/i.test(pth)) throw new Error(`no background-removed PNG for ${what} at "${s.at}" (got ${pth})`); return pth; };
+  if (s.kind === "versus") { const pick = (x) => needCut(x.ent ? entPic(x.ent).cut : cutOf(x.photo), x.ent || x.photo);
+    o.logoA = s.a.logo ? photo(s.a.logo)?.img : null; o.logoB = s.b.logo ? photo(s.b.logo)?.img : null; o.lfA = s.a.lf; o.lfB = s.b.lf; Object.assign(o, { cutA: pick(s.a), cutB: pick(s.b), labA: s.a.label, labB: s.b.label }); o.credit = [s.a, s.b].map((x) => (x.ent ? entPic(x.ent).credit : photo(x.photo)?.credit)).filter(Boolean).join(" · "); }
   if (s.kind === "object") { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; if (!o.img) o.kind = "paper"; }
   if ((s.kind === "money" || s.kind === "stat") && s.asset) { o.img = cutOf(s.asset); o.credit = photo(s.asset)?.credit; }
   if (s.media) { const v = foot(s.media); if (v) Object.assign(o, { video: v, credit: VCRED }); else if (s.kind === "full" || s.kind === "inset" || s.kind === "year") o.kind = s.kind === "year" ? "page" : "paper"; }
@@ -66,6 +69,7 @@ function realise(s) {
   if (s.photo2) { const ph = photo(s.photo2); if (ph) o.img2 = ph.img; else if (o.kind === "split") o.kind = "full"; }
   if (s.kind === "logo" || s.kind === "brand") { const ph = photo(s.logo); if (ph) Object.assign(o, ph); else Object.assign(o, { kind: "paper" }); }
   if (s.sil) { const c = cut(s.sil); if (c) o.sil = c.img; else delete o.sil; }
+  if (s.kind === "cutout" && !cut(s.cut)) throw new Error(`no background-removed PNG for ${s.cut} at "${s.at}"`);
   if (s.kind === "cutout") { const c = cut(s.cut); if (c) Object.assign(o, c); else { const ph = photo(s.cut); Object.assign(o, ph ? { kind: "inset", mat: true, ...ph } : { kind: "paper" }); } }
   if (s.kind === "collage") { o.items = s.items.map(item).filter(Boolean); if (!o.items.length) o.kind = "paper"; else o.credit = [...new Set(o.items.map((i) => i.credit).filter((c) => c && c !== "page capture"))].join(" · ").slice(0, 160); }
   if (s.kind === "cta" && s.logos) o.logos = s.logos.map((id) => photo(id)?.img).filter(Boolean);

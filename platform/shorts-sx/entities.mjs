@@ -45,6 +45,6 @@ for (const e of S.ENTITIES || []) {
 }
 // people (and any asset the spec asks for) get a background-removed copy, made by the prep step's cutout.py run
 const cuts = Object.entries(out).filter(([, v]) => v.kind === "person" && v.img).map(([, v]) => v.img).concat((S.CUTOUTS || []).map((id) => att[id] && `lf2/ai-tested/${att[id].file}`).filter(Boolean));
-writeFileSync(join(OUT, "cutouts.txt"), cuts.map((p) => join("src/skills/remotion-render/public", p)).join("\n"));
+writeFileSync(join(OUT, "cutouts.txt"), cuts.map((p) => join("src/skills/remotion-render/public", p)).join("\n") + "\n");   // final newline: the shell `while read` loop skipped the last line without it (Altman, 19 Nov 2026)
 writeFileSync(join(OUT, "entities.json"), JSON.stringify(out, null, 1));
 console.log(`entities ${slug}: ${Object.values(out).filter((v) => v.img).length}/${Object.keys(out).length} with a picture; ${cuts.length} to cut out`);

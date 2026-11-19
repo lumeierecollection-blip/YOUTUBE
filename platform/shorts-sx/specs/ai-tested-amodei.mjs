@@ -56,7 +56,7 @@ export const SHOTS = [
   { at: "disagreements", kind: "page", page: "Over AI safety" },
   { at: "May", kind: "year", photo: "da-uk", year: "2026" },
   { at: "965", kind: "money", value: "$965B", unit: "valuation, May 2026", asset: "png-money-stack", stacks: 3 },
-  { at: "Same", kind: "versus", a: { photo: "ph-altman3", label: "Sam Altman, OpenAI CEO" }, b: { ent: "dario", label: "Dario Amodei, Anthropic CEO" }, bgA: "#111111", bgB: "#DD7354" },
+  { at: "Same", kind: "versus", a: { photo: "ph-altman3", label: "Sam Altman, OpenAI CEO", logo: "logo-chatgpt", lf: "grayscale(1) brightness(0.75) contrast(10)" }, b: { ent: "dario", label: "Dario Amodei, Anthropic CEO", logo: "logo-claude-symbol" }, bgA: "#111111", bgB: "#DD7354" },
   { at: "different", kind: "full", photo: "ph-anthropic-hq", cap: "Anthropic HQ · San Francisco" },
   { at: "Which", kind: "collage", items: [{ photo: "shot-chatgpt", x: 90, y: 430, w: 520, h: 560, top: true, rot: -3 }, { photo: "shot-claude", x: 330, y: 820, w: 680, h: 330, rot: 2 }] },
 ];
