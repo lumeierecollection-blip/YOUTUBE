@@ -1,0 +1,79 @@
+{
+  "topic_slug": "sherlock-holmes-vs-arsene-lupin-canonical-abilities",
+  "strongest_angle": "An in-depth analysis comparing the published feats, detection limits, and canonical abilities of Arthur Conan Doyle's Sherlock Holmes and Maurice Leblanc's Arsene Lupin, explicitly labelled as analysis.",
+  "key_facts": [
+    {
+      "fact": "In June of 1906, Maurice Leblanc published Sherlock Holmes Arrive Trop Tard featuring the character Herlock Sholmès as a rival to Arsene Lupin.",
+      "source_url": "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html",
+      "source_name": "Slate",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arthur Conan Doyle published the first Sherlock Holmes story A Study in Scarlet in 1887, following Edgar Allan Poe's 1841 invention of the detective story.",
+      "source_url": "https://blog.oup.com/2013/09/six-methods-forensic-detection-sherlock-holmes",
+      "source_name": "OUPblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sherlock Holmes is described in canonical comparisons as a consulting detective residing in London and Sussex, whereas Arsene Lupin is a gentleman burglar based in Paris.",
+      "source_url": "https://johnopenshaw.org/wp-content/uploads/2024/04/20240421-Holmes-v.-Lupin.pdf",
+      "source_name": "John Openshaw",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year of A Study in Scarlet",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://blog.oup.com/2013/09/six-methods-forensic-detection-sherlock-holmes"
+    },
+    {
+      "label": "Publication year of The Murders in the Rue Morgue",
+      "value": 1841,
+      "unit": "year",
+      "source_url": "https://blog.oup.com/2013/09/six-methods-forensic-detection-sherlock-holmes"
+    },
+    {
+      "label": "Publication year of crossover event by Maurice Leblanc",
+      "value": 1906,
+      "unit": "year",
+      "source_url": "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Arsene Lupin",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Maurice Leblanc",
+      "kind": "person"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "Sussex",
+      "kind": "place"
+    },
+    {
+      "name": "Edgar Allan Poe",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}
