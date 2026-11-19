@@ -3177,9 +3177,14 @@
           "topic": "TSB Canada Warning on Pre-2003 Railcar Wheels",
           "slug": "tsb-railcar-wheels-safety-concern",
           "reserved_at": "2026-11-18T17:54:15.136Z"
+        },
+        {
+          "topic": "Cornell Polymer Fiber Forest Reduces Electronics Operating Temperatures",
+          "slug": "cornell-polymer-fiber-forest-cooling",
+          "reserved_at": "2026-11-19T17:58:39.833Z"
         }
       ],
-      "last_generated": "2026-11-18T17:54:15.136Z"
+      "last_generated": "2026-11-19T17:58:39.833Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
