@@ -252,5 +252,17 @@
     "cancelled": true,
     "source_file": "toyota-62000-tundra-vehicle-recall-november-2026-shorts-shorts-2026-11-18.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "frk7wrBIMfo",
+    "channel_id": "48",
+    "title": "November 2026 Recall Analysis: 247 Consumer Safety…",
+    "uploaded_at": "2026-11-19T19:12:53.341Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-19T20:12:53.341Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "november-2026-recall-analysis-safety-incidents-shorts-shorts-2026-11-19.mp4",
+    "source_queue": "approved"
   }
 ]
