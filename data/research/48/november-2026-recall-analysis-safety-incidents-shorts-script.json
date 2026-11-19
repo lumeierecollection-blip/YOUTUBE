@@ -1,0 +1,45 @@
+{
+  "channel_id": "48",
+  "topic_slug": "november-2026-recall-analysis-safety-incidents",
+  "format": "shorts",
+  "hook": "U.S. agencies issued 71 product recalls in November 2026 alone.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "U.S. agencies issued 71 product recalls in November 2026 alone."
+    },
+    {
+      "id": "setup",
+      "voiceover": "The FDA also logged 44 medical device records, but how many pose serious health risks?",
+      "text_overlay": {
+        "text": "71 total U.S. recalls"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Actually, 12 of those FDA medical device recalls carry the dangerous Class I risk rating.",
+      "text_overlay": {
+        "text": "12 Class I medical recalls"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "NHTSA campaigns hit a massive scale, impacting 870,255 total units. Overseas, the French safety database France RappelConso added 98 more product safety entries this November.",
+      "text_overlay": {
+        "text": "870,255 vehicles recalled"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These 71 U.S. recall events highlight widespread product safety monitoring efforts.",
+      "text_overlay": {
+        "text": "71 U.S. recall events"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://recallbench.com/statistics/2026-11",
+    "https://recallregister.com/month/2026-11",
+    "https://devicesafetyindex.com/recalls/2026-11"
+  ]
+}

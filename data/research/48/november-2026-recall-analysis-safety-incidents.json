@@ -1,0 +1,119 @@
+{
+  "topic_slug": "november-2026-recall-analysis-safety-incidents",
+  "strongest_angle": "An analysis of November 2026 U.S. product safety recalls, tracking 71 total events across federal agencies including CPSC, FDA, NHTSA, and USDA-FSIS, alongside unit counts and medical device classifications.",
+  "key_facts": [
+    {
+      "fact": "In November 2026, U.S. agencies posted 71 recall events including 19 from CPSC, 19 from FDA, 31 from NHTSA, and 2 from USDA-FSIS as of November 19, 2026.",
+      "source_url": "https://recallbench.com/statistics/2026-11",
+      "source_name": "RecallBench",
+      "confidence": "high"
+    },
+    {
+      "fact": "NHTSA received 15 vehicle recall campaigns in November 2026 encompassing 870,255 units in total.",
+      "source_url": "https://recallregister.com/month/2026-11",
+      "source_name": "RecallRegister",
+      "confidence": "high"
+    },
+    {
+      "fact": "The FDA posted 44 medical device recall records in November 2026, with 12 classified as Class I, the most serious category.",
+      "source_url": "https://devicesafetyindex.com/recalls/2026-11",
+      "source_name": "DeviceSafetyIndex",
+      "confidence": "high"
+    },
+    {
+      "fact": "European safety databases recorded 138 entries under EU Safety Gate RAPEX and 98 entries under France RappelConso in November 2026.",
+      "source_url": "https://product-guru.org/recalls/index/2026-11",
+      "source_name": "ProductGuru",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "U.S. agency recall events in November 2026",
+      "value": 71,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-11"
+    },
+    {
+      "label": "CPSC recall events",
+      "value": 19,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-11"
+    },
+    {
+      "label": "FDA recall events",
+      "value": 19,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-11"
+    },
+    {
+      "label": "NHTSA recall events",
+      "value": 31,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-11"
+    },
+    {
+      "label": "USDA-FSIS recall events",
+      "value": 2,
+      "unit": "events",
+      "source_url": "https://recallbench.com/statistics/2026-11"
+    },
+    {
+      "label": "NHTSA vehicle campaign units",
+      "value": 870255,
+      "unit": "units",
+      "source_url": "https://recallregister.com/month/2026-11"
+    },
+    {
+      "label": "FDA medical device recall records",
+      "value": 44,
+      "unit": "records",
+      "source_url": "https://devicesafetyindex.com/recalls/2026-11"
+    },
+    {
+      "label": "FDA Class I medical device recalls",
+      "value": 12,
+      "unit": "recalls",
+      "source_url": "https://devicesafetyindex.com/recalls/2026-11"
+    },
+    {
+      "label": "EU Safety Gate RAPEX entries",
+      "value": 138,
+      "unit": "entries",
+      "source_url": "https://product-guru.org/recalls/index/2026-11"
+    },
+    {
+      "label": "France RappelConso entries",
+      "value": 98,
+      "unit": "entries",
+      "source_url": "https://product-guru.org/recalls/index/2026-11"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "CPSC",
+      "kind": "organization"
+    },
+    {
+      "name": "FDA",
+      "kind": "organization"
+    },
+    {
+      "name": "NHTSA",
+      "kind": "organization"
+    },
+    {
+      "name": "USDA-FSIS",
+      "kind": "organization"
+    },
+    {
+      "name": "EU Safety Gate RAPEX",
+      "kind": "organization"
+    },
+    {
+      "name": "France RappelConso",
+      "kind": "organization"
+    }
+  ]
+}
