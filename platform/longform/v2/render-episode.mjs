@@ -177,7 +177,7 @@ Source: ${LIBA[SND.bed]?.source_page || ""}
 `);
 }
 const sfxNames = events.map((_, j) => `[s${j}]`).join(""), nMix = events.length + 1 + (bedLabel ? 1 : 0);
-const mixGraph = [...sfxF, ...bedChain, `[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v0][vcopy]`, `[v0]${sfxNames}${bedLabel || ""}amix=inputs=${nMix}:normalize=0:duration=first[mx]`].join(";");
+const mixGraph = [...sfxF, ...bedChain, (bedLabel ? `[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v0][vcopy]` : `[0:a]aformat=sample_rates=48000:channel_layouts=stereo[v0]`)   /* no bed: an unused [vcopy] made ffmpeg fail (run 44582843312) */, `[v0]${sfxNames}${bedLabel || ""}amix=inputs=${nMix}:normalize=0:duration=first[mx]`].join(";");
 r = run("ffmpeg", ["-y", "-v", "error", "-i", voiceOut, ...sfxIn, ...bedIn, "-filter_complex", mixGraph, "-map", "[mx]", "-ar", "48000", pre]);
 if (r.status !== 0) { console.error(r.stderr); process.exit(4); }
 const m = run("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"]).stderr;
