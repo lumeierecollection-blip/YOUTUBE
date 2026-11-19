@@ -63,7 +63,10 @@ function sceneProps(scene) {
 const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": null };
 // owner, 19 Nov 2026: the football narration "sounds more of a horror story" -> an upbeat analyst read for Rival Lines (pace from delivery, never sped up)
 const STYLE = { "rival-lines": "Read this like an upbeat, curious football analyst on a YouTube explainer, in a natural British English accent: bright, warm and engaged, a confident steady pace, a little smile in the voice, energy on numbers and club names. Never dark, never dramatic, never slow:" };
-for (const b of beats) {
+// --stills: one PNG per beat for visual approval (owner, 20 Nov 2026: "come back with stills, don't render"): no voice, no video
+const STILLS = argv.includes("--stills");
+if (STILLS) for (const b of beats) b._len = b.vo.split(/\s+/).length / 2.5 + PAD;
+for (const b of STILLS ? [] : beats) {
   const mp3 = join(VDIR, `${b.id}.mp3`);
   if (!existsSync(mp3) || dur(mp3) < 0.5) {
     const r = await narrate({ text: b.vo, edgeVoice: VOICE[ch], outDir: VDIR, name: `${b.id}.tmp`, gravity: GRAV[ch], style: STYLE[ch] || null });
@@ -82,6 +85,14 @@ const chrome = findChrome();
 if (!existsSync(join(REMOTION, "vo.mp3"))) run("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", join(REMOTION, "vo.mp3")]);
 const serveUrl = await bundle({ entryPoint: join(REMOTION, "Root.jsx"), publicDir: join(REMOTION, "public"), onProgress: () => {} });
 const browser = await openBrowser("chrome", { ...(chrome ? { browserExecutable: chrome } : {}), chromiumOptions: { gl: "swangle" } });
+if (STILLS) {
+  const { renderStill } = await import(pathFor("@remotion/renderer")), SD = join(OUT, "stills"); mkdirSync(SD, { recursive: true });
+  for (const b of beats) { const props = sceneProps(b.scene), frames = Math.ceil(b._len * FPS);
+    const composition = await selectComposition({ serveUrl, id: "LF2Scene", inputProps: props, puppeteerInstance: browser, timeoutInMilliseconds: 180000 }); composition.durationInFrames = frames;
+    for (const [k, at] of [["a", 0.25], ["b", 0.7]]) await renderStill({ composition, serveUrl, output: join(SD, `${b.id}-${k}.png`), inputProps: props, frame: Math.floor(frames * at), puppeteerInstance: browser, timeoutInMilliseconds: 180000 });
+    console.log("still", b.id, b.scene.type); }
+  await browser.close({ silent: true }); process.exit(0);
+}
 for (const b of beats) {
   const final = join(BDIR, `${b.id}.mp4`);
   if (existsSync(final) && Math.abs(dur(final) - b._len) < 0.3) { console.log("beat cached", b.id); continue; }
