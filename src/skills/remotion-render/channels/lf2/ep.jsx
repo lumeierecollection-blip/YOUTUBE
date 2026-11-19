@@ -14,8 +14,8 @@ const src = (p) => (p.startsWith("data:") || p.startsWith("http") ? p : staticFi
 const col = (t, c) => (c && t.ep[c]) || c || t.ep.red;
 
 /** Paper grain overlay (fixed noise, multiply) used on cards and over the map so both read as printed matter. */
-const Grain = ({ o = 0.12, id = "epg" }) => <svg width="1920" height="1080" style={{ position: "absolute", inset: 0, opacity: o, mixBlendMode: "multiply", pointerEvents: "none" }}>
-  <filter id={id}><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" seed="9" /><feColorMatrix type="saturate" values="0" /></filter><rect width="1920" height="1080" filter={`url(#${id})`} /></svg>;
+// a static grain texture (public/lf2/hidden-past/tex-grain.png): a full-frame feTurbulence on every frame made the Hastings shards overrun (19 Nov 2026)
+const Grain = ({ o = 0.12 }) => <Img src={staticFile("lf2/hidden-past/tex-grain.png")} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: o * 0.8, mixBlendMode: "multiply", pointerEvents: "none" }} />;
 
 /** Caption plate for a named person or a place, measured from Epic (aust-sheet / ep-a): a dark grey plate with a thin light inner rule, name in serif, role in
  *  smaller serif below ("General Mikhail Kutuzov / Russian Army Commander"). */
@@ -164,7 +164,6 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
     <Fonts />
     <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
       <defs>
-        <filter id="pmg"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" seed="3" /><feColorMatrix type="saturate" values="0" /></filter>
         <marker id="pmah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
       </defs>
       {base.features.map((ft, n) => <path key={n} d={path(ft)} fill={c.land} stroke={c.border} strokeWidth={0.9} />)}
@@ -185,13 +184,13 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
           <text x={23} y={-37} textAnchor="middle" fontFamily={SERIF} fontWeight={700} fontSize={18} fill="#fff">{q.short}</text>
         </g>;
       })}
-      <rect width="1920" height="1080" filter="url(#pmg)" opacity={0.22} style={{ mixBlendMode: "multiply" }} />
     </svg>
     {labels.map((l, n) => { const [x, y] = proj(l.at), s = K[l.kind || "country"], a = ramp(f, l.from || 0, (l.from || 0) + 14); return <div key={`l${n}`} style={{ position: "absolute", left: x - 400, width: 800, top: y - s.size * 0.6, textAlign: "center", fontFamily: SERIF, fontWeight: s.weight, fontStyle: s.italic ? "italic" : "normal", fontSize: s.size, letterSpacing: s.sp, textTransform: s.caps ? "uppercase" : "none", color: c.mapInk, opacity: a * s.op, transform: `rotate(${l.rotate || 0}deg)` }}>{l.text}</div>; })}
     {figures.map((g, n) => { const a = ramp(f, g.from || 0, (g.from || 0) + 16, expo), m = g.vignette ? "radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%)" : undefined;
       // vignette: a rectangular crop of period art faded at the edges (background removal failed on embroidery: heads and riders vanished, 18 Nov 2026)
       return <Img key={`g${n}`} src={staticFile(g.src)} style={{ position: "absolute", [g.side || "right"]: g.edge ?? 30, bottom: g.bottom ?? 0, height: g.h || 760, opacity: a, transform: `translateX(${(1 - a) * (g.side === "left" ? -40 : 40)}px)`, filter: g.vignette ? "sepia(0.1)" : "drop-shadow(0 0 26px rgba(0,0,0,0.55))", WebkitMaskImage: m, maskImage: m }} />; })}
     <AbsoluteFill style={{ background: "radial-gradient(95% 90% at 50% 50%, rgba(0,0,0,0) 62%, rgba(20,16,10,0.45) 100%)", pointerEvents: "none" }} />
+    <Grain o={0.2} />
     {plates.map((p, n) => <Plate key={`pl${n}`} t={t} {...p} />)}
     {note && <div style={{ position: "absolute", left: 40, top: 30, fontFamily: SERIF, fontStyle: "italic", fontSize: 22, color: c.mapInk, opacity: 0.75 * ramp(f, note.from || 20, (note.from || 20) + 14) }}>{note.text}</div>}
     <Credit text={credit} />
@@ -209,21 +208,20 @@ export function EpBattle({ t, hills = [], water = [], woods = [], units = [], ar
     <AbsoluteFill style={{ transform: `scale(${1 + push * k})`, transformOrigin: "50% 50%" }}>
       <svg width="1920" height="1080" style={{ position: "absolute", inset: 0 }}>
         <defs>
-          <filter id="bt1"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="4" seed="7" /><feColorMatrix values="0 0 0 0 0.55  0 0 0 0 0.5  0 0 0 0 0.25  0 0 0 0.55 0" /></filter>
-          <filter id="bt2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" /><feColorMatrix type="saturate" values="0" /></filter>
-          <filter id="soft"><feGaussianBlur stdDeviation="22" /></filter>
+          <radialGradient id="hd"><stop offset="0%" stopColor="#3D3518" stopOpacity="0.4" /><stop offset="100%" stopColor="#3D3518" stopOpacity="0" /></radialGradient>
+          <radialGradient id="hl"><stop offset="0%" stopColor="#F0E6B4" stopOpacity="0.35" /><stop offset="100%" stopColor="#F0E6B4" stopOpacity="0" /></radialGradient>
+          <radialGradient id="wd"><stop offset="0%" stopColor="#4A5320" stopOpacity="0.6" /><stop offset="100%" stopColor="#4A5320" stopOpacity="0" /></radialGradient>
           <filter id="glow"><feGaussianBlur stdDeviation="9" /></filter>
           <marker id="bah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
         </defs>
         <rect width="1920" height="1080" fill={c.khaki} />
-        <rect width="1920" height="1080" filter="url(#bt1)" />
+        <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} x="0" y="0" width="1920" height="1080" preserveAspectRatio="none" />
         {hills.map((h, n) => <g key={`h${n}`}>
-          <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="#3D3518" opacity={0.35} filter="url(#soft)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
-          <ellipse cx={h.x - h.rx * 0.18} cy={h.y - h.ry * 0.25} rx={h.rx * 0.7} ry={h.ry * 0.55} fill="#E8DDA6" opacity={0.3} filter="url(#soft)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
+          <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="url(#hd)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
+          <ellipse cx={h.x - h.rx * 0.18} cy={h.y - h.ry * 0.25} rx={h.rx * 0.7} ry={h.ry * 0.55} fill="url(#hl)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
         </g>)}
-        {woods.map((w, n) => <ellipse key={`w${n}`} cx={w.x} cy={w.y} rx={w.rx} ry={w.ry} fill="#4A5320" opacity={0.55} filter="url(#soft)" />)}
+        {woods.map((w, n) => <ellipse key={`w${n}`} cx={w.x} cy={w.y} rx={w.rx} ry={w.ry} fill="url(#wd)" />)}
         {water.map((w, n) => <path key={`wa${n}`} d={curve(w.pts)} fill="none" stroke={c.water} strokeWidth={w.width || 10} strokeLinecap="round" opacity={0.9} />)}
-        <rect width="1920" height="1080" filter="url(#bt2)" opacity={0.18} style={{ mixBlendMode: "multiply" }} />
         {units.map((u, n) => {
           const a = ramp(f, u.from || 0, (u.from || 0) + 12), mv = u.to ? ramp(f, u.to.from, u.to.from + (u.to.dur || 60), eio) : 0;
           const x = u.x + (u.to ? (u.to.x - u.x) * mv : 0), y = u.y + (u.to ? (u.to.y - u.y) * mv : 0), cols = u.cols || 6, rows = u.rows || 2, bw = u.bw || 22, bh = u.bh || 14;
