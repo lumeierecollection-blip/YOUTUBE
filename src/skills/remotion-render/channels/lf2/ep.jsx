@@ -217,7 +217,7 @@ export function EpBattle({ t, hills = [], water = [], woods = [], units = [], ar
           <marker id="bah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
         </defs>
         <rect width="1920" height="1080" fill={c.khaki} />
-        <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" opacity={0.55} />   {/* Epic battle maps: real terrain texture under the units, not a flat field */}
+        <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" opacity={0.9} />   {/* Epic battle maps: real terrain texture under the units, not a flat field */}
         <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} x="0" y="0" width="1920" height="1080" preserveAspectRatio="none" />
         {hills.map((h, n) => <g key={`h${n}`}>
           <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="url(#hd)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
