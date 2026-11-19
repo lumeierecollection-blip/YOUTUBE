@@ -67,13 +67,14 @@ const shots = []; let from = 0;
 for (const s of S.SHOTS) { const i = toks.findIndex((t, k) => k >= from && norm(t.w) === norm(s.at)); if (i < 0) { console.log("shot word not found:", s.at); continue; } shots.push({ ...realise(s), f0: Math.round(toks[i].t0 * FPS), wi: i }); from = i + 1; }
 // fill: a new picture every ~0.45/0.5 s between key shots, on word starts, cycling the pool
 // first render measured 0.81 / 1.06 s per shot; the references cut every 0.49-0.53 s
-const gap = S.STYLE === "v1" ? 0.35 : 0.38, out = []; let q = 0;
+// round 7 measured 0.61 / 0.76 s per shot against the references 0.49-0.53 s: tighter fill gap and shorter holds
+const gap = S.STYLE === "v1" ? 0.33 : 0.2, out = []; let q = 0;
 const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "full" }, { kind: "inset", w: 900, top: 520 }, { kind: "paper" }][k % 5];
 for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
   if (shots[a].kind === "cta") continue;
   // captures, white pages and strobe key words hold (as in the references), but never longer than 1.5 s before the rhythm resumes
-  let last = shots[a].f0 + (shots[a].kind === "capture" || shots[a].kind === "page" || shots[a].strobe ? Math.round(1.0 * FPS) - Math.round(gap * FPS) : 0);
+  let last = shots[a].f0 + (shots[a].kind === "capture" || shots[a].kind === "page" || shots[a].strobe ? Math.round(0.8 * FPS) - Math.round(gap * FPS) : 0);
   for (const w of words) { const f0 = Math.round(w.t0 * FPS); if (f0 <= last + gap * FPS || f0 >= end - 6) continue;
     const base = S.STYLE === "v1" ? v1(q) : { kind: "full" }, id = S.POOL[q % S.POOL.length]; q++;
     const s = base.kind === "paper" ? base : realise({ ...base, media: id }); out.push({ ...s, f0, auto: true }); last = f0; }
