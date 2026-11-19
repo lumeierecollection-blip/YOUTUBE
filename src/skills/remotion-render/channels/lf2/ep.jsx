@@ -166,10 +166,8 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
       <defs>
         <marker id="pmah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
       </defs>
-      <defs><pattern id="parch" patternUnits="userSpaceOnUse" width="1920" height="1080"><image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" /></pattern></defs>
       {base.features.map((ft, n) => <path key={n} d={path(ft)} fill={c.land} stroke={c.border} strokeWidth={1.4} />)}
-      {base.features.map((ft, n) => <path key={`tx${n}`} d={path(ft)} fill="url(#parch)" opacity={0.38} style={{ mixBlendMode: "multiply" }} />)}   {/* Epic: textured parchment land, not flat */}
-      {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(40,10,5,0.55)" strokeWidth={2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18) * Math.max(0.6, (r.alpha ?? 1)) * 0.9} style={{ mixBlendMode: "multiply" }} />)}   {/* deep, textured realm colour (Epic); close-ups no longer fade to a pale tint */}
+      {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(40,10,5,0.55)" strokeWidth={2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18) * Math.max(0.6, (r.alpha ?? 1)) * 0.88} />)}   {/* deep, textured realm colour (Epic); close-ups no longer fade to a pale tint */}
       {routes.map((r, n) => {
         const p = ramp(f, r.from || 0, (r.from || 0) + (r.dur || 60), eio), pts = draw(r.coords, p).map((q) => q.join(",")).join(" ");
         return p > 0 && <g key={`ro${n}`}>
@@ -191,7 +189,9 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
     {figures.map((g, n) => { const a = ramp(f, g.from || 0, (g.from || 0) + 16, expo), m = g.vignette ? "radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%)" : undefined;
       // vignette: a rectangular crop of period art faded at the edges (background removal failed on embroidery: heads and riders vanished, 18 Nov 2026)
       return <Img key={`g${n}`} src={staticFile(g.src)} style={{ position: "absolute", [g.side || "right"]: g.edge ?? 30, bottom: g.bottom ?? 0, height: g.h || 760, opacity: a, transform: `translateX(${(1 - a) * (g.side === "left" ? -40 : 40)}px)`, filter: g.vignette ? "sepia(0.1)" : "drop-shadow(0 0 26px rgba(0,0,0,0.55))", WebkitMaskImage: m, maskImage: m }} />; })}
-    <AbsoluteFill style={{ background: "radial-gradient(80% 75% at 50% 45%, rgba(255,190,90,0.10) 0%, rgba(214,120,30,0.22) 60%, rgba(60,25,5,0.6) 100%)", mixBlendMode: "multiply", pointerEvents: "none" }} />   {/* Epic: warm orange-brown vignette */}
+    {/* parchment: ONE full-frame texture layer (a per-shape pattern with blend modes made map beats miss their shard time limit, run 44585504340) */}
+    <Img src={staticFile("lf2/hidden-past/tex-terrain.jpg")} style={{ position: "absolute", inset: 0, width: 1920, height: 1080, objectFit: "cover", opacity: 0.22, pointerEvents: "none" }} />
+    <AbsoluteFill style={{ background: "radial-gradient(80% 75% at 50% 45%, rgba(255,190,90,0.06) 0%, rgba(214,120,30,0.16) 60%, rgba(60,25,5,0.55) 100%)", pointerEvents: "none" }} />   {/* Epic: warm orange-brown vignette */}
     <Grain o={0.2} />
     {plates.map((p, n) => <Plate key={`pl${n}`} t={t} {...p} />)}
     {note && <div style={{ position: "absolute", left: 40, top: 30, fontFamily: SERIF, fontStyle: "italic", fontSize: 22, color: c.mapInk, opacity: 0.75 * ramp(f, note.from || 20, (note.from || 20) + 14) }}>{note.text}</div>}
