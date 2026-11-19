@@ -1,0 +1,67 @@
+{
+  "topic_slug": "vulcan-rocket-failure-amazon-leo-satellites",
+  "strongest_angle": "Examine the November 15, 2026 launch failure of the United Launch Alliance Vulcan rocket carrying forty Amazon Leo internet satellites, focusing on the booster engine fuel supply investigation.",
+  "key_facts": [
+    {
+      "fact": "On November 15, 2026, a United Launch Alliance Vulcan rocket suffered a mission-ending anomaly 10 minutes into flight from Cape Canaveral's pad 41, destroying 40 Amazon Leo satellites.",
+      "source_url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites",
+      "source_name": "Spaceflight Now",
+      "confidence": "high"
+    },
+    {
+      "fact": "The November 15, 2026 failure marks the first total mission failure in United Launch Alliance's 20-year history.",
+      "source_url": "https://www.reuters.com/5f374b32b07b/business/aerospace-defense/us-rocket-fails-after-launch-payload-amazon-internet-satellites-destroyed-2026-11-15",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "United Launch Alliance reported that a preliminary review of flight data from the Leo 1 launch points to an inadequate supply of fuel from the vehicle to the BE-4 engines rather than engine performance issues.",
+      "source_url": "https://blog.ulalaunch.com/blog/vulcan-leo-1-updates",
+      "source_name": "ULA Blog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Satellites destroyed",
+      "value": 40,
+      "unit": "satellites",
+      "source_url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites"
+    },
+    {
+      "label": "Flight time until failure",
+      "value": 10,
+      "unit": "minutes",
+      "source_url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites"
+    },
+    {
+      "label": "Launch pad",
+      "value": 41,
+      "unit": "pad",
+      "source_url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "United Launch Alliance",
+      "kind": "organization"
+    },
+    {
+      "name": "Amazon Leo",
+      "kind": "organization"
+    },
+    {
+      "name": "Vulcan",
+      "kind": "object"
+    },
+    {
+      "name": "Cape Canaveral's pad 41",
+      "kind": "place"
+    },
+    {
+      "name": "BE-4",
+      "kind": "object"
+    }
+  ]
+}
