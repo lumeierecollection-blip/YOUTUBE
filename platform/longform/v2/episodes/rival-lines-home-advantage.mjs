@@ -169,5 +169,6 @@ export const EPISODE = {
 
 // render 6 checked clip by clip: only fb-aerial, fb-fans, fb-night and fb-ref are real football footage (others: chroma-key ball, CGI pitch and balls, a news graphic, a desert, a park), so only these rotate.
 // a new picture every few seconds (reference rhythm): short clips over the statement cards only, never over the study cards, bar charts or line charts (they must be read)
-// no stock cut-ins any more (19 Nov 2026 rebuild): the real clips appear only in their own beats
-void autoCut;
+// owner, 20 Nov 2026: "at some point it just gets too still... the clip of actual football is just not happening". Real match cut-ins (2.6 s,
+// full frame) over every statement, study card and chart beat, at ~24 / 55 / 82 % of the beat, rotating the 8-s clips so they never freeze.
+autoCut(EPISODE.beats, ["mc-fu3", "mc-bo1", "mc-em1", "mc-rf2", "mc-bo2", "mc-em2", "mc-fu2", "mc-rf1", "mc-em3"], { wps: 2.45, types: new Set(["ixquote", "ixcard", "ixline", "ixbars", "ixscatter", "ixdots"]) });
