@@ -4,8 +4,8 @@
 // Facts ONLY from Wikipedia "Anthropic" and "Dario Amodei", retrieved 19 Nov 2026 (channel-reverse/research/shorts/*.wiki). Note: Anthropic makes
 // the assistant that wrote this script; the wording stays with the encyclopedia's.
 export const STYLE = "v3";
-export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. He worked on GPT-2 and GPT-3. In January 2021, he left with his sister Daniela and five other OpenAI employees, over disagreements on AI safety. Together they founded Anthropic. In May 2026, it was valued at 965 billion dollars. Same research. A different bet on safety. Which one do you trust more? Comment OpenAI or Claude.";
-// 19 Nov 2026 owner: max 30 s, calm audible voice -> 67 words (~27 s at 150 wpm). Was 106 words.
+export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. He worked on GPT-2 and GPT-3. In 2021, he left with his sister Daniela and five others, over disagreements on AI safety. They founded Anthropic. In May 2026, it was valued at 965 billion dollars. Same research. A different bet. Which one do you trust? Comment OpenAI or Claude.";
+// 19 Nov 2026 owner: max 30 s, voice must not rush -> 59 words. The calm read measured 112-120 wpm, so a 67-word script would pass 30 s.
 export const KEYS = {};
 export const SOURCES = { A: { title: "Wikipedia: Anthropic", url: "https://en.wikipedia.org/wiki/Anthropic", retrieved: "2026-11-19" }, D: { title: "Wikipedia: Dario Amodei", url: "https://en.wikipedia.org/wiki/Dario_Amodei", retrieved: "2026-11-19" } };
 export const FOOTAGE_REQUIRE = /computer|code|keyboard|laptop|screen|server|data|technology|office|city|business|meeting|stock|chart|typing/i;
@@ -38,7 +38,7 @@ export const SHOTS = [
   { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
   { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI", glitch: true },
   { at: "GPT-2", kind: "split", photo: "da-tc4", photo2: "da-tc2", pos2: "60% 40%", cap: "GPT-2 · GPT-3" },
-  { at: "January", kind: "year", media: "sx-door", year: "2021" },
+  { at: "2021,", kind: "year", media: "sx-door", year: "2021" },
   { at: "sister", kind: "page", page: "Daniela" },
   { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety", glitch: true },
   { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354", glitch: true },
