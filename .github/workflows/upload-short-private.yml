@@ -29,8 +29,10 @@ jobs:
           CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
         run: |
           P=data/uploads/short-plan.json; D=data/uploads/$(jq -r .dir $P); S=$(jq -r .slot $P)
+          ls $D/episode.mp4.part-* >/dev/null 2>&1 && cat $D/episode.mp4.part-* > $D/episode.mp4   # files over 100 MB travel in parts (GitHub limit)
+          TH=$(jq -r ".thumb // empty" $P); [ -n "$TH" ] && TH="$D/$TH"
           v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
-          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)"
+          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)" "$TH"
           cat "$D/upload-record.json"
       - uses: actions/upload-artifact@v4
         if: always()
