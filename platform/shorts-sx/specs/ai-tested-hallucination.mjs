@@ -48,7 +48,7 @@ export const SHOTS = [
   { at: "study", kind: "inset", photo: "ph-gpt-openai", w: 900, top: 520 },
   { at: "forty-seven", kind: "capture", capture: "wiki-hall", phrase: "47% of them were fabricated" },
   { at: "fabricated.", kind: "inset", photo: "ph-gpt-app", w: 880, top: 520, mat: true },
-  { at: "Always", kind: "collage", items: [{ page: "wiki-hall", x: 140, y: 460, w: 800, h: 620, rot: 0 }] },
+  { at: "Always", kind: "inset", photo: "ph-gpt-laptop", w: 900, top: 520, mat: true },   // was a collage of the full-page capture (16,000 px tall): shard 9 hung on it twice
 ];
 export const POOL = ["sx-typing", "sx-code", "sx-server", "sx-phone", "sx-network", "sx-robot", "sx-brain", "sx-docs", "sx-laptop", "sx-library"];
 export const TAG = null;
