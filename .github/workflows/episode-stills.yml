@@ -28,6 +28,11 @@ jobs:
           cd "output/longform-prod/${S#*-*-}" 2>/dev/null || cd output/longform-prod/*/
           ls stills | head
           ffmpeg -loglevel error -y -pattern_type glob -i 'stills/*.png' -vf "scale=480:-2,drawtext=text='%{metadata\:lavf.image2dec.source_basename}':x=8:y=8:fontsize=18:fontcolor=white:box=1:boxcolor=black@0.6,tile=4x15" -frames:v 1 stills/contact.jpg || true
+      - name: Small JPEG copies (the full PNG artifact is too big to download reliably)
+        run: |
+          mkdir -p small; for f in output/longform-prod/*/stills/*.png; do ffmpeg -loglevel error -y -i "$f" -vf scale=960:-2 -q:v 5 "small/$(basename "${f%.png}").jpg"; done; ls small | wc -l
+      - uses: actions/upload-artifact@v4
+        with: { name: episode-stills-small, path: small }
       - uses: actions/upload-artifact@v4
         with:
           name: episode-stills
