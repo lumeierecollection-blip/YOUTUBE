@@ -1,6 +1,6 @@
 # YouTube Autopilot
 
-Updated 2026-11-18 20:14 SAST
+Updated 2026-11-19 04:56 SAST
 
 **Next productions:** AI Tested 2026-11-19 11:00 SAST, AI Tested 2026-11-20 11:00 SAST, Hidden Past 2026-11-21 11:00 SAST, AI Tested 2026-11-23 11:00 SAST
 
@@ -8,8 +8,8 @@ Updated 2026-11-18 20:14 SAST
 | | |
 |---|---|
 | Last successful video | [How slow biplanes sank six battleships at Taranto](https://www.youtube.com/watch?v=ZFhtdVwK2zQ) (2026-11-09T04:41 UTC) |
-| Latest production | failed-final at script, attempts 2 |
-| Selected topic and score | The 1943 Bari Air Raid and Secret Mustard Gas Cargo (61.8/100) |
+| Latest production | failed at script, attempts 1 |
+| Selected topic and score | Enos the Chimpanzee Orbits Earth (61/100) |
 | QA | n/a |
 | Upload | ZFhtdVwK2zQ, privacy verified: private |
 | Performance | 1 views, 0 likes, 0 comments (private) |
