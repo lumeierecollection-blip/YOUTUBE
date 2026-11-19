@@ -60,7 +60,8 @@ const { findChrome } = await import(pathToFileURL(join(REMOTION, "find-chrome.js
 // Root.jsx imports ./vo.mp3; a fresh checkout has none (it is git-ignored), so make the same 1 s silent placeholder render-episode.mjs makes
 if (!existsSync(join(REMOTION, "vo.mp3"))) spawnSync("ffmpeg", ["-y", "-v", "error", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono", "-t", "1", join(REMOTION, "vo.mp3")]);
 const serveUrl = await bundle({ entryPoint: join(REMOTION, "Root.jsx"), publicDir: join(REMOTION, "public"), onProgress: () => {} });
-const composition = await selectComposition({ serveUrl, id: "SX", inputProps: props, timeoutInMilliseconds: 180000, ...(chrome ? { browserExecutable: chrome } : {}) });
+// Chrome can fail to start here as well as in renderMedia (run 44519606354): same retry
+let composition; for (let attempt = 1; ; attempt++) try { composition = await selectComposition({ serveUrl, id: "SX", inputProps: props, timeoutInMilliseconds: 180000, ...(chrome ? { browserExecutable: chrome } : {}) }); break; } catch (e) { if (attempt >= 3 || !/connect to the browser|Target closed|Protocol error/i.test(String(e.message))) throw e; console.log(`selectComposition: browser start failed (attempt ${attempt}), retrying`); }
 composition.durationInFrames = F;
 // Chrome sometimes fails to start on a runner ("Timed out after 25000 ms while trying to connect to the browser", runs 44436176648,
 // 44493239812, 44512615699): retry the shard up to 3 times instead of failing the run

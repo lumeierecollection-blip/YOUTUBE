@@ -25,7 +25,7 @@ jobs:
       - name: Install tools
         run: |
           npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
           pip install --quiet edge-tts faster-whisper "av==15.1.0"
       - uses: browser-actions/setup-chrome@v1
         with: { chrome-version: stable }
@@ -86,7 +86,7 @@ jobs:
         run: |
           npm ci --no-audit --no-fund || npm install --no-audit --no-fund
           cd src/skills/remotion-render && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
       - uses: browser-actions/setup-chrome@v1
         with: { chrome-version: stable }
       - uses: actions/download-artifact@v4
@@ -106,7 +106,7 @@ jobs:
         slug: [ai-tested-hallucination, ai-tested-amodei]
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
       - uses: actions/download-artifact@v4
         with: { name: "sx-prep-${{ matrix.slug }}", path: . }
       - uses: actions/download-artifact@v4
