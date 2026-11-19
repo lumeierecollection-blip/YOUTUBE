@@ -17,7 +17,7 @@ async function polite(url) {
     const wait = Math.max(0, lastCall + 1500 - Date.now());
     if (wait) await new Promise((r) => setTimeout(r, wait));
     lastCall = Date.now();
-    const r = await fetch(url, { headers: { "User-Agent": UA } });
+    const r = await fetch(url, { headers: { "User-Agent": UA }, signal: AbortSignal.timeout(60000) });   // a stalled download must fail, not hang the job (seen on the PC, 19 Nov 2026)
     if (r.status !== 429 && r.status < 500) return r;
     if (attempt >= 5) return r;
     const ra = Number(r.headers.get("retry-after")) || 0;

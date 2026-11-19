@@ -72,7 +72,7 @@ const gap = S.STYLE === "v1" ? 0.33 : 0.2, out = []; let q = 0;
 const v1 = (k) => [{ kind: "inset", w: 640 + (k % 3) * 120, top: 480 + (k % 4) * 60, mat: k % 2 === 0 }, { kind: "paper" }, { kind: "inset", w: 900, top: 520, mat: true }, { kind: "paper" }][k % 4];   // 19 Nov: no full-bleed stock in v1 (owner: not clean); the reference frames every picture
 for (let a = 0; a < shots.length; a++) {
   out.push(shots[a]); const end = a + 1 < shots.length ? shots[a + 1].f0 : Math.round(words[words.length - 1].t1 * FPS);
-  if (shots[a].kind === "cta") continue;
+  if (shots[a].kind === "cta" || S.FILL === false) continue;   // FILL false (calm Shorts): every picture is a chosen key shot, none repeat
   // captures, white pages and strobe key words hold (as in the references), but never longer than 1.5 s before the rhythm resumes
   let last = shots[a].f0 + (["capture", "page", "brand", "logo", "collage", "cutout"].includes(shots[a].kind) || shots[a].strobe ?   /* brand/logo/collage/cut-out hold too: at 0.2 s fill the Anthropic card lasted one frame */ Math.round(0.8 * FPS) - Math.round(gap * FPS) : 0);
   for (const w of words) { const f0 = Math.round(w.t0 * FPS); if (f0 <= last + gap * FPS || f0 >= end - 6) continue;
@@ -83,7 +83,9 @@ out.sort((x, y) => x.f0 - y.f0);
 // owner rule since 19 Nov 2026: every Short 30 s max (voice.mjs re-takes a narration that would run longer)
 const frames = Math.min(Math.round((words[words.length - 1].t1 + 0.7) * FPS), 30 * FPS);
 if ((words[words.length - 1].t1 + 0.3) * FPS > frames) throw new Error(`narration runs ${words[words.length - 1].t1.toFixed(1)} s: over the 30 s limit, shorten the script`);
-const props = { styleName: S.STYLE, words, shots: out, tag: S.TAG || null, cta: S.CTA || null, frames };
+const props = { styleName: S.STYLE, words, shots: out, tag: S.TAG || null, cta: S.CTA || null, frames, calm: !!S.CALM };
+// calm Shorts: no picture may appear twice (owner, 19 Nov 2026: "make sure that each time it's a different visual")
+if (S.CALM) { const seen = new Map(); for (const x of out) { const k = [x.img, x.img2, x.video, ...(x.items || []).map((i) => i.img || i.video)].filter(Boolean).join("+") + (x.kind === "capture" ? `#${x.cy}` : ""); if (k && seen.has(k)) throw new Error(`picture used twice: ${k} at ${(seen.get(k) / FPS).toFixed(1)} s and ${(x.f0 / FPS).toFixed(1)} s`); if (k) seen.set(k, x.f0); } }
 writeFileSync(join(OUT, "props.json"), JSON.stringify(props));
 const gaps = out.slice(1).map((s, i) => (s.f0 - out[i].f0) / FPS);
 console.log(`${slug}: ${words.length} words, ${out.length} shots (${shots.length} key), mean ${(gaps.reduce((a, b) => a + b, 0) / gaps.length).toFixed(2)} s, ${frames} frames (${(frames / FPS).toFixed(1)} s)`);

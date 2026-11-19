@@ -4,8 +4,10 @@
 // Facts ONLY from Wikipedia "Anthropic" and "Dario Amodei", retrieved 19 Nov 2026 (channel-reverse/research/shorts/*.wiki). Note: Anthropic makes
 // the assistant that wrote this script; the wording stays with the encyclopedia's.
 export const STYLE = "v3";
-export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. In 2021, he left with his sister Daniela and five others, over disagreements on AI safety. They founded Anthropic. In May 2026, it was valued at 965 billion dollars. Same research, a different bet. Which do you trust? Comment OpenAI or Claude.";
-// 19 Nov 2026 owner: max 30 s and no rushing. The calm read measures 105-117 wpm whatever pace is asked, so the script is sized for it: 51 words (~28 s).
+// calm (owner, 19 Nov 2026): no strobes or glitches, every shot a different real picture held until the next one, no comment call-to-action
+export const CALM = true, FILL = false;
+export const SCRIPT = "Five years ago, Dario Amodei was OpenAI's vice president of research. In 2021, he and his sister Daniela founded Anthropic with five other former OpenAI staff, over disagreements on AI safety. In May 2026, it was valued at 965 billion dollars. Same research, a different bet. Which do you trust?";
+// 48 words for the calm read. "Founded in 2021" is from the Anthropic article; his own article dates his leaving OpenAI to 2020, so the script dates the founding, not the leaving.
 export const KEYS = {};
 export const SOURCES = { A: { title: "Wikipedia: Anthropic", url: "https://en.wikipedia.org/wiki/Anthropic", retrieved: "2026-11-19" }, D: { title: "Wikipedia: Dario Amodei", url: "https://en.wikipedia.org/wiki/Dario_Amodei", retrieved: "2026-11-19" } };
 export const FOOTAGE_REQUIRE = /computer|code|keyboard|laptop|screen|server|data|technology|office|city|business|meeting|stock|chart|typing/i;
@@ -15,6 +17,11 @@ export const FOOTAGE = [
   { id: "sx-door", q: "man walking out office door", optional: true }, { id: "sx-laptop", q: "laptop night office" },
 ];
 export const PHOTOS = [
+  ["da-tc1", "File:Dario Amodei at TechCrunch Disrupt 2023 01.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["da-tc3", "File:Dario Amodei at TechCrunch Disrupt 2023 03.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["da-tc5", "File:Dario Amodei at TechCrunch Disrupt 2023 05.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
+  ["ph-altman", "File:Sam Altman TechCrunch SF 2019 Day 2 Oct 3 (cropped).jpg", "Sam Altman, OpenAI's CEO"],
+  ["ph-anthropic-hq", "File:Slack offices, Howard Street, San Francisco (viewed from the south-west, January 2020).jpg", "500 Howard Street, San Francisco: Anthropic's headquarters"],
   ["da-tc6", "File:Dario Amodei at TechCrunch Disrupt 2023 06.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-tc2", "File:Dario Amodei at TechCrunch Disrupt 2023 02.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
   ["da-tc4", "File:Dario Amodei at TechCrunch Disrupt 2023 04.jpg", "Dario Amodei at TechCrunch Disrupt 2023"],
@@ -34,21 +41,21 @@ export const CAPTURES = [
 ];
 export const SHOTS = [
   { at: "Five", kind: "full", photo: "da-tc6", cap: "Five years ago" },
-  { at: "Dario", kind: "full", photo: "da-tc4", sil: "da-tc4", cap: "Dario Amodei" },   // cut-outs: da-tc6 isolates the interviewer and da-tc2 keeps a second person's arm, so only da-tc4 and da-uk flash
+  { at: "Dario", kind: "full", photo: "da-tc4", cap: "Dario Amodei" },
   { at: "OpenAI's", kind: "brand", logo: "logo-openai", bg: "#000000", lw: 760 },
-  { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI", glitch: true },
-  { at: "2021,", kind: "year", media: "sx-door", year: "2021" },
-  { at: "sister", kind: "page", page: "Daniela" },
-  { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety", glitch: true },
-  { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354", glitch: true },
-  { at: "May", kind: "year", photo: "da-uk", sil: "da-uk", year: "2026" },
-  { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion", glitch: true },
-  { at: "Same", kind: "split", photo: "da-tc4", photo2: "da-tc2", pos2: "60% 40%", cap: "Same research." },
-  { at: "different", kind: "brand", logo: "logo-anthropic", bg: "#DD7354" },
+  { at: "vice", kind: "capture", capture: "wiki-dario", phrase: "he was the vice president of research at OpenAI" },
+  { at: "2021,", kind: "year", photo: "da-tc1", year: "2021" },
+  { at: "sister", kind: "page", page: "Daniela Amodei" },
+  { at: "founded", kind: "brand", logo: "logo-anthropic", bg: "#DD7354" },
+  { at: "former", kind: "full", photo: "da-tc5", cap: "Seven former OpenAI staff" },
+  { at: "disagreements", kind: "capture", capture: "wiki-anth", phrase: "former members of OpenAI over disagreements on AI safety" },
+  { at: "May", kind: "year", photo: "da-uk", year: "2026" },
+  { at: "965", kind: "capture", capture: "wiki-anth", phrase: "Valued at $965 billion" },
+  { at: "Same", kind: "split", photo: "ph-altman", photo2: "da-tc3", pos2: "60% 35%", lab1: "Sam Altman · OpenAI CEO", lab2: "Dario Amodei · Anthropic" },
+  { at: "different", kind: "full", photo: "ph-anthropic-hq", cap: "Anthropic HQ · San Francisco" },
   { at: "Which", kind: "collage", items: [{ photo: "shot-chatgpt", x: 90, y: 430, w: 520, h: 560, top: true, rot: -3 }, { photo: "shot-claude", x: 330, y: 820, w: 680, h: 330, rot: 2 }] },
-  { at: "Comment", kind: "cta", logos: ["logo-openai", "logo-claude"] },
 ];
 export const POOL = ["photo:da-tc2", "sx-server", "photo:da-tc4", "photo:da-uk", "sx-typing", "photo:da-tc6"];   // 19 Nov: random stock read as messy; the v3 reference fills with photos of the people named
 export const TAG = "AI TESTED";
-export const CTA = "“Comment”\nOpenAI or Claude";
+export const CTA = null;   // owner, 19 Nov 2026: no "Comment OpenAI or Claude" end card
 export const HASHTAGS = "#AITested #Anthropic #OpenAI";

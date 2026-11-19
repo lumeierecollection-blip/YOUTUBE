@@ -26,7 +26,14 @@ if (process.argv.includes("--join")) {
   // public/sfx/CREDITS.md and public/sfx/interface-kenney/LICENSE.txt. Levels sit under the voice (measured voice at -14 LUFS).
   const SFX = { whoosh: ["sfx/whoosh.mp3", 0.55], thud: ["sfx/impact.mp3", 0.7], pop: ["sfx/pop.mp3", 0.45], tick: ["sfx/number-count.mp3", 0.3], sweep: ["sfx/interface-kenney/maximize_001.wav", 0.25], chime: ["sfx/reveal.mp3", 0.5] };
   const ev = [];
-  for (const s of props.shots) {
+  // calm Shorts (owner, 19 Nov 2026: the first SFX were "not good at all"): real recordings, CC0 (Remotion SFX library, sources in
+  // scripts/sfx-cc0.mjs): a camera shutter as a photo appears, a page turn for page captures, a switch for logos, a soft whoosh otherwise.
+  if (props.calm) for (const n of ["shutter-modern", "page-turn", "switch", "whoosh"]) { const f = join(REMOTION, "public/sfx/cc0", `${n}.wav`);   // git-ignored: fetched like scripts/sfx-cc0.mjs does
+    if (!existsSync(f)) { mkdirSync(dirname(f), { recursive: true }); const r = await fetch(`https://remotion.media/${n}.wav`, { signal: AbortSignal.timeout(30000) }); if (!r.ok) throw new Error(`sfx ${n}: HTTP ${r.status}`); writeFileSync(f, Buffer.from(await r.arrayBuffer())); } }
+  if (props.calm) { Object.assign(SFX, { shutter: ["sfx/cc0/shutter-modern.wav", 0.22], page: ["sfx/cc0/page-turn.wav", 0.35], click: ["sfx/cc0/switch.wav", 0.3], swish: ["sfx/cc0/whoosh.wav", 0.28] });
+    props.shots.forEach((s, i) => { if (!i) return; const t = s.f0 / 30, k = s.kind;
+      ev.push([k === "capture" || k === "page" ? "page" : k === "logo" || k === "brand" ? "click" : s.img && !s.video ? "shutter" : "swish", Math.max(0, t - 0.04)]); }); }
+  else for (const s of props.shots) {
     const t = s.f0 / 30;
     if (s.auto) ev.push(["tick", t]);
     else if (s.kind === "cta") ev.push(["chime", t]);
@@ -34,7 +41,7 @@ if (process.argv.includes("--join")) {
     else ev.push(["whoosh", Math.max(0, t - 0.08)]);
     if (s.kind === "capture") ev.push(["sweep", t + 0.2]);
   }
-  for (const w of props.words) if (w.key) ev.push(["pop", w.t0]);
+  if (!props.calm) for (const w of props.words) if (w.key) ev.push(["pop", w.t0]);
   ev.sort((a, b) => a[1] - b[1]);
   const kept = ev.filter((e, i) => !ev.slice(0, i).some((p) => p[0] === e[0] && e[1] - p[1] < 0.12));   // no doubled hits
   const used = [...new Set(kept.map((e) => e[0]))], ins = [], fc = [`[1:a]${vf}[v]`], mix = ["[v]"];

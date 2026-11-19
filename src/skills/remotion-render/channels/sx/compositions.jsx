@@ -25,13 +25,15 @@ const Media = ({ s, style, ss = 0 }) => s.video
   : <Img src={src(s.img)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: s.pos || "50% 40%", ...style }} />;
 
 /** The picture layer of one shot. l = local frame. */
-function Plate({ s, l, ground }) {
-  const z = 1 + 0.004 * step(l), g = s.glitch && l < 3;
+function Plate({ s, l, ground, calm }) {
+  // calm (owner, 19 Nov 2026: "too flashy... moving too quickly"): smooth slow push, no glitch frames
+  const z = calm ? 1 + 0.0012 * l : 1 + 0.004 * step(l), g = !calm && s.glitch && l < 3;
   const fx = g ? { filter: "invert(1) grayscale(1) contrast(3.5)" } : {};
   const ins = (w, top) => ({ position: "absolute", left: (1080 - w) / 2, top, width: w, height: w * (s.ratio || 0.75), background: "#fff", padding: s.mat ? 14 : 0, boxShadow: "0 8px 30px rgba(0,0,0,0.18)" });
   if (s.kind === "inset") return <AbsoluteFill style={{ background: ground }}>
     <div style={{ ...ins(s.w || 760, s.top || 560), transform: `scale(${z})`, ...fx }}><div style={{ width: "100%", height: "100%", overflow: "hidden", outline: s.mat ? "3px solid #111" : "none", outlineOffset: -6 }}><Media s={s} ss={s.ss} /></div></div>
     {g && <div style={{ ...ins(s.w || 760, s.top || 560), mixBlendMode: "screen", transform: "translateX(14px)", background: "rgba(255,0,90,0.35)" }} />}
+    {s.label && <div style={{ position: "absolute", left: 60, right: 60, top: (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) + 40, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 40, color: "#1a1a1a", opacity: Math.min(1, l / 8) }}>{s.label}</div>}   {/* who or what the photo shows (owner: people must be visibly named) */}
   </AbsoluteFill>;
   if (s.kind === "full" || s.kind === "year") return <AbsoluteFill style={{ background: "#000", ...fx }}>
     <div style={{ position: "absolute", inset: 0, transform: `scale(${z})` }}><Media s={s} ss={s.ss} style={s.kind === "year" || (s.sil && l < 4) ? { filter: "brightness(0.55)" } : {}} /></div>
@@ -54,6 +56,8 @@ function Plate({ s, l, ground }) {
   if (s.kind === "split") { const k = interpolate(step(l), [0, 9], [0, 1], { extrapolateRight: "clamp" }); return <AbsoluteFill style={{ background: "#000" }}>
     <div style={{ position: "absolute", left: 0, top: 0, width: 1080 - 520 * k, height: 1920, overflow: "hidden" }}><Media s={{ img: s.img, pos: s.pos }} /></div>
     <div style={{ position: "absolute", left: 1080 - 520 * k, top: 0, width: 540, height: 1920, overflow: "hidden" }}><Media s={{ img: s.img2, pos: s.pos2 }} /></div>
+    {s.lab1 && <div style={{ position: "absolute", left: 0, width: 540, top: 1480, textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: 40, color: "#fff", textShadow: "0 2px 12px rgba(0,0,0,0.7)", opacity: k }}>{s.lab1}</div>}
+    {s.lab2 && <div style={{ position: "absolute", left: 540, width: 540, top: 1480, textAlign: "center", fontFamily: SANS, fontWeight: 700, fontSize: 40, color: "#fff", textShadow: "0 2px 12px rgba(0,0,0,0.7)", opacity: k }}>{s.lab2}</div>}
   </AbsoluteFill>; }
   if (s.kind === "page") return <AbsoluteFill style={{ background: "#F7F7F5" }}><div style={{ position: "absolute", left: 0, right: 0, top: 880, textAlign: "center", fontFamily: SERIF, fontStyle: "italic", fontSize: 92, color: "#111" }}>{s.page}</div></AbsoluteFill>;
   if (s.kind === "capture") { const W = 1000, sc = W / (s.cw || 1280), cx = s.cx || 0, k = interpolate(step(l), [6, 18], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -75,7 +79,11 @@ function Plate({ s, l, ground }) {
 }
 
 /** v1 key word: letters appear out of order over ~9 frames inside a bar that flips blue/yellow every 3 frames. */
-function KeyWord({ w, l, hl, brush, counter }) {
+function KeyWord({ w, l, hl, brush, counter, calm }) {
+  if (calm) { const a = Math.min(1, l / 6), size = Math.min(150, Math.floor(980 / (w.length * 0.6)));   // calm: the word fades in once, a marker sweeps under it, nothing flips
+    return <span style={{ position: "relative", display: "inline-block", padding: "0 16px", fontFamily: SANS, fontWeight: 800, fontSize: size, letterSpacing: -size / 30, lineHeight: 1, color: "#111", opacity: a }}>
+      {(hl || brush) && <span style={{ position: "absolute", left: 0, top: size * 0.12, bottom: size * 0.02, width: `${Math.min(1, l / 10) * 100}%`, background: brush === "red" ? "rgba(217,48,44,0.85)" : brush ? "rgba(56,217,192,0.85)" : YELLOW }} />}
+      <span style={{ position: "relative" }}>{w}</span></span>; }
   const n = w.length, order = [...Array(n).keys()].sort((a, b) => ((a * 7 + 3) % n) - ((b * 7 + 3) % n)), shown = Math.min(n, Math.floor(step(l) / 3 * (n / 3)) + 1);
   const vis = new Set(order.slice(0, shown)), bar = hl ? (Math.floor(l / 3) % 2 && l < 15 ? BLUE : YELLOW) : null;
   const size = Math.min(176, Math.floor(980 / (n * 0.6)));
@@ -88,31 +96,31 @@ function KeyWord({ w, l, hl, brush, counter }) {
 }
 
 /** Captions: the current phrase builds word by word. v1: small serif italic words of mixed sizes + bold sans key words; v3: white sans, centred. */
-function Captions({ words, f, styleName, dark, top }) {
+function Captions({ words, f, styleName, dark, top, calm }) {
   const t = f / 30, cur = words.findIndex((w, i) => t >= w.t0 && (i + 1 >= words.length || t < words[i + 1].t0));
   if (cur < 0) return null;
   const ph = words[cur].p, list = words.filter((w) => w.p === ph && w.t0 <= t);
   if (styleName === "v3") return <div style={{ position: "absolute", left: 60, right: 60, top: 1000, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 76, color: dark ? "#fff" : "#111", textShadow: dark ? "0 3px 16px rgba(0,0,0,0.6)" : "none", lineHeight: 1.1 }}>{list.map((w) => w.w).join(" ")}</div>;
   return <div style={{ position: "absolute", left: 40, right: 40, top: top ?? 860, textAlign: "center", lineHeight: 1.05, textShadow: dark ? "0 3px 14px rgba(0,0,0,0.75)" : "none" }}>
     {list.map((w, i) => w.key
-      ? <KeyWord key={i} w={w.w} l={f - Math.round(w.t0 * 30)} hl={w.hl} brush={w.brush} counter={w.counter} />
+      ? <KeyWord key={i} w={w.w} l={f - Math.round(w.t0 * 30)} hl={w.hl} brush={w.brush} counter={calm ? null : w.counter} calm={calm} />
       : <span key={i} style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: [70, 112, 92, 132][(w.i * 5) % 4], color: dark ? "#f2f2f2" : "#151515", margin: "0 10px", verticalAlign: "middle" }}>{w.w}</span>)}
   </div>;
 }
 
-export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta }) {
+export function SX({ words = [], shots = [], styleName = "v1", tag, handle, cta, calm = false }) {
   const f = useCurrentFrame();
   let si = 0; for (let i = 0; i < shots.length; i++) if (shots[i].f0 <= f) si = i;
   const s = shots[si] || { kind: "paper" }, l = f - (s.f0 || 0);
-  const strobe = s.strobe && l < 15, ground = strobe ? (Math.floor(l / 2) % 2 ? "#050505" : PAPER) : s.kind === "black" ? "#050505" : PAPER;
+  const strobe = !calm && s.strobe && l < 15, ground = strobe ? (Math.floor(l / 2) % 2 ? "#050505" : PAPER) : s.kind === "black" ? "#050505" : PAPER;
   const dark = ["full", "year", "split", "black", "cta", "brand"].includes(s.kind) || ground === "#050505";
   return <AbsoluteFill style={{ background: ground }}>
     <Fonts />
-    <Plate s={s} l={l} ground={ground} />
-    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : undefined} />}
+    <AbsoluteFill style={{ opacity: calm && si > 0 ? Math.min(1, 0.35 + l / 8) : 1 }}><Plate s={s} l={l} ground={ground} calm={calm} /></AbsoluteFill>   {/* calm: a short fade into each picture instead of a hard flash */}
+    {s.kind !== "page" && s.kind !== "cta" && s.kind !== "bars" && s.kind !== "capture" && !(s.kind === "logo" && s.white) && s.kind !== "brand" && !s.cap && <Captions calm={calm} words={words} f={f} styleName={styleName} dark={dark || s.kind === "inset"} top={s.kind === "inset" ? (s.top || 560) + (s.w || 760) * (s.ratio || 0.75) / 2 - 70 : s.kind === "collage" ? s.capTop ?? 1380 : s.kind === "cutout" ? 380 : undefined} />}
     {s.cap && <div style={{ position: "absolute", left: 0, right: 0, top: 1040, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 78, color: "#fff", textShadow: "0 3px 18px rgba(0,0,0,0.65)" }}>{s.cap}</div>}
     {s.kind === "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 760, textAlign: "center", fontFamily: SANS, fontWeight: 800, fontSize: 110, color: "#fff", lineHeight: 1.05 }}>{cta}</div>}
-    {s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}
+    {!calm && s.blackbar && l === 4 && <div style={{ position: "absolute", left: 0, right: 0, top: 930, height: 26, background: "#000" }} />}
     {styleName === "v1" && s.kind !== "full" && <Grain f={f} />}
     {tag && <div style={{ position: "absolute", right: 46, top: 52, background: "#111", color: "#fff", fontFamily: F.mono, fontSize: 22, letterSpacing: 2, padding: "4px 10px" }}>{tag}</div>}
     {handle && dark && s.kind !== "cta" && <div style={{ position: "absolute", left: 0, right: 0, top: 560, textAlign: "center", fontFamily: SANS, fontWeight: 600, fontSize: 34, color: "rgba(255,255,255,0.85)" }}>{handle}</div>}
