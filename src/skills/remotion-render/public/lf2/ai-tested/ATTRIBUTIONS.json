@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cort\u00e9s cortes",
+  "author": "Dennis Cortés cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1037,5 +1037,44 @@
   "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "tay-chatbo-01": {
+  "id": "tay-chatbo-01",
+  "file": "tay-chatbo-01.jpg",
+  "description": "Microsoft logo on office building",
+  "depicts": "Microsoft logo on an office building",
+  "score": 10,
+  "source": "rawpixel",
+  "source_url": "https://www.rawpixel.com/image/6111459/photo-image-public-domain-logo-window",
+  "licence": "cc0 1.0",
+  "author": "",
+  "credit_line": "Unknown, CC0, via rawpixel",
+  "authenticity": "authentic"
+ },
+ "tay-chatbo-02": {
+  "id": "tay-chatbo-02",
+  "file": "tay-chatbo-02.jpg",
+  "description": "Twitter logo on smartphone screen",
+  "depicts": "Twitter logo on a smartphone screen",
+  "score": 10,
+  "source": "rawpixel",
+  "source_url": "https://www.rawpixel.com/image/6112103/photo-image-instagram-phone-public-domain",
+  "licence": "cc0 1.0",
+  "author": "",
+  "credit_line": "Unknown, CC0, via rawpixel",
+  "authenticity": "authentic"
+ },
+ "tay-chatbo-11": {
+  "id": "tay-chatbo-11",
+  "file": "tay-chatbo-11.jpg",
+  "description": "Satya Nadella portrait",
+  "depicts": "Satya Nadella gesturing during a stage interview",
+  "score": 10,
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/86704644@N00/11315186824",
+  "licence": "by 2.0",
+  "author": "LeWeb14",
+  "credit_line": "LeWeb14, BY, via flickr",
+  "authenticity": "authentic"
  }
 }
