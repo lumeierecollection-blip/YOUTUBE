@@ -3072,9 +3072,14 @@
           "topic": "El Niño Rains Paint the Atacama Desert in 2026",
           "slug": "el-nino-rains-paint-atacama-desert-2026",
           "reserved_at": "2026-11-19T18:03:53.904Z"
+        },
+        {
+          "topic": "El Niño Drives 2026 Record Sea Surface Temperatures Across Oceans",
+          "slug": "el-nino-2026-record-sea-surface-temperatures",
+          "reserved_at": "2026-11-20T17:16:00.955Z"
         }
       ],
-      "last_generated": "2026-11-19T18:03:53.905Z"
+      "last_generated": "2026-11-20T17:16:00.956Z"
     },
     "18": {
       "channel_name": "Brief History",
