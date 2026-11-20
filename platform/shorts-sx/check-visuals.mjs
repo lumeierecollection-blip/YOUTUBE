@@ -16,6 +16,7 @@ const MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"]
 const words = S.SCRIPT.replace(/\*/g, "").split(/\s+/), norm = (w) => w.toLowerCase().replace(/[^a-z0-9$]/g, "");
 // the words each shot covers: from its anchor to the next shot's anchor (anchors are matched in order, like build.mjs)
 let pos = 0; const spans = S.SHOTS.map((s) => { const a = norm(s.at); let i = pos; while (i < words.length && norm(words[i]) !== a) i++; pos = i + 1; return i; });
+let DEAD = false, misses = 0;
 const out = [];
 for (const [n, s] of S.SHOTS.entries()) {
   const said = words.slice(spans[n], n + 1 < spans.length ? spans[n + 1] : words.length).join(" ");
@@ -30,7 +31,7 @@ A person mentioned should look like that kind of person (e.g. a grandmother = an
 an object mentioned should be that object. Generic but fitting illustrations are fine; unrelated, joking, misleading or confusing pictures are not.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
   let r = null;
-  for (let pass = 0; pass < 7 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 15000 * pass));   // a vision call that fails is retried (rate limits), never counted as a rejection
+  for (let pass = 0; pass < (DEAD ? 1 : 7) && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 15000 * pass));   // a vision call that fails is retried (rate limits), never counted as a rejection
   ask: for (const MODEL of MODELS) for (const key of KEYS) {
     try {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
@@ -39,6 +40,7 @@ Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>",
       const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break ask;
     } catch { continue; }
   } }
+  misses = r ? 0 : misses + 1; if (misses >= 3 && !DEAD) { DEAD = true; console.log("vision API unavailable: remaining shots get one quick try each, unverified ones are kept"); }
   out.push({ at: s.at, said, id, ...(r || { ok: true, unverified: true, reason: "vision API gave no answer after 7 passes (quota/outage): picture was already vision-scored 7+/10 when sourced, kept" }) });
   console.log(`${r ? (r.ok ? "OK  " : "FAIL") : "UNVERIFIED"} "${said}" -> ${id}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
 }
