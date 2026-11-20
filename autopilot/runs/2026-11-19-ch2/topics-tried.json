@@ -1,0 +1,23 @@
+{
+  "tried": [
+    {
+      "topic": "Apple Working on Computer-Use AI Agent to Rival Competitors",
+      "score": 84.3,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    },
+    {
+      "topic": "Banks Warn Customers Are 100% Liable When Rogue AI Banking Agents Make Mistakes",
+      "score": 77.1,
+      "stage": "research",
+      "reason": "only 4 drawable facts in the research; 5 needed for a good strict-visual script"
+    },
+    {
+      "topic": "ChatGPT's New Live Dictation Lets You Rant Non-Stop",
+      "score": 75.8,
+      "stage": "research",
+      "reason": "research holds too few drawable facts for a strict-visual channel"
+    }
+  ],
+  "selected": null
+}

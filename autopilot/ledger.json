@@ -1275,17 +1275,17 @@
     },
     "2026-11-19-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed-final",
       "attempts": 2,
       "run_id": "44704368028",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T08:42:54.114Z",
+      "updated_at": "2026-11-20T08:43:24.933Z",
       "stage": "research",
       "topic": "ChatGPT's New Live Dictation Lets You Rant Non-Stop",
       "score": 75.8,
       "pillar": "New AI features and releases",
       "hook": "ChatGPT just gained a new live dictation feature that transcribes your spoken rants in real-time.",
-      "error": "run 44544500381 ended without reporting a result (last stage: script)"
+      "error": "3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
     }
   },
   "uploads": [
@@ -2803,7 +2803,8 @@
     "AI Tested 2026-11-13-ch2 failed at script: 2 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - SCR-18: \"Map of United States\" is not named in the research artifact â€” use the research's own name, or drop the name",
     "Hidden Past 2026-11-14-ch1 failed at script: 5 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF no specific number. Rewrite the payoff beat as the structure in the prompt says — using only this vi",
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature",
-    "Hidden Past 2026-11-18-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF hedged (\"May\"). Rewrite the payoff beat as the structure in the prompt says — using only this video'"
+    "Hidden Past 2026-11-18-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF hedged (\"May\"). Rewrite the payoff beat as the structure in the prompt says — using only this video'",
+    "AI Tested 2026-11-19-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
   "last_poll_at": "2026-11-20T08:40:14.471Z"
 }
