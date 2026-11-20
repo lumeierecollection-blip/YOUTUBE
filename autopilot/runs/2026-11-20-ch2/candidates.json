@@ -1,0 +1,1594 @@
+{
+  "generated_at": "2026-11-20T18:22:02.303Z",
+  "waves": [
+    {
+      "wave": 1,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1418
+        },
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:Claude AI new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:free AI tools",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:ChatGPT new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI hallucination mistake",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:AI scam deepfake",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI agent uses computer",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:Gemini AI new feature",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:viral AI tool",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": false,
+          "error": "HTTP 429"
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 24
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 51
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI replacing jobs",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 58
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:ClaudeAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1418
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI phone feature new",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:free AI app launch",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "bing-news:AI voice clone",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "google-news:ChatGPT vs Claude test",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "bing-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 5
+        },
+        {
+          "source": "bing-news:AI browser privacy",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:AI video generator viral",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:students using AI",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI agent mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:AI browser privacy",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:Copilot new feature",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI tool saves money",
+          "ok": true,
+          "items": 7
+        },
+        {
+          "source": "bing-news:AI customer service replaced",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:Meta AI app",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI voice clone",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI video generator viral",
+          "ok": true,
+          "items": 17
+        },
+        {
+          "source": "bing-news:AI photo editing app",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI agent mistake",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:AI tool saves money",
+          "ok": true,
+          "items": 29
+        },
+        {
+          "source": "google-news:free AI app launch",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:AI customer service replaced",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:Copilot new feature",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        },
+        {
+          "source": "google-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:AI photo editing app",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:Meta AI app",
+          "ok": true,
+          "items": 42
+        },
+        {
+          "source": "google-news:students using AI",
+          "ok": true,
+          "items": 100
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:AI phone feature new",
+          "ok": true,
+          "items": 76
+        }
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "topic": "Google's Homepage Replaces the Classic Search Button With Gemini",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        69,
+        84,
+        94
+      ],
+      "hook": "Google is officially ditching its iconic search button on its homepage in favor of AI chat.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Google Search",
+      "commons_query": "",
+      "youtube_query": "Google homepage Gemini AI change",
+      "evidence": [
+        {
+          "title": "Google’s homepage is losing its iconic ‘Google Search’ button in favor of Gemini",
+          "url": "https://www.androidauthority.com/google-homepage-search-button-gone-ai-mode-3737641/",
+          "domain": "androidauthority.com",
+          "published_ms": 1795146660000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "Google's Latest Home Page Redesign Makes Gemini Even More Prominent",
+          "url": "https://www.msn.com/en-us/news/other/googles-latest-home-page-redesign-makes-gemini-even-more-prominent/ar-AA2hPHIM",
+          "domain": "msn.com",
+          "published_ms": 1795124738000,
+          "kind": "news",
+          "id": 84
+        },
+        {
+          "title": "Google is putting AI chats right on the homepage",
+          "url": "https://www.theverge.com/tech/1038059/google-search-homepage-ai-chats",
+          "domain": "theverge.com",
+          "published_ms": 1795119274000,
+          "kind": "feed",
+          "id": 94
+        },
+        {
+          "title": "Google Homepage Gets Gemini and an AI Sidebar - Meteora Web",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBEUU1pa2lTZjJSbXd2cDRfRjBKaUJORGttTVRuQ1gtajAtMmJ4bWQ1QXRIZDJ2WVJaSDRNN3o4LWhKXzBzdjFrUS1Ebm5RN2J2cTJwSk5MU0wzaHB6ZE15TkpzbG8zWkhIZHdWUXlXako2UQ?oc=5",
+          "domain": "meteoraweb.com",
+          "published_ms": 1795155372000,
+          "kind": "news"
+        },
+        {
+          "title": "Google brings Gemini chats to its Search homepage with a new sidebar - Superpower Daily",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQVnZDdTRpdkUyMFFocGZoQ2NNRmdqN2hjZmNNbGx0OEMtdjFIUnYxM2lwd3lSUDd3dmlIcG95aXVtOWdsWnhXeHNnUjNlSGRXdG1QUUlnV0d6MWZqNjYtQkpYN2c4eEJWcDNRUld3QUgyYnBKdmFTRS1qcVJlOGhlcXlYelc2VnVabjJGWW84Y0h1aXJpNzVvMmpPem9Bc3RWY01uQQ?oc=5",
+          "domain": "superpowerdaily.com",
+          "published_ms": 1795185577000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Messages Redesign: 3 Changes, Pinned Chats & Search [2026] - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOOGV1ZWd5V0VpcDA5UUFmakRPNEdZMkl2bE85MW8xcFZHeXN2SzhFYVpHWUF4OWdfMGR2VEhuVEJrM2V6eHFLT21NTjBRVEJDTWMzMmZQNXpsWG5ieURuSkt5VXMzUkxncUk4OVVFU3FYOWZPZG1TeDhicldQOFlvMVBGUXRNUHhlblRqSVp1RVA5S3ZOaFR1X1FR?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1794124800000,
+          "kind": "news"
+        },
+        {
+          "title": "Google homepage adds AI search sidebar, supports viewing chat history and connecting Gemini notebooks - AIBase",
+          "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTFBxVHJhZlZMaDhITkRnRW1KZEx4UHFnRjUxQm1KandENXNydlB5X0NKekJPMEVXdTVuNHlzTnhuNS15NGpQeTMtajdn?oc=5",
+          "domain": "news.aibase.com",
+          "published_ms": 1795143247000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Makes Gemini 4 Hydrogen The Default Model In AI Mode - Search Engine Journal",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPaUZhYVRaYmRkWlY1UkJWV1pZV3phamYtSHpTY0pkT1JmNDRUc3RhanpPbEt6ZTJlZ29Zc3YzQXJRckhJWVNBX0xOYl9BeW9IYW1PTzR6Z0ozaHFiRUNYWTVnVVdXRzRXQmR1RU13Q0NwWC1YeDZGdXM1SjlJZkk3dEViZlhZeUVKenBmWA?oc=5",
+          "domain": "searchenginejournal.com",
+          "published_ms": 1794470400000,
+          "kind": "news"
+        },
+        {
+          "title": "Google’s homepage is losing its iconic ‘Google Search’ button in favor of Gemini - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPQmdtRVdNekozQzZTSDc4ZGQ4SkFKNzl4MXJhaFFUSnpBQzNDc2ZZUThpNVVBdTlNdjgwM0VoUDQ3OGxoVVNEelA0UFhXR3ktZXU4OFN4ZVpWT3lTcl93NjVLc2ZabXFxcHhHZ2tLUU9UdTJvUElSUE5sWENkWnZiWkxVTHRHdlh1LU1xcg?oc=5",
+          "domain": "androidauthority.com",
+          "published_ms": 1795175460000,
+          "kind": "news"
+        },
+        {
+          "title": "Google's New Homepage Redesign Makes AI Search Even More Like Gemini - PCMag UK",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNaWZUU1NtQnRCYnRGblJrMWVzNlBrcDRDMHBEZFRVWG5qSUtJTjRoYmQ1NnRrWHhCT0ZKMHcydldLQjdPaEJfcUUxXy1LUS1lbEJ3NWxxdExaM0NkVzRvSHJGT2pNZWVTNGVEMFFESE55cVRDb0cwdng0LXVOZ1pxc3VISHp0aHlDQjJtb0FDRnNZUHBJZEZlZE80U1FDZzA?oc=5",
+          "domain": "uk.pcmag.com",
+          "published_ms": 1795171874000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Homepage Gets an AI Mode Sidebar for Recent Chats - explainx.ai",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOM2lxOXNDbzdmVnRyX3lsY1I4NWJ6SHptaFB4ZmZ1YlhWZjBRRU9wc0NYMmlUeFNCbVNtTFcwbWl5NXY3VDZGemQ5NnNaVXBnVDY4SmZrOFdJOEdIdHdzc3BtRHJ0MndOQ0VpMHA2RHU2d3JTaUZmT2hVRkVsZEZEU1ppS0hhUEVtbFZ2VUYybllkRTJ4aURGQzRiVUJ2bEtX?oc=5",
+          "domain": "explainx.ai",
+          "published_ms": 1795046400000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Search",
+        "daily_views": 9860,
+        "ratio": 0.76
+      },
+      "youtube": {
+        "median_views": 22402,
+        "competitors": [
+          {
+            "id": "ntVTAaHL5KM",
+            "title": "How to Use Google Gemini Step by Step (It Can Do Your Work Now)",
+            "channel": "Teacher's Tech",
+            "views": 97223
+          },
+          {
+            "id": "L1lvDzznxyE",
+            "title": "How to Build a CINEMATIC Website in Minutes with Google Gemini 4 Argon",
+            "channel": "Create a Pro Website",
+            "views": 69179
+          },
+          {
+            "id": "1iySkKc4tyw",
+            "title": "Gemini Just Became Free — You Don’t Need a Google AI Subscription",
+            "channel": "AI Master",
+            "views": 62635
+          },
+          {
+            "id": "Wtf2oD7UPXA",
+            "title": "How To Switch From Gemini To Google Assistant On Android",
+            "channel": "Trevor Nace",
+            "views": 23260
+          },
+          {
+            "id": "wYtmizMTtjo",
+            "title": "Google Gemini 5: The AI Update That Changes Everything (Insane New Features Revealed!)",
+            "channel": "BitBiasedAI",
+            "views": 22402
+          },
+          {
+            "id": "yQLvjeFU0Gs",
+            "title": "Google Gemini’s New Features & Models Are INSANE! (AI Inbox, Gemini 4 & More)",
+            "channel": "Rob The AI Guy",
+            "views": 19996
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 75,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 84.6,
+        "newest_hours": 4,
+        "domains": [
+          "androidauthority.com",
+          "msn.com",
+          "theverge.com",
+          "meteoraweb.com",
+          "superpowerdaily.com",
+          "shattered.io",
+          "news.aibase.com",
+          "searchenginejournal.com",
+          "uk.pcmag.com",
+          "explainx.ai"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "uk.pcmag.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini Partners With Watch Duty to Clear Firefighter Radio Static",
+      "pillar": "AI productivity and money-saving uses",
+      "evidence_ids": [
+        52
+      ],
+      "hook": "Google Gemini is being used to clear out heavy static from real-time firefighter emergency radio channels.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Google Gemini Watch Duty firefighter radio",
+      "evidence": [
+        {
+          "title": "Google Gemini Partners With Watch Duty to Clear Static From Firefighter Radio",
+          "url": "https://www.cnet.com/tech/services-and-software/google-gemini-clears-firefighter-radio-static/",
+          "domain": "cnet.com",
+          "published_ms": 1795165200000,
+          "kind": "news",
+          "id": 52
+        },
+        {
+          "title": "Google Gemini Partners With Watch Duty to Clear Static From Firefighter Radio - CNET",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOVEhhbV84NENfbjRvQUw1WlBHN3R5cHlQQ0lQNFpJWXg3VThnUnh5MTVXZ1hxWUpOS0ZOWFVzcF9fNklEOU1sYWZUU3JLeUw0d2tKMzd6TzdIaC1sck1teXR4R1N1T1hIMU82X0VEYVY2dnRJMGZWUmgyUmtZUDN6QzlMaURzLVY2OGI0LWJVeHhyME91blBwV2R3?oc=5",
+          "domain": "cnet.com",
+          "published_ms": 1795194016000,
+          "kind": "news"
+        },
+        {
+          "title": "Google says its AI flags wildfire dispatches for Watch Duty in under 30 seconds - Superpower Daily",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOR1E4MGpRdThqOHZqeVpwaV9lY3REQlgweVB4M3BwQ1pvdXRjbXkzSGdzcUNHNlFHdHFtVzBNSGZ1TTdIMFEyVVhKM3lSbVhfSnpMdXVmbURwSFYtYVlKZTN1ZEloVTl5Mmp3QlptYjh6UzEyVU1tMWZVNy1xdkw5eU9YUlZpLTRVNkVkdk5JVVVmWXZoMUdLTmNtbW5Zbk5pUklUc1lGSzlQS3hHRmoxRXk4TQ?oc=5",
+          "domain": "superpowerdaily.com",
+          "published_ms": 1795195742000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Gemini Helps Watch Duty Decode Distorted Emergency Radio Calls - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQbVR2RENSYkVTdDctZVhFVHoxR3hCSXVPRmRGa1kxb0V0QVZDZ0VQRXRreTRRc0x6c2JWeWRzUG1ycmJkaFpfUzFfZDYybEhsMGxJMmw5V2xGSm1aVW43LXROZEFhUVVkRjhKSDlsQ243VndZZG1ybXd3RmV0MEZUeF96TWM?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1795195045000,
+          "kind": "news"
+        },
+        {
+          "title": "How Watch Duty is using Gemini to get wildfire alerts out faster - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQ3NUNmVVbzU0dUppSFgzX0NHUkxNU2VZR1NOdnVYLWlvZW9Ea2Fic3V0SXoyRThtbURiamhGRmVpekx2aXFoNjcyZ2E5bWFUcWtPX1NpMzRWNmtWdDNsbFJHa1BaYktaUG50MkZwYm1vWUpsWFU3eDR2V2U0QkNDeHdadThnbm1fcFhpOURWaDR2WXotY2xr?oc=5",
+          "domain": "blog.google",
+          "published_ms": 1795194445000,
+          "kind": "news"
+        },
+        {
+          "title": "How Watch Duty is using Gemini to speed up wildfire alerts - Mezha.net",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9jMzU5dDhYX1lnM0NKRklHZjdoZldDN3RWeHFIRnVYbVlkWmFRSjNIM0MxZEpnS3ZndFhzQlJHX0hxR2Fydk9XMkVOSllpUFBFc0FCLUZoYzBiYjU0b0lsS0hoREd3WWtnYk1JMmxuSnE1SklBM3NJdHc1M0djQQ?oc=5",
+          "domain": "mezha.net",
+          "published_ms": 1795195048000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Gemini Decodes Firefighter Radio for Watch Duty - Wisevoter",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPTEg1eTZrZU9fQmkyQ3BFQmV2bkt0d1N4S05MMFIzNnNZaGt5bllzNzR0My1CeFpPeFdTdkJieFVJQVN6aHB4QXpkTlQzeWwxMG9CSnp3NkdqMTYwT1BpSkc0bHNUS3ViNmlhVkZnYWtkWXFYRmVNSnYtOWtuSjZ5LXE0WUxtbmRITHZraXd5cXNiWndrSGlJ?oc=5",
+          "domain": "wisevoter.com",
+          "published_ms": 1795197210000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 16768,
+        "competitors": [
+          {
+            "id": "Gk9hHTHo1aI",
+            "title": "🔴 BREAKING: FAA LIFTS NATIONWIDE GROUND STOP! White House Updates",
+            "channel": "iCkEdMeL",
+            "views": 647340
+          },
+          {
+            "id": "6moRxzUsOI8",
+            "title": "Police use AI models to show Canada’s top 25 fugitives | CTV News Toronto at Noon for Nov. 19, 2026",
+            "channel": "CTV News",
+            "views": 16768
+          },
+          {
+            "id": "649J7eMxC4Y",
+            "title": "Canada's 25 top most wanted fugitives unveiled | CTV News Toronto at Noon for Nov. 19, 2026",
+            "channel": "CP24",
+            "views": 10222
+          },
+          {
+            "id": "wSJt61yoz5I",
+            "title": "Gemini Turns Noisy Fire Radio Into Text",
+            "channel": "Inboxsmith",
+            "views": 0
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 70,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 84.1,
+        "newest_hours": 0,
+        "domains": [
+          "cnet.com",
+          "superpowerdaily.com",
+          "mezha.net",
+          "blog.google",
+          "wisevoter.com"
+        ],
+        "trusted_domains": [
+          "cnet.com",
+          "blog.google"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini Can Now Control Your Mac in the Background",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        27,
+        54,
+        138
+      ],
+      "hook": "Google just gave Gemini the power to operate your computer all by itself.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Google Gemini Mac computer use",
+      "evidence": [
+        {
+          "title": "Google Launches Computer Use in Gemini for Mac, Running Tasks in the Background - Pasquale Pillitteri",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNc3kwaHA1WTNCSjZjSUg0Q3NBZXZUbVJXSWlFVWVjN0R1WmhnSUJVQTFta3ZXZ1hIbEc0MWdyWE5lM2JCdGN5bFE5RVplR2dQNzNrZFZOa3JIUHVabDF1X0tnUmVUZzZBNTMzUDVHYXcxZ0NWVEZqZ2MwbEZJaUVWVHhTbGFqbTJuMEtjOXlQb2kwRTl1X2NvOUtSQ3FVX1k?oc=5",
+          "domain": "pasqualepillitteri.it",
+          "published_ms": 1795192377000,
+          "kind": "news",
+          "id": 27
+        },
+        {
+          "title": "Google Gemini can now perform agentic tasks on your Mac",
+          "url": "https://tech.yahoo.com/ai/gemini/articles/google-gemini-now-perform-agentic-152759678.html",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1795159680000,
+          "kind": "news",
+          "id": 54
+        },
+        {
+          "title": "Gemini on Mac can now use your computer",
+          "url": "https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use",
+          "domain": "theverge.com",
+          "published_ms": 1795083600000,
+          "kind": "news",
+          "id": 138
+        },
+        {
+          "title": "Let Gemini tackle repetitive chores on your Mac - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNSThGaHNJVDVxYlFXVDBLdkk5Y2JhcFRYbXBTRjBBQkxYajNXX2V0YUJfUWxIR3VSVlp5MGNSOG0wZE00SHQ3dmNqN05aMU40aDNZVks2VllzMGlKa0pkbXFzOXdZU2Y1dEJGWENuUTBGVlU0R3MzRkpQeThmNUhtZA?oc=5",
+          "domain": "blog.google",
+          "published_ms": 1795108666000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini on Mac can now use your computer - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5WZTlKMThaUDVXWG5ZejNGT21CM1ZfYlVDamxjVlgtQTV3QzdWZjl6eFg3WGJRQ3hXQ2xBeWNtV3ZTUGNpT3lSU1hma29Fb040bF9VekVucm9zRDlQYTBNYjBfQzN5V0IxRm51VUpRME9XLWJ0RkFRNXVUTlIyUQ?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1795112473000,
+          "kind": "news"
+        },
+        {
+          "title": "Google’s Gemini Can Now Control Mac Devices on Users’ Behalf - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNVndRY201NGljOFg4cFVWVGxmYzBMTDN1c0hfTlkzM2trRnpkdXhsYTU5UmNjc25TU2hTUlNKQ2xOS2hJTHNQdGE5VFFMamZTLWNfYkI2NkNkQ2RDbGdvWmI0YzN3ajF3Nko0TDJ6TjhzeEdQNFpua0JNOXZfSHhqMXVHVlZTaUNObW5kVi1FeFdoTDVSbDdfNzB5bTktWWpQVWNOa0JwVFB4dW5YTHdz?oc=5",
+          "domain": "bloomberg.com",
+          "published_ms": 1795114531000,
+          "kind": "news"
+        },
+        {
+          "title": "You can finally use Google Gemini to control your MacBook - Mashable",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBrdGdfelJrWHZYWWJFVV9RNGVVWndzSFZSSnl3MGlDZXVIQXd1VjJybDRjTFREc1BYOEdOOTJ3c3l4ZHdmSlBCTWhVckJIVTB5Q01GYm9yR09MSnBnWVAwVmwwNUE0VVA2Y2hkTk5R?oc=5",
+          "domain": "mashable.com",
+          "published_ms": 1795188254000,
+          "kind": "news"
+        },
+        {
+          "title": "Google gives Gemini the ability to use your Mac for you - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOblRncnY3TTZKYzF3bnA5b1BHZm40YzJHcmdTdFJBcDZLb01oWjJRYjYwWW5qMEozRFZoNjQwU2lyeXItVGcyRmtSVjY4aHBzS1FSNTNLbGlteTZIdzlycUVBTXN3OEhTVWJ4RHdBcFQySEFINW40djd5WjJ4Z3ZPOS1PejVtcGlrV2JzQUc4UEZ1VVBq?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1795111751000,
+          "kind": "news"
+        },
+        {
+          "title": "Google brings computer use to Mac, letting Gemini handle chores without hijacking your screen - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1OQldpSDZhenQ4czZYY1dkb2QtZkRtNVFzRUk0ajlER2FDa0l2c3dGWGV5LTBEaTBIX2x3ZW5yeVg5VFVaX2V0ZEJtcHE3bGhEU2h2Uk52Wk9pTUpmU3E5VHFtcGR0QzhObFp5NTVfMmxyWjQ?oc=5",
+          "domain": "androidauthority.com",
+          "published_ms": 1795118640000,
+          "kind": "news"
+        },
+        {
+          "title": "Google’s Gemini can now take over tasks on your Mac - The Next Web",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNN285SWVybHlxQjNQbW9HaEl0bmU2c1NyRUY5VGhHNUdUUGxOM0FlLXVKSFE0WEotbEoxQVowX1FTNEE0STUwSk1nWkNrSTk0bVNkVXZXUXc2MGFUQnNmV2dFSTI3Qm5NNFRzcTZramxUeWZkVEZmbW1HLWFrQnpTdg?oc=5",
+          "domain": "thenextweb.com",
+          "published_ms": 1795111222000,
+          "kind": "news"
+        },
+        {
+          "title": "Google’s Gemini app for Mac can now operate your computer for you - Crypto Briefing",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE43WUk3aVVoeEhhUmRNUXBvNTRDR1hTbEtaTjlPZEhNZmdZZVNUdjRQaUpPVzlLdWo1cTdEeWVsMUZFY0ZJeFFrWGw2N2dsUFJyQ3NOdEhxTlc5NEN2V3pxM3dMSW5yeHlabFB4SQ?oc=5",
+          "domain": "cryptobriefing.com",
+          "published_ms": 1795112713000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 38,
+        "competitors": [
+          {
+            "id": "ntVTAaHL5KM",
+            "title": "How to Use Google Gemini Step by Step (It Can Do Your Work Now)",
+            "channel": "Teacher's Tech",
+            "views": 97223
+          },
+          {
+            "id": "dp9x8EMAE9I",
+            "title": "Turn a Sketch Into a Rigged 3D Model With Computer Use in the Gemini App for Mac",
+            "channel": "Google Gemini",
+            "views": 22525
+          },
+          {
+            "id": "wM51ROuEhKI",
+            "title": "How to Download and Use Google Gemini for MacOS",
+            "channel": "CNET",
+            "views": 22257
+          },
+          {
+            "id": "gZNWvUpNwyY",
+            "title": "Google Gemini Desktop App is HERE! Screen Sharing, AI File Access & More",
+            "channel": "DataSpeaks",
+            "views": 2120
+          },
+          {
+            "id": "hd_OBdP2X5k",
+            "title": "Gemini Can Now Use Your Mac For You",
+            "channel": "AI Tools Show",
+            "views": 38
+          },
+          {
+            "id": "KVUDM_lfB6w",
+            "title": "Google's Gemini can now use your Mac by itself",
+            "channel": "Tech & AI Updates",
+            "views": 33
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 27,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 100
+        },
+        "total": 79.8,
+        "newest_hours": 2,
+        "domains": [
+          "pasqualepillitteri.it",
+          "tech.yahoo.com",
+          "theverge.com",
+          "blog.google",
+          "bloomberg.com",
+          "mashable.com",
+          "techcrunch.com",
+          "androidauthority.com",
+          "thenextweb.com",
+          "cryptobriefing.com"
+        ],
+        "trusted_domains": [
+          "theverge.com",
+          "blog.google",
+          "bloomberg.com",
+          "mashable.com",
+          "techcrunch.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: US Air Traffic Control Is Finally Removing Floppy Disks"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "AI Tool Can Hack Computer Networks in Under Three Hours, FBI Warns",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        39
+      ],
+      "hook": "The FBI is warning about a new AI tool that can break into computer networks in less than three hours.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "AI tool network hacking FBI warning",
+      "evidence": [
+        {
+          "title": "Chinese AI tool ARTEX can hack computer networks in under three hours, FBI warns - Geo News",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNeENRVV8zYkExRmo0RVluV1BkZ0NsT0xXZE5NRlFBeE1vM0x6THphU1pIWHlDa3NiaG5hSUFvSENTbXJLSjIxNUpVMGRUUkxMRU80RWd0MkVfNFFxQ2Z4T2pBci0yZWlPak9EMFRrYUcxblI2SXM3bzZ3NWtLdldGakVRTVh4dXVfVGFvZkJ0NzhINDgtSlQ0MHZQSWozaTFPM3FRY3Y0MmNkZw?oc=5",
+          "domain": "geo.tv",
+          "published_ms": 1795181940000,
+          "kind": "news",
+          "id": 39
+        },
+        {
+          "title": "FBI says Artex AI open source hacking tool used to breach networks in ‘under three hours’ - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPWThOV0VjbkRfSEkyakpwWVVoQm1xczU0VU5sLVZETjFnOEtCaVBjd1FNUVN1WTVHLURpS19vNzByb1hndGZWRUt5RzU4YUprWDQ5T3RoY2NfSTNvaWhXR0hUZHJmWVhTRmxXV3pVRzNJcTI0emI3c2ZTdTNyb1FIUjFvNWp0Q0FGSWpIMWRKeFRhNzBkcFNvVnpsREQ4eWdZbmdVSC1mOWlGOWM5dFYxbi1qMnJrQnNPSWxOeS1ZTQ?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1794850603000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Hacking Bots Now Breaking into Networks, FBI and Google Sound the Alarm - Lynnwood Times",
+          "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBqb0ZmZVVwamZNYXVqUmJ5aURkWDJaZVlMLVVORFdqem5qNzlVYWpPYkVKTjQ5Y2NtVHJFR2NtNDI1blFOUnlTckpGbXVfbG9vSmlldllVazhvUlFa?oc=5",
+          "domain": "lynnwoodtimes.com",
+          "published_ms": 1794937742000,
+          "kind": "news"
+        },
+        {
+          "title": "FBI: ARTEX AI Tool Breaches Networks in Under 3 Hours - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOTmM5dVV2YktjN05iOGxOOHozYmVXXzJkdWVCaVg3cVU4WUZHSWNCTjFEZHhDU0Y2bGtOQ01ySXdCd0NTX29yLVJ2RXRpRUFxUzNVQkNKY01OVVJCeWpRbl9rbGxndC1FekdOYzhOaXY2SEFtQlpGRE9waTVQRmVnZ25mdDRtamFlVWowWmFTRkZKTmdvQ2tHdGpCQ2V1Zw?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1794888432000,
+          "kind": "news"
+        },
+        {
+          "title": "FBI Warns Of AI Hacking Tool Amid U.S. Outages: What To Know In MD - Patch",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPVHFpTHduRVNKWWF5bjJHdklETDhPSVFXN01qVTdwZlVUS3pqV3RTWjhvWW1Ed3VoUnhEd0JvdzhzOW5OWmxPczJ5VjJvY1gtLUFjZzBKdTNCYXZyUk1URGpSOGlfUHFyVDRMWkUwdFdqaTc0Ri1nNnJqZWxETlY2M0JHbmZMRWFrY1NWYzFVcjR3eEczUGxv0gG0AUFVX3lxTE5TenZ4eVVTb09vUmFBaVRGU0RVS3ZVekpGVU5lTnZJbS1EX2g4bm13TjJIWnhrYlRodk0xU3JVamV6OTNtc1NSdTdpeDVjTVlMUnY1TjktM0Z4OWE5V091UUZ5XzJxMDl1cWpkLVJDdEJCVEV0U0tITWVUWTVPX3g1N2xnOGo0bERXTGtlS0t5UVF1RC1OQlFLUkhLQ3BYVVpCbEtHclJzQzlOZTd5eWIxVTlrSg?oc=5",
+          "domain": "patch.com",
+          "published_ms": 1795103518000,
+          "kind": "news"
+        },
+        {
+          "title": "ARTEX AI tool breaches networks in under 3 hours, FBI warns - Crypto News",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBzck9ocXlRcGp4eWJzNVVWYkkyTHdYWkJHOVQ2RXctdHVtRGNyblJHSWtpTHRBczVCNmVRelFrWHNlMFZkY3NQUlNCLVlFT21DdmlyMmFFWWxjaXlQZ3dhUkUtMVVJQ2ZBMVE?oc=5",
+          "domain": "crypto.news",
+          "published_ms": 1794862400000,
+          "kind": "news"
+        },
+        {
+          "title": "FBI Warns Of AI Hacking Tool Amid U.S. Outages: What To Know In NJ - Patch",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNVnRWbU82TzB5X3RXczdPUlhIa1VqZXBTT1AwZkhIZHJZMVNwRTVTNHpBR0FWM1pPc2s4clB0Y0RwOGxtUk1qMlF1eFpsb0pLQUxOTFVoZkNGdFNQNFdGanBsemZFMFNzVXJrZlJPaUJyNWVJd2R6TlZDRVBHcVJVVURWVkUtZ2lyYkk3N2otNWlSVWloVExJZTN30gG3AUFVX3lxTE9sQ3d4Nm1GWEFCcmRyQVlHLXlHZnZ3ZVJIdkZWenZSQ2RoNXR3bk5yQWZQQVlnSUhlanpUQ3FxTkpPbW84OE9GTmg4a2Q3WXJmT2owZWRQWlJfQ05fQm1yTG42eV8yMlhrM0NoRWY3TjdGS29UZm5sUFEwU0hZMUlxMlZJLUh6X3QydXdwRDlSeHpSTUhUcWdhQkFCcF9LRHZZdVJSWjBqaDQ4Vm1GTEUxV0ZKVXhFNA?oc=5",
+          "domain": "patch.com",
+          "published_ms": 1795103177000,
+          "kind": "news"
+        },
+        {
+          "title": "FBI Warns Of AI Hacking Tool Amid U.S. Outages: What To Know In IL - Patch",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOQnNXY2FoWkI1Y1RGTUI0R0tpSnNRdmZHNXdXWXNDRnpvS014YTlHUmNoMkhWR2NTajR6SjdJNk5mc29FanVfNWdKREZRTjdhTTZVWkZuNmYxcHpiVUZNMTVoUGRJS1V3WXI0bHVCcUl4QU9aZER2bEUtVE5TZEF3ZFpnajdFM0lkX0FhWndJenFUWUpyU1dN0gG0AUFVX3lxTE5NbjlEcXdjWE9BSW9tR2t0SVZseHprVE9fY0dBX0hrUG85Um1qOHhDbXdUSlhuWERhYU5xdWFHUDZrZ3lnV3JzX0FqQVB4LXl2RE5XRUdMd3BDVE56cWtpUXlHbXFGMklEYk5pVmtmVmVGeHo1SmFadENMcUVKQlgxa2NNQjZyNFVNLUVxR2pZUEgtc3V4ajMzV2lFU0pyLWxvR2ZBX3puRHhuMHhUbGJKdXpKMw?oc=5",
+          "domain": "patch.com",
+          "published_ms": 1795101732000,
+          "kind": "news"
+        },
+        {
+          "title": "FBI Warns Of AI Hacking Tool Amid U.S. Outages: What To Know In MA - Patch",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPRkxNMENtSTdhSDdCSTlIckxwQmkteEl1bWZSNVE1UHFiT1dTY2J0elZuN1VqWVc5c2RNS0dGLUFCc2Z3VUlSSkpkQWFMWWVwU05FVFhMS05mVkZ1NXJOWC01R24tWVlEVkVkcldNN2VYektSaE9GQjNsa3B6YUJfVWF2QXlJT0YtQWFSSWVXX2lCRHp6UUY2bjJGT0RxOW5PdVA0dzZoWVE5cTVEVjVYamU2R21SWUJfR3Fn0gG7AUFVX3lxTE9GTE0wQ21JN2FIN0JJOUhyTHBCaS14SXVtZlI1UTVQcWJPV1NjYnR6Vm43VWpZVzlzZE1LR0YtQUJzZndVSVJKSmRBYUxZZXBTTkVUWExLTmZWRnU1ck5YLTVHbi1ZWURWRWRyV003ZVh6S1JoT0ZCM2xrcHphQl9VYXZBeUlPRi1BYVJJZVdfaUJEenpRRjZuMkZPRHE5bk91UDR3NmhZUTlxNURWNVhqZTZHbVJZQl9HcWc?oc=5",
+          "domain": "patch.com",
+          "published_ms": 1795102882000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 277,
+        "competitors": [
+          {
+            "id": "JHcQWzkAhbc",
+            "title": "FBI warns hackers are allegedly using AI to target businesses",
+            "channel": "Fox News",
+            "views": 140692
+          },
+          {
+            "id": "z8Dy9Cso8W4",
+            "title": "ARTEX AI Explained: Why the FBI Is Warning Everyone",
+            "channel": "Professor Zero",
+            "views": 97502
+          },
+          {
+            "id": "JAC-Z751mnk",
+            "title": "FBI Warns Cybercriminals Are Using AI Hacking Tools to Breach Systems",
+            "channel": "FOX News Headlines 24-7",
+            "views": 3010
+          },
+          {
+            "id": "OadXwFZWAFQ",
+            "title": "FBI Warns This AI Tool Hacks in Under 3 Hours",
+            "channel": "Tech Shown Simply",
+            "views": 857
+          },
+          {
+            "id": "9bqq8IyDomI",
+            "title": "FBI Warning: How Artex, the AI Hacking Tool, Works",
+            "channel": "Undercurrent",
+            "views": 277
+          },
+          {
+            "id": "XQZ038w0rWM",
+            "title": "BREAKING: FBI Warns ARTEX AI Tool Is Automating Cyberattacks | Neon Bulletin Nov 17, 2026",
+            "channel": "Neon Bulletin",
+            "views": 268
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 41,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 75.6,
+        "newest_hours": 5,
+        "domains": [
+          "geo.tv",
+          "techcrunch.com",
+          "lynnwoodtimes.com",
+          "shattered.io",
+          "patch.com",
+          "crypto.news"
+        ],
+        "trusted_domains": [
+          "techcrunch.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Apple Working on Computer-Use AI Agent to Rival Competitors"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Coinbase AI Blocks $4.7 Million Deepfake Elon Musk Crypto Scam",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        53,
+        126,
+        127,
+        131,
+        141,
+        143
+      ],
+      "hook": "An AI security system just stopped a massive $4.7 million deepfake scam featuring Elon Musk.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Elon Musk deepfake crypto scam Coinbase",
+      "evidence": [
+        {
+          "title": "Elon Musk Deepfake Crypto Scam: How Coinbase AI Stopped USD 4.7 Million In Transfers - Outlook Money",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxObWV2dnJER1Q1Wkt5Z0FEOHB6Y1ZTYUlIZUN3NXlkT1p4OXJOTXA1N29hTF80OVBuRVRqbFJ4RUpiQjhZclI3NFdSU0wxSHdiRl9pbTR0NTY5NklDYnFhSTRhVU9meWFYSzRGeU96NHl5NldHSExSYjE5YnRhNXBxVDFVUjNEZW85WU5fb2NsZzVpaDBDbHhsSnY0YVNpendBbGxYT29XQUlmOFhwYy1NbFNzNEJZS0VJUlHSAccBQVVfeXFMUFFWRUZrc0JBUFE2allEbWVqc0Z5RlpkdmJOcElrN3F0YlpEWlFVS2h4NnBUNEluZVNuY0NpV1JqTjczRXpMNnVuZmFyMHVFMnIzenlZdXpacFZJeEthRzVQLTlDRkFDY2pQcVRUUWNXMURoTGdWaHlPcXVIeWRkS1JEMW5DQTQ1WjhZWVdQMDgzSzZ4cTlKSVdBdVMtQlBlOXBSd1RlcXJqaU1sRGloRGdaR1hXZUF1X08xd1RBOHBDZ083YnhyWQ?oc=5",
+          "domain": "outlookmoney.com",
+          "published_ms": 1795164767000,
+          "kind": "news",
+          "id": 53
+        },
+        {
+          "title": "Coinbase AI Agent Blocks $4.7 Million in Deepfake Elon Musk Crypto Giveaway Scam - Hokanews",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQaE9NMTZwSzhocGxhVXFFenFSaF9pQ2RNWXN4aGhOeUhTeVhrUVhpNldiU21JLTF5aUhkNFlsOXF2V2pYcHdCN0pINldva0tDNmUwdHZqUmFSdlhSSzhLRWk4ZEdEd2txaG14ckhfdW5pUzdWaVR2ellsdUd4bmNuWFNB?oc=5",
+          "domain": "hokanews.com",
+          "published_ms": 1795096800000,
+          "kind": "news",
+          "id": 126
+        },
+        {
+          "title": "Coinbase blocks $4.7 million in cryptocurrency transfers linked to deepfake scam - SC Media",
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPVk95QWNnY09NcjBFYURqZDMybDhsYTFHdTYzbTg4LVBiZUdwQ1VWd3Z1OEc5eDNEQWRjWHAwMVc1UnNYVTlUcGxiRE5IMzhENFB6MC1Cd21qYi0yVkhLc21sdTBxY01UWnBXd0NtNnFBdTcxU1VxV1p2cVZ5X2hfTWY2eEdqVjR5Vkt5MU1hMW91WTlyalJDa2ZSRDVhV3ZKWjM3eFp2c2xUbXFWM1E?oc=5",
+          "domain": "scworld.com",
+          "published_ms": 1795095244000,
+          "kind": "news",
+          "id": 127
+        },
+        {
+          "title": "Coinbase: Blocked $4.7 million scam with Elon Musk Deepfake - SecNews.gr",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQY05FWDBTMksxSklJM1NRMDVxcWJQNFFuNHNaNVhwYm9VSlBnd0hUN3ViNTJTNG43RnhQSUdjMDdlbms1cHZwMXFHRDZTUHZra0RDdF9OS3pKUFJSTlduT0JFTkhrSkV0RWhIc19JVkJJZV9XcTQ3OHdkTXY0UVUzMlFn?oc=5",
+          "domain": "secnews.gr",
+          "published_ms": 1795088022000,
+          "kind": "news",
+          "id": 131
+        },
+        {
+          "title": "Coinbase AI Blocks $4.7M in Deepfake Musk Crypto Scam - CryptoRank",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQaDFWYVZFVzU5cjV4ZV9iUERQVUZXR3RQT3duQjVlTHZvN0xxYXZyYlk3MlRQZXFrTTQwZ1ZsZHJzM183emhZbUd6Nlh0R1hoRDc1dG5oZUlVblZ3RW5xVzNYbk54cnc5ZDB3RWV1UkVZemZEYlg0Wm5OM3F4UmQ2aQ?oc=5",
+          "domain": "cryptorank.io",
+          "published_ms": 1795080369000,
+          "kind": "news",
+          "id": 141
+        },
+        {
+          "title": "Coinbase Stops $4.7 Million Scam Using Fake Elon Musk and Tesla Demo - Coin Edition",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPajlaMjRMbEpIVkd2Vkl5MTZ3OWdUZDNYZVktTkw3SWlaNlQ3eGp2Y0RZOUxXRk53QkhoS1hORG05aURWNUpsTmdBZ1lNcU84NlVta3BuVnR3bjhpY1FwbjF5NmpBM3RISWtad2M3WkU1Z0RGYURSUVZCekJldUlSRl9NMFpvUDhUcVJOZHFtUlI3R1lZSUNv?oc=5",
+          "domain": "coinedition.com",
+          "published_ms": 1795076015000,
+          "kind": "news",
+          "id": 143
+        },
+        {
+          "title": "Coinbase Says AI Defenses Blocked $4.7M in Elon Musk Deepfake Crypto Scam - Yahoo Finance",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQd2xxV1J5ekh5S054TGczZHF5R2xxZDctSTNnclR3Vm5KZkpCdmFGUGdHQkkwZWJ2WU96ZzRjLS1PdWw3bkV5RkYxbjRXejFXTGg1bGtxZWNpanlZajNpUzRTRTM2RDlvVjlMQzlKeWxpdGJfYzRvblFSUTNIb2FQUVJiWFJBTWJQWUZ1SjltcWhwUWlUVFZWYmZKOVB5M0E?oc=5",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1795017180000,
+          "kind": "news"
+        },
+        {
+          "title": "Deepfake Elon Musk nearly costs viewers $4.7 million in crypto - Malwarebytes",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYXRoaEhLOVRFN0xzNGk1ZWRuenljdFN4SmI2NDdZLXZwUUpjUU15Y1hRT3NEV2hwNlNFUnljWTh6bl9qQ2xWajJCazZLZy1VbGplR3JDenB2T0QxQXBiYTN0TzRjNk1jTklYTXdWSlRnVjlKM0NVVWI2RFJvcFlsbVBzMlY3WXYtTm91c2QtRFcyRXRUMzRWQjFwOGdQNk1qQkkxUUVQNWlaUQ?oc=5",
+          "domain": "malwarebytes.com",
+          "published_ms": 1795111738000,
+          "kind": "news"
+        },
+        {
+          "title": "Consumer Protection Tuesday: How we leveraged AI to stop a popular Tesla Scam - Coinbase",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNZGk1eEt3RVp2elhMMGlsQjJrVl9jTVlnXzZxT19pNWlGUzdMZUlXYVRPMk5GMk4tNjlXUTV6bVVjWG9lWWR6V1pQMVY0eDFJbW1KNm5Na3FCTERzYUFfdmdhVUoyNmZqdURvY0JYWFhWYXFxZ1JjNlRLb1JYbUs5T0JzbFpiVllqeFMwTnRST2tKaU4yZzhlSkxPRDRlbDE5dS1BVkZfNEJZSkhwcDJDVVdn?oc=5",
+          "domain": "coinbase.com",
+          "published_ms": 1794931200000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase Says Its AI Blocked $4.7 Million in Deepfake Elon Musk Scam - Bitcoin Magazine",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5SeTJnS3RvZjhFSW1keTlBWW9BWTlueVJYbVY1blJtMGhYMkNoSUR5bXIwUHJKdWc5a1BVRV9WQUtTSFFETGxsbm9Na1VmUk5vVkF1dEtNbmJ2QzBMb1Z1S0d6QlJQTVJmUXc5OWhxbVVGdVZ1Vi1VUXdn?oc=5",
+          "domain": "bitcoinmagazine.com",
+          "published_ms": 1795015872000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase blocks $4.7 million in transfers to Elon Musk deepfake scam - BleepingComputer",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZjRfeUNyZkJ3Zmp5WHlzMFBpYU5OelJDVVYyWGNhTnF3NC1RaUt3QTlRY3Q3WDRxT2E3Ujg0dVdWTWp2TDhKRkFTeUp1cFpIeE5GZVN4dlllMDBfZkEtaHVrdk50RWZuNzAwdW1Ca2thQW5HZ0RaNl9GQkk5dXcweURjNDZuZmFsUEFlck5UbGNLOGRFM182T25JZnRMQWdCTWJXYWFZTGtPbC1ZVmhLYzhyTWo?oc=5",
+          "domain": "bleepingcomputer.com",
+          "published_ms": 1795034972000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase Says AI Stopped $4.7M in Deepfake Elon Musk Scam Transfers - Bitcoin Foundation",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNU19NdkFOdVAxY2pHLTFwZVlRaHo2aHhYSkRmb1dwT25EQUVVejFGa0FhQmcwdkZWQm93UFkyVEpCcjdHc2NCT18wZTlWYzlVQmVUNlBvdmpKWVk2VHM3aENjeGJFVGUzUjRmeDd1ZGR6RzhDbWQ3a1g4WVRHN2pLN3FHUHlVdXpxNzY0X3J0QTJlNU5LXzJCMThiNHNjZk1zbE1rbDlUNG9YbWFUSU5MVTExSTk0QldiRHBV?oc=5",
+          "domain": "bitcoinfoundation.org",
+          "published_ms": 1794970020000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase’s AI Protection Blocked a $4.7 Million Transfer to Scammers Using an Elon Musk Deepfake - Incrypted",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPeDg0dWlQdVpPT0NIemhqM0Y4cVVuNW43ZldoOGdaZXFXNktJSjNGbmhnd1dQS1drcDQ1VVRfQzNiN1NfZjVJVFpQdEFHaXhFSjJRcFduTFhaallqcEMtejJLbTZNMlh1NnBZMzJPZk5MOWt4b21YVHp4ZFRQNmNydXB5X1RIa3pGM3ltNXVBZFp4TUNxZjdaUEhHZzAydHJUVGR1c1FYWk9UWGNjNTRkTDJzc095RW5JRWlDVQ?oc=5",
+          "domain": "incrypted.com",
+          "published_ms": 1795015049000,
+          "kind": "news"
+        },
+        {
+          "title": "How did Coinbase stop deepfake Elon Musk’s promise to double your crypto? - AMBCrypto",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPeXdnUTNMODE1elNRZ3RDZDllSU93VW9CbUpxYkxDUHFET2NVdEExSjREZjktbjhoS2l5VHBWcE1BSU9WQS1nRkh4czBJdmI5dmdQV3BDZ245ZVZ0LV90STRsX0hRYzFCZ2VJRVlTbTN4eFh3b0JPRXR1ZnpxYTg5UU5WZlZrNUR1RDRKVE5aaVNuUnAzcnJqVU93?oc=5",
+          "domain": "ambcrypto.com",
+          "published_ms": 1795055437000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 27,
+        "competitors": [
+          {
+            "id": "ZI_uzy18P3M",
+            "title": "Coinbase's AI Stops 91% of Payments to a Fake Elon Musk Crypto Giveaway",
+            "channel": "The Wolf Of All Streets",
+            "views": 866
+          },
+          {
+            "id": "4W8BhstN_4A",
+            "title": "ماسك مزيّف في بث مباشر… وذكاء اصطناعي أوقف 4.7 مليون دولار! #Shorts",
+            "channel": "مجرد تكنيك - عبد السلام الرزوقي",
+            "views": 221
+          },
+          {
+            "id": "JpqhYAHKltc",
+            "title": "A Deepfake Elon Musk Got Hundreds to Send Crypto Themselves",
+            "channel": "Yash Thakker",
+            "views": 102
+          },
+          {
+            "id": "qDJi_ply1Xg",
+            "title": "Elon Musk's Fake Crypto LIVE Scam Exposed!",
+            "channel": "Trademinati SHORTS",
+            "views": 71
+          },
+          {
+            "id": "p8JgTnOVD-M",
+            "title": "Elon Musk Deepfake Crypto Scam: Coinbase Blocks $4.7M",
+            "channel": "Casi Live",
+            "views": 27
+          },
+          {
+            "id": "WAhNV2UREdI",
+            "title": "Is the Coinbase Elon Musk livestream a scam?",
+            "channel": "Red Flag Cyber",
+            "views": 26
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 24,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 74.8,
+        "newest_hours": 9,
+        "domains": [
+          "outlookmoney.com",
+          "hokanews.com",
+          "scworld.com",
+          "secnews.gr",
+          "cryptorank.io",
+          "coinedition.com",
+          "finance.yahoo.com",
+          "malwarebytes.com",
+          "coinbase.com",
+          "bitcoinmagazine.com",
+          "bleepingcomputer.com",
+          "bitcoinfoundation.org",
+          "incrypted.com",
+          "ambcrypto.com"
+        ],
+        "trusted_domains": [
+          "finance.yahoo.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Elderly Lose $450k to Deepfake Scams"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Meta's Muse AI Agent is Accidentally Mixing Up Private Chats",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        109
+      ],
+      "hook": "Meta's new AI agent is pulling in random conversations and accidentally exposing private user messages.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Meta Muse AI privacy leak",
+      "evidence": [
+        {
+          "title": "Meta’s AI agent Muse is mixing up conversations and could be exposing private data, report says",
+          "url": "https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/",
+          "domain": "techcrunch.com",
+          "published_ms": 1795109920000,
+          "kind": "feed",
+          "id": 109
+        },
+        {
+          "title": "Meta’s AI agent Muse is mixing up conversations and could be exposing private data, report says - TechCrunch",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOcEZqS3ljbVVnME1UWVJsLWxidDBoSDZfZ3drbFRoVXVoX2w0V0RnWUM4UTV6SW5PNEFLUG82S3VRLUFST3h4OW82NmVWVVJrYXptcE9PU2RPbjAxZjdnTFVLVDhYVTlndGx6RzlLSHh5MUE5emVjM2Q2amxNNFA0cTRpTnAwUmF2SDRwV094eE02WW5MRkx1YnRoNk5WdlJKUnVQRzhXUXhvTXZNMDdCTW5LbXgzU1BvQkhF?oc=5",
+          "domain": "techcrunch.com",
+          "published_ms": 1795109920000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta’s Muse AI agent accesses private messages, raises data leak concerns - MediaNama",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5iNHNpNVlTNk1vY2tRMjdPa3RWdmpEOTNGM1VvVUx1X3h5b1liZ205ZmNMT0hJRDh6VTBEOC1yaHVrUzNwWE5LcHpRa0FEV3ZpQjhpVzJWMEgyTks1ZUFrVUtrczMwUFM4WkZYdVZHd3BsaHhHRDFKSldB?oc=5",
+          "domain": "medianama.com",
+          "published_ms": 1794988800000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Employees Raise Privacy Concerns Over Muse AI Mixing Up Accounts: 5 outlets compared - NewsCord",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPSzJub0Znd0NScW0ydjdKck93dktsSUZRRjlEUWFwRVFnakpwcEFqcjJQcFloMW1pQ0JubkxZcGZCR0NZbXV2SjlsaWxsN1kzalhoTEZrQ0FTMlBjVDUzdXhnN1Ntc1lMZGtWaDZ1QWlsSVA5TFRrVGdhaG5lZzVBMjNtREdlNmF6amlBZkNwekF1STI4bGdqdmpBYXpXSDViejBVTy1Xa0VkZUNPbFBDZ3RFNzNHRE5oQmp5Q3ZhbmJTRGpyeWtMazd6UnFRcGNSY0pQZWZuU1RUNk0?oc=5",
+          "domain": "newscord.org",
+          "published_ms": 1795130628000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI is mixing up chats, reading Signal messages and flashing random bank balances - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOMlExY0o1SGNzeUx2UTAxMnJkMUNuVmtyZGlETXQ0U2pXcGJ1NWtac1NzMXNmTmJvYlVsY2ZIQ3dFcy1BblJXeEkybUhnbEVyLVFSVDBwWHZ0SUNrTG5MSUc1bmN0ZWRMdWJFM0Vocm1tQlhGUDVsVDYyZThsalc2cUlrOWlDbDBibV9lbTAwYmhSTHpLRzlQb1BSUGU4bUN5OHFaTkFzaUltSmVPc3drc3BkcjRWbE50bkRwN2YtQWV1RXVudVZPMnBFVVhlbzhmcWJHSkdwUFhTX2txTUx5NmRZWVU1ZXZ5NFhRaHJB0gHzAUFVX3lxTE1oZ0dkV1h0NjFvNkg3MlM0SVo5T2dhMmtSRDVMZDIwN2xiWmJVazJ2cVNFWm9kblJadVU5ZjJFR050dmlqWWp2YlBkeWo3V19tS3VFNTNpLU9DY0NFNGQ5QWV3UFRFZVJvZnBtaXpVODlfbk4tTERsZW9FeHBIRkw3c1dralRZNnQ3TDExZGhfVnI1ZzQxekFhQWh1cE1fRDRYTUJrcEFTMERvWFdyVlpzM1ptV1dwblQ3SVhFUkppV2pXYjNyajc3WjJtemFMdDhoTFJYSFpPeWt2V1pfTVNSLTU4RUVyTVU2bUV1SF9wdFA5UQ?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1795155727000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI agent accused of interfering with encrypted chats - dev.ua",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQX0I0Z0F5T1RfSHF4ODNsXzROTmJVeVJScFVjRnNxZjlMMjZtU0NJVmRzYUJMVXBTTXRmR25KTGtVZjhYVnMtQ0pSU3p4am1CRHpoUGJLNTlseFpkWnBHVzl0Q0dmb0RkR1h3OE9zSmxUQlNRSGhlU1VfWWYzNWFyeVhMMjNJdlc5RjNIZHB5UXI?oc=5",
+          "domain": "dev.ua",
+          "published_ms": 1795154820000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Muse Charm: $300 Price, Up to 12 Months of 5G - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQc3NkeTc5Znc3QnNlREdUbEgtUWRCWEVfWV9EQXFhTF9jSFpYWGFkTkxRbHdyNjlNUGVEbERjV3J1M0E1R3BjT09vX21nNUdBdkVlOHJ3OVMyZktONjlOeFNIbTRQamtINElkajhyTmczU0NZYTl0MVd3aWlPd0ZYYkVhSm1GNTd0X1F1OHN5ZTFpT1pS?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1795146293000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta employees reported possible access by Muse AI agent to Signal chats — Ars Technica - UA.NEWS",
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOZmk0RmlHRUJkX0ctTk0yc2lXaXp5Zm9vNWs4OVRfT2dhNFpTT25taktHU2NLdFZRWjluaUo4OUt4cVBqZUl6cW9NWHZ3TnVtYVJ6RmNXUVdFa0ZPR2R1M0NQeUd3LVZFSW5Ia2ZzSnFTenRMNVp1elpzZ3ZWVGpzejl6ZzRZZHNwWW1adGw4Q1NrNVFmVFFMVFJDc3FBbFVOdzh1RXhGTFlfbXlvQ0pmT1RuZ2FIMEh6dUVVTHh3eklhUnJwQ1E?oc=5",
+          "domain": "ua.news",
+          "published_ms": 1795031333000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI agent surfaced private data it wasn't asked for - Gagadget.com",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNQTRZX0RJbHFodGFhQjJmeW1fWjdDSFhaZDNnbG1TYVpsV1ltQ3hMVzNEZTJ2SHdkSlNpSXgwZVRnWEt2NUR5ZHdTZGNod1pIajE3eXZjQnVqMEp5OFFiX09qWEoxZFdhLUJpbmdSWHZjb0pYSUhPSml2N1BlM0pmWmhKUUN5OTc5b3ZYLVhZSG1OQ29RYXlZ0gGcAUFVX3lxTE0zMTY5MFlVTktmYm0wWlg2WkxEUHpIeHUzZ1B5X2VHX0JWSU9CTVhjMVhYVzBXQkpGWHgzbWdFS2dLTWFTeWVhYy1ENnlMTF83dU0ydzFQVEZqR3pBZC15S2YzaEtyX0tMV1ZrLTlkc3d2UUNMcEpmOTdmY1NSc2Nmb2kxU1M0U2VrTVFwLWNUX2prU3FhMTZXN3BCZw?oc=5",
+          "domain": "gagadget.com",
+          "published_ms": 1795133066000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 0,
+        "competitors": []
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 68.5,
+        "newest_hours": 12,
+        "domains": [
+          "techcrunch.com",
+          "medianama.com",
+          "newscord.org",
+          "indiatoday.in",
+          "dev.ua",
+          "shattered.io",
+          "ua.news",
+          "gagadget.com"
+        ],
+        "trusted_domains": [
+          "techcrunch.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Meta's Muse AI Agent Expands to Smartwatches"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "AI-Generated Video Falsely Shows Cristiano Ronaldo Supporting Palestine",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        134
+      ],
+      "hook": "A viral AI-generated video is fooling thousands by falsely showing Cristiano Ronaldo shouting slogans on the field.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 8
+      },
+      "wikipedia_title": "Cristiano Ronaldo",
+      "commons_query": "Cristiano Ronaldo",
+      "youtube_query": "Cristiano Ronaldo AI deepfake video",
+      "evidence": [
+        {
+          "title": "#FactCheck: AI-Generated Video Falsely Shows Cristiano Ronaldo Wearing Palestinian Flag and Shouting Slogans at Ballon d'Or Ceremony - Cyber Peace",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxOOEpIcDRqNEpDLVBTRTRpZjV3LXlaelJfaUoyVzZqbU9FRXVhM09sbHc5MWRYS2djb2dGME9EX0J6bnZGUHgzWU9fX1FmUEZrcmlBaXNjMjQzSjUyWTFXbWxpZmNRUXo3dXdWUDJ5YVFzMFh5bkl0RXc4NmtMSy16NV9CbVhhSHpoMTVTVnFOakNfYXNRb3VHdUVDempoLS01aFJ6d251d2hfbmVSZlBGMmc1ODVySEN3bUQtNGJvSUJiVW1uZWlydFBPX2ZVTDhqZXgtNXRrS3FDSklqazNCaVFoVzNTSGpXZHQza1p5SGRUd0FBS2oyX1FWdUI?oc=5",
+          "domain": "cyberpeace.org",
+          "published_ms": 1795086646000,
+          "kind": "news",
+          "id": 134
+        }
+      ],
+      "wikipedia": {
+        "title": "Cristiano Ronaldo",
+        "daily_views": 21368,
+        "ratio": 0.75
+      },
+      "youtube": {
+        "median_views": 43607,
+        "competitors": [
+          {
+            "id": "A2NpOIRKZ6Y",
+            "title": "CR7 abandonou Messi para fugir do crocodilo 😂 #cr7 #messi #futebol #humor #ia",
+            "channel": "𝙋𝙝𝙖𝙣𝙩𝙤𝙢 𝙁𝘾",
+            "views": 1820804
+          },
+          {
+            "id": "Rha7ryFMhHU",
+            "title": "Ronaldo_and_messi_went_to_the_cruise_ship(funniest AI🤣)",
+            "channel": "Goal Peak",
+            "views": 301816
+          },
+          {
+            "id": "CpTIlhxLEBY",
+            "title": "RONALDO VS MBAPPE ‼️#ai #ronaldo #football #worldcup #shorts",
+            "channel": "AIWRLD",
+            "views": 118328
+          },
+          {
+            "id": "gIWiFrr9meE",
+            "title": "CR7 e Messi na Piscina de Sorvete 😂 #cr7 #messi #futebol #memes #ia",
+            "channel": "𝙋𝙝𝙖𝙣𝙩𝙤𝙢 𝙁𝘾",
+            "views": 89694
+          },
+          {
+            "id": "P3mqeAnJLeg",
+            "title": "Ronaldo & Yamal Making a Mess Together 😂❤️🔥 | Football AI#Ronaldo #LamineYamal",
+            "channel": "ITSMYTIME",
+            "views": 43607
+          },
+          {
+            "id": "kkHuRoPQcCk",
+            "title": "Ranking The Funniest Ronaldo AI Recreations 😂⚽ #shorts",
+            "channel": "Edit Master 01t",
+            "views": 1686
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 61,
+          "reach": 81,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 80,
+          "source_quality": 0
+        },
+        "total": 67.3,
+        "newest_hours": 31,
+        "domains": [
+          "cyberpeace.org"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source",
+        "too similar to recent topic: Viral Video Falsely Claims Trump Vandalized Office After Midterms"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Spotify Expands Free Audiobook Tools to 21 New Markets",
+      "pillar": "AI tools ordinary people can use",
+      "evidence_ids": [
+        46
+      ],
+      "hook": "Spotify just rolled out its free audiobook features to 21 new countries.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 6,
+        "relevance": 7,
+        "visual": 6
+      },
+      "wikipedia_title": "Spotify",
+      "commons_query": "",
+      "youtube_query": "Spotify free audiobooks update",
+      "evidence": [
+        {
+          "title": "Spotify Expands Free Audiobook Tools to 21 Markets - Wisevoter",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQZHFpdnRGZnFVcXVNVXZhYkEtTEdHUTZTYnA1Ui1KS1VhM0VjUV9MMGhTaTdBUktmOEU1TEhITzN4Y2taOVhjYlhiaG9FSU40MlVjNDlNeXNsSVdJT25DUlFvUzlTSUg1Q2FZekI5MWtIVHBWMkNOTHYtTnBHSEtTSEQ4VFA3dXpRcC11TERsaw?oc=5",
+          "domain": "wisevoter.com",
+          "published_ms": 1795173259000,
+          "kind": "news",
+          "id": 46
+        },
+        {
+          "title": "Spotify Expands Audiobook Creation Tools for Indie Authors to 21 New Markets - Publishing Perspectives",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUS1KTU90VjFGWTNvWE41R0VyREhVMnRqTVFlRDdnMGRQUXlPNEZPN3pzMldYdUgwdEFDSDNhM0x0WDdpSy1YOHlaU2lybWtSbW8xUndrWjZoWlRnd1p5X0lGN0RjdzVkRmxlSTI2eEJDNC1xZ1pEM3VMM1lfb3NVOWVXeGptZ2RpNUlFcHlYTFl5VE5xbGFCUk1Ed3E3ZmR3RlhwcHpIbVdGWHVleDloS3NOV2hBQ0hYS1N6MQ?oc=5",
+          "domain": "publishingperspectives.com",
+          "published_ms": 1795165092000,
+          "kind": "news"
+        },
+        {
+          "title": "Spotify expands access to its audiobook creation tools, adds Spanish-language AI narration - Jane Friedman",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQR1htUHk3ZjYwWXhXdHY3YUpWTWhPRklHSjZDaGRmMDRfUXBGakpTbEFkUVJGNjdLZGdGeDZCSzQ4WjVWQVVlVWtkelp5ck4xYzFMaVI4Z0hNS2luUFdyZnJSSE1rUHNiNUNWUHowaERWSjNQYXpMVXNuNWs2X19NbFBCQTJtY0psRE8tZlhOVUU0YVpzT25OQS0xRlFZN1BnNUJPOTdjdkE3VkVJYlZZMVc2cEl4UQ?oc=5",
+          "domain": "janefriedman.com",
+          "published_ms": 1795021200000,
+          "kind": "news"
+        },
+        {
+          "title": "Best Audiobook Apps: Get Bestsellers Without Paying Full Price - Woman's World",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPemlqdi1FZ29aWTNWb2RvcHpjNmpaOEVwSjN3YmlmRjlKazI4bV9yQkg3akMtQ0Zwd3JKVTY2YkhiQ0tIMkhVZXJuUTJYZFM1N3pfWHZhM2MxNHZPQnNFbFhpdEQyNVlNbkxhNXZFc3hwd2dqY1ZvaEVobDhyajF0Mmp0anVLQnRuLTM2ZVJQYjhZNnd4QU9uX0Q1VGVFMnhLRUdfQTdEaFg1S3M?oc=5",
+          "domain": "womansworld.com",
+          "published_ms": 1794875426000,
+          "kind": "news"
+        },
+        {
+          "title": "Indie authors in 21 more markets can make five free AI audiobooks on Spotify - PPC Land",
+          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQbms1WnpLODdZdWZzV0pQUVpIV0pleEpBekVlNWgwSUl0UmN6S25pV3E4Wks1RWZ5ZXcybFdCdHNXcGp4VHk1bW9NZFpRZVg3MUVpbDV3YWNFQ09Hdi1DWnFtaTFsY1ZReV9rS0p1RDdOYy1rTzQxd1hhQWtRaklGWWxJR1Y3eF9keUVrTjBna1owOWZaUGxZU2JR?oc=5",
+          "domain": "ppc.land",
+          "published_ms": 1795081265000,
+          "kind": "news"
+        },
+        {
+          "title": "Spotify launches audiobooks in India with over 3.5 lakh English titles, 7,000 Indian-language books - Moneycontrol.com",
+          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNSElYbllFdHZYNDhEUEVSY3FBRjJ4N2FYWnRWbDlqYXVhNXVnSmt4ZGhzVHpuWEdOTEtDYTNIN2pQdldsRWp1V2h0bFEzbTBRejdxR3N3dXVIWVVVVjZJbDlCTVR6dl9qSzkwNlBhOTlVQ3U4RzdveDhQMlJHeVI2N2dPcXRLT2lNdnRBOXpGbmItUHJ3NlAwZHJCWjRLQWRES3NRcnc3ZERtWUw1ZFk5TVFaMUQ5R1MzajZJd2dlNEwxLXZ3dFY2Y0xrWFpINzktSjRvWEc1MlZQMmFFTktISmtMeTVTRG5oMEhVOVlJYVJrZ9IB9wFBVV95cUxQTF85YS1iZ3BrWUZXSDVhZ0lHSUdFaGhUczRyZVNqOVJha2hxVmFoS0pxUE1RRFJGaVNFclVLRHRjUXJvV0RuQkxBWWhnTlNaY2dYZVUxUmd0MmpFSHIxR0xScTJGZDhiYW92MVhNclNTRVF6YUFTNlVaM3lPSVMyeHNhSUwxN0lJMkJWZHlCMzV1YjZVcWR0b1U0SUhLUHVYVGxaSUFWLUJjaWdPMkI2WmNRSVcwSGhpZWMtU1BRSTBqd2JiNmRIS0ZxVllGX3QxdWJxS0NzYmxtODhVZTJmaWJPSzFrNUpJMzRjLWh4LTRqczlKTXV3?oc=5",
+          "domain": "moneycontrol.com",
+          "published_ms": 1794558033000,
+          "kind": "news"
+        },
+        {
+          "title": "Spotify Technology CFO Outlines Growth Plan as AI Costs and Audiobooks Test Margins - TradingView",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQQWFZWC13WkJKVlF5QmJXMlNFVlcyVDlrdURSeHE0ZUpUYmZ6clo0ZFBHSGswRm5iNzRESjNFVWdlQUNHT19Ea25peHJUVldUNzVRUEg2a29BLUROM3VHNkxpYW1FY3luQm5ieHdJMFZvRURBNnVhR1pkQkpHYnVmdmpGYXJTSThvN2ROV2h6eDNLQWdUTDlYZlBXemc4TDNkRVF0eGhnUFRadGpXajR5b1VTaGRMdFV2SUh1TFRjR3JjUFZpc0JFVjUtU3J2Qnh3cFg3ajhQeW5iWVFY?oc=5",
+          "domain": "tradingview.com",
+          "published_ms": 1795115542000,
+          "kind": "news"
+        },
+        {
+          "title": "Spotify Introduces Audiobooks in India - Deccan Chronicle",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNTnVzNFFsYlFOWWtTQjVtM0VRTjlwcjdpODRtT1R1d1g1YkJqNUVza3dBZ1JvWEw4ZHVyNkJ3czBkTkxiN1lzeHp4MzcwdngwdzBEc0dyN0FiVEJJYTJ0ZlowRUFmYWRjMWZ5YzAxeVRKc1NEQ3ZsX1AtUHl3d1BwaUtYd0lpSHAzMHFrdDJ2cnhNMG9ka1B6dGtIdy1SSGhhQ2E4eC10NnE4dUtFVDJhb9IBsAFBVV95cUxNTnVzNFFsYlFOWWtTQjVtM0VRTjlwcjdpODRtT1R1d1g1YkJqNUVza3dBZ1JvWEw4ZHVyNkJ3czBkTkxiN1lzeHp4MzcwdngwdzBEc0dyN0FiVEJJYTJ0ZlowRUFmYWRjMWZ5YzAxeVRKc1NEQ3ZsX1AtUHl3d1BwaUtYd0lpSHAzMHFrdDJ2cnhNMG9ka1B6dGtIdy1SSGhhQ2E4eC10NnE4dUtFVDJhbw?oc=5",
+          "domain": "deccanchronicle.com",
+          "published_ms": 1794486467000,
+          "kind": "news"
+        },
+        {
+          "title": "Spotify launches audiobooks in India at Rs 199 per month, introduces platform for authors - Storyboard18",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQb1VhTFBKaUJDdm9nSmFydEJ2N0Y0dENzU1h5Y3VYNVVYMFJfV0xrT3c1ZVFDdkxwZDE0b2ZueF9oV1ctQ05UeUJsdHJtQjc4eDVxZmMzblB1eXhIRzB5MkxIcmFpN2ZGd2VpNWRmNWhWMDJqaFdGV1ctd1FEX2xMX2RuaXhfdjVHVllYaWl1TWFNb2tKdFJGLXAzM3pjYjZxWTNVZ0ljX3NKTkJScERicDN6c21JQktmREk3ck94Zm9HRlg4aXFMMkxheGJrN0NoTmNzZEs2aDIzWDFw0gHiAUFVX3lxTE9RcXVVMnNBb0FEaTZteVk3S016WDJvb1RHaG9mU2xwSFk1R3piZmlXVzhBSHZHM1Bpa1ZJdjItRVlTcS1XRGdtVWtHUEpwUHhDTWVDcHZqUGtJOUtFV0ExRXhEVW51cG1aUFVBaFI2eml1VmpCb2Jpb3lTUDhxeExIZmVBcHpvWUpVRVJoUzQ3WXowOFN3NHpZMTBqUEhsWlNEUlRqTDFpdEVOZHA0N01LZGpxMUZpd3NKZ0k5Q0oteGxsRDRhOHItRklfQTZFamNKTVpGR0hSTWx5TkpiOVh2M0E?oc=5",
+          "domain": "storyboard18.com",
+          "published_ms": 1794568615000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Spotify",
+        "daily_views": 2015,
+        "ratio": 0.85
+      },
+      "youtube": {
+        "median_views": 131,
+        "competitors": [
+          {
+            "id": "R4mZlJulvSE",
+            "title": "Spotify Audiobooks How to Get Discovered, Get Paid, and Create for Free shorts #shorts #spotify",
+            "channel": "clipscentral",
+            "views": 442
+          },
+          {
+            "id": "tNQeL9cGo9Y",
+            "title": "How to Get Audiobooks from Spotify as Local Files",
+            "channel": "AudFree",
+            "views": 282
+          },
+          {
+            "id": "LNRVsdPtP0U",
+            "title": "Spotify Audiobooks Are Going From 22 To 180+ Markets #shorts #spotify #audiobooks",
+            "channel": "Kompile",
+            "views": 226
+          },
+          {
+            "id": "HOo_Rq6Ss8M",
+            "title": "How to Listen to Audiobooks on Spotify (Easiest Way) (2026 Guide)",
+            "channel": "Just Ask Dave",
+            "views": 154
+          },
+          {
+            "id": "qsyfEXDp0Eo",
+            "title": "KDP Cuts Book Limits While Spotify Offers Free Audiobooks",
+            "channel": "Monique Joiner Siedlak",
+            "views": 131
+          },
+          {
+            "id": "wlUWlk1wQDo",
+            "title": "Are Free AI Audiobooks Good News for Authors?",
+            "channel": "Endeah Canty",
+            "views": 88
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 48,
+          "curiosity": 60,
+          "relevance": 70,
+          "visual": 60,
+          "source_quality": 30
+        },
+        "total": 63.1,
+        "newest_hours": 7,
+        "domains": [
+          "wisevoter.com",
+          "publishingperspectives.com",
+          "janefriedman.com",
+          "womansworld.com",
+          "ppc.land",
+          "moneycontrol.com",
+          "tradingview.com",
+          "deccanchronicle.com",
+          "storyboard18.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: Meta's Muse AI Agent Expands to Smartwatches"
+      ],
+      "wave": 1
+    }
+  ]
+}

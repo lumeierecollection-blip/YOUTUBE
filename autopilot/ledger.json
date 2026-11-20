@@ -1293,7 +1293,12 @@
       "attempts": 1,
       "run_id": "44787641698",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T17:54:06.965Z"
+      "updated_at": "2026-11-20T18:22:28.592Z",
+      "stage": "research",
+      "topic": "Google Gemini Partners With Watch Duty to Clear Firefighter Radio Static",
+      "score": 84.1,
+      "pillar": "AI productivity and money-saving uses",
+      "hook": "Google Gemini is being used to clear out heavy static from real-time firefighter emergency radio channels."
     }
   },
   "uploads": [
@@ -2717,6 +2722,15 @@
       "at_ms": 1795164174114,
       "score": 75.8,
       "pillar": "New AI features and releases"
+    },
+    {
+      "channel": "2",
+      "topic": "Google Gemini Partners With Watch Duty to Clear Firefighter Radio Static",
+      "slug": "google-gemini-partners-with-watch-duty-to-clear-firefighter-",
+      "slot": "2026-11-20-ch2",
+      "at_ms": 1795198948592,
+      "score": 84.1,
+      "pillar": "AI productivity and money-saving uses"
     }
   ],
   "attention": [
