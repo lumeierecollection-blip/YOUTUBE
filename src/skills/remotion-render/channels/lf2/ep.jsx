@@ -145,8 +145,8 @@ function useJson(path) {
  *  modern borders, each power in one flat colour, big spaced serif capitals for realms, italic capitals for water, small serif for places; routes drawn as
  *  arrows; flag tokens for armies; commander plates and cut-out figures over the map edge. Camera: views [{ f, center: [lon, lat], scale }] (Mercator).
  *  realms: [{ key: "england"|"normandy"|"norway", color, from }] from public/lf2/hidden-past/geo/hastings-realms.json (modern outlines, said on screen). */
-export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], points = [], plates = [], figures = [], armies = [], towns = [], rivers = true, note, credit = "Base: Natural Earth (public domain) · rivers: Natural Earth · realm outlines: OpenStreetMap contributors, modern boundaries" }) {
-  const f = useCurrentFrame(), base = useJson("lf2/hidden-past/geo/europe-50m.json"), rl = useJson("lf2/hidden-past/geo/hastings-realms.json"), rv = useJson("lf2/hidden-past/geo/hastings-rivers.json"), c = t.ep;
+export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], points = [], plates = [], figures = [], armies = [], towns = [], rivers = true, geo = {}, note, credit = "Base: Natural Earth (public domain) · rivers: Natural Earth · realm outlines: OpenStreetMap contributors, modern boundaries" }) {
+  const f = useCurrentFrame(), base = useJson(geo.base || "lf2/hidden-past/geo/europe-50m.json"), rl = useJson(geo.realms || "lf2/hidden-past/geo/hastings-realms.json"), rv = useJson(geo.rivers || "lf2/hidden-past/geo/hastings-rivers.json"), c = t.ep;   // geo: other episodes pass their own base/realms/rivers files
   let i = 0; while (i < views.length - 2 && f > views[i + 1].f) i++;
   const A = views[i], B = views[Math.min(i + 1, views.length - 1)], k = A === B ? 0 : interpolate(f, [A.f || 0, B.f], [0, 1], { ...clamp, easing: eio });
   const proj = geoMercator().center([A.center[0] + (B.center[0] - A.center[0]) * k, A.center[1] + (B.center[1] - A.center[1]) * k]).scale(Math.exp(Math.log(A.scale) + (Math.log(B.scale) - Math.log(A.scale)) * k)).translate([960, 540]);

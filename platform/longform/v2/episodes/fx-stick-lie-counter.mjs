@@ -45,7 +45,7 @@ export const EPISODE = {
       room("kitchen", [C("dad", 760, { pose: "point", mood: "neutral", badge: B(1, "mid", 0) }), C("me", 1200, { pose: "think", mood: "neutral", flip: -1, badge: B(1, "mid", 0) })])),
     beat("Rule three, and this is the scary one: nobody else can see them. I asked my mom what the number over my head said. She checked my forehead for a fever.",
       room("kitchen", [C("mom", 760, { pose: "point", pose2: "think", poseAt: 120, mood: "sad", look: 1, badge: B(0, "high", 0) }), C("me", 1200, { pose: "shrug", mood: "shock", flip: -1, badge: B(1, "mid", 0) })])),
-    beat("And rule four: it resets at midnight. Every day, everyone starts clean.", { type: "fxchart", kind: "bars", title: "The rules", bars: [{ label: "out loud", v: 0.9, tone: "mid" }, { label: "not mistakes", v: 0.6, tone: "high" }, { label: "only I see", v: 0.75, tone: "low" }, { label: "resets 00:00", v: 0.45, tone: "mid" }] }),
+    beat("And rule four: it resets at midnight. Every day, everyone starts clean.", { type: "fxchart", kind: "list", title: "The rules", bars: [{ label: "Only lies said out loud, today", tone: "mid" }, { label: "Mistakes don't count", tone: "high" }, { label: "Nobody else can see the badges", tone: "low" }, { label: "Everything resets at midnight", tone: "mid" }] }),
     // ---- school
     beat("Then I got to school, and I stopped breathing for a second. Because the numbers were everywhere.",
       room("street", [C("me", 300, { pose: "stand", mood: "shock", walk: { from: 0, to: 760, dur: 120 } }), C("kid1", 1200, { pose: "stand", mood: "happy", badge: B(3, "mid", 40) }), C("kid2", 1560, { pose: "wave", mood: "smug", flip: -1, badge: B(9, "low", 50) })])),

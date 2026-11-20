@@ -375,5 +375,74 @@
         }
       }
     }
+  },
+  "fx-doc": {
+    "ep": {
+      "_map": "map palette re-measured 20 Nov 2026 from Epic bhQe2cjr5XQ political maps (grey paper, crimson/royal-blue realms, black caps); the orange RlKJDwViNKs palette belongs to illustrated art, not maps",
+      "_from": "Epic History TV bhQe2cjr5XQ formula (text cards on black, caption plates, flat-colour campaign map, orange casualty card, red credits) in the channel own palette",
+      "paper": "#EBE1CA",
+      "ink": "#24190F",
+      "black": "#0B0A09",
+      "red": "#A8201A",
+      "blue": "#2E4C86",
+      "gold": "#C9A24B",
+      "orange": "#C2602A",
+      "england": "#C23A4C",
+      "normandy": "#4A5EA6",
+      "norway": "#B9973F",
+      "route": "#1A1A1A",
+      "sea": "#A7BBC7",
+      "land": "#E3DFD7",
+      "border": "#B7B0A4",
+      "mapInk": "#1C1A17",
+      "khaki": "#B5A764",
+      "khaki2": "#CFC49A",
+      "water": "#A9C3CF",
+      "arrow": "#C9F28B",
+      "cavalry": "#1F3566",
+      "map": {
+        "label": "#20170E",
+        "labelBg": "rgba(240,231,210,0.9)",
+        "zone": "#A8201A",
+        "font": "\"Cormorant Garamond\", \"Noto Serif\", serif"
+      },
+      "usa": "#3F5FA8",
+      "denmark": "#B8343F",
+      "greenland": "#E9E4DA",
+      "canada": "#C9A15A",
+      "iceland": "#7E9C7A",
+      "russia": "#7A6A8E",
+      "uk": "#8A8F98"
+    },
+    "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
+    "map": {
+      "label": "#FFFFFF",
+      "labelBg": "rgba(12,14,18,0.86)",
+      "zone": "#D7263D",
+      "font": "\"Roboto Condensed\", sans-serif"
+    },
+    "route": "#FFD23F",
+    "route2": "#FFFFFF",
+    "held": "#D7263D",
+    "water": "#3FA9F5",
+    "accent": "#D7263D",
+    "countries": {
+      "West Germany": "#F2C14E",
+      "Sweden": "#3FA9F5",
+      "France": "#5B8DEF",
+      "United Kingdom": "#E5484D",
+      "United States": "#9AD06B",
+      "Poland": "#F28C8C",
+      "Bulgaria": "#55C2A2",
+      "Czechoslovakia": "#C69CF2"
+    },
+    "_note": "Faceless experiment pilot A (documentary). Okeanos-like dark ground, red label banners; map palette for the Arctic story.",
+    "doc": {
+      "ground": "#141210",
+      "ground2": "#2A241D",
+      "red": "#B3261E",
+      "gold": "#D2A85B",
+      "mark": "rgba(230,190,60,0.55)"
+    }
   }
 }
