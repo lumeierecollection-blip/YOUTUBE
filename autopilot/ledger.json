@@ -1289,16 +1289,17 @@
     },
     "2026-11-20-ch2": {
       "channel": "2",
-      "status": "running",
+      "status": "failed",
       "attempts": 1,
       "run_id": "44787641698",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T18:22:57.918Z",
+      "updated_at": "2026-11-20T18:31:14.616Z",
       "stage": "script",
       "topic": "Google Gemini Partners With Watch Duty to Clear Firefighter Radio Static",
       "score": 84.1,
       "pillar": "AI productivity and money-saving uses",
-      "hook": "Google Gemini is being used to clear out heavy static from real-time firefighter emergency radio channels."
+      "hook": "Google Gemini is being used to clear out heavy static from real-time firefighter emergency radio channels.",
+      "error": "1 topic(s) tried, none usable. Last: script failed its gates after 10 passes: Script gate FAILED (BLOCKER) for 2/google-gemini-partners-with-watch-duty-to-clear-firefighter--shorts:\n  - SCR-17 STRICT (strict_visual channel): 1 sentence(s) ground no figure, date, place, list, comparison, document, money object or cause/sequence — every beat must draw a real visual, and naming an entity is not one (a name plate is a text card). Rewrite each one to state a sourced number, date, place, a list, a comparison or a cause/effect the frame c"
     }
   },
   "uploads": [
