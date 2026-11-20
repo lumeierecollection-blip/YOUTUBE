@@ -3207,9 +3207,14 @@
           "topic": "Cornell Polymer Fiber Forest Reduces Electronics Operating Temperatures",
           "slug": "cornell-polymer-fiber-forest-cooling",
           "reserved_at": "2026-11-19T17:58:39.833Z"
+        },
+        {
+          "topic": "Sichuan-Yunnan Jinsha River Bridge 1,140-Meter Span Engineering Design",
+          "slug": "sichuan-yunnan-jinsha-river-bridge-design",
+          "reserved_at": "2026-11-20T17:16:22.635Z"
         }
       ],
-      "last_generated": "2026-11-19T17:58:39.833Z"
+      "last_generated": "2026-11-20T17:16:22.635Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
