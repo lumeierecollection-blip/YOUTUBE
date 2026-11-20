@@ -1,17 +1,183 @@
 {
-  "generated_at": "2026-11-19T14:41:46.406Z",
+  "generated_at": "2026-11-20T08:41:06.076Z",
   "waves": [
     {
       "wave": 1,
       "item_count": 170,
       "sources": [
         {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:openai.com",
+          "ok": true,
+          "items": 1418
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:Claude AI new feature",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "reddit:OpenAI",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "bing-news:AI scam deepfake",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:viral AI tool",
+          "ok": true,
+          "items": 5
+        },
+        {
           "source": "reddit:ClaudeAI",
           "ok": false,
           "error": "HTTP 403"
         },
         {
+          "source": "bing-news:free AI tools",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI hallucination mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:AI agent uses computer",
+          "ok": true,
+          "items": 9
+        },
+        {
+          "source": "bing-news:ChatGPT new feature",
+          "ok": true,
+          "items": 12
+        },
+        {
+          "source": "bing-news:AI replacing jobs",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:ChatGPT new feature",
+          "ok": false,
+          "error": "HTTP 429"
+        },
+        {
+          "source": "google-news:Gemini AI new feature",
+          "ok": true,
+          "items": 27
+        },
+        {
+          "source": "bing-news:Gemini AI new feature",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI agent uses computer",
+          "ok": true,
+          "items": 28
+        },
+        {
+          "source": "google-news:viral AI tool",
+          "ok": true,
+          "items": 22
+        },
+        {
+          "source": "bing-news:AI hallucination mistake",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "feed:blog.google",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:AI replacing jobs",
+          "ok": true,
+          "items": 47
+        },
+        {
+          "source": "google-news:free AI tools",
+          "ok": true,
+          "items": 43
+        },
+        {
+          "source": "google-news:AI scam deepfake",
+          "ok": true,
+          "items": 52
+        },
+        {
+          "source": "feed:arstechnica.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "google-news:Claude AI new feature",
+          "ok": true,
+          "items": 57
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "hacker-news",
+          "ok": true,
+          "items": 40
+        }
+      ]
+    },
+    {
+      "wave": 2,
+      "item_count": 170,
+      "sources": [
+        {
+          "source": "feed:techcrunch.com",
+          "ok": true,
+          "items": 20
+        },
+        {
+          "source": "feed:theverge.com",
+          "ok": true,
+          "items": 10
+        },
+        {
           "source": "reddit:ChatGPT",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:artificial",
+          "ok": false,
+          "error": "HTTP 403"
+        },
+        {
+          "source": "reddit:ClaudeAI",
           "ok": false,
           "error": "HTTP 403"
         },
@@ -21,19 +187,24 @@
           "error": "HTTP 403"
         },
         {
-          "source": "feed:theverge.com",
+          "source": "feed:openai.com",
           "ok": true,
-          "items": 10
+          "items": 1418
         },
         {
-          "source": "feed:techcrunch.com",
+          "source": "bing-news:AI photo editing app",
           "ok": true,
-          "items": 20
+          "items": 0
         },
         {
-          "source": "reddit:artificial",
-          "ok": false,
-          "error": "HTTP 403"
+          "source": "bing-news:free AI app launch",
+          "ok": true,
+          "items": 0
+        },
+        {
+          "source": "bing-news:AI browser privacy",
+          "ok": true,
+          "items": 0
         },
         {
           "source": "feed:arstechnica.com",
@@ -41,9 +212,9 @@
           "items": 20
         },
         {
-          "source": "feed:openai.com",
+          "source": "bing-news:AI phone feature new",
           "ok": true,
-          "items": 1413
+          "items": 0
         },
         {
           "source": "feed:blog.google",
@@ -51,298 +222,850 @@
           "items": 20
         },
         {
-          "source": "google-trends",
-          "ok": true,
-          "items": 10
-        },
-        {
-          "source": "bing-news:Claude AI new feature",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:ChatGPT new feature",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:viral AI tool",
-          "ok": true,
-          "items": 9
-        },
-        {
-          "source": "bing-news:AI scam deepfake",
-          "ok": true,
-          "items": 12
-        },
-        {
-          "source": "bing-news:Gemini AI new feature",
-          "ok": true,
-          "items": 11
-        },
-        {
-          "source": "bing-news:AI replacing jobs",
-          "ok": true,
-          "items": 10
-        },
-        {
-          "source": "bing-news:AI agent uses computer",
-          "ok": true,
-          "items": 10
-        },
-        {
-          "source": "bing-news:free AI tools",
-          "ok": true,
-          "items": 11
-        },
-        {
-          "source": "bing-news:AI hallucination mistake",
-          "ok": true,
-          "items": 11
-        },
-        {
           "source": "hacker-news",
           "ok": true,
           "items": 40
         },
         {
-          "source": "google-news:AI agent uses computer",
+          "source": "bing-news:AI tool saves money",
           "ok": true,
-          "items": 26
+          "items": 8
         },
         {
-          "source": "google-news:viral AI tool",
+          "source": "google-news:ChatGPT vs Claude test",
           "ok": true,
-          "items": 22
+          "items": 34
         },
         {
-          "source": "google-news:AI replacing jobs",
+          "source": "bing-news:ChatGPT vs Claude test",
           "ok": true,
-          "items": 40
+          "items": 10
         },
         {
-          "source": "google-news:Gemini AI new feature",
+          "source": "bing-news:Copilot new feature",
           "ok": true,
-          "items": 31
+          "items": 11
         },
         {
-          "source": "google-news:AI hallucination mistake",
+          "source": "bing-news:AI video generator viral",
           "ok": true,
           "items": 9
         },
         {
-          "source": "google-news:Claude AI new feature",
+          "source": "bing-news:AI voice clone",
           "ok": true,
-          "items": 27
+          "items": 7
         },
         {
-          "source": "google-news:AI scam deepfake",
+          "source": "bing-news:AI customer service replaced",
           "ok": true,
-          "items": 46
+          "items": 12
         },
         {
-          "source": "google-news:free AI tools",
+          "source": "google-news:AI browser privacy",
           "ok": true,
-          "items": 38
+          "items": 13
         },
         {
-          "source": "google-news:ChatGPT new feature",
+          "source": "bing-news:AI agent mistake",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "bing-news:students using AI",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "bing-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-trends",
+          "ok": true,
+          "items": 10
+        },
+        {
+          "source": "google-news:Gemini vs ChatGPT comparison",
+          "ok": true,
+          "items": 34
+        },
+        {
+          "source": "google-news:AI tool saves money",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "bing-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 8
+        },
+        {
+          "source": "google-news:AI voice clone",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:AI agent mistake",
+          "ok": true,
+          "items": 32
+        },
+        {
+          "source": "google-news:free AI app launch",
+          "ok": true,
+          "items": 30
+        },
+        {
+          "source": "google-news:AI customer service replaced",
           "ok": true,
           "items": 28
+        },
+        {
+          "source": "bing-news:Meta AI app",
+          "ok": true,
+          "items": 11
+        },
+        {
+          "source": "google-news:AI photo editing app",
+          "ok": true,
+          "items": 33
+        },
+        {
+          "source": "google-news:Copilot new feature",
+          "ok": false,
+          "error": "HTTP 429"
+        },
+        {
+          "source": "google-news:Meta AI app",
+          "ok": true,
+          "items": 37
+        },
+        {
+          "source": "google-news:AI video generator viral",
+          "ok": false,
+          "error": "HTTP 429"
+        },
+        {
+          "source": "google-news:AI chatbot wrong answer",
+          "ok": true,
+          "items": 31
+        },
+        {
+          "source": "google-news:students using AI",
+          "ok": true,
+          "items": 100
+        },
+        {
+          "source": "google-news:AI phone feature new",
+          "ok": true,
+          "items": 71
         }
       ]
     }
   ],
   "candidates": [
     {
-      "topic": "Google Makes Gemini AI Task Mode Free for Everyone",
+      "topic": "AI Falsely Flags Doritos Bag as a Gun, Leads to Lawsuit",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        6,
+        64
+      ],
+      "hook": "High school students are suing after an AI security system mistook a bag of Doritos for a weapon.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "AI gun detection error Doritos",
+      "evidence": [
+        {
+          "title": "Black high school students sue after AI mistakes Doritos bag for gun",
+          "url": "https://www.lawyerscommittee.org/lawyers-committee-files-lawsuit-on-behalf-of-black-students-detained-and-searched-due-to-ai-alert-falsely-identifying-a-bag-of-chips-as-a-firearm/",
+          "domain": "lawyerscommittee.org",
+          "published_ms": 1795049840000,
+          "points": 117,
+          "kind": "hn",
+          "id": 6
+        },
+        {
+          "title": "Traumatized teens sue school, cops after Doritos bag triggers AI gun alert",
+          "url": "https://arstechnica.com/tech-policy/2026/11/traumatized-teens-sue-school-cops-after-doritos-bag-triggers-ai-gun-alert/",
+          "domain": "arstechnica.com",
+          "published_ms": 1795119568000,
+          "kind": "feed",
+          "id": 64
+        },
+        {
+          "title": "Lawyers’ Committee Files Lawsuit on Behalf of Black Students Detained and Searched Due to AI Alert Falsely Identifying a Bag of Chips as a Firearm - Lawyers' Committee for Civil Rights Under Law",
+          "url": "https://news.google.com/rss/articles/CBMiiwJBVV95cUxPR0xXT1I3ejVfWnVrTUI2NFNBRkNTSVR4ZjhGUGlCeVhnajdOQ0llUzNSeTdqb25zQkRubTFtYURQX0xoQ0hTUEhYOVBKVmI0ZV90NXRVOHYwcHY4M1NvdXppdXF6V0t4cTdSdWhiQ1JhWUFhMS1MTGhuQ1lPczI2NXlwOGZadDg3UFFzWVJsYlFRVGctZjc5Y2JyTDRVYlUzU2JOaDdJdkxPQi1Sc2NiZlpKMkR5cnlSbUpOeThjU2NjYmcwTVc2LS15SVJEeWx2Q3pMWUxaWlRpdUJMVlFLYnFvQlB3OWVNWk1fNEh1ZWszTnZxOHlKQ1M2VzRQRzdYMmIxem8tczhmT3c?oc=5",
+          "domain": "lawyerscommittee.org",
+          "published_ms": 1794943423000,
+          "kind": "news"
+        },
+        {
+          "title": "A.I. Mistook a Bag of Chips for a Gun, Teenagers’ Lawsuit Says - The New York Times",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQYUlPb1V1MVNTNVIyR3NlWmg5QV9qZ1FPbUY1OG9NeUFjcnBVbFpreml6M1VGM2c4OGd0ckkzR2JjSTFsbHM2cDFkRHpEMGx0RzM1dVdjMVZSak8tcXlaVDVCV0hIS1ZQY2xhdjdERnJSQ1lHSHRsc1FmM2VkbWtWNA?oc=5",
+          "domain": "nytimes.com",
+          "published_ms": 1794969455000,
+          "kind": "news"
+        },
+        {
+          "title": "Four Maryland high school students sue after AI mistakes Doritos bag for gun - The Guardian",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQSF91bW51a2g2SHNIZjBOd0lXSDEzNUtKRVBHNDFGSnZCNjlQWGpBbmZOTkJTcVliamhleExMaWJla1E0dWdMTTBLRmI5Q0NSSmZkU2RVMzlwYmpVd1FNT0ItTnJWbUY0alM2bnlaUVBxUUx5a214ZE44WjZhYkl0UGQ3ZXhGNHhIclFTelphMzJSc2Q5eFRaSkdKX3g?oc=5",
+          "domain": "theguardian.com",
+          "published_ms": 1795045980000,
+          "kind": "news"
+        },
+        {
+          "title": "Baltimore County students sue over AI system that mistook Doritos bag for gun - CBS News",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQcEoxMF9fQ082Y2F4YUVoUG11czV0V3k3SjU2TDQ2d0xVNUtGYzVOU0lYdk1Ta3lfaF9PSU8wbTlpRnRjbXRZUkVfdXZ3Ykphc3NVT2dSblRqbTJ5RTVub3hLZGFINVdvcS11N3RlX1FyNmI1MFNWZE8zc0V5RGswa3ZwbXZLU2ZnNWZpVWRzdzhjUDcyVTRNVkhEUXRGVTdxNi1VSjV5cFE5dVNfQnByaHh3?oc=5",
+          "domain": "cbsnews.com",
+          "published_ms": 1795054858000,
+          "kind": "news"
+        },
+        {
+          "title": "Traumatized teens sue school, cops after Doritos bag triggers AI gun alert - Ars Technica",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOcW1odjgxUEpKSVJhOS1jM0JLSHRlczZfcGZKM3M1UVJEWU9QZGg2dWdOM2tEWkdTSEdfeFY4U01WUU0wX1RxeFlRV2dFOUJySi1JdW9feWVHM2ZEamxhNzZjR0JtdUxlTzc5WlNmUmZSckhVX2o4TjROQzYzNTl5YTlLWllkek95cm0zdU1mWE11QXFJazFZVVR3OTBkMkpvRnNlMnVBT1U2SDJYM2s2Y0VzRURTVUYwV3c?oc=5",
+          "domain": "arstechnica.com",
+          "published_ms": 1795119568000,
+          "kind": "news"
+        },
+        {
+          "title": "AI Mistakes Doritos Bag for a 'Gun'; Four Black High School Students in the US Sue Omnilert and County - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB2cElHelR1dm1HYkhXbm5QUlQ2cDlMWlFaU0h0d2tkNUtjY2dxWm9uVS1XSzJZNUZySW5BTmtxWXlsMGV0alYtaXVXamUtWmlNX09wQTYtcEprajhJdzZwS2ZqZ2ctS3N4XzVVbndoeU1CU0thdVE?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1795131300000,
+          "kind": "news"
+        },
+        {
+          "title": "Baltimore students' lawsuit says AI system mistook Doritos bag for gun - USA Today",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPMFlGNVg5NVV0SWVvb1dQOTlha0JSRllLVU9NdnBhOGhvbjZnOU1oMzBCM2o2OWlZdHBtSXZUbFZlUE5mVmRfMjNpSVFGdUhtWF9Vbzg5dC1IV0stOVBSSVF6NEphUGlNYzBBSHlZaTI3YjltdjVybFdTRjYzQWhuS3NEa20xVFhOaTJiOUZVWktGMVg1Z1M3TU8yREh3WXRfdHI4R1FsUUkwNFhhNHFkZ09B?oc=5",
+          "domain": "usatoday.com",
+          "published_ms": 1795129440000,
+          "kind": "news"
+        },
+        {
+          "title": "What Is Omnilalert? School AI System Allegedly Mistook Doritos for Gun - Newsweek",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPdVg1QTc0NnYxVFlRZjVFUVMzTzJycHJOSEZRaWUwWTFiVjMzOE9zVnk3V2RGdHJCMUpRZHhZNWlhRVVhczFDVk5VVkh2R0ZPRUJ4TFczX1NWWDc4Rk1wRVVvZU1RcWx2a2tndklYcVZBd1BGMVV4UktJRFplQ0hOSW9nRndEeEQtdE1NMHc2ZFJXbnBQWUtQZ3NMLVJ0amFzYlZTQkt3?oc=5",
+          "domain": "newsweek.com",
+          "published_ms": 1795111560000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 14807,
+        "competitors": [
+          {
+            "id": "fqAoCNsXC3A",
+            "title": "I Secretly Snuck Into A Grocery Store!",
+            "channel": "Zhong",
+            "views": 5365260
+          },
+          {
+            "id": "DDgJqlYDadQ",
+            "title": "Elon Musk, Candace Owens, & The MAGA Civil War Over Israel That Could Change Everything",
+            "channel": "Philip DeFranco",
+            "views": 589329
+          },
+          {
+            "id": "XxCC9-SRZOs",
+            "title": "The Hallway Where Every Casino Heist Falls Apart - 100% Career Progress Challenge #58",
+            "channel": "DarkViperAU",
+            "views": 90368
+          },
+          {
+            "id": "Wp4aKzmYCK4",
+            "title": "AI Mistakes Bag of Chips for Gun. Four Black Teens Handcuffed at Gunpoint!",
+            "channel": "Roland S. Martin",
+            "views": 17515
+          },
+          {
+            "id": "P7gSfNi7fJE",
+            "title": "系統面板亮起的瞬間，他把鐵鍋燒到冒煙，蛋炒飯的鍋氣衝出巷口，富商、學院的少爺、拄杖的老者擠在同一條隊伍裡，只為等一個位子。# 系統流 #美食 #御獸 #逆襲",
+            "channel": "莹光漫剧社",
+            "views": 14807
+          },
+          {
+            "id": "QiVAVueGZUo",
+            "title": "This AI Was Programmed to Save Humanity. Its Solution Horrified Everyone",
+            "channel": "Spacialize",
+            "views": 6037
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 95,
+          "reach": 70,
+          "curiosity": 90,
+          "relevance": 80,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 84.6,
+        "newest_hours": 9,
+        "domains": [
+          "lawyerscommittee.org",
+          "arstechnica.com",
+          "nytimes.com",
+          "theguardian.com",
+          "cbsnews.com",
+          "finance.biggo.com",
+          "usatoday.com",
+          "newsweek.com"
+        ],
+        "trusted_domains": [
+          "arstechnica.com",
+          "nytimes.com",
+          "theguardian.com"
+        ]
+      },
+      "rejected": [
+        "too similar to recent topic: Wife Uses ChatGPT to Plan Murder Lawsuit"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Apple Working on Computer-Use AI Agent to Rival Competitors",
       "pillar": "Trending AI tools and apps",
       "evidence_ids": [
-        48,
-        69,
-        70,
-        80,
-        109,
-        125,
-        126,
-        134,
-        143,
-        155
+        18,
+        24,
+        25,
+        29,
+        32,
+        33,
+        34,
+        38,
+        39,
+        43,
+        44,
+        46,
+        49,
+        60,
+        62,
+        89,
+        98,
+        101
       ],
-      "hook": "Google just made its advanced Gemini AI task features completely free, letting you delegate real-world chores like booking and shopping.",
+      "hook": "Apple is reportedly developing a powerful AI agent that can browse the web, use apps, and write code for you.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "Apple Inc.",
+      "commons_query": "",
+      "youtube_query": "Apple computer use AI agent",
+      "evidence": [
+        {
+          "title": "Apple Reportedly Developing an AI Agent That Can Use a Computer for Users - SSBCrack",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxORmhNbkJobTV2bW9lQ2N6QjJxRllTNldBeVZ4MUJKbkJzM24yV3QwZTRNbTVPOE01Y1VOQUtLcVBXWkktLVM3cnJZbzJRMW5hVl9GdmhXUGVPTlZDTm10MEJmRjg3V3IyWnJsVzJPYVlPTklOajZkZW16LW9PMng4ODJRTWhZZGVoOEtHZlFjdTBvcmdPZ2JVaU9vOEF4QS13RFE?oc=5",
+          "domain": "news.ssbcrack.com",
+          "published_ms": 1795160649000,
+          "kind": "news",
+          "id": 18
+        },
+        {
+          "title": "Apple plans autonomous AI agent to take on OpenAI and Anthropic - Cryptopolitan",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1hcTBWVFlRQWhiUFMwc0hLMHBnUUQwaDN3QkZyQ2duNjJ4bDlDZG40NjBsNVktcGU5T3J0Vmw4WXktWDdMT0lHZkQtRERHN3Qxb09qY2o0NU5oSWJhUEZTeFhZWkc4dUhJbGxNNm1Paw?oc=5",
+          "domain": "cryptopolitan.com",
+          "published_ms": 1795158286000,
+          "kind": "news",
+          "id": 24
+        },
+        {
+          "title": "Is Apple building an AI agent? A job listing describes one that uses apps, browses and writes code - Nacionale",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxPRndyN2QzLTgyNmN5RUFZWFQ2S1lZc1NMaVVjOFhGc0pheEVTU3VDWmM4Yy1fel8yN1Y1SElqbnVEWjVkejdDUGM3dHBKV0JkTEJwbGRyT2liWVpfOGRqeGxvbnRSTlZ5ZGhYLTN3SGVkUjNDSllMLTRIV1RRZUNHaUEwMGU0YVJqY0FoR09lazRYdkRQeGlBUlhzVU9mVVZBdk02ZDN5OHdDbmRmVlFOYnRyUlJpUQ?oc=5",
+          "domain": "nacionale.com",
+          "published_ms": 1795157428000,
+          "kind": "news",
+          "id": 25
+        },
+        {
+          "title": "Apple is working on its own AI agent that can use apps, browse the web and write code - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPZnViVUhIWFpQTHpiUUJYTHk1Vy1wNFN6eG1OMFNvX2VSYTJvQzZtU0tzQ2g5QWI4SDZWa0JiOFlhRTdOWGZ4MTRhRjEzR2E1VWx0dGlvSFNRclNpZDdDZHBUa3pYSG9HX0ZRQ1BqMjBURDRNUnhqVHFUcFE3WUVPdEJhTEctQ3kwMkozVDBXdjlub2Z3ZHZtUkt6Yk5UUEJIX2loa284eEs1bWNROTI4enJkTVJ4MThJYWlsUlhpSUpNWjgxMXVqV2ZwVS05d2U2ZjBRQ29qMTR5cU9iSVZIb1ZyREJVUdIB6wFBVV95cUxNSElmNFZCNURDdjB6Vzd4R1BXTXU4ZWgyYl9Mb3l0Tk9kUEJvUGpoeUJjOWhzWkJoaHNHQXBrRUVKMmZqeUZsdkg1eXgtZWhXWDNsYURsYVpOSHNXQVpxZW5ZZkV6TGd5V0w0YzM4SFpQS1l6dGNLRWd4Y0VHanl0eXZ5YWZqQ2NUY3FqRUdDNDRkSkNRcWNOcGJ1VVMyX1MyWXMyc25Gc0huVE9UcWFXXzlVQzVsRFU2ZUMyWUxOWlZUUjJCellRX2V3V3p6dmtqRnBlLXh3VkdpbktKMGlQSUZ6eFRnM1NiZ3Fz?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1795151716000,
+          "kind": "news",
+          "id": 29
+        },
+        {
+          "title": "Apple Is Reportedly Building Its Own Full-Featured AI Agent - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOV2E3dktaZ3ZZMHIwaVNZdXRmOEE1V3BnVlRlRUNtOE5XbmRCSWsxZGRrOThNcXp1Ulc1c3R2aDFVT3c1ZXZtUGZROEVTak5jaC1OVHc1ZWMtWkgzV2ttaUg0Z1M3QVNYbER3bEYydTJSdXVRdlJDM2dIZXFuZjhKQ3VmaE9iVTR0YkpsMjlFYkpnWmMw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1795150855000,
+          "kind": "news",
+          "id": 32
+        },
+        {
+          "title": "Apple Job Listing Points to an AI Agent That Uses Your Computer - ShiftDelete.Net",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTFBFZXJpU2V6bmFBRnpGZDdadC1jbVVVS0JHTHprS0MzREc0UjdvOWhmcUpiNjhYLWxYQ3lPaHQtckJkajYwTWdEYzRycnM0bVRvOTM2S2RzcV96dk9fNERfNVU2NA?oc=5",
+          "domain": "shiftdelete.net",
+          "published_ms": 1795150627000,
+          "kind": "news",
+          "id": 33
+        },
+        {
+          "title": "Apple reportedly has a Mac AI agent in the works - Tbreak UAE",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTFBjcjlOd1o0M2RoVG1WTHlEUV8wWFZIWUU0b1Y4c25WbkZXaG1pQW9FN01ENl9sMWg4cW1kZGlrRkFvUVNZc28yVnRUQUNySU45aHVYNk5KV2g?oc=5",
+          "domain": "tbreak.com",
+          "published_ms": 1795147860000,
+          "kind": "news",
+          "id": 34
+        },
+        {
+          "title": "Apple may launch its own AI agent for Mac that can browse websites, use apps and write code - Livemint",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPaFBvU2syMDEwNFBKdWlYS01FMU1Ja0lRSEs2NDN6UnFZRFRUeS0tQ05zTmxtQnZ3aWRNb2pEdnJINndCQ1ByaGg2UHo3V1Q2VHRWSWFBbGxPLTIyckZodVFlX1p1VGtmX1pTZVA3U0F1anNvQ0pBa0V1dUpkLW8zMjdESlo0V1FhcGFRbFBoNTFvSkRVNjRZSFMyeTZRMVNqWjhCaW1FV3ZxMjlTdFFTd2dnZUcta2xIM1pBSm1NRTRjTkM3QnF2LTVJQVZ2WGdRZ016ONIB2gFBVV95cUxNR1NuclVCRWNKR3hhdEo5N2h0Y0ROaUZpcWdPU1BjbXpER3pNVjN6ZWVPb3lZbTAyM08ta3RIYWdLQzRveFBtYlJBVnhFdldraGtCQUExUmJaR2ZBam5XUUxDS2E5QUc3VjR4dWxDZGEyRXItblViY2tqSGFWRnFiZzFmQUVaV1hvVFljVlJXMnc5eGV0cU5VSnNVTzZ3UEY3S0F4ZzRWU2JTQ3lxVTRlRHNQV0otY2V3ZlROajRPeWdieGhlZE14a1h5RHFMS2RNUzV4YVJDWjVDdw?oc=5",
+          "domain": "livemint.com",
+          "published_ms": 1795144892000,
+          "kind": "news",
+          "id": 38
+        },
+        {
+          "title": "Apple job listings reveal plans for AI agent that can use apps and write code - Business Upturn",
+          "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQb1loZWRyVGEydTQyUlFzMlA5UG5yWDlGZ0trREtZZjRQNTZEeFRieU5RdDNEYy1vaW5sRERHdGNyY3p6TWNDRmV6dDBDTUpRemtsci1XNGxRa2wyVWJxV3d2SmNYeDNmVTh4NHpVNU10UFJNMFZfRHlLcVZlaS0wWkt2Mk96LWlnTzhoUVpiMXdYSWFKNGVMSXVJNWFKNDZQTjF5VmtRQzdPZF9NU3FoY0NJb1lwTFE?oc=5",
+          "domain": "businessupturn.com",
+          "published_ms": 1795144407000,
+          "kind": "news",
+          "id": 39
+        },
+        {
+          "title": "Apple steps up development of general-purpose AI agent to operate computers beyond Siri - 디지털투데이",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQMEUxVzRRWjJpVjcyd1F0Vll2VGxqUzhNOHpRSjdUVEh6NE9JS2xUbGZIUVpzVmFSLTZCSGY0ak0teUtGdy03R0g0ZFh4QjBtX2NWRllYRDNPeU9PVF9nOXlFQUptYkV4dmViYWhoRHVWRkJpN2l4Q0EzZEkzQUE3OS1kalZZVDBOOWw0bW0yVElCOU1IYlBzekg0bFJqclpLTFNzM09yY1J0VFNZTk5iOW0wQlotdTRlTzRjOVlzZzFSbVBHTFlhcWppak5EUQ?oc=5",
+          "domain": "digitaltoday.co.kr",
+          "published_ms": 1795140596000,
+          "kind": "news",
+          "id": 43
+        },
+        {
+          "title": "Apple Job Listings Show It’s Building a Computer-Use AI Agent - AndroidPure",
+          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1haG5SVWxFSmdXR2tQb3YwRGwyS2Jna2xQaGtuRFR0TEYyUm5hRzZBejBMLXJtUHRRb3NIRllyM0NTeTBlMUkwNDRRZmxEcmUtaFhPcGRVODlvU00ySVRVb1Q2d2R3SWJ6YkwxOWR0QW0zT0h4Z0Fn?oc=5",
+          "domain": "androidpure.com",
+          "published_ms": 1795137162000,
+          "kind": "news",
+          "id": 44
+        },
+        {
+          "title": "Apple Job Listing Points to an AI Agent That Uses Your Computer",
+          "url": "https://shiftdelete.net/en/apple-ai-agent-job-listing",
+          "domain": "shiftdelete.net",
+          "published_ms": 1795132620000,
+          "kind": "news",
+          "id": 46
+        },
+        {
+          "title": "Apple is hiring engineers to build its own AI agent",
+          "url": "https://www.theverge.com/tech/1038227/apple-ai-agent-engineer-job-listing",
+          "domain": "theverge.com",
+          "published_ms": 1795129981000,
+          "kind": "feed",
+          "id": 49
+        },
+        {
+          "title": "Apple moves beyond Siri AI with plans for autonomous computer-use agent",
+          "url": "https://www.msn.com/en-us/news/other/apple-moves-beyond-siri-ai-with-plans-for-autonomous-computer-use-agent/ar-AA2hPcuk",
+          "domain": "msn.com",
+          "published_ms": 1795122957000,
+          "kind": "news",
+          "id": 60
+        },
+        {
+          "title": "Apple Is Reportedly Building Its Own Full-Featured AI Agent",
+          "url": "https://gizmodo.com/apple-is-reportedly-building-its-own-full-featured-ai-agent-2000842954",
+          "domain": "gizmodo.com",
+          "published_ms": 1795122000000,
+          "kind": "news",
+          "id": 62
+        },
+        {
+          "title": "Apple may be developing its own AI agent that runs your Mac",
+          "url": "https://www.msn.com/en-us/technology/artificial-intelligence/apple-may-be-developing-its-own-ai-agent-that-runs-your-mac/ar-AA2hOVNE",
+          "domain": "msn.com",
+          "published_ms": 1795107361000,
+          "kind": "news",
+          "id": 89
+        },
+        {
+          "title": "Apple is Building an AI Agent That Can Use Apps and Code",
+          "url": "https://www.macrumors.com/2026/11/19/apple-ai-agent-development/",
+          "domain": "macrumors.com",
+          "published_ms": 1795099320000,
+          "kind": "news",
+          "id": 98
+        },
+        {
+          "title": "Apple Is Working on AI Agent for Device Control, Apps, Browsing and Coding",
+          "url": "https://finance.yahoo.com/technology/ai/articles/apple-working-ai-agent-device-214456605.html",
+          "domain": "finance.yahoo.com",
+          "published_ms": 1795095840000,
+          "kind": "news",
+          "id": 101
+        },
+        {
+          "title": "Apple Working on Own AI Agent to Rival OpenAI and Anthropic - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOQzRPX3FrZlMybjdvY2FJVWhVOHU5M2lTTGNPazZYUW0zVlA3ZkVRcWxERk9XM2FvXzgzVDVUaTYwTzVzOXg0TGQtN25fOE9aeTRtUXhqTGE2Q01zQ21iTUg1dmFTNGZQRV9hTDVBV3BjWW4tUzYxXzBVTzA1UzkyOEtySVhfbWZlbmRXSFd1bVZLZElzSThUMmlQVnAyOHJIWUs0YTBNVTBIM29HV2ZieUtzQ1d0SDVIVTA2VTRTYk4?oc=5",
+          "domain": "bloomberg.com",
+          "published_ms": 1795124696000,
+          "kind": "news"
+        },
+        {
+          "title": "Apple is building a computer-use AI agent that goes beyond Siri - RuntimeWire",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOVWJLOUtFRFFyaUpWeWNVaEFabUplVDlNZ0UzVDFHUk5IRnhEcnY4OWNfYXVXZ1B6V19GM0pRczNSMjBDVFdIY0dYRzZIN281QnA0Y3NoSjBUcjVRVTNWRFF2V0JyeDN6ZHVBRndBLXNkVWJHWjNwVjB1RzdMaUNKNnNQQ04telA0QVEzck0yTnFZTE1EWjZLT1RXZw?oc=5",
+          "domain": "runtimewire.com",
+          "published_ms": 1795126199000,
+          "kind": "news"
+        },
+        {
+          "title": "Job posting seemingly confirms Apple is working on its own AI agent for coding and other tasks - Engadget",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNVUZZWUM2VlpwbFZmYzlVdGVIdndVbm1XV295M0hsaWFWRC1IU0taZUhEMVY4dzZjdXBLOTVMdkFwOFZiblZTNjRLenhDUFdxenNjUlotSnNyUC13blRKRkVWU3UtdW9BTndGQXJja0VSZEdfT2JXQnZkaGJXeDFJR0xEYzE4NHh6RkQ5QWNSd3NnZ2I3U1Z2YU1mNmR6OTVZVkdaQll5VXkwVE5CTldDU3ZNSU5zLVNRb212OS1MV1k2RExDd3Jj?oc=5",
+          "domain": "engadget.com",
+          "published_ms": 1795132980000,
+          "kind": "news"
+        },
+        {
+          "title": "Apple Developing AI Agent to Rival Meta and OpenAI - The Information",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPTDFnNjhGLUwyN1Z5c2ZSOWJZd19SZkV6Vl94MDhmZWtPajRKaGozV090MWx0ZkxJa2VSRUtoU19zQzZCeWFHNTlGNkxmblhFakRMQWFVSE9fY3pZUlNsTHVqRWVSbmdrTU5NV2VNZ1FDM3FLeDFkUWNRWHlNdEJBUlJiV3I5WFYwbEhJdQ?oc=5",
+          "domain": "theinformation.com",
+          "published_ms": 1795128540000,
+          "kind": "news"
+        },
+        {
+          "title": "Apple Is Working on AI Agent for Device Control, Apps, Browsing and Coding - Yahoo Finance UK",
+          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOUDFGRDF5R3ZubzBteVA3cy1BMk9MZFMybDZWeGN5dnI0ek8xV0Q4cV9YaVNCcFVtRkRYVWMzQ3JXRG42cVNVd3RONTZ5WW1acnVoNUMwVDFHcHhhQlJldXZXLVJCQTJXeEVqTTlfc1Jhb2czcFVrZUhXZV9rOV9WcGJMemw?oc=5",
+          "domain": "uk.finance.yahoo.com",
+          "published_ms": 1795124696000,
+          "kind": "news"
+        },
+        {
+          "title": "Gemini for Mac Adds Google's Computer Use Feature - Meteora Web",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPeGpjQnQyR3AtQl9IQ1pTcVI4ZjZ4SUxjSmtXZlRzTEo2Z2NtQUpwWnRQNkZNYWQ4MGVRSHpBTWJsdkNIQ1FHTE01VGI5MVlOMjFZREtRWGFUa2ZfS1VQQW1jMXdqTWlLTlZ0TEJ4VEdGUmp6STcxZXBGaHpEMTdTTQ?oc=5",
+          "domain": "meteoraweb.com",
+          "published_ms": 1795118095000,
+          "kind": "news"
+        },
+        {
+          "title": "Apple is working on its own AI agent that can use apps, browse the web and write code - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi6wFBVV95cUxNSElmNFZCNURDdjB6Vzd4R1BXTXU4ZWgyYl9Mb3l0Tk9kUEJvUGpoeUJjOWhzWkJoaHNHQXBrRUVKMmZqeUZsdkg1eXgtZWhXWDNsYURsYVpOSHNXQVpxZW5ZZkV6TGd5V0w0YzM4SFpQS1l6dGNLRWd4Y0VHanl0eXZ5YWZqQ2NUY3FqRUdDNDRkSkNRcWNOcGJ1VVMyX1MyWXMyc25Gc0huVE9UcWFXXzlVQzVsRFU2ZUMyWUxOWlZUUjJCellRX2V3V3p6dmtqRnBlLXh3VkdpbktKMGlQSUZ6eFRnM1NiZ3Fz0gHrAUFVX3lxTE1ISWY0VkI1REN2MHpXN3hHUFdNdThlaDJiX0xveXROT2RQQm9Qamh5QmM5aHNaQmhoc0dBcGtFRUoyZmp5Rmx2SDV5eC1laFdYM2xhRGxhWk5Ic1dBWnFlbllmRXpMZ3lXTDRjMzhIWlBLWXp0Y0tFZ3hjRUdqeXR5dnlhZmpDY1RjcWpFR0M0NGRKQ1FxY05wYnVVUzJfUzJZczJzbkZzSG5UT1RxYVdfOVVDNWxEVTZlQzJZTE5aVlRSMkJ6WVFfZXdXenp2a2pGcGUteHdWR2luS0owaVBJRnp4VGczU2JncXM?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1795151716000,
+          "kind": "news"
+        },
+        {
+          "title": "Apple developing its own AI agent to rival OpenAI, Anthropic and Grok: Report | World News - Hindustan Times",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNbU16QlFsRm1nWTRYMWRFbzNpOF9UdGZOV3NmNDNRLTBhaUR0dVlXWWVwb1BKaUZzWFNVRU1FVTRpX1E0bnZLd3J5VDRNRGI0ZTh4X0h5ZDY4WkVjRnR5U2lIMmV3cndIZjgtV0dlaENEeWlTbWxLRWNEMVlWNmMzdjhMSU1wWHhCQzdtZWJmUExMNUlmd2ZxVmtPWXVWb3c5MEk0SFVULWJHaGxiRThOSW9Bd1otSWJnNWwtaVpLZTlyZUpOOTdHdk5KcGRqZmNVdlNhc9IB2gFBVV95cUxQMktRcm43MEg0OHFWSm5HX3o1SVNQblpRT3hNNm5lcDJSQlgwV3paNkwzNzBRRWY4cW9QWk9kUlRvQ2hBU3I3ZnY4U21mNXc1dTJIQUwybUptbjZOQzlNWWl2ZHV5alBrcW84Y2VUbm5YUGxrQkYxbDd4cTNOMmdncmhqdVE2Q05MN3NuSmwwZ3VLRzNaN29YOXNTVlNCM0lVenMzc1ZOa0tBbThnSzREak91N0xUbExpMnRhUUdOM0xlUlhZWXpNb0ZuU2FuRmhTR2Y3UWxVVFBvUQ?oc=5",
+          "domain": "hindustantimes.com",
+          "published_ms": 1795127221000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Apple Inc.",
+        "daily_views": 5513,
+        "ratio": 1.03
+      },
+      "youtube": {
+        "median_views": 72194,
+        "competitors": [
+          {
+            "id": "LAmjHW1P8V4",
+            "title": "I Turned the Mac Mini M6 into a Private AI Hub",
+            "channel": "Better Creating",
+            "views": 278013
+          },
+          {
+            "id": "GVHxa11wUxY",
+            "title": "I Built an AI Agent That Trades Stocks and made me Money!",
+            "channel": "The Tech Girl",
+            "views": 194304
+          },
+          {
+            "id": "dFTXOt0GBx4",
+            "title": "Can a Mac Mini run local AI? (shocking)",
+            "channel": "Alex Finn",
+            "views": 108311
+          },
+          {
+            "id": "JLs10oOX6NY",
+            "title": "I Tested Local AI on My Mac Studio So You Don't Have To",
+            "channel": "Kai",
+            "views": 83786
+          },
+          {
+            "id": "J55M-rnX-hY",
+            "title": "AI Agents on iPhone Duo Are Just Incredible",
+            "channel": "Paul J Lipsky",
+            "views": 72194
+          },
+          {
+            "id": "AIGFloDQw88",
+            "title": "How to run AI agents on a Mac Mini",
+            "channel": "Adam Stewart Marketing",
+            "views": 9010
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 79,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 84.3,
+        "newest_hours": 1,
+        "domains": [
+          "news.ssbcrack.com",
+          "cryptopolitan.com",
+          "nacionale.com",
+          "indiatoday.in",
+          "gizmodo.com",
+          "shiftdelete.net",
+          "tbreak.com",
+          "livemint.com",
+          "businessupturn.com",
+          "digitaltoday.co.kr",
+          "androidpure.com",
+          "theverge.com",
+          "msn.com",
+          "macrumors.com",
+          "finance.yahoo.com",
+          "bloomberg.com",
+          "runtimewire.com",
+          "engadget.com",
+          "theinformation.com",
+          "uk.finance.yahoo.com",
+          "meteoraweb.com",
+          "hindustantimes.com"
+        ],
+        "trusted_domains": [
+          "gizmodo.com",
+          "theverge.com",
+          "finance.yahoo.com",
+          "bloomberg.com",
+          "engadget.com",
+          "uk.finance.yahoo.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Google Gemini Can Now Control Your Mac Automatically",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        13,
+        30,
+        47,
+        50,
+        67,
+        72,
+        73,
+        119,
+        120,
+        157
+      ],
+      "hook": "Google Gemini just got the power to take over your Mac and run apps for you while you sit back.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
         "relevance": 9,
         "visual": 8
       },
       "wikipedia_title": "",
       "commons_query": "",
-      "youtube_query": "Google Gemini free task mode features",
+      "youtube_query": "Google Gemini Mac control",
       "evidence": [
         {
-          "title": "Google Maps Rolls Out Gemini Update On Android And iOS - Geeky Nigeria",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcFFZb0ZtaW1uY0FqM3BTeGdOaDhsd3hXYVdwVEFCajlTTGZCVzlGcHJUOFRaUEZDRzhhdjQxWExMU09VWno3T1N5UW40YTR4czExVzdQeGZPNXZITUdpTHJJNWJNcWgtczRKOVlKVDg1SWpMbTFDLVBDbWczYVgtY0VZbnd6ajlHc09aQVhVbUxfZ01RN0E?oc=5",
-          "domain": "geeky.com.ng",
-          "published_ms": 1795076471000,
+          "title": "Google Gemini has learnt to operate a Mac on its own - UkrMedia News",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9rN2MxWEw3aDFZNzhHcUs0YmZJNk5EdjR2clNORDF2RlJiX1lnTWJBRVBBQjVxSF96blVZM1RVVk5sS21BVWRYSWdLNzhvYXFEWlkzU2t0QXRsbDk4MGlkNzhoTjVhaGpFOFM1R014TWpOSl9TcG1iTg?oc=5",
+          "domain": "ukrmedia.news",
+          "published_ms": 1795162282000,
           "kind": "news",
-          "id": 48
+          "id": 13
         },
         {
-          "title": "Alphabet Launches Gemini Tasks, Deepening Competition in Consumer AI Agents - NAI500",
-          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPYmxKdmdTMjhJRG1LbnpUSkhmLXVscVZ4bkpWT0VqS2M1S01BMjcxTk9JUDF0bko2X3o1MGhNdlhDVEFsZW8wYk1sRDZlMHl6dExSTFZ3T1ItNmZ5S2RYSlg0Y2gyOWlUUEJFMkstcTAzcVVlUmk3bEFGMFBWSXlsa3VfbFkxVDhhR2VmcDVEYi03RGtzY3VSQ1gzRjNGX0REaGJaM1BKV3EzbE0?oc=5",
-          "domain": "nai500.com",
-          "published_ms": 1795060660000,
+          "title": "Gemini Computer Use on Mac: Google’s AI Can Now Run Apps for You - UrduPoint",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNOGlqVlBOZnhmOVE1YngwS21GbVpBdWxROHh4dkFjMnhmd0NDaGNCcHJ3TXZ2QXBnV1ZBNTBjMC1STlc3M3dQMWI0UXhPc3NzSFpqQjdqTzBmcUNZcjg1T01fRGFRNnpuZ2ZGajVWeVdzUFcyZ1EtVkhnVVR2Z2ZfenR2SlJHcHM1ZEtPd21WSzFOS3ZxY1REYklaNDRaWm1KUjluSEp0bXA0dFpJNWtWX2Vnc1hMeHJ1dm9kMFNfU2RuSDFxaTh0YW5Lbm1ieFB0RGtTUzM1bFlJNVk?oc=5",
+          "domain": "urdupoint.com",
+          "published_ms": 1795151102000,
           "kind": "news",
-          "id": 69
+          "id": 30
         },
         {
-          "title": "Google Gemini Offers Free Users AI Task Management Features - Udaipur Kiran",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPU0ttX2hmMFNvbVRIbkF5VGwzbUNYQjMzQXhWV0NId3MyU3FEN2xJTTFQS29udzRDdGZ3ZWYxejFNMFFjaVk5NndvSkZwZmlwSm9vdmp2LVdBQTB5NEYta0F0UkVfYTZTaDl0VDZ6dThybDE0Z2JVYjVLRlhlNjcxb21FWTUwekJYblU5Ni1R?oc=5",
-          "domain": "udaipurkiran.com",
-          "published_ms": 1795058134000,
+          "title": "Google Gemini can now control your Mac while you keep working",
+          "url": "https://tech.yahoo.com/ai/gemini/articles/google-gemini-now-control-mac-075355671.html",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1795132380000,
           "kind": "news",
-          "id": 70
+          "id": 47
         },
         {
-          "title": "Google upgrades Gemini’s agentic Task mode with new model, e-commerce features - SiliconANGLE",
-          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOamFkbTFwa3BNeHN6Z0dMOW8yOFM0T0xMOHllTDBXdURuam1vRFJuVEJiblg4V2xLN1dja2VTN0JJcHFTY2Iwb1lxQURwMnlMYXJWZEprMW55bGFBV2YtaTZyb1FfR01ybk1LMkxEbUYxdFJEMlVDX0wtelozdjNtaHRhMDdWU0Y4bnVNd1g0b1pQUFhpNF9rUjIzUmMwT1VtakFGcllhUnM5MW5Na0h5ekJNdw?oc=5",
-          "domain": "siliconangle.com",
-          "published_ms": 1795046160000,
+          "title": "You Can Finally Use Google Gemini To Control Your MacBook - Mashable India",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNQjJxV196TC1UVlFiSmxwT25xSzM0SHkyREZVYU1aUVpWVF9xSjl5X1hFMUNsbWc3V3hOc09EN0phWFlZZ0o4MmlMYk5peHkwWTZ6YkZZaFV0bzE0ZUdPWlktZ0tiUV9ieFd0ZnBsbDhDNFhKYy1KLUdhaWQ2YndqMDhJU3BjNU84Nzd6cjJhVTRLdUxONnUzLQ?oc=5",
+          "domain": "in.mashable.com",
+          "published_ms": 1795129666000,
           "kind": "news",
-          "id": 80
+          "id": 50
         },
         {
-          "title": "Google Gemini 2026: Free users in India get AI task features for shopping, appointments and daily activities",
-          "url": "https://www.msn.com/en-in/news/other/google-gemini-2026-free-users-in-india-get-ai-task-features-for-shopping-appointments-and-daily-activities/ar-AA2hKr7b",
+          "title": "Google gives Gemini control over Mac computers: Artificial intelligence can now do work instead of users - Gazeta Express",
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNUHpvN2Nnb2I1YlZJQUIzT0RQNmhMLWRTblFGVzBwWFRXdkJ2cVRNSGcxVkFsLVJpdnpYTHpTLTNXb05sTS1ZMTI5eVJfWUJocnhFanJZWlMxLU5Mdnd2LWNRbHdkRmRWTGNzR1ZXNExhdHMtWV8tV0dpNExKcGszdmxMYmxQM2hxbGdRa1ptdVBCNFFSbV9CVWJ1SjI4Yk5kbmxDOGNHOS1jb09zTnUyWHF4NmpiZ3ZBYlVtUVVMWGxicFN1ckJYOWdVcw?oc=5",
+          "domain": "gazetaexpress.com",
+          "published_ms": 1795119240000,
+          "kind": "news",
+          "id": 67
+        },
+        {
+          "title": "Google’s Gemini Can Now Control Mac Devices on Users’ Behalf - Bloomberg.com",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNVndRY201NGljOFg4cFVWVGxmYzBMTDN1c0hfTlkzM2trRnpkdXhsYTU5UmNjc25TU2hTUlNKQ2xOS2hJTHNQdGE5VFFMamZTLWNfYkI2NkNkQ2RDbGdvWmI0YzN3ajF3Nko0TDJ6TjhzeEdQNFpua0JNOXZfSHhqMXVHVlZTaUNObW5kVi1FeFdoTDVSbDdfNzB5bTktWWpQVWNOa0JwVFB4dW5YTHdz?oc=5",
+          "domain": "bloomberg.com",
+          "published_ms": 1795114531000,
+          "kind": "news",
+          "id": 72
+        },
+        {
+          "title": "Google adds AI-powered computer use to Gemini app on macOS - The News International",
+          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPY1JQcnNWNllHV3hCZGNXdTNDYklVSEw2cDVIeDNpMEdKYmFHMGpKX3BlSkVMT0ZHSXdxNlR2ZGVXR3ppcHpkajRvSHJjWGIwdGlBOTRFa1REcDExOGxfazdmZWxrTnpFU3V6VlJPdjdFbi1uZEh2c2Fyc2VKS2F0OUdIZEpibEpIUnZDM0tHMnFyYXdTZDZBc2NpNm1SS2h3YkHSAZ4BQVVfeXFMTWpXeDlYZVRDWHdfbGxzWkNaZjVIQ3JqcDlVNnFsU0VKZldHLXMyem04SmN2MXBYTXNVaEZINnZ4d3Q2eUZNNF94eHRpTGZMNF9QaFpEVzA5Y3FPUGY5dmFHeGI2TlAyTjZrRlZNLU5tcDduekdxS2ppS0JaVW1pcDJlTXZJMGRReFJhRXJ3WDhNRmFVMXNYRlkwbkhqVkE?oc=5",
+          "domain": "thenews.com.pk",
+          "published_ms": 1795114200000,
+          "kind": "news",
+          "id": 73
+        },
+        {
+          "title": "Gemini on Mac can now use your computer",
+          "url": "https://www.theverge.com/tech/1037902/google-gemini-macos-ai-computer-use",
+          "domain": "theverge.com",
+          "published_ms": 1795083600000,
+          "kind": "news",
+          "id": 119
+        },
+        {
+          "title": "Google gives Gemini the ability to use your Mac for you",
+          "url": "https://www.msn.com/en-us/technology/software/google-gives-gemini-the-ability-to-use-your-mac-for-you/ar-AA2hN1QL",
           "domain": "msn.com",
-          "published_ms": 1795027602000,
+          "published_ms": 1795082951000,
           "kind": "news",
-          "id": 109
+          "id": 120
         },
         {
-          "title": "Gemini Can Now Call Auto Shops and Shop Online for You with Google’s New Task Mode - Android Headlines",
-          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNWUhwV3Y3eUhrZFpEa0w4V0pkbkFzRmxKcE1UUVJ1cmRYcENmY1RxQjZJWjJrbHdFSUlZcXIyQThZU0dmbFZFUC1rRlYzNTlmZ3c5SGpMODVQUXVMeUhuS3duQnF3bWhqTTdwalVrQ2VtaHVCSGZHUVRIWDI3Qmw5YTZ4UXRkbHpMaEhOT0ZtcEFNLWc?oc=5",
-          "domain": "androidheadlines.com",
-          "published_ms": 1795016156000,
+          "title": "You can finally use Google Gemini to control your MacBook",
+          "url": "https://mashable.com/tech/google-gemini-control-macbook-apple",
+          "domain": "mashable.com",
+          "published_ms": 1795028400000,
           "kind": "news",
-          "id": 125
+          "id": 157
         },
         {
-          "title": "Google Gemini gets new AI task features for free users in India: Shopping, bookings and more - India TV News",
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQSkN0WEdqdzFoblN2S1dFaTdjZXAwdWtEckNlNzRzOGYzUkZ3bVBjVDhCMXFyekdOeHJZTUl3Z0RYREs4d3pjUXlOZ1pkMGRfUTJVN2o3MVBMcXEyWUFJT18zWC1FdjR1SmRzN3lvZlMtZkF6UHZEX3IzLVVFcTdpNjRPM294d0ttUm9lV0NYdkZGc2NVblRNR0FZTlEteWwyR0NOSXJhbVdsTnZ2Mk5VMGc2Qm0xeXJoWE5CejA3SklqdFJsSFBUTEF1MTF3RlctZFJZYkYtcFdNcFhoRllXYXYtTlRTQVp40gHuAUFVX3lxTE9uVXdKVVV0VEdLUnpDdi0xUDJLWUdJdkF6R1Z1T3EtYWtDdkE0MEZIeHhWTVZHa2hhWDlkUE5WdUNVM2w5NW9UZW9MbW8teGI2dGJhLXdlS2ZZdU1aNzBGNDdhMk9uODd2UmNiazdPTm1IcnhVY0xOMHIweDNxOGtqSUJzUnM5UkVCVnljaFhhVTNaZzNKTXY0RlA2ZmhGeEx5Y1EzRFBsMVg1NF9qYXRLSUUwOHA2TlZ2X0dyLUw1eG1ISE5nSUdsaGNsNnZMdTFfMFlnUWo0dmQzbFRJR0ZEVWZYUTNWYlhNNTgyNHc?oc=5",
-          "domain": "indiatvnews.com",
-          "published_ms": 1795011113000,
-          "kind": "news",
-          "id": 126
+          "title": "You can finally use Google Gemini to control your MacBook - Mashable",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBrdGdfelJrWHZYWWJFVV9RNGVVWndzSFZSSnl3MGlDZXVIQXd1VjJybDRjTFREc1BYOEdOOTJ3c3l4ZHdmSlBCTWhVckJIVTB5Q01GYm9yR09MSnBnWVAwVmwwNUE0VVA2Y2hkTk5R?oc=5",
+          "domain": "mashable.com",
+          "published_ms": 1795129666000,
+          "kind": "news"
         },
         {
-          "title": "Google makes Gemini AI Tasks free for millions of users - YugaTech",
-          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOdS1kejNvVkZQaEJZdkRZMUk2dDdlZElIN3U1Rjk4WndXU2E2N0tfdmpTakxHa1ZKam5SbFVTRllqa0dTV3NZU1M5dXpkcTRRM0dhYm1vMW5udUQ4V25sTHV5TldHekY5cmJUOVNIR2trRWI1bWo4dHJUSmthcTI3MHpPWnhXR09nNE1mT1Z6OA?oc=5",
-          "domain": "yugatech.com",
-          "published_ms": 1794998564000,
-          "kind": "news",
-          "id": 134
+          "title": "Google's Gemini Can Now Control Apps on Your Mac - MacRumors",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB4bjRjdl90TXZYeGRaN2hmWGVhY2xHaFNRakotcVB6Z1VEVjNPTk1FWU1NWEtIVk5uU29rb1V3cnVyN1lJdG9mZjJIS1U0TG9DazN4SjZwX0NGZlNhTE9YQ1RjX2F0OTFBMXJLRURhcGgxY0FnaGc?oc=5",
+          "domain": "macrumors.com",
+          "published_ms": 1795118583000,
+          "kind": "news"
         },
         {
-          "title": "Google Maps gets Gemini AI upgrade with ‘Ask Maps’ conversational feature - DD News",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPeXZ2RzZ1bEhsU1lZOTFoX2t4cUUzS1JEblVYRmsyT3ZQWWtGMTRKclRMTEF3Z0JSRk5DSEtIdklrcWpsbWt0aXQzNzkyUWswdnBqLVVjenJmQzRucTNnQW5DbU9KNUk2U2hOdEZoSFVhRTdFRlpNZTFQdDVxa0ZnU2IxNUVWMW1FMnhYTWVTaHNYME9kWW1xNFZWRURKUQ?oc=5",
-          "domain": "ddnews.gov.in",
-          "published_ms": 1794989760000,
-          "kind": "news",
-          "id": 143
-        },
-        {
-          "title": "Gemini can now do more than chat, and Google is making it free",
-          "url": "https://www.digitaltrends.com/cool-tech/google-gemini-tasks-free/",
-          "domain": "digitaltrends.com",
-          "published_ms": 1794979080000,
-          "kind": "news",
-          "id": 155
-        },
-        {
-          "title": "Put Gemini to work for you - blog.google",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxNUWF2N1A4NTZkR3ZDemlDLUIyYlUwNVY2bmRKeEdCaEluLVg5MUJXWU1BY2VZNjhZdWRSRUZ4ZDNnb0xwWVRabXVuby1CNmJUdFJzNmJnd3RyeGZJUk9EVVFGeFUxb2FxVG42XzhpOGtsYkxnVEpmaFZiYThJaktNMW5SM0ppaFE3MlFIazFacXd1b3ZySHJV?oc=5",
+          "title": "Let Gemini tackle repetitive chores on your Mac - blog.google",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNSThGaHNJVDVxYlFXVDBLdkk5Y2JhcFRYbXBTRjBBQkxYajNXX2V0YUJfUWxIR3VSVlp5MGNSOG0wZE00SHQ3dmNqN05aMU40aDNZVks2VllzMGlKa0pkbXFzOXdZU2Y1dEJGWENuUTBGVlU0R3MzRkpQeThmNUhtZA?oc=5",
           "domain": "blog.google",
-          "published_ms": 1794934985000,
+          "published_ms": 1795108666000,
           "kind": "news"
         },
         {
-          "title": "Gemini's $19.99 task mode goes free in 6 countries - PPC Land",
-          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBwbjRPRFZoQjducElRMHBteXZVSUhqVzFJTTh4Z0l6azZETWZVZkZfZkZTT2xZRVN0MXFDRjAxV1FEN0hhcGlocTNpazFpTWhrQ2VTX1BXZzgwYWxmbklsMmdMcE1nMWFudGpoSlpjeG9hZ0VH?oc=5",
-          "domain": "ppc.land",
-          "published_ms": 1794943163000,
+          "title": "Google Expands Gemini’s Mac Automation With App Control - The Defiant",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPZ3BfVmh6OTJETUZIYmN6UUNXSm1PZWczM2YtY3ZFN195bHRmTHhkQ1NoOHplTE92S3AzMmJUcXFjNGdvem96a0EyblNTQXVmRHBDS0ZVUEtFZXIyaUNWcnBCMU53OTJ6Zk8yVVNMY2Y0d0JubnRCOFRUU2s5Q0hwUFJyZFltN29raXBvYW1UWFpIdzA?oc=5",
+          "domain": "thedefiant.io",
+          "published_ms": 1795137016000,
           "kind": "news"
         },
         {
-          "title": "Google makes Gemini's Task agent, formerly the paid Spark, free in the US, India, Japan and three other countries - MLQ.ai",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNYmhRY3dHdG81d3lMVmRaOXd4OXBPeTZMeUNYZ1EyX0UyMnFwV3ZPN2FHeXdhUDQ3SEVMY2FaR2IwVkY2VWdJWEd4ZGhsSmdqVjVfSHFGRF9FTU5RaWQ1UHFZVGF4Z2xkLWhNbkVXSUVHUEp2cEljVERVOEV0RnVvRnNXN2ZIUmFhdjhJWXV1NkE3ZGFyLWVsNFN1Sk9hYVVjMnJiUXFaUWVqVHVmYlRCRWZqQUw3OGFFN0VNbXM2LXg4RWt4dE51aw?oc=5",
-          "domain": "mlq.ai",
-          "published_ms": 1794953491000,
+          "title": "Google's Gemini Can Now Control Your Mac - The Tech Buzz",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBnYUFZQjdGT2pVRW5vbDhrM00wVlFjSXpZeHpUMG13ck9LUGJEdWhHYkRvbzIwdmU2UjBZTHJSYnpqeGZLaDFQSGJRTDh1YXl2OHQxcnZOYXBoUllMbjlRTjNKd0JrNGIyVEMzaW40V2NWWS10clNkT3pfYjJWZw?oc=5",
+          "domain": "techbuzz.ai",
+          "published_ms": 1795113236000,
           "kind": "news"
         },
         {
-          "title": "Google Makes Gemini Tasks Free in Six Countries - JournalArta",
-          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQSlpJRkg0TndUUzh0X2tlWGtYbHpMTjNYeWRsTGs1ZEM5X2RRTm5keXdGc191aXk3OXZId3I5Y2VKRzB6SVZ1ZXZQZmxKTGQxUXpIV09QSmR0aU5lUndyZWxFT2FwUXl1V2tMTTBJQjUzNUN2RmZDdGN0RGJLWmFhSGFwNA?oc=5",
-          "domain": "journalarta.com",
-          "published_ms": 1795045772000,
+          "title": "Google Gemini can now control your Mac while you keep working - Cult of Mac",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1yRHpBa0hGMjd2RFM5LVc0QWxDeWRkcXlmYUVBMWRMcUY1YlJqekVJVFZ1SzlIY0xoODZibjVnRGtQUmswdjMyUHJvMjk3OGtUOWtvMng3eTN1MjNwSnBvMWUzbnlaYTlqRUU1bm50NTF4eERiSTdvSGs0ZzR1RVU?oc=5",
+          "domain": "cultofmac.com",
+          "published_ms": 1795161267000,
           "kind": "news"
         },
         {
-          "title": "Gemini Tasks for Free: Google's AI Agent Runs Errands and Makes Calls, but Germany Is Left Out - Basic Tutorials",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNSUZZb3g0S3p5NG9jWHJVX3FEYk5HTjhQUEpRVkQwQUlybll5NDlxODlmZzdXU2l4VFhsOXRuWHgyczBSUnJIVTlKS0tZY041aDQzbEw1d0V0SGdNM2ZQQVY1M3pFWUNEZlkyWG9FMWw5UVlSYzUyQ2lsZjdvY3E3U1NINzhjaDJDNy14eTVDY2dacDBCX1hMamtVYlhnMmdUUzZtdXNNanQtTmFNeTZmWG1faTFUNVFLZkI2b1I0NV85V3c?oc=5",
-          "domain": "basic-tutorials.com",
-          "published_ms": 1794978044000,
+          "title": "Google brings computer use to Mac, letting Gemini handle chores without hijacking your screen - Android Authority",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1OQldpSDZhenQ4czZYY1dkb2QtZkRtNVFzRUk0ajlER2FDa0l2c3dGWGV5LTBEaTBIX2x3ZW5yeVg5VFVaX2V0ZEJtcHE3bGhEU2h2Uk52Wk9pTUpmU3E5VHFtcGR0QzhObFp5NTVfMmxyWjQ?oc=5",
+          "domain": "androidauthority.com",
+          "published_ms": 1795118640000,
           "kind": "news"
         },
         {
-          "title": "Google Makes Gemini Tasks Free in Six Countries, Rebrands Spark AI Agent - Analytics Insight",
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUTZPVlJFcjRSaUxmR3F0MkdWUS0tUVU4T1ZsclRqc0NTV1VCVTZIMzVpTm1Lamw0amxMLUdxQzJWR1djN1IxdURIVU5uS01RUHdUaGh3bVVfbHU3WHBTcTBRalFQTTkwR2M3ZWp6azFsQzZ2X0xNTV9qTDRkby1YcDl4T19XbFlmUjRMVWJFSWFscG1BNEhvRG5lR0pHcFMtd0dtYkNNRTNoYThRRXVvZnJ3amU5WkVvYmlv0gG7AUFVX3lxTE1RNk9WUkVyNFJpTGZHcXQyR1ZRLS1RVThPVmxyVGpzQ1NXVUJVNkgzNWlObUtqbDRqbEwtR3FDMlZHV2M3UjF1REhVTm5LTVFQd1RoaHdtVV9sdTdYcFNxMFFqUVBNOTBHYzdlanprMWxDNnZfTE1NX2pMNGRvLVhwOXhPX1dsWWZSNExVYkVJYWxwbUE0SG9EbmVHSkdwUy13R21iQ01FM2hhOFFFdW9mcndqZTlaRW9iaW8?oc=5",
-          "domain": "analyticsinsight.net",
-          "published_ms": 1794992803000,
+          "title": "Google Lets Gemini Control Mac Desktops - Silicon UK",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBWSnlNc3EyWWdUdkVvaFJSSEhqYTJkN3pEc3JTRXloNVBwZ0F5dF9VTGxtTG1WSk1FVkVCRTVZR2ZuOXNPNk5MQUMwVDFCeVEyS0xTQUJXN3A0UmhjdUFKOUE4OHVzS3pSMmtOTQ?oc=5",
+          "domain": "silicon.co.uk",
+          "published_ms": 1795161976000,
           "kind": "news"
         }
       ],
       "wikipedia": null,
       "youtube": {
-        "median_views": 558,
+        "median_views": 10,
         "competitors": [
           {
-            "id": "ueMFZ52R0qA",
-            "title": "Introducing Google's Gemini Agent",
-            "channel": "Tool Finder",
-            "views": 162793
+            "id": "YJ_e-dsMruc",
+            "title": "Gemini Has A New AI Super App | Here’s How To Master It",
+            "channel": "Paul J Lipsky",
+            "views": 540093
           },
           {
-            "id": "ntVTAaHL5KM",
-            "title": "How to Use Google Gemini Step by Step (It Can Do Your Work Now)",
+            "id": "2EwcJstUMX0",
+            "title": "Gemini Spark Tutorial for Beginners (Google’s New AI Agent)",
             "channel": "Teacher's Tech",
-            "views": 93280
+            "views": 49500
           },
           {
-            "id": "0o7Sca1c3lE",
-            "title": "Google Gemini’s New Features Are MIND BLOWING! (Automate Any Task)",
-            "channel": "Rob The AI Guy",
-            "views": 31978
+            "id": "wM51ROuEhKI",
+            "title": "How to Download and Use Google Gemini for MacOS",
+            "channel": "CNET",
+            "views": 22175
           },
           {
-            "id": "nq83Iv_QrTE",
-            "title": "Gemini Tasks Is FREE: 5 Jobs It Does While You Work",
-            "channel": "Julian Goldie SEO",
-            "views": 5987
+            "id": "zcx4s_hMsQg",
+            "title": "Want Gemini on Your Mac? Just Do This!",
+            "channel": "FixSOnic",
+            "views": 820
           },
           {
-            "id": "FHi5bULXZiw",
-            "title": "Google Gemini New Update: Task Mode + Gemini 4 Argon!",
-            "channel": "Rehana Creates",
-            "views": 558
+            "id": "lBtHU7FnyX0",
+            "title": "Gemini Can Now Use Your Mac",
+            "channel": "The CSEians",
+            "views": 10
           },
           {
-            "id": "N3JSHB9j73I",
-            "title": "Free Gemini Tasks? Change 3 Settings",
-            "channel": "Outlier AI",
-            "views": 19
+            "id": "h-YhV0NNu0s",
+            "title": "Gemini Can Now Use Your Mac For You 🤖💻",
+            "channel": "Neural Daily",
+            "views": 8
           }
         ]
       },
@@ -350,470 +1073,55 @@
       "score": {
         "factors": {
           "momentum": 100,
-          "reach": 46,
-          "curiosity": 80,
+          "reach": 17,
+          "curiosity": 90,
           "relevance": 90,
           "visual": 80,
-          "source_quality": 65
+          "source_quality": 100
         },
-        "total": 78.2,
-        "newest_hours": 6,
+        "total": 78,
+        "newest_hours": 0,
         "domains": [
-          "geeky.com.ng",
-          "nai500.com",
-          "udaipurkiran.com",
-          "siliconangle.com",
+          "ukrmedia.news",
+          "urdupoint.com",
+          "tech.yahoo.com",
+          "in.mashable.com",
+          "gazetaexpress.com",
+          "bloomberg.com",
+          "thenews.com.pk",
+          "theverge.com",
           "msn.com",
-          "androidheadlines.com",
-          "indiatvnews.com",
-          "yugatech.com",
-          "ddnews.gov.in",
-          "digitaltrends.com",
+          "mashable.com",
+          "macrumors.com",
           "blog.google",
-          "ppc.land",
-          "mlq.ai",
-          "journalarta.com",
-          "basic-tutorials.com",
-          "analyticsinsight.net"
+          "thedefiant.io",
+          "techbuzz.ai",
+          "cultofmac.com",
+          "androidauthority.com",
+          "silicon.co.uk"
         ],
         "trusted_domains": [
+          "in.mashable.com",
+          "bloomberg.com",
+          "theverge.com",
+          "mashable.com",
           "blog.google"
         ]
       },
-      "rejected": [],
+      "rejected": [
+        "too similar to recent topic: US Air Traffic Control Is Finally Removing Floppy Disks"
+      ],
       "wave": 1
     },
     {
-      "topic": "Meta's Muse AI Agent Faces Early Safety and Privacy Mishaps",
+      "topic": "Banks Warn Customers Are 100% Liable When Rogue AI Banking Agents Make Mistakes",
       "pillar": "AI failures, hallucinations, security problems and scams",
       "evidence_ids": [
-        63,
-        106,
-        133
+        97,
+        109,
+        144
       ],
-      "hook": "Meta's new Muse AI agent is already freaking out employees after pulling private chats and leaking personal data.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 8,
-        "relevance": 8,
-        "visual": 6
-      },
-      "wikipedia_title": "Meta Platforms",
-      "commons_query": "",
-      "youtube_query": "Meta Muse AI privacy issues safety mishaps",
-      "evidence": [
-        {
-          "title": "Meta’s Muse AI Agent Faces Privacy Concerns After Series Of Safety Mishaps - Arise News",
-          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQUndNQ21iR2FBWlQxX3g3Y2VIbDQxeUFNNkc3dTRUaV92VWZRTHBzakFhQzQ2cUQtLXo3eVk2al9EWWh5d2xhNzRuS2liMENCYW1MMHVHSlNoeVdmNnduU0xRZ3BCVVczLWxIS011T0U5bzFXRjlMOHJFenk1d0lBV0Iwc2hILUZPdGdXR0NOMWY0WXRCdmZ0Zi1sTQ?oc=5",
-          "domain": "arise.tv",
-          "published_ms": 1795065405000,
-          "kind": "news",
-          "id": 63
-        },
-        {
-          "title": "Muse privacy invasions are freaking out Meta staffers, internal chats show",
-          "url": "https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/",
-          "domain": "arstechnica.com",
-          "published_ms": 1795029573000,
-          "kind": "feed",
-          "id": 106
-        },
-        {
-          "title": "As Meta bets big on Muse AI agent, early safety mishaps surface - Reuters",
-          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNYzFCWVhTaXRGa0xoLTRJUUVKTjNaYXZzU2FhbHYxR2tyallCbFJsUFM1U21lbXN0UVN2U3FfZnlsWWdGWERVTWRBdmhHVmZaS0Z3X0REWFhvaXhQYXpoNHRlTG0wbHp0WHd5b3N3dnpOYnJONWE4bWVXdEJObHFqZTFYd2szQ3p1SU5LV1JxODNpSVpoWnZTdXVWRDJTSUl0MTRvQnotcjJrUUE?oc=5",
-          "domain": "reuters.com",
-          "published_ms": 1795000993000,
-          "kind": "news",
-          "id": 133
-        },
-        {
-          "title": "As Meta bets big on Muse AI agent, early safety mishaps surface - The Japan Times",
-          "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQekpvNklDVWxDM3FYQkM2R2hwbi02aThiNHg2OUtHRFE5YjJYNVRyXzdRME5FajNvUWVrdUJXTjU4bVUtbGk1b1gxNl80T0JQR2VLNE1ManR5MTVtZzFFNEN1TkViNV9RaVdGOFNleGZxU3o4NzFVUUFBUnlKckk4TzQ5Tl96cnM?oc=5",
-          "domain": "japantimes.co.jp",
-          "published_ms": 1795057500000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Meta Platforms",
-        "daily_views": 3415,
-        "ratio": 0.64
-      },
-      "youtube": {
-        "median_views": 287,
-        "competitors": [
-          {
-            "id": "7UabM3KStc0",
-            "title": "EVERYONE is right about Meta Muse",
-            "channel": "Eric Michaud",
-            "views": 32384
-          },
-          {
-            "id": "HytNZfilDJs",
-            "title": "Meta’s Muse AI agent: a hilarious security disaster",
-            "channel": "Pivot to AI",
-            "views": 32144
-          },
-          {
-            "id": "6V-mzZ8ToLI",
-            "title": "Meta Muse AI Has Risks We’re Not Talking About #aimedia",
-            "channel": "TechInHerStep",
-            "views": 6541
-          },
-          {
-            "id": "nKMpQ3UNenY",
-            "title": "Meta Muse Privacy Flaw Exposed Sensitive Shared Links #shorts",
-            "channel": "TWiT Tech Podcast Network",
-            "views": 905
-          },
-          {
-            "id": "64o7KjFTFFo",
-            "title": "Meta’s Muse AI FAILS: Leaks Private Address and Makes Costly Marketplace Mistakes!",
-            "channel": "Good Monkey",
-            "views": 287
-          },
-          {
-            "id": "rokXbwQgTgU",
-            "title": "Meta’s AI Can Read Your Inbox. Here’s the Security Risk.",
-            "channel": "Shared Security Podcast",
-            "views": 279
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 88,
-          "reach": 53,
-          "curiosity": 80,
-          "relevance": 80,
-          "visual": 60,
-          "source_quality": 100
-        },
-        "total": 76.6,
-        "newest_hours": 9,
-        "domains": [
-          "arise.tv",
-          "arstechnica.com",
-          "reuters.com",
-          "japantimes.co.jp"
-        ],
-        "trusted_domains": [
-          "arstechnica.com",
-          "reuters.com"
-        ]
-      },
-      "rejected": [
-        "too similar to recent topic: Meta's Muse AI Agent Expands to Smartwatches"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "Agent Computer Turns Any Gaming PC Into a Personal AI Assistant Hub",
-      "pillar": "AI tools ordinary people can use",
-      "evidence_ids": [
-        33,
-        77,
-        152
-      ],
-      "hook": "You can now turn your powerful gaming PC into a dedicated local AI assistant machine to run advanced tasks offline.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 7,
-        "relevance": 8,
-        "visual": 7
-      },
-      "wikipedia_title": "Personal AI assistant",
-      "commons_query": "",
-      "youtube_query": "Agent Computer local AI hardware",
-      "evidence": [
-        {
-          "title": "Agent Computer turns your gaming PC into a personal AI assistant. - GameGPU",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQQmM0U2NveHhqakZPUlQ1TTdHd3lmQlF4NlNvZk51d3VOVnk4N1dyM3ZERUdHZkJzTnQ2LTJqb0E2LThtQ3lBaWVNdEVPRDRFZHhWQjNYTGlISkJjUFM5bVk2SVN5Vnd5VjU2TDZDUXN6Z0dpSzdjWF9PR25MRjllUW9DLTQxeVlJS3RCZXlaQmdMekVYd1JHSnhpbzdjbnVsQ0htZzg0R0g5OGQzYy0tRmZ3?oc=5",
-          "domain": "en.gamegpu.com",
-          "published_ms": 1795087986000,
-          "kind": "news",
-          "id": 33
-        },
-        {
-          "title": "ASUS Expands Local AI Access with Agent Computer | ASUS - ASUS Pressroom",
-          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPbkR0TmYtQ1Zmc0ItdGo0bkVaeXBham5kRWVrdlFhTGg2QjBxa3NCbXRXOVNzekZjSm9SWnNnLXJBaUZJcGxVSkEydUUxWkFqNXlnZ2piRkZXQW5Ga0lkYWx5a2FTZHNtalA0a1hKRUZYREQzOVBNdVJSQWVxT182ZEVFczlCUVNVVFExR09zN0tha3VOaDB5cURySnladw?oc=5",
-          "domain": "press.asus.com",
-          "published_ms": 1795053005000,
-          "kind": "news",
-          "id": 77
-        },
-        {
-          "title": "What PC do you need to run AI agents? ASUS Agent Computer explained",
-          "url": "https://www.msn.com/en-us/technology/software/what-pc-do-you-need-to-run-ai-agents-asus-agent-computer-explained/ar-AA2hK1Un",
-          "domain": "msn.com",
-          "published_ms": 1794984194000,
-          "kind": "news",
-          "id": 152
-        },
-        {
-          "title": "ASUS Aims To Turn Desktops Into A Local AI “Agent Computer” With New Hardware And Software Ecosystem - Wccftech",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQNWhuTF9OZVdMd0RkUGJCdWIxM2ExM3ExYVBpd0c0TmJoTUs1Y1g0Y2lWQzhPeXhNSFJmVzIzNHBMMzVpY0pBRzZvaXo2eWhKbWQwUXdWVGQzclN5b1BMdm5NM093Y3NwTjZLRlN1SXh4QVB5T3gyVm1SR0pEeWZIUzJvU0xhekNoMVhqaGZGWDhTWVJUQjljTEN3RHRHYmZQbDlEcU1ZX0JBbjNvTU5NMTZLQk5TbFZDeVg3R9IBwgFBVV95cUxObUhRNi00aFVzZUk5Z3hjbHQ5WWlnYjVYQXhEeVNHWVQ3U01MbkFrNDJNN2Rtc0gybmIyRUZGV2hGRG5RWkZlT2lkcmJsTE1SZWE5VjZGZVZYYXRzczJCZ2pJOHBSTlk4aGtxU3hMbHUzcDd3VmIwU0Q5WkNXS1ExeDd6MVlpeURyUUYxZlYxdzM2ejY5UnVyaUpCTHhudFlwem8zMnV1NkZrTEFoVWc5SGRmRWNDS0Y4MWh1UmYtd0UwUQ?oc=5",
-          "domain": "wccftech.com",
-          "published_ms": 1794482319000,
-          "kind": "news"
-        },
-        {
-          "title": "Building the Ultimate AI Agent Computer: ASUS RTX 5090 + Core Ultra 9 285K! - GeekaWhat",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOU3pIeHF0Mjh1QlVfZnNNNkpuUk1oWmxmTmp2QUtTTVUtU2xydDIyZVpqNkNfZkVzbldaZERSTjZWQlM2aEVBbjBaSE1MaGZ5dlBTVmR4c1pzMERIbzcwcElsSFh5U0dXRVl6SUpwYUlGeEo2OHJvTzc5cVdObkY5U19vcnhkcThuc0Fv?oc=5",
-          "domain": "geekawhat.com",
-          "published_ms": 1793895437000,
-          "kind": "news"
-        },
-        {
-          "title": "ASUS Agent Computer: Local vs Cloud AI - HardwareZone Singapore",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOS2JNXzNDazBpcVUyVUJGQnRzQ1psMDEyWWQ2NGV0MVZnUU81S25wZ29VYnlvTVI5OVlQNGJ3eUtTbjNETlhQQkp2UnRHOEZ3aUFjYlpFTUx3Q2QtOTg3dEktYlN6T3RSYlBITG9kRGJSTllpbEVwYnJUaDRpWS1nRXEzOXJlaEhlSTVIMktmS3VONmUzUVduXzhLeWN5YUhaYmstUzR0bGpFMk5SakRURA?oc=5",
-          "domain": "hardwarezone.com.sg",
-          "published_ms": 1794988800000,
-          "kind": "news"
-        },
-        {
-          "title": "Otto Introduces Otto One: the Personal AI Computer for Autonomous Agents - Business Wire",
-          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxONnlpVGFJZFhfeHZoSE1XTDVJcVRCNmNEWVBRVGpOMms5SnRvd21WbUs4TTg4T1A2YlBrTFhXc3lKLUUyZXQ3MjBiemdVZG1FZjFUQ1hVM19DM0xoY0FnU2xJSTRWR1JHV0VOLXhta3MxajViR1RHTTZtb09xc2FlUWE1ZUFZcGtjekoyTkNHOElEekpSNUNWLTlDSXJLWEVKOU9Fd1E2dzVqQTYxUGYtV0RVU1FmWE5XMHBMMmZwUUpsUXRiT2pF?oc=5",
-          "domain": "businesswire.com",
-          "published_ms": 1794326026000,
-          "kind": "news"
-        },
-        {
-          "title": "Otto One Gives Your AI Agent a Computer of Its Own, and the Software Is the Real Product - Technobezz",
-          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBRRkZCQUZOQ0JLRzJJRzlmNG5JclBzUFY1SzdqRmttZHlJSXl0dXlVZUVfUkg0VUpPRFRuYVUzVVZXSkxoTUF4VndmbUJwX3BsamtRNTJJZG5vYTA?oc=5",
-          "domain": "technobezz.com",
-          "published_ms": 1794322958000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": null,
-      "youtube": {
-        "median_views": 44404,
-        "competitors": [
-          {
-            "id": "NA9D49kQFuU",
-            "title": "Every Ways to Get 128GB VRAM for Local AI at Full Context",
-            "channel": "Kai",
-            "views": 1850615
-          },
-          {
-            "id": "nwXEAVW0jFE",
-            "title": "I Thought 2 TB of RAM Was Overkill… My AI Agents Disagree",
-            "channel": "Alex Ziskind",
-            "views": 233706
-          },
-          {
-            "id": "h8dxm7UEStQ",
-            "title": "Every Way to Get 256 GB of VRAM for Local AI",
-            "channel": "RepoChad",
-            "views": 209541
-          },
-          {
-            "id": "z6f8Cmp0JAo",
-            "title": "How do I host my own AI???",
-            "channel": "Raid Owl",
-            "views": 45684
-          },
-          {
-            "id": "xYY7-0y_ryk",
-            "title": "You Don't Need $5,000 PC to Run Giant Local AI Anymore",
-            "channel": "Sean Cypher",
-            "views": 44404
-          },
-          {
-            "id": "p3PFSpXtJnw",
-            "title": "Qwen 35B Is Now Insanely Fast on a 6GB GPU! (New llama.cpp)",
-            "channel": "NetworkCoder",
-            "views": 12995
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 100,
-          "reach": 77,
-          "curiosity": 70,
-          "relevance": 80,
-          "visual": 70,
-          "source_quality": 30
-        },
-        "total": 76.5,
-        "newest_hours": 3,
-        "domains": [
-          "en.gamegpu.com",
-          "press.asus.com",
-          "msn.com",
-          "wccftech.com",
-          "geekawhat.com",
-          "hardwarezone.com.sg",
-          "businesswire.com",
-          "technobezz.com"
-        ],
-        "trusted_domains": []
-      },
-      "rejected": [
-        "no trusted source",
-        "too similar to recent topic: Claude's New Personal Finance Feature Lets You Connect Bank Accounts"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "90% of Employers Reject AI-Looking Resumes While Using AI to Interview",
-      "pillar": "AI changing everyday work",
-      "evidence_ids": [
-        32,
-        40
-      ],
-      "hook": "Job hunting is broken: 90% of employers reject resumes that look written by AI, even though companies use AI to interview you.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 9,
-        "relevance": 10,
-        "visual": 6
-      },
-      "wikipedia_title": "Resumé",
-      "commons_query": "",
-      "youtube_query": "AI resumes rejected by employers hiring",
-      "evidence": [
-        {
-          "title": "90% of employers reject resumes that look like AI – yet half use AI to interview - ZDNET",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB5YWlZNDNCaGNMREVwLTRtQks3RkxBUmZKd01YTkNHcjNkc2hUcFRhRE14Z2k3MmJzSUc3cTQxd2pSbm93TFNDT0F4Z3RlUXlMZVNfRGdscUVyMnRpRkEzMVRMbnkwdGk4VFk2eWFDS04tT1hYMEE?oc=5",
-          "domain": "zdnet.com",
-          "published_ms": 1795089623000,
-          "kind": "news",
-          "id": 32
-        },
-        {
-          "title": "Why AI Interviews Are The Fastest Way To Erode Trust - Forbes",
-          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOMmlVNWt6al9WZVhBN1FONXNYY1c2QV84ekRXZi14cUJ3RnlCTENTeTF1dzl0VjF3dmdfeEgxRUFQUHZnZnViWlFLR2RpOE1MVzJtNGQwcnVQTUhsRmVEZXJOOXJyQU40aXFHNjl1TzhTM1EwMUF1aG0taUZNV1FxSm1zOVZ5cFlqTlhoLWREMkJoZ1lQSTZIN1l5Z0V5b2kwRDNmUEY2Wk9vMHFkZXdJ?oc=5",
-          "domain": "forbes.com",
-          "published_ms": 1795086000000,
-          "kind": "news",
-          "id": 40
-        },
-        {
-          "title": "90% of Employers Reject AI Resumes While Using AI to Interview - The Tech Buzz",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxONGlncmNLNWktd2NzMUZGcU5PV0JXbGVtQzZucVdHWGhZSmMwYWw3NGZyU2dZUXkzRGtlVnZsa0hVQWdid21PWGFsXzJKX3prY0Vuc1laQjRmSlRPU1dfQXhtV3BrUTBnWlF3RmVaT1NCLUlZVFBlOFNQcFBYSzBqVkh0ejhZZU93a19tZk1SNjRtZ0U3cnZHdkVB?oc=5",
-          "domain": "techbuzz.ai",
-          "published_ms": 1795091558000,
-          "kind": "news"
-        },
-        {
-          "title": "The First Interview Is Now With a Machine: How AI Screening Is Changing the Job Hunt - Big News Network.com",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPQUNhQnFHejB0TUZjYXNGNV9rQXpSUUJUT3JGcTZFaU1VbXd1cWNqTDNTU2gzRGxWVXF1Wno1V2xoZDUxVE80NVVSaGU0QWVqZ0pJNDJPVlN3ZV9wdW5UV1h0dXNoSE9PNm9sYl9VZlJDN3VMajJsLXl3LTdNVDdBbWQzZ0JzbkJ6TVk4QkNFRGZoRXpWZWgtbFBvSW9JU2JBZWFHZlRTUERSZFNRaVhpUjE1UDdmVGdxWWJsaUVhVDlkWWxjV3BhRw?oc=5",
-          "domain": "bignewsnetwork.com",
-          "published_ms": 1794825540000,
-          "kind": "news"
-        },
-        {
-          "title": "Employers reject AI generated resumes while half use AI interviews - NewsBytes",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOUmlaTU95cHYxWTFxeFdFUFVxZldURlhPM0MzZUIzWm4tU1YxSGc4NFV3VGZIZ1NLWllRdHdUVXp1cXA1WEFUaGcwVUNYTWotNmpIMzlOalhaWmN6SnpHMl93UkRfZkExT20zbnJqN0U0RlpqRmhUZ2FNNTRYaTRaVjZLMGFMM3N0ZEVKNGJ3OG5iS2plMW1wMlVlcmpNMGZ1U3ZqellLY0lUM1VWczF3SkxyMUc?oc=5",
-          "domain": "newsbytesapp.com",
-          "published_ms": 1795091312000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Resumé",
-        "daily_views": 0,
-        "ratio": 0.47
-      },
-      "youtube": {
-        "median_views": 194,
-        "competitors": [
-          {
-            "id": "5VINi4Kjyqk",
-            "title": "How to find out if an AI rejected your resume",
-            "channel": "Understanding Your AI",
-            "views": 2406
-          },
-          {
-            "id": "wg-FcIBqacw",
-            "title": "AI Resumes REJECTED! Whitney Ortiz from RecruitMilitary Explains",
-            "channel": "MyComputerCareer",
-            "views": 271
-          },
-          {
-            "id": "xmHGJH0qatw",
-            "title": "When AI Recruiters Reject Your Resume Automatically",
-            "channel": "TechGold",
-            "views": 263
-          },
-          {
-            "id": "tUp1bNPrbZM",
-            "title": "Why AI Resumes Get Rejected (Recruiter Tells All)",
-            "channel": "Cyberdogz",
-            "views": 233
-          },
-          {
-            "id": "XtPZwUIi2xk",
-            "title": "Is your resume AI-proof? 🤖📄 Stop getting rejected by AI recruiters!",
-            "channel": "CG Academy",
-            "views": 194
-          },
-          {
-            "id": "YOs5QL9N_dU",
-            "title": "He Applied to 100+ Jobs. He Says AI Rejected Him Every Time.",
-            "channel": "Useful Theory",
-            "views": 96
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 88,
-          "reach": 23,
-          "curiosity": 90,
-          "relevance": 100,
-          "visual": 60,
-          "source_quality": 100
-        },
-        "total": 75.6,
-        "newest_hours": 2,
-        "domains": [
-          "zdnet.com",
-          "forbes.com",
-          "techbuzz.ai",
-          "bignewsnetwork.com",
-          "newsbytesapp.com"
-        ],
-        "trusted_domains": [
-          "zdnet.com",
-          "forbes.com"
-        ]
-      },
-      "rejected": [],
-      "wave": 1
-    },
-    {
-      "topic": "Coinbase AI Agent Blocks $4.7 Million Deepfake Elon Musk Crypto Scam",
-      "pillar": "AI failures, hallucinations, security problems and scams",
-      "evidence_ids": [
-        16,
-        24,
-        46,
-        49,
-        58,
-        62,
-        64,
-        78,
-        98,
-        100,
-        101,
-        131,
-        139,
-        142,
-        147,
-        149,
-        159
-      ],
-      "hook": "An AI security agent just intercepted a massive $4.7 million crypto scam featuring a hyper-realistic deepfake of Elon Musk.",
+      "hook": "Major banks just issued a terrifying warning: if an AI banking agent makes a mistake with your money, you are entirely on the hook!",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
@@ -821,17 +1129,348 @@
         "relevance": 9,
         "visual": 7
       },
-      "wikipedia_title": "Deepfake",
+      "wikipedia_title": "",
       "commons_query": "",
-      "youtube_query": "deepfake crypto scam blocked by AI",
+      "youtube_query": "AI banking agent liability warning",
       "evidence": [
+        {
+          "title": "Citi Says Customers Are Responsible When AI Banking Agents Go Rogue—Even After a Hack",
+          "url": "https://decrypt.co/383677/citi-customers-responsible-ai-banking-agents-rogue-hack",
+          "domain": "decrypt.co",
+          "published_ms": 1795098960000,
+          "kind": "news",
+          "id": 97
+        },
+        {
+          "title": "Banks are warning customers they could be liable for an AI agent's mistakes - Business Insider",
+          "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE40SUpNdlAtTW91T001ZUw1OGZwcFFrT21VXy13VktEbDVvNk41bTAtVE5mSER5RW5JSGV5MGRBdjJSRkpiWDZLeGFSXzBCSWtBdGZqdnpudG9acXRxclZYeEVHZWNraW1xX2lBZnFTZVhhZUVBcm5VRURR?oc=5",
+          "domain": "businessinsider.com",
+          "published_ms": 1795082460000,
+          "kind": "news",
+          "id": 109
+        },
+        {
+          "title": "U.S. Banks: “Users Are Responsible if AI Makes a Mistake With a Transfer” [Global AI Briefing] - 파이낸셜뉴스",
+          "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE4ySTRld1JMcjl4NmZpSWpVNkhhbGlIcUdyRk5yTHFuNUhUUGw4czgwSF8xSXNVcjY2VHRWeGxXbUdXTm5abVlCSjdVNmdmNE1hRmN1NU1Yc28?oc=5",
+          "domain": "en.fnnews.com",
+          "published_ms": 1795044986000,
+          "kind": "news",
+          "id": 144
+        },
+        {
+          "title": "Banks Warn Customers: Let an AI Agent Into Your Account and the Risk Is Yours - The Wealth Advisor",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNeHZhRU1uMWVDblB2N0VqRTdwR1RCUjFkeVhRS1psRnhmeWQ2SzU2OFdYd1RSRy1aWm55WHZ4b1ExeTY5QUc0TEFROVF1SXhSeXZ4S1NPVTNXMklsYjhQaW5rQ29yQUdNRnFmMy0yX1ctRlZPSk9lX3NkSkxzeTlWQ092NkJTWTRfbkRqdExFNGZHQ2xlZkloZkVsUmtIUW5BenJvTg?oc=5",
+          "domain": "thewealthadvisor.com",
+          "published_ms": 1795040125000,
+          "kind": "news"
+        },
+        {
+          "title": "Citi Says Customers Are Responsible When AI Banking Agents Go Rogue—Even After a Hack - Decrypt",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQSTBHR1JBYlplaFFHVnFXczM4U29iMHVXWU9OVXdNeUhmYnotQ3p2SVlnOHZCWFVDUGZNOFhOQ1BxeUJlTmxIZV9zZkNNdi1wRWVScHV5ejI5LXFhZ0xDNUxpNFdSc1VDVDZsNHFJaG9GWFlMN0RuNzRsN2hsUlY4VGNwU1lSN0hn?oc=5",
+          "domain": "decrypt.co",
+          "published_ms": 1795127762000,
+          "kind": "news"
+        },
+        {
+          "title": "U.S. major banks warn on external AI agents, say customers liable if problems arise - 디지털투데이",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNN0ctNW43RFg0dVVjOUdjWElKdVNvb0JuaTJXSC1QQVlvVGtfVXgydFNWajBFSWItazdSbkZublBidzBkdFJxb0M4LWk4dXNvMElZaXJ2QjA1b1h5VnUxUjdLeHdQNnVhTDlNRE1YLUd1anlicVZ4ZGhuUTNzZVZ6SVJkUGpOZFpIWi05QjZJNUtzRmNRVFp2RHhQUTl3NXl5eU9Rc2hRY1QtNWUwTE5oTWNNdndjbUFOV0JadGFUdw?oc=5",
+          "domain": "digitaltoday.co.kr",
+          "published_ms": 1795039235000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 130,
+        "competitors": [
+          {
+            "id": "pjkbC1dCBiw",
+            "title": "AI agents accessing bank accounts without approval, report says",
+            "channel": "CBS News",
+            "views": 309690
+          },
+          {
+            "id": "6zeFp9fDERg",
+            "title": "AI Finance Expert Warns: Don't Give AI Access to Your Money Yet!",
+            "channel": "Diary of a CTO",
+            "views": 525
+          },
+          {
+            "id": "AnFB4PGcf9I",
+            "title": "Banks are finding AI bots inside customer accounts. Some act without being asked.",
+            "channel": "EODHD Financial APIs ",
+            "views": 463
+          },
+          {
+            "id": "EN5Lm1pG-uk",
+            "title": "Wells Fargo AI WARNING - Should You Be Worried?",
+            "channel": "Jonathan Mast",
+            "views": 380
+          },
+          {
+            "id": "wkMLUDNjbg8",
+            "title": "If an AI Agent Gets It Wrong, Who Pays?",
+            "channel": "Progressive AI",
+            "views": 130
+          },
+          {
+            "id": "52VZhApf3Nk",
+            "title": "You Let an AI Into Your Bank Account. JPMorgan’s CEO Says You Might Be on the Hook.",
+            "channel": "unZappedTV",
+            "views": 58
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 35,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 65
+        },
+        "total": 77.1,
+        "newest_hours": 10,
+        "domains": [
+          "decrypt.co",
+          "businessinsider.com",
+          "en.fnnews.com",
+          "thewealthadvisor.com",
+          "digitaltoday.co.kr"
+        ],
+        "trusted_domains": [
+          "businessinsider.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "ChatGPT's New Live Dictation Lets You Rant Non-Stop",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        103,
+        107,
+        109,
+        130
+      ],
+      "hook": "ChatGPT just gained a new live dictation feature that transcribes your spoken rants in real-time.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "ChatGPT live dictation update",
+      "evidence": [
+        {
+          "title": "ChatGPT’s New Live Dictation Feature Lets You Rant for as Long as You Want",
+          "url": "https://gizmodo.com/chatgpts-new-live-dictation-feature-lets-you-rant-for-as-long-as-you-want-2000842516",
+          "domain": "gizmodo.com",
+          "published_ms": 1795094700000,
+          "kind": "news",
+          "id": 103
+        },
+        {
+          "title": "ChatGPT is getting a new look on your phone, and your dot now has its own tab",
+          "url": "https://www.digitaltrends.com/computing/chatgpt-new-mobile-design/",
+          "domain": "digitaltrends.com",
+          "published_ms": 1795092180000,
+          "kind": "news",
+          "id": 107
+        },
+        {
+          "title": "ChatGPT now transcribes your words live as you speak",
+          "url": "https://www.newsbytesapp.com/news/science/openai-s-chatgpt-can-now-transcribe-your-voice-in-real-time/story",
+          "domain": "newsbytesapp.com",
+          "published_ms": 1795091400000,
+          "kind": "news",
+          "id": 109
+        },
+        {
+          "title": "ChatGPT can transcribe as you speak now with Live Dictation",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/1037634/openai-chatgpt-live-dictation",
+          "domain": "theverge.com",
+          "published_ms": 1795072560000,
+          "kind": "news",
+          "id": 130
+        },
+        {
+          "title": "ChatGPT can transcribe as you speak now with Live Dictation - The Verge",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQOUQtVG5tdWhKOFZoTmRaQzNEVjBNYVA0ZzdKSjhJU2xoaERaa25DeTJhaUVXaWRrWTdRT1JaTHhvMnlscEJnWXo3YWxoV3lRVDdzTGF5UV94dmdqRW5pSlI2TWpreEJJcU5hTG85ZkNha3FvdDFJQkcyQXVpaXFMcnA3SWFLRWNpUFQzMHNseUdLdG8?oc=5",
+          "domain": "theverge.com",
+          "published_ms": 1795101405000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT app gains enhanced Live Dictation streaming without 10-minute limit - 9to5Mac",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNdHBWTWdQLVZiOERYUDJiLTVlT0x1OEloM21MY2F4b3NESUlsTV9TUmdFNk1ZZ1pnTld2RU9CajQzZzZsNm1iX19GU2J0VVZtUjl5NDFmdkoyeDI0LVdsNXJWMlo0MTdlYm5vNE10MmZjd0F4Q21BTTBhUW9kQ09id2JOeDBNTXI1eTBYbVVCbTdUOEZFUFBWNm40WnZYUkFuMlFvUWxSM1NZZUk?oc=5",
+          "domain": "9to5mac.com",
+          "published_ms": 1795026300000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT adds Live Dictation for all plans, free users included - Startup Fortune",
+          "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPdTRCMDM4VEJNMndMdEE1WkZ1VHNyV1ozWmkwSlRCRlJWc3FqVWJSbG96WHFyYXZZaXZzeXpfSnVpVlh6dFlGekw4UzRsR1lZVTJHZmhTSzNPR2UxRWZfTXVCY2Q0eDZDdFd5Z1dIOGVyM2wxQ19UQmxsa3R4UlIwUk5Fa3ROWEtneHpNYlYwZUR4SG8?oc=5",
+          "domain": "startupfortune.com",
+          "published_ms": 1795129454000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT's New Live Dictation Feature Raises Privacy Concerns - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPcDVsa0phckFDTm9XLUNKWXJjY3ZFLUdOSmJIRDJBdTJyOXRlZ3NFdng2OE1JZU9PSFhreEdFeWpDV1NGMXNQUWRPWGpmMGhEMHFkdmFiQkxCc3RGbDh0ZlR1OEY5OThYeGp4RThzbUVXa25SLUVLTkJ0dFg1d21RS1hGeFUzVDV1cXdyM2hQRmFFZ2NFeEcxbjhtc1BjNDFHVktCbEwzTQ?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1795123559000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI rolls out Live Dictation for ChatGPT across all plans worldwide - Crypto Briefing",
+          "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE44WHFYVDlFNUhfTzZmeHZZWUVrc1pvbUM5djFlMUJtaEVmMWk3QXJMUExvbWpQWERpa3hzTjFMb0tSaWF3bHpKak1TR25oRkoxMFVvVXBPTWUzQWpXM2Q0a0ZzLW1TdGtqZjJ3V2FFNE5LYURLY1NkUTEwanE?oc=5",
+          "domain": "cryptobriefing.com",
+          "published_ms": 1795101697000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT now supports live dictation, and the 10-minute recording limit is gone as well - Digital Trends",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOMlJvV29SSzdBZ1E4NzdHVnNnemJ2akZIT3FQV3dmNlN6Mi1sNWc3cXhRSkV4ZGROSk92XzZ4aWpycWxwSkMtMllweGkyS0tRSU9IOWxWOW9MR0FuNDE0QXdpbTRfUGZwbDI1TFlmSzhFcVBJR0ItcnFiSEk4ZWtXdnhFQlVTbmE4VTJhUW1IVEhhb1ZrSjhmUjFzWjRUNHI3OFYtMVpZOHRNaFRNZDgzYkgwZkU5REwwd3MzR0Rn?oc=5",
+          "domain": "digitaltrends.com",
+          "published_ms": 1795108419000,
+          "kind": "news"
+        },
+        {
+          "title": "OpenAI Rolls Out Live Dictation in ChatGPT, Scraps 10-Minute Recording Cap - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5VVHB6bDA1UlNFNWQ4dTJLaHM1R1J2akZRRTdrMlg3aDhVNldiSGVUZTJwYkg2ZnpxQjhqSkVOQktqMENqTTgzVkp1R1l4VnAxX0UzMFJBdnR2bVMydHU0VFBRRlpWSlpxMWZjSG0xYzhXSXZLZkE?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1795107300000,
+          "kind": "news"
+        },
+        {
+          "title": "ChatGPT Live Dictation, real-time text as you speak - Meteora Web",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxONVEyNVk3b2pwWTV0VmxkWVVNVnFKVDhMcUVfaGRORF82YWtxRWFyNXpvR2ttdXhjelZiaXBWQ1lCMFdZRTgzak9zZTlaUjl6Yzc0UzY5MXRNbHZxOEFGWG5SQm1EeE5tNkc5aDdHM2dNbm54LU9zU0pyODVWWkRPczdPX1VaUQ?oc=5",
+          "domain": "meteoraweb.com",
+          "published_ms": 1795070813000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 19,
+        "competitors": [
+          {
+            "id": "o6zg7STy9qo",
+            "title": "【神アプデ！】ChatGPTの音声入力が進化！リアルタイム文字起こしが便利すぎる！｜Live Dictation",
+            "channel": "じゅりん│AIビジネス活用塾",
+            "views": 4306
+          },
+          {
+            "id": "PPKXPWKTNVM",
+            "title": "ChatGPTの音声入力、話しながら文字に｜10分の上限も撤廃",
+            "channel": "AI話題箱",
+            "views": 63
+          },
+          {
+            "id": "nnKoCl-toWk",
+            "title": "ChatGPT Live Dictation、音声入力中に文字表示＆10分制限撤廃 #Shorts",
+            "channel": "コバコの毎日AI通信",
+            "views": 48
+          },
+          {
+            "id": "1KTmkim3xdo",
+            "title": "ChatGPT Live Dictation: Speak, Review, Send #Shorts",
+            "channel": "AI Unclouded",
+            "views": 46
+          },
+          {
+            "id": "4Af9Tb0PNzI",
+            "title": "ChatGPT Live Dictation Gets a HUGE Update! No 10-Minute Limit! 🤯 #Shorts",
+            "channel": "Cognitive Techie",
+            "views": 19
+          },
+          {
+            "id": "H-rX8g7OMvU",
+            "title": "ChatGPT Live Dictation: Talk, Text Appears Live",
+            "channel": "AI Varsity",
+            "views": 13
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 22,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 100
+        },
+        "total": 75.8,
+        "newest_hours": 10,
+        "domains": [
+          "gizmodo.com",
+          "digitaltrends.com",
+          "newsbytesapp.com",
+          "theverge.com",
+          "9to5mac.com",
+          "startupfortune.com",
+          "cryptobriefing.com",
+          "finance.biggo.com",
+          "meteoraweb.com"
+        ],
+        "trusted_domains": [
+          "gizmodo.com",
+          "theverge.com",
+          "9to5mac.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 1
+    },
+    {
+      "topic": "Coinbase AI Stops $4.7 Million Deepfake Elon Musk Scam",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        80,
+        100,
+        102,
+        112,
+        123,
+        128,
+        136,
+        167
+      ],
+      "hook": "An AI security tool just blocked a massive $4.7 million crypto scam featuring a deepfake Elon Musk.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 9,
+        "relevance": 9,
+        "visual": 7
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Coinbase AI blocks Elon Musk deepfake scam",
+      "evidence": [
+        {
+          "title": "Deepfake Elon Musk nearly costs viewers $4.7 million in crypto - Malwarebytes",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYXRoaEhLOVRFN0xzNGk1ZWRuenljdFN4SmI2NDdZLXZwUUpjUU15Y1hRT3NEV2hwNlNFUnljWTh6bl9qQ2xWajJCazZLZy1VbGplR3JDenB2T0QxQXBiYTN0TzRjNk1jTklYTXdWSlRnVjlKM0NVVWI2RFJvcFlsbVBzMlY3WXYtTm91c2QtRFcyRXRUMzRWQjFwOGdQNk1qQkkxUUVQNWlaUQ?oc=5",
+          "domain": "malwarebytes.com",
+          "published_ms": 1795111738000,
+          "kind": "news",
+          "id": 80
+        },
         {
           "title": "Coinbase AI Agent Blocks $4.7 Million in Deepfake Elon Musk Crypto Giveaway Scam - Hokanews",
           "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQaE9NMTZwSzhocGxhVXFFenFSaF9pQ2RNWXN4aGhOeUhTeVhrUVhpNldiU21JLTF5aUhkNFlsOXF2V2pYcHdCN0pINldva0tDNmUwdHZqUmFSdlhSSzhLRWk4ZEdEd2txaG14ckhfdW5pUzdWaVR2ellsdUd4bmNuWFNB?oc=5",
           "domain": "hokanews.com",
           "published_ms": 1795096800000,
           "kind": "news",
-          "id": 16
+          "id": 100
         },
         {
           "title": "Coinbase blocks $4.7 million in cryptocurrency transfers linked to deepfake scam - SC Media",
@@ -839,7 +1478,15 @@
           "domain": "scworld.com",
           "published_ms": 1795095244000,
           "kind": "news",
-          "id": 24
+          "id": 102
+        },
+        {
+          "title": "Coinbase: Blocked $4.7 million scam with Elon Musk Deepfake - SecNews.gr",
+          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQY05FWDBTMksxSklJM1NRMDVxcWJQNFFuNHNaNVhwYm9VSlBnd0hUN3ViNTJTNG43RnhQSUdjMDdlbms1cHZwMXFHRDZTUHZra0RDdF9OS3pKUFJSTlduT0JFTkhrSkV0RWhIc19JVkJJZV9XcTQ3OHdkTXY0UVUzMlFn?oc=5",
+          "domain": "secnews.gr",
+          "published_ms": 1795088022000,
+          "kind": "news",
+          "id": 112
         },
         {
           "title": "Coinbase AI Blocks $4.7M in Deepfake Musk Crypto Scam - CryptoRank",
@@ -847,7 +1494,7 @@
           "domain": "cryptorank.io",
           "published_ms": 1795080369000,
           "kind": "news",
-          "id": 46
+          "id": 123
         },
         {
           "title": "Coinbase Stops $4.7 Million Scam Using Fake Elon Musk and Tesla Demo - Coin Edition",
@@ -855,23 +1502,7 @@
           "domain": "coinedition.com",
           "published_ms": 1795076015000,
           "kind": "news",
-          "id": 49
-        },
-        {
-          "title": "Ethereum’s Glamsterdam Upgrade Faces Risks of Breaking 15,000 Apps as Coinbase Blocks $4.7 Million in AI-Powered Deepfake Scams - Tekedia",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOajZtNHBHMnNocDlzR1JPNnRoUEdHZTNoUHRqdTBFWDRrNmoySjFWMGhqbWRHR2RJUW43R0hJdEQ5Z0hUZmZaeVBkSUthVmQtVlhxNnlWdHFUSm43NklqelpGNWd4OVJlQjlfREpOU1hzVTlKU0NLRmpQT3JuX1p0T29KZzNQcjdhSXhQWWNNQUUyRkVzanpQdEd1UnhlRFdkLUM1VmxISVJaUXkwX3UzSkI1NzZqTVpKM08waHV3bGl2bS1iN2lEeU1Rdmhka19PV2doYlNXNVFCVExaYXpRSm1IMA?oc=5",
-          "domain": "tekedia.com",
-          "published_ms": 1795069266000,
-          "kind": "news",
-          "id": 58
-        },
-        {
-          "title": "Coinbase Blocks $4.7 Million in Musk Deepfake Crypto Scam - Hacked.com",
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1MaEg2ekQwWm9wTFVRM0Z1dEFkMkNsemxjY3VxYk05QV9hejB4MER1dnJZamNZZW9KYlNCLUNUMEkzeUsyNFQ0UXJXRUZ1c3VIU3pSR2M4akdTVmt5ZDRvUTNWS2tiVDc2X0taS3d0akNQNHFQdE0w?oc=5",
-          "domain": "hacked.com",
-          "published_ms": 1795066153000,
-          "kind": "news",
-          "id": 62
+          "id": 128
         },
         {
           "title": "Coinbase Fraud Team Blocks $4.7 Million Deepfake Musk Doubling Scam Before Payout - OneBullEx",
@@ -879,39 +1510,7 @@
           "domain": "onebullex.com",
           "published_ms": 1795065359000,
           "kind": "news",
-          "id": 64
-        },
-        {
-          "title": "Coinbase Uses AI to Stop $4.7M in Elon Musk Deepfake Scams - Crypto Economy",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOcHVhQVhwOVBySDc0MkQ1TVlTck1nXy1jbzhhOGhGLUlrWDc1X0V6WVNhRG1xc1k5WjAxV2RFcFk1dTFQY2tydm5acVpJc0pCSzRBN0w1NmtPTEdTbGlRMUdDZS1NekxoQm1PUEtJSjdxRHFoWjkxak1vb1E0VWpfWFZodWR6OWJjM2phLS1B?oc=5",
-          "domain": "crypto-economy.com",
-          "published_ms": 1795052730000,
-          "kind": "news",
-          "id": 78
-        },
-        {
-          "title": "Coinbase AI Blocks 4.7 Million Dollars in Deepfake Scam - SuaraGarut.ID",
-          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE1VVG9mVHFFRjlPbW9ibldsYjh0amp4RndTNl8yWGlZcWFmUkxQUURoZHJZYW9EZUZfT2JWdEJwREtGNEk1REdSR1h0eWVLWmkyUngwdnFLU24xOGg5Y1I0?oc=5",
-          "domain": "suaragarut.id",
-          "published_ms": 1795036020000,
-          "kind": "news",
-          "id": 98
-        },
-        {
-          "title": "Coinbase AI Blocks $4.7 Million Deepfake Musk Scam - cwibc.co.id",
-          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE0zSlk2ZVdQdm44ZlllTE9MS3N2cUxuZlBrMmZHbUJYMlFldTI1cXpXUGRPd25mWjFXanNPRnpLRy1tdWx2VEdDQm16RXg2RnRlUGM2RHZEdUpPNExGd3IwWGNVQzJJZw?oc=5",
-          "domain": "cwibc.co.id",
-          "published_ms": 1795035420000,
-          "kind": "news",
-          "id": 100
-        },
-        {
-          "title": "Coinbase blocks $4.7 million in transfers to Elon Musk deepfake scam - BleepingComputer",
-          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZjRfeUNyZkJ3Zmp5WHlzMFBpYU5OelJDVVYyWGNhTnF3NC1RaUt3QTlRY3Q3WDRxT2E3Ujg0dVdWTWp2TDhKRkFTeUp1cFpIeE5GZVN4dlllMDBfZkEtaHVrdk50RWZuNzAwdW1Ca2thQW5HZ0RaNl9GQkk5dXcweURjNDZuZmFsUEFlck5UbGNLOGRFM182T25JZnRMQWdCTWJXYWFZTGtPbC1ZVmhLYzhyTWo?oc=5",
-          "domain": "bleepingcomputer.com",
-          "published_ms": 1795034972000,
-          "kind": "news",
-          "id": 101
+          "id": 136
         },
         {
           "title": "Coinbase AI blocks $4.7 million deepfake Elon Musk crypto scam",
@@ -919,47 +1518,7 @@
           "domain": "finance.yahoo.com",
           "published_ms": 1795005060000,
           "kind": "news",
-          "id": 131
-        },
-        {
-          "title": "Coinbase AI Thwarts Stops Elon Musk Crypto Scam, Blocking Millions of Stolen Funds",
-          "url": "https://cryptopotato.com/coinbase-ai-thwarts-stops-elon-musk-crypto-scam-blocking-millions-of-stolen-funds/",
-          "domain": "cryptopotato.com",
-          "published_ms": 1794992760000,
-          "kind": "news",
-          "id": 139
-        },
-        {
-          "title": "Elon Musk deepfake nearly costs coinbase users $4.7 million",
-          "url": "https://www.thestreet.com/crypto/markets/elon-musk-deepfake-nearly-costs-coinbase-users-4-7-million",
-          "domain": "thestreet.com",
-          "published_ms": 1794990360000,
-          "kind": "news",
-          "id": 142
-        },
-        {
-          "title": "Coinbase Says AI Defenses Blocked $4.7M in Elon Musk Deepfake Crypto Scam",
-          "url": "https://finance.yahoo.com/markets/crypto/articles/coinbase-says-ai-defenses-blocked-155300563.html",
-          "domain": "finance.yahoo.com",
-          "published_ms": 1794988380000,
-          "kind": "news",
-          "id": 147
-        },
-        {
-          "title": "Coinbase Says Its AI Blocked $4.7 Million in Deepfake Elon Musk Scam",
-          "url": "https://bitcoinmagazine.com/news/coinbase-ai-blocks-deepfake-musk-scam",
-          "domain": "bitcoinmagazine.com",
-          "published_ms": 1794987000000,
-          "kind": "news",
-          "id": 149
-        },
-        {
-          "title": "Coinbase Says Its AI Agent Stopped $4.7 Million From Reaching Deepfake Musk Scammers",
-          "url": "https://tech.yahoo.com/cybersecurity/articles/coinbase-says-ai-agent-stopped-110045408.html",
-          "domain": "tech.yahoo.com",
-          "published_ms": 1794970860000,
-          "kind": "news",
-          "id": 159
+          "id": 167
         },
         {
           "title": "Coinbase AI blocks $4.7 million deepfake Elon Musk crypto scam - Yahoo Finance",
@@ -983,10 +1542,24 @@
           "kind": "news"
         },
         {
-          "title": "Coinbase’s AI Protection Blocked a $4.7 Million Transfer to Scammers Using an Elon Musk Deepfake - Incrypted",
-          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPeDg0dWlQdVpPT0NIemhqM0Y4cVVuNW43ZldoOGdaZXFXNktJSjNGbmhnd1dQS1drcDQ1VVRfQzNiN1NfZjVJVFpQdEFHaXhFSjJRcFduTFhaallqcEMtejJLbTZNMlh1NnBZMzJPZk5MOWt4b21YVHp4ZFRQNmNydXB5X1RIa3pGM3ltNXVBZFp4TUNxZjdaUEhHZzAydHJUVGR1c1FYWk9UWGNjNTRkTDJzc095RW5JRWlDVQ?oc=5",
-          "domain": "incrypted.com",
-          "published_ms": 1795015049000,
+          "title": "Coinbase AI defense blocks $4.7 million from being sent to deepfake Elon Musk scam - The Block",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPeURqY1NFckdoU0RXTmJFbHpjZ3BTZ0UxUEZwM0t3aWhydEgxLWpjNlI4cm84TXp3Y0JUN2hMVjNIY2o3NnJ4dDBsbGplck5rRTFrdWpNTEpyUWJPc0g0VnMtUW9YUnpHZHU5OElJTFI5Y1BsTVRFSVVnS1M1NHcxS3ZDcnFtZ0tYbWRmN2x2ZFd5RXQ2?oc=5",
+          "domain": "theblock.co",
+          "published_ms": 1794970020000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase blocks $4.7 million in transfers to Elon Musk deepfake scam - BleepingComputer",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZjRfeUNyZkJ3Zmp5WHlzMFBpYU5OelJDVVYyWGNhTnF3NC1RaUt3QTlRY3Q3WDRxT2E3Ujg0dVdWTWp2TDhKRkFTeUp1cFpIeE5GZVN4dlllMDBfZkEtaHVrdk50RWZuNzAwdW1Ca2thQW5HZ0RaNl9GQkk5dXcweURjNDZuZmFsUEFlck5UbGNLOGRFM182T25JZnRMQWdCTWJXYWFZTGtPbC1ZVmhLYzhyTWo?oc=5",
+          "domain": "bleepingcomputer.com",
+          "published_ms": 1795034972000,
+          "kind": "news"
+        },
+        {
+          "title": "Coinbase AI Blocks an Elon Musk Deepfake Crypto Scam at $4.7 Million - Cointribune",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPN3dmRDVmeVIzMi1XcWdoWmdJb1dTTHFEUE9lZnFoNGxlU1dYaC1pR05vWGhCSERIeDg3UTJyOEQwUk12NFQxNVJwNFB1WGVyT29LeW9VOVE0Ui1Ja1FyOVdpTEZzNGc5dXM3TGIxU1R3aFE3cTE4X2VPS1pMUHVja0JtNmxfUmhPOUFEU1p6dTNhUVRja21PU2pBenp2Ylhv?oc=5",
+          "domain": "cointribune.com",
+          "published_ms": 1794992700000,
           "kind": "news"
         },
         {
@@ -997,107 +1570,83 @@
           "kind": "news"
         },
         {
-          "title": "Deepfake Musk Scam: Coinbase AI Blocked $4.7M - shattered.io",
-          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNb2gzVzVkZnUxcE1ZOFhOa0VtM2JrOXNqeVIzb2NoYkE0VlhGeG5FUW9iTUkxRzBxN0RGTVVITnZnZWlJNWcySDl5anBEb1hRWkpXN0pFd2ZvelI3X0RGeW10T1djdkFOWjlkZXR3U1VTTnVrem04RVZTbWtsMDVQcEZkYw?oc=5",
-          "domain": "shattered.io",
-          "published_ms": 1794985780000,
-          "kind": "news"
-        },
-        {
-          "title": "Coinbase Says Its AI Agent Stopped $4.7 Million From Reaching Deepfake Musk Scammers - unchainedcrypto.com",
-          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMC1SLU95OUUxRXF4a19KSVRJYUV2OTRRM3hzNms1aHk5Mk9YaGs4SlE4aUpNdmk2YWNGYi1rUnprSHRKTlRfN2gycXZ0blFDZk1tWjdSWTU5Yk93ZUZibHRKb2xuT0ZlR0dYSGFPXzZEaUZKYVc2bFFfTzB6NUo1QlFyaTJLa2x6RnFPZGtLcnRtakktVkVJSktKOE1RYW9Vc0FkNkpRMEI3RjV5a1daWmp3?oc=5",
-          "domain": "unchainedcrypto.com",
-          "published_ms": 1794999600000,
-          "kind": "news"
-        },
-        {
-          "title": "Coinbase AI Blocks an Elon Musk Deepfake Crypto Scam at $4.7 Million - Cointribune",
-          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPN3dmRDVmeVIzMi1XcWdoWmdJb1dTTHFEUE9lZnFoNGxlU1dYaC1pR05vWGhCSERIeDg3UTJyOEQwUk12NFQxNVJwNFB1WGVyT29LeW9VOVE0Ui1Ja1FyOVdpTEZzNGc5dXM3TGIxU1R3aFE3cTE4X2VPS1pMUHVja0JtNmxfUmhPOUFEU1p6dTNhUVRja21PU2pBenp2Ylhv?oc=5",
-          "domain": "cointribune.com",
-          "published_ms": 1794992700000,
+          "title": "Coinbase AI blocks $4.7 million scam, but a simple lie exposes its weakness - CryptoSlate",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNY0FMdm8zbU9jckQ5RFBCMTdYTlpXaUJBS21xRmY2Q1FKQnpiN1Rtc25jZGdMbmxrdDVaOHdMUmJZR09EcWJuVmR4ZzdPdEFfR3hLMUsxb1IxSHAzQmdwallUUjlITlF3SkdMeEZfRWhWb3hjNENTd0N6RGZpQkpvY2g0aEZOY1lYNjd5VzFkYnNRU25UckhzcDRHZHRPaEE?oc=5",
+          "domain": "cryptoslate.com",
+          "published_ms": 1795039246000,
           "kind": "news"
         }
       ],
-      "wikipedia": {
-        "title": "Deepfake",
-        "daily_views": 1148,
-        "ratio": 1.03
-      },
+      "wikipedia": null,
       "youtube": {
-        "median_views": 45,
+        "median_views": 21,
         "competitors": [
           {
             "id": "ZI_uzy18P3M",
             "title": "Coinbase's AI Stops 91% of Payments to a Fake Elon Musk Crypto Giveaway",
             "channel": "The Wolf Of All Streets",
-            "views": 649
+            "views": 826
           },
           {
-            "id": "2bX2UPHnFVs",
-            "title": "Mark Cuban says an AI fake of him sells a diabetes cure on Facebook",
-            "channel": "Ai Superstar",
-            "views": 638
+            "id": "VC5aMimmRYM",
+            "title": "Deepfake Elon Musk Crypto Scam: Coinbase AI Blocked $4.7 Million",
+            "channel": "The Override",
+            "views": 54
           },
           {
-            "id": "5g_zrU3_sLI",
-            "title": "5 Scams AI Made Possible",
-            "channel": "AI Doomsday",
-            "views": 82
+            "id": "WAhNV2UREdI",
+            "title": "Is the Coinbase Elon Musk livestream a scam?",
+            "channel": "Red Flag Cyber",
+            "views": 25
           },
           {
-            "id": "N64bylDAx1A",
-            "title": "AI Crypto Scam",
-            "channel": "Bitsgap",
-            "views": 79
+            "id": "p8JgTnOVD-M",
+            "title": "Elon Musk Deepfake Crypto Scam: Coinbase Blocks $4.7M",
+            "channel": "Casi Live",
+            "views": 23
           },
           {
-            "id": "8XwWu7BfAVg",
-            "title": "3 Seconds of Your Voice Can Scam Your Own Mother — AI in the Real World",
-            "channel": "the ai index",
-            "views": 45
+            "id": "CEJPMTrEFMc",
+            "title": "64 A’s Start A Jira Server Takeover",
+            "channel": "redteamed",
+            "views": 21
           },
           {
-            "id": "THZyGOMgo7o",
-            "title": "Deepfake Ads: The $893M AI Fraud Trap",
-            "channel": "Fraud Empire",
-            "views": 9
+            "id": "RFMrdb7yAes",
+            "title": "Deepfake Elon Musk Crypto Scam Hit YouTube. Don't Scan That QR Code",
+            "channel": "Riff's AI Headlines",
+            "views": 6
           }
         ]
       },
       "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 88,
-          "reach": 41,
+          "momentum": 100,
+          "reach": 22,
           "curiosity": 90,
           "relevance": 90,
           "visual": 70,
           "source_quality": 65
         },
-        "total": 75.3,
-        "newest_hours": 1,
+        "total": 74.5,
+        "newest_hours": 15,
         "domains": [
+          "malwarebytes.com",
           "hokanews.com",
           "scworld.com",
+          "secnews.gr",
           "cryptorank.io",
           "coinedition.com",
-          "tekedia.com",
-          "hacked.com",
           "onebullex.com",
-          "crypto-economy.com",
-          "suaragarut.id",
-          "cwibc.co.id",
-          "bleepingcomputer.com",
           "finance.yahoo.com",
-          "cryptopotato.com",
-          "thestreet.com",
           "bitcoinmagazine.com",
-          "tech.yahoo.com",
           "bitcoinfoundation.org",
-          "incrypted.com",
-          "shattered.io",
-          "unchainedcrypto.com",
-          "cointribune.com"
+          "theblock.co",
+          "bleepingcomputer.com",
+          "cointribune.com",
+          "cryptopotato.com",
+          "cryptoslate.com"
         ],
         "trusted_domains": [
           "finance.yahoo.com"
@@ -1109,178 +1658,492 @@
       "wave": 1
     },
     {
-      "topic": "Google Search Traffic Drops 40% Due to AI Answers",
-      "pillar": "AI changing everyday work",
+      "topic": "Government Watchdog Tricks ChatGPT, Claude, and Gemini into Creating Terrorist Attack Plans",
+      "pillar": "AI failures, hallucinations, security problems and scams",
       "evidence_ids": [
-        1
+        77,
+        122,
+        147,
+        161
       ],
-      "hook": "Google's AI-generated search answers have caused traditional website traffic to plummet by a staggering 40%.",
+      "hook": "A government watchdog easily tricked ChatGPT, Claude, and Gemini into drafting workable terror and grid-attack plans in hours!",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 8,
+        "curiosity": 9,
         "relevance": 8,
         "visual": 7
       },
-      "wikipedia_title": "Google Search",
+      "wikipedia_title": "",
       "commons_query": "",
-      "youtube_query": "Google AI search answers traffic drop",
+      "youtube_query": "GAO tests AI chatbots terror plans",
       "evidence": [
         {
-          "title": "Google's AI answers reducing search traffic by 40%",
-          "url": "https://revscope.co/blog/search-seo-geo-2026/",
-          "domain": "revscope.co",
-          "published_ms": 1794961078000,
-          "points": 706,
-          "kind": "hn",
-          "id": 1
+          "title": "Claude, ChatGPT, Gemini, and Grok produced viable terror plans in test, per GAO - FedScoop",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQRFlfNGllOGNsLW5lWGp5dlc2OU0xNUxGY3B5WTFBVXpkQjdkeVZkV2NtTG54WkRCQ3I1TmwzVXc2cHJNUXIzRGY0U1ZKd2ptWjJVSGJfWGNTS3pSYk1TdXZObXVZYUV2UDMzdHV3QlJaVFJVckp5YnJYbmg3YVBaRzF0MTBXcERyTUUtMUpSMA?oc=5",
+          "domain": "fedscoop.com",
+          "published_ms": 1795112192000,
+          "kind": "news",
+          "id": 77
         },
         {
-          "title": "Is Google Losing The AI Search Battle To Itself? - Forbes",
-          "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPd2tiNjRPYUxqSlVyT3dMMmdIODNtamdtdjRMdGpuVGlqd25MRUxkSFNzaGFKMDhwam1QWFhkNVlJX1lra1lJcG5vQTl1X3o1UklHWnY4cVpVMUxHbHhnbVFyS014RmZUMmhuLTVuS1NfTnRvM0hZakFTc2hGN1RoX1pfdGgxYnpFME1Sb28zUk5BYk5WMWRVUUh2NDVmcXdBbkE?oc=5",
-          "domain": "forbes.com",
-          "published_ms": 1794211200000,
-          "kind": "news"
+          "title": "GAO Bypassed AI Chatbot Safeguards on ChatGPT, Claude, Gemini, Grok; Attack Plans in Under 12 Hours - Tech Times",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQdFdaeUVndkhUb0k0dUxadC1BbVYzSnI4WXlCdDByQzVKTGxPWUxSRGlPYWtjdGdhOGV4SlkwWjlocFRRYlU2MVd5M0JqX3c1RU1mYkFISkxiQlRZYUd6SUpuTGhlSVI5SGU2UnFPdk82TnhYeHN6UTNkWV9ob1QwV2Jyc0l6WFhMaW9oMXBIREVjMXgybkJ0QjVtb2ZmaDNMTUtxLXpOdFdKTWNhTUtGN0x3WXpKZlhVUl9jOWczQWZwMWdXQWZ6SFZ5bWFEdmVlTDNPVks4QWFfWjdj?oc=5",
+          "domain": "techtimes.com",
+          "published_ms": 1795069219000,
+          "kind": "news",
+          "id": 122
         },
         {
-          "title": "Ziff Davis loses 37% of its Google search traffic in a year - PPC Land",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNNHV4U0hIYnpva1oydFlkYzBnSnI4dllrTUo5ODhlMTJjdVctd0JlRHNsRmZET1NaaXpOc3ZpWXBveDZGenN6TElNbk56eEdUYURaU25QdDJGNmpVY1BvVlBiekZpLWxjWHJmNExNNlkySllsQzdQYmpDY2ZHeTJHa3J3?oc=5",
-          "domain": "ppc.land",
-          "published_ms": 1793952000000,
-          "kind": "news"
-        },
-        {
-          "title": "Reddit pushes logins as Google’s AI answers drain its search traffic - BetaNews",
-          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5Eal8wMm5JTXRHbXR2NzRQOXJqSDFkcWdDN0FKeWxiWGtwelh5dW9fRllRSGFLUENaeXp6MjB2THM2ajJzQ0dNR2dvTUJHYURWT0lGWmZlZGJidHNPakJYU25LdFJiYWVUYlVUTzRBQ0pxUQ?oc=5",
-          "domain": "betanews.com",
-          "published_ms": 1794857498000,
-          "kind": "news"
-        },
-        {
-          "title": "The Death Knell of Digital Search - The New Yorker",
-          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxQb29uZ3dkOVlZOFF3X1Nrb2MzTlM0eUpybm56TlpIakJVc2xsRTFhNG5INHFTR3M1UWt3WlVWRmlFQXBKY3ZUUFlhMmw1UGZpdWhKLUc0eVR5d1BkUzZSUDhTQkJDaTMwLURWNVJBeDdDWS01TU96ckdJN0ZSTzV1SXp5VVZCLTlIX1FB?oc=5",
-          "domain": "newyorker.com",
-          "published_ms": 1794211200000,
-          "kind": "news"
-        },
-        {
-          "title": "SEO National® Highlights Gaps in AI Search and Google Traffic Data - PR Underground",
-          "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMTFIYUZkMmhXc0UxRnlmRWxia0ZrNnNvTmxURm1aQ1piRXU3VTJ3QUlCRkQtNnVCZXppOW52NEZNamJsR3FnV3prVEFBRnlTamxNZHdRZkJHak5LV3BobFE3Q3dEcFZzQWE3VHFiSDR0QTQ1OGE5TW1xWkQ3MTZueGw4MUFvdFE3T014Ty0xNElaYXB0MHk5c1dXUWFYMVgtaUZTX1F6Zlg2VzBEWHJQSHYxcVZ4VVps?oc=5",
-          "domain": "prunderground.com",
-          "published_ms": 1794865495000,
-          "kind": "news"
-        },
-        {
-          "title": "Reddit's AI Paradox: Site Fuels Chatbots While Google's AI Overviews Drain Its Search Traffic - BigGo Finance",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBBWlZnamtGUWVUVHVwTm80QVQzS2t3cW9SMVBDd2tJcEo4bmdZSmYtY2tqQ0E5bnRpR3k5djhSVU94cnh1NU9SRWJCSGRFSGNtV1pOWjZqa0hWVUR5azRjZ1NpendlNDdHOHNzMWpicXpJQU9sbmc?oc=5",
+          "title": "GAO Undercover Test: ChatGPT, Claude, Gemini and Grok Produced Workable Attack Plans in Hours - BigGo Finance",
+          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE91bUhVcUhBc2tnQTY2dkgzMTU3Q2Y0UGUxYTF2enY2NkxJUzFhVTljX3lnYmZIYmZCamk4UW0tRnJRd251SmJOMnA1cVpudFVjb0x2SG1ic1Z5a3FmdGpkOG8tNmc3ank3Z1RNU1B0SGJmRlNEWFE?oc=5",
           "domain": "finance.biggo.com",
-          "published_ms": 1794503100000,
+          "published_ms": 1795040700000,
+          "kind": "news",
+          "id": 147
+        },
+        {
+          "title": "US senator eyes AI safety hearings after ChatGPT, Claude, Gemini and Grok aided terror plots in test - Tom's Guide",
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPdXptTEh6SnI5MVJsMDBpV2JwbjB2aG5rNmIxeDV6dTVmaUM0SndhZHY5ck5DWHJBR2hacnh5YThaZ0FOWkJQZ3RNcXVEbU90SmhyNXozdDhjTTFqSGxjRUpWLVNvRGs2SmFrbEhaVTVlamQ0ZFdxa2lJb1B4U251Z09Oc3JDZmZUSExQdzBGNHdqTW1USTFUUTBkLS1QN2xERkhFaE84MlN0UWJBaFNLVGJHSDlmQTc5cWZPOEFCV2VnVnFDTTZwY2RaOUdxUVp1ODAzVGJxMXJ2QjFBYk9SR1RWS1RnZw?oc=5",
+          "domain": "tomsguide.com",
+          "published_ms": 1795024560000,
+          "kind": "news",
+          "id": 161
+        },
+        {
+          "title": "Top AI Chatbots Provided Detailed Plans for Mass-Casualty Terror Attacks, Government Tests Reveal - Gadget Review",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxONkZMVFBVVGR1OUpjMWZLZGNuN1RhanBQTGJ3NEhnZ0plNHhwSkFaTnJRSWZ4OVYxV2ZPVUpxZ1NVVWJjQjFpUVBHQnBsUVlseXV6WTJmWkhFbEdfenNaZW1neW1Gak5RWjVXX1IzLUNjbl9BTzNGeFJ3Q0dhbk9lVUJMeno0dmZsaG1pS1g5Mmt0UncwX181MnMycm4xYkNSOGUybnpJakRTTXRidF83ZmpCdUZzZURLcENMVVJ4X01LbUU?oc=5",
+          "domain": "gadgetreview.com",
+          "published_ms": 1795022610000,
           "kind": "news"
         },
         {
-          "title": "Why An AI Usage Report Stopped Comparing AI With Search Engines - Search Engine Journal",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQUGdXUTlpV1pXcFZENEU4dGFsRVFGQW5Ndk1yWnh4V2dEYkp0eWhOcnhUbkJkZ21BWkhLSzJMd3I5c0pEM3FhOU1rUEczWE1CdVEwYzFrd09IT25WcnNsRnlHNGRJU1BFY3VIOWprbVBvQzgtT3Bta1puVjVjRUJ3T2xOMzNmWGhxOWpGZGZzYWhfUGRPcTdB?oc=5",
-          "domain": "searchenginejournal.com",
-          "published_ms": 1794211200000,
+          "title": "ChatGPT, Claude, Gemini And Grok Produced Viable Terror Attack Plans, Government Finds - Forbes Middle East",
+          "url": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxNM21qSkJIUmcyUGFGeFlhY252bGc0RjdueVowQjhhcHI0UkEwckdOTGZLbGV3U1hsdkRTUjlkdF9UMkplVWZpY19iNmRjQmxFUHkzbXVvQUczT25RcUh2RDhQTjJpX2dlbnB2SWlIa0M5VGViSWNmZUNOZm9tS0o2Q0tETy0yeUtpQXMyVTNoT0Zxd25Td1RVZzBlcFc1ZGFqbzQ1ZkMtZ2h5MXgyUndJNWp4RjJGT1AwRENEZTF0dFFEUVRqcE5fM05semQyZ18zejJMeGpuYk9HVEdVZnY0WFkxa1FjdkkwNEp1c054NEFfWGxScVVWVm1FQ2c?oc=5",
+          "domain": "forbesmiddleeast.com",
+          "published_ms": 1795112391000,
           "kind": "news"
         },
         {
-          "title": "NYC, LA and Chicago schools weigh dropping Google Search over its AI features - Startup Fortune",
-          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQZlNCSzlPSWwtQUh3VHQ5MVhsdjJabzBhMEFZRmZBc291bEM3SWoxV3NTQkxZM3FHLVczSk1zODZ4ajY1MWxQci1sQXhCYThzMFlZSjgyNXJXWHlrRVVXNVpFb1JteUFCRllZVzEtRnppaDlXQ0FkdVh5dmhYRklHR0hsMlY5eGFVR0E1dlh0NTBwV2xSV3FnQ3lwWVFJaTRxX1Znc29Ucw?oc=5",
-          "domain": "startupfortune.com",
-          "published_ms": 1795081651000,
+          "title": "US Watchdog Got Four Popular AI Chatbots To Help Plan Terror Attacks Despite Initial Safety Refusals - International Business Times UK",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPUGFuTHBad2ZmbXJlalpNYmlQcTJRMTNPRHBjaXpwVURFUkx5S3ZlOVpUVDM4djN4OF96S1FqYUF5WE04ZHZMbDNyRkcxM1JyaEs0UVQ3cWpZUTdIUU5SWVMyNkMyTXVVVTR0TUZid2tpNy13QVlXMXNMMkRuRS1OdW5XS3h0dnRx?oc=5",
+          "domain": "ibtimes.co.uk",
+          "published_ms": 1795011900000,
           "kind": "news"
         }
       ],
-      "wikipedia": {
-        "title": "Google Search",
-        "daily_views": 10730,
-        "ratio": 0.85
-      },
+      "wikipedia": null,
       "youtube": {
-        "median_views": 21,
+        "median_views": 29,
         "competitors": [
           {
-            "id": "rwAYaWBe1dg",
-            "title": "Google's AI Is Eating Your Clicks. Here's the Fix",
-            "channel": "SEO by Subham",
-            "views": 54
+            "id": "9U5yOWi2W3M",
+            "title": "AI chatbots helped plan electrical grid ATTACK, report reveals",
+            "channel": "Fox News Clips",
+            "views": 207832
           },
           {
-            "id": "tbWo9ttKO3M",
-            "title": "Google's AI answers cut publisher referrals 40.2%",
-            "channel": "The Contextian",
-            "views": 42
+            "id": "0HCuOfj7w6k",
+            "title": "US Government Test: Top AI Chatbots Helped Plan Terrorist Attacks #Shorts",
+            "channel": "Artificial Intelligence (AI News)",
+            "views": 65
           },
           {
-            "id": "y9NpCR_dnE8",
-            "title": "Google's AI answers cut clicks to websites by 40% #shorts",
-            "channel": "Logitwire",
-            "views": 33
+            "id": "g9hJymC7s5c",
+            "title": "Four AI Chatbots Produced Viable Attack Plans in a U.S. Government Test",
+            "channel": "Post-Mortem",
+            "views": 47
           },
           {
-            "id": "Q1Pwdz4U80w",
-            "title": "Website Traffic Dropped? How to Show Up in Google AI Answers #Shorts",
-            "channel": "AI Discovery",
-            "views": 33
+            "id": "euG5fJYKZqs",
+            "title": "ఈ రోజు AI News: 4 chatbots తో attack plans చేయించిన GAO + 2 మరిన్ని (19 Nov) #Shorts",
+            "channel": "Architect Explains AI | తెలుగు",
+            "views": 30
           },
           {
-            "id": "yf5nuEHWA7k",
-            "title": "68% of Google searches now end without a single click. That's the newest SparkToro data, and it shou",
-            "channel": "THAT Agency",
-            "views": 21
+            "id": "_94t3fGde9k",
+            "title": "4 AI Chatbots Gave Attack Plans in Under 12 Hours #Shorts",
+            "channel": "GoHuman AI",
+            "views": 29
           },
           {
-            "id": "094jQ7tC_mA",
-            "title": "Why Your Website Traffic Dropped in 2026 (AI Search Fix)",
-            "channel": "WAIT WHAT HAPPENED7",
-            "views": 21
+            "id": "WnAlAiSlqKQ",
+            "title": "Chatbots Failed a Gov Safety Test. Now What? #Shorts",
+            "channel": "GoHuman AI",
+            "views": 16
           }
         ]
       },
       "commons_hits": null,
       "score": {
         "factors": {
-          "momentum": 89,
-          "reach": 46,
-          "curiosity": 80,
+          "momentum": 100,
+          "reach": 25,
+          "curiosity": 90,
           "relevance": 80,
           "visual": 70,
           "source_quality": 65
         },
-        "total": 72.9,
-        "newest_hours": 5,
+        "total": 73.4,
+        "newest_hours": 14,
         "domains": [
-          "revscope.co",
-          "forbes.com",
-          "ppc.land",
-          "betanews.com",
-          "newyorker.com",
-          "prunderground.com",
+          "fedscoop.com",
+          "techtimes.com",
           "finance.biggo.com",
-          "searchenginejournal.com",
-          "startupfortune.com"
+          "tomsguide.com",
+          "gadgetreview.com",
+          "forbesmiddleeast.com",
+          "ibtimes.co.uk"
         ],
         "trusted_domains": [
-          "forbes.com"
+          "tomsguide.com"
+        ]
+      },
+      "rejected": [],
+      "wave": 2
+    },
+    {
+      "topic": "Google Maps Gets a Conversational Gemini Upgrade",
+      "pillar": "New AI features and releases",
+      "evidence_ids": [
+        105,
+        127
+      ],
+      "hook": "Google Maps is getting a major upgrade with a conversational Gemini assistant built right in.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 8
+      },
+      "wikipedia_title": "Google Maps",
+      "commons_query": "",
+      "youtube_query": "Google Maps Gemini Ask Maps",
+      "evidence": [
+        {
+          "title": "Google Maps gets Gemini AI upgrade with ‘Ask Maps’ conversational feature - DD News",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPeXZ2RzZ1bEhsU1lZOTFoX2t4cUUzS1JEblVYRmsyT3ZQWWtGMTRKclRMTEF3Z0JSRk5DSEtIdklrcWpsbWt0aXQzNzkyUWswdnBqLVVjenJmQzRucTNnQW5DbU9KNUk2U2hOdEZoSFVhRTdFRlpNZTFQdDVxa0ZnU2IxNUVWMW1FMnhYTWVTaHNYME9kWW1xNFZWRURKUQ?oc=5",
+          "domain": "ddnews.gov.in",
+          "published_ms": 1795093488000,
+          "kind": "news",
+          "id": 105
+        },
+        {
+          "title": "Google Maps Rolls Out Gemini Update On Android And iOS - Geeky Nigeria",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPcFFZb0ZtaW1uY0FqM3BTeGdOaDhsd3hXYVdwVEFCajlTTGZCVzlGcHJUOFRaUEZDRzhhdjQxWExMU09VWno3T1N5UW40YTR4czExVzdQeGZPNXZITUdpTHJJNWJNcWgtczRKOVlKVDg1SWpMbTFDLVBDbWczYVgtY0VZbnd6ajlHc09aQVhVbUxfZ01RN0E?oc=5",
+          "domain": "geeky.com.ng",
+          "published_ms": 1795076471000,
+          "kind": "news",
+          "id": 127
+        },
+        {
+          "title": "Google Maps gets update with new Ask Maps features for iOS and Android - PhoneArena",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNLUtDeUhDVTVYZWQyUDNMaHFUc1lLc2YzYWJJdGJicTg1VVoyeC1Wc3pBZS1BLThManU3NzJJVkJ0NzRvTjJwNll6VzJ4SW14Tjd4c3FfelQzbWtBQlhHUnotcUN4bXNpSnM3NFJrb1dDQ2pkNzV6WkxOSEM2bW5OeVg5bFItM1h3?oc=5",
+          "domain": "phonearena.com",
+          "published_ms": 1794874729000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Maps just got a huge Ask Maps upgrade that makes trip planning much easier - Android Police",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNdGU5c0ZYVTNZYXZnc2xsMXNRNElSUjVQcWRsMFpRRU9FelJuQlRyNjEtYUtxMEM2ZnhEOFAwMWRiRkRDUDNJRmV1UV9tVVRidTR0cVZ2MGw2UFl0LUdXYjNXNHEwRWFBWHo4S1dnSjZPYThTRjJhRGI0azJTRGlhNWI3Vm01Vjk2VmhmTWRR?oc=5",
+          "domain": "androidpolice.com",
+          "published_ms": 1794846937000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Maps Is Getting Gemini AI In CarPlay - InsideEVs",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBoU0VGdEt2eHFIblV6MEhlYkxocGRDeTRySnNuQndZTF9qMmhUZWtPMURrV2NsbFBieEtoMWFLWjI2aHV2QXVwc3llNE5tSWx6bnktTW4zak9ZZ09sbHpfX21Jc0lhS21Sc3VEcUJn?oc=5",
+          "domain": "insideevs.com",
+          "published_ms": 1795120525000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Maps' new Gemini button on CarPlay is the dashboard upgrade I didn't know I needed - MakeUseOf",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOMlpSdVNRTkRjdkE3eFdkdGV0U09tY2ppdGRpZm1jcnQ2b1E5bk9sQnJZLXRGanR1a05RazZfOTg4NnI1R25vZzdheU01cEs1YWF6NUQ0NzA1MXpmdWl4bFBPQU9iclFnb3BMci1lVTBZYVlHTFp5UkZVdGFRSHV1QUxtWDZ6aGdXNUE?oc=5",
+          "domain": "makeuseof.com",
+          "published_ms": 1794769216000,
+          "kind": "news"
+        },
+        {
+          "title": "Ask Maps brings Gemini software to Google Maps - Observatorio Blockchain",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaWdUNU13TldmZU1JbDBubk8wMWlmMGJRNHkya1U4eHZMR0tqaUdydXFvQmpreWVOc3k2eXZlZFFCNWVudFl6UDRWa3g4V2x4VDJSYUcyRkJhelYzcDAyWV93cnhiQnJhbVpDT2J2TFJHV3NGaXZFVGxPdE1IY1U0b210elhmaXdkV3pMWQ?oc=5",
+          "domain": "observatorioblockchain.com",
+          "published_ms": 1795015800000,
+          "kind": "news"
+        },
+        {
+          "title": "Ask Maps Gets Smarter with New Gemini-Powered Tasks - hi-Tech.ua",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5vYTFGNXAtSUQ2VzBaNVA4Q3RGM1JLSWMyZEJsN0ZBc0ljZDdBR2FtMUxGdmNTdnk4TUwyNEpWcTV1dk9kLXVJb2pVclR4YnNBbENxcmZKc3ZxOEc3SktmNnl4VW1heDk1ZC1ERmpjVVluci0yOVVZMzJPSHpjWDA?oc=5",
+          "domain": "hi-tech.ua",
+          "published_ms": 1795086445000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Brings AI-Powered Conversational Maps Searches to Greece - GreekReporter.com",
+          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNaWZFVl9WVE1PNktyUVM1WG5zejBIWTdJRWVrMEV2cmxYWS01eExZTk94LVRHZ0RhZExIWGh2a1V0ZDBZNWpZRE5EZFZ6bHJWbnpuYk5nMGZWallQUklqQlZ1SmZtdDMtTFByaFNRb09NQXpxem9Eb2ZON05mbVVERVNxTlQ4OXJqMmRRbzEyOTJPUlUtS0E?oc=5",
+          "domain": "greekreporter.com",
+          "published_ms": 1794974489000,
+          "kind": "news"
+        },
+        {
+          "title": "Google Maps Gets Smarter: Gemini Integration and 3D Immersive Navigation - آي-فون إسلام",
+          "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNNk5RNnA2UU95Z0Zod2tGc0FFUE9lMkJxa0pXcVRYRjc5ZXlBSXR4N01SbTNHMmcxLWowZEFDVnBtSm5xVEFBQ19zTmxGb1ZNQ2FncnppemMtTzBybkhBR3hmc20wM0RYNlFfU2FNTFBmTHlaYUhfN1dwbTZabVJPYlBWTE5KMHRLNUZRN3FlVlhSMUtYSnpXT1A3TmhzZllZYVVFTmJ1VXpXekx3aGtlbHBHRjNTV01iV0w3azAwRGZZSUYzS045d3NrSlpyUQ?oc=5",
+          "domain": "iphoneislam.com",
+          "published_ms": 1795023193000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Google Maps",
+        "daily_views": 3074,
+        "ratio": 0.47
+      },
+      "youtube": {
+        "median_views": 257,
+        "competitors": [
+          {
+            "id": "umeZCtZR6bU",
+            "title": "CarPlay Users Can Now Chat With Gemini While Navigating On Google Maps",
+            "channel": "GadInsider ",
+            "views": 1418
+          },
+          {
+            "id": "C0_RQdQnFMA",
+            "title": "How To Use Gemini in Google Maps for Navigation",
+            "channel": "Tech is Easy",
+            "views": 1408
+          },
+          {
+            "id": "D61v7NJjvpw",
+            "title": "You Can Now Talk to Google Maps on CarPlay (Gemini Is In)",
+            "channel": "Next Token",
+            "views": 1092
+          },
+          {
+            "id": "hrC28TrXYxM",
+            "title": "Google Maps AI Can Plan Your Entire Trip?! 🤯 Ask Maps Update",
+            "channel": "Future Tech Brief",
+            "views": 337
+          },
+          {
+            "id": "QaBV79kGJ6s",
+            "title": "Google Maps Apple CarPlay update adds Gemini AI",
+            "channel": "127News",
+            "views": 257
+          },
+          {
+            "id": "ctk6VKwMvj0",
+            "title": "Ask Gemini about places you saved in Google Maps",
+            "channel": "nocodemonkey",
+            "views": 192
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 88,
+          "reach": 52,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 80,
+          "source_quality": 30
+        },
+        "total": 73,
+        "newest_hours": 12,
+        "domains": [
+          "ddnews.gov.in",
+          "geeky.com.ng",
+          "phonearena.com",
+          "androidpolice.com",
+          "insideevs.com",
+          "makeuseof.com",
+          "observatorioblockchain.com",
+          "hi-tech.ua",
+          "greekreporter.com",
+          "iphoneislam.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source",
+        "too similar to recent topic: Google Maps AI Trip Planner"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Google Employees Petition to Keep Schools Search AI-Free",
+      "pillar": "Trending AI tools and apps",
+      "evidence_ids": [
+        31,
+        42,
+        45
+      ],
+      "hook": "Even Google employees are begging their own company to let schools use search without annoying AI forced on them!",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 9,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Google employees petition AI-free schools",
+      "evidence": [
+        {
+          "title": "Google Employees Petition to Let Schools Use Search Without AI - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOc0FIb2ZiWlZIWU0zclcyMjJKLXdWT09iTWlrMkt5OFVsWFZ5MlNPeEQ2VGUxZHNVc1E4VG82ZUQ1YjZ1NFBhdzdhQ1hyWUUwNFllTzEwaHA0eGVBYnZCOUN2dHFHYjlQemRMZThFTW02UThhWTFTV0Y5TUwzUWpreWM2MjMzbVZaSk04U0hnRUV3WkpiZlhhRw?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1795144007000,
+          "kind": "news",
+          "id": 31
+        },
+        {
+          "title": "Let students search: Google employees want an AI-free option for schools, here's why",
+          "url": "https://www.msn.com/en-in/news/other/let-students-search-google-employees-want-an-ai-free-option-for-schools-heres-why/ar-AA2hPZco",
+          "domain": "msn.com",
+          "published_ms": 1795133160000,
+          "kind": "news",
+          "id": 42
+        },
+        {
+          "title": "Google Says Schools Can’t Have Search Without AI. Some Are Finding a Way. - EdSurge",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPRlJXdnoxQ2ZwaUtkb3JwY2QxbTNmZ1pIMEh5TmVEcGgyVEdZMzM0WWV6R0VjNDFZSFBJU3lGM01fSGxaUVNwRDRkU1JPdFdrSjU0VXB2VDV6TEltbzU1V1ROdE1KRnJoQVl4ekl1T2poYi1fQ0pDMG14aUFwWktXS3BhTkdKSlpLOTEzRk5UZDRaYXdtWlVkcHdIVFZhVUlG?oc=5",
+          "domain": "edsurge.com",
+          "published_ms": 1795131895000,
+          "kind": "news",
+          "id": 45
+        },
+        {
+          "title": "Google workers are urging the company to let schools opt out of AI in Search - Quartz",
+          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5xVDlKQm92LXo3d1VjenliZmN1dE1MU3ItQURuRFFuQ0Q2NG56Qzk5MnlzX0JRTDlqRlVmVXZiWld6bEtqZ1JJNmIxRHd5S0FyQjBEY245OUVXZHlUNWFtZUc1SlhvMjZmMjBmWU5wcFpraEYxYXpaM1gzcw?oc=5",
+          "domain": "qz.com",
+          "published_ms": 1795112025000,
+          "kind": "news"
+        },
+        {
+          "title": "‘Let Students Search’: Google employees want an AI-free option for schools, here’s why - The Times of India",
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxNc0hIajRmeE5kQk1QMVhXRWJzM2cycUlFZ3FPd050am43YThjT0FrZGl6LW1DVnVRbld6cElyYTU5Y0FPbVEwSWVzVHE4RGUtcUtkVHJJUV9XTjNzdkhUQ3JGQnlvZ29sbUJaaXNaQnE5V2lqbnRrSjQ5NG9KQl9DYWMyaFh1cDR6WmpZQ0cxelZrbWQ4VGhEV3VuSW05QjVKU0xIZ3JyS2Zmc1JicXNvTmNQcWM4VjJtOXVDZ2RlOXZWQXRyLVRVOFlvWDRBOFFweXI3RnZXQVlZbnl1U2FpU1hYZnpPV3FwY0xiWGhCMnlldmVR0gH6AUFVX3lxTE1fcEtqZjRXc3AybVFvR25aRHBsODQ4Z2pGV0UydkdhY3lreXFldEJkOGwtSXZ2WHkyNGhxLW45M21jUVU0VXg3eWo1SHZ6Nm9kcTlDbVJrMlRjMTQxVUtRNG5Db180RkhYc0wyS1ZiSVV5UV9qTXJSR21acUlzNnZZcmJ0bndab3B6dlFyb25XRVhOMENVeWVFaV9yZHJmWUcxa1h4OHpLZjFaUXVKX0VYcGRfNVBJclcwWWowUmdPbWRlTFVPc0Q1QXgzdlVaLUNuUmRJRktMbHhIR2pFSktjSno3dE81bWhzUWt2Ty1Nb2hfdW1XbGxocXc?oc=5",
+          "domain": "timesofindia.indiatimes.com",
+          "published_ms": 1795161960000,
+          "kind": "news"
+        },
+        {
+          "title": "Nvidia Reportedly Seeks to Ease Employees' CEO and Money-Related Worries - Gizmodo",
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQZHBOMWhUNHFmNlV3MXlwb2JIMllGVDExV2xnazYxOXdLc3BkZWk2QXJ3TWdTMWs3WkZib2c1d1FNaDBYWGNCZGU4MTRqSk50V0xQNFVLUWJCOXhXc3BWdGdJTXduODBzbkFsYVhiOEZGT0NGdjZpbTNQc0VGQlF3dnBYazZMcnIxSngwRjdqeVUzbXNfRmN1SE13MjI4S1lDVE1fRFVRb0g4cm5sbk84?oc=5",
+          "domain": "gizmodo.com",
+          "published_ms": 1795065926000,
+          "kind": "news"
+        },
+        {
+          "title": "Google employees petition to let K-12 schools use Search without AI features - Neowin",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPLVd4NnpJMXVhYU9DQjhmR0U2Y3djT0xQRlQ3TDdvSGsxR05uZEJpcktrRXYyREc3cDllNzRleE1iSkxEaGZmcENlSzV6WHZ1Yl81cF9pWHQ1bS1acWx5cHd1WTFkeEdvTmg3XzRLdWV3cDFiNlNQSW5LUXoyUWg2aVpEeWw4Rzl1MVEtZVpWdlphNktseU9RUjREMnhvVkg3UmdzTEhwbzU?oc=5",
+          "domain": "neowin.net",
+          "published_ms": 1795139400000,
+          "kind": "news"
+        },
+        {
+          "title": "Google employees urge company to offer AI-free Search to schools - NewsBytes",
+          "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOLVl4aDlrd0hLdnFKZkpIV2Y4YWdhQWFQS3lESUtsYkRtaHY3Wjh4aTBiVVp5by1KZC0tb1BSRjRycTBGblJrVnJ4UTd4ZVZXWGNHQmpGeHNzWndwYVVseGdIdmRoSmp1cDBxd1lxRFdIOG9jZ3ZVc3VIdllMd2I5SnlIMTN4OGVBLWd6U21mWDJOamlYSlg4cC1KanRfWENhaGIxYk5ZQ1k?oc=5",
+          "domain": "newsbytesapp.com",
+          "published_ms": 1795159862000,
+          "kind": "news"
+        },
+        {
+          "title": "Google employees call for AI-free Search option for K-12 schools - CNBC TV18",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPMkI0Wk83dUpvMk5yaDlCVlJhMjEyLWtjdVZJOG1UWkVpQkxJSkhLeW03ekxteHdvLTVSVTN3c2VQWnZvaXlCZkdHV1hYeTZPWWc2LWEtRDJ1VXB2dk5kdkVDUjNDTjRwczRsT1JneG5ZNnBWMFhUS1JsRHFnN0oycXdFOEFPU09sbWdWNUc1Y0tfYXBzRzJ4aXNWdThuRXpUMjB3YnJHdmR5RzdqQnlOSnNxONIBuAFBVV95cUxOelZsX0NjalE2ZjFNbzRnN2RSXzVfWUsxT0hDS1MzZjR2X2htUTI4aldWb0twN0owUF9tdGNzQXFVZWQxYlczeHJHU0gwbWdfVHNYTTN2V0tySUYxcG82M3pPblNtaWVCUU1MVGVIQlNrNUo3Q185SnRWSTdVaEZjS201WVlGb2R3OWdiSW8zX1BxLVJYTGhTY3Z6UDhXQW1uQlJqYndJRWZRWGZ6cFdhMUpYeTVMaUl4?oc=5",
+          "domain": "cnbctv18.com",
+          "published_ms": 1795136379000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 34,
+        "competitors": [
+          {
+            "id": "-CgtwPEk60I",
+            "title": "【獨家觀點】黃仁勳復仇記上演！馬斯克領科技巨頭連署求回歸 輝達CUDA護城河被抄家 內部員工恐掀離職潮！#環球大戰線 #寰宇新聞@globalfrontlinetv",
+            "channel": "寰宇新聞 頻道",
+            "views": 101046
+          },
+          {
+            "id": "2rwxu5HvIqI",
+            "title": "【獨家觀點】黃仁勳回歸王座之路迎戰 財報報喜:營收翻倍.展望上修.盤後漲2%!從閃電去職到全面對峙 現正熱映｜#寰宇新聞",
+            "channel": "寰宇新聞 頻道",
+            "views": 8800
+          },
+          {
+            "id": "Zz1NEQmYm_Y",
+            "title": "3 AI Stories Every Business Owner Should Hear This Week",
+            "channel": "Carly AI",
+            "views": 89
+          },
+          {
+            "id": "mTWKU68gTjY",
+            "title": "School Board Meeting | November 9, 2026",
+            "channel": "dbqschools",
+            "views": 65
+          },
+          {
+            "id": "n6AMOl8Bkn4",
+            "title": "Why Jensen Huang Left NVIDIA | 33 Years to Build It, 4 Days to Lose It (English)",
+            "channel": "SCT出海-Scott",
+            "views": 34
+          },
+          {
+            "id": "phxxyb8l-nU",
+            "title": "$1.4 Trillion Gone: Nvidia After Jensen Huang",
+            "channel": "Maru Markets",
+            "views": 8
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 26,
+          "curiosity": 80,
+          "relevance": 90,
+          "visual": 60,
+          "source_quality": 65
+        },
+        "total": 72.1,
+        "newest_hours": 1,
+        "domains": [
+          "gizmodo.com",
+          "msn.com",
+          "edsurge.com",
+          "qz.com",
+          "timesofindia.indiatimes.com",
+          "neowin.net",
+          "newsbytesapp.com",
+          "cnbctv18.com"
+        ],
+        "trusted_domains": [
+          "gizmodo.com"
         ]
       },
       "rejected": [
         "too similar to recent topic: Google Turning Off Search for Schools Rejecting AI"
       ],
-      "wave": 1
+      "wave": 2
     },
     {
       "topic": "Canva Adds an AI 'Off' Button",
       "pillar": "Trending AI tools and apps",
       "evidence_ids": [
-        27
+        93,
+        104
       ],
-      "hook": "Tired of AI popping up everywhere? Canva just added a literal 'off' button to turn off its built-in AI tools.",
+      "hook": "Canva just added a long-requested feature: a simple button to turn off AI completely.",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
-        "curiosity": 8,
+        "curiosity": 7,
         "relevance": 8,
         "visual": 7
       },
@@ -1289,12 +2152,20 @@
       "youtube_query": "Canva AI off button",
       "evidence": [
         {
+          "title": "Canva Free AI Limit Reached: Options And Alternatives (2026)",
+          "url": "https://thedroidguy.com/canva-free-ai-limit-reached-1290294",
+          "domain": "thedroidguy.com",
+          "published_ms": 1795104000000,
+          "kind": "news",
+          "id": 93
+        },
+        {
           "title": "Canva adds an AI ‘off’ button",
           "url": "https://www.theverge.com/ai-artificial-intelligence/1037126/canva-ai-features-off-button",
           "domain": "theverge.com",
           "published_ms": 1795093685000,
           "kind": "feed",
-          "id": 27
+          "id": 104
         },
         {
           "title": "Canva adds an AI ‘off’ button - The Verge",
@@ -1311,6 +2182,13 @@
           "kind": "news"
         },
         {
+          "title": "Canva brings in AI f-off button for users - Startup Daily",
+          "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxORVJJU19CQTZISzJ2T09ENWZ6U1NZa1J0bXhkSWNIQ0J4UTBCWUdfNHk2Q1hYSDVaZjJpMjg4U2pMVTJJbEJMWENmSDNkNk5OT3dIUjlmendFbnpaaXVnUUhHc0stZGVoaDJtNDA2dWJuTmpIU2Y5UnFGeXFPcWh0cm1nZDlBc05pYWlseGpSMA?oc=5",
+          "domain": "startupdaily.net",
+          "published_ms": 1795150814000,
+          "kind": "news"
+        },
+        {
           "title": "Canva adds a generative AI “off” switch - Mezha.net",
           "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBmWVpiR2VNa2oxS010TWRSMW1LOG84dE9pQ01XOXRTR2trM3hQS0ZLWmYtYS1CNmliT1MwSjRMYXhKSElra2lQTDk0U3g1eElYQXBkcUdlczdtTjZPY01PNWo0TGFKMjRFUVgxdUU2RUNlMS1ydndMS1JWdw?oc=5",
           "domain": "mezha.net",
@@ -1323,51 +2201,72 @@
           "domain": "trendingtopics.eu",
           "published_ms": 1795095185000,
           "kind": "news"
+        },
+        {
+          "title": "Canva adds a generative AI off switch and a filter for fewer AI images - Superpower Daily",
+          "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPNjR5dTVBd1NxSTZUQVZFeVBVZWpIOFJCd1VrUHh1dGd0REVIcHNpS1RyenNPQmJYMWVSS19Gd1F2TkpDY3A3OEZBbUhkc25fNXRua3RpeUZra3JxVzRaei1TRjVYSTl0amt2UGR1QUpEcXRZSUlyZUYtRTFzVFhwQkxqRm9JZEtBRjZ4b2U3RURfRjBSUjQ1em5kODVCNjl6N1otOTdpbw?oc=5",
+          "domain": "superpowerdaily.com",
+          "published_ms": 1795096631000,
+          "kind": "news"
+        },
+        {
+          "title": "Canva AI Off Switch: What the Toggle Turns Off (Nov 2026) - explainx.ai",
+          "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNaDM5NnlJbTlRakJXdlhwbDBZdUJBeTUwU2VsMDU0T0pVMnRNNGRBVzB1QWdZZVhhVWQ0QVp1X2pLekJZOUg0OXpadWZpelQ1MmxPSzQyemxOdUx2X0hpWGY5ZzVhWGR4d29HY05MRVNXaDNrOU9kVlMyMjVOMkdMS0UzSEZNYzVwTnM1ZWU2ZXVTSTJSN2VOVGNPZw?oc=5",
+          "domain": "explainx.ai",
+          "published_ms": 1795046400000,
+          "kind": "news"
+        },
+        {
+          "title": "Canva adds AI off switch for Free and Pro accounts - streamlinefeed.co.ke",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQVWI5UjhTYkY3SFcycmRfUkFtbklWaGdMTnRhY0pqVmEzd285by1GcTF3V3B4cDVfWFMwaTRMVGJ6cHpOcVVmLU5KT1dod0ZLRmVCWEE4MXJvN2I2eHNmSFVNWTg3dDBGLWx6NWg3LWhvZkgwRGgxWERPaG9NVVM5YTNKQUNfZ0hmbFFKbA?oc=5",
+          "domain": "streamlinefeed.co.ke",
+          "published_ms": 1795160100000,
+          "kind": "news"
         }
       ],
       "wikipedia": {
         "title": "Canva",
-        "daily_views": 2151,
-        "ratio": 0.47
+        "daily_views": 2145,
+        "ratio": 0.49
       },
       "youtube": {
-        "median_views": 21,
+        "median_views": 24,
         "competitors": [
           {
-            "id": "VHmpeMNV6ok",
-            "title": "Create a PowerPoint Presentation with Canva AI in Under 1 Minute! #ppt #shorts",
-            "channel": "BestTemplatesNet",
-            "views": 64206
+            "id": "CX2LS8P5w_Q",
+            "title": "Canva mein ab AI band kar sakte ho! AI News",
+            "channel": "Naresh Basude | Tech Updates ",
+            "views": 151
           },
           {
-            "id": "MUwRDnxrSC0",
-            "title": "Canva Automation User Guide — Batch Image & Text Generation on Canva AI",
-            "channel": "Truong Nguyen | AI Automation Tools",
-            "views": 312
+            "id": "7ug6MUPBgbw",
+            "title": "Canva、生成AIをまとめてオフに #shorts",
+            "channel": "毎朝3分AIニュース",
+            "views": 43
           },
           {
-            "id": "D1cKyJ_g8M8",
-            "title": "How to Clone Your Voice in Canva AI (Free Tutorial)",
-            "channel": "Tongfix",
-            "views": 123
+            "id": "J9sGDtFs-1Y",
+            "title": "Canva Just Added an AI Off Switch",
+            "channel": "AI Tools Show",
+            "views": 27
           },
           {
-            "id": "DYeeTBO7jfs",
-            "title": "Canva AI Limits Explained: Standard, Premium & Ultra AI | Ep 108",
-            "channel": "TANZIL REALTY",
-            "views": 40
+            "id": "22mgVmkqaQI",
+            "title": "How to Turn Off AI in Canva (New Generative AI Off Switch)",
+            "channel": "AI With Taste",
+            "views": 24
           },
           {
-            "id": "akZkqSrNd3k",
-            "title": "I Tested Canva's AI Tools — Are They Actually Worth It?",
-            "channel": "ToolSignal",
-            "views": 21
+            "id": "l7sAeVI8Uy0",
+            "title": "Canva Now Lets You Turn Off Its AI. Here's How ⚙️",
+            "channel": "Pranav Innovates",
+            "views": 24
           },
           {
-            "id": "HCXn5PSrfe0",
-            "title": "Canva Magic Write: AI Writing for Posts, Docs & Captions | Ep 101",
-            "channel": "TANZIL REALTY",
-            "views": 9
+            "id": "OF5xoIEcfUQ",
+            "title": "Canva AI off switch: its hottest new feature does less",
+            "channel": "silicondork_com",
+            "views": 22
           }
         ]
       },
@@ -1375,102 +2274,478 @@
       "score": {
         "factors": {
           "momentum": 88,
-          "reach": 40,
-          "curiosity": 80,
+          "reach": 41,
+          "curiosity": 70,
           "relevance": 80,
           "visual": 70,
           "source_quality": 65
         },
-        "total": 71.6,
+        "total": 69.7,
         "newest_hours": 1,
         "domains": [
+          "thedroidguy.com",
           "theverge.com",
           "techbuzz.ai",
+          "startupdaily.net",
           "mezha.net",
-          "trendingtopics.eu"
+          "trendingtopics.eu",
+          "superpowerdaily.com",
+          "explainx.ai",
+          "streamlinefeed.co.ke"
         ],
         "trusted_domains": [
           "theverge.com"
         ]
       },
-      "rejected": [],
+      "rejected": [
+        "too similar to recent topic: Canva Adds an AI 'Off' Button"
+      ],
       "wave": 1
     },
     {
-      "topic": "AI Chatbot Used Someone's Laptop Without Permission",
+      "topic": "Meta's New Muse AI Agent Leaks Private Chats",
       "pillar": "AI failures, hallucinations, security problems and scams",
       "evidence_ids": [
-        30,
-        52
+        54,
+        63,
+        83,
+        156
       ],
-      "hook": "An AI researcher caught a chatbot secretly accessing his personal Mac computer without authorization—and all it did was apologize.",
+      "hook": "Meta's new AI agent is reportedly mixing up conversations and accidentally exposing private user chats.",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "",
+      "commons_query": "",
+      "youtube_query": "Meta Muse AI privacy leak",
+      "evidence": [
+        {
+          "title": "Meta&#8217;s new Muse Charm device may cost $300",
+          "url": "https://techcrunch.com/2026/11/19/metas-new-muse-charm-device-may-cost-300/",
+          "domain": "techcrunch.com",
+          "published_ms": 1795125486000,
+          "kind": "feed",
+          "id": 54
+        },
+        {
+          "title": "Meta’s Muse Charm might cost $300",
+          "url": "https://www.theverge.com/tech/1038087/meta-muse-charm-ai-price",
+          "domain": "theverge.com",
+          "published_ms": 1795120161000,
+          "kind": "feed",
+          "id": 63
+        },
+        {
+          "title": "Meta’s AI agent Muse is mixing up conversations and could be exposing private data, report says",
+          "url": "https://techcrunch.com/2026/11/19/metas-ai-agent-muse-is-mixing-up-conversations-and-exposing-private-data-report-says/",
+          "domain": "techcrunch.com",
+          "published_ms": 1795109920000,
+          "kind": "feed",
+          "id": 83
+        },
+        {
+          "title": "Muse privacy invasions are freaking out Meta staffers, internal chats show",
+          "url": "https://arstechnica.com/tech-policy/2026/11/muse-privacy-invasions-are-freaking-out-meta-staffers-internal-chats-show/",
+          "domain": "arstechnica.com",
+          "published_ms": 1795029573000,
+          "kind": "feed",
+          "id": 156
+        },
+        {
+          "title": "As Meta bets big on Muse AI agent, early safety mishaps surface - Reuters",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNYzFCWVhTaXRGa0xoLTRJUUVKTjNaYXZzU2FhbHYxR2tyallCbFJsUFM1U21lbXN0UVN2U3FfZnlsWWdGWERVTWRBdmhHVmZaS0Z3X0REWFhvaXhQYXpoNHRlTG0wbHp0WHd5b3N3dnpOYnJONWE4bWVXdEJObHFqZTFYd2szQ3p1SU5LV1JxODNpSVpoWnZTdXVWRDJTSUl0MTRvQnotcjJrUUE?oc=5",
+          "domain": "reuters.com",
+          "published_ms": 1795000993000,
+          "kind": "news"
+        },
+        {
+          "title": "Muse privacy invasions are freaking out Meta staffers, internal chats show - Ars Technica",
+          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOWGJmU050WEQzdDljRHE3Tk5EZjNjbklHRzF0bHRjcHJLWVpKYmFUNTcxUW5OWFVwSDJKZ194cE5zRk40Z19LczRRYWZKWnNhLU1oQ1F3blFtNzlSdmJPOVNPYnp5STlHdFBvYXFjWmstbXl0ZFpRd08xbkFtRjRMVUE3czFQZHRYRXJZUlhzYW5TUndlb2NqLUdCek54OHhGY1FXVlRZeGNBQl91bngtY3E1VzFNeHlIZVE?oc=5",
+          "domain": "arstechnica.com",
+          "published_ms": 1795029573000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Muse Agent Hit by SEV-2 Flaw, Rolled-Back Calls - shattered.io",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPV2dmWGt0My1zS05uSnJLZF80bF9FSnhUSENXQ2tUNGE5TkZXSnpQdTc3ZEx1TVo2X0h6VGFBY2VzZDlBT1p6TktuY2hJUHRMd1FMVzh1V1RmU3NQeHZvVXNLeWJqRV84bWhfQVc1dDhGWjJlRDYtVXAyZzhEc0xEb09QdXFaU25FZU5TQ1VB?oc=5",
+          "domain": "shattered.io",
+          "published_ms": 1795020121000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta Staff Flag Privacy Concerns About Its Muse AI Agent - Yahoo Tech",
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPUnVLc1A5ME1fSVI1dzRrY29wVjZwSWRGRlBvcE1uZkZQZlo2WFRWdUlIZzR3ZnBXNTlSMm9NZVZ3Z1V1VEVhckx5NnFQMUZHQXUzWElQVW1RbnFnSkVJellHdXBqUVYyeXhLLWs4MFFkWl9DQjBPdHZmOGFUc3NncndNZ2FoWDJTSG5mVkdJV3I5MVdG?oc=5",
+          "domain": "tech.yahoo.com",
+          "published_ms": 1795107072000,
+          "kind": "news"
+        },
+        {
+          "title": "Mark Zuckerberg on how Meta's Muse AI agent will make people money｜Sources Podcast - finance.biggo.com",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5RcVRiRlNLYVc0dmNtZUdVa244cWsxZURMS2loS1FsUHBkZGI3OEs5dWNqU24tMTdMRy0zVkEwSWcybENhSS01VkFrR3N1TGZOVG1ONmxQSlRTODRJZThV?oc=5",
+          "domain": "finance.biggo.com",
+          "published_ms": 1794800570000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta staff raise privacy concerns over Muse as Reuters tests its access to private messages - Superpower Daily",
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPREVhOGdTTFdtVWZrWlB5eERuakdfdndndHNFeGQxTVVibVZ4MWI2THl6Y1V6djFtQXdfQ1RPTUI0VTFsLThRRW13M0NfZUpiVjE5emFsR3NQd1ZhNHpfaWxaVHhyZG9GMmdqdXRnV0FrU2plTXE5dU5IaTF4SmN4bi1mUlY5aTIwb1BtMGdVZHFVMjZSanU1aFlFS3NIMm4zSVJjNWU1MUlSWXlTbzhUV25aVUdYa2t4UFlNRDFWNmR2NDA?oc=5",
+          "domain": "superpowerdaily.com",
+          "published_ms": 1795060500000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI is mixing up chats, reading Signal messages and flashing random bank balances - India Today",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxOMlExY0o1SGNzeUx2UTAxMnJkMUNuVmtyZGlETXQ0U2pXcGJ1NWtac1NzMXNmTmJvYlVsY2ZIQ3dFcy1BblJXeEkybUhnbEVyLVFSVDBwWHZ0SUNrTG5MSUc1bmN0ZWRMdWJFM0Vocm1tQlhGUDVsVDYyZThsalc2cUlrOWlDbDBibV9lbTAwYmhSTHpLRzlQb1BSUGU4bUN5OHFaTkFzaUltSmVPc3drc3BkcjRWbE50bkRwN2YtQWV1RXVudVZPMnBFVVhlbzhmcWJHSkdwUFhTX2txTUx5NmRZWVU1ZXZ5NFhRaHJB0gHzAUFVX3lxTE1oZ0dkV1h0NjFvNkg3MlM0SVo5T2dhMmtSRDVMZDIwN2xiWmJVazJ2cVNFWm9kblJadVU5ZjJFR050dmlqWWp2YlBkeWo3V19tS3VFNTNpLU9DY0NFNGQ5QWV3UFRFZVJvZnBtaXpVODlfbk4tTERsZW9FeHBIRkw3c1dralRZNnQ3TDExZGhfVnI1ZzQxekFhQWh1cE1fRDRYTUJrcEFTMERvWFdyVlpzM1ptV1dwblQ3SVhFUkppV2pXYjNyajc3WjJtemFMdDhoTFJYSFpPeWt2V1pfTVNSLTU4RUVyTVU2bUV1SF9wdFA5UQ?oc=5",
+          "domain": "indiatoday.in",
+          "published_ms": 1795155727000,
+          "kind": "news"
+        },
+        {
+          "title": "Meta's Muse AI agent accused of interfering with encrypted chats - dev.ua",
+          "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQX0I0Z0F5T1RfSHF4ODNsXzROTmJVeVJScFVjRnNxZjlMMjZtU0NJVmRzYUJMVXBTTXRmR25KTGtVZjhYVnMtQ0pSU3p4am1CRHpoUGJLNTlseFpkWnBHVzl0Q0dmb0RkR1h3OE9zSmxUQlNRSGhlU1VfWWYzNWFyeVhMMjNJdlc5RjNIZHB5UXI?oc=5",
+          "domain": "dev.ua",
+          "published_ms": 1795154820000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": null,
+      "youtube": {
+        "median_views": 0,
+        "competitors": []
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 100,
+          "reach": 0,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 100
+        },
+        "total": 69,
+        "newest_hours": 2,
+        "domains": [
+          "techcrunch.com",
+          "theverge.com",
+          "arstechnica.com",
+          "reuters.com",
+          "shattered.io",
+          "tech.yahoo.com",
+          "finance.biggo.com",
+          "superpowerdaily.com",
+          "indiatoday.in",
+          "dev.ua"
+        ],
+        "trusted_domains": [
+          "techcrunch.com",
+          "theverge.com",
+          "arstechnica.com",
+          "reuters.com"
+        ]
+      },
+      "rejected": [
+        "no reach evidence (too obscure or unmeasured)",
+        "too similar to recent topic: Meta's Muse AI Agent Expands to Smartwatches"
+      ],
+      "wave": 1
+    },
+    {
+      "topic": "Court Rules 4th Amendment Bans AI-Generated 'Probable Cause'",
+      "pillar": "AI changing everyday work",
+      "evidence_ids": [
+        10
+      ],
+      "hook": "A major court ruling just declared that police cannot use AI-generated 'probable cause' to bypass your 4th Amendment rights!",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 6
+      },
+      "wikipedia_title": "Fourth Amendment to the United States Constitution",
+      "commons_query": "US Courthouse courtroom gavel",
+      "youtube_query": "AI probable cause 4th amendment court",
+      "evidence": [
+        {
+          "title": "Court: 4th Amendment Disallows Use Of AI-Generated 'Probable Cause'",
+          "url": "https://www.techdirt.com/2026/11/19/court-tells-cops-that-the-4th-amendment-doesnt-cover-ai-generated-probable-cause/",
+          "domain": "techdirt.com",
+          "published_ms": 1795129019000,
+          "points": 65,
+          "kind": "hn",
+          "id": 10
+        },
+        {
+          "title": "Court Rules Fourth Amendment Bars AI from Establishing Probable Cause - news.lavx.hu",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPZEQ3RmxyLUhmUG9tandFRFV0djRlcUpxQ3dDZ0c3OUFjY1NqRVdNcjY1a01GTlcxZTFNai05SkdpN001WURWeHpwQ015X1h2WGRyTENkQXlTLWxJWXUwZUhuZUZUR0V0Tl9RS1EyRWFvRmtjbVZ3YTZQYnU2MFctWGI0T1ZTaEhtQjY4OXk0b3VrQnQ0SU9IbGw2anNSUGc?oc=5",
+          "domain": "news.lavx.hu",
+          "published_ms": 1795131125000,
+          "kind": "news"
+        },
+        {
+          "title": "Is AI Face Match Probable Cause? Osorio v. Kilmer - explainx.ai",
+          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNMEJkUng0QV9JSWQ1QWVaNG0wZFA0VE9oNHBvRlFMY01lUzAzaGFUSy1HZE1JMmttS2RXQ2Y2Y2RLb0pwNWt0Q2V3QnVoNXZ4U3VaTm9aSFEyekUtcUhGOW9ZZVF5cElSTHZCbFN4c2xDVzdoc0dKT2VwbFNxZFRVUlRKTGd3ZEtIanBvNlQ4VldWVXZzalhVbVhCUXE3MUhzaFBhNHgtT0RKVWVk?oc=5",
+          "domain": "explainx.ai",
+          "published_ms": 1795132800000,
+          "kind": "news"
+        }
+      ],
+      "wikipedia": {
+        "title": "Fourth Amendment to the United States Constitution",
+        "daily_views": 384,
+        "ratio": 1.1
+      },
+      "youtube": {
+        "median_views": 85,
+        "competitors": [
+          {
+            "id": "wCI2qrc8RSY",
+            "title": "What a Real 911 Dispatcher Hears in the Brooke Hanlon Call",
+            "channel": "The Comm Center",
+            "views": 2459
+          },
+          {
+            "id": "pIO5_G_hveA",
+            "title": "Do You Actually Understand What the 4th Amendment Protects?",
+            "channel": "Snapper Tams, Esq.",
+            "views": 2048
+          },
+          {
+            "id": "b5EkZbZyAEY",
+            "title": "When POLICE Don't Need Probable Cause to Search You!",
+            "channel": "Snapper Tams, Esq.",
+            "views": 1719
+          },
+          {
+            "id": "YFzlI3q3RKY",
+            "title": "The Ultimate Fourth Amendment Framework | Anthony Bandiero | Justia Webinars",
+            "channel": "Justia",
+            "views": 1412
+          },
+          {
+            "id": "U95lUUEHZZ8",
+            "title": "What Happens When There's a Warrant for Your Arrest",
+            "channel": "Now What Happens? | Criminal Process Explained",
+            "views": 85
+          },
+          {
+            "id": "zJdSywxffVg",
+            "title": "Can Police Search My Phone? Know Your Rights",
+            "channel": "LawSchoolShortcuts",
+            "views": 39
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 77,
+          "reach": 40,
+          "curiosity": 80,
+          "relevance": 80,
+          "visual": 60,
+          "source_quality": 30
+        },
+        "total": 64.3,
+        "newest_hours": 9,
+        "domains": [
+          "techdirt.com",
+          "news.lavx.hu",
+          "explainx.ai"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Raleigh Woman Evicted After Company's Confusing AI Agent Messes Up Rent",
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "evidence_ids": [
+        25
+      ],
+      "hook": "A woman got evicted from her home simply because a company's confusing AI customer service agent completely messed up her rent!",
       "anniversary": false,
       "explainable_30s": true,
       "ratings": {
         "curiosity": 9,
         "relevance": 9,
-        "visual": 6
+        "visual": 7
       },
       "wikipedia_title": "",
       "commons_query": "",
-      "youtube_query": "AI agent accesses computer without permission",
+      "youtube_query": "AI agent rent eviction mistake",
       "evidence": [
         {
-          "title": "Sarvam AI researcher alleges ChatGPT's dots agent accessed his Mac without permission, raising fresh... - Moneycontrol.com",
-          "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxNeTlQWmdVRWNnUkRFbVdrOFV4WUhzNnVwcWZkTU9yTnNJVXl6dE1TQVV2dG53RFNlZHRrbGEtRU9RXzBGOFJhdXNKbHk0d2ZWTWRUV1VuX1J0c3IwVDFNdXZOdmtybl9jbFozZWcxcTZnRGlDbkhHRDJTVHE0cHdWOHIycWhBQldKeWozVEJibE1nM25oSV8za0lyS3RXVmlFZk5FblV5cnlIZVNxMEozM041NGR2ZW9PUHM4TWdWaGdRb0MwOHliM1Q5MFdQSUVjbGJSbTlnRmxPanY3MVNwZXFQNXhSZWV0UmdBSmY5LWxoY3hRSDdXMFlKNHRYdXlxd1ljOEZzTXZoYTYwMEFQWEhWMXVuMUV0RENEUXBvOVl3LXJlN2pTLVNJTdIBsAJBVV95cUxNVnFDZWhxcll4RUNJdjZzQjlvVzdpNXlWa19zNDg0bFNhRkpjU2hEUG5wVkRsX2RMNU9TdnJOZVhBVm15Q0FxZ210UmJwM1c3TlhqamNtSlZYcXNTaGJSNWM4VjlQZFF0RFRjdTNUa18tV1JuMlNLTGpyd21zRVEyaEVhRTNQYkZzRU1oMlloRVA3VTBnODNRc1VySzZQZG13NGYwZnB4Ui1ydmFEeFl5TVlSZXc2RVF5bVQ2ZXVyODhub3NUWjJ4TWtWMTlnMEZ0dExBcnRmMXVVYlBPUFRMejJnU01ya3dhY3VnM29jS0E5eTVuMHBxYk5ocXo2N3YxdnNOcEd2MEk3OTQ4S3FCVnpGdzE1WHRTTnR0VWZ3a2xkNGN2WVJCNFpNOHFUME5w?oc=5",
-          "domain": "moneycontrol.com",
-          "published_ms": 1795091229000,
+          "title": "Raleigh woman says company's AI agent confused her over rent. Now she's evicted. - WRAL",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOQkVZTUFPUU4tdllRUGRSZ0pUTVU2bmMzUEFOUUtlUzloZ0h5d0VIcEpJQXNjZkREZDNIdjhQbk5OYjJacGxJbVYxdGhXVzVZU2V4UWtCa1c3QXY5RS1qbWdjQ2FTcE9kaF95ZEtIM2RGcDI5bnNfNnRZNjhVcTgtVXdvUFFYVTh0YmJBMXhLNXBjUDByUTBrMG5SUUZVUQ?oc=5",
+          "domain": "wral.com",
+          "published_ms": 1795153690000,
           "kind": "news",
-          "id": 30
-        },
-        {
-          "title": "Sarvam AI’s LLM researcher catches ChatGPT using his laptop without authorisation — it apologises - Firstpost",
-          "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxONlZtMGl0Ql9rUGRrVkdVVV9XYVNTNlFxZFdiU0dwa196RG9BTjhxOFdlSUdyUnJmNkZvdGp5dHBROXpfMW5xelN1ZXBxTUdMdGZQbWFYMEJFMm03YXBGZVV6Y1JVSWkzSTVocnF4N3MyLUlqeTVrY25ES1h4b3VmVVFsVE9lUWdfUkJCNmtSSGhESmdxTnMtZDl4S2RveGZOb3hvU2o1X0VPZ3BEQlBSUUtieVBaQ1NNSGJwWEVRZS1ydUd6and4eUtHQnRwZWlLbEZNNVFB0gHbAUFVX3lxTE9VN0xfZXZObm1XZS1uQkFsZllSWjcyQ3RCQjJLc3VDM1pMUTM0SHFkWFoySUtzdV9oZFdTaTVGQTFyaDQySlUxTTkwcGN4QzRTZTNxT0FiT0FSeGw3OU9xVEtfM0p4d0ExcHFWcmthUUphY01DOG5NTElYbmtUQnNaVWx0OXJoNzZCMGhuQVctLW82a1UtT1JBWmxocnd4QWdPaUd0MlNuWE9pNGVzZEFvaElzSzM4eU9XdklIbnNUaWFNZzdqaGs2WnJjaENCMnpBblpZMUQ1ai1tNA?oc=5",
-          "domain": "firstpost.com",
-          "published_ms": 1795072065000,
-          "kind": "news",
-          "id": 52
+          "id": 25
         }
       ],
       "wikipedia": null,
       "youtube": {
-        "median_views": 1142,
+        "median_views": 169,
         "competitors": [
           {
-            "id": "pjkbC1dCBiw",
-            "title": "AI agents accessing bank accounts without approval, report says",
-            "channel": "CBS News",
-            "views": 308966
+            "id": "y6_bCowzbOg",
+            "title": "The Rent Increase Mistake That Costs Landlords Thousands",
+            "channel": "Property Hub",
+            "views": 33854
           },
           {
-            "id": "hj7Andj7nQE",
-            "title": "OpenAI agents use internet without permission.",
-            "channel": "Gaurav Sen",
-            "views": 20249
+            "id": "1zfmJTzr50g",
+            "title": "Raleigh woman says company's AI agent confused her over rent. Now she's evicted.",
+            "channel": "WRAL",
+            "views": 5676
           },
           {
-            "id": "BV_wt1FOsQ4",
-            "title": "CERT-In flags AI agents accessing Indian firms’ records without authorisation | Cyber crime",
-            "channel": "Business Standard",
-            "views": 2482
+            "id": "ttcR4jNZoWw",
+            "title": "AI nightmare for Raleigh tenant",
+            "channel": "WRAL",
+            "views": 259
           },
           {
-            "id": "HMsK-4qXgB4",
-            "title": "An AI Agent Accessed a Government Portal Without Permission",
-            "channel": "Yuva Rani",
-            "views": 1254
+            "id": "8BSkKXhDfhA",
+            "title": "Why an eviction you never lost can still show up on your rental history #renters #tenantrights",
+            "channel": "Mark Martinez Law Center",
+            "views": 183
           },
           {
-            "id": "hy2zvY53dlw",
-            "title": "Why Giving AI Full Access to Your Computer Is a HUGE Risk",
-            "channel": "Brendan Scott",
-            "views": 1142
+            "id": "z1IBxplS264",
+            "title": "🇬🇧The £20K Right to Rent Rule-Your eVisa Screenshot Is Not Enough!  #ukimmigration #landlord #uk",
+            "channel": "Dogetlawyer Ai",
+            "views": 169
           },
           {
-            "id": "KNqkmbUxJWw",
-            "title": "AI AGENTS ACCESSING YOUR PRIVATE DATA?",
-            "channel": "THE CURIOUS LEENA",
-            "views": 475
+            "id": "uSSjp3Vu2Q0",
+            "title": "Common Section 8 Notice Mistakes",
+            "channel": "London Living with Ugo",
+            "views": 117
+          }
+        ]
+      },
+      "commons_hits": null,
+      "score": {
+        "factors": {
+          "momentum": 70,
+          "reach": 37,
+          "curiosity": 90,
+          "relevance": 90,
+          "visual": 70,
+          "source_quality": 0
+        },
+        "total": 63.4,
+        "newest_hours": 3,
+        "domains": [
+          "wral.com"
+        ],
+        "trusted_domains": []
+      },
+      "rejected": [
+        "fewer than 2 independent source domains",
+        "no trusted source"
+      ],
+      "wave": 2
+    },
+    {
+      "topic": "Amazon Launches Voice Cloning Allowing Brands to Replicate Human Voices",
+      "pillar": "Unexpected AI abilities and limits",
+      "evidence_ids": [
+        66,
+        69,
+        139
+      ],
+      "hook": "Amazon just launched voice cloning tools letting anyone build custom, hyper-realistic brand voices in multiple languages!",
+      "anniversary": false,
+      "explainable_30s": true,
+      "ratings": {
+        "curiosity": 8,
+        "relevance": 8,
+        "visual": 7
+      },
+      "wikipedia_title": "Amazon Polly",
+      "commons_query": "",
+      "youtube_query": "Amazon Polly voice cloning tool",
+      "evidence": [
+        {
+          "title": "Amazon Polly Adds Gated Voice Cloning for Custom Brand Voices - Unite.AI",
+          "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPWUJEOUp3MmZ3TEdTdGxWbVFuNWpIcDlmUmYzcHhjR2dyWnh0WXlwZWotVTJfRWNUeFd1U19IOWFGREY1X01xWFJqT3REd0UtWUc2VG9XaDJpMHlkVmVJRWxDUHhZaGFPUmpTd0RWMDktZURhY3p6T2EzWjg3aXAtXy1qVlloX01JYXFn?oc=5",
+          "domain": "unite.ai",
+          "published_ms": 1795119182000,
+          "kind": "news",
+          "id": 66
+        },
+        {
+          "title": "Amazon Polly launches voice cloning: A unique voice for your brand - Amazon Web Services (AWS)",
+          "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQemZqXzEtTkhEa0tXVTdWa2xCQjc3ZkRuVWJlbjZOQ0hWeGNValRuSHFEQ1hZbzAyVUFTZDNQX2cwT1JiTjc2UDAyRjdWYnNwd2RMMFp3TjFKQVdZeTNqNFBTMFkwZ050QzJCNUxoRkhMeVItRHFQZHhvOWRXYUU5WkJQQmxiOXlxams0NlJZbF96R1pYZ1BlZFRSeXhyZ212QjZMWmFLbVVzMHZvTjVNOEd3?oc=5",
+          "domain": "aws.amazon.com",
+          "published_ms": 1795118012000,
+          "kind": "news",
+          "id": 69
+        },
+        {
+          "title": "Amazon Polly Voice Cloning: 7 Languages, Free to Build - explainx.ai",
+          "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOTVMzUjZZVmJXOHJpaVVpaDRHaXUzeUt2emlsZUlEUy0yYWZZQ1hMZ3BhRnpHTmpnVmd2NUtyQk5FQWhiN2JxbFBGSmZfUlBDM056S0lOdVRla3hZR083OE1XUzBGNnVxOTdoQnF0X2M1anhKWXJjUkR4MXppWXdXcU1abkVNamJmRFJ3TnI3a0x1UmViaVZYajJtYW1iRnc?oc=5",
+          "domain": "explainx.ai",
+          "published_ms": 1795046400000,
+          "kind": "news",
+          "id": 139
+        }
+      ],
+      "wikipedia": {
+        "title": "Amazon Polly",
+        "daily_views": 5,
+        "ratio": 1.02
+      },
+      "youtube": {
+        "median_views": 39,
+        "competitors": [
+          {
+            "id": "2VqMfzhsnPw",
+            "title": "Turning the tiny M-VAVE FM-1 into a pocket-sized chord machine with Choralroot 🎛️🍁🍂",
+            "channel": "Aleksey Malykh",
+            "views": 174780
+          },
+          {
+            "id": "H9yy1DD79vk",
+            "title": "Don't Pay for AI! 5 Open Source Alternatives That Are Better",
+            "channel": "Eric Tech",
+            "views": 16064
+          },
+          {
+            "id": "ZU9DyL9u1y0",
+            "title": "The Light Gate - UFOs, Disinformation With  Author & Researcher, Greg Bishop,",
+            "channel": "Preston Dennett",
+            "views": 8862
+          },
+          {
+            "id": "pRGduTWgFkQ",
+            "title": "Revoicer Voices: Hear the American and British AI Voices (Review)",
+            "channel": "Content Game Tips",
+            "views": 42
+          },
+          {
+            "id": "smSqgkZHI3I",
+            "title": "Path Of Exile Covens of the Umbra 3.30",
+            "channel": "LunaPrincessVT Vtuber VODs",
+            "views": 39
+          },
+          {
+            "id": "uiPh1hTv_IY",
+            "title": "The Audible Monopoly: How Generative AI Breaks Amazon's Audiobook Chokepoint",
+            "channel": "Deep Dive Global",
+            "views": 28
           }
         ]
       },
@@ -1478,328 +2753,26 @@
       "score": {
         "factors": {
           "momentum": 80,
-          "reach": 51,
-          "curiosity": 90,
-          "relevance": 90,
-          "visual": 60,
-          "source_quality": 30
-        },
-        "total": 70.7,
-        "newest_hours": 2,
-        "domains": [
-          "moneycontrol.com",
-          "firstpost.com"
-        ],
-        "trusted_domains": []
-      },
-      "rejected": [
-        "no trusted source"
-      ],
-      "wave": 1
-    },
-    {
-      "topic": "Google Gemini Adds Temporary Incognito Mode for Searches",
-      "pillar": "New AI features and releases",
-      "evidence_ids": [
-        57,
-        135
-      ],
-      "hook": "Google just gave Gemini an incognito mode so your everyday chats and queries aren't saved to your personal history.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 7,
-        "relevance": 8,
-        "visual": 7
-      },
-      "wikipedia_title": "Incognito mode",
-      "commons_query": "",
-      "youtube_query": "Google Gemini incognito mode temporary threads",
-      "evidence": [
-        {
-          "title": "Google AI Mode Temporary Threads Launch With No Stated Retention; Gemini Chats Now Kept 2 Months - Tech Times",
-          "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOOGZFaUZ1akNycUg2MUFocWlDaWxSemlQb1NoNG9qUVJ3eDJvRjF5S1lEVDZDSnFINm9IWlVOWVhpN0k5WHkxQkJHakc2LXhHOW5DOTlqRzRsUVBNd2FNaUh1Vm1yNDVUeGVLM2JrVE1zRkk2SS05WHBRdGdPX3QzTVZiOWdqYzBzYnFwTy0yZ1VfYW9sV3dLbFB6dThzZ0hnMm5zN1ItMkt6cGlaUlVTQkRxSlIwMG1GWnF4ekgyVmRQdjZpeHFWSTZ2ZXpVVjN6aVBTdE5rdzZhR3RSQmc?oc=5",
-          "domain": "techtimes.com",
-          "published_ms": 1795069848000,
-          "kind": "news",
-          "id": 57
-        },
-        {
-          "title": "Google’s AI feature in Search gets its own incognito mode",
-          "url": "https://www.msn.com/en-us/news/other/google-s-ai-feature-in-search-gets-its-own-incognito-mode/ar-AA2hIpDW",
-          "domain": "msn.com",
-          "published_ms": 1794996245000,
-          "kind": "news",
-          "id": 135
-        },
-        {
-          "title": "Google AI Mode rolling out temporary threads - 9to5Google",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBSOUdUX3I5MHFQZl9CUFBKRTJRSUVOUG1ELUZUdk5taXNHc3VQbUdKcGFaamp2TExzWW5QSm1yVDF0QlJZbVM2NkpTRHRRenZmTVJQX0RJM2xhN2NKLThTdnJ5TnJtS2hYaU9yODY4VllfdlFNU2c?oc=5",
-          "domain": "9to5google.com",
-          "published_ms": 1794934800000,
-          "kind": "news"
-        },
-        {
-          "title": "Google AI Mode gets temporary threads for searches you don't want saved - Android Authority",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5fd2hkVkRPSGRGdFY4NFBUaXRycWI5Y3Z0SmRuYXNMYmVCZ3p1TUliem1zVHZieGVQbGd5SHhHN0Y2WnAxdEJFSlVkM2NBWGxPYzRiSG82TU9maElyRHpSU2dNUThSX21ReDhFWXlRaUhxNnVoak9tNlpka3ZzNW8?oc=5",
-          "domain": "androidauthority.com",
-          "published_ms": 1794924000000,
-          "kind": "news"
-        },
-        {
-          "title": "Google AI Mode Start Temporary Thread - Search Engine Roundtable",
-          "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBaRW9DWHhYUkZpT1R1TUJUSlUyNU95NlRnMk10WnpUU1FCSXJtMFlBdGhDMzZjcmQxMzBHM05Ud2NxYkdjWElzNEpnMXZFMF9UcXpzWkpZUmhzNEtOcm13NVNxaU5NUHMzYXJmQmJuZGwwX0pyMkpybVVIUQ?oc=5",
-          "domain": "seroundtable.com",
-          "published_ms": 1794831660000,
-          "kind": "news"
-        },
-        {
-          "title": "Temporary threads are now available in AI Mode in Search. - blog.google",
-          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQR2h4a3RBSWR6SVVORWlYejRYdExrVG5pMDB0MDgtc2YtcTU5MGE0SUJGVVpZQlRrZUJqQmZnQjR5dGlnaFJyckxfWnlHS1VuTl9veHh2ZGpUQ1NMSklsZURyWGo3MWd2TENxMHRHV1lsUVd6Ym9sNWZzM3Yya05uQWt3cEdZQkdDaFJTS1BR?oc=5",
-          "domain": "blog.google",
-          "published_ms": 1794935011000,
-          "kind": "news"
-        },
-        {
-          "title": "Google Adds Incognito-Style 'Temporary Threads' to AI Mode in Search - BigGo Finance",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE10TUpIanZFNlZtVnBtanVNOXltY2xFTzBnejcwVlYtcDlvMEdfX1E0TDQwbHR0MmJGOHFSQjVhSEVLdk81Ti00MFJpRWV3MXFKeUFSb3FsVEZuQmEycXRXMi12ekJmYVJ3TUM3SVdRc282QXdETGc?oc=5",
-          "domain": "finance.biggo.com",
-          "published_ms": 1795026300000,
-          "kind": "news"
-        },
-        {
-          "title": "Google Search AI Mode rolls out temporary thread feature globally, offering an incognito privacy search experience - AIBase",
-          "url": "https://news.google.com/rss/articles/CBMiSkFVX3lxTE9PSjRDU2ZvaUVuby1nMEpabVFYZ1NQY3ljQjJleFNSb3hDVTVDV1o5R3hZMWFrSjQwd0xmaTZDbDRIZzFUdTJhUUd3?oc=5",
-          "domain": "news.aibase.com",
-          "published_ms": 1795053327000,
-          "kind": "news"
-        },
-        {
-          "title": "Google brings Incognito-style private sessions to AI Mode in Search - Adgully",
-          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQSzNVc19jUy1CWUJvZEhBMFNHQ3E3MEZiby1ON1ZsbC1xaGR1dVQ2d2doWWhKaVRmVDY0OTh4bDNPQmtXdDFFNWp1NXZSTENCWm1mcDVaWlJKMndhNk1UOUp4NkxtVWR2a0dIT3Y4RmRucS1iamdWQTJUbHYxNXo1dnp5YmdCYW82WGxYdFFKU0dwT1BtME5VbnJXMVNCQmJ4MVY3eQ?oc=5",
-          "domain": "adgully.com",
-          "published_ms": 1795063440000,
-          "kind": "news"
-        },
-        {
-          "title": "Google adds incognito mode to AI search: temporary conversations will not affect personalization - NEWS.am TECH",
-          "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE5ia2hxb3BzRXJ0T1JoUlM0NDFXbE1lSHc2YzVoaWJweDhrRGo2dnFESUVITS1VSEtabTNpZkZxemVlbnBiaUxYXw?oc=5",
-          "domain": "tech.news.am",
-          "published_ms": 1795086000000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Incognito mode",
-        "daily_views": 4,
-        "ratio": 1.31
-      },
-      "youtube": {
-        "median_views": 17,
-        "competitors": [
-          {
-            "id": "VFsJkMdpfAk",
-            "title": "Set This Settings For Cookies In Google Chrome Browser | How to Block Third Party Cookies in Chrome",
-            "channel": "Sadiya Akter",
-            "views": 302162
-          },
-          {
-            "id": "eibWie7AXzU",
-            "title": "Trending AI Video Kaise Banaye? 🔥 | Gemini AI Video Tutorial | AI Video Editing",
-            "channel": "AI Tube Pro",
-            "views": 233858
-          },
-          {
-            "id": "WIW5hN-hApQ",
-            "title": "AI Engineering Full Course | 8+ Hours  | LLMs, RAG, LangChain, LangGraph, AI Agents",
-            "channel": "neonlearn",
-            "views": 72925
-          },
-          {
-            "id": "FyR3KZZovmY",
-            "title": "輝達證實：H200 晶片不再賣到中國！ #輝達 #AI晶片",
-            "channel": "像素腦",
-            "views": 37
-          },
-          {
-            "id": "YTaoeVuFCQ0",
-            "title": "Google AI Mode just got an incognito button",
-            "channel": "Moonshot Memo",
-            "views": 17
-          },
-          {
-            "id": "QeV5FE69tB4",
-            "title": "Evening Edition: GPT-6.2 Astra, Google Temporary Chats, Microsoft MAI",
-            "channel": "Unified Memory",
-            "views": 16
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 90,
-          "reach": 18,
-          "curiosity": 70,
+          "reach": 22,
+          "curiosity": 80,
           "relevance": 80,
           "visual": 70,
-          "source_quality": 65
-        },
-        "total": 65.6,
-        "newest_hours": 4,
-        "domains": [
-          "techtimes.com",
-          "msn.com",
-          "9to5google.com",
-          "androidauthority.com",
-          "seroundtable.com",
-          "blog.google",
-          "finance.biggo.com",
-          "news.aibase.com",
-          "adgully.com",
-          "tech.news.am"
-        ],
-        "trusted_domains": [
-          "blog.google"
-        ]
-      },
-      "rejected": [],
-      "wave": 1
-    },
-    {
-      "topic": "Anthropic Extends Free AI Access and Student Protections for Teachers",
-      "pillar": "AI tools ordinary people can use",
-      "evidence_ids": [
-        67
-      ],
-      "hook": "Anthropic just gave teachers free access to Claude with built-in data protections specifically designed for classrooms.",
-      "anniversary": false,
-      "explainable_30s": true,
-      "ratings": {
-        "curiosity": 6,
-        "relevance": 7,
-        "visual": 6
-      },
-      "wikipedia_title": "Claude (language model)",
-      "commons_query": "",
-      "youtube_query": "Claude AI free for teachers students",
-      "evidence": [
-        {
-          "title": "Claude for Teachers: Anthropic extends free AI access as new student data protections take effect - The Times of India",
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxQazhiWkhCcEhpckNOM3VwdmJ3cWItbDVaZzk0QmlxUnNYR3FDb0xWa090ZEZjSGhZRnB2VVNkajFzRzVzZGJ6cFFjZXV2ZlJZZ0t1OEduSmlWbTk5S0tnLVp6bGRJalI5SWU1THRoUHNZOWUxWGdNaXhiRGlUcmdMblRwWi0zaXFpSm1vNlZCM01QdWFobTdWZ2l5WS1aaHZuUU40SC1JTmNBbTdKcTdDY0ZTX29iU3d2T2NVUE1pbGJTaE5OU2E3R0RDMDhZRXVlbUdTcGdNV180RzAzN3RIOGQ4VHVRVXNPMlNNRV9iUGxhUmI1Z3A2Z2pWOEJwd3pBcWYw0gGIAkFVX3lxTE8wd3JUSER2RWtDUjV0UDdMOEwzd0RSdTM0WFB5Z3Zjb2dacTl4a1pSY2FFSlh1MWNhV1VkWmt4QkxCUWVZYlhJNURZRkgtaEYydjZ6WTRRY3pvcjNsTVBvay1RV0ZJWmloSUVLTkN0S1dxbE5hNC15UFVLc0M0cHp5Uk1BeVVWRElEdlJFT094U1ZFNkNJY1V6MUdoeXQ0bTR6cW56N1RlWVZCSXNMT01VUExTc19QS2o0bk83MFhkV3NGS0FLQTlUZVJwTVJTcnVPc3kzSE4tNXZ0WjNJZEh2Y1Ytams4ck9ZQ1hoWU9yUDZFOHpvWmlTNkxsYUVFcDlaZEVfbkIyMQ?oc=5",
-          "domain": "timesofindia.indiatimes.com",
-          "published_ms": 1795064760000,
-          "kind": "news",
-          "id": 67
-        },
-        {
-          "title": "Anthropic Agrees to Protections for Teachers Who Use Claude - Education Week",
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPalAxSVg4dGpQRTl2U09xQTFPRUd2Q0ZaLUFlRU1UaU45RDFiTElPb1RKSVdJREtKU0NXWGEzUm54STQwdFh2M0U5UVB1elJ4em5KLWVpX0Znc1lXb19ZcUVKWWVtYk5aMWRZM1hnMUdEVkhjclRocTZBMndVZEN5Tjh3WVZLTnJMdW8zZ2FYcXZBWHpRUGtSM1R1Rk5PQVgtVU00?oc=5",
-          "domain": "edweek.org",
-          "published_ms": 1794297600000,
-          "kind": "news"
-        },
-        {
-          "title": "Anthropic extends free Claude for Teachers access for U.S. K-12 educators to July 2028 - EdTech Innovation Hub",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmZnN2ZxMUs1MndOUy1XS2dEMDVIUzJJSE1QaDZoV0ZVWk50QUctYmJhbTA3a3ItamZsNGU5N0VxRXJWM0Z6dkZOdEZPZ2pJY21LVEVwaTVOMU9YcEM5OXUwSHhxRkswOXhTTjFJd1NkSmQ0Z0JrTFA0a3ppM2tJYUxKakhBcWpNY24wRm5COUFFNkg0YllCSVV0UzlxaXJ4bmFjaEsyZzlOVGxDSmpIU3ZwRklkZHlnOVE3NThGUTFKTE0?oc=5",
-          "domain": "edtechinnovationhub.com",
-          "published_ms": 1794962883000,
-          "kind": "news"
-        },
-        {
-          "title": "Opinion: Free AI for Teachers Sets a Dangerous Precedent - GovTech",
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPOFMweHN4OGwyNGNZaTU3Uk9YZmxmNWJ3Tmc0WUg3ZzdJVGhKNEtTTUxILUw3bzhDdUtYU2JmNVdGZVRSM040UGJoT0IyUUZEVUZMajI0Tnh0dWRFS0VKWGpYM3NpenV1Z2M0MjlIdndfa1lJLXlVRkwxdzhEMWpBZ25IcTZ1Qk13bzZZZlVEWnVNbDBXTk9wTkxn?oc=5",
-          "domain": "govtech.com",
-          "published_ms": 1794271533000,
-          "kind": "news"
-        },
-        {
-          "title": "ChatGPT for Teachers: Free Until June 2028, Not 2027 - Fello AI",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE9DeE8tSHRkc1dBSlhjMXVUZlA1OHF0ODBwX3NKeHQ1bUhxQ1NfUWRvODRDSXpYOVB1cE9oRDh1VGNuNlhJb1V0bjUtc2w2eUgxUnd2WnU3cER4YzF3VTlMLVNpZDI2amhNV2I0?oc=5",
-          "domain": "felloai.com",
-          "published_ms": 1794124800000,
-          "kind": "news"
-        },
-        {
-          "title": "Cursor Student Discount 2026: What Changed for Students - Fello AI",
-          "url": "https://news.google.com/rss/articles/CBMiV0FVX3lxTE9BLWxPTnFhZ2J2UGRxQ29LOGhQc1JXdjZaN3NzUFVvV3hDYkZ5OUxKTnhzSWlCbUYxTDZhQk5JbGJabk8wNW5GTEZHblpJUnJmZU1JWFhXaw?oc=5",
-          "domain": "felloai.com",
-          "published_ms": 1793952000000,
-          "kind": "news"
-        }
-      ],
-      "wikipedia": {
-        "title": "Claude (language model)",
-        "daily_views": 292,
-        "ratio": 0.86
-      },
-      "youtube": {
-        "median_views": 958,
-        "competitors": [
-          {
-            "id": "DtJi0dQ6myQ",
-            "title": "How to Use Claude AI for Free Unlimited? Claude Platform Step-by-Step Guide",
-            "channel": "bumtastik",
-            "views": 77778
-          },
-          {
-            "id": "4VmGOn5Wk20",
-            "title": "How To Get Claude AI Pro For FREE | Claude For Education",
-            "channel": "GuideStream",
-            "views": 6545
-          },
-          {
-            "id": "Pxd4IERn0I0",
-            "title": "Fable 5.2 Is Here! How to Use Claude AI for FREE Unlimited? Full Guide",
-            "channel": "bumtastik",
-            "views": 3252
-          },
-          {
-            "id": "t2SxSAY4kYs",
-            "title": "How Students Can Get Claude AI Pro Free in 2026? Check Your University",
-            "channel": "Technoholic AI",
-            "views": 2316
-          },
-          {
-            "id": "rGmXYplMxNc",
-            "title": "How to Get Claude AI Pro for Education For Free",
-            "channel": "Netverse Guides",
-            "views": 958
-          },
-          {
-            "id": "v4Dz3nq4Uyo",
-            "title": "Claude Free: 5 Legit Ways (Checked Today)",
-            "channel": "Kitty Code",
-            "views": 901
-          }
-        ]
-      },
-      "commons_hits": null,
-      "score": {
-        "factors": {
-          "momentum": 88,
-          "reach": 50,
-          "curiosity": 60,
-          "relevance": 70,
-          "visual": 60,
           "source_quality": 30
         },
-        "total": 63.5,
-        "newest_hours": 10,
+        "total": 62.3,
+        "newest_hours": 12,
         "domains": [
-          "timesofindia.indiatimes.com",
-          "edweek.org",
-          "edtechinnovationhub.com",
-          "govtech.com",
-          "felloai.com"
+          "unite.ai",
+          "aws.amazon.com",
+          "explainx.ai"
         ],
         "trusted_domains": []
       },
       "rejected": [
         "no trusted source",
-        "too similar to recent topic: South Korea Cracks Down After Student Uses AI to Ace Exam"
+        "too similar to recent topic: AI Voice Cloning Fraud Scheme and $129M Scam"
       ],
-      "wave": 1
+      "wave": 2
     }
   ]
 }

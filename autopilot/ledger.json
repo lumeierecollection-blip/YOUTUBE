@@ -1279,12 +1279,12 @@
       "attempts": 2,
       "run_id": "44704368028",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T08:40:14.471Z",
-      "stage": "script",
-      "topic": "Canva Adds an AI 'Off' Button",
-      "score": 71.6,
+      "updated_at": "2026-11-20T08:41:20.974Z",
+      "stage": "research",
+      "topic": "Apple Working on Computer-Use AI Agent to Rival Competitors",
+      "score": 84.3,
       "pillar": "Trending AI tools and apps",
-      "hook": "Tired of AI popping up everywhere? Canva just added a literal 'off' button to turn off its built-in AI tools.",
+      "hook": "Apple is reportedly developing a powerful AI agent that can browse the web, use apps, and write code for you.",
       "error": "run 44544500381 ended without reporting a result (last stage: script)"
     }
   },
@@ -2682,6 +2682,15 @@
       "at_ms": 1795132769600,
       "score": 63.5,
       "pillar": "Events that changed the modern world"
+    },
+    {
+      "channel": "2",
+      "topic": "Apple Working on Computer-Use AI Agent to Rival Competitors",
+      "slug": "apple-working-on-computer-use-ai-agent-to-rival-competitors",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795164080974,
+      "score": 84.3,
+      "pillar": "Trending AI tools and apps"
     }
   ],
   "attention": [
