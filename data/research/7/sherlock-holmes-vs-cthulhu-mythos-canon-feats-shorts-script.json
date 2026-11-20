@@ -1,0 +1,54 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-cthulhu-mythos-canon-feats",
+  "format": "shorts",
+  "hook": "In 1880, Sherlock Holmes investigations didn't align with Cthulhu Mythos stories from 1925.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1880, Sherlock Holmes investigations didn't align with Cthulhu Mythos stories from 1925.",
+      "visual_cue": "Split-screen showing 1890 London and a 1925 calendar page.",
+      "text_overlay": {
+        "text": "Chronological Clash"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1890, Arthur Conan Doyle's detective faces strange spherical bones in London's East End. How do these two distinct realities converge?",
+      "visual_cue": "Map of London's East End highlighting 1890, then a graphic showing a timeline from 1880 to 1914.",
+      "sfx_cue": "Clock ticking sound effect.",
+      "text_overlay": {
+        "text": "1890: The Investigation"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the Cthulhu Mythos tales are primarily set between 1925 and 1935.",
+      "visual_cue": "Graphic showing the 1925-1935 period overlapping with the earlier timeline.",
+      "text_overlay": {
+        "text": "The Timeline Gap"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "James Lovegrove attempts to bridge this gap in his novels. His work follows Neil Gaiman, who won a 2004 Hugo Award for similar pastiches.",
+      "visual_cue": "Portrait of James Lovegrove, then a book cover graphic for the Hugo Award-winning story.",
+      "text_overlay": {
+        "text": "Bridging the Worlds"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 1890 setting remains the anchor for this collision.",
+      "visual_cue": "Close-up of the 1890 date on an old ledger.",
+      "text_overlay": {
+        "text": "1890: The Anchor"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/A_Study_in_Emerald",
+    "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove",
+    "https://fangirlnation.com/2017/10/02/review-sherlock-holmes-vs-cthulhu"
+  ]
+}
