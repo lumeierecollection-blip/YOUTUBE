@@ -15,8 +15,9 @@ import { CELEB } from "./celebnews.jsx";
 
 import { IX } from "./ix.jsx";
 import { EP } from "./ep.jsx";
+import { FX } from "./fx.jsx";
 
-const LIB = { "rival-lines": { ...RIVAL, ...IX }, "hidden-past": { ...HIDDEN, ...EP }, "ai-tested": AITEST, "court-and-spotlight": COURT, "red-space-facts": SPACE, psychology: PSYCH, "celebrity-news": CELEB };
+const LIB = { "rival-lines": { ...RIVAL, ...IX }, "hidden-past": { ...HIDDEN, ...EP }, "ai-tested": AITEST, "court-and-spotlight": COURT, "red-space-facts": SPACE, psychology: PSYCH, "celebrity-news": CELEB, "fx-stick": FX, "fx-toon": FX, "fx-doc": { ...HIDDEN, ...EP, ...IX } };
 // Quick full-frame shots, the references' rhythm (a new picture every ~2.5-4 s, hard cuts, something always moving).
 //  s.cutaways: [{ at, dur, video|image, ss?, pos?, zoom? , credit? }]  seconds; drawn over any scene
 //  type "montage": s.shots: [{ dur, video|image, ss?, pos?, zoom? }] one after another
