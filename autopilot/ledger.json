@@ -1275,11 +1275,11 @@
     },
     "2026-11-19-ch2": {
       "channel": "2",
-      "status": "failed",
-      "attempts": 1,
-      "run_id": "44544500381",
+      "status": "running",
+      "attempts": 2,
+      "run_id": "44704368028",
       "trigger": "schedule",
-      "updated_at": "2026-11-19T15:58:09.452Z",
+      "updated_at": "2026-11-20T08:40:14.471Z",
       "stage": "script",
       "topic": "Canva Adds an AI 'Off' Button",
       "score": 71.6,
@@ -2778,5 +2778,5 @@
     "AI Tested 2026-11-17-ch2 failed at discover: discovery failure: 12 candidates, none eligible. Best \"Google Gemini's New 'Tasks' Feature Handles Phone Calls and Purchases\" (86.2): too similar to recent topic: Claude's New Personal Finance Feature",
     "Hidden Past 2026-11-18-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF hedged (\"May\"). Rewrite the payoff beat as the structure in the prompt says — using only this video'"
   ],
-  "last_poll_at": "2026-11-19T23:38:28.026Z"
+  "last_poll_at": "2026-11-20T08:40:14.471Z"
 }
