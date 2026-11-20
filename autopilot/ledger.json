@@ -1279,12 +1279,12 @@
       "attempts": 2,
       "run_id": "44704368028",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T08:42:51.778Z",
-      "stage": "script",
-      "topic": "Banks Warn Customers Are 100% Liable When Rogue AI Banking Agents Make Mistakes",
-      "score": 77.1,
-      "pillar": "AI failures, hallucinations, security problems and scams",
-      "hook": "Major banks just issued a terrifying warning: if an AI banking agent makes a mistake with your money, you are entirely on the hook!",
+      "updated_at": "2026-11-20T08:42:54.114Z",
+      "stage": "research",
+      "topic": "ChatGPT's New Live Dictation Lets You Rant Non-Stop",
+      "score": 75.8,
+      "pillar": "New AI features and releases",
+      "hook": "ChatGPT just gained a new live dictation feature that transcribes your spoken rants in real-time.",
       "error": "run 44544500381 ended without reporting a result (last stage: script)"
     }
   },
@@ -2700,6 +2700,15 @@
       "at_ms": 1795164114721,
       "score": 77.1,
       "pillar": "AI failures, hallucinations, security problems and scams"
+    },
+    {
+      "channel": "2",
+      "topic": "ChatGPT's New Live Dictation Lets You Rant Non-Stop",
+      "slug": "chatgpt-s-new-live-dictation-lets-you-rant-non-stop",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795164174114,
+      "score": 75.8,
+      "pillar": "New AI features and releases"
     }
   ],
   "attention": [
