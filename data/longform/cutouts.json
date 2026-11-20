@@ -1,34 +1,130 @@
 [
  {
   "fetch": [
-   "hidden-past",
-   "gb-franco-1950",
-   "File:Francisco_Franco_1950.jpg",
-   "Francisco Franco, Spanish head of state 1939-1975 (thumbnail subject, Gibraltar)"
+   "ai-tested",
+   "ac-board",
+   "File:48_Aviation_industry_in_Australia_-_Melbourne_Airport_departures_board.jpg",
+   "an airport departures board (illustrative)"
   ],
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/gb-franco-1950.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/gb-franco-1950-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-board.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-board-cutout.png",
   "args": [
    "--model",
-   "birefnet-general",
+   "u2net",
    "--max",
-   "1600"
+   "800"
   ]
  },
  {
   "fetch": [
-   "hidden-past",
-   "gb-franco-retrato",
-   "File:RETRATO_DEL_GRAL._FRANCISCO_FRANCO_BAHAMONDE.jpg",
-   "Francisco Franco, Spanish head of state 1939-1975 (thumbnail subject, Gibraltar)"
+   "ai-tested",
+   "ac-candle",
+   "File:Flickr_-_Government_Press_Office_(GPO)_-_TEENAGERS_LIGHTING_MEMORIAL_CANDLES_AFTER_HEARING_THE_SIREN.jpg",
+   "memorial candles (illustrative)"
   ],
-  "src": "src/skills/remotion-render/public/lf2/hidden-past/gb-franco-retrato.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/hidden-past/gb-franco-retrato-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-candle.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-candle-cutout.png",
   "args": [
    "--model",
-   "birefnet-general",
+   "u2net",
    "--max",
-   "1600"
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-phone",
+   "File:Smartphone_in_Hand_(Unsplash).jpg",
+   "a phone in a hand (illustrative)"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-phone.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-phone-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-787",
+   "File:Air_Canada_Boeing_787-9_Dreamliner_C-FVND_approaching_EWR_Airport.jpg",
+   "an Air Canada Boeing 787-9"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-787.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-787-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-787b",
+   "File:Air_Canada_Boeing_787-8_(C-GHPQ)_at_London_Heathrow_Airport.jpg",
+   "an Air Canada Boeing 787-8 at Heathrow"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-787b.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-787b-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-yvr",
+   "File:Vancouver_Airport_Skytrain_Station_2008-04-22.JPG",
+   "Vancouver airport (the trip began in Vancouver)"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-yvr.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-yvr-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-gavel",
+   "File:3D_Judges_Gavel.jpg",
+   "a judge's gavel (illustrative)"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-gavel.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-gavel-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
+  ]
+ },
+ {
+  "fetch": [
+   "ai-tested",
+   "ac-phone2",
+   "File:Black_smartphone_in_hand_(Unsplash).jpg",
+   "a smartphone in a hand (illustrative)"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/ai-tested/ac-phone2.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/ai-tested/ac-phone2-cutout.png",
+  "args": [
+   "--model",
+   "u2net",
+   "--max",
+   "800"
   ]
  }
 ]

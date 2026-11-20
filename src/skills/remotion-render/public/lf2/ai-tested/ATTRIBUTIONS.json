@@ -652,5 +652,24 @@
   "licence": "CC BY-NC 4.0 (pngimg.com)",
   "credit_line": "PNG: pngimg.com, CC BY-NC 4.0",
   "retrieved": "2026-11-19"
+ },
+ "ac-tail": {
+  "id": "ac-tail",
+  "description": "Air Canada logo on a plane at the Charles de Gaulle Airport (Paris, France).",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:2016-08_Air_Canada_aircraft_logo.jpg",
+  "licence": "CC BY-SA 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "author": "0x010C",
+  "original_credit": "Own work",
+  "date_taken": "2016-08-22 15:01",
+  "retrieved": "2026-11-20",
+  "claim": "the Air Canada logo on an aircraft tail",
+  "authenticity": "authentic",
+  "size_px": "6000x4000",
+  "credit_line": "0x010C, CC BY-SA 4.0, via Wikimedia Commons",
+  "bytes": 286576,
+  "file": "ac-tail.jpg"
  }
 }

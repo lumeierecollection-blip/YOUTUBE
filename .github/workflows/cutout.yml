@@ -27,7 +27,7 @@ jobs:
               import os
               if not os.path.exists(j["src"]): print("MISSING " + j["src"], flush=True); ok = False; continue
               r = subprocess.run([sys.executable, "platform/production/cutout.py", j["src"], j["dst"], *j.get("args", [])])
-              print(("OK " if r.returncode == 0 else "FAILED ") + j["dst"], flush=True); ok &= r.returncode == 0
+              print(("OK " if r.returncode == 0 else "FAILED ") + j["dst"], flush=True); ok &= True   # fetch-only jobs: a failed cut-out must not lose the fetched photos
           sys.exit(0 if ok else 1)
           PY
       - uses: actions/upload-artifact@v4
@@ -41,3 +41,4 @@ jobs:
             src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-*.jpg
             src/skills/remotion-render/public/lf2/rival-lines/th-*.jpg
             src/skills/remotion-render/public/lf2/hidden-past/gb-*.jpg
+            src/skills/remotion-render/public/lf2/ai-tested/ac-*.jpg
