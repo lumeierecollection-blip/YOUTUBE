@@ -22,13 +22,14 @@ Would an ordinary viewer immediately read this picture as a sensible, fitting il
 or a clearly related scene)? Unrelated, joking, misleading or confusing pictures are not fitting.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
     let r = null;
+    for (let pass = 0; pass < 4 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 8000 * pass));
     for (const key of KEYS) {
       try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
           body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: /\.png$/i.test(p) ? "image/png" : "image/jpeg", data: readFileSync(file).toString("base64") } }] }], generationConfig: { responseMimeType: "application/json", temperature: 0 } }) });
         if (!res.ok) continue; const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break;
       } catch { continue; }
-    }
+    } }
     out.push({ beat: b.id, img: p, ...(r || { ok: false, reason: "no answer" }) });
     console.log(`${r?.ok ? "OK  " : "FAIL"} ${b.id} ${p.split("/").pop()}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
   }

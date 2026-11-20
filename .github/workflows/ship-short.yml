@@ -1,0 +1,51 @@
+# Auto-ship (20 Nov 2026): when the Shorts render named in data/uploads/short-plan.json (slug) finishes successfully, i.e. its picture gate passed,
+# the finished Short is uploaded as a PRIVATE video (upload-longform.mjs hard-codes private and checks the channel title). Nothing public happens here.
+name: Ship Short (private)
+on:
+  workflow_run:
+    workflows: ["SX Shorts"]
+    types: [completed]
+  push:
+    branches: ["ship/**"]
+permissions:
+  contents: read
+  actions: read
+concurrency: { group: upload-short, cancel-in-progress: false }
+jobs:
+  up:
+    if: ${{ github.event_name == 'push' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: "${{ github.event.workflow_run.head_sha || github.sha }}" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Fetch the finished Short
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          P=data/uploads/short-plan.json; SLUG=$(jq -r .slug $P); D=data/uploads/$(jq -r .dir $P)
+          RUN="${{ github.event.workflow_run.id }}"; [ -z "$RUN" ] && RUN="${GITHUB_REF_NAME#ship/}"
+          BR="${{ github.event.workflow_run.head_branch }}"; [ -n "$BR" ] && [ "$BR" != "sx/$(jq -r .branch $P)" ] && { echo "run is for another Short ($BR): nothing to ship"; exit 0; }
+          gh run download "$RUN" --repo "$GITHUB_REPOSITORY" -n "sx-short-$SLUG" -D "$D" && mv "$D/short.mp4" "$D/episode.mp4"
+      - name: Upload private
+        env:
+          CH01_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH04_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: |
+          P=data/uploads/short-plan.json; D=data/uploads/$(jq -r .dir $P); S=$(jq -r .slot $P)
+          ls $D/episode.mp4.part-* >/dev/null 2>&1 && cat $D/episode.mp4.part-* > $D/episode.mp4   # files over 100 MB travel in parts (GitHub limit)
+          TH=$(jq -r ".thumb // empty" $P); [ -n "$TH" ] && TH="$D/$TH"
+          v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
+          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)" "$TH"
+          cat "$D/upload-record.json"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: upload-record, path: "data/uploads/*/upload-record.json", if-no-files-found: ignore }

@@ -30,6 +30,7 @@ A person mentioned should look like that kind of person (e.g. a grandmother = an
 an object mentioned should be that object. Generic but fitting illustrations are fine; unrelated, joking, misleading or confusing pictures are not.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
   let r = null;
+  for (let pass = 0; pass < 4 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 8000 * pass));   // a vision call that fails is retried (rate limits), never counted as a rejection
   for (const key of KEYS) {
     try {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
@@ -37,7 +38,7 @@ Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>",
       if (!res.ok) continue;
       const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break;
     } catch { continue; }
-  }
+  } }
   out.push({ at: s.at, said, id, ...(r || { ok: false, reason: "vision model gave no answer" }) });
   console.log(`${r?.ok ? "OK  " : "FAIL"} "${said}" -> ${id}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
 }
