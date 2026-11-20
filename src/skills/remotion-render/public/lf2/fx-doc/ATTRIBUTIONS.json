@@ -207,12 +207,12 @@
  "gl-nuuk-harbour": {
   "id": "gl-nuuk-harbour",
   "file": "gl-nuuk-harbour.jpg",
-  "description": "Gull",
+  "description": "@Nuuk",
   "source": "flickr",
-  "source_url": "https://www.flickr.com/photos/22311054@N00/3251035735",
-  "licence": "by-nc-nd",
-  "author": "Kriffster",
-  "credit_line": "Kriffster, BY NC ND, via flickr",
+  "source_url": "https://www.flickr.com/photos/54712044@N03/9103742576",
+  "licence": "by-sa",
+  "author": "Thomas Leth-Olsen",
+  "credit_line": "Thomas Leth-Olsen, BY SA, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
  },
