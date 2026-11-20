@@ -2880,9 +2880,14 @@
           "topic": "Vulcan Rocket Failure Destroys Forty Amazon Leo Satellites",
           "slug": "vulcan-rocket-failure-amazon-leo-satellites",
           "reserved_at": "2026-11-19T17:49:26.367Z"
+        },
+        {
+          "topic": "BepiColombo Mission Arrives in Orbit Around Mercury",
+          "slug": "bepicolombo-mission-arrives-mercury-orbit-2026",
+          "reserved_at": "2026-11-20T17:14:41.966Z"
         }
       ],
-      "last_generated": "2026-11-19T17:49:26.367Z"
+      "last_generated": "2026-11-20T17:14:41.966Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
