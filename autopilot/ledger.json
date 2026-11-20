@@ -1279,12 +1279,12 @@
       "attempts": 2,
       "run_id": "44704368028",
       "trigger": "schedule",
-      "updated_at": "2026-11-20T08:41:20.974Z",
+      "updated_at": "2026-11-20T08:41:54.721Z",
       "stage": "research",
-      "topic": "Apple Working on Computer-Use AI Agent to Rival Competitors",
-      "score": 84.3,
-      "pillar": "Trending AI tools and apps",
-      "hook": "Apple is reportedly developing a powerful AI agent that can browse the web, use apps, and write code for you.",
+      "topic": "Banks Warn Customers Are 100% Liable When Rogue AI Banking Agents Make Mistakes",
+      "score": 77.1,
+      "pillar": "AI failures, hallucinations, security problems and scams",
+      "hook": "Major banks just issued a terrifying warning: if an AI banking agent makes a mistake with your money, you are entirely on the hook!",
       "error": "run 44544500381 ended without reporting a result (last stage: script)"
     }
   },
@@ -2691,6 +2691,15 @@
       "at_ms": 1795164080974,
       "score": 84.3,
       "pillar": "Trending AI tools and apps"
+    },
+    {
+      "channel": "2",
+      "topic": "Banks Warn Customers Are 100% Liable When Rogue AI Banking Agents Make Mistakes",
+      "slug": "banks-warn-customers-are-100-liable-when-rogue-ai-banking-ag",
+      "slot": "2026-11-19-ch2",
+      "at_ms": 1795164114721,
+      "score": 77.1,
+      "pillar": "AI failures, hallucinations, security problems and scams"
     }
   ],
   "attention": [
