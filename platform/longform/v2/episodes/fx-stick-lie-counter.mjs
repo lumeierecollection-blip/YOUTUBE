@@ -16,7 +16,8 @@ const C = (id, x, o = {}) => ({ id, x, ...o });
 // 20 Nov rebuild: scenes use the measured ConChaser grammar (fx-stick.jsx "fxk"): badges become pill tags ("3 LIES"), the bedroom/kitchen/classroom/street sets
 // keep their names, and school corridor shots use the hallway set.
 const tagOf = (b) => b && { text: `${b.value} ${b.value === "1" ? "LIE" : "LIES"}`.replace("? LIES", "?"), tone: b.tone, from: b.from, ...(b.to ? { to: { text: `${b.to.value} ${b.to.value === "1" ? "LIE" : "LIES"}`, tone: b.to.tone || (Number(b.to.value) === 0 ? "high" : Number(b.to.value) < 4 ? "mid" : "low"), at: b.to.at } } : {}) };
-const room = (room, cast, o = {}) => ({ type: "fxk", room, cast: cast.map(({ badge, ...m }) => ({ ...m, tag: tagOf(badge) })), ...o });
+let si = 0; const SHOT1 = ["medium", "close", "wide"], SHOT2 = ["wide", "medium"];   // measured: ConChaser shots are mostly wide/medium-wide; close-ups punctuate
+const room = (room, cast, o = {}) => ({ type: "fxk", room, shot: cast.length === 1 ? SHOT1[si++ % 3] : cast.length === 2 ? SHOT2[si++ % 2] : "wide", cast: cast.map(({ badge, ...m }) => ({ ...m, tag: tagOf(badge) })), ...o });
 let k = 0; const beat = (vo, scene, src = ["FIC"]) => ({ id: `B${String(++k).padStart(2, "0")}`, part: "story", src, vo, scene });
 
 export const EPISODE = {
@@ -56,7 +57,7 @@ export const EPISODE = {
       room("hallway", [C("kid2", 960, { pose: "cheer", mood: "smug", badge: B(9, "low", 10) }), C("kid1", 520, { pose: "stand", mood: "happy", badge: B(0, "high", 20) }), C("me", 1420, { pose: "shrug", mood: "shock", flip: -1, badge: B(1, "mid", 20) })], { name: { text: "Jordan · most popular in our year", from: 20 } })),
     beat("By lunch he was on twenty-two. I watched him tell three different people that he'd been invited to the same party they had.",
       room("classroom", [C("kid2", 960, { pose: "point", mood: "happy", badge: B(21, "low", 0, { value: 22, at: 160 }) }), C("kid1", 1420, { pose: "stand", mood: "happy", flip: -1, badge: B(0, "high", 0) })])),
-    beat("So I looked it up. And here's the weird part: real research says Jordan is normal in a very specific way.", { type: "fxtitle", text: "So I looked it up", dark: false }, ["FIC"]),
+    beat("So I looked it up. And here's the weird part: real research says Jordan is normal in a very specific way.", room("library", [C("me", 900, { pose: "think", pose2: "point", poseAt: 120, mood: "neutral", badge: B(1, "mid", 0) })], { shot: "wide" }), ["FIC"]),
     beat("In a 2010 survey of a thousand American adults, people reported an average of about one and a half lies a day. But around sixty percent said they told no lies at all that day.",
       { type: "fxchart", kind: "bars", title: "Lies told yesterday (1,000 US adults)", bars: [{ label: "none", v: 0.6, tone: "high" }, { label: "the rest", v: 0.4, tone: "mid" }], note: "Serota, Levine & Boster (2010), Human Communication Research" }, ["SER"]),
     beat("Almost half of all the lies came from about five percent of people. A few prolific liars carry most of the total.",

@@ -50,23 +50,23 @@ export function Kid({ x = 0, y = 960, s = 1, look = 0, mood = "neutral", pose = 
   const P = Object.fromEntries(["la", "ra", "ll", "rl"].map((n) => [n, A[n].map((v, i) => v + (B[n][i] - v) * k2)]));
   let X = x, step = 0; if (walk) { const w = ramp(f, walk.from, walk.from + walk.dur, eio); X = x + (walk.to - x) * w; if (w > 0 && w < 1) step = Math.sin(f * 0.42); }
   const drop = (A.drop || 0), br = Math.sin(f / 18) * 2, pop = ramp(f, from, from + 10, expo), sit = A.sit;
-  const hipY = -150 + drop + (sit ? 60 : 0), shY = -262 + drop + br, headY = -340 + drop + br;
+  const hipY = -205 + drop + (sit ? 80 : 0), shY = -365 + drop + br, headY = -440 + drop + br;   // measured: tall slim figures, head about a sixth of the height (side-by-side v2)
   const top = c.top || "#E9B52F", pants = c.pants || "#2B2F3A";
   const limb = (o, a, l1, l2, w, col, end) => { const k = pt(o[0], o[1], l1, a[0]), e = pt(k[0], k[1], l2, a[1]); return <g><path d={`M ${o[0]} ${o[1]} L ${k[0]} ${k[1]} L ${e[0]} ${e[1]}`} stroke={col} strokeWidth={w} fill="none" strokeLinecap="round" strokeLinejoin="round" />{end === "hand" ? <circle cx={e[0]} cy={e[1]} r={10} fill={INK} /> : end === "shoe" ? <ellipse cx={e[0] + 12} cy={e[1] + 2} rx={22} ry={10} fill={INK} /> : null}</g>; };
   const ll = [P.ll[0] + step * 22, P.ll[1] + step * 30], rl = [P.rl[0] - step * 22, P.rl[1] - step * 30];
   return <g transform={`translate(${X} ${y}) scale(${s * flip * pop} ${s * pop})`} opacity={pop}>
     <ellipse cx={0} cy={4} rx={60} ry={10} fill="rgba(0,0,0,0.22)" />
     {/* legs: thin black limbs, trousers on the thigh */}
-    {limb([-16, hipY], rl, 78, 80, 15, INK, "shoe")}{limb([16, hipY], ll, 78, 80, 15, INK, "shoe")}
-    {limb([-16, hipY], [rl[0], rl[0]], 70, 0, 26, pants)}{limb([16, hipY], [ll[0], ll[0]], 70, 0, 26, pants)}
+    {limb([-14, hipY], rl, 102, 100, 13, INK, "shoe")}{limb([14, hipY], ll, 102, 100, 13, INK, "shoe")}
+    {limb([-14, hipY], [rl[0], rl[0]], 92, 0, 22, pants)}{limb([14, hipY], [ll[0], ll[0]], 92, 0, 22, pants)}
     {/* torso: a hoodie / jacket shape in the clothing colour, rim light on the lit edge */}
-    <path d={`M -44 ${shY} Q 0 ${shY - 12} 44 ${shY} L 50 ${hipY + 8} Q 0 ${hipY + 18} -50 ${hipY + 8} Z`} fill={top} stroke={RIM} strokeOpacity={0.35} strokeWidth={3} />
+    <path d={`M -38 ${shY} Q 0 ${shY - 10} 38 ${shY} L 44 ${hipY + 30} Q 0 ${hipY + 40} -44 ${hipY + 30} Z`} fill={top} stroke={RIM} strokeOpacity={0.35} strokeWidth={3} /><line x1={2} y1={shY + 6} x2={2} y2={hipY + 34} stroke="rgba(0,0,0,0.25)" strokeWidth={3} />
     {c.accent && <path d={`M -8 ${shY} L 0 ${hipY} L 8 ${shY}`} fill={c.accent} />}
-    <path d={`M -44 ${shY} Q 0 ${shY - 12} 44 ${shY} L 50 ${hipY + 8} Q 0 ${hipY + 18} -50 ${hipY + 8} Z`} fill="url(#kshade)" />
+    <path d={`M -38 ${shY} Q 0 ${shY - 10} 38 ${shY} L 44 ${hipY + 30} Q 0 ${hipY + 40} -44 ${hipY + 30} Z`} fill="url(#kshade)" />
     {/* arms: sleeves in the top colour, black hands */}
-    {limb([-40, shY + 10], [P.ra[0], P.ra[1]], 74, 68, 24, top, "hand")}{limb([40, shY + 10], [P.la[0], P.la[1]], 74, 68, 24, top, "hand")}
+    {limb([-34, shY + 10], [P.ra[0], P.ra[1]], 92, 86, 20, top, "hand")}{limb([34, shY + 10], [P.la[0], P.la[1]], 92, 86, 20, top, "hand")}
     {/* head */}
-    <g transform={`translate(0 ${headY}) rotate(${A.tilt || 0})`}>
+    <g transform={`translate(0 ${headY}) rotate(${A.tilt || 0}) scale(0.8)`}>
       <path d={`M -70 70 Q 0 30 70 70 Q 60 104 0 100 Q -60 104 -70 70 Z`} fill={top} stroke={RIM} strokeOpacity={0.3} strokeWidth={3} />   {/* hood collar */}
       <rect x={-16} y={50} width={32} height={30} fill={INK} />
       <circle r={66} fill={INK} />
@@ -115,6 +115,22 @@ function SetArt({ kind }) {
     <rect x={300} y={500} width={12} height={320} fill="#2A2A2A" /><rect x={276} y={470} width={60} height={40} rx={8} fill="#2A2A2A" /><circle cx={306} cy={512} r={10} fill="#FFE2A0" />
     <rect x={1420} y={760} width={40} height={60} rx={6} fill="#C0392B" />
   </g>;
+  if (kind === "library") return <g>
+    <rect width={1920} height={760} fill="#D9CBB0" /><rect y={760} width={1920} height={320} fill="#8A5E3E" />{[...Array(10)].map((_, i) => <rect key={i} x={i * 200} y={760} width={6} height={320} fill="rgba(0,0,0,0.12)" />)}
+    {[[260, 200], [760, 200], [1260, 200]].map(([x, y0], i) => <g key={i}><rect x={x} y={y0} width={420} height={560} fill="#6E4A2E" />{[0, 1, 2, 3].map((r) => <g key={r}><rect x={x + 14} y={y0 + 20 + r * 135} width={392} height={118} fill="#4A3020" />{[...Array(18)].map((_, b) => <rect key={b} x={x + 20 + b * 21} y={y0 + 40 + r * 135 + (b % 3) * 6} width={17} height={98 - (b % 3) * 6} fill={["#B0413E", "#3E6D8E", "#C9A23B", "#2E6F4E", "#7A3E8E", "#D2693C"][(b + r + i) % 6]} />)}</g>)}</g>)}
+    <rect x={120} y={260} width={90} height={150} fill="#E8E1D2" /><text x={165} y={330} textAnchor="middle" fontFamily={F.sans} fontWeight={800} fontSize={20} fill="#B0413E">PUSH</text>
+    <rect x={160} y={640} width={60} height={50} fill="#B5643C" /><path d="M 190 640 Q 150 560 170 520 M 190 640 Q 230 560 220 510 M 190 640 L 192 540" stroke="#4E8A4E" strokeWidth={8} fill="none" />
+    <rect x={500} y={720} width={900} height={24} fill="#7A5236" /><rect x={520} y={744} width={14} height={120} fill="#4A3020" /><rect x={1366} y={744} width={14} height={120} fill="#4A3020" />
+    {[600, 1100].map((x, i) => <g key={i}><line x1={x} y1={0} x2={x} y2={90} stroke="#3A3A3A" strokeWidth={4} /><path d={`M ${x - 60} 120 L ${x + 60} 120 L ${x + 30} 90 L ${x - 30} 90 Z`} fill="#4E7A5E" />{lamp(x, 130, 280)}</g>)}
+  </g>;
+  if (kind === "stage") return <g>
+    <rect width={1920} height={1080} fill="#2A2350" /><rect x={0} y={0} width={1920} height={760} fill="#3C2F7A" />
+    <rect x={160} y={180} width={1100} height={260} fill="#4A3A90" /><text x={220} y={290} fontFamily={F.grot} fontWeight={800} fontSize={86} fill="#F2F2F2">CITY QUIZ</text><text x={220} y={390} fontFamily={F.grot} fontWeight={800} fontSize={86} fill="#E8B53C">FINALS</text><rect x={160} y={430} width={1100} height={12} fill="#E8B53C" />
+    <path d="M 1500 0 L 1720 0 L 1720 420 L 1610 480 L 1500 420 Z" fill="#5A47B0" stroke="#E8B53C" strokeWidth={6} /><text x={1610} y={250} textAnchor="middle" fontFamily={F.grot} fontWeight={800} fontSize={34} fill="#fff">CQ</text>
+    <rect y={760} width={1920} height={320} fill="#3A2A20" /><rect y={760} width={1920} height={16} fill="#E8B53C" />
+    {[[620, 560], [1300, 560]].map(([x, w], i) => <g key={i}><rect x={x - 130} y={640} width={260} height={180} fill={["#5A2E7A", "#24306A"][i]} /><rect x={x - 100} y={720} width={200} height={60} rx={8} fill="#F4EFE4" /><text x={x} y={762} textAnchor="middle" fontFamily={F.grot} fontWeight={800} fontSize={34} fill="#1A1A2A">{["MIA", "YOU"][i]}</text></g>)}
+    <path d="M 300 0 L 120 1080 L 720 1080 L 420 0 Z" fill="rgba(255,240,200,0.12)" /><path d="M 1500 0 L 1200 1080 L 1800 1080 L 1620 0 Z" fill="rgba(255,240,200,0.12)" />
+  </g>;
   if (kind === "auditorium") return <g>
     <rect width={1920} height={1080} fill="#2A2D3E" />{[...Array(5)].map((_, r) => [...Array(16)].map((_, q) => <circle key={`${r}${q}`} cx={q * 125 + (r % 2) * 60} cy={260 + r * 120} r={44} fill={["#E07A9F", "#F2C94C", "#6FA8DC", "#E8E1D2", "#9B7FD1"][(q + r) % 5]} opacity={0.65} />))}
     {[...Array(14)].map((_, q) => <rect key={q} x={q * 140} y={800} width={120} height={180} rx={12} fill="#7E1F2A" />)}{lamp(960, 0, 500, "rgba(255,230,180,0.4)")}
@@ -147,11 +163,11 @@ export function FxStickScene({ t, room = "classroom", cast = [], shot, focus = 0
   const S = shot || (cast.length <= 1 ? "close" : cast.length === 2 ? "medium" : "wide"), Z = { close: 2.8, medium: 1.85, wide: 1.0 }[S];
   const tgt = cast[Math.min(focus, cast.length - 1)], xs = cast.map((m) => (m.walk ? m.walk.to : m.x));
   const fx = S === "close" && tgt ? (tgt.walk ? tgt.walk.to : tgt.x) : xs.length ? (Math.min(...xs) + Math.max(...xs)) / 2 : 960;
-  const fy = S === "close" ? 590 : S === "medium" ? 640 : 540;
+  const fy = S === "close" ? 500 : S === "medium" ? 600 : 540;
   const z = Z * (1 + push * interpolate(f, [0, D], [0, 1], clamp));
   const ox = Math.min(Math.max(fx, 960 / Z), 1920 - 960 / Z), oy = Math.min(Math.max(fy, 540 / Z), 1080 - 540 / Z);
   const cam = { position: "absolute", left: 0, top: 0, width: 1920, height: 1080, transform: `translate(${960 - ox}px, ${540 - oy}px) scale(${z})`, transformOrigin: `${ox}px ${oy}px` };
-  const blur = { close: 7, medium: 4, wide: 1.5 }[S];
+  const blur = { close: 7, medium: 2.5, wide: 0 }[S];   // measured: wide shots are sharp, only close-ups melt the set
   const defs = <defs>
     <linearGradient id="kshade" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stopColor="#fff" stopOpacity={0.12} /><stop offset="55%" stopColor="#000" stopOpacity={0} /><stop offset="100%" stopColor="#000" stopOpacity={0.3} /></linearGradient>
     <linearGradient id="kglass" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#fff" stopOpacity={0.35} /><stop offset="50%" stopColor="#fff" stopOpacity={0} /><stop offset="60%" stopColor="#fff" stopOpacity={0.18} /><stop offset="100%" stopColor="#fff" stopOpacity={0} /></linearGradient>
@@ -162,9 +178,9 @@ export function FxStickScene({ t, room = "classroom", cast = [], shot, focus = 0
     <div style={{ ...cam, filter: `blur(${blur}px) saturate(0.9)` }}><svg width={1920} height={1080}>{defs}<SetArt kind={room} /></svg></div>
     <div style={cam}><svg width={1920} height={1080} style={{ position: "absolute", inset: 0, overflow: "visible" }}>{defs}
       {cast.map((m, i) => <Kid key={i} {...m} y={m.y ?? 990} c={t.fx.cast[m.id] || {}} />)}
-      {cast.filter((m) => m.tag).map((m, i) => <Pill key={`p${i}`} t={t} k={Math.min(1, 1.5 / Z)} x={m.walk ? m.walk.to : m.x} y={(m.y ?? 990) - (S === "close" ? 445 : 470) * (m.s || 1)} {...m.tag} />)}
+      {cast.filter((m) => m.tag).map((m, i) => <Pill key={`p${i}`} t={t} k={Math.min(1, 1.5 / Z)} x={m.walk ? m.walk.to : m.x} y={(m.y ?? 990) - (S === "close" ? 535 : 560) * (m.s || 1)} {...m.tag} />)}
     </svg>
-      {cast.filter((m) => m.say).map((m, i) => { const a = ramp(f, m.say.from || 0, (m.say.from || 0) + 8, expo); return <div key={`s${i}`} style={{ position: "absolute", left: m.x + (m.flip === -1 ? -330 : 90), top: (m.y ?? 990) - 520, width: 240, padding: "10px 14px", background: "#fff", borderRadius: 18, fontFamily: F.grot, fontWeight: 700, fontSize: 24, color: INK, textAlign: "center", opacity: a, boxShadow: "0 6px 16px rgba(0,0,0,0.3)" }}>{m.say.text}</div>; })}
+      {cast.filter((m) => m.say).map((m, i) => { const a = ramp(f, m.say.from || 0, (m.say.from || 0) + 8, expo); return <div key={`s${i}`} style={{ position: "absolute", left: m.x + (m.flip === -1 ? -330 : 90), top: (m.y ?? 990) - 620, width: 240, padding: "10px 14px", background: "#fff", borderRadius: 18, fontFamily: F.grot, fontWeight: 700, fontSize: 24, color: INK, textAlign: "center", opacity: a, boxShadow: "0 6px 16px rgba(0,0,0,0.3)" }}>{m.say.text}</div>; })}
     </div>
     {ots && <svg width={1920} height={1080} style={{ position: "absolute", inset: 0, filter: "blur(10px)" }}><circle cx={ots === "right" ? 1780 : 140} cy={760} r={330} fill={INK} /><path d={ots === "right" ? "M 1500 1080 Q 1640 860 1920 880 L 1920 1080 Z" : "M 0 880 Q 280 860 420 1080 L 0 1080 Z"} fill="#2E3E66" /></svg>}
     <AbsoluteFill style={{ background: "radial-gradient(110% 95% at 50% 45%, rgba(0,0,0,0) 55%, rgba(10,6,2,0.55) 100%)", pointerEvents: "none" }} />
