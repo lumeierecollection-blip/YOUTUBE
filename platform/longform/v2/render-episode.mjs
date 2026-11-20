@@ -40,7 +40,7 @@ const log = { channel: ch, title: ep.title, started: new Date().toISOString(), b
 
 // scene props exactly as the stills spec builds them (platform/longform/stills/specs.mjs sceneProps)
 function sceneProps(scene) {
-  const t = THEMES[ch], p = { ch, t, ...scene };
+  const t = THEMES[ep.theme || ch], p = { ch, t, ...scene };   // ep.theme: an episode may borrow another theme entry (hidden-past-greenland uses "fx-doc") while keeping its channel, voice and upload target
   if (scene.credit) p.t = { ...t, credit: scene.credit }; // per-scene data credit (club stories: sources are not StatsBomb)
   const ac = autoCredit(ch, scene); if (ac.length) p.autoCredit = ac;
   // a clip that could not be fetched must not break the render: drop cutaways and montage shots whose file is missing
