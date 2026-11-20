@@ -29,7 +29,7 @@ async function source() {
 }
 const SRC = await source(), slug = `${mode === "short" ? "ai-tested-" : "hidden-past-"}${topic.id}`;
 const RULES = `RULES: use ONLY facts, names, numbers and dates that appear in SOURCE TEXT; never add anything from memory. Every person, place, object, date, number or organisation named in a sentence gets its OWN visual,
-cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
+cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
 {"kind":"number","at":"<word>","value":"<as written>","label":"<what it counts>"}, {"kind":"year","at":"<word>","value":"<year>"}, {"kind":"text","at":"<word>","value":"<short phrase>"} (text only for abstract lesson lines).
 Never two visuals with the same desc. Plain spoken English, no markdown.`;
 let plan;
@@ -56,7 +56,7 @@ SOURCE TEXT:${SRC}`);
 // pictures: one search job per photo mention, sourced and vision-scored on this runner
 const chDir = mode === "short" ? "ai-tested" : "hidden-past", jobs = [];
 const mentions = mode === "short" ? plan.shots : plan.beats.flatMap((b) => b.visuals || []);
-let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.desc, desc: m.desc }); }
+let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.q || m.desc, desc: m.desc }); }
 W(`data/autopilot/jobs-${slug}.json`, jobs);
 const sr = spawnSync("node", [join(ROOT, "platform/longform/v2/auto-source.mjs"), join(ROOT, `data/autopilot/jobs-${slug}.json`), chDir], { stdio: "inherit", env: process.env, cwd: ROOT });
 const missing = new Set(J(`src/skills/remotion-render/public/lf2/${chDir}/_missing.json`, []));
