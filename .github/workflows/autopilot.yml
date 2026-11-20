@@ -54,39 +54,4 @@ jobs:
           git checkout -q main; git checkout "$BR" -- data/autopilot/done.json; git add data/autopilot/done.json
           git commit -qm "autopilot: $SLUG generated (topic marked done)" || true
           for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break || sleep 5; done
-          [ "$MODE" = long ] && gh workflow run "Pilot render" --ref "$BR" -f episode="$SLUG" || true
-      # FAST Short (owner, 20 Nov 2026: "doesn't need to be rendered"): ffmpeg + edge-tts in ~1 min instead of the 35-min Remotion render.
-      - name: Picture-versus-words gate
-        if: steps.mode.outputs.mode == 'short'
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
-          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
-          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
-          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
-        run: node platform/shorts-sx/check-visuals.mjs "${{ steps.gen.outputs.slug }}"
-      - name: Fast build
-        if: steps.mode.outputs.mode == 'short'
-        run: |
-          sudo apt-get -qq install -y ffmpeg fonts-dejavu-core >/dev/null; pip install -q edge-tts pillow
-          D=data/uploads/${{ steps.gen.outputs.slug }}; python platform/fast/fast-short.py "${{ steps.gen.outputs.slug }}" "$D/episode.mp4"
-      - uses: actions/upload-artifact@v4
-        if: steps.mode.outputs.mode == 'short'
-        with: { name: "short-${{ steps.gen.outputs.slug }}", path: "data/uploads/${{ steps.gen.outputs.slug }}/episode.mp4" }
-      - name: Upload private
-        if: steps.mode.outputs.mode == 'short'
-        env:
-          CH01_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
-          CH01_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
-          CH01_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
-          CH02_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
-          CH02_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
-          CH02_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
-          CH04_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
-          CH04_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
-          CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
-        run: |
-          P=data/uploads/short-plan.json; D=data/uploads/$(jq -r .dir $P); S=$(jq -r .slot $P)
-          v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
-          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)"
-          cat "$D/upload-record.json"
+          if [ "$MODE" = short ]; then gh workflow run "SX Shorts" --ref "$BR" -f slug="$SLUG"; else gh workflow run "Pilot render" --ref "$BR" -f episode="$SLUG"; fi
