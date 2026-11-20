@@ -160,10 +160,13 @@ export function FxTitle({ t, text, sub, dark = true }) {
 }
 
 // ---- C: Beans on mood-lit sets
-export function Bean({ x, y = 900, s = 1, color = "#6EC6FF", mood = "neutral", look = 0, arm = "down", from = 0, hop = 0 }) {
-  const f = useCurrentFrame(), pop = ramp(f, from, from + 12, expo), sq = 1 + Math.sin(f / 14) * 0.015, jump = hop ? Math.abs(Math.sin(f / 7)) * hop : 0, id = `bn${Math.round(x)}${color.slice(1)}`;
+export function Bean({ x, y = 900, s = 1, color = "#6EC6FF", mood = "neutral", look = 0, arm = "down", from = 0, hop = 0, frozen = false, walk }) {
+  // frozen: no breathing, desaturated and blue-tinted (the "pause" in pilot C); walk {from, dur, to} slides the Bean with a small bounce
+  const f = useCurrentFrame(), pop = ramp(f, from, from + 12, expo), sq = frozen ? 1 : 1 + Math.sin(f / 14) * 0.015, wk = walk ? ramp(f, walk.from, walk.from + walk.dur, eio) : 0, jump = (hop && !frozen ? Math.abs(Math.sin(f / 7)) * hop : 0) + (wk > 0 && wk < 1 ? Math.abs(Math.sin(f / 5)) * 18 : 0);
+  if (walk) x = x + (walk.to - x) * wk;
+  const id = `bn${Math.round(x)}${color.slice(1)}`;
   const armA = { down: [18, 18], up: [160, 160], wave: [18, 140], cross: [-35, -35], point: [18, 95] }[arm] || [18, 18];   // outward angles per side [left, right]
-  return <g transform={`translate(${x} ${y - jump}) scale(${s * pop} ${s * pop * sq})`} opacity={pop}>
+  return <g transform={`translate(${x} ${y - jump}) scale(${s * pop} ${s * pop * sq})`} opacity={pop} style={frozen ? { filter: "saturate(0.25) brightness(0.9) hue-rotate(10deg)" } : undefined}>
     <defs><radialGradient id={id} cx="38%" cy="30%" r="75%"><stop offset="0%" stopColor="#fff" stopOpacity={0.55} /><stop offset="35%" stopColor={color} /><stop offset="100%" stopColor={color} stopOpacity={1} /></radialGradient>
       <linearGradient id={`${id}s`} x1="0" y1="0" x2="1" y2="0"><stop offset="60%" stopColor="#000" stopOpacity={0} /><stop offset="100%" stopColor="#000" stopOpacity={0.28} /></linearGradient></defs>
     <ellipse cx={0} cy={6 + jump} rx={110 - jump * 0.3} ry={20} fill="rgba(0,0,0,0.28)" />
@@ -203,7 +206,7 @@ function Ui({ u, t, f }) {
 }
 
 /** C: a set with Beans and UI. cast: [{ id, x, y?, s?, mood, look, arm, from, hop }], ui: [{ kind: counter|timer|bar|chip, x, y, ... }], links: [[i, j, from]] glowing lines between cast */
-export function FxToon({ t, set = "gym", cast = [], ui = [], links = [], push = 0.06, caption }) {
+export function FxToon({ t, set = "gym", cast = [], ui = [], links = [], push = 0.06, caption, objs = [], paused }) {   // objs: [{ kind: ball|paper|phone, x, y, to?: { x, y, from, dur } }]; paused: { from, to? } cold blue grade + frame
   const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), z = 1 + push * interpolate(f, [0, D], [0, 1], clamp), ac = t.fx.ui;
   return <AbsoluteFill style={{ background: "#111", overflow: "hidden" }}>
     <Fonts />
@@ -211,7 +214,12 @@ export function FxToon({ t, set = "gym", cast = [], ui = [], links = [], push = 
       <Set kind={set} t={t} />
       {links.map(([i, j, from = 0], n) => { const A = cast[i], B = cast[j], k = ramp(f, from, from + 20, eio); if (!A || !B) return null; const ay = (A.y ?? 900) - 300 * (A.s || 1), by = (B.y ?? 900) - 300 * (B.s || 1), mx = A.x + (B.x - A.x) * k, my = ay + (by - ay) * k; return <g key={n}><line x1={A.x} y1={ay} x2={mx} y2={my} stroke={ac} strokeWidth={14} opacity={0.3} strokeLinecap="round" /><line x1={A.x} y1={ay} x2={mx} y2={my} stroke="#fff" strokeWidth={5} strokeLinecap="round" /></g>; })}
       {cast.map((m, i) => <Bean key={i} {...m} color={t.fx.cast[m.id]?.color} />)}
+      {objs.map((o, i) => { const k = o.to ? ramp(f, o.to.from, o.to.from + o.to.dur, eio) : 0, X = o.x + ((o.to?.x ?? o.x) - o.x) * k, Y = o.y + ((o.to?.y ?? o.y) - o.y) * k - (o.to?.arc || 0) * Math.sin(Math.PI * k);
+        if (o.kind === "ball") return <g key={`o${i}`} transform={`translate(${X} ${Y}) rotate(${k * 360})`}><circle r={44} fill="#E8743B" stroke="#3a1a08" strokeWidth={4} /><path d="M -44 0 L 44 0 M 0 -44 L 0 44 M -30 -32 Q 0 0 -30 32 M 30 -32 Q 0 0 30 32" stroke="#3a1a08" strokeWidth={3} fill="none" /></g>;
+        if (o.kind === "phone") return <rect key={`o${i}`} x={X - 40} y={Y - 70} width={80} height={140} rx={14} fill="#16131F" stroke="#fff" strokeWidth={4} />;
+        return <g key={`o${i}`} transform={`translate(${X} ${Y}) rotate(-6)`}><rect x={-80} y={-100} width={160} height={200} fill="#F6F1E7" stroke="#333" strokeWidth={3} />{[0, 1, 2, 3, 4].map((r) => <line key={r} x1={-60} y1={-70 + r * 32} x2={50} y2={-70 + r * 32} stroke="#8892A6" strokeWidth={5} />)}</g>; })}
     </svg>
+    {paused && (() => { const a = ramp(f, paused.from || 0, (paused.from || 0) + 8) * (paused.to ? 1 - ramp(f, paused.to, paused.to + 8) : 1); return a > 0 && <AbsoluteFill style={{ opacity: a, pointerEvents: "none" }}><AbsoluteFill style={{ background: "rgba(90,170,255,0.18)", mixBlendMode: "color" }} /><AbsoluteFill style={{ boxShadow: `inset 0 0 0 10px ${ac}, inset 0 0 160px rgba(80,180,255,0.55)` }} /><div style={{ position: "absolute", left: 60, bottom: 50, fontFamily: F.grot, fontWeight: 800, fontSize: 34, letterSpacing: "0.4em", color: ac }}>❚❚ PAUSED</div></AbsoluteFill>; })()}
     {ui.map((u, i) => <Ui key={i} u={u} t={t} f={f} />)}
     {caption && <div style={{ position: "absolute", left: 0, right: 0, bottom: 40, textAlign: "center", fontFamily: F.grot, fontWeight: 800, fontSize: 44, letterSpacing: "0.22em", color: "#fff", textShadow: `0 0 24px ${ac}` }}>{caption.toUpperCase()}</div>}
   </AbsoluteFill>;
