@@ -202,7 +202,7 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
 /** Battle map in Epic's measured style (ep-a.jpg rows 5-6): painted khaki ground with soft relief and fog at the edges, pale water, unit blocks in formation
  *  rows (one colour per side, white edge), big curved glowing arrows for each attack, army names with their strength in white serif. Drawn in screen space:
  *  a SCHEMATIC of what the sources describe (two hills, a ridge, marsh, a stream), not a surveyed map, and it says so on screen. */
-export function EpBattle({ t, hills = [], water = [], woods = [], units = [], arrows = [], armies = [], plates = [], schematic = "Schematic: the sources disagree on the exact positions", push = 0.1 }) {
+export function EpBattle({ t, hills = [], water = [], woods = [], units = [], arrows = [], armies = [], plates = [], schematic = "Schematic positions (the sources disagree) · relief: AWS Terrain Tiles, Battle, East Sussex", push = 0.1 }) {
   const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), c = t.ep, k = interpolate(f, [0, Math.max(60, D)], [0, 1], { ...clamp, easing: eio });
   const curve = (pts) => pts.length === 3 ? `M${pts[0][0]} ${pts[0][1]} Q${pts[1][0]} ${pts[1][1]} ${pts[2][0]} ${pts[2][1]}` : "M" + pts.map((q) => q.join(" ")).join(" L");
   return <AbsoluteFill style={{ background: c.khaki2 }}>
@@ -217,7 +217,7 @@ export function EpBattle({ t, hills = [], water = [], woods = [], units = [], ar
           <marker id="bah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke" /></marker>
         </defs>
         <rect width="1920" height="1080" fill={c.khaki} />
-        <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" opacity={0.9} />   {/* Epic battle maps: real terrain texture under the units, not a flat field */}
+        <image href={staticFile("lf2/hidden-past/battle-terrain.jpg")} width="1920" height="1080" preserveAspectRatio="xMidYMid slice" opacity={1} />   {/* Epic battle maps show relief: real hillshade of the battlefield (AWS Terrain Tiles / Terrarium), not a flat field */}
         <image href={staticFile("lf2/hidden-past/tex-terrain.jpg")} x="0" y="0" width="1920" height="1080" preserveAspectRatio="none" />
         {hills.map((h, n) => <g key={`h${n}`}>
           <ellipse cx={h.x} cy={h.y} rx={h.rx} ry={h.ry} fill="url(#hd)" transform={`rotate(${h.rot || 0} ${h.x} ${h.y})`} />
