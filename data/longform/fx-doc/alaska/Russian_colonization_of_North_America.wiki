@@ -1,0 +1,301 @@
+{{Short description|none}}
+{{Redirect|Russian America|Americans of Russian descent|Russian Americans}}
+{{Use mdy dates|date=November 2025|cs1-dates=ll}}
+{{Use American English|date=October 2024}}
+{{Infobox Former subdivision
+| native_name            = {{lang|ru|Русская Америка}}<br />{{lang|ru-Latn|Russkaya Amerika}}
+| conventional_long_name = Russian America
+| common_name            = Russian America
+| subdivision            = Colony
+| status_text            = Colony of the [[Russian Empire]]
+| year_start             = 1732
+| year_end               = 1867
+| event_start            = [[Great Northern Expedition]]
+| event_end              = [[Alaska Purchase]]
+| date_start             = July 15
+| date_end               = October 18
+| p1                     = Alaska Natives{{!}}{{nobr|Alaska Natives}}
+| s1                     = Department of Alaska{{!}}{{nobr|Department of Alaska}}
+| flag_s1                = Flag of the United States (1877-1890).svg
+| image_flag             = Flag of Russian-American Company.svg
+| flag_type              = Flag (1806–1867)
+| flag                   = Flag of the Russian-American Company
+| flag_size              = 130px
+| image_coat             = Seal of the Russian-American Company.svg{{!}}class=skin-invert
+| symbol_type            = [[Coat of arms of Russia#1721–1917: Russian Empire|Coat of arms]]
+| coa_size               = 80px
+| anthem                 = "[[God Save the Tsar!|{{lang|ru|Боже, Царя храни!|nocat=y}}]]"<br />{{lang|ru-Latn|Bozhe Tsarya khrani!}} (1833–1867)<br />("God Save the Tsar!"){{parabr}}{{center|[[File:Bozhe, tsarya khrani!.ogg]]}}
+| image_map              = Russian America Settlements Map.png
+| image_map_caption      = [[Alaskan Creole people|Russian Creole]] settlements
+| image_map2             = Map of Russian America, 1835.gif
+| image_map2_caption     = Russian possessions in North America (1835)
+| capital                = {{ubl|[[Kodiak, Alaska|Kodiak]] (1799–1804)|[[Sitka, Alaska|Novo-Arkhangelsk]]}}
+| government_type        = [[Absolute monarchy]]
+| title_leader           = [[Russian-American Company#Chief managers|Governor]]
+| leader1                = [[Alexander Andreyevich Baranov|Alexander Baranov]]
+| year_leader1           = 1799–1818 (first)
+| leader2                = [[Dmitry Petrovich Maksutov|Dmitry Maksutov]]
+| year_leader2           = 1863–1867 (last)
+| representative1        = 
+| representative2        = 
+| year_representative1   = 
+| year_representative2   = 
+| title_representative   = 
+| today                  = United States
+* [[Alaska]]
+| demonym                = [[Alaskan Creole people|Alaskan Creole]]
+}}
+{{Alaska History}}
+'''Russian colonization of North America''' describes colonies and territories claimed by the [[Russian Empire]] in the [[Pacific Coast]] region of [[North America]] from 1732 to 1867. Russian colonial possessions in the Americas were collectively known as '''Russian America''' from 1799 to 1867.
+
+Russian America consisted mostly of present-day [[Alaska]] in the United States, but also included the outpost of [[Fort Ross, California|Fort Ross]] in California. [[Russian Creole]] settlements were concentrated in Alaska, including the capital, [[Sitka, Alaska|New Archangel]] ({{lang|ru-Latn|Novo-[[Arkhangelsk]]}}), which is now [[Sitka, Alaska|Sitka]].
+
+Russian expansion eastward began in 1552 with the [[Russo-Kazan wars]] and Russian explorers reached the Pacific Ocean in 1639. In 1725, Emperor [[Peter the Great]] ordered navigator [[Vitus Bering]] to explore the North Pacific for potential colonization. The Russians were primarily interested in the abundance of fur-bearing mammals on Alaska's coast, as stocks had been depleted by over hunting in the [[Siberian fur trade]]. Bering's [[First Kamchatka expedition|first voyage]] was foiled by thick fog and ice, but in 1741 a [[Great Northern Expedition|second voyage]] by Bering and [[Aleksei Chirikov]] discovered part of the North American mainland. Bering claimed the Alaskan country for the [[Russian Empire]].<ref name="charlespwohlforth">{{cite book |title=Alaska For Dummies |author=Charles P. Wohlforth |date=2011 |publisher=John Wiley & Sons |pages=18}}</ref> Russia later confirmed its rule over the territory with the [[Ukase of 1799|{{lang|ru-Latn|Ukase|nocat=y}} of 1799]] which established the southern border of Russian America along the [[55th parallel north]].<ref name="Ukase">[[United Kingdom of Great Britain and Ireland]], [https://books.google.com/books?id=EusnAAAAYAAJ "Text of Ukase of 1779"] in ''Behring Sea Arbitration'' (London: Harrison and Sons, 1893), pp. 25–27</ref> The decree also provided monopolistic privileges to the state-sponsored [[Russian-American Company]] (RAC) and established the [[Russian Orthodox Church]] in Alaska.
+
+Russian {{lang|ru-Latn|[[promyshlenniki]]}} (trappers and hunters) quickly developed the [[maritime fur trade]], which instigated several conflicts between the [[Aleut people|Aleuts]] and Russians in the 1760s. The fur trade proved to be a lucrative enterprise, capturing the attention of other European nations. In response to potential competitors, the Russians extended their claims eastward from the [[Commander Islands]] to the shores of Alaska. In 1784, with encouragement from Empress [[Catherine the Great]], explorer [[Grigory Shelekhov]] founded Russia's first permanent settlement in Alaska at [[Three Saints Bay]]. Ten years later, the first group of [[Eastern Orthodox Church|Orthodox Christian]] missionaries arrived, evangelizing thousands of Native Americans, many of whose descendants continue to maintain the religion.<ref>{{Cite book |title=Memory Eternal: Tlingit Culture and Russian Orthodox Christianity Through Two Centuries |last=Sergei |first=Kan |date=2014 |isbn=9780295805344 |location=Seattle |publisher=[[University of Washington Press]] |oclc=901270092}}</ref> By the late 1780s, trade relations had opened with the [[Tlingit people|Tlingit]]s, and in 1799 the RAC was formed to monopolize the fur trade, also serving as an imperialist vehicle for the [[Russification]] of [[Alaska Natives]].
+
+Angered by encroachment on their land and other grievances, the indigenous peoples' relations with the Russians deteriorated. In 1802, Tlingit warriors destroyed several Russian settlements, most notably [[Old Sitka Site|Redoubt Saint Michael]] (Old Sitka), leaving [[New Russia (trading post)|New Russia]] as the only remaining outpost on mainland Alaska. This failed to expel the Russians, who re-established their presence two years later following the [[Battle of Sitka]]. Peace negotiations between the Russians and Native Americans would later establish a {{lang|la|[[modus vivendi]]}}, a situation that, with few interruptions, lasted for the duration of Russian presence in Alaska. In 1808, Redoubt Saint Michael was rebuilt as [[Sitka, Alaska|New Archangel]] and became the capital of Russian America after the previous colonial headquarters were moved from [[Kodiak, Alaska|Kodiak]]. A year later, the RAC began expanding its operations to more abundant [[sea otter]] grounds in [[Northern California]], where [[Fort Ross]] was built in 1812.
+
+By the middle of the 19th century, profits from Russia's North American colonies were in steep decline. Competition with the British [[Hudson's Bay Company]] had brought the sea otter to near extinction, while the population of bears, wolves, and foxes on land was also nearing depletion. Faced with the reality of periodic Native American revolts, the political ramifications of the [[Crimean War]], and the inability to fully colonize the Americas to their satisfaction, the Russians concluded that their North American colonies were too expensive to retain. Eager to release themselves of the burden, the Russians sold Fort Ross in 1841, and in 1867, after less than a month of negotiations, the United States accepted Emperor [[Alexander II of Russia|Alexander II]]'s offer to sell Alaska. The [[Alaska Purchase]] for $7.2 million (equivalent to ${{Inflation|US|7.2|r=0|1867}} million in {{Inflation/year|US}}) ended Imperial Russia's colonial presence in the Americas.
+
+==Exploration==
+[[File:Map of the Russian discoveries in northwestern America (18th century).jpg|alt=Map of northwesterna America, East Asia and the northern Pacific. The coast of northwestern America is only very roughly outlined.|thumb|A 1773 map of northwestern America based on reports from Russian explorers.]]
+The earliest written accounts indicate that the Eurasian Russians were the first Europeans to reach Alaska. There is an unofficial assumption that Eurasian [[Slavs|Slavic]] navigators reached the coast of Alaska long before the 18th century.
+
+In 1648, [[Semyon Dezhnev]] sailed from the mouth of the [[Kolyma (river)|Kolyma River]] through the Arctic Ocean and around the eastern tip of Asia to the [[Anadyr (river)|Anadyr River]]. One legend holds that some of his boats were carried off course and reached Alaska. However, no evidence of settlement survives. Dezhnev's discovery was never forwarded to the central government, leaving open the question of whether or not [[Siberia]] was connected to North America.<ref>{{Cite book |last=Campbell |first=Robert |url=https://books.google.com/books?id=GuNHnZfE3DcC&pg=PA1 |title=In Darkest Alaska: Travel and Empire Along the Inside Passage |publisher=University of Pennsylvania Press |date=2007 |isbn=978-0-8122-4021-4 |location=Philadelphia |page=1}}</ref>
+
+The first sighting of the Alaskan coastline was in 1732; this sighting was made by the Russian maritime explorer and navigator [[Ivan Fedorov (navigator)|Ivan Fedorov]] from the sea near present-day [[Cape Prince of Wales]] on the eastern boundary of the [[Bering Strait]] opposite Russian [[Cape Dezhnev]]. He did not land.
+
+The first landfall happened in southern [[Alaska]] in 1741 during the Russian exploration by [[Vitus Bering]] and [[Aleksei Chirikov]]. In the early 1720s, Tsar [[Peter the Great]] called for another expedition. As a part of the 1733–1743 [[Great Northern Expedition|Second Kamchatka expedition]], the ''Sv. Petr'' under the Danish-born Russian [[Vitus Bering]] and the ''Sv. Pavel'' under the Russian [[Aleksei Chirikov|Alexei Chirikov]] set sail from the [[Kamchatka Peninsula|Kamchatkan]] port of [[Petropavlovsk-Kamchatsky|Petropavlovsk]] in June 1741. They were soon separated, but each continued sailing east.<ref name="Black2004">{{Cite book |last=Black |first=Lydia T. |title=Russians in Alaska, 1732–1867 |date=2004 |publisher=University of Alaska Press |location=Fairbanks}}</ref> On July 15, Chirikov sighted land, probably the west side of [[Prince of Wales Island (Alaska)|Prince of Wales Island]] in southeast Alaska.<ref>{{Cite web |title="The People You May Visit" |url=http://www.calacademy.org/exhibits/science_under_sail/people.html |url-status=dead |archive-url=https://web.archive.org/web/20030413182257/http://www.calacademy.org/exhibits/science_under_sail/people.html |archive-date=April 13, 2003 |access-date=September 23, 2005 |website=Russia's Great Voyages |publisher=California Academy of Sciences}}</ref> He sent a group of men ashore in a longboat, making them the first Europeans to land on the northwestern coast of North America. On roughly July 16, Bering and the crew of ''Sv. Petr'' sighted [[Mount Saint Elias]] on the Alaskan mainland; they turned westward toward Russia soon afterward. Meanwhile, Chirikov and the ''Sv. Pavel'' headed back to Russia in October with news of the land they had found. In November, Bering's ship was wrecked on [[Bering Island]]. There Bering fell ill and died, and high winds dashed the ''Sv. Petr'' to pieces. After the stranded crew wintered on the island, the survivors built a boat from the wreckage and set sail for Russia in August 1742. Bering's crew reached the shore of Kamchatka in 1742, carrying word of the expedition. The high quality of the [[sea otter]] pelts they brought sparked Russian settlement in Alaska.
+
+Due to the distance from central authority in St. Petersburg, and combined with the difficult geography and lack of adequate resources, the next state-sponsored expedition would wait more than two decades until 1766, when captains Pyotr Krenitsyn and Mikhail Levashov embarked for the [[Aleutian Islands]], eventually reaching their destination after initially been wrecked on [[Bering Island]]. Between 1774 and 1800 [[Viceroyalty of New Spain|Spain]] also led [[Spanish expeditions to the Pacific Northwest|several expeditions to Alaska]] to assert its claim over the Pacific Northwest. These claims were later abandoned at the turn of the 19th century following the aftermath of the [[Nootka Crisis]]. Count [[Nikolay Rumyantsev]] funded [[First Russian circumnavigation|Russia's first naval circumnavigation]] under the joint command of [[Adam Johann von Krusenstern]] and [[Nikolai Rezanov]] in 1803–1806, and was instrumental in the outfitting of the voyage of the ''Riurik''<nowiki/>'s circumnavigation of 1814–1816, which provided substantial scientific information on Alaska's and California's flora and fauna, and important ethnographic information on Alaskan and Californian (among other) natives.
+
+==Trading company==
+{{Main|Russian-American Company}}
+Imperial Russia was unique among European empires for having no state sponsorship of foreign expeditions or territorial settlement. The first state-protected [[trading company]] for sponsoring such activities in the Americas was the [[Shelikhov-Golikov Company]] of [[Grigory Shelikhov]] and [[Ivan Larionovich Golikov]]. A number of other companies were operating in [[Russian America]] during the 1780s. Shelikhov petitioned the government for exclusive control, but in 1788 [[Catherine II of Russia|Catherine II]] decided to grant his company a monopoly only over the area it had already occupied. Other traders were free to compete elsewhere. Catherine's decision was issued as the imperial {{lang|ru-Latn|ukase}} (proclamation) of September 28, 1788.<ref>{{cite book |last=Pethick |first=Derek |title=First Approaches to the Northwest Coast |publisher=J.J. Douglas |location=Vancouver |date=1976 |isbn=0-88894-056-4 |pages=26–33}}</ref>
+
+The Shelikhov-Golikov Company formed the basis for the [[Russian-American Company]] (RAC). Its charter was laid out in 1799 by the new [[Tsar]] [[Paul of Russia|Paul I]], which granted the company monopolistic control over trade in the [[Aleutian Islands]] and the North American mainland, south to [[55th parallel north|55° north latitude]].<ref name="Black2004" />{{rp|102}} The RAC was Russia's first [[joint stock company]], and came under the direct authority of the Ministry of Commerce of Imperial Russia. Siberian merchants based in [[Irkutsk]] were initially the major stockholders, but were soon replaced by Russia's nobility and aristocracy based in [[Saint Petersburg]]. The company constructed settlements in what is today Alaska, Hawaii,<ref name="nhlsum">{{cite web |url=http://tps.cr.nps.gov/nhl/detail.cfm?ResourceId=190&ResourceType=Structure |title=Russian Fort |access-date=July 4, 2008 |work=National Historic Landmark summary listing |publisher=National Park Service |url-status=dead |archive-url=https://web.archive.org/web/20071018122811/http://tps.cr.nps.gov/nhl/detail.cfm?ResourceId=190&ResourceType=Structure |archive-date=October 18, 2007}}</ref> and California.
+
+==Russian colonization==
+===1740s to 1800===
+{{further|Russian-American Company|Aleutian Islands|promyshlenniki}}
+Beginning in 1743, small associations of [[North American fur trade|fur-trader]]s began to sail from the shores of the Russian Pacific coast to the [[Aleutian Islands|Aleutian islands]].<ref name="Isto2012">Compare: {{Cite book |last=Isto |first=Sarah Crawford |title=The Fur Farms of Alaska: Two Centuries of History and a Forgotten Stampede |date=2012 |publisher=University of Alaska Press |isbn=978-1-60223-171-9 |location=Fairbanks |page=8 |chapter=Chapter One: The Russian Period 1749–1866 |quote=Russian merchants along the route from Kamchatka to Kiakhta must have been elated when Vitus Bering's expedition returned in 1742 to report that the northern coast of America was nearby and that its waters teemed with fur seals and sea otters. By the following year, the first commercial vessel had already been constructed in Kamchatka and had set off for a two-year voyage to the Aleutians. [...] A rush of fur-seeking expeditions followed |chapter-url=https://books.google.com/books?id=rYfvCAAAQBAJ&pg=PA8}}</ref>
+
+[[File:Bering Strait.jpeg|thumb|left|The [[Bering Strait]], where Russia's east coast lies closest to Alaska's west coast. Early Russian colonization occurred well south of the strait, in the Aleutian Islands.]]
+[[File:Advancement of the Promyshlenniki to the East.jpg|thumbnail|upright=1|right|Sibero-Russian {{lang|ru-Latn|[[promyshlenniki]]}} (hunter-trapper frontiersmen)]]
+
+Rather than hunting the marine life themselves, the Sibero-Russian {{lang|ru-Latn|[[promyshlenniki]]}} forced the [[Aleut]]s to do the work for them, often by taking hostage family members in exchange for hunted seal furs.<ref name="Carpenter2015">{{Cite book |last=Carpenter |first=Roger M. |url=https://books.google.com/books?id=5ihUBgAAQBAJ&pg=PA231 |title='Times Are Altered with Us': American Indians from First Contact to the New Republic |publisher=Wiley Blackwell |date=2015 |isbn=978-1-118-73315-8 |pages=231–232}}</ref> This pattern of [[Colonialism|colonial exploitation]] resembled some of the {{lang|ru-Latn|promyshlenniki}} [[Siberian fur trade|practices in their expansion]] into [[History of Siberia|Siberia]] and the [[Russian Far East]].<ref>
+{{cite book |last1=Etkind |first1=Alexander |date=2011 |title=Internal Colonization: Russia's Imperial Experience |url=https://books.google.com/books?id=lpz5q44VVk0C |location=Cambridge |publisher=John Wiley & Sons |publication-date=2013 |page=68 |isbn=9780745673547 |quote=Agreeing with [[Sergey Solovyov (historian)|Soloviev]] that the history of Russia was the history of colonization, [[Afanasy Shchapov|Shchapov]] described the process .... Two methods of colonization were primary: 'fur colonization,' with hunters harvesting and depleting the habitats of fur animals and moving further and further across Siberia all the way to Alaska; and 'fishing colonization,' which supplied Russian centers with fresh- or salt-water fish and caviar.}}</ref>
+As word spread of the potential riches in furs, competition among Russian companies increased and a large number of Aleuts were [[Serfdom in Russia|enserfed]].<ref name="alaskananthology">{{cite book |title=An Alaska Anthology: Interpreting the Past |author=Stephen W. Haycox, Mary Childers Mangusso |publisher=University of Washington Press |date=2011 |pages=27}}</ref><ref name="Carpenter2015" /><ref>
+Compare:
+{{cite book |last1=Grinëv |first1=Andrei Val'terovic |translator1-last=Bland |translator1-first=Richard L. |date=2016 |chapter=Russian Promyshlenniki in Alaska at the end of the Eighteenth Century |title=Russian Colonization of Alaska: Preconditions, Discovery, and Initial Development, 1741–1799 |trans-title=Predposylki rossiisoi kolonizatsii Alyaski, ee otkrytie i pervonachal'noye osnovanie |url=https://books.google.com/books?id=8WV0DwAAQBAJ |location=Lincoln |publisher=University of Nebraska Press |publication-date=2018 |page=198 |isbn=9781496210852 |quote=The Aleuts and other dependent Natives of the Russian colonies could never be considered slaves, or feudal serfs, or civilian workers in the usual sense of the terms. ... Up to the 1790s the Natives were obligated to pay tribute to the royal treasury, demonstrating personal dependence on the Russian emperor. Some of the Natives, evidently making up from a twelfth to an eighth of the adult population, belonged to the so-called kayury, whose position was in fact that of slaves, since they received nothing for their labor besides scanty clothing and food. However, this was not slavery as once existed in ancient Rome or in the American South ....}}</ref><ref>Compare: {{cite book |last1=Gwenn |first1=Miller |chapter=Introduction |title=Kodiak Kreol: Communities of Empire in Early Russian America |date=2015 |location=Ithaca |publisher=Cornell University |publication-date=2010 |page=2 |isbn=978-1-5017-0069-9 |quote=The people of Kodiak kept some slaves, ''kalgi'', outsiders whom they acquired through trading and warfare with people from other areas.}}</ref>
+
+[[File: Flag of the Russian-American Company, 1806 Replica.jpg|thumb|upright=0.5|right|Flag of the [[Russian-American Company]] (1806–1881).]]
+[[File:Sitka Island Chief Katlian With His Wife.jpg|thumb|[[Tlingit]] Chieftain of [[Sitka]]]]
+As the animal populations declined, the Aleuts, already too dependent on the new [[Barter|barter economy]] fostered by the Russian fur trade, were increasingly coerced into taking greater and greater risks in the highly dangerous waters of the [[Pacific Ocean|North Pacific]] to hunt for more otter.{{Citation needed|date=October 2023}} As the [[Shelikhov-Golikov Company|Shelekhov-Golikov Company]] of 1783–1799 developed a monopoly, its use of skirmishes and violent incidents turned into systematic violence as a tool of colonial exploitation of the indigenous people. When the Aleutian serfs revolted and won some victories, the {{lang|ru-Latn|promyshlenniki}} retaliated, killing many and destroying their boats and hunting gear, leaving them no means of survival.{{Citation needed|date=October 2023}} The most devastating effects came from disease: during the first two generations (1741–1759 & 1781–1799) of Sibero-Russian {{lang|ru-Latn|promyshlenniki}} contact, 80 percent of the Aleut population died from Eurasian [[Infection|infectious diseases]]; these were by then endemic among Eurasians, but the Aleuts had no [[Immunity (medical)|immunity]] against the diseases.<ref>{{cite web |url=http://www.alaska.net/~aleut/Culture_History.html |title=Aleut History |work=The Aleut Corporation |url-status=dead |archive-url=https://web.archive.org/web/20071102172428/http://www.alaska.net/~aleut/Culture_History.html |archive-date=November 2, 2007}}</ref>
+
+Though the Alaskan colony was never very profitable because of the costs of transportation, most Russian traders were determined to keep the land for themselves. In 1784, [[Grigory Shelikhov|Grigory Ivanovich Shelekhov]], who later set up the [[Russian-American Company]]<ref>
+{{cite book |last1=Mathews-Benham |first1=Sandra K. |chapter=5: From the Aleutian Chain to Northern California |title=American Indians in the Early West |url=https://books.google.com/books?id=mLZzCgAAQBAJ |series=Cultures in the American West |date=2008 |location=Santa Barbara, CA |publisher=ABC-CLIO |page=246 |isbn=9781851098248 |quote=... before he died, Shelikhov had appointed Alexandr Baranov as governor of the Russian Alaska Company, the first functional and approved Russian monopoly in Alaska.}}</ref>{{Better source needed|date=November 2019}}
+that developed into the Alaskan colonial administration, arrived in [[Three Saints Bay]] on [[Kodiak Island]] with two ships, the ''Three Saints'' ({{langx|ru|Три Святителя}}) and the ''St. Simon''.<ref>{{Cite web |title=Alaska History Timeline |url=http://kodiakisland.net/timeline.html |url-status=dead |archive-url=https://web.archive.org/web/20051027110359/http://kodiakisland.net/timeline.html |archive-date=October 27, 2005 |access-date=August 31, 2005 |website=Kodiakisland.net}}</ref> The Koniag [[Alaska Natives]] harassed the Russian party and Shelekhov responded by killing hundreds and taking hostages to enforce the obedience of the rest. Having established his authority on Kodiak Island, Shelekhov founded the second permanent Russian settlement in Alaska (after [[Unalaska, Alaska|Unalaska]], permanently settled in 1774) on the island's Three Saints Bay.{{Citation needed|date=October 2023}}
+
+In 1790, Shelekhov, back in Russia, hired [[Alexander Andreyevich Baranov]] to manage his Alaskan fur enterprise. Baranov moved the colony to the northeast end of Kodiak Island, where [[Lumber|timber]] was available. The site later developed into what is now the city of [[Kodiak, Alaska|Kodiak]]. Russian colonists took Koniag's wives and started families whose surnames continue today, such as Panamaroff, Petrikoff, and Kvasnikoff.{{citation needed|date=October 2023}} In 1795 Baranov, concerned by the sight of non-Russian Europeans trading with the natives in southeast Alaska, established Mikhailovsk {{convert|6|mi|km|spell=in}} north of present-day [[Sitka, Alaska|Sitka]].{{citation needed|date=October 2023}} He bought the land from the [[Tlingit]], but in 1802, while Baranov was away, Tlingit from a neighboring settlement attacked and destroyed Mikhailovsk. Baranov returned with a Russian warship and razed the Tlingit village. He built the settlement of New Archangel ({{langx|ru|Ново-Архангельск|translit=Novo-Arkhangelsk}}) on the ruins of Mikhailovsk.{{citation needed|date=October 2023}} It became the capital of Russian America – and later the city of Sitka.{{Citation needed|date=October 2023}}
+
+As Baranov secured the Russians' settlements in Alaska, the Shelekhov family continued to lobby Empress Catherine the Great for a monopoly on Alaska's fur trade.<ref>{{cite web |title=Russian Colonization in the Alaska Collections of the LOC |url=https://www.loc.gov/collections/meeting-of-frontiers/articles-and-essays/alaska/russian-colonization/ |website=Library of Congress, Washington, D.C. 20540 USA |access-date=April 17, 2025}}</ref> In 1799 Shelekhov's son-in-law, [[Nikolai Rezanov|Nikolay Petrovich Rezanov]], succeeded when he acquired a monopoly on the American fur trade from Emperor [[Paul I of Russia|Paul I]]. Rezanov formed the [[Russian-American Company]]. As part of the deal, the Emperor expected the company to establish new settlements in Alaska. Thus, while the company was focused on its commercial enterprise, it also effectively became an outpost for the Russian Empire in North America.<ref>{{cite web |title=Alaska Fur Trade in the Digital Collections of the Library of Congress |url=https://www.loc.gov/collections/meeting-of-frontiers/articles-and-essays/alaska/alaska-fur-trade/ |website=Library of Congress, Washington, D.C. 20540 USA |access-date=April 17, 2025}}</ref>
+
+===1800 to 1867===
+[[File:Battle of Sitka by Louis S Glanzman.jpg|thumb|right|upright=1.3|[[Aleut]]ian & [[Russian Empire|Russian]] allied forces defeat the [[Tlingit|Tlingit tribe]] at the [[Battle of Sitka]], 1804.]]
+By 1804, Baranov, now manager of the Russian–American Company, had consolidated the company's hold on fur trade activities in the Americas following his suppression of the Tlingit clan at the [[Battle of Sitka]]. The Russians never fully colonized Alaska. For the most part, they clung to the coast and shunned the interior.{{citation needed|date=October 2023}}
+
+[[File:Tikhanov - Alexandr Andreyevich Baranov (1818).png|thumb|upright|[[Alexander Andreyevich Baranov]], called "Lord of Alaska" by [[Hector Chevigny]], played an active role in the Russian–American Company and was the first governor of Russian America.]]
+From 1812 to 1841, the Russians operated [[Fort Ross, California]]. From 1814 to 1817, [[Russian Fort Elizabeth]] was operating in the [[Hawaiian Kingdom|Kingdom of Hawaii]]. By the 1830s, the Russian monopoly on trade was weakening. The British [[Hudson's Bay Company]] was leased the southern edge of Russian America in 1839 under the [[RAC–HBC Agreement|RAC-HBC Agreement]], establishing [[Fort Stikine]] which began siphoning off trade.{{citation needed|date=October 2023}}
+
+A company ship visited the Russian American outposts only every two or three years to give provisions.<ref name="Wheeler">{{cite journal |last=Wheeler |first=Mary E. |title=Empires in Conflict and Cooperation: The "Bostonians" and the Russian-American Company |journal=Pacific Historical Review |volume=40 |issue=4 |date=1971 |pages=419–441 |doi=10.2307/3637703 |jstor=3637703}}</ref> Because of the limited stock of supplies, trading was incidental compared to trapping operations under the Aleutian laborers.<ref name="Wheeler" /> This left the Russian outposts dependent upon British and American merchants for sorely needed food and materials; in such a situation Baranov knew that the RAC establishments "could not exist without trading with foreigners."<ref name="Wheeler" /> Ties with Americans were particularly advantageous since they could sell furs at [[Guangzhou]], close to the Russians at the time. The downside was that American hunters and [[Trapping|trappers]] encroached on territory Russians considered theirs.{{citation needed|date=October 2023}}
+
+Starting with the destruction of the ''[[Phoenix (1794)|Phoenix]]'' in 1799, several RAC ships sank or were damaged in storms, leaving the RAC outposts with scant resources. On June 24, 1800, an American vessel sailed to Kodiak Island. Baranov negotiated the sale of over 12,000 rubles worth of goods carried on the ship, averting "imminent starvation."<ref>{{cite book |last=Tikhmenev |first=P. A. |title=A History of the Russia-American Company |url=https://archive.org/details/historyofrussian0000tikh |url-access=registration |editor-first=Richard A. |editor-last=Pierce |editor2-first=Alton S. |editor2-last=Donnelly |location=Seattle |publisher=University of Washington Press |date=1978 |pages=[https://archive.org/details/historyofrussian0000tikh/page/63 63–64] |isbn=9780295955643}}</ref> During his tenure, Baranov traded over 2 million rubles worth of furs for American supplies, to the consternation of the board of directors.<ref name="Wheeler" /> From 1806 to 1818 Baranov shipped 15 million rubles worth of furs to Russia, only receiving under 3 million rubles in provisions, barely half of the expenses spent solely on the Saint Petersburg company office.<ref name="Wheeler" />
+
+The [[Russo-American Treaty of 1824]] recognized exclusive Russian rights to the [[fur trade]] north of latitude 54°40'N, with the American rights and claims restricted to below that line. This division was repeated in the [[Treaty of Saint Petersburg (1825)|Treaty of Saint Petersburg]], a parallel agreement with the British in 1825 (which also settled most of the border with [[British North America]]). However, the agreements soon went by the wayside, and with the retirement of [[Alexander Andreyevich Baranov|Alexandr Baranov]] in 1818, the Russian hold on Alaska was further weakened.
+
+When the Russian-American Company's [[charter]] was renewed in 1821, it stipulated that the chief managers from then on be naval [[Officer (armed forces)|officers]]. Most naval officers did not have any experience in the fur trade, so the company suffered. The second charter also tried to cut off all contact with [[Alien (law)|foreigners]], especially the competitive Americans. This strategy backfired since the Russian colony had become used to relying on American supply ships, and the United States had become a valued customer for furs. Eventually the Russian–American Company agreed with the Hudson's Bay Company, which gave the British rights to sail through Russian territory.{{Citation needed|date=October 2023}}
+
+==Colonies==
+{{euromericas}}
+The first Russian colony in Alaska was founded in 1784 by [[Grigory Shelikhov]].<ref name="Black2004" />{{rp|102}} Subsequently, Russian explorers and settlers continued to establish trading posts in mainland Alaska, on the [[Aleutian Islands]], Hawaii, and [[Northern California]].
+
+===Alaska===
+{{see also|Alaska boundary dispute}}
+The [[Russian-American Company]] was formed in 1799 with the influence of [[Nikolay Rezanov]] to hunt [[sea otter]]s for their fur.<ref name="Black2004" />{{rp|40}} The peak population of the Russian colonies was about 4,000 although almost all of these were [[Aleut people|Aleuts]], [[Tlingit people|Tlingit]]s and other [[Native Alaskan]]s. The number of Russians rarely exceeded 500 at any one time.<ref name="Black2004" />{{rp|xiii}}
+
+===California===
+{{Main|Fort Ross, California}}
+The Russians established an outpost called [[Fort Ross, California|Fortress Ross]] (Russian: {{lang|ru|Крѣпость Россъ}}, {{lang|ru-Latn|Krepost' Ross}}) in 1812 near [[Bodega Bay]] in [[Northern California]],<ref name="Black2004" />{{rp|181}} north of [[San Francisco Bay]].
+The Fort Ross colony included a sealing station on the [[Farallon Islands]] off San Francisco.<ref>
+{{cite book |last1=Schoenherr |first1=Allan A. |author-link1=Allan A. Schoenherr |last2=Feldmeth |first2=C. Robert |title=Natural History of the Islands of California |url=https://books.google.com/books?id=j9ATAQAAIAAJ |series=California natural history guides |volume=61 |publisher=University of California Press |date=1999 |page=375 |isbn=9780520211971 |access-date=April 27, 2015}}</ref>
+By 1818 Fort Ross had a population of 128, consisting of 26 Russians and 102 Native Americans.<ref name="Black2004" />{{rp|181}} The Russians maintained it until 1841 when they left the region.<ref>{{cite web |url=http://www.fortrossinterpretive.org/FortRossCulturalHistory.php |title=Fort Ross Cultural History Fort Ross Interpretive Association |website=www.fortrossinterpretive.org |access-date=January 15, 2022 |archive-url=https://web.archive.org/web/20100528110415/http://www.fortrossinterpretive.org/FortRossCulturalHistory.php |archive-date=May 28, 2010 |url-status=dead}}</ref> {{As of|2015}}, Fort Ross is a Federal [[National Historical Landmark]] on the [[National Register of Historic Places]]. It is preserved—restored in California's [[Fort Ross State Historic Park]], about {{convert|80|mi}} northwest of San Francisco.<ref>{{Cite web |url=http://www.parks.ca.gov/?page_id=449 |title=Fort Ross SHP |access-date=April 2, 2010 |archive-date=November 2, 2009 |archive-url=https://web.archive.org/web/20091102045045/http://www.parks.ca.gov/?page_id=449 |url-status=live}}</ref>
+
+Spanish concern about Russian colonial intrusion prompted the authorities in [[New Spain]] to initiate{{when|date=March 2023}} the upper {{lang|es|[[Las Californias]]|italic=unset}} Province settlement, with {{lang|es|[[presidio]]s}} (forts), {{lang|es|[[pueblo]]s}} (villages), and the [[Spanish missions in California|California missions]]. After declaring their independence in 1821, the Mexicans also asserted themselves in opposition to the Russians: the {{lang|es|[[Mission San Francisco de Solano]]}} (Sonoma Mission, 1823) specifically responded to the presence of the Russians at Fort Ross; and Mexico established the {{lang|es|[[Presidio of Sonoma|El Presidio Real de Sonoma]]}} or Sonoma Barracks in 1836, with General {{lang|es|[[Mariano Guadalupe Vallejo]]|italic=unset}} as the Commandant of the Northern Frontier of the {{lang|es|[[Alta California]]|italic=unset}} Province.
+
+==Missionary activity==
+{{further||Russian Orthodox Church|Alaskan Creole people}}
+[[File:Russian Orthodox Church.jpg|thumb|left|[[Russian Orthodox Church|Russian Orthodox]] [[St. Michael's Cathedral (Sitka, Alaska)|cathedral]], in present-day [[Sitka, Alaska|Sitka]]]]
+[[File:Saint Peter the Aleut.jpg|thumb|right|[[Peter the Aleut|St. Peter the Aleut]], a martyred [[Alaskan Creole people|Aleutian Creole]]]]
+[[File:AleutianManWoman.jpg|thumbnail|left|upright=1|An Aleutian man and woman]]
+[[File:Sitka, Alaska - St Michael's Orthodox Cathedral - Interior (2).jpg|thumb|right|The Sanctuary of [[St. Michael's Cathedral (Sitka, Alaska)|St. Michael's Cathedral]]]]
+
+At Three Saints Bay, Shelekov built a school to teach the natives to read and write Russian and introduced the first resident missionaries and clergymen who spread the [[Russian Orthodox Church|Russian Orthodox]] faith. This faith (with its liturgies and texts, translated into Aleut at a very early stage) had been informally introduced, in the 1740s–1780s. Some fur traders founded local families or symbolically adopted Aleut trade partners as godchildren to gain their loyalty through this special personal bond. The missionaries soon opposed the exploitation of the indigenous populations, and their reports provide evidence of the violence exercised to establish colonial rule in this period.
+
+The RAC's monopoly was continued by Emperor [[Alexander I of Russia|Alexander I]] in 1821, on the condition that the company would financially support missionary efforts.<ref name="Nordlander">{{cite journal |last=Nordlander |first=David |title=Innokentii Veniaminov and the Expansion of Orthodoxy in Russian America |journal=Pacific Historical Review |volume=64 |issue=1 |date=1995 |pages=19–35 |jstor=3640333 |doi=10.2307/3640333}}</ref> The company board ordered chief manager [[Arvid Adolf Etholén]] to build [[Russian Bishop's House|a residency]] in [[Sitka, Alaska|New Archangel]] for bishop [[Innocent of Alaska|Veniaminov]]<ref name="Nordlander" /> When a [[Sitka Lutheran Church|Lutheran church]] was planned for the [[Finns|Finnish]] population of New Archangel, Veniamiov prohibited any Lutheran pastors from proselytizing to neighboring Tlingits.<ref name="Nordlander" /> Veniamiov faced difficulties in exercising influence over the Tlingit people outside New Archangel, due to their political independence from the RAC leaving them less receptive to Russian cultural influences than Aleuts.<ref name="Nordlander" /><ref name="Kan">{{cite journal |last=Kan |first=Sergei |title=Russian Orthodox Brotherhoods among the Tlingit: Missionary Goals and Native Response |journal=Ethnohistory |volume=32 |issue=3 |date=1985 |pages=196–222 |jstor=481921 |doi=10.2307/481921}}</ref> A smallpox epidemic spread throughout Alaska in 1835–1837 and the medical aid given by Veniamiov created converts to Orthodoxy.<ref name="Kan" />
+
+Inspired by the same pastoral theology as [[Bartolomé de las Casas]] or [[Francis Xavier|St. Francis Xavier]], the origins of which were in early Christianity's need to adapt to the cultures of [[Classical antiquity]], missionaries in Russian America applied a strategy that placed value on local cultures and encouraged indigenous leadership in parish life and missionary activity. When compared to later Protestant missionaries, the Orthodox policies "in retrospect proved to be relatively sensitive to indigenous Alaskan cultures."<ref name="Nordlander" /> This cultural policy was originally intended to gain the loyalty of the indigenous populations by establishing the authority of Church and State as protectors of over 10,000 inhabitants of Russian America. (The number of ethnic Russian settlers had always been less than the record 812, almost all concentrated in Sitka and Kodiak).
+
+Difficulties arose in training Russian priests to attain fluency in any of the various Indigenous Alaskan languages. To redress this, Veniaminov opened a seminary for mixed-race and native candidates for the Church in 1845.<ref name="Nordlander" /> Promising students were sent to additional schools in either [[Saint Petersburg]] or [[Irkutsk]], the later city becoming the original seminary's new location in 1858.<ref name="Nordlander" /> The Holy Synod instructed for the opening of four missionary schools in 1841, to be located in [[Amlia]], [[Chiniak, Alaska|Chiniak]], [[Kenai, Alaska|Kenai]], and [[Nushagak, Alaska|Nushagak]].<ref name="Nordlander" /> Veniamiov established the curriculum, which included Russian history, literacy, mathematics, and religious studies.<ref name="Nordlander" />
+
+A side effect of the missionary strategy was the development of a new and autonomous form of indigenous identity. Many native traditions survived within local "Russian" Orthodox tradition and in the religious life of the villages. Part of this modern indigenous identity is an alphabet and the basis for written literature in nearly all of the ethnic-linguistic groups in the Southern half of Alaska. Father Ivan Veniaminov (later St. [[Innocent of Alaska]]), famous throughout Russian America, developed an Aleut [[dictionary]] for hundreds of language and dialect words based on the [[Russian alphabet]].
+
+The most visible trace of the Russian colonial period in contemporary Alaska is the nearly 90 Russian Orthodox parishes with a membership of over 20,000 men, women, and children, almost exclusively indigenous people. These include several [[Athabaskan languages|Athabascan]] groups of the interior, very large [[Yup'ik]] communities, and quite nearly all of the Aleut and Alutiiq populations. Among the few Tlingit Orthodox parishes, the large group in [[Juneau, Alaska|Juneau]] [[St. Nicholas Russian Orthodox Church (Juneau, Alaska)|adopted]] Orthodox Christianity only after the Russian colonial period, in an area where there had been no Russian settlers nor missionaries. The widespread and continuing local Russian Orthodox practices are likely the result of the [[syncretism]] of local beliefs with Christianity.
+
+Observers noted that while their religious ties were tenuous, before the sale of Alaska there were 400 native converts to Orthodoxy in New Archangel.<ref name="Kan" /> Tlingit practitioners declined in number after the lapse of Russian rule, until there were only 117 practitioners in 1882 residing in the place, by then renamed as [[Sitka, Alaska|Sitka]].<ref name="Kan" />
+
+==Purchase of Alaska==
+[[File:Alaska Purchase (hi-res).jpg|thumb|[[Cheque|Check]] used for the purchase of Alaska]]
+[[File:AlaskaMap1867.jpg|thumb|upright=1.25|A map depicting the territory of Alaska in 1867, immediately after the [[Alaska Purchase]]]]
+{{Main|Alaska Purchase}}
+By the 1860s, the Russian government was ready to abandon its Russian America colony. Over-hunting had severely reduced the fur-bearing animal population, and competition from the British and Americans exacerbated the situation. This, combined with the difficulties of supplying and protecting such a distant colony, reduced interest in the territory. In addition, Russia was in a difficult financial position after the [[Crimean War]] and feared losing Russian Alaska without compensation in some future conflict, especially with the [[British Empire]]. The Russians believed that in a dispute with Britain, their hard-to-defend region might become a prime target for British aggression from [[British Columbia]], and would be easily captured. So following the Union victory in the [[American Civil War]], [[Tsar]] [[Alexander II of Russia|Alexander II]] instructed the Russian minister to the United States, [[Eduard de Stoeckl]], to enter into negotiations with the [[United States Secretary of State]] [[William H. Seward]] in the beginning of March 1867. At the instigation of Seward the [[United States Senate]] approved the purchase, known as the [[Alaska Purchase]], from the [[Russian Empire]]. The cost was set at 2 cents an acre, which came to a total of $7,200,000 on April 9, 1867. The canceled check is in the present day [[United States National Archives]].
+
+After Russian America was sold to the U.S. in 1867, for $7.2 million (2 cents per acre, {{Inflation|US|7200000|1867|fmt=eq}}), all the holdings of the Russian–American Company were liquidated.
+
+Following the transfer, many elders of the local [[Tlingit people|Tlingit]] tribe maintained that "[[Castle Hill (Sitka, Alaska)|Castle Hill]]" comprised the only land that Russia was entitled to sell. Other indigenous groups also argued that they had never given up their land; the Americans had encroached on it and taken it over. Native land claims were not fully addressed until the latter half of the 20th century, with the signing by Congress and leaders of the [[Alaska Native Claims Settlement Act]].
+
+At the height of Russian America, the Russian population had reached 700, compared to 40,000 Aleuts. They and the [[Creole peoples|Creoles]], who had been guaranteed the privileges of citizens in the United States, were given the opportunity to become citizens within three years, but few decided to exercise that option. General [[Jefferson C. Davis]] ordered the Russians out of their homes in Sitka, maintaining that the dwellings were needed for the Americans. The Russians complained of rowdiness and assaults by the American troops. Many Russians returned to Russia, while others migrated to the [[Pacific Northwest]] and California.
+
+==Legacy==
+The [[Soviet Union]] (USSR) released a [[Commemorative coins of the Soviet Union|series of commemorative coins]] in 1990 and 1991 to mark the 250th anniversary of the first sighting of and claiming domain over [[Alaska]]–[[Russian America]]. The commemoration consisted of a [[silver coin]], a [[platinum coin]], and two [[palladium coin]]s in both years.
+
+The Alaska Native population was first recorded in the [[1880 United States census]], and it was estimated that the population had declined from 80,000 in 1741 to 33,000 due to disease.<ref name="census"/> The population continued to decline until 1910 and it was not until 1947 that this number surpassed the 1880 figure.<ref name="census">{{cite book |last1=Joe |first1=Jennie R. |last2=Gachupin |first2=Francine C. |title=Health and Social Issues of Native American Women |date=September 20, 2012 |publisher=Bloomsbury Publishing USA |isbn=978-0-313-39714-1 |page=39 |url=https://books.google.com/books?id=cuvEEAAAQBAJ |language=en}}</ref> The Alaskan Native peoples claimed that they still had title to the territory in that the U.S. bought the right to negotiate with the indigenous populations, rather than buying the territory outright; however, following the enactment of the [[Alaska Statehood Act]], the U.S. government ceded 44 million acres to Alaska’s native populations.<ref name="n332">{{cite magazine |title=There Are Two Versions of the Story of How the U.S. Purchased Alaska From Russia |magazine=Smithsonian Magazine |date=March 29, 2017 |publisher=[[Smithsonian Institution]] |url=https://www.smithsonianmag.com/history/why-russia-gave-alaska-americas-gateway-arctic-180962714/ |access-date=May 22, 2024 |archive-date=May 22, 2024 |archive-url=https://web.archive.org/web/20240522035446/https://www.smithsonianmag.com/history/why-russia-gave-alaska-americas-gateway-arctic-180962714/ |url-status=live}}</ref>
+
+In the early 21st century, Russian officials and pro-Kremlin bloggers have fuelled discussion in Russia, generally facetious, of an ambition to regain control of Alaska.<ref>{{cite news |last1=Nelson |first1=Soraya Sarhaddi |title=Not An April Fools' Joke: Russians Petition To Get Alaska Back |url=https://www.npr.org/sections/parallels/2014/04/01/297835873/not-an-april-fools-joke-russians-petition-to-get-alaska-back |access-date=November 26, 2019 |work=NPR |date=April 1, 2014 |quote=Most of the talk is tongue-in-cheek, but it comes at a time of heightened sensitivity in the West over whether Russia is planning further incursions or land grabs. |archive-date=February 15, 2020 |archive-url=https://web.archive.org/web/20200215203018/https://www.npr.org/sections/parallels/2014/04/01/297835873/not-an-april-fools-joke-russians-petition-to-get-alaska-back |url-status=live}}</ref><ref>{{cite news |last1=Tetrault-Farber |first1=Gabrielle |title=After Crimea, Russians Say They Want Alaska Back |url=https://www.themoscowtimes.com/2014/03/31/after-crimea-russians-say-they-want-alaska-back-a33489 |access-date=November 26, 2019 |work=The Moscow Times |date=March 31, 2014 |archive-date=December 5, 2019 |archive-url=https://web.archive.org/web/20191205070430/https://www.themoscowtimes.com/2014/03/31/after-crimea-russians-say-they-want-alaska-back-a33489 |url-status=live}}</ref> Some [[Russian ultra-nationalist]]s viewed the sale as an enormous mistake.<ref>{{cite news |last1=Gershkovich |first1=Evan |title=150 Years After Sale of Alaska, Some Russians Have Second Thoughts |url=https://www.nytimes.com/2017/03/30/world/europe/alaska-russia-sale-150.html |access-date=November 26, 2019 |work=The New York Times |date=March 30, 2017 |archive-date=June 6, 2020 |archive-url=https://web.archive.org/web/20200606091845/https://www.nytimes.com/2017/03/30/world/europe/alaska-russia-sale-150.html |url-status=live}}</ref>
+
+==Russian settlements in North America==
+[[File:View of New Archangel, 1837.tif|thumb|right|New Archangel (present-day [[Sitka, Alaska]]), the capital of Russian America, in 1837]]
+*[[Unalaska, Alaska]] – 1774
+*[[Three Saints Bay]], [[Alaska]] – 1784
+*Fort St. George in [[Kasilof, Alaska]] – 1786<ref>{{Cite web |title=Kasilof |url=https://dnr.alaska.gov/parks/units/kasilof.htm |access-date=2026-09-21 |website=dnr.alaska.gov}}</ref>
+*[[St. Paul, Alaska]] – 1788
+*Fort St. Nicholas in [[Kenai, Alaska]] – 1791<ref>{{Cite book |last=GRINËV |first=ANDREI VAL’TEROVICH |url=https://doi.org/10.2307/j.ctv75d7t7 |title=Russian Colonization of Alaska |date=2018-11-01 |publisher=UNP - Nebraska |isbn=978-1-4962-1085-2}}</ref>
+*[[Kodiak, Alaska|Pavlovskaya, Alaska]] (now Kodiak) – 1791
+*Fort Saints Constantine and Helen on Nuchek Island, Alaska – 1793{{Citation needed|date=October 2023}}
+*Fort on [[Hinchinbrook Island (Alaska)|Hinchinbrook Island]], Alaska – 1793{{Citation needed|date=October 2023}}
+*[[New Russia (trading post)|New Russia]] near present-day [[Yakutat, Alaska]] – 1796
+*[[Old Sitka Site|Redoubt St. Archangel Michael, Alaska]] near Sitka – 1799
+*[[Sitka, Alaska|Novo-Arkhangelsk, Alaska]] (now Sitka) – 1804
+*[[Fort Ross, California]] – 1812
+*[[Russian Fort Elizabeth|Fort Elizabeth]] near Waimea, [[Kauai|Kaua'i, Hawai'i]] – 1817<ref>{{Cite web |title=Russian Fort/ Fort Elizabeth (U.S. National Park Service) |url=https://www.nps.gov/places/russian-fort-fort-elizabeth.htm |access-date=2026-09-21 |website=www.nps.gov |language=en}}</ref>
+*[[Fort Alexander (Hawaii)|Fort Alexander]] near Hanalei, Kaua'i, Hawai'i – 1817
+*Fort Barclay-de-Tolly near Hanalei, Kaua'i, Hawai'i – 1817{{Citation needed|date=October 2023}}
+*Fort (New) Alexandrovsk at [[Bristol Bay]], Alaska – 1819{{Citation needed|date=October 2023}}
+*[[Kolmakov Redoubt Site|Kolmakov Redoubt, Alaska]] – 1832
+*[[St. Michael, Alaska|Redoubt St. Michael, Alaska]] – 1833
+*[[Nulato, Alaska]] – 1834
+*[[Fort Stikine|Redoubt St. Dionysius]] in present-day [[Wrangell, Alaska]] (now Fort Stikine) – 1834
+*[[Russian Mission, Alaska|Pokrovskaya Mission, Alaska]] – 1837
+*[[Ninilchik, Alaska]] – 1847
+
+==See also==
+{{Portal|History|Alaska|Russia}}
+{{div col}}
+'''Native Americans'''
+*[[Juana Maria]]
+*[[Peter the Aleut]]
+*[[Jacob Netsvetov]]
+'''Russians'''
+*[[List of Russian explorers]]
+*[[Herman of Alaska]]
+*[[Mikhail Tebenkov]]
+*[[Johan Hampus Furuhjelm]]
+*[[Nikolai Rezanov]]
+*[[Vitus Bering]]
+'''History'''
+*[[Russian Colonialism]]
+*[[Territorial evolution of Russia]]
+*[[Great Northern Expedition]]
+*[[California Fur Rush]]
+*[[Awa'uq Massacre]]
+*[[Russo-American Treaty of 1824]]
+*[[History of the west coast of North America]]
+'''Other topics'''
+*[[Alaska boundary dispute]]
+*[[Flag of the Russian-American Company]]
+*[[Alaskan Creole people]]
+*[[Russian Americans]]
+*[[Russian–American Telegraph]]
+*''[[Slavic Voice of America]]''
+*[[Ukase of 1821|{{lang|ru-Latn|Ukase|nocat=y}} of 1821]]
+{{div col end}}
+
+==References==
+{{Reflist}}
+
+==Further reading==
+{{See also|Bibliography of the history of Alaska|Bibliography of California history|Bibliography of Russian history (1613–1917)}}
+{{refbegin}}
+*{{cite book |last1=Black |first1=Lydia T. |author-link1=Lydia T. Black |title=Russians in Alaska, 1732–1867 |date=2004 |publisher=University of Alaska Press |location=Fairbanks, AK |isbn=978-1-889963-05-1}}
+*{{cite book |last1=Black |first1=Lydia T. |author1-link=Lydia T. Black |last2=Dauenhauer |first2=Nora |author2-link=Nora Marks Dauenhauer |last3=Dauenhauer |first3=Richard |author3-link=Richard Dauenhauer |title=Anóoshi Lingít Aaní Ká/Russians in Tlingit America: The Battles of Sitka, 1802 and 1804 |publisher=University of Washington Press |date=2008 |isbn=978-0-295-98601-2}}
+*Essig, Edward Oliver. ''Fort Ross: California Outpost of Russian Alaska, 1812–1841'' (Kingston, Ont.: Limestone Press, 1991.)
+*{{cite book |last1=Frost |first1=Orcutt |title=Bering: The Russian Discovery of America |date=2003 |publisher=Yale University Press |location=New Haven, CT |isbn=978-0-300-10059-4 |url=https://archive.org/details/beringrussiandis0000fros}}
+*Gibson, James R. "Old Russia in the New World: adversaries and adversities in Russian America." in ''European Settlement and Development in North America'' (University of Toronto Press, 2019) pp.&nbsp;46–65.
+*Gibson, James R. ''Imperial Russia in frontier America: the changing geography of supply of Russian America, 1784–1867'' (Oxford University Press, 1976)
+*Gibson, James R. "Russian America in 1821." ''Oregon Historical Quarterly'' (1976): 174–188. [http://www.fortross.org/lib/48/russian-america-in-1821.pdf online] {{Webarchive|url=https://web.archive.org/web/20150924014806/http://www.fortross.org/lib/48/russian-america-in-1821.pdf |date=September 24, 2015 }}
+*{{cite book |last1=Grinev |first1=Andrei Valterovich |title=The Tlingit Indians in Russian America, 1741–1867 |date=2008 |publisher=University of Nebraska Press |location=Lincoln, NE |isbn=978-0-8032-2071-3}}
+*Grinëv, Andrei Val’terovich. "The External Threat to Russian America: Myth and Reality." ''Journal of Slavic Military Studies'' 30.2 (2017): 266–289.
+*Grinëv, Andrei Val’terovich. ''Russian Colonization of Alaska: Preconditions, Discovery, and Initial Development, 1741–1799'' Translated by Richard L. Bland. Lincoln: University of Nebraska Press, 2018. {{ISBN|978-1-4962-0762-3}}. [http://www.h-net.msu.edu/reviews/showrev.php?id=54207 online review]
+*{{cite book |last1=Kobtzeff |first1=Oleg |title=La Colonization russe en Amérique du Nord: 18 - 19 ème siècles |language=fr |trans-title=Russian Colonization in North America, 18th-19th Centuries |date=1985 |publisher=thesis, University of Paris 1 - Panthéon Sorbonne (available in limited editions in specialized libraries) |location=Paris}}
+*{{cite book |last1=Miller |first1=Gwenn A. |title=Kodiak Kreol: Communities of Empire in Early Russian America |date=2010 |publisher=Cornell University Press |location=Ithaca, NY |isbn=978-0-8014-4642-9}}
+*{{cite book |last1=Oleksa |first1=Michael J. |author-link1=Michael Oleksa |title=Orthodox Alaska: A Theology of Mission |date=1992 |publisher=St Vladimir's Seminary Press |location=Yonkers, NY |isbn=978-0-88141-092-1}}
+*{{cite book |editor1-first=Michael J. |editor1-last=Oleksa |title=Alaskan Missionary Spirituality |date=2010 |edition=2nd |publisher=St Vladimir's Seminary Press |location=Yonkers, NY |isbn=978-0-88141-340-3}}
+*Pierce, Richard A. ''Russian America, 1741–1867: A Biographical Dictionary'' (Kingston, Ont.: Limestone Press, 1990)
+*{{cite book |editor1-first=S. Frederick |editor1-last=Starr |editor1-link=S. Frederick Starr |title=Russia's American Colony |date=1987 |publisher=Duke University Press |location=Durham, NC |isbn=978-0-8223-0688-7 |url=https://archive.org/details/russiasamericanc00star}}
+*Saul, Norman E. "Empire Maker: Aleksandr Baranov and Russian Colonial Expansion into Alaska and Northern California." ''Journal of American Ethnic History'' 36.3 (2017): 91–93.
+*Saul, Norman. "California-Alaska trade, 1851–1867: The American Russian commercial company and the Russian America company and the sale/purchase of Alaska." ''Journal of Russian American Studies'' 2.1 (2018): 1–14. [https://journals.ku.edu/jras/article/download/7554/6889 online] {{Webarchive|url=https://web.archive.org/web/20230407032158/https://journals.ku.edu/jras/article/download/7554/6889 |date=April 7, 2023 }}
+*{{cite book |last1=Vinkovetsky |first1=Ilya |title=Russian America: An Overseas Colony of a Continental Empire, 1804–1867 |date=2011 |publisher=Oxford University Press |location=New York, NY |isbn=978-0-19-539128-2}}
+{{refend}}
+
+===Natives===
+*Grinëv, Andrei V. "Natives and Creoles of Alaska in the maritime service in Russian America." ''The Historian'' 82.3 (2020): 328–345. [https://www.academia.edu/download/65351031/Natives_and_Creoles_in_the_maritime_service_in_RA_fragment_.pdf online]{{dead link|date=January 2025|bot=medic}}{{cbignore|bot=medic}}
+*[https://books.google.com/books?id=4PZdGWM0EBQC ''The Tlingit Indians in Russian America, 1741–1867'', Andreĭ Valʹterovich Grinev (GoogleBooks)]
+*Luehrmann, Sonja. ''Alutiiq villages under Russian and US rule'' (University of Alaska Press, 2008.)
+*Savelev, Ivan. "Patterns in the Adoption of Russian Linguistic and National Traditions by Alaskan Natives." ''International Conference on European Multilingualism: Shaping Sustainable Educational and Social Environment EMSSESE, 2019''. (Atlantis Press, 2019). [https://www.atlantis-press.com/article/125921160.pdf online]
+
+===Primary sources===
+*{{Cite journal |last1=Gibson |first1=James R. |date=1972 |title=Russian America in 1833: The Survey of Kirill Khlebnikov |journal=The Pacific Northwest Quarterly |volume=63 |issue=1 |pages=1–13 |jstor=40488966}}
+*Golovin, Pavel Nikolaevich, Basil Dmytryshyn, and E. A. P. Crownhart-Vaughan. ''The end of Russian America: Captain PN Golovin's last report, 1862''(Oregon Historical Society Press, 1979.)
+*Khlebnikov, Kyrill T. ''Colonial Russian America: Kyrill T. Khlebnikov's Reports, 1817–1832'' (Oregon Historical Society, 1976)
+*baron Wrangel, Ferdinand Petrovich. ''Russian America: Statistical and ethnographic information'' (Kingston, Ont.: Limestone Press, 1980)
+
+===Historiography===
+*{{Cite journal |last1=Grinëv |first1=Andrei. V. |last2=Bland |first2=Richard L. |date=2010 |title=A Brief Survey of the Russian Historiography of Russian America of Recent Years |url=http://phr.ucpress.edu/content/79/2/265.full.pdf |journal=Pacific Historical Review |volume=79 |issue=2 |pages=265–278 |doi=10.1525/phr.2010.79.2.265 |jstor=10.1525/phr.2010.79.2.265}}{{Dead link|date=May 2024 |bot=InternetArchiveBot |fix-attempted=yes }}
+
+==External links==
+{{commons category|Russian America}}
+*[https://web.archive.org/web/20110118081337/http://www.akip.org/rusus.html The Russian-American Treaty of 1867]
+*[http://www.parks.ca.gov/?page_id=449 Official Website of Fort Ross State Historic Park]
+*[https://web.archive.org/web/20100528110415/http://www.fortrossinterpretive.org/FortRossCulturalHistory.php Fort Ross Cultural History Fort Ross Interpretive Association]
+
+{{Russian America}}
+{{Alaska history footer|state=collapsed}}
+{{California history}}
+{{Canadian colonies}}
+{{History of the Americas}}
+{{Thirteen Colonies}}
+{{European Colonization of North America}}
+{{Russian Empire–United States relations|state=collapsed}}
+
+{{DEFAULTSORT:Russian Colonization Of The Americas}}
+[[Category:Russian colonization of North America| ]]
+[[Category:Russian exploration in the Age of Discovery|Alaska]]
+[[Category:Territorial evolution of Russia|Alaska]]
+[[Category:Fur trade]]
+[[Category:Pre-Confederation British Columbia]]
+[[Category:History of Yukon]]
+[[Category:Pre-statehood history of Alaska]]
+[[Category:Overseas empires]]
+[[Category:History of colonialism]]
+[[Category:Colonialism]]
