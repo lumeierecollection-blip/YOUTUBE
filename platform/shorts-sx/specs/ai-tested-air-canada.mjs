@@ -50,6 +50,6 @@ export const SHOTS = [   // v3 (20 Nov): owner - pictures must literally show wh
   { at: "remarkable,", kind: "full", photo: "ac-gavel2", cap: "“remarkable”" },
   { at: "pay.", kind: "money", value: "CA$812", unit: "awarded, 14 Feb 2024", asset: "png-money-stack", stacks: 1 },
   { at: "If", kind: "full", photo: "ac-chat-bot", cap: "If your AI says it," },
-  { at: "you", kind: "full", photo: "ac-court2", cap: "you said it." },
+  { at: "you", kind: "page", page: "you said it." },
   { at: "Would", kind: "full", photo: "ac-terminal", cap: "Would you trust an airline's chatbot?" },
 ];
