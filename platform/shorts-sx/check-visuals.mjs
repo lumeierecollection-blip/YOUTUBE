@@ -30,12 +30,12 @@ A person mentioned should look like that kind of person (e.g. a grandmother = an
 an object mentioned should be that object. Generic but fitting illustrations are fine; unrelated, joking, misleading or confusing pictures are not.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
   let r = null;
-  for (let pass = 0; pass < 4 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 8000 * pass));   // a vision call that fails is retried (rate limits), never counted as a rejection
+  for (let pass = 0; pass < 7 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 15000 * pass));   // a vision call that fails is retried (rate limits), never counted as a rejection
   ask: for (const MODEL of MODELS) for (const key of KEYS) {
     try {
       const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: mime, data: b64 } }] }], generationConfig: { responseMimeType: "application/json", temperature: 0 } }) });
-      if (!res.ok) continue;
+      if (!res.ok) { if (pass === 6) console.log("  api", MODEL, res.status); continue; }
       const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break ask;
     } catch { continue; }
   } }
