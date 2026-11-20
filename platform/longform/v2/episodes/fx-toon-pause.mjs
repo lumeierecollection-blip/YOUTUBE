@@ -49,6 +49,10 @@ export const EPISODE = {
       toon("street", [C("you", 760, { mood: "angry", arm: "point" }), C("coach", 1200, { mood: "neutral", frozen: true })], { paused: P(0), ui: [{ kind: "chip", label: "Rule 4 · objects only", x: 70, y: 60, from: 10 }, TIMER(0, 300, 41)] })),
     beat("And rule five. Whatever you move stays moved. The world just carries on as if it always was that way.",
       toon("street", [C("you", 960, { mood: "smug", arm: "cross" })], { ui: [{ kind: "chip", label: "Rule 5 · it stays moved", x: 70, y: 60, from: 10 }] })),
+    beat("That night you test the limits. You pause, open the window, rearrange your desk, and move a cup of tea to your dad's side of the table. Unpause. He drinks it without noticing. Thirty seconds in, you realise you're grinning like a villain.",
+      toon("bedroom", [C("you", 960, { mood: "smug", arm: "point" })], { paused: P(0), ui: [TIMER(0, 360, 60), { kind: "chip", label: "Test 1 · the tea", x: 70, y: 60, from: 20 }] })),
+    beat("Day three, you pause on the way to school and carry a stranger's dropped shopping bag to her door. Unpause. She turns around, looks at the bag, looks at the sky, and thanks the wind.",
+      toon("street", [C("you", 300, { mood: "happy", walk: { from: 0, to: 900, dur: 200 } }), C("ava", 1350, { mood: "shock", s: 0.9, look: -1 })], { paused: P(0, 220), ui: [TIMER(0, 220, 60)] })),
     // ---- escalation: school
     beat("Day two. Pop quiz. Mr Hale says: phones away, you've got ten minutes.",
       toon("classroom", [C("coach", 960, { mood: "neutral", arm: "point" }), C("you", 1500, { mood: "shock", s: 0.8, look: -1 })], { ui: [{ kind: "timer", x: 1690, y: 50, from: 0, dur: 300, seconds: 600 }] })),
@@ -68,6 +72,12 @@ export const EPISODE = {
       toon("classroom", [C("ava", 960, { mood: "sad", look: 1 })], { ui: [{ kind: "counter", label: "Ava", value: 61, suffix: "%", x: 70, y: 60, from: 20, dur: 50 }] })),
     beat("A perfect score feels amazing for about three minutes. Then it just feels like something you're carrying.",
       toon("bedroom", [C("you", 960, { mood: "sad" })], { ui: [{ kind: "bar", label: "Feels good", value: 0.2, x: 70, y: 60, from: 10 }] })),
+    beat("At lunch, Ava asks why you've stopped being late. You say you got a better alarm. She says: you don't own an alarm. She's right. You don't.",
+      toon("classroom", [C("ava", 760, { mood: "smug", arm: "cross", look: 1 }), C("you", 1250, { mood: "shock", look: -1 })])),
+    beat("In three of your photos from that week, Sam from the year above is standing in the background, looking straight at the camera. You don't think anything of it. Yet.",
+      toon("street", [C("you", 700, { mood: "neutral", arm: "point" }), C("sam", 1500, { mood: "happy", s: 0.7, look: -1 })], { objs: [{ kind: "phone", x: 960, y: 520 }] })),
+    beat("You and Ava start studying together on Thursdays. You're better at it than you expected. She says it's because you finally pay attention. You don't tell her you've been reading the chapter in sixty-second breaks.",
+      toon("classroom", [C("ava", 760, { mood: "happy", look: 1 }), C("you", 1200, { mood: "smug", look: -1 })], { objs: [{ kind: "paper", x: 960, y: 520 }] })),
     // ---- small wins at home
     beat("Day four starts better. At breakfast, your dad knocks a full mug of coffee off the table, straight towards his laptop.",
       toon("bedroom", [C("dad", 760, { mood: "shock", arm: "up" }), C("you", 1300, { mood: "neutral", look: -1 })], { objs: [{ kind: "phone", x: 980, y: 560, to: { x: 980, y: 760, from: 40, dur: 60 } }] })),
@@ -96,6 +106,8 @@ export const EPISODE = {
       toon("gym", [C("lee", 760, { mood: "neutral", look: 1 }), C("you", 1200, { mood: "happy", look: -1 })], { ui: [{ kind: "bar", label: "Lee's suspicion", value: 0.15, x: 70, y: 60, from: 10 }] })),
     beat("Lucky shot. You'll take it.",
       toon("gym", [C("you", 960, { mood: "smug", arm: "up", hop: 20 })])),
+    beat("Lee tries a trap. He throws the ball at your head without warning, to see if you flinch. You don't pause. You catch it. Lee's jaw drops. You tell him it's just reflexes. He tells you reflexes aren't that good.",
+      toon("gym", [C("lee", 560, { mood: "angry", arm: "up" }), C("you", 1340, { mood: "shock", arm: "up", look: -1 })], { objs: [{ kind: "ball", x: 700, y: 520, to: { x: 1300, y: 420, from: 20, dur: 30, arc: 40 } }] })),
     // ---- escalation: the street, the heroic minute
     beat("Day seven. You're walking home and you've already used your minute. On a parking space. For your mum. She was very happy.",
       toon("street", [C("you", 300, { mood: "happy", walk: { from: 0, to: 760, dur: 150 } })], { ui: [{ kind: "bar", label: "Recharge", value: 0.02, x: 70, y: 60, from: 10 }] })),
@@ -109,6 +121,10 @@ export const EPISODE = {
       toon("street", [C("you", 1200, { mood: "shock", arm: "up" }), C("lee", 1500, { mood: "shock", s: 0.6, look: -1 })])),
     beat("And you are shaking. Not because of the bus. Because for a second there, you realised you'd started to trust the button more than yourself.",
       toon("street", [C("you", 960, { mood: "sad" })], { caption: "no button needed" })),
+    beat("You've noticed something. Every paused minute is a minute you live and nobody else does. Add them up, and you are, very slightly, older than your own friends. Nobody told you that part. There's no rule for it. There's just a bit more tired.",
+      toon("bedroom", [C("you", 960, { mood: "sad", arm: "cross" })], { ui: [{ kind: "counter", label: "Minutes only you lived", value: 540, start: 0, x: 70, y: 60, from: 10, dur: 90 }] })),
+    beat("It's eleven fifty-eight at night. The button hums on your wrist. Midnight resets everything. You've never pressed it at midnight. Tonight you hold your thumb above it, counting down the seconds.",
+      toon("bedroom", [C("you", 960, { mood: "neutral", arm: "point" })], { ui: [{ kind: "chip", label: "23:58", x: 70, y: 60, from: 0 }, { kind: "bar", label: "Recharge", value: 0.98, x: 70, y: 150, from: 10 }] })),
     // ---- the twist
     beat("Day nine. Midnight. Your button recharges, and you press it, just to sit in the quiet for a minute.",
       toon("bedroom", [C("you", 960, { mood: "neutral", arm: "point" })], { paused: P(60), ui: [TIMER(60, 300, 60)] })),
@@ -124,6 +140,8 @@ export const EPISODE = {
       toon("street", [C("you", 760, { mood: "neutral", look: 1, walk: { from: 0, to: 860, dur: 200 } }), C("sam", 1200, { mood: "happy", look: -1, walk: { from: 0, to: 1100, dur: 200 } })], { paused: P(0), ui: [TIMER(0, 300, 20)] })),
     beat("Three. Two. One. The street starts again. The moth flies off. And Sam is still standing there, across the road, in normal time.",
       toon("street", [C("you", 860, { mood: "happy", look: 1 }), C("sam", 1100, { mood: "happy", arm: "wave", look: -1 })], { paused: P(0, 90), ui: [TIMER(0, 90, 3)] })),
+    beat("For a week after that, you barely touch the button. You're still careful with it. Some things are better done at normal speed. Like walking home. Like sitting next to somebody. Like waiting.",
+      toon("street", [C("you", 960, { mood: "happy", arm: "cross" })])),
     // ---- the heartfelt end
     beat("After that, you stop spending your minute on parking spaces and pop quizzes.",
       toon("classroom", [C("you", 960, { mood: "happy" })], { ui: [{ kind: "chip", label: "New rule", x: 70, y: 60, from: 20 }] })),
