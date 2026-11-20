@@ -55,6 +55,14 @@ jobs:
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
         run: node platform/shorts-sx/voice.mjs "${{ matrix.slug }}"
+      - name: Visual-sense gate (every picture must show what is said; vision model check, fails the build otherwise)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/shorts-sx/check-visuals.mjs "${{ matrix.slug }}"
       - name: Word timings and props
         run: |
           python platform/shorts-sx/words.py "${{ matrix.slug }}"

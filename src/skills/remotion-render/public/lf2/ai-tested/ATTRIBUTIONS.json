@@ -929,5 +929,53 @@
   "credit_line": "Wootang01, BY ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-grandma": {
+  "id": "ac-grandma",
+  "file": "ac-grandma.jpg",
+  "description": "grammy",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/35237093637@N01/66948706",
+  "licence": "by",
+  "author": "emdot",
+  "credit_line": "emdot, BY, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-traveler": {
+  "id": "ac-traveler",
+  "file": "ac-traveler.jpg",
+  "description": "A Break from the Expected",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/28652129@N06/23807424422",
+  "licence": "by-sa",
+  "author": "Anne Worner",
+  "credit_line": "Anne Worner, BY SA, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-bot2": {
+  "id": "ac-bot2",
+  "file": "ac-bot2.jpg",
+  "description": "Robot",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/15218964@N00/2975222033",
+  "licence": "by-sa",
+  "author": "lukask",
+  "credit_line": "lukask, BY SA, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-bot3": {
+  "id": "ac-bot3",
+  "file": "ac-bot3.jpg",
+  "description": "Robot",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/91325198@N00/2141860216",
+  "licence": "by-nc-sa",
+  "author": "Andy Field (Field Office)",
+  "credit_line": "Andy Field (Field Office), BY NC SA, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
  }
 }

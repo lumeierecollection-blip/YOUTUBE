@@ -30,10 +30,10 @@ export const PHOTOS = [
 export const CAPTURES = [];
 export const TAG = null;
 export const CTA = null;
-export const SHOTS = [   // v2 after the first render (20 Nov): 8 of 21 shots were plain text cards; every line now has a real picture
+export const SHOTS = [   // v3 (20 Nov): owner - pictures must literally show what is said (a grandma for 'grandmother', not candles; no costume man for a legal line). Checked by check-visuals.mjs before render.
   { at: "2022,", kind: "year", photo: "ac-board", year: "2022" },
-  { at: "Jake", kind: "full", photo: "ac-yvr", cap: "Jake Moffatt" },
-  { at: "grandmother", kind: "full", photo: "ac-candle", cap: "his grandmother died" },
+  { at: "Jake", kind: "full", photo: "ac-traveler", cap: "Jake Moffatt" },
+  { at: "grandmother", kind: "full", photo: "ac-grandma", cap: "his grandmother died" },
   { at: "asked", kind: "full", media: "sx-ac-typing", photo: "ac-phone", cap: "he asked" },
   { at: "Air", kind: "full", photo: "ac-tail", cap: "Air Canada" },
   { at: "chatbot", kind: "full", photo: "ac-robot", cap: "its chatbot" },
@@ -44,8 +44,8 @@ export const SHOTS = [   // v2 after the first render (20 Nov): 8 of 21 shots we
   { at: "paid", kind: "money", value: "$1,630", unit: "Canadian dollars", asset: "png-money-bundle", stacks: 2 },
   { at: "said", kind: "full", photo: "ac-refused", cap: "REFUSED" },
   { at: "defence?", kind: "full", photo: "ac-787b", cap: "Air Canada's defence" },
-  { at: "separate", kind: "full", photo: "ac-pen", cap: "“a separate legal entity”" },
-  { at: "responsible", kind: "full", photo: "ac-787", cap: "“responsible for its own actions”" },
+  { at: "separate", kind: "full", photo: "ac-bot2", cap: "“a separate legal entity”" },
+  { at: "responsible", kind: "full", photo: "ac-bot3", cap: "“responsible for its own actions”" },
   { at: "tribunal", kind: "full", photo: "ac-court", cap: "Civil Resolution Tribunal, BC" },
   { at: "remarkable,", kind: "full", photo: "ac-gavel2", cap: "“remarkable”" },
   { at: "pay.", kind: "money", value: "CA$812", unit: "awarded, 14 Feb 2024", asset: "png-money-stack", stacks: 1 },
