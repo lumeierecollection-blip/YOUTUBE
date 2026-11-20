@@ -14,7 +14,7 @@ export const KEYS = {};
 export const SOURCES = { M: { title: "Wikipedia: Moffatt v. Air Canada (2024 BCCRT 149)", url: "https://en.wikipedia.org/wiki/Moffatt_v._Air_Canada", retrieved: "2026-11-20" } };
 export const FOOTAGE_REQUIRE = /plane|airport|airplane|aircraft|phone|typing|candle|flight|takeoff|runway/i;
 export const FOOTAGE = [
-  { id: "ac-takeoff", q: "airplane takeoff runway" }, { id: "ac-typing", q: "typing on phone close up" }, { id: "ac-airport", q: "airport terminal people walking", optional: true },
+  { id: "sx-ac-takeoff", q: "airplane takeoff runway" }, { id: "sx-ac-typing", q: "typing on phone close up" }, { id: "sx-ac-airport", q: "airport terminal people walking", optional: true },
 ];
 export const PHOTOS = [
   ["ac-board", "File:48_Aviation_industry_in_Australia_-_Melbourne_Airport_departures_board.jpg", "an airport departures board (illustrative)"],
@@ -34,11 +34,11 @@ export const SHOTS = [
   { at: "2022,", kind: "year", photo: "ac-board", year: "2022" },
   { at: "Jake", kind: "full", photo: "ac-yvr", cap: "Jake Moffatt" },
   { at: "grandmother", kind: "full", photo: "ac-candle", cap: "his grandmother died" },
-  { at: "asked", kind: "full", media: "ac-typing", photo: "ac-phone", cap: "he asked" },
+  { at: "asked", kind: "full", media: "sx-ac-typing", photo: "ac-phone", cap: "he asked" },
   { at: "Air", kind: "brand", logo: "ac-tail", bg: "#000000", lw: 900 },
   { at: "chatbot", kind: "page", page: "Air Canada chatbot" },
   { at: "bereavement", kind: "page", page: "“Bereavement fares?”" },
-  { at: "fly", kind: "full", media: "ac-takeoff", photo: "ac-787", cap: "“Fly now”" },
+  { at: "fly", kind: "full", media: "sx-ac-takeoff", photo: "ac-787", cap: "“Fly now”" },
   { at: "claim", kind: "page", page: "“...claim the discount later”" },
   { at: "90", kind: "stat", value: "90", label: "days to claim" },
   { at: "paid", kind: "money", value: "$1,630", unit: "Canadian dollars", asset: "png-money-bundle", stacks: 2 },
