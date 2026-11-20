@@ -1,0 +1,66 @@
+{
+  "channel_id": "3",
+  "topic_slug": "newsmax-fox-roku-antitrust-lawsuit",
+  "format": "shorts",
+  "hook": "A $22 billion deal gives Fox 70% of free streaming.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A $22 billion deal gives Fox 70% of free streaming.",
+      "b_roll": [
+        "Motion graphic showing Fox logo alongside 70 percent market share figure"
+      ],
+      "text_overlay": {
+        "text": "70% MARKET CONTROL"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In San Jose, Newsmax sued to block Fox Corp.'s $22 billion Roku deal. The Department of Justice cleared the acquisition in November. Where will rivals go if Fox controls 70% of streaming?",
+      "b_roll": [
+        "Federal court document graphic for San Jose antitrust filing",
+        "Department of Justice official seal graphic",
+        "Market breakdown diagram highlighting independent networks"
+      ],
+      "text_overlay": {
+        "text": "ANTITRUST LAWSUIT FILED"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Fox promised regulators that Roku will operate as an open platform.",
+      "b_roll": [
+        "Digital graphic depicting open platform regulatory commitments"
+      ],
+      "text_overlay": {
+        "text": "OPEN PLATFORM PROMISE"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The lawsuit alleges that combining Fox and Roku creates an unlawful monopoly. Newsmax claims the deal hands Fox 70% of free ad-supported TV.",
+      "b_roll": [
+        "Monopoly court complaint chart illustration",
+        "Bar chart showing 70 percent FAST market concentration",
+        "Diagram showing media distribution control over competing channels"
+      ],
+      "text_overlay": {
+        "text": "UNLAWFUL MONOPOLY CLAIM"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "San Jose federal court now decides this $22 billion merger.",
+      "b_roll": [
+        "San Jose federal courthouse outline graphic with $22 billion figure"
+      ],
+      "text_overlay": {
+        "text": "$22B MERGER DECISION"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/11/newsmax-fox-roku-antitrust-lawsuit-1237228360",
+    "https://variety.com/2026/tv/news/newsmax-fox-roku-fast-tubi-antitrust-suit-1236952413"
+  ]
+}
