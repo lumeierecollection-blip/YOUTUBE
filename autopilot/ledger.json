@@ -1286,6 +1286,14 @@
       "pillar": "New AI features and releases",
       "hook": "ChatGPT just gained a new live dictation feature that transcribes your spoken rants in real-time.",
       "error": "3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
+    },
+    "2026-11-20-ch2": {
+      "channel": "2",
+      "status": "running",
+      "attempts": 1,
+      "run_id": "44787641698",
+      "trigger": "schedule",
+      "updated_at": "2026-11-20T17:54:06.965Z"
     }
   },
   "uploads": [
@@ -2806,5 +2814,5 @@
     "Hidden Past 2026-11-18-ch1 failed at script: 3 topic(s) tried, none usable. Last: script failed its gates after 10 passes:   - NARRATIVE: PAYOFF hedged (\"May\"). Rewrite the payoff beat as the structure in the prompt says — using only this video'",
     "AI Tested 2026-11-19-ch2 failed at research: 3 topic(s) tried, none usable. Last: research holds too few drawable facts for a strict-visual channel"
   ],
-  "last_poll_at": "2026-11-20T08:40:14.471Z"
+  "last_poll_at": "2026-11-20T17:54:06.965Z"
 }
