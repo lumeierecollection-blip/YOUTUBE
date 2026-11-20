@@ -1,0 +1,63 @@
+[
+ {
+  "id": "alaska-sold",
+  "title": "The Real Reason Russia Sold Alaska",
+  "sources": [
+   "Alaska_Purchase",
+   "Russian-American_Company",
+   "Eduard_de_Stoeckl"
+  ],
+  "minutes": 20,
+  "tags": [
+   "Alaska Purchase",
+   "Russia",
+   "history"
+  ]
+ },
+ {
+  "id": "gibraltar-spain",
+  "title": "The Real Reason Spain Never Took Back Gibraltar",
+  "sources": [
+   "Status_of_Gibraltar",
+   "History_of_Gibraltar",
+   "Great_Siege_of_Gibraltar",
+   "1967_Gibraltar_sovereignty_referendum"
+  ],
+  "minutes": 20,
+  "tags": [
+   "Gibraltar",
+   "Spain",
+   "history"
+  ]
+ },
+ {
+  "id": "napoleon-britain",
+  "title": "The Real Reason Napoleon Never Invaded Britain",
+  "sources": [
+   "Invasion_of_the_United_Kingdom_(Napoleonic_Wars)",
+   "Battle_of_Trafalgar",
+   "Boulogne_flotilla"
+  ],
+  "minutes": 20,
+  "tags": [
+   "Napoleon",
+   "Britain",
+   "history"
+  ]
+ },
+ {
+  "id": "texas-mexico",
+  "title": "The Real Reason Mexico Never Took Back Texas",
+  "sources": [
+   "Texas_Revolution",
+   "Mexican-American_War",
+   "Treaty_of_Guadalupe_Hidalgo"
+  ],
+  "minutes": 20,
+  "tags": [
+   "Texas",
+   "Mexico",
+   "history"
+  ]
+ }
+]
