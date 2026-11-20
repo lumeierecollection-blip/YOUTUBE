@@ -1,0 +1,110 @@
+{
+  "topic_slug": "sherlock-holmes-vs-cthulhu-mythos-canon-feats",
+  "strongest_angle": "Analyzing the intersection of Sir Arthur Conan Doyle's rational detective Sherlock Holmes and H.P. Lovecraft's Cthulhu Mythos reveals chronological discrepancies and thematic clashes between 1880-1914 settings and 1925-1935 mythos tales.",
+  "key_facts": [
+    {
+      "fact": "Neil Gaiman wrote the short story A Study in Emerald as a Sherlock Holmes pastiche transferred to the Cthulhu Mythos universe, which won the 2004 Hugo Award for Best Short Story.",
+      "source_url": "https://en.wikipedia.org/wiki/A_Study_in_Emerald",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "James Lovegrove noted that original Sherlock Holmes stories take place roughly between 1880 and 1914, whereas Cthulhu Mythos tales are mostly contemporary to 1925 and 1935.",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove",
+      "source_name": "SFFWorld",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sherlock Holmes vs. Cthulhu is set in England in 1890, where human remains and strange spherical bones incised with unusual designs have been found in London's East End.",
+      "source_url": "https://fangirlnation.com/2017/10/02/review-sherlock-holmes-vs-cthulhu",
+      "source_name": "FangirlNation Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Hugo Award Year",
+      "value": 2004,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/A_Study_in_Emerald"
+    },
+    {
+      "label": "Holmes Start Year",
+      "value": 1880,
+      "unit": "year",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove"
+    },
+    {
+      "label": "Holmes End Year",
+      "value": 1914,
+      "unit": "year",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove"
+    },
+    {
+      "label": "Lovecraft Start Year",
+      "value": 1925,
+      "unit": "year",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove"
+    },
+    {
+      "label": "Lovecraft End Year",
+      "value": 1935,
+      "unit": "year",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove"
+    },
+    {
+      "label": "Setting Year",
+      "value": 1890,
+      "unit": "year",
+      "source_url": "https://fangirlnation.com/2017/10/02/review-sherlock-holmes-vs-cthulhu"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "My aim with the trilogy is to tie the two fictional worlds as tightly and tidily together as I can.",
+      "speaker": "James Lovegrove",
+      "source_name": "SFFWorld",
+      "source_url": "https://www.sffworld.com/2016/11/countdown-to-halloween-2016-interview-with-james-lovegrove"
+    },
+    {
+      "text": "Sherlock Holmes vs. Cthulhu is set in England in 1890. Human remains have been found in London’s East End: bones, piled up in strange ways, along with strange spherical bones incised with unusual designs.",
+      "speaker": "Kam Martinez",
+      "source_name": "FangirlNation Magazine",
+      "source_url": "https://fangirlnation.com/2017/10/02/review-sherlock-holmes-vs-cthulhu"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Neil Gaiman",
+      "kind": "person"
+    },
+    {
+      "name": "H.P. Lovecraft",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "James Lovegrove",
+      "kind": "person"
+    },
+    {
+      "name": "England",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "East End",
+      "kind": "place"
+    }
+  ]
+}

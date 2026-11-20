@@ -1,0 +1,56 @@
+{
+  "topic_slug": "toyota-62000-tundra-vehicle-recall-november-2026",
+  "strongest_angle": "The recall of 62,000 Toyota Tundra trucks is driven by a specific camshaft manufacturing defect rather than a fuel line issue, posing a risk of power loss at high speeds.",
+  "key_facts": [
+    {
+      "fact": "Toyota is recalling approximately 62,000 non-hybrid Tundra pickup trucks from model years 2022-2023 and 2025-2026 due to a camshaft defect.",
+      "source_url": "https://www.cars.com/articles/62000-toyota-tundras-recalled-for-loss-of-drive-power-531264",
+      "source_name": "Cars.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Automotive World reports that while 62,000 vehicles are included in the recall, only about 300 camshafts from a single production lot are estimated to be faulty.",
+      "source_url": "https://www.automotiveworld.com/news/toyota-recalls-62000-tundras-over-faulty-camshafts",
+      "source_name": "Automotive World",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The camshaft defect in these Toyota Tundra trucks can cause the engine component to snap, potentially leading to a sudden loss of drive power while driving at high speeds.",
+      "source_url": "https://www.motor1.com/news/815859/toyota-tundra-recall-camshaft-risk",
+      "source_name": "Motor1",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total number of Toyota Tundra trucks recalled",
+      "value": 62000,
+      "unit": "vehicles",
+      "source_url": "https://www.cars.com/articles/62000-toyota-tundras-recalled-for-loss-of-drive-power-531264"
+    },
+    {
+      "label": "Estimated number of faulty camshafts",
+      "value": 300,
+      "unit": "components",
+      "source_url": "https://www.automotiveworld.com/news/toyota-recalls-62000-tundras-over-faulty-camshafts"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Toyota",
+      "kind": "organization"
+    },
+    {
+      "name": "Tundra",
+      "kind": "object"
+    },
+    {
+      "name": "Plano",
+      "kind": "place"
+    },
+    {
+      "name": "Texas",
+      "kind": "place"
+    }
+  ]
+}

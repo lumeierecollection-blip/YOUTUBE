@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "jwst-discovers-earliest-pair-of-quasars",
+  "format": "shorts",
+  "hook": "Two supermassive black holes were caught feeding just 900 million years after the Big Bang.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two supermassive black holes were caught feeding just 900 million years after the Big Bang.",
+      "visual_cue": "Artist's impression of two bright, glowing quasars in the early universe.",
+      "sfx_cue": "Low, deep bass hum building in intensity.",
+      "b_roll": [
+        "CG animation of early universe quasars"
+      ],
+      "text_overlay": {
+        "text": "Oldest Quasar Pair Discovered"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Maunakea, the Gemini North telescope worked with the James Webb Space Telescope to pinpoint this pair. What forced these giants together so early?",
+      "visual_cue": "Side-by-side shots of the Gemini North telescope dome and the JWST primary mirror.",
+      "sfx_cue": "Mechanical telescope movement sounds.",
+      "b_roll": [
+        "Gemini North observatory exterior",
+        "JWST gold mirror array footage"
+      ],
+      "text_overlay": {
+        "text": "Gemini North & JWST"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "JWST's Aether survey spotted the companion, but Gemini North ground observations separated the two quasars.",
+      "visual_cue": "Abstract representation of the early universe timeline.",
+      "sfx_cue": "Sudden sharp digital glitch sound.",
+      "b_roll": [
+        "Cosmic microwave background visualization"
+      ],
+      "text_overlay": {
+        "text": "Defying Cosmic Models"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "They're rapidly feeding supermassive black holes formed just 900 million years after the Big Bang.",
+      "visual_cue": "Silvia Onorato's research team working at computer terminals.",
+      "sfx_cue": "Steady, rhythmic pulsing of a quasar light.",
+      "b_roll": [
+        "NSF NOIRLab laboratory footage",
+        "Data visualization of quasar accretion"
+      ],
+      "text_overlay": {
+        "text": "J1602+4228AB Confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "On Maunakea, researchers used the Gemini North telescope at NSF NOIRLab to separate J1602+4228AB.",
+      "visual_cue": "Wide shot of a distant, ancient galaxy cluster.",
+      "sfx_cue": "Fading ethereal synth melody.",
+      "b_roll": [
+        "Deep space image of early galaxies"
+      ],
+      "text_overlay": {
+        "text": "900 Million Years After the Big Bang"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://noirlab.edu/public/news/noirlab2627",
+    "https://universemagazine.com/en/astronomers-discover-two-supermassive-quasars-where-they-shouldnt-exist"
+  ]
+}

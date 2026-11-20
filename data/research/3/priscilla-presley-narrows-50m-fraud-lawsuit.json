@@ -1,0 +1,82 @@
+{
+  "topic_slug": "priscilla-presley-narrows-50m-fraud-lawsuit",
+  "strongest_angle": "Examine how Priscilla Presley persuaded Judge Mark H. Epstein to dismiss 4 of the 21 claims in her $50 million legal battle with former business advisers Brigitte Kruse and Kevin Fialko while remaining claims proceed.",
+  "key_facts": [
+    {
+      "fact": "Priscilla Presley persuaded Judge Mark H. Epstein to dismiss four of the 21 claims filed against her in a fraud and breach of contract lawsuit.",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elvis Presley ex-wife Priscilla Presley has been locked in a legal battle with former advisers Brigitte Kruse and Kevin Fialko since 2023.",
+      "source_url": "https://www.billboard.com/pro/priscilla-presley-fraud-claims-lawsuit-ex-advisers",
+      "source_name": "Billboard",
+      "confidence": "high"
+    },
+    {
+      "fact": "Los Angeles County Superior Court Judge Mark H. Epstein ruled from the bench on November 16, 2026, regarding Presley motions.",
+      "source_url": "https://allaboutlawyer.com/priscilla-presley-business-advisers-lawsuit",
+      "source_name": "All About Lawyer",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit amount",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    },
+    {
+      "label": "Total claims filed",
+      "value": 21,
+      "unit": "claims",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    },
+    {
+      "label": "Dismissed claims",
+      "value": 4,
+      "unit": "claims",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Priscilla Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Mark H. Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "Brigitte Kruse",
+      "kind": "person"
+    },
+    {
+      "name": "Kevin Fialko",
+      "kind": "person"
+    },
+    {
+      "name": "Lisa Marie",
+      "kind": "person"
+    },
+    {
+      "name": "Elvis Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Rolling Stone",
+      "kind": "organization"
+    },
+    {
+      "name": "Billboard",
+      "kind": "organization"
+    },
+    {
+      "name": "Los Angeles County Superior Court",
+      "kind": "organization"
+    }
+  ]
+}

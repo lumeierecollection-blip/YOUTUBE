@@ -1,0 +1,72 @@
+{
+  "topic_slug": "michael-mann-new-regency-heat-ownership-lawsuit",
+  "strongest_angle": "The legal battle centers on whether Michael Mann's screenplay for the 1995 film Heat qualifies as a work-for-hire, which would prevent the director from reclaiming copyright ownership under Section 203 of the Copyright Act.",
+  "key_facts": [
+    {
+      "fact": "New Regency filed a lawsuit in the United States District Court for the Central District of California to block Michael Mann from reclaiming the copyright to the 1995 film Heat.",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf",
+      "source_name": "United States District Court Central District of California",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michael Mann served three separate termination notices to New Regency in 2026, attempting to invoke Section 203(a) of the Copyright Act to regain screenplay rights.",
+      "source_url": "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "New Regency, led by Yariv Milchan, argues that the screenplay is a work-for-hire, which would legally exempt the work from the copyright termination provisions Mann is attempting to use.",
+      "source_url": "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michael Mann is scheduled to begin filming the sequel Heat 2 in January 2027, creating a deadline for the resolution of the ownership dispute over the original 1995 property.",
+      "source_url": "https://variety.com/2026/film/news/michael-mann-new-regency-heat-screenplay-lawsuit-1236947532",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Release year of the film Heat",
+      "value": 1995,
+      "unit": "year",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf"
+    },
+    {
+      "label": "Number of termination notices served by Michael Mann",
+      "value": 3,
+      "unit": "notices",
+      "source_url": "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655"
+    },
+    {
+      "label": "Section of the Copyright Act cited in the dispute",
+      "value": 203,
+      "unit": "section",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michael Mann",
+      "kind": "person"
+    },
+    {
+      "name": "New Regency",
+      "kind": "organization"
+    },
+    {
+      "name": "Yariv Milchan",
+      "kind": "person"
+    },
+    {
+      "name": "Heat",
+      "kind": "object"
+    },
+    {
+      "name": "United States District Court Central District of California",
+      "kind": "place"
+    }
+  ]
+}

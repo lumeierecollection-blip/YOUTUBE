@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "kansas-city-limestone-bluffs-irish-history",
+  "format": "shorts",
+  "hook": "Limestone bluffs up to 120 feet tall created a major barrier to Kansas City's urban expansion.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Limestone bluffs up to 120 feet tall created a major barrier to Kansas City's urban expansion.",
+      "b_roll": [
+        "Historical map showing the Missouri River and towering bluff barriers"
+      ],
+      "text_overlay": {
+        "text": "120-Foot Bluff Barrier"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Along the Missouri River, rock walls trapped urban expansion. Kansas City Mayor Milton Payne allocated nearly an entire year's budget to cut the bluffs. Who could break through 120 feet of stone?",
+      "b_roll": [
+        "Archival illustration of Missouri River bluffs blocking 1850s city development",
+        "Historical portrait of Mayor Milton Payne beside civic ledger entries from 1855",
+        "Diagram highlighting 120 feet vertical height of the rock wall"
+      ],
+      "text_overlay": {
+        "text": "1855 City Budget Dedicated"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Father Bernard Donnelly recruited hundreds of Irish immigrants so they'd dig through the bluffs.",
+      "b_roll": [
+        "Archival sketch of Father Bernard Donnelly standing with quarry workers"
+      ],
+      "text_overlay": {
+        "text": "Father Bernard Donnelly's Crew"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Payne paved a quarter mile of levee using 1855 funds.",
+      "b_roll": [
+        "Historical drawing of Irish laborers digging through limestone cliffs",
+        "Animated map showing newly carved street corridors reaching the waterfront",
+        "Graphic marker highlighting a paved quarter-mile levee along the river bank"
+      ],
+      "text_overlay": {
+        "text": "1/4 Mile Levee Paved"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Donnelly's Irish laborers carved streets through the 120-foot limestone bluffs to expand Kansas City.",
+      "b_roll": [
+        "Wide shot of modern Kansas City streets cutting through historical bluffs"
+      ],
+      "text_overlay": {
+        "text": "Reshaped Kansas City"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.kcur.org/history/2026-04-29/kansas-city-irish-history-streets-bluffs-father-donnelly",
+    "https://www.hmdb.org/m.asp?m=87455"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "topic_slug": "tsb-railcar-wheels-safety-concern",
+  "strongest_angle": "The Transportation Safety Board of Canada has issued a critical safety warning regarding pre-2003 railcar wheels following a 14-car derailment near Emo, Ontario on February 4, 2025.",
+  "key_facts": [
+    {
+      "fact": "On February 4, 2025, a Canadian National freight train experienced a 14-car derailment near Emo, Ontario on the Fort Frances Subdivision.",
+      "source_url": "https://www.railwayage.com/regulatory/tsb-reiterates-safety-concern-over-pre-2003-railcar-wheel-failures",
+      "source_name": "Railway Age",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Transportation Safety Board of Canada released its investigation report R25W0010 on November 17, 2026, addressing pre-2003 railcar wheels.",
+      "source_url": "https://www.tsb.gc.ca/eng/medias-media/communiques/rail/2026/r25w0010-20261117.html",
+      "source_name": "Transportation Safety Board of Canada",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Transportation Safety Board of Canada warned that train derailments caused by aging rail-car wheels with rims prone to shattering could continue due to unknown numbers remaining in service.",
+      "source_url": "https://www.chroniclejournal.com/news/local/aging-rail-car-wheels-cited-as-derailment-risk/article_b385960d-729b-4c64-8357-524607d115be.html",
+      "source_name": "The Chronicle-Journal",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "derailed railcars",
+      "value": 14,
+      "unit": "railcars",
+      "source_url": "https://www.railwayage.com/regulatory/tsb-reiterates-safety-concern-over-pre-2003-railcar-wheel-failures"
+    },
+    {
+      "label": "report number",
+      "value": 25,
+      "unit": "report identifier",
+      "source_url": "https://www.tsb.gc.ca/eng/medias-media/communiques/rail/2026/r25w0010-20261117.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Transportation Safety Board of Canada",
+      "kind": "organization"
+    },
+    {
+      "name": "Emo",
+      "kind": "place"
+    },
+    {
+      "name": "Ontario",
+      "kind": "place"
+    },
+    {
+      "name": "Canadian National",
+      "kind": "organization"
+    },
+    {
+      "name": "Fort Frances Subdivision",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "topic_slug": "cocos-keeling-islands-massive-rose-coral-colony",
+  "strongest_angle": "Researchers mapping the waters of the Cocos (Keeling) Islands discovered a massive rose coral colony measuring 1.56 kilometers long after it was first spotted three decades ago.",
+  "key_facts": [
+    {
+      "fact": "A massive rose coral colony measuring 1.56 kilometers in length has been discovered and mapped by researchers in Australia's Cocos (Keeling) Islands.",
+      "source_url": "https://www.abc.net.au/news/2026-11-11/massive-coral-colony-found-off-the-cocos-keeling-islands/107367586",
+      "source_name": "ABC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists mapped the colossal rose coral colony 30 years after local divers first spotted different parts of it in the Indian Ocean.",
+      "source_url": "https://oceanographicmagazine.com/news/huge-140-bus-long-coral-colony-mapped-by-scientists-for-first-time",
+      "source_name": "Oceanographic Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The colossal Pachyseris rose coral colony extends on the outer reef of the Cocos (Keeling) Islands northwest of Perth.",
+      "source_url": "https://newsreel.com.au/article/education/giant-coral-colony-discovered-in-the-indian-ocean",
+      "source_name": "Newsreel",
+      "confidence": "high"
+    },
+    {
+      "fact": "The average width of the massive rose coral colony discovered off the Cocos (Keeling) Islands is 36.5 metres.",
+      "source_url": "https://oceanographicmagazine.com/news/huge-140-bus-long-coral-colony-mapped-by-scientists-for-first-time",
+      "source_name": "Oceanographic Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Colony length in kilometers",
+      "value": 1.56,
+      "unit": "kilometers",
+      "source_url": "https://www.abc.net.au/news/2026-11-11/massive-coral-colony-found-off-the-cocos-keeling-islands/107367586"
+    },
+    {
+      "label": "Years since first spotted",
+      "value": 30,
+      "unit": "years",
+      "source_url": "https://oceanographicmagazine.com/news/huge-140-bus-long-coral-colony-mapped-by-scientists-for-first-time"
+    },
+    {
+      "label": "Average width in metres",
+      "value": 36.5,
+      "unit": "metres",
+      "source_url": "https://oceanographicmagazine.com/news/huge-140-bus-long-coral-colony-mapped-by-scientists-for-first-time"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Cocos (Keeling) Islands",
+      "kind": "place"
+    },
+    {
+      "name": "Indian Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Perth",
+      "kind": "place"
+    },
+    {
+      "name": "Pachyseris",
+      "kind": "object"
+    },
+    {
+      "name": "ABC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Oceanographic Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "Queensland Museum",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "topic_slug": "fine-point-transportation-140000-fine-gypsum-accident",
+  "strongest_angle": "Examining the Labour Department prosecution of Fine Point Transportation Co., Limited following a fatal 2025 workplace accident in Kwai Chung involving stacked gypsum boards, resulting in a 140,000 dollar fine under the Occupational Safety and Health Ordinance.",
+  "key_facts": [
+    {
+      "fact": "Fine Point Transportation Co., Limited was fined $140,000 at the West Kowloon Magistrates' Courts on November 5, 2026, for violating the Occupational Safety and Health Ordinance.",
+      "source_url": "https://www.info.gov.hk/gia/general/202611/05/P2026110500592.htm",
+      "source_name": "Government of Hong Kong Information Services Department",
+      "confidence": "high"
+    },
+    {
+      "fact": "The fatal accident occurred in November 2025 at an open-air car park in Kwai Chung, where a male worker was crushed by vertically stored gypsum boards that suddenly toppled.",
+      "source_url": "https://www.labour.gov.hk/common/osh/pdf/wsa/WSA-Pressed_by_Toppled_Gypsum_Boards_EN.pdf",
+      "source_name": "Labour Department",
+      "confidence": "high"
+    },
+    {
+      "fact": "The prosecution against Fine Point Transportation Co., Limited was officially launched by the Labour Department following the fatal workplace safety breach.",
+      "source_url": "https://www.info.gov.hk/gia/general/202611/05/P2026110500592.htm",
+      "source_name": "Government of Hong Kong Information Services Department",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fine Amount",
+      "value": 140000,
+      "unit": "dollars",
+      "source_url": "https://www.info.gov.hk/gia/general/202611/05/P2026110500592.htm"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Fine Point Transportation Co., Limited",
+      "kind": "organization"
+    },
+    {
+      "name": "West Kowloon Magistrates' Courts",
+      "kind": "place"
+    },
+    {
+      "name": "Labour Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Kwai Chung",
+      "kind": "place"
+    }
+  ]
+}

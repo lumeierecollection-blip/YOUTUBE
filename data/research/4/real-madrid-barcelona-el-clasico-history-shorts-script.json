@@ -1,0 +1,36 @@
+{
+  "channel_id": "4",
+  "topic_slug": "real-madrid-barcelona-el-clasico-history",
+  "format": "shorts",
+  "hook": "El Clasico is the intense rivalry between FC Barcelona and Real Madrid, spanning 264 official meetings.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "El Clasico is the intense rivalry between FC Barcelona and Real Madrid, spanning 264 official meetings."
+    },
+    {
+      "id": "setup",
+      "voiceover": "But who won their first LALIGA match on February 17, 1929, at Les Corts?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Merengues flipped the script, securing a 2-1 victory against FC Barcelona that day."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Real Madrid claimed that first LALIGA meeting with 2 goals against 1. Founders Joan Gamper and the Padrós brothers built these clubs for 264 official meetings.",
+      "text_overlay": {
+        "text": "264 Total Official Matches"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Today, those 264 official meetings define the legacy of these two legendary football clubs."
+    }
+  ],
+  "sources_used": [
+    "https://elclasico.es/en/history/origins",
+    "https://www.laliga.com/en-GB/news/statistics-real-madrid-fc-barcelona-titles",
+    "https://en.as.com/soccer/el-clasicos-incredible-124-year-stalemate-between-real-madrid-and-barcelona-f202605-n"
+  ]
+}

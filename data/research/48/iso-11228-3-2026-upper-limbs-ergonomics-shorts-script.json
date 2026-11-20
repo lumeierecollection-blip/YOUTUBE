@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "iso-11228-3-2026-upper-limbs-ergonomics",
+  "format": "shorts",
+  "hook": "ISO 11228-3 is the global ergonomic standard for preventing repetitive upper limb injuries at work.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "ISO 11228-3 is the global ergonomic standard for preventing repetitive upper limb injuries at work.",
+      "text_overlay": {
+        "text": "ISO 11228-3:2026 Update"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In May 2026, the International Organization for Standardization published the 2nd edition of ISO 11228-3. Does the new ISO 11228-3:2026 standard officially replace the withdrawn 2007 version for your workplace?",
+      "text_overlay": {
+        "text": "ISO 11228-3:2007 Withdrawn"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yes, the new ISO 11228-3:2026 standard officially supersedes the withdrawn 2007 version for all workplaces.",
+      "text_overlay": {
+        "text": "BSI Implementation"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The British Standards Institution implemented this 2nd edition through its Technical Committee PH/9/ -/4.",
+      "text_overlay": {
+        "text": "Price: 258 US dollars"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Purchase the ISO 11228-3:2026 document from Intertek Inform for 258 US dollars to ensure compliance.",
+      "text_overlay": {
+        "text": "ISO 11228-3:2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.iso.org/standard/11228-3",
+    "https://www.intertekinform.com/en-us/standards/iso-11228-3-2026-593076_saig_iso_iso_4015394"
+  ]
+}

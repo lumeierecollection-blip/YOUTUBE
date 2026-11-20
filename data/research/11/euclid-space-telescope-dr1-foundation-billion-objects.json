@@ -1,0 +1,81 @@
+{
+  "topic_slug": "euclid-space-telescope-dr1-foundation-billion-objects",
+  "strongest_angle": "The European Space Agency's Euclid space telescope has released its DR1-Foundation data, capturing more than a billion cosmic objects across 1,900 square degrees of the sky over 13 months of observations.",
+  "key_facts": [
+    {
+      "fact": "The European Space Agency's Euclid mission released DR1-Foundation on November 12, 2026, capturing the light of more than a billion objects.",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe",
+      "source_name": "European Space Agency",
+      "confidence": "high"
+    },
+    {
+      "fact": "The DR1-Foundation data release covers 1,900 square degrees of the sky, equivalent to around 14% of the planned 6-year mission area.",
+      "source_url": "https://euclid-ec.net/dr1-f-press-release",
+      "source_name": "Euclid Consortium",
+      "confidence": "high"
+    },
+    {
+      "fact": "The observations comprising the DR1-Foundation dataset were gathered over approximately 13 months from spring 2024 to spring 2025.",
+      "source_url": "https://www.cosmos.esa.int/web/euclid/euclid-dr1",
+      "source_name": "COSMOS Euclid",
+      "confidence": "high"
+    },
+    {
+      "fact": "The total area of the sky covered by the Euclid DR1-Foundation release is as large as 9,500 full Moons.",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe",
+      "source_name": "European Space Agency",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Cosmic objects captured",
+      "value": 1000000000,
+      "unit": "objects",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe"
+    },
+    {
+      "label": "Sky area covered in square degrees",
+      "value": 1900,
+      "unit": "square degrees",
+      "source_url": "https://euclid-ec.net/dr1-f-press-release"
+    },
+    {
+      "label": "Percentage of 6-year mission area",
+      "value": 14,
+      "unit": "percent",
+      "source_url": "https://euclid-ec.net/dr1-f-press-release"
+    },
+    {
+      "label": "Observation duration",
+      "value": 13,
+      "unit": "months",
+      "source_url": "https://www.cosmos.esa.int/web/euclid/euclid-dr1"
+    },
+    {
+      "label": "Sky area compared to full Moons",
+      "value": 9500,
+      "unit": "full Moons",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-lays-the-foundation-for-its-best-ever-3d-map-of-the-universe"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "European Space Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "Euclid",
+      "kind": "object"
+    },
+    {
+      "name": "Euclid Consortium",
+      "kind": "organization"
+    },
+    {
+      "name": "DR1-Foundation",
+      "kind": "object"
+    }
+  ]
+}

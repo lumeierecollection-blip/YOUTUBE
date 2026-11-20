@@ -1,0 +1,78 @@
+{
+  "channel_id": "21",
+  "topic_slug": "cornell-polymer-fiber-forest-cooling",
+  "format": "shorts",
+  "hook": "Cornell University engineers built a microscopic fiber forest that keeps electronics 17°C cooler.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Cornell University engineers built a microscopic fiber forest that keeps electronics 17°C cooler.",
+      "visual_cue": "Close-up microscopic shot of Zylon fibers in a forest-like arrangement.",
+      "sfx_cue": "Subtle digital hum.",
+      "b_roll": [
+        "Microscopic scan of Zylon nanofibers"
+      ],
+      "text_overlay": {
+        "text": "17°C Cooler"
+      },
+      "transition_out": "Fade to black"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers packed Zylon nanofibers into epoxy matrices to create this new cooling structure. How does this forest outperform standard commercial thermal pads?",
+      "visual_cue": "Animation showing fibers being packed into a grid structure.",
+      "sfx_cue": "Mechanical clicking sound.",
+      "b_roll": [
+        "Animation of Zylon fiber alignment in epoxy"
+      ],
+      "text_overlay": {
+        "text": "Heat dissipation without electricity"
+      },
+      "transition_out": "Slide left"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except this design achieves a thermal conductivity of 16.8 watts per meter-kelvin.",
+      "visual_cue": "Text graphic displaying the conductivity value clearly.",
+      "sfx_cue": "Sharp metallic ping.",
+      "b_roll": [
+        "Digital readout of 16.8 watts per meter-kelvin"
+      ],
+      "text_overlay": {
+        "text": "16.8 W/m·K"
+      },
+      "transition_out": "Zoom in"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The team tested their creation on a surface running at 1.2 watts of power. This advancement provides a powerful new solution for cooling modern electronics.",
+      "visual_cue": "Side by side visual comparison of heat maps.",
+      "sfx_cue": "Steady cooling fan sound.",
+      "b_roll": [
+        "Heat map comparison of thermal pad vs fiber forest"
+      ],
+      "text_overlay": {
+        "text": "1.2 Watts power test"
+      },
+      "transition_out": "Dissolve"
+    },
+    {
+      "id": "close",
+      "voiceover": "The fibers successfully dropped the temperature by exactly 17°C.",
+      "visual_cue": "Close up of the fiber forest hardware.",
+      "sfx_cue": "Soft mechanical click.",
+      "b_roll": [
+        "Macro shot of Zylon polymer structure"
+      ],
+      "text_overlay": {
+        "text": "17°C drop"
+      },
+      "transition_out": "Fade out"
+    }
+  ],
+  "sources_used": [
+    "https://interestingengineering.com/innovation/forest-inspired-polymer-chips",
+    "https://voltgridnews.com/story/cornell-polymer-fiber-forest-runs-17-c-cooler-than-a-commercial",
+    "https://news.cornell.edu/stories/2026/11/microscopic-polymer-fiber-forest-helps-keep-electronics-cool"
+  ]
+}

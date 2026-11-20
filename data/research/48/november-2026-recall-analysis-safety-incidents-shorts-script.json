@@ -1,0 +1,63 @@
+{
+  "channel_id": "48",
+  "topic_slug": "november-2026-recall-analysis-safety-incidents",
+  "format": "shorts",
+  "hook": "In November 2026, 35 percent of safety recalls were classified as Severe.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In November 2026, 35 percent of safety recalls were classified as Severe.",
+      "b_roll": [
+        "motion graphics displaying 35 percent severe hazard classification graphic"
+      ],
+      "text_overlay": {
+        "text": "35% SEVERE RECALLS"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Recall Desk logged 247 recalls across agencies that month. FDA Drugs led the breakdown with 90 recalls, while FDA Devices had 85. Which agency accounted for 31 recall events?",
+      "b_roll": [
+        "bar chart showing FDA Drugs at 90 and FDA Devices at 85 recalls"
+      ],
+      "text_overlay": {
+        "text": "247 TOTAL RECALLS"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, NHTSA posted 31 recall events, while both CPSC and FDA didn't top 19 each.",
+      "b_roll": [
+        "agency comparison chart listing NHTSA at 31, CPSC at 19, and FDA at 19"
+      ],
+      "text_overlay": {
+        "text": "NHTSA: 31 EVENTS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Recall Atlas recorded 200 global safety alerts in one week during November 2026. The United States generated 63 of those safety alerts. Meanwhile, USDA FSIS recorded 2 recall events.",
+      "b_roll": [
+        "map graphic highlighting 63 US alerts out of 200 global safety alerts"
+      ],
+      "text_overlay": {
+        "text": "200 GLOBAL ALERTS"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That leaves 1 percent of November recalls marked as Critical.",
+      "b_roll": [
+        "pie chart highlighting 1 percent critical hazard classification"
+      ],
+      "text_overlay": {
+        "text": "1% CRITICAL"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://therecalldesk.com/archive/2026/11?page=3",
+    "https://recallbench.com/statistics/2026-11",
+    "https://recallatlas.org/weekly/2026-w45"
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "channel_id": "17",
+  "topic_slug": "severe-drought-worsens-cacti-climate-forecasts",
+  "format": "shorts",
+  "hook": "Severe drought across the Americas threatens 30 percent of cactus species.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Severe drought across the Americas threatens 30 percent of cactus species.",
+      "visual_cue": "Cinematic aerial shot of parched desert soil with cracked ground and solitary cactus under blazing sun",
+      "sfx_cue": "Low wind rumble and tense synth drone",
+      "b_roll": [
+        "parched desert soil under harsh sun",
+        "solitary cactus in dry environment"
+      ],
+      "animation_cue": "Slow push-in on cracked desert ground",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "30% OF CACTI THREATENED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "On November 11, 2026, Michiel D. Pillet reported severe drought increases extinction risks. Threats have accelerated since the 2015 global assessment. Where can 1,000 species survive as desert ecosystems warm?",
+      "visual_cue": "Macro archival research visuals showing desert flora, field research journal data overlay",
+      "sfx_cue": "Subtle page turn sound and rising atmospheric hum",
+      "b_roll": [
+        "desert flora field study",
+        "scientific journal documentation"
+      ],
+      "animation_cue": "Pan across habitat map data",
+      "transition_out": "dissolve",
+      "text_overlay": {
+        "text": "1,000 SPECIES AT RISK"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:23",
+      "voiceover": "But the IUCN Cactus and Succulent Plants Specialist Group warns habitats won't stay suitable across the Americas.",
+      "visual_cue": "Dramatic wide angle shot of arid landscape fading from green scrubland to desolate dry earth",
+      "sfx_cue": "Impact pulse with wind sweep",
+      "b_roll": [
+        "arid landscape transition",
+        "desolate dry earth"
+      ],
+      "animation_cue": "Rapid zoom-out exposing vast dry expanse",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "HABITAT DISAPPEARING"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:23-0:38",
+      "voiceover": "Over a quarter of species will lose 80 percent of habitat by 2100. The Cactus and Succulent Society of America reports that poaching's accelerated dramatically since 2015.",
+      "visual_cue": "Data visualization showing regional habitat shrinkage across desert regions",
+      "sfx_cue": "Deep bass drop followed by subtle electronic clicks",
+      "b_roll": [
+        "map of Americas showing climate threat zones",
+        "rare cactus species in native habitat"
+      ],
+      "animation_cue": "Overlay graphic of habitat loss percentage counter rising to 80%",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "80% HABITAT LOSS BY 2100"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "Researchers at the University of Arizona report 30 percent of cactus species face extinction.",
+      "visual_cue": "Stark silhouette of a solitary cactus against a dimming sunset horizon",
+      "sfx_cue": "Wind noise resolving into silence",
+      "b_roll": [
+        "solitary cactus silhouette at sunset"
+      ],
+      "animation_cue": "Slow fade out to dark horizon",
+      "transition_out": "none",
+      "text_overlay": {
+        "text": "CRITICAL SPECIES LOSS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/s41586-026-11265-1",
+    "https://iucn.org/press-release/202611/severe-drought-worsens-climate-change-forecasts-cacti",
+    "https://news.arizona.edu/news/new-research-finds-even-cacti-are-severely-threatened-warmer-drier-world"
+  ]
+}

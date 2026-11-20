@@ -1,0 +1,79 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-arsene-lupin-canonical-abilities",
+  "format": "shorts",
+  "hook": "In 1906, a gentleman burglar challenged the world's most famous detective to a legendary duel.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "In 1906, a gentleman burglar challenged the world's most famous detective to a legendary duel.",
+      "visual_cue": "Close up of an 1906 literary magazine cover featuring Maurice Leblanc's work.",
+      "sfx_cue": "Page turning sound effect.",
+      "b_roll": [
+        "Public domain 1906 typography graphic"
+      ],
+      "text_overlay": {
+        "text": "1906: The Ultimate Rivalry"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Where do these icons reside, and how do their roles as detective and burglar differ?",
+      "visual_cue": "Split screen map showing London and Paris with vintage ink style markers.",
+      "sfx_cue": "Soft quill writing on parchment.",
+      "b_roll": [
+        "Public domain 19th century map of Europe",
+        "Vintage ink illustration of a magnifying glass"
+      ],
+      "text_overlay": {
+        "text": "Holmes vs. Lupin: Analysis"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Maurice Leblanc forced a conflict in 1906 by pitting his burglar against the parody Herlock Sholmès.",
+      "visual_cue": "Image of an old French literary journal page showing the name Herlock Sholmes.",
+      "sfx_cue": "Sharp ink blot sound.",
+      "b_roll": [
+        "Public domain archival literary document"
+      ],
+      "text_overlay": {
+        "text": "Herlock Sholmes: The Parody"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "These icons defined the detective and burglary genres since the 1887 debut of Sherlock Holmes.",
+      "visual_cue": "Side by side comparison of a magnifying glass icon and a skeleton key icon.",
+      "sfx_cue": "Clinking of metal keys.",
+      "b_roll": [
+        "Public domain icon set of detective tools",
+        "Public domain illustration of a vintage key"
+      ],
+      "text_overlay": {
+        "text": "Forensics vs. Misdirection"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Maurice Leblanc published this 1906 crossover event featuring the rival characters Herlock Sholmès and Arsene Lupin.",
+      "visual_cue": "Fade to black with the year 1906 in serif font.",
+      "sfx_cue": "Clock ticking fading out.",
+      "b_roll": [
+        "Minimalist text animation of 1906"
+      ],
+      "text_overlay": {
+        "text": "1906: The Legacy"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html",
+    "https://blog.oup.com/2013/09/six-methods-forensic-detection-sherlock-holmes"
+  ]
+}

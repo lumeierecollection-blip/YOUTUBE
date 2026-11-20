@@ -1,0 +1,94 @@
+{
+  "topic_slug": "nova-scotia-workplace-injury-time-loss-185-days",
+  "strongest_angle": "Nova Scotia's workplace injury time-loss rate fell to 185 days per 100 workers in November 2026, extending a multi-year decline from 1.40 claims per 100 workers in 2023 down to 1.21 in 2025.",
+  "key_facts": [
+    {
+      "fact": "Safety News Canada reported in November 2026 that injury time off work in Nova Scotia dropped to 185 days per 100 workers.",
+      "source_url": "https://safetynewscanada.com/time-off-work-from-injuries-drops-to-185-days-per-100-workers-in-nova-scotia",
+      "source_name": "Safety News Canada",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Workers' Compensation Board of Nova Scotia reported that time-loss days paid per 100 covered workers dropped to 190 in September 2026.",
+      "source_url": "https://www.wcb.ns.ca/news/2026/september-performance-update",
+      "source_name": "WCB Nova Scotia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Canadian Occupational Safety reported that Nova Scotia's time-loss injury rate dropped to 1.21 claims per 100 covered workers in 2025, down from 1.38 in 2024 and 1.40 in 2023.",
+      "source_url": "https://www.thesafetymag.com/ca/topics/safety-and-ppe/nova-scotia-records-record-low-time-loss-injury-rate-in-2025/547526",
+      "source_name": "Canadian Occupational Safety",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to WCB Nova Scotia's 2026 WSIS report, time-loss days per 100 covered workers dropped over 25 percent since the end of 2025.",
+      "source_url": "https://www.wcb.ns.ca/sites/default/files/2026-WSIS-Performance-At-A-Glance.pdf",
+      "source_name": "WCB Nova Scotia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Injury Time-Off Days (November 2026)",
+      "value": 185,
+      "unit": "days per 100 workers",
+      "source_url": "https://safetynewscanada.com/time-off-work-from-injuries-drops-to-185-days-per-100-workers-in-nova-scotia"
+    },
+    {
+      "label": "Time-Loss Days Paid (September 2026)",
+      "value": 190,
+      "unit": "days per 100 workers",
+      "source_url": "https://www.wcb.ns.ca/news/2026/september-performance-update"
+    },
+    {
+      "label": "Time-Loss Injury Rate (2025)",
+      "value": 1.21,
+      "unit": "claims per 100 workers",
+      "source_url": "https://www.thesafetymag.com/ca/topics/safety-and-ppe/nova-scotia-records-record-low-time-loss-injury-rate-in-2025/547526"
+    },
+    {
+      "label": "Time-Loss Injury Rate (2024)",
+      "value": 1.38,
+      "unit": "claims per 100 workers",
+      "source_url": "https://www.thesafetymag.com/ca/topics/safety-and-ppe/nova-scotia-records-record-low-time-loss-injury-rate-in-2025/547526"
+    },
+    {
+      "label": "Time-Loss Injury Rate (2023)",
+      "value": 1.4,
+      "unit": "claims per 100 workers",
+      "source_url": "https://www.thesafetymag.com/ca/topics/safety-and-ppe/nova-scotia-records-record-low-time-loss-injury-rate-in-2025/547526"
+    },
+    {
+      "label": "Decline in Time-Loss Days",
+      "value": 25,
+      "unit": "percent",
+      "source_url": "https://www.wcb.ns.ca/sites/default/files/2026-WSIS-Performance-At-A-Glance.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Businesses here are dealing with trade pressures and rising costs. What they need most is their people on the job.",
+      "speaker": "Workers' Compensation Board of Nova Scotia",
+      "source_name": "WCB Nova Scotia",
+      "source_url": "https://www.wcb.ns.ca/news/2026/september-performance-update"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nova Scotia",
+      "kind": "place"
+    },
+    {
+      "name": "Safety News Canada",
+      "kind": "organization"
+    },
+    {
+      "name": "Workers' Compensation Board of Nova Scotia",
+      "kind": "organization"
+    },
+    {
+      "name": "Canadian Occupational Safety",
+      "kind": "organization"
+    }
+  ]
+}

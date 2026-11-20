@@ -1,0 +1,75 @@
+{
+  "topic_slug": "denver-broncos-nfl-history-sixteenth-one-score-win",
+  "strongest_angle": "Examine how the Denver Broncos secured their 16th consecutive one-score victory against the Carolina Panthers in November 2026, breaking an NFL record through clutch defensive plays.",
+  "key_facts": [
+    {
+      "fact": "The Denver Broncos defeated the Carolina Panthers 26-21 at Bank of America Stadium on November 8, 2026, to secure their 16th consecutive one-score regular-season game win.",
+      "source_url": "https://heavy.com/sports/nfl/denver-broncos/denver-broncos-make-history-with-16th-consecutive-one-score-win",
+      "source_name": "Heavy",
+      "confidence": "high"
+    },
+    {
+      "fact": "Pass rusher Nik Bonitto recorded a fourth-quarter strip-sack against Panthers quarterback Bryce Young to help seal the 26-21 victory in Charlotte, North Carolina.",
+      "source_url": "https://www.denverbroncos.com/news/we-re-just-comfortable-in-that-moment-broncos-set-new-nfl-record-with-16th-consecutive-one-score-win",
+      "source_name": "Denver Broncos Official Website",
+      "confidence": "high"
+    },
+    {
+      "fact": "Bo Nix closed out the game on the field in victory formation to preserve the 26-21 win that set the NFL record for consecutive one-score victories.",
+      "source_url": "https://www.nfl.com/news/broncos-make-nfl-history-with-16th-straight-one-score-win-it-s-not-by-accident",
+      "source_name": "NFL.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Points scored by Denver Broncos",
+      "value": 26,
+      "unit": "points",
+      "source_url": "https://www.denverbroncos.com/news/we-re-just-comfortable-in-that-moment-broncos-set-new-nfl-record-with-16th-consecutive-one-score-win"
+    },
+    {
+      "label": "Points scored by Carolina Panthers",
+      "value": 21,
+      "unit": "points",
+      "source_url": "https://www.denverbroncos.com/news/we-re-just-comfortable-in-that-moment-broncos-set-new-nfl-record-with-16th-consecutive-one-score-win"
+    },
+    {
+      "label": "Consecutive one-score wins record",
+      "value": 16,
+      "unit": "wins",
+      "source_url": "https://www.denverbroncos.com/news/we-re-just-comfortable-in-that-moment-broncos-set-new-nfl-record-with-16th-consecutive-one-score-win"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Denver Broncos",
+      "kind": "organization"
+    },
+    {
+      "name": "Carolina Panthers",
+      "kind": "organization"
+    },
+    {
+      "name": "Nik Bonitto",
+      "kind": "person"
+    },
+    {
+      "name": "Bryce Young",
+      "kind": "person"
+    },
+    {
+      "name": "Bo Nix",
+      "kind": "person"
+    },
+    {
+      "name": "Bank of America Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Charlotte",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

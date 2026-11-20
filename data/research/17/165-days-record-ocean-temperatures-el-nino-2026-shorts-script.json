@@ -1,0 +1,68 @@
+{
+  "channel_id": "17",
+  "topic_slug": "165-days-record-ocean-temperatures-el-nino-2026",
+  "format": "shorts",
+  "hook": "Global ocean temperature records have been broken for 165 days in a row.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Global ocean temperature records have been broken for 165 days in a row.",
+      "visual_cue": "A digital counter rapidly ticking up to 165 over a satellite view of the ocean.",
+      "sfx_cue": "Rapid ticking sound increasing in intensity.",
+      "b_roll": [
+        "Satellite view of global ocean surface currents"
+      ]
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, the National Centers for Environmental Information confirmed sea surface temperatures set an all-time high. How hot is the water?",
+      "visual_cue": "A heat map showing rising temperatures across the Pacific ocean region.",
+      "sfx_cue": "Low hum of data processing.",
+      "b_roll": [
+        "NOAA ocean temperature heatmap for October 2026"
+      ],
+      "text_overlay": {
+        "text": "All-time high sea temperatures"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The NOAA Climate Prediction Center reports the Pacific Ocean's Niño3.4 temperature anomaly hit 2.2 degrees Celsius.",
+      "visual_cue": "Close up of the Niño3.4 region on a Pacific map with the 2.2 degree figure highlighted.",
+      "sfx_cue": "Sharp, pulsing synth note.",
+      "b_roll": [
+        "Animated map of the Niño3.4 region"
+      ],
+      "text_overlay": {
+        "text": "Niño3.4 anomaly: 2.2°C"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Copernicus reports this year is virtually certain to surpass 1.5 degrees Celsius above pre-industrial levels.",
+      "visual_cue": "A line graph showing the 5.3 degree anomaly spike.",
+      "sfx_cue": "Deep, resonant thud.",
+      "b_roll": [
+        "Copernicus climate data chart showing 1.5 degree threshold"
+      ],
+      "text_overlay": {
+        "text": "Niño 1+2 anomaly: 5.3°C"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The world has seen 165 days of record-shattering ocean heat.",
+      "visual_cue": "Wide shot of the Earth from space with a glowing ocean texture.",
+      "sfx_cue": "Fading atmospheric wind sound.",
+      "b_roll": [
+        "Earth from space showing ocean surface"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://www.newser.com/story/399894/el-nino-has-set-ocean-records-for-165-straight-days.html",
+    "https://www.ncei.noaa.gov/news/global-climate-202610",
+    "https://www.cpc.ncep.noaa.gov/products/GODAS/ocean_briefing_gif/global_ocean_monitoring_current.pdf",
+    "https://climate.copernicus.eu/2026-and-4-year-global-temperature-average-track-exceed-15degc-above-pre-industrial-levels"
+  ]
+}

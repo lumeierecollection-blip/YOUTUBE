@@ -1,0 +1,67 @@
+{
+  "channel_id": "9",
+  "topic_slug": "centuries-old-maps-union-pier-redevelopment",
+  "format": "shorts",
+  "hook": "What if old maps guide Charleston's 65 acre Union Pier redevelopment?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if old maps guide Charleston's 65 acre Union Pier redevelopment?",
+      "b_roll": [
+        "historic map of Charleston overlaid on waterfront satellite view"
+      ],
+      "text_overlay": {
+        "text": "Union Pier Redevelopment"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Charleston, planners study historic maps along the Cooper River. Early surveys show the walled city ended at Craven's Bastion. Where did expansion reach near Anson Street?",
+      "b_roll": [
+        "historic survey diagram along Cooper River waterfront",
+        "archival illustration of Craven's Bastion near Customs House",
+        "map zoom toward Anson Street boundary"
+      ],
+      "text_overlay": {
+        "text": "Historic Boundaries"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But during the 1920s and 1930s, the city consolidated and cut back Charleston's waterfront for industrial port use.",
+      "b_roll": [
+        "black and white archival footage of 1920s port industrial activity"
+      ],
+      "text_overlay": {
+        "text": "1920s Industrial Cutback"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Wharves built in the 18th century extended outward from high ground. Archival research now guides redevelopment across the 65 acre site. Historical records document this waterfront evolution.",
+      "b_roll": [
+        "illustration of 18th century wharves extending into Cooper River",
+        "modern site plan map for 65 acre Union Pier",
+        "archival document overlay on modern shoreline map"
+      ],
+      "text_overlay": {
+        "text": "65 Acre Plan"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Past maps define the future 65 acre site.",
+      "b_roll": [
+        "cinematic motion graphic merging historic map into future site rendering"
+      ],
+      "text_overlay": {
+        "text": "History Shapes Union Pier"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://charlestoncitypaper.com/2026/11/20/centuries-old-maps-inform-future-of-union-pier",
+    "https://www.chucktownreport.com/p/2-years-in-and-union-pier-has-no-masterplan",
+    "https://www.preservationsociety.org/news/upon-reclaimed-land-union-piers-ecological-evolution"
+  ]
+}

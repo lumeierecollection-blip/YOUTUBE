@@ -1,0 +1,91 @@
+{
+  "topic_slug": "bepicolombo-arrives-at-mercury-november-2026",
+  "strongest_angle": "Examine the November 2026 arrival of the joint European Space Agency and Japan Aerospace Exploration Agency BepiColombo mission at Mercury after an eight-year journey, marking only the second time in history a spacecraft has entered orbit around the planet.",
+  "key_facts": [
+    {
+      "fact": "The joint European Space Agency and Japan Aerospace Exploration Agency BepiColombo mission arrived at Mercury after a voyage of more than eight years and 6 billion miles.",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/spacecraft-mercury-second-ever-mission-orbit-bepicolombo",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The BepiColombo mission will become only the second in history to circle Mercury, entering orbit in November 2026.",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/spacecraft-mercury-second-ever-mission-orbit-bepicolombo",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Data from NASA's MESSENGER probe from between 2011 and 2015 revealed unexpected geological activity beneath Mercury's strange surface.",
+      "source_url": "https://www.nationalgeographic.com/science/article/mercury-planet-formation-bepicolombo",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "The stacked spacecraft is made up of the European Space Agency's Mercury Planetary Orbiter and the Japanese Aerospace Exploration Agency's Mio orbiter.",
+      "source_url": "https://www.esa.int/media/about-us/directorates/science/bepicolombo-entering-orbit-around-mercury",
+      "source_name": "European Space Agency",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Travel distance",
+      "value": 6,
+      "unit": "billion miles",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/spacecraft-mercury-second-ever-mission-orbit-bepicolombo"
+    },
+    {
+      "label": "Travel duration",
+      "value": 8,
+      "unit": "years",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/spacecraft-mercury-second-ever-mission-orbit-bepicolombo"
+    },
+    {
+      "label": "MESSENGER probe operational start year",
+      "value": 2011,
+      "unit": "year",
+      "source_url": "https://www.nationalgeographic.com/science/article/mercury-planet-formation-bepicolombo"
+    },
+    {
+      "label": "MESSENGER probe operational end year",
+      "value": 2015,
+      "unit": "year",
+      "source_url": "https://www.nationalgeographic.com/science/article/mercury-planet-formation-bepicolombo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "BepiColombo",
+      "kind": "object"
+    },
+    {
+      "name": "Mercury",
+      "kind": "place"
+    },
+    {
+      "name": "European Space Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "Japan Aerospace Exploration Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "MESSENGER",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Mercury Planetary Orbiter",
+      "kind": "object"
+    },
+    {
+      "name": "Mio",
+      "kind": "object"
+    }
+  ]
+}

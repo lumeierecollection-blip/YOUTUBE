@@ -1,0 +1,80 @@
+{
+  "topic_slug": "honda-635808-vehicles-power-steering-recall",
+  "strongest_angle": "Examining the NHTSA recall campaign 26V721 involving 635,808 Honda and Acura vehicles due to a power steering software defect that increases crash risks.",
+  "key_facts": [
+    {
+      "fact": "Honda is recalling 635,808 vehicles in the United States due to an electronic power steering software defect, according to the National Highway Traffic Safety Administration.",
+      "source_url": "https://www.channelnewsasia.com/business/honda-recall-more-600000-us-vehicles-over-issues-steering-assist-software-nhtsa-says-6538736",
+      "source_name": "Channel NewsAsia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The recall campaign 26V721 affects certain 2021-2025 Acura TLX, 2022-2024 Acura MDX, and 2023-2025 Honda Pilot models.",
+      "source_url": "https://motorgrail.com/news/honda-recalls-635-808-acura-mdx-tlx-and-honda-pilot-vehicles-over-steering",
+      "source_name": "MotorGrail",
+      "confidence": "high"
+    },
+    {
+      "fact": "Honda has received 146 warranty claims and one injury report related to the power steering software issue.",
+      "source_url": "https://www.caranddriver.com/news/a74400007/honda-pilot-acura-mdx-tlx-power-steering-recall",
+      "source_name": "Car and Driver",
+      "confidence": "high"
+    },
+    {
+      "fact": "Dealers will reprogram the electronic power steering control unit free of charge as part of recall campaign 26V721.",
+      "source_url": "https://motorgrail.com/news/honda-recalls-635-808-acura-mdx-tlx-and-honda-pilot-vehicles-over-steering",
+      "source_name": "MotorGrail",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total recalled vehicles",
+      "value": 635808,
+      "unit": "vehicles",
+      "source_url": "https://motorgrail.com/news/honda-recalls-635-808-acura-mdx-tlx-and-honda-pilot-vehicles-over-steering"
+    },
+    {
+      "label": "Warranty claims",
+      "value": 146,
+      "unit": "claims",
+      "source_url": "https://www.caranddriver.com/news/a74400007/honda-pilot-acura-mdx-tlx-power-steering-recall"
+    },
+    {
+      "label": "Injury reports",
+      "value": 1,
+      "unit": "injury",
+      "source_url": "https://www.caranddriver.com/news/a74400007/honda-pilot-acura-mdx-tlx-power-steering-recall"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Honda",
+      "kind": "organization"
+    },
+    {
+      "name": "Acura",
+      "kind": "organization"
+    },
+    {
+      "name": "National Highway Traffic Safety Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Acura TLX",
+      "kind": "object"
+    },
+    {
+      "name": "Acura MDX",
+      "kind": "object"
+    },
+    {
+      "name": "Honda Pilot",
+      "kind": "object"
+    },
+    {
+      "name": "26V721",
+      "kind": "object"
+    }
+  ]
+}

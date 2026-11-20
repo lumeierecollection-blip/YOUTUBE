@@ -1,0 +1,73 @@
+{
+  "topic_slug": "csiro-team-confirms-m87-black-hole-shadow",
+  "strongest_angle": "A small team of four Australian researchers at CSIRO independently confirmed the 2019 Event Horizon Telescope M87 star black hole shadow using a new technique called GenDIReCT.",
+  "key_facts": [
+    {
+      "fact": "A small team of four Australian researchers at CSIRO including Samuel Lai, Nithyanandan Thyagarajan, Ivy Wong, and Foivos Diakogiannis independently confirmed the M87 black hole shadow on November 12, 2026.",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+      "source_name": "CSIRO",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Event Horizon Telescope Collaboration originally revealed the first picture of the M87 black hole shadow on April 10, 2019, located about 55 million light-years away.",
+      "source_url": "https://theconversation.com/is-this-iconic-black-hole-image-accurate-new-study-delivers-an-independent-result-296146",
+      "source_name": "The Conversation",
+      "confidence": "high"
+    },
+    {
+      "fact": "The CSIRO research team developed a powerful new imaging technique called GenDIReCT to independently verify the black hole shadow.",
+      "source_url": "https://www.atnf.csiro.au/news/new-technique-confirms-iconic-black-hole-image",
+      "source_name": "Australia Telescope National Facility",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Distance to M87",
+      "value": 55,
+      "unit": "million light-years",
+      "source_url": "https://theconversation.com/is-this-iconic-black-hole-image-accurate-new-study-delivers-an-independent-result-296146"
+    },
+    {
+      "label": "Research Team Size",
+      "value": 4,
+      "unit": "researchers",
+      "source_url": "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "CSIRO",
+      "kind": "organization"
+    },
+    {
+      "name": "Samuel Lai",
+      "kind": "person"
+    },
+    {
+      "name": "Nithyanandan Thyagarajan",
+      "kind": "person"
+    },
+    {
+      "name": "O. Ivy Wong",
+      "kind": "person"
+    },
+    {
+      "name": "Foivos Diakogiannis",
+      "kind": "person"
+    },
+    {
+      "name": "M87",
+      "kind": "place"
+    },
+    {
+      "name": "Event Horizon Telescope",
+      "kind": "organization"
+    },
+    {
+      "name": "GenDIReCT",
+      "kind": "object"
+    }
+  ]
+}

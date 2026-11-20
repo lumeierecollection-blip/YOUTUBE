@@ -1,0 +1,77 @@
+{
+  "channel_id": "21",
+  "topic_slug": "andhra-pradesh-fireworks-safety-framework",
+  "format": "shorts",
+  "hook": "Two fatal factory explosions forced Andhra Pradesh to overhaul its entire fireworks safety framework.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two fatal factory explosions forced Andhra Pradesh to overhaul its entire fireworks safety framework.",
+      "visual_cue": "Map of Andhra Pradesh highlighting the state boundaries.",
+      "sfx_cue": "Distant, muffled industrial boom followed by a sharp silence.",
+      "b_roll": [
+        "Map of Andhra Pradesh state",
+        "Stock footage of industrial fireworks manufacturing"
+      ],
+      "text_overlay": {
+        "text": "Andhra Pradesh Safety Overhaul"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "These mandates follow explosions at Sri Ganapathi Grand Fireworks and Surya Sri Fire Works. But how does the Director-General of State Disaster Response and Fire Services monitor these high-risk facilities?",
+      "visual_cue": "Official government document header with date visible.",
+      "sfx_cue": "Sound of a digital file being stamped.",
+      "b_roll": [
+        "Close up of an official government document",
+        "Architectural exterior of a generic manufacturing facility"
+      ],
+      "text_overlay": {
+        "text": "New Safety Mandates Issued"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the new framework makes inspecting officers personally accountable for safety compliance at every manufacturing unit.",
+      "visual_cue": "Logo or insignia of the State Disaster Response and Fire Services department.",
+      "sfx_cue": "Digital notification ping.",
+      "b_roll": [
+        "Official department emblem",
+        "Fire services agency building"
+      ],
+      "text_overlay": {
+        "text": "New Nodal Authority"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Inspectors are now personally accountable for safety compliance under these strict rules. Andhra Pradesh will now enforce risk-based inspections across every fireworks manufacturing facility.",
+      "visual_cue": "Screen recording of a digital portal interface showing geocoding points.",
+      "sfx_cue": "Clicking sound of an interactive map.",
+      "b_roll": [
+        "Interface of a modern online portal",
+        "Geotagging map animation"
+      ],
+      "text_overlay": {
+        "text": "Mandatory Geo-Tagging"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These rules officially took effect on November 7, 2026.",
+      "visual_cue": "Calendar page highlighting November 7.",
+      "sfx_cue": "Single chime.",
+      "b_roll": [
+        "Calendar graphic focused on November 7, 2026"
+      ],
+      "text_overlay": {
+        "text": "Effective: Nov 7, 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.newindianexpress.com/states/andhra-pradesh/2026/Nov/10/ap-rolls-out-norms-for-fireworks-units",
+    "https://teluguscope.com/andhra-pradesh-fireworks-safety-nodal-authority-two-stage-licence",
+    "https://www.thehindu.com/news/national/andhra-pradesh/andhra-pradesh-tightens-fireworks-safety-rules-after-fatal-blasts/article71681772.ece"
+  ]
+}

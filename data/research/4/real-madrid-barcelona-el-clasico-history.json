@@ -1,0 +1,89 @@
+{
+  "topic_slug": "real-madrid-barcelona-el-clasico-history",
+  "strongest_angle": "Explore the historic origins and evolution of El Clasico across 264 official meetings since FC Barcelona's founding in 1899 and Real Madrid's in 1902.",
+  "key_facts": [
+    {
+      "fact": "FC Barcelona was founded on November 29, 1899, by the Swiss Joan Gamper.",
+      "source_url": "https://elclasico.es/en/history/origins",
+      "source_name": "elClásico.es",
+      "confidence": "high"
+    },
+    {
+      "fact": "Madrid Football Club was founded on March 6, 1902, with the Padrós brothers among its driving forces.",
+      "source_url": "https://elclasico.es/en/history/origins",
+      "source_name": "elClásico.es",
+      "confidence": "high"
+    },
+    {
+      "fact": "The first time FC Barcelona and Real Madrid met in the LALIGA tournament was on February 17, 1929, at Les Corts, where the Merengues won 1-2.",
+      "source_url": "https://www.laliga.com/en-GB/news/statistics-real-madrid-fc-barcelona-titles",
+      "source_name": "LALIGA",
+      "confidence": "high"
+    },
+    {
+      "fact": "Real Madrid and FC Barcelona have played 264 official meetings against each other.",
+      "source_url": "https://en.as.com/soccer/el-clasicos-incredible-124-year-stalemate-between-real-madrid-and-barcelona-f202605-n",
+      "source_name": "AS USA",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total official meetings",
+      "value": 264,
+      "unit": "matches",
+      "source_url": "https://en.as.com/soccer/el-clasicos-incredible-124-year-stalemate-between-real-madrid-and-barcelona-f202605-n"
+    },
+    {
+      "label": "FC Barcelona founding year",
+      "value": 1899,
+      "unit": "year",
+      "source_url": "https://elclasico.es/en/history/origins"
+    },
+    {
+      "label": "Real Madrid founding year",
+      "value": 1902,
+      "unit": "year",
+      "source_url": "https://elclasico.es/en/history/origins"
+    },
+    {
+      "label": "First LaLiga match score away win",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://www.laliga.com/en-GB/news/statistics-real-madrid-fc-barcelona-titles"
+    },
+    {
+      "label": "First LaLiga match score home loss",
+      "value": 1,
+      "unit": "goals",
+      "source_url": "https://www.laliga.com/en-GB/news/statistics-real-madrid-fc-barcelona-titles"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Joan Gamper",
+      "kind": "person"
+    },
+    {
+      "name": "Padrós brothers",
+      "kind": "person"
+    },
+    {
+      "name": "FC Barcelona",
+      "kind": "organization"
+    },
+    {
+      "name": "Real Madrid",
+      "kind": "organization"
+    },
+    {
+      "name": "Les Corts",
+      "kind": "place"
+    },
+    {
+      "name": "Chamartín",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

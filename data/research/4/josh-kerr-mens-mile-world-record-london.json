@@ -1,0 +1,96 @@
+{
+  "topic_slug": "josh-kerr-mens-mile-world-record-london",
+  "strongest_angle": "Examine how Josh Kerr broke Hicham El Guerrouj's 27-year-old mile world record with a time of 3:42.66 at the London Diamond League on July 18, 2026.",
+  "key_facts": [
+    {
+      "fact": "British runner Josh Kerr ran the mile in 3 minutes and 42.66 seconds at the London Diamond League meeting on July 18, 2026.",
+      "source_url": "https://apnews.com/article/mile-josh-kerr-world-record-04b2764c4994417b9a50dcdc2363c6c7",
+      "source_name": "AP News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Josh Kerr broke the 27-year-old world record of 3:43.13 previously set by Hicham El Guerrouj in Rome on July 7, 1999.",
+      "source_url": "https://worldathletics.org/news/feature/mile-world-record-josh-kerr-history-book",
+      "source_name": "World Athletics",
+      "confidence": "high"
+    },
+    {
+      "fact": "A capacity crowd of 60,000 spectators at London Stadium witnessed Josh Kerr achieve his Project 222 world record run.",
+      "source_url": "https://www.reuters.com/sports/josh-kerr-breaks-long-standing-world-mile-record-2026-07-18",
+      "source_name": "Reuters",
+      "confidence": "high"
+    },
+    {
+      "fact": "Brooks Beasts pacer Brannon Kidder, aged 32, helped pace Josh Kerr to his world record mile attempt in London.",
+      "source_url": "https://www.runnersworld.com/news/a73232586/josh-kerr-mile-world-record-pacing",
+      "source_name": "Runner's World",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Kerr World Record Mile Time",
+      "value": 3.4266,
+      "unit": "minutes:seconds",
+      "source_url": "https://apnews.com/article/mile-josh-kerr-world-record-04b2764c4994417b9a50dcdc2363c6c7"
+    },
+    {
+      "label": "Previous World Record Time",
+      "value": 3.4313,
+      "unit": "minutes:seconds",
+      "source_url": "https://worldathletics.org/news/feature/mile-world-record-josh-kerr-history-book"
+    },
+    {
+      "label": "Years Record Stood",
+      "value": 27,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/mile-josh-kerr-world-record-04b2764c4994417b9a50dcdc2363c6c7"
+    },
+    {
+      "label": "London Stadium Crowd Capacity",
+      "value": 60000,
+      "unit": "people",
+      "source_url": "https://www.reuters.com/sports/josh-kerr-breaks-long-standing-world-mile-record-2026-07-18"
+    },
+    {
+      "label": "Brannon Kidder Age",
+      "value": 32,
+      "unit": "years",
+      "source_url": "https://www.runnersworld.com/news/a73232586/josh-kerr-mile-world-record-pacing"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Josh Kerr",
+      "kind": "person"
+    },
+    {
+      "name": "Hicham El Guerrouj",
+      "kind": "person"
+    },
+    {
+      "name": "Brannon Kidder",
+      "kind": "person"
+    },
+    {
+      "name": "London Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Rome",
+      "kind": "place"
+    },
+    {
+      "name": "World Athletics",
+      "kind": "organization"
+    },
+    {
+      "name": "Brooks Beasts",
+      "kind": "organization"
+    }
+  ]
+}

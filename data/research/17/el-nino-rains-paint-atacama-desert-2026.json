@@ -1,0 +1,57 @@
+{
+  "topic_slug": "el-nino-rains-paint-atacama-desert-2026",
+  "strongest_angle": "Winter precipitation driven by an El Niño super cycle awakened millions of dormant seeds across northern Chile's Atacama Desert in 2026, creating what NASA Earth Observatory documented as potentially the most extensive desert flowering of the satellite era.",
+  "key_facts": [
+    {
+      "fact": "During the austral spring of 2026, heavy winter precipitation in northern Chile turned parts of the Atacama Desert red-purple, green, and white.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "In July and August 2026, floodwaters caused by heavy rains in the Atacama Desert destroyed or damaged dozens of homes and forced hundreds of people to evacuate.",
+      "source_url": "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+      "source_name": "NPR",
+      "confidence": "medium"
+    },
+    {
+      "fact": "NASA Earth Observatory published paired Landsat images on November 19, 2026, showing that the event may be the most extensive desierto florido of the satellite era.",
+      "source_url": "https://elnino.news/news/atacama-desierto-florido-landsat-el-nino",
+      "source_name": "elnino.news",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Month of NASA Image of the Day",
+      "value": 19,
+      "unit": "November",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama"
+    },
+    {
+      "label": "Year of the Atacama Desert flowering event",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Copiapó",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

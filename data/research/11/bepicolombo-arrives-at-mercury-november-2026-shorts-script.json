@@ -1,0 +1,88 @@
+{
+  "channel_id": "11",
+  "topic_slug": "bepicolombo-arrives-at-mercury-november-2026",
+  "format": "shorts",
+  "hook": "It took 8 years and 6 billion miles to reach Mercury.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "It took 8 years and 6 billion miles to reach Mercury.",
+      "visual_cue": "Cinematic 3D render of the sun scorching the barren, cratered surface of Mercury with a tiny spacecraft silhouette approaching in the distance.",
+      "sfx_cue": "Deep sub-bass drone rising into solar wind whistle",
+      "b_roll": [
+        "ESA digital animation of BepiColombo approaching Mercury",
+        "Close-up render of solar panels reflecting blinding sunlight"
+      ],
+      "transition_out": "Hard cut on beat",
+      "text_overlay": {
+        "text": "6 BILLION MILES / 8 YEARS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "In November 2026, the BepiColombo spacecraft enters orbit around Mercury. Built by the European Space Agency and Japan Aerospace Exploration Agency, it carries two orbiters. What will it find beneath Mercury's surface?",
+      "visual_cue": "Detailed breakdown diagram showing the combined BepiColombo spacecraft separating into two distinct orbiter modules.",
+      "sfx_cue": "Mechanical locking hum followed by low orchestral swell",
+      "b_roll": [
+        "Cleanroom assembly footage of ESA Mercury Planetary Orbiter",
+        "JAXA launch preparation footage of Mio orbiter"
+      ],
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "BEPICOLOMBO ARRIVAL: NOV 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "Only one probe, NASA's MESSENGER, has ever orbited this planet before.",
+      "visual_cue": "Archival trajectory map showing NASA's MESSENGER probe circling the innermost planet against dark space.",
+      "sfx_cue": "Static radio chime with heartbeat pulse",
+      "b_roll": [
+        "NASA MESSENGER orbital animation",
+        "High-contrast radar mapping flyover of Mercury craters"
+      ],
+      "transition_out": "Quick dissolve",
+      "text_overlay": {
+        "text": "ONLY THE 2ND ORBITAL MISSION"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:42",
+      "voiceover": "Between 2011 and 2015, MESSENGER revealed unexpected geological activity. Now, the Mercury Planetary Orbiter and Mio orbiter will examine those secrets. Together they mark only the 2nd mission in history to orbit Mercury.",
+      "visual_cue": "Split-screen visualization showcasing MESSENGER thermal survey maps alongside 3D scans of sub-surface geological structures.",
+      "sfx_cue": "Resonant metallic pulse expanding into atmospheric synth synth drop",
+      "b_roll": [
+        "NASA MESSENGER false-color geological surface imagery",
+        "ESA simulation of Mercury Planetary Orbiter mapping instruments"
+      ],
+      "transition_out": "Fade to black frame",
+      "text_overlay": {
+        "text": "UNEXPECTED GEOLOGICAL ACTIVITY"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "BepiColombo's entering orbit around Mercury in November 2026 to uncover its hidden geology.",
+      "visual_cue": "Wide cinematic shot of the spacecraft floating in silent orbit with the massive bright limb of the sun crowning behind Mercury.",
+      "sfx_cue": "Soft resolving orchestral chime fading out",
+      "b_roll": [
+        "High-resolution photographic horizon render of Mercury",
+        "Spacecraft solar array silhouette against solar glare"
+      ],
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "COSMIC FRONTIERS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/science/2026/nov/20/spacecraft-mercury-second-ever-mission-orbit-bepicolombo",
+    "https://www.nationalgeographic.com/science/article/mercury-planet-formation-bepicolombo",
+    "https://www.esa.int/media/about-us/directorates/science/bepicolombo-entering-orbit-around-mercury"
+  ]
+}

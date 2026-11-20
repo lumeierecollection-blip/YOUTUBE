@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "un-adopts-equal-earth-projection-map",
+  "format": "shorts",
+  "hook": "Why did 164 nations vote to promote maps over Mercator?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Why did 164 nations vote to promote maps over Mercator?",
+      "b_roll": [
+        "World map showing Mercator distortion alongside votes counter"
+      ],
+      "text_overlay": {
+        "text": "164 Nations Vote On Map Projections"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 4, 2026, the United Nations General Assembly endorsed accurate map projections. Where did this 1569 map create major size distortions?",
+      "b_roll": [
+        "United Nations General Assembly voting hall",
+        "Historical 1569 Mercator nautical chart",
+        "Comparison of polar landmass shapes"
+      ],
+      "text_overlay": {
+        "text": "UN Assembly Vote: Sept 4, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the United States cast the sole vote against the resolution.",
+      "b_roll": [
+        "Voting tally board displaying 164 yes to 1 no"
+      ],
+      "text_overlay": {
+        "text": "Sole Vote Against: United States"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "American delegates dismissed the initiative as part of a radical ideological project. Flattening a spherical globe has challenged humanity for over 2000 years.",
+      "b_roll": [
+        "Official statement document from US delegation",
+        "Graphic showing size expansion near northern and southern poles",
+        "3D globe flattening animation across 2000 year timeline"
+      ],
+      "text_overlay": {
+        "text": "1569 Navigation vs Geometric Reality"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Now 164 Member States endorse maps showing true continent sizes.",
+      "b_roll": [
+        "Equal-area world map projection displaying accurate continent proportions"
+      ],
+      "text_overlay": {
+        "text": "164 Member States Endorse True Sizes"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/d41586-026-02820-x",
+    "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small",
+    "https://www.sco.wisc.edu/2026/09/08/un-advocates-for-new-world-map-projection",
+    "https://english.elpais.com/international/2026-09-17/how-do-you-make-a-map-the-problem-of-flattening-the-earth-and-why-the-un-is-abandoning-mercator.html"
+  ]
+}

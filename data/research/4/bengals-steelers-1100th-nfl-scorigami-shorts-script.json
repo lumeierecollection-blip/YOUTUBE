@@ -1,0 +1,44 @@
+{
+  "channel_id": "4",
+  "topic_slug": "bengals-steelers-1100th-nfl-scorigami",
+  "format": "shorts",
+  "hook": "Most NFL final scores have happened before, but the Bengals just made history.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most NFL final scores have happened before, but the Bengals just made history."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why does this 38-18 victory at Paycor Stadium matter so much to the league?",
+      "text_overlay": {
+        "text": "Bengals 38, Steelers 18"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this 38-18 result is the 1,100th unique final score in 107 years.",
+      "text_overlay": {
+        "text": "1,100th Scorigami"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This game followed the Cowboys and 49ers matchup that hit 1,099 earlier that day. Joe Burrow’s performance helped secure this Scorigami, a rare score never seen in NFL history.",
+      "text_overlay": {
+        "text": "1,100 unique scores"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 1,100th unique final score changed the league history books.",
+      "text_overlay": {
+        "text": "1,100th Scorigami"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cbssports.com/nfl/news/bengals-steelers-sunday-night-football-2026-scorigami",
+    "https://afcnorth.co/article/post-bengals-steelers-finish-produces-nfls-1-100th-scorigami"
+  ]
+}

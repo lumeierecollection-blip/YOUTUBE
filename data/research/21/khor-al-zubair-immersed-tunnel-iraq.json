@@ -1,0 +1,105 @@
+{
+  "topic_slug": "khor-al-zubair-immersed-tunnel-iraq",
+  "strongest_angle": "Daewoo Engineering & Construction partnered with Ballast Nedam and Trelleborg to construct the Middle East's first immersed tunnel beneath the Khor Al-Zubair waterway in Iraq, submerging ten 47,000-tonne concrete segments.",
+  "key_facts": [
+    {
+      "fact": "Ballast Nedam and Ashtead Technology positioned 10 precast concrete tunnel elements, each weighing approximately 47,000 tonnes, in the Khor Al-Zubair channel for controlled immersion.",
+      "source_url": "https://www.ashtead-technology.com/case-study/integrated-solutions-tunnel-construction-and-immersion",
+      "source_name": "Ashtead Technology",
+      "confidence": "high"
+    },
+    {
+      "fact": "South Korean contractor Daewoo Engineering & Construction partnered with Trelleborg Marine & Infrastructure to supply customized sealing systems for the immersed tunnel beneath the Khor Al-Zubair waterway.",
+      "source_url": "https://www.trelleborg.com/en/media/products-and-solutions-news/largest-immersed-tunnel-under-construction-in-the-middle-east",
+      "source_name": "Trelleborg Marine & Infrastructure",
+      "confidence": "high"
+    },
+    {
+      "fact": "Daewoo Engineering & Construction secured 9 contracts worth $3.78 billion for Iraq's Al Faw Port project, including $510 million for container terminal quay wall construction.",
+      "source_url": "https://www.asiae.co.kr/en/article/2023112908393661713",
+      "source_name": "The Asia Business Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "The General Company for Ports of Iraq and South Korea's Daewoo Engineering & Construction constructed the Khor Al-Zubair immersed tunnel to connect the Faw Peninsula with Umm Qasr in Basra.",
+      "source_url": "https://shafaq.com/en/Economy/South-Korea-s-Daewoo-hands-over-completed-Khor-Al-Zubair-tunnel",
+      "source_name": "Shafaq News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Precast concrete tunnel elements",
+      "value": 10,
+      "unit": "elements",
+      "source_url": "https://www.ashtead-technology.com/case-study/integrated-solutions-tunnel-construction-and-immersion"
+    },
+    {
+      "label": "Weight per tunnel element",
+      "value": 47000,
+      "unit": "tonnes",
+      "source_url": "https://www.ashtead-technology.com/case-study/integrated-solutions-tunnel-construction-and-immersion"
+    },
+    {
+      "label": "Al Faw Port contracts secured by Daewoo E&C",
+      "value": 9,
+      "unit": "contracts",
+      "source_url": "https://www.asiae.co.kr/en/article/2023112908393661713"
+    },
+    {
+      "label": "Total value of Al Faw Port contracts",
+      "value": 3.78,
+      "unit": "billion dollars",
+      "source_url": "https://www.asiae.co.kr/en/article/2023112908393661713"
+    },
+    {
+      "label": "Container terminal quay wall contract value",
+      "value": 510,
+      "unit": "million dollars",
+      "source_url": "https://www.asiae.co.kr/en/article/2023112908393661713"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Daewoo Engineering & Construction",
+      "kind": "organization"
+    },
+    {
+      "name": "Ballast Nedam",
+      "kind": "organization"
+    },
+    {
+      "name": "Ashtead Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Trelleborg Marine & Infrastructure",
+      "kind": "organization"
+    },
+    {
+      "name": "General Company for Ports of Iraq",
+      "kind": "organization"
+    },
+    {
+      "name": "Khor Al-Zubair",
+      "kind": "place"
+    },
+    {
+      "name": "Faw Peninsula",
+      "kind": "place"
+    },
+    {
+      "name": "Umm Qasr",
+      "kind": "place"
+    },
+    {
+      "name": "Basra",
+      "kind": "place"
+    },
+    {
+      "name": "Al Faw Port",
+      "kind": "place"
+    }
+  ]
+}

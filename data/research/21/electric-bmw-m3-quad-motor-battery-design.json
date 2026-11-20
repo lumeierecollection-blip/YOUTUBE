@@ -1,0 +1,107 @@
+{
+  "topic_slug": "electric-bmw-m3-quad-motor-battery-design",
+  "strongest_angle": "Examine how BMW engineers designed the quad-motor electric M3 featuring 838 horsepower, a 100-kWh battery pack, and four individually driven wheels at the Miramas proving ground.",
+  "key_facts": [
+    {
+      "fact": "The electric BMW M3 generates 838 horsepower and 1,200 Nm of torque from four electric motors according to BMW preliminary figures reported by BMWBlog.",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology",
+      "source_name": "BMWBlog",
+      "confidence": "high"
+    },
+    {
+      "fact": "BMW M engineers tested the electric M3 prototypes at the Miramas proving ground located in southern France during two hour-long workshops.",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology",
+      "source_name": "BMWBlog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Car and Driver reported that the upcoming electric M3 will feature four electric motors with one situated at each wheel and will operate on an 800-volt architecture.",
+      "source_url": "https://www.caranddriver.com/news/a69989225/bmw-electric-m3-details",
+      "source_name": "Car and Driver",
+      "confidence": "high"
+    },
+    {
+      "fact": "Car and Driver prototype testing revealed that the front-axle motors on the electric M3 make approximately 644 horsepower and 398 pound-feet of torque.",
+      "source_url": "https://www.caranddriver.com/reviews/a74412329/2027-bmw-m3-prototype-drive",
+      "source_name": "Car and Driver",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Horsepower",
+      "value": 838,
+      "unit": "hp",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology"
+    },
+    {
+      "label": "Kilowatt power",
+      "value": 625,
+      "unit": "kW",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology"
+    },
+    {
+      "label": "Torque metric",
+      "value": 1200,
+      "unit": "Nm",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology"
+    },
+    {
+      "label": "Torque imperial",
+      "value": 885,
+      "unit": "lb-ft",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology"
+    },
+    {
+      "label": "Battery capacity",
+      "value": 100,
+      "unit": "kWh",
+      "source_url": "https://www.bmwblog.com/2026/11/16/electric-bmw-m3-specs-technology"
+    },
+    {
+      "label": "Architecture voltage",
+      "value": 800,
+      "unit": "volts",
+      "source_url": "https://www.caranddriver.com/news/a69989225/bmw-electric-m3-details"
+    },
+    {
+      "label": "Front axle horsepower",
+      "value": 644,
+      "unit": "horsepower",
+      "source_url": "https://www.caranddriver.com/reviews/a74412329/2027-bmw-m3-prototype-drive"
+    },
+    {
+      "label": "Front axle torque",
+      "value": 398,
+      "unit": "pound-feet",
+      "source_url": "https://www.caranddriver.com/reviews/a74412329/2027-bmw-m3-prototype-drive"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "BMW M3",
+      "kind": "object"
+    },
+    {
+      "name": "Miramas",
+      "kind": "place"
+    },
+    {
+      "name": "BMWBlog",
+      "kind": "organization"
+    },
+    {
+      "name": "Car and Driver",
+      "kind": "organization"
+    },
+    {
+      "name": "Horatiu Boeriu",
+      "kind": "person"
+    },
+    {
+      "name": "Jack Fitzgerald",
+      "kind": "person"
+    }
+  ]
+}

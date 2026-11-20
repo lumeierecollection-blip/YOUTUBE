@@ -1,0 +1,57 @@
+{
+  "channel_id": "48",
+  "topic_slug": "honda-635808-vehicles-power-steering-recall",
+  "format": "shorts",
+  "hook": "In the United States, 635,808 vehicles risk steering software failures.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In the United States, 635,808 vehicles risk steering software failures.",
+      "b_roll": [
+        "Digital graphic depicting steering system failure icon over US map."
+      ],
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "The National Highway Traffic Safety Administration issued recall campaign 26V721 in the United States. How many injuries occurred in these 635,808 vehicles?",
+      "b_roll": [
+        "Official regulatory filing graphic showing recall number 26V721.",
+        "Vehicle silhouette graphic highlighting Acura TLX, Acura MDX, and Honda Pilot models.",
+        "Question graphic displaying 635,808 vehicles badge."
+      ],
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Honda already received 146 warranty claims and 1 injury report from this software defect.",
+      "b_roll": [
+        "Graphic listing 146 warranty claims alongside 1 injury report."
+      ],
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Dealers will reprogram the electronic power steering control unit for all 635,808 recalled Honda vehicles.",
+      "b_roll": [
+        "Diagram illustrating software bug affecting steering control unit.",
+        "Map outline showing service center network across the United States.",
+        "Chart graphic showing 635,808 automobiles receiving software updates."
+      ],
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Recall campaign 26V721 addresses all 635,808 affected vehicles nationwide.",
+      "b_roll": [
+        "Summary graphic showing recall campaign 26V721 and 635,808 total count."
+      ],
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://motorgrail.com/news/honda-recalls-635-808-acura-mdx-tlx-and-honda-pilot-vehicles-over-steering",
+    "https://www.caranddriver.com/news/a74400007/honda-pilot-acura-mdx-tlx-power-steering-recall",
+    "https://www.channelnewsasia.com/business/honda-recall-more-600000-us-vehicles-over-issues-steering-assist-software-nhtsa-says-6538736"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "channel_id": "4",
+  "topic_slug": "denver-broncos-nfl-history-sixteenth-one-score-win",
+  "format": "shorts",
+  "hook": "The Denver Broncos made history by winning 16 straight games decided by eight points or less.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Denver Broncos made history by winning 16 straight games decided by eight points or less.",
+      "b_roll": [
+        "Graphics showing NFL record counter escalating to 16 wins"
+      ],
+      "text_overlay": {
+        "text": "16 Straight One-Score Wins"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 8, 2026, the Denver Broncos played the Carolina Panthers at Bank of America Stadium. How did Denver secure this 26-21 win in Charlotte?",
+      "b_roll": [
+        "Map pin on Bank of America Stadium in Charlotte",
+        "Diagram of victory formation positioning on field"
+      ],
+      "text_overlay": {
+        "text": "November 8, 2026: 26-21"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Denver's defense held strong, but the game stayed tight until a decisive fourth-quarter strip-sack occurred.",
+      "b_roll": [
+        "Motion graphic showing defensive line rush path"
+      ],
+      "text_overlay": {
+        "text": "Fourth-Quarter Pressure"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nik Bonitto hit Bryce Young to knock the ball loose, securing a crucial fourth-quarter turnover. The final 26-21 result officially broke the league record.",
+      "b_roll": [
+        "Tactical animation of strip-sack collision",
+        "Score graphic confirming 26-21 final result"
+      ],
+      "text_overlay": {
+        "text": "Nik Bonitto Strip-Sack"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Bo Nix took the final snap to secure their 16th straight win by one score.",
+      "b_roll": [
+        "Historic timeline graphic celebrating Denver Broncos record"
+      ],
+      "text_overlay": {
+        "text": "NFL Record: 16 Wins"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://heavy.com/sports/nfl/denver-broncos/denver-broncos-make-history-with-16th-consecutive-one-score-win",
+    "https://www.denverbroncos.com/news/we-re-just-comfortable-in-that-moment-broncos-set-new-nfl-record-with-16th-consecutive-one-score-win",
+    "https://www.nfl.com/news/broncos-make-nfl-history-with-16th-straight-one-score-win-it-s-not-by-accident"
+  ]
+}

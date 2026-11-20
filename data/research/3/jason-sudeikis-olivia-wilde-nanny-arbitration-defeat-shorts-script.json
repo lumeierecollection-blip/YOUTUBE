@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "jason-sudeikis-olivia-wilde-nanny-arbitration-defeat",
+  "format": "shorts",
+  "hook": "A massive 1.27 million dollar arbitration award victory just went to Jason Sudeikis and Olivia Wilde.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive 1.27 million dollar arbitration award victory just went to Jason Sudeikis and Olivia Wilde.",
+      "text_overlay": {
+        "text": "$1.27 million arbitration award"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2023, former nanny Ericka Genaro sued actors Jason Sudeikis and Olivia Wilde. Did the former nanny Ericka Genaro succeed in her legal battle against the famous acting pair?",
+      "text_overlay": {
+        "text": "Ericka Genaro vs. Sudeikis and Wilde"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The arbitration panel ultimately dismissed all 8 claims brought against Jason Sudeikis and Olivia Wilde.",
+      "text_overlay": {
+        "text": "8 claims dismissed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "TMZ reports the pair filed a petition in New York to confirm this final arbitration ruling.",
+      "text_overlay": {
+        "text": "$1.27 million awarded to actors"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "A New York judge must now formally confirm the 1.27 million dollar award for them.",
+      "text_overlay": {
+        "text": "Pending court confirmation"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+    "https://www.tmz.com/2026/11/11/jason-sudeikis-olivia-wilde-nanny-arbitration-results"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "channel_id": "21",
+  "topic_slug": "khor-al-zubair-immersed-tunnel-iraq",
+  "format": "shorts",
+  "hook": "Engineers lowered 10 tunnel elements weighing 47,000 tonnes each underwater.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Engineers lowered 10 tunnel elements weighing 47,000 tonnes each underwater.",
+      "visual_cue": "Underwater view of a precast concrete tunnel element being submerged into a deep water channel.",
+      "sfx_cue": "Sub-aquatic low mechanical hum",
+      "b_roll": [
+        "Government engineering illustration of submerged concrete tunnel placement"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "10 ELEMENTS | 47,000 TONNES EACH"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Daewoo Engineering & Construction partnered with Ballast Nedam in Basra to build an immersed tunnel. It connects the Faw Peninsula to Umm Qasr. How were 10 elements placed beneath the Khor Al-Zubair?",
+      "visual_cue": "Map graphic highlighting Basra, the Faw Peninsula, Umm Qasr, and the Khor Al-Zubair waterway.",
+      "sfx_cue": "Soft radar sweep tone",
+      "b_roll": [
+        "Satellite mapping imagery showing Basra port network and Khor Al-Zubair waterway"
+      ],
+      "transition_out": "whip-pan",
+      "text_overlay": {
+        "text": "KHOR AL-ZUBAIR | BASRA, IRAQ"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Daewoo Engineering & Construction didn't work alone, partnering with Trelleborg Marine & Infrastructure for customized sealing systems.",
+      "visual_cue": "Technical cross-section diagram of heavy rubber marine gaskets compressing under sea water pressure.",
+      "sfx_cue": "High-pressure pneumatic air hiss",
+      "b_roll": [
+        "Diagram showing specialized marine sealing joints sliding into place"
+      ],
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "TRELLEBORG CUSTOM SEALING SYSTEMS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Ashtead Technology guided all 10 concrete elements inside the channel. The General Company for Ports of Iraq completed the link. Daewoo secured 9 contracts worth $3.78 billion.",
+      "visual_cue": "Positioning sensors aligning submerged tunnel segments on the seabed, transitioning to contract figures.",
+      "sfx_cue": "Heavy metallic locking clack followed by low synth pulse",
+      "b_roll": [
+        "Positioning sonar guidance interface simulation for underwater positioning",
+        "Overview of Al Faw Port infrastructure marine works"
+      ],
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "9 CONTRACTS | $3.78 BILLION TOTAL"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That includes $510 million for the container terminal quay wall.",
+      "visual_cue": "Architectural rendering of completed container terminal quay wall along the waterfront.",
+      "sfx_cue": "Subtle camera shutter click",
+      "b_roll": [
+        "Finished container terminal quay wall layout graphic"
+      ],
+      "transition_out": "none",
+      "text_overlay": {
+        "text": "$510 MILLION QUAY WALL"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ashtead-technology.com/case-study/integrated-solutions-tunnel-construction-and-immersion",
+    "https://www.trelleborg.com/en/media/products-and-solutions-news/largest-immersed-tunnel-under-construction-in-the-middle-east",
+    "https://www.asiae.co.kr/en/article/2023112908393661713",
+    "https://shafaq.com/en/Economy/South-Korea-s-Daewoo-hands-over-completed-Khor-Al-Zubair-tunnel"
+  ]
+}

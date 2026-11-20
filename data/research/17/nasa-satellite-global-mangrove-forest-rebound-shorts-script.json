@@ -1,0 +1,93 @@
+{
+  "channel_id": "17",
+  "topic_slug": "nasa-satellite-global-mangrove-forest-rebound",
+  "format": "shorts",
+  "hook": "NASA recorded 3,000 square kilometers of mangrove loss before forests expanded.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-6s",
+      "voiceover": "NASA recorded 3,000 square kilometers of mangrove loss before forests expanded.",
+      "visual_cue": "Satellite map animation showing coastal mangrove loss across tropical shorelines with glowing data boundaries.",
+      "sfx_cue": "Low atmospheric sub-bass rumble with low pass pulse",
+      "b_roll": [
+        "Landsat orbital satellite view over coastal delta",
+        "Timelapse of coastal waters receding near mangrove roots"
+      ],
+      "animation_cue": "Slow zoom into mangrove coastline with data metric overlay",
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "3,000 sq km Loss Recorded"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "6-22s",
+      "voiceover": "Before 2010, satellite data recorded shrinking mangrove forests worldwide. Researchers Zhen Zhang and Nicholas J. Why did mangroves in Palaw Township spread into old rice fields?",
+      "visual_cue": "Archival satellite timeline tracking mangrove canopy reductions, shifting to team research data points.",
+      "sfx_cue": "Soft digital data chimes and ambient coastal wind",
+      "b_roll": [
+        "Landsat false-color satellite imagery sequence from 1984 to 2023",
+        "Coastal map of Palaw Township within Myeik District, Myanmar"
+      ],
+      "animation_cue": "Split screen showing 1984 Landsat coverage versus recent coastal satellite passes",
+      "transition_out": "whip-pan",
+      "text_overlay": {
+        "text": "Landsat 1984–2023 Study"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "22-28s",
+      "voiceover": "But around 2010, NASA Earth Observatory recorded mangrove forests shifting to net expansion across Asia.",
+      "visual_cue": "Global orbital view lighting up green expansion zones across Asian coastal regions.",
+      "sfx_cue": "Rising metallic swell with subtle wave impact",
+      "b_roll": [
+        "NASA Earth Observatory satellite render over Asian shorelines",
+        "Aerial view of dense green mangrove canopy meeting tide waters"
+      ],
+      "animation_cue": "High-contrast radar heat map transition highlighting net growth",
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "2010: Net Expansion Begins"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "28-44s",
+      "voiceover": "Live Science reported mangrove gains outpaced losses over 16 years. In Myeik District, satellite imagery confirmed expanding forest cover.",
+      "visual_cue": "High-resolution satellite comparisons displaying green foliage taking over former agricultural zones in Myanmar.",
+      "sfx_cue": "Warm orchestral pad building with crisp camera shutter clicks",
+      "b_roll": [
+        "Landsat satellite zoom over Myeik District coastal estuary",
+        "Overhead drone footage of lush mangrove tree canopy"
+      ],
+      "animation_cue": "Interactive slider showing rice fields transitioning back to mangrove forest",
+      "transition_out": "cross-dissolve",
+      "text_overlay": {
+        "text": "Net Loss Reduced to 1%"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "44-50s",
+      "voiceover": "They've tracked mangrove expansion across Australia and South America using Landsat imagery.",
+      "visual_cue": "Cinematic satellite camera pulling back to show full Earth disk with orbital sensor grids.",
+      "sfx_cue": "Deep tail swell fading into peaceful ocean soundscape",
+      "b_roll": [
+        "NASA satellite orbiting high above Earth blue horizon"
+      ],
+      "animation_cue": "Logo badge reveal with slow satellite drift across frame",
+      "transition_out": "fade-out",
+      "text_overlay": {
+        "text": "NASA Landsat Observations"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves",
+    "https://www.science.org/doi/10.1126/science.aec9773",
+    "https://www.livescience.com/planet-earth/satellite-images-reveals-mangroves-rebounding-worldwide-but-heres-why-they-could-still-drown",
+    "https://www.earth.com/plants/mangroves-are-making-a-comeback-on-the-coast-of-myanmar"
+  ]
+}

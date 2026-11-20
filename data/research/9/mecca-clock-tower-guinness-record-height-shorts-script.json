@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "mecca-clock-tower-guinness-record-height",
+  "format": "shorts",
+  "hook": "What if you visited a museum located 426.875 metres above ground?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if you visited a museum located 426.875 metres above ground?",
+      "text_overlay": {
+        "text": "426.875 metres high"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January 5, 2026, the Makkah Clock Tower in Saudi Arabia set two Guinness World Records. This massive structure overlooks the sacred Grand Mosque. How high is this record-breaking space?",
+      "text_overlay": {
+        "text": "Makkah Clock Tower, Saudi Arabia"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except this isn't just a tower; it houses the world's highest museum.",
+      "text_overlay": {
+        "text": "World's Highest Museum"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Royal Commission for Makkah City and Holy Sites officially confirmed the Clock Tower Museum reached that record height. That height is exactly 426.875 metres.",
+      "text_overlay": {
+        "text": "426.875 metres"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Clock Tower Museum now stands 426.875 metres above ground.",
+      "text_overlay": {
+        "text": "426.875 metres"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building",
+    "https://www.arabnews.com/saudi-arabia/makkah-clock-tower-earns-2-guinness-world-records-3012487"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "channel_id": "17",
+  "topic_slug": "crows-visual-decisions-tuebingen-study",
+  "format": "shorts",
+  "hook": "Two carrion crows just solved a visual test in 235 milliseconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two carrion crows just solved a visual test in 235 milliseconds.",
+      "visual_cue": "Close-up of a carrion crow's eye looking at a screen.",
+      "sfx_cue": "Sharp, quick digital ping.",
+      "b_roll": [
+        "Macro shot of a carrion crow"
+      ],
+      "text_overlay": {
+        "text": "235 Milliseconds"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at the University of Tübingen tested two carrion crows on moving dot patterns. Why do these two carrion crows process visual information twice as fast as human primates?",
+      "visual_cue": "Graphic showing moving dots on a laboratory screen.",
+      "sfx_cue": "Soft, rhythmic laboratory hum.",
+      "b_roll": [
+        "University of Tübingen laboratory footage"
+      ],
+      "text_overlay": {
+        "text": "University of Tübingen Study"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But researchers Philipp Schmidbauer and Andreas Nieder found they use identical logic despite different brains.",
+      "visual_cue": "Side-by-side comparison of a human brain and a crow brain silhouette.",
+      "sfx_cue": "Clock ticking acceleration.",
+      "b_roll": [
+        "Science journal cover graphic"
+      ],
+      "text_overlay": {
+        "text": "Same Logic, Different Brains"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This University of Tübingen experiment confirms carrion crows process visual data at double human speed. They achieved this 235 millisecond result consistently in the study published on October 22.",
+      "visual_cue": "Animation showing the dot pattern moving and a timer hitting 235ms.",
+      "sfx_cue": "High-pitched success chime.",
+      "b_roll": [
+        "Computer-generated dot movement animation"
+      ],
+      "text_overlay": {
+        "text": "2x Faster Than Humans"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Science proves these two carrion crows possess a reaction speed of only 235 milliseconds.",
+      "visual_cue": "Close-up of a carrion crow looking directly into the camera.",
+      "sfx_cue": "Final, soft bird caw.",
+      "b_roll": [
+        "Close-up of a carrion crow"
+      ],
+      "text_overlay": {
+        "text": "235 Milliseconds"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.science.org/doi/10.1126/science.aed6459",
+    "https://uni-tuebingen.de/universitaet/aktuelles-und-publikationen/pressemitteilung/kraehen-entscheiden-doppelt-so-schnell-wie-menschen-und-affen"
+  ]
+}

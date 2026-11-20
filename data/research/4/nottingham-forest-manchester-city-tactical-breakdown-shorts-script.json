@@ -1,0 +1,67 @@
+{
+  "channel_id": "4",
+  "topic_slug": "nottingham-forest-manchester-city-tactical-breakdown",
+  "format": "shorts",
+  "hook": "Nottingham Forest defeated Manchester City 3-1 with only 22 percent possession.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nottingham Forest defeated Manchester City 3-1 with only 22 percent possession.",
+      "b_roll": [
+        "Scoreboard showing Nottingham Forest 3, Manchester City 1 at City Ground",
+        "Stat graphic displaying 22 percent possession figure"
+      ],
+      "text_overlay": {
+        "text": "Forest 3-1 Man City: 22% Possession"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At the City Ground, manager Glasner led Nottingham Forest to end their five-game winless run. How many passes did Manchester City complete in that fixture?",
+      "b_roll": [
+        "Exterior shot of the City Ground stadium",
+        "Pass counter graphic showing 138 completed passes"
+      ],
+      "text_overlay": {
+        "text": "138 Passes Completed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Manchester City completed 665 passes, yet Liam Delap scored a magnificent brace.",
+      "b_roll": [
+        "Comparison bar chart showing 665 passes versus 138 passes",
+        "Graphic highlighting Liam Delap scoring 2 goals"
+      ],
+      "text_overlay": {
+        "text": "City: 665 Passes | Delap: 2 Goals"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Liam Delap scored twice to secure the 3-1 Premier League victory. City completed 665 passes but scored only 1 goal.",
+      "b_roll": [
+        "Match statistics summary showing final score 3-1",
+        "Possession pie chart showing 22 percent to 78 percent"
+      ],
+      "text_overlay": {
+        "text": "Glasner's Strategy Works"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Forest won 3-1 while completing only 138 total passes.",
+      "b_roll": [
+        "Final match summary graphic with 3-1 result and 138 pass stat"
+      ],
+      "text_overlay": {
+        "text": "3-1 Victory | 138 Passes"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.bet365.com/en-gb/article/nottm-forest-3-1-man-city-match-stats-delap-double-eases-glasner-pressure/2026110719294434748",
+    "https://newsletter.thetacticsacademy.com/p/the-power-of-the-transition",
+    "https://www.squawka.com/en/features/nottingham-forest-vs-man-city-stats-and-analysis-how-glasner-worked-his-magic-facing-citizens-yet-again"
+  ]
+}

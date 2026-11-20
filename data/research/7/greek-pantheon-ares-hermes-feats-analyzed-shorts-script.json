@@ -1,0 +1,92 @@
+{
+  "channel_id": "7",
+  "topic_slug": "greek-pantheon-ares-hermes-feats-analyzed",
+  "format": "shorts",
+  "hook": "2 giant Aloadai twins trapped Ares, the Greek god of war.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "2 giant Aloadai twins trapped Ares, the Greek god of war.",
+      "visual_cue": "Classical artwork depiction of the god Ares captured by giant figures.",
+      "sfx_cue": "Low dramatic cinematic boom",
+      "b_roll": [
+        "Classical Greek illustration of Ares",
+        "Ancient Greek myth artwork of giants"
+      ],
+      "animation_cue": "Slow zoom in on Ares visual",
+      "transition_out": "Quick cut",
+      "text_overlay": {
+        "text": "Ares Trapped by Aloadai Twins"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Zeus and Hera raised Ares, who later faced conflicts with Herakles. Mythohub notes Ares embodies the sheer brutality of combat. Which divine role instead represents speed, cunning, and commerce?",
+      "visual_cue": "Illustrations of Zeus, Hera, Ares, and Herakles in ancient Greek myth style.",
+      "sfx_cue": "Subtle tense string swell",
+      "b_roll": [
+        "Ancient Greek pottery depicting Zeus and Hera",
+        "Greek vase painting of Herakles"
+      ],
+      "animation_cue": "Pan across divine pantheon illustrations",
+      "transition_out": "Wipe right",
+      "text_overlay": {
+        "text": "Ares: Brutality of Combat"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:25",
+      "voiceover": "Except Hermes also participated in the War of the Giants.",
+      "visual_cue": "Dramatic classical visual representing the legendary War of the Giants.",
+      "sfx_cue": "Percussive impact sound",
+      "b_roll": [
+        "Ancient Greek frieze of Gigantomachy war"
+      ],
+      "animation_cue": "Fast punch-in on Hermes motif",
+      "transition_out": "Flash cut",
+      "text_overlay": {
+        "text": "Hermes in the War of the Giants"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Theoi credits Hermes with slaying the 100-eyed giant Argos Panoptes. Perseus Digital Library records show Ares was the Greek god of war. The messenger of the gods also represented commerce.",
+      "visual_cue": "Historical mythological artwork showing Hermes defeating Argos Panoptes alongside symbols of Ares.",
+      "sfx_cue": "Rising brass tone resolving to quiet echo",
+      "b_roll": [
+        "Illustration of Hermes and Argos Panoptes",
+        "Classical depiction of Hermes as divine messenger"
+      ],
+      "animation_cue": "Split screen comparing Ares war symbols and Hermes messenger icons",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Hermes Slew 100-Eyed Argos"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Classical myths defined Ares and Hermes through their divine roles.",
+      "visual_cue": "Side-by-side classical engravings of Ares and Hermes.",
+      "sfx_cue": "Final subtle chime fadeout",
+      "b_roll": [
+        "Ancient Greek statues of Ares and Hermes"
+      ],
+      "animation_cue": "Slow pull back to full frame image",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Divine Roles in Greek Myth"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theoi.com/Olympios/AresMyths.html",
+    "https://www.theoi.com/Olympios/HermesMyths2.html",
+    "https://www.perseus.tufts.edu/hopper/text.jsp?doc=Perseus%3Atext%3A1999.04.0062%3Aalphabetic+letter%3DA%3Aentry+group%3D22%3Aentry%3Dares-harpers",
+    "https://mythohub.com/greek-figures-comparison/ares-vs-hermes"
+  ]
+}

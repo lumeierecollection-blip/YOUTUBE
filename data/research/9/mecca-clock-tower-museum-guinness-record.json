@@ -1,0 +1,67 @@
+{
+  "topic_slug": "mecca-clock-tower-museum-guinness-record",
+  "strongest_angle": "The Mecca Clock Tower Museum achieved two Guinness World Records by establishing the highest museum in a building and the highest outdoor observation deck at 426.875 metres above ground in Saudi Arabia.",
+  "key_facts": [
+    {
+      "fact": "The Clock Tower Museum stands at 426.875 metres above ground in Makkah, Saudi Arabia, achieving a Guinness World Record for the highest museum in a building.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building",
+      "source_name": "Guinness World Records",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Royal Commission for Makkah City and Holy Sites achieved two new global milestones with Guinness World Records for the world's highest museum in a building and the highest outdoor observation deck.",
+      "source_url": "https://saudigazette.com.sa/article/666310/saudi-arabia/makkah-clock-tower-wins-guinness-records-for-highest-museum-observation-deck",
+      "source_name": "Saudi Gazette",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Clock Tower Museum, situated 426.875 metres above ground, set a new Guinness World Record recognised in Mecca on November 17, 2026.",
+      "source_url": "https://gulfnews.com/world/gulf/saudi/worlds-highest-museum-and-outdoor-observation-deck-recognised-in-mecca-1.500750907",
+      "source_name": "Gulf News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Center for Cosmos Sciences, Crescent Observation, and the Makkah Clock received two Guinness World Records certificates for the highest museum inside a building and the highest outdoor observation deck.",
+      "source_url": "https://english.ajel.sa/saudi-arabia/e9qc9wv8u",
+      "source_name": "Ajel",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Museum height in meters",
+      "value": 426.875,
+      "unit": "metres",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building"
+    },
+    {
+      "label": "Museum height in feet",
+      "value": 1400,
+      "unit": "feet",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Royal Commission for Makkah City and Holy Sites",
+      "kind": "organization"
+    },
+    {
+      "name": "Makkah",
+      "kind": "place"
+    },
+    {
+      "name": "Saudi Arabia",
+      "kind": "place"
+    },
+    {
+      "name": "Clock Tower Museum",
+      "kind": "object"
+    },
+    {
+      "name": "Center for Cosmos Sciences",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

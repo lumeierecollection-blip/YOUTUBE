@@ -1,0 +1,78 @@
+{
+  "topic_slug": "aaib-ec135-helicopter-tail-rotor-blade-separation",
+  "strongest_angle": "Analyze the Air Accidents Investigation Branch anniversary statement on the EC135 P1 helicopter tail rotor fenestron blade separation near Dingestow, Monmouthshire, detailing the fatigue crack and dye-penetrant findings.",
+  "key_facts": [
+    {
+      "fact": "On 16 November 2025, an EC135 P1 helicopter with registration G-WPDA experienced an in-flight separation of a tail rotor fenestron blade and landed safely in a field near Dingestow, Monmouthshire.",
+      "source_url": "https://www.gov.uk/government/news/anniversary-statement-ec135-p1-g-wpda",
+      "source_name": "Air Accidents Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The UK Air Accidents Investigation Branch stated in its November 16, 2026 anniversary statement that the separated tail rotor blade failed through a fatigue crack, with dye-penetrant found on the crack surfaces.",
+      "source_url": "https://aerocorner.com/news/g-wpda-ec135-fenestron-blade-fatigue-crack-aaib-faa-ad",
+      "source_name": "AeroCorner News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Federal Aviation Administration superseded Airworthiness Directive 2024-04-10, which applied to Airbus Helicopters Deutschland GmbH Model EC135P1 helicopters requiring repetitive inspections of specific tail rotor blades for cracks.",
+      "source_url": "https://www.federalregister.gov/documents/full_text/html/2026/11/09/2026-22776.html",
+      "source_name": "Federal Register",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Accident day",
+      "value": 16,
+      "unit": "day of month",
+      "source_url": "https://www.gov.uk/government/news/anniversary-statement-ec135-p1-g-wpda"
+    },
+    {
+      "label": "Accident year",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.gov.uk/government/news/anniversary-statement-ec135-p1-g-wpda"
+    },
+    {
+      "label": "Statement year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://aerocorner.com/news/g-wpda-ec135-fenestron-blade-fatigue-crack-aaib-faa-ad"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The tail rotor blade that separated from EC135 P1 helicopter G-WPDA over Monmouthshire, Wales, a year ago failed through a fatigue crack, and dye-penetrant was found on the crack surfaces.",
+      "speaker": "AeroCorner News",
+      "source_name": "AeroCorner",
+      "source_url": "https://aerocorner.com/news/g-wpda-ec135-fenestron-blade-fatigue-crack-aaib-faa-ad"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Air Accidents Investigation Branch",
+      "kind": "organization"
+    },
+    {
+      "name": "G-WPDA",
+      "kind": "object"
+    },
+    {
+      "name": "Dingestow",
+      "kind": "place"
+    },
+    {
+      "name": "Monmouthshire",
+      "kind": "place"
+    },
+    {
+      "name": "Federal Aviation Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Airbus Helicopters Deutschland GmbH",
+      "kind": "organization"
+    }
+  ]
+}

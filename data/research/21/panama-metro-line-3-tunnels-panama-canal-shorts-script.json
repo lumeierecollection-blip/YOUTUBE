@@ -1,0 +1,85 @@
+{
+  "channel_id": "21",
+  "topic_slug": "panama-metro-line-3-tunnels-panama-canal",
+  "format": "shorts",
+  "hook": "Engineers pushed a 13.46 meter machine 65 meters beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "Engineers pushed a 13.46 meter machine 65 meters beneath the Panama Canal.",
+      "visual_cue": "Detailed cross-section diagram showing a massive 13.46-meter tunnel boring machine operating deep beneath the seabed of the Panama Canal.",
+      "sfx_cue": "Low deep mechanical rumble with underwater pressure hum.",
+      "b_roll": [
+        "3D schematic cutaway of Panama Canal bedrock with tunnel boring machine submerged underneath"
+      ],
+      "transition_out": "Fast whip pan downward into the tunnel excavation site",
+      "text_overlay": {
+        "text": "65M BENEATH THE CANAL"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:21",
+      "voiceover": "In late 2024, Metro de Panamá started tunneling from Farfán. How did crews extract 700,000 cubic meters of rock below the water?",
+      "visual_cue": "Map animation showing the tunnel path from Farfán across to Albrook station, transitioning to footage of rock excavation.",
+      "sfx_cue": "Heavy industrial machinery grinding sound transitioning to quiet suspense surge.",
+      "b_roll": [
+        "Map graphic of Panama Metro Line 3 route connecting Farfán to Albrook",
+        "Heavy earthmoving equipment hauling excavated tunnel rock"
+      ],
+      "transition_out": "Quick dissolve to close-up of Herrenknecht cutterhead",
+      "text_overlay": {
+        "text": "700,000 M³ EXCAVATED"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:21-0:27",
+      "voiceover": "However, the Herrenknecht Mixshield machine had to dig 65 meters beneath mean sea level.",
+      "visual_cue": "Close-up render of the Herrenknecht Mixshield cutterhead rotating slowly under massive hydro-static soil forces.",
+      "sfx_cue": "Metallic clank followed by pressurized fluid hiss.",
+      "b_roll": [
+        "Technical blueprint diagram of Herrenknecht Mixshield TBM pressure shield assembly"
+      ],
+      "transition_out": "Flash cut to tunnel breakthrough point",
+      "text_overlay": {
+        "text": "HERRENKNECHT MIXSHIELD"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:42",
+      "voiceover": "On October 26, 2026, the cutter completed the 4.5 kilometer drive. Metro de Panamá confirmed it reached 65 meters below sea level.",
+      "visual_cue": "Archival graphics and footage of the tunnel breakthrough at Albrook station, showing the completed 4.5-kilometer concrete lined tunnel.",
+      "sfx_cue": "Echoing industrial noise fading into low ambient drone.",
+      "b_roll": [
+        "Breakthrough scene of TBM entering Albrook station vault",
+        "Interior view of finished reinforced concrete tunnel tube"
+      ],
+      "transition_out": "Slow zoom out along the illuminated tunnel interior",
+      "text_overlay": {
+        "text": "100-YEAR SERVICE LIFE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "The 4.5 kilometer tunnel now runs beneath the Pacific entrance.",
+      "visual_cue": "Wide aerial shot of ships traversing the Pacific entrance of the Panama Canal directly above the subterranean metro link.",
+      "sfx_cue": "Distant ship horn blending with sub-bass resolve.",
+      "b_roll": [
+        "Aerial view of cargo ships passing over the Pacific entrance of the Panama Canal"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "PANAMA CANAL SUBSEA LINK"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.enr.com/articles/64196-panama-metro-line-3-tunnels-beneath-panama-canal",
+    "https://digital.tunnelingonline.com/articles/panama-metro-line-3-completing-the-historic-tunnel-under-the-canal",
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+  ]
+}

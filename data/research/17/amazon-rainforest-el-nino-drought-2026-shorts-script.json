@@ -1,0 +1,93 @@
+{
+  "channel_id": "17",
+  "topic_slug": "amazon-rainforest-el-nino-drought-2026",
+  "format": "shorts",
+  "hook": "Fires across Brazil's Amazonas state surged 253 percent in October 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:05",
+      "voiceover": "Fires across Brazil's Amazonas state surged 253 percent in October 2026.",
+      "visual_cue": "Aerial view of smoke plumes rising from dense Amazon rainforest canopy",
+      "sfx_cue": "Low rumble of distant fire and wind",
+      "b_roll": [
+        "Amazon rainforest aerial canopy smoke",
+        "Satellite view of fire hotspots in South America"
+      ],
+      "animation_cue": "slow zoom in",
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "253% FIRE SURGE"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:05-00:18",
+      "voiceover": "Brazil's surveillance system recorded 1,679 fires in Amazonas state during early October. Why did thick smoke engulf Manaus?",
+      "visual_cue": "Map highlighting Amazonas state shifting to a satellite view over Manaus shrouded in haze",
+      "sfx_cue": "Soft wind swoosh",
+      "b_roll": [
+        "Brazil geographical map Amazonas highlight",
+        "Manaus city skyline covered in heavy smoke"
+      ],
+      "animation_cue": "pan right",
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "1,679 FIRES RECORDED"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:24",
+      "voiceover": "But Scientific American reported the Amazon hasn't recovered from drought linked to El Niño in 2023.",
+      "visual_cue": "Archival footage of charred tree trunks from previous drought seasons",
+      "sfx_cue": "Subtle crackle of dry embers",
+      "b_roll": [
+        "Dry cracked soil in rainforest riverbed",
+        "Charred trees in Amazonian clearing"
+      ],
+      "animation_cue": "slow zoom in",
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "WEAKENED ECOSYSTEM"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:24-00:38",
+      "voiceover": "El Niño dried out rainforest vegetation, creating extreme fire risks. That 253 percent fire surge pushed the ecosystem toward a tipping point.",
+      "visual_cue": "Split visual showing dried-up river margins and active fire lines spreading through dry brush",
+      "sfx_cue": "Deep bass hit followed by wind noise",
+      "b_roll": [
+        "Low Amazon river water levels expose mudbanks",
+        "Firefighters watching forest boundary burn"
+      ],
+      "animation_cue": "push in",
+      "transition_out": "dissolve",
+      "text_overlay": {
+        "text": "CRITICAL TIPPING POINT"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:38-00:44",
+      "voiceover": "Scientific American reported in November 2026 that the Amazon hasn't recovered from past droughts.",
+      "visual_cue": "Wide wide cinematic shot of glowing ember horizon over the Amazon river bend at dusk",
+      "sfx_cue": "Atmospheric ambient drone fade out",
+      "b_roll": [
+        "Sunset over Amazon river basin with lingering smoke"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "AMAZON RAINFOREST 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.straitstimes.com/world/fires-surge-in-brazils-amazon-fueled-by-el-nino-and-climate-change",
+    "https://science.nasa.gov/earth/earth-observatory/fires-arrive-in-the-amazon-rainforest",
+    "https://www.earth.com/climate/amazon-rainforest-fires-surge-as-el-nino-fuels-a-dangerous-drought",
+    "https://www.scientificamerican.com/article/can-the-amazon-rainforest-survive-the-largest-el-nino-in-living-memory"
+  ]
+}

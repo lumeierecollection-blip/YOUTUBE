@@ -1,0 +1,64 @@
+{
+  "channel_id": "4",
+  "topic_slug": "wales-new-zealand-35-28-historic-win-2026",
+  "format": "shorts",
+  "hook": "Wales ended a 73-year drought by beating New Zealand 35-28.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Wales ended a 73-year drought by beating New Zealand 35-28.",
+      "b_roll": [
+        "historic stadium scoreboard showing Wales 35 New Zealand 28"
+      ],
+      "text_overlay": {
+        "text": "35 - 28"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 14, 2026, Wales scored five tries at the Principality Stadium. How did Wales hold off New Zealand to secure 35 points?",
+      "b_roll": [
+        "Principality Stadium packed crowd schematic diagram",
+        "match timeline diagram illustrating five tries scored"
+      ],
+      "text_overlay": {
+        "text": "5 Tries | 55,152 Fans"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Wales couldn't rely on tries alone, making a record tally of 346 tackles.",
+      "b_roll": [
+        "defensive tactic graphic highlighting 346 tackles count"
+      ],
+      "text_overlay": {
+        "text": "346 Record Tackles"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The result erased 34 consecutive defeats dating back to December 19, 1953.",
+      "b_roll": [
+        "player tackle statistic chart for Dafydd Jenkins",
+        "timeline visualization from December 19 1953 to November 14 2026"
+      ],
+      "text_overlay": {
+        "text": "34 Defeats Erased"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Wales finally defeated New Zealand after 73 years of waiting.",
+      "b_roll": [
+        "final match score display with 73 year milestone indicator"
+      ],
+      "text_overlay": {
+        "text": "73 Years Ended"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026",
+    "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko"
+  ]
+}
