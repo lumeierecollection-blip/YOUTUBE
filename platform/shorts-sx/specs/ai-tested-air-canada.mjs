@@ -46,7 +46,7 @@ export const SHOTS = [   // v3 (20 Nov): owner - pictures must literally show wh
   { at: "defence?", kind: "full", photo: "ac-787b", cap: "Air Canada's defence" },
   { at: "separate", kind: "full", photo: "ac-lawbooks", cap: "“a separate legal entity”" },
   { at: "responsible", kind: "page", page: "“responsible for its own actions”" },
-  { at: "tribunal", kind: "full", photo: "ac-court", cap: "Civil Resolution Tribunal, BC" },
+  { at: "tribunal", kind: "full", photo: "ac-gavel", cap: "Civil Resolution Tribunal, BC" },
   { at: "remarkable,", kind: "full", photo: "ac-gavel2", cap: "“remarkable”" },
   { at: "pay.", kind: "money", value: "CA$812", unit: "awarded, 14 Feb 2024", asset: "png-money-stack", stacks: 1 },
   { at: "If", kind: "full", photo: "ac-chat-bot", cap: "If your AI says it," },
