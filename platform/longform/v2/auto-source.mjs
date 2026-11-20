@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../.."), [jobsFile, chDir] = process.argv.slice(2);
-const jobs = JSON.parse(readFileSync(jobsFile, "utf8")), DIR = join(ROOT, "src/skills/remotion-render/public/lf2", chDir), MIN = 7, N = 6, MODEL = "gemini-3.5-flash";
+const jobs = JSON.parse(readFileSync(jobsFile, "utf8")), DIR = join(ROOT, "src/skills/remotion-render/public/lf2", chDir), MIN = 7, N = 6, MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"];
 mkdirSync(DIR, { recursive: true }); const attP = join(DIR, "ATTRIBUTIONS.json"), att = existsSync(attP) ? JSON.parse(readFileSync(attP, "utf8")) : {};
 const KEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
 if (!KEYS.length) { console.error("no GEMINI key"); process.exit(2); }
@@ -18,7 +18,7 @@ async function score(buf, desc) {
   const prompt = `Rate this picture 0-10 for use in a documentary video as a literal illustration of: "${desc}". 10 = clearly exactly that (the named person looks like a portrait of them, the place is recognisable), sharp, no big text or watermark.
 0-3 = unrelated, a different person/place, a joke, a costume, or confusing. Reply JSON {"score": number, "depicts": "<8 words>"}.`;
   for (let pass = 0; pass < 3; pass++) {
-    for (const key of KEYS) {
+    for (const MODEL of MODELS) for (const key of KEYS) {
       try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
           body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: "image/jpeg", data: buf.toString("base64") } }] }], generationConfig: { responseMimeType: "application/json", temperature: 0 } }) });
