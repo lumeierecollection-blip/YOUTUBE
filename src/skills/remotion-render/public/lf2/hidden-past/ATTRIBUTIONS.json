@@ -1322,5 +1322,43 @@
   "file": "hs-woolmer-morning.jpg",
   "credit_line": "Alfred Woolmer, Public domain, via Wikimedia Commons",
   "authenticity": "authentic"
+ },
+ "gb-franco-1950": {
+  "id": "gb-franco-1950",
+  "description": "Fotograf\u00eda del general Franco con la Laureada de San Fernando.",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Francisco_Franco_1950.jpg",
+  "licence": "CC0",
+  "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Unknown author Unknown author",
+  "original_credit": "Biblioteca Virtual de Defensa: RETRATO FOTOGR\u00c1FICO DEL GRAL. FRANCISCO FRANCO BAHAMONDE (MUE-120370)",
+  "date_taken": "1950",
+  "retrieved": "2026-11-20",
+  "claim": "Francisco Franco, Spanish head of state 1939-1975 (thumbnail subject, Gibraltar)",
+  "authenticity": "authentic",
+  "size_px": "1929x2641",
+  "credit_line": "Unknown author Unknown author, CC0, via Wikimedia Commons",
+  "bytes": 1096827,
+  "file": "gb-franco-1950.jpg"
+ },
+ "gb-franco-retrato": {
+  "id": "gb-franco-retrato",
+  "description": "Portrait of Francisco Franco",
+  "role": "reference clone 18 Nov 2026",
+  "source": "Wikimedia Commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:RETRATO_DEL_GRAL._FRANCISCO_FRANCO_BAHAMONDE.jpg",
+  "licence": "CC0",
+  "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Unknown author Unknown author",
+  "original_credit": "Biblioteca Virtual de Defensa: RETRATO DEL GRAL. FRANCISCO FRANCO BAHAMONDE (MUE-120973)",
+  "date_taken": "Unknown date, appears to be 1940s based on other photos",
+  "retrieved": "2026-11-20",
+  "claim": "Francisco Franco, Spanish head of state 1939-1975 (thumbnail subject, Gibraltar)",
+  "authenticity": "authentic",
+  "size_px": "1949x2693",
+  "credit_line": "Unknown author Unknown author, CC0, via Wikimedia Commons",
+  "bytes": 2578841,
+  "file": "gb-franco-retrato.jpg"
  }
 }

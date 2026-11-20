@@ -1,0 +1,80 @@
+{{Short description|none}}
+{{Use British English|date=June 2025}}
+{{Use dmy dates|date=June 2025}}
+{{infobox referendum
+|date={{start date|1967|09|10|df=y}}
+|country=Gibraltar
+|flag_year=ensign1939
+|title={{blockquote|"'''A)''' To pass under '''SPANISH''' sovereignty in accordance with the terms proposed by the '''SPANISH GOVERNMENT''' to the Government of the United Kingdom on 18th May, 1966 (which terms are set out in the Schedule to the Gibraltar (Referendum) Order 1967).}}{{blockquote|'''B)''' Voluntarily to retain their link with the '''UNITED KINGDOM''' with democratic local institutions and with the '''UNITED KINGDOM''' retaining its present responsibilities.'''"'''}}
+|yes_text=Spain
+|no_text=United Kingdom
+|yes=44
+|no=12,138
+|invalid=55
+|electorate=12,672
+|outcome=[[Gibraltar Constitution Order 1969]]|next_year=2002|next_referendum=2002 Gibraltar sovereignty referendum}}
+{{Politics of Gibraltar}}
+{{History of Gibraltar}}
+The '''Gibraltar sovereignty referendum of 1967''' was held on 10 September 1967, in which [[Gibraltarian people|Gibraltarian]] citizens were asked whether they wished to pass under Spanish sovereignty, with Gibraltarians keeping their [[British citizenship]] and a special status for Gibraltar within Spain; or remain under British sovereignty, with its own [[self-government|self-governing]] institutions.<ref>{{cite book |first=Joseph |last=Garcia |author-link=Joseph Garcia (Gibraltarian politician) |year=1994 |title=Gibraltar – The Making of a People |publisher=Medsun |location=Gibraltar}}</ref>
+
+==Overview==
+Further to [[:s:UN General Assembly Resolution 2070|resolution 2070]] of the [[United Nations General Assembly]] that was approved on 16 December 1965, the governments of Spain and the United Kingdom started talks on Gibraltar in 1966. On 18 May 1966, the [[Ministry of Foreign Affairs and Cooperation (Spain)|Spanish Minister of Foreign Affairs]], [[Fernando Castiella]] made a formal proposal to Britain comprising three clauses:<ref>{{cite book | author = George Hills | author-link = George Hills (historian) | year=1974 |title=Rock of Contention. A History of Gibraltar |publisher=Robert Hale |location=London|isbn=0-7091-4352-4 | pages=456}}</ref><ref>{{cite book | title=Gibraltar talks with Spain (May–October 1966). Presented to Parliament by the Secretary of State for Foreign Affairs by Command of Her Majesty | author=United Kingdom Secretary of State for Foreign Affairs | publisher=Her Majesty's Stationery Office | year=1966 | location=London | pages=36}}</ref>
+
+# The cancellation of the [[Treaty of Utrecht]] and the subsequent return of Gibraltar to Spain.
+# The presence of the British in the [[Royal Navy]] base in Gibraltar, its use being subject to a specific Anglo-Spanish agreement.
+# A "Personal Statute" for Gibraltarians, under United Nations guarantee, protecting their cultural, social and economic interest in Gibraltar or anywhere else in Spain, including their British nationality. "(An) appropriate [..] administrative formula" should also be agreed on.
+
+The options presented to Gibraltarians in a referendum were:<ref>Antonio Cassese (1998) [https://archive.org/details/selfdeterminatio00anto Self-Determination of Peoples: A Legal Reappraisal] Cambridge University Press, p. 208</ref>
+
+#To pass under Spanish sovereignty in accordance with the terms proposed by the Spanish Government; or
+#Retain their link with Britain, with democratic local institutions. Britain retaining its present responsibilities.
+
+==Result==
+{{referendum results
+| caption = Gibraltar sovereignty referendum, 1967
+| o1votes = 44
+| valid = 12182
+| o2votes = 12138
+| electorate     = 12672
+| invalid        = 55
+| option1        = Spanish sovereignty
+| option2        = '''British sovereignty'''
+}}
+
+==Aftermath==
+A new [[Gibraltar Constitution Order 1969|constitution]] was passed in 1969. [[Gibraltar National Day]] has been celebrated annually on 10 September since 1992 to commemorate Gibraltar's first sovereignty referendum of 1967.
+
+In 1969, the Spanish government closed the border between Spain and Gibraltar, cutting off all contacts and severely restricting movement. The border was not fully reopened until February 1985.
+
+The Special Committee on Decolonization was informed in advance of the referendum and invited to observe.<ref>{{cite book|author=George Hills|title=Rock of contention: a history of Gibraltar|url=https://books.google.com/books?id=KEFpAAAAMAAJ|access-date=7 February 2011|year=1974|publisher=Hale|ref=Hills1974|page=464|isbn=9780709143529 }}</ref> The invitation was declined and instead the [[United Nations General Assembly|UN General Assembly]] passed [[wikisource:United Nations General Assembly Resolution 2353|Resolution 2353]], which requested that the United Kingdom enter negotiations with Spain (then under the [[Spanish State|dictatorship]] of [[General Franco]]) and criticised the United Kingdom for holding a referendum. Resolution 2353 (XXII) was supported by seventy-three countries (mainly Latin American, [[Arab states|Arab]], African and Eastern European countries),<ref name="Jackson pp. 314">{{cite book|author=William Godfrey Fothergill Jackson|title=The Rock of the Gibraltarians: A History of Gibraltar|url=https://books.google.com/books?id=zmKTPwAACAAJ|access-date=4 February 2011|year=1990|publisher=Gibraltar Books|isbn=9780948466144|ref=Jackson_1990|page=314}}</ref> rejected by nineteen (United Kingdom and the countries of the [[Commonwealth of Nations]]), while twenty-seven countries abstained (Western Europe and the United States).
+
+==Gallery==
+{{Gallery
+|title=Related images
+|width=300
+|align=center
+|footer= 
+|File:Devil's Gap Road.jpg|[[Devil's Gap Road]] in Gibraltar's Upper Town. The steps have been painted with the [[Union Flag]] ever since the referendum
+|File:Gibraltar referendum Nov 1967.jpg|A car painted to celebrate the results of the referendum
+|File:Referendum Gate.jpg|Referendum Gate at Southport Gates in [[Charles V Wall]], Gibraltar. Named to commemorate the referendum
+}}
+
+==See also==
+* [[2002 Gibraltar sovereignty referendum]]
+
+==References==
+{{Reflist}}
+
+==See also==
+* [[Gibraltar Constitution Order 1969]]
+* [[History of Gibraltar]]
+
+{{Gibraltarian elections}}
+{{Gibraltar topics}}
+
+[[Category:1967 elections in Gibraltar|Sovereignty referendum]]
+[[Category:1967 referendums|Gibraltar sovereignty referendum]]
+[[Category:Referendums in Gibraltar]]
+[[Category:Sovereignty referendums]]
+[[Category:September 1967 in Europe]]
+[[Category:Spain–United Kingdom relations]]

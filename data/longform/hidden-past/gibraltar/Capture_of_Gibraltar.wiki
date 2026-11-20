@@ -1,0 +1,262 @@
+{{Short description|1704 capture by the Anglo-Dutch fleet}}
+{{Use dmy dates|date=February 2026}}
+{{Infobox military conflict
+|conflict    = Capture of Gibraltar
+|image       = Gibraltar 1704.jpg
+|caption     = Engraving of the battle
+|part_of     = the [[War of the Spanish Succession]]
+|date        = 1–4 August 1704{{refn|group=lower-alpha|'''All dates''' in the article are in the [[Gregorian calendar]] (unless otherwise stated). The [[Julian calendar]] as used in England after 1700 differed by eleven days. Thus, the main attack on Gibraltar began on 3 August (Gregorian calendar) or 23 July (Julian calendar). In this article (O.S) is used to [[annotate]] Julian dates with the year adjusted to 1 January. See the article [[Old Style and New Style dates]] for a more detailed explanation of the dating issues and conventions.}}
+|location    = [[Gibraltar]]
+|coordinates = {{Coord|36.1397|-5.3539|region:GI_type:event|display=title,inline}}
+|result      = Anglo-Dutch victory
+|combatant2  = {{flagdeco|Spain|1701}} [[Enlightenment in Spain|Bourbon Spain]]
+|combatant1  = {{flagcountry|Kingdom of England}}<br />{{flagcountry|Dutch Republic}}{{Sfn|Francis,|1975|p=115}}<ref>Kramer, Johannes (1986). ''English and Spanish in Gibraltar''. Buske Verlag, p.10, note 9. {{ISBN|3-87118-815-8}}</ref>
+|commander2  = {{flagdeco|Spain|1701|naval}} [[Diego de Salinas]]{{surrendered}}
+|commander1  = {{flagdeco|Kingdom of England|naval}} [[George Rooke]]<br />{{flagdeco|Kingdom of England|naval}} [[George Byng, 1st Viscount Torrington|George Byng]]<br />[[Prince George of Hesse-Darmstadt]]
+|strength2   = 430{{Sfn|Francis,|1975|p=104}}{{refn|group=lower-alpha|'''Francis p. 114:''' Gibraltar garrison held 80 men. Militia and inhabitants supplied another 350. (Sources vary slightly)}}
+|strength1   = 2,000<br />63 warships<ref>22 ships of the line(Byng's squadron, 16 English and 6 Dutch) took part in the bombardment.</ref>{{Sfn|Trevelyan (Vol. 1),|1948|p=410}}
+|casualties2 = 420 killed<br>10 severely wounded{{citation needed|date=August 2024}}
+|casualties1 = 60 killed{{Sfn|Trevelyan (Vol. 1),|1948|p=414}}<br />200 wounded{{Sfn|Trevelyan (Vol. 1),|1948|p=414}}{{Refn|group=lower-alpha|'''Trevelyan (Vol. 1), p. 114:''' Almost all these casualties were taken when the fort near the New Mole blew up.}}
+|campaignbox = {{Campaignbox War of the Spanish Succession}}
+}}
+{{History of Gibraltar}}
+
+The '''capture of Gibraltar''' by Anglo-Dutch forces of the [[Grand Alliance (League of Augsburg)|Grand Alliance]] occurred between 1 and 4 August 1704 during the [[War of the Spanish Succession]]. (''see All dates'' in the annotations) Since the beginning of the war the Alliance had been looking for a harbour in the [[Iberian Peninsula]] to control the [[Strait of Gibraltar]] and facilitate naval operations against the French fleet in the western [[Mediterranean Sea]]. An [[Battle of Cádiz (1702)|attempt to seize Cádiz]] had ended in failure in September 1702, but following the Alliance fleet's [[Battle of Vigo Bay|successful raid in Vigo Bay]] in October that year, the combined fleets of the "Maritime Powers", the Netherlands and England, had emerged as the dominant naval force in the region. This strength helped persuade [[List of Portuguese monarchs|King]] [[Peter&nbsp;II of Portugal]] to sever his alliance with [[Early Modern France|France]] and [[House of Bourbon|Bourbon]]-controlled Spain, and ally himself with the Grand Alliance in 1703 as the Alliance fleets could campaign in the Mediterranean using access to the port of [[Lisbon]] and conduct operations in support of the [[History of Austria|Austrian]] [[House of Habsburg|Habsburg]] candidate to the [[List of Spanish monarchs|Spanish throne]], the [[Charles VI, Holy Roman Emperor|Archduke Charles]], known to his supporters as {{nowrap|Charles III}} of Spain.
+
+[[Prince George of Hesse-Darmstadt]] represented the Habsburg cause in the region. In May 1704 the prince and admiral [[George Rooke]], commander of the main Grand Alliance fleet, [[Landing at Barcelona (1704)|failed to take Barcelona]] in the name of {{nowrap|"Charles III";}} Rooke subsequently evaded pressure from his allies to make another attempt on Cádiz. In order to compensate for their lack of success the Alliance commanders resolved to capture [[Gibraltar]], a small town on the southern Spanish coast. Following a heavy bombardment an Anglo-Dutch landing force comprising both marines and sailors stormed Gibraltar. The [[Governor of Gibraltar|governor]], [[Diego de Salinas]], [[s:Terms of surrender of the Spanish authorities of Gibraltar in 1704|agreed to surrender Gibraltar]] and its small garrison on 4 August. Three days later Prince George entered the town with Austrian and Spanish [[Habsburg]] troops in the name of {{nowrap|Charles III}} of Spain. The Grand Alliance failed in its objective of replacing [[Philip V of Spain|Philip&nbsp;V]] with {{nowrap|Charles III}} as King of Spain, but in the [[Treaty of Utrecht|peace negotiations]] Gibraltar was ceded to Britain.
+
+== Background ==
+{{See also|Battle of Cádiz (1702)}}
+
+At the start of the [[War of the Spanish Succession]], Portugal was nominally an ally of the [[House of Bourbon|Bourbons]]: France under [[Louis XIV]], and Spain under his grandson, [[Philip V of Spain|Philip V]]. Although not a belligerent, Portugal's harbours were closed to the enemies of the Bourbon powers – principally the vessels of England and the Dutch Republic. However, following the Anglo-Dutch naval victory at [[Battle of Vigo Bay|Vigo Bay]] in 1702 the balance of naval forces had swung in favour of the [[Grand Alliance (League of Augsburg)|Grand Alliance]]. Having now the ability to cut off Portugal's food supplies and trade (particularly gold from [[Brazil]]) it was not hard for the Allied diplomats to induce King [[Peter II of Portugal|Peter&nbsp;II]] to sign the [[Methuen Treaty|Methuen Treaties]] of May 1703 and join the Alliance.<ref name="bromley418">Bromley: ''The New Cambridge Modern History VI: The Rise of Great Britain and Russia 1688–1725,'' 418</ref>
+
+Once {{nowrap|Peter II}} had committed himself to war, the Alliance fleets gained access to Portugal's harbours, in particular the port of [[Lisbon]]. In return for his allegiance {{nowrap|Peter II}} had demanded military and financial aid and territorial concessions in Spain; he had also asked that the Alliance send to [[Lisbon]] [[Leopold I, Holy Roman Emperor|Emperor Leopold&nbsp;I]]'s younger son, [[Charles VI, Holy Roman Emperor|Charles]] – the Alliance's [[House of Habsburg|Habsburg]] candidate to the [[Spanish Empire|Spanish]] throne – to demonstrate the earnestness of their support.<ref name="bromley418"/> Known to his supporters as {{nowrap|Charles III}} of Spain, the young pretender arrived in Lisbon – via [[London]] – with [[George Rooke]]'s fleet on 7 March 1704, amid great celebrations.<ref name=kamen33>Kamen: ''{{nowrap|Philip V}} of Spain: The King who Reigned Twice,'' 33</ref>
+
+Apart from the failed Grand Alliance  [[Battle of Cádiz (1702)|attempt to take Cádiz]] in 1702, and the subsequent attack on the Spanish treasure fleet in Vigo Bay, the war had thus far been limited to the [[Low Countries]] and Italy. With Portugal's change of allegiance, however, the war moved towards Spain. In May 1704 the court at Lisbon received news that French and Spanish troops had crossed the frontier into Portugal. This army of approximately 26,000 men under {{nowrap|Philip V}} and the [[James FitzJames, 1st Duke of Berwick|Duke of Berwick]] scored several victories on the border: Salvaterra fell on 8 May, Penha Garcia on 11 May, {{nowrap|Philip V}} personally oversaw the fall of [[Castelo Branco, Portugal|Castelo Branco]] on 23 May, and [[Antonio Octavio Tserclaes de Tilly|T'Serclaes]] captured [[Portalegre, Portugal|Portalegre]] on 8 June.<ref>Lynn: ''The Wars of {{nowrap|Louis XIV:}} 1667–1714,'' 295–96</ref> But without supply for their forces, the coming summer heat made it impossible for them to continue with the campaign, and {{nowrap|Philip V}} returned to [[Madrid]] on 16 July to a hero's welcome. However, the heat did not affect the war at sea where the Alliance was in a position of strength.<ref>Kamen: ''{{nowrap|Philip V}} of Spain: The King who Reigned Twice,'' 38</ref>
+
+==Prelude==
+[[File:George, Landgrave of Hesse.jpg|thumb|upright|[[George of Hesse-Darmstadt]], the Austrian representative in the [[Iberian Peninsula]] and the nominal commander of the Anglo-Dutch forces]]
+
+Using Lisbon as an improvised forward base Admiral Rooke's Anglo-Dutch fleet ventured into the [[Mediterranean Sea]] in May 1704. After seeing the [[Levant Company|Levant trading fleet]] safely through the [[Strait of Gibraltar]] Rooke headed towards [[Nice]] to put himself in touch with [[Victor Amadeus II]], Duke of Savoy. The Grand Alliance had planned for a naval attack upon the French base at [[Toulon]] in conjunction with the Savoyard army and [[Camisard|the rebels]] of the [[Cévennes]]; but with Amadeus busy defending his capital [[Turin]] from French forces, the Toulon expedition was abandoned and Rooke sailed for the [[Catalonia|Catalan]] capital, [[Barcelona]].{{Sfn|Trevelyan (Vol. 1),|1948|p=405}}
+
+Accompanying Rooke was [[Prince George of Hesse-Darmstadt]] who had enjoyed popularity amongst the Catalans as their governor at the end of the [[Nine Years' War]]. The Prince was the great exponent of the Barcelona plan; he had been in touch with the dissidents within Catalonia and counted on the appearance of the fleet to encourage a rising in favour of {{nowrap|'Charles III'.}}{{Sfn|Francis,|1975|p=104}} On 30 May, under cover of the ships' guns, Prince George landed with 1,200 English and 400 Dutch marines; but the governor of Barcelona, Don [[Francisco de Velasco y Tovar, Conde de Melgar|Francisco de Velasco]], had managed to keep the city's disaffected elements quiet and {{nowrap|Philip V's}} partisans on the alert. Moreover, the dissidents were incensed by the size of the Alliance force and had expected the personal appearance of {{nowrap|'Charles III'.}}<ref>Stanhope: ''History of the War of the Succession in Spain,'' 97. Velasco had been governor of Catalonia in 1697 at the time of the French siege, and had lately been reappointed.</ref> Ultimatums for Velesco to surrender on pain of bombardment were ignored, and the plans for an insurrection from within the city's walls failed to materialize. Rooke, fearing an attack from a French squadron, was impatient for departure. Prince George could do little more than order his local followers – a thousand in all – to disperse to their homes. The marines embarked on 1 June without loss.{{Sfn|Francis,|1975|p=107}}
+
+Meanwhile, the [[Louis Alexandre, Count of Toulouse|comte de Toulouse]], one of  [[Louis XIV]]'s illegitimate sons, was sailing towards the Straits with the fleet from [[Brest, France|Brest]]. News from Lisbon of the French manoeuvres reached Rooke on 5 June. Determined to prevent the junction of the Toulon and Brest fleets Rooke decided to risk a battle. However, owing to the foul bottoms of the Anglo-Dutch ships the swifter French fleet escaped Rooke's pursuit and arrived safely in Toulon; thenceforth, Toulouse became the commander of the enlarged French fleet, now known as the Grand Fleet of France. Rooke could not venture within range of the Toulon forts nor risk attack from a superior force so far from any port of refuge.  He therefore turned back towards the Straits where the arrival of an English squadron under [[Cloudesley Shovell]] had put the Allies on a numerical parity with the French.{{Sfn|Trevelyan (Vol. 1),|1948|p=406}}
+
+Rooke met Shovell on 27 June off [[Lagos, Portugal|Lagos]]. {{nowrap|Peter II}} and {{nowrap|'Charles III'}} sent word from Lisbon that they now wished another attempt to be made on [[Cádiz]].<ref name=fevre68>Le Fevre & Harding: ''Precursors of Nelson: British Admirals of the Eighteenth Century,'' 68</ref> Methuen believed the place to be ungarrisoned and easy to take, but the admirals in the fleet remained sceptical,{{Sfn|Francis,|1975|p=109}}{{refn|group=lower-alpha|'''Trevelyan (Vol. 1), p. 109:''' A naval reconnaissance confirmed Rooke's opinion about the supposed weakness of the port's defences.}} especially when considering that they were not on this occasion carrying a force comparable to the failed attempt there two years earlier. Cádiz, however, was not the only potential target. As the Alliance fleet lay off [[Tétouan|Tetuan]] on the [[Barbary Coast]], a council of war aboard Rooke's flagship discussed the need to please the two kings and save their own reputations. On 28 July the Alliance commanders considered the proposal of Prince George, now commander-in-chief of Alliance forces in the peninsula, for an attack on Gibraltar.{{Sfn|Francis,|1975|p=109}}
+
+The idea of attacking Gibraltar was old and widely spread. The 'Rock' had caught the attention of [[Oliver Cromwell]], and later [[William III of England|William III's]] and [[Anne, Queen of Great Britain|Queen Anne's]] ministers had marked it for England. The [[Moors]] had previously shown interest in the Rock and fortified it with a castle whose ruins still remained. Emperor [[Charles V, Holy Roman Emperor|Charles V]] had added many other works; but its immediate operational benefit was negligible.<ref>Stanhope: ''History of the War of the Succession in Spain,'' 98</ref> Gibraltar had little trade and its anchorage was unprotected – there was no question, at this time, of basing a fleet there.<ref>Roger: ''The Command of the Ocean: A Naval History of Britain 1649–1815,'' 169</ref> Gibraltar was finally selected for its strategic value, weak garrison, and to encourage the rejection of [[Philip V of Spain|Philip V]] (the Bourbon Claimant) in favour of [[Charles VI, Holy Roman Emperor|Charles III]] (the Habsburg claimant).{{Sfn|Jackson,|1987|p=94}}{{Refn|group=lower-alpha|'''Jackson p. 94:''' Consideration was given to what other project might be undertaken by Rooke's powerful fleet of fifty-two English and ten Dutch ships of the line.  In the debate, three reasons were given for selecting Gibraltar as the target: the place was indifferently garrisoned; its possession would be of great value during the war; and its capture would encourage the Spaniards in southern Spain to declare in favour of the Habsburgs.}}
+
+==Battle==
+[[File:Capture of Gibraltar 1704.png|thumb|250px|Attack on Gibraltar 1–3 August 1704. Prince George of Hesse entered the town on 6 August in the name of {{nowrap|'Charles III'}} but effective control remained with the English.<ref>Kamen: ''{{nowrap|Philip V}} of Spain: The King who Reigned Twice.'' 39</ref>]]
+
+The Grand Alliance fleet crossed from Tetuan on 30 July; by 1 August Rooke, flying his flag in the Second Rate ''[[HMS Royal Katherine (1664)|Royal Katherine]]'', stood at the entrance to the bay while Admiral [[George Byng, 1st Viscount Torrington|George Byng]]'s squadron (16 English under Byng and six Dutch ships under Rear Admiral Paulus van der Dussen) anchored inside, ranging themselves within the line of defences from the [[North Mole, Gibraltar Harbour|Old]] to the [[South Mole, Gibraltar Harbour|New Mole]]. The council of war had decided that Prince George would land with 1,800 English and Dutch marines on the isthmus under cover of a naval bombardment.<ref name=fevre68/> The marines landed at the head of the bay, and met with no resistance except for a small body of cavalry. They cut off Gibraltar from the mainland while the enemy on the nearby hills were dispersed by fire from two ships sent to the east of the rock.{{Sfn|Francis,|1975|p=110}}
+
+Prince George summoned the governor, Don [[Diego de Salinas]], to surrender in the name of {{nowrap|Charles III}}. He refused, and the garrison pledged its allegiance to {{nowrap|Philip V}}. Although the governor was determined to resist he knew he did not have the means to do so: his earlier requests for reinforcements and military stores had always been in vain.{{Sfn|Trevelyan (Vol. 1),|1948|p=410}} By his own account, Don Diego had 'no more than fifty-six men of whom there were not thirty in service' and could count on a few hundred civilian militia 'of such bad quality that before they [the Allied fleet] arrived they began to run away.' In addition, he had 100 cannon of various kinds but few were in a state to be fired, and fewer still had gunners to fire them.{{Sfn|Trevelyan (Vol. 1),|1948|p=410}}
+
+2 August passed in preliminaries. Don Diego, who in Trevelyan's words was prepared to 'die like a gentleman', sent back his defiant reply to the summons to surrender.{{Sfn|Trevelyan (Vol. 1),|1948|p=410}} Byng's squadron [[Warping (sailing)|warped]] themselves in along the sea front as close as the depth permitted and [[William Jumper|Captain Jumper]] brought the ''[[HMS Lenox (1678)|Lenox]]'' within actual musket range of the New Mole. These operations were carried out in a dead calm, and were not impeded by a few shots from the Spanish batteries. At midnight Captain [[Edward Whitaker]] of the ''[[HMS Dorsetshire (1694)|Dorsetshire]]'' led a party against a French privateer anchored at the [[North Mole, Gibraltar Harbour|Old Mole]] which had been firing at the marines on the isthmus.{{Sfn|Francis,|1975|p=110}}
+
+[[File:George Rooke.jpg|thumb|left|170px|Admiral George Rooke (1650–1709) by [[Michael Dahl]]]]
+
+About 05:00 the following day, 3 August, Byng's squadron of 22 ships fired in earnest on the crumbling walls and forts.{{Sfn|Trevelyan (Vol. 1),|1948|p=411}} Tens of thousands of shells were fired in the attack. The actual damage done was small in proportion to the expenditure of the shot, but in view of the possible approach of the French fleet the job had to be done quickly or not at all.{{Sfn|Francis,|1975|p=110}} Captain Whitaker acted as Byng's aide-de-camp, carrying his instructions from ship to ship, including the final order to cease firing six hours after they had begun.{{Sfn|Trevelyan (Vol. 1),|1948|p=411}} As the smoke lifted Captain Jumper at the southern end of the line could discern the New Mole and the fort that commanded its abutment on the land. The defenders of the fort appeared to have fled, and Whitaker and Jumper agreed that a landing could be effected there unopposed. Rooke granted the request to attack, and a flotilla of row-boats raced for the New Mole.{{Sfn|Trevelyan (Vol. 1),|1948|p=411}}
+
+===Landing===
+As the Grand Alliance prepared for their assault the priests, women, and children who had taken refuge at the chapel of Europa Point at southern end of the peninsula, began to return to their homes in the town. An English ship fired a warning shot in front of the civilian column forcing them back out of harm's way, but the shot was mistaken by the rest of the fleet as a signal to resume fire, and the bombardment began again. Under cover of the guns the landing party did its work.{{Sfn|Trevelyan (Vol. 1),|1948|p=411}}
+[[File:Capture of Gibraltar.png|thumb|Landing at Gibraltar by Anglo-Dutch forces in 1704]]
+The foremost sailors clambered into the breached and undefended fort at the New Mole; however, by accident or design the magazine at the fort blew up. Some of the landing party carried lighted gun-matches and, according to [[G. M. Trevelyan|Trevelyan]], had forgotten the possibility of a powder-magazine. Whatever the cause of the explosion the Alliance suffered between 100 and 200 casualties.<ref>Stanhope puts the figure at 40 dead and 60 wounded: Trevelyan states 200 casualties: Francis states that 40 sailors were killed and 'a few Spaniards'.</ref> A momentary panic ensued, for the survivors suspected an enemy-laid trap had caused the disaster. There was a rush for the boats, but at this critical moment Captain Whitaker arrived with reinforcements.{{Sfn|Francis,|1975|p=110}} A battalion of more than 300 Catalans was the spearhead of the landing, to whom one of Gibraltar's main spots, [[Catalan Bay]], bears its name.<ref>Bronchud, Miguel (2007). ''The Secret Castle: The Key to Good and Evil''. DigitalPulp Publishing.com, p.112. {{ISBN|0-9763083-9-8}}</ref> Within a few minutes the attackers had rallied and proceeded north along the deserted ramparts of the seafront towards Gibraltar. On arriving near {{nowrap|Charles V's}} southern wall of the town, Whitaker halted the sailors and hoisted the [[Union Flag]] in a bastion on the shore.{{Sfn|Trevelyan (Vol. 1),|1948|p=412}}{{refn|group=lower-alpha|'''Trevelyan (Vol. 1), p. 412:''' The Union Flag had been in frequent use since the Union of the Crowns of England and Scotland in 1603.}}
+
+Byng now came ashore with several hundred more seamen. Thus was the town invested by Byng in the south, as well as on its stronger northern side where the marines had landed with Prince George.  Meanwhile, the party of the women and children stranded at Europa Point had been captured by English sailors. Rooke had given orders that the prisoners were not to be ill-treated, but the desire to recover these women was a further inducement for the defenders to end their resistance.{{Sfn|Francis,|1975|p=111}} On 4 August, seeing all was lost, Don Diego agreed to terms that guaranteed the lives and property of those committed to his care.<ref>{{cite book |chapter-url=http://schools.gibraltarheritagetrust.org.gi/siege/chapter-01.html |title=The Great Siege Gibraltar |chapter=Why is Gibraltar British? |publisher=Gibraltar Heritage Trust |access-date=2 August 2018 }}</ref> Under the capitulation French subjects were taken prisoner, while any Spaniard who would take an oath of allegiance to {{nowrap|'Charles III'}} as King of Spain could remain in the town with religion and property guaranteed.
+
+==Aftermath==
+[[File:Rooke 1704.jpg|thumb|170px|Statue of Sir George Rooke, erected in Gibraltar in 2004 to celebrate 300 years of British rule]]
+
+Orders were issued to respect civilians as the Grand Alliance hoped to win over the population to their cause. Officers tried to maintain control but (as had happened two years previously in the raid on Cádiz) discipline broke down and the men ran amok.{{Sfn|Hills,|1974|p=165}}{{Refn|group=lower-alpha|'''Hills p. 165:''' Ormonde issued a proclamation:{{blockquote|{{space|3}}They were come not to invade or conquer any part of Spain or to make any acquisitions for Her Majesty Queen Anne {{nowrap|...}} but rather to deliver Spaniards from the mean subjection into which a small and corrupt party of men have brought them by delivering up that former glorious monarchy to the dominion of the perpetual enemies of it, the French.}}<br>He laid particular stress on the respect that was to be shown to priests and nuns: {{blockquote|{{space|3}}We have already ordered under pain of death of officers and soldiers under out command not to molest any person of what rank or quality so ever in the exercise of their religion in any manner whatsoever.}}}}{{Sfn|Francis,|1975|p=115}}{{Refn|group=lower-alpha|'''Francis p. 115:''' But some of the sailors, before they could be recalled to their ships broke loose in the town and plundered the inhabitants.}}{{Sfn|Garratt,|1939|p=44}}{{Sfn|Masefield,|1905|p=210}}{{Refn |group=lower-alpha|'''Garratt, p. 44 (quoting Masefield, p. 210):''' {{blockquote|One has but to read the books left to us by the sailors to realize the peculiar horror of the life between-decks. Cooped up there, like sardines in a tin, were several hundreds of men, gathered by force and kept together by brutality. A lower-deck was the home of every vice, every baseness and every misery.}} }} Groups of marauding soldiers began to sack the settlement, and all of the Catholic churches save one (the Parish Church of St. Mary the Crowned, now the [[Cathedral of St. Mary the Crowned|Cathedral]]) were pillaged or converted into military storehouses.{{Sfn|''Almoraima'' (Ballesta Gómez), Apr.|2007|pp=154–155}} Angered Spanish inhabitants undertook violent reprisals, with soldier and sailors being attacked and killed in the streets, and their bodies thrown into wells or cesspits.{{Sfn|Jackson,|1987|p=99}} After order was restored, despite the surrender agreement promising property and religious rights, most of the population left with the garrison on 7 August citing their loyalty to Philip.{{Sfn|Jackson,|1987|p=94}}{{Refn|group=lower-alpha|'''Jackson p. 94:''' Article V promised freedom of religion and full civil rights.}}{{cite book|author=Frederick Sayer|title=The history of Gibraltar and of its political relation to events in Europe|url=https://books.google.com/books?id=2e0uAAAAMAAJ|access-date=4 February 2011|year=1862|publisher=Saunders|page=115}}
+{{refn|group=lower-alpha|'''Sayer p. 115: "Letter of the Authorities to King Philip V".'''<br>{{blockquote|Sire,<br><br>{{space|3}}The loyalty with which this city has served all the preceding kings, as well as your Majesty, has ever been notorious to them. In this last event, not less than on other occasions, it has endeavoured to exhibit its fidelity at the price of lives and property, which many of the inhabitants have lost in the combat; and with great honour and pleasure did they sacrifice themselves in defence of your Majesty, who may rest well assured that we who have survived (for our misfortune), had we experienced a similar fate, would have died with glory, and would not now suffer the great grief and distress of seeing your Majesty, our lord and master, dispossessed of so loyal a city.
+
+{{space|3}}Subjects, but courageous as such, we will submit to no other government than that of your Catholic Majesty, in whose defence and service we shall pass the remainder of our lives; departing from this fortress, where, on account of the superior force of the enemy who attacked it, and the fatal chance of our not having any garrison for its defence, except a few poor and raw peasants, amounting to less than 300, we have not been able to resist the assault, as your Majesty must have already learnt from the governor or others.
+
+{{space|3}}Our just grief allows us to notice no other fact for the information of your Majesty, but that all the inhabitants, and each singly, fulfilled their duties in their several stations; and our governor and alcalde have worked with the greatest zeal and activity, without allowing the horrors of the incessant cannonading to deter them from their duties, to which they attended personally, encouraging all with great devotion.<br><br>May Divine Providence guard the royal person of your Majesty,<br><br>Gibraltar, 5 August ([[Gregorian calendar|N.S.]]), 1704.}} }}{{Sfn|Hills,|1974|p=175}}
+
+{{Refn|group=lower-alpha|'''Hills p. 175:''' "Great disorders", he found, "had been committed by the boats crews that came on shore and marines; but the General Officers took great care to prevent them, by continually patrolling with their sergeants, and sending them on board their ships and punishing the marines.}}<ref name="Andrews1958">{{cite book|author=Allen Andrews|title=Proud fortress; the fighting story of Gibraltar|url=https://books.google.com/books?id=ivmIo3qnG74C|access-date=7 April 2011|year=1958|publisher=Evans|page=35}}''a few of them hanged as rioters after the sacking.  One Englishman had to throw dice with a Dutchman to determine who should hang '''pour encourager les autres.'''  They stood under the gallows and diced on a drum.  The Englishman threw nine to the Dutchman's ten, and suffered execution before his mates.''</ref>  Several factors influenced the decision including the expectation of a counterattack{{Sfn|Francis,|1975|p=115}}{{Refn|group=lower-alpha|'''Francis p. 115:''' "{{nowrap|...}} plundered the inhabitants.  Partly on account of this, partly because they expected Gibraltar to be retaken soon, all the inhabitants except a very few {{nowrap|...}} chose to leave.}} and the violence{{Sfn|Jackson,|1987|pp=99–100}}{{Refn|group=lower-alpha|'''Jackson:''' Although Article V promised freedom or religion and full civil rights to all Spaniards who wished to stay in Habsburg Gibraltar, few decided to run the risk of remaining in the town. Fortresses changed hands quite frequently in the seventeenth and eighteenth centuries. The English hold on Gibraltar might be only temporary. When the fortunes of war changed, the Spanish citizens would be able to re-occupy their property and rebuild their lives. {{nowrap|...}} Hesse's and Rooke's senior officers did their utmost to impose discipline, but the inhabitants worst fears were confirmed: women were insulted and outraged; Roman Catholic churches and institutions were taken over as stores and for other military purposes {{nowrap|...}}; and the whole town suffered at the hands of the ship's crew and marines who came ashore. Many bloody reprisals were taken by inhabitants before they left, bodies of murdered Englishmen and Dutchmen being thrown down wells and cesspits. By the time discipline was fully restored, few of the inhabitants wished or dared to remain.}} during the capture, which ultimately proved disastrous for the Habsburg cause.{{Sfn|Francis,|1975|p=115}}{{Refn|group=lower-alpha|'''Francis p. 115:''' "So the damage was done and the chance of winning the adherence of the Andalusians was lost.}}  The subsequent siege failed to dislodge the Habsburg forces and the refugees settled around [[Algeciras]] and the hermitage of [[San Roque, Cádiz|San Roque]].{{Sfn|Jackson,|1987|p=94}}  The Alliance's conduct aroused anger in Spain against the 'heretics', and once again the chance of winning over Andalusians to the Imperial cause was lost. Prince George was the first to complain, which was resented by Byng who had led the fighting and who in turn blamed the Prince and his few Spanish or Catalan supporters.{{Sfn|Francis,|1975|p=115}} Rooke complained in a letter home that the Spaniards were so exasperated against the Alliance that 'they use the prisoners they take as barbarously as the Moors'.{{Sfn|Trevelyan (Vol. 1),|1948|p=414}}  Spain attempted to retake Gibraltar in [[Siege of Gibraltar (1727)|1727]] and most notably in [[Great Siege of Gibraltar|1779]], when it entered the [[American Revolutionary War]] on the [[Thirteen Colonies|American]] side as an [[Pacte de Famille#Later Franco-Spanish Pacts|ally]] of [[Early Modern France|France]].<ref>"Gibraltar." Microsoft [[Encarta]] 2006 [DVD]. [[Microsoft Corporation]], 2005.</ref>
+
+The capture of Gibraltar was recognised as a great achievement in Lisbon and by all the trading interests in the Mediterranean.{{Sfn|Francis,|1975|p=115}} A month after its capture Secretary of State Sir [[Charles Hedges]] described it as 'of great use to us [the English] for securing our trade and interrupting the enemy's'.{{Sfn|Trevelyan (Vol. 1),|1948|p=415}} With the English navy established on the Straits the piratical Moors of the Barbary Coast became reluctant to attack English merchant shipping, and allied themselves with Queen Anne.{{Sfn|Trevelyan (Vol. 1),|1948|p=415}} However, Gibraltar's immediate use as a port was limited for it could only take a few ships at a time, and ministers did not think they could keep it unless a garrison could be found for its security.{{Sfn|Francis,|1975|p=115}} John Methuen recommended an English garrison. This was supplied by the marines that had helped take the place, and by several companies of regular troops. Gibraltar was, therefore, held by English troops and at English cost – but it was in {{nowrap|'Charles III's'}} name. A year later the Austrian candidate wrote to Queen Anne about ''"Ma ville de Gibraltar"''. If he had succeeded in his attempt to ascend the throne in Madrid the difficulty of keeping Gibraltar for England would have been politically very great.{{Sfn|Trevelyan (Vol. 1),|1948|p=414}}
+
+The Alliance fleet returned to Tetuan to water. Before fresh orders came from Lisbon there was news of the approach of the French Grand Fleet under Toulouse. In an attempt by the French to retake Gibraltar, the one full-dress naval engagement of the war was fought [[Battle of Málaga (1704)|off Málaga]] on 24 August; afterwards, French and Spanish troops [[Siege of Gibraltar (1704)|battered]] at the land approaches, defended by a small garrison of sailors, soldiers, and marines.{{Sfn|Trevelyan (Vol. 1),|1948|p=415}}  In 1711, the British and French Governments started secret negotiations to end the war leading to the cession of Gibraltar to the British by the [[Treaty of Utrecht]] in 1713,{{Sfn|Jackson,|1987|p=113}} which remains a [[British overseas territories|British overseas territory]] to this day.
+
+==Order of battle==
+The Anglo-Dutch squadron tasked with attacking Gibraltar was made up of the following ships:{{sfnp|Clowes|1898|p=424}}
+{| class="wikitable"width=40%
+|-
+!style=|Ship
+!style=|Guns
+!style=|Commander
+!style=|Role
+|-
+|''Wapen van Vriesland''
+|64
+|Captain C. Middagten
+|rowspan=6|To attack the [[North Mole, Gibraltar Harbour|Old Mole]]
+|-
+|[[Dutch ship Wapen van Utrecht (1665)|''Wapen van Utrecht'']]
+|64
+|Captain Bolck
+|-
+|[[Dutch ship Veluwe (1688)|''Veluwe'']]
+|64
+|Rear-Admiral [[Paulus van der Dussen]]
+|-
+|''Æmelia''
+|66
+|Captain [[Cornelis Beeckman]]
+|-
+|[[Dutch ship Veere (1682)|''Veere'']]
+|60
+|Captain P. Schrijver
+|-
+|''Katwijk''
+|72
+|Captain J. C. Ockersse
+|-
+|[[HMS Monmouth (1667)|''Monmouth'']]
+|70
+|Captain [[John Baker (Royal Navy officer)|John Baker]]
+|rowspan=10|To attack the town and the south bastion
+|-
+|[[HMS Suffolk (1680)|''Suffolk'']]
+|70
+|Captain [[Robert Kirkton]]
+|-
+|[[HMS Essex (1679)|''Essex'']]
+|70
+|Captain [[John Hubbard (Royal Navy officer)|John Hubbard]]
+|-
+|[[HMS Ranelagh (1697)|''Ranelagh'']]
+|80
+|Rear-Admiral [[George Byng, 1st Viscount Torrington|George Byng]]<br />Captain [[John Cowe]]
+|-
+|[[HMS Grafton (1679)|''Grafton'']]
+|70
+|Captain [[Andrew Leake|Sir Andrew Leake]]
+|-
+|[[HMS Montague (1660)|''Montagu'']]
+|60
+|Captain [[William Clevland (1664–1734)|William Cleveland]]
+|-
+|[[HMS Eagle (1679)|''Eagle'']]
+|70
+|Captain [[Lord Archibald Hamilton]]
+|-
+|[[HMS Nottingham (1703)|''Nottingham'']]
+|60
+|Captain [[Samuel Whitaker]]
+|-
+|[[HMS Nassau (1699)|''Nassau'']]
+|70
+|Captain [[Francis Dove]]
+|-
+|[[HMS Swiftsure (1673)|''Swiftsure'']]
+|70
+|Captain [[Robert Wynn (Royal Navy officer)|Robert Wynn]]
+|-
+|[[HMS Berwick (1679)|''Berwick'']]
+|70
+|Captain [[Robert Fairfax (Royal Navy officer)|Robert Fairfax]]
+|rowspan=7|To attack the [[South Mole, Gibraltar Harbour|New Mole]]
+|-
+|[[HMS Monck (1660)|''Monck'']]
+|60
+|Captain [[James Mighels]]
+|-
+|[[HMS Burford (1679)|''Burford'']]
+|70
+|Captain [[Kerryll Roffey]]
+|-
+|[[HMS Kingston (1697)|''Kingston'']]
+|70
+|Captain [[Edward Acton (Royal Navy officer)|Edward Acton]]
+|-
+|[[HMS Lenox (1678)|''Lenox'']]
+|70
+|Captain [[William Jumper]]
+|-
+|[[HMS Yarmouth (1695)|''Yarmouth'']]
+|70
+|Captain [[Jasper Hicks]]
+|-
+|3x Dutch [[bomb vessel|bombs]]
+|
+|
+|}
+
+==See also==
+* [[History of Gibraltar]]
+
+== Bibliography ==
+=== Annotations ===
+{{Reflist|group=lower-alpha|30em}}
+
+=== Notes ===
+{{reflist|30em}}
+
+=== References ===
+{{refbegin|30em|indent=yes}}
+<!--A-->
+* {{cite book |title=Almoraima – Revista de Estudios Campogibraltareños |trans-title=Journal of Studies on the Campo de Gibraltar |type=journal |language=es |location=[[Algeciras, Cádiz]], Spain |publisher=Mancomunidad de Municipios del Campo de Gibraltar, Departamento de Cultura [Association of Municipalities of the [[Campo de Gibraltar]], Department of Culture, [[Government of Gibraltar]] }} {{ISSN|1133-5319}}.
+    <ol type="i" start="1">
+    <ol type="i" start="1">
+    <li>{{cite book |ref={{SfnRef|''Almoraima'' (Ballesta Gómez), Apr.|2007|pp=153–164}} |date=April 2007 |last1=Ballesta Gómez |first1=Juan Manuel |author1-link= |title="''Aproximación a los Gibraltareños de 1704"'' |trans-title=''An Examination of the Gibraltarians of 1704'' |url=http://www.mancomunidadcg.es/IECG/doc/revistas/Almoraima%2034.pdf |url-status=dead |series=Issue no. 34 |pages=153–164 |archive-url=https://web.archive.org/web/20090220061108/http://mancomunidadcg.es/IECG/doc/revistas/Almoraima%2034.pdf |archive-date=February 20, 2009 }} {{free access}} {{OCLC|806720803}} (article).</li></ol></ol>
+
+<!--B-->
+* Bromley, J. S. (ed.) (1971). ''The New Cambridge Modern History VI: The Rise of Great Britain and Russia 1688–1725.'' Cambridge University Press. {{ISBN|0-521-07524-6}}
+* {{cite book|last=Clowes|first=William Laird|author-link=William Laird Clowes|year=1898|title=The Royal Navy, a History from the Earliest Times to the Present|volume=2|location=London|publisher=Sampson Low, Marston and Company}}
+
+<!--F-->
+* {{cite book |ref={{Sfnref|Francis,|1975|p=}} |date=1975 |last1=Francis |first1=David |title=The First Peninsular War: 1702–1713 |url=https://archive.org/details/the-first-peninsular-war-1702-1713-by-david-francis/page/n3/mode/2up?&view=theater |location=London |publisher=[[Ernest Benn Limited]]. New York: [[St. Martin's Press]] |via=Internet Archive}} {{free access}} {{ISBN|0-5100-0205-6}}
+
+<!--G-->
+* {{cite book |ref={{SfnRef|Garratt,|1939|p=44}} |date=1939 |last1=Garratt |first1=Geoffrey Theodore (1888–1942) |author1-link=Geoffrey Garratt |title=Gibraltar and the Mediterranean |location=New York |publisher=[[Coward-McCann, Inc.]]}} {{LCCN|39012810}}, {{LCCN|39018337}}; {{OCLC|246249|show=all}}.
+    <ol type="i" start="1">
+    <ol type="i" start="1">
+    <li>{{cite book |date=1877 |title=''Via Internet Archive'' |url=https://archive.org/details/gibraltarmediter0000gtga_s0m7/page/n47/mode/2up?q=%22one+has+but+to+read+the+books%22&view=theater |url-access=registration }}</li></ol></ol>
+<div style="margin-left:7em">Re: Footnote 1. {{cite book |ref={{SfnRef|Masefield,|1905|p=210}} |date=1905 |last1=Masefield |first1=John |title=Sea Life in Nelson's Time. ''Chapter 9: "Mutinies"'' |location=London |publisher=[[Methuen & Co.]] |page=210 }} {{LCCN|09011722}}; {{OCLC|1444001|show=all}}.
+    <ol type="i" start="1">
+    <li>{{cite book |title=''Via Internet Archive'' |url=https://archive.org/details/sealifeinnelsons00maserich/page/210/mode/2up?q=%22One+has+but+to+read+the+books%22 }} {{free access}}</li></ol></div>
+
+<!--H-->
+* {{cite book |ref={{SfnRef|Hills,|1974|p=172}} |date=1974 |last1=Hills |first1=George [Albert Manuel] (1918–2002) |author1-link=George Hills (journalist) |title=Rock of Contention – A History of Gibraltar |location=London |publisher=[[Robert Hale (publishers)|Robert Hale]] |page=172}} {{LCCN|74168344}}; {{ISBN|978-0-7091-4352-9|0-7091-4352-4}}; {{OCLC|980516|show=all}}.
+
+<!--J-->
+* {{cite book |ref={{SfnRef|Jackson,|1987|p=94}} |date=1987 |last1=Jackson |first1=Sir William Godfrey Fothergill (1917–1999) |author1-link=William Jackson (British Army officer) |title=The Rock of the Gibraltarians: A History of Gibraltar|url=https://books.google.com/books?id=y0FpAAAAMAAJ|location=[[Madison, New Jersey]] |publisher=[[Fairleigh Dickinson University Press]] |page=94 |isbn=978-0-8386-3237-6 }} {{LCCN|84046113}}; [[Wikidata]] [[:d:Q21867658|Q21867658]]; {{ISBN|978-0-8386-3237-6|0-8386-3237-8}}; {{OCLC|13093190|show=all}}.
+
+<!--K-->
+* [[Henry Kamen|Kamen, Henry]] (2001). ''{{nowrap|Philip V}} of Spain: The King who Reigned Twice.'' Yale University Press. {{ISBN|0-300-08718-7}}
+
+<!--L-->
+* Le Fevre, Peter & Harding, Richard (eds.) (2000). ''Precursors of Nelson: British Admirals of the Eighteenth Century.'' Chatham Publishing. {{ISBN|1-86176-062-0}}
+* Lynn, John A (1999). ''The Wars of {{nowrap|Louis XIV:}} 1667–1714.'' Longman. {{ISBN|0-582-05629-2}}
+<!--R-->
+* Roger, N.A.M. (2006). ''The Command of the Ocean: A Naval History of Britain 1649–1815.'' Penguin {{ISBN|0-14-102690-1}}
+<!--S-->
+* [[Philip Stanhope, 5th Earl Stanhope|Stanhope, Philip]] (1836). ''History of the War of the Succession in Spain.'' London
+<!--T-->
+* {{cite book |date=1948 |orig-date=1030 |last1=Trevelyan |first1=George Otto (1838–1928) |author1-link=Sir George Trevelyan, 2nd Baronet |title=England Under Queen Anne: Blenheim |location=London |publisher=[[Longmans, Green & Co.]]}} {{LCCN|30023326}}, {{LCCN|59004192}}, {{LCCN|32007526}}.
+    <ol type="i" start="1">
+    <ol type="i" start="1">
+    <li>{{cite book |ref={{SfnRef|Trevelyan (Vol. 1),|1948|p=410}} |title=''1948 ed. Vol. 1'' |url=https://archive.org/details/in.ernet.dli.2015.80891/page/n7/mode/2up?&view=theater |url-access=registration |via=Internet Archive ([[Osmania University]])}}</li>
+    <li>{{cite book |ref={{SfnRef|Trevelyan (Vol. 2),|1948|p=410}} |title=''1948 ed. Vol. 2'' |url=https://archive.org/details/ramilliesunionwi0000geor/page/n7/mode/2up?&view=theater |url-access=registration |via=Internet Archive ([[St Annes-on-the-Sea Carnegie Library|Lancashire Library]])}}</li>
+    <li>{{cite book |ref={{SfnRef|Trevelyan (Vol. 3),|1948|p=410}} |title=''1948 ed. Vol. 3'' |url=https://archive.org/details/in.ernet.dli.2015.80888/page/n9/mode/2up?&view=theater |url-access=registration |via=Internet Archive ([[Osmania University]])}}</li></ol></ol>
+{{refend}}
+
+{{Wikisource|Terms of surrender of the Spanish authorities of Gibraltar in 1704}}
+{{Sieges of Gibraltar}}
+{{Gibraltar topics}}
+
+{{DEFAULTSORT:Gibraltar 1704, Capture of}}
+[[Category:1704 conflicts]]
+[[Category:1704 in Gibraltar]]
+[[Category:Sieges involving the Kingdom of England]]
+[[Category:Sieges involving Spain]]
+[[Category:Sieges involving the Dutch Republic]]
+[[Category:18th century in Spain]]
+[[Category:Battles of the War of the Spanish Succession]]
+[[Category:Sieges of Gibraltar|11th]]
