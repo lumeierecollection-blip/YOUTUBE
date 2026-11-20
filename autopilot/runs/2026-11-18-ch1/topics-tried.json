@@ -1,34 +1,22 @@
 {
   "tried": [
     {
-      "topic": "The Eradication of Smallpox",
-      "score": 74.5,
+      "topic": "The Occupation of Alcatraz Island by Native American Activists",
+      "score": 65.1,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 1 \"During the Cold War, rivals donated 180 million doses.\" — The term 'rivals' is not defined until sentence 3.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 3 \"But global smallpox eradication required massive, coordinated action between these two nuclear powers.\" — The 'two nuclear powers' are not explicitly"
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF does not answer the question the script opens (\"Why did they leave after only 4 hours?\"). The payoff must state the answer plainly, from the research; if the research does not hold the answer, rewrite the setup question into one the research DOES answer.\n  - CLARITY: sentence 4 \"But the 1868 Fort Laramie treaty backed their claim.\" — It is unclear what 'their claim' refers to or how a treaty from 1868 justifies storming a prison.. Re"
     },
     {
-      "topic": "The Somerton Man Mystery",
-      "score": 69.8,
-      "stage": "image-precheck",
-      "reason": "no freely licensed image of the actual subject"
-    },
-    {
-      "topic": "Yukio Mishima's Dramatic Coup Attempt and Ritual Suicide",
-      "score": 65.8,
+      "topic": "The 1967 First Human Heart Transplant by Christiaan Barnard",
+      "score": 63.5,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes: The final editor rejected the script. Failed: each_line_needs_the_last, no_repetition. The rehook ('But he brought 4 Tatenokai militia cadets to force a violent confrontation.') and setup ('On November 25, 1970, he invaded a military base. Why?') are slightly repetitive and out of chronological order, since the invasion happens before the details of the cadets. Fixing the script requires swapping the setup and rehook lines so the invasion introduces the e"
+      "reason": "script failed its gates after 10 passes:   - CLARITY: sentence 3 \"Why did his life depend on 26-year-old Denise Darvall?\" — The viewer does not yet know who Denise Darvall is or why she is connected to the patient.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 5 \"Dr. Christiaan Barnard performed the 1967 transplant, assisted by Peggy Jordaan.\" — The viewer does not know "
     },
     {
-      "topic": "The 1983 Brink's-Mat Robbery",
-      "score": 64.1,
-      "stage": "image-precheck",
-      "reason": "no freely licensed image of the actual subject"
-    },
-    {
-      "topic": "Enos the Chimpanzee Orbits Earth",
-      "score": 61,
+      "topic": "Alan Turing Publishes the Turing Machine in 1936",
+      "score": 63.5,
       "stage": "script",
-      "reason": "script failed its gates after 10 passes:   - NARRATIVE: \"You never guessed NASA chose Enos 3 days before Enos flew Nov 29, 1961 from Cape Canaveral.\" is over 16 words, too long to follow by ear. Split it or cut it.\n  - CLARITY: sentence 1 \"You never guessed NASA chose Enos 3 days before\" — It is not stated what Enos is (a person, animal, or object).. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentenc"
+      "reason": "script failed its gates after 10 passes:   - NARRATIVE: PAYOFF hedged (\"May\"). Rewrite the payoff beat as the structure in the prompt says — using only this video's research.\n  - CLARITY: sentence 3 \"How did he decide logic?\" — The term 'decide logic' is abstract and lacks context.. Rewrite it so a viewer who knows nothing follows it (name who or what, explain the term in a few words), or CUT it if it repeats an earlier sentence.\n  - CLARITY: sentence 4 \"But he faced Max Newman's 1935 lecture on"
     }
   ],
   "selected": null
