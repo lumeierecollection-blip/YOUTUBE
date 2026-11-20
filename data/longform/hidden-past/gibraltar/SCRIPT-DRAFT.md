@@ -44,6 +44,9 @@ Gibraltar to Spain, while letting Britain keep its Royal Navy base under an agre
 The people of Gibraltar strongly opposed it, and in September 1967 they voted. 12,138 chose to remain with Britain. 44 chose Spain.
 The United Nations General Assembly criticised Britain for holding the vote. And in 1969, Spain closed the border, cutting off all contact and
 severely restricting movement.
+The General Assembly had passed Resolution 2353, asking Britain to negotiate with Spain, then under the dictatorship of General Franco,
+and criticising Britain for holding a referendum at all. Gibraltar still celebrates the 1967 vote every year, on the 10th of September:
+Gibraltar National Day.
 
 ## 5. 1985: the border reopens
 The border was not fully reopened until February 1985, after agreements in Lisbon and Brussels that let Spaniards live and work in Gibraltar.
@@ -54,6 +57,10 @@ By 2002, Britain and Spain had proposed to share sovereignty. The government of 
 It was rejected by 17,000 votes to 187. 98.97 percent.
 Both governments said the result had no legal weight. But the talks stalled, and the British government accepted that it would be unrealistic
 to reach an agreement without the support of the people of Gibraltar.
+In Spain, the newspaper El Pais called the vote a "dishonest consultation", and the foreign minister, Ana Palacio, called it "illegal".
+But El Pais also wrote that no Spanish government had done enough to make joint sovereignty or integration with Spain an attractive prospect.
+In 2006, Gibraltar approved a new constitution in another referendum, by 60.24 percent. And today, the effect of Brexit on Gibraltar is
+still unclear.
 
 ## 7. Verdict
 So why has Spain never taken back Gibraltar? First, the treaty: Article X gave it away in perpetuity. Second, force: the longest siege in British
@@ -61,4 +68,4 @@ military history failed. Third, pressure: a closed border for sixteen years chan
 the people who live there. Twice they were asked. Twice the answer was almost unanimous.
 Spain has the map on its side. Gibraltar has the vote.
 
-Status: full draft, about 900 words (about 6-7 min). Okeanos runs ~25-30 min: to be expanded from the snapshots after approval.
+Status: full draft, about 1,050 words (about 7-8 min). Okeanos runs ~25-30 min: to be expanded from the snapshots after approval.
