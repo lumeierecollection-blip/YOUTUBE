@@ -1,0 +1,39 @@
+name: Preview extract
+
+# Pulls the 480p preview (and a 24-frame contact sheet) out of a finished pilot-render run's big "episode" artifact, on GitHub, so the owner's PC only downloads a small file.
+# Push a branch named preview/<run-id>.
+on:
+  push:
+    branches: ["preview/**"]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Download the episode artifact of that run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          id="${GITHUB_REF_NAME#preview/}"
+          gh run download "$id" --repo "$GITHUB_REPOSITORY" -n episode -D big
+          find big -type f | head
+      - name: Preview and contact sheet
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          mkdir -p out
+          f=$(find big -name episode.mp4 | head -1)
+          cp "$(dirname "$f")"/render-log.json out/ 2>/dev/null || true
+          if [ -f "$(dirname "$f")/episode-480p.mp4" ]; then cp "$(dirname "$f")/episode-480p.mp4" out/preview-480p.mp4; else ffmpeg -loglevel error -y -i "$f" -vf scale=854:480 -c:v libx264 -preset fast -crf 33 -r 24 -c:a aac -b:a 64k -ac 1 -movflags +faststart out/preview-480p.mp4; fi
+          d=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f"); echo "duration $d" | tee out/info.txt
+          ffmpeg -nostats -vn -i "$f" -af loudnorm=I=-14:print_format=json -f null - 2>&1 | grep -E '"input_i"|"input_tp"' | tee -a out/info.txt
+          ffmpeg -nostats -vn -i "$f" -af silencedetect=n=-45dB:d=2 -f null - 2>&1 | grep -c silence_end | sed 's/^/silences_over_2s /' | tee -a out/info.txt
+          step=$(python3 -c "print($d/25)")
+          ffmpeg -v error -y -i "$f" -vf "fps=1/$step,scale=480:-2,tile=4x6:padding=4" -frames:v 1 out/sheet.jpg
+      - uses: actions/upload-artifact@v4
+        with:
+          name: preview
+          retention-days: 7
+          path: out/*
