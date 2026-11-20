@@ -1,1 +1,2 @@
-[{"src":"src/skills/remotion-render/public/lf2/hidden-past/hs-william-npg.jpg","dst":"src/skills/remotion-render/public/lf2/hidden-past/hs-william-npg-cutout.png","args":["--model","birefnet-general","--max","1600"]}]
+[{"src":"src/skills/remotion-render/public/lf2/rival-lines/th-fu3-celebrate.png","dst":"src/skills/remotion-render/public/lf2/rival-lines/th-fu3-celebrate-cutout.png","args":["--model","birefnet-general","--max","1600"]},
+ {"src":"src/skills/remotion-render/public/lf2/rival-lines/th-fu2-armswide.png","dst":"src/skills/remotion-render/public/lf2/rival-lines/th-fu2-armswide-cutout.png","args":["--model","birefnet-general","--max","1600"]}]
