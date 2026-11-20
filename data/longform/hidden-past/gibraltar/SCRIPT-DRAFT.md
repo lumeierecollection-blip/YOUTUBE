@@ -16,12 +16,49 @@ from neither navy. It came from 12,138 people with a pencil.
 (Promise: a treaty clause written "in perpetuity", the longest siege in British military history, a dictator's border closure, and two votes
 that weren't even close.)
 
-## 1. 1704: taken in a war that wasn't about it
-## 2. 1713: Article X, "in perpetuity"
-## 3. 1727 and 1779-1783: the Great Siege
-## 4. 1966-1969: Franco's proposal, the 1967 referendum (12,138 to 44), the closed border
-## 5. 1985: the border reopens
-## 6. 2002: shared sovereignty, rejected 17,000 to 187 (98.97%)
-## 7. Verdict: the treaty, the sieges that failed, and the people who vote; closing line.
+## 1. 1704: taken in someone else's war
+In November 1700, Charles II of Spain died without children. Europe went to war over who would take his throne.
+Gibraltar was not the prize. It was a stop along the way. On the first of August 1704, an Anglo-Dutch fleet under Admiral George Rooke, with
+marines under Prince George of Hesse-Darmstadt, attacked the Rock in the name of the Habsburg claimant, Archduke Charles of Austria.
+Three days later, on the fourth of August, the governor, Diego de Salinas, surrendered Gibraltar and its small garrison.
+It was taken for a Spanish king. It would end up British. How?
 
-Status: outline + cold open written; chapters 1-7 to be written from the snapshots (approx. 3,000 words to match Okeanos' ~25 min) after approval.
+## 2. 1713: Article X
+The war ended at Utrecht. In 1713, Spain under Philip V signed a separate peace with Great Britain, and in Article X of the Treaty of Utrecht,
+the Spanish Crown ceded Gibraltar to the British Crown. In perpetuity.
+Utrecht marked the point at which Britain became the leading commercial power in Europe. In the same article, Spain also ceded Menorca. Gibraltar was a
+piece of Spain's own coast, signed away. Recovering it has been a publicly stated objective of successive Spanish governments ever since.
+So why didn't they simply take it back?
+
+## 3. 1727 and 1779: the sieges
+They tried. In 1727. And in 1779, when Spain entered the American Revolutionary War alongside France.
+The Great Siege of Gibraltar began on the 24th of June 1779. Sixty thousand attackers, 49 ships of the line, and ten newly invented floating
+batteries, against five thousand British defenders. Together, both sides fired nearly half a million rounds of shot.
+It lasted three years, seven months and twelve days, the longest siege the British armed forces have ever endured. On the 7th of February 1783,
+it was lifted. A decisive British victory. That September, the Treaty of Versailles left Gibraltar with the British.
+If force couldn't do it, what could?
+
+## 4. 1966-1969: pressure instead of guns
+On the 18th of May 1966, Spain's foreign minister, Fernando Castiella, made Britain a formal proposal: cancel the Treaty of Utrecht and return
+Gibraltar to Spain, while letting Britain keep its Royal Navy base under an agreement.
+The people of Gibraltar strongly opposed it, and in September 1967 they voted. 12,138 chose to remain with Britain. 44 chose Spain.
+The United Nations General Assembly criticised Britain for holding the vote. And in 1969, Spain closed the border, cutting off all contact and
+severely restricting movement.
+
+## 5. 1985: the border reopens
+The border was not fully reopened until February 1985, after agreements in Lisbon and Brussels that let Spaniards live and work in Gibraltar.
+Sixteen years of a closed border, and Gibraltar was still British.
+
+## 6. 2002: one last offer
+By 2002, Britain and Spain had proposed to share sovereignty. The government of Gibraltar put it to a referendum on the 7th of November.
+It was rejected by 17,000 votes to 187. 98.97 percent.
+Both governments said the result had no legal weight. But the talks stalled, and the British government accepted that it would be unrealistic
+to reach an agreement without the support of the people of Gibraltar.
+
+## 7. Verdict
+So why has Spain never taken back Gibraltar? First, the treaty: Article X gave it away in perpetuity. Second, force: the longest siege in British
+military history failed. Third, pressure: a closed border for sixteen years changed nothing. And fourth, the reason that outlasted all the others:
+the people who live there. Twice they were asked. Twice the answer was almost unanimous.
+Spain has the map on its side. Gibraltar has the vote.
+
+Status: full draft, about 900 words (about 6-7 min). Okeanos runs ~25-30 min: to be expanded from the snapshots after approval.
