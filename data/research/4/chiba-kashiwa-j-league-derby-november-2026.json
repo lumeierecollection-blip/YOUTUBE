@@ -1,0 +1,108 @@
+{
+  "topic_slug": "chiba-kashiwa-j-league-derby-november-2026",
+  "strongest_angle": "JEF United Chiba defeated Kashiwa Reysol 1-0 in the November 2026 J.League derby at Sankyo Frontier Kashiwa Stadium, with Hiroto Goya scoring the winning goal in the 76th minute.",
+  "key_facts": [
+    {
+      "fact": "On November 20, 2026, JEF United Chiba defeated Kashiwa Reysol 1-0 at Sankyo Frontier Kashiwa Stadium during Matchweek 15 of the MEIJI YASUDA J1 League.",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001",
+      "source_name": "Official Website of J.LEAGUE",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the 76th minute (second half, 31st minute), midfielder Takumi Tsukui intercepted the ball and passed to forward Hiroto Goya, who scored the winning goal into the right corner with a right-footed control shot.",
+      "source_url": "https://www.nikkansports.com/soccer/news/202611200002255.html",
+      "source_name": "Nikkan Sports",
+      "confidence": "high"
+    },
+    {
+      "fact": "The match at Sankyo Frontier Kashiwa Stadium drew an attendance of 13,612 spectators with a temperature of 11.1°C.",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001",
+      "source_name": "Official Website of J.LEAGUE",
+      "confidence": "high"
+    },
+    {
+      "fact": "JEF United Chiba's victory marked their third consecutive win and their first away win against Kashiwa Reysol in the league since August 21, 2005.",
+      "source_url": "https://hochi.news/articles/20261120-OHT1T51334.html",
+      "source_name": "Sports Hochi",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Match Score Kashiwa Reysol",
+      "value": 0,
+      "unit": "goals",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Match Score JEF United Chiba",
+      "value": 1,
+      "unit": "goals",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Match Minute for Goal",
+      "value": 76,
+      "unit": "minute",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Match Attendance",
+      "value": 13612,
+      "unit": "spectators",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Temperature",
+      "value": 11.1,
+      "unit": "degrees Celsius",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Humidity",
+      "value": 28,
+      "unit": "percent",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    },
+    {
+      "label": "Matchweek",
+      "value": 15,
+      "unit": "matchweek",
+      "source_url": "https://www.jleague.jp/en/match/j1/2026/112001"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "素晴らしいゴールだった。彼は持っている選手だと思う。そういう部分を出してくれた",
+      "speaker": "Yoshiyuki Kobayashi",
+      "source_name": "Nikkan Sports",
+      "source_url": "https://www.nikkansports.com/soccer/news/202611200002342.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Hiroto Goya",
+      "kind": "person"
+    },
+    {
+      "name": "Takumi Tsukui",
+      "kind": "person"
+    },
+    {
+      "name": "Yoshiyuki Kobayashi",
+      "kind": "person"
+    },
+    {
+      "name": "JEF United Chiba",
+      "kind": "organization"
+    },
+    {
+      "name": "Kashiwa Reysol",
+      "kind": "organization"
+    },
+    {
+      "name": "Sankyo Frontier Kashiwa Stadium",
+      "kind": "place"
+    }
+  ]
+}
