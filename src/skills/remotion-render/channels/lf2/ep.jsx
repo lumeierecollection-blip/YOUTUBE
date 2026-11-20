@@ -145,8 +145,8 @@ function useJson(path) {
  *  modern borders, each power in one flat colour, big spaced serif capitals for realms, italic capitals for water, small serif for places; routes drawn as
  *  arrows; flag tokens for armies; commander plates and cut-out figures over the map edge. Camera: views [{ f, center: [lon, lat], scale }] (Mercator).
  *  realms: [{ key: "england"|"normandy"|"norway", color, from }] from public/lf2/hidden-past/geo/hastings-realms.json (modern outlines, said on screen). */
-export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], points = [], plates = [], figures = [], armies = [], note, credit = "Base: Natural Earth (public domain) · realm outlines: OpenStreetMap contributors, modern boundaries" }) {
-  const f = useCurrentFrame(), base = useJson("lf2/hidden-past/geo/europe-50m.json"), rl = useJson("lf2/hidden-past/geo/hastings-realms.json"), c = t.ep;
+export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], points = [], plates = [], figures = [], armies = [], towns = [], rivers = true, note, credit = "Base: Natural Earth (public domain) · rivers: Natural Earth · realm outlines: OpenStreetMap contributors, modern boundaries" }) {
+  const f = useCurrentFrame(), base = useJson("lf2/hidden-past/geo/europe-50m.json"), rl = useJson("lf2/hidden-past/geo/hastings-realms.json"), rv = useJson("lf2/hidden-past/geo/hastings-rivers.json"), c = t.ep;
   let i = 0; while (i < views.length - 2 && f > views[i + 1].f) i++;
   const A = views[i], B = views[Math.min(i + 1, views.length - 1)], k = A === B ? 0 : interpolate(f, [A.f || 0, B.f], [0, 1], { ...clamp, easing: eio });
   const proj = geoMercator().center([A.center[0] + (B.center[0] - A.center[0]) * k, A.center[1] + (B.center[1] - A.center[1]) * k]).scale(Math.exp(Math.log(A.scale) + (Math.log(B.scale) - Math.log(A.scale)) * k)).translate([960, 540]);
@@ -168,6 +168,8 @@ export function EpPaperMap({ t, views, realms = [], labels = [], routes = [], po
       </defs>
       {base.features.map((ft, n) => <path key={n} d={path(ft)} fill={c.land} stroke={c.border} strokeWidth={1.4} />)}
       {realms.map((r, n) => <path key={`r${n}`} d={path(rl[r.key])} fill={col(t, r.color)} stroke="rgba(40,10,5,0.55)" strokeWidth={2} opacity={ramp(f, r.from || 0, (r.from || 0) + 18) * Math.max(0.6, (r.alpha ?? 1)) * 0.88} />)}   {/* deep, textured realm colour (Epic); close-ups no longer fade to a pale tint */}
+      {rivers && rv && rv.features.map((ft, n) => <path key={`rv${n}`} d={path(ft)} fill="none" stroke={c.sea} strokeWidth={proj.scale() > 8000 ? 5 : 2.6} strokeLinecap="round" strokeLinejoin="round" />)}   {/* Epic close-ups: rivers in the sea colour (Natural Earth 10m) */}
+      {towns.map((q, n) => { const [x, y] = proj(q.at), a = ramp(f, q.from || 0, (q.from || 0) + 10); return <g key={`tw${n}`} opacity={a}><circle cx={x} cy={y} r={7} fill="#1d1a16" /><circle cx={x} cy={y} r={3.5} fill="#F2EADB" /><text x={x + (q.dx ?? 14)} y={y + 8} textAnchor={q.dx < 0 ? "end" : "start"} fontFamily={SERIF} fontWeight={700} fontSize={22} letterSpacing="0.05em" fill={c.mapInk} opacity={0.85}>{q.text.toUpperCase()}</text></g>; })}   {/* Epic close-ups: towns as small dots with capital names so the map is not an empty colour field */}
       {routes.map((r, n) => {
         const p = ramp(f, r.from || 0, (r.from || 0) + (r.dur || 60), eio), pts = draw(r.coords, p).map((q) => q.join(",")).join(" ");
         return p > 0 && <g key={`ro${n}`}>

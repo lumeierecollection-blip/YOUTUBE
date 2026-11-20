@@ -1,0 +1,83 @@
+{
+ "_source": "Wikipedia API prop=coordinates, retrieved 2026-11-20 (map orientation labels only, no claim attached)",
+ "Bayeux": [
+  -0.7028,
+  49.2794
+ ],
+ "Caen": [
+  -0.36361111,
+  49.18138889
+ ],
+ "Canterbury": [
+  1.08,
+  51.28
+ ],
+ "Chichester": [
+  -0.7792,
+  50.8365
+ ],
+ "Dieppe": [
+  1.075,
+  49.925
+ ],
+ "Dover": [
+  1.3089,
+  51.1295
+ ],
+ "Durham, England": [
+  -1.5733,
+  54.7761
+ ],
+ "Exeter": [
+  -3.52694444,
+  50.72555556
+ ],
+ "Fulford, North Yorkshire": [
+  -1.073,
+  53.938
+ ],
+ "Lewes": [
+  0.01166667,
+  50.87472222
+ ],
+ "Lincoln, England": [
+  -0.53888889,
+  53.22833333
+ ],
+ "Nottingham": [
+  -1.15,
+  52.96
+ ],
+ "Oxford": [
+  -1.25777778,
+  51.75194444
+ ],
+ "Riccall": [
+  -1.05944444,
+  53.83333333
+ ],
+ "Romney Marsh": [
+  0.92,
+  50.96
+ ],
+ "Rouen": [
+  1.08861111,
+  49.44277778
+ ],
+ "Rye, East Sussex": [
+  0.73,
+  50.95
+ ],
+ "Scarborough, North Yorkshire": [
+  -0.4,
+  54.2825
+ ],
+ "Tadcaster": [
+  -1.262,
+  53.8852
+ ],
+ "Winchester": [
+  -1.308,
+  51.0632
+ ]
+}
