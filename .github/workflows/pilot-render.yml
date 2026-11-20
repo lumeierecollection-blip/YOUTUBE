@@ -1,0 +1,184 @@
+name: Pilot render
+
+# Renders ONE episode as a finished 1920x1080 MP4: voice -> 20 parallel shards -> join and mix. No YouTube credentials, no thumbnails, no upload step.
+# Push a branch named pilot/<episode-slug> (platform/longform/v2/episodes/<slug>.mjs). Used for the faceless-experiment pilots and for Hidden Past Greenland.
+on:
+  push:
+    branches: ["pilot/**"]
+permissions:
+  contents: read
+env:
+  EP_FROM_REF: ${{ github.ref_name }}
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: gemini-tts-voice
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Read the script in continuous takes
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          node platform/longform/v2/make-voice.mjs "$ep"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice
+          retention-days: 3
+          if-no-files-found: ignore
+          path: output/longform-prod/*/voice/*
+  shards:
+    needs: voice
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: voice
+          path: output/longform-prod
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Render this shard's beats
+        timeout-minutes: 75
+        continue-on-error: true
+        shell: bash
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          node platform/longform/v2/render-episode.mjs "$ep" --shard "${{ matrix.shard }}/20" 2>&1 | { grep -v composed-scene || true; }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: beats-${{ matrix.shard }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: |
+            output/longform-prod/*/beats/*.mp4
+            output/longform-prod/*/voice/*
+  finish:
+    needs: shards
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: beats-*
+          merge-multiple: true
+          path: output/longform-prod
+      - name: Join and mix the sound (a beat that is still missing is rendered here)
+        timeout-minutes: 110
+        shell: bash
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          ls "output/longform-prod/$ep/beats" | wc -l
+          node platform/longform/v2/render-episode.mjs "$ep" 2>&1 | { grep -v composed-scene || true; }
+      - name: Preview (480p) encoded here
+        if: always()
+        run: |
+          ep="${EP_FROM_REF#pilot/}"; d="output/longform-prod/$ep"
+          [ -f "$d/episode.mp4" ] && ffmpeg -loglevel error -y -i "$d/episode.mp4" -vf scale=854:480 -c:v libx264 -preset fast -crf 33 -r 24 -c:a aac -b:a 64k -ac 1 -movflags +faststart "$d/episode-480p.mp4" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: episode
+          retention-days: 30
+          path: |
+            output/longform-prod/*/episode.mp4
+            output/longform-prod/*/episode-480p.mp4
+            output/longform-prod/*/render-log.json
+            output/longform-prod/*/credits.txt

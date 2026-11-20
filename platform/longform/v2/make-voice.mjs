@@ -15,10 +15,13 @@ import { narrate } from "../../production/index.mjs";
 import { ROOT } from "../../preview/lib.mjs";
 
 const slug = process.argv[2];
-const ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug.startsWith("rival-lines") ? "rival-lines" : slug;
-const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural" };
+const ch = ["hidden-past", "ai-tested", "rival-lines", "fx-stick", "fx-toon", "fx-doc"].find((c) => slug.startsWith(c)) || slug;
+const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural", "fx-stick": "en-US-AndrewNeural", "fx-toon": "en-US-BrianNeural", "fx-doc": "en-US-GuyNeural" };
 // one short direction each (a long note can be read aloud; see src/utils/video-tone.js). History: calm and unhurried like the reference (112 wpm); football: relaxed and curious.
 const STYLE = {
+  "fx-stick": "Read this as a young, wry first-person storyteller on a YouTube animation channel, natural American English: conversational, quick but clear, amused at your own bad luck, warm, never theatrical:",
+  "fx-toon": "Read this as an energetic second-person narrator on an animated YouTube story channel, natural American English: bright, playful, punchy short lines, a clear steady pace, real warmth at the end:",
+  "fx-doc": "Say in a calm, unhurried documentary narrator voice, warm, with natural pauses and gentle emphasis on the key words:",
   "hidden-past": "Say in a calm, unhurried British documentary narrator's voice, warm, with natural pauses and gentle emphasis on the key words:",
   "rival-lines": "Say in a relaxed, curious British voice, like explaining something interesting to a friend, with natural pauses and emphasis:",
 };
