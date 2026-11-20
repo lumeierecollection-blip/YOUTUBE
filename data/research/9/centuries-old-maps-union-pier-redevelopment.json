@@ -1,0 +1,72 @@
+{
+  "topic_slug": "centuries-old-maps-union-pier-redevelopment",
+  "strongest_angle": "Historians and developers are using centuries-old maps and archival research to guide the incremental redevelopment of the 65-acre Union Pier site in Charleston.",
+  "key_facts": [
+    {
+      "fact": "The redevelopment of Union Pier spans a 65-acre site along the Cooper River waterfront in Charleston.",
+      "source_url": "https://charlestoncitypaper.com/2026/11/20/centuries-old-maps-inform-future-of-union-pier",
+      "source_name": "Charleston City Paper",
+      "confidence": "high"
+    },
+    {
+      "fact": "Old maps show that Charleston's early walled city ended near the Customs House at Craven's Bastion, with 18th-century growth expanding toward Anson Street.",
+      "source_url": "https://www.chucktownreport.com/p/2-years-in-and-union-pier-has-no-masterplan",
+      "source_name": "Chucktown Report",
+      "confidence": "medium"
+    },
+    {
+      "fact": "During the 1920s and 1930s, the city consolidated and cut back the waterfront to accommodate industrial port use.",
+      "source_url": "https://www.chucktownreport.com/p/2-years-in-and-union-pier-has-no-masterplan",
+      "source_name": "Chucktown Report",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Wharves constructed in the 18th and 19th centuries extended outward from high ground along the eastern edge of the Charleston peninsula toward the Cooper River.",
+      "source_url": "https://www.preservationsociety.org/news/upon-reclaimed-land-union-piers-ecological-evolution",
+      "source_name": "Preservation Society of Charleston",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Union Pier site acreage",
+      "value": 65,
+      "unit": "acres",
+      "source_url": "https://charlestoncitypaper.com/2026/11/20/centuries-old-maps-inform-future-of-union-pier"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Union Pier",
+      "kind": "place"
+    },
+    {
+      "name": "Charleston",
+      "kind": "place"
+    },
+    {
+      "name": "Cooper River",
+      "kind": "place"
+    },
+    {
+      "name": "Customs House",
+      "kind": "place"
+    },
+    {
+      "name": "Craven's Bastion",
+      "kind": "place"
+    },
+    {
+      "name": "Anson Street",
+      "kind": "place"
+    },
+    {
+      "name": "Charleston City Paper",
+      "kind": "organization"
+    },
+    {
+      "name": "Preservation Society of Charleston",
+      "kind": "organization"
+    }
+  ]
+}
