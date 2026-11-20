@@ -142,7 +142,18 @@ export function FxRoom({ t, room = "classroom", cast = [], caption, push = 0.05,
 
 /** B: explainer chart on paper (bell curve with a marker, or bars). */
 export function FxChart({ t, title, kind = "bell", marker, bars = [], note }) {
-  const f = useCurrentFrame(), a = ramp(f, 6, 40, eio), ink = t.fx.ink;
+  const f = useCurrentFrame(), a = ramp(f, 6, 40, eio), ink = t.fx.ink, cc = t.fx.style === "conchaser";
+  if (cc) return <AbsoluteFill style={{ background: "linear-gradient(180deg, #6B4A33 0%, #4E3524 100%)" }}><Fonts />   {/* measured: a paper card lying on a wooden desk, a pill title above it */}
+    {[...Array(8)].map((_, i) => <div key={i} style={{ position: "absolute", left: 0, right: 0, top: i * 140, height: 3, background: "rgba(0,0,0,0.12)" }} />)}
+    <div style={{ position: "absolute", left: 360, top: 170, width: 1200, height: 800, background: "#F4EFE4", transform: `rotate(-1.5deg) translateY(${(1 - ramp(f, 0, 14, expo)) * 40}px)`, boxShadow: "0 24px 50px rgba(0,0,0,0.45)" }}>
+      <svg width={1200} height={800} viewBox="160 160 1600 900" style={{ position: "absolute", inset: 0 }}>
+        {kind === "list" ? null : <><line x1={220} y1={840} x2={1700} y2={840} stroke={ink} strokeWidth={6} />{bars.map((b, i) => { const h = b.v * 520 * a, w = 1200 / bars.length; return <g key={i}><rect x={260 + i * w + 30} y={840 - h} width={w - 60} height={h} rx={10} fill={t.fx.tone[b.tone || "mid"]} /><text x={260 + i * w + w / 2} y={830 - h} textAnchor="middle" fontFamily={F.grot} fontWeight={800} fontSize={48} fill={ink}>{Math.round(b.v * 100 * a)}%</text><text x={260 + i * w + w / 2} y={900} textAnchor="middle" fontFamily={F.grot} fontWeight={700} fontSize={36} fill={ink}>{b.label}</text></g>; })}</>}
+      </svg>
+      {kind === "list" && <div style={{ position: "absolute", left: 90, top: 90, right: 60 }}>{bars.map((b, i) => { const r = ramp(f, 10 + i * 14, 24 + i * 14, expo); return <div key={i} style={{ display: "flex", alignItems: "center", gap: 28, marginBottom: 46, opacity: r }}><div style={{ width: 76, height: 76, borderRadius: 38, background: t.fx.tone[b.tone || "mid"], color: "#fff", fontFamily: F.grot, fontWeight: 800, fontSize: 42, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{i + 1}</div><div style={{ fontFamily: F.grot, fontWeight: 700, fontSize: 46, color: ink }}>{b.label}</div></div>; })}</div>}
+      {note && <div style={{ position: "absolute", left: 0, right: 0, bottom: 26, textAlign: "center", fontFamily: F.sans, fontSize: 22, color: ink, opacity: 0.7 }}>{note}</div>}
+    </div>
+    <div style={{ position: "absolute", left: 0, right: 0, top: 70, textAlign: "center" }}><span style={{ background: "rgba(18,26,22,0.92)", border: "3px solid #3FAE6A", borderRadius: 40, color: "#fff", fontFamily: F.grot, fontWeight: 800, fontSize: 36, letterSpacing: "0.12em", padding: "10px 30px", textTransform: "uppercase" }}>{title}</span></div>
+  </AbsoluteFill>;
   const pts = [...Array(121)].map((_, i) => { const x = -3 + i / 20, y = Math.exp(-x * x / 2); return [960 + x * 230, 840 - y * 520]; });
   const cut = Math.max(2, Math.round(pts.length * a));
   return <AbsoluteFill style={{ background: t.fx.paper }}>
@@ -160,6 +171,11 @@ export function FxChart({ t, title, kind = "bell", marker, bars = [], note }) {
 }
 
 export function FxTitle({ t, text, sub, dark = true }) {
+  if (t.fx.style === "conchaser") { const f = useCurrentFrame(), a = ramp(f, 4, 18, expo);   // measured: navy night card, scattered stars, one dark pill label with spaced caps
+    return <AbsoluteFill style={{ background: "radial-gradient(90% 80% at 50% 40%, #1E2A4A 0%, #0E1428 100%)" }}><Fonts />
+      {[...Array(14)].map((_, i) => <div key={i} style={{ position: "absolute", left: 200 + ((i * 397) % 1520), top: 120 + ((i * 251) % 640), width: 8, height: 8, borderRadius: 4, background: "#FFE9A8", opacity: 0.5 + 0.5 * Math.sin(f / 12 + i), boxShadow: "0 0 12px #FFE9A8" }} />)}
+      <div style={{ position: "absolute", left: 0, right: 0, bottom: 150, textAlign: "center", opacity: a }}><span style={{ background: "rgba(18,26,22,0.92)", border: "3px solid #3FAE6A", borderRadius: 40, color: "#fff", fontFamily: F.grot, fontWeight: 800, fontSize: 40, letterSpacing: "0.14em", padding: "12px 34px", textTransform: "uppercase" }}>{text}</span>{sub && <div style={{ marginTop: 26, fontFamily: F.grot, fontWeight: 700, fontSize: 30, color: "#C9D3F0", letterSpacing: "0.1em" }}>{sub}</div>}</div>
+    </AbsoluteFill>; }
   const f = useCurrentFrame(), a = ramp(f, 4, 22, expo), bg = dark ? t.fx.ink : t.fx.paper, fg = dark ? "#fff" : t.fx.ink;
   return <AbsoluteFill style={{ background: bg, alignItems: "center", justifyContent: "center" }}><Fonts />
     <div style={{ fontFamily: F.grot, fontWeight: 800, fontSize: 96, color: fg, opacity: a, transform: `scale(${0.94 + 0.06 * a})`, textAlign: "center", maxWidth: 1500 }}>{text}</div>
@@ -234,25 +250,44 @@ export function FxToon({ t, set = "gym", cast = [], ui = [], links = [], push = 
 }
 
 
-// ---- A: documentary scenes (Okeanos-like grammar drawn our own way): framed photo cards on a dark ground, document excerpts with a label banner.
+// ---- A: documentary scenes, regraded 20 Nov 2026 from MEASURED Okeanos frames (research/okeanos-history/full-sheet.jpg): warm sepia grade, grain and heavy
+// vignette everywhere; tilted cream-bordered cards over a DARKENED, BLURRED copy of a related picture (never a flat colour); an orange-red banner with cream serif
+// small caps; small cream serif subtitles at the bottom with NO box; about half the shots are full-frame pictures. Ours uses real archive pictures only.
 const SERIF = '"Cormorant Garamond", "Noto Serif", Georgia, serif';
-const Ground = ({ t }) => <><AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 40%, ${t.doc.ground2} 0%, ${t.doc.ground} 70%)` }} /><Img src={staticFile("lf2/hidden-past/tex-terrain.jpg")} style={{ position: "absolute", inset: 0, width: 1920, height: 1080, objectFit: "cover", opacity: 0.12, mixBlendMode: "screen" }} /></>;
-const Banner = ({ t, text, x, y, from = 0 }) => { const f = useCurrentFrame(), a = ramp(f, from, from + 10, expo); return <div style={{ position: "absolute", left: x, top: y, background: t.doc.red, color: "#fff", fontFamily: F.cond, fontWeight: 700, fontSize: 30, letterSpacing: "0.12em", textTransform: "uppercase", padding: "8px 20px", clipPath: `inset(0 ${(1 - a) * 100}% 0 0)` }}>{text}</div>; };
-const Sub = ({ t, text }) => text ? <div style={{ position: "absolute", left: 0, right: 0, bottom: 44, textAlign: "center" }}><span style={{ background: "rgba(0,0,0,0.72)", color: "#F3EBDD", fontFamily: SERIF, fontSize: 36, padding: "6px 18px", lineHeight: 1.5 }}>{text}</span></div> : null;
+const Grade = () => <><AbsoluteFill style={{ background: "rgba(120,86,40,0.16)", mixBlendMode: "multiply", pointerEvents: "none" }} /><AbsoluteFill style={{ background: "radial-gradient(100% 90% at 50% 45%, rgba(0,0,0,0) 45%, rgba(12,8,4,0.78) 100%)", pointerEvents: "none" }} /><Img src={staticFile("lf2/hidden-past/tex-terrain.jpg")} style={{ position: "absolute", inset: 0, width: 1920, height: 1080, objectFit: "cover", opacity: 0.07, mixBlendMode: "overlay" }} /></>;
+const Ground = ({ t, image }) => image
+  ? <><AbsoluteFill style={{ background: t.doc.ground }} /><Img src={staticFile(image)} style={{ position: "absolute", inset: -60, width: 2040, height: 1200, objectFit: "cover", filter: "blur(22px) brightness(0.38) sepia(0.6) saturate(0.8)" }} /></>
+  : <AbsoluteFill style={{ background: `radial-gradient(120% 90% at 50% 40%, ${t.doc.ground2} 0%, ${t.doc.ground} 70%)` }} />;
+const Banner = ({ t, text, x, y, from = 0, date }) => { const f = useCurrentFrame(), a = ramp(f, from, from + 10, expo); return <div style={{ position: "absolute", left: x, top: y, display: "flex", alignItems: "stretch", clipPath: `inset(0 ${(1 - a) * 100}% 0 0)` }}>{date && <div style={{ background: "rgba(20,14,8,0.85)", color: t.doc.red, fontFamily: SERIF, fontWeight: 700, fontSize: 28, padding: "6px 14px", borderRight: `3px solid ${t.doc.red}` }}>{date}</div>}<div style={{ background: date ? "rgba(20,14,8,0.85)" : t.doc.red, color: "#F6EBDA", fontFamily: SERIF, fontWeight: 700, fontSize: 28, letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 18px" }}>{text}</div></div>; };
+const Sub = ({ text }) => text ? <div style={{ position: "absolute", left: 200, right: 200, bottom: 40, textAlign: "center", fontFamily: SERIF, fontSize: 34, color: "#EADBC0", textShadow: "0 2px 6px rgba(0,0,0,0.9)" }}>{text}</div> : null;
+
+/** Full-frame picture, graded, slow push/pan (about half of the reference's shots). */
+export function FxDocPhoto({ t, image, from = { x: 50, y: 50, s: 1.04 }, to = { x: 50, y: 45, s: 1.14 }, banner, sub, credit, sepia = 0.45 }) {
+  const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), k = interpolate(f, [0, D], [0, 1], { ...clamp, easing: eio });
+  const sc = from.s + (to.s - from.s) * k, px = from.x + (to.x - from.x) * k, py = from.y + (to.y - from.y) * k;
+  return <AbsoluteFill style={{ overflow: "hidden", background: "#120D08" }}><Fonts />
+    <Img src={staticFile(image)} style={{ position: "absolute", inset: 0, width: 1920, height: 1080, objectFit: "cover", objectPosition: `${px}% ${py}%`, transform: `scale(${sc})`, transformOrigin: `${px}% ${py}%`, filter: `sepia(${sepia}) saturate(0.85) contrast(1.05) brightness(0.92)` }} />
+    <Grade />
+    {banner && <Banner t={t} {...banner} x={banner.x ?? 60} y={banner.y ?? 50} />}
+    <Sub text={sub} />
+    {credit && <div style={{ position: "absolute", right: 22, top: 16, fontFamily: F.sans, fontSize: 14, color: "rgba(240,228,205,0.6)" }}>{credit}</div>}
+  </AbsoluteFill>;
+}
 
 /** cards: [{ image, credit?, caption?, x, y, w, h, rot, from, pos }] (1 to 3) on the dark ground; slow camera drift; banner { text, from }; sub (bottom serif line) */
 export function FxDocCards({ t, cards = [], banner, sub, credits }) {
   const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), k = interpolate(f, [0, D], [0, 1], clamp);
-  return <AbsoluteFill style={{ overflow: "hidden" }}><Fonts /><Ground t={t} />
+  return <AbsoluteFill style={{ overflow: "hidden" }}><Fonts /><Ground t={t} image={cards[0]?.bg || cards[0]?.image} />
     <AbsoluteFill style={{ transform: `scale(${1.02 + 0.05 * k}) translateX(${(k - 0.5) * -30}px)` }}>
-      {cards.map((c, i) => { const a = ramp(f, c.from ?? i * 18, (c.from ?? i * 18) + 16, expo); return <div key={i} style={{ position: "absolute", left: c.x, top: c.y, width: c.w, height: c.h, padding: 14, paddingBottom: c.caption ? 64 : 14, background: "#F1EBDF", boxShadow: "0 30px 60px rgba(0,0,0,0.6)", transform: `rotate(${c.rot || 0}deg) translateY(${(1 - a) * 60}px)`, opacity: a }}>
-        <Img src={staticFile(c.image)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos || "50% 40%", filter: c.sepia ? "sepia(0.55) contrast(1.05)" : "none" }} />
+      {cards.map((c, i) => { const a = ramp(f, c.from ?? i * 18, (c.from ?? i * 18) + 16, expo); return <div key={i} style={{ position: "absolute", left: c.x, top: c.y, width: c.w, height: c.h, padding: 16, paddingBottom: c.caption ? 64 : 16, background: "#EDE3CF", boxShadow: "0 30px 70px rgba(0,0,0,0.75)", transform: `rotate(${c.rot || 0}deg) translateY(${(1 - a) * 60}px)`, opacity: a }}>
+        <Img src={staticFile(c.image)} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: c.pos || "50% 40%", filter: `sepia(${c.sepia ?? 0.35}) saturate(0.85) contrast(1.04)` }} />
         {c.caption && <div style={{ position: "absolute", left: 14, right: 14, bottom: 12, fontFamily: SERIF, fontWeight: 700, fontSize: 30, color: "#24190F", textAlign: "center" }}>{c.caption}</div>}
       </div>; })}
     </AbsoluteFill>
-    {banner && <Banner t={t} {...banner} x={banner.x ?? 80} y={banner.y ?? 70} />}
-    <Sub t={t} text={sub} />
-    {credits && <div style={{ position: "absolute", right: 24, bottom: 10, fontFamily: F.sans, fontSize: 15, color: "rgba(255,255,255,0.7)" }}>{credits}</div>}
+    <Grade />
+    {banner && <Banner t={t} {...banner} x={banner.x ?? 60} y={banner.y ?? 50} />}
+    <Sub text={sub} />
+    {credits && <div style={{ position: "absolute", right: 22, top: 16, fontFamily: F.sans, fontSize: 14, color: "rgba(240,228,205,0.6)" }}>{credits}</div>}
   </AbsoluteFill>;
 }
 
@@ -263,12 +298,13 @@ export function FxDocPage({ t, title, lines = [], mark, banner, sub, source, rot
     <div style={{ position: "absolute", left: 360, top: 120, width: 1200, minHeight: 760, background: "#F4EEE1", boxShadow: "0 40px 80px rgba(0,0,0,0.65)", padding: "60px 80px", transform: `rotate(${rot}deg) scale(${z}) translateY(${(1 - a) * 50}px)`, opacity: a }}>
       {title && <div style={{ fontFamily: '"Courier Prime", "Courier New", monospace', fontWeight: 700, fontSize: 30, letterSpacing: "0.08em", color: "#2B241B", textTransform: "uppercase", borderBottom: "2px solid #2B241B", paddingBottom: 14, marginBottom: 30 }}>{title}</div>}
       {lines.map((l, i) => { const at = mark ? l.indexOf(mark) : -1; return <div key={i} style={{ fontFamily: '"Courier Prime", "Courier New", monospace', fontSize: 36, lineHeight: 1.55, color: "#2B241B", marginBottom: 18 }}>
-        {at < 0 ? l : <>{l.slice(0, at)}<span style={{ background: `linear-gradient(90deg, ${t.doc.mark} ${h * 100}%, transparent ${h * 100}%)`, padding: "0 4px" }}>{mark}</span>{l.slice(at + mark.length)}</>}
+        {at < 0 ? l : <>{l.slice(0, at)}<span style={{ background: `linear-gradient(90deg, ${t.doc.mark} ${h * 100}%, transparent ${h * 100}%)`, boxShadow: `inset 0 -4px 0 ${h > 0.98 ? t.doc.red : "transparent"}`, padding: "0 4px" }}>{mark}</span>{l.slice(at + mark.length)}</>}
       </div>; })}
       {source && <div style={{ fontFamily: SERIF, fontStyle: "italic", fontSize: 26, color: "#5B4F3E", marginTop: 26 }}>{source}</div>}
     </div>
-    {banner && <Banner t={t} {...banner} x={banner.x ?? 80} y={banner.y ?? 70} />}
-    <Sub t={t} text={sub} />
+    <Grade />
+    {banner && <Banner t={t} {...banner} x={banner.x ?? 60} y={banner.y ?? 50} />}
+    <Sub text={sub} />
   </AbsoluteFill>;
 }
 
@@ -281,8 +317,9 @@ export function FxDocStat({ t, value, label, source, banner }) {
       <div style={{ fontFamily: SERIF, fontSize: 48, color: t.doc.gold, marginTop: 20 }}>{label}</div>
       {source && <div style={{ fontFamily: F.sans, fontSize: 22, color: "rgba(243,235,221,0.6)", marginTop: 30 }}>{source}</div>}
     </div>
-    {banner && <Banner t={t} {...banner} x={banner.x ?? 80} y={banner.y ?? 70} />}
+    <Grade />
+    {banner && <Banner t={t} {...banner} x={banner.x ?? 60} y={banner.y ?? 50} />}
   </AbsoluteFill>;
 }
 
-export const FX = { fxk: FxStickScene, fx3d: FxToon3D, fxroom: FxRoom, fxchart: FxChart, fxtitle: FxTitle, fxtoon: FxToon, fxcards: FxDocCards, fxpage: FxDocPage, fxstat: FxDocStat };
+export const FX = { fxk: FxStickScene, fx3d: FxToon3D, fxroom: FxRoom, fxchart: FxChart, fxtitle: FxTitle, fxtoon: FxToon, fxcards: FxDocCards, fxpage: FxDocPage, fxstat: FxDocStat, fxphoto: FxDocPhoto };

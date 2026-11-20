@@ -144,10 +144,10 @@ function Pill({ x, y, text, tone = "mid", t, from = 0, to, k = 1 }) {   // k: co
  *  shot: close | medium | wide (default from cast size); focus: cast index for close-ups; name: { text, from } lower-third; ots: true adds a blurred foreground head. */
 export function FxStickScene({ t, room = "classroom", cast = [], shot, focus = 0, name, ots, caption, push = 0.04 }) {
   const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig();
-  const S = shot || (cast.length <= 1 ? "close" : cast.length === 2 ? "medium" : "wide"), Z = { close: 2.8, medium: 1.45, wide: 1.0 }[S];
+  const S = shot || (cast.length <= 1 ? "close" : cast.length === 2 ? "medium" : "wide"), Z = { close: 2.8, medium: 1.85, wide: 1.0 }[S];
   const tgt = cast[Math.min(focus, cast.length - 1)], xs = cast.map((m) => (m.walk ? m.walk.to : m.x));
   const fx = S === "close" && tgt ? (tgt.walk ? tgt.walk.to : tgt.x) : xs.length ? (Math.min(...xs) + Math.max(...xs)) / 2 : 960;
-  const fy = S === "close" ? 590 : S === "medium" ? 660 : 540;
+  const fy = S === "close" ? 590 : S === "medium" ? 640 : 540;
   const z = Z * (1 + push * interpolate(f, [0, D], [0, 1], clamp));
   const ox = Math.min(Math.max(fx, 960 / Z), 1920 - 960 / Z), oy = Math.min(Math.max(fy, 540 / Z), 1080 - 540 / Z);
   const cam = { position: "absolute", left: 0, top: 0, width: 1920, height: 1080, transform: `translate(${960 - ox}px, ${540 - oy}px) scale(${z})`, transformOrigin: `${ox}px ${oy}px` };

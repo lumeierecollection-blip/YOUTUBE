@@ -318,7 +318,8 @@
         "board": "#2F5D50",
         "desk": "#E8B77B",
         "counter": "#D9CFC0"
-      }
+      },
+      "style": "conchaser"
     }
   },
   "fx-toon": {
@@ -458,10 +459,10 @@
       "normandy": "#4A5EA6",
       "norway": "#B9973F",
       "route": "#1A1A1A",
-      "sea": "#A7BBC7",
-      "land": "#E3DFD7",
-      "border": "#B7B0A4",
-      "mapInk": "#1C1A17",
+      "sea": "#7E9F9C",
+      "land": "#CDBB92",
+      "border": "#8A7A5C",
+      "mapInk": "#2A2014",
       "khaki": "#B5A764",
       "khaki2": "#CFC49A",
       "water": "#A9C3CF",
@@ -473,13 +474,14 @@
         "zone": "#A8201A",
         "font": "\"Cormorant Garamond\", \"Noto Serif\", serif"
       },
-      "usa": "#3F5FA8",
-      "denmark": "#B8343F",
-      "greenland": "#E9E4DA",
-      "canada": "#C9A15A",
-      "iceland": "#7E9C7A",
-      "russia": "#7A6A8E",
-      "uk": "#8A8F98"
+      "usa": "#D2AC5C",
+      "denmark": "#C9785A",
+      "greenland": "#EFE6D2",
+      "canada": "#8DA67E",
+      "iceland": "#A7B9A4",
+      "russia": "#A98C7A",
+      "uk": "#B59A80",
+      "_okeanos": "vintage map palette measured from Okeanos frames 20 Nov 2026: ochre land, teal sea, salmon and green neighbours"
     },
     "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
     "map": {
@@ -505,11 +507,11 @@
     },
     "_note": "Faceless experiment pilot A (documentary). Okeanos-like dark ground, red label banners; map palette for the Arctic story.",
     "doc": {
-      "ground": "#141210",
-      "ground2": "#2A241D",
-      "red": "#B3261E",
-      "gold": "#D2A85B",
-      "mark": "rgba(230,190,60,0.55)"
+      "ground": "#120D08",
+      "ground2": "#2A2016",
+      "red": "#C8553A",
+      "gold": "#D9B677",
+      "mark": "rgba(200,85,58,0.22)"
     }
   }
 }
