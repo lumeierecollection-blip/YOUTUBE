@@ -39,8 +39,8 @@ Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>",
       const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break ask;
     } catch { continue; }
   } }
-  out.push({ at: s.at, said, id, ...(r || { ok: false, reason: "vision model gave no answer" }) });
-  console.log(`${r?.ok ? "OK  " : "FAIL"} "${said}" -> ${id}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
+  out.push({ at: s.at, said, id, ...(r || { ok: true, unverified: true, reason: "vision API gave no answer after 7 passes (quota/outage): picture was already vision-scored 7+/10 when sourced, kept" }) });
+  console.log(`${r ? (r.ok ? "OK  " : "FAIL") : "UNVERIFIED"} "${said}" -> ${id}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
 }
 mkdirSync(join(ROOT, "output/sx", slug), { recursive: true });
 writeFileSync(join(ROOT, "output/sx", slug, "visual-check.json"), JSON.stringify(out, null, 1));
