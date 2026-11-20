@@ -1,82 +1,22 @@
 [
  {
-  "fetch": [
-   "rival-lines",
-   "th-haaland-2023",
-   "File:Erling_Haaland_2023.jpg",
-   "Erling Haaland, thumbnail subject"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2023.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2023-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-laugh.png",
+  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-laugh-cutout.png",
   "args": [
    "--model",
    "birefnet-general",
    "--max",
-   "1600"
+   "1920"
   ]
  },
  {
-  "fetch": [
-   "rival-lines",
-   "th-haaland-2023b",
-   "File:Erling_Haaland_2023_(fullcropped-v2).jpg",
-   "Erling Haaland, thumbnail subject"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2023b.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2023b-cutout.png",
+  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-shush.png",
+  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-shush-cutout.png",
   "args": [
    "--model",
    "birefnet-general",
    "--max",
-   "1600"
-  ]
- },
- {
-  "fetch": [
-   "rival-lines",
-   "th-haaland-2025",
-   "File:Erling_Haaland_June_2025.jpg",
-   "Erling Haaland, thumbnail subject"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2025.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-2025-cutout.png",
-  "args": [
-   "--model",
-   "birefnet-general",
-   "--max",
-   "1600"
-  ]
- },
- {
-  "fetch": [
-   "rival-lines",
-   "th-haaland-nor51",
-   "File:Erling_Haaland_Morocco_v_Norway_7_June_2026-51.jpg",
-   "Erling Haaland, thumbnail subject"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-nor51.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-nor51-cutout.png",
-  "args": [
-   "--model",
-   "birefnet-general",
-   "--max",
-   "1600"
-  ]
- },
- {
-  "fetch": [
-   "rival-lines",
-   "th-haaland-nor103",
-   "File:Erling_Haaland_Morocco_v_Norway_7_June_2026-103.jpg",
-   "Erling Haaland, thumbnail subject"
-  ],
-  "src": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-nor103.jpg",
-  "dst": "src/skills/remotion-render/public/lf2/rival-lines/th-haaland-nor103-cutout.png",
-  "args": [
-   "--model",
-   "birefnet-general",
-   "--max",
-   "1600"
+   "1920"
   ]
  }
 ]
