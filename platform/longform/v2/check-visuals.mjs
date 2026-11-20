@@ -11,7 +11,7 @@ const { EPISODE: ep } = await import(`./episodes/${slug}.mjs`);
 const PUB = join(ROOT, "src/skills/remotion-render/public");
 const KEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
 if (!KEYS.length) { console.error("no GEMINI_API_KEY: visual check cannot run"); process.exit(2); }
-const MODEL = "gemini-3.5-flash";
+const MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"];
 const out = [];
 for (const b of ep.beats) {
   const imgs = [...new Set((JSON.stringify(b.scene).match(/lf2\/[^"]+\.(?:jpe?g|png|webp)/gi) || []).filter((p) => !/geo\/|tex-|relief|terrain|cutout|png-money|logo/i.test(p)))];
@@ -22,12 +22,12 @@ Would an ordinary viewer immediately read this picture as a sensible, fitting il
 or a clearly related scene)? Unrelated, joking, misleading or confusing pictures are not fitting.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
     let r = null;
-    for (let pass = 0; pass < 4 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 8000 * pass));
-    for (const key of KEYS) {
+    for (let pass = 0; pass < 7 && !r; pass++) { if (pass) await new Promise((ok) => setTimeout(ok, 15000 * pass));
+    ask: for (const MODEL of MODELS) for (const key of KEYS) {
       try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" },
           body: JSON.stringify({ contents: [{ parts: [{ text: prompt }, { inlineData: { mimeType: /\.png$/i.test(p) ? "image/png" : "image/jpeg", data: readFileSync(file).toString("base64") } }] }], generationConfig: { responseMimeType: "application/json", temperature: 0 } }) });
-        if (!res.ok) continue; const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break;
+        if (!res.ok) { if (pass === 6) console.log("  api", MODEL, res.status); continue; } const j = await res.json(); r = JSON.parse(j.candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (r) break ask;
       } catch { continue; }
     } }
     out.push({ beat: b.id, img: p, ...(r || { ok: false, reason: "no answer" }) });
