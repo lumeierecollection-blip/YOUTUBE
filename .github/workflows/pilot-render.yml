@@ -35,6 +35,16 @@ jobs:
           retry install
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
           pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Visual-sense gate (every picture must fit what is said; fails the render otherwise)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          node platform/longform/v2/check-visuals.mjs "$ep"
       - name: Read the script in continuous takes
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
