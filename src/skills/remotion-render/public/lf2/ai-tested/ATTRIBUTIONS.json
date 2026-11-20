@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cort\u00e9s cortes",
+  "author": "Dennis Cortés cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1037,5 +1037,18 @@
   "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "mata-avian-04": {
+  "id": "mata-avian-04",
+  "file": "mata-avian-04.jpg",
+  "description": "human knee joint",
+  "depicts": "anatomical illustration of human knee joint",
+  "score": 9,
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/133115863@N08/18407712718",
+  "licence": "pdm 1.0",
+  "author": "Knowledge Collector",
+  "credit_line": "Knowledge Collector, PDM, via flickr",
+  "authenticity": "authentic"
  }
 }
