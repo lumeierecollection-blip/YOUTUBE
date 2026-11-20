@@ -17,7 +17,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function ask(prompt) {
   for (let pass = 0; pass < 5; pass++) { for (const key of KEYS) { try {
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", temperature: 0.4 } }) });
-    if (!r.ok) continue; const j = JSON.parse((await r.json()).candidates?.[0]?.content?.parts?.[0]?.text || "null"); if (j) return j; } catch { /* next */ } } await sleep(8000 * (pass + 1)); }
+    if (!r.ok) { console.error("gemini", r.status, (await r.text()).slice(0, 160)); continue; } const raw = await r.json(); const txt = raw.candidates?.[0]?.content?.parts?.map((x) => x.text || "").join("") || ""; let j = null; try { j = JSON.parse(txt.replace(/^```json\s*|```\s*$/g, "")); } catch { console.error("unparseable", txt.slice(0, 120), JSON.stringify(raw.promptFeedback || raw.candidates?.[0]?.finishReason || "").slice(0, 100)); } if (j) return j; } catch (e) { console.error("ask error", String(e).slice(0, 100)); } } await sleep(8000 * (pass + 1)); }
   throw new Error("model gave no answer");
 }
 async function source() {

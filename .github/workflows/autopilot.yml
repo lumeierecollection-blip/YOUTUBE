@@ -39,6 +39,7 @@ jobs:
           GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
         run: |
+          set -o pipefail
           node platform/autopilot/make.mjs "${{ steps.mode.outputs.mode }}" | tee gen.log
           echo "slug=$(grep '^SLUG=' gen.log | cut -d= -f2)" >> "$GITHUB_OUTPUT"
       - name: Commit the build to its own branch, mark the topic done on main, start the render
