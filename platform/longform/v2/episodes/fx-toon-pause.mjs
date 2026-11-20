@@ -4,7 +4,13 @@
 // a twist and a heartfelt end. Pure fiction: no factual claims are made, so no research sources are needed.
 export const SOURCES = { FIC: { title: "Fiction: the story is invented for this video", url: "", retrieved: "2026-11-20" } };
 const C = (id, x, o = {}) => ({ id, x, ...o });
-const toon = (set, cast, o = {}) => ({ type: "fxtoon", set, cast, ...o });
+// 20 Nov rebuild: real 3D (fx-toon3d.jsx "fx3d") measured from Jeremy Bearimy frames. Positions below stay in the old 1920-px layout and are mapped to
+// world units here (x: (px-960)/330), so the storyboard reads the same; balls/papers/phones map to 3D points in front of the cast.
+const W = (px) => (px - 960) / 330;
+const OB = (o) => { const zb = o.kind === "ball" ? -0.8 : 0.4, at = [W(o.x), Math.max(0.25, (980 - o.y) / 300) + (o.kind === "ball" ? 0.6 : 0), zb], to = o.to && { at: [W(o.to.x ?? o.x), Math.max(0.25, (980 - (o.to.y ?? o.y)) / 300) + (o.kind === "ball" ? 0.6 : 0), zb], from: o.to.from, dur: o.to.dur, arc: (o.to.arc || 0) / 300 }; return { kind: o.kind, at, ...(to ? { to } : {}) }; };
+const toon = (set, cast, o = {}) => ({ type: "fx3d", set, crowd: set === "gym" || set === "classroom" ? 8 : 0, ...o,
+  cast: cast.map((m) => ({ ...m, x: W(m.x), s: m.s || 1, armL: m.arm === "cross" ? "cross" : m.arm === "up" ? "up" : "down", ...(m.walk ? { walk: { ...m.walk, to: W(m.walk.to) } } : {}) })),
+  objs: (o.objs || []).map(OB) });
 const TIMER = (from = 0, dur = 300, seconds = 60) => ({ kind: "timer", x: 1690, y: 50, from, dur, seconds });
 const P = (from = 0, to) => ({ from, ...(to ? { to } : {}) });
 let k = 0; const beat = (vo, scene) => ({ id: `C${String(++k).padStart(2, "0")}`, part: "story", src: ["FIC"], vo, scene });

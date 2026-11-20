@@ -335,22 +335,32 @@
       "ui": "#7CF5C8",
       "cast": {
         "you": {
-          "color": "#5DA9FF"
+          "top": "#4F8FE0",
+          "hair": "none"
         },
         "sam": {
-          "color": "#FF7A8A"
+          "top": "#E46FA0",
+          "hair": "long",
+          "hairColor": "#5A3A2A"
         },
         "lee": {
-          "color": "#FFC65C"
+          "top": "#3E9A5A",
+          "hair": "cap",
+          "hairColor": "#2F6B45"
         },
         "ava": {
-          "color": "#A98BFF"
+          "top": "#9B7BE0",
+          "hair": "long",
+          "hairColor": "#E6B655"
         },
         "coach": {
-          "color": "#7BD88F"
+          "top": "#C7863E",
+          "hair": "short"
         },
         "dad": {
-          "color": "#4FC9C0"
+          "top": "#4A6A8A",
+          "hair": "short",
+          "hairColor": "#4A3A30"
         }
       },
       "sets": {
@@ -384,6 +394,50 @@
           "light": "#FFB86B",
           "floor": "#2F3440",
           "floorDark": "#16181E",
+          "accent": "#FFB86B"
+        }
+      },
+      "laser": "#FF4FA8",
+      "laserText": "#FFE3F2",
+      "sets3d": {
+        "gym": {
+          "bg": "#2A1E3E",
+          "wall": "#4B3470",
+          "floor": "#9C6A43",
+          "sky": "#B79CFF",
+          "ground": "#3A2448",
+          "ambient": "#8B6BD6",
+          "key": "#FFE6D0",
+          "accent": "#FF8AC8"
+        },
+        "classroom": {
+          "bg": "#2B2240",
+          "wall": "#5A4A78",
+          "floor": "#7A5A44",
+          "sky": "#C9B2FF",
+          "ground": "#3A2C44",
+          "ambient": "#9F86E0",
+          "key": "#FFD8B0",
+          "accent": "#FFB070"
+        },
+        "bedroom": {
+          "bg": "#1F1A33",
+          "wall": "#3E3260",
+          "floor": "#4A3A5E",
+          "sky": "#A090E0",
+          "ground": "#2A2038",
+          "ambient": "#7A68C8",
+          "key": "#FFD6A8",
+          "accent": "#FF9EC7"
+        },
+        "street": {
+          "bg": "#171A2E",
+          "wall": "#22284A",
+          "floor": "#2E3148",
+          "sky": "#7C82D8",
+          "ground": "#1A1A2A",
+          "ambient": "#6A6ACF",
+          "key": "#FFC890",
           "accent": "#FFB86B"
         }
       }
