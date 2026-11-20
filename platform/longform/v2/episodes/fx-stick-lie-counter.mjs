@@ -13,7 +13,10 @@ export const SOURCES = {
 const B = (value, tone, from = 10, to) => ({ value: String(value), label: "lies", tone, from, ...(to ? { to: { ...to, value: String(to.value) } } : {}) });
 const tone = (n) => (n === 0 ? "high" : n < 4 ? "mid" : "low");
 const C = (id, x, o = {}) => ({ id, x, ...o });
-const room = (room, cast, o = {}) => ({ type: "fxroom", room, cast, ...o });
+// 20 Nov rebuild: scenes use the measured ConChaser grammar (fx-stick.jsx "fxk"): badges become pill tags ("3 LIES"), the bedroom/kitchen/classroom/street sets
+// keep their names, and school corridor shots use the hallway set.
+const tagOf = (b) => b && { text: `${b.value} ${b.value === "1" ? "LIE" : "LIES"}`.replace("? LIES", "?"), tone: b.tone, from: b.from, ...(b.to ? { to: { text: `${b.to.value} ${b.to.value === "1" ? "LIE" : "LIES"}`, tone: b.to.tone || (Number(b.to.value) === 0 ? "high" : Number(b.to.value) < 4 ? "mid" : "low"), at: b.to.at } } : {}) };
+const room = (room, cast, o = {}) => ({ type: "fxk", room, cast: cast.map(({ badge, ...m }) => ({ ...m, tag: tagOf(badge) })), ...o });
 let k = 0; const beat = (vo, scene, src = ["FIC"]) => ({ id: `B${String(++k).padStart(2, "0")}`, part: "story", src, vo, scene });
 
 export const EPISODE = {
@@ -24,7 +27,7 @@ export const EPISODE = {
   beats: [
     // ---- cold open: the embarrassment
     beat("My best friend Mia just tasted my birthday cake, smiled, and said: this is amazing. And the number above her head went from zero to one.",
-      room("kitchen", [C("me", 640, { pose: "stand", mood: "happy", look: 1 }), C("mia", 1180, { pose: "point", pose2: "stand", poseAt: 120, mood: "happy", flip: -1, badge: B(0, "high", 20, { value: 1, tone: "mid", at: 150 }) })])),
+      room("kitchen", [C("me", 640, { pose: "stand", mood: "happy", look: 1 }), C("mia", 1180, { pose: "point", pose2: "stand", poseAt: 120, mood: "happy", flip: -1, badge: B(0, "high", 20, { value: 1, tone: "mid", at: 150 }) })], { name: { text: "Mia · best friend, 6 years", from: 30 } })),
     beat("Which means the cake is not amazing. Which means I baked a bad cake. And now I know that she knows that it's bad, and she doesn't know that I know.",
       room("kitchen", [C("me", 640, { pose: "facepalm", mood: "sad" }), C("mia", 1180, { pose: "stand", mood: "happy", flip: -1, badge: B(1, "mid", 0) })])),
     beat("And she's still eating it. Bite two. Mm, so good. Two.",
@@ -50,7 +53,7 @@ export const EPISODE = {
     beat("Then I got to school, and I stopped breathing for a second. Because the numbers were everywhere.",
       room("street", [C("me", 300, { pose: "stand", mood: "shock", walk: { from: 0, to: 760, dur: 120 } }), C("kid1", 1200, { pose: "stand", mood: "happy", badge: B(3, "mid", 40) }), C("kid2", 1560, { pose: "wave", mood: "smug", flip: -1, badge: B(9, "low", 50) })])),
     beat("Most of them were small. A one here, a zero there. But Jordan, the most popular guy in our year, was already on nine. It was eight-fifteen in the morning.",
-      room("classroom", [C("kid2", 960, { pose: "cheer", mood: "smug", badge: B(9, "low", 10) }), C("kid1", 520, { pose: "stand", mood: "happy", badge: B(0, "high", 20) }), C("me", 1420, { pose: "shrug", mood: "shock", flip: -1, badge: B(1, "mid", 20) })])),
+      room("hallway", [C("kid2", 960, { pose: "cheer", mood: "smug", badge: B(9, "low", 10) }), C("kid1", 520, { pose: "stand", mood: "happy", badge: B(0, "high", 20) }), C("me", 1420, { pose: "shrug", mood: "shock", flip: -1, badge: B(1, "mid", 20) })], { name: { text: "Jordan · most popular in our year", from: 20 } })),
     beat("By lunch he was on twenty-two. I watched him tell three different people that he'd been invited to the same party they had.",
       room("classroom", [C("kid2", 960, { pose: "point", mood: "happy", badge: B(21, "low", 0, { value: 22, at: 160 }) }), C("kid1", 1420, { pose: "stand", mood: "happy", flip: -1, badge: B(0, "high", 0) })])),
     beat("So I looked it up. And here's the weird part: real research says Jordan is normal in a very specific way.", { type: "fxtitle", text: "So I looked it up", dark: false }, ["FIC"]),
@@ -68,7 +71,7 @@ export const EPISODE = {
       room("kitchen", [C("mia", 960, { pose: "shrug", mood: "happy", badge: B(2, "mid", 10) })], { caption: "Later that evening" })),
     // ---- teachers and students
     beat("Then our teacher, Mr Okafor, handed back the tests and said: I'm not angry, I'm just disappointed. Badge stayed at zero. He meant it. That was worse.",
-      room("classroom", [C("teacher", 960, { pose: "shrug", mood: "sad", badge: B(0, "high", 10), say: { text: "I'm not angry...", from: 40 } })])),
+      room("classroom", [C("teacher", 960, { pose: "shrug", mood: "sad", badge: B(0, "high", 10), say: { text: "I'm not angry...", from: 40 } })], { name: { text: "Mr Okafor · maths", from: 10 } })),
     beat("And a kid in the back said: my dog ate my homework. One. Of course.",
       room("classroom", [C("kid1", 960, { pose: "shrug", mood: "smug", badge: B(0, "high", 0, { value: 1, at: 80 }), say: { text: "My dog ate it.", from: 30 } })])),
     beat("Students in one old diary study lied in about one out of every three conversations. I believed it now. I'd been counting.",

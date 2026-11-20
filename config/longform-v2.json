@@ -268,31 +268,44 @@
       "ink": "#1F2433",
       "paper": "#F6F1E7",
       "tone": {
-        "low": "#E4572E",
-        "mid": "#F2A93B",
-        "high": "#2BA84A"
+        "low": "#D9483B",
+        "mid": "#E39B2D",
+        "high": "#2FA45A"
       },
       "cast": {
         "me": {
-          "color": "#F7C948"
+          "top": "#E3B23C",
+          "pants": "#2B2F3A"
         },
         "mia": {
-          "color": "#7FC8F8"
+          "top": "#D9708F",
+          "pants": "#3B3350",
+          "hair": "bob"
         },
         "dad": {
-          "color": "#B8E0A0"
+          "top": "#3E5C8A",
+          "pants": "#4A4038",
+          "accent": "#B0413E"
         },
         "mom": {
-          "color": "#F4A6B7"
+          "top": "#7E9F6E",
+          "pants": "#3E3A34",
+          "hair": "bun"
         },
         "teacher": {
-          "color": "#C9B6F2"
+          "top": "#8A6E4E",
+          "pants": "#3A3A3A",
+          "accent": "#E8E1D2"
         },
         "kid1": {
-          "color": "#FFB074"
+          "top": "#D2693C",
+          "pants": "#2E3440",
+          "hair": "curls"
         },
         "kid2": {
-          "color": "#9AD9C9"
+          "top": "#3A7DBF",
+          "pants": "#22262E",
+          "hair": "band"
         }
       },
       "room": {

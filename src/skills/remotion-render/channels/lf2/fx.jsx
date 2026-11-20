@@ -8,6 +8,7 @@
 import React from "react";
 import { AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { F, Fonts, clamp, eio, expo, ramp } from "./kit.jsx";
+import { FxStickScene } from "./fx-stick.jsx";
 
 const R = Math.PI / 180;
 const seg = (x, y, len, a) => [x + len * Math.sin(a * R), y + len * Math.cos(a * R)];
@@ -283,4 +284,4 @@ export function FxDocStat({ t, value, label, source, banner }) {
   </AbsoluteFill>;
 }
 
-export const FX = { fxroom: FxRoom, fxchart: FxChart, fxtitle: FxTitle, fxtoon: FxToon, fxcards: FxDocCards, fxpage: FxDocPage, fxstat: FxDocStat };
+export const FX = { fxk: FxStickScene, fxroom: FxRoom, fxchart: FxChart, fxtitle: FxTitle, fxtoon: FxToon, fxcards: FxDocCards, fxpage: FxDocPage, fxstat: FxDocStat };
