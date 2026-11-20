@@ -1,9 +1,127 @@
-[{ "dir": "hidden-past", "items": [
-  ["hs-arbo-stamford", "File:Arbo - Battle of Stamford Bridge (1870).jpg", "Peter Nicolai Arbo, The Battle of Stamford Bridge (1870), public domain"],
-  ["hs-woolmer-morning", "File:Alfred Joseph Woolmer (1805-1892) - The Morning after the Battle of Hastings - WAG 3084 - Walker Art Gallery.jpg", "Woolmer, The Morning after the Battle of Hastings, public domain"],
-  ["hs-wilkins-hastings", "File:Francis William Wilkins (1800-1842) - The Battle of Hastings - 88227225 - Battle Abbey.jpg", "Wilkins, The Battle of Hastings, public domain"],
-  ["hs-vernet-edith", "File:Vernet Edith discovering King Harold's corpse on the battle field of Hastings.jpg", "Vernet, Edith finds Harold's body, public domain"],
-  ["hs-william-npg", "File:King William I ('The Conqueror') from NPG.jpg", "King William I, National Portrait Gallery, public domain"],
-  ["hs-harold-crowned", "File:Harold Godwinson being coronated in the Cambridge University Library.jpg", "Harold crowned, Cambridge University Library manuscript, public domain"],
-  ["hs-hardrada-saga", "File:Harald Hardraades saga-Harald og Svein-W. Wetlesen.jpg", "Harald Hardrada, saga illustration by W. Wetlesen, public domain"]
-] }]
+[
+ {
+  "dir": "fx-doc",
+  "items": [
+   [
+    "gl-lansing",
+    "File:Robert_Lansing,_U.S._Secretary_of_State.jpg",
+    "portrait of Robert Lansing"
+   ],
+   [
+    "gl-kauffmann",
+    "File:Watanabe Shin, Henrik Kauffmann, 1932 (cropped).jpg",
+    "Henrik Kauffmann, 1932"
+   ],
+   [
+    "gl-alaska",
+    "File:Alaska purchase.jpg",
+    "the cheque for the Alaska Purchase"
+   ],
+   [
+    "gl-thule-aerial",
+    "File:Aerial Picture Of Thule Air Base.jpg",
+    "aerial view of Thule Air Base (Pituffik)"
+   ],
+   [
+    "gl-thule-radar",
+    "File:Radar at Thule Air Base, Greenland.jpg",
+    "radar at Thule Air Base"
+   ],
+   [
+    "gl-f89",
+    "File:74th Fighter-Interceptor Squadron F-89s Thule 1955.jpg",
+    "US F-89 fighters at Thule, 1955"
+   ],
+   [
+    "gl-camp-century",
+    "File:Camp Century trench construction.png",
+    "Camp Century trench construction"
+   ],
+   [
+    "gl-cryolite",
+    "File:Cryolite mine ivgtut greenland.jpg",
+    "the cryolite mine at Ivittuut"
+   ],
+   [
+    "gl-edelweiss",
+    "File:Members of the Edelweiss II weather station in north-eastern Greenland taken prisoner by American soldiers, October 4 1944.jpg",
+    "German weather station crew captured in Greenland, 1944"
+   ],
+   [
+    "gl-stcroix",
+    "File:Last Danish Parade at Saint Croix.jpg",
+    "last Danish parade at Saint Croix, 1917"
+   ],
+   [
+    "gl-icesheet",
+    "File:Greenland ice sheet USGS.jpg",
+    "the Greenland ice sheet"
+   ],
+   [
+    "gl-nuuk",
+    "File:Nuuk,_Greenland_skyline_aerial_view.jpg",
+    "Nuuk, aerial view"
+   ],
+   [
+    "gl-nuuk-harbour",
+    "File:Nuuk Harbour (1) (Kenny McFly).jpg",
+    "Nuuk harbour"
+   ],
+   [
+    "gl-hvalsey",
+    "File:Hvalsey Church.jpg",
+    "Hvalsey Church, Norse ruin"
+   ],
+   [
+    "gl-oldmap",
+    "File:Old Greenland 1747.jpg",
+    "map of Greenland, 1747"
+   ],
+   [
+    "gl-christiansborg",
+    "File:Christiansborg fra Nikolaj Kirken.jpg",
+    "Christiansborg Palace, Copenhagen"
+   ],
+   [
+    "gl-trump-frederiksen",
+    "File:President Trump Meets with the Prime Minister of the Kingdom of Denmark (49170427867).jpg",
+    "Trump meets Frederiksen"
+   ],
+   [
+    "gl-frederiksen",
+    "File:Mette Frederiksen by Christian Ursilva (2026).jpg",
+    "Mette Frederiksen, 2026"
+   ],
+   [
+    "gl-nielsen",
+    "File:Jens-Frederik Nielsen by Christian Ursilva.jpg",
+    "Jens-Frederik Nielsen"
+   ],
+   [
+    "gl-protest",
+    "File:Hands off Greenland protest against Donald Trump in Copenhagen.jpg",
+    "Hands off Greenland protest, Copenhagen"
+   ],
+   [
+    "gl-vance",
+    "File:Vice President JD Vance and Second Lady Usha Vance in Greenland, 2025.jpg",
+    "JD Vance at Pituffik, 2025"
+   ],
+   [
+    "gl-signing",
+    "File:Secretary Rubio Participates in President Trump Signing Security Agreement with Denmark and Greenland (55544655218).jpg",
+    "signing of the 2026 security agreement"
+   ],
+   [
+    "gl-consulate",
+    "File:U.S. Consulate Nuuk.jpg",
+    "US consulate in Nuuk"
+   ],
+   [
+    "gl-flag",
+    "File:Greenland flag on building.jpg",
+    "Greenland flag on a building"
+   ]
+  ]
+ }
+]
