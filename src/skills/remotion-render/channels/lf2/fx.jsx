@@ -64,10 +64,13 @@ export function Peg({ x = 0, y = 0, s = 1, color = "#F2B134", ink = "#1F2433", p
 }
 
 /** Hexagonal value badge tethered above a head. tone: low | mid | high (colours from theme). */
-export function Badge({ x, y, value, label, tone = "mid", t, from = 0 }) {
-  const f = useCurrentFrame(), a = ramp(f, from, from + 12, expo), bob = Math.sin((f + x) / 18) * 4, c = t.fx.tone[tone] || t.fx.tone.mid;
+export function Badge({ x, y, value, label, tone = "mid", t, from = 0, to }) {
+  // to: { value, tone?, at } ticks the badge to a new value with a pop (a lie counted on screen)
+  const f = useCurrentFrame(), a = ramp(f, from, from + 12, expo), bob = Math.sin((f + x) / 18) * 4, on = to && f >= to.at, pulse = to ? Math.max(0, 1 - Math.abs(f - to.at) / 8) : 0;
+  if (on) { value = to.value; tone = to.tone || tone; }
+  const c = t.fx.tone[tone] || t.fx.tone.mid;
   const hx = (r) => [0, 1, 2, 3, 4, 5].map((i) => `${r * Math.cos((60 * i - 90) * R) * 1.6},${r * Math.sin((60 * i - 90) * R)}`).join(" ");
-  return <g transform={`translate(${x} ${y + bob - (1 - a) * 30})`} opacity={a}>
+  return <g transform={`translate(${x} ${y + bob - (1 - a) * 30}) scale(${1 + pulse * 0.25})`} opacity={a}>
     <line x1={0} y1={46} x2={0} y2={92} stroke={c} strokeWidth={3} strokeDasharray="5 6" />
     <polygon points={hx(48)} fill={c} stroke="#fff" strokeWidth={5} />
     <text x={0} y={label ? 4 : 14} textAnchor="middle" fontFamily={F.grot} fontWeight={800} fontSize={label ? 38 : 44} fill="#fff">{value}</text>

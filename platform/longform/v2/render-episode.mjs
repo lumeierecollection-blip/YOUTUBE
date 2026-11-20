@@ -18,12 +18,12 @@ import { narrate } from "../../production/index.mjs";
 import { ROOT } from "../../preview/lib.mjs";
 import { autoCredit } from "./credits.mjs";
 
-const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug.startsWith("rival-lines") ? "rival-lines" : slug; // slug = episode file name; ch = the channel it belongs to
+const slug = process.argv[2], ch = ["hidden-past", "ai-tested", "rival-lines", "fx-stick", "fx-toon", "fx-doc"].find((c) => slug.startsWith(c)) || slug; // slug = episode file name; ch = the channel it belongs to
 const argv = process.argv.slice(3);
 const opt = (n) => { const i = argv.indexOf(`--${n}`); return i > -1 ? argv[i + 1] : null; };
 const ONLY = opt("beats")?.split(","), MAX = Number(opt("max-beats") || 0), SHARD = opt("shard"), NOJOIN = argv.includes("--no-join") || Boolean(SHARD); // --shard i/n renders only beats whose index % n == i and never joins (a later job joins)
 const FPS = 30, XF = 0.4, PAD = XF; // PAD = XF: beats are cut from one continuous take (make-voice.mjs) at the pauses, so playing them back to back, overlapped by the crossfade, reproduces the take with no added gaps
-const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural" }; // Rival Lines: British, deep male voice (owner, 10 Nov 2026)
+const VOICE = { "hidden-past": "en-GB-RyanNeural", "ai-tested": "en-US-AndrewNeural", "rival-lines": "en-GB-RyanNeural", "fx-stick": "en-US-AndrewNeural", "fx-toon": "en-US-BrianNeural", "fx-doc": "en-US-GuyNeural" };   // fx-*: faceless experiment pilots (edge-tts fallback voices) // Rival Lines: British, deep male voice (owner, 10 Nov 2026)
 if (!VOICE[ch]) { console.error("channel must be one of", Object.keys(VOICE)); process.exit(1); }
 
 const REMOTION = join(ROOT, "src/skills/remotion-render");
@@ -60,9 +60,9 @@ function sceneProps(scene) {
 }
 
 // ---- 1. voice (Gemini TTS when a key is present, edge-tts as the recorded fallback; one clip per beat, cached)
-const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": null };
+const GRAV = { "hidden-past": "serious", "ai-tested": "serious", "rival-lines": null, "fx-stick": null, "fx-toon": null, "fx-doc": "serious" };
 // owner, 19 Nov 2026: the football narration "sounds more of a horror story" -> an upbeat analyst read for Rival Lines (pace from delivery, never sped up)
-const STYLE = { "rival-lines": "Read this like an upbeat, curious football analyst on a YouTube explainer, in a natural British English accent: bright, warm and engaged, a confident steady pace, a little smile in the voice, energy on numbers and club names. Never dark, never dramatic, never slow:" };
+const STYLE = { "fx-stick": "Read this as a young, wry first-person storyteller on a YouTube animation channel, natural American English: conversational, quick but clear, amused at your own bad luck, warm, never theatrical:", "fx-toon": "Read this as an energetic second-person narrator on an animated YouTube story channel, natural American English: bright, playful, punchy short lines, a clear steady pace, real warmth at the end:", "rival-lines": "Read this like an upbeat, curious football analyst on a YouTube explainer, in a natural British English accent: bright, warm and engaged, a confident steady pace, a little smile in the voice, energy on numbers and club names. Never dark, never dramatic, never slow:" };
 // --stills: one PNG per beat for visual approval (owner, 20 Nov 2026: "come back with stills, don't render"): no voice, no video
 const STILLS = argv.includes("--stills");
 if (STILLS) for (const b of beats) b._len = b.vo.split(/\s+/).length / 2.5 + PAD;
