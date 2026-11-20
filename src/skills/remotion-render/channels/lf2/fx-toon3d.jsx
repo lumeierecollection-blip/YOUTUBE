@@ -21,7 +21,8 @@ function Limb({ from, to, r = 0.045, color, frozen }) {
   const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), b.clone().sub(a).normalize());
   return <mesh position={mid} quaternion={q}><cylinderGeometry args={[r, r, len, 12]} /><Mat color={color} frozen={frozen} /></mesh>;
 }
-const ARM = { down: [[0.36, 1.25, 0], [0.42, 0.78, 0.05]], up: [[0.36, 1.25, 0], [0.5, 1.95, 0.05]], wave: [[0.36, 1.25, 0], [0.62, 1.8, 0.1]], cross: [[0.36, 1.25, 0], [-0.05, 1.05, 0.32]], point: [[0.36, 1.25, 0], [0.95, 1.3, 0.25]] };
+// [shoulder, elbow, hand] per side (x mirrored for the left arm); measured proportions: slim hoodie torso, long white neck, thin limbs (side-by-side v1, 20 Nov)
+const ARM = { down: [[0.25, 1.42, 0], [0.31, 1.1, 0.02], [0.33, 0.8, 0.06]], up: [[0.25, 1.42, 0], [0.36, 1.75, 0], [0.4, 2.12, 0.05]], wave: [[0.25, 1.42, 0], [0.52, 1.55, 0.05], [0.6, 1.95, 0.1]], cross: [[0.25, 1.42, 0], [0.22, 1.12, 0.22], [-0.06, 1.22, 0.3]], point: [[0.25, 1.42, 0], [0.56, 1.42, 0.15], [0.86, 1.45, 0.3]], pocket: [[0.25, 1.42, 0], [0.29, 1.15, 0.1], [0.1, 1.0, 0.24]] };
 
 /** A Pip: feet at (x, 0, z). c = theme cast entry { top, hair, hairColor }. */
 function Pip({ x = 0, z = 0, turn = 0, c = {}, mood = "neutral", look = 0, arm = "down", armL = "down", frozen = false, walk, hop = 0, f, s = 1 }) {
@@ -32,16 +33,17 @@ function Pip({ x = 0, z = 0, turn = 0, c = {}, mood = "neutral", look = 0, arm =
   const eye = (sx) => mood === "happy" ? <mesh position={[sx * 0.17, 0.05, 0.5]} rotation={[0, 0, Math.PI]}><torusGeometry args={[0.06, 0.018, 8, 16, Math.PI]} /><Mat color="#1B1626" /></mesh>
     : <mesh position={[sx * 0.17, 0.04, 0.51]} scale={[1, mood === "shock" ? 1.5 : mood === "smug" ? 0.45 : 1.15, 0.5]}><sphereGeometry args={[0.055, 16, 12]} /><Mat color="#1B1626" rough={0.3} /></mesh>;
   return <group position={[X, jump, z]} rotation={[0, turn, 0]} scale={s}>
-    {/* legs and feet */}
-    {[-1, 1].map((sd) => { const sw = sd * step * 0.18; return <group key={sd}><Limb from={[sd * 0.13, 0.62, 0]} to={[sd * 0.15, 0.06, sw]} r={0.05} color={SKIN} frozen={fr} /><mesh position={[sd * 0.15, 0.05, sw + 0.05]} scale={[1, 0.6, 1.3]}><sphereGeometry args={[0.09, 16, 12]} /><Mat color={SKIN} frozen={fr} /></mesh></group>; })}
-    {/* hoodie body */}
-    <mesh position={[0, 0.95 + bob, 0]}><capsuleGeometry args={[0.33, 0.42, 8, 20]} /><Mat color={top} frozen={fr} rough={0.85} /></mesh>
-    <mesh position={[0, 1.33 + bob, -0.12]} rotation={[0.3, 0, 0]}><torusGeometry args={[0.2, 0.08, 10, 24]} /><Mat color={top} frozen={fr} rough={0.85} /></mesh>
-    {/* arms (right = +x side of the figure) */}
-    {[[1, R], [-1, L]].map(([sd, A]) => <group key={sd}><Limb from={[sd * A[0][0], A[0][1] + bob, A[0][2]]} to={[sd * A[1][0], A[1][1] + bob + (sd > 0 ? wave : 0), A[1][2]]} r={0.045} color={SKIN} frozen={fr} /><mesh position={[sd * A[1][0], A[1][1] + bob + (sd > 0 ? wave : 0), A[1][2]]}><sphereGeometry args={[0.085, 16, 12]} /><Mat color={SKIN} frozen={fr} /></mesh></group>)}
+    <mesh position={[0, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}><circleGeometry args={[0.42, 24]} /><meshBasicMaterial color="#000" transparent opacity={0.28} depthWrite={false} /></mesh>   {/* contact shadow */}
+    {/* legs: thin white sticks, trousers on the thigh, round feet */}
+    {[-1, 1].map((sd) => { const sw = sd * step * 0.18; return <group key={sd}><Limb from={[sd * 0.11, 0.86, 0]} to={[sd * 0.12, 0.07, sw]} r={0.045} color={SKIN} frozen={fr} /><Limb from={[sd * 0.11, 0.9, 0]} to={[sd * 0.115, 0.6, sw * 0.4]} r={0.075} color={c.pants || "#3A3550"} frozen={fr} /><mesh position={[sd * 0.12, 0.06, sw + 0.06]} scale={[1, 0.6, 1.35]}><sphereGeometry args={[0.085, 16, 12]} /><Mat color={SKIN} frozen={fr} /></mesh></group>; })}
+    {/* slim hoodie torso, hood behind the neck */}
+    <mesh position={[0, 1.17 + bob, 0]} scale={[1.18, 1, 0.82]}><capsuleGeometry args={[0.23, 0.36, 8, 20]} /><Mat color={top} frozen={fr} rough={0.85} /></mesh>
+    <mesh position={[0, 1.5 + bob, -0.1]} rotation={[0.35, 0, 0]}><torusGeometry args={[0.15, 0.065, 10, 24]} /><Mat color={top} frozen={fr} rough={0.85} /></mesh>
+    {/* arms: sleeve on the upper arm, white forearm, round hand */}
+    {[[1, R], [-1, L]].map(([sd, A]) => { const P3 = A.map((q, j) => [sd * q[0], q[1] + bob + (sd > 0 && j === 2 ? wave : 0), q[2]]); return <group key={sd}><Limb from={P3[0]} to={P3[1]} r={0.07} color={top} frozen={fr} /><Limb from={P3[1]} to={P3[2]} r={0.042} color={SKIN} frozen={fr} /><mesh position={P3[2]}><sphereGeometry args={[0.075, 16, 12]} /><Mat color={SKIN} frozen={fr} /></mesh></group>; })}
     {/* neck and head */}
-    <Limb from={[0, 1.3 + bob, 0]} to={[0, 1.55 + bob, 0]} r={0.05} color={SKIN} frozen={fr} />
-    <group position={[0, 1.95 + bob, 0]} rotation={[0, look * 0.35, 0]}>
+    <Limb from={[0, 1.45 + bob, 0]} to={[0, 1.75 + bob, 0]} r={0.045} color={SKIN} frozen={fr} />
+    <group position={[0, 2.15 + bob, 0]} rotation={[0, look * 0.35, 0]}>
       <mesh><sphereGeometry args={[0.52, 48, 32]} /><Mat color={SKIN} frozen={fr} rough={0.5} /></mesh>
       {eye(-1)}{eye(1)}
       {(mood === "happy" || mood === "smug") && [-1, 1].map((sx) => <mesh key={sx} position={[sx * 0.27, -0.08, 0.44]} scale={[1, 0.6, 0.3]}><sphereGeometry args={[0.06, 12, 8]} /><meshStandardMaterial color="#F4A3C0" transparent opacity={0.7} /></mesh>)}
@@ -60,18 +62,23 @@ function SetGeo({ kind, P }) {
     <mesh rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[40, 30]} /><meshStandardMaterial color={floor} roughness={0.45} /></mesh>
     <mesh position={[0, 6, -6]}><planeGeometry args={[40, 12]} /><meshStandardMaterial color={wall} roughness={0.9} /></mesh>
     {kind === "gym" && <group>
-      {[...Array(9)].map((_, i) => <mesh key={i} position={[-8 + i * 2, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[0.03, 30]} /><meshStandardMaterial color="#B98A5C" /></mesh>)}
+      {[...Array(9)].map((_, i) => <mesh key={i} position={[-8 + i * 2, 0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[0.03, 30]} /><meshStandardMaterial color="#C9986A" /></mesh>)}
+      <mesh position={[0, 0.008, -1]} rotation={[-Math.PI / 2, 0, 0]}><ringGeometry args={[1.7, 1.78, 48]} /><meshStandardMaterial color="#F3E6D8" /></mesh>
       <mesh position={[5, 3.4, -5.8]}><boxGeometry args={[1.8, 1.1, 0.06]} /><meshStandardMaterial color="#F2EEF6" /></mesh><mesh position={[5, 2.75, -5.4]} rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[0.32, 0.03, 8, 24]} /><meshStandardMaterial color="#FF7A3D" emissive="#FF7A3D" emissiveIntensity={0.3} /></mesh>
-      {[0, 1, 2].map((r) => <mesh key={r} position={[-4, 0.35 + r * 0.6, -4.6 + r * 0.6]}><boxGeometry args={[9, 0.12, 0.5]} /><meshStandardMaterial color="#5A4A7A" /></mesh>)}
+      {[0, 1, 2, 3].map((r) => <mesh key={r} position={[-3, 0.3 + r * 0.55, -4.4 - r * 0.55]}><boxGeometry args={[14, 0.12, 0.55]} /><meshStandardMaterial color="#6B5590" /></mesh>)}
+      {[...Array(24)].map((_, i) => <Pip key={`bl${i}`} x={-9 + (i % 12) * 1.2 + (Math.floor(i / 12) % 2) * 0.6} z={-4.4 - (1 + Math.floor(i / 12)) * 0.55 - 0.2} s={0.55} c={{ top: ["#E46FA0", "#4F8FE0", "#F2C94C", "#3E9A5A", "#9B7BE0", "#E8743B"][i % 6], hair: ["none", "short", "long", "cap"][i % 4] }} mood={["happy", "neutral", "smug"][i % 3]} f={0} />)}
     </group>}
     {kind === "classroom" && <group>
       <mesh position={[-1, 2.7, -5.9]}><boxGeometry args={[4.2, 2, 0.05]} /><meshStandardMaterial color="#284A3E" /></mesh>
-      {[-3, 0, 3].map((x) => [1.5, 3.2].map((zz) => <mesh key={`${x}${zz}`} position={[x, 0.75, zz - 4]}><boxGeometry args={[1.4, 0.08, 0.8]} /><meshStandardMaterial color="#C8935E" /></mesh>))}
+      {[-4.2, -2.6].map((x, i) => <mesh key={i} position={[x, 3.4, -5.92]}><planeGeometry args={[0.9, 1.2]} /><meshStandardMaterial color={["#F2C94C", "#7FB3E0"][i]} /></mesh>)}
+      {[-3, -1, 1, 3].map((x) => [-1.6, -3.2].map((zz) => <group key={`${x}${zz}`} position={[x, 0, zz]}><mesh position={[0, 0.74, 0]}><boxGeometry args={[1.1, 0.06, 0.7]} /><meshStandardMaterial color="#E1A866" /></mesh>{[[-0.48, -0.3], [0.48, -0.3], [-0.48, 0.3], [0.48, 0.3]].map(([a, b], j) => <mesh key={j} position={[a, 0.37, b]}><boxGeometry args={[0.04, 0.74, 0.04]} /><meshStandardMaterial color="#5A5A6A" /></mesh>)}<mesh position={[0, 0.45, 0.62]}><boxGeometry args={[0.5, 0.05, 0.45]} /><meshStandardMaterial color="#7C8AA8" /></mesh><mesh position={[0, 0.75, 0.85]}><boxGeometry args={[0.5, 0.5, 0.05]} /><meshStandardMaterial color="#7C8AA8" /></mesh></group>))}
       <mesh position={[4.5, 3, -5.9]}><planeGeometry args={[2.6, 2]} /><meshStandardMaterial color="#FFB46B" emissive="#FF9E5A" emissiveIntensity={1.4} /></mesh>
     </group>}
     {kind === "bedroom" && <group>
-      <mesh position={[-3, 0.4, -4.2]}><boxGeometry args={[3.2, 0.8, 2]} /><meshStandardMaterial color="#4B5FA8" /></mesh>
-      <mesh position={[3.6, 3, -5.9]}><planeGeometry args={[2.2, 1.8]} /><meshStandardMaterial color="#1C2346" emissive="#2B3A7A" emissiveIntensity={0.8} /></mesh>
+      <mesh position={[-3, 0.35, -4.2]}><boxGeometry args={[3.2, 0.7, 2]} /><meshStandardMaterial color="#E9E4F2" /></mesh><mesh position={[-3, 0.75, -4]}><boxGeometry args={[3.1, 0.12, 1.7]} /><meshStandardMaterial color="#6F86D6" /></mesh><mesh position={[-4.2, 0.85, -4.6]}><boxGeometry args={[0.7, 0.18, 0.5]} /><meshStandardMaterial color="#FFFFFF" /></mesh>
+      <mesh position={[-0.8, 0.4, -4.6]}><boxGeometry args={[0.7, 0.8, 0.6]} /><meshStandardMaterial color="#CDB8E6" /></mesh><mesh position={[-0.8, 0.9, -4.5]}><boxGeometry args={[0.35, 0.2, 0.15]} /><meshStandardMaterial color="#1B1626" emissive="#FF3B5C" emissiveIntensity={0.6} /></mesh>
+      <mesh position={[3.6, 3, -5.9]}><planeGeometry args={[2.2, 1.8]} /><meshStandardMaterial color="#1C2346" emissive="#3A4A9A" emissiveIntensity={0.9} /></mesh>
+      <mesh position={[1.4, 3.2, -5.92]}><planeGeometry args={[1, 1.4]} /><meshStandardMaterial color="#F28CB4" /></mesh>
       <mesh position={[1.2, 1.6, -5.2]}><sphereGeometry args={[0.22, 16, 12]} /><meshStandardMaterial color="#FFD9A0" emissive="#FFC070" emissiveIntensity={3} /></mesh>
     </group>}
     {kind === "street" && <group>
@@ -91,22 +98,22 @@ const xOf = (m, f) => (m.walk ? m.x + (m.walk.to - m.x) * ramp(f, m.walk.from, m
 
 /** C scene in 3D. cast: [{ id, x (world units, -4..4), z, turn, mood, look, arm, armL, frozen, walk:{from,dur,to}, hop, s }], crowd: n background extras,
  *  shot: close | medium | wide, focus: cast index; objs: [{ kind: ball|phone|paper, at:[x,y,z], to?:{at,from,dur,arc} }]; links: [[i,j,from]]; paused; ui; caption. */
-export function FxToon3D({ t, set = "gym", cast = [], crowd = 0, shot, focus = 0, objs = [], links = [], paused, ui = [], caption, label }) {
+export function FxToon3D({ t, set = "gym", cast = [], crowd = 0, shot, focus = 0, angle = "front", objs = [], links = [], paused, ui = [], caption, label }) {
   const f = useCurrentFrame(), { durationInFrames: D } = useVideoConfig(), P = t.fx.sets3d[set] || t.fx.sets3d.gym, composerRef = useRef(null);
   const S = shot || (cast.length <= 1 ? "close" : cast.length === 2 ? "medium" : "wide"), tgt = cast[Math.min(focus, cast.length - 1)];
   const cx = S === "close" && tgt ? xOf(tgt, f) : cast.length ? cast.reduce((a, m) => a + xOf(m, f), 0) / cast.length : 0;
-  const k = interpolate(f, [0, D], [0, 1], clamp), dist = { close: 2.6, medium: 5.2, wide: 9 }[S] - k * 0.35, camY = { close: 1.95, medium: 1.7, wide: 2.4 }[S];
+  const k = interpolate(f, [0, D], [0, 1], clamp), dist = { close: 2.7, medium: 5.4, wide: 9.5 }[S] - k * 0.35, camY = { close: 2.15, medium: 1.9, wide: 2.6 }[S];   // angle: front | high | side | low (measured: high three-quarter, side and low views)
   const focusZ = tgt ? (tgt.z || 0) : 0;
   const extras = useMemo(() => [...Array(crowd)].map((_, i) => ({ x: -7 + ((i * 2.3) % 14), z: -2.5 - (i % 3) * 1.1, turn: ((i * 37) % 60 - 30) * Math.PI / 180, c: Object.values(t.fx.cast)[i % Object.values(t.fx.cast).length], mood: ["neutral", "happy", "smug"][i % 3] })), [crowd]);
-  const headOf = (m) => [xOf(m, f), 1.95 * (m.s || 1), m.z || 0];
+  const headOf = (m) => [xOf(m, f), 2.15 * (m.s || 1), m.z || 0];
   const pz = !!paused && f >= (paused.from || 0) && (!paused.to || f < paused.to);
   return <AbsoluteFill style={{ background: P.bg }}>
     <Fonts />
-    <ThreeCanvas width={1920} height={1080} camera={{ position: [cx + 0.15, camY, focusZ + dist], fov: 34 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
-      <CamAim x={cx} y={S === "close" ? 1.85 : 1.3} z={focusZ} />
+    <ThreeCanvas width={1920} height={1080} camera={{ position: { front: [cx + 0.15, camY, focusZ + dist], high: [cx + dist * 0.45, camY + dist * 0.55, focusZ + dist * 0.85], side: [cx + dist * 0.7, camY + 0.2, focusZ + dist * 0.72], low: [cx - dist * 0.25, 0.7, focusZ + dist * 0.95] }[angle] || [cx, camY, focusZ + dist], fov: 34 }} gl={{ antialias: true, preserveDrawingBuffer: true }}>
+      <CamAim x={cx} y={S === "close" ? 2.05 : 1.35} z={focusZ} />
       <color attach="background" args={[P.bg]} /><fog attach="fog" args={[P.bg, 9, 22]} />
-      <hemisphereLight args={[P.sky, P.ground, 0.9]} /><ambientLight intensity={0.25} color={P.ambient} />
-      <directionalLight position={[-4, 6, 6]} intensity={1.4} color={P.key} /><pointLight position={[4, 3, 1]} intensity={14} distance={12} color={P.accent} />
+      <hemisphereLight args={[P.sky, P.ground, 1.35]} /><ambientLight intensity={0.35} color={P.ambient} />
+      <directionalLight position={[-4, 7, 5]} intensity={2.1} color={P.key} /><pointLight position={[4, 3, 1]} intensity={14} distance={12} color={P.accent} />
       <SetGeo kind={set} P={P} />
       {extras.map((m, i) => <Pip key={`x${i}`} {...m} f={f} frozen={pz} />)}
       {cast.map((m, i) => <Pip key={i} {...m} c={t.fx.cast[m.id] || {}} f={f} frozen={m.frozen || pz && m.id !== "you" && !m.moves} />)}
@@ -114,7 +121,7 @@ export function FxToon3D({ t, set = "gym", cast = [], crowd = 0, shot, focus = 0
         return <mesh key={`o${i}`} position={p} rotation={[kk * 6, kk * 3, 0]}>{o.kind === "ball" ? <sphereGeometry args={[0.2, 24, 16]} /> : o.kind === "phone" ? <boxGeometry args={[0.18, 0.34, 0.03]} /> : <boxGeometry args={[0.42, 0.56, 0.01]} />}<meshStandardMaterial color={o.kind === "ball" ? "#E8743B" : o.kind === "phone" ? "#16131F" : "#F6F1E7"} emissive={o.kind === "phone" ? "#5A8CFF" : "#000"} emissiveIntensity={o.kind === "phone" ? 0.6 : 0} /></mesh>; })}
       {links.map(([i, j, from = 0], n) => cast[i] && cast[j] ? <Link key={`l${n}`} a={headOf(cast[i])} b={headOf(cast[j])} k={ramp(f, from, from + 20, eio)} col={t.fx.laser} /> : null)}
       <EffectComposer ref={composerRef} multisampling={4}>
-        <DepthOfField target={[cx, S === "close" ? 1.95 : 1.5, focusZ]} focalLength={S === "close" ? 0.012 : S === "medium" ? 0.02 : 0.05} bokehScale={S === "close" ? 5 : S === "medium" ? 2 : 0.6} />   {/* focus on the subject head: the background melts, the face stays sharp */}
+        <DepthOfField target={[cx, S === "close" ? 2.15 : 1.5, focusZ]} focalLength={S === "close" ? 0.012 : S === "medium" ? 0.02 : 0.05} bokehScale={S === "close" ? 5 : S === "medium" ? 2 : 0.6} />   {/* focus on the subject head: the background melts, the face stays sharp */}
         <Bloom intensity={0.9} luminanceThreshold={0.6} luminanceSmoothing={0.3} mipmapBlur />
         <Vignette eskil={false} offset={0.25} darkness={0.75} />
       </EffectComposer>
