@@ -19,7 +19,7 @@ let pos = 0; const spans = S.SHOTS.map((s) => { const a = norm(s.at); let i = po
 const out = [];
 for (const [n, s] of S.SHOTS.entries()) {
   const said = words.slice(spans[n], n + 1 < spans.length ? spans[n + 1] : words.length).join(" ");
-  const id = s.photo || s.logo || s.asset; if (!id || ["page", "stat", "money"].includes(s.kind) && !s.photo) continue;
+  const id = s.photo || s.logo || s.asset; if (!id || s.kind === "year" || ["page", "stat", "money"].includes(s.kind) && !s.photo) continue;   // a year card IS the date: the giant number is the visual
   const a = att[id]; const file = a ? join(PUB, "lf2/ai-tested", a.file) : null;
   if (!file || !existsSync(file)) { out.push({ at: s.at, said, id, ok: false, reason: "picture file missing" }); continue; }
   const b64 = readFileSync(file).toString("base64"), mime = file.endsWith(".png") ? "image/png" : "image/jpeg";

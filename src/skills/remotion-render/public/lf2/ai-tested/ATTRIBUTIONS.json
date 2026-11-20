@@ -977,5 +977,65 @@
   "credit_line": "Andy Field (Field Office), BY NC SA, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-chat-ask": {
+  "id": "ac-chat-ask",
+  "file": "ac-chat-ask.png",
+  "description": "a recreated chatbot screen: the customer asks about bereavement fares",
+  "source": "made for this video",
+  "credit_line": "Illustration made for this video (platform/shorts-sx/make-cards.py)",
+  "licence": "own work",
+  "authenticity": "illustration"
+ },
+ "ac-chat-bot": {
+  "id": "ac-chat-bot",
+  "file": "ac-chat-bot.png",
+  "description": "a recreated chatbot screen: the wrong answer (full price now, claim within 90 days)",
+  "source": "made for this video",
+  "credit_line": "Illustration made for this video (platform/shorts-sx/make-cards.py)",
+  "licence": "own work",
+  "authenticity": "illustration"
+ },
+ "ac-chat-intro": {
+  "id": "ac-chat-intro",
+  "file": "ac-chat-intro.png",
+  "description": "a recreated chatbot screen: an airline chatbot starting a chat",
+  "source": "made for this video",
+  "credit_line": "Illustration made for this video (platform/shorts-sx/make-cards.py)",
+  "licence": "own work",
+  "authenticity": "illustration"
+ },
+ "ac-stamp": {
+  "id": "ac-stamp",
+  "file": "ac-stamp.png",
+  "description": "a refund form stamped REFUSED",
+  "source": "made for this video",
+  "credit_line": "Illustration made for this video (platform/shorts-sx/make-cards.py)",
+  "licence": "own work",
+  "authenticity": "illustration"
+ },
+ "ac-lawbooks": {
+  "id": "ac-lawbooks",
+  "file": "ac-lawbooks.jpg",
+  "description": "Law library books",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/10799299@N00/6685162501",
+  "licence": "by",
+  "author": "j3net",
+  "credit_line": "j3net, BY, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "ac-solo": {
+  "id": "ac-solo",
+  "file": "ac-solo.jpg",
+  "description": "Travel",
+  "source": "flickr",
+  "source_url": "https://www.flickr.com/photos/124013470@N07/15424651143",
+  "licence": "by-nc-nd",
+  "author": "FUMIGRAPHIK_Photographist",
+  "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
+  "authenticity": "authentic",
+  "found_via": "Openverse / public archive search, 20 Nov 2026"
  }
 }
