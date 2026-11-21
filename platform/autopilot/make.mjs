@@ -14,7 +14,7 @@ const queue = J(`data/autopilot/${mode}-queue.json`, []), done = J("data/autopil
 const topic = queue.find((t) => !done.includes(t.id)); if (!topic) { console.error("queue empty: add topics to data/autopilot/" + mode + "-queue.json"); process.exit(3); }
 const KEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
 // each model has its own free quota: when one is used up (429) the next one answers
-const MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-flash-lite-latest"];
+const MODELS = ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.8-flash", "gemini-3.1-flash-lite", "gemini-flash-latest", "gemini-flash-lite-latest", "gemini-3-flash-preview"];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function ask(prompt) {
   for (let pass = 0; pass < 5; pass++) { for (const model of MODELS) for (const key of KEYS) { try {
