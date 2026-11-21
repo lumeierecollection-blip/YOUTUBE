@@ -5,12 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
       - env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
           GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: |
-          for K in "$GEMINI_API_KEY" "$GEMINI_API_KEY_2"; do echo "gemini models:"; curl -s "https://generativelanguage.googleapis.com/v1beta/models?key=$K&pageSize=100" | jq -r '.models[]?|select(.supportedGenerationMethods|index("generateContent"))|.name' | grep -iE "flash|lite|gemma" | tr '\n' ' '; echo; done
-          echo "groq models:"; curl -s https://api.groq.com/openai/v1/models -H "authorization: Bearer $GROQ_API_KEY" | jq -r '.data[]?.id' | tr '\n' ' '; echo
-          echo "openrouter vision-capable:"; curl -s https://openrouter.ai/api/v1/models | jq -r '.data[]|select((.architecture.input_modalities//[])|index("image"))|select(.id|test("flash|haiku|gpt-4o-mini|pixtral|qwen.*vl|llama.*vision|gemma"))|"\(.id) \(.pricing.prompt)"' | head -15
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          SOURCE_BUDGET_MIN: "6"
+        run: node platform/longform/v2/auto-source.mjs data/autopilot/probe-jobs.json probe
