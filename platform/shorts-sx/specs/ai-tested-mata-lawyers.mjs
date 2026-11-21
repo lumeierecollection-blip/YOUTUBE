@@ -37,10 +37,10 @@ export const SHOTS = [
   "cap": "a lawsuit"
  },
  {
-  "at": "judge",
-  "kind": "full",
-  "photo": "ac-gavel",
-  "cap": "a judge"
+  "at": "fined",
+  "kind": "stat",
+  "value": "FINED",
+  "label": ""
  },
  {
   "at": "5,000",
