@@ -46,5 +46,21 @@
    "Death_of_Elaine_Herzberg"
   ],
   "format": "Format: a date, then what the system did."
+ },
+ {
+  "id": "bard-webb",
+  "title": "Google's AI chatbot got one fact wrong in its first ad",
+  "sources": [
+   "Gemini_(chatbot)"
+  ],
+  "format": "Concrete story: the ad, the wrong claim about a telescope, the market reaction with the number from the text."
+ },
+ {
+  "id": "zillow-offers",
+  "title": "Zillow's pricing algorithm and the homes it bought",
+  "sources": [
+   "Zillow"
+  ],
+  "format": "Concrete story: what the algorithm did, the numbers from the text, what Zillow did next."
  }
 ]
