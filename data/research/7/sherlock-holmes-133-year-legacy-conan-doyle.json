@@ -1,0 +1,76 @@
+{
+  "topic_slug": "sherlock-holmes-133-year-legacy-conan-doyle",
+  "strongest_angle": "Arthur Conan Doyle attempted to end the Sherlock Holmes series in 1893, yet the detective's cultural footprint has only expanded over the subsequent 133 years, as evidenced by modern literary anthologies.",
+  "key_facts": [
+    {
+      "fact": "In December 1893, Sir Arthur Conan Doyle published The Final Problem in The Strand magazine, depicting Sherlock Holmes falling over the Reichenbach Falls in Switzerland.",
+      "source_url": "https://blog.oup.com/2013/07/ghost-of-sherlock-holmes",
+      "source_name": "OUPblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the peak of the original Sherlock Holmes stories, The Strand magazine reached a readership of half a million people per month.",
+      "source_url": "https://www.pbs.org/articles/sir-arthur-conan-doyle-reluctant-creator-of-sherlock-holmes",
+      "source_name": "PBS",
+      "confidence": "high"
+    },
+    {
+      "fact": "In November 2026, a new Sherlock Holmes short story anthology was released featuring contributions from authors including Steve Cavanagh and Kate.",
+      "source_url": "https://www.independent.ie/entertainment/books/quirky-new-sherlock-holmes-tales-show-sleuths-enduring-appeal-133-years-after-conan-doyle-first-tried-to-kill-him-off/a/164541429.html",
+      "source_name": "Irish Independent",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arthur Conan Doyle first introduced Sherlock Holmes to the public in December 1887 through the publication of A Study in Scarlet in Beeton’s Christmas Annual.",
+      "source_url": "https://www.independent.ie/entertainment/books/quirky-new-sherlock-holmes-tales-show-sleuths-enduring-appeal-133-years-after-conan-doyle-first-tried-to-kill-him-off/a/164541429.html",
+      "source_name": "Irish Independent",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Readership of The Strand magazine per month",
+      "value": 500000,
+      "unit": "people",
+      "source_url": "https://www.pbs.org/articles/sir-arthur-conan-doyle-reluctant-creator-of-sherlock-holmes"
+    },
+    {
+      "label": "Years since the 1893 attempted retirement",
+      "value": 133,
+      "unit": "years",
+      "source_url": "https://www.independent.ie/entertainment/books/quirky-new-sherlock-holmes-tales-show-sleuths-enduring-appeal-133-years-after-conan-doyle-first-tried-to-kill-him-off/a/164541429.html"
+    },
+    {
+      "label": "Year of first Sherlock Holmes publication",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://www.independent.ie/entertainment/books/quirky-new-sherlock-holmes-tales-show-sleuths-enduring-appeal-133-years-after-conan-doyle-first-tried-to-kill-him-off/a/164541429.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Reichenbach Falls",
+      "kind": "place"
+    },
+    {
+      "name": "The Strand",
+      "kind": "organization"
+    },
+    {
+      "name": "Steve Cavanagh",
+      "kind": "person"
+    },
+    {
+      "name": "Beeton’s Christmas Annual",
+      "kind": "object"
+    }
+  ]
+}
