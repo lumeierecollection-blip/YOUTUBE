@@ -7,18 +7,22 @@ on:
     types: [completed]
   push:
     branches: ["ship/**"]
+  workflow_dispatch:
+    inputs:
+      run: { description: "SX Shorts run id", required: true }
+      branch: { description: "branch of that run (sx/...)", required: true }
 permissions:
   contents: read
   actions: read
 concurrency: { group: upload-short, cancel-in-progress: false }
 jobs:
   up:
-    if: ${{ github.event_name == 'push' || github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-        with: { ref: "${{ github.event.workflow_run.head_sha || github.sha }}" }
+        with: { ref: "${{ inputs.branch || github.event.workflow_run.head_sha || github.sha }}" }
       - uses: actions/setup-node@v4
         with: { node-version: "24" }
       - name: Fetch the finished Short
@@ -26,8 +30,8 @@ jobs:
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           P=data/uploads/short-plan.json; SLUG=$(jq -r .slug $P); D=data/uploads/$(jq -r .dir $P)
-          RUN="${{ github.event.workflow_run.id }}"; [ -z "$RUN" ] && RUN="${GITHUB_REF_NAME#ship/}"
-          BR="${{ github.event.workflow_run.head_branch }}"; [ -n "$BR" ] && [ "$BR" != "sx/$(jq -r .branch $P)" ] && { echo "run is for another Short ($BR): nothing to ship"; exit 0; }
+          RUN="${{ inputs.run || github.event.workflow_run.id }}"; [ -z "$RUN" ] && RUN="${GITHUB_REF_NAME#ship/}"
+          BR="${{ inputs.branch || github.event.workflow_run.head_branch }}"; [ -n "$BR" ] && [ "$BR" != "sx/$(jq -r .branch $P)" ] && { echo "run is for another Short ($BR): nothing to ship"; exit 0; }
           gh run download "$RUN" --repo "$GITHUB_REPOSITORY" -n "sx-short-$SLUG" -D "$D" && mv "$D/short.mp4" "$D/episode.mp4" && echo "ship=yes" >> "$GITHUB_OUTPUT"
       - name: Upload private
         if: steps.fetch.outputs.ship == 'yes'

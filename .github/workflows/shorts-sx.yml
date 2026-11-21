@@ -10,6 +10,7 @@ on:
       slug: { description: "Short spec slug (platform/shorts-sx/specs/<slug>.mjs)", required: true }
 permissions:
   contents: read
+  actions: write
 jobs:
   pick:   # which Short this run builds: the dispatch input, else the slug in this branch's data/uploads/short-plan.json (a push to sx/<branch> used to always build Air Canada)
     runs-on: ubuntu-latest
@@ -148,3 +149,8 @@ jobs:
         run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --join
       - uses: actions/upload-artifact@v4
         with: { name: "sx-short-${{ matrix.slug }}", path: "output/sx/${{ matrix.slug }}/short.mp4", retention-days: 30 }
+      # a render started by the autopilot (GITHUB_TOKEN) does not fire the workflow_run trigger, so it asks for the private upload itself
+      - name: Ask for the private upload
+        if: ${{ github.actor == 'github-actions[bot]' }}
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh workflow run "Ship Short (private)" --ref main -f run="${{ github.run_id }}" -f branch="${{ github.ref_name }}"
