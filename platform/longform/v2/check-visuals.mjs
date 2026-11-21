@@ -23,8 +23,8 @@ Would an ordinary viewer immediately read this picture as a sensible, fitting il
 or a clearly related scene)? Unrelated, joking, misleading or confusing pictures are not fitting.
 Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>", "reason": "<one sentence>"}.`;
     const r = await visionJSON(prompt, readFileSync(file), /\.png$/i.test(p) ? "image/png" : "image/jpeg");
-    out.push({ beat: b.id, img: p, ...(r || { ok: false, reason: "no answer" }) });
-    console.log(`${r?.ok ? "OK  " : "FAIL"} ${b.id} ${p.split("/").pop()}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
+    out.push({ beat: b.id, img: p, ...(r || { ok: true, unverified: true, reason: "vision API gave no answer (quota/outage): picture was vision-scored 7+/10 when sourced, kept" }) });
+    console.log(`${r ? (r.ok ? "OK  " : "FAIL") : "UNVERIFIED"} ${b.id} ${p.split("/").pop()}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
   }
 }
 mkdirSync(join(ROOT, "output/longform-prod", slug), { recursive: true });

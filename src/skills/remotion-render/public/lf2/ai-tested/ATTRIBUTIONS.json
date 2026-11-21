@@ -1141,5 +1141,18 @@
   "author": "Tips For Travellers",
   "credit_line": "Tips For Travellers, BY 2.0, via openverse/flickr",
   "authenticity": "authentic"
+ },
+ "mt-mata2": {
+  "id": "mt-mata2",
+  "file": "mt-mata2.jpg",
+  "description": "an airplane passenger seat by the window, no person visible",
+  "depicts": "airplane passenger seats inside cabin with windows",
+  "score": 9,
+  "source": "pixabay",
+  "source_url": "https://pixabay.com/photos/seats-airline-chairs-rows-fly-519002/",
+  "licence": "Pixabay licence",
+  "author": "StelaDi",
+  "credit_line": "StelaDi, PIXABAY LICENCE, via pixabay",
+  "authenticity": "authentic"
  }
 }

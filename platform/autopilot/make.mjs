@@ -35,9 +35,9 @@ async function source() {
 }
 const SRC = await source(), CH = topic.channel || "hidden-past", slug = `${mode === "short" ? "ai-tested-" : CH + "-"}${topic.id}`;
 const RULES = `RULES: use ONLY facts, names, numbers and dates that appear in SOURCE TEXT; never add anything from memory. Every person, place, object, date, number or organisation named in a sentence gets its OWN visual,
-cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","alt":"<a different 2-3 word search, broader>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
+cut on the word. Visual kinds: {"kind":"photo","cap":"<the name or phrase shown as the caption, optional>","at":"<the exact script word where the mention starts>","alt":"<a different 2-3 word search, broader>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
 {"kind":"number","at":"<word>","value":"<as written>","label":"<what it counts>"}, {"kind":"year","at":"<word>","value":"<year>"}, {"kind":"text","at":"<word>","value":"<short phrase>"} (text only for abstract lesson lines).
-Never two visuals with the same desc. Plain spoken English, no markdown.`;
+EVERY named PERSON, COMPANY, PLACE, PRODUCT, COURT or EVENT gets its own "photo" visual on the word - never a text card (owner, 21 Nov: names were spoken with nothing on screen). A public figure: desc is their full name plus "portrait" (e.g. "Judge P. Kevin Castel portrait"), q is the name alone. A private person: a stand-in photo of an unnamed person in that situation (e.g. "man seated in an airplane cabin"), and "cap" is their name. A place or building: its proper name (e.g. "Moynihan United States Courthouse"). Text visuals are ONLY for abstract lesson lines and quotes. Never two visuals with the same desc. Plain spoken English, no markdown.`;
 let plan;
 if (mode === "short") {
   plan = await ask(`Write a YouTube Short (a 26-second narration, 58-64 words: more than 66 words does not fit the 30 s limit) for a channel about AI that is tested honestly. Topic: ${topic.title}. ${topic.format || ""}
@@ -90,7 +90,7 @@ const q = (s) => JSON.stringify(s);
 if (mode === "short") {
   const words = plan.script.split(/\s+/), norm = (w) => w.toLowerCase().replace(/[^a-z0-9$]/g, ""); let pos = 0; const shots = [];
   for (const m of plan.shots) { let i = pos; while (i < words.length && norm(words[i]) !== norm(m.at)) i++; if (i >= words.length) continue; pos = i + 1;
-    if (m.kind === "photo" && !missing.has(m.id)) shots.push({ at: m.at, kind: "full", photo: m.id, cap: m.desc.length < 40 ? m.desc : "" });
+    if (m.kind === "photo" && !missing.has(m.id)) shots.push({ at: m.at, kind: "full", photo: m.id, cap: m.cap || (m.desc.length < 40 ? m.desc : "") });
     else if (m.kind === "number") shots.push({ at: m.at, kind: "stat", value: m.value, label: m.label || "" });
     else if (m.kind === "year") shots.push({ at: m.at, kind: "stat", value: m.value, label: "" });
     else shots.push({ at: m.at, kind: "page", page: m.kind === "photo" ? m.at.replace(/[^A-Za-z0-9$%' -]/g, "") : m.value || m.at }); }
