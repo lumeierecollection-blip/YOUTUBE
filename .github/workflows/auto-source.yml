@@ -18,6 +18,7 @@ jobs:
           - { name: gibraltar, dir: hidden-past }
           - { name: haaland, dir: rival-lines }
           - { name: alaska, dir: fx-doc }
+          - { name: mata, dir: ai-tested }
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
