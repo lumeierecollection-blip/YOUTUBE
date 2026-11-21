@@ -27,7 +27,7 @@ async function source() {
   for (const t of topic.sources) { const r = await (await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&redirects=1&format=json&titles=${encodeURIComponent(t)}`, { headers: { "User-Agent": "research-client/1.0" } })).json(); const p = Object.values(r.query.pages)[0]; out += `\n### ${p.title}\n${(p.extract || "").slice(0, mode === "long" ? 22000 : 9000)}\n`; await sleep(800); }
   return out;
 }
-const SRC = await source(), slug = `${mode === "short" ? "ai-tested-" : "hidden-past-"}${topic.id}`;
+const SRC = await source(), CH = topic.channel || "hidden-past", slug = `${mode === "short" ? "ai-tested-" : CH + "-"}${topic.id}`;
 const RULES = `RULES: use ONLY facts, names, numbers and dates that appear in SOURCE TEXT; never add anything from memory. Every person, place, object, date, number or organisation named in a sentence gets its OWN visual,
 cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
 {"kind":"number","at":"<word>","value":"<as written>","label":"<what it counts>"}, {"kind":"year","at":"<word>","value":"<year>"}, {"kind":"text","at":"<word>","value":"<short phrase>"} (text only for abstract lesson lines).
@@ -40,7 +40,7 @@ ${RULES}
 Return JSON {"title":"<=70 chars, no clickbait lies","description":"2 sentences + the source line","tags":["..."],"script":"...","shots":[ one visual per mention, 18-24 shots, in spoken order ]}.
 SOURCE TEXT:${SRC}`);
 } else {
-  const outline = await ask(`Outline a ${topic.minutes || 20}-minute history documentary titled "${topic.title}", in this exact structure: cold open (dated scene + a scale fact), the puzzle as one question, the usual answer granted, why it is not enough, promise of named moments, 7-9 chronological chapters each ending on an open question, a layered verdict, one closing line. Use only SOURCE TEXT.
+  const outline = await ask(`Outline a ${topic.minutes || 20}-minute ${CH === "rival-lines" ? "football explainer" : "history documentary"} titled "${topic.title}", in this exact structure: ${topic.structure || "cold open (dated scene + a scale fact), the puzzle as one question, the usual answer granted, why it is not enough, promise of named moments, 7-9 chronological chapters each ending on an open question, a layered verdict, one closing line"}. Use only SOURCE TEXT.
 Return JSON {"chapters":[{"title":"...","points":["...","..."]}]} (first chapter is the cold open, last is the verdict).
 SOURCE TEXT:${SRC}`);
   const beats = [];
@@ -54,7 +54,7 @@ SOURCE TEXT:${SRC}`);
   plan = { title: topic.title, description: `${topic.title}. Every fact comes from: ${topic.sources.map((s) => "Wikipedia, " + s.replace(/_/g, " ")).join("; ")}. Pictures: credited on screen. Narration is a synthetic voice.`, tags: topic.tags || [], beats };
 }
 // pictures: one search job per photo mention, sourced and vision-scored on this runner
-const chDir = mode === "short" ? "ai-tested" : "hidden-past", jobs = [];
+const chDir = mode === "short" ? "ai-tested" : CH, jobs = [];
 const mentions = mode === "short" ? plan.shots : plan.beats.flatMap((b) => b.visuals || []);
 let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.q || m.desc, desc: m.desc }); }
 W(`data/autopilot/jobs-${slug}.json`, jobs);
@@ -82,17 +82,18 @@ export const SHOTS = ${JSON.stringify(shots, null, 1)};
   const att = J(`src/skills/remotion-render/public/lf2/${chDir}/ATTRIBUTIONS.json`, {}), P = (id) => `lf2/${chDir}/${att[id].file}`, C = (id) => att[id].credit_line;
   const out = plan.beats.map((b, i) => { const vs = b.visuals || [], ph = vs.filter((v) => v.kind === "photo" && !missing.has(v.id)), nu = vs.find((v) => v.kind === "number" || v.kind === "year");
     const ban = i === 0 || plan.beats[i - 1].chapter !== b.chapter ? { text: b.chTitle, date: `CHAPTER ${b.chapter}` } : b.label ? { text: b.label } : null;
-    let scene; if (nu && !ph.length) scene = { type: "fxstat", value: nu.value, label: nu.label || b.label || "", banner: ban };
+    let scene; if (CH === "rival-lines") { const k = (ph[0]?.desc || b.label || b.chTitle).toUpperCase().slice(0, 40), num = nu && Number(String(nu.value).replace(/[^0-9.]/g, "")); scene = ph.length ? { type: "photo", image: P(ph[0].id), credit: C(ph[0].id), kicker: k, callout: (b.label || ph[0].desc).slice(0, 36), pos: "50% 30%" } : nu && num ? { type: "number", value: num, countFrom: String(nu.kind) === "year" ? num : 0, unit: nu.label || b.label || "", sub: b.chTitle, credit: "Source: Wikipedia" } : { type: "ixquote", bg: "paper", text: b.vo.split(/(?<=[.!?])\s/)[0].slice(0, 90), bold: "", sub: b.chTitle, source: "" }; }
+    else if (nu && !ph.length) scene = { type: "fxstat", value: nu.value, label: nu.label || b.label || "", banner: ban };
     else if (ph.length === 1) scene = { type: "fxphoto", image: P(ph[0].id), credit: C(ph[0].id), banner: ban };
     else if (ph.length > 1) scene = { type: "fxcards", cards: ph.slice(0, 3).map((v, k) => ({ image: P(v.id), x: [[560], [250, 1030], [130, 700, 1270]][Math.min(ph.length, 3) - 1][k], y: [150, 190, 200][Math.min(ph.length, 3) - 1], w: [800, 640, 520][Math.min(ph.length, 3) - 1], h: [620, 560, 480][Math.min(ph.length, 3) - 1], rot: [-2, 3, -4][k % 3], caption: v.desc.length < 36 ? v.desc : "" })), banner: ban, credits: ph.slice(0, 3).map((v) => C(v.id)).join(" · ") };
     else scene = { type: "fxpage", title: b.chTitle, lines: [b.vo.split(/(?<=[.!?])\s/)[0].slice(0, 140)], banner: ban };
     return { id: `A${String(i + 1).padStart(2, "0")}`, part: b.chTitle, src: ["S0"], vo: b.vo, scene }; });
   W(`platform/longform/v2/episodes/${slug}.mjs`, `// Autopilot long form (${new Date().toISOString().slice(0, 10)}): ${topic.title}. Narration written from fetched Wikipedia text only; pictures sourced and vision-scored.
 export const SOURCES = ${q(Object.fromEntries(topic.sources.map((s, i) => ["S" + i, { title: "Wikipedia: " + s.replace(/_/g, " "), url: "https://en.wikipedia.org/wiki/" + s, retrieved: new Date().toISOString().slice(0, 10) }])))};
-export const EPISODE = { channel: "hidden-past", slug: ${q(slug)}, theme: "fx-doc", title: ${q(topic.title)}, target_minutes: ${topic.minutes || 20}, blurb: [${q(plan.description)}], sound: { bed: null }, beats: ${JSON.stringify(out, null, 1)} };
+export const EPISODE = { channel: ${q(CH)}, slug: ${q(slug)}, ${CH === "rival-lines" ? "" : "theme: \"fx-doc\", "} title: ${q(topic.title)}, target_minutes: ${topic.minutes || 20}, blurb: [${q(plan.description)}], sound: { bed: null }, beats: ${JSON.stringify(out, null, 1)} };
 `);
   W(`data/uploads/${slug}/episode-meta.json`, { title: topic.title.slice(0, 100), description: plan.description, tags: plan.tags || [] });
-  W("data/uploads/long-plan.json", { dir: slug, slot: "01", expect_channel: "Hidden Past", category: "27", slug });
+  W("data/uploads/long-plan.json", CH === "rival-lines" ? { dir: slug, slot: "04", expect_channel: "Rival Lines", category: "17", slug } : { dir: slug, slot: "01", expect_channel: "Hidden Past", category: "27", slug });
 }
 W("data/autopilot/done.json", [...done, topic.id]);
 console.log(`SLUG=${slug}\nMISSING=${[...missing].join(",")}\nSOURCING_EXIT=${sr.status}`);
