@@ -3,9 +3,15 @@
 // Roberto Mata is a private person: a name card, no photo. Opens on the outcome (the 56.8% swipe-away lesson).
 export const STYLE = "v3", CALM = true, FILL = false, TAG = null, CTA = null, ENTITIES = [], CUTOUTS = [], KEYS = {}, CAPTURES = [], PHOTOS = [], FOOTAGE = [], FOOTAGE_REQUIRE = /x^/;
 export const VOICE_STYLE = "Say it like a sharp, confident YouTube Shorts narrator telling a surprising true story: brisk and energetic, about 172 words a minute, every word clear, tiny pauses only at full stops, punch on names, years and numbers:";
-export const SCRIPT = "ChatGPT invented court cases, and a judge fined the lawyers who cited them. In 2022, Roberto Mata sued Avianca after a metal cart hit his knee. His lawyers cited cases that did not exist. Asked if the cases were real, ChatGPT said they exist. Judge Castel called one analysis gibberish, and fined them 5,000 dollars. Would you trust ChatGPT with a lawsuit?";
+export const SCRIPT = "Lawyers trusted ChatGPT with a lawsuit. It invented the cases, and a judge fined them 5,000 dollars. In 2022, Roberto Mata sued Avianca after a metal cart hit his knee. His lawyers cited cases that did not exist. Asked if the cases were real, ChatGPT said they exist. Judge Castel called one analysis gibberish. Would you trust ChatGPT with a lawsuit?";
 export const SOURCES = { M: { title: "Wikipedia: Mata v. Avianca, Inc.", url: "https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.", retrieved: "2026-11-21" } };
 export const SHOTS = [
+ {
+  "at": "Lawyers",
+  "kind": "full",
+  "photo": "mt-lawyers",
+  "cap": "lawyers"
+ },
  {
   "at": "ChatGPT",
   "kind": "full",
@@ -13,10 +19,15 @@ export const SHOTS = [
   "cap": "ChatGPT"
  },
  {
-  "at": "cases,",
+  "at": "lawsuit.",
   "kind": "full",
   "photo": "ac-lawbooks",
-  "cap": "court cases"
+  "cap": "a lawsuit"
+ },
+ {
+  "at": "invented",
+  "kind": "page",
+  "page": "INVENTED"
  },
  {
   "at": "judge",
@@ -25,10 +36,12 @@ export const SHOTS = [
   "cap": "a judge"
  },
  {
-  "at": "lawyers",
-  "kind": "full",
-  "photo": "mt-lawyers",
-  "cap": "the lawyers"
+  "at": "5,000",
+  "kind": "money",
+  "value": "$5,000",
+  "unit": "fine, May 2023",
+  "asset": "png-money-stack",
+  "stacks": 1
  },
  {
   "at": "2022,",
@@ -81,17 +94,9 @@ export const SHOTS = [
   "page": "Judge P. Kevin Castel"
  },
  {
-  "at": "gibberish,",
+  "at": "gibberish.",
   "kind": "page",
   "page": "“gibberish”"
- },
- {
-  "at": "5,000",
-  "kind": "money",
-  "value": "$5,000",
-  "unit": "fine, May 2023",
-  "asset": "png-money-stack",
-  "stacks": 1
  },
  {
   "at": "Would",
