@@ -3252,9 +3252,14 @@
           "topic": "Sichuan-Yunnan Jinsha River Bridge 1,140-Meter Span Engineering Design",
           "slug": "sichuan-yunnan-jinsha-river-bridge-design",
           "reserved_at": "2026-11-20T17:16:22.635Z"
+        },
+        {
+          "topic": "MAIB Investigation into the Bayesian Yacht Foundering off Porticello",
+          "slug": "bayesian-yacht-maib-investigation-report",
+          "reserved_at": "2026-11-21T16:32:38.734Z"
         }
       ],
-      "last_generated": "2026-11-20T17:16:22.635Z"
+      "last_generated": "2026-11-21T16:32:38.734Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
