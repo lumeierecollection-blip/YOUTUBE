@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { visionJSON } from "../../lib/vision.mjs";
-const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../.."), slug = process.argv[2];
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../.."), slug = process.argv[2];
 const { EPISODE: ep } = await import(`./episodes/${slug}.mjs`);
 const PUB = join(ROOT, "src/skills/remotion-render/public");
 const KEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_API_KEY_3", "GEMINI_API_KEY_4"].map((k) => process.env[k]).filter(Boolean);
