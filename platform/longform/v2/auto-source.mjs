@@ -39,7 +39,9 @@ async function archive(q) { const d = (await J("https://archive.org/advancedsear
 async function pixabay(q) { if (!process.env.PIXABAY_API_KEY) return []; return ((await J("https://pixabay.com/api/?" + new URLSearchParams({ key: process.env.PIXABAY_API_KEY, q, image_type: "photo", per_page: "10", safesearch: "true" }))).hits || []).map((h) => ({ url: h.largeImageURL, page: h.pageURL, source: "pixabay", license: "Pixabay licence", author: h.user })); }
 const SOURCES = [openverse, commons, europeana, nasa, archive, pixabay];
 const missing = [];
+const T0 = Date.now(), BUDGET = (+process.env.SOURCE_BUDGET_MIN || 55) * 60000;   // time box: whatever is not sourced in time becomes a text card, the video still ships
 for (const j of jobs) {
+  if (Date.now() - T0 > BUDGET) { if (!(att[j.id] && existsSync(join(DIR, att[j.id].file)))) { missing.push(j.id); console.log("MISSING (time box)", j.id); } continue; }
   if (att[j.id] && existsSync(join(DIR, att[j.id].file))) { console.log("have", j.id); continue; }
   let best = null;
   // several independent sources, each wrapped so one being down/rate-limited never stops the others; candidates are interleaved so every source gets scored
