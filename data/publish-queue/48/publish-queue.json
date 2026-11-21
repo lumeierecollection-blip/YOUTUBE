@@ -276,5 +276,17 @@
     "cancelled": true,
     "source_file": "november-2026-recall-analysis-safety-incidents-shorts-shorts-2026-11-20.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "f6XcFQTD_j8",
+    "channel_id": "48",
+    "title": "2025 US Workplace Injury Data: 2.4 Million Cases Reported",
+    "uploaded_at": "2026-11-21T17:04:07.488Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-21T18:04:07.488Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "2025-us-workplace-injury-statistics-bls-report-shorts-shorts-2026-11-21.mp4",
+    "source_queue": "approved"
   }
 ]
