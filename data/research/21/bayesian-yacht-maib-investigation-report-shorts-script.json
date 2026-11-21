@@ -1,0 +1,62 @@
+{
+  "channel_id": "21",
+  "topic_slug": "bayesian-yacht-maib-investigation-report",
+  "format": "shorts",
+  "hook": "The Bayesian yacht sank in 50 meters of water, but why?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Bayesian yacht sank in 50 meters of water, but why?",
+      "visual_cue": "Map showing Porticello, Italy, with a pinpoint for the sinking site.",
+      "sfx_cue": "Low sonar ping sound.",
+      "b_roll": [
+        "Geospatial map of Porticello coast"
+      ],
+      "text_overlay": {
+        "text": "Bayesian Sinking: The Mystery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On 19 August 2024, the Bayesian foundered 0.5 nautical miles off the coast of Porticello, Italy. What wind force was powerful enough to capsize the Bayesian in 50 meters of water?",
+      "visual_cue": "Animation showing the yacht at anchor and the sudden wind shift.",
+      "sfx_cue": "Wind gust sound effect transitioning into a heavy splash.",
+      "b_roll": [
+        "Reconstruction of yacht at anchor",
+        "Weather pattern diagram"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Marine Accident Investigation Branch found furled sails added 20 percent more wind force pressure.",
+      "visual_cue": "Diagram highlighting the mast and furled sails with a force vector overlay.",
+      "sfx_cue": "Digital measurement sound.",
+      "b_roll": [
+        "Technical diagram of yacht mast"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This sail wind resistance caused the Bayesian to flood and sink in 50 meters depth. Seven lives were lost during the sinking in the Mediterranean. Italian prosecutors are investigating captain James Cutfield, engineer Tim Parker Eaton, and deckhand Matthew Griffith.",
+      "visual_cue": "Text graphic showing the 7 lives lost and the investigation status.",
+      "sfx_cue": "Solemn tone shift.",
+      "b_roll": [
+        "Official report document cover",
+        "Headshot of James Cutfield"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "The Bayesian remains on the seabed in 50 meters depth.",
+      "visual_cue": "Still image of the seabed or sonar scan representation.",
+      "sfx_cue": "Fading echo.",
+      "b_roll": [
+        "Seabed sonar visualization"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf",
+    "https://megayachtnews.com/2026/11/bayesian-sinking-cause-final-investigation-report"
+  ]
+}
