@@ -1,0 +1,8 @@
+[
+ {"id":"mt-chatgpt","q":"ChatGPT screen","alt":"ChatGPT logo smartphone","desc":"a screen showing the ChatGPT chatbot"},
+ {"id":"mt-lawyers","q":"lawyers in suits office","alt":"attorneys meeting law office","desc":"lawyers in business suits at a law office"},
+ {"id":"mt-avianca","q":"Avianca airplane","alt":"Avianca Airbus A320","desc":"an Avianca airline passenger plane"},
+ {"id":"mt-cart","q":"airline serving cart","alt":"airplane trolley cabin","desc":"a metal airline serving cart in an aircraft aisle"},
+ {"id":"mt-knee","q":"knee injury","alt":"knee pain bandage","desc":"a person holding an injured knee"},
+ {"id":"mt-castel","q":"P. Kevin Castel judge","alt":"federal judge courtroom bench","desc":"a federal judge on the bench"}
+]
