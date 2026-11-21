@@ -67,7 +67,7 @@ SOURCE TEXT:${SRC}`);
     groups.forEach((g, k) => { const v = (vis.beats || []).find((x) => x.i === k) || {}; beats.push({ vo: g, label: v.label || "", visuals: v.visuals || [], chapter: i + 1, chTitle: ch.title }); });
   }
   const totalWords = beats.reduce((n, q) => n + String(q.vo || "").split(/\s+/).length, 0);
-  if (totalWords < (topic.minutes || 20) * 150 * 0.6) { console.error(`script too short: ${totalWords} words for a ${topic.minutes || 20}-minute video. Not rendering a thin video.`); process.exit(4); }
+  if (totalWords < (topic.minutes || 20) * 150 * 0.6) { console.error(`script too short: ${totalWords} words for a ${topic.minutes || 20}-minute video. Not rendering a thin video.`); W("data/autopilot/done.json", [...done, topic.id]); process.exit(4); }
   plan = { title: topic.title, description: `${topic.title}. Every fact comes from: ${topic.sources.map((s) => "Wikipedia, " + s.replace(/_/g, " ")).join("; ")}. Pictures: credited on screen. Narration is a synthetic voice.`, tags: topic.tags || [], beats };
 }
 for (let t = 0; mode === "short" && t < 2 && plan.shots.length < 16; t++) { // one picture per named mention: a summary with 8 shots is not a Short
@@ -93,7 +93,11 @@ if (mode === "short") {
     if (m.kind === "photo" && !missing.has(m.id)) shots.push({ at: m.at, kind: "full", photo: m.id, cap: m.desc.length < 40 ? m.desc : "" });
     else if (m.kind === "number") shots.push({ at: m.at, kind: "stat", value: m.value, label: m.label || "" });
     else if (m.kind === "year") shots.push({ at: m.at, kind: "stat", value: m.value, label: "" });
-    else shots.push({ at: m.at, kind: "page", page: m.value || m.desc || m.at }); }
+    else shots.push({ at: m.at, kind: "page", page: m.kind === "photo" ? m.at.replace(/[^A-Za-z0-9$%' -]/g, "") : m.value || m.at }); }
+  const nWords = plan.script.split(/\s+/).length, nPhoto = shots.filter((x) => x.kind === "full").length;
+  if (nWords < 52 || nWords > 68 || shots.length < 14 || nPhoto < Math.ceil(shots.length * 0.55)) { // owner: pictures that make sense; a Short that is mostly text cards is not posted
+    console.error(`REJECTED ${topic.id}: ${nWords} words, ${shots.length} shots, only ${nPhoto} with a real picture. Skipping this topic.`);
+    W("data/autopilot/done.json", [...done, topic.id]); process.exit(4); }
   W(`platform/shorts-sx/specs/${slug}.mjs`, `// Autopilot Short (${new Date().toISOString().slice(0, 10)}): ${topic.title}. Script written from fetched Wikipedia text only (${topic.sources.join(", ")}); pictures sourced and vision-scored.
 export const STYLE = "v3", CALM = true, FILL = false, TAG = null, CTA = null, ENTITIES = [], CUTOUTS = [], KEYS = {}, CAPTURES = [], PHOTOS = [], FOOTAGE = [], FOOTAGE_REQUIRE = /x^/;
 export const VOICE_STYLE = "Say it like a sharp, confident YouTube Shorts narrator telling a surprising true story: brisk and energetic, about 172 words a minute, every word clear, tiny pauses only at full stops, punch on names, years and numbers:";

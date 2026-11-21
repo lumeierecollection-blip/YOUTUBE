@@ -33,6 +33,7 @@ jobs:
       - name: Write the script, source the pictures, build the spec
         id: gen
         env:
+          GH_TOKEN: ${{ github.token }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
@@ -48,9 +49,17 @@ jobs:
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
         run: |
           set -o pipefail
-          node platform/autopilot/make.mjs "${{ steps.mode.outputs.mode }}" | tee gen.log
+          set +e; node platform/autopilot/make.mjs "${{ steps.mode.outputs.mode }}" | tee gen.log; rc=${PIPESTATUS[0]}; set -e
+          if [ "$rc" = 4 ]; then   # topic rejected (too thin): mark it skipped on main and start the next topic right away
+            git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
+            git add data/autopilot/done.json; git commit -qm "autopilot: topic skipped (rejected as too thin)"
+            for i in 1 2 3; do git pull -q --rebase --autostash origin main && git push -q origin main && break || sleep 5; done
+            gh workflow run Autopilot --ref main -f mode="${{ steps.mode.outputs.mode }}"; exit 0
+          fi
+          [ "$rc" = 0 ] || exit "$rc"
           echo "slug=$(grep '^SLUG=' gen.log | cut -d= -f2)" >> "$GITHUB_OUTPUT"
       - name: Commit the build to its own branch, mark the topic done on main, start the render
+        if: steps.gen.outputs.slug != ''
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
