@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "2025-us-workplace-injury-statistics-bls-report",
+  "format": "shorts",
+  "hook": "Private industry nonfatal workplace injuries and illnesses hit their lowest level since 2003 this year.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Private industry nonfatal workplace injuries and illnesses hit their lowest level since 2003 this year.",
+      "text_overlay": {
+        "text": "Lowest injuries since 2003"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did total illness cases fall by 26.1 percent for private industry workers in the United States?",
+      "text_overlay": {
+        "text": "2.4 million cases"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, respiratory illness cases plummeted by 67.6 percent, marking the third consecutive year of decline.",
+      "text_overlay": {
+        "text": "Respiratory cases: -67.6%"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Total illness cases reported by private employers fell by 26.1 percent throughout 2025. The Bureau of Labor Statistics reports 2.4 million total nonfatal workplace cases across the United States.",
+      "text_overlay": {
+        "text": "Total illness: -26.1%"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This 2025 data represents the lowest recorded level since the reporting series began in 2003.",
+      "text_overlay": {
+        "text": "2.4 million total cases"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+    "https://www.marketreview.com/news/us-workplace-injuries-illnesses-2025"
+  ]
+}
