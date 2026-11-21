@@ -45,12 +45,20 @@ Return JSON {"chapters":[{"title":"...","points":["...","..."]}]} (first chapter
 SOURCE TEXT:${SRC}`);
   const beats = [];
   for (const [i, ch] of outline.chapters.entries()) {
-    const r = await ask(`Write chapter ${i + 1}/${outline.chapters.length} "${ch.title}" of the documentary "${topic.title}": about 330 words of narration (calm, past tense, dates and places), covering: ${ch.points.join("; ")}.
-Split it into beats of 1-2 sentences. ${RULES}
-Return JSON {"beats":[{"vo":"1-2 sentences","label":"short caption (<=5 words) or empty","visuals":[ one per named mention in that beat, 1-3 ]}]}.
-SOURCE TEXT:${SRC}`);
+    const chapterPrompt = (note) => `Write chapter ${i + 1}/${outline.chapters.length} "${ch.title}" of the documentary "${topic.title}": 300-380 words of narration (a chapter under 280 words is rejected) (calm, past tense, dates and places), covering: ${ch.points.join("; ")}.
+Split it into beats of 2-3 sentences (30-45 words each). ${RULES}
+Return JSON {"beats":[{"vo":"2-3 sentences","label":"short caption (<=5 words) or empty","visuals":[ one per named mention in that beat, 1-3 ]}]}.
+${note}
+SOURCE TEXT:${SRC}`;
+    let r = await ask(chapterPrompt(""));
+    const wc = (x) => (x?.beats || []).reduce((n, q) => n + String(q.vo || "").split(/\s+/).length, 0);
+    for (let t = 0; t < 3 && wc(r) < 280; t++) { console.log(`chapter ${i + 1}: ${wc(r)} words, asking again`); const r2 = await ask(chapterPrompt(`Your last answer had only ${wc(r)} words. Write the FULL chapter, 300-380 words, using every point and detail in SOURCE TEXT.`)); if (wc(r2) > wc(r)) r = r2; }
+    console.log(`chapter ${i + 1}: ${wc(r)} words`);
+
     for (const b of r.beats || []) beats.push({ ...b, chapter: i + 1, chTitle: ch.title });
   }
+  const totalWords = beats.reduce((n, q) => n + String(q.vo || "").split(/\s+/).length, 0);
+  if (totalWords < (topic.minutes || 20) * 150 * 0.6) { console.error(`script too short: ${totalWords} words for a ${topic.minutes || 20}-minute video. Not rendering a thin video.`); process.exit(4); }
   plan = { title: topic.title, description: `${topic.title}. Every fact comes from: ${topic.sources.map((s) => "Wikipedia, " + s.replace(/_/g, " ")).join("; ")}. Pictures: credited on screen. Narration is a synthetic voice.`, tags: topic.tags || [], beats };
 }
 for (let t = 0; mode === "short" && t < 2 && plan.shots.length < 16; t++) { // one picture per named mention: a summary with 8 shots is not a Short
