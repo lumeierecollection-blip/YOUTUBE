@@ -1,0 +1,38 @@
+[
+ {
+  "id": "compas-01",
+  "q": "tech company office",
+  "alt": "Northpointe office",
+  "desc": "Northpointe corporate headquarters building"
+ },
+ {
+  "id": "compas-02",
+  "q": "software interface dashboard",
+  "alt": "COMPAS software screen",
+  "desc": "COMPAS case management software interface"
+ },
+ {
+  "id": "compas-03",
+  "q": "US flag courtroom",
+  "alt": "American flag",
+  "desc": "United States flag inside a courtroom"
+ },
+ {
+  "id": "compas-04",
+  "q": "Wisconsin state capitol",
+  "alt": "Wisconsin capitol",
+  "desc": "Wisconsin state capitol building exterior"
+ },
+ {
+  "id": "compas-05",
+  "q": "journalism newsroom desk",
+  "alt": "ProPublica newsroom",
+  "desc": "ProPublica journalists working in newsroom"
+ },
+ {
+  "id": "compas-06",
+  "q": "people sitting in courtroom",
+  "alt": "defendants in court",
+  "desc": "Defendants seated inside a courtroom"
+ }
+]

@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cort\u00e9s cortes",
+  "author": "Dennis Cortés cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1037,5 +1037,44 @@
   "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "compas-03": {
+  "id": "compas-03",
+  "file": "compas-03.jpg",
+  "description": "United States flag inside a courtroom",
+  "depicts": "United States flag inside a courtroom",
+  "score": 10,
+  "source": "commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Courtroom,_Federal_Building,_Anchorage,_Alaska_LCCN2010719238.tif",
+  "licence": "Public domain",
+  "author": "Carol M. Highsmith",
+  "credit_line": "Carol M. Highsmith, PUBLIC DOMAIN, via commons",
+  "authenticity": "authentic"
+ },
+ "compas-04": {
+  "id": "compas-04",
+  "file": "compas-04.jpg",
+  "description": "Wisconsin state capitol building exterior",
+  "depicts": "Wisconsin state capitol building exterior",
+  "score": 10,
+  "source": "commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Madison_August_2022_079_(Wisconsin_State_Capitol).jpg",
+  "licence": "CC BY-SA 4.0",
+  "author": "Michael Barera",
+  "credit_line": "Michael Barera, CC BY-SA 4.0, via commons",
+  "authenticity": "authentic"
+ },
+ "compas-06": {
+  "id": "compas-06",
+  "file": "compas-06.jpg",
+  "description": "Defendants seated inside a courtroom",
+  "depicts": "Defendants seated inside a courtroom",
+  "score": 10,
+  "source": "openverse/flickr",
+  "source_url": "https://www.flickr.com/photos/39971069@N02/3737850377",
+  "licence": "by 2.0",
+  "author": "Khmer Rouge Tribunal (ECCC)",
+  "credit_line": "Khmer Rouge Tribunal (ECCC), BY 2.0, via openverse/flickr",
+  "authenticity": "authentic"
  }
 }
