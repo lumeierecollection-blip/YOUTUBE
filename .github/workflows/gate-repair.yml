@@ -1,0 +1,32 @@
+# Run the long-form picture gate in repair mode on an autopilot branch (a picture that does not fit is swapped for a neutral card), commit the result, then start the render.
+name: Gate repair
+on:
+  workflow_dispatch:
+    inputs:
+      episode: { description: "episode slug", required: true }
+permissions: { contents: write, actions: write }
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - run: sudo apt-get -qq install -y ffmpeg >/dev/null
+      - env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GH_TOKEN: ${{ github.token }}
+          GATE_REPAIR: "1"
+        run: |
+          node platform/longform/v2/check-visuals.mjs "${{ inputs.episode }}" | tee gate.log
+          git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
+          git add -A platform/longform/v2/episodes src/skills/remotion-render/public/lf2/neutral-card.jpg; git commit -qm "gate repair: ${{ inputs.episode }}" || echo "nothing to repair"
+          git push origin "HEAD:${{ github.ref_name }}"
+          gh workflow run "Pilot render" --ref "${{ github.ref_name }}" -f episode="${{ inputs.episode }}"
