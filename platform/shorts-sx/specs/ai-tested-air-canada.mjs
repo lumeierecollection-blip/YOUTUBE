@@ -9,7 +9,7 @@ export const CALM = true, FILL = false;   // calm = no glitch/strobe effects; th
 export const VOICE_STYLE = "Say it like a sharp, confident YouTube Shorts narrator telling a surprising true story: brisk and energetic, about 172 words a minute, every word clear, tiny pauses only at full stops, punch on names, years and numbers:";
 export const ENTITIES = [];
 export const CUTOUTS = [];
-export const SCRIPT = "In 2022, Jake Moffatt's grandmother died. He asked Air Canada's chatbot about bereavement fares. It said: fly now, claim the discount within 90 days. He paid 1,630 dollars. Air Canada said no. Its defence? The chatbot is a separate legal entity, responsible for its own actions. The tribunal called that remarkable, and made Air Canada pay. If your AI says it, you said it. Would you trust an airline's chatbot?";
+export const SCRIPT = "Air Canada's chatbot lied, and a court made the airline pay. In 2022, Jake Moffatt's grandmother died. He asked the chatbot about bereavement fares. It said: fly now, claim the discount within 90 days. He paid 1,630 dollars. Air Canada said no. Its defence? The chatbot is a separate legal entity. The tribunal called that remarkable. If your AI says it, you said it. Would you trust an airline's chatbot?";
 export const KEYS = {};
 export const SOURCES = { M: { title: "Wikipedia: Moffatt v. Air Canada (2024 BCCRT 149)", url: "https://en.wikipedia.org/wiki/Moffatt_v._Air_Canada", retrieved: "2026-11-20" } };
 export const FOOTAGE_REQUIRE = /plane|airport|airplane|aircraft|phone|typing|candle|flight|takeoff|runway/i;
@@ -30,25 +30,26 @@ export const PHOTOS = [
 export const CAPTURES = [];
 export const TAG = null;
 export const CTA = null;
-export const SHOTS = [   // v3 (20 Nov): owner - pictures must literally show what is said (a grandma for 'grandmother', not candles; no costume man for a legal line). Checked by check-visuals.mjs before render.
+export const SHOTS = [   // v4 (21 Nov): analytics showed 56.8% swiped away. The old open was a bare '2022' for ~1.7 s with no stake. Now the payoff (lied -> court -> pay) is in the first 3 s, then the story.
+  { at: "Air", kind: "full", photo: "ac-tail", cap: "Air Canada" },
+  { at: "chatbot", kind: "full", photo: "ac-chat-intro", cap: "its chatbot" },
+  { at: "lied,", kind: "page", page: "it lied" },
+  { at: "court", kind: "full", photo: "ac-gavel2", cap: "a court" },
+  { at: "airline", kind: "full", photo: "ac-787b", cap: "the airline" },
+  { at: "pay.", kind: "money", value: "CA$812", unit: "awarded, 14 Feb 2024", asset: "png-money-stack", stacks: 1 },
   { at: "2022,", kind: "year", photo: "ac-board", year: "2022" },
   { at: "Jake", kind: "full", photo: "ac-solo", cap: "Jake Moffatt" },
   { at: "grandmother", kind: "full", photo: "ac-grandma", cap: "his grandmother died" },
   { at: "asked", kind: "full", photo: "ac-chat-ask", cap: "he asked" },
-  { at: "Air", kind: "full", photo: "ac-tail", cap: "Air Canada" },
-  { at: "chatbot", kind: "full", photo: "ac-chat-intro", cap: "its chatbot" },
   { at: "bereavement", kind: "full", photo: "ac-tag", cap: "“Bereavement fares?”" },
   { at: "fly", kind: "full", photo: "ac-takeoff", cap: "“Fly now”" },
   { at: "claim", kind: "full", photo: "ac-sign", cap: "“...claim the discount later”" },
   { at: "90", kind: "stat", value: "90", label: "days to claim" },
   { at: "paid", kind: "money", value: "$1,630", unit: "Canadian dollars", asset: "png-money-bundle", stacks: 2 },
   { at: "said", kind: "full", photo: "ac-stamp", cap: "REFUSED" },
-  { at: "defence?", kind: "full", photo: "ac-787b", cap: "Air Canada's defence" },
-  { at: "separate", kind: "full", photo: "ac-lawbooks", cap: "“a separate legal entity”" },
-  { at: "responsible", kind: "page", page: "“responsible for its own actions”" },
+  { at: "defence?", kind: "full", photo: "ac-lawbooks", cap: "Air Canada's defence" },
+  { at: "separate", kind: "page", page: "“a separate legal entity”" },
   { at: "tribunal", kind: "full", photo: "ac-gavel", cap: "Civil Resolution Tribunal, BC" },
-  { at: "remarkable,", kind: "full", photo: "ac-gavel2", cap: "“remarkable”" },
-  { at: "pay.", kind: "money", value: "CA$812", unit: "awarded, 14 Feb 2024", asset: "png-money-stack", stacks: 1 },
   { at: "If", kind: "full", photo: "ac-chat-bot", cap: "If your AI says it," },
   { at: "you", kind: "page", page: "you said it." },
   { at: "Would", kind: "full", photo: "ac-terminal", cap: "Would you trust an airline's chatbot?" },
