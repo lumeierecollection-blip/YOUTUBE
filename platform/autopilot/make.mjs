@@ -35,7 +35,7 @@ Never two visuals with the same desc. Plain spoken English, no markdown.`;
 let plan;
 if (mode === "short") {
   plan = await ask(`Write a YouTube Short (a 26-second narration, 66-74 words) for a channel about AI that is tested honestly. Topic: ${topic.title}. ${topic.format || ""}
-Structure (copied from the reference Shorts that work): line 1 = a dated or numbered hook fact; then 3-4 short story beats; the payoff; a two-line lesson; end with ONE question to the viewer.
+Structure: sentence 1 states the surprising OUTCOME in plain words (e.g. "Air Canada's chatbot lied, and a court made the airline pay.") - never open with only a date or a setup, because 56.8% of viewers swipe away when the first 2 seconds have no stake; sentence 1 must name 2-3 things so the first 3 seconds have 3 picture cuts; then the dated story in 3-4 short beats; a two-line lesson; end with ONE question to the viewer.
 ${RULES}
 Return JSON {"title":"<=70 chars, no clickbait lies","description":"2 sentences + the source line","tags":["..."],"script":"...","shots":[ one visual per mention, 18-24 shots, in spoken order ]}.
 SOURCE TEXT:${SRC}`);
