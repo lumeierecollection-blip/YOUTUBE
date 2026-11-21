@@ -61,7 +61,7 @@ SOURCE TEXT:${SRC}`);
     }
     console.log(`chapter ${i + 1}: ${wc(text)} words`);
     const sents = text.replace(/\s+/g, " ").match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [], groups = [];
-    for (let k = 0; k < sents.length; k += 3) groups.push(sents.slice(k, k + 3).join(" ").trim());
+    for (const sn of sents) { const last = groups[groups.length - 1]; if (last && wc(last) + wc(sn) <= 26 && wc(last) < 14) groups[groups.length - 1] = (last + " " + sn).trim(); else groups.push(sn.trim()); }   // one beat = one sentence (about 8 s), so a new picture every few seconds
     const NL = String.fromCharCode(10), list = groups.map((g, k) => `${k}. ${g}`).join(NL);
     const vis = await ask(`For each numbered beat of a ${CH === "rival-lines" ? "football" : "history"} video, list the visuals. ${RULES}${NL}Return JSON {"beats":[{"i":0,"label":"short caption (<=5 words) or empty","visuals":[ one per named mention in that beat, 1-3 ]}]}.${NL}BEATS:${NL}${list}`).catch(() => ({ beats: [] }));
     groups.forEach((g, k) => { const v = (vis.beats || []).find((x) => x.i === k) || {}; beats.push({ vo: g, label: v.label || "", visuals: v.visuals || [], chapter: i + 1, chTitle: ch.title }); });
