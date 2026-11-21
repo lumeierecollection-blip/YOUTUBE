@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "lumina-simulation-early-universe-evolution",
+  "format": "shorts",
+  "hook": "Scientists just modeled the first 2 billion years of our universe.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Scientists just modeled the first 2 billion years of our universe.",
+      "visual_cue": "A vast, swirling cosmic web of dark matter glowing in deep space.",
+      "sfx_cue": "Low, resonant bass hum building in intensity.",
+      "b_roll": [
+        "NASA artist rendition of early universe filaments"
+      ],
+      "text_overlay": {
+        "text": "2 Billion Years Modeled"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at MIT and Harvard University created the Lumina simulation to map this ancient era. How did they capture such detail?",
+      "visual_cue": "Split screen showing logos of MIT and Harvard, transitioning to a wide map of space.",
+      "sfx_cue": "Subtle digital data-processing chime.",
+      "b_roll": [
+        "MIT logo",
+        "Harvard University logo",
+        "Deep space survey map"
+      ],
+      "text_overlay": {
+        "text": "1.6 Billion Light-Year Scale"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Lumina tracks 432 billion particles to recreate the evolution of the early universe across time.",
+      "visual_cue": "Close-up of a dense cluster of particles assembling into a web structure.",
+      "sfx_cue": "Sound of rapid particle collision clicks.",
+      "b_roll": [
+        "Scientific animation of particle density mapping"
+      ],
+      "text_overlay": {
+        "text": "432 Billion Particles"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lumina finally brings the first 2 billion years of our universe into sharp, clear focus.",
+      "visual_cue": "Zooming into a small, bright pocket of the cosmic web.",
+      "sfx_cue": "High-pitched crystalline shimmer.",
+      "b_roll": [
+        "Simulation close-up of galaxy formation"
+      ],
+      "text_overlay": {
+        "text": "1,400 Light-Year Resolution"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "We are witnessing the infancy of the universe within this 1.6 billion light-year simulation region.",
+      "visual_cue": "Slow pull-back to show the entire simulated universe structure.",
+      "sfx_cue": "Fading orchestral swell.",
+      "b_roll": [
+        "Wide shot of simulated cosmic web filaments"
+      ],
+      "text_overlay": {
+        "text": "The Cosmic Dawn"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencedaily.com/releases/2026/11/261110042534.htm",
+    "https://www.scientificamerican.com/article/record-breaking-simulation-sheds-light-on-cosmic-dark-ages"
+  ]
+}
