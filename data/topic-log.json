@@ -2905,9 +2905,14 @@
           "topic": "BepiColombo Arrives at Mercury to Reveal Solar System Oddball Formation",
           "slug": "bepicolombo-arrives-at-mercury-november-2026",
           "reserved_at": "2026-11-20T18:31:46.049Z"
+        },
+        {
+          "topic": "Lumina Simulation Maps 1.6 Billion Light-Year Evolution",
+          "slug": "lumina-simulation-early-universe-evolution",
+          "reserved_at": "2026-11-21T16:25:36.445Z"
         }
       ],
-      "last_generated": "2026-11-20T18:31:46.049Z"
+      "last_generated": "2026-11-21T16:25:36.446Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
