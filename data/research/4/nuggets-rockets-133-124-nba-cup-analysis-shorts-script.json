@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "nuggets-rockets-133-124-nba-cup-analysis",
+  "format": "shorts",
+  "hook": "Denver pulled off a 133 to 124 victory featuring 32 lead changes.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Denver pulled off a 133 to 124 victory featuring 32 lead changes.",
+      "text_overlay": {
+        "text": "133-124 Victory | 32 Lead Changes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Denver Nuggets beat the Houston Rockets 133 to 124 in an Emirates NBA Cup game. But how did this game see 32 lead changes and 17 ties during the intense action?",
+      "text_overlay": {
+        "text": "32 Lead Changes & 17 Ties"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Houston Rockets coach Ime Udoka slammed his team's defense and lack of physicality after losing.",
+      "text_overlay": {
+        "text": "Defensive Breakdown"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Nuggets player Christian Braun scored 19 points to help Nikola Jokic secure the big home win.",
+      "text_overlay": {
+        "text": "Jokic: 26 PTS | 11 AST | 7 REB"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Denver secured the win by hitting 4 of 4 free throws in the final minutes.",
+      "text_overlay": {
+        "text": "Nuggets Win 133-124"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9",
+    "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+  ]
+}

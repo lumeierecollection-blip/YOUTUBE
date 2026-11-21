@@ -1,0 +1,182 @@
+{
+  "topic_slug": "nuggets-rockets-133-124-nba-cup-analysis",
+  "strongest_angle": "The Denver Nuggets defeated the Houston Rockets 133-124 in an Emirates NBA Cup game featuring 32 lead changes and 17 ties, propelled by Nikola Jokic's 26 points.",
+  "key_facts": [
+    {
+      "fact": "Nikola Jokic recorded 26 points, 11 assists, and 7 rebounds as the Denver Nuggets defeated the Houston Rockets 133-124 in an Emirates NBA Cup game.",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Christian Braun and Cameron Johnson each scored 19 points for the Denver Nuggets in a matchup featuring 32 lead changes and 17 ties.",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nikola Jokic shot 10-15 from the field, 2-3 on 3-pointers, and 4-4 from the free throw line over 38 minutes during the victory against the Houston Rockets.",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win",
+      "source_name": "CBS Sports",
+      "confidence": "high"
+    },
+    {
+      "fact": "Houston Rockets coach Ime Udoka criticized his team's defense and lack of physicality following the 133-124 loss to the Denver Nuggets.",
+      "source_url": "https://www.espn.com/nba/story/_/id/50549254/ime-udoka-frustrated-rockets-defense-loss-nuggets",
+      "source_name": "ESPN",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Denver Nuggets Points",
+      "value": 133,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Houston Rockets Points",
+      "value": 124,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Nikola Jokic Points",
+      "value": 26,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Nikola Jokic Assists",
+      "value": 11,
+      "unit": "assists",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Nikola Jokic Rebounds",
+      "value": 7,
+      "unit": "rebounds",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Christian Braun Points",
+      "value": 19,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Cameron Johnson Points",
+      "value": 19,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Lead Changes",
+      "value": 32,
+      "unit": "lead changes",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Game Ties",
+      "value": 17,
+      "unit": "ties",
+      "source_url": "https://apnews.com/article/rockets-nuggets-score-jokic-sengun-a9d60efb065f73d0dceb667f301ff5c9"
+    },
+    {
+      "label": "Denver Nuggets Season Wins",
+      "value": 9,
+      "unit": "wins",
+      "source_url": "https://www.nba.com/nuggets/news/nuggets-improve-to-2-0-in-emirates-nba-cup-with-win-over-rockets"
+    },
+    {
+      "label": "Denver Nuggets Season Losses",
+      "value": 5,
+      "unit": "losses",
+      "source_url": "https://www.nba.com/nuggets/news/nuggets-improve-to-2-0-in-emirates-nba-cup-with-win-over-rockets"
+    },
+    {
+      "label": "Nikola Jokic Field Goals Made",
+      "value": 10,
+      "unit": "made field goals",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic Field Goals Attempted",
+      "value": 15,
+      "unit": "attempted field goals",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic 3-Pointers Made",
+      "value": 2,
+      "unit": "made 3-pointers",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic 3-Pointers Attempted",
+      "value": 3,
+      "unit": "attempted 3-pointers",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic Free Throws Made",
+      "value": 4,
+      "unit": "made free throws",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic Free Throws Attempted",
+      "value": 4,
+      "unit": "attempted free throws",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    },
+    {
+      "label": "Nikola Jokic Minutes Played",
+      "value": 38,
+      "unit": "minutes",
+      "source_url": "https://www.cbssports.com/fantasy/basketball/news/nuggets-nikola-jokic-powers-nuggets-to-win"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Houston Rockets coach Ime Udoka blasted his \"mentally fragile\" team and took particular aim at the defense following a 133-124 NBA Cup loss to the Denver Nuggets on Friday night.",
+      "speaker": "Ime Udoka",
+      "source_name": "ESPN",
+      "source_url": "https://www.espn.com/nba/story/_/id/50549254/ime-udoka-frustrated-rockets-defense-loss-nuggets"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Nikola Jokic",
+      "kind": "person"
+    },
+    {
+      "name": "Denver Nuggets",
+      "kind": "organization"
+    },
+    {
+      "name": "Houston Rockets",
+      "kind": "organization"
+    },
+    {
+      "name": "Christian Braun",
+      "kind": "person"
+    },
+    {
+      "name": "Cameron Johnson",
+      "kind": "person"
+    },
+    {
+      "name": "Aaron Gordon",
+      "kind": "person"
+    },
+    {
+      "name": "Ime Udoka",
+      "kind": "person"
+    },
+    {
+      "name": "Denver",
+      "kind": "place"
+    }
+  ]
+}
