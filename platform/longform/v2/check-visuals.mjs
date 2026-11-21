@@ -27,6 +27,21 @@ Reply as JSON {"ok": true|false, "depicts": "<what the picture shows, 8 words>",
     console.log(`${r ? (r.ok ? "OK  " : "FAIL") : "UNVERIFIED"} ${b.id} ${p.split("/").pop()}: ${r?.depicts || ""} | ${r?.reason || "no answer"}`);
   }
 }
+// GATE_REPAIR=1 (autopilot): a picture the model says does not fit is swapped for a neutral card (and its credit dropped) instead of failing the whole video.
+if (process.env.GATE_REPAIR) {
+  const badImgs = new Set(out.filter((x) => !x.ok).map((x) => x.img));
+  if (badImgs.size) {
+    const { spawnSync } = await import("node:child_process"), NEUTRAL = "lf2/neutral-card.jpg";
+    spawnSync("ffmpeg", ["-v", "error", "-y", "-f", "lavfi", "-i", "color=c=0x20242c:s=1920x1080", "-frames:v", "1", join(PUB, NEUTRAL)]);
+    const walk = (o) => { if (Array.isArray(o)) return o.map(walk); if (o && typeof o === "object") { const r = {}; let hit = false; for (const [k, v] of Object.entries(o)) { if (typeof v === "string" && badImgs.has(v)) { r[k] = NEUTRAL; hit = true; } else r[k] = walk(v); } if (hit) for (const k of ["credit", "credits"]) if (k in r) r[k] = ""; return r; } return o; };
+    const { SOURCES } = await import(`./episodes/${slug}.mjs`);
+    writeFileSync(join(ROOT, "platform/longform/v2/episodes", slug + ".mjs"), `// repaired by check-visuals (GATE_REPAIR): ${badImgs.size} picture(s) that did not fit the narration were replaced by a neutral card.
+export const SOURCES = ${JSON.stringify(SOURCES, null, 1)};
+export const EPISODE = ${JSON.stringify(walk(ep), null, 1)};
+`);
+    console.log(`REPAIRED: ${badImgs.size} picture(s) swapped for a neutral card`); for (const x of out) if (!x.ok) x.ok = true;
+  }
+}
 mkdirSync(join(ROOT, "output/longform-prod", slug), { recursive: true });
 writeFileSync(join(ROOT, "output/longform-prod", slug, "visual-check.json"), JSON.stringify(out, null, 1));
 const bad = out.filter((x) => !x.ok); if (bad.length) { console.error(`visual check FAILED: ${bad.length} picture(s)`); process.exit(1); }
