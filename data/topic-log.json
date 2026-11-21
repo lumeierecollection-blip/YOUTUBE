@@ -3112,9 +3112,14 @@
           "topic": "El Niño Drives 2026 Record Sea Surface Temperatures Across Oceans",
           "slug": "el-nino-2026-record-sea-surface-temperatures",
           "reserved_at": "2026-11-20T17:16:00.955Z"
+        },
+        {
+          "topic": "Gravity Communication: Scientists Send Signals Through Walls and Floors",
+          "slug": "gravity-communication-experiment-2026",
+          "reserved_at": "2026-11-21T16:30:39.077Z"
         }
       ],
-      "last_generated": "2026-11-20T17:16:00.956Z"
+      "last_generated": "2026-11-21T16:30:39.077Z"
     },
     "18": {
       "channel_name": "Brief History",
