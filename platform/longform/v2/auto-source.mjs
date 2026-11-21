@@ -45,7 +45,9 @@ for (const j of jobs) {
   if (att[j.id] && existsSync(join(DIR, att[j.id].file))) { console.log("have", j.id); continue; }
   let best = null;
   // several independent sources, each wrapped so one being down/rate-limited never stops the others; candidates are interleaved so every source gets scored
-  const cands = (await Promise.all(SOURCES.map((f) => f(j.q).catch((e) => { console.log(`  ${f.name} failed: ${String(e).slice(0, 50)}`); return []; })))).map((l) => l.slice(0, 8));
+  for (const qq of [j.q, j.alt].filter(Boolean)) {   // second pass with the alternative keywords when the first finds nothing good
+  if (best) break;
+  const cands = (await Promise.all(SOURCES.map((f) => f(qq).catch((e) => { console.log(`  ${f.name} failed: ${String(e).slice(0, 50)}`); return []; })))).map((l) => l.slice(0, 8));
   const order = []; for (let i = 0; i < 8; i++) for (const l of cands) if (l[i]) order.push(l[i]);
   let tried = 0;
   for (const c of order) {
@@ -55,6 +57,7 @@ for (const j of jobs) {
       const s = await score(buf, j.desc || j.q); console.log(`  ${j.id} [${c.source}] cand ${tried}: ${s?.score ?? "?"} ${s?.depicts || ""}`);
       if (s && s.score >= MIN && (!best || s.score > best.s)) { best = { s: s.score, buf, r: { source: c.source, foreign_landing_url: c.page, license: c.license, license_version: "", creator: c.author }, depicts: s.depicts }; if (s.score >= 9) break; }
     } catch { /* next candidate */ }
+  }
   }
   if (!best) { missing.push(j.id); console.log("MISSING", j.id); continue; }
   writeFileSync(join(DIR, j.id + ".jpg"), best.buf);

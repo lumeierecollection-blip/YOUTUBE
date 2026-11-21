@@ -29,7 +29,7 @@ async function source() {
 }
 const SRC = await source(), CH = topic.channel || "hidden-past", slug = `${mode === "short" ? "ai-tested-" : CH + "-"}${topic.id}`;
 const RULES = `RULES: use ONLY facts, names, numbers and dates that appear in SOURCE TEXT; never add anything from memory. Every person, place, object, date, number or organisation named in a sentence gets its OWN visual,
-cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
+cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word where the mention starts>","alt":"<a different 2-3 word search, broader>","q":"<2-4 plain search keywords an image library would match, e.g. 'airport departure board'>","desc":"<literal picture description; for a named public figure/place/object use its full name, e.g. 'Admiral George Rooke portrait'; for a private individual NEVER use their name: describe a plain stand-in (e.g. 'man with suitcase at airport')>"},
 {"kind":"number","at":"<word>","value":"<as written>","label":"<what it counts>"}, {"kind":"year","at":"<word>","value":"<year>"}, {"kind":"text","at":"<word>","value":"<short phrase>"} (text only for abstract lesson lines).
 Never two visuals with the same desc. Plain spoken English, no markdown.`;
 let plan;
@@ -53,6 +53,11 @@ SOURCE TEXT:${SRC}`);
   }
   plan = { title: topic.title, description: `${topic.title}. Every fact comes from: ${topic.sources.map((s) => "Wikipedia, " + s.replace(/_/g, " ")).join("; ")}. Pictures: credited on screen. Narration is a synthetic voice.`, tags: topic.tags || [], beats };
 }
+for (let t = 0; mode === "short" && t < 2 && plan.shots.length < 16; t++) { // one picture per named mention: a summary with 8 shots is not a Short
+  const more = await ask(`Your Short has only ${plan.shots.length} shots. Rewrite it as a concrete STORY about named people, companies, places, objects, times and numbers from SOURCE TEXT (not a general summary), 58-64 words, with 16-22 shots - one per named mention, each "at" word present in the script in order. Same JSON.
+${JSON.stringify(plan)}
+SOURCE TEXT:${SRC}`);
+  if (more?.script && more.shots) plan = more; }
 if (mode === "short" && plan.script.split(/\s+/).length > 66) { // hard 30 s limit: shorten once, keep the facts and the shot anchors
   const again = await ask(`This Short script is too long (${plan.script.split(/\s+/).length} words; the limit is 64). Shorten the script to 58-64 words, keep every fact and the outcome-first opening, and update "shots" so every "at" word still appears in the script, in order. Return the same JSON.
 ${JSON.stringify(plan)}`);
@@ -60,7 +65,7 @@ ${JSON.stringify(plan)}`);
 // pictures: one search job per photo mention, sourced and vision-scored on this runner
 const chDir = mode === "short" ? "ai-tested" : CH, jobs = [];
 const mentions = mode === "short" ? plan.shots : plan.beats.flatMap((b) => b.visuals || []);
-let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.q || m.desc, desc: m.desc }); }
+let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.q || m.desc, alt: m.alt, desc: m.desc }); }
 W(`data/autopilot/jobs-${slug}.json`, jobs);
 const sr = spawnSync("node", [join(ROOT, "platform/longform/v2/auto-source.mjs"), join(ROOT, `data/autopilot/jobs-${slug}.json`), chDir], { stdio: "inherit", env: { ...process.env, SOURCE_BUDGET_MIN: mode === "short" ? "14" : "55" }, cwd: ROOT });
 const missing = new Set(J(`src/skills/remotion-render/public/lf2/${chDir}/_missing.json`, []));
