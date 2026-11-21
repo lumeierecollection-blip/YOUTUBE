@@ -66,8 +66,9 @@ export const SHOTS = [
  },
  {
   "at": "Asked",
-  "kind": "page",
-  "page": "“Are these cases real?”"
+  "kind": "full",
+  "photo": "mt-said",
+  "cap": ""
  },
  {
   "at": "said",
@@ -76,9 +77,8 @@ export const SHOTS = [
  },
  {
   "at": "Castel",
-  "kind": "full",
-  "photo": "mt-castel",
-  "cap": "Judge P. Kevin Castel"
+  "kind": "page",
+  "page": "Judge P. Kevin Castel"
  },
  {
   "at": "gibberish,",
