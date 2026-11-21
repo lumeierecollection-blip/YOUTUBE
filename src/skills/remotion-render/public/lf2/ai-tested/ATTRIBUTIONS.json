@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cort\u00e9s cortes",
+  "author": "Dennis Cortés cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1037,5 +1037,31 @@
   "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "mt-courthouse": {
+  "id": "mt-courthouse",
+  "file": "mt-courthouse.jpg",
+  "description": "the federal courthouse in Manhattan, New York (Southern District of New York)",
+  "depicts": "Daniel Patrick Moynihan United States Courthouse in Manhattan",
+  "score": 10,
+  "source": "openverse/flickr",
+  "source_url": "https://www.flickr.com/photos/75683070@N00/7237347688",
+  "licence": "by-sa 2.0",
+  "author": "Ken Lund",
+  "credit_line": "Ken Lund, BY-SA 2.0, via openverse/flickr",
+  "authenticity": "authentic"
+ },
+ "mt-mata": {
+  "id": "mt-mata",
+  "file": "mt-mata.jpg",
+  "description": "a man seated in an airplane cabin",
+  "depicts": "A man seated in an airplane cabin",
+  "score": 10,
+  "source": "openverse/flickr",
+  "source_url": "https://www.flickr.com/photos/8327374@N02/1201909275",
+  "licence": "by 2.0",
+  "author": "Tips For Travellers",
+  "credit_line": "Tips For Travellers, BY 2.0, via openverse/flickr",
+  "authenticity": "authentic"
  }
 }
