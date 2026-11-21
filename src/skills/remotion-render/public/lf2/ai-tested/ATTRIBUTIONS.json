@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cort\u00e9s cortes",
+  "author": "Dennis Cortés cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1037,5 +1037,31 @@
   "credit_line": "FUMIGRAPHIK_Photographist, BY NC ND, via flickr",
   "authenticity": "authentic",
   "found_via": "Openverse / public archive search, 20 Nov 2026"
+ },
+ "flash-cras-01": {
+  "id": "flash-cras-01",
+  "file": "flash-cras-01.jpg",
+  "description": "Dow Jones Industrial Average stock market ticker display board showing declining numbers",
+  "depicts": "stock market ticker display board with numbers",
+  "score": 7,
+  "source": "pixabay",
+  "source_url": "https://pixabay.com/photos/business-stock-finance-market-1730089/",
+  "licence": "Pixabay licence",
+  "author": "AhmadArdity",
+  "credit_line": "AhmadArdity, PIXABAY LICENCE, via pixabay",
+  "authenticity": "authentic"
+ },
+ "flash-cras-02": {
+  "id": "flash-cras-02",
+  "file": "flash-cras-02.jpg",
+  "description": "rows of computer servers in a modern automated trading data center",
+  "depicts": "rows of computer servers in data center",
+  "score": 9,
+  "source": "commons",
+  "source_url": "https://commons.wikimedia.org/wiki/File:BalticServers_data_center.jpg",
+  "licence": "CC BY-SA 3.0",
+  "author": "BalticServers.com",
+  "credit_line": "BalticServers.com, CC BY-SA 3.0, via commons",
+  "authenticity": "authentic"
  }
 }

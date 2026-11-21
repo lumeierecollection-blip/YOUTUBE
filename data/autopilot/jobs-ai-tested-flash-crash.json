@@ -1,0 +1,27 @@
+[
+ {
+  "id": "flash-cras-01",
+  "q": "stock market ticker board",
+  "desc": "Dow Jones Industrial Average stock market ticker display board showing declining numbers"
+ },
+ {
+  "id": "flash-cras-02",
+  "q": "computer servers data center",
+  "desc": "rows of computer servers in a modern automated trading data center"
+ },
+ {
+  "id": "flash-cras-03",
+  "q": "digital trading algorithm code",
+  "desc": "computer screen displaying algorithmic trading code and market graphs"
+ },
+ {
+  "id": "flash-cras-04",
+  "q": "stock market crash graph",
+  "desc": "financial chart showing a sharp rapid vertical drop in stock prices"
+ },
+ {
+  "id": "flash-cras-05",
+  "q": "question mark financial chart",
+  "desc": "abstract financial chart with a glowing question mark overlay"
+ }
+]
