@@ -1,0 +1,531 @@
+[
+ {
+  "id": "haaland-so-01",
+  "q": "Erling Haaland",
+  "alt": "footballer portrait",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-02",
+  "q": "Premier League logo",
+  "alt": "football league logo",
+  "desc": "Premier League logo"
+ },
+ {
+  "id": "haaland-so-03",
+  "q": "Manchester City FC logo",
+  "alt": "football club badge",
+  "desc": "Manchester City Football Club logo"
+ },
+ {
+  "id": "haaland-so-04",
+  "q": "Europe map",
+  "alt": "map of Europe",
+  "desc": "Map of Europe"
+ },
+ {
+  "id": "haaland-so-05",
+  "q": "football penalty area",
+  "alt": "football pitch markings",
+  "desc": "Football penalty area markings"
+ },
+ {
+  "id": "haaland-so-06",
+  "q": "Norway scenery",
+  "alt": "Norwegian landscape",
+  "desc": "Norwegian landscape"
+ },
+ {
+  "id": "haaland-so-07",
+  "q": "Bryne FK stadium",
+  "alt": "football stadium",
+  "desc": "Bryne Football Club stadium"
+ },
+ {
+  "id": "haaland-so-08",
+  "q": "Molde FK stadium",
+  "alt": "football stadium",
+  "desc": "Molde Football Club stadium"
+ },
+ {
+  "id": "haaland-so-09",
+  "q": "Red Bull Salzburg logo",
+  "alt": "football club badge",
+  "desc": "Red Bull Salzburg Football Club logo"
+ },
+ {
+  "id": "haaland-so-10",
+  "q": "Borussia Dortmund logo",
+  "alt": "football club badge",
+  "desc": "Borussia Dortmund Football Club logo"
+ },
+ {
+  "id": "haaland-so-11",
+  "q": "football trophy",
+  "alt": "football trophy",
+  "desc": "Football trophy"
+ },
+ {
+  "id": "haaland-so-12",
+  "q": "Erling Haaland",
+  "alt": "footballer portrait",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-13",
+  "q": "Norway national football team",
+  "alt": "norwegian team",
+  "desc": "Norway national football team crest"
+ },
+ {
+  "id": "haaland-so-14",
+  "q": "Bryne FK",
+  "alt": "bryne club",
+  "desc": "Bryne FK logo"
+ },
+ {
+  "id": "haaland-so-15",
+  "q": "Borussia Dortmund",
+  "alt": "dortmund stadium",
+  "desc": "Borussia Dortmund stadium"
+ },
+ {
+  "id": "haaland-so-16",
+  "q": "Manchester City",
+  "alt": "man city stadium",
+  "desc": "Manchester City stadium"
+ },
+ {
+  "id": "haaland-so-17",
+  "q": "Austrian Bundesliga",
+  "alt": "austrian league",
+  "desc": "Austrian Bundesliga trophy"
+ },
+ {
+  "id": "haaland-so-18",
+  "q": "DFB Pokal",
+  "alt": "german cup",
+  "desc": "DFB-Pokal trophy"
+ },
+ {
+  "id": "haaland-so-19",
+  "q": "Premier League",
+  "alt": "premier league",
+  "desc": "Premier League trophy"
+ },
+ {
+  "id": "haaland-so-20",
+  "q": "UEFA Mens Player of the Year",
+  "alt": "uefa award",
+  "desc": "UEFA Men's Player of the Year trophy"
+ },
+ {
+  "id": "haaland-so-21",
+  "q": "Ballon d'Or",
+  "alt": "ballon d or trophy",
+  "desc": "Ballon d'Or trophy"
+ },
+ {
+  "id": "haaland-so-22",
+  "q": "Erling Haaland",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-23",
+  "q": "Manchester City",
+  "desc": "Manchester City football club"
+ },
+ {
+  "id": "haaland-so-24",
+  "q": "Premier League",
+  "desc": "Premier League logo"
+ },
+ {
+  "id": "haaland-so-25",
+  "q": "Premier League player",
+  "desc": "Premier League player"
+ },
+ {
+  "id": "haaland-so-26",
+  "q": "Manchester City",
+  "desc": "Manchester City team"
+ },
+ {
+  "id": "haaland-so-27",
+  "q": "Erling Haaland",
+  "alt": "football player portrait",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-28",
+  "q": "Norway country",
+  "alt": "Norway flag map",
+  "desc": "Norway"
+ },
+ {
+  "id": "haaland-so-29",
+  "q": "Leeds England city",
+  "alt": "Leeds city view",
+  "desc": "Leeds"
+ },
+ {
+  "id": "haaland-so-30",
+  "q": "Molde FK",
+  "alt": "Molde football club",
+  "desc": "Molde"
+ },
+ {
+  "id": "haaland-so-31",
+  "q": "Red Bull Salzburg",
+  "alt": "Red Bull Salzburg logo",
+  "desc": "Red Bull Salzburg"
+ },
+ {
+  "id": "haaland-so-32",
+  "q": "Borussia Dortmund",
+  "alt": "Borussia Dortmund stadium",
+  "desc": "Borussia Dortmund"
+ },
+ {
+  "id": "haaland-so-33",
+  "q": "Manchester City",
+  "alt": "Manchester City logo",
+  "desc": "Manchester City"
+ },
+ {
+  "id": "haaland-so-34",
+  "q": "Norway national football team",
+  "alt": "Norway football team",
+  "desc": "Norway national team"
+ },
+ {
+  "id": "haaland-so-35",
+  "q": "Premier League",
+  "alt": "Premier League trophy",
+  "desc": "Premier League"
+ },
+ {
+  "id": "haaland-so-36",
+  "q": "FA Cup",
+  "alt": "FA Cup trophy",
+  "desc": "FA Cup"
+ },
+ {
+  "id": "haaland-so-37",
+  "q": "UEFA Champions League",
+  "alt": "Champions League trophy",
+  "desc": "Champions League"
+ },
+ {
+  "id": "haaland-so-38",
+  "q": "Erling Braut Haaland",
+  "alt": "Erling Braut Haaland",
+  "desc": "Erling Braut Haaland portrait"
+ },
+ {
+  "id": "haaland-so-39",
+  "q": "Leeds England",
+  "alt": "Leeds England",
+  "desc": "Leeds, West Yorkshire, England"
+ },
+ {
+  "id": "haaland-so-40",
+  "q": "West Yorkshire England",
+  "alt": "West Yorkshire",
+  "desc": "West Yorkshire, England"
+ },
+ {
+  "id": "haaland-so-41",
+  "q": "England country",
+  "alt": "England country",
+  "desc": "England"
+ },
+ {
+  "id": "haaland-so-42",
+  "q": "Alf-Inge Haaland",
+  "alt": "Alf-Inge Haaland",
+  "desc": "Alf-Inge Haaland portrait"
+ },
+ {
+  "id": "haaland-so-43",
+  "q": "Leeds United stadium",
+  "alt": "Leeds United football club",
+  "desc": "Leeds United"
+ },
+ {
+  "id": "haaland-so-44",
+  "q": "Erling Braut Haaland",
+  "alt": "Erling Braut Haaland",
+  "desc": "Erling Braut Haaland portrait"
+ },
+ {
+  "id": "haaland-so-45",
+  "q": "Leeds United stadium",
+  "alt": "Leeds United football club",
+  "desc": "Leeds United"
+ },
+ {
+  "id": "haaland-so-46",
+  "q": "Bryne Norway town",
+  "alt": "Bryne Norway",
+  "desc": "Bryne"
+ },
+ {
+  "id": "haaland-so-47",
+  "q": "Norway landscape",
+  "alt": "Norway country",
+  "desc": "Norway"
+ },
+ {
+  "id": "haaland-so-48",
+  "q": "Gry Marita Braut",
+  "alt": "Gry Marita Braut",
+  "desc": "Gry Marita Braut portrait"
+ },
+ {
+  "id": "haaland-so-49",
+  "q": "Norway flag",
+  "alt": "Norway country",
+  "desc": "Norway"
+ },
+ {
+  "id": "haaland-so-50",
+  "q": "Erling Braut Haaland",
+  "alt": "Erling Braut Haaland",
+  "desc": "Erling Braut Haaland portrait"
+ },
+ {
+  "id": "haaland-so-51",
+  "q": "Bryne FK stadium",
+  "alt": "Bryne football club",
+  "desc": "Bryne"
+ },
+ {
+  "id": "haaland-so-52",
+  "q": "Norway football team",
+  "alt": "Norway national team",
+  "desc": "Norway youth national teams"
+ },
+ {
+  "id": "haaland-so-53",
+  "q": "Norway football team",
+  "alt": "Norway national team",
+  "desc": "Norway"
+ },
+ {
+  "id": "haaland-so-54",
+  "q": "FIFA logo",
+  "alt": "FIFA organization",
+  "desc": "FIFA U-20 World Cup"
+ },
+ {
+  "id": "haaland-so-55",
+  "q": "Erling Haaland",
+  "alt": "Erling Haaland",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-56",
+  "q": "Bryne FK",
+  "alt": "Norwegian football club",
+  "desc": "Bryne FK stadium"
+ },
+ {
+  "id": "haaland-so-57",
+  "q": "Molde FK",
+  "alt": "Norwegian football club",
+  "desc": "Molde FK stadium"
+ },
+ {
+  "id": "haaland-so-58",
+  "q": "Red Bull Salzburg",
+  "alt": "football club logo",
+  "desc": "Red Bull Salzburg club crest"
+ },
+ {
+  "id": "haaland-so-59",
+  "q": "Austrian Bundesliga trophy",
+  "alt": "football trophy",
+  "desc": "Austrian Bundesliga trophy"
+ },
+ {
+  "id": "haaland-so-60",
+  "q": "Austrian Cup trophy",
+  "alt": "football trophy",
+  "desc": "Austrian Cup trophy"
+ },
+ {
+  "id": "haaland-so-61",
+  "q": "Red Bull Salzburg",
+  "alt": "football club logo",
+  "desc": "Red Bull Salzburg club crest"
+ },
+ {
+  "id": "haaland-so-62",
+  "q": "UEFA Champions League logo",
+  "alt": "football tournament logo",
+  "desc": "UEFA Champions League logo"
+ },
+ {
+  "id": "haaland-so-63",
+  "q": "UEFA Champions League logo",
+  "alt": "football tournament logo",
+  "desc": "UEFA Champions League logo"
+ },
+ {
+  "id": "haaland-so-64",
+  "q": "Bundesliga logo",
+  "alt": "football league logo",
+  "desc": "Bundesliga logo"
+ },
+ {
+  "id": "haaland-so-65",
+  "q": "Borussia Dortmund",
+  "alt": "football club logo",
+  "desc": "Borussia Dortmund club crest"
+ },
+ {
+  "id": "haaland-so-66",
+  "q": "Borussia Dortmund",
+  "alt": "football club logo",
+  "desc": "Borussia Dortmund club crest"
+ },
+ {
+  "id": "haaland-so-67",
+  "q": "DFB-Pokal trophy",
+  "alt": "football trophy",
+  "desc": "DFB-Pokal trophy"
+ },
+ {
+  "id": "haaland-so-68",
+  "q": "Erling Haaland",
+  "alt": "Erling Haaland",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-69",
+  "q": "Manchester City",
+  "alt": "football club logo",
+  "desc": "Manchester City club crest"
+ },
+ {
+  "id": "haaland-so-70",
+  "q": "Manchester City",
+  "alt": "football club logo",
+  "desc": "Manchester City club crest"
+ },
+ {
+  "id": "haaland-so-71",
+  "q": "Premier League trophy",
+  "alt": "football trophy",
+  "desc": "Premier League trophy"
+ },
+ {
+  "id": "haaland-so-72",
+  "q": "Erling Haaland",
+  "alt": "football player action",
+  "desc": "Erling Haaland portrait"
+ },
+ {
+  "id": "haaland-so-73",
+  "q": "map of Europe",
+  "alt": "European continent map",
+  "desc": "Map of Europe"
+ },
+ {
+  "id": "haaland-so-74",
+  "q": "UEFA Champions League logo",
+  "alt": "Champions League trophy",
+  "desc": "UEFA Champions League trophy"
+ },
+ {
+  "id": "haaland-so-75",
+  "q": "Erling Haaland",
+  "alt": "football player running",
+  "desc": "Erling Haaland running on pitch"
+ },
+ {
+  "id": "haaland-so-76",
+  "q": "Borussia Dortmund football club",
+  "alt": "Dortmund team logo",
+  "desc": "Borussia Dortmund team crest"
+ },
+ {
+  "id": "haaland-so-77",
+  "q": "Club Brugge KV",
+  "alt": "Brugge team logo",
+  "desc": "Club Brugge team crest"
+ },
+ {
+  "id": "haaland-so-78",
+  "q": "Sevilla FC",
+  "alt": "Sevilla team logo",
+  "desc": "Sevilla FC team crest"
+ },
+ {
+  "id": "haaland-so-79",
+  "q": "Manchester City FC",
+  "alt": "Man City logo",
+  "desc": "Manchester City team crest"
+ },
+ {
+  "id": "haaland-so-80",
+  "q": "Manchester United FC",
+  "alt": "Man United logo",
+  "desc": "Manchester United team crest"
+ },
+ {
+  "id": "haaland-so-81",
+  "q": "Michael Owen",
+  "alt": "footballer portrait",
+  "desc": "Michael Owen portrait"
+ },
+ {
+  "id": "haaland-so-82",
+  "q": "Alan Shearer",
+  "alt": "footballer portrait",
+  "desc": "Alan Shearer portrait"
+ },
+ {
+  "id": "haaland-so-83",
+  "q": "Erling Braut Haaland",
+  "alt": "Erling Braut Haaland portrait",
+  "desc": "Erling Braut Haaland portrait"
+ },
+ {
+  "id": "haaland-so-84",
+  "q": "Norway flag",
+  "alt": "Norway flag map",
+  "desc": "Norway flag"
+ },
+ {
+  "id": "haaland-so-85",
+  "q": "Bryne FK",
+  "alt": "Bryne football club",
+  "desc": "Bryne FK team stadium"
+ },
+ {
+  "id": "haaland-so-86",
+  "q": "Molde FK",
+  "alt": "Molde FK club",
+  "desc": "Molde FK stadium"
+ },
+ {
+  "id": "haaland-so-87",
+  "q": "Red Bull Salzburg",
+  "alt": "Red Bull Salzburg",
+  "desc": "Red Bull Salzburg stadium"
+ },
+ {
+  "id": "haaland-so-88",
+  "q": "Borussia Dortmund",
+  "alt": "Borussia Dortmund club",
+  "desc": "Borussia Dortmund stadium"
+ },
+ {
+  "id": "haaland-so-89",
+  "q": "Manchester City",
+  "alt": "Manchester City club",
+  "desc": "Manchester City stadium"
+ }
+]

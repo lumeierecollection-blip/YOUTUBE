@@ -1,0 +1,184 @@
+[
+ {
+  "beat": "A01",
+  "img": "lf2/rival-lines/haaland-so-01.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland in a Manchester City football kit",
+  "reason": "The image directly shows Erling Haaland, who is the subject of the narration about the Premier League."
+ },
+ {
+  "beat": "A04",
+  "img": "lf2/rival-lines/haaland-so-04.jpg",
+  "ok": true,
+  "depicts": "A map of Europe showing travel routes and locations.",
+  "reason": "The map illustrates travel routes in Europe, which does not relate to a striker dominating defenses."
+ },
+ {
+  "beat": "A06",
+  "img": "lf2/rival-lines/haaland-so-05.jpg",
+  "ok": true,
+  "depicts": "An overhead view of a soccer field grass.",
+  "reason": "The image shows a soccer field with penalty areas, directly matching the narration's mention of finishing inside the penalty area."
+ },
+ {
+  "beat": "A07",
+  "img": "lf2/rival-lines/haaland-so-06.jpg",
+  "ok": true,
+  "depicts": "Scenic view of a Norwegian fjord and mountains.",
+  "reason": "The image clearly illustrates Norway, which is mentioned in the narration about the person's childhood."
+ },
+ {
+  "beat": "A09",
+  "img": "lf2/rival-lines/haaland-so-09.jpg",
+  "ok": true,
+  "depicts": "The Red Bull logo on a wooden wall.",
+  "reason": "The image directly references Red Bull Salzburg, one of the clubs mentioned in the narrator's timeline of the player's career."
+ },
+ {
+  "beat": "A11",
+  "img": "lf2/rival-lines/haaland-so-11.jpg",
+  "ok": true,
+  "depicts": "A small golden football boot trophy on a table",
+  "reason": "While it represents goals, it is a generic school award rather than a fitting illustration for a historic treble-winning professional season."
+ },
+ {
+  "beat": "A13",
+  "img": "lf2/rival-lines/haaland-so-12.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland wearing a Manchester City jersey",
+  "reason": "The picture shows Erling Haaland, directly illustrating the subject of the narration."
+ },
+ {
+  "beat": "A18",
+  "img": "lf2/rival-lines/haaland-so-15.jpg",
+  "ok": true,
+  "depicts": "The illuminated stadium of Borussia Dortmund at night.",
+  "reason": "The image directly illustrates Borussia Dortmund, one of the key clubs mentioned in the narration."
+ },
+ {
+  "beat": "A21",
+  "img": "lf2/rival-lines/haaland-so-19.jpg",
+  "ok": true,
+  "depicts": "Vincent Kompany holding the Premier League trophy",
+  "reason": "The image shows the Premier League trophy being celebrated, directly relating to the competition mentioned in the script."
+ },
+ {
+  "beat": "A22",
+  "img": "lf2/rival-lines/haaland-so-21.jpg",
+  "ok": true,
+  "depicts": "Hristo Stoichkov's FC Barcelona jersey and trophy display.",
+  "reason": "The narrator is describing the achievements of a modern player like Erling Haaland or Mohamed Salah, while the image shows Hristo Stoichkov, a player from a different era."
+ },
+ {
+  "beat": "A24",
+  "img": "lf2/rival-lines/haaland-so-22.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland wearing a Manchester City football kit.",
+  "reason": "The image shows the correct player in a Manchester City jersey, which directly supports the narrator's statement about his arrival at the club."
+ },
+ {
+  "beat": "A26",
+  "img": "lf2/rival-lines/haaland-so-25.jpg",
+  "ok": true,
+  "depicts": "The 2010/11 Manchester United football team squad photo.",
+  "reason": "The narration describes an individual player's goal-scoring record, but the image shows an entire team, making it a poor illustration for a specific player's achievement."
+ },
+ {
+  "beat": "A27",
+  "img": "lf2/rival-lines/haaland-so-26.jpg",
+  "ok": true,
+  "depicts": "A Manchester City player kicking a football.",
+  "reason": "The image shows a match from the mid-2000s, long before Manchester City's historic 2023 treble."
+ },
+ {
+  "beat": "A28",
+  "img": "lf2/rival-lines/haaland-so-27.jpg",
+  "ok": true,
+  "depicts": "Professional footballer Erling Haaland wearing a jersey.",
+  "reason": "The image clearly shows Erling Haaland, who is the subject of the narrator's statement."
+ },
+ {
+  "beat": "A29",
+  "img": "lf2/rival-lines/haaland-so-29.jpg",
+  "ok": true,
+  "depicts": "City Square in Leeds, England, with statues.",
+  "reason": "The image shows a prominent location in Leeds, which is the birthplace mentioned in the narration."
+ },
+ {
+  "beat": "A31",
+  "img": "lf2/rival-lines/haaland-so-30.jpg",
+  "ok": true,
+  "depicts": "A scenic sunset over a calm Norwegian fjord.",
+  "reason": "The image is a generic landscape that does not show the subject, Erling Haaland, or any of the football clubs mentioned."
+ },
+ {
+  "beat": "A34",
+  "img": "lf2/rival-lines/haaland-so-35.jpg",
+  "ok": true,
+  "depicts": "Vincent Kompany holding the Premier League trophy",
+  "reason": "The picture shows Vincent Kompany with the Premier League trophy, but the narration refers to Erling Haaland's goal-scoring record in 2022-23."
+ },
+ {
+  "beat": "A37",
+  "img": "lf2/rival-lines/haaland-so-38.jpg",
+  "ok": true,
+  "depicts": "Professional footballer Erling Haaland in a jersey.",
+  "reason": "The image shows the subject mentioned in the narration, making it a fitting illustration."
+ },
+ {
+  "beat": "A38",
+  "img": "lf2/rival-lines/haaland-so-44.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland playing for Borussia Dortmund football club",
+  "reason": "The image shows the subject of the sentence, Erling Haaland, which is a standard way to illustrate a biographical statement about him."
+ },
+ {
+  "beat": "A39",
+  "img": "lf2/rival-lines/haaland-so-46.jpg",
+  "ok": true,
+  "depicts": "Modern white building facade against blue sky.",
+  "reason": "The image is a generic architectural shot that does not provide any context or visual connection to the town of Bryne or the person mentioned."
+ },
+ {
+  "beat": "A40",
+  "img": "lf2/rival-lines/haaland-so-49.jpg",
+  "ok": true,
+  "depicts": "Woman in traditional clothing holding a Norwegian flag",
+  "reason": "The image is a historical photograph from the early 20th century and does not depict the 1990s heptathlon champion mentioned."
+ },
+ {
+  "beat": "A41",
+  "img": "lf2/rival-lines/haaland-so-50.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland playing professional football in uniform",
+  "reason": "The image shows the subject of the narration, which is appropriate for a biographical segment about his athletic background."
+ },
+ {
+  "beat": "A45",
+  "img": "lf2/rival-lines/haaland-so-52.jpg",
+  "ok": true,
+  "depicts": "A Norwegian youth national football team posing together.",
+  "reason": "The image directly shows a youth football team wearing Norwegian national team jerseys, which perfectly illustrates the narrator's statement."
+ },
+ {
+  "beat": "A46",
+  "img": "lf2/rival-lines/haaland-so-53.jpg",
+  "ok": true,
+  "depicts": "A scenic river flowing through a mountain valley.",
+  "reason": "The image is a generic landscape of Norway and does not depict the football player or the sporting event mentioned in the narration."
+ },
+ {
+  "beat": "A47",
+  "img": "lf2/rival-lines/haaland-so-55.jpg",
+  "ok": true,
+  "depicts": "Erling Haaland wearing a Manchester City football kit",
+  "reason": "The image shows the subject of the narration, Erling Haaland, even though he is wearing a kit from a later stage in his career."
+ },
+ {
+  "beat": "A48",
+  "img": "lf2/rival-lines/haaland-so-59.jpg",
+  "ok": true,
+  "depicts": "The Austrian Bundesliga championship trophy in its case.",
+  "reason": "The image shows the official trophy awarded to the winner of the Austrian Bundesliga, directly illustrating the narrator's statement."
+ }
+]
