@@ -22,6 +22,12 @@ async function ask(prompt) {
     if (!r.ok) { console.error("gemini", r.status, (await r.text()).slice(0, 160)); continue; } const raw = await r.json(); const txt = raw.candidates?.[0]?.content?.parts?.map((x) => x.text || "").join("") || ""; let j = null; try { j = JSON.parse(txt.replace(/^```json\s*|```\s*$/g, "")); } catch { console.error("unparseable", txt.slice(0, 120), JSON.stringify(raw.promptFeedback || raw.candidates?.[0]?.finishReason || "").slice(0, 100)); } if (j) return j; } catch (e) { console.error("ask error", String(e).slice(0, 100)); } } await sleep(8000 * (pass + 1)); }
   throw new Error("model gave no answer");
 }
+async function askText(prompt) {
+  for (let pass = 0; pass < 4; pass++) { for (const model of MODELS) for (const key of KEYS) { try {
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.5, maxOutputTokens: 4000 } }) });
+    if (!r.ok) continue; const t = (await r.json()).candidates?.[0]?.content?.parts?.map((x) => x.text || "").join("") || ""; if (t.trim()) return t.trim(); } catch { /* next */ } } await sleep(8000 * (pass + 1)); }
+  throw new Error("model gave no text");
+}
 async function source() {
   let out = "";
   for (const t of topic.sources) { const r = await (await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext=1&redirects=1&format=json&titles=${encodeURIComponent(t)}`, { headers: { "User-Agent": "research-client/1.0" } })).json(); const p = Object.values(r.query.pages)[0]; out += `\n### ${p.title}\n${(p.extract || "").slice(0, mode === "long" ? 22000 : 9000)}\n`; await sleep(800); }
@@ -44,18 +50,21 @@ SOURCE TEXT:${SRC}`);
 Return JSON {"chapters":[{"title":"...","points":["...","..."]}]} (first chapter is the cold open, last is the verdict).
 SOURCE TEXT:${SRC}`);
   const beats = [];
+  const wc = (t) => String(t || "").split(/\s+/).filter(Boolean).length;
   for (const [i, ch] of outline.chapters.entries()) {
-    const chapterPrompt = (note) => `Write chapter ${i + 1}/${outline.chapters.length} "${ch.title}" of the documentary "${topic.title}": 300-380 words of narration (a chapter under 280 words is rejected) (calm, past tense, dates and places), covering: ${ch.points.join("; ")}.
-Split it into beats of 2-3 sentences (30-45 words each). ${RULES}
-Return JSON {"beats":[{"vo":"2-3 sentences","label":"short caption (<=5 words) or empty","visuals":[ one per named mention in that beat, 1-3 ]}]}.
-${note}
-SOURCE TEXT:${SRC}`;
-    let r = await ask(chapterPrompt(""));
-    const wc = (x) => (x?.beats || []).reduce((n, q) => n + String(q.vo || "").split(/\s+/).length, 0);
-    for (let t = 0; t < 3 && wc(r) < 280; t++) { console.log(`chapter ${i + 1}: ${wc(r)} words, asking again`); const r2 = await ask(chapterPrompt(`Your last answer had only ${wc(r)} words. Write the FULL chapter, 300-380 words, using every point and detail in SOURCE TEXT.`)); if (wc(r2) > wc(r)) r = r2; }
-    console.log(`chapter ${i + 1}: ${wc(r)} words`);
-
-    for (const b of r.beats || []) beats.push({ ...b, chapter: i + 1, chTitle: ch.title });
+    // step 1: the narration as plain text (JSON-wrapped answers came back at 50-100 words); step 2: pictures per beat
+    let text = "";
+    for (let t = 0; t < 4 && wc(text) < 280; t++) {
+      const got = await askText(`Write the narration of chapter ${i + 1} of ${outline.chapters.length}, "${ch.title}", of the video "${topic.title}". LENGTH: 300-380 words, at least 280. Calm, plain spoken English, dates and places, no headings, no markdown, no bullet points, only the spoken text. Cover: ${ch.points.join("; ")}. Use ONLY facts, names, numbers and dates from SOURCE TEXT.${t ? ` Your previous try was only ${wc(text)} words: write the FULL chapter using every detail you can find in SOURCE TEXT about these points.` : ""}
+SOURCE TEXT:${SRC}`);
+      if (wc(got) > wc(text)) text = got;
+    }
+    console.log(`chapter ${i + 1}: ${wc(text)} words`);
+    const sents = text.replace(/\s+/g, " ").match(/[^.!?]+[.!?]+["')\]]*|[^.!?]+$/g) || [], groups = [];
+    for (let k = 0; k < sents.length; k += 3) groups.push(sents.slice(k, k + 3).join(" ").trim());
+    const NL = String.fromCharCode(10), list = groups.map((g, k) => `${k}. ${g}`).join(NL);
+    const vis = await ask(`For each numbered beat of a ${CH === "rival-lines" ? "football" : "history"} video, list the visuals. ${RULES}${NL}Return JSON {"beats":[{"i":0,"label":"short caption (<=5 words) or empty","visuals":[ one per named mention in that beat, 1-3 ]}]}.${NL}BEATS:${NL}${list}`).catch(() => ({ beats: [] }));
+    groups.forEach((g, k) => { const v = (vis.beats || []).find((x) => x.i === k) || {}; beats.push({ vo: g, label: v.label || "", visuals: v.visuals || [], chapter: i + 1, chTitle: ch.title }); });
   }
   const totalWords = beats.reduce((n, q) => n + String(q.vo || "").split(/\s+/).length, 0);
   if (totalWords < (topic.minutes || 20) * 150 * 0.6) { console.error(`script too short: ${totalWords} words for a ${topic.minutes || 20}-minute video. Not rendering a thin video.`); process.exit(4); }
