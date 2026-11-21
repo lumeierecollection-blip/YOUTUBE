@@ -775,14 +775,14 @@
   "source_url": "https://commons.wikimedia.org/wiki/File:Black_smartphone_in_hand_(Unsplash).jpg",
   "licence": "CC0",
   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-  "author": "Dennis Cortés cortes",
+  "author": "Dennis Cort\u00e9s cortes",
   "original_credit": "https://unsplash.com/photos/Fsl321ca52w Image at the Wayback Machine Gallery at the Wayback Machine",
   "date_taken": "2016-10-09",
   "retrieved": "2026-11-20",
   "claim": "a smartphone in a hand (illustrative)",
   "authenticity": "authentic",
   "size_px": "6000x4000",
-  "credit_line": "Dennis Cortés cortes, CC0, via Wikimedia Commons",
+  "credit_line": "Dennis Cort\u00e9s cortes, CC0, via Wikimedia Commons",
   "bytes": 208909,
   "file": "ac-phone2.jpg"
  },
@@ -1089,5 +1089,31 @@
   "author": "u_if8o5n0ioo",
   "credit_line": "u_if8o5n0ioo, PIXABAY LICENCE, via pixabay",
   "authenticity": "authentic"
+ },
+ "mt-chatgpt": {
+  "id": "mt-chatgpt",
+  "file": "mt-chatgpt.jpg",
+  "description": "a chat screen: a request for a legal motion with court cases",
+  "depicts": "a chat screen: a request for a legal motion with court cases",
+  "score": 10,
+  "source": "drawn by the system",
+  "source_url": "",
+  "licence": "own work (illustration)",
+  "author": "Illustration",
+  "credit_line": "Illustration drawn for this video, recreated from the case record",
+  "authenticity": "illustration"
+ },
+ "mt-said": {
+  "id": "mt-said",
+  "file": "mt-said.jpg",
+  "description": "a chat screen answering that the cases exist",
+  "depicts": "a chat screen answering that the cases exist",
+  "score": 10,
+  "source": "drawn by the system",
+  "source_url": "",
+  "licence": "own work (illustration)",
+  "author": "Illustration",
+  "credit_line": "Illustration drawn for this video, recreated from the case record",
+  "authenticity": "illustration"
  }
 }
