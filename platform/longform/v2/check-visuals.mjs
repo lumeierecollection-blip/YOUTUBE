@@ -15,7 +15,7 @@ const KEYS = ["GEMINI_API_KEY", "GEMINI_API_KEY_1", "GEMINI_API_KEY_2", "GEMINI_
 const MODELS = ["gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.5-flash-lite"];
 const out = [];
 for (const b of ep.beats) {
-  const imgs = [...new Set((JSON.stringify(b.scene).match(/lf2\/[^"]+\.(?:jpe?g|png|webp)/gi) || []).filter((p) => !/geo\/|tex-|relief|terrain|cutout|png-money|logo/i.test(p)))];
+  const imgs = [...new Set((JSON.stringify(b.scene).match(/lf2\/[^"]+\.(?:jpe?g|png|webp)/gi) || []).filter((p) => !/geo\/|tex-|relief|terrain|cutout|png-money|logo|neutral-card/i.test(p)))];
   for (const p of imgs) {
     const file = join(PUB, p); if (!existsSync(file)) { out.push({ beat: b.id, img: p, ok: false, reason: "missing file" }); console.log(`FAIL ${b.id} ${p}: file missing on this runner`); continue; }
     const prompt = `In a history/explainer video this picture is on screen while the narrator says: "${b.vo}".
