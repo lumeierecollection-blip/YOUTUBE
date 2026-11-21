@@ -58,6 +58,20 @@ jobs:
           fi
           [ "$rc" = 0 ] || exit "$rc"
           echo "slug=$(grep '^SLUG=' gen.log | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - name: Picture gate in repair mode for long forms
+        if: steps.gen.outputs.slug != '' && steps.mode.outputs.mode == 'long'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GATE_REPAIR: "1"
+        run: |
+          sudo apt-get -qq install -y ffmpeg >/dev/null
+          node platform/longform/v2/check-visuals.mjs "${{ steps.gen.outputs.slug }}" || true
       - name: Commit the build to its own branch, mark the topic done on main, start the render
         if: steps.gen.outputs.slug != ''
         env: { GH_TOKEN: "${{ github.token }}" }
