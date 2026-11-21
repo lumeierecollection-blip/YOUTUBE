@@ -58,7 +58,7 @@ const chDir = mode === "short" ? "ai-tested" : CH, jobs = [];
 const mentions = mode === "short" ? plan.shots : plan.beats.flatMap((b) => b.visuals || []);
 let n = 0; for (const m of mentions) if (m.kind === "photo") { m.id = `${topic.id.slice(0, 10)}-${String(++n).padStart(2, "0")}`; jobs.push({ id: m.id, q: m.q || m.desc, desc: m.desc }); }
 W(`data/autopilot/jobs-${slug}.json`, jobs);
-const sr = spawnSync("node", [join(ROOT, "platform/longform/v2/auto-source.mjs"), join(ROOT, `data/autopilot/jobs-${slug}.json`), chDir], { stdio: "inherit", env: process.env, cwd: ROOT });
+const sr = spawnSync("node", [join(ROOT, "platform/longform/v2/auto-source.mjs"), join(ROOT, `data/autopilot/jobs-${slug}.json`), chDir], { stdio: "inherit", env: { ...process.env, SOURCE_BUDGET_MIN: mode === "short" ? "14" : "55" }, cwd: ROOT });
 const missing = new Set(J(`src/skills/remotion-render/public/lf2/${chDir}/_missing.json`, []));
 const q = (s) => JSON.stringify(s);
 if (mode === "short") {
