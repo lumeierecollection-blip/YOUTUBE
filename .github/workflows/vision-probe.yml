@@ -1,9 +1,15 @@
+# Source a small list of pictures on demand: jobs file data/source-jobs/<name>.json into public/lf2/<dir>, committed to sourced/<name>.
 name: Vision probe
-on: { workflow_dispatch: {} }
+on:
+  workflow_dispatch:
+    inputs:
+      name: { description: "jobs file name (data/source-jobs/<name>.json)", required: true, default: probe }
+      dir: { description: "channel dir under public/lf2", required: true, default: ai-tested }
+permissions: { contents: write }
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -17,5 +23,9 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
-          SOURCE_BUDGET_MIN: "6"
-        run: node platform/longform/v2/auto-source.mjs data/autopilot/probe-jobs.json probe
+          SOURCE_BUDGET_MIN: "15"
+        run: node platform/longform/v2/auto-source.mjs data/source-jobs/${{ inputs.name }}.json ${{ inputs.dir }}
+      - run: |
+          git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
+          git checkout -b "sourced/${{ inputs.name }}"; git add -A src/skills/remotion-render/public/lf2/${{ inputs.dir }}
+          git commit -qm "sourced pictures for ${{ inputs.name }}" || echo nothing; git push -f origin "sourced/${{ inputs.name }}"

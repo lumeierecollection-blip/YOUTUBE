@@ -1115,5 +1115,31 @@
   "author": "Illustration",
   "credit_line": "Illustration drawn for this video, recreated from the case record",
   "authenticity": "illustration"
+ },
+ "mt-courthouse": {
+  "id": "mt-courthouse",
+  "file": "mt-courthouse.jpg",
+  "description": "the federal courthouse in Manhattan, New York (Southern District of New York)",
+  "depicts": "Daniel Patrick Moynihan United States Courthouse in Manhattan",
+  "score": 10,
+  "source": "openverse/flickr",
+  "source_url": "https://www.flickr.com/photos/75683070@N00/7237347688",
+  "licence": "by-sa 2.0",
+  "author": "Ken Lund",
+  "credit_line": "Ken Lund, BY-SA 2.0, via openverse/flickr",
+  "authenticity": "authentic"
+ },
+ "mt-mata": {
+  "id": "mt-mata",
+  "file": "mt-mata.jpg",
+  "description": "a man seated in an airplane cabin",
+  "depicts": "A man seated in an airplane cabin",
+  "score": 10,
+  "source": "openverse/flickr",
+  "source_url": "https://www.flickr.com/photos/8327374@N02/1201909275",
+  "licence": "by 2.0",
+  "author": "Tips For Travellers",
+  "credit_line": "Tips For Travellers, BY 2.0, via openverse/flickr",
+  "authenticity": "authentic"
  }
 }

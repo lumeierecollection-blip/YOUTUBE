@@ -58,8 +58,9 @@ export const SHOTS = [
  },
  {
   "at": "Roberto",
-  "kind": "page",
-  "page": "Roberto Mata"
+  "kind": "full",
+  "photo": "mt-mata",
+  "cap": "Roberto Mata · illustrative photo"
  },
  {
   "at": "Avianca",
@@ -97,8 +98,9 @@ export const SHOTS = [
  },
  {
   "at": "Castel",
-  "kind": "page",
-  "page": "Judge P. Kevin Castel"
+  "kind": "full",
+  "photo": "mt-courthouse",
+  "cap": "Judge P. Kevin Castel · SDNY courthouse"
  },
  {
   "at": "gibberish.",
