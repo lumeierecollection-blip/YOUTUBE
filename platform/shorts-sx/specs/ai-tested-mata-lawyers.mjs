@@ -59,8 +59,8 @@ export const SHOTS = [
  {
   "at": "Roberto",
   "kind": "full",
-  "photo": "mt-mata",
-  "cap": "Roberto Mata · illustrative photo"
+  "photo": "mt-mata2",
+  "cap": "Roberto Mata (private person: stand-in photo)"
  },
  {
   "at": "Avianca",
