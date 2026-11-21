@@ -13,6 +13,12 @@ export const SHOTS = [
   "label": "court cases"
  },
  {
+  "at": "cases.",
+  "kind": "full",
+  "photo": "ac-lawbooks",
+  "cap": "court cases"
+ },
+ {
   "at": "Lawyers",
   "kind": "full",
   "photo": "mt-lawyers",
@@ -27,7 +33,7 @@ export const SHOTS = [
  {
   "at": "lawsuit,",
   "kind": "full",
-  "photo": "ac-lawbooks",
+  "photo": "ac-gavel2",
   "cap": "a lawsuit"
  },
  {
@@ -101,8 +107,7 @@ export const SHOTS = [
  },
  {
   "at": "Would",
-  "kind": "full",
-  "photo": "ac-gavel2",
-  "cap": "Would you trust ChatGPT with a lawsuit?"
+  "kind": "page",
+  "page": "Would you trust ChatGPT with a lawsuit?"
  }
 ];
