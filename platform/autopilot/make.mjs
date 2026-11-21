@@ -34,7 +34,7 @@ cut on the word. Visual kinds: {"kind":"photo","at":"<the exact script word wher
 Never two visuals with the same desc. Plain spoken English, no markdown.`;
 let plan;
 if (mode === "short") {
-  plan = await ask(`Write a YouTube Short (a 26-second narration, 66-74 words) for a channel about AI that is tested honestly. Topic: ${topic.title}. ${topic.format || ""}
+  plan = await ask(`Write a YouTube Short (a 26-second narration, 58-64 words: more than 66 words does not fit the 30 s limit) for a channel about AI that is tested honestly. Topic: ${topic.title}. ${topic.format || ""}
 Structure: sentence 1 states the surprising OUTCOME in plain words (e.g. "Air Canada's chatbot lied, and a court made the airline pay.") - never open with only a date or a setup, because 56.8% of viewers swipe away when the first 2 seconds have no stake; sentence 1 must name 2-3 things so the first 3 seconds have 3 picture cuts; then the dated story in 3-4 short beats; a two-line lesson; end with ONE question to the viewer.
 ${RULES}
 Return JSON {"title":"<=70 chars, no clickbait lies","description":"2 sentences + the source line","tags":["..."],"script":"...","shots":[ one visual per mention, 18-24 shots, in spoken order ]}.
@@ -53,6 +53,10 @@ SOURCE TEXT:${SRC}`);
   }
   plan = { title: topic.title, description: `${topic.title}. Every fact comes from: ${topic.sources.map((s) => "Wikipedia, " + s.replace(/_/g, " ")).join("; ")}. Pictures: credited on screen. Narration is a synthetic voice.`, tags: topic.tags || [], beats };
 }
+if (mode === "short" && plan.script.split(/\s+/).length > 66) { // hard 30 s limit: shorten once, keep the facts and the shot anchors
+  const again = await ask(`This Short script is too long (${plan.script.split(/\s+/).length} words; the limit is 64). Shorten the script to 58-64 words, keep every fact and the outcome-first opening, and update "shots" so every "at" word still appears in the script, in order. Return the same JSON.
+${JSON.stringify(plan)}`);
+  if (again?.script && again.shots) plan = again; }
 // pictures: one search job per photo mention, sourced and vision-scored on this runner
 const chDir = mode === "short" ? "ai-tested" : CH, jobs = [];
 const mentions = mode === "short" ? plan.shots : plan.beats.flatMap((b) => b.visuals || []);
