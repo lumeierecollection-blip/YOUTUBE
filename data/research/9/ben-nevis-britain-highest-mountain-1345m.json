@@ -1,0 +1,125 @@
+{
+  "topic_slug": "ben-nevis-britain-highest-mountain-1345m",
+  "strongest_angle": "Examining the extreme geographical figures of Ben Nevis, from its 1,345-metre summit elevation towering over Fort William to its 100-acre plateau and 739-kilometre isolation radius.",
+  "key_facts": [
+    {
+      "fact": "Ben Nevis reaches an elevation of 1,345 metres (4,413 feet) above sea level in the Grampian Mountains near Fort William.",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ben Nevis stands 260 metres taller than Snowdon, the highest peak in Wales.",
+      "source_url": "https://www.discoveringbritain.org/activities/scotland/1818/britain-from-the-air-ben-nevis.html",
+      "source_name": "Royal Geographical Society / Discovering Britain",
+      "confidence": "high"
+    },
+    {
+      "fact": "The summit of Ben Nevis features a plateau of 100 acres (40 hectares) with a steep cliff face to the northeast.",
+      "source_url": "https://kids.britannica.com/scholars/article/Ben-Nevis/78533",
+      "source_name": "Encyclopædia Britannica",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ben Nevis has a topographic isolation radius of 739 kilometres (459 miles) as the highest point in the British Isles.",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "VisitScotland reports that Ben Nevis attracts 125,000 visitors every year to the Scottish Highlands.",
+      "source_url": "https://www.visitscotland.com/things-to-do/nature-outdoors/walking/mountains-hills/ben-nevis",
+      "source_name": "VisitScotland",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Ben Nevis summit elevation in metres",
+      "value": 1345,
+      "unit": "metres",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis"
+    },
+    {
+      "label": "Ben Nevis summit elevation in feet",
+      "value": 4413,
+      "unit": "feet",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis"
+    },
+    {
+      "label": "Elevation height advantage over Snowdon",
+      "value": 260,
+      "unit": "metres",
+      "source_url": "https://www.discoveringbritain.org/activities/scotland/1818/britain-from-the-air-ben-nevis.html"
+    },
+    {
+      "label": "Ben Nevis summit plateau area in acres",
+      "value": 100,
+      "unit": "acres",
+      "source_url": "https://kids.britannica.com/scholars/article/Ben-Nevis/78533"
+    },
+    {
+      "label": "Ben Nevis summit plateau area in hectares",
+      "value": 40,
+      "unit": "hectares",
+      "source_url": "https://kids.britannica.com/scholars/article/Ben-Nevis/78533"
+    },
+    {
+      "label": "Ben Nevis topographic isolation radius in kilometres",
+      "value": 739,
+      "unit": "kilometres",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis"
+    },
+    {
+      "label": "Ben Nevis topographic isolation radius in miles",
+      "value": 459,
+      "unit": "miles",
+      "source_url": "https://en.wikipedia.org/wiki/Ben_Nevis"
+    },
+    {
+      "label": "Annual visitors to Ben Nevis",
+      "value": 125000,
+      "unit": "visitors",
+      "source_url": "https://www.visitscotland.com/things-to-do/nature-outdoors/walking/mountains-hills/ben-nevis"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ben Nevis",
+      "kind": "place"
+    },
+    {
+      "name": "Fort William",
+      "kind": "place"
+    },
+    {
+      "name": "Grampian Mountains",
+      "kind": "place"
+    },
+    {
+      "name": "Scottish Highlands",
+      "kind": "place"
+    },
+    {
+      "name": "Snowdon",
+      "kind": "place"
+    },
+    {
+      "name": "Wales",
+      "kind": "place"
+    },
+    {
+      "name": "VisitScotland",
+      "kind": "organization"
+    },
+    {
+      "name": "Ordnance Survey",
+      "kind": "organization"
+    },
+    {
+      "name": "John Keats",
+      "kind": "person"
+    }
+  ]
+}
