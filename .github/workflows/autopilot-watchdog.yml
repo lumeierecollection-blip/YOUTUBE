@@ -1,0 +1,20 @@
+# WATCHDOG (owner, 21 Nov 2026: the long forms keep stopping). Every 30 min: any SX Shorts / Pilot render / Autopilot run of the last 8 hours that
+# failed or was cancelled is re-run once (failed jobs only). A run that fails twice is left alone and shows red in Actions.
+name: Autopilot watchdog
+on:
+  schedule: [{ cron: "*/30 * * * *" }]
+  workflow_dispatch:
+permissions: { actions: write, contents: read }
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          SINCE=$(date -u -d '8 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+          for W in "SX Shorts" "Pilot render" "Autopilot"; do
+            gh run list --workflow "$W" --repo "$GITHUB_REPOSITORY" --limit 20 --json databaseId,conclusion,attempt,createdAt \
+              -q ".[]|select(.createdAt>\"$SINCE\" and (.conclusion==\"failure\" or .conclusion==\"timed_out\") and .attempt==1)|.databaseId" |
+            while read -r id; do echo "re-running $W $id"; gh run rerun "$id" --failed --repo "$GITHUB_REPOSITORY" || true; done
+          done

@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "toyota-62000-tundra-vehicle-recall-november-2026",
+  "format": "shorts",
+  "hook": "A camshaft defect is forcing Toyota to recall 62,000 non-hybrid Tundra trucks for safety repairs.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A camshaft defect is forcing Toyota to recall 62,000 non-hybrid Tundra trucks for safety repairs.",
+      "text_overlay": {
+        "text": "62,000 Tundras Recalled"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Toyota is recalling 62,000 non-hybrid Tundra pickups from model years 2022-2023 and 2025-2026. Does this camshaft defect in Toyota Tundra trucks cause a sudden loss of drive power?",
+      "text_overlay": {
+        "text": "2022-2026 Tundra Recall"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Though 62,000 vehicles are recalled, only 300 camshafts are estimated faulty.",
+      "text_overlay": {
+        "text": "300 Faulty Components"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The snapping camshaft causes a sudden loss of drive power for the driver. Toyota manages the recall of these 62,000 non-hybrid Tundra trucks from their headquarters in Plano, Texas.",
+      "text_overlay": {
+        "text": "Loss of Power Risk"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Toyota coordinates this recall of 62,000 Tundra trucks from their corporate headquarters in Plano, Texas.",
+      "text_overlay": {
+        "text": "62,000 Tundra Trucks"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cars.com/articles/62000-toyota-tundras-recalled-for-loss-of-drive-power-531264",
+    "https://www.automotiveworld.com/news/toyota-recalls-62000-tundras-over-faulty-camshafts"
+  ]
+}

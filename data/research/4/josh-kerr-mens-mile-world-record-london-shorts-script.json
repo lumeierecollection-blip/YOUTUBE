@@ -1,0 +1,32 @@
+{
+  "channel_id": "4",
+  "topic_slug": "josh-kerr-mens-mile-world-record-london",
+  "format": "shorts",
+  "hook": "Can you imagine British runner Josh Kerr sprinting a mile in 3:42.66 at London Stadium?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Can you imagine British runner Josh Kerr sprinting a mile in 3:42.66 at London Stadium?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did 60,000 spectators witness this historic world record run at the London Diamond League event?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Kerr shattered the 27-year-old world record previously held by Hicham El Guerrouj since July 1999."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Brooks Beasts pacer, Brannon Kidder, aged 32, helped pace Josh Kerr to his world record mile attempt."
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch Josh Kerr's historic run and learn how he achieved the world record at the London Diamond League."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/mile-josh-kerr-world-record-04b2764c4994417b9a50dcdc2363c6c7",
+    "https://worldathletics.org/news/feature/mile-world-record-josh-kerr-history-book"
+  ]
+}

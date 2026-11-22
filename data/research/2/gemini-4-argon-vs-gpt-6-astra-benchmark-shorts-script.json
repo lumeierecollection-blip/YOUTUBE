@@ -1,0 +1,79 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-vs-gpt-6-astra-benchmark",
+  "format": "shorts",
+  "hook": "Google Gemini 4 Argon completed 23 tasks for $0.22.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Google Gemini 4 Argon completed 23 tasks for $0.22.",
+      "visual_cue": "Digital counter displaying 23 tasks completed with a price tag showing $0.22.",
+      "text_overlay": {
+        "text": "23 Tasks for $0.22"
+      },
+      "sfx_cue": "Digital chime",
+      "b_roll": [
+        "AI benchmark dashboard showing test execution"
+      ],
+      "transition_out": "Fast cut"
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, tests compared Google Gemini 4 Argon against OpenAI GPT-6 Astra. Gemini 4 Argon scored 99.5% in 135 seconds. Did OpenAI GPT-6 Astra justify costing 5 times more at $1.12?",
+      "visual_cue": "Split screen displaying Google Gemini 4 Argon and OpenAI GPT-6 Astra benchmark cards with speed and cost timers.",
+      "text_overlay": {
+        "text": "99.5% Score vs $1.12 Cost"
+      },
+      "sfx_cue": "Subtle woosh sound",
+      "b_roll": [
+        "Side-by-side performance telemetry monitor"
+      ],
+      "transition_out": "Slide left"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, OpenAI GPT-6 Astra scored 100% and swept all four identical professional builds.",
+      "visual_cue": "Grid showing 4 professional build previews including a photoreal 3D product bottle.",
+      "text_overlay": {
+        "text": "GPT-6 Astra: 100% Score"
+      },
+      "sfx_cue": "Impact sub-bass",
+      "b_roll": [
+        "3D render showcase and software interface screen"
+      ],
+      "transition_out": "Flash cut"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On the Intelligence Index, OpenAI GPT-6 Astra leads 52 points to 50. Yet Google Gemini 4 Argon won 14 of 19 launch benchmark tests. Astra took 200 seconds, but Gemini finished in 135 seconds.",
+      "visual_cue": "Comparison bar chart showing Intelligence Index scores of 52 vs 50 and 14 out of 19 benchmark wins.",
+      "text_overlay": {
+        "text": "14 of 19 Benchmark Wins"
+      },
+      "sfx_cue": "Data pulse audio",
+      "b_roll": [
+        "Interactive chart displaying model benchmark rankings"
+      ],
+      "transition_out": "Dissolve"
+    },
+    {
+      "id": "close",
+      "voiceover": "Gemini 4 Argon achieves 99.5% accuracy for just $0.22.",
+      "visual_cue": "Summary graphic displaying Gemini 4 Argon badge with 99.5% accuracy and $0.22 cost emblem.",
+      "text_overlay": {
+        "text": "99.5% Accuracy for $0.22"
+      },
+      "sfx_cue": "Confirmation tone",
+      "b_roll": [
+        "Final score card graphic"
+      ],
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra",
+    "https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-astra-medium",
+    "https://www.aiformortals.co/blog/chatgpt-vs-gemini",
+    "https://www.datacamp.com/blog/gemini-4-argon-vs-gpt-6-astra"
+  ]
+}

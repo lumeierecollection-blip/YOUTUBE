@@ -1,0 +1,77 @@
+{
+  "topic_slug": "top-10-curious-enclaves-exclaves-world",
+  "strongest_angle": "Explore the unique geography of sovereign enclaves like Vatican City, San Marino, and Lesotho, alongside complex intertwined border towns like Baarle.",
+  "key_facts": [
+    {
+      "fact": "There are just 3 sovereign enclave countries in the world: Lesotho, San Marino, and Vatican City.",
+      "source_url": "https://www.worldatlas.com/enclaves/countries-that-are-enclaves.html",
+      "source_name": "WorldAtlas",
+      "confidence": "high"
+    },
+    {
+      "fact": "Lesotho is completely surrounded by South Africa, making it the largest enclave country in the world.",
+      "source_url": "https://www.worldatlas.com/enclaves/countries-that-are-enclaves.html",
+      "source_name": "WorldAtlas",
+      "confidence": "high"
+    },
+    {
+      "fact": "Both San Marino and Vatican City are located in Europe and are completely surrounded by territory belonging to Italy.",
+      "source_url": "https://www.worldatlas.com/enclaves/countries-that-are-enclaves.html",
+      "source_name": "WorldAtlas",
+      "confidence": "high"
+    },
+    {
+      "fact": "The towns of Baarle-Nassau in the Netherlands and Baarle-Hertog in Belgium form an intricate system of nested enclaves.",
+      "source_url": "https://www.thetravel.com/strangest-enclaves-and-exclaves-around-the-world",
+      "source_name": "TheTravel",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Sovereign enclave countries",
+      "value": 3,
+      "unit": "countries",
+      "source_url": "https://www.worldatlas.com/enclaves/countries-that-are-enclaves.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Vatican City",
+      "kind": "place"
+    },
+    {
+      "name": "San Marino",
+      "kind": "place"
+    },
+    {
+      "name": "Lesotho",
+      "kind": "place"
+    },
+    {
+      "name": "South Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Italy",
+      "kind": "place"
+    },
+    {
+      "name": "Baarle-Nassau",
+      "kind": "place"
+    },
+    {
+      "name": "Baarle-Hertog",
+      "kind": "place"
+    },
+    {
+      "name": "Netherlands",
+      "kind": "place"
+    },
+    {
+      "name": "Belgium",
+      "kind": "place"
+    }
+  ]
+}

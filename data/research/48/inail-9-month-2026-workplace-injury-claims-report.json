@@ -1,0 +1,63 @@
+{
+  "topic_slug": "inail-9-month-2026-workplace-injury-claims-report",
+  "strongest_angle": "Analyzing the November 2026 release by Inail documenting 325,525 workplace injury claims, 75,966 commuting accidents, 810 fatalities across categories, and a 16.3% increase in professional diseases for the first nine months of 2026.",
+  "key_facts": [
+    {
+      "fact": "In the first nine months of 2026, Inail recorded 325,525 workplace injury claims excluding students.",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314",
+      "source_name": "Assinews",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the same nine-month period in 2026, Inail documented 75,966 commuting accidents excluding students.",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314",
+      "source_name": "Assinews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Total fatal injury claims reported across both workplace and commuting categories reached 810 cases according to Inail.",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314",
+      "source_name": "Assinews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Professional disease claims registered a 16.3% increase during the first nine months of 2026.",
+      "source_url": "https://www.assicurazioninews.com/aumento-infortuni-e-malattie-professionali-nei-primi-nove-mesi",
+      "source_name": "Assicurazioni news",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Workplace injury claims",
+      "value": 325525,
+      "unit": "claims",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314"
+    },
+    {
+      "label": "Commuting accident claims",
+      "value": 75966,
+      "unit": "claims",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314"
+    },
+    {
+      "label": "Total fatal injury claims",
+      "value": 810,
+      "unit": "fatalities",
+      "source_url": "https://www.assinews.it/11/2026/infortuni-crescono-nei-nove-mesi-denunce-e-casi-mortali-malattie-professionali-a-163/660125314"
+    },
+    {
+      "label": "Professional disease increase",
+      "value": 16.3,
+      "unit": "percent",
+      "source_url": "https://www.assicurazioninews.com/aumento-infortuni-e-malattie-professionali-nei-primi-nove-mesi"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Inail",
+      "kind": "organization"
+    }
+  ]
+}

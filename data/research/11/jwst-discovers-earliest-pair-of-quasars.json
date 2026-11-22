@@ -1,0 +1,63 @@
+{
+  "topic_slug": "jwst-discovers-earliest-pair-of-quasars",
+  "strongest_angle": "The James Webb Space Telescope and Gemini North telescope discovered the oldest compact quasar pair, designated J1602+4228AB, existing just 900 million years after the Big Bang.",
+  "key_facts": [
+    {
+      "fact": "The Gemini North telescope on Maunakea and the James Webb Space Telescope observed a pair of rapidly feeding supermassive black holes just 900 million years after the Big Bang.",
+      "source_url": "https://noirlab.edu/public/news/noirlab2627",
+      "source_name": "NOIRLab",
+      "confidence": "high"
+    },
+    {
+      "fact": "An international team of astrophysicists led by Silvia Onorato of NSF NOIRLab discovered the compact quasar pair object J1602+4228AB.",
+      "source_url": "https://universemagazine.com/en/astronomers-discover-two-supermassive-quasars-where-they-shouldnt-exist",
+      "source_name": "Universe Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "JWST’s Aether survey spotted a companion to quasar J1602+4228A during visual inspection of its data set, and Gemini North ground observations separated the two quasars.",
+      "source_url": "https://orbital-wire.com/astronomy-astrophysics/oldest-compact-quasar-pair-cosmic-dawn",
+      "source_name": "Orbital Wire",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Time after the Big Bang",
+      "value": 900,
+      "unit": "million years",
+      "source_url": "https://noirlab.edu/public/news/noirlab2627"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "James Webb Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Gemini North",
+      "kind": "object"
+    },
+    {
+      "name": "Maunakea",
+      "kind": "place"
+    },
+    {
+      "name": "Silvia Onorato",
+      "kind": "person"
+    },
+    {
+      "name": "NSF NOIRLab",
+      "kind": "organization"
+    },
+    {
+      "name": "J1602+4228AB",
+      "kind": "object"
+    },
+    {
+      "name": "J1602+4228A",
+      "kind": "object"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "topic_slug": "webb-space-telescope-dust-water-milky-way-center",
+  "strongest_angle": "Break down the James Webb Space Telescope observations showing that the star IRS 3 maintains a stellar envelope containing water and dust only 0.55 light-years from Sagittarius A* at the Milky Way center.",
+  "key_facts": [
+    {
+      "fact": "Using the James Webb Space Telescope, researchers detected water and cosmic dust around the aging star IRS 3 only 0.55 light-years from Sagittarius A*, the supermassive black hole at the center of the Milky Way.",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/water-can-survive-surprisingly-close-to-the-milky-ways-supermassive-black-hole-james-webb-space-telescope-finds",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The star IRS 3 is located 26,000 light-years from Earth and was observed by astronomers revealing dust and water surviving in extreme environments.",
+      "source_url": "https://www.livescience.com/space/black-holes/astronomers-find-water-in-the-harsh-environment-near-the-milky-ways-black-hole-space-photo-of-the-week",
+      "source_name": "Live Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "Studies led by PD Dr. at the Universität zu Köln suggest that the star IRS 3 is emitting large quantities of gas and dust to form an exceptionally large envelope containing water molecules.",
+      "source_url": "https://uni-koeln.de/en/research/research-news/detail-forschungsmeldung-en/a-stellar-envelope-near-the-black-hole-sgr-a-contains-water",
+      "source_name": "Universität zu Köln",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Distance from Sagittarius A*",
+      "value": 0.55,
+      "unit": "light-years",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/water-can-survive-surprisingly-close-to-the-milky-ways-supermassive-black-hole-james-webb-space-telescope-finds"
+    },
+    {
+      "label": "Distance from Earth",
+      "value": 26000,
+      "unit": "light-years",
+      "source_url": "https://www.livescience.com/space/black-holes/astronomers-find-water-in-the-harsh-environment-near-the-milky-ways-black-hole-space-photo-of-the-week"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "James Webb Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "IRS 3",
+      "kind": "object"
+    },
+    {
+      "name": "Sagittarius A*",
+      "kind": "object"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "place"
+    },
+    {
+      "name": "Universität zu Köln",
+      "kind": "organization"
+    },
+    {
+      "name": "Space.com",
+      "kind": "organization"
+    },
+    {
+      "name": "Live Science",
+      "kind": "organization"
+    }
+  ]
+}

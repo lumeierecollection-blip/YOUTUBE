@@ -1,0 +1,69 @@
+{{Short description|Russian diplomat (1804–1892)}}
+{{infobox officeholder
+| honorific_prefix = [[Forms of address in the Russian Empire|Your Excellency]]
+| name         = The Baron de Stoeckl
+| honorific_suffix = [[Privy Councillor (Russia)|PC (Rus)]]
+| image        = Eduard de Stoeckl.jpg
+| caption      = ''Photograph of Baron de Stoeckl, by [[Mathew Brady]], between 1855 and 1865''
+| office       = [[List of ambassadors of Russia to the United States|Ambassador of the Russian Empire to the United States]]
+| term_start   = 1855
+| term_end     = 1869
+| predecessor  = [[Alexander Medem]]
+| successor    = [[Konstantin Katakazi]]
+| birth_name   = Eduard Andreevich Stoeckl
+| birth_date   = 1804
+| birth_place  = [[Constantinople]], Ottoman Empire
+| death_date   = {{death date and age|1892|01|26|1804|||df=yes}}
+| death_place  = [[Paris]], France
+| parents      = Andreas von Stoeckl<br/>Maria Pisani
+| spouse       = {{marriage|Eliza Howard<br/>|2 January 1856|1892|reason=died}}
+| children     =
+| relations    =
+}}
+
+'''Eduard Andreevich Stoeckl''' ({{langx|ru|Эдуард Андреевич Стекль}}; 1804 – 26 January 1892) was a Russian diplomat best known today for having negotiated the [[Alaska Purchase|American purchase of Alaska]] on behalf of the Russian government.<ref>{{Cite web|date=2021-03-22|title=Зачем продали Аляску|url=https://archeonews.ru/kto-prodal-alyasku/|access-date=2022-02-23|website=archeonews.ru|language=ru-RU}}</ref>
+
+== Early life ==
+Eduard was born in 1804 in [[Istanbul|Constantinople]], [[Ottoman Empire]], where his father, Andreas von Stoeckl, was serving as an Austrian diplomat. His mother was Maria Pisani (daughter of [[Nicolas Pisani]], Russian [[dragoman]] in Constantinople).<ref name="Testa2003">{{cite book |last1=Testa |first1=Marie de |last2=Gautier |first2=Antoine |title=Drogmans et diplomates européens auprès de la porte ottomane |date=2003 |publisher=Isis |isbn=978-975-428-258-0 |page=463 |url=https://books.google.com/books?id=QEtpAAAAMAAJ |access-date=3 January 2024 |language=fr}}</ref>
+
+== Career ==
+[[Image:Alaska purchase.jpg|thumb|left|200px|The [[Signing of the Alaska Treaty]] depicting the March 30, 1867 [[Alaska Purchase|agreement to sell Alaska]] to the United States. L-R: Robert S. Chew, [[William H. Seward]], [[William Hunter (Asst. Sec. of State)|William Hunter]], Mr. Bodisco, Eduard de Stoeckl, [[Charles Sumner]] and [[Frederick W. Seward]].]]
+From 1844 to 1854, he served as secretary of the [[Embassy of Russia in Washington|Russian Legation at Washington]] and, from 1849 to 1851, ''[[chargé d'affaires]]'' of the [[Embassy of Russia in Washington|Russian embassy in Washington]], and in 1854 held the post of minister, vacant after death of [[Aleksandr Bodisko]].<ref name="US1855">{{cite book |last1=States |first1=United |title=The Statutes at Large and Treaties of the United States of America from ... |date=1855 |publisher=Dennis |page=1107 |url=https://www.google.com/books/edition/The_Statutes_at_Large_and_Treaties_of_th/Hh43AAAAIAAJ&pg=PA1107 |access-date=3 January 2024 |language=en}}</ref>
+
+Stoeckl established close friendly relations with many American officials and politicians, including the senator and the future [[United States Secretary of State|Secretary of State]] [[William H. Seward]], with whom he would later negotiate the Alaska Purchase.
+
+Stoeckl advocated the sale of [[Alaska]] (then known as [[Russian America]]) to the United States, asserting that this would prevent the United Kingdom from seizing the territory in case of [[war]] between the two countries and would allow Russia to concentrate its resources on Eastern [[Siberia]], particularly the [[Amur River]] area. He also insisted that by doing so, Russia would avoid any future conflict with the United States, viewing further U.S. expansion in North America as inevitable.<ref name="Emmerson2010">{{cite book |last1=Emmerson |first1=Charles |title=The Future History of the Arctic |date=2 March 2010 |publisher=PublicAffairs |isbn=978-1-58648-636-5 |page=67 |url=https://www.google.com/books/edition/The_Future_History_of_the_Arctic/bsAiBQAAQBAJ&pg=PA67 |access-date=3 January 2024 |language=en}}</ref>
+
+Stoeckl signed the Alaska Treaty in March 1867.<ref name="Gershkovich2017">{{cite news |last1=Gershkovich |first1=Evan |title=150 Years After Sale of Alaska, Some Russians Have Second Thoughts |url=https://www.nytimes.com/2017/03/30/world/europe/alaska-russia-sale-150.html |access-date=3 January 2024 |work=[[The New York Times]] |date=30 March 2017}}</ref> For successfully carrying out the negotiation, Tsar [[Alexander II of Russia|Alexander II]] rewarded him with US$25,000 and an annual pension of $6,000.<ref name="Cooper2012">{{cite book |last1=Cooper |first1=William J. |title=We Have the War Upon Us: The Onset of the Civil War, November 1860-April 1861 |date=11 September 2012 |publisher=Knopf Doubleday Publishing Group |isbn=978-0-307-96088-7 |page=254 |url=https://www.google.com/books/edition/We_Have_the_War_Upon_Us/Ui3ZW-FEGQ8C&pg=PA254 |access-date=3 January 2024 |language=en}}</ref>
+
+Due to declining health, Stoeckl resigned in 1869 and was made a Knight of the [[Order of the White Eagle (Russian Empire)|Order of the White Eagle]] on 20 April 1869. During the [[Franco-Prussian War]] of 1870, he came to London and lived in the [[Claridge's|Claridge Hotel]] on [[Brook Street, London]].<ref name="Stoeckel1949"/> He spent the final years of his life in France at 59 [[Boulevard Malesherbes]], Paris where he died in 1892.<ref name="Stoeckel1949">{{cite news |last1=Stoeckel |first1=Herbert J. |title=How America Got Its Biggest Bargain |url=https://www.newspapers.com/article/hartford-courant-how-america-got-its-big/137975975/ |access-date=3 January 2024 |work=[[Hartford Courant]] |date=6 Nov 1949 |language=en}}</ref>
+
+==Personal life==
+[[File:Agnes, Baroness de Stoeckl.jpg|thumb|right|Photograph of his daughter-in-law, Agnes Barron, 1902]]
+Like his predecessor as Minister to the United States, Stoeckl married an American woman, Eliza Wetmore Howard (1826–1913), a daughter of lawyer John Howard and Mary Stoddard ({{nee}} Dwight) Howard of [[Springfield, Massachusetts]],<ref name="Chapin1893">{{cite book |last1=Chapin |first1=Charles Wells |title=Sketches of the Old Inhabitants and Other Citizens of Old Springfield of the Present Century: And Its Historic Mansions of "ye Olden Tyme" |date=1893 |publisher=Press of Springfield Print. and Binding Company |page=230 |url=https://www.google.com/books/edition/Sketches_of_the_Old_Inhabitants_and_Othe/tZ7DxtElwBoC&pg=PA230 |access-date=3 January 2024 |language=en}}</ref> on 2 January 1856.<ref name="Andrews1907">{{cite book |last1=Andrews |first1=Charles McLean |title=The Ancestors and Descendants of Ezekiel Williams of Wethersfield 1608-1907 |date=1907 |publisher=Case, Lockwood & Brainard Company Print] priv. print. |page=65 |url=https://www.google.com/books/edition/The_Ancestors_and_Descendants_of_Ezekiel/54hbAAAAMAAJ&pg=PA65 |access-date=3 January 2024 |language=en}}</ref><ref name="Russell2008">{{cite book |last1=Russell |first1=William Howard |title=William Howard Russell's Civil War: Private Diary and Letters, 1861-1862 |date=1 September 2008 |publisher=[[University of Georgia Press]] |isbn=978-0-8203-3200-0 |page=29 |url=https://www.google.com/books/edition/William_Howard_Russell_s_Civil_War/0fPpjI6DVK0C&pg=PA29 |access-date=3 January 2024 |language=en}}</ref>
+
+Stoeckl died in [[Paris]] on 26 January 1892. His widow lived at 3 Rue de Logelbach in Paris.<ref name="Andrews1907"/><ref name="Adams1982">{{cite book |last1=Adams |first1=Henry |title=The Letters of Henry Adams |date=1982 |publisher=[[Harvard University Press]] |isbn=978-0-674-52686-0 |pages=499, 578 |url=https://www.google.com/books/edition/The_Letters_of_Henry_Adams/_srf4EL4DwAC&pg=PA855 |access-date=3 January 2024 |language=en}}</ref>
+
+The couple was survived by their son, Alexandre de Stoeckl (1862–1926), who married heiress Agnes Barron, a daughter of Capt. William Barron and Fanny Louisa Lonergan, in 1892.<ref name="1892Wedding">{{cite news |title=The marriage of Baron Alexandre de Stoeckl with Miss Agnes Barron |url=https://www.newspapers.com/article/the-morning-post-marriage-of-alexandre-d/137974899/ |access-date=3 January 2024 |work=[[The Morning Post]] |date=2 Jul 1892 |language=en}}</ref> Alexandre was [[attaché]] to the [[Russian Embassy in London]], equerry to [[Grand Duke Michael Mikhailovich of Russia|Grand Duke Michael Mikhailovich]], and [[Chamberlain (office)|chamberlain]] to Emperor [[Nicholas II of Russia|Nicholas II]].<ref name="Andrews1907" />
+
+===Descendants===
+Through his son, he was posthumously a grandfather of Zoia de Stoeckl (b. 1893), who married Alfons Aleksander Koziełł-Poklewski (a grandson of [[Alfons Koziełł-Poklewski]]), a member of the Polish nobility.<ref name="Andrews1907"/> Zoia was a friend of [[Princess Marina of Greece and Denmark|Princess Marina, Duchess of Kent]].<ref name="Lee2015">{{cite book |last1=Lee |first1=Celia |title=HRH The Duke of Kent: A Life of Service |date=19 October 2015 |publisher=eBook Versions |isbn=978-1-84396-351-6 |page=315 |url=https://www.google.com/books/edition/HRH_The_Duke_of_Kent/BBkvDwAAQBAJ&pg=PT315 |access-date=3 January 2024 |language=en}}</ref>
+
+== In fiction ==
+Eduard de Stoeckl is a character in the historical novel ''Forty-Ninth'' by Boris Pronsky and Craig Britton.<ref>{{Cite book|title=Forty-Ninth|isbn=9798201386238|pages=88–91, 145–157}}</ref>
+
+==Bibliography==
+* Marie de Testa & Antoine Gautier, ''Le diplomate russe Eduard de Stoeckl (ca 1805-1892) et la cession de l'Alaska aux Etats-Unis'', in Drogmans et diplomates européens auprès de la Porte ottomane, éditions ISIS, Istanbul, 2003, pp.&nbsp;463–469.
+
+== References ==
+{{reflist|30em}}
+
+{{Alaska history footer|state=collapsed}}
+{{Authority control}}
+
+{{DEFAULTSORT:Stoeckl, Eduard De}}
+[[Category:1804 births]]
+[[Category:1892 deaths]]
+[[Category:19th-century diplomats of the Russian Empire]]
+[[Category:Privy Councillor (Russian Empire)]]
+[[Category:Russian colonization of North America]]

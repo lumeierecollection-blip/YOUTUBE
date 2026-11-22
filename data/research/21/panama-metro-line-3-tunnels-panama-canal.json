@@ -1,0 +1,93 @@
+{
+  "topic_slug": "panama-metro-line-3-tunnels-panama-canal",
+  "strongest_angle": "Examine the geotechnical engineering and specialized tunneling methods employed by Herrenknecht tunneling machines beneath the canal bed for the upcoming 2028 monorail link.",
+  "key_facts": [
+    {
+      "fact": "On October 26, 2026, a 13.46-meter-diameter Herrenknecht Mixshield tunnel boring machine nicknamed Panamá completed a 4.5-kilometer tunnel beneath the Pacific entrance of the Panama Canal.",
+      "source_url": "https://www.enr.com/articles/64196-panama-metro-line-3-tunnels-beneath-panama-canal",
+      "source_name": "Engineering News-Record",
+      "confidence": "high"
+    },
+    {
+      "fact": "The tunnel drive for Panama Metro Line 3 began in late 2024 at Farfán on the west side of the canal and reached its breakthrough at Albrook station.",
+      "source_url": "https://www.enr.com/articles/64196-panama-metro-line-3-tunnels-beneath-panama-canal",
+      "source_name": "Engineering News-Record",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to project owner Metro de Panamá, the tunnel reaches a low point about 65 meters below mean sea level and was designed with a 100-year service life.",
+      "source_url": "https://digital.tunnelingonline.com/articles/panama-metro-line-3-completing-the-historic-tunnel-under-the-canal",
+      "source_name": "Tunnel Business Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Project owner Metro de Panamá reported that the TBM excavated approximately 700,000 cubic meters of rock and soil during the canal tunnel drive.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM diameter",
+      "value": 13.46,
+      "unit": "meters",
+      "source_url": "https://www.enr.com/articles/64196-panama-metro-line-3-tunnels-beneath-panama-canal"
+    },
+    {
+      "label": "Tunnel length",
+      "value": 4.5,
+      "unit": "kilometers",
+      "source_url": "https://www.enr.com/articles/64196-panama-metro-line-3-tunnels-beneath-panama-canal"
+    },
+    {
+      "label": "Maximum depth below sea level",
+      "value": 65,
+      "unit": "meters",
+      "source_url": "https://digital.tunnelingonline.com/articles/panama-metro-line-3-completing-the-historic-tunnel-under-the-canal"
+    },
+    {
+      "label": "Design service life",
+      "value": 100,
+      "unit": "years",
+      "source_url": "https://digital.tunnelingonline.com/articles/panama-metro-line-3-completing-the-historic-tunnel-under-the-canal"
+    },
+    {
+      "label": "Excavated volume",
+      "value": 700000,
+      "unit": "cubic meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Panamá",
+      "kind": "object"
+    },
+    {
+      "name": "Farfán",
+      "kind": "place"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Metro de Panamá",
+      "kind": "organization"
+    },
+    {
+      "name": "Consorcio HPH",
+      "kind": "organization"
+    }
+  ]
+}

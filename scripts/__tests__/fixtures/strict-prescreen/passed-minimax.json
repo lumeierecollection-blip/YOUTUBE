@@ -1,0 +1,49 @@
+{
+  "_source": "data/research/2/minimax-m3-1-flash-benchmark-analysis.json",
+  "key_facts": [
+    {
+      "fact": "MiniMax M3.1 Flash achieves 73.7% on DeepSWE v1.1, placing it alongside top models according to MiniMax Research."
+    },
+    {
+      "fact": "CellCog reported that MiniMax published comparison tables against GPT-5.6 Sol and Claude Opus 5 with the M3.1 Flash release."
+    },
+    {
+      "fact": "Tech City Authority noted that DeepSeek V4.1 Flash beats MiniMax M3.1 Flash on coding tests including DeepSWE with a score of 77.0 versus 73.7."
+    },
+    {
+      "fact": "AGI Hunt reported that MiniMax M3.1 Flash attempts 98% of questions while experiencing high hallucination rates."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "MiniMax M3.1 Flash DeepSWE v1.1 score",
+      "value": 73.7,
+      "unit": "percent"
+    },
+    {
+      "label": "DeepSeek V4.1 Flash DeepSWE score",
+      "value": 77,
+      "unit": "percent"
+    },
+    {
+      "label": "MiniMax M3.1 Flash question attempt rate",
+      "value": 98,
+      "unit": "percent"
+    },
+    {
+      "label": "MiniMax-M3 question attempt rate",
+      "value": 35,
+      "unit": "percent"
+    },
+    {
+      "label": "MiniMax-M3 hallucination rate",
+      "value": 18,
+      "unit": "percent"
+    },
+    {
+      "label": "MiniMax-M3 accuracy score",
+      "value": 17,
+      "unit": "percent"
+    }
+  ]
+}

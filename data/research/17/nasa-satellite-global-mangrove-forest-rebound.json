@@ -1,0 +1,151 @@
+{
+  "topic_slug": "nasa-satellite-global-mangrove-forest-rebound",
+  "strongest_angle": "Four decades of NASA Landsat satellite observations reveal that global mangrove forests reversed decades of decline around 2010, driven by natural expansion across Asia, Australia, and South America.",
+  "key_facts": [
+    {
+      "fact": "In a study published in Science, researchers Zhen Zhang and Nicholas J. Murray analyzed Landsat satellite imagery spanning 40 years from 1984 to 2023.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aec9773",
+      "source_name": "Science Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA Earth Observatory recorded that global mangrove forest coverage shifted from long-term decline to net expansion starting around 2010 across Asia, Australia, and South America.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves",
+      "source_name": "NASA Earth Observatory",
+      "confidence": "high"
+    },
+    {
+      "fact": "Analysis published in Live Science showed that global mangrove gains over a 16-year period outpaced losses, leaving a net loss of 1% since the 1980s.",
+      "source_url": "https://www.livescience.com/planet-earth/satellite-images-reveals-mangroves-rebounding-worldwide-but-heres-why-they-could-still-drown",
+      "source_name": "Live Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Palaw Township within Myeik District, Myanmar, NASA Landsat imagery documented mangroves expanding into former rice fields over a 16-year timeframe.",
+      "source_url": "https://www.earth.com/plants/mangroves-are-making-a-comeback-on-the-coast-of-myanmar",
+      "source_name": "Earth.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA satellite data tallied mangrove forest losses of 3,000 square kilometers (1,200 square miles) between 1984 and 2010 prior to the global rebound.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves",
+      "source_name": "NASA Earth Observatory",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Landsat observation period",
+      "value": 40,
+      "unit": "years",
+      "source_url": "https://www.science.org/doi/10.1126/science.aec9773"
+    },
+    {
+      "label": "Start of Landsat observation period",
+      "value": 1984,
+      "unit": "year",
+      "source_url": "https://www.science.org/doi/10.1126/science.aec9773"
+    },
+    {
+      "label": "End of Landsat observation period",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://www.science.org/doi/10.1126/science.aec9773"
+    },
+    {
+      "label": "Start of global mangrove rebound",
+      "value": 2010,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    },
+    {
+      "label": "Mangrove gain observation window",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://www.livescience.com/planet-earth/satellite-images-reveals-mangroves-rebounding-worldwide-but-heres-why-they-could-still-drown"
+    },
+    {
+      "label": "Net global mangrove decline",
+      "value": 1,
+      "unit": "percent",
+      "source_url": "https://www.livescience.com/planet-earth/satellite-images-reveals-mangroves-rebounding-worldwide-but-heres-why-they-could-still-drown"
+    },
+    {
+      "label": "Myanmar region observation window",
+      "value": 16,
+      "unit": "years",
+      "source_url": "https://www.earth.com/plants/mangroves-are-making-a-comeback-on-the-coast-of-myanmar"
+    },
+    {
+      "label": "Pre-2010 mangrove loss metric area",
+      "value": 3000,
+      "unit": "square kilometers",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    },
+    {
+      "label": "Pre-2010 mangrove loss imperial area",
+      "value": 1200,
+      "unit": "square miles",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/a-global-rebound-for-mangroves"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Zhen Zhang",
+      "kind": "person"
+    },
+    {
+      "name": "Nicholas J. Murray",
+      "kind": "person"
+    },
+    {
+      "name": "Xiao-Peng Song",
+      "kind": "person"
+    },
+    {
+      "name": "Pete Bunting",
+      "kind": "person"
+    },
+    {
+      "name": "Thomas A. Worthington",
+      "kind": "person"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Landsat",
+      "kind": "object"
+    },
+    {
+      "name": "Asia",
+      "kind": "place"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "South America",
+      "kind": "place"
+    },
+    {
+      "name": "Myanmar",
+      "kind": "place"
+    },
+    {
+      "name": "Palaw Township",
+      "kind": "place"
+    },
+    {
+      "name": "Myeik District",
+      "kind": "place"
+    }
+  ]
+}

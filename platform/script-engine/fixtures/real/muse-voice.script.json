@@ -1,0 +1,40 @@
+{
+  "channel_id": "2",
+  "topic_slug": "meta-s-new-muse-voice-brings-real-time-conversational-avatar",
+  "format": "shorts",
+  "hook": "You can now video chat with 2 Meta models.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "You can now video chat with 2 Meta models.",
+      "visual_cue": "Close-up of two distinct, expressive digital avatars appearing on a smartphone display."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Meta introduced Muse in September 2026. Where did it launch November 5, 2026?",
+      "visual_cue": "Graphic displaying September 2026 conference graphics alongside a digital calendar icon for November 5, 2026."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Muse Voice handles tasks in the background.",
+      "visual_cue": "Animation showing a user walking outdoors while audio waveform icons pulse on screen."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Meta launched in 1 country, the United States. It brings real-time spoken conversations across 3 platform types: mobile, web, and Mac.",
+      "visual_cue": "Graphic displaying 3 platform icons next to a map highlight of the United States."
+    },
+    {
+      "id": "close",
+      "voiceover": "Check all 3 platforms for background voice interaction.",
+      "visual_cue": "Interface layout displaying active app windows across mobile, web, and Mac."
+    }
+  ],
+  "sources_used": [
+    "https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar",
+    "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar",
+    "https://www.zeebiz.com/technology/news-meta-muse-voice-brings-real-time-conversations-expressive-ai-avatar-and-voice-customisation-to-its-assistant-405260",
+    "https://thenextweb.com/news/meta-muse-ai-voice-chat-animated-avatars",
+    "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars"
+  ]
+}

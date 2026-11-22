@@ -1,0 +1,97 @@
+[
+ {
+  "id": "hl-haaland-city",
+  "q": "Erling Haaland Manchester City",
+  "desc": "Erling Haaland playing for Manchester City"
+ },
+ {
+  "id": "hl-dortmund",
+  "q": "Erling Haaland Borussia Dortmund",
+  "desc": "Erling Haaland playing for Borussia Dortmund"
+ },
+ {
+  "id": "hl-salzburg",
+  "q": "Erling Haaland Red Bull Salzburg",
+  "desc": "Erling Haaland at Red Bull Salzburg"
+ },
+ {
+  "id": "hl-u20",
+  "q": "Norway U-20 World Cup 2019 Haaland",
+  "desc": "Erling Haaland at the 2019 U-20 World Cup for Norway"
+ },
+ {
+  "id": "hl-etihad",
+  "q": "Etihad Stadium Manchester",
+  "desc": "Etihad Stadium Manchester City"
+ },
+ {
+  "id": "hl-goldenboot",
+  "q": "Premier League Golden Boot trophy",
+  "desc": "the Premier League Golden Boot trophy"
+ },
+ {
+  "id": "hl-shearer",
+  "q": "Alan Shearer",
+  "desc": "portrait of Alan Shearer"
+ },
+ {
+  "id": "hl-cole",
+  "q": "Andy Cole",
+  "desc": "portrait of Andy Cole footballer"
+ },
+ {
+  "id": "hl-henry",
+  "q": "Thierry Henry",
+  "desc": "portrait of Thierry Henry"
+ },
+ {
+  "id": "hl-salah",
+  "q": "Mohamed Salah Liverpool",
+  "desc": "Mohamed Salah playing for Liverpool"
+ },
+ {
+  "id": "hl-son",
+  "q": "Son Heung-min",
+  "desc": "Son Heung-min playing football"
+ },
+ {
+  "id": "hl-klopp",
+  "q": "Jurgen Klopp",
+  "desc": "portrait of Jurgen Klopp"
+ },
+ {
+  "id": "hl-guardiola",
+  "q": "Pep Guardiola",
+  "desc": "portrait of Pep Guardiola"
+ },
+ {
+  "id": "hl-neville",
+  "q": "Gary Neville",
+  "desc": "portrait of Gary Neville"
+ },
+ {
+  "id": "hl-leipzig",
+  "q": "Red Bull Arena Leipzig",
+  "desc": "stadium in Leipzig, Champions League"
+ },
+ {
+  "id": "hl-luton",
+  "q": "Kenilworth Road Luton Town",
+  "desc": "Luton Town's Kenilworth Road stadium"
+ },
+ {
+  "id": "hl-norway",
+  "q": "Norway national team",
+  "desc": "Norway national football team players"
+ },
+ {
+  "id": "hl-ucl",
+  "q": "UEFA Champions League trophy",
+  "desc": "the UEFA Champions League trophy"
+ },
+ {
+  "id": "hl-fa-cup",
+  "q": "FA Cup trophy",
+  "desc": "the FA Cup trophy"
+ }
+]

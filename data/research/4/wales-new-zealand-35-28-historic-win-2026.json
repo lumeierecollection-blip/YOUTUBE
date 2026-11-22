@@ -1,0 +1,139 @@
+{
+  "topic_slug": "wales-new-zealand-35-28-historic-win-2026",
+  "strongest_angle": "Examine how Wales ended a 73-year wait and 34 consecutive defeats against New Zealand with a 35-28 victory at the Principality Stadium on November 14, 2026, breaking the drought that began after December 19, 1953.",
+  "key_facts": [
+    {
+      "fact": "Wales defeated New Zealand 35-28 at the Principality Stadium on November 14, 2026, scoring five tries to end a 73-year winless streak against the All Blacks.",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026",
+      "source_name": "FloRugby",
+      "confidence": "high"
+    },
+    {
+      "fact": "The historic victory on November 14, 2026 broke a run of 34 consecutive defeats against New Zealand that had stood since December 19, 1953.",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko",
+      "source_name": "BBC Sport",
+      "confidence": "high"
+    },
+    {
+      "fact": "A crowd of 55,152 spectators watched Wales secure the 35-28 victory against New Zealand at the Principality Stadium on November 14, 2026.",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026",
+      "source_name": "FloRugby",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Wales made a record tally of 346 tackles during the match, with lock Dafydd Jenkins contributing 38 tackles.",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko",
+      "source_name": "BBC Sport",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Wales score",
+      "value": 35,
+      "unit": "points",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "New Zealand score",
+      "value": 28,
+      "unit": "points",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Wait duration",
+      "value": 73,
+      "unit": "years",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Consecutive defeats broken",
+      "value": 34,
+      "unit": "matches",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Match date year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Match date day",
+      "value": 14,
+      "unit": "day",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Previous historic win year",
+      "value": 1953,
+      "unit": "year",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko"
+    },
+    {
+      "label": "Previous historic win day",
+      "value": 19,
+      "unit": "day",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko"
+    },
+    {
+      "label": "Crowd attendance",
+      "value": 55152,
+      "unit": "spectators",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Tries scored by Wales",
+      "value": 5,
+      "unit": "tries",
+      "source_url": "https://www.florugby.com/articles/16406792-wales-rugby-new-zealand-recap-all-blacks-upset-2026"
+    },
+    {
+      "label": "Defensive tackles made by Wales",
+      "value": 346,
+      "unit": "tackles",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko"
+    },
+    {
+      "label": "Dafydd Jenkins tackles",
+      "value": 38,
+      "unit": "tackles",
+      "source_url": "https://www.bbc.co.uk/sport/rugby-union/articles/cvx2xnyxl85ko"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Wales",
+      "kind": "organization"
+    },
+    {
+      "name": "New Zealand",
+      "kind": "organization"
+    },
+    {
+      "name": "Principality Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Tomos Williams",
+      "kind": "person"
+    },
+    {
+      "name": "James Botham",
+      "kind": "person"
+    },
+    {
+      "name": "Steve Tandy",
+      "kind": "person"
+    },
+    {
+      "name": "Dafydd Jenkins",
+      "kind": "person"
+    },
+    {
+      "name": "Thierry Dusautoir",
+      "kind": "person"
+    }
+  ]
+}

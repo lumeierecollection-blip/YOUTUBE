@@ -1,0 +1,79 @@
+{
+  "topic_slug": "ethiopian-water-mouse-rediscovery",
+  "strongest_angle": "Researchers in southwestern Ethiopia rediscovered the amphibious Ethiopian water mouse (Nilopegamys plumbeus) nearly a century after its last recorded sighting in 1927, finding three specimens in the Yayu biosphere reserve.",
+  "key_facts": [
+    {
+      "fact": "The Ethiopian water mouse (Nilopegamys plumbeus) was rediscovered by a research team in southwestern Ethiopia, who found three animals in October 2026 whose features match the species description.",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat",
+      "source_name": "Artensterben.de",
+      "confidence": "high"
+    },
+    {
+      "fact": "Prior to the rediscovery in southwestern Ethiopia, the amphibious rodent had not been recorded since 1927, leaving only a single museum specimen known for nearly a century.",
+      "source_url": "https://www.artensterben.de/aethiopische-wassermaus-nach-fast-100-jahren-wiederentdeckt",
+      "source_name": "Artensterben.de",
+      "confidence": "high"
+    },
+    {
+      "fact": "The rediscovery of the rare mammalian genus Nilopegamys took place within the Yayu biosphere reserve located in southwestern Ethiopia by an Ethiopian-Czech research team.",
+      "source_url": "https://www.avcr.cz/cs/veda-a-vyzkum/biologie-a-lekarske-vedy/Po-temer-sto-letech-znovuobjevili-vzacneho-etiopskeho-vodniho-hlodavce",
+      "source_name": "Akademie věd České republiky",
+      "confidence": "high"
+    },
+    {
+      "fact": "The new sighting of Nilopegamys plumbeus occurred approximately 350 kilometers away from the original 1927 record location.",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat",
+      "source_name": "Artensterben.de",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Time elapsed since previous record",
+      "value": 100,
+      "unit": "years",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat"
+    },
+    {
+      "label": "Original record year",
+      "value": 1927,
+      "unit": "year",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat"
+    },
+    {
+      "label": "Animals discovered in current survey",
+      "value": 3,
+      "unit": "animals",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat"
+    },
+    {
+      "label": "Distance from original location",
+      "value": 350,
+      "unit": "kilometers",
+      "source_url": "https://www.artensterben.de/en/ethiopian-amphibious-rat"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ethiopian water mouse",
+      "kind": "object"
+    },
+    {
+      "name": "Nilopegamys plumbeus",
+      "kind": "object"
+    },
+    {
+      "name": "Ethiopia",
+      "kind": "place"
+    },
+    {
+      "name": "Yayu biosphere reserve",
+      "kind": "place"
+    },
+    {
+      "name": "Akademie věd České republiky",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

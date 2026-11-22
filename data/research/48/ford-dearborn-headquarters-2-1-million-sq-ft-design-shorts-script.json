@@ -1,0 +1,33 @@
+{
+  "channel_id": "48",
+  "topic_slug": "ford-dearborn-headquarters-2-1-million-sq-ft-design",
+  "format": "shorts",
+  "hook": "Ford Motor Company is building a 2.1 million square foot campus.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Ford Motor Company is building a 2.1 million square foot campus."
+    },
+    {
+      "id": "setup",
+      "voiceover": "This Dearborn, Michigan project replaces the Glass House, Ford's former iconic corporate office building. Six specialized design studios will consolidate engineering and leadership teams. The new campus will house 4,000 employees when it opens in the year 2027."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, integrated smart systems allow the facility to support 6,000 daily employees on site."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Snøhetta, Arcadis, and Ghafari Associates designed the layout for the new 2.1 million square foot campus."
+    },
+    {
+      "id": "close",
+      "voiceover": "Ford expects Snøhetta, Arcadis, and Ghafari Associates to finish this massive project by 2027."
+    }
+  ],
+  "sources_used": [
+    "https://fordland.com/ford-world-headquarters",
+    "https://www.cardesignnews.com/designers/inside-fords-new-world-headquarters-with-six-design-studios/2131448",
+    "https://www.arcadis.com/en-us/projects/north-america/united-states/ford-world-headquarters"
+  ]
+}

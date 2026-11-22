@@ -1,0 +1,84 @@
+{
+  "topic_slug": "dead-sea-shore-lowest-point-land",
+  "strongest_angle": "The shores of the Dead Sea sit approximately 430 meters below sea level in the Jordan Rift Valley, forming the lowest point on Earth's land surface due to tectonic plate separation between the African and Arabian plates.",
+  "key_facts": [
+    {
+      "fact": "The shores of the Dead Sea lie 430 meters below sea level, making it the lowest place on Earth according to Haaretz.",
+      "source_url": "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000",
+      "source_name": "Haaretz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Lake Kinneret, also known as the Sea of Galilee, sits 209 meters below sea level and connects to the Dead Sea via the Jordan River.",
+      "source_url": "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000",
+      "source_name": "Haaretz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Modern resorts sprawl along the 50km shoreline of the Dead Sea in the Jordanian desert landscape as reported by The Times.",
+      "source_url": "https://www.thetimes.com/travel/destinations/middle-east-travel/jordan/the-ultimate-guide-to-jordans-dead-sea-everything-you-need-to-know-cnd86hj5r",
+      "source_name": "The Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Jordan Rift Valley is a geological depression formed by the separation of the African and Arabian tectonic plates, according to Geology Science.",
+      "source_url": "https://geologyscience.com/gallery/geological-wonders/the-dead-sea",
+      "source_name": "Geology Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Dead Sea depth below sea level",
+      "value": 430,
+      "unit": "meters",
+      "source_url": "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000"
+    },
+    {
+      "label": "Sea of Galilee depth below sea level",
+      "value": 209,
+      "unit": "meters",
+      "source_url": "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000"
+    },
+    {
+      "label": "Dead Sea shoreline length",
+      "value": 50,
+      "unit": "km",
+      "source_url": "https://www.thetimes.com/travel/destinations/middle-east-travel/jordan/the-ultimate-guide-to-jordans-dead-sea-everything-you-need-to-know-cnd86hj5r"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Dead Sea lies about 430 meters below sea level. Lake Kinneret, also called the Sea of Galilee, is 209 meters below sea level.",
+      "speaker": "Ruth Schuster",
+      "source_name": "Haaretz",
+      "source_url": "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Dead Sea",
+      "kind": "place"
+    },
+    {
+      "name": "Jordan River",
+      "kind": "place"
+    },
+    {
+      "name": "Jordan Rift Valley",
+      "kind": "place"
+    },
+    {
+      "name": "Sea of Galilee",
+      "kind": "place"
+    },
+    {
+      "name": "African plate",
+      "kind": "organization"
+    },
+    {
+      "name": "Arabian plate",
+      "kind": "organization"
+    }
+  ]
+}

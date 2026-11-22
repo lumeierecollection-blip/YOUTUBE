@@ -1,0 +1,34 @@
+{
+ "channel": "celebrity-news",
+ "episode": "Why Taylor Swift Re-Recorded Her Albums, and How She Got Them Back",
+ "estimated_minutes": 7.1,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:00.0",
+   "seconds": 0,
+   "scene": "N01",
+   "cue_type": "action",
+   "asset": "SFX_SHUTTER",
+   "purpose": "photo cut-in of the subject",
+   "duration_s": 1.6,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/Kodack/sounds/271010 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "3:49.6",
+   "seconds": 229.6,
+   "scene": "N08c",
+   "cue_type": "ambience",
+   "asset": "SFX_VINYL",
+   "purpose": "archive texture under the music-career record card",
+   "duration_s": 26,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/yfjesse/sounds/471007 | cc0 1.0",
+   "approval_status": "audition pending"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

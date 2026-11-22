@@ -1,0 +1,75 @@
+{
+  "topic_slug": "billion-solar-mass-black-hole-size",
+  "strongest_angle": "Visualize the immense scale of supermassive black holes by comparing the 1.8-billion-mile event horizon radius of a nonspinning billion-solar-mass black hole directly against the distance of Uranus from the Sun.",
+  "key_facts": [
+    {
+      "fact": "The event horizon of a nonspinning billion-solar-mass black hole has a radius of 1.8 billion miles, matching the distance of Uranus from the Sun.",
+      "source_url": "https://www.astronomy.com/science/how-big-is-a-supermassive-black-hole",
+      "source_name": "Astronomy.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Sun has a diameter of 1.39 million kilometers according to comparative size metrics.",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison",
+      "source_name": "Stephen Hawking Foundation",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Earth has a diameter of 12,742 kilometers as listed in black hole size comparisons.",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison",
+      "source_name": "Stephen Hawking Foundation",
+      "confidence": "high"
+    },
+    {
+      "fact": "A stellar black hole with a mass of 10 suns is about 59 kilometers across.",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison",
+      "source_name": "Stephen Hawking Foundation",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Event horizon radius of a billion-solar-mass black hole",
+      "value": 1.8,
+      "unit": "billion miles",
+      "source_url": "https://www.astronomy.com/science/how-big-is-a-supermassive-black-hole"
+    },
+    {
+      "label": "Diameter of the Sun",
+      "value": 1.39,
+      "unit": "million km",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison"
+    },
+    {
+      "label": "Diameter of the Earth",
+      "value": 12742,
+      "unit": "km",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison"
+    },
+    {
+      "label": "Size of a 10-sun stellar black hole",
+      "value": 59,
+      "unit": "km",
+      "source_url": "https://stephenhawking.co.uk/tools/black-hole-size-comparison"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Uranus",
+      "kind": "place"
+    },
+    {
+      "name": "Sun",
+      "kind": "object"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Astronomy.com",
+      "kind": "organization"
+    }
+  ]
+}

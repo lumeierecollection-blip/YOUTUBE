@@ -1,0 +1,75 @@
+{
+  "channel_id": "1",
+  "topic_slug": "mary-queen-of-scots-encrypted-letters-france-2026",
+  "format": "shorts",
+  "hook": "Over 50 long-lost letters from Mary Stuart were hidden in plain sight.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Over 50 long-lost letters from Mary Stuart were hidden in plain sight.",
+      "visual_cue": "Close up of an aged, handwritten document with complex cipher symbols.",
+      "sfx_cue": "Soft quill scratching on parchment followed by a subtle digital glitch sound.",
+      "b_roll": [
+        "Historical manuscript page with encrypted symbols"
+      ],
+      "text_overlay": {
+        "text": "50+ Lost Letters Found"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2021, Satoshi Tomokiyo discovered these encrypted documents inside the Bibliothèque nationale de France. How did Tomokiyo and his international research team finally crack these complex encrypted documents?",
+      "visual_cue": "Interior shot of the Bibliothèque nationale de France archives showing catalog shelves.",
+      "sfx_cue": "Sound of library archives shuffling.",
+      "b_roll": [
+        "Bibliothèque nationale de France exterior",
+        "Close up of archive catalog labels"
+      ],
+      "text_overlay": {
+        "text": "Found at the Bibliothèque nationale de France"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the team had to transcribe 150,000 symbols to make the cipher readable for computers.",
+      "visual_cue": "Close up of a researcher digitizing symbols into a modern computer interface.",
+      "sfx_cue": "Fast typing sound transitioning into a digital processing hum.",
+      "b_roll": [
+        "Researcher transcribing historical symbols",
+        "Computer screen displaying data processing"
+      ],
+      "text_overlay": {
+        "text": "150,000 symbols digitized"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These documents were stored under catalog numbers Français 2988 and Français 20506 for centuries.",
+      "visual_cue": "Animated overlay of a hill-climbing algorithm processing the cipher text.",
+      "sfx_cue": "Rising digital chime as the text becomes readable.",
+      "b_roll": [
+        "Portraits of George Lasry, Norbert Biermann, and Satoshi Tomokiyo",
+        "Algorithm visualization"
+      ],
+      "text_overlay": {
+        "text": "50,000 words decoded"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These 50 letters offer a new view of Mary Stuart.",
+      "visual_cue": "The original encrypted document slowly fading to reveal transcribed text.",
+      "sfx_cue": "Final echo of a quill scratch.",
+      "b_roll": [
+        "Close up of the decrypted manuscript page"
+      ],
+      "text_overlay": {
+        "text": "A new view of Mary Stuart"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.tandfonline.com/doi/full/10.1080/01611194.2022.2160677?src=",
+    "https://www.smithsonianmag.com/history/codebreakers-discoverand-decipherlong-lost-letters-by-mary-queen-of-scots-180981613"
+  ]
+}

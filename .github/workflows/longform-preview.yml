@@ -1,0 +1,92 @@
+name: Long-form Preview
+
+# Long-form (16:9, at most 10 minutes for now) twin of channel-preview.yml. Push to longform/<channel-key>[-anything] and it runs
+# platform/longform/run.mjs <key> (platform/channels/<key>/longform.mjs). Same tools and stage publishing as the Shorts previews; holds no YouTube
+# credentials and has no upload step, so it cannot post.
+on:
+  push:
+    branches:
+      - "longform/**"
+
+concurrency:
+  group: longform-${{ github.ref_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      # faster-whisper needs PyAV 15, which still has the option it calls and ships wheels; without it Gemini's voice cannot be aligned.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Work out the channel from the branch
+        id: channel
+        run: |
+          key=$(node -e "
+            const b = process.env.GITHUB_REF_NAME.replace(/^longform\//, '');
+            const keys = [...require('./config/channel-registry.json').channels.map((c) => c.key), '_smoke', '_script-engine'];
+            const k = keys.find((x) => b === x || b.startsWith(x + '-') || b.startsWith(x + '/'));
+            if (!k) { console.error('no channel in branch ' + b); process.exit(1); }
+            console.log(k);
+          ")
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; echo "retrying in ${pause}s"; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg bc jq
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Install this channel's own dependencies
+        run: |
+          dir="platform/channels/${{ steps.channel.outputs.key }}"
+          if [ -f "$dir/requirements.txt" ]; then pip3 install --quiet -r "$dir/requirements.txt"; fi
+          if [ -f "$dir/deps.json" ]; then
+            pkgs=$(node -p "(JSON.parse(require('fs').readFileSync('$dir/deps.json','utf8')).npm||[]).join(' ')")
+            if [ -n "$pkgs" ]; then (cd src/skills/remotion-render && npm install --no-save --no-audit --no-fund $pkgs); fi
+          fi
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Build the preview
+        timeout-minutes: 160
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          EDITOR_ENGINE: "1"
+          RENDER_CONCURRENCY: "2"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          CEREBRAS_API_KEY: ${{ secrets.CEREBRAS_API_KEY }}
+          GROQ_TEXT_MODEL: openai/gpt-oss-120b
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: node platform/longform/run.mjs "${{ steps.channel.outputs.key }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: longform-${{ steps.channel.outputs.key }}-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 90
+          path: output/previews/

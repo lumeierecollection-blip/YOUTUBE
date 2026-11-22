@@ -1,0 +1,79 @@
+{
+  "topic_slug": "nottingham-forest-manchester-city-tactical-breakdown",
+  "strongest_angle": "Nottingham Forest executed a 3-1 victory against Manchester City while holding only 22 percent possession, completing 138 passes compared to City's 665, through rapid transitions and a brace from Liam Delap.",
+  "key_facts": [
+    {
+      "fact": "Nottingham Forest defeated Manchester City 3-1 at the City Ground with Liam Delap scoring a magnificent brace under manager Glasner.",
+      "source_url": "https://news.bet365.com/en-gb/article/nottm-forest-3-1-man-city-match-stats-delap-double-eases-glasner-pressure/2026110719294434748",
+      "source_name": "bet365 News UK",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nottingham Forest held only 22 percent of possession and completed 138 passes compared with Manchester City's 665.",
+      "source_url": "https://newsletter.thetacticsacademy.com/p/the-power-of-the-transition",
+      "source_name": "The Tactics Academy",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nottingham Forest ended their five-game winless run in the Premier League by securing a 3-1 victory against Manchester City.",
+      "source_url": "https://www.squawka.com/en/features/nottingham-forest-vs-man-city-stats-and-analysis-how-glasner-worked-his-magic-facing-citizens-yet-again",
+      "source_name": "Squawka",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Match Score Forest",
+      "value": 3,
+      "unit": "goals",
+      "source_url": "https://news.bet365.com/en-gb/article/nottm-forest-3-1-man-city-match-stats-delap-double-eases-glasner-pressure/2026110719294434748"
+    },
+    {
+      "label": "Match Score City",
+      "value": 1,
+      "unit": "goals",
+      "source_url": "https://news.bet365.com/en-gb/article/nottm-forest-3-1-man-city-match-stats-delap-double-eases-glasner-pressure/2026110719294434748"
+    },
+    {
+      "label": "Nottingham Forest Possession",
+      "value": 22,
+      "unit": "percent",
+      "source_url": "https://newsletter.thetacticsacademy.com/p/the-power-of-the-transition"
+    },
+    {
+      "label": "Nottingham Forest Passes",
+      "value": 138,
+      "unit": "passes",
+      "source_url": "https://newsletter.thetacticsacademy.com/p/the-power-of-the-transition"
+    },
+    {
+      "label": "Manchester City Passes",
+      "value": 665,
+      "unit": "passes",
+      "source_url": "https://newsletter.thetacticsacademy.com/p/the-power-of-the-transition"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Nottingham Forest",
+      "kind": "organization"
+    },
+    {
+      "name": "Manchester City",
+      "kind": "organization"
+    },
+    {
+      "name": "Liam Delap",
+      "kind": "person"
+    },
+    {
+      "name": "Glasner",
+      "kind": "person"
+    },
+    {
+      "name": "City Ground",
+      "kind": "place"
+    }
+  ]
+}

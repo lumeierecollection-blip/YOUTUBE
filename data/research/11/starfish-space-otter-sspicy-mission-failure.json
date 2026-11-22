@@ -1,0 +1,51 @@
+{
+  "topic_slug": "starfish-space-otter-sspicy-mission-failure",
+  "strongest_angle": "Break down the November 2026 communications loss and failure of Starfish Space's Otter 24C spacecraft during NASA's $15 million SSPICY technology demonstration mission in low Earth orbit.",
+  "key_facts": [
+    {
+      "fact": "Starfish Space announced that its first Otter 24C spacecraft experienced a communications loss in November 2026, bringing a 15 million dollar NASA SSPICY technology demonstration mission to a premature end one month after launch.",
+      "source_url": "https://www.geekwire.com/2026/starfish-space-loses-contact-otter-sspicy",
+      "source_name": "GeekWire",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA and Starfish Space concluded that the Otter 24C spacecraft is not recoverable due to an issue where a fault protection system on the satellite blocked communications with ground operators in Tukwila, Washington.",
+      "source_url": "https://spacenews.com/starfish-spaces-first-otter-servicing-spacecraft-fails",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Small Spacecraft Propulsion and Inspection Center mission, designated SSPICY, was a 15 million dollar NASA-supported project led by Starfish Space to inspect inoperable satellites in low Earth orbit.",
+      "source_url": "https://payloadspace.com/starfish-loses-contact-with-otter-cutting-sspicy-short",
+      "source_name": "Payload Space",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "SSPICY mission cost",
+      "value": 15,
+      "unit": "million dollars",
+      "source_url": "https://www.geekwire.com/2026/starfish-space-loses-contact-otter-sspicy"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Starfish Space",
+      "kind": "organization"
+    },
+    {
+      "name": "Otter 24C",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Tukwila",
+      "kind": "place"
+    }
+  ]
+}

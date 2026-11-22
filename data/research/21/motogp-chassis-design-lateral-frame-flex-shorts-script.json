@@ -1,0 +1,76 @@
+{
+  "channel_id": "21",
+  "topic_slug": "motogp-chassis-design-lateral-frame-flex",
+  "format": "shorts",
+  "hook": "MotoGP bikes must survive 1.5g braking forces without snapping in two.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "MotoGP bikes must survive 1.5g braking forces without snapping in two.",
+      "visual_cue": "Close up of a front brake rotor glowing red under intense heat.",
+      "sfx_cue": "High-pitched mechanical screech of hard braking.",
+      "b_roll": [
+        "Stock footage of a race bike braking hard on track"
+      ],
+      "text_overlay": {
+        "text": "1.5g Deceleration"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "But how do you keep a bike stable when it is leaning past 60 degrees?",
+      "visual_cue": "Technical wireframe animation showing the chassis of the RC211V highlighting structural nodes.",
+      "sfx_cue": "Subtle digital scanning sound.",
+      "b_roll": [
+        "Honda RC211V historical race footage",
+        "Technical diagram of chassis rigidity"
+      ],
+      "text_overlay": {
+        "text": "2002 Honda RC211V"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "At these 60 degree lean angles, traditional suspension systems fail to absorb track bumps.",
+      "visual_cue": "Slow motion shot of a bike chassis flexing mid-corner.",
+      "sfx_cue": "Low frequency thud of a motorcycle hitting a track bump.",
+      "b_roll": [
+        "Close up of bike frame flexing under load"
+      ],
+      "text_overlay": {
+        "text": "Controlled Lateral Flex"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Inside Motorcycles Magazine reports that lateral frame flex acts as a secondary suspension. Australian Motorcycle News confirms this flexibility is vital for rider control.",
+      "visual_cue": "Split screen showing rigid frame vs flexible frame under lean load.",
+      "sfx_cue": "Engine roar increasing in intensity.",
+      "b_roll": [
+        "Diagram of frame flex paths",
+        "MotoGP racer leaning through a turn"
+      ],
+      "text_overlay": {
+        "text": "Lateral Flex = Grip"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Engineers balance vertical rigidity, lateral flex, and torsional stiffness to reach peak performance.",
+      "visual_cue": "Final shot of the bike exiting a corner at high speed.",
+      "sfx_cue": "Engine fading into distance.",
+      "b_roll": [
+        "Race bike accelerating out of a curve"
+      ],
+      "text_overlay": {
+        "text": "3 Structural Dimensions"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.motorsportmagazine.com/articles/motorcycles/motogp/why-motogp-has-gone-soft/?v=7516fd43adaa",
+    "https://amcn.com.au/editorial/framed-motogp-chassis-development",
+    "https://www.insidemotorcycles.com/controlling-flex-in-motogp",
+    "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02"
+  ]
+}

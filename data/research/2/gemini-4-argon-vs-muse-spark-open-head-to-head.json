@@ -1,0 +1,103 @@
+{
+  "topic_slug": "gemini-4-argon-vs-muse-spark-open-head-to-head",
+  "strongest_angle": "We test Google's Gemini 4 Argon against Meta's Muse Spark Open on editorial judgment, accuracy, structure, and style, comparing aggregate scores of 99.4 versus 94.2 and head-to-head performance records.",
+  "key_facts": [
+    {
+      "fact": "Google's Gemini 4 Argon achieved a saved aggregate score of 99.4 compared to Meta's Muse Spark Open score of 94.2 on editorial and task evaluations reported by RuntimeWire.",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-google-gemini-4-argon-vs-meta-muse-spark-open",
+      "source_name": "RuntimeWire",
+      "confidence": "high"
+    },
+    {
+      "fact": "On the FMRT leaderboard, Google Gemini 4 Argon holds a Bradley-Terry rating of 1645 at rank 4, while Meta Muse Spark Open holds 1517 at rank 10.",
+      "source_url": "https://fmrt.ai/compare/gemini-4-argon-vs-muse-spark-open",
+      "source_name": "FMRT",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google made Gemini 4 Argon generally available in the Gemini API on October 13, 2026, and Meta released the weights for Muse Spark Open on October 15, 2026.",
+      "source_url": "https://techpilot.ai/muse-spark-open-vs-gemini-4-argon",
+      "source_name": "TechPilot.ai",
+      "confidence": "high"
+    },
+    {
+      "fact": "Meta Muse Spark Open is faster at 7.4 seconds per sample compared to 13.4 seconds for Gemini 4 Argon on vision tasks according to Roboflow benchmarks.",
+      "source_url": "https://playground.roboflow.com/models/compare/gemini-4-argon-vs-muse-spark-open",
+      "source_name": "Roboflow",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Gemini 4 Argon Aggregate Score",
+      "value": 99.4,
+      "unit": "points",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-google-gemini-4-argon-vs-meta-muse-spark-open"
+    },
+    {
+      "label": "Muse Spark Open Aggregate Score",
+      "value": 94.2,
+      "unit": "points",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-google-gemini-4-argon-vs-meta-muse-spark-open"
+    },
+    {
+      "label": "Gemini 4 Argon Bradley-Terry Rating",
+      "value": 1645,
+      "unit": "rating points",
+      "source_url": "https://fmrt.ai/compare/gemini-4-argon-vs-muse-spark-open"
+    },
+    {
+      "label": "Muse Spark Open Bradley-Terry Rating",
+      "value": 1517,
+      "unit": "rating points",
+      "source_url": "https://fmrt.ai/compare/gemini-4-argon-vs-muse-spark-open"
+    },
+    {
+      "label": "Muse Spark Open Speed",
+      "value": 7.4,
+      "unit": "seconds",
+      "source_url": "https://playground.roboflow.com/models/compare/gemini-4-argon-vs-muse-spark-open"
+    },
+    {
+      "label": "Gemini 4 Argon Speed",
+      "value": 13.4,
+      "unit": "seconds",
+      "source_url": "https://playground.roboflow.com/models/compare/gemini-4-argon-vs-muse-spark-open"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "Meta",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "Muse Spark Open",
+      "kind": "object"
+    },
+    {
+      "name": "RuntimeWire",
+      "kind": "organization"
+    },
+    {
+      "name": "FMRT",
+      "kind": "organization"
+    },
+    {
+      "name": "TechPilot.ai",
+      "kind": "organization"
+    },
+    {
+      "name": "Roboflow",
+      "kind": "organization"
+    }
+  ]
+}

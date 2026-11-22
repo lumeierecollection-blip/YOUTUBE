@@ -28,6 +28,33 @@ topic is ignored — never force it in. When `trending_entities` is null:
 research this topic's specifics anyway — every fact names a person, place,
 organization or number.
 
+## Strict visual channels (`strict_visual: true` in the INPUT)
+
+When `strict_visual` is true, the video draws EVERY sentence as a real
+chart, map, timeline, list, comparison or counter and refuses a text card.
+A script gate rejects any sentence that states nothing of that kind, and the
+writer may only say what you found, so facts that are only "who did what"
+make the topic unwritable. A fact is drawable when it states one of:
+
+- a measured FIGURE with its unit (a price, a count, a percentage, a size);
+- TWO OR MORE dated points (a before/after pair, a sequence of dated events);
+  a single date alone is not enough;
+- a named PLACE (city, site, route, facility), not just an institution's name;
+- a LIST of three or more named items, or a step-by-step PROCESS;
+- a COMPARISON of two named things on the same measure.
+
+So search for the numbers, dates, places, lists and comparisons behind the
+story, not only for who announced or studied it. Aim for at least four
+`key_facts`, three or more of them drawable by the list above, each stating
+the figure, date or place in the fact itself (put the same figure in
+`numbers[]`). A publication date ("Published on October 1, 2026") or a
+university's name is where the story was reported, not a fact the story
+contains; it does not count. If, after the searches, the sources hold no
+drawable facts, still return what they do state and say so plainly in
+`strongest_angle` - never invent a figure, date or place to fill the gap.
+(`scripts/strict-prescreen.mjs` measures this on your output and the
+pipeline moves to another candidate topic when it is starved.)
+
 ## Process
 
 Search, read the results, extract facts and numbers, decide what's usable.

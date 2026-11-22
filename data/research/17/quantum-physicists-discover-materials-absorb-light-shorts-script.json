@@ -1,0 +1,52 @@
+{
+  "channel_id": "17",
+  "topic_slug": "quantum-physicists-discover-materials-absorb-light",
+  "format": "shorts",
+  "hook": "Perfect transparency is impossible because 100 percent clarity cannot exist.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Perfect transparency is impossible because 100 percent clarity cannot exist.",
+      "visual_cue": "Text overlay showing 100 percent transparency crossed out.",
+      "text_overlay": {
+        "text": "100% Transparency: Impossible"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, researchers Angelo Esposito, Alberto Nicolis, and Federico Piazza studied light attenuation. They found that photons, the particles of light, inevitably transform into phonons inside any material. Why does this energy loss persist?",
+      "visual_cue": "Diagram showing a photon particle transforming into a phonon vibration wave.",
+      "text_overlay": {
+        "text": "Photon to Phonon Decay"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This decay happens at 0 kelvin, the absolute temperature limit for matter.",
+      "visual_cue": "Thermometer gauge dropping to absolute zero label.",
+      "text_overlay": {
+        "text": "At 0 Kelvin"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Scientific American reported that these quantum limits block full light transmission. Every material with a nontrivial index of refraction forces this constant decay. Light is simply never fully transmitted.",
+      "visual_cue": "Close-up of a glass lens showing slight light absorption distortion.",
+      "text_overlay": {
+        "text": "Fundamental Quantum Limit"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Physicists prove that 100 percent transparency is physically barred.",
+      "visual_cue": "Physicist research paper title from arXiv on screen.",
+      "text_overlay": {
+        "text": "100% Limit Proven"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://arxiv.org/abs/2610.12560",
+    "https://www.scientificamerican.com/article/nothing-can-be-fully-transparent-physicists-discover"
+  ]
+}

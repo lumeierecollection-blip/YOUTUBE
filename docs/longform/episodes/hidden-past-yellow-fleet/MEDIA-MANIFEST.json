@@ -1,0 +1,260 @@
+{
+ "episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+ "channel": "hidden-past",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/hidden-past/troop-carrier-1967.jpg",
+   "kind": "authentic",
+   "description": "Six Day War. An Israeli troop carrier on the east bank of the Suez Canal opposite Ismailia.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Six_Day_War._An_Israeli_troop_carrier_on_the_east_bank_of_the_Suez_Canal_opposite_Ismailia._June_1967._D326-110.jpg",
+   "creator": "Moshe Milner",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H02"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/boat-port-tewfik-1967.jpg",
+   "kind": "authentic",
+   "description": "Six Day War. Israeli boat on Suez Canal. In background port tewfik.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Six_Day_War._Israeli_boat_on_Suez_Canal._In_background_Port_Tewfik._June_1967._D326-113.jpg",
+   "creator": "Unknown author Unknown author",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H10",
+    "H14b"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/bitter-lake-space.jpg",
+   "kind": "authentic",
+   "description": "NASA orbital photo of the Great Bitter Lake in Egypt. This image is taken from a position north west of the lake, looking south east along the Suez Canal .",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Great_Bitter_Lake_from_space_(hires).JPG",
+   "creator": "NASA",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H04",
+    "H09",
+    "H11",
+    "H12"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/suezship-1973.jpg",
+   "kind": "authentic",
+   "description": "Ship anchored in the suez canal since 1967 with no possibility to move",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Suezship.JPG",
+   "creator": "קודקוד צהוב",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H13",
+    "H19"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/minesweep-1974.jpg",
+   "kind": "authentic",
+   "description": "Two U.S. Navy Sikorsky RH-53D Sea Stallion helicopters of helicopter mine countermeasures squadron HM-12 Sea Dragons sweeping the Suez Canal or one of the lakes during \"Operation Nimbus Moon\" in 1974.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:RH-53Ds_sweeping_the_Suez_Canal_1974.jpg",
+   "creator": "USN",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H16"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/minesweep-1974-b.jpg",
+   "kind": "authentic",
+   "description": "A U.S. Navy Sikorsky RH-53D of helicopter mine countermeasures squadron HM-12 Sea Dragons sweeping the Suez Canal using an Mk 105 minesweeping gear during Operation Nimbus Moon in 1974.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:RH-53D_sweeping_Suez_Canal_1974.jpg",
+   "creator": "USN",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/hidden-past/little-rock-1975.jpg",
+   "kind": "authentic",
+   "description": "View on the foredeck of the U.S. Navy guided missile cruiser USS Little Rock (CLG-4) as she was steaming in the Suez Canal, en route to Port Said for ceremonies reopening the canal, 5 June 1975.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Foredeck_of_USS_Little_Rock_(CLG-4)_on_5_June_1975_(NH_98966).jpg",
+   "creator": "Commander J.P. Mathews, U.S. Navy",
+   "licence": "Public domain",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H17"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/canal-1967-a.jpg",
+   "kind": "authentic",
+   "description": "Suez Canal (Egypt) Photographs",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Suez_Canal_997009324813105171.jpg",
+   "creator": "Boris Carmi",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H06"
+   ]
+  },
+  {
+   "asset": "lf2/hidden-past/canal-1967-b.jpg",
+   "kind": "authentic",
+   "description": "Suez Canal (Egypt) Photographs",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Suez_Canal_997009324827405171.jpg",
+   "creator": "Boris Carmi",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "hidden-past",
+   "intended_episode": "The Ships That Were Trapped in the Suez Canal for Eight Years",
+   "used_in_beats": [
+    "H07b",
+    "H15"
+   ]
+  }
+ ],
+ "footage_gaps": [
+  {
+   "beat": "H02",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/troop-carrier-1967.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "H07b",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/canal-1967-b.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "H10",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/boat-port-tewfik-1967.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "H13",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/suezship-1973.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "H16",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/minesweep-1974.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "H17",
+   "scene": "footage",
+   "reference_used": "archival or news video in the reference",
+   "we_use": "lf2/hidden-past/little-rock-1975.jpg",
+   "licensed_video_available": "no"
+  }
+ ],
+ "missing_files": [],
+ "sources": {
+  "W1": {
+   "title": "Yellow Fleet",
+   "url": "https://en.wikipedia.org/wiki/Yellow_Fleet",
+   "retrieved": "2026-11-13"
+  },
+  "W2": {
+   "title": "Closure of the Suez Canal (1967–1975)",
+   "url": "https://en.wikipedia.org/wiki/Closure_of_the_Suez_Canal_(1967%E2%80%931975)",
+   "retrieved": "2026-11-13"
+  },
+  "W3": {
+   "title": "Suez Canal",
+   "url": "https://en.wikipedia.org/wiki/Suez_Canal",
+   "retrieved": "2026-11-13"
+  },
+  "OSM": {
+   "title": "OpenStreetMap: Suez Canal, Great Bitter Lake, Little Bitter Lake, Lake Timsah (ODbL)",
+   "url": "https://www.openstreetmap.org/relation/1410016",
+   "retrieved": "2026-11-13"
+  },
+  "GB": {
+   "title": "geoBoundaries EGY ADM1 (ODbL)",
+   "url": "https://www.geoboundaries.org/",
+   "retrieved": "2026-11-13"
+  },
+  "COMMONS": {
+   "title": "Wikimedia Commons photographs (see public/lf2/hidden-past/ATTRIBUTIONS.json)",
+   "url": "https://commons.wikimedia.org/",
+   "retrieved": "2026-11-13"
+  }
+ }
+}

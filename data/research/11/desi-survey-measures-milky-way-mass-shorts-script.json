@@ -1,0 +1,72 @@
+{
+  "channel_id": "11",
+  "topic_slug": "desi-survey-measures-milky-way-mass",
+  "format": "shorts",
+  "hook": "We finally weighed the Milky Way using 10,036 distant halo stars.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "We finally weighed the Milky Way using 10,036 distant halo stars.",
+      "visual_cue": "Wide angle shot of the Milky Way galaxy in deep space.",
+      "sfx_cue": "Low frequency cosmic hum.",
+      "b_roll": [
+        "Milky Way galaxy spiral arm visualization"
+      ],
+      "text_overlay": {
+        "text": "Milky Way mass measured"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers at the Dark Energy Spectroscopic Instrument used the Mayall 4-meter telescope at Kitt Peak National Observatory to track these stars. How did they calculate such a massive total?",
+      "visual_cue": "The Mayall 4-meter telescope dome at night.",
+      "sfx_cue": "Telescope motor sound.",
+      "b_roll": [
+        "Mayall 4-meter telescope at Kitt Peak National Observatory"
+      ],
+      "text_overlay": {
+        "text": "10 to 95 kiloparsecs range"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the Dark Energy Spectroscopic Instrument team used four complex motion-tracking techniques to calculate the total.",
+      "visual_cue": "Data visualization showing four overlapping model curves.",
+      "sfx_cue": "Digital processing chime.",
+      "b_roll": [
+        "Dynamical modeling data animation"
+      ],
+      "text_overlay": {
+        "text": "4 dynamical models"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "A separate study verified this using 279 blue-hot stars and 213 pulsating stars at extreme distances. The Dark Energy Spectroscopic Instrument survey team measured the Milky Way using these stellar samples.",
+      "visual_cue": "Animation highlighting star clusters at the edge of the galaxy.",
+      "sfx_cue": "Sparkling chime.",
+      "b_roll": [
+        "Star distribution model visualization"
+      ],
+      "text_overlay": {
+        "text": "50 to 80 kiloparsecs sample"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers use the Mayall 4-meter telescope at Kitt Peak National Observatory to map galactic mass.",
+      "visual_cue": "Slow zoom out from the galactic center to the dark void.",
+      "sfx_cue": "Fading atmospheric sound.",
+      "b_roll": [
+        "Deep space starfield zoom out"
+      ],
+      "text_overlay": {
+        "text": "A vast, measured structure"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.desi.lbl.gov/2026/11/02/desi-weighs-in-on-the-milky-ways-mass",
+    "https://arxiv.org/abs/2611.05518"
+  ]
+}

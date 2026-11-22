@@ -1,0 +1,48 @@
+{
+  "channel_id": "3",
+  "topic_slug": "chris-brown-producer-sues-sony-music-royalties",
+  "format": "shorts",
+  "hook": "Sony Music Entertainment is facing a nearly $1.25 million royalty lawsuit.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sony Music Entertainment is facing a nearly $1.25 million royalty lawsuit.",
+      "text_overlay": {
+        "text": "$1.25 million lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Montague filed this federal lawsuit in New York on October 16, 2026, against Sony Music. He co-produced the Chris Brown single Party featuring Usher and Gucci Mane. Montague alleges Sony Music Entertainment paid him only 1.5 percent instead of 3 percent royalties.",
+      "text_overlay": {
+        "text": "Ishmael Sadiq Montague vs. Sony"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Montague claims Sony Music Entertainment paid him only half of his agreed royalty rate.",
+      "text_overlay": {
+        "text": "Half the agreed rate"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "He now demands $1.25 million from Sony Music Entertainment in New York federal court.",
+      "text_overlay": {
+        "text": "3% vs. 1.5% royalty"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $1.25 million claim remains unresolved in federal court.",
+      "text_overlay": {
+        "text": "$1.25 million claim"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.hotnewhiphop.com/1013944-chris-brown-party-producer-lawsuit",
+    "https://www.musicbusinessworldwide.com/chris-brown-producer-sues-sony-music-for-1-25m-claiming-it-stalled-the-sale-of-his-party-royalties-and-paid-him-half-the-agreed-rate",
+    "https://www.digitalmusicnews.com/2026/10/23/ishmael-montague-sony-music-lawsuit"
+  ]
+}

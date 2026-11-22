@@ -1,0 +1,322 @@
+{{Short description|State-sponsored chartered company of the Russian Empire}}
+{{Infobox company
+| name = Russian-American Company
+| logo = Flag of the Russian-American Company.svg
+| logo_caption = The [[Flag of the Russian-American Company|flag of the Russian-American Company]].
+| image = Seal of the Russian-American Company.svg
+| image_size = 150px
+| image_caption = Seal on vellum or parchment by the Russian-American Company
+| native_name = Под Высочайшим Его Императорского Величества покровительством Российская Американская компания
+| fate = Ceased operations following [[Alaska Purchase]] (1867)
+| predecessor = [[Shelikhov-Golikov Company]] (United American Company)
+| successor = [[Alaska Commercial Company]]
+| founded = [[Ukase of 1799|8 July 1799]]<ref name=ARCHI>[https://www.archives.gov/research/guide-fed-records/groups/261.html#261.2 Records of the Russian-American Company] [[National Archives and Records Administration]]</ref><br>[[Saint Petersburg]], [[Russian Empire]]
+| defunct = 1881
+| type = [[Joint-stock company]]
+| hq_location = Saint Petersburg, Russian Empire
+| industry = Fur trade
+| founder = [[Nikolai Rezanov]]<br/>[[Grigory Shelikhov]]
+| key_people = [[Alexander Andreyevich Baranov]]
+}}
+
+The '''Russian-American Company Under the High Patronage of His Imperial Majesty'''<ref>({{langx|ru|Под высочайшим Его Императорского Величества покровительством Российская-Американская Компания|Pod vysochayshim Yego Imperatorskogo Velichestva pokrovitelstvom Rossiyskaya-Amerikanskaya Kompaniya}})</ref> was a Russian state-sponsored [[chartered company]] formed largely on the basis of the [[Shelikhov-Golikov Company|United American Company]].  Emperor [[Paul I of Russia]] chartered the company in the [[Ukase of 1799]].<ref name=ARCHI/><ref>[[Pierce, Richard A.]]: ''The Russian-American Company: Correspondence of the Governors; Communications Sent: 1818.''</ref> It had the mission of establishing new settlements in [[Russian America]], conducting trade with natives, and carrying out an expanded [[Russian colonization of the Americas|colonization]] program.
+
+Russia's first [[joint-stock company]], it came under the direct authority of the [[Ministry of Commerce of the Russian Empire|Ministry of Commerce of Imperial Russia]]. Count [[Nikolay Rumyantsev|Nikolai Petrovich Rumyantsev]] (Minister of Commerce from 1802 to 1811; Minister of Foreign Affairs from 1808 to 1814) exercised a pivotal influence upon the early activities of the company. In 1801 the company's headquarters moved from [[Irkutsk]] to [[Saint Petersburg]], and the merchants who were initially the major stockholders were soon replaced with Russia's nobility and aristocracy.
+
+Count Rumyantsev funded Russia's first naval circumnavigation of the globe under the joint command of [[Adam Johann von Krusenstern]] and [[Nikolai Rezanov]] in 1803–1806. Later he funded and directed the ''Ryurik''{{'}}s circumnavigation of 1814–1816, which provided substantial scientific information on Alaska's and California's flora and fauna, and important ethnographic information on Alaskan and Californian (among others) natives. During the Russian-California period (1812–1842) when they operated [[Fort Ross, California|Fort Ross]], the Russians named present-day [[Bodega Bay, California]] as "Rumyantsev Bay" ({{lang|ru|Залив Румянцев}}{{fact|date=August 2026}}<!--The exact form looks dubious. The name would normally be in the genitive - Залив Румянцева - and ru.wiki has Порт Румянцева 'Rumyantsev Port' instead.-->) in his honor.
+
+==Early history==
+{{further|Russian America}}
+In 1799 the Russian government appointed an official, with the title 'Correspondent', to maintain oversight of company affairs, the first being [[Nikolai Rezanov]].<ref name=Mazour2/> This role was soon expanded to a three-seat board of directors, with two elected by the stockholders and one appointed by the government.<ref name=Mazour2>Mazour, Anatole G. "The Russian-American Company: Private or Government Enterprise?" ''Pacific Historical Review'' 13, No. 2 (1944), pp. 168–173.</ref><ref name=Lightfoot/> Additionally the directors had to send reports of the company's activities directly to the tsar.<ref name=Mazour2/><ref name=Lightfoot/> They also appointed a Chief Manager of the company, who was stationed in North America to directly administer the forts, trade stations and outposts.
+
+[[Alexander Andreyevich Baranov]] was appointed as the first Chief Manager. During his tenure, he founded both [[Kodiak, Alaska|Pavlovskaya]] and later [[Sitka, Alaska|New Archangel]], settlements that became operating bases for the company. He was replaced in 1818 by an officer appointed from the [[Imperial Russian Navy]]. The position of Chief Manager was thereafter reserved for Imperial Naval officers.<ref name=Lightfoot/>
+
+The [[Ukase of 1799]] (decree by the Tsar) granted the company a monopoly over trade in Russian America, defined with a southern border of 55° N latitude. [[Alexander I of Russia|Tsar Alexander I]] in the [[Ukase of 1821]] asserted its domain to 45°50′ N latitude, revised by 1822 to 51° N latitude.<ref>{{cite web|url=http://nosracines.ca/page.aspx?id=321408&amp;qryID=d8121004-8d7a-4f2d-b8bb-ef07a8eed9d0|title=Review of the Alaska Boundary Question|last=Begg|first=Alexander|website=www.nosracines.ca|publisher=Unknown|year=1900|pages=1–2|access-date=12 December 2014}}{{Dead link|date=March 2024 |bot=InternetArchiveBot |fix-attempted=yes }}</ref> This border was challenged by both Great Britain and the United States, which ultimately resulted in the [[Russo-American Treaty of 1824]] and the [[Treaty of Saint Petersburg (1825)|Russo-British Treaty of 1825]]. These established 54°40′ as the ostensible southward limit of Russian interests.<ref>{{cite book |last= Haycox |first= Stephen W. |title= Alaska: An American Colony |year= 2002 |publisher= University of Washington Press |isbn= 978-0-295-98249-6 |pages= 1118–1122 |url= https://books.google.com/books?id=8yu3pYpzLdUC}}</ref>
+
+The only attempt by the Russians to enforce the ukase of 1821 was the seizure of the U.S. brig ''Pearl'' in 1822, by the Russian sloop ''Apollon''. The ''Pearl'', a vessel of the [[maritime fur trade]], was sailing from [[Boston|Boston, Massachusetts]] to New Archangel/Sitka. When the U.S. government protested, the Russians released the vessel and paid compensation.<ref>{{cite book|url=https://books.google.com/books?id=CCAAAAAAYAAJ&pg=PA68 |title=Macmillan's magazine - Google Boeken |access-date=2012-07-25|last1=Grove |first1=Sir George |last2=Masson |first2=David |last3=Morley |first3=John |last4=Morris |first4=Mowbray |year=1898 }}</ref> Due to treaty violations in 1833 with the British by the company's governor, Baron [[Ferdinand von Wrangel]], the Russians later leased the southeastern sector of what is now the Alaska Panhandle, to the [[Hudson's Bay Company]] in 1838 as part of a damages settlement. The lease gave the HBC authority as far north as 56° 30' N.
+
+[[File:View of New Archangel, 1837.tif|thumb|right|320px| The Russian-American Company's capital at New Archangel (present-day [[Sitka, Alaska]]) in 1837]]
+
+Under Baranov, who governed the region between 1790 and 1818, a permanent settlement was established in 1804 at "Novo-Arkhangelsk" (New Archangel, today's [[Sitka, Alaska]]), and a thriving maritime trade was organized. [[Alutiiq]] and [[Aleut]] men from the [[Kodiak Island|Kodiak]] and the [[Aleutian Islands]] were forcibly conscripted to work for the company for three-year periods because they were "among the most sophisticated and effective sea otter hunters in the world."<ref name=Lightfoot>Lightfoot, Kent G. ''Russian Colonization: The Implications of Mercantile Colonial Practices in the North Pacific.'' Historical Archaeology 37, No. 4 (2003), pp. 14–28.</ref> During its initial years, the company had problems in maintaining a pool of skilled crewmen for its ships. The limited number of Russian men proficient in naval craft in the Empire usually sought employment in the [[Imperial Russian Navy]]. The RAC (Russian-American Company) had difficulty recruiting men for naval training, in part due to the continued practice of [[serfdom]] in the Empire, which kept most peasants tied to the land.<ref name=Mazour2/> In 1802 the Imperial government directed the Imperial Navy to send officers for employment in the RAC, with half of their pay to come from the company.<ref name=Mazour2/>
+
+Russian merchants were excluded from the port of [[Guangzhou]] and its valuable markets, something the RAC endeavored to change. The company funded a [[circumnavigation]] that lasted from 1803 to 1806, with the goals of expanding Russian navigational knowledge, supplying the RAC stations, and opening commercial relations with the [[Qing dynasty|Qing Empire]].<ref name=Sladkovskii>Sladkovskii, Mikhail I. [https://books.google.com/books?id=VAk8RqPYfPgC&pg=PA61 History of Economic Relations between Russia and China.] New Brunswick, NJ: Transaction Publishers. 2008, p. 61.</ref> While the expedition did sell its wares at the Chinese port, "no noticeable progress" towards securing Russian trading rights was made during the next half century.<ref name=Sladkovskii/> Due to the closed Chinese ports, the RAC had to ship its furs to the Russian port of [[Okhotsk]]. From there caravans typically took more than a year to reach [[Ayan, Russia|Ayan]], [[Irkutsk]], and the [[Siberian Route]].<ref name=Baltic>Baltic, Alix. "The Baltic Connection in Russian America." ''Jahrbücher für Geschichte Osteuropas, Neue Folge'' 42, No. 3 (1994), pp. 321–339.</ref> The majority of the pelts were traded in [[Kyakhta]], where Chinese trade goods, principally cotton,<ref name=Wheeler>Wheeler, Mary E. "Empires in Conflict and Cooperation: The "Bostonians" and the Russian-American Company." ''Pacific Historical Review'' 40, No. 4 (1971), pp. 419–441.</ref> [[Chinese ceramics|porcelain]] and tea, were traded.<ref name=Baltic/>
+
+In 1817, [[Russian Fort Elizabeth|Fort Elizabeth]] was built in Hawaii by [[Georg Anton Schäffer]], an agent of the RAC. His actions to attempt to overthrow the [[Hawaiian Kingdom|Kingdom of Hawaii]] is known as the [[Schäffer affair]].
+
+===American merchants===
+Over the course of the RAC's first decade of enterprise, its officials became increasingly concerned about American ships trading in adjacent coastal regions, especially their sale of firearms to natives. Throughout 1808 to 1810, Imperial officials appealed to the United States government to ban this trade. The American government took no action to satisfy Russian concerns. Discussions were held with American ambassador [[John Quincy Adams]] in 1810 to determine the southern limits of the Russian's claimed land.<ref name=Wilson/> Government agents of the Russian Empire "claimed the whole coast of America on the Pacific, and the adjacent islands, from Bering's Strait southward toward and beyond the mouth of the [[Columbia River]]".<ref name=Wilson>Wilson, Joseph R. [https://www.jstor.org/stable/20609452 "The Oregon Question. I."], ''The Quarterly of the Oregon Historical Society'' 1, No. 2 (1900), 111–131.</ref> The pronouncement stalled attempts at settling a southern border of Russian America for over a decade.
+
+American fur trader [[John Jacob Astor]] sent a ship in 1810 to present-day Alaska with the intention of supplying New Archangel. The supplies were welcomed by Baranov, and he hired the ship to transport furs to Guangzhou.<ref>{{Cite book |last=Khlebnikov |first=Kirill Timofeevitch |title=Baranov: Chief Manager of the Russian Colonies in America |last2= |first2= |last3= |first3= |date=1973 |publisher=Limestone Press |isbn=978-0-919642-50-8 |editor-last=Pierce |editor-first=Richard Austin |series=Materials for the Study of Alaska History |volume=3 |location=Kingston, Ontario |pages=77-80 |translator-last=Bearne |translator-first=Colin}}</ref> Upon learning of the pressing issue of American sales of firearms, Astor conceived of plan beneficial to both his [[American Fur Company]] and the RAC. In return for a monopoly to supply Russian stations through his subsidiary [[Pacific Fur Company]] and the right to transport RAC furs to the Qing Empire, Astor promised to refrain from selling firearms to Alaskan natives. The Russian Minister to the United States, Count [[Friedrich von der Pahlen|Fyodor Palen]], was informed of the proposal. He contacted the Imperial government, noting that the deal would likely be more effective at ending the firearm sales than through diplomatic channels with the United States.<ref name=Wheeler/> Astor's son-in-law, Adrian B. Benton, traveled to Saint Petersburg in 1811 to negotiate with company and government officials.
+
+The proposed agreement was favorably received by the board of directors, outside one contentious clause. Astor requested to be allowed to transport a minor amount of furs into Russia import free, a benefit which only the RAC had enjoyed.<ref name=Wheeler/> Shareholders of the company, such as the minister of both the Foreign and Commercial offices, Count [[Nikolay Rumyantsev]], expressed opposition to this provision. He believed that Astor had arranged all the negotiations to secure this trading right.<ref name=Wheeler/> Eventually the Americans dropped the provision and on 2 May 1812, the parties signed a four-year agreement. The two companies agreed to cease trading with other merchants and prevent the trading operations on the coast by their competitors. But the onset of the [[War of 1812]] between Great Britain and the United States, and the capture of [[Astoria, Oregon|Astoria]] by the [[North West Company]] of Canada, ended Astor's operations on the Pacific coast.<ref name=Wheeler/>
+
+==Outside Russian America==
+The Russian-American Company grew interested in other parts of North America, principally [[Alta California]], with smaller focus on [[Baja California]] and the [[Oregon Country]]. Additionally, some efforts were spent on increasing relations with the [[Hawaiian Kingdom|Kingdom of Hawaii]], with the [[Schäffer affair]] being an attempt at colonizing the islands by a company agent acting alone.
+
+===Lower Pacific Northwest===
+
+====Juno====
+In October 1805 the RAC purchased the ship ''Juno'' from [[New England]] captain [[John DeWolf (sea captain)|John DeWolf.]] Sitka was in need of provisions. Over the winter Russians died, and others became sick with scurvy. ''Juno'' sailed to obtain supplies, hopefully from San Francisco. Both Nicolai Rezanov and [[Georg von Langsdorff|Grigory Langsdorff]] were aboard. Langsdorff wrote: "Count Rezanov had already formed his plans for the removal of the Russian settlement to the river Columbia, and was now planning to build a shipyard there."<ref>[[Grigory Langsdorff|Langsdorff, Grigory]]. [https://archive.org/stream/langsdorffsnarra00lang#page/20/mode/2up ''Langsdorff's Narrative of the Rezanov voyage to Nueva California in 1806.''] Translator Thomas C. Russell. San Francsico, CA: The Private Press of Thomas C. Russell. 1927, p. 21.</ref> Previously, Rezanov had advised company directors to establish a settlement on the river, gradually expanding south "to include the coast of California in the Russian possession."<ref>Spencer-Hancock, Diane, William E. Pritchard and Ina Kaliakin. ''Notes to the 1817 Treaty between the Russian American Company and Kashaya Pomo Indians.'' California History 59, No. 4 (1980/1981), pp 306–313.</ref> ''Juno'' intended to enter the Columbia, but a wind shift, squalls and rain clouds brought a change of plan.
+
+====Saint Nikolai expedition====
+{{main|Russian schooner Nikolai}}
+
+A company vessel, the ''Nikolai'', was dispatched to the [[Oregon Country]] by Chief Manager Baranov in November 1808 with instructions to "if possible discover a site for a permanent Russian post in the Oregon Country."<ref name=Donnolly1>Alton S. Donnelly. ''The Wreck of the Sv. Nikolai'' ed. Kenneth N. Owens. Portland, OR: The Press of the Oregon Historical Society. 1985, p. 4.</ref> On 1 November,<ref name=Donnolly2>Donnelly (1985), pp. 44–46.</ref> a weather system of strong gales and large waves stranded the ship on a beach north of the [[Quillayute River]] and [[James Island (La Push, Washington)|James Island]].<ref name=Donnolly1/> Conflict arose with the neighboring [[Hoh Indian Tribe of the Hoh Indian Reservation|Hoh]] nation and the crew had to flee into the interior of the [[Olympic Peninsula]]. Clashes with the indigenous population continued over the next year, the Russians having to resort to raiding villages for food.<ref name=Donnolly4>Donnolly (1985), pp. 52–53.</ref> Eventually most of the crew became willing slaves to the [[Makah]] on the understanding they would be released when the next European vessel would arrive.<ref name=Donnolly5>Donnolly (1985) pp. 56–59.</ref> American Captain Brown of the ''Lydia'' purchased the ''Nikolai'' crew and they sailed for New Archangel, arriving there on 9 June.<ref name=Donnolly6>Donnolly (1985), pp. 63–65.</ref>  During their time marooned on the [[Olympic Peninsula]], seven of the crew died, including expedition commander Nikolai Bulygin and his 18-year-old wife, Anna Bulyagina.<ref name=Donnolly6/>
+
+===Californias===
+The first ship to hunt for furs in either [[Alta California|Alta]] or [[Baja California|Baja]] California for the RAC arrived in 1803. An American vessel captained by Joseph O'Cain, the ''O'Cain'', was contracted to hunt sea otters on the [[Baja California Peninsula|Baja California peninsula]], with half of the furs caught property of the RAC.<ref name=Andrews1>Andrews, C. L. ''The story of Alaska.'' 5 ed. Caldwell, ID: The Caxton Printers. 1942, p. 86.</ref><ref>{{Cite book |last=Ogden |first=Adele |title=The California Sea Otter Trade 1784-1848 |publisher=University of California Press |year=1941 |location=Berkeley, California |pages=45-47, 158 |language=English}}</ref> On board the ship besides its American crew were 2 RAC staff and 40 natives, principally Aleuts,<ref name=Andrews1/> along with some [[Alutiiq]] of Kodiak Island.<ref name=Owens/> The hunting equipment used in the expedition was of indigenous origin, including the notable [[Aleutian kayak|iqyax]] boats. Based in [[San Quintín, Baja California|San Quintín]], Alaskan natives caught sea otters from [[El Rosario, Baja California|Misión de El Rosario de Abajo]] to Santo Domingo (located in the modern [[Comondú Municipality]]).<ref name=Owens/> Returning to Kodiak Island in June 1804, the ''O'Cain'' contained a total of 1,800 sea otter skins caught by the natives or purchased from the Spanish.<ref name=Owens/> Under similar terms other American captains were employed over the years, with Aleuts continually used to trap California sea otters, specific operations employing upwards of 300.<ref name=Wheeler/> During the period between 1805 and 1812 Baranov supplied Aleut laborers to 10 American ships sent to California, with over 22,000 pelts gathered.<ref name=Andrews1/>
+
+In August 1805, [[Nikolai Rezanov]], then visiting the scattered RAC possessions, arrived at New Archangel. Provisions were sorely needed by the RAC posts to feed its workforce, an issue that would plague the company for decades. After Rezanov purchased the ''Juno'', an American ship, he and its crew sailed south from New Archangel in February 1806 to attempt purchasing supplies in Alta California.<ref name=Khlebnikov>Khlebnikov, K.T., 1973, Baranov, Chief Manager of the Russian Colonies in America, Kingston: The Limestone Press, {{ISBN|0919642500}}</ref>{{rp|51–55,59}} Upon entering the Californias, Rezanov negotiated with Spanish authorities in the name of the Tsar, presenting himself as a minister plenipotentiary.<ref name=Owens>Owens, Kenneth N. ''Frontiersman for the Tsar: Timofei Tarakanov and the Expansion of Russian America.'' Montana: The Magazine of Western History 56, No. 3 (2006), pp. 3–21+93–94.</ref> Despite his claims, he was never given such a commission by the Imperial Government. Efforts were made at cultivating relations with prominent official [[José Darío Argüello]] in order to secure a contract for provisions, Rezanov even having a romance with his daughter, [[Concepción Argüello]]. However, the officials were only willing to forward the request of the Russians to [[Mexico City]], none wanting to disobey a decree by the Spanish Empire that outlawed trade with foreigners. After several months the Russians departed for New Archangel without an agreement for provisions.
+
+Valuable reconnaissance however was gained, with Rezanov seeing firsthand the lack of Spanish ''[[presidio]]s'' or settlements north of [[San Francisco Bay]]. Several ships owned by Americans were contracted to begin operations in Alta California almost immediately after the ''Juno's'' return to New Archangel. One ship was based in [[Bodega Bay]], with its indigenous Alaskan workforce operating from the coast of modern [[Mendocino County, California|Mendocino County]] to the [[Farallon Islands]].<ref name=Owens/> While the Alaskans were catching otters on the north shore of San Francisco Bay, [[Luis Antonio Argüello]], the acting commandant, ordered a cannon be shot at the trappers' [[Aleutian kayak|baidarkas]]. That frightened the trappers, but their ship remained another two months.<ref name=Owens/> Reports from the American captains and Rezanov on the conditions in California encouraged Chief Manager Baranov to plan a coastal settlement in the territory. There were numerous sea otter populations to hunt, a lack of Spanish military posts north of San Francisco Bay, and the possibility to trade with the [[Spanish missions in California|Spanish Missions]].<ref name=Owens/>
+
+====Fort Ross====
+{{see also|Fort Ross, California}}
+Built in 1812 and located on the coast of [[California]] in modern-day [[Sonoma County, California|Sonoma County]], [[Fort Ross, California|Fort Ross]] was the southernmost outpost of the company. Several additional posts were operated by the company, including Port Rumyantsev on [[Bodega Bay]], and several ranches south of the [[Russian River (California)|Russian River]] valley. Though on disputed Spanish and then subsequently Mexican territory, the legitimacy of these claims was contested by both the Company and the Russian Government until the sale of the settlement in 1841, basing the legitimacy of their claims on prior English ([[New Albion]]) claims of territorial discovery.<ref>I.F. Kruzenstern, "Notes on ports and Ross and Franchesko" 4th October, 1825.'' Russia in California 2005''.</ref> It is now partially reconstructed and an open-air museum, with the Rotchev House being the only remaining original building.
+
+====Proposed colonization====
+An expansive colonization program of California was presented to the Imperial Court by the "garrulous and unreliable"<ref>Raeff, Marc. ''An American View of the Decembrist Revolt.'' The Journal of Modern History 25, No. 3 (1953), pp. 286–293.</ref> 20-year-old junior officer and former [[Decembrist revolt|Decembrist]] [[Dmitry I. Zavalishin]] in late 1824.<ref name=Gibson>Gibson, James R. [http://www.fortross.org/lib.html ''The Decembrists.''] Fort Ross Conservancy Library.</ref> He had been a crew member of an expedition that during 1823 and 1824 to examine the Russian possessions in North America.<ref name=Gibson/> His memorandum proposed that the Californios be encouraged to secede from [[Mexico]] in order to create a political alliance.<ref name=Mazour1>Mazour, Anatole G. ''Dimitry Zavalishin: Dreamer of a Russian-American Empire.'' Pacific Historic Review 5, No. 1 (1936), pp. 26–37.</ref> Zavalishin wanted the Russian-American Company to receive a grant of land extending north to the border of the [[Oregon Country]], south to the [[San Francisco Bay]] and east to either the [[Sierra Nevada]] mountains or the [[Sacramento River]].<ref name=Mazour1/> In return the Russians were to maintain a naval presence in San Francisco Bay, protect the [[Spanish missions in California|California Mission]]'s right to maintain neophyte labor, allow ''Californios'' to settle within the grant and establish Spanish language schools throughout California.<ref name=Mazour1/> A council of the inner Russian government debated the merits of Zavalishin's plan. Foreign Minister Count [[Karl Nesselrode]] feared the scheme would anger the United States and the United Kingdom, and consequently was against it. The court representative of the RAC, Count [[Nikolay Mordvinov (admiral)|Nikolay Mordvinov]], defended the memorandum and voiced Zavalishin's stance that "too much leniency and effort to avoid conflict sometimes only precipitate a conflict."<ref name=Mazour1/>
+
+Building on Zavalishin's proposal, Mordvinov planned on buying serfs from Russian landlords and sending them to California.<ref name=Mazour1/> The freed serfs were to be supported by the company and had to remain as settlers for seven years in its service. After the expiration of their contracts, all farming implements provided and land farmed upon would become the property of the freemen. A banquet was held for Zavalishin to draw support for his plan, with many prominent officials of the Empire attending.<ref name=Mazour1/> [[Mikhail Speransky]], a former Governor-General of Siberia, saw California as a future grain supplier to Russian Pacific possessions in Alaska, Sakhalin and the Siberian coast. The Assistant Foreign Minister, Poletica, while at first against Zavalishin's program of Californian expansionism, by the end of the reception became fully supportive of it. Additionally the Minister of Education, Shishkov, while not present at the banquet warmly received the memorandum.
+
+Zavalishin became fearful the treaties made in [[Russo-American Treaty of 1824|1824]] and [[Treaty of Saint Petersburg (1825)|1825]] that delineated Russian America's borders would restrict the Empire from a proactive policy in North America. He beseeched Tsar [[Alexander I of Russia|Alexander I]] for an audience to defend his memorandum, but a meeting was never arranged.<ref name=Mazour1/> Eventually Tsar Alexander echoed Nesselrode's position and refused to send Zavalishin back to California. The political upheaval of Alexander I's death and the subsequent Decembrist Uprising halted the considerations for an extensive commercial colonisation of California by the RAC.<ref name=Mazour1/> In 1853 Governor General N. N. Muravyov recounted to Tsar [[Alexander II of Russia|Alexander II]] that: California during the 1820s "was unoccupied and virtually unprocessed by anybody", though he found that a "foothold in California" would "sooner or later" have to be turned over to the advancing Americans.<ref name=Bolkhovitinov/>
+
+==Later period==
+In 1818 the Russian government had taken control of the Russian-American Company from the merchants who held the charter. Starting in the 1820s the company's profitability slumped due to declining populations of fur-bearing animals. It had already had bad annual returns, in 1808 slightly less than half of the 2,300,000 [[Russian ruble|rubles]] of expense were covered.<ref name=Mazour2/> Between 1797 and 1821 the RAC or its forerunner the United American Company collected the following inventory of furs, worth in total 16 million rubles: 1.3 million foxes of several species, 72,894 [[sea otter]]s, 59,530 [[North American river otter|river otter]]s, 34,546 [[North American beaver|beaver]]s, 30,950 [[sable]]s, 17,298 [[wolverine]]s, 14,969 [[Northern fur seal|fur seal]]s along with smaller numbers of [[lynx]], [[wolf]], [[sea lion]], [[walrus]] and bears.<ref>Tikhmenev (1978), p. 153.</ref>
+
+In 1828, Emperor [[Nicholas I of Russia]] ordered the RAC to begin to supply the Russian settlements on the [[Kamchatka Peninsula]], such as [[Petropavlovsk-Kamchatsky|Petropavlovsk]], with salt. The company was expected to ship between 3,000 and 5,000 [[pood]]s of salt annually.<ref name=Tikhmenev1>Tikhmenev (1978), pp. 223–224.</ref> Continual difficulties in securing large amounts of cheap salt in the Kingdom of Hawaii and Alta California led officials to consider [[Baja California]] instead. [[Arvid Adolf Etholén|Arvid Etholén]] was dispatched in the winter of 1827, and soon secured permission from Mexican authorities to gather salt around [[San Quintín, Baja California|San Quintín]].<ref name=Tikhmenev1/> Transportation was arranged with the [[Misión Santo Tomás de Aquino|Misión Santo Tomás]].
+
+The explorer and naval officer, Baron [[Ferdinand von Wrangel|Ferdinand Petrovich von Wrangel]], who had been administrator of imperial government interests in Russian America a decade before,<ref>{{Cite web |title=Who Were Wrangell and Elias? - Wrangell - St Elias National Park & Preserve (U.S. National Park Service) |url=https://www.nps.gov/wrst/learn/historyculture/who-were-wrangell-and-elias.htm |access-date=2025-03-20 |website=www.nps.gov |language=en}}</ref><ref>{{Cite journal |last=R. |first=William |last2=Hunt |first2=Irmgard |date=1972 |title=A Russian in California: Ferdinand Von Wrangell |url=https://scholarworks.calstate.edu/concern/publications/2j62s847k |journal=The California Geographer |publisher=The California Geographical Society |publication-place=California State University |volume=13 |pages=5-11 |issn=0575-5700 |via=The California State University}}</ref> was the fifth governor (in office: 1830 to 1835) during the government period. Eventually during the 1840s the governing board of the company was replaced with a five-member administration of imperial naval officers.<ref name=Mazour2/>
+
+During the [[Crimean War]] of 1853 to 1856, when the [[United Kingdom of Great Britain and Ireland|United Kingdom]] fought against the Russian Empire from 1854 to 1856, officials of the RAC began to fear an invasion of their Alaskan settlements by British forces. The RAC began discussions with the [[Hudson's Bay Company]] in the spring of 1854, with each company pledging to continue peaceable relations and to press their respective governments to do the same.<ref name=Bolkhovitinov>Bolkhovitinov, Nikolay N. ''The Crimean War and the Emergence of Proposals for the Sale of Russian America, 1853-1861.'' Pacific Historical Review 59, No. 1 (1990), pp. 15–49</ref> The United Kingdom and the Russian Empire accepted the deal by the companies, but both governments specified that naval blockades and seizure of vessels were acceptable actions.<ref name=Bolkhovitinov/> The British [[HMS Pique (1834)|HMS ''Pique'']] and the French [[French frigate Sibylle (1847)|''Sibylle'']] attacked an RAC outpost on [[Urup|Urup Island]] in the [[Kuril Islands|Kuriles]] in 1855, in the belief that the agreement did not cover the Kuriles.<ref>Tikhmenev (1978), p. 356.</ref>
+
+The company built a [[whaling]] station at [[Mamga Bay|Mamga]] in [[Tugur Bay]] in the [[Sea of Okhotsk]] in 1862. It operated from 1863 to 1865 before being sold to Otto Wilhelm Lindholm. Two [[schooner]]s used the station as a base, sending out [[whaleboat]]s to catch [[bowhead whale]]s, which were towed ashore and processed at a nearby tryworks.<ref name=Lindholm>Lindholm, O. V., Haes, T. A., & Tyrtoff, D. N. (2008). ''Beyond the frontiers of imperial Russia: From the memoirs of Otto W. Lindholm''. Javea, Spain: A. de Haes OWL Publishing.</ref>
+
+The Russian-American Company has been appraised as being run with "poorly chosen and inadequately skilled staff", floundering in part from "the lack of experience of the executives handling an organization which overreached itself through its expansion across the Pacific and along the American coast into California..."<ref name=Mazour2/> The company ceased its commercial activities in 1881. In 1867, the [[Alaska Purchase]] had transferred control of Alaska to the United States and the commercial interests of the Russian-American Company were sold to Hutchinson, Kohl & Company of San Francisco, California, who then renamed their company to the [[Alaska Commercial Company]].
+
+== Currency ==
+{{expand section|date=May 2024}}
+From 1816 to 1867 the Company circulated [[ruble]] or [[Assignation ruble|assignat]] ({{langx |ru| ассигнация | translit = assignatsiya}}) equivalents - [[Mark (currency)|''marki'']] ({{langx |ru| марки}}) - printed on tanned skins.<ref>
+{{cite book
+ |last1                = Pravilova
+ |first1               = Ekaterina Anatolʹevna 
+ |year                 = 2023
+ |title                = The Ruble: A Political History
+ |url                  = https://books.google.com/books?id=WW28EAAAQBAJ
+ |publication-place    = New York
+ |publisher            = Oxford University Press
+ |page                 = 42
+ |isbn                 = 9780197663714
+ |access-date          = 17 May 2024
+ |quote                = From 1817 until Russia's sale of Alaska in 1867, the workers of the Russian American Company received their meager salaries in pieces of tanned leather branded with the company's seal that featured a Russian two-headed eagle and the signature of the company's director. Assignats were in short supply in Russian America, while coins imported from the mainland quickly disappeared from circulation. [...] Therefore, in 1816, the Russian administration in America started issuing its own private money called "''marki''" that in design and colors resembled paper assignats. Printed on the skin of sea animals, Alaska's most precious commodity, and delivered to the colony from St. Petersburg, leather rubles and kopecks circulated in Sitka, Kodiak, the Aleutian Islands, and the Russian possessions in California.
+}} 
+</ref>
+
+==Russian-American Company flag==
+{{main|Flag of the Russian-American Company}}
+[[File:Flag of the Russian-American Company 1835.jpg|thumb|right|Flag of the Russian-American Company 1835]]
+
+The Russian commercial flag (civil ensign) was used between 1799 and 1806 by the company on its ships and establishments. [[Alexander I of Russia|Tsar Alexander I]] approved a design for a separate flag for the RAC on 10 October 1806 O.S., writing "So be it" upon the report.<ref name="fortross.org">[https://www.scribd.com/doc/32133272/Winter-2006-2007-Fort-Ross-Interpretive-Association-Newsletter ''Бытъ По Сему “So Be It.” 200 Years of the History and Interpretation of“The flag granted by His Imperial Highness.''] Fort Ross Interpretive Association Newsletter, Winter 2006 - 2007, pp. 2–4. (Accessed 14 October 2014)</ref> After being sent to the [[State Council (Russian Empire)|State Council]], it was forwarded to the [[Ministry of Finance of the Russian Empire|Finance]] and Naval ministries, along with the [[Saint Petersburg]] office of the RAC on 19 October 1806 O.S.<ref name=FortRoss2>Federova, Svetlana G. [http://www.fortross.org/lib.html ''The Flag of the Russian-American Company.''] Fort Ross Conservancy Library. (Accessed 14 October 2014)</ref> The memorandum described the flag as having "three stripes, the lower red, the middle blue, and the upper and wider stripe white, with the facsimile on it of the All-Russia state coat-of-arms below which is a ribbon hanging from the talons of the eagle with the inscription thereon 'Russo-American Company'".<ref name=FortRoss2/>
+
+The company flag eventually had several variations, in part from the nature of individual production and the changing designs of the Imperial flag. As researcher John Middleton noted, "There continues to be much discussion concerning the design of the company flag, mostly centered around the design and placement of the eagle."<ref name=FortRoss2/>  The various flags flew over the company's holdings in California until 1 January 1842, and over Alaska until 18 October 1867, when all Russian-American Company holdings in Alaska were sold to the United States. The flag continued to represent the company until its Russian holdings were liquidated in 1881.<ref name="fortross.org"/>
+
+==Chief managers==
+Below is a list of the general managers (or chief managers, usually known in English as governors) of the Russian-American Company. Many of their names occur as place names in [[Southeast Alaska]]. Note that the English spelling of the names varies between sources. The position administered the commercial operations of the company, centered on [[Russian America]]. [[Alexander Andreyevich Baranov]] was the first and longest serving chief manager, previously managing the [[Shelikhov-Golikov Company|United American Company]]. After Baranov's tenure, appointees were chosen from the [[Imperial Russian Navy]] and generally served terms of five years. Thirteen naval officers acted as chief managers over the course of the company.
+
+{| class="wikitable" style="text-align:center"
+|-
+! No.
+! Portrait
+! width=180|Name<br/>{{small|(Birth–Death)}} 
+! Term of Office
+|-
+! | 1
+| [[File:Baranov Alexandr.jpg|80px]] || [[Alexander Andreyevich Baranov]]<br/>{{small|(1747–1819)}} || July 9, 1799 – January 11, 1818<ref name=Andrews2>Andrews (1942), p. 302.</ref>
+|- 
+! | 2
+| [[File:Gagemester.jpg|80px]] || [[Captain (naval)|Captain]] [[Ludwig von Hagemeister]]<br/>{{small|(1780–1833)}} || January 11, 1818 – October 24, 1818<ref name=Andrews2/>
+|-
+! | 3
+| [[File:Seal of the Russian-American Company.svg |80px]] || [[Lieutenant]] [[Semyon Yanovsky|Semyon Ivanovich Yanovsky]]<br/>{{small|(1788–1876)}}|| October 24, 1818 – September 15, 1820<ref name=Andrews2/>
+|-
+! | 4
+| [[File:Muraviev Matvey Ivanovich.jpg|80px]] || [[Lieutenant]] [[Matvey Muravyev|Matvey Ivanovich Muravyev]]<br/>{{small|(1784–1826)}}|| September 15, 1820 – October 14, 1825<ref name=Andrews2/>
+|-
+! | 5
+| [[File:Seal of the Russian-American Company.svg |80px]] || [[Pyotr Yegorovich Chistyakov]]<br/>{{small|(1790–1862)}} || October 14, 1825 – June 1, 1830<ref name=Andrews2/>
+|-
+! | 6
+| [[File:Врангель Фердинанд Петрович.jpg|80px]] || [[Baron]] [[Ferdinand von Wrangel|Ferdinand Petrovich von Wrangel]]<br/>{{small|(1797–1870)}}|| June 1, 1830 – October 29, 1835<ref name=Andrews2/>
+|-
+! | 7
+| [[File:Ivan Antonovich Kupriyanov (by Franz Krüger).jpg|80px]] || [[Ivan Kupreyanov|Ivan Antonovich Kupreyanov]]<br/>{{small|(1800–1857)}} || October 29, 1835 – May 25, 1840<ref name=Andrews2/>
+|-
+! | 8
+| [[File:Arvid Adolf Etholén.jpg|80px]] || [[Arvid Adolf Etholén]]<br/>{{small|(1799–1876)}} || May 25, 1840 – July 9, 1845<ref name=Andrews2/>
+|-
+! | 9
+| [[File:Seal of the Russian-American Company.svg |80px]] ||[[Vice admiral]] [[Mikhail Tebenkov|Mikhail Dmitrievich Tebenkov]]<br/>{{small|(1802–1872)}}|| July 9, 1845 – October 14, 1850<ref name=Andrews2/>
+|-
+! | 10
+| [[File:Seal of the Russian-American Company.svg |80px]] || [[Captain (naval)|Captain]] [[Nikolay Yakovlevich Rosenberg]]<br/>{{small|(1807–1857)}} || October 14, 1850 – March 31, 1853<ref name=Andrews2/>
+|-
+! | 11
+| [[File:Seal of the Russian-American Company.svg |80px]] ||[[Aleksandr Ilich Rudakov]]<br/>{{small|(1817–1875)}}|| March 31, 1853 – April 22, 1854<ref name=Andrews2/>
+|-
+! | 12
+| [[File:Voevodskiy Stepan Vasilevich.jpg|80px]] || [[Captain (naval)|Captain]] [[Stepan Vasiliyevich Voyevodsky]]<br/>{{small|(1805–1884)}} || April 22, 1854 – June 22, 1859<ref name=Andrews2/>
+|-
+! | 13
+| [[File:Hampus-Furuhjelm-1859 cropped.jpg|80px]] || [[Captain (naval)|Captain]] [[Johan Hampus Furuhjelm]]<br/>{{small|(1821–1909)}} || June 22, 1859 – December 2, 1863<ref name=Andrews2/>
+|-
+! | 14
+| [[File:Dmitri P Maksutov.jpg|80px]] || Prince [[Dmitry Petrovich Maksutov|Dmitri Petrovich Maksutov]]<br/>{{small|(1832–1889)}}|| December 2, 1863 – October 18, 1867<ref name=Andrews2/>
+|}
+
+==Settlements==
+
+===In Alaska===
+* [[Unalaska, Alaska|Unalaska]] – 1774
+* [[Three Saints Bay]] – 1784
+* Fort St. George in [[Kasilof, Alaska|Kasilof]] – 1786
+* [[Fort Nikolaevskaia]] in [[Kenai, Alaska|Kenai]] – 1787
+* [[St. Paul, Alaska|St. Paul]] – 1788
+* [[Kodiak, Alaska|Pavlovskaya]] – 1791
+* Fort Saints Constantine and Helen on Nuchek Island – 1793
+* Fort on [[Hinchinbrook Island (Alaska)|Hinchinbrook Island]] – 1793
+* [[New Russia (trading post)|New Russia]] near present-day [[Yakutat, Alaska|Yakutat]] – 1795
+* [[Old Sitka Site|Redoubt St. Archangel Michael]] near [[Sitka, Alaska|Sitka]] – 1799
+* [[Sitka, Alaska|New Archangel]] – 1804
+* Fort (New) Alexandrovsk at [[Bristol Bay]] – 1819
+* [[St. Michael, Alaska|Redoubt St. Michael]] – 1833
+* [[Nulato, Alaska|Nulato]] – 1834
+* [[Fort Stikine|Redoubt St. Dionysius]] in present-day [[Wrangell, Alaska|Wrangell]] – 1834
+* [[Russian Mission, Alaska|Pokrovskaya Mission]] – 1837
+* [[Kolmakov Redoubt Site|Kolmakov Redoubt]] – 1844
+
+===Outside Alaska===
+* [[Fort Ross, California|Fort Ross]] near [[Healdsburg, California]] – 1812
+* [[Russian Fort Elizabeth|Fort Elizabeth]] near [[Waimea, Kauai County, Hawaii|Waimea, Hawaii]] – 1817
+* [[Fort Alexander (Hawaii)|Fort Alexander]] near [[Hanalei, Hawaii]] – 1817
+* Fort Barclay-de-Tolly near Hanalei, Hawaii – 1817
+
+==Ships==
+At the beginning of its existence the company vessels were all Russian-built. As time went on foreign-built vessels began to be acquired. More than 30 vessels were bought that had been built in England, the United States, Germany and Finland. When Alaska was sold to the United States in 1867, foreign-built ships made up 97% of the total tonnage of the company fleet.<ref>[https://snr.org.uk/foreign-ships-fleet-russian-american-company-1799-1867/ Andrei V. Grinev, “Foreign ships in the fleet of the Russian-American company (1799-1867),” ''The Mariner’s Mirror'', 100 (4) November 2014, p.405.]</ref>
+{{columns-list|colwidth=22em|
+*Alexander Nevsky, wrecked in 1813 at the Kurile Islands
+*Aleksei Chelovek Bozhii
+*Andrei Pervozvannyi
+*Andrian i Natalia
+*Avos, wrecked in 1808 at Icy Straight.
+*''[[Atahualpa (ship)|Bering]]'', bought from Americans. Stranded in the Sandwich Islands (Hawaiian Islands), January 1815.
+*Boris i Gleb
+*Chirikov, built in New Archangel
+*Diana
+*Dmitrii
+*Yekaterina
+*Yelizaveta
+*Yevdokim
+*Yevpl
+*Finlyandiya, built in 1809
+*Fish
+*Gavril
+*Georgy
+*Grigory Pobedonosets
+*Ieremiya
+*''[[Il’mena]]'', purchased from Americans
+*Ioann
+*Ioann
+*Ioann
+*Ioann Bogoslov
+*Ioann Predtecha
+*Ioann Rylsky
+*Ioann Zlatoust
+*Iulian
+*Iunona, wrecked in 1811 at the Viliui River
+*Kadiak, a former English ship known as the Myrtle
+*Kapiton
+*Kapiton (2nd)
+*Kapiton (Basov)
+*Kliment
+*Konstantin
+*Kutuvzov
+*Maria Magdalina, wrecked in 1816 near the Okhota River
+*Mikhail
+*Mikhail
+*Morekhod
+*''[[Nadezhda (1802 Russian ship)|Nadezhda]]'', wrecked 1808 off [[Malmö]]
+*Natalia
+*[[Neva (1802 Russian ship)|''Neva'']], wrecked in January 1813 at Sitka Island
+*[[Russian schooner Nikolai|Nikolai]], wrecked in 1808 north of the [[Quillayute River]]
+*Nikolai
+*Nikolai
+*Nikolai
+*Orel
+*Otkrytie, built in New Archangel
+*Pavel (Ocheredin)
+*Pavel
+*Pavel
+*Pyotr i Pavel
+*Perkup i Zand
+*[[Phoenix (1794)|Phoenix]]
+*Predpriyatie Alexander
+*Prokofy
+*Rostislav
+*Severny Orel
+*Sikurs
+*Simeon
+*Simeon i Ioann
+*Sitka, built in New Archangel
+*Suvorov
+*Trekh Ierarkhov
+*Trekh Svyatitelei
+*Truvor, purchased from Americans
+*Vasily
+*Vladimir
+*Zakharia i Yelizaveta
+*Zakhariia i Yelizaveta
+*Zosima i Savati
+}}
+References:<br>
+Pierce, Richard, ed. ''Documents on the history of the Russian-American Company''. Kingston, Ont. : Limestone Press, c1976. pp.&nbsp;23–26. OCLC: 2945773.<br>
+Tikhmenev, P. A. ''A history of the Russian-American Company.'' Seattle: University of Washington Press, 1978. pp.&nbsp;146–151. OCLC: 3089256.
+
+==See also==
+*[[Awa'uq Massacre]]
+*[[Alaska Purchase]]
+
+==References==
+{{Reflist|2}}
+
+==Further reading==
+{{Main|Bibliography of California history|Bibliography of Russian history (1613–1917)}}
+* Grinyov, Andrei V., “A Failed Monopoly: Management of the Russian-American Company, 1799–1867,” ''Alaska History,'' 27 (Spring–Fall 2012), 19–47.
+* A. I. Istomin, J. Gibson, V. A. Tishkov. ''Russia in California''. Nauk, Moscow 2005 
+* Middleton, John. ''Бытъ По Сему- So be it: 200 years of the history and interpretation of "The flag granted by his Imperial Highness" The flag of the Russian-American Company.'' September, 2006. Fort Ross Conservancy web site
+
+===Primary sources===
+* Pierce, Richard A.:''The Russian-American Company: Correspondence of the Governors; Communications Sent: 1818'' The Limestone Press Kingston, Ontario, Canada 1984.
+* I.F. Kruzenstern: Notes on ports and Ross and Franchesko, 4 October 1825.
+* Vorobyoff, Igor V., trans. (1973) "Adventures of Doctor Schäffer in Hawaii, 1815–1819," ''Hawaiian Journal of History'' 7:55–78 [http://hdl.handle.net/10524/558] (translation of Bolkhovitinov, N. N., "Avantyura Doktora Sheffera na Gavayyakh v 1815–1819 Godakh," ''Novaya i Noveyshaya Istoriya'' 1[1972]:121–137)
+
+== External links ==
+{{Commons category}}
+* [https://web.archive.org/web/20070324212517/http://numismondo.com/pm/aka/ Russian-American Company walrus skin banknotes]
+* [https://www.loc.gov/rr/european/mofc/arndt.html The Russian-American Company and the Northwest Fur Trade: North American Scholarship, 1990–2000]
+
+{{Russian Empire–United States relations|state=collapsed}}
+{{Russian America}}
+{{Chartered companies}}
+{{Alaska history footer}}
+{{Authority control}}
+
+[[Category:Russian-American Company| ]]
+[[Category:Companies established in 1799]]
+[[Category:Companies disestablished in 1881]]
+[[Category:Defunct companies of Russia]]
+[[Category:Fur trade]]
+[[Category:Chartered companies]]
+[[Category:Russian colonization of North America]]
+[[Category:Companies based in Saint Petersburg]]
+[[Category:Trading companies established in the 18th century]]
+[[Category:Military history of the Pacific Ocean]]

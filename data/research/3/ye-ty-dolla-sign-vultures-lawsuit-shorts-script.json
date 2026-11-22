@@ -1,0 +1,32 @@
+{
+  "channel_id": "3",
+  "topic_slug": "ye-ty-dolla-sign-vultures-lawsuit",
+  "format": "shorts",
+  "hook": "Did you know Kanye West and Ty Dolla Sign face a lawsuit over three versions of Vultures?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Kanye West and Ty Dolla Sign face a lawsuit over three versions of Vultures?"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did Kanye West actually sample their 2018 composition Joint 2 without asking for permission first?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the producers say they were on a call with Ty when they heard the sample, leading to a studio visit."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "They didn't give permission, so the producers filed a three-count complaint in 2026 over three Vultures versions."
+    },
+    {
+      "id": "close",
+      "voiceover": "Check Bloomberg Law for complete details on case 13035 in the Central District of California."
+    }
+  ],
+  "sources_used": [
+    "https://copyrightnow.com/news/deal-v-yeezy-record-label-vultures-sampled-works-copyright-complaint-cdcal",
+    "https://news.bloomberglaw.com/ip-law/ye-ty-dolla-ign-sued-over-use-of-sample-track-in-vultures"
+  ]
+}

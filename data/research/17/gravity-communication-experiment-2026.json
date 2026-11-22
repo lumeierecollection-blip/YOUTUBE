@@ -1,0 +1,80 @@
+{
+  "topic_slug": "gravity-communication-experiment-2026",
+  "strongest_angle": "Researchers at the University of Queensland have successfully demonstrated the first proof-of-concept for gravity-based communication, transmitting binary data through physical barriers using a moving elevator counterweight.",
+  "key_facts": [
+    {
+      "fact": "Physicists at the University of Queensland used a 1.8-tonne elevator counterweight in the Parnell Building to transmit a binary message through a brick wall.",
+      "source_url": "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity",
+      "source_name": "The University of Queensland",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research team successfully transmitted the word 'gravity' in binary code at a rate of one bit per minute, requiring nearly one hour to complete the transmission.",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/scientists-communicate-using-gravity-elevator-brick-wall-bathroom-experiment",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The experiment utilized a sensitive gravimeter to detect changes in the gravitational field caused by the movement of the elevator counterweight between two levels.",
+      "source_url": "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity",
+      "source_name": "The University of Queensland",
+      "confidence": "high"
+    },
+    {
+      "fact": "The study published in Science Advances by Andrew J. Groszek and colleagues explores gravity as an unblockable alternative to electromagnetic communication technologies.",
+      "source_url": "https://www.science.org/doi/10.1126/sciadv.aee0802",
+      "source_name": "Science Advances",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Mass of the elevator counterweight",
+      "value": 1.8,
+      "unit": "tonnes",
+      "source_url": "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity"
+    },
+    {
+      "label": "Transmission rate",
+      "value": 1,
+      "unit": "bit per minute",
+      "source_url": "https://www.theguardian.com/science/2026/nov/20/scientists-communicate-using-gravity-elevator-brick-wall-bathroom-experiment"
+    },
+    {
+      "label": "Number of levels the elevator traveled between",
+      "value": 2,
+      "unit": "levels",
+      "source_url": "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "All modern wireless communication technologies are based on electromagnetism. However, electromagnetic signals are readily susceptible to screening and blocking, so their availability cannot be guaranteed in adverse environments.",
+      "speaker": "Andrew J. Groszek, Charles W. Woffinden, Michael D. Harvey, Andrew G. White, Matthew J. Davis",
+      "source_name": "Science Advances",
+      "source_url": "https://www.science.org/doi/10.1126/sciadv.aee0802"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "University of Queensland",
+      "kind": "organization"
+    },
+    {
+      "name": "Parnell Building",
+      "kind": "place"
+    },
+    {
+      "name": "Andrew J. Groszek",
+      "kind": "person"
+    },
+    {
+      "name": "Science Advances",
+      "kind": "organization"
+    },
+    {
+      "name": "elevator",
+      "kind": "object"
+    }
+  ]
+}

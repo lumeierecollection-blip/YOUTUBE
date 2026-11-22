@@ -1,0 +1,93 @@
+{
+  "channel_id": "11",
+  "topic_slug": "iac-study-measures-ic-1101-galaxy-size",
+  "format": "shorts",
+  "hook": "A single galaxy extends across nearly 1.7 million light-years of space.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "A single galaxy extends across nearly 1.7 million light-years of space.",
+      "visual_cue": "Deep space view showing an immense glowing elliptical galaxy against dark cosmic void.",
+      "sfx_cue": "Low ambient deep space rumble",
+      "b_roll": [
+        "Deep space astronomical photography of giant elliptical galaxy",
+        "Starfield zoom in distant universe"
+      ],
+      "animation_cue": "Slow push in on central galactic core",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "1.7 Million Light-Years"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:21",
+      "voiceover": "In 2022, astronomers captured deep space images with the Isaac Newton Telescope. How wide is this giant structure compared to our Milky Way?",
+      "visual_cue": "Exterior shot of Isaac Newton Telescope dome under starry night sky transitioning to ultra-deep galaxy sky survey data.",
+      "sfx_cue": "Subtle digital scan tone",
+      "b_roll": [
+        "Isaac Newton Telescope observatory dome timelapse",
+        "Astronomy camera digital imaging display showing galactic clusters"
+      ],
+      "animation_cue": "Grid overlay scanning across galaxy halo map",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Isaac Newton Telescope Data"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:21-0:26",
+      "voiceover": "However, Trujillo's team didn't measure IC 1101 until ultra-deep images revealed its main body.",
+      "visual_cue": "Astronomical sky survey contour map highlighting extended outer halo of galaxy IC 1101.",
+      "sfx_cue": "Rising synth pulse",
+      "b_roll": [
+        "Astrophysics laboratory data visualization display",
+        "Ultra-deep field optical sky imagery"
+      ],
+      "animation_cue": "Contour line expanding outward from core to faint edge",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "Uncovering Galactic Limits"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:41",
+      "voiceover": "The study determined IC 1101 spans a staggering 520 kiloparsecs. That physical dimension equals nearly 1.7 million light-years across. Astronomy & Astrophysics published these official galactic findings on October 1, 2026.",
+      "visual_cue": "Graphic scale diagram comparing measured 520 kiloparsec halo diameter against deep space background.",
+      "sfx_cue": "Resonant metallic accent hit",
+      "b_roll": [
+        "Deep space telescope survey frame of IC 1101",
+        "Scientific publication diagram overlaying cosmic scale markers"
+      ],
+      "animation_cue": "Measurement callout arrows expanding across full frame width",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "520 Kiloparsecs Diameter"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:41-0:46",
+      "voiceover": "IC 1101 remains the largest known galaxy in the Universe.",
+      "visual_cue": "Wide cinematic pull back showing IC 1101 surrounded by cluster galaxies in distant universe.",
+      "sfx_cue": "Soft fading orchestral drone",
+      "b_roll": [
+        "Wide field cluster galaxy photography",
+        "Cosmic web simulation imagery"
+      ],
+      "animation_cue": "Slow continuous zoom out into darkness",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "IC 1101"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way",
+    "https://www.iac.edu.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+    "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html"
+  ]
+}

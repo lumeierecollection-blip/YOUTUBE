@@ -1,0 +1,83 @@
+{
+  "topic_slug": "national-library-wales-aberfan-60th-anniversary-books",
+  "strongest_angle": "The National Library of Wales produced new, corrected books of remembrance for the 60th anniversary of the Aberfan disaster to accurately record the 116 children and 28 adults who died.",
+  "key_facts": [
+    {
+      "fact": "The National Library of Wales has produced new books of remembrance recording the names of the 116 children and 28 adults who died in the Aberfan disaster.",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The National Library of Wales created new copies of the Aberfan Book of Remembrance funded by the Welsh Government to ensure the victims of the 21 October 1966 disaster are honored.",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976",
+      "source_name": "cambrian-news.co.uk",
+      "confidence": "high"
+    },
+    {
+      "fact": "The National Library of Wales organized an exhibition running from 10 October 2026 to 31 December 2026 to mark 60 years since the Aberfan Disaster.",
+      "source_url": "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966",
+      "source_name": "National Library of Wales",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Children who died",
+      "value": 116,
+      "unit": "children",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive"
+    },
+    {
+      "label": "Adults who died",
+      "value": 28,
+      "unit": "adults",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive"
+    },
+    {
+      "label": "Year of disaster",
+      "value": 1966,
+      "unit": "year",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976"
+    },
+    {
+      "label": "Exhibition start month day",
+      "value": 10,
+      "unit": "day",
+      "source_url": "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966"
+    },
+    {
+      "label": "Exhibition start year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966"
+    },
+    {
+      "label": "Exhibition end month day",
+      "value": 31,
+      "unit": "day",
+      "source_url": "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966"
+    },
+    {
+      "label": "Exhibition end year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.library.wales/visit/things-to-do/exhibitions/aberfan-disaster-1966"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "National Library of Wales",
+      "kind": "organization"
+    },
+    {
+      "name": "Welsh Government",
+      "kind": "organization"
+    },
+    {
+      "name": "Aberfan",
+      "kind": "place"
+    }
+  ]
+}

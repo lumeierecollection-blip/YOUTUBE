@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "glenn-phillips-16-ball-century-fact-check",
+  "format": "shorts",
+  "hook": "Viral claims about Glenn Phillips hitting a 16-ball century against India contradict official New Zealand records.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Viral claims about Glenn Phillips hitting a 16-ball century against India contradict official New Zealand records.",
+      "text_overlay": {
+        "text": "16-Ball Century?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Social media posts alleged the New Zealand batter reached 100 runs in just 16 balls. Did Glenn Phillips really set such a record during the match against India?",
+      "text_overlay": {
+        "text": "The Viral Claim"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "iVerify debunked these viral claims after checking the official match statistics from the India series.",
+      "text_overlay": {
+        "text": "iVerify Fact Check"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Phillips actually scored 107 runs off 49 balls during his partnership with Daryl Mitchell in Indore.",
+      "text_overlay": {
+        "text": "Actual: 107 runs in 49 balls"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Official stats confirm 49 balls were faced, not the 16 balls claimed by viral posts.",
+      "text_overlay": {
+        "text": "49 Balls Actual"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tribune.com.pk/story/2638596/fact-check-glenn-phillips-did-not-score-16-ball-century-against-india",
+    "https://timesofindia.indiatimes.com/sports/cricket/india-vs-new-zealand/daryl-mitchell-and-glenn-phillips-219-run-partnership-seals-new-zealands-first-odi-series-win-in-india-kohli-ton-in-vain/articleshow/126669136.cms"
+  ]
+}

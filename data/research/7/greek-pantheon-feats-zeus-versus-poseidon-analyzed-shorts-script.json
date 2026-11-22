@@ -1,0 +1,37 @@
+{
+  "channel_id": "7",
+  "topic_slug": "greek-pantheon-feats-zeus-versus-poseidon-analyzed",
+  "format": "shorts",
+  "hook": "Born to Cronus and Rhea, did you know Zeus and Poseidon fought to seize the universe?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Born to Cronus and Rhea, did you know Zeus and Poseidon fought to seize the universe?",
+      "visual_cue": "Ancient Greek marble bust of Zeus next to a bust of Poseidon."
+    },
+    {
+      "id": "setup",
+      "voiceover": "They worked with the Cyclopes to overthrow their father and claim Mount Olympus. How did the 3 Olympian brothers divide their cosmic realms after the war?",
+      "visual_cue": "Map of Thessaly highlighting Mount Olympus with mythological icon overlays."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The 3 Olympian brothers, including Hades, split the universe into distinct, separate cosmic domains.",
+      "visual_cue": "Split screen showing a storm cloud icon for Zeus and a trident icon for Poseidon."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Homeric accounts confirm Zeus rules the sky as the supreme father of gods and men. Zeus holds the sky while Poseidon governs the sea, keeping their domains distinct.",
+      "visual_cue": "Graphic showing a clear division between sky elements and sea elements."
+    },
+    {
+      "id": "close",
+      "voiceover": "These 3 gods exert total control over their assigned realms, from Mount Olympus to the sea.",
+      "visual_cue": "Close up of a trident illustration fading into a lightning bolt symbol."
+    }
+  ],
+  "sources_used": [
+    "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference",
+    "https://www.theoi.com/Olympios/Poseidon.html"
+  ]
+}

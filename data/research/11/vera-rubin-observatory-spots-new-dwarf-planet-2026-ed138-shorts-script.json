@@ -1,0 +1,52 @@
+{
+  "channel_id": "11",
+  "topic_slug": "vera-rubin-observatory-spots-new-dwarf-planet-2026-ed138",
+  "format": "shorts",
+  "hook": "A massive 1,500-kilometer object just appeared in the dark shadows beyond Pluto.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive 1,500-kilometer object just appeared in the dark shadows beyond Pluto.",
+      "visual_cue": "Deep space starfield panning toward a distant, cold, dark orbit.",
+      "text_overlay": {
+        "text": "Beyond Pluto"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Astronomers at the NSF-DOE Vera C. This trans-Neptunian object 2026 ED138 orbits far beyond the icy path of Pluto.",
+      "visual_cue": "Map showing Chile and the Vera C. Rubin Observatory location.",
+      "text_overlay": {
+        "text": "2026 ED138 Discovered"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But researchers used the linking code pointdexter to identify this massive object from observatory data.",
+      "visual_cue": "Close-up of digital telescope data streaming on a screen.",
+      "text_overlay": {
+        "text": "Data Analysis"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Scientists Matthew J. This object spans a range of 600 to 1,500 kilometers beyond the orbit of Pluto.",
+      "visual_cue": "Graphic scale comparison showing 600 to 1,500 kilometers.",
+      "text_overlay": {
+        "text": "600–1,500 km Wide"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The International Astronomical Union Minor Planet Center continues tracking this massive 2026 ED138.",
+      "visual_cue": "Wide, cinematic shot of the outer solar system's darkness.",
+      "text_overlay": {
+        "text": "Solar Frontiers"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://noirlab.edu/public/news/noirlab2626",
+    "https://www.sci.news/astronomy/vera-rubin-observatory-possible-new-dwarf-planet-15166.html"
+  ]
+}

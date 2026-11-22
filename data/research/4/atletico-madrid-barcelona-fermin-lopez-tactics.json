@@ -1,0 +1,91 @@
+{
+  "topic_slug": "atletico-madrid-barcelona-fermin-lopez-tactics",
+  "strongest_angle": "Analyzing how Barcelona midfielder Fermin Lopez utilized the half-spaces and tactical flexibility to dismantle Diego Simeone's 4-4-2 defensive block during their 2-1 victory at the Riyadh Air Metropolitano.",
+  "key_facts": [
+    {
+      "fact": "Diego Simeone utilized a 4-4-2 formation with a mid-to-low block to deny Barcelona creative midfielders space in the Zone 14 area at the Riyadh Air Metropolitano.",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64",
+      "source_name": "Goal.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Barcelona overcame an early Giuliano Simeone goal to secure a 2-1 victory against Diego Simeone's defensive block.",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64",
+      "source_name": "Goal.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fermin Lopez provided initial energy in the attacking midfield before tactical shifts involving Hansi Flick's substitutes.",
+      "source_url": "https://totalfootballanalysis.com/match-analysis/atletico-madrid-barcelona-la-liga-2025-2026-tactical-analysis-tactics",
+      "source_name": "Total Football Analysis",
+      "confidence": "high"
+    },
+    {
+      "fact": "Hansi Flick made adjustments bringing on Gavi and Fermin Lopez while shifting the shape to a 4-4-1.",
+      "source_url": "https://en.as.com/soccer/flick-and-simeone-a-champions-league-tactical-masterclass-f202604-n",
+      "source_name": "AS USA",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Final Score Barcelona Goals",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64"
+    },
+    {
+      "label": "Final Score Atletico Goals",
+      "value": 1,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64"
+    },
+    {
+      "label": "Atletico Madrid Formation Defenders",
+      "value": 4,
+      "unit": "players",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64"
+    },
+    {
+      "label": "Atletico Madrid Formation Midfielders",
+      "value": 4,
+      "unit": "players",
+      "source_url": "https://www.goal.com/en/news/atletico-madrid-barcelona-the-tactics-board-fermin-lopez-dismantle-simeone-block-/bltf0d1fda2682c8e64"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Fermin Lopez",
+      "kind": "person"
+    },
+    {
+      "name": "Diego Simeone",
+      "kind": "person"
+    },
+    {
+      "name": "Giuliano Simeone",
+      "kind": "person"
+    },
+    {
+      "name": "Hansi Flick",
+      "kind": "person"
+    },
+    {
+      "name": "Riyadh Air Metropolitano",
+      "kind": "place"
+    },
+    {
+      "name": "Barcelona",
+      "kind": "organization"
+    },
+    {
+      "name": "Atletico Madrid",
+      "kind": "organization"
+    },
+    {
+      "name": "Gavi",
+      "kind": "person"
+    }
+  ]
+}

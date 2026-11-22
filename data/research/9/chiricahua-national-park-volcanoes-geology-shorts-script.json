@@ -1,0 +1,48 @@
+{
+  "channel_id": "9",
+  "topic_slug": "chiricahua-national-park-volcanoes-geology",
+  "format": "shorts",
+  "hook": "Could a single volcanic eruption 27 million years ago change the Arizona landscape forever?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Could a single volcanic eruption 27 million years ago change the Arizona landscape forever?",
+      "text_overlay": {
+        "text": "Arizona's Volcanic Past"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Chiricahua National Monument features rhyolite pinnacles created 27 million years ago by a massive volcanic eruption. The Turkey Creek caldera, a massive volcanic crater, grew just miles beneath the Arizona surface.",
+      "text_overlay": {
+        "text": "27 Million Years Ago"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, these violent eruptions began 26.9 million years ago, spewing ash across the desert landscape.",
+      "text_overlay": {
+        "text": "26.9 Million Years Ago"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The volcano blasted 100 cubic miles of volcanic material across the land. These spires rise hundreds of feet within the Chiricahua Mountains Sky Island Complex in Arizona.",
+      "text_overlay": {
+        "text": "100 Cubic Miles of Material"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These stone sentinels remain 27 million years after the eruption.",
+      "text_overlay": {
+        "text": "27 Million Years of Erosion"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.npshistory.com/publications/foundation-documents/chir-fd-overview.pdf",
+    "https://www.nps.gov/articles/nps-geodiversity-atlas-chiricahua-national-monument-arizona.htm",
+    "https://www.nationalgeographic.com/environment/article/chiricahua-national-park-geology-volcano-ecology"
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "topic_slug": "portchester-castle-plaque-caribbean-prisoners-missing",
+  "strongest_angle": "Investigation into the October 2026 theft of a newly installed plaque at Portchester Castle commemorating 2,500 Caribbean prisoners brought to Britain 230 years ago in 1796.",
+  "key_facts": [
+    {
+      "fact": "A memorial plaque commemorating 2,500 African Caribbean prisoners of war was unveiled at Portchester Castle in Hampshire on October 9, 2026.",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Castle staff at Portchester Castle discovered that the plaque and a gate padlock had been removed five days later on October 14, 2026.",
+      "source_url": "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872",
+      "source_name": "Portsmouth News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The stolen memorial marked 230 years since 2,500 African Caribbean men, women and children were brought to Britain as prisoners of war in 1796.",
+      "source_url": "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean",
+      "source_name": "Warwick University Press Release",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Caribbean prisoners commemorated",
+      "value": 2500,
+      "unit": "prisoners",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro"
+    },
+    {
+      "label": "Years since prisoners were brought to Britain",
+      "value": 230,
+      "unit": "years",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro"
+    },
+    {
+      "label": "Year prisoners were brought to Britain",
+      "value": 1796,
+      "unit": "year",
+      "source_url": "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872"
+    },
+    {
+      "label": "Days between unveiling and discovery of the theft",
+      "value": 5,
+      "unit": "days",
+      "source_url": "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Portchester Castle",
+      "kind": "place"
+    },
+    {
+      "name": "Hampshire",
+      "kind": "place"
+    },
+    {
+      "name": "BBC News",
+      "kind": "organization"
+    },
+    {
+      "name": "Portsmouth News",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    }
+  ]
+}

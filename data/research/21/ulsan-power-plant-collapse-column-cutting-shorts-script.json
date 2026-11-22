@@ -1,0 +1,57 @@
+{
+  "channel_id": "21",
+  "topic_slug": "ulsan-power-plant-collapse-column-cutting",
+  "format": "shorts",
+  "hook": "Seven workers died when a massive boiler tower collapsed at the Ulsan Thermal Power Plant.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Seven workers died when a massive boiler tower collapsed at the Ulsan Thermal Power Plant.",
+      "visual_cue": "Close up shot of the Ulsan Thermal Power Plant wreckage after the incident.",
+      "sfx_cue": "Low rumble of falling debris.",
+      "b_roll": [
+        "Ulsan Thermal Power Plant site damage photo"
+      ]
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 6, 2025, workers cut support columns too deeply, causing the boiler tower collapse. Why did structural reviews fail to account for the true weight of the steel?",
+      "visual_cue": "Diagram showing the structural columns of the boiler tower.",
+      "sfx_cue": "Metal groaning sound effect.",
+      "b_roll": [
+        "Technical engineering drawing of power plant structure"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Ministry of Land, Infrastructure and Transport panel found errors in the structural review process.",
+      "visual_cue": "Split screen comparing a thick steel plate to a thin, failing support.",
+      "sfx_cue": "Sharp metallic ping.",
+      "b_roll": [
+        "Generic industrial steel beam close-up"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Ministry of Land, Infrastructure and Transport confirmed this miscalculation led to the disaster. Seven workers were killed instantly by the collapse. Two workers suffered injuries during the Ulsan Thermal Power Plant disaster on November 6, 2025.",
+      "visual_cue": "Official government seal of the Ministry of Land, Infrastructure and Transport.",
+      "sfx_cue": "Sound of heavy impact.",
+      "b_roll": [
+        "Ministry of Land, Infrastructure and Transport logo"
+      ]
+    },
+    {
+      "id": "close",
+      "voiceover": "Seven lives were lost at the Ulsan Thermal Power Plant.",
+      "visual_cue": "Wide shot of the demolished site under a grey sky.",
+      "sfx_cue": "Wind blowing over metal.",
+      "b_roll": [
+        "Ulsan Thermal Power Plant demolition site"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://news.sbs.co.kr/english/article.do?news_id=N1008823077",
+    "https://eiec.kdi.re.kr/policy/materialView.do?num=288800&pg=&topic=L"
+  ]
+}

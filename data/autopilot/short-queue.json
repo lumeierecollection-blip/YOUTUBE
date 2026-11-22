@@ -1,0 +1,66 @@
+[
+ {
+  "id": "tay-chatbot",
+  "title": "Microsoft's Tay chatbot",
+  "sources": [
+   "Tay_(chatbot)"
+  ],
+  "format": "Format: '[N] hours after launch...' then the twist."
+ },
+ {
+  "id": "mata-avianca",
+  "title": "The lawyers who cited cases ChatGPT made up",
+  "sources": [
+   "Mata_v._Avianca,_Inc."
+  ],
+  "format": "Format: a dated fact, then the fine."
+ },
+ {
+  "id": "knight-capital",
+  "title": "The trading algorithm that lost millions in 45 minutes",
+  "sources": [
+   "Knight_Capital_Group"
+  ],
+  "format": "Format: a clock time, then the loss."
+ },
+ {
+  "id": "compas",
+  "title": "The software that scored defendants' risk",
+  "sources": [
+   "COMPAS_(software)"
+  ],
+  "format": "Format: a number, then who it got wrong."
+ },
+ {
+  "id": "flash-crash",
+  "title": "The 2010 Flash Crash",
+  "sources": [
+   "2010_flash_crash"
+  ],
+  "format": "Format: a date and a minute count."
+ },
+ {
+  "id": "herzberg",
+  "title": "The first pedestrian killed by a self-driving car",
+  "sources": [
+   "Death_of_Elaine_Herzberg"
+  ],
+  "format": "Format: a date, then what the system did."
+ },
+ {
+  "id": "bard-webb",
+  "title": "Google's AI chatbot got one fact wrong in its first ad",
+  "sources": [
+   "Gemini_(chatbot)"
+  ],
+  "format": "Concrete story: the ad, the wrong claim about a telescope, the market reaction with the number from the text."
+ },
+ {
+  "id": "zillow-offers",
+  "title": "Zillow's pricing algorithm and the homes it bought",
+  "sources": [
+   "Zillow"
+  ],
+  "format": "Concrete story: what the algorithm did, the numbers from the text, what Zillow did next."
+ }
+]

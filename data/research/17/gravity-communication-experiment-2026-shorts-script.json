@@ -1,0 +1,38 @@
+{
+  "channel_id": "17",
+  "topic_slug": "gravity-communication-experiment-2026",
+  "format": "shorts",
+  "hook": "Physicists at the University of Queensland just sent a binary message through a solid wall!",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Physicists at the University of Queensland just sent a binary message through a solid wall!",
+      "visual_cue": "Close-up of a heavy, industrial steel counterweight suspended in a shaft."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Can this 1.8-tonne elevator counterweight bypass brick walls that block traditional electromagnetic waves?",
+      "visual_cue": "Split screen showing the Parnell Building exterior and a diagram of an elevator moving between two levels."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These gravitational pulses are unblockable, but the transmission requires nearly one hour to complete.",
+      "visual_cue": "Abstract representation of waves passing unimpeded through a dense brick wall."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Andrew J. Groszek and his team successfully transmitted the word gravity in binary code. The system achieved a transmission rate of 1 bit per minute using a sensitive gravimeter.",
+      "visual_cue": "Text overlay displaying the word 'GRAVITY' appearing one bit at a time in binary code."
+    },
+    {
+      "id": "close",
+      "voiceover": "It took nearly one hour for the 1.8-tonne elevator counterweight to complete that binary transmission.",
+      "visual_cue": "A digital timer counting up to sixty minutes in a laboratory setting."
+    }
+  ],
+  "sources_used": [
+    "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity",
+    "https://www.theguardian.com/science/2026/nov/20/scientists-communicate-using-gravity-elevator-brick-wall-bathroom-experiment",
+    "https://www.science.org/doi/10.1126/sciadv.aee0802"
+  ]
+}

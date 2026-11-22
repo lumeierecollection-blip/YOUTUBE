@@ -1,0 +1,150 @@
+{
+  "topic_slug": "meta-s-new-muse-voice-brings-real-time-conversational-avatar",
+  "strongest_angle": "Meta launched Muse Voice and expressive avatars for U.S. users across mobile, web, and Mac, powered by 2 new AI models introduced at the Connect developer conference.",
+  "key_facts": [
+    {
+      "fact": "On November 5, 2026, Meta CEO Mark Zuckerberg announced the rollout of real-time voice conversations and expressive animated avatars in the Muse app.",
+      "source_url": "https://www.theverge.com/tech/1028015/meta-muse-ai-voice-mode-expressive-avatar",
+      "source_name": "The Verge",
+      "confidence": "high"
+    },
+    {
+      "fact": "TechCrunch reported on November 5, 2026, that Meta's Muse Voice and video chat feature was made available to users in 1 country, the United States.",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    },
+    {
+      "fact": "Meta first introduced the Muse Realtime video-chatting technology at its Connect developer conference in September 2026.",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The real-time video-chatting update relies on 2 new AI models developed by Meta: Muse Realtime Avatar and Muse Realtime Voice.",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    },
+    {
+      "fact": "Zee Business reported on November 7, 2026, that Muse Voice brings real-time spoken conversations across 3 platform types: mobile, web, and Mac.",
+      "source_url": "https://www.zeebiz.com/technology/news-meta-muse-voice-brings-real-time-conversations-expressive-ai-avatar-and-voice-customisation-to-its-assistant-405260",
+      "source_name": "Zee Business",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to reporting by Ana Maria Constantin for The Next Web, users initiate a voice call in the Muse app by tapping 1 phone icon in the top-right corner.",
+      "source_url": "https://thenextweb.com/news/meta-muse-ai-voice-chat-animated-avatars",
+      "source_name": "The Next Web",
+      "confidence": "high"
+    },
+    {
+      "fact": "Meta's official announcement on November 5, 2026, highlights that Muse Voice handles tasks in the background while users are walking or carrying items.",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-muse-ai-voice-expressive-avatars",
+      "source_name": "Meta Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "Journalist Sarah Perez noted on November 5, 2026, that Muse Voice enables both spoken audio calls and interactive video chat with Meta's consumer AI agent.",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Target countries for initial rollout",
+      "value": 1,
+      "unit": "countries",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar"
+    },
+    {
+      "label": "New AI models powering Muse video chat",
+      "value": 2,
+      "unit": "AI models",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar"
+    },
+    {
+      "label": "Supported platforms for Muse Voice",
+      "value": 3,
+      "unit": "platforms",
+      "source_url": "https://www.zeebiz.com/technology/news-meta-muse-voice-brings-real-time-conversations-expressive-ai-avatar-and-voice-customisation-to-its-assistant-405260"
+    },
+    {
+      "label": "Phone icon to initiate calls",
+      "value": 1,
+      "unit": "icons",
+      "source_url": "https://thenextweb.com/news/meta-muse-ai-voice-chat-animated-avatars"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Muse Voice, a feature that lets users call and video chat with Meta’s consumer AI agent, Muse, is now available to everyone in the U.S., the company announced on Thursday.",
+      "speaker": "Sarah Perez",
+      "source_name": "TechCrunch",
+      "source_url": "https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Mark Zuckerberg",
+      "kind": "person"
+    },
+    {
+      "name": "Sarah Perez",
+      "kind": "person"
+    },
+    {
+      "name": "Ana Maria Constantin",
+      "kind": "person"
+    },
+    {
+      "name": "Jay Peters",
+      "kind": "person"
+    },
+    {
+      "name": "Meta",
+      "kind": "organization"
+    },
+    {
+      "name": "TechCrunch",
+      "kind": "organization"
+    },
+    {
+      "name": "The Verge",
+      "kind": "organization"
+    },
+    {
+      "name": "Zee Business",
+      "kind": "organization"
+    },
+    {
+      "name": "The Next Web",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Connect developer conference",
+      "kind": "place"
+    },
+    {
+      "name": "Muse",
+      "kind": "object"
+    },
+    {
+      "name": "Muse Realtime Avatar",
+      "kind": "object"
+    },
+    {
+      "name": "Muse Realtime Voice",
+      "kind": "object"
+    },
+    {
+      "name": "Mac",
+      "kind": "object"
+    }
+  ]
+}

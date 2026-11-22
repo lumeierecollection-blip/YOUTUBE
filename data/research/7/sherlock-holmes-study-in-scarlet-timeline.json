@@ -1,0 +1,81 @@
+{
+  "topic_slug": "sherlock-holmes-study-in-scarlet-timeline",
+  "strongest_angle": "Examine the internal chronology of Arthur Conan Doyle's novel A Study in Scarlet, set across March 1881 and first published in Beeton's Christmas Annual in 1887.",
+  "key_facts": [
+    {
+      "fact": "Arthur Conan Doyle wrote A Study in Scarlet as the first Sherlock Holmes novel, which was first published in Beeton's Christmas Annual in 1887.",
+      "source_url": "https://www.arthur-conan-doyle.com/wiki/A_Study_in_Scarlet",
+      "source_name": "The Arthur Conan Doyle Encyclopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to ChronoHolmes, the events of A Study in Scarlet are set between Friday, 4 March and Monday, 7 March 1881.",
+      "source_url": "https://chronoholmes.neocities.org/cases/study-in-scarlet",
+      "source_name": "A Chronology of Sherlock Holmes",
+      "confidence": "high"
+    },
+    {
+      "fact": "A Study in Scarlet was published in London by Ward, Lock & Co. as the first British book edition in 1888.",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf",
+      "source_name": "The Beacon Society",
+      "confidence": "high"
+    },
+    {
+      "fact": "In A Study in Scarlet, John H. Watson is recovering from the Battle of Maiwand in Afghanistan before meeting Sherlock Holmes.",
+      "source_url": "https://studyinsherlock.com/2020/05/19/1-a-study-in-scarlet",
+      "source_name": "Study in Sherlock: A Holmes Re-Read",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "First publication year",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://www.arthur-conan-doyle.com/wiki/A_Study_in_Scarlet"
+    },
+    {
+      "label": "Set year",
+      "value": 1881,
+      "unit": "year",
+      "source_url": "https://chronoholmes.neocities.org"
+    },
+    {
+      "label": "First British book edition year",
+      "value": 1888,
+      "unit": "year",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "John H. Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Beeton's Christmas Annual",
+      "kind": "object"
+    },
+    {
+      "name": "Ward, Lock & Co.",
+      "kind": "organization"
+    },
+    {
+      "name": "Battle of Maiwand",
+      "kind": "place"
+    },
+    {
+      "name": "Afghanistan",
+      "kind": "place"
+    }
+  ]
+}

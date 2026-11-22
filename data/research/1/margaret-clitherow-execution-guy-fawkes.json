@@ -1,0 +1,71 @@
+{
+  "topic_slug": "margaret-clitherow-execution-guy-fawkes",
+  "strongest_angle": "Margaret Clitherow's brutal execution in York in 1586, where she was crushed to death for harbouring Catholic priests, deeply influenced the religious fervor of Guy Fawkes and other conspirators nearly two decades later in the 1605 gunpowder plot.",
+  "key_facts": [
+    {
+      "fact": "Margaret Clitherow was crushed to death in York in 1586 after refusing to enter a plea to charges she had harboured Catholic priests in Elizabethan England.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c62xk7pzjnyo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Historians have theorised that Guy Fawkes and co-conspirators Christopher and John Wright may have witnessed or been aware of Margaret Clitherow's execution in York in 1586.",
+      "source_url": "https://www.indcatholicnews.com/news/56170",
+      "source_name": "ICN",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Margaret Clitherow, known as The Pearl of York, was pregnant with her fourth child when she was executed on Lady Day in 1586.",
+      "source_url": "https://en.wikipedia.org/wiki/Margaret_Clitherow",
+      "source_name": "Wikipedia",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Margaret Clitherow was slowly, painfully and publicly crushed to death in 1586 for her refusal to testify when accused of harbouring Catholic priests in York.",
+      "source_url": "https://www.york.ac.uk/news-and-events/features/2018/three-things-to-remember-fifth-november",
+      "source_name": "University of York",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Margaret Clitherow execution",
+      "value": 1586,
+      "unit": "year",
+      "source_url": "https://www.bbc.co.uk/news/articles/c62xk7pzjnyo"
+    },
+    {
+      "label": "Unborn child number",
+      "value": 4,
+      "unit": "child",
+      "source_url": "https://en.wikipedia.org/wiki/Margaret_Clitherow"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Margaret Clitherow",
+      "kind": "person"
+    },
+    {
+      "name": "Guy Fawkes",
+      "kind": "person"
+    },
+    {
+      "name": "York",
+      "kind": "place"
+    },
+    {
+      "name": "Christopher Wright",
+      "kind": "person"
+    },
+    {
+      "name": "John Wright",
+      "kind": "person"
+    },
+    {
+      "name": "Middleton Vestment",
+      "kind": "object"
+    }
+  ]
+}

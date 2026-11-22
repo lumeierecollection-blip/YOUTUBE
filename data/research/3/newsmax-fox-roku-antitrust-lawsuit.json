@@ -1,0 +1,69 @@
+{
+  "topic_slug": "newsmax-fox-roku-antitrust-lawsuit",
+  "strongest_angle": "Examining the federal antitrust lawsuit filed by Newsmax Broadcasting against Fox Corp and Roku over Fox's $22 billion acquisition, which alleges an unlawful monopoly over the free ad-supported streaming television market.",
+  "key_facts": [
+    {
+      "fact": "Newsmax Broadcasting filed a federal antitrust lawsuit in San Jose challenging Fox Corp.'s $22 billion acquisition of Roku.",
+      "source_url": "https://deadline.com/2026/11/newsmax-fox-roku-antitrust-lawsuit-1237228360",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the complaint filed by Newsmax, the combined entity of Fox and Roku will control approximately 70% of the free, ad-supported streaming TV market.",
+      "source_url": "https://variety.com/2026/tv/news/newsmax-fox-roku-fast-tubi-antitrust-suit-1236952413",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Department of Justice cleared the $22 billion acquisition earlier in November after Fox made commitments regarding Roku operating as an open platform.",
+      "source_url": "https://variety.com/2026/tv/news/newsmax-fox-roku-fast-tubi-antitrust-suit-1236952413",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fox Corp Roku acquisition cost",
+      "value": 22,
+      "unit": "billion dollars",
+      "source_url": "https://deadline.com/2026/11/newsmax-fox-roku-antitrust-lawsuit-1237228360"
+    },
+    {
+      "label": "Estimated free ad-supported streaming TV market control",
+      "value": 70,
+      "unit": "percent",
+      "source_url": "https://variety.com/2026/tv/news/newsmax-fox-roku-fast-tubi-antitrust-suit-1236952413"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Newsmax",
+      "kind": "organization"
+    },
+    {
+      "name": "Fox Corp.",
+      "kind": "organization"
+    },
+    {
+      "name": "Roku, Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "San Jose",
+      "kind": "place"
+    },
+    {
+      "name": "Tubi",
+      "kind": "organization"
+    },
+    {
+      "name": "Department of Justice",
+      "kind": "organization"
+    },
+    {
+      "name": "Newsmax Broadcasting, LLC",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

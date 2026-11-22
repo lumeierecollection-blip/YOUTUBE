@@ -1,0 +1,141 @@
+{
+  "topic_slug": "manchester-united-roma-tactical-comeback",
+  "strongest_angle": "Analyze Michael Carrick's tactical adjustments and substitutions that enabled Manchester United to overcome a 2-0 deficit against Gian Piero Gasperini's Roma at Old Trafford, holding Roma to 0 second-half shots.",
+  "key_facts": [
+    {
+      "fact": "At Old Trafford, Gian Piero Gasperini's Roma built a 2-0 lead by the 18th minute using high man-to-man marking from Bryan Cristante and Marten de Roon.",
+      "source_url": "https://www.asroma.pl/analiza-taktyczna-manchester-united-roma-32",
+      "source_name": "AS Roma PL",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michael Carrick's Manchester United secured a 3-2 victory, ending a 9-match winless streak and moving to 17th in the UEFA Champions League standings.",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169",
+      "source_name": "Goal.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Following a goal by Bruno Fernandes that brought United to 2-1, substitute Shea Lacey assisted Matheus Cunha for the winning goal while Roma finished with 0 shots after halftime.",
+      "source_url": "https://www.unitedinfocus.com/news/michael-carrick-shares-how-shea-lacey-was-part-of-hidden-tactical-switch-to-secure-win-vs-roma-we-love-him",
+      "source_name": "United In Focus",
+      "confidence": "high"
+    },
+    {
+      "fact": "Manchester United manager Michael Carrick brought on Youri Tielemans in place of Carlos Baleba to regain control as Roma's defensive structure collapsed after the break.",
+      "source_url": "https://www.theguardian.com/football/2026/nov/03/michael-carrick-manchester-united-roma-old-trafford-champions-league",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Roma initial score lead",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "Manchester United initial score",
+      "value": 0,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "Time of Roma second goal",
+      "value": 18,
+      "unit": "minutes",
+      "source_url": "https://www.asroma.pl/analiza-taktyczna-manchester-united-roma-32"
+    },
+    {
+      "label": "Manchester United final score",
+      "value": 3,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "Roma final score",
+      "value": 2,
+      "unit": "goals",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "Manchester United winless run ended",
+      "value": 9,
+      "unit": "matches",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "Manchester United Champions League rank",
+      "value": 17,
+      "unit": "position",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    },
+    {
+      "label": "United score before equalizer",
+      "value": 1,
+      "unit": "goal",
+      "source_url": "https://www.unitedinfocus.com/news/michael-carrick-shares-how-shea-lacey-was-part-of-hidden-tactical-switch-to-secure-win-vs-roma-we-love-him"
+    },
+    {
+      "label": "Roma second half shots",
+      "value": 0,
+      "unit": "shots",
+      "source_url": "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gian Piero Gasperini",
+      "kind": "person"
+    },
+    {
+      "name": "Roma",
+      "kind": "organization"
+    },
+    {
+      "name": "Old Trafford",
+      "kind": "place"
+    },
+    {
+      "name": "Bryan Cristante",
+      "kind": "person"
+    },
+    {
+      "name": "Marten de Roon",
+      "kind": "person"
+    },
+    {
+      "name": "Michael Carrick",
+      "kind": "person"
+    },
+    {
+      "name": "Manchester United",
+      "kind": "organization"
+    },
+    {
+      "name": "UEFA Champions League",
+      "kind": "organization"
+    },
+    {
+      "name": "Bruno Fernandes",
+      "kind": "person"
+    },
+    {
+      "name": "Shea Lacey",
+      "kind": "person"
+    },
+    {
+      "name": "Matheus Cunha",
+      "kind": "person"
+    },
+    {
+      "name": "Youri Tielemans",
+      "kind": "person"
+    },
+    {
+      "name": "Carlos Baleba",
+      "kind": "person"
+    }
+  ]
+}

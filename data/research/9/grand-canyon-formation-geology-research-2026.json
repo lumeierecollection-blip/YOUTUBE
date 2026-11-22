@@ -1,0 +1,74 @@
+{
+  "topic_slug": "grand-canyon-formation-geology-research-2026",
+  "strongest_angle": "Recent scientific research published in Science and Scientific American in 2026 reveals new evidence regarding the spillover hypothesis of the Grand Canyon, detailing how an ancestral Colorado River drained into northern Arizona's Bidahochi basin around 6.6 million years ago.",
+  "key_facts": [
+    {
+      "fact": "Around 6.6 million years ago, an ancestral Colorado River began draining into northern Arizona's Bidahochi basin according to a paper published in Science.",
+      "source_url": "https://www.scientificamerican.com/article/how-the-grand-canyon-formed-is-a-surprisingly-messy-story-heres-the-latest-clue",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "A collaborative study led by the U.S. Geological Survey in April 2026 provides evidence that the Grand Canyon was carved by spillover flooding from ancient Lake Bidahochi.",
+      "source_url": "https://www.usgs.gov/news/national-news-release/new-research-shows-prehistoric-lake-contributed-birth-grand-canyon",
+      "source_name": "U.S. Geological Survey",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers including John J. Y. He, Ryan S. Crow, John Douglass, Christopher S. Holm-Denoma, and Jorge A. Vazquez collected uranium-lead ages for thousands of zircon crystals in formations upstream and downstream of the canyon.",
+      "source_url": "https://www.science.org/doi/10.1126/science.adz6826",
+      "source_name": "Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Spillover hypothesis timeline",
+      "value": 6.6,
+      "unit": "million years ago",
+      "source_url": "https://www.scientificamerican.com/article/how-the-grand-canyon-formed-is-a-surprisingly-messy-story-heres-the-latest-clue"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "I don't think their data support that [lake spillover] conclusion",
+      "speaker": "Karl Karlstrom",
+      "source_name": "Live Science",
+      "source_url": "https://www.livescience.com/planet-earth/rivers-oceans/colorado-river-may-have-pooled-and-spilled-over-to-form-the-grand-canyon-solving-a-long-standing-mystery-but-not-everyone-agrees"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Colorado River",
+      "kind": "object"
+    },
+    {
+      "name": "Grand Canyon",
+      "kind": "place"
+    },
+    {
+      "name": "Bidahochi basin",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Geological Survey",
+      "kind": "organization"
+    },
+    {
+      "name": "Karl Karlstrom",
+      "kind": "person"
+    },
+    {
+      "name": "John J. Y. He",
+      "kind": "person"
+    },
+    {
+      "name": "Lake Bidahochi",
+      "kind": "place"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "channel_id": "21",
+  "topic_slug": "western-harbour-tunnel-cavern-excavation",
+  "format": "shorts",
+  "hook": "Engineers are carving two massive caverns 50 metres beneath Sydney for a $7.4 billion tunnel.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Engineers are carving two massive caverns 50 metres beneath Sydney for a $7.4 billion tunnel.",
+      "visual_cue": "Wide aerial shot of Sydney Harbour transitioning to a subsurface cutaway diagram showing the tunnel depth.",
+      "sfx_cue": "Low rumble of heavy machinery.",
+      "b_roll": [
+        "Aerial footage of Sydney Harbour",
+        "Subsurface engineering diagram of tunnel depth"
+      ],
+      "text_overlay": {
+        "text": "$7.4 billion project"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Crews at Birchgrove excavated launch chambers measuring 120 metres long to house equipment. How do they fit 4400-tonne machines here?",
+      "visual_cue": "Close-up of industrial blueprints overlaid on the Birchgrove site.",
+      "sfx_cue": "Sound of rock drilling.",
+      "b_roll": [
+        "Construction site at Birchgrove Oval",
+        "Engineering floor plans of launch chambers"
+      ],
+      "text_overlay": {
+        "text": "120m launch chambers"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except these machines are even heavier, with the Barangaroo TBM weighing 4350 tonnes.",
+      "visual_cue": "Scale comparison graphic showing the TBM next to a standard skyscraper floor.",
+      "sfx_cue": "Heavy mechanical clanking.",
+      "b_roll": [
+        "Footage of TBM cutterhead",
+        "Scale comparison animation"
+      ],
+      "text_overlay": {
+        "text": "4350 tonnes"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Specialized roadheaders carved the rock 44.7 metres below the surface to begin the drive. Each boring machine clears a 15.7-metre path.",
+      "visual_cue": "Animation of the roadheader cutting through sandstone.",
+      "sfx_cue": "High-pitched mechanical grinding.",
+      "b_roll": [
+        "Roadheader excavating rock",
+        "Western Harbour Tunnel route map"
+      ],
+      "text_overlay": {
+        "text": "6.5 kilometres long"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Two 4400-tonne giants are now drilling the 6.5-kilometre tunnel.",
+      "visual_cue": "Final shot of the TBM rotating in the dark cavern.",
+      "sfx_cue": "Deep mechanical hum fading out.",
+      "b_roll": [
+        "TBM rotating in tunnel",
+        "Dark subterranean workspace"
+      ],
+      "text_overlay": {
+        "text": "4400-tonne TBMs"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/giant-tbm-reception-chambers-completed-beneath-sydney-harbour",
+    "https://www.smh.com.au/national/nsw/giant-caverns-pinpoint-accuracy-inside-the-mission-to-finish-sydney-s-largest-tunnelling-jigsaw-20251029-p5n65o.html",
+    "https://tunnellingjournal.com/second-giant-tbm-starts-western-harbour-tunnel-drive"
+  ]
+}

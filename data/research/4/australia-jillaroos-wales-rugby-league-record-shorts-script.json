@@ -1,0 +1,67 @@
+{
+  "channel_id": "4",
+  "topic_slug": "australia-jillaroos-wales-rugby-league-record",
+  "format": "shorts",
+  "hook": "The Australia Jillaroos haven't achieved a bigger margin than 118 points in team history.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Australia Jillaroos haven't achieved a bigger margin than 118 points in team history.",
+      "b_roll": [
+        "stadium photo of rugby league arena with scoreboard"
+      ],
+      "text_overlay": {
+        "text": "124 Points Scored"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 1, 2026, the Australia Jillaroos crushed Wales at Commbank Stadium. Jaime Chapman crossed for 6 tries during the relentless victory. Which opponent surrendered 92 points to Australia in 2022?",
+      "b_roll": [
+        "map showing Commbank Stadium location",
+        "graphic highlighting 6 tries by Jaime Chapman",
+        "archival graphics of 2022 match"
+      ],
+      "text_overlay": {
+        "text": "Australia vs Wales 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Australia eclipsed that 92 point win with an 118 point margin.",
+      "b_roll": [
+        "bar chart comparing past record margins"
+      ],
+      "text_overlay": {
+        "text": "118 Point Margin"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The score of 124 to 6 delivered the biggest margin in Jillaroos history. Australia kicked 20 goals to seal dominance during the match.",
+      "b_roll": [
+        "scoreboard graphic showing 124 to 6 final score",
+        "stat display of 20 goals kicked",
+        "timeline chart of historic World Cup margins"
+      ],
+      "text_overlay": {
+        "text": "Historic World Cup Record"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Australia proved why 124 points belongs in the record books.",
+      "b_roll": [
+        "trophy icon and final statistical record graphic"
+      ],
+      "text_overlay": {
+        "text": "Record Book History"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.theguardian.com/sport/2026/nov/01/australia-jillaroos-wales-womens-rugby-league-world-cup-match-report",
+    "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style",
+    "https://www.bbc.com/sport/rugby-league/articles/cked34glxp0no"
+  ]
+}

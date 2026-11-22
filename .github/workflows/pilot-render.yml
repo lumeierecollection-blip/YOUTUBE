@@ -1,0 +1,255 @@
+name: Pilot render
+
+# Renders ONE episode as a finished 1920x1080 MP4: voice -> 20 parallel shards -> join and mix. No YouTube credentials, no thumbnails, no upload step.
+# Push a branch named pilot/<episode-slug> (platform/longform/v2/episodes/<slug>.mjs). Used for the faceless-experiment pilots and for Hidden Past Greenland.
+on:
+  push:
+    branches: ["pilot/**"]
+  workflow_dispatch:
+    inputs:
+      episode: { description: "Episode slug (platform/longform/v2/episodes/<slug>.mjs)", required: true }
+permissions:
+  contents: read
+env:
+  EP_FROM_REF: ${{ inputs.episode && format('pilot/{0}', inputs.episode) || github.ref_name }}
+jobs:
+  voice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: gemini-tts-voice
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - name: Visual-sense gate (every picture must fit what is said; fails the render otherwise)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          case "$ep" in rival-lines-*|hidden-past-*|ai-tested-*) export GATE_MAX_FAIL=3;; esac   # autopilot episodes: the vision verdict varies run to run
+          node platform/longform/v2/check-visuals.mjs "$ep"
+      - name: Read the script in continuous takes
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          node platform/longform/v2/make-voice.mjs "$ep"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice
+          retention-days: 3
+          if-no-files-found: ignore
+          path: output/longform-prod/*/voice/*
+  shards:
+    needs: voice
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: voice
+          path: output/longform-prod
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - name: Render this shard's beats
+        timeout-minutes: 75
+        continue-on-error: true
+        shell: bash
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          node platform/longform/v2/render-episode.mjs "$ep" --shard "${{ matrix.shard }}/20" 2>&1 | { grep -v composed-scene || true; }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: beats-${{ matrix.shard }}
+          retention-days: 3
+          if-no-files-found: ignore
+          path: |
+            output/longform-prod/*/beats/*.mp4
+            output/longform-prod/*/voice/*
+  finish:
+    needs: shards
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src/skills/remotion-render/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install tools
+        run: |
+          retry() { for pause in 20 60 120 0; do "$@" && return 0; [ "$pause" = 0 ] && return 1; sleep "$pause"; done; }
+          install() { npm ci --no-audit --no-fund || npm install --no-audit --no-fund; }
+          retry install
+          cd src/skills/remotion-render
+          retry install
+          cd "$GITHUB_WORKSPACE"
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-dejavu-core
+          pip3 install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: beats-*
+          merge-multiple: true
+          path: output/longform-prod
+      - name: Join and mix the sound (a beat that is still missing is rendered here)
+        timeout-minutes: 110
+        shell: bash
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+          REMOTION_CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          CONC: "3"
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          ep="${EP_FROM_REF#pilot/}"
+          ls "output/longform-prod/$ep/beats" | wc -l
+          node platform/longform/v2/render-episode.mjs "$ep" 2>&1 | { grep -v composed-scene || true; }
+      - name: Preview (480p) encoded here
+        if: always()
+        run: |
+          ep="${EP_FROM_REF#pilot/}"; d="output/longform-prod/$ep"
+          [ -f "$d/episode.mp4" ] && ffmpeg -loglevel error -y -i "$d/episode.mp4" -vf scale=854:480 -c:v libx264 -preset fast -crf 33 -r 24 -c:a aac -b:a 64k -ac 1 -movflags +faststart "$d/episode-480p.mp4" || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: episode
+          retention-days: 30
+          path: |
+            output/longform-prod/*/episode.mp4
+            output/longform-prod/*/episode-480p.mp4
+            output/longform-prod/*/render-log.json
+            output/longform-prod/*/credits.txt
+  ship:
+    needs: finish
+    if: ${{ always() && needs.finish.result == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: actions/download-artifact@v4
+        with: { name: episode, path: ep }
+      - name: Upload private (only when this episode has a long-plan.json entry)
+        env:
+          CH01_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+          CH01_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+          CH01_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+          CH02_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+          CH02_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+          CH02_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+          CH04_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          CH04_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          CH04_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: |
+          P=data/uploads/long-plan.json; EP="${EP_FROM_REF#pilot/}"
+          [ -f "$P" ] && [ "$(jq -r .slug $P)" = "$EP" ] || { echo "no upload plan for $EP: render only"; exit 0; }
+          D=data/uploads/$(jq -r .dir $P); S=$(jq -r .slot $P); mkdir -p "$D"; cp "$(find ep -name episode.mp4 | head -1)" "$D/episode.mp4"
+          v=CH${S}_ID; export CH_CLIENT_ID=${!v}; v=CH${S}_SECRET; export CH_CLIENT_SECRET=${!v}; v=CH${S}_TOKEN; export CH_REFRESH_TOKEN=${!v}
+          node scripts/clone/upload-longform.mjs "$D" "$S" "$(jq -r .expect_channel $P)" "$(jq -r .category $P)"
+          cat "$D/upload-record.json"

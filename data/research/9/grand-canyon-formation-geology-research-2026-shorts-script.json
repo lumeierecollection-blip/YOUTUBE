@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "grand-canyon-formation-geology-research-2026",
+  "format": "shorts",
+  "hook": "Did a massive spillover from Lake Bidahochi carve the Grand Canyon 6.6 million years ago?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did a massive spillover from Lake Bidahochi carve the Grand Canyon 6.6 million years ago?",
+      "text_overlay": {
+        "text": "Grand Canyon Spillover"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Could a massive spillover from Lake Bidahochi really be the secret behind the Grand Canyon's formation?",
+      "text_overlay": {
+        "text": "U.S. Geological Survey findings"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "A collaborative study by the U.S. Geological Survey confirms this spillover theory with new evidence.",
+      "text_overlay": {
+        "text": "Scientific disagreement"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lead researcher John J. Y. He analyzed thousands of zircon crystals to prove this spillover theory. It happened 6.6 million years ago.",
+      "text_overlay": {
+        "text": "6.6 million years ago"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the latest Science journal to see how this 6.6 million-year-old mystery finally unfolds.",
+      "text_overlay": {
+        "text": "Grand Canyon"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scientificamerican.com/article/how-the-grand-canyon-formed-is-a-surprisingly-messy-story-heres-the-latest-clue",
+    "https://www.usgs.gov/news/national-news-release/new-research-shows-prehistoric-lake-contributed-birth-grand-canyon"
+  ]
+}

@@ -1,0 +1,18 @@
+[
+ {
+  "fetch": [
+   "fx-doc",
+   "ak-alexander2",
+   "File:Alexander_II_of_Russia_(cutout).jpg",
+   "Tsar Alexander II of Russia (sold Alaska, 1867): thumbnail subject"
+  ],
+  "src": "src/skills/remotion-render/public/lf2/fx-doc/ak-alexander2.jpg",
+  "dst": "src/skills/remotion-render/public/lf2/fx-doc/ak-alexander2-cutout.png",
+  "args": [
+   "--model",
+   "birefnet-general",
+   "--max",
+   "1600"
+  ]
+ }
+]

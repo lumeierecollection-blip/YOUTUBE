@@ -1,0 +1,57 @@
+// AI Tested Short, style "v1" (kinetic serif type on grey paper; reference: owner upload v1, channel-reverse/reports/shorts-study-2026-11-19.md).
+// Formula kept: a relatable pain as a question -> one-line cause with a superlative -> three abilities, then the twist -> a named, dated case -> a
+// counted study -> the line to act on. Every fact is from Wikipedia, "Hallucination (artificial intelligence)", retrieved 19 Nov 2026
+// (channel-reverse/research/shorts/Hallucination_artificial_intelligence.wiki). *word* = key word (bold sans, highlighter / brush).
+export const STYLE = "v1";
+// calm (owner, 19 Nov 2026): no strobes or glitches, every shot a different real picture held until the next one, real photos of the people and places named
+export const CALM = true, FILL = false;
+export const ENTITIES = [];
+export const CUTOUTS = ["ph-gpt-hand", "ph-gpt-openai"];   // hands holding phones as cut-out PNGs (owner: a mix of PNGs and photos)
+export const SCRIPT = "Have you ever caught ChatGPT making something up? Even *advanced* AI can present false information as *fact*. It's called *hallucination*. In 2023, a New York lawyer submitted six fake cases ChatGPT invented, and was fined five thousand *dollars*. One study found forty-seven percent of its references were *fabricated*. Always check the *source*.";
+// 19 Nov 2026 owner: max 30 s and no rushing. The calm read measures 105-117 wpm whatever pace is asked, so the script is sized for it: 52 words (~28 s).
+export const KEYS = { advanced: { hl: true, counter: "03" }, fact: { hl: true }, hallucination: { brush: "teal" }, dollars: { hl: true }, fabricated: { brush: "red" }, source: { hl: true } };
+export const SOURCES = { W: { title: "Wikipedia: Hallucination (artificial intelligence)", url: "https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)", retrieved: "2026-11-19" } };
+export const FOOTAGE_REQUIRE = /computer|code|keyboard|laptop|screen|server|data|technology|office|court|law|book|library|paper|document|robot|phone|typing|brain|network/i;
+export const FOOTAGE = [
+  { id: "sx-typing", q: "typing keyboard close up" }, { id: "sx-code", q: "computer code screen" }, { id: "sx-server", q: "server room data center" },
+  { id: "sx-laptop", q: "laptop night office" }, { id: "sx-phone", q: "smartphone chat app" }, { id: "sx-court", q: "courthouse", optional: true },
+  { id: "sx-gavel", q: "judge gavel", optional: true }, { id: "sx-docs", q: "legal documents paper", optional: true }, { id: "sx-library", q: "library books shelves", optional: true },
+  { id: "sx-network", q: "neural network technology", optional: true }, { id: "sx-robot", q: "robot technology", optional: true }, { id: "sx-brain", q: "brain scan", optional: true },
+];
+// chatgpt.com answered with a Cloudflare "Just a moment..." page on 19 Nov 2026, so the product is shown with a public-domain Commons screenshot
+export const CAPTURES = [];   // owner, 19 Nov 2026: no page screenshots
+// logos identify the companies named (nominative use), credited on screen; licences checked by fetch-photos.mjs
+export const PHOTOS = [
+  ["ph-gpt-hand", "File:Hand holding smartphone with ChatGPT (52917076309).jpg", "a phone showing ChatGPT (illustrative)"],
+  ["ph-gpt-laptop", "File:Smartphone with ChatGPT app and laptop (52917381683).jpg", "the ChatGPT app on a phone beside a laptop (illustrative)"],
+  ["ph-gpt-keyboard", "File:Smartphone with ChatGPT on keyboard (52917311050).jpg", "a phone showing ChatGPT on a keyboard (illustrative)"],
+  ["ph-gpt-openai", "File:Hand holding smartphone with ChatGPT and OpenAI text (52917312010).jpg", "a phone showing ChatGPT and OpenAI (illustrative)"],
+  ["ph-gpt-app", "File:Smartphone with ChatGPT app (52917381673).jpg", "the ChatGPT app on a phone (illustrative)"],
+  ["ph-courthouse", "File:Daniel Patrick Moynihan U.S. Courthouse, Manhattan, New York (7237347688).jpg", "the Daniel Patrick Moynihan U.S. Courthouse in Manhattan"],
+  ["ph-avianca", "File:Airbus A320-251N - Avianca - N942AV.jpg", "an Avianca aircraft (the airline in Mata v. Avianca)"],
+  ["ph-castel", "File:Judge Kevin Castel.jpg", "Judge P. Kevin Castel"],
+  ["logo-openai", "File:OpenAI Logo.png", "OpenAI logo (identifies the maker of ChatGPT)"],
+  ["photo-openai-sticker", "File:Person holding the OpenAI icon.jpg", "A hand holding an OpenAI sticker (illustrative)"],
+  ["logo-chatgpt", "File:ChatGPT logo.svg", "ChatGPT logo (identifies the product named)"],
+  ["shot-chatgpt", "File:ChatGPT response screenshot 1.jpg", "A ChatGPT conversation screenshot (shows the product, illustrative)"],
+];
+// key shots by the word they start on (first occurrence after the previous key shot); everything between is filled automatically every ~0.45 s
+export const SHOTS = [
+  { at: "Have", kind: "cutout", cut: "ph-gpt-hand", h: 900, bottom: 260 },
+  { at: "ChatGPT", kind: "logo", logo: "logo-chatgpt", tile: true, lf: "grayscale(1) brightness(0.75) contrast(10)" },   // holds to "Even" (~1.5 s)
+  { at: "Even", kind: "inset", photo: "shot-chatgpt", w: 760, ratio: 1.0, top: 420, pos: "50% 0%", mat: true },
+  { at: "present", kind: "inset", photo: "ph-gpt-keyboard", w: 900, top: 520, mat: true },
+  { at: "hallucination", kind: "paper" },
+  { at: "2023,", kind: "inset", photo: "ph-courthouse", w: 860, top: 480, label: "Manhattan's federal courthouse" },
+  { at: "lawyer", kind: "object", asset: "png-justice", h: 900, top: 420 },   // owner: a plane next to "lawyer" made no sense
+  { at: "six", kind: "stat", value: "6", unit: "fake cases" },
+  { at: "ChatGPT", kind: "cutout", cut: "photo-openai-sticker", h: 1000 },
+  { at: "invented,", kind: "inset", photo: "ph-castel", w: 900, top: 520, mat: true, label: "Judge P. Kevin Castel" },
+  { at: "five", kind: "money", value: "$5,000", unit: "the fine", asset: "png-money-bundle", stacks: 1 },
+  { at: "study", kind: "cutout", cut: "ph-gpt-openai", h: 900, bottom: 260 },
+  { at: "forty-seven", kind: "stat", value: "47%", pct: 47, unit: "of its references fabricated" },
+  { at: "Always", kind: "inset", photo: "ph-gpt-laptop", w: 900, top: 520, mat: true },
+];
+export const POOL = ["sx-typing", "sx-code", "sx-server", "sx-phone", "sx-network", "sx-robot", "sx-brain", "sx-docs", "sx-laptop", "sx-library"];
+export const TAG = null;
+export const HASHTAGS = "#AITested #ChatGPT #AIHallucination";

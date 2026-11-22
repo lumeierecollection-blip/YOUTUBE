@@ -1,0 +1,77 @@
+{
+  "topic_slug": "dracula-transylvanian-castle-architecture-design",
+  "strongest_angle": "Examining how Bram Stoker constructed the fictional geography and Gothic atmosphere of Castle Dracula in 1897 using real Romanian landscape references and literary sources.",
+  "key_facts": [
+    {
+      "fact": "As analyzed by Marius Crisan in research from Kutztown University, Castle Dracula is perched on a rock and seems inaccessible, with a stone falling from the window dropping a thousand feet without touching anything.",
+      "source_url": "https://research.library.kutztown.edu/cgi/viewcontent.cgi?article=1058&context=dracula-studies",
+      "source_name": "Kutztown University Research Database",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Bryan Alexander in research from Kutztown University, when Jonathan Harker first describes Castle Dracula, his journals rely on the language of war while failing to pin down the site on an Ordnance Map near Bistritz.",
+      "source_url": "https://research.library.kutztown.edu/cgi/viewcontent.cgi?article=1008&context=dracula-studies",
+      "source_name": "Kutztown University Research Database",
+      "confidence": "high"
+    },
+    {
+      "fact": "Alice Sukdolová notes in studies from Eszterhazy Karoly University that the architecture features lofty halls, secret passages, great round arches, tall black windows, and broken battlements projecting against the sky.",
+      "source_url": "https://ojs.uni-eszterhazy.hu/index.php/ejes/article/view/365",
+      "source_name": "Eszterhazy Karoly University Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Production designer François Audouy explains that Gary Shore wanted to move away from the Orthodox look toward something more Eastern European with sharper facets and triangular shapes for Dracula Untold.",
+      "source_url": "https://www.audouy.com/case-studies/dracula-untold",
+      "source_name": "Audouy Case Studies",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Drop distance from window",
+      "value": 1000,
+      "unit": "feet",
+      "source_url": "https://research.library.kutztown.edu/cgi/viewcontent.cgi?article=1058&context=dracula-studies"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Bram Stoker",
+      "kind": "person"
+    },
+    {
+      "name": "Marius Crisan",
+      "kind": "person"
+    },
+    {
+      "name": "Jonathan Harker",
+      "kind": "person"
+    },
+    {
+      "name": "Bistritz",
+      "kind": "place"
+    },
+    {
+      "name": "Castle Dracula",
+      "kind": "place"
+    },
+    {
+      "name": "Bryan Alexander",
+      "kind": "person"
+    },
+    {
+      "name": "Alice Sukdolová",
+      "kind": "person"
+    },
+    {
+      "name": "François Audouy",
+      "kind": "person"
+    },
+    {
+      "name": "Gary Shore",
+      "kind": "person"
+    }
+  ]
+}

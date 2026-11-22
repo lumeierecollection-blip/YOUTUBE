@@ -1,0 +1,62 @@
+{
+  "topic_slug": "okefenokee-swamp-unesco-world-heritage-site",
+  "strongest_angle": "Investigating the designation of the Okefenokee Swamp as a UNESCO World Heritage Site in July 2026, marking the 27th U.S. site and the first managed entirely by the U.S. National Wildlife Refuge System.",
+  "key_facts": [
+    {
+      "fact": "The Okefenokee Swamp was officially added to the UNESCO World Heritage List in July 2026, becoming the 27th World Heritage site in the United States and the first in the state of Georgia.",
+      "source_url": "https://www.wabe.org/okefenokee-becomes-georgias-first-unesco-world-heritage-site",
+      "source_name": "WABE",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Okefenokee National Wildlife Refuge is located primarily in southeastern Georgia and northeastern Florida, protecting the largest lowland freshwater peatland in the subtropical zone worldwide.",
+      "source_url": "https://whc.unesco.org/en/list/1751",
+      "source_name": "UNESCO World Heritage Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "The National Geographic notes that the Okefenokee Swamp in Georgia and Florida is the largest blackwater swamp and the largest freshwater ecosystem in North America.",
+      "source_url": "https://www.nationalgeographic.com/travel/article/okefenokee-swamp-world-heritage-how-to-visit",
+      "source_name": "National Geographic",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total U.S. World Heritage Sites including Okefenokee",
+      "value": 27,
+      "unit": "sites",
+      "source_url": "https://www.wabe.org/okefenokee-becomes-georgias-first-unesco-world-heritage-site"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Okefenokee Swamp",
+      "kind": "place"
+    },
+    {
+      "name": "Okefenokee National Wildlife Refuge",
+      "kind": "organization"
+    },
+    {
+      "name": "Georgia",
+      "kind": "place"
+    },
+    {
+      "name": "Florida",
+      "kind": "place"
+    },
+    {
+      "name": "UNESCO",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. National Wildlife Refuge System",
+      "kind": "organization"
+    },
+    {
+      "name": "Muscogee Creek Nation",
+      "kind": "organization"
+    }
+  ]
+}

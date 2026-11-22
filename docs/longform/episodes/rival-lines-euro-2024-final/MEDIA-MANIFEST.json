@@ -1,0 +1,205 @@
+{
+ "episode": "How Spain Won the Euro 2024 Final, in Data",
+ "channel": "rival-lines",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/rival-lines/spain-moncloa-2024-1.jpg",
+   "kind": "authentic",
+   "description": "The Prime Minister, Pedro Sánchez, together with some of the members of the Spanish National Football Team.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_(1).jpg",
+   "creator": "La Moncloa",
+   "licence": "Attribution",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes (per Commons tag)",
+   "editing": "yes",
+   "attribution": "required: publisher name",
+   "usable": "yes, after re-reading the publisher's terms",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": [
+    "R02b"
+   ]
+  },
+  {
+   "asset": "lf2/rival-lines/spain-moncloa-2024-2.jpg",
+   "kind": "authentic",
+   "description": "The Prime Minister, Pedro Sánchez, together with some of the members of the Spanish National Football Team.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_(2).jpg",
+   "creator": "La Moncloa",
+   "licence": "Attribution",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes (per Commons tag)",
+   "editing": "yes",
+   "attribution": "required: publisher name",
+   "usable": "yes, after re-reading the publisher's terms",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/rival-lines/spain-moncloa-2024-3.jpg",
+   "kind": "authentic",
+   "description": "The Prime Minister, Pedro Sánchez, together with some of the members of the Spanish National Football Team.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:S%C3%A1nchez_se_reuni%C3%B3_con_los_futbolistas_de_la_selecci%C3%B3n_espa%C3%B1ola_tras_ganar_la_Eurocopa_2024_(3).jpg",
+   "creator": "La Moncloa",
+   "licence": "Attribution",
+   "licence_url": "",
+   "downloaded": "2026-11-13",
+   "commercial": "yes (per Commons tag)",
+   "editing": "yes",
+   "attribution": "required: publisher name",
+   "usable": "yes, after re-reading the publisher's terms",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": [
+    "R16"
+   ]
+  },
+  {
+   "asset": "lf2/rival-lines/olympiastadion-2024.jpg",
+   "kind": "authentic",
+   "description": "Olympiastadion Berlin",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Olympiastadion,_Berlin_(LRM_20240812_134444).jpg",
+   "creator": "Matti Blume",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/rival-lines/oyarzabal-2018.jpg",
+   "kind": "authentic",
+   "description": "Oyarzabal in 2018",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Mikel_Oyarzabal_2018.jpg",
+   "creator": "Giovanni Batista Rodriguez from San Sebastian-Donostia, España",
+   "licence": "CC BY-SA 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/rival-lines/palmer-2024.jpg",
+   "kind": "authentic",
+   "description": "Cole Palmer during Leicester City vs Chelsea at the King Power Stadium on 23 November 2024",
+   "source_url": "https://commons.wikimedia.org/wiki/File:ColePalmervsLeicester.jpg",
+   "creator": "Truth619",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": [
+    "R10b"
+   ]
+  },
+  {
+   "asset": "lf2/rival-lines/yamal-2025.jpg",
+   "kind": "authentic",
+   "description": "Lamine Yamal Nasraoui Ebana[note 1] (born 13 July 2007) is a Spanish professional footballer who plays as a winger for La Liga club Barcelona and the Spain national team.",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Lamine_Yamal_in_2025.jpg",
+   "creator": "Biso",
+   "licence": "CC BY 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "rival-lines",
+   "intended_episode": "How Spain Won the Euro 2024 Final, in Data",
+   "used_in_beats": []
+  }
+ ],
+ "footage_gaps": [
+  {
+   "beat": "R02b",
+   "scene": "photo",
+   "reference_used": "broadcast clip in the reference",
+   "we_use": "lf2/rival-lines/spain-moncloa-2024-1.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R03",
+   "scene": "sequence",
+   "reference_used": "broadcast match clip in the reference (we animate event data instead)",
+   "we_use": "StatsBomb event + 360 animation",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R08",
+   "scene": "sequence",
+   "reference_used": "broadcast match clip in the reference (we animate event data instead)",
+   "we_use": "StatsBomb event + 360 animation",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R10b",
+   "scene": "photo",
+   "reference_used": "broadcast clip in the reference",
+   "we_use": "lf2/rival-lines/palmer-2024.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R11",
+   "scene": "sequence",
+   "reference_used": "broadcast match clip in the reference (we animate event data instead)",
+   "we_use": "StatsBomb event + 360 animation",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R12",
+   "scene": "sequence",
+   "reference_used": "broadcast match clip in the reference (we animate event data instead)",
+   "we_use": "StatsBomb event + 360 animation",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "R16",
+   "scene": "photo",
+   "reference_used": "broadcast clip in the reference",
+   "we_use": "lf2/rival-lines/spain-moncloa-2024-3.jpg",
+   "licensed_video_available": "no"
+  }
+ ],
+ "missing_files": [],
+ "sources": {
+  "SBM": {
+   "title": "StatsBomb open data: UEFA Euro 2024 matches (competition 55, season 282)",
+   "url": "https://github.com/statsbomb/open-data/blob/master/data/matches/55/282.json"
+  },
+  "WEF": {
+   "title": "Wikipedia: UEFA Euro 2024 final",
+   "url": "https://en.wikipedia.org/wiki/UEFA_Euro_2024_final",
+   "retrieved": "2026-11-13"
+  },
+  "PHOTO": {
+   "title": "Licensed photographs via Wikimedia Commons (La Moncloa government press photos; CC licences): public/lf2/rival-lines/ATTRIBUTIONS.json",
+   "url": "https://commons.wikimedia.org/"
+  },
+  "SB": {
+   "title": "StatsBomb open data: UEFA Euro 2024 final, Spain v England, match 3943043 (events, lineups, 360)",
+   "url": "https://github.com/statsbomb/open-data",
+   "note": "Free for public use with attribution to StatsBomb (repository README, Terms & Conditions)"
+  }
+ }
+}

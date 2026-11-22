@@ -1,0 +1,148 @@
+{
+  "topic_slug": "meta-s-muse-ai-app-adds-custom-spaces-to-organize-everyday-t",
+  "strongest_angle": "Meta's new 'Spaces' feature inside the Muse AI app functions as an adaptive personal hub that automatically customizes workflows, breakout chats, and specialized dashboards without manual clutter.",
+  "key_facts": [
+    {
+      "fact": "On November 6, 2026, Meta announced a new feature called Spaces to build customized interactive experiences directly inside the Muse AI app.",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app",
+      "source_name": "Meta Official Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "On November 6, 2026, journalist Emma Roth reported in The Verge that Meta's Muse AI app enables users to generate custom spaces such as shopping hubs, school dashboards, music trackers, and trivia games.",
+      "source_url": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
+      "source_name": "The Verge",
+      "confidence": "high"
+    },
+    {
+      "fact": "Writer Lucas Ropek reported in TechCrunch on November 6, 2026, that Meta's Spaces act as dedicated breakout conversations revolving around specific topics for agentic helpers inside Muse.",
+      "source_url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    },
+    {
+      "fact": "On November 9, 2026, tech reporters Sheldon Pinto and Rohan Pal noted in Gadgets 360 that Meta introduced Spaces following the launch of Muse Voice to deliver customized information feeds.",
+      "source_url": "https://www.gadgets360.com/ai/news/meta-launches-spaces-feature-custom-muse-ai-app-experiences-12302566",
+      "source_name": "Gadgets 360",
+      "confidence": "high"
+    },
+    {
+      "fact": "On November 7, 2026, ETV Bharat reported from Hyderabad that Meta's Spaces feature gives each topic its own self-updating chat, from shopping lists to wedding planning.",
+      "source_url": "https://www.etvbharat.com/en/technology/muse-spaces-muse-ai-agents-muse-voice-meta-enn26110701496",
+      "source_name": "ETV Bharat",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Meta's announcement on November 6, 2026, users can personalize their Muse app layout by pinning custom Spaces to their main tabs or sidebar navigation.",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app",
+      "source_name": "Meta Official Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "As reported by Emma Roth in The Verge on November 6, 2026, users can create a custom Space inside Muse by describing the desired workflow to the AI assistant or connecting an external source.",
+      "source_url": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces",
+      "source_name": "The Verge",
+      "confidence": "high"
+    },
+    {
+      "fact": "TechCrunch reported on November 6, 2026, that Meta launched Spaces to expand user collaboration with its broader generation of agentic Muse helpers.",
+      "source_url": "https://techcrunch.com/2026/11/06/meta-introduces-spaces-a-new-way-to-collaborate-with-your-muse-agent",
+      "source_name": "TechCrunch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Announcement Day of November 2026",
+      "value": 6,
+      "unit": "day",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app"
+    },
+    {
+      "label": "Announcement Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app"
+    },
+    {
+      "label": "ETV Bharat Reporting Day of November 2026",
+      "value": 7,
+      "unit": "day",
+      "source_url": "https://www.etvbharat.com/en/technology/muse-spaces-muse-ai-agents-muse-voice-meta-enn26110701496"
+    },
+    {
+      "label": "Gadgets 360 Reporting Day of November 2026",
+      "value": 9,
+      "unit": "day",
+      "source_url": "https://www.gadgets360.com/ai/news/meta-launches-spaces-feature-custom-muse-ai-app-experiences-12302566"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Organize the app the way you want it — add spaces to your sidebar or main tabs and change them out whenever so your Muse app fits your routine.",
+      "speaker": "Facebook company",
+      "source_name": "Meta Official Newsroom",
+      "source_url": "https://about.fb.com/news/2026/11/introducing-spaces-customize-muse-app"
+    },
+    {
+      "text": "Meta will now allow you to build customized, app-like experiences within Muse.",
+      "speaker": "Emma Roth",
+      "source_name": "The Verge",
+      "source_url": "https://www.theverge.com/tech/1028871/meta-muse-ai-spaces"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Meta",
+      "kind": "organization"
+    },
+    {
+      "name": "Muse",
+      "kind": "object"
+    },
+    {
+      "name": "Spaces",
+      "kind": "object"
+    },
+    {
+      "name": "Emma Roth",
+      "kind": "person"
+    },
+    {
+      "name": "The Verge",
+      "kind": "organization"
+    },
+    {
+      "name": "Lucas Ropek",
+      "kind": "person"
+    },
+    {
+      "name": "TechCrunch",
+      "kind": "organization"
+    },
+    {
+      "name": "Sheldon Pinto",
+      "kind": "person"
+    },
+    {
+      "name": "Rohan Pal",
+      "kind": "person"
+    },
+    {
+      "name": "Gadgets 360",
+      "kind": "organization"
+    },
+    {
+      "name": "ETV Bharat",
+      "kind": "organization"
+    },
+    {
+      "name": "Hyderabad",
+      "kind": "place"
+    },
+    {
+      "name": "Muse Voice",
+      "kind": "object"
+    }
+  ]
+}

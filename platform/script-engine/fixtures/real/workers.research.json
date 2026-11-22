@@ -1,0 +1,146 @@
+{
+  "topic_slug": "nearly-20-of-workers-replaced-by-ai-are-being-asked-back",
+  "strongest_angle": "Companies that replaced workers with AI are facing a 19 percent rebound rate in the United States, forcing employers to re-hire laid-off staff who demand higher pay and job security.",
+  "key_facts": [
+    {
+      "fact": "In a survey of U.S. workers conducted by Propeller Insights for SHL, 19 percent of respondents replaced by AI were later asked to return to their jobs.",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back",
+      "source_name": "The Globe and Mail",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the United Kingdom, 13 percent of surveyed workers who were replaced by AI reported being asked back by their original employer.",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back",
+      "source_name": "The Globe and Mail",
+      "confidence": "high"
+    },
+    {
+      "fact": "Across both the United States and the United Kingdom combined, 16 percent of surveyed workers were replaced by AI and subsequently asked to return.",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back",
+      "source_name": "The Globe and Mail",
+      "confidence": "high"
+    },
+    {
+      "fact": "Market research firm Propeller Insights polled over 1,000 U.S. workers and over 1,000 U.K. workers for talent management company SHL.",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/30/ai-rebounding-employees.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to research released by SHL in London, more than 33 percent of workers have experienced AI displacement firsthand or know someone who has.",
+      "source_url": "https://www.shl.com/about/news-and-events/press-releases/workers-replaced-by-ai-would-demand-higher-pay-and-greater-job-security-to-return-shl-research-finds",
+      "source_name": "SHL",
+      "confidence": "high"
+    },
+    {
+      "fact": "Fortune reporter Joshua Hong documented on November 9, 2026, that returning U.S. workers replaced by AI are demanding higher pay, job security, and AI transparency.",
+      "source_url": "https://fortune.com/2026/11/09/ai-rebounding-20-us-workers-replaced-higher-pay-job-security",
+      "source_name": "Fortune",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Globe and Mail writer Déjà Leonard reported on October 25, 2026, that U.S. workers are asked back at a rate of 19 percent compared to 13 percent for U.K. workers.",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back",
+      "source_name": "The Globe and Mail",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC reporter Sophie Caldwell reported on October 30, 2026, that AI-driven layoffs created a new class of boomerang employees returning to former employers.",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/30/ai-rebounding-employees.html",
+      "source_name": "CNBC",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "U.S. workers asked back after AI replacement",
+      "value": 19,
+      "unit": "%",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back"
+    },
+    {
+      "label": "U.K. workers asked back after AI replacement",
+      "value": 13,
+      "unit": "%",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back"
+    },
+    {
+      "label": "Combined U.S. and U.K. workers asked back after AI replacement",
+      "value": 16,
+      "unit": "%",
+      "source_url": "https://www.theglobeandmail.com/business/careers/article-reversing-course-workers-replaced-by-ai-are-being-asked-back"
+    },
+    {
+      "label": "U.S. workers polled in Propeller Insights survey",
+      "value": 1000,
+      "unit": "workers",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/30/ai-rebounding-employees.html"
+    },
+    {
+      "label": "U.K. workers polled in Propeller Insights survey",
+      "value": 1000,
+      "unit": "workers",
+      "source_url": "https://www.cnbc.com/make-it/2026/10/30/ai-rebounding-employees.html"
+    },
+    {
+      "label": "Workers who experienced or know someone experiencing AI displacement",
+      "value": 33,
+      "unit": "%",
+      "source_url": "https://www.shl.com/about/news-and-events/press-releases/workers-replaced-by-ai-would-demand-higher-pay-and-greater-job-security-to-return-shl-research-finds"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "More than a third of workers have experienced AI-related job displacement firsthand or know someone who has.",
+      "speaker": "SHL",
+      "source_name": "SHL",
+      "source_url": "https://www.shl.com/about/news-and-events/press-releases/workers-replaced-by-ai-would-demand-higher-pay-and-greater-job-security-to-return-shl-research-finds"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "SHL",
+      "kind": "organization"
+    },
+    {
+      "name": "Propeller Insights",
+      "kind": "organization"
+    },
+    {
+      "name": "Fortune",
+      "kind": "organization"
+    },
+    {
+      "name": "CNBC",
+      "kind": "organization"
+    },
+    {
+      "name": "The Globe and Mail",
+      "kind": "organization"
+    },
+    {
+      "name": "Joshua Hong",
+      "kind": "person"
+    },
+    {
+      "name": "Sophie Caldwell",
+      "kind": "person"
+    },
+    {
+      "name": "Déjà Leonard",
+      "kind": "person"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    }
+  ]
+}

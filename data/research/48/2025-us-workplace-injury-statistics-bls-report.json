@@ -1,0 +1,72 @@
+{
+  "topic_slug": "2025-us-workplace-injury-statistics-bls-report",
+  "strongest_angle": "The 2025 Bureau of Labor Statistics data reveals a significant 3 percent decline in private industry nonfatal injuries, reaching the lowest recorded level since the current reporting series began in 2003.",
+  "key_facts": [
+    {
+      "fact": "Private industry employers in the United States reported 2.4 million nonfatal workplace injuries and illnesses in 2025.",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+      "source_name": "Occupational Health & Safety",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2.4 million cases reported in 2025 represent a 3.0 percent decrease compared to the figures recorded in 2024.",
+      "source_url": "https://www.marketreview.com/news/us-workplace-injuries-illnesses-2025",
+      "source_name": "MarketReview",
+      "confidence": "high"
+    },
+    {
+      "fact": "Total illness cases reported by private employers fell by 26.1 percent in 2025, while respiratory illness cases specifically dropped by 67.6 percent.",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+      "source_name": "Occupational Health & Safety",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2025 report marks the third consecutive year of decline in nonfatal injuries and illnesses within the U.S. private sector.",
+      "source_url": "https://www.safetyandhealthmagazine.com/nonfatal-injuries-and-illnesses-trending-downward-bls-data-shows",
+      "source_name": "Safety+Health Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total nonfatal workplace injuries and illnesses in 2025",
+      "value": 2.4,
+      "unit": "million",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Year-over-year percentage decrease in injuries and illnesses",
+      "value": 3,
+      "unit": "percent",
+      "source_url": "https://www.marketreview.com/news/us-workplace-injuries-illnesses-2025"
+    },
+    {
+      "label": "Decrease in total illness cases",
+      "value": 26.1,
+      "unit": "percent",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Decrease in respiratory illness cases",
+      "value": 67.6,
+      "unit": "percent",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Start year of the current BLS reporting series",
+      "value": 2003,
+      "unit": "year",
+      "source_url": "https://www.marketreview.com/news/us-workplace-injuries-illnesses-2025"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bureau of Labor Statistics",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    }
+  ]
+}

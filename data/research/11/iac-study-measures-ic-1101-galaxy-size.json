@@ -1,0 +1,83 @@
+{
+  "topic_slug": "iac-study-measures-ic-1101-galaxy-size",
+  "strongest_angle": "Examine the latest Instituto de Astrofísica de Canarias measurement of IC 1101, revealing a main body reaching 1.7 million light-years across—approximately 17 times the size of the Milky Way—and explore how it scales against local cosmic structures using ultra-deep imaging data.",
+  "key_facts": [
+    {
+      "fact": "Researchers using ultra-deep imaging estimated the diameter of galaxy IC 1101 to be a whopping 520 kiloparsecs, or nearly 1.7 million light-years, as reported in a study submitted to arXiv.org.",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way",
+      "source_name": "Science News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Instituto de Astrofísica de Canarias (IAC) led an international team of astronomers in measuring the size of IC 1101, considered the largest known galaxy in the Universe, published in Astronomy & Astrophysics.",
+      "source_url": "https://www.iac.edu.es/en/outreach/news/iac-study-measures-exact-size-largest-known-galaxy",
+      "source_name": "Instituto de Astrofísica de Canarias",
+      "confidence": "high"
+    },
+    {
+      "fact": "Carlos Marrero-de la Rosa, Ignacio Trujillo, Ignacio Ruiz Cejudo, Mireia Montes, and Fernando Buitrago authored the study on IC 1101 published in Astronomy & Astrophysics on October 1, 2026.",
+      "source_url": "https://www.aanda.org/articles/aa/full_html/2026/10/aa60963-26/aa60963-26.html",
+      "source_name": "Astronomy & Astrophysics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ultra-deep images of IC 1101 were captured in 2022 by the Isaac Newton Telescope, as detailed by Science News reporting on July 16.",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way",
+      "source_name": "Science News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Estimated galaxy diameter in kiloparsecs",
+      "value": 520,
+      "unit": "kiloparsecs",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way"
+    },
+    {
+      "label": "Estimated galaxy diameter in light-years",
+      "value": 1.7,
+      "unit": "million light-years",
+      "source_url": "https://www.sciencenews.org/article/largest-known-galaxy-wider-milky-way"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "IC 1101",
+      "kind": "object"
+    },
+    {
+      "name": "Instituto de Astrofísica de Canarias",
+      "kind": "organization"
+    },
+    {
+      "name": "Carlos Marrero-de la Rosa",
+      "kind": "person"
+    },
+    {
+      "name": "Ignacio Trujillo",
+      "kind": "person"
+    },
+    {
+      "name": "Ignacio Ruiz Cejudo",
+      "kind": "person"
+    },
+    {
+      "name": "Mireia Montes",
+      "kind": "person"
+    },
+    {
+      "name": "Fernando Buitrago",
+      "kind": "person"
+    },
+    {
+      "name": "Isaac Newton Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "object"
+    }
+  ]
+}

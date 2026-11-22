@@ -1,0 +1,74 @@
+{
+  "channel_id": "17",
+  "topic_slug": "ethiopian-water-mouse-rediscovery",
+  "format": "shorts",
+  "hook": "A rare mouse vanished in 1927, but researchers just found three survivors.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A rare mouse vanished in 1927, but researchers just found three survivors.",
+      "visual_cue": "Macro shot of a dark-furred Nilopegamys plumbeus in a damp Ethiopian forest habitat.",
+      "sfx_cue": "Soft, rhythmic rustling of leaves in a quiet forest environment.",
+      "b_roll": [
+        "Historical black and white photo of a 1927 expedition site in Ethiopia"
+      ],
+      "text_overlay": {
+        "text": "Rediscovered: Nilopegamys plumbeus"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, an Ethiopian-Czech team explored the Yayu biosphere reserve to search for this lost creature. Where were these animals hiding?",
+      "visual_cue": "Map showing the Yayu biosphere reserve in southwestern Ethiopia with a research team icon.",
+      "sfx_cue": "Sound of rushing water in a stream, fading into ambient forest sounds.",
+      "b_roll": [
+        "Wide shot of the Yayu biosphere reserve dense vegetation",
+        "Close-up of a research team collecting water samples"
+      ],
+      "text_overlay": {
+        "text": "Yayu Biosphere Reserve, Ethiopia"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except these animals appeared 350 kilometers away from the original 1927 record location.",
+      "visual_cue": "Animated line on a map connecting the 1927 site to the current 2026 Yayu site.",
+      "sfx_cue": "A subtle, high-pitched ping sound indicating a map location marker.",
+      "b_roll": [
+        "Digital map showing 350 kilometers distance between two points"
+      ],
+      "text_overlay": {
+        "text": "350 km shift in habitat"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The team confirmed the find by identifying three Nilopegamys plumbeus specimens. This confirms the genus still exists in southwestern Ethiopia today.",
+      "visual_cue": "Close-up of the mouse's distinct physical features, such as its specialized tail and fur.",
+      "sfx_cue": "Soft, natural ambient forest sounds with a faint wind rustle.",
+      "b_roll": [
+        "Scientist examining a specimen with a magnifying glass",
+        "Scientific illustration of Nilopegamys plumbeus anatomy"
+      ],
+      "text_overlay": {
+        "text": "3 specimens identified"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Ethiopian water mouse remains protected within the Yayu biosphere reserve.",
+      "visual_cue": "Slow zoom out from a small stream in the Yayu reserve to show the dense forest canopy.",
+      "sfx_cue": "Distanced bird calls fading into silence.",
+      "b_roll": [
+        "Lush, green landscape of the Yayu biosphere reserve"
+      ],
+      "text_overlay": {
+        "text": "Yayu Biosphere Reserve"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.artensterben.de/en/ethiopian-amphibious-rat",
+    "https://www.avcr.cz/cs/veda-a-vyzkum/biologie-a-lekarske-vedy/Po-temer-sto-letech-znovuobjevili-vzacneho-etiopskeho-vodniho-hlodavce"
+  ]
+}

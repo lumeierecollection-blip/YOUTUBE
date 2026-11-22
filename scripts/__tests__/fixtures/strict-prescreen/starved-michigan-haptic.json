@@ -1,0 +1,34 @@
+{
+  "_source": "run 39961381904 prep artifact: a48/research/48/michigan-engineering-haptic-steering-wheel-driving.json",
+  "key_facts": [
+    {
+      "fact": "Published on October 1, 2026, researchers at the University of Michigan developed a haptic steering wheel that communicates with drivers to improve semi-autonomous driving performance and trust."
+    },
+    {
+      "fact": "Written by Kate McAlpine, the University of Michigan research highlights how the haptic wheel lets drivers negotiate with autonomous systems rather than fighting unexpected steering corrections."
+    },
+    {
+      "fact": "Distributed via EurekAlert! on October 1, 2026, the study details how the semi-autonomous system inflated the left or right haptic portion of the steering wheel to indicate upcoming turns."
+    },
+    {
+      "fact": "According to Dan Newman of U-M Robotics, the University of Michigan published findings on October 1, 2026, regarding steering wheel communication for better semi-autonomous driving performance."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Day",
+      "value": 1,
+      "unit": "day"
+    },
+    {
+      "label": "Publication Month",
+      "value": 10,
+      "unit": "month"
+    },
+    {
+      "label": "Publication Year",
+      "value": 2026,
+      "unit": "year"
+    }
+  ]
+}

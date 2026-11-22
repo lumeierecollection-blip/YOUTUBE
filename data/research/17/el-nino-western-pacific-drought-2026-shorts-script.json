@@ -1,0 +1,38 @@
+{
+  "channel_id": "17",
+  "topic_slug": "el-nino-western-pacific-drought-2026",
+  "format": "shorts",
+  "hook": "A strengthening 2026 El Niño brings severe below-normal rainfall from Palau to the Marshall Islands.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A strengthening 2026 El Niño brings severe below-normal rainfall from Palau to the Marshall Islands.",
+      "visual_cue": "Satellite map showing Pacific Ocean temperature anomalies and dry regions."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In November 2026, the World Meteorological Organization reported below-normal rainfall from Palau to the Marshall Islands. How many are critical?",
+      "visual_cue": "Animated map highlighting the Pacific island chain from Palau to Fiji."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Worse, the Pacific Islands Climate and Ocean Forum warns that 2026's El Niño exceeds records set since 1950.",
+      "visual_cue": "Historical climate trend graph showing 1950 as the baseline."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This leaves 24,600 people relying on intermittent supplies or emergency water carting.",
+      "visual_cue": "Infographic showing 19 of 44 water sources highlighted in red."
+    },
+    {
+      "id": "close",
+      "voiceover": "About 24,600 people in Fiji now rely on water carting as this El Niño deepens.",
+      "visual_cue": "Aerial shot of a rural Fijian community landscape during drought."
+    }
+  ],
+  "sources_used": [
+    "https://wmo.int/media/news/western-pacific-faces-drier-months-el-nino-strengthens",
+    "https://pmn.co.nz/read/pacific-region/fiji-s-water-sources-running-dry-as-super-el-nino-tightens-its-grip",
+    "https://www.pacificrcc.net/sites/default/files/2026-10/PICOF_19-Regional_Statement_final.pdf"
+  ]
+}

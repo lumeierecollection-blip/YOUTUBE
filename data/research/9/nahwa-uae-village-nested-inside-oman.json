@@ -1,0 +1,85 @@
+{
+  "topic_slug": "nahwa-uae-village-nested-inside-oman",
+  "strongest_angle": "Explore the unique geopolitical setup of Nahwa, an exclave belonging to the Emirate of Sharjah (UAE) that sits entirely inside a pocket of Omani territory known as Madha.",
+  "key_facts": [
+    {
+      "fact": "Nahwa has a total area of 4.40 square kilometers, forming a second-order enclave inside the Omani territory of Madha.",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the 2015 census, the total population of Nahwa was 302 people.",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Driving through the tiny village of Nahwa in the United Arab Emirate of Sharjah reveals a local architecture and landscape similar to the Hajar mountains.",
+      "source_url": "https://www.cnn.com/travel/nahwa-sharjah-uae-counter-enclave",
+      "source_name": "CNN",
+      "confidence": "high"
+    },
+    {
+      "fact": "Access to the village of Nahwa is reached via a paved but winding road of about 5 kilometers leading from New Madha.",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Nahwa total area",
+      "value": 4.4,
+      "unit": "square kilometers",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa"
+    },
+    {
+      "label": "Nahwa population in 2015",
+      "value": 302,
+      "unit": "people",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa"
+    },
+    {
+      "label": "Road distance from New Madha",
+      "value": 5,
+      "unit": "kilometers",
+      "source_url": "https://en.wikipedia.org/wiki/Nahwa"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Nahwa",
+      "kind": "place"
+    },
+    {
+      "name": "Madha",
+      "kind": "place"
+    },
+    {
+      "name": "Sharjah",
+      "kind": "place"
+    },
+    {
+      "name": "United Arab Emirates",
+      "kind": "place"
+    },
+    {
+      "name": "Oman",
+      "kind": "place"
+    },
+    {
+      "name": "Sultan bin Muhammad Al-Qasimi",
+      "kind": "person"
+    },
+    {
+      "name": "New Madha",
+      "kind": "place"
+    },
+    {
+      "name": "Hajar mountains",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "topic_slug": "smokey-robinson-wife-denied-stay-legal-fees",
+  "strongest_angle": "Examine the November 2026 Los Angeles Superior Court ruling denying Smokey Robinson and Frances Gladney Robinson a stay on a $1.23 million legal fees hearing amid an ongoing $50 million lawsuit.",
+  "key_facts": [
+    {
+      "fact": "Smokey Robinson and his wife Frances Gladney Robinson faced a motion from four former domestic workers requesting $1.23 million in legal fees in Los Angeles Superior Court.",
+      "source_url": "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion",
+      "source_name": "Sandra Rose",
+      "confidence": "high"
+    },
+    {
+      "fact": "A judge denied a motion by Smokey Robinson and his wife to delay a hearing on more than $1 million in attorneys' fees in November 2026.",
+      "source_url": "https://mynewsla.com/business/2026/11/15/smokey-robinson-wife-denied-stay-of-fees-motion-hearing-pending-appeal",
+      "source_name": "MyNewsLA.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Six former employees pursue allegations against Smokey Robinson in a $50 million sexual assault lawsuit ahead of a 2027 trial.",
+      "source_url": "https://www.lawcommentary.com/articles/smokey-robinson-50m-sexual-assault-lawsuit-third-lawyer",
+      "source_name": "Law Commentary",
+      "confidence": "medium"
+    },
+    {
+      "fact": "On August 18, 2026, a Los Angeles Superior Court judge granted the Robinsons a prior temporary delay regarding the attorneys' fees hearing.",
+      "source_url": "https://mynewsla.com/life/2026/08/18/smokey-robinson-wife-get-delay-in-workers-1-23m-attorneys-fees-hearing",
+      "source_name": "MyNewsLA.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Legal fees requested",
+      "value": 1.23,
+      "unit": "million dollars",
+      "source_url": "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion"
+    },
+    {
+      "label": "Lawsuit amount",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion"
+    },
+    {
+      "label": "Smokey Robinson age",
+      "value": 86,
+      "unit": "years",
+      "source_url": "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion"
+    },
+    {
+      "label": "Frances Gladney Robinson age",
+      "value": 74,
+      "unit": "years",
+      "source_url": "https://sandrarose.com/2026/11/smokey-robinson-requests-another-delay-in-1-23-million-legal-fees-motion"
+    },
+    {
+      "label": "Attorneys fees threshold",
+      "value": 1,
+      "unit": "million dollars",
+      "source_url": "https://mynewsla.com/business/2026/11/15/smokey-robinson-wife-denied-stay-of-fees-motion-hearing-pending-appeal"
+    },
+    {
+      "label": "Trial year",
+      "value": 2027,
+      "unit": "year",
+      "source_url": "https://www.lawcommentary.com/articles/smokey-robinson-50m-sexual-assault-lawsuit-third-lawyer"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Smokey Robinson",
+      "kind": "person"
+    },
+    {
+      "name": "Frances Gladney Robinson",
+      "kind": "person"
+    },
+    {
+      "name": "Los Angeles Superior Court",
+      "kind": "place"
+    },
+    {
+      "name": "Anahita Sedaghatfar",
+      "kind": "person"
+    }
+  ]
+}

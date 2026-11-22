@@ -1,0 +1,77 @@
+{
+  "topic_slug": "nist-optical-clocks-time-mountains-blue-sky",
+  "strongest_angle": "Researchers from the National Institute of Standards and Technology and the University of Colorado Boulder tested ultraprecise optical atomic clocks on Mount Blue Sky to measure how time runs faster at higher altitudes.",
+  "key_facts": [
+    {
+      "fact": "Researchers from the National Institute of Standards and Technology and the University of Colorado Boulder spent about 15 weeks during the field season testing an optical lattice clock near the summit of Mount Blue Sky, which is more than 4,300 meters high.",
+      "source_url": "https://www.scientificamerican.com/article/why-time-runs-faster-on-mountains-and-how-optical-clocks-could-map-earth",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists from the National Institute of Standards and Technology, the University of Colorado Boulder, and the National Oceanic and Atmospheric Administration conducted experiments inside the former Meyer-Womble Observatory on Mount Blue Sky.",
+      "source_url": "https://www.colorado.edu/2026/10/22/quantum-technology-elevated",
+      "source_name": "University of Colorado Boulder",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers compared the ticking rate of an optical atomic clock on a 4,348-meter mountain in Colorado to a clock nearly 2,700 meters lower to test Einstein's theory of general relativity.",
+      "source_url": "https://www.nist.gov/blogs/taking-measure/putting-einstein-test-worlds-most-accurate-clocks",
+      "source_name": "NIST",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Mount Blue Sky elevation",
+      "value": 4300,
+      "unit": "meters",
+      "source_url": "https://www.scientificamerican.com/article/why-time-runs-faster-on-mountains-and-how-optical-clocks-could-map-earth"
+    },
+    {
+      "label": "Mountain summit elevation",
+      "value": 4348,
+      "unit": "meters",
+      "source_url": "https://www.nist.gov/blogs/taking-measure/putting-einstein-test-worlds-most-accurate-clocks"
+    },
+    {
+      "label": "Lower clock elevation",
+      "value": 2700,
+      "unit": "meters",
+      "source_url": "https://www.nist.gov/blogs/taking-measure/putting-einstein-test-worlds-most-accurate-clocks"
+    },
+    {
+      "label": "Field season length",
+      "value": 15,
+      "unit": "weeks",
+      "source_url": "https://www.scientificamerican.com/article/why-time-runs-faster-on-mountains-and-how-optical-clocks-could-map-earth"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "National Institute of Standards and Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Colorado Boulder",
+      "kind": "organization"
+    },
+    {
+      "name": "National Oceanic and Atmospheric Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "Mount Blue Sky",
+      "kind": "place"
+    },
+    {
+      "name": "Meyer-Womble Observatory",
+      "kind": "place"
+    },
+    {
+      "name": "Albert Einstein",
+      "kind": "person"
+    }
+  ]
+}

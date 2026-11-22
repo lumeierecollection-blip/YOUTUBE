@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "channel_id": "ch-01",
+    "format": "shorts",
+    "created_at": "2026-11-03T18:04:00.000Z",
+    "topic": "margaret-clitherow-execution-guy-fawkes-shorts",
+    "title": "The Bloody Execution That Shaped Guy Fawkes' Conspiracy"
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "format": "png",
+    "max_filesize_kb": 2048
+  },
+  "background": {
+    "type": "gradient",
+    "colors": ["#0D1117", "#1A100A"],
+    "direction": "diagonal"
+  },
+  "elements": [
+    {
+      "type": "text",
+      "content": "THE EXECUTION THAT",
+      "position": { "x": "center", "y": "top", "margin": 100 },
+      "font": {
+        "family": "Cormorant Garamond",
+        "weight": 700,
+        "size": 56,
+        "color": "#FFFFFF",
+        "shadow": { "color": "#000000", "blur": 10, "offset_y": 3 }
+      },
+      "max_width": 1000
+    },
+    {
+      "type": "text",
+      "content": "MARGARET CLITHEROW",
+      "position": { "x": "center", "y": "center", "margin": 0 },
+      "font": {
+        "family": "Cormorant Garamond",
+        "weight": 900,
+        "size": 80,
+        "color": "#D4A574",
+        "shadow": { "color": "#000000", "blur": 15, "offset_y": 5 }
+      },
+      "max_width": 1000
+    },
+    {
+      "type": "text",
+      "content": "Shaped Guy Fawkes' 1605 Plot",
+      "position": { "x": "center", "y": "bottom", "margin": 140 },
+      "font": {
+        "family": "Cormorant Garamond",
+        "weight": 400,
+        "size": 36,
+        "color": "#FFFFFF",
+        "opacity": 0.9,
+        "shadow": { "color": "#000000", "blur": 8, "offset_y": 3 }
+      },
+      "max_width": 1000
+    }
+  ],
+  "style_notes": "Cinematic historical thumbnail with serif typography. Gold accent (#D4A574) for the name. Dark gradient background for contrast. Mobile-optimized 9:16 format.",
+  "design_principles": [
+    "Three-level typography hierarchy",
+    "Gold accent for historical gravitas",
+    "Dark background for contrast",
+    "Serif font (Cormorant Garamond) for history channel",
+    "Centered composition for mobile viewing"
+  ]
+}

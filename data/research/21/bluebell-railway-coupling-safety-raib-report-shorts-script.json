@@ -1,0 +1,87 @@
+{
+  "channel_id": "21",
+  "topic_slug": "bluebell-railway-coupling-safety-raib-report",
+  "format": "shorts",
+  "hook": "Unsafe locomotive movements occurred at Sheffield Park on August 9, 2025.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Unsafe locomotive movements occurred at Sheffield Park on August 9, 2025.",
+      "visual_cue": "Historical steam locomotive stationary on heritage railway track",
+      "sfx_cue": "Steam engine hiss and heavy metallic clank",
+      "b_roll": [
+        "Sheffield Park railway station platform",
+        "Vintage steam train coupling mechanism closeup"
+      ],
+      "text_overlay": {
+        "text": "Sheffield Park · 9 August 2025"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:19",
+      "voiceover": "In East Sussex on August 9, 2025, locomotives moved unsafely while coupling. Brighton Locals Newsroom confirmed that nobody was injured. How did the Bluebell Railway, a heritage line in East Sussex, fail during locomotive coupling?",
+      "visual_cue": "Map graphic highlighting East Sussex and Sheffield Park station location",
+      "sfx_cue": "Low ambient machinery rumble",
+      "b_roll": [
+        "East Sussex heritage rail line trackage",
+        "Brighton Locals Newsroom report headline layout"
+      ],
+      "text_overlay": {
+        "text": "East Sussex Railway Safety"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:19-0:25",
+      "voiceover": "However, the Rail Accident Investigation Branch published Report 11 on October 8, 2026, detailing risks.",
+      "visual_cue": "Official government investigation report document header",
+      "sfx_cue": "Document page turn paper sound",
+      "b_roll": [
+        "Rail Accident Investigation Branch official crest",
+        "Report 11 title page document graphic"
+      ],
+      "text_overlay": {
+        "text": "RAIB Report 11/2026"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:39",
+      "voiceover": "Investigators found that unsafe locomotive movements occurred during the coupling process at Sheffield Park. The Bluebell Railway, a heritage line, must now evaluate all vehicle coupling procedures after 2025.",
+      "visual_cue": "Diagram illustrating train coupling procedure and buffer contact points",
+      "sfx_cue": "Subtle low bass accent drop",
+      "b_roll": [
+        "Bluebell Railway locomotive shed exterior",
+        "Train shunting and coupling iron hook detail"
+      ],
+      "text_overlay": {
+        "text": "Risk-Based Safety Review"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "close",
+      "timing": "0:39-0:45",
+      "voiceover": "Report 11 requires safer coupling arrangements for Bluebell Railway operations.",
+      "visual_cue": "Steam train departing Sheffield Park station under clear sky",
+      "sfx_cue": "Train whistle echo fading out",
+      "b_roll": [
+        "Bluebell Railway track stretching into distant greenery"
+      ],
+      "text_overlay": {
+        "text": "Bluebell Railway Safety Standard"
+      },
+      "transition_out": "fade"
+    }
+  ],
+  "sources_used": [
+    "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway",
+    "https://brightonlocals.co.uk/bluebell-railway-safety-report-sussex-october-2026",
+    "https://railfanning.org/2026/10/rail-accident-investigation-branch-bluebell-railway-should-review-coupling-uncoupling-arrangements"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "topic_slug": "safe-work-australia-quad-bike-safety-reforms-2026",
+  "strongest_angle": "In November 2026, a majority of Australian work health and safety ministers committed to regulatory reforms to address the persistent trend of fatal quad bike incidents in agricultural workplaces.",
+  "key_facts": [
+    {
+      "fact": "A majority of work health and safety ministers agreed on November 17, 2026, to progress new regulatory reforms aimed at strengthening quad bike safety in Australian workplaces.",
+      "source_url": "https://www.safeworkaustralia.gov.au/media-centre/news/whs-ministers-agree-strengthen-quad-bike-safety-work",
+      "source_name": "Safe Work Australia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Between 2021 and 2025, 73 people died in quad bike incidents across Australia, representing an average of nearly 15 deaths per year.",
+      "source_url": "https://www.miragenews.com/whs-ministers-agree-to-strengthen-workplace-1778395",
+      "source_name": "Mirage News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Since 2011, 245 people have died in quad bike related incidents in Australia, with 43 of those victims aged 19 or under.",
+      "source_url": "https://www.safeworkaustralia.gov.au/media-centre/news/have-your-say-options-improve-quad-bike-safety-workplace",
+      "source_name": "Safe Work Australia",
+      "confidence": "high"
+    },
+    {
+      "fact": "As of November 5, 2026, there have been 17 recorded quad bike fatalities in Australia for the calendar year.",
+      "source_url": "https://www.miragenews.com/whs-ministers-agree-to-strengthen-workplace-1778395",
+      "source_name": "Mirage News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total deaths in quad bike incidents 2021-2025",
+      "value": 73,
+      "unit": "deaths",
+      "source_url": "https://www.miragenews.com/whs-ministers-agree-to-strengthen-workplace-1778395"
+    },
+    {
+      "label": "Total deaths in quad bike incidents since 2011",
+      "value": 245,
+      "unit": "deaths",
+      "source_url": "https://www.safeworkaustralia.gov.au/media-centre/news/have-your-say-options-improve-quad-bike-safety-workplace"
+    },
+    {
+      "label": "Fatalities aged 19 or under since 2011",
+      "value": 43,
+      "unit": "people",
+      "source_url": "https://www.safeworkaustralia.gov.au/media-centre/news/have-your-say-options-improve-quad-bike-safety-workplace"
+    },
+    {
+      "label": "Quad bike fatalities recorded in 2026 as of November 5",
+      "value": 17,
+      "unit": "deaths",
+      "source_url": "https://www.miragenews.com/whs-ministers-agree-to-strengthen-workplace-1778395"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Safe Work Australia",
+      "kind": "organization"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "Quad bike",
+      "kind": "object"
+    },
+    {
+      "name": "Ernst & Young",
+      "kind": "organization"
+    }
+  ]
+}

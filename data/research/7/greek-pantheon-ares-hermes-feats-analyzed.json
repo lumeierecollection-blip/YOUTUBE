@@ -1,0 +1,74 @@
+{
+  "topic_slug": "greek-pantheon-ares-hermes-feats-analyzed",
+  "strongest_angle": "Comparing the mythological combat feats, divine lineage, and distinct divine roles of Ares the war god and Hermes the messenger across classical sources like Theoi and Perseus.",
+  "key_facts": [
+    {
+      "fact": "Ares, the son of Zeus and Hera, is featured in classical myths including his capture by the Aloadai twins and conflicts with Herakles according to Theoi.",
+      "source_url": "https://www.theoi.com/Olympios/AresMyths.html",
+      "source_name": "Theoi Project",
+      "confidence": "high"
+    },
+    {
+      "fact": "Hermes is credited in mythology with slaying the hundred-eyed giant Argos Panoptes and participating in the War of the Giants according to Theoi.",
+      "source_url": "https://www.theoi.com/Olympios/HermesMyths2.html",
+      "source_name": "Theoi Project",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Harpers Dictionary of Classical Antiquities hosted at Perseus Tufts, Ares was the Greek god of war and son of Zeus and Heré.",
+      "source_url": "https://www.perseus.tufts.edu/hopper/text.jsp?doc=Perseus%3Atext%3A1999.04.0062%3Aalphabetic+letter%3DA%3Aentry+group%3D22%3Aentry%3Dares-harpers",
+      "source_name": "Perseus Digital Library",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mythohub notes that Ares embodies the brutality of combat while Hermes represents speed, cunning, and commerce as the messenger of the gods.",
+      "source_url": "https://mythohub.com/greek-figures-comparison/ares-vs-hermes",
+      "source_name": "Mythohub",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Ares",
+      "kind": "person"
+    },
+    {
+      "name": "Hermes",
+      "kind": "person"
+    },
+    {
+      "name": "Zeus",
+      "kind": "person"
+    },
+    {
+      "name": "Hera",
+      "kind": "person"
+    },
+    {
+      "name": "Herakles",
+      "kind": "person"
+    },
+    {
+      "name": "Argos Panoptes",
+      "kind": "person"
+    },
+    {
+      "name": "Aloadai",
+      "kind": "person"
+    },
+    {
+      "name": "Theoi Project",
+      "kind": "organization"
+    },
+    {
+      "name": "Mythohub",
+      "kind": "organization"
+    },
+    {
+      "name": "Perseus Digital Library",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

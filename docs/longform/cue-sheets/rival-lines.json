@@ -1,0 +1,82 @@
+{
+ "channel": "rival-lines",
+ "episode": "How Spain Won the Euro 2024 Final, in Data",
+ "estimated_minutes": 5.5,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:06.4",
+   "seconds": 6.4,
+   "scene": "R02",
+   "cue_type": "action",
+   "asset": "SFX_WHISTLE",
+   "purpose": "the result of the match is stated (end of the match)",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "wikimedia_audio https://commons.wikimedia.org/w/index.php?curid=116753044 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:36.0",
+   "seconds": 36,
+   "scene": "R02c..R06c",
+   "cue_type": "bed",
+   "asset": "MUSIC_TECH",
+   "purpose": "light rhythmic bed under tactical-data sections (the references carry a continuous low bed there)",
+   "duration_s": 133.6,
+   "level_db_rel_speech": -26,
+   "source_licence": "wikimedia_audio https://commons.wikimedia.org/w/index.php?curid=88730740 | by 3.0 | attribution: \"Monkeys Spinning Monkeys by Kevin MacLeod\" by Kevin MacLeod is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "1:10.4",
+   "seconds": 70.4,
+   "scene": "R03",
+   "cue_type": "action",
+   "asset": "SFX_CROWD_GOAL",
+   "purpose": "the moment of the goal in the event animation",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/huubjeroen/sounds/113698 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "2:18.8",
+   "seconds": 138.8,
+   "scene": "R06c",
+   "cue_type": "action",
+   "asset": "SFX_BALL_KICK",
+   "purpose": "the first shot shown on the shot map",
+   "duration_s": 0.8,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/musita182/sounds/261267 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "2:55.6",
+   "seconds": 175.6,
+   "scene": "R08..R08",
+   "cue_type": "bed",
+   "asset": "MUSIC_TECH",
+   "purpose": "light rhythmic bed under tactical-data sections (the references carry a continuous low bed there)",
+   "duration_s": 20,
+   "level_db_rel_speech": -26,
+   "source_licence": "wikimedia_audio https://commons.wikimedia.org/w/index.php?curid=88730740 | by 3.0 | attribution: \"Monkeys Spinning Monkeys by Kevin MacLeod\" by Kevin MacLeod is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "3:33.2",
+   "seconds": 213.2,
+   "scene": "R11..R14",
+   "cue_type": "bed",
+   "asset": "MUSIC_TECH",
+   "purpose": "light rhythmic bed under tactical-data sections (the references carry a continuous low bed there)",
+   "duration_s": 85.2,
+   "level_db_rel_speech": -26,
+   "source_licence": "wikimedia_audio https://commons.wikimedia.org/w/index.php?curid=88730740 | by 3.0 | attribution: \"Monkeys Spinning Monkeys by Kevin MacLeod\" by Kevin MacLeod is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "audition pending"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

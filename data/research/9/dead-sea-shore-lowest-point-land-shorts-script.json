@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "dead-sea-shore-lowest-point-land",
+  "format": "shorts",
+  "hook": "What if Earth's lowest shore sits 430 meters below sea level?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if Earth's lowest shore sits 430 meters below sea level?",
+      "b_roll": [
+        "Satellite map zooming into the Dead Sea basin"
+      ],
+      "text_overlay": {
+        "text": "430m Below Sea Level"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Tectonic forces separated the African plate and Arabian plate in the Jordan Rift Valley. Resorts line the 50km Dead Sea shoreline in the Jordanian desert. Where does the connecting Jordan River land?",
+      "b_roll": [
+        "Diagram showing movement of the African plate and Arabian plate",
+        "Pan across resorts along the 50km shoreline",
+        "Map highlighting the course of the Jordan River"
+      ],
+      "text_overlay": {
+        "text": "Jordan Rift Valley"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Lake Kinneret, also known as the Sea of Galilee, sits 209 meters below sea level.",
+      "b_roll": [
+        "Elevation chart showing the Sea of Galilee position"
+      ],
+      "text_overlay": {
+        "text": "Sea of Galilee: -209m"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Sea of Galilee connects to the Dead Sea via the Jordan River. Dead Sea shores lie 430 meters below sea level at Earth's lowest point.",
+      "b_roll": [
+        "Flow animation from Lake Kinneret into the Dead Sea",
+        "Graphic highlighting elevation measurements at -430m"
+      ],
+      "text_overlay": {
+        "text": "Lowest Point on Land"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Don't miss the modern resorts sprawling along the 50km Dead Sea shoreline.",
+      "b_roll": [
+        "Wide shot of the Dead Sea shore against desert hills"
+      ],
+      "text_overlay": {
+        "text": "Earth's Lowest Shore"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.haaretz.com/israel-news/2022-03-20/ty-article-magazine/when-did-people-figure-out-that-the-dead-sea-is-below-sea-level/00000180-5ba9-dc66-a392-7ffb86a30000",
+    "https://www.thetimes.com/travel/destinations/middle-east-travel/jordan/the-ultimate-guide-to-jordans-dead-sea-everything-you-need-to-know-cnd86hj5r",
+    "https://geologyscience.com/gallery/geological-wonders/the-dead-sea"
+  ]
+}

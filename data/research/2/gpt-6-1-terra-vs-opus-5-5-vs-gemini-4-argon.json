@@ -1,0 +1,111 @@
+{
+  "topic_slug": "gpt-6-1-terra-vs-opus-5-5-vs-gemini-4-argon",
+  "strongest_angle": "A side-by-side performance breakdown revealing that Gemini 4 Argon, Claude Opus 5.5, and GPT-6.1 Terra trade blows across benchmarks, with Argon leading on agentic coding benchmarks like Deep Sweep while trailing Claude Opus 5.5 on Terminal Bench.",
+  "key_facts": [
+    {
+      "fact": "Google Gemini 4 Argon scored 77.9% on the Deep Sweep agentic coding benchmark according to MindStudio analysis.",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks",
+      "source_name": "MindStudio",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Claude Opus 5.5 achieved 66.4% on Terminal Bench compared to 57% for Gemini 4 Argon as reported by MindStudio.",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks",
+      "source_name": "MindStudio",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Google stated that Gemini 4 Argon beats Claude Opus 5.5 on 14 out of 18 benchmarks as reported by The New Stack.",
+      "source_url": "https://thenewstack.io/gemini-argon-claude-opus",
+      "source_name": "The New Stack",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Gemini 4 Argon scored 51.3% on the AutomationBench tool-use benchmark for automation workflows according to DocsBot.",
+      "source_url": "https://docsbot.ai/models/compare/gemini-4-argon/gpt-6.1-terra",
+      "source_name": "DocsBot",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Gemini 4 Argon Deep Sweep Score",
+      "value": 77.9,
+      "unit": "%",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks"
+    },
+    {
+      "label": "Claude Opus 5.5 Terminal Bench Score",
+      "value": 66.4,
+      "unit": "%",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks"
+    },
+    {
+      "label": "Gemini 4 Argon Terminal Bench Score",
+      "value": 57,
+      "unit": "%",
+      "source_url": "https://www.mindstudio.ai/blog/gemini-4-argon-vs-gpt-claude-benchmarks"
+    },
+    {
+      "label": "Google Benchmarks Won by Argon",
+      "value": 14,
+      "unit": "benchmarks",
+      "source_url": "https://thenewstack.io/gemini-argon-claude-opus"
+    },
+    {
+      "label": "Total Benchmarks Tested by Google",
+      "value": 18,
+      "unit": "benchmarks",
+      "source_url": "https://thenewstack.io/gemini-argon-claude-opus"
+    },
+    {
+      "label": "Gemini 4 Argon AutomationBench Score",
+      "value": 51.3,
+      "unit": "%",
+      "source_url": "https://docsbot.ai/models/compare/gemini-4-argon/gpt-6.1-terra"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "Claude Opus 5.5",
+      "kind": "object"
+    },
+    {
+      "name": "GPT-6.1 Terra",
+      "kind": "object"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "MindStudio",
+      "kind": "organization"
+    },
+    {
+      "name": "The New Stack",
+      "kind": "organization"
+    },
+    {
+      "name": "DocsBot",
+      "kind": "organization"
+    },
+    {
+      "name": "Luis Chavez-Mattos",
+      "kind": "person"
+    },
+    {
+      "name": "Jessica Wachtel",
+      "kind": "person"
+    }
+  ]
+}

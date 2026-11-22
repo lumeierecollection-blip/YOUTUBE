@@ -1,0 +1,91 @@
+{
+  "channel_id": "1",
+  "topic_slug": "stolen-portchester-castle-plaque-african-caribbean-prisoners",
+  "format": "shorts",
+  "hook": "Thieves stole a heritage plaque at Portchester Castle, erasing a vital piece of British history.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Thieves stole a heritage plaque at Portchester Castle, erasing a vital piece of British history.",
+      "visual_cue": "Close-up shot of an empty stone wall at Portchester Castle where a plaque was recently mounted.",
+      "sfx_cue": "Subtle wind ambient with a sharp mechanical click.",
+      "b_roll": [
+        "Portchester Castle exterior stone walls in Hampshire"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Stolen History"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-18s",
+      "voiceover": "On Friday 9 October 2026, Portchester Castle in Hampshire unveiled a memorial plaque. That bronze marker honored 2,500 African-Caribbean prisoners brought to Britain in 1796. Castle staff made a grim discovery on Wednesday 14 October 2026. Where did the memorial plaque go?",
+      "visual_cue": "Archival photograph of Portchester Castle grounds transitioning to the unveiling banner.",
+      "sfx_cue": "Low atmospheric drone building tension.",
+      "b_roll": [
+        "University of Warwick press release document",
+        "BBC News article snippet showing Portchester Castle"
+      ],
+      "animation_cue": "Slow pan across castle stonework",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Portchester Castle, Hampshire"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "18-24s",
+      "voiceover": "Worse, thieves stole the memorial plaque and a gate padlock just five days later.",
+      "visual_cue": "Macro shot of a rusted iron padlock hanging from a heavy wooden castle gate.",
+      "sfx_cue": "Metal clink sound effect.",
+      "b_roll": [
+        "Close up of castle gate fittings"
+      ],
+      "animation_cue": "Quick zoom in",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "The Theft"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "24-38s",
+      "voiceover": "Five days after the ceremony, the bronze marker vanished completely.",
+      "visual_cue": "Newspaper clipping from The Guardian detailing the stolen memorial.",
+      "sfx_cue": "Paper rustling and police siren fade-in.",
+      "b_roll": [
+        "The Guardian article archive",
+        "The Portsmouth News crime report"
+      ],
+      "animation_cue": "Text highlight on 2,500 prisoners",
+      "transition_out": "Slide left",
+      "text_overlay": {
+        "text": "2,500 Prisoners"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "38-45s",
+      "voiceover": "Those 2,500 prisoners remain etched into British history.",
+      "visual_cue": "Wide establishing shot of Portchester Castle against the Hampshire sky.",
+      "sfx_cue": "Resonant cinematic bell strike.",
+      "b_roll": [
+        "Portchester Castle aerial view"
+      ],
+      "animation_cue": "Slow zoom out to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "1796"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean",
+    "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro",
+    "https://www.theguardian.com/uk-news/2026/oct/17/plaque-honouring-african-caribbean-prisoners-in-britain-stolen-portchester-castle",
+    "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872"
+  ]
+}

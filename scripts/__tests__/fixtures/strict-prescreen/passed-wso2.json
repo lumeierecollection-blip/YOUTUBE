@@ -1,0 +1,36 @@
+{
+  "_source": "data/research/2/wso2-integrator-5-1-ai-workflow-release.json",
+  "key_facts": [
+    {
+      "fact": "Anupama Pathirage, Director and Head of Product Management for Integration at WSO2, published the release details for WSO2 Integrator 5.1 on October 19, 2026."
+    },
+    {
+      "fact": "WSO2 Integrator 5.1 builds on the AI-native foundation introduced in version 5.0 to expand support for building enterprise-grade AI agents."
+    },
+    {
+      "fact": "LinkedIn user Viththagan Roy Nesarajah shared a look at the new AI-first development experience coming in WSO2 Integrator 5.1.0 on October 1, 2026."
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Release Month",
+      "value": 10,
+      "unit": "month"
+    },
+    {
+      "label": "Release Day",
+      "value": 19,
+      "unit": "day"
+    },
+    {
+      "label": "Release Year",
+      "value": 2026,
+      "unit": "year"
+    },
+    {
+      "label": "Integrator Version",
+      "value": 5.1,
+      "unit": "version"
+    }
+  ]
+}

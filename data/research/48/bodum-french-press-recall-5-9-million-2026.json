@@ -1,0 +1,82 @@
+{
+  "topic_slug": "bodum-french-press-recall-5-9-million-2026",
+  "strongest_angle": "The October 2026 recall of 5.9 million Bodum French press coffee makers highlights significant safety risks, with 70 reported breakage incidents leading to at least 48 documented burn injuries.",
+  "key_facts": [
+    {
+      "fact": "The U.S. Consumer Product Safety Commission announced a recall of 5.9 million Bodum French press coffee makers on October 29, 2026.",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury",
+      "source_name": "CPSC.gov",
+      "confidence": "high"
+    },
+    {
+      "fact": "Bodum USA received 70 reports of glass carafes breaking during use, resulting in at least 48 reported burn injuries to consumers.",
+      "source_url": "https://www.upi.com/Top_News/US/2026/10/30/bodum-french-press-recall/1141793395702",
+      "source_name": "UPI.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The recall specifically impacts Bodum French press models equipped with 8-cup and 12-cup replaceable glass carafes sold at major retailers.",
+      "source_url": "https://www.foxbusiness.com/lifestyle/nearly-6-million-coffee-makers-sold-major-retailers-recalled-over-burn-risk",
+      "source_name": "Fox Business",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total units recalled",
+      "value": 5.9,
+      "unit": "million",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Bodum-USA-Recalls-5-9-Million-French-Press-Coffee-Makers-with-Replaceable-Glass-Carafes-Due-to-Risk-of-Serious-Burn-Injury"
+    },
+    {
+      "label": "Reported breakage incidents",
+      "value": 70,
+      "unit": "reports",
+      "source_url": "https://www.upi.com/Top_News/US/2026/10/30/bodum-french-press-recall/1141793395702"
+    },
+    {
+      "label": "Reported burn injuries",
+      "value": 48,
+      "unit": "injuries",
+      "source_url": "https://www.upi.com/Top_News/US/2026/10/30/bodum-french-press-recall/1141793395702"
+    },
+    {
+      "label": "Cup size capacity",
+      "value": 8,
+      "unit": "cups",
+      "source_url": "https://www.foxbusiness.com/lifestyle/nearly-6-million-coffee-makers-sold-major-retailers-recalled-over-burn-risk"
+    },
+    {
+      "label": "Cup size capacity",
+      "value": 12,
+      "unit": "cups",
+      "source_url": "https://www.foxbusiness.com/lifestyle/nearly-6-million-coffee-makers-sold-major-retailers-recalled-over-burn-risk"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The carafe can unexpectedly break during use if the glass carafe is damaged or cracked, including by use of a metal spoon to stir the coffee, posing a risk of serious burn injuries.",
+      "speaker": "Consumer Product Safety Commission",
+      "source_name": "Division of Homeland Security and Emergency Services",
+      "source_url": "https://www.dhses.ny.gov/bodum-usa-recalls-59-million-french-press-coffee-makers-replaceable-glass-carafes-due-risk-serious"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Bodum USA",
+      "kind": "organization"
+    },
+    {
+      "name": "Consumer Product Safety Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "French press coffee maker",
+      "kind": "object"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    }
+  ]
+}

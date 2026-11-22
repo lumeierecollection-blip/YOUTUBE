@@ -1,0 +1,89 @@
+{
+  "channel_id": "2",
+  "topic_slug": "gemini-4-argon-vs-gpt-6-security-audit",
+  "format": "shorts",
+  "hook": "Can Google's Gemini 4 Argon model beat OpenAI's GPT-6.1 Sol on 28 shared benchmarks?",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Can Google's Gemini 4 Argon model beat OpenAI's GPT-6.1 Sol on 28 shared benchmarks?",
+      "visual_cue": "Side by side benchmark comparison chart displaying 18 wins out of 28 shared benchmarks with a 77.2% score label.",
+      "sfx_cue": "whoosh impact",
+      "b_roll": [
+        " Vals AI benchmark comparison interface showing Gemini 4 Argon and GPT-6.1 Sol scores"
+      ],
+      "animation_cue": "slide-in-left",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "18 of 28 Benchmarks Won"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "Can Google's Gemini 4 Argon beat OpenAI's GPT-6.1 Sol by a 38.57-point gap on CyberBench v1.1?",
+      "visual_cue": "Document view of October 2026 safety evaluations highlighting 12 cyberattack scenarios solved and 38.57 points gap on CyberBench v1.1.",
+      "sfx_cue": "data-beep",
+      "b_roll": [
+        " Google Blog October 2026 safety evaluation document screenshot",
+        " CyberBench v1.1 score chart displaying the 38.57 points gap"
+      ],
+      "animation_cue": "fade-in",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "38.57 Points Gap on CyberBench v1.1"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Gemini 4 Argon beats OpenAI's GPT-6.1 Sol by that 38.57-point gap, yet how does it rank on Wiz?",
+      "visual_cue": "Zoomed data chart focusing on CyberBench v1.1 showing 38.57 points difference between Gemini 4 Argon and GPT-6.1 Sol.",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        " Vals AI CyberBench v1.1 comparison graph"
+      ],
+      "animation_cue": "zoom-in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "38.57 Point Gap"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:38",
+      "voiceover": "Google's Gemini 4 Argon grabs rank 1 on the Wiz cyber model arena leaderboard with a 77.2% overall score. Google's safety report shows Gemini 4 Argon solved 12 end-to-end simulated cyberattack scenarios.",
+      "visual_cue": "Leaderboard UI screen showing rank 1 position with 77.2% overall score and 12 cyberattack scenarios solved.",
+      "sfx_cue": "chime",
+      "b_roll": [
+        " Wiz cyber model arena leaderboard screenshot showing rank 1"
+      ],
+      "animation_cue": "slide-up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Rank 1 at 77.2% Score"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:45",
+      "voiceover": "Gemini 4 Argon leads on 18 of 28 shared benchmarks.",
+      "visual_cue": "Summary metric card highlighting 18 of 28 shared benchmarks led by Gemini 4 Argon.",
+      "sfx_cue": "subtle-ping",
+      "b_roll": [
+        " Vals AI comparison summary metric display"
+      ],
+      "animation_cue": "fade-out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "18 of 28 Shared Benchmarks"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol",
+    "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security",
+    "https://www.wiz.io/ko-kr/cyber-model-arena"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "key": "court-and-spotlight",
+  "formats": {
+    "investigation": { "when": "alleged crimes, legal cases, jail/prison stories, fact-checking, event reconstruction, celebrity feuds", "look": "evidence-panel dossier: dark navy desk, paper documents, stamps, timeline", "composition": "CourtDossierShort" },
+    "entertainment_magazine": { "when": "awards, achievements, collections, career milestones", "look": "glossy magazine: cream page, big type, pull quotes, issue furniture", "composition": "CourtMagazineShort" },
+    "vox_explainer": { "when": "influence, comparisons, cultural context, analytical questions", "look": "explanatory graphics on white: charts, comparisons, labelled diagrams", "composition": "CourtVoxShort" }
+  },
+  "voice": { "tts": "en-US-GuyNeural", "style": "Clear, natural and engaging, lively and confident, with clear articulation. Neutral on contested matters." },
+  "rules": ["confirmed fact, allegation, claim, rumour and opinion are labelled differently on screen", "allegations are never stated as fact", "no photo of a person unless a real, verified, licensed image was fetched; otherwise graphics", "every claim traces to a fetched source", "natural voice speed, never altered"],
+  "format": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 30 }
+}

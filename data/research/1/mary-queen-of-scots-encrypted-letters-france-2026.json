@@ -1,0 +1,79 @@
+{
+  "topic_slug": "mary-queen-of-scots-encrypted-letters-france-2026",
+  "strongest_angle": "Examine how codebreakers George Lasry, Norbert Biermann, and Satoshi Tomokiyo used computer algorithms at the Bibliothèque nationale de France to discover and decipher over fifty long-lost letters written by Mary Stuart.",
+  "key_facts": [
+    {
+      "fact": "In 2021, codebreaker Satoshi Tomokiyo discovered a batch of over fifty encrypted documents penned by Mary Stuart, containing some 50,000 words, stored within the Bibliothèque nationale de France under catalog numbers Français 2988 and Français 20506.",
+      "source_url": "https://www.tandfonline.com/doi/full/10.1080/01611194.2022.2160677?src=",
+      "source_name": "Taylor & Francis Online",
+      "confidence": "high"
+    },
+    {
+      "fact": "The international research team consisted of George Lasry, a French computer scientist based in Israel, Norbert Biermann, a German professor of opera and pianist, and Satoshi Tomokiyo, a Japanese physicist and patents expert.",
+      "source_url": "https://www.nationalgeographic.com/history/history-magazine/article/mary-queen-of-scots-elizabeth-overthrow-decode-letters-ciphers",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "To decrypt the documents, the researchers transcribed the historical materials to make 150,000 symbols readable by a computer, subsequently employing a hill-climbing algorithm to crack the monarch's sophisticated cipher.",
+      "source_url": "https://www.smithsonianmag.com/history/codebreakers-discoverand-decipherlong-lost-letters-by-mary-queen-of-scots-180981613",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Encrypted letters discovered",
+      "value": 50,
+      "unit": "letters",
+      "source_url": "https://www.tandfonline.com/doi/full/10.1080/01611194.2022.2160677?src="
+    },
+    {
+      "label": "Total words in cipher",
+      "value": 50000,
+      "unit": "words",
+      "source_url": "https://www.nationalgeographic.com/history/history-magazine/article/mary-queen-of-scots-elizabeth-overthrow-decode-letters-ciphers"
+    },
+    {
+      "label": "Symbols rendered readable for computer",
+      "value": 150000,
+      "unit": "symbols",
+      "source_url": "https://www.smithsonianmag.com/history/codebreakers-discoverand-decipherlong-lost-letters-by-mary-queen-of-scots-180981613"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Mary Stuart",
+      "kind": "person"
+    },
+    {
+      "name": "George Lasry",
+      "kind": "person"
+    },
+    {
+      "name": "Norbert Biermann",
+      "kind": "person"
+    },
+    {
+      "name": "Satoshi Tomokiyo",
+      "kind": "person"
+    },
+    {
+      "name": "Bibliothèque nationale de France",
+      "kind": "organization"
+    },
+    {
+      "name": "Français 2988",
+      "kind": "object"
+    },
+    {
+      "name": "Français 20506",
+      "kind": "object"
+    },
+    {
+      "name": "Queen Elizabeth I",
+      "kind": "person"
+    }
+  ]
+}

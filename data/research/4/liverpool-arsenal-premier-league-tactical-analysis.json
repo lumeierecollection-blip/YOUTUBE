@@ -1,0 +1,76 @@
+{
+  "topic_slug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "strongest_angle": "Mikel Arteta's tactical discipline at Anfield neutralized Liverpool's attack, resulting in a historic clean sheet and Arsenal's first win at the stadium in over 14 years.",
+  "key_facts": [
+    {
+      "fact": "Arsenal secured a 1-0 victory against Liverpool at Anfield, marking their first win at the stadium in over 14 years.",
+      "source_url": "https://www.espn.com/soccer/story/_/id/50348895/liverpool-arsenal-live-analysis-reaction-statistics-premier-league",
+      "source_name": "ESPN",
+      "confidence": "high"
+    },
+    {
+      "fact": "Liverpool failed to register a single shot on target during the Premier League match at Anfield, a first since records began in the 2003/04 season.",
+      "source_url": "https://www.arsenal.com/feature/arsenal-analysed-five-reasons-for-our-anfield-triumph-a9I8q7S7gaRm",
+      "source_name": "Arsenal FC Official Website",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arsenal maintained 44% possession throughout the match, focusing on controlling specific zones rather than dominating the ball.",
+      "source_url": "https://www.goal.com/en/news/liverpool-vs-arsenal-kai-havertz-tactical-analysis/blt0de0eccbc20ce7a8",
+      "source_name": "Goal.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Match score",
+      "value": 1,
+      "unit": "goal",
+      "source_url": "https://www.espn.com/soccer/story/_/id/50348895/liverpool-arsenal-live-analysis-reaction-statistics-premier-league"
+    },
+    {
+      "label": "Years since last Arsenal win at Anfield",
+      "value": 14,
+      "unit": "years",
+      "source_url": "https://www.espn.com/soccer/story/_/id/50348895/liverpool-arsenal-live-analysis-reaction-statistics-premier-league"
+    },
+    {
+      "label": "Arsenal possession percentage",
+      "value": 44,
+      "unit": "percent",
+      "source_url": "https://www.goal.com/en/news/liverpool-vs-arsenal-kai-havertz-tactical-analysis/blt0de0eccbc20ce7a8"
+    },
+    {
+      "label": "Start of record keeping for shots on target",
+      "value": 2003,
+      "unit": "year",
+      "source_url": "https://www.arsenal.com/feature/arsenal-analysed-five-reasons-for-our-anfield-triumph-a9I8q7S7gaRm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Mikel Arteta",
+      "kind": "person"
+    },
+    {
+      "name": "Liverpool",
+      "kind": "organization"
+    },
+    {
+      "name": "Arsenal",
+      "kind": "organization"
+    },
+    {
+      "name": "Anfield",
+      "kind": "place"
+    },
+    {
+      "name": "Kai Havertz",
+      "kind": "person"
+    },
+    {
+      "name": "Andoni Iraola",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "channel_id": "48",
+  "topic_slug": "ford-dearborn-headquarters-snohhetta-design",
+  "format": "shorts",
+  "hook": "Ford Motor Company left its 12-story Glass House after 70 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Ford Motor Company left its 12-story Glass House after 70 years.",
+      "b_roll": [
+        "Exterior shot of the historic 12-story Glass House headquarters in Dearborn"
+      ],
+      "text_overlay": {
+        "text": "70 YEARS AT THE GLASS HOUSE"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Dearborn, Michigan, the company built a $1.2 billion replacement. The 4-story structure covers a 14-acre footprint designed by Snøhetta. Why build 2.1 million square feet across just 4 floors?",
+      "b_roll": [
+        "Map animation highlighting Dearborn Michigan campus site",
+        "Architectural rendering of the 14-acre building footprint designed by Snøhetta",
+        "Diagram comparing a 12-story tower layout to a low-rise 4-story layout"
+      ],
+      "text_overlay": {
+        "text": "$1.2B CAMPUS REPLACEMENT"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the new four-story building doesn't just house 14,000 Ford Motor Company employees.",
+      "b_roll": [
+        "Wide motion-graphics diagram showing capacity for 14,000 workers"
+      ],
+      "text_overlay": {
+        "text": "14,000 EMPLOYEES"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Inside, a 160,000-square-foot food hall holds 7 distinct restaurants. The massive food hall spans 14,864 square meters inside the building nicknamed The Hub.",
+      "b_roll": [
+        "Interior plan illustration of the 160,000-square-foot food hall",
+        "Flowchart showing horizontal department connection vs vertical division",
+        "3D graphic of the completed campus spanning 14 acres"
+      ],
+      "text_overlay": {
+        "text": "160,000 SQ FT FOOD HALL"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Dearborn now hosts Ford Motor Company in 2.1 million square feet.",
+      "b_roll": [
+        "Overview map graphic of Dearborn showing the 2.1 million square foot campus"
+      ],
+      "text_overlay": {
+        "text": "2.1M SQUARE FEET"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnbc.com/2025/11/16/ford-headquarters-dearborn-michigan.html",
+    "https://apnews.com/article/ford-motor-headquarters-showroom-dearborn-413a8c0876a6d2c79fdbff2b86b9090e",
+    "https://interiordesign.net/projects/inside-the-ford-headquarters-in-dearborn-michigan",
+    "https://www.wxyz.com/news/inside-fords-new-1-2-billion-headquarters-a-move-after-70-years-in-iconic-glass-house"
+  ]
+}

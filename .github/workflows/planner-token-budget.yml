@@ -1,0 +1,106 @@
+name: planner-token-budget
+
+# Measures the planner prompt in Gemini tokens with Google's OFFLINE tokenizer (google-genai LocalTokenizer), for the
+# branch under test AND for main, on the same 12-sentence fixture scripts/test-plan-gates.mjs uses. Replaces the
+# 3.6 chars/token estimate as a DIAGNOSTIC for the 4,500-token budget (not as acceptance evidence; see Acceptance below).
+#
+# What this establishes, and what it does not:
+#   - It counts the TEXT of the prompt. It cannot count the reference frames the planner attaches to every call
+#     (reference-frames.js FRAME_COUNT = 4 images); only the provider can price an image. Daily-pipeline logs show the
+#     provider-reported total on main is roughly twice the repo's estimate, with a near-constant ~4.2k gap that is
+#     consistent with those frames. This job does not close that gap; it measures the text share exactly and says so.
+#   - LocalTokenizer is documented as exact against the API for the models it supports, but it is an experimental SDK
+#     feature and this job is its first run in this repo. If it cannot count a model the job exits 3 (NOT MEASURED) and
+#     fails; unmeasured is never a pass.
+#
+# Side effects: none beyond the runner. contents: read; no secrets are referenced; no model call is made; the tokenizer
+# data and pip packages are public downloads. Nothing is pushed, published or written to a ledger.
+#
+# Triggers: a push to the recovery branch ONLY (a workflow that exists only on a non-default branch cannot be
+# dispatched, so the push is how it runs there), and manual dispatch. The branch filter makes the push trigger inert on
+# main and every other branch; there is no schedule.
+#
+# Acceptance: the 4,500-token budget applies to the COMPLETE provider request, reference images included (owner decision).
+# This job counts text only, so it can never establish that. It exits 1 when the text alone is already over budget (the
+# full request is then certainly over), and exits 4 (BLOCKED) when the text is within budget, because the complete
+# request is unmeasured without a provider countTokens call, which needs a key this job does not have. A red run with
+# exit 4 is the expected, honest outcome; it is not a defect in the job.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - recovery/production-readiness
+
+permissions:
+  contents: read
+
+concurrency:
+  group: planner-token-budget-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: base
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          npm ci --no-audit --no-fund
+          (cd src/skills/remotion-render && npm ci --no-audit --no-fund)
+          ln -s "$PWD/node_modules" base/node_modules
+          ln -s "$PWD/src/skills/remotion-render/node_modules" base/src/skills/remotion-render/node_modules
+          pip install "google-genai[local-tokenizer]"
+          pip show google-genai | head -3
+
+      - name: Write the prompt text (branch)
+        run: node scripts/measure-planner-prompt.mjs --out out/tokens/branch --label branch
+
+      - name: Write the prompt text (main)
+        run: node scripts/measure-planner-prompt.mjs --out out/tokens/main --label main --module base/scripts/gemini-visual-plan.js
+
+      - name: Count tokens offline against the 4,500 budget (text only)
+        run: python scripts/count-tokens-local.py --budget 4500 --out out/tokens/tokens.json branch=out/tokens/branch main=out/tokens/main
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### planner-token-budget"
+            echo
+            echo "Commit: \`${GITHUB_SHA}\` vs main: \`$(git -C base rev-parse HEAD)\`"
+            echo
+            echo "**Complete-request 4,500-token budget: NOT VERIFIED.** This is a text-only diagnostic; the reference frames are not included. Exit 4 = blocked (needs a provider countTokens call), exit 1 = text alone is over budget."
+            for f in out/tokens/branch/chars.json out/tokens/main/chars.json out/tokens/tokens.json; do
+              [ -f "$f" ] && { echo; echo "\`$f\`"; echo '```json'; head -c 3000 "$f"; echo; echo '```'; }
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: planner-token-budget-${{ github.run_id }}
+          path: |
+            out/tokens/branch/*
+            out/tokens/main/*
+            out/tokens/tokens.json
+          if-no-files-found: ignore
+          retention-days: 14

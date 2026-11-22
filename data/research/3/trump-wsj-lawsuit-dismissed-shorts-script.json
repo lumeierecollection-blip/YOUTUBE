@@ -1,0 +1,64 @@
+{
+  "channel_id": "3",
+  "topic_slug": "trump-wsj-lawsuit-dismissed",
+  "format": "shorts",
+  "hook": "A massive $10 billion defamation suit just vanished in federal court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive $10 billion defamation suit just vanished in federal court.",
+      "b_roll": [
+        "Miami federal courthouse exterior with graphic crossing out ten billion dollars"
+      ],
+      "text_overlay": {
+        "text": "$10 BILLION LAWSUIT DISMISSED"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 31, 2026, Judge Darrin Gayles dismissed Donald Trump's lawsuit in Miami. The filing targeted Rupert Murdoch over a July 2025 story about Jeffrey Epstein. Where did the $10 billion claim fail?",
+      "b_roll": [
+        "Federal court document dated October 31 2026",
+        "Headshots of Rupert Murdoch and Donald Trump beside media reporting text"
+      ],
+      "text_overlay": {
+        "text": "OCTOBER 31, 2026 RULING"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the court found actual malice was never plausibly alleged.",
+      "b_roll": [
+        "Legal text highlighting the actual malice threshold standard"
+      ],
+      "text_overlay": {
+        "text": "NO ACTUAL MALICE"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Judge Gayles ruled that Donald Trump failed to prove actual malice against Dow Jones. Because of that failure, the judge dismissed the lawsuit with prejudice. That ruling officially ended the $10 billion legal battle.",
+      "b_roll": [
+        "The Wall Street Journal logo on office building exterior",
+        "Official court order stating case dismissed with prejudice"
+      ],
+      "text_overlay": {
+        "text": "DISMISSED WITH PREJUDICE"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $10 billion lawsuit remains dismissed with prejudice.",
+      "b_roll": [
+        "Miami federal court building facade"
+      ],
+      "text_overlay": {
+        "text": "CASE CLOSED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/trump-media-lawsuit-wall-street-journal-dismissed-f27c9fa832044f2f9edea9b1fbbba061",
+    "https://www.cnbc.com/2026/10/31/trump-murdoch-wsj-epstein-defamation-lawsuit-dismissed.html"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+ "channel": "red-space-facts",
+ "episode": "Uranus: The Planet That Rolls Around the Sun",
+ "estimated_minutes": 7.9,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:00.0",
+   "seconds": 0,
+   "scene": "S01..S04",
+   "cue_type": "ambience",
+   "asset": "AMB_SPACE_DRONE",
+   "purpose": "a sustained drone under image plates and the planet scenes (the Astrum reference carries one)",
+   "duration_s": 66,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/Elektrocell/sounds/20705 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:00.0",
+   "seconds": 0,
+   "scene": "S01",
+   "cue_type": "ambience",
+   "asset": "AMB_RADIO_STATIC",
+   "purpose": "mission-transmission texture on the first Voyager beat",
+   "duration_s": 18.8,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/NebulousRoyale/sounds/343740 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "2:02.0",
+   "seconds": 122,
+   "scene": "S06",
+   "cue_type": "silence",
+   "asset": "(none)",
+   "purpose": "silence for the scale reveal (vacuum)",
+   "duration_s": 2,
+   "level_db_rel_speech": null,
+   "source_licence": "n/a",
+   "approval_status": "n/a"
+  },
+  {
+   "timecode": "3:10.0",
+   "seconds": 190,
+   "scene": "S08",
+   "cue_type": "action",
+   "asset": "SFX_ROCKET",
+   "purpose": "the launch named in the narration",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/qubodup/sounds/162379 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "3:33.5",
+   "seconds": 213.6,
+   "scene": "S08b..S11",
+   "cue_type": "ambience",
+   "asset": "AMB_SPACE_DRONE",
+   "purpose": "a sustained drone under image plates and the planet scenes (the Astrum reference carries one)",
+   "duration_s": 134.4,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/Elektrocell/sounds/20705 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "6:11.1",
+   "seconds": 371.2,
+   "scene": "S13..S14b",
+   "cue_type": "ambience",
+   "asset": "AMB_SPACE_DRONE",
+   "purpose": "a sustained drone under image plates and the planet scenes (the Astrum reference carries one)",
+   "duration_s": 57.6,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/Elektrocell/sounds/20705 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "7:33.1",
+   "seconds": 453.2,
+   "scene": "S16..S16",
+   "cue_type": "ambience",
+   "asset": "AMB_SPACE_DRONE",
+   "purpose": "a sustained drone under image plates and the planet scenes (the Astrum reference carries one)",
+   "duration_s": 20,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/Elektrocell/sounds/20705 | cc0 1.0",
+   "approval_status": "audition pending"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

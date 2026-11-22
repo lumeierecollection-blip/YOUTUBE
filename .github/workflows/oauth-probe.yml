@@ -1,0 +1,81 @@
+name: oauth-probe
+
+# Read-only: for every upload slot that has CHANNEL_NN_* secrets, trade the refresh token for an access token and ask YouTube which channel it
+# belongs to. It prints one line per slot (working / invalid_grant / invalid_client / error, and the channel's title). It never prints a token,
+# never uploads, never writes. Runs on main only, because credentials are not read on development branches (audit 2026-10-03).
+# Use it before adding a slot to config/priority-channels.json: only a slot that prints "working" and the channel you expect belongs there.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CH01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+      CH01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+      CH01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+      CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+      CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+      CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+      CH03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+      CH03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+      CH03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+      CH04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+      CH04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+      CH04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+      CH07_CLIENT_ID: ${{ secrets.CHANNEL_07_CLIENT_ID }}
+      CH07_CLIENT_SECRET: ${{ secrets.CHANNEL_07_CLIENT_SECRET }}
+      CH07_REFRESH_TOKEN: ${{ secrets.CHANNEL_07_REFRESH_TOKEN }}
+      CH09_CLIENT_ID: ${{ secrets.CHANNEL_09_CLIENT_ID }}
+      CH09_CLIENT_SECRET: ${{ secrets.CHANNEL_09_CLIENT_SECRET }}
+      CH09_REFRESH_TOKEN: ${{ secrets.CHANNEL_09_REFRESH_TOKEN }}
+      CH11_CLIENT_ID: ${{ secrets.CHANNEL_11_CLIENT_ID }}
+      CH11_CLIENT_SECRET: ${{ secrets.CHANNEL_11_CLIENT_SECRET }}
+      CH11_REFRESH_TOKEN: ${{ secrets.CHANNEL_11_REFRESH_TOKEN }}
+      CH17_CLIENT_ID: ${{ secrets.CHANNEL_17_CLIENT_ID }}
+      CH17_CLIENT_SECRET: ${{ secrets.CHANNEL_17_CLIENT_SECRET }}
+      CH17_REFRESH_TOKEN: ${{ secrets.CHANNEL_17_REFRESH_TOKEN }}
+      CH21_CLIENT_ID: ${{ secrets.CHANNEL_21_CLIENT_ID }}
+      CH21_CLIENT_SECRET: ${{ secrets.CHANNEL_21_CLIENT_SECRET }}
+      CH21_REFRESH_TOKEN: ${{ secrets.CHANNEL_21_REFRESH_TOKEN }}
+      CH26_CLIENT_ID: ${{ secrets.CHANNEL_26_CLIENT_ID }}
+      CH26_CLIENT_SECRET: ${{ secrets.CHANNEL_26_CLIENT_SECRET }}
+      CH26_REFRESH_TOKEN: ${{ secrets.CHANNEL_26_REFRESH_TOKEN }}
+      CH44_CLIENT_ID: ${{ secrets.CHANNEL_44_CLIENT_ID }}
+      CH44_CLIENT_SECRET: ${{ secrets.CHANNEL_44_CLIENT_SECRET }}
+      CH44_REFRESH_TOKEN: ${{ secrets.CHANNEL_44_REFRESH_TOKEN }}
+      CH48_CLIENT_ID: ${{ secrets.CHANNEL_48_CLIENT_ID }}
+      CH48_CLIENT_SECRET: ${{ secrets.CHANNEL_48_CLIENT_SECRET }}
+      CH48_REFRESH_TOKEN: ${{ secrets.CHANNEL_48_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Probe every slot that has credentials
+        run: |
+          cat > probe.mjs <<'JS'
+          const slots = ["01","02","03","04","07","09","11","17","21","26","44","48"];
+          const rows = [];
+          for (const p of slots) {
+            const id = process.env[`CH${p}_CLIENT_ID`], secret = process.env[`CH${p}_CLIENT_SECRET`], refresh = process.env[`CH${p}_REFRESH_TOKEN`];
+            if (!(id && secret && refresh)) { rows.push([p, "no credentials", ""]); continue; }
+            try {
+              const t = await fetch("https://oauth2.googleapis.com/token", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ client_id: id, client_secret: secret, refresh_token: refresh, grant_type: "refresh_token" }) });
+              const tj = await t.json();
+              if (!t.ok || !tj.access_token) { rows.push([p, tj.error || `HTTP ${t.status}`, tj.error_description || ""]); continue; }
+              const c = await fetch("https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true", { headers: { authorization: `Bearer ${tj.access_token}` } });
+              const cj = await c.json();
+              const title = cj.items?.[0]?.snippet?.title;
+              rows.push([p, c.ok && title ? "working" : `token ok, channel lookup failed (HTTP ${c.status})`, title || cj.error?.message || ""]);
+            } catch (e) { rows.push([p, "error", String(e.message).slice(0, 80)]); }
+          }
+          console.log("slot | status | YouTube channel");
+          for (const r of rows) console.log(r.join(" | "));
+          JS
+          node probe.mjs | tee "$GITHUB_STEP_SUMMARY"

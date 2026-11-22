@@ -1,0 +1,45 @@
+# Background removal (rembg, U2-Net / IS-Net) for thumbnail subjects, run on GitHub so the owner's PC (about 2 GB free RAM) never loads the models.
+# Push a branch named cutout/<anything>: every entry of data/longform/cutouts.json is cut out with platform/production/cutout.py and uploaded as the
+# "cutouts" artifact (download it and commit the PNGs). Nothing is generated: every subject pixel comes from the input photograph or painting.
+name: Cutouts
+on:
+  push:
+    branches: ["cutout/**"]
+jobs:
+  cut:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Fetch listed Commons photos (licence checked, credit recorded in ATTRIBUTIONS.json)
+        run: node -e 'const j=require("./data/longform/cutouts.json");const {spawnSync}=require("child_process");for(const x of j) if(x.fetch){const r=spawnSync("node",["platform/longform/v2/fetch-photos.mjs",...x.fetch],{stdio:"inherit"});}'
+      - run: pip install "rembg[cpu]==2.0.67" pillow numpy scipy
+      - name: Cut out every listed subject
+        run: |
+          python - <<'PY'
+          import json, subprocess, sys
+          ok = True
+          for j in json.load(open("data/longform/cutouts.json")):
+              import os
+              if not os.path.exists(j["src"]): print("MISSING " + j["src"], flush=True); ok = False; continue
+              r = subprocess.run([sys.executable, "platform/production/cutout.py", j["src"], j["dst"], *j.get("args", [])])
+              print(("OK " if r.returncode == 0 else "FAILED ") + j["dst"], flush=True); ok &= True   # fetch-only jobs: a failed cut-out must not lose the fetched photos
+          sys.exit(0 if ok else 1)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cutouts
+          path: |
+            src/skills/remotion-render/public/lf2/**/*-cutout*.png
+            src/skills/remotion-render/public/lf2/**/cmp-*.png
+            src/skills/remotion-render/public/lf2/**/ATTRIBUTIONS.json
+            src/skills/remotion-render/public/lf2/rival-lines/ha-fulham-*.jpg
+            src/skills/remotion-render/public/lf2/rival-lines/th-*.jpg
+            src/skills/remotion-render/public/lf2/hidden-past/gb-*.jpg
+            src/skills/remotion-render/public/lf2/ai-tested/ac-*.jpg
+            src/skills/remotion-render/public/lf2/fx-doc/ak-*.jpg

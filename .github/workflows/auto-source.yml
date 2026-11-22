@@ -1,0 +1,47 @@
+# Automatic picture sourcing, one parallel job per video (owner, 20 Nov 2026). Push a branch named source/<anything>.
+# Each job runs platform/longform/v2/auto-source.mjs on data/source-jobs/<name>.json (searches openly licensed archives, a vision model keeps the best match
+# per named person/place/thing) and commits the pictures + credits to branch sourced/<name>. Missing items are listed in _missing.json, never faked.
+name: Auto source
+on:
+  push:
+    branches: ["source/**"]
+permissions:
+  contents: write
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: gibraltar, dir: hidden-past }
+          - { name: haaland, dir: rival-lines }
+          - { name: alaska, dir: fx-doc }
+          - { name: mata, dir: ai-tested }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Source the pictures
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/longform/v2/auto-source.mjs data/source-jobs/${{ matrix.name }}.json ${{ matrix.dir }}
+      - name: Commit to sourced/<name>
+        run: |
+          git config user.name "auto-source"; git config user.email "auto-source@users.noreply.github.com"
+          git checkout -b "sourced/${{ matrix.name }}"; git add -A src/skills/remotion-render/public/lf2/${{ matrix.dir }}
+          git commit -m "auto-sourced pictures for ${{ matrix.name }}" || echo "nothing new"
+          git push -f origin "sourced/${{ matrix.name }}"

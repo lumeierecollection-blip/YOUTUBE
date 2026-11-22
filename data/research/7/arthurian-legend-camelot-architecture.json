@@ -1,0 +1,71 @@
+{
+  "topic_slug": "arthurian-legend-camelot-architecture",
+  "strongest_angle": "Examine how medieval texts such as Wace's Roman de Brut from 1155 and Malory's Morte Darthur constructed the physical geography of Camelot and the egalitarian architecture of the Round Table.",
+  "key_facts": [
+    {
+      "fact": "Wace first introduced the notion of the Round Table in his 1155 work Roman de Brut so that all noble barons would be equally placed.",
+      "source_url": "https://d.lib.rochester.edu/camelot/theme/round-table.html",
+      "source_name": "Robbins Library Digital Projects",
+      "confidence": "high"
+    },
+    {
+      "fact": "Michael Lysander Angerer notes that the Round Table was first mentioned by Wace in 1155 in his Roman de Brut.",
+      "source_url": "https://doi.org/10.1017/9781805432319.003",
+      "source_name": "Cambridge University Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Molly Martin's study on Malory's Morte Darthur identifies Camelot, Tintagel, Joyous Gard, and Dover as crucial backdrops.",
+      "source_url": "https://www.degruyterbrill.com/document/doi/10.1515/9781787445178/html",
+      "source_name": "De Gruyter Brill",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of Roman de Brut publication",
+      "value": 1155,
+      "unit": "year",
+      "source_url": "https://doi.org/10.1017/9781805432319.003"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Wace",
+      "kind": "person"
+    },
+    {
+      "name": "Roman de Brut",
+      "kind": "object"
+    },
+    {
+      "name": "Michael Lysander Angerer",
+      "kind": "person"
+    },
+    {
+      "name": "Molly Martin",
+      "kind": "person"
+    },
+    {
+      "name": "Morte Darthur",
+      "kind": "object"
+    },
+    {
+      "name": "Camelot",
+      "kind": "place"
+    },
+    {
+      "name": "Tintagel",
+      "kind": "place"
+    },
+    {
+      "name": "Joyous Gard",
+      "kind": "place"
+    },
+    {
+      "name": "Dover",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

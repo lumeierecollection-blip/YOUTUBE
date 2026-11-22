@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "michael-crichton-estate-warner-bros-the-pitt",
+  "format": "shorts",
+  "hook": "A legal battle over a medical drama could cost Warner Bros. Television millions.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A legal battle over a medical drama could cost Warner Bros. Television millions.",
+      "text_overlay": {
+        "text": "Legal battle costs Warner Bros. Television"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Wednesday, California's 2nd District Court of Appeal ruled against Warner Bros. Television in a lawsuit from Sherri Crichton. Why did the court allow this case to move forward?",
+      "text_overlay": {
+        "text": "Court rules against Warner Bros. Television"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the show at the center of this dispute, The Pitt, features ER star Noah Wyle.",
+      "text_overlay": {
+        "text": "The Pitt features Noah Wyle"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The unanimous three-judge panel denied the appeal from Warner Bros. Television. Sherri Crichton claims the new show infringes on her late husband's work.",
+      "text_overlay": {
+        "text": "Studio forced to face trial"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The case now heads to trial, leaving the outcome unresolved.",
+      "text_overlay": {
+        "text": "Case heads to trial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/pitt-er-lawsuit-crichton-9a6ad0b8bf685b7ac435aacf22cb5a71",
+    "https://www.nbcnews.com/pop-culture/tv/er-creators-estate-can-sue-pitt-similarities-appeals-court-rules-rcna607612"
+  ]
+}

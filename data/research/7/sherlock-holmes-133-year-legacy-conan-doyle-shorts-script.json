@@ -1,0 +1,75 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-133-year-legacy-conan-doyle",
+  "format": "shorts",
+  "hook": "Sir Arthur Conan Doyle tried to kill Sherlock Holmes in 1893, but the detective survived 133 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Sir Arthur Conan Doyle tried to kill Sherlock Holmes in 1893, but the detective survived 133 years.",
+      "visual_cue": "Portrait of Arthur Conan Doyle transitioning to a silhouette of Sherlock Holmes against a dark background.",
+      "sfx_cue": "Sound of a pen scratching on paper followed by a sharp ink blot.",
+      "b_roll": [
+        "Historical illustration of Arthur Conan Doyle",
+        "Silhouette of Sherlock Holmes"
+      ],
+      "text_overlay": {
+        "text": "133 Years of Survival"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Strand magazine published The Final Problem, showing Holmes falling over the Reichenbach Falls in Switzerland. How did Sherlock Holmes endure despite his creator's attempt to end the series in 1893?",
+      "visual_cue": "Map of Switzerland zooming into the Reichenbach Falls, then a vintage book cover of Beeton’s Christmas Annual.",
+      "sfx_cue": "Sound of rushing water fading into the rustle of turning pages.",
+      "b_roll": [
+        "19th century map of Swiss Alps",
+        "Vintage book cover of Beeton’s Christmas Annual"
+      ],
+      "text_overlay": {
+        "text": "The Final Problem"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the public demand was immense, with half a million monthly readers.",
+      "visual_cue": "Graphic showing a rising line representing readership numbers peaking at 500,000.",
+      "sfx_cue": "Sound of an audience murmur rising in volume.",
+      "b_roll": [
+        "Chart showing 500,000 monthly readers"
+      ],
+      "text_overlay": {
+        "text": "500,000 Monthly Readers"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "His legacy continues through a November 2026 anthology, proving the detective remains a cultural staple worldwide. The Strand magazine reached 500000 readers per month, fueling the massive public demand for more stories.",
+      "visual_cue": "Cover art of a modern anthology featuring modern book typography and detective icons.",
+      "sfx_cue": "Sound of a heavy book closing.",
+      "b_roll": [
+        "Modern literary anthology cover"
+      ],
+      "text_overlay": {
+        "text": "November 2026 Anthology"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Sherlock Holmes has outlived his creator's original 1893 retirement plan.",
+      "visual_cue": "A fading image of a magnifying glass over a Victorian-style document.",
+      "sfx_cue": "A soft, final chime.",
+      "b_roll": [
+        "Victorian style magnifying glass"
+      ],
+      "text_overlay": {
+        "text": "133 Years Later"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://blog.oup.com/2013/07/ghost-of-sherlock-holmes",
+    "https://www.pbs.org/articles/sir-arthur-conan-doyle-reluctant-creator-of-sherlock-holmes",
+    "https://www.independent.ie/entertainment/books/quirky-new-sherlock-holmes-tales-show-sleuths-enduring-appeal-133-years-after-conan-doyle-first-tried-to-kill-him-off/a/164541429.html"
+  ]
+}

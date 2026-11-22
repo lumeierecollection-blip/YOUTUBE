@@ -126,3 +126,9 @@ src/skills/remotion-render/public/flags/
 src/skills/remotion-render/public/editor/
 data/editor/renders/
 data/editor/qa/
+
+# Autopilot working files
+.autopilot-state/
+data/autopilot-runs/
+output/autopilot/
+.bake-stills.mjs

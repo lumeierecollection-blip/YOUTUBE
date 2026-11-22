@@ -48,6 +48,7 @@ export const PROP_DEFAULTS = {
   clipT: 0,
   clipB: 0,
   draw: 1,       // SVG stroke draw-on progress 0..1
+  count: 1,      // a text layer with `count`: 0..1 progress of the number counting up
   reveal: 1,     // text reveal progress 0..1
   tx: 0,         // translate in canvas px (slides, parallax)
   ty: 0,
@@ -140,4 +141,16 @@ export function effectMagnitude(layer, effect) {
     out[prop] = Math.abs(b - a);
   }
   return out;
+}
+
+/**
+ * The text of a counting number at progress t (0..1). spec = { from, to, decimals, prefix, suffix, group }.
+ * Used by the composition and by the QA, so both agree on what the frame shows.
+ */
+export function formatCount(spec, t) {
+  const p = Math.max(0, Math.min(1, t));
+  const v = spec.from + (spec.to - spec.from) * p;
+  const d = Math.max(0, spec.decimals | 0);
+  const n = spec.group ? v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }) : v.toFixed(d);
+  return `${spec.prefix || ""}${n}${spec.suffix || ""}`;
 }

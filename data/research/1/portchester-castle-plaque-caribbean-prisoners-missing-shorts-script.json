@@ -1,0 +1,89 @@
+{
+  "channel_id": "1",
+  "topic_slug": "portchester-castle-plaque-caribbean-prisoners-missing",
+  "format": "shorts",
+  "hook": "An unveiled memorial vanished from Portchester Castle in just five days.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "An unveiled memorial vanished from Portchester Castle in just five days.",
+      "visual_cue": "Close up shot of the stone walls at Portchester Castle in Hampshire.",
+      "sfx_cue": "Low ambient stone echo",
+      "b_roll": [
+        "Portchester Castle stone facade exterior"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Memorial Vanished"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:20",
+      "voiceover": "On October 9, 2026, a plaque commemorated 2,500 African Caribbean prisoners of war. Castle staff discovered the bronze marker and a gate padlock gone on October 14, 2026. Where did the memorial go?",
+      "visual_cue": "Archival photo of the plaque unveiling ceremony with staff present.",
+      "sfx_cue": "Subtle camera shutter click",
+      "b_roll": [
+        "Portchester Castle grounds plaque location"
+      ],
+      "animation_cue": "Slow zoom in",
+      "transition_out": "Smooth pan",
+      "text_overlay": {
+        "text": "2,500 Prisoners Commemorated"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:28",
+      "voiceover": "The stolen object marked 230 years since captives arrived in Hampshire.",
+      "visual_cue": "Wide shot of the Hampshire coastline near Portchester.",
+      "sfx_cue": "Wind blowing over water",
+      "b_roll": [
+        "Hampshire coastline aerial view"
+      ],
+      "animation_cue": "Quick pan right",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "230 Years Later"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:28-0:45",
+      "voiceover": "BBC News and Portsmouth News reported the sudden theft. Investigators searched the historic fortress grounds for clues. Officials confirmed the missing bronze artifact in 1796 history records.",
+      "visual_cue": "Newspaper clippings from BBC News and Portsmouth News covering the theft.",
+      "sfx_cue": "Paper rustling sound",
+      "b_roll": [
+        "BBC News digital article screenshot",
+        "Portsmouth News headline"
+      ],
+      "animation_cue": "Slide from left",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "Theft Reported"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:45-0:52",
+      "voiceover": "Portchester Castle holds 2,500 missing prisoner records from 1796.",
+      "visual_cue": "Wide exterior view of Portchester Castle under overcast skies.",
+      "sfx_cue": "Fading wind ambient",
+      "b_roll": [
+        "Portchester Castle wide shot"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Cut to black",
+      "text_overlay": {
+        "text": "Portchester Castle 1796"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cqe8r6ypd7pro",
+    "https://www.portsmouth.co.uk/news/crime/historic-plaque-goes-missing-from-portchester-castle-9290872",
+    "https://warwick.ac.uk/news/pressreleases/plaque-honouring-caribbean"
+  ]
+}

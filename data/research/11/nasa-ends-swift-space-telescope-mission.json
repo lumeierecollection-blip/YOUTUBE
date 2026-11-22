@@ -1,0 +1,65 @@
+{
+  "topic_slug": "nasa-ends-swift-space-telescope-mission",
+  "strongest_angle": "Examine the technical failure and orbital decay forcing NASA to conclude the Neil Gehrels Swift Observatory mission after 21 years, following a failed commercial rescue attempt and leading to an imminent atmospheric reentry.",
+  "key_facts": [
+    {
+      "fact": "NASA concluded the science mission of the Neil Gehrels Swift Observatory as it orbits less than 171 miles (275 kilometers) above Earth's surface.",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Neil Gehrels Swift Observatory conducted its final observation on October 20, 2026, after launching in November 2004.",
+      "source_url": "https://www.space.com/space-exploration/missions/nasa-ends-swift-space-telescope-mission-after-failed-rescue-attempt",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA shut down the astronomy spacecraft in a decaying orbit after a failed attempt to reboost it using a commercial spacecraft.",
+      "source_url": "https://spacenews.com/nasas-swift-space-telescope-ends-mission",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Orbital altitude miles",
+      "value": 171,
+      "unit": "miles",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    },
+    {
+      "label": "Orbital altitude kilometers",
+      "value": 275,
+      "unit": "kilometers",
+      "source_url": "https://science.nasa.gov/missions/swift/nasas-swift-mission-ends"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Neil Gehrels Swift Observatory",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Francis Reddy",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Wall",
+      "kind": "person"
+    },
+    {
+      "name": "Jeff Foust",
+      "kind": "person"
+    }
+  ]
+}

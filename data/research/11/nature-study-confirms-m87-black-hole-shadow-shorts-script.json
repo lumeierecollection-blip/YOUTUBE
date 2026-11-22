@@ -1,0 +1,52 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nature-study-confirms-m87-black-hole-shadow",
+  "format": "shorts",
+  "hook": "Critics claimed the 2019 Event Horizon Telescope image of the M87* black hole was fake.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Critics claimed the 2019 Event Horizon Telescope image of the M87* black hole was fake.",
+      "visual_cue": "Deep space shot of the M87* black hole glowing ring",
+      "text_overlay": {
+        "text": "M87* Image: Real or Artifact?"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Event Horizon Telescope Collaboration captured this massive black hole shadow in 2019. How did researchers prove the M87* shadow is a real physical structure in space?",
+      "visual_cue": "Side-by-side comparison of the 2019 EHT image and raw telescope data",
+      "text_overlay": {
+        "text": "2019: First Black Hole Image"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, 4 CSIRO researchers used new interferometric techniques to prove the ring is real.",
+      "visual_cue": "Close up of the four researchers' names on a screen",
+      "text_overlay": {
+        "text": "CSIRO Team Steps In"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Published in Nature in 2026, their independent study used a new interferometric technique to reanalyze the data. General relativity is now validated by this 2026 Nature study of the M87* shadow.",
+      "visual_cue": "Animation showing the interferometric data mapping onto the black hole shadow",
+      "text_overlay": {
+        "text": "Confirmed: 2026 Study"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The shadow of M87* is exactly where physics predicted.",
+      "visual_cue": "Slow zoom out from the M87* black hole into the vastness of space",
+      "text_overlay": {
+        "text": "Physics Prevails"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+    "https://www.nature.com/articles/d41586-026-03642-7"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "topic_slug": "holei-sea-arch-collapse-geology",
+  "strongest_angle": "The collapse of the 90-foot Hōlei Sea Arch in Hawaiʻi Volcanoes National Park illustrates the inevitable geological lifecycle of coastal landmarks formed by volcanic activity and persistent ocean erosion.",
+  "key_facts": [
+    {
+      "fact": "The Hōlei Sea Arch in Hawaiʻi Volcanoes National Park stood 90 feet (27.4 meters) tall before its collapse into the Pacific Ocean.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "National Park Service records confirm the arch was last seen intact on September 23, 2026, and was confirmed gone by the night of September 27, 2026.",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Hōlei Sea Arch was located at the end of Chain of Craters Road on the southern coastline of the island of Hawaiʻi.",
+      "source_url": "https://www.nps.gov/havo/learn/nature/sea-arches.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Guardian reported that the collapse followed a series of rough storms in the region during the weeks leading up to the event.",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/02/hawaii-holei-sea-arch-collapses",
+      "source_name": "The Guardian",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Height of Hōlei Sea Arch in feet",
+      "value": 90,
+      "unit": "feet",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    },
+    {
+      "label": "Height of Hōlei Sea Arch in meters",
+      "value": 27.4,
+      "unit": "meters",
+      "source_url": "https://www.nps.gov/places/holei-sea-arch.htm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Hōlei Sea Arch",
+      "kind": "object"
+    },
+    {
+      "name": "Hawaiʻi Volcanoes National Park",
+      "kind": "place"
+    },
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Chain of Craters Road",
+      "kind": "place"
+    },
+    {
+      "name": "National Park Service",
+      "kind": "organization"
+    }
+  ]
+}

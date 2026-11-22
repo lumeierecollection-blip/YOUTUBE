@@ -1,0 +1,37 @@
+{
+  "channel_id": "21",
+  "topic_slug": "mit-fabric-molds-concrete-beams-mass-reduction",
+  "format": "shorts",
+  "hook": "MIT engineers used sewn cotton molds to slash concrete usage and halve steel requirements today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "MIT engineers used sewn cotton molds to slash concrete usage and halve steel requirements today.",
+      "visual_cue": "MIT engineers using fabric molds to cut concrete and steel usage"
+    },
+    {
+      "id": "setup",
+      "voiceover": "MIT engineers built a 3-meter concrete test beam using a sewn cotton mold, requiring one-third the amount of concrete and half as much steel as a conventional beam.",
+      "visual_cue": "MIT engineers building a concrete beam with a sewn cotton mold"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, the deflection of the beam still matched within about 2 percent of the computer model predictions.",
+      "visual_cue": "MIT engineers checking the deflection of the beam"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This method used one-third the concrete and half the steel, yet deflection still matched the model predictions.",
+      "visual_cue": "MIT engineers showing the beam with a computer model comparison"
+    },
+    {
+      "id": "close",
+      "voiceover": "MIT engineers' method could bring material-saving concrete beams within reach.",
+      "visual_cue": "MIT engineers presenting their findings"
+    }
+  ],
+  "sources_used": [
+    "https://news.mit.edu/2026/fabric-molds-could-bring-material-saving-concrete-beams-within-reach-1106",
+    "https://circularwire.com/articles/mit-team-cuts-beam-concrete-by-two-thirds-using-sewn-fabric-molds"
+  ]
+}

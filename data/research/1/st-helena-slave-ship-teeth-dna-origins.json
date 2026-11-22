@@ -1,0 +1,90 @@
+{
+  "topic_slug": "st-helena-slave-ship-teeth-dna-origins",
+  "strongest_angle": "Dental isotope analysis of tooth enamel combined with ancient DNA from human remains in Rupert's Valley on St Helena allows researchers to map the precise childhood origins of liberated Africans.",
+  "key_facts": [
+    {
+      "fact": "Researchers analyzed 193 tooth enamel strontium isotope measurements from 152 liberated Africans buried on St Helena to reconstruct their early-life geographic origins.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "Historical records show that nearly 27,000 liberated Africans were brought to St Helena in the mid-19th century after Royal Navy ships intercepted illegal slave vessels.",
+      "source_url": "https://www.nature.com/articles/d44148-026-00348-w",
+      "source_name": "Nature Africa",
+      "confidence": "high"
+    },
+    {
+      "fact": "The interdisciplinary study was led by researchers at the Globe Institute at the University of Copenhagen and UC Santa Cruz.",
+      "source_url": "https://archaeology.ku.dk/news/new-study-traces-african-origins-of-st-helenas-liberated-africans",
+      "source_name": "University of Copenhagen",
+      "confidence": "high"
+    },
+    {
+      "fact": "The transatlantic slave trade forcibly displaced more than 12.5 million Africans, making recovery of specific life histories a major priority for descendant communities.",
+      "source_url": "https://doi.org/10.1126/science.aeb3661",
+      "source_name": "Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Tooth enamel strontium isotope measurements analyzed",
+      "value": 193,
+      "unit": "measurements",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    },
+    {
+      "label": "Liberated African individuals analyzed from St Helena",
+      "value": 152,
+      "unit": "individuals",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    },
+    {
+      "label": "Liberated Africans brought to St Helena",
+      "value": 27000,
+      "unit": "Africans",
+      "source_url": "https://www.nature.com/articles/d44148-026-00348-w"
+    },
+    {
+      "label": "Africans forcibly displaced by transatlantic slave trade",
+      "value": 12.5,
+      "unit": "million Africans",
+      "source_url": "https://doi.org/10.1126/science.aeb3661"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Because enamel forms during childhood and adolescence and incorporates local dietary strontium, it preserves a geochemical record of early-life residence.",
+      "speaker": "Xueye Wang et al.",
+      "source_name": "Science",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "St Helena",
+      "kind": "place"
+    },
+    {
+      "name": "Rupert's Valley",
+      "kind": "place"
+    },
+    {
+      "name": "Globe Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Copenhagen",
+      "kind": "organization"
+    },
+    {
+      "name": "UC Santa Cruz",
+      "kind": "organization"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "topic_slug": "bluebell-railway-coupling-safety-raib-report",
+  "strongest_angle": "Examining RAIB Report 11/2026 detailing the unsafe movement of locomotives during coupling at Sheffield Park on the Bluebell Railway on 9 August 2025.",
+  "key_facts": [
+    {
+      "fact": "Report 11/2026 was published by the Rail Accident Investigation Branch on October 8, 2026, regarding an unsafe movement of locomotives at Sheffield Park.",
+      "source_url": "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway",
+      "source_name": "Rail Accident Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The unsafe movement of locomotives being coupled on the Bluebell Railway occurred in East Sussex on August 9, 2025.",
+      "source_url": "https://www.gov.uk/government/news/report-112026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway",
+      "source_name": "Rail Accident Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.K. Rail Accident Investigation Branch recommended that the Bluebell Railway undertake a risk-based review of its coupling and uncoupling arrangements.",
+      "source_url": "https://railfanning.org/2026/10/rail-accident-investigation-branch-bluebell-railway-should-review-coupling-uncoupling-arrangements",
+      "source_name": "Railfanning.org News Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "The incident at Sheffield Park on August 9, 2025 resulted in nobody being injured according to the Brighton Locals Newsroom.",
+      "source_url": "https://brightonlocals.co.uk/bluebell-railway-safety-report-sussex-october-2026",
+      "source_name": "Brighton Locals Newsroom",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "RAIB Report Number",
+      "value": 11,
+      "unit": "report",
+      "source_url": "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway"
+    },
+    {
+      "label": "Year of Report Publication",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway"
+    },
+    {
+      "label": "Day of the Incident in August",
+      "value": 9,
+      "unit": "day",
+      "source_url": "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway"
+    },
+    {
+      "label": "Year of the Incident",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.gov.uk/raib-reports/report-11-slash-2026-unsafe-movement-of-locomotives-being-coupled-on-the-bluebell-railway"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The U.K. Rail Accident Investigation Branch recommended the Bluebell Railway undertake a risk-based review of its arrangements for coupling and uncoupling rail vehicles.",
+      "speaker": "Railfanning.org News Wire",
+      "source_name": "Railfanning.org News Wire",
+      "source_url": "https://railfanning.org/2026/10/rail-accident-investigation-branch-bluebell-railway-should-review-coupling-uncoupling-arrangements"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Rail Accident Investigation Branch",
+      "kind": "organization"
+    },
+    {
+      "name": "Bluebell Railway",
+      "kind": "organization"
+    },
+    {
+      "name": "Sheffield Park",
+      "kind": "place"
+    },
+    {
+      "name": "East Sussex",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "topic_slug": "hollywood-amicus-brief-nyt-openai",
+  "strongest_angle": "Analyze the late October and early November 2026 amicus briefs filed by the Human Consent Foundation, WME, CAA, and prominent artists supporting The New York Times against OpenAI and Microsoft.",
+  "key_facts": [
+    {
+      "fact": "On October 30, 2026, the Human Consent Foundation backed by Cate Blanchett filed an amicus brief in the New York Times copyright lawsuit against OpenAI and Microsoft.",
+      "source_url": "https://variety.com/2026/biz/news/cate-blanchett-hollywood-stars-brief-nyt-openai-lawsuit-1236935578",
+      "source_name": "Variety",
+      "confidence": "high"
+    },
+    {
+      "fact": "On Friday night, November 2026, talent agency WME filed an amicus brief in the legal case regarding IP management in the AI era against OpenAI and Microsoft.",
+      "source_url": "https://pagesix.com/2026/11/03/hollywood/hollywoods-biggest-players-are-backing-new-york-times-massive-copyright-lawsuit-against-openai",
+      "source_name": "Page Six",
+      "confidence": "high"
+    },
+    {
+      "fact": "The amici curiae brief filed by the Human Consent Foundation includes Creative Artists Agency, LLC, Music Artists Coalition, National Association of Voice Actors, Steven Soderbergh, and Nick Hexum.",
+      "source_url": "https://deadline.com/wp-content/uploads/2026/11/caa-openai-nyt-suit.pdf",
+      "source_name": "Deadline",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [],
+  "named_entities": [
+    {
+      "name": "Cate Blanchett",
+      "kind": "person"
+    },
+    {
+      "name": "The New York Times",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Microsoft",
+      "kind": "organization"
+    },
+    {
+      "name": "Human Consent Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "WME",
+      "kind": "organization"
+    },
+    {
+      "name": "Creative Artists Agency, LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Music Artists Coalition",
+      "kind": "organization"
+    },
+    {
+      "name": "National Association of Voice Actors",
+      "kind": "organization"
+    },
+    {
+      "name": "Steven Soderbergh",
+      "kind": "person"
+    },
+    {
+      "name": "Nick Hexum",
+      "kind": "person"
+    }
+  ]
+}

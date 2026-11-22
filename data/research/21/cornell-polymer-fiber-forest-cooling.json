@@ -1,0 +1,71 @@
+{
+  "topic_slug": "cornell-polymer-fiber-forest-cooling",
+  "strongest_angle": "Engineers at Cornell University developed a microscopic polymer fiber forest using Zylon nanofibers that achieves a thermal conductivity of 16.8 watts per meter-kelvin and runs 17°C cooler than a commercial thermal pad.",
+  "key_facts": [
+    {
+      "fact": "Researchers at Cornell University created a polymer fiber forest by packing Zylon fibers into epoxy matrices, achieving a thermal conductivity of 16.8 watts per meter-kelvin.",
+      "source_url": "https://interestingengineering.com/innovation/forest-inspired-polymer-chips",
+      "source_name": "Interesting Engineering",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Zylon polymer fiber forest developed at Cornell University kept a test surface 17°C cooler than a commercial thermal pad at about 1.2 watts of power.",
+      "source_url": "https://voltgridnews.com/story/cornell-polymer-fiber-forest-runs-17-c-cooler-than-a-commercial",
+      "source_name": "Volt Grid News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Cornell University researchers organized thousands of vertically aligned microscopic Zylon nanofibers to move heat away from electronics without conducting electricity.",
+      "source_url": "https://news.cornell.edu/stories/2026/11/microscopic-polymer-fiber-forest-helps-keep-electronics-cool",
+      "source_name": "Cornell Chronicle",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Thermal conductivity",
+      "value": 16.8,
+      "unit": "watts per meter-kelvin",
+      "source_url": "https://interestingengineering.com/innovation/forest-inspired-polymer-chips"
+    },
+    {
+      "label": "Temperature difference",
+      "value": 25,
+      "unit": "percent",
+      "source_url": "https://interestingengineering.com/innovation/forest-inspired-polymer-chips"
+    },
+    {
+      "label": "Temperature drop",
+      "value": 17,
+      "unit": "°C",
+      "source_url": "https://voltgridnews.com/story/cornell-polymer-fiber-forest-runs-17-c-cooler-than-a-commercial"
+    },
+    {
+      "label": "Test surface power",
+      "value": 1.2,
+      "unit": "watts",
+      "source_url": "https://voltgridnews.com/story/cornell-polymer-fiber-forest-runs-17-c-cooler-than-a-commercial"
+    },
+    {
+      "label": "Fahrenheit temperature difference",
+      "value": 63,
+      "unit": "°F",
+      "source_url": "https://interestingengineering.com/innovation/forest-inspired-polymer-chips"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Cornell University",
+      "kind": "organization"
+    },
+    {
+      "name": "Zylon",
+      "kind": "object"
+    },
+    {
+      "name": "ZT Group",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

@@ -1,0 +1,92 @@
+{
+  "topic_slug": "little-giant-ladders-rapid-lock-recall-cpsc",
+  "strongest_angle": "On November 5, 2026, the U.S. Consumer Product Safety Commission announced the recall of 3.66 million Little Giant Rapid Lock ladders following 25 reports of sudden retraction, 19 injuries, and severe head trauma risks.",
+  "key_facts": [
+    {
+      "fact": "On November 5, 2026, the U.S. Consumer Product Safety Commission announced the recall of 3,662,000 Little Giant ladders equipped with Rapid Locks due to a sudden retraction fall hazard.",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
+      "source_name": "U.S. Consumer Product Safety Commission",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Consumer Product Safety Commission logged 25 reports of Little Giant Rapid Lock ladders suddenly retracting, which resulted in 19 reported consumer injuries.",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943",
+      "source_name": "Medical Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "The recall covers 11 models of Little Giant ladders featuring Rapid Locks that were sold between December 2015 and October 2026.",
+      "source_url": "https://hardhatreport.com/story/little-giant-rapid-lock-ladder-recall-3-66-million",
+      "source_name": "Hard Hat Report",
+      "confidence": "high"
+    },
+    {
+      "fact": "Reports of injuries tied to the Little Giant ladder retractions included 3 head injuries involving traumatic brain injury, skull fractures, concussions, and vision loss.",
+      "source_url": "https://www.usatoday.com/story/money/consumer-protection/recalls-alerts/2026/11/05/little-giant-recalls-ladders-injuries/92625051007",
+      "source_name": "USA Today",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Recalled Little Giant ladders",
+      "value": 3662000,
+      "unit": "ladders",
+      "source_url": "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard"
+    },
+    {
+      "label": "Retraction reports received by CPSC",
+      "value": 25,
+      "unit": "reports",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+    },
+    {
+      "label": "Reported consumer injuries",
+      "value": 19,
+      "unit": "injuries",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+    },
+    {
+      "label": "Recalled ladder models",
+      "value": 11,
+      "unit": "models",
+      "source_url": "https://hardhatreport.com/story/little-giant-rapid-lock-ladder-recall-3-66-million"
+    },
+    {
+      "label": "Reported head injuries",
+      "value": 3,
+      "unit": "head injuries",
+      "source_url": "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The ladders can suddenly retract if the Rapid Locks are not fully engaged, posing a fall hazard to consumers.",
+      "speaker": "Little Giant Ladder Systems",
+      "source_name": "Little Giant Ladder Systems",
+      "source_url": "https://www.littlegiantladders.com/pages/recall-notices"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Little Giant Ladder Systems",
+      "kind": "organization"
+    },
+    {
+      "name": "U.S. Consumer Product Safety Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "Rapid Lock",
+      "kind": "object"
+    },
+    {
+      "name": "King Kombo XT",
+      "kind": "object"
+    },
+    {
+      "name": "Conquest 2.0",
+      "kind": "object"
+    }
+  ]
+}

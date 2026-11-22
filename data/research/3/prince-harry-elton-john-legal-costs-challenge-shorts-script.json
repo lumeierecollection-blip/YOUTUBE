@@ -1,0 +1,67 @@
+{
+  "channel_id": "3",
+  "topic_slug": "prince-harry-elton-john-legal-costs-challenge",
+  "format": "shorts",
+  "hook": "Six public figures face 34.5 million pounds in legal costs after losing a privacy lawsuit.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six public figures face 34.5 million pounds in legal costs after losing a privacy lawsuit.",
+      "b_roll": [
+        "Motion graphic showing financial scale with legal fee ticker reaching 34.5 million pounds"
+      ],
+      "text_overlay": {
+        "text": "34.5 Million Pounds Legal Costs"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In July 2026, London judge Mr Justice Nicklin dismissed claims against Associated Newspapers Limited. Will these six claimants actually pay the 34.5 million pounds in joint legal costs?",
+      "b_roll": [
+        "Map graphic highlighting London court location",
+        "Timeline bar marking the 11-week trial duration",
+        "Animated graphic featuring a large question mark over legal fee totals"
+      ],
+      "text_overlay": {
+        "text": "11-Week London Privacy Trial"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Prince Harry and five others filed Court of Appeal applications this November 2026.",
+      "b_roll": [
+        "Graphic motion revealing Court of Appeal document icon dated November 2026"
+      ],
+      "text_overlay": {
+        "text": "November 2026 Court of Appeal Filing"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "They are now challenging the 34.5 million pound indemnity order meant to cover the publisher's expenses.",
+      "b_roll": [
+        "Graphic icons representing Prince Harry, Sir Elton John, and Elizabeth Hurley",
+        "Split flow diagram showing High Court dismissal vs Court of Appeal challenge",
+        "Legal document graphic highlighting indemnity costs order text"
+      ],
+      "text_overlay": {
+        "text": "Challenging Indemnity Costs Order"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "London's Court of Appeal will now decide if these six claimants must pay the bill.",
+      "b_roll": [
+        "Iconic scales of justice graphic closing on the 34.5 million pound figure"
+      ],
+      "text_overlay": {
+        "text": "Court of Appeal Decision Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo",
+    "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626",
+    "https://www.independent.co.uk/bulletin/news/elton-john-prince-harry-appeal-court-mail-b3080711.html"
+  ]
+}

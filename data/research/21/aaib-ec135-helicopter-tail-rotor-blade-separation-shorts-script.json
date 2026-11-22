@@ -1,0 +1,92 @@
+{
+  "channel_id": "21",
+  "topic_slug": "aaib-ec135-helicopter-tail-rotor-blade-separation",
+  "format": "shorts",
+  "hook": "A tail rotor blade separated from an EC135 helicopter over Monmouthshire.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:06",
+      "voiceover": "A tail rotor blade separated from an EC135 helicopter over Monmouthshire.",
+      "visual_cue": "Wide aerial tracking shot over rural Monmouthshire farmland, followed by an archival technical schematic of an EC135 tail rotor fenestron assembly.",
+      "sfx_cue": "Helicopter rotor thrum cutting into a sudden muffled metallic snap and quiet wind.",
+      "b_roll": [
+        "Monmouthshire countryside aerial shot",
+        "EC135 helicopter in flight technical schematic"
+      ],
+      "animation_cue": "Slow push-in on the tail rotor assembly in the schematic.",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "EC135 TAIL ROTOR SEPARATION"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:06-00:20",
+      "voiceover": "On 16 November 2025, helicopter G-WPDA landed safely in a field near Dingestow. Investigators examined the separated fenestron blade to trace its failure. What caused the blade on G-WPDA to fail?",
+      "visual_cue": "High-resolution map pinpointing Dingestow, Wales, transitioning to crash investigation photography of helicopter G-WPDA resting in a field.",
+      "sfx_cue": "Subtle radio chatter fading into low suspenseful drone.",
+      "b_roll": [
+        "Map graphic of Monmouthshire and Dingestow",
+        "Air Accidents Investigation Branch field report imagery"
+      ],
+      "animation_cue": "Map pin drops on Dingestow with subtle radar ripple.",
+      "transition_out": "Wipe left",
+      "text_overlay": {
+        "text": "DINGESTOW, WALES — 16 NOV 2025"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:20-00:26",
+      "voiceover": "But on 16 November 2026, the Air Accidents Investigation Branch found dye-penetrant on G-WPDA's fatigue crack.",
+      "visual_cue": "Extreme close-up macro photograph of metal fatigue striations on a rotor blade surface under laboratory ultraviolet lighting.",
+      "sfx_cue": "Deep bass drop with an electronic pulse sound.",
+      "b_roll": [
+        "Laboratory macro footage of metal fatigue crack",
+        "Dye penetrant inspection visual"
+      ],
+      "animation_cue": "Ultraviolet light sweep revealing crack highlight line.",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "FATIGUE CRACK DETECTED"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:26-00:42",
+      "voiceover": "The Federal Aviation Administration superseded Airworthiness Directive 2024-04-10 for affected aircraft. Regulators mandated repetitive inspections for Airbus Helicopters Deutschland GmbH EC135P1 models.",
+      "visual_cue": "Official Federal Register documentation graphic scrolling over Airworthiness Directive 2024-04-10 text, followed by animation of fenestron blade inspection procedures.",
+      "sfx_cue": "Keyboard click sound followed by camera shutter snap.",
+      "b_roll": [
+        "Federal Register official document scroll",
+        "EC135 tail rotor maintenance inspection footage"
+      ],
+      "animation_cue": "Text highlight effect over Airworthiness Directive reference number.",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "FAA AIRWORTHINESS DIRECTIVE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:42-00:46",
+      "voiceover": "Repetitive inspections now safeguard EC135P1 tail rotor blades.",
+      "visual_cue": "Cinematic medium shot of an EC135 helicopter tail rotor spinning up safely on a helipad.",
+      "sfx_cue": "Rotor blade whistle fading to silence.",
+      "b_roll": [
+        "EC135 helicopter tail rotor operating on helipad"
+      ],
+      "animation_cue": "Slow zoom out to full aircraft outline.",
+      "transition_out": "Cut to black",
+      "text_overlay": {
+        "text": "AAIB INVESTIGATION STATEMENT"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.gov.uk/government/news/anniversary-statement-ec135-p1-g-wpda",
+    "https://aerocorner.com/news/g-wpda-ec135-fenestron-blade-fatigue-crack-aaib-faa-ad",
+    "https://www.federalregister.gov/documents/full_text/html/2026/11/09/2026-22776.html"
+  ]
+}

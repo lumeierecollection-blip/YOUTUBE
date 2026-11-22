@@ -1,0 +1,95 @@
+{
+ "source": "https://en.wikipedia.org/wiki/Yellow_Fleet (Stranded ships table), retrieved 2026-11-13",
+ "ships": [
+  {
+   "name": "MS Nordwind",
+   "country": "West Germany",
+   "cargo": "T-shirts",
+   "grt": "8,656"
+  },
+  {
+   "name": "MS Münsterland",
+   "country": "West Germany",
+   "cargo": "Eggs, fruit",
+   "grt": "9,365"
+  },
+  {
+   "name": "MS Killara",
+   "country": "Sweden",
+   "cargo": "Wool, hides, fruit, lead, pigs from Australia",
+   "grt": "12,990"
+  },
+  {
+   "name": "MS Nippon",
+   "country": "Sweden",
+   "cargo": "Case goods from Far East",
+   "grt": "10,660"
+  },
+  {
+   "name": "MS Essayons",
+   "country": "France",
+   "cargo": "",
+   "grt": "7,051"
+  },
+  {
+   "name": "MS Agapenor",
+   "country": "United Kingdom",
+   "cargo": "Plastic toys for Woolworths",
+   "grt": "7,654"
+  },
+  {
+   "name": "MS Melampus",
+   "country": "United Kingdom",
+   "cargo": "",
+   "grt": "8,509"
+  },
+  {
+   "name": "MS Scottish Star",
+   "country": "United Kingdom",
+   "cargo": "",
+   "grt": "10,174"
+  },
+  {
+   "name": "MS Port Invercargill",
+   "country": "United Kingdom",
+   "cargo": "",
+   "grt": "10,463"
+  },
+  {
+   "name": "SS African Glen",
+   "country": "United States",
+   "cargo": "",
+   "grt": "6,116"
+  },
+  {
+   "name": "MS Djakarta",
+   "country": "Poland",
+   "cargo": "",
+   "grt": "6,915"
+  },
+  {
+   "name": "MS Boleslaw Bierut",
+   "country": "Poland",
+   "cargo": "",
+   "grt": "6,674"
+  },
+  {
+   "name": "MS Vasil Levsky",
+   "country": "Bulgaria",
+   "cargo": "",
+   "grt": "4,975"
+  },
+  {
+   "name": "MS Lednice",
+   "country": "Czechoslovakia",
+   "cargo": "Raw cowhides from Ethiopia",
+   "grt": "1,462"
+  },
+  {
+   "name": "SS Observer",
+   "country": "United States",
+   "cargo": "Wheat (Galveston to Bombay)",
+   "grt": "17,614"
+  }
+ ]
+}

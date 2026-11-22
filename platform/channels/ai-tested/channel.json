@@ -1,0 +1,8 @@
+{
+  "key": "ai-tested",
+  "palette": { "bg": "#FFFFFF", "surface": "#F3F4F6", "ink": "#111827", "dim": "#6B7280", "stroke": "#D1D5DB", "accent": "#0E7490", "terminal": "#111418" },
+  "type": { "sans": "Space Grotesk", "mono": "JetBrains Mono" },
+  "voice": { "tts": "en-US-AndrewNeural", "rate": "+5%", "direction": "Confident, clear, practical." },
+  "rules": ["white background for explanatory scenes", "accent never purple, one accent colour", "every visual shows the feature being narrated", "no invented features, benchmarks or interfaces", "terminal output is always real, captured in the run", "page captures are real pixels from a fetched public page"],
+  "scene_library": "scenes.mjs"
+}

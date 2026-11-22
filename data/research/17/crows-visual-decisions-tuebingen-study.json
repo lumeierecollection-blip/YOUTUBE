@@ -1,0 +1,81 @@
+{
+  "topic_slug": "crows-visual-decisions-tuebingen-study",
+  "strongest_angle": "Researchers at the University of Tübingen discovered that carrion crows make visual decisions in an average of 235 milliseconds, processing moving dots twice as fast as humans and primates.",
+  "key_facts": [
+    {
+      "fact": "Researchers Philipp Schmidbauer and Andreas Nieder at the University of Tübingen tested decision speed in carrion crows and published their findings in Science.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aed6459",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "Two carrion crows required an average of only 235 milliseconds to recognize the direction of a moving dot pattern on a screen during experiments at the University of Tübingen.",
+      "source_url": "https://uni-tuebingen.de/universitaet/aktuelles-und-publikationen/pressemitteilung/kraehen-entscheiden-doppelt-so-schnell-wie-menschen-und-affen",
+      "source_name": "Universität Tübingen",
+      "confidence": "high"
+    },
+    {
+      "fact": "Crows solved visual decision tasks roughly twice as fast as humans and monkeys while using the same mathematical logic despite different brain structures.",
+      "source_url": "https://arstechnica.com/science/2026/10/crows-can-evaluate-visual-info-twice-as-fast-as-mammals",
+      "source_name": "Ars Technica",
+      "confidence": "high"
+    },
+    {
+      "fact": "In a study published on October 22 in the journal Science, two carrion crows distinguished the direction of moving dots in an average of 235 milliseconds.",
+      "source_url": "https://www.livescience.com/animals/birds/crows-may-make-lightning-fast-decisions-sometimes-twice-as-fast-as-humans-study-hints",
+      "source_name": "Live Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Average decision time in milliseconds",
+      "value": 235,
+      "unit": "milliseconds",
+      "source_url": "https://uni-tuebingen.de/universitaet/aktuelles-und-publikationen/pressemitteilung/kraehen-entscheiden-doppelt-so-schnell-wie-menschen-und-affen"
+    },
+    {
+      "label": "Number of carrion crows tested in the University of Tübingen experiment",
+      "value": 2,
+      "unit": "crows",
+      "source_url": "https://uni-tuebingen.de/universitaet/aktuelles-und-publikationen/pressemitteilung/kraehen-entscheiden-doppelt-so-schnell-wie-menschen-und-affen"
+    },
+    {
+      "label": "Speed multiplier compared to primates and humans",
+      "value": 2,
+      "unit": "times faster",
+      "source_url": "https://uni-tuebingen.de/universitaet/aktuelles-und-publikationen/pressemitteilung/kraehen-entscheiden-doppelt-so-schnell-wie-menschen-und-affen"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Philipp Schmidbauer",
+      "kind": "person"
+    },
+    {
+      "name": "Andreas Nieder",
+      "kind": "person"
+    },
+    {
+      "name": "University of Tübingen",
+      "kind": "organization"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    },
+    {
+      "name": "carrion crows",
+      "kind": "object"
+    },
+    {
+      "name": "Live Science",
+      "kind": "organization"
+    },
+    {
+      "name": "Ars Technica",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "topic_slug": "composite-recycling-method-thermosets",
+  "strongest_angle": "Researchers at UT Austin and Sandia National Laboratories developed a green metathesis chemical recycling method that breaks down poly(dicyclopentadiene) thermoset composites to recover intact carbon and glass fibers without incineration.",
+  "key_facts": [
+    {
+      "fact": "Researchers at The University of Texas at Austin and Sandia National Laboratories created a metathesis-based recycling strategy for poly(dicyclopentadiene) thermoset plastics.",
+      "source_url": "https://www.osti.gov/pages/biblio/3818208",
+      "source_name": "OSTI.GOV",
+      "confidence": "high"
+    },
+    {
+      "fact": "The chemical deconstruction method was developed across 4 academic and government institutions, including UIUC and MIT, to recover 2 types of intact fibers: glass and carbon fibers.",
+      "source_url": "https://4engineers.com/conversation/new-technique-for-recycling-composite-materials-breaks-down-thermoset-to-recover-fibers-3648",
+      "source_name": "4Engineers",
+      "confidence": "high"
+    },
+    {
+      "fact": "Lead author Keldy S. Mason and co-author Meghan T. Kiker published the metathesis-based deconstruction technique in a September 2026 Science Advances study.",
+      "source_url": "https://doi.org/10.1126/sciadv.aef4204",
+      "source_name": "Science Advances",
+      "confidence": "high"
+    },
+    {
+      "fact": "In a laboratory test at The University of Texas at Austin, scientists deconstructed a 3D-printed pufferfish object made of pDCPD plastic using an eco-friendly solvent and ruthenium-based catalyst.",
+      "source_url": "https://news.utexas.edu/2026/09/14/new-low-waste-chemistry-method-breaks-down-tough-to-recycle-plastics",
+      "source_name": "UT News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Collaborating research institutions",
+      "value": 4,
+      "unit": "institutions",
+      "source_url": "https://4engineers.com/conversation/new-technique-for-recycling-composite-materials-breaks-down-thermoset-to-recover-fibers-3648"
+    },
+    {
+      "label": "Types of recoverable reinforcing fibers",
+      "value": 2,
+      "unit": "fiber types",
+      "source_url": "https://4engineers.com/conversation/new-technique-for-recycling-composite-materials-breaks-down-thermoset-to-recover-fibers-3648"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "A 3D-printed pufferfish made of pDCPD undergoes deconstruction in a solution containing an eco-friendly solvent and ruthenium-based catalyst.",
+      "speaker": "UT News",
+      "source_name": "UT News",
+      "source_url": "https://news.utexas.edu/2026/09/14/new-low-waste-chemistry-method-breaks-down-tough-to-recycle-plastics"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "The University of Texas at Austin",
+      "kind": "organization"
+    },
+    {
+      "name": "Sandia National Laboratories",
+      "kind": "organization"
+    },
+    {
+      "name": "UIUC",
+      "kind": "organization"
+    },
+    {
+      "name": "MIT",
+      "kind": "organization"
+    },
+    {
+      "name": "Keldy S. Mason",
+      "kind": "person"
+    },
+    {
+      "name": "Meghan T. Kiker",
+      "kind": "person"
+    },
+    {
+      "name": "poly(dicyclopentadiene)",
+      "kind": "object"
+    },
+    {
+      "name": "ruthenium-based catalyst",
+      "kind": "object"
+    },
+    {
+      "name": "3D-printed pufferfish",
+      "kind": "object"
+    }
+  ]
+}

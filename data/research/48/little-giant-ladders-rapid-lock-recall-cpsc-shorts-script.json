@@ -1,0 +1,37 @@
+{
+  "channel_id": "48",
+  "topic_slug": "little-giant-ladders-rapid-lock-recall-cpsc",
+  "format": "shorts",
+  "hook": "3.66 million ladders recalled after only 25 sudden‑retraction reports nationwide.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "3.66 million ladders recalled after only 25 sudden‑retraction reports nationwide.",
+      "text_overlay": null
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 5 2026 the CPSC recalled 3.66 million Little Giant ladders with Rapid Locks. How'd 25 reports of Little Giant Rapid Lock ladders suddenly retracting cause 19 consumer injuries?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the hazard doesn't stop there; it covers 11 Little Giant models sold through October 2026.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The U.S. Consumer Product Safety Commission logged 3 head injuries tied to Little Giant retractions. Those 3 severe head injuries from Rapid Locks included traumatic brain injury and vision loss.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "A total of 3.66 million ladders are now off the market.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.cpsc.gov/Recalls/2027/Little-Giant-Recalls-Ladders-with-Rapid-Locks-Due-to-Risk-of-Serious-Injury-from-Fall-Hazard",
+    "https://www.medicaldaily.com/little-giant-ladder-recall-rapid-locks-injuries-480943"
+  ]
+}

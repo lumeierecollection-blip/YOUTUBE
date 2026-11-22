@@ -1,0 +1,23 @@
+# Fetch Wikimedia Commons files (photos, logos, music) on GitHub, where Commons' file host does not rate-limit us the way it limits the PC.
+# Licence checked by platform/production/commons.mjs; credits merged into ATTRIBUTIONS.json. Push a branch named fetch/<anything>.
+# Jobs: data/fetch-media.json = [{ "dir": "<public/lf2 sub-dir>", "items": [["<id>", "File:<title>", "<what it may illustrate>"], ...] }]
+name: Fetch media
+on:
+  push:
+    branches: ["fetch/**"]
+permissions:
+  contents: read
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Fetch every listed file
+        run: node -e 'const {spawnSync}=require("child_process");for(const j of require("./data/fetch-media.json")) spawnSync("node",["platform/longform/v2/fetch-photos.mjs",j.dir,...j.items.flat()],{stdio:"inherit"});'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fetched-media
+          path: src/skills/remotion-render/public/lf2/

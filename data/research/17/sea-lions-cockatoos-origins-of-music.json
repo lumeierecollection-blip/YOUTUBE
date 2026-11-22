@@ -1,0 +1,78 @@
+{
+  "topic_slug": "sea-lions-cockatoos-origins-of-music",
+  "strongest_angle": "Scientific American and University of California reports examine how California sea lions like Ronan and cockatoos demonstrate beat perception and rhythm, offering evolutionary clues into the origins of music.",
+  "key_facts": [
+    {
+      "fact": "As reported by Scientific American in November 2026, California sea lions like Ronan sway their upper bodies to the beat and stay perfectly on meter.",
+      "source_url": "https://www.scientificamerican.com/article/what-animals-reveal-about-the-origins-of-music",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "In May 2025, researchers at the University of California's Long Marine Laboratory reported that Ronan the sea lion could adjust her nods to tempos and music she had not heard before.",
+      "source_url": "https://www.universityofcalifornia.edu/news/jammin-ronan-rhythmically-trained-sea-lion-returns-encore-and-performs-well-humans",
+      "source_name": "University of California",
+      "confidence": "high"
+    },
+    {
+      "fact": "As covered by National Geographic, experiments with the cockatoo named Snowball showed that the bird could adjust its dance moves when Patel slowed down or sped up the song.",
+      "source_url": "https://www.nationalgeographic.com/animals/article/140216-sea-lion-parrot-music-animal-behavior-science",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.scientificamerican.com/article/what-animals-reveal-about-the-origins-of-music"
+    },
+    {
+      "label": "Publication year",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://www.universityofcalifornia.edu/news/jammin-ronan-rhythmically-trained-sea-lion-returns-encore-and-performs-well-humans"
+    },
+    {
+      "label": "Publication year",
+      "value": 2013,
+      "unit": "year",
+      "source_url": "https://www.universityofcalifornia.edu/news/jammin-ronan-rhythmically-trained-sea-lion-returns-encore-and-performs-well-humans"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Ronan",
+      "kind": "object"
+    },
+    {
+      "name": "Snowball",
+      "kind": "object"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    },
+    {
+      "name": "University of California",
+      "kind": "organization"
+    },
+    {
+      "name": "Long Marine Laboratory",
+      "kind": "place"
+    },
+    {
+      "name": "Patel",
+      "kind": "person"
+    },
+    {
+      "name": "Daisy Yuhas",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Peña",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+name: Models Probe
+
+# Lists which Google models our keys can reach. Sends no prompt, spends no quota, holds no YouTube credentials. Push to lfp/<anything>.
+on:
+  push:
+    branches:
+      - "lfp/**"
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: List models
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/longform/experiments/list-models.mjs output/models.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: models-${{ github.run_id }}
+          path: output/models.json

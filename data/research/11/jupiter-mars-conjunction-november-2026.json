@@ -1,0 +1,103 @@
+{
+  "topic_slug": "jupiter-mars-conjunction-november-2026",
+  "strongest_angle": "Detailed observation guide for the November 14 to 17, 2026 morning conjunction of Jupiter and Mars in the morning sky, highlighting their 1 to 1.2 degree separation and alignment near the star Regulus.",
+  "key_facts": [
+    {
+      "fact": "Mars and Jupiter will be at their closest together in the morning sky from 14 to 17 November 2026, appearing about 1 degree apart according to BBC Sky at Night Magazine.",
+      "source_url": "https://www.skyatnightmagazine.com/news/mars-jupiter-close-approach-14-17-november-2026",
+      "source_name": "BBC Sky at Night Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mars and Jupiter pass 1.2 degrees apart on Monday 16 November 2026 at 02:04 UTC, 88 degrees west of the Sun in the morning sky as reported by WhatTheStar.",
+      "source_url": "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16",
+      "source_name": "WhatTheStar",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Bright Jupiter and red Mars are shining in the east before sunrise on the mornings of November 15 to 17, with the star Regulus positioned below them according to EarthSky.",
+      "source_url": "https://earthsky.org/astronomy-essentials/visible-planets-tonight-mars-jupiter-venus-saturn-mercury",
+      "source_name": "EarthSky",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jeffrey L. Hunt notes in When the Curves Line Up that on November 16, 2026, observers can watch Mars and Jupiter appear 1.2 degrees apart before sunrise in Chicago, Illinois.",
+      "source_url": "https://whenthecurveslineup.com/2026/11/07/2026-november-16-a-jupiter-mars-conjunction-near-regulus-as-venus-shines-near-spica",
+      "source_name": "When the Curves Line Up",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Closest planet separation",
+      "value": 1,
+      "unit": "degree",
+      "source_url": "https://www.skyatnightmagazine.com/news/mars-jupiter-close-approach-14-17-november-2026"
+    },
+    {
+      "label": "Exact conjunction separation",
+      "value": 1.2,
+      "unit": "degrees",
+      "source_url": "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16"
+    },
+    {
+      "label": "Elongation west of the Sun",
+      "value": 88,
+      "unit": "degrees",
+      "source_url": "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16"
+    },
+    {
+      "label": "Mars magnitude",
+      "value": 0.7,
+      "unit": "magnitude",
+      "source_url": "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16"
+    },
+    {
+      "label": "Jupiter magnitude",
+      "value": -2.1,
+      "unit": "magnitude",
+      "source_url": "https://www.whatthestar.com/planets/mars-jupiter-conjunction-2026-11-16"
+    },
+    {
+      "label": "Conjunction separation by Jeffrey L. Hunt",
+      "value": 1.2,
+      "unit": "degrees",
+      "source_url": "https://whenthecurveslineup.com/2026/11/07/2026-november-16-a-jupiter-mars-conjunction-near-regulus-as-venus-shines-near-spica"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Jupiter",
+      "kind": "object"
+    },
+    {
+      "name": "Mars",
+      "kind": "object"
+    },
+    {
+      "name": "Regulus",
+      "kind": "object"
+    },
+    {
+      "name": "Sun",
+      "kind": "object"
+    },
+    {
+      "name": "Chicago",
+      "kind": "place"
+    },
+    {
+      "name": "BBC Sky at Night Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "WhatTheStar",
+      "kind": "organization"
+    },
+    {
+      "name": "EarthSky",
+      "kind": "organization"
+    }
+  ]
+}

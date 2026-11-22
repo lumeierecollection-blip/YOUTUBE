@@ -1,0 +1,65 @@
+{
+  "topic_slug": "atacama-desert-el-nino-floral-display-2026",
+  "strongest_angle": "Examine how heavy rains from the El Niño super cycle transformed nearly 7,000 square miles of Chile's Atacama Desert into its biggest floral display in decades, with some areas receiving the heaviest rainfall since records began in the 1950s.",
+  "key_facts": [
+    {
+      "fact": "Nearly 7,000 square miles of Chile's Atacama Desert erupted in its biggest floral display in decades following El Niño rains.",
+      "source_url": "https://www.npr.org/2026/11/08/nx-s1-6023812-e1/a-desert-stirs-to-life-chiles-atacama-erupts-in-its-biggest-floral-display-in-decades",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "Heavy rains brought by the El Niño super cycle caused flash floods in the Atacama Desert, with some areas receiving the heaviest rainfall since records began in the 1950s.",
+      "source_url": "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Chile's Atacama Desert, a massive portion of the landscape is now covered in flowers, with millions of seeds and bulbs sprouting after remaining dormant for decades.",
+      "source_url": "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b",
+      "source_name": "AP News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Floral display area in Atacama Desert",
+      "value": 7000,
+      "unit": "square miles",
+      "source_url": "https://www.npr.org/2026/11/08/nx-s1-6023812-e1/a-desert-stirs-to-life-chiles-atacama-erupts-in-its-biggest-floral-display-in-decades"
+    },
+    {
+      "label": "Rainfall records beginning year",
+      "value": 1950,
+      "unit": "year",
+      "source_url": "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Atacama Desert",
+      "kind": "place"
+    },
+    {
+      "name": "Chile",
+      "kind": "place"
+    },
+    {
+      "name": "Copiapó",
+      "kind": "place"
+    },
+    {
+      "name": "AP News",
+      "kind": "organization"
+    },
+    {
+      "name": "NPR",
+      "kind": "organization"
+    },
+    {
+      "name": "Live Science",
+      "kind": "organization"
+    }
+  ]
+}

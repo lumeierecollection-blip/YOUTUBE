@@ -1,0 +1,7 @@
+mplsoccer>=1.4
+matplotlib>=3.8
+numpy
+pandas
+pillow
+scipy
+rembg[cpu]==2.0.67

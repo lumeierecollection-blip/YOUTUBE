@@ -1,0 +1,92 @@
+{
+  "channel_id": "11",
+  "topic_slug": "billion-solar-mass-black-hole-size",
+  "format": "shorts",
+  "hook": "One black hole has an event horizon spanning 1.8 billion miles.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "One black hole has an event horizon spanning 1.8 billion miles.",
+      "visual_cue": "Cinematic push-in on a massive dark void in deep space surrounded by glowing accretion disk particles.",
+      "sfx_cue": "Deep low-frequency rumble and subtle space drone.",
+      "b_roll": [
+        "NASA deep space starfield cinematic illustration",
+        "Supermassive black hole accretion disk animation"
+      ],
+      "animation_cue": "Slow camera zoom into central singularity void",
+      "transition_out": "Fast cut to solar system comparison",
+      "text_overlay": {
+        "text": "1.8 BILLION MILE HORIZON"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:20",
+      "voiceover": "Earth measures 12,742 kilometers across, while the Sun reaches 1.39 million kilometers. How vast is a black hole of 1 billion suns?",
+      "visual_cue": "Visual scale transition starting from Earth, scaling up to the Sun, shrinking to a 59 km stellar black hole.",
+      "sfx_cue": "Rising synthesizer swell with soft metallic ticks for scale transitions.",
+      "b_roll": [
+        "NASA Earth satellite view photo",
+        "NASA solar surface illustration",
+        "Stellar black hole scale diagram"
+      ],
+      "animation_cue": "Smooth scale expansion across three orders of celestial magnitude",
+      "transition_out": "Wipe transition to deep space scale graphic",
+      "text_overlay": {
+        "text": "EARTH: 12,742 KM | SUN: 1.39M KM"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20 - 0:26",
+      "voiceover": "Astronomy.com notes this 1.8 billion mile radius dwarfs a 59 kilometer wide stellar black hole.",
+      "visual_cue": "Macro graphic displaying Astronomy.com research citation with glowing orbital grid line.",
+      "sfx_cue": "Subtle electronic chime and deep bass pulse.",
+      "b_roll": [
+        "Astronomy.com publication text overlay graphic",
+        "Outer solar system planetary orbit lines animation"
+      ],
+      "animation_cue": "Pulse line highlighting research citation text",
+      "transition_out": "Fade cut to outer solar system map",
+      "text_overlay": {
+        "text": "ASTRONOMY.COM DATA"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26 - 0:42",
+      "voiceover": "That radius of 1.8 billion miles matches the distance from the Sun to Uranus.",
+      "visual_cue": "Wide orbital camera view placing the black hole at the Sun position, showing the event horizon extending out to the orbit of Uranus.",
+      "sfx_cue": "Reverberant acoustic swell with deep sub-bass impact.",
+      "b_roll": [
+        "Orbit of Uranus solar system map illustration",
+        "Black hole event horizon relative to planetary orbits visual"
+      ],
+      "animation_cue": "Expanding boundary ring overlapping planet Uranus orbit path",
+      "transition_out": "Slow dissolve to black hole edge detail",
+      "text_overlay": {
+        "text": "RADIUS REACHES URANUS"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42 - 0:47",
+      "voiceover": "Uranus orbits at that 1.8 billion mile distance, illustrating the massive scale of this black hole.",
+      "visual_cue": "Slow pull-back shot showing the silhouette of the massive horizon fading into stars.",
+      "sfx_cue": "Fading dark ambient resonance.",
+      "b_roll": [
+        "Deep field background stars fading into shadow"
+      ],
+      "animation_cue": "Slow drift backwards as starfield dims",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "1.8 BILLION MILES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.astronomy.com/science/how-big-is-a-supermassive-black-hole",
+    "https://stephenhawking.co.uk/tools/black-hole-size-comparison"
+  ]
+}

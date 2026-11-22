@@ -1,0 +1,24 @@
+1
+00:00:00,100 --> 00:00:03,062
+AI assistants are trapped behind information silos.
+
+2
+00:00:03,475 --> 00:00:08,850
+Anthropic's Model Context Protocol is one open standard connecting AI to your data.
+
+3
+00:00:09,262 --> 00:00:14,375
+An MCP server exposes your data; an MCP client like Claude connects to it.
+
+4
+00:00:14,800 --> 00:00:20,850
+Pre-built MCP servers exist for Google Drive, Slack, GitHub, Postgres and Puppeteer.
+
+5
+00:00:21,262 --> 00:00:23,238
+Build once, integrate everywhere.
+
+6
+00:00:23,650 --> 00:00:25,125
+AI finally reaches your data.
+

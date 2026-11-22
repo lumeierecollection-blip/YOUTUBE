@@ -1,0 +1,91 @@
+{
+  "channel_id": "11",
+  "topic_slug": "starfish-space-otter-sspicy-mission-failure",
+  "format": "shorts",
+  "hook": "A $15 million satellite mission just went completely dark in orbit.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "A $15 million satellite mission just went completely dark in orbit.",
+      "visual_cue": "Cinematic shot of satellite silhouette drifting in deep space, Earth glowing below.",
+      "sfx_cue": "Low deep rumble fading into static.",
+      "b_roll": [
+        "Earth orbit satellite rendering",
+        "Space telemetry dark screen"
+      ],
+      "animation_cue": "Slow push in on satellite",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "$15 MILLION MISSION DARK"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Starfish Space launched the Otter 24C for the $15 million SSPICY technology demonstration mission. Its goal was inspecting inoperable satellites in low Earth orbit. Why did ground operators in Tukwila lose contact just one month after the November 2026 launch?",
+      "visual_cue": "Rocket launch footage transitioning to clean orbital trajectory map.",
+      "sfx_cue": "Subtle rocket roar followed by telemetry signal.",
+      "b_roll": [
+        "Spacecraft launch sequence",
+        "Tukwila ground control antenna station"
+      ],
+      "animation_cue": "Trajectory line arc across orbit diagram",
+      "transition_out": "wipe_left",
+      "text_overlay": {
+        "text": "NOVEMBER 2026: SSPICY LAUNCH"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "But a fault protection system on the satellite blocked all communications with ground control teams.",
+      "visual_cue": "Schematic diagram of satellite internal systems highlighting fault sequence.",
+      "sfx_cue": "Sharp telemetry pulse fading to quiet static.",
+      "b_roll": [
+        "Satellite fault diagnostic graphic",
+        "Unresponsive ground control terminal"
+      ],
+      "animation_cue": "Red alert outline pulse on telemetry graphic",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "FAULT SYSTEM TRIGGERED"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:41",
+      "voiceover": "NASA and Starfish Space concluded Otter 24C is not recoverable. The automated fault system permanently severed control from Tukwila. That failure ended the $15 million project prematurely.",
+      "visual_cue": "Wide dramatic view of Otter 24C floating unresponsive in dark orbit.",
+      "sfx_cue": "Somber low drone resonance.",
+      "b_roll": [
+        "Starfish Space facility exterior",
+        "Deep space satellite drifting"
+      ],
+      "animation_cue": "Slow drift away from target satellite",
+      "transition_out": "fade_to_black",
+      "text_overlay": {
+        "text": "SPACECRAFT UNRECOVERABLE"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:41-0:47",
+      "voiceover": "Starfish Space lost its $15 million mission in low Earth orbit.",
+      "visual_cue": "Slow camera zoom out from Earth horizon into deep starfield.",
+      "sfx_cue": "Ethereal space reverberation decaying smoothly.",
+      "b_roll": [
+        "Low Earth orbit curvature photorealistic horizon"
+      ],
+      "animation_cue": "Fade out to black",
+      "transition_out": "fade_out",
+      "text_overlay": {
+        "text": "STARFISH SPACE • SSPICY MISSION"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.geekwire.com/2026/starfish-space-loses-contact-otter-sspicy",
+    "https://spacenews.com/starfish-spaces-first-otter-servicing-spacecraft-fails"
+  ]
+}

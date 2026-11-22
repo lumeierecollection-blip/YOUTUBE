@@ -1,0 +1,74 @@
+{
+  "channel_id": "17",
+  "topic_slug": "nist-optical-clocks-time-mountains-blue-sky",
+  "format": "shorts",
+  "hook": "Mount Blue Sky researchers prove that time actually ticks faster at higher altitudes than below.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Mount Blue Sky researchers prove that time actually ticks faster at higher altitudes than below.",
+      "visual_cue": "Close up of a precision watch ticking rapidly near a mountain peak.",
+      "sfx_cue": "High-frequency ticking sound",
+      "b_roll": [
+        "Cinematic slow motion shot of a high-altitude mountain peak"
+      ],
+      "text_overlay": {
+        "text": "Time moves faster at higher altitudes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Scientists from the National Institute of Standards and Technology used the Meyer-Womble Observatory to measure time?",
+      "visual_cue": "Footage showing researchers working with scientific equipment inside the observatory.",
+      "sfx_cue": "Ambient wind and mechanical hum",
+      "b_roll": [
+        "Wide shot of Meyer-Womble Observatory on Mount Blue Sky",
+        "Close up of optical lattice clock components"
+      ],
+      "text_overlay": {
+        "text": "15 weeks of testing on Mount Blue Sky"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the team compared these summit results to a second clock 2,700 meters lower down.",
+      "visual_cue": "Split screen showing two clocks at different elevations.",
+      "sfx_cue": "Subtle shift in tone",
+      "b_roll": [
+        "Graphic comparison of mountain elevation"
+      ],
+      "text_overlay": {
+        "text": "Comparing 4,348m to 2,700m"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Albert Einstein predicted this gravitational time dilation in his famous theory of general relativity. The experiment on the 4,348-meter summit confirmed that time is relative to gravitational pull.",
+      "visual_cue": "Animation showing gravitational time dilation near Earth.",
+      "sfx_cue": "Deep, resonant sound wave",
+      "b_roll": [
+        "Historical portrait of Albert Einstein",
+        "Animation of space-time curvature"
+      ],
+      "text_overlay": {
+        "text": "General Relativity confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers from the National Institute of Standards and Technology spent 15 weeks testing these clocks.",
+      "visual_cue": "Wide panoramic shot of the Mount Blue Sky summit at sunset.",
+      "sfx_cue": "Wind fading out",
+      "b_roll": [
+        "Aerial view of Mount Blue Sky"
+      ],
+      "text_overlay": {
+        "text": "Mount Blue Sky"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scientificamerican.com/article/why-time-runs-faster-on-mountains-and-how-optical-clocks-could-map-earth",
+    "https://www.nist.gov/blogs/taking-measure/putting-einstein-test-worlds-most-accurate-clocks"
+  ]
+}

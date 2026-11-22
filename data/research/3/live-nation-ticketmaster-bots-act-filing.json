@@ -1,0 +1,131 @@
+{
+  "topic_slug": "live-nation-ticketmaster-bots-act-filing",
+  "strongest_angle": "Examining the amended court filings in federal court in Los Angeles where Live Nation and Ticketmaster respond to the FTC, arguing that the agency is selectively and arbitrarily enforcing the BOTS Act.",
+  "key_facts": [
+    {
+      "fact": "Live Nation and Ticketmaster filed an amended answer on October 29 in federal court in Los Angeles, reducing their affirmative defenses from 16 to 12 pointed arguments against the FTC.",
+      "source_url": "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense",
+      "source_name": "Decibel News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Live Nation argued in the federal court filing that from the enactment of the BOTS Act in 2016 until the instant action, the FTC has never brought an enforcement action against others in the same manner.",
+      "source_url": "https://www.digitalmusicnews.com/2026/11/02/ftc-live-nation-lawsuit",
+      "source_name": "Digital Music News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Live Nation and Ticketmaster are facing a lawsuit from the Federal Trade Commission, joined by plaintiffs including the State of Tennessee, the State of Utah, and the Commonwealth of Virginia in the United States District Court Central District of California under Case No. 2:25-cv-08884-MEMF-MAA.",
+      "source_url": "https://www.ticketnews.com/wp-content/uploads/2026/10/DEFENDENTS-ANSWER-TO-COMPLAINT.pdf",
+      "source_name": "TicketNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "Live Nation formally denied Federal Trade Commission claims that Ticketmaster profited from ticket brokers bypassing artists ticket limits in a filing made on Tuesday, October 13.",
+      "source_url": "https://www.musicbusinessworldwide.com/live-nation-calls-ftcs-bots-act-lawsuit-misguided-says-agency-is-trying-to-flip-the-act-on-its-head",
+      "source_name": "Music Business Worldwide",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Affirmative defenses before amendment",
+      "value": 16,
+      "unit": "defenses",
+      "source_url": "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense"
+    },
+    {
+      "label": "Affirmative defenses after amendment",
+      "value": 12,
+      "unit": "defenses",
+      "source_url": "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense"
+    },
+    {
+      "label": "Year of BOTS Act enactment",
+      "value": 2016,
+      "unit": "year",
+      "source_url": "https://www.digitalmusicnews.com/2026/11/02/ftc-live-nation-lawsuit"
+    },
+    {
+      "label": "Day of October filing",
+      "value": 29,
+      "unit": "day",
+      "source_url": "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense"
+    },
+    {
+      "label": "Day of initial October filing",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://www.musicbusinessworldwide.com/live-nation-calls-ftcs-bots-act-lawsuit-misguided-says-agency-is-trying-to-flip-the-act-on-its-head"
+    },
+    {
+      "label": "Page count of answer",
+      "value": 33,
+      "unit": "pages",
+      "source_url": "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense"
+    },
+    {
+      "label": "Case number year part",
+      "value": 25,
+      "unit": "year",
+      "source_url": "https://www.ticketnews.com/wp-content/uploads/2026/10/DEFENDENTS-ANSWER-TO-COMPLAINT.pdf"
+    },
+    {
+      "label": "Case number sequence",
+      "value": 8884,
+      "unit": "case number",
+      "source_url": "https://www.ticketnews.com/wp-content/uploads/2026/10/DEFENDENTS-ANSWER-TO-COMPLAINT.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Live Nation",
+      "kind": "organization"
+    },
+    {
+      "name": "Ticketmaster",
+      "kind": "organization"
+    },
+    {
+      "name": "Federal Trade Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "United States District Court Central District of California",
+      "kind": "place"
+    },
+    {
+      "name": "Los Angeles",
+      "kind": "place"
+    },
+    {
+      "name": "State of Tennessee",
+      "kind": "organization"
+    },
+    {
+      "name": "State of Utah",
+      "kind": "organization"
+    },
+    {
+      "name": "Commonwealth of Virginia",
+      "kind": "organization"
+    },
+    {
+      "name": "Dylan Smith",
+      "kind": "person"
+    },
+    {
+      "name": "Dave Brooks",
+      "kind": "person"
+    },
+    {
+      "name": "Mandy Dalugdug",
+      "kind": "person"
+    },
+    {
+      "name": "Bruce Houghton",
+      "kind": "person"
+    }
+  ]
+}

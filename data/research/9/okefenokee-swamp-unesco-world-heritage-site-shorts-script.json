@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "okefenokee-swamp-unesco-world-heritage-site",
+  "format": "shorts",
+  "hook": "The Okefenokee Swamp is the largest blackwater swamp and freshwater ecosystem in North America today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Okefenokee Swamp is the largest blackwater swamp and freshwater ecosystem in North America today.",
+      "text_overlay": {
+        "text": "Okefenokee Swamp"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In July 2026, the Okefenokee Swamp officially joined the UNESCO World Heritage List. This sprawling ecosystem spans across southeastern Georgia and into parts of northeastern Florida. Which U.S. site is it?",
+      "text_overlay": {
+        "text": "UNESCO World Heritage List"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "It marks the 27th U.S. site, but it stands out for its management.",
+      "text_overlay": {
+        "text": "27th U.S. Site"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Okefenokee National Wildlife Refuge is the first site managed entirely by the U.S. National Wildlife Refuge System. It remains the biggest freshwater ecosystem in North America.",
+      "text_overlay": {
+        "text": "U.S. National Wildlife Refuge System"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The swamp now stands as Georgia's first official UNESCO site.",
+      "text_overlay": {
+        "text": "Georgia's 1st UNESCO Site"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wabe.org/okefenokee-becomes-georgias-first-unesco-world-heritage-site",
+    "https://whc.unesco.org/en/list/1751"
+  ]
+}

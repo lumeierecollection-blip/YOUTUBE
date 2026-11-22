@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "michael-mann-new-regency-heat-ownership-lawsuit",
+  "format": "shorts",
+  "hook": "Michael Mann’s 1995 film Heat faces a legal battle over who owns the screenplay rights.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Michael Mann’s 1995 film Heat faces a legal battle over who owns the screenplay rights.",
+      "text_overlay": {
+        "text": "Heat Ownership Dispute"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, Mann served 3 termination notices to New Regency to reclaim his original work. Will the court grant his request?",
+      "text_overlay": {
+        "text": "3 Notices Served"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, New Regency claims the screenplay is a work-for-hire, which legally blocks Mann’s ownership claim.",
+      "text_overlay": {
+        "text": "Work-for-Hire Claim"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Yariv Milchan filed this lawsuit in the United States District Court for the Central District. The court must resolve this dispute before filming for Heat 2 starts in January 2027.",
+      "text_overlay": {
+        "text": "2027 Sequel Deadline"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "New Regency and Mann now await a court ruling on the future of the franchise.",
+      "text_overlay": {
+        "text": "Unresolved Ownership"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf",
+    "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655"
+  ]
+}

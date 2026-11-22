@@ -1,0 +1,88 @@
+# AUTOPILOT (owner, 20 Nov 2026): runs without anyone. Shorts twice a day, a long form every 2 days. Each run takes the next topic from
+# data/autopilot/<mode>-queue.json, writes the script ONLY from fetched Wikipedia text, sources + vision-checks a picture for every named thing, renders on GitHub,
+# runs the picture-versus-words gate, and uploads PRIVATE (ship-short.yml / the ship job of pilot-render.yml). Nothing goes public from here.
+# A failed run changes nothing but its own artifacts: the topic is only marked done after generation succeeds, and the next scheduled run simply takes the next topic.
+name: Autopilot
+on:
+  schedule:
+    - cron: "17 6,18 * * *"     # Shorts: 06:17 and 18:17 UTC
+    - cron: "43 7 */2 * *"      # long form: every second day
+  workflow_dispatch:
+    inputs:
+      mode: { description: "short or long", required: true, default: short }
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: autopilot-${{ github.event.schedule || inputs.mode }}
+  cancel-in-progress: false
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: main }
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Decide the mode
+        id: mode
+        run: |
+          M="${{ inputs.mode }}"; [ -z "$M" ] && { [ "${{ github.event.schedule }}" = "43 7 */2 * *" ] && M=long || M=short; }
+          echo "mode=$M" >> "$GITHUB_OUTPUT"
+      - name: Write the script, source the pictures, build the spec
+        id: gen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: |
+          set -o pipefail
+          set +e; node platform/autopilot/make.mjs "${{ steps.mode.outputs.mode }}" | tee gen.log; rc=${PIPESTATUS[0]}; set -e
+          if [ "$rc" = 4 ]; then   # topic rejected (too thin): mark it skipped on main and start the next topic right away
+            git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
+            git add data/autopilot/done.json; git commit -qm "autopilot: topic skipped (rejected as too thin)"
+            for i in 1 2 3; do git pull -q --rebase --autostash origin main && git push -q origin main && break || sleep 5; done
+            gh workflow run Autopilot --ref main -f mode="${{ steps.mode.outputs.mode }}"; exit 0
+          fi
+          [ "$rc" = 0 ] || exit "$rc"
+          echo "slug=$(grep '^SLUG=' gen.log | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+      - name: Picture gate in repair mode for long forms
+        if: steps.gen.outputs.slug != '' && steps.mode.outputs.mode == 'long'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GATE_REPAIR: "1"
+        run: |
+          sudo apt-get -qq install -y ffmpeg >/dev/null
+          node platform/longform/v2/check-visuals.mjs "${{ steps.gen.outputs.slug }}" || true
+      - name: Commit the build to its own branch, mark the topic done on main, start the render
+        if: steps.gen.outputs.slug != ''
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          git config user.name autopilot; git config user.email autopilot@users.noreply.github.com
+          SLUG="${{ steps.gen.outputs.slug }}"; MODE="${{ steps.mode.outputs.mode }}"
+          [ -n "$SLUG" ] || { echo "no slug: generation failed"; exit 1; }
+          ID="${SLUG#ai-tested-}"; ID="${ID#hidden-past-}"
+          BR=$([ "$MODE" = short ] && echo "sx/auto-$ID" || echo "auto/$SLUG")
+          git checkout -b "$BR"; git add -A; git commit -qm "autopilot $MODE: $SLUG" ; git push -f origin "$BR"
+          git checkout -q main; git checkout "$BR" -- data/autopilot/done.json; git add data/autopilot/done.json
+          git commit -qm "autopilot: $SLUG generated (topic marked done)" || true
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin main && break || sleep 5; done
+          if [ "$MODE" = short ]; then gh workflow run "SX Shorts" --ref "$BR" -f slug="$SLUG"; else gh workflow run "Pilot render" --ref "$BR" -f episode="$SLUG"; fi

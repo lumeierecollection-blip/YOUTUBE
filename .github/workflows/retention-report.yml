@@ -1,0 +1,50 @@
+name: retention-report
+
+# Read-only: for each channel slot, list recent uploads and ask the YouTube Analytics API where viewers stop watching each public video
+# (retention curve, average viewed, weakest part: hook, bridge, body or close). Prints the report to the job summary and keeps it as an
+# artifact. It never uploads, never edits a video, never prints a token.
+# Runs on main only, because credentials are not read on development branches (audit 2026-10-03). On any other branch the job is skipped.
+on:
+  workflow_dispatch:
+    inputs:
+      slots:
+        description: "Channel slots, comma-separated"
+        default: "01,02,03,04"
+      max:
+        description: "Most recent uploads per channel"
+        default: "15"
+
+permissions:
+  contents: read
+
+jobs:
+  retention:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CHANNEL_01_CLIENT_ID: ${{ secrets.CHANNEL_01_CLIENT_ID }}
+      CHANNEL_01_CLIENT_SECRET: ${{ secrets.CHANNEL_01_CLIENT_SECRET }}
+      CHANNEL_01_REFRESH_TOKEN: ${{ secrets.CHANNEL_01_REFRESH_TOKEN }}
+      CHANNEL_02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+      CHANNEL_02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+      CHANNEL_02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+      CHANNEL_03_CLIENT_ID: ${{ secrets.CHANNEL_03_CLIENT_ID }}
+      CHANNEL_03_CLIENT_SECRET: ${{ secrets.CHANNEL_03_CLIENT_SECRET }}
+      CHANNEL_03_REFRESH_TOKEN: ${{ secrets.CHANNEL_03_REFRESH_TOKEN }}
+      CHANNEL_04_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+      CHANNEL_04_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+      CHANNEL_04_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+      SLOTS: ${{ inputs.slots }}
+      MAX: ${{ inputs.max }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build the retention report
+        run: node scripts/analytics/retention.mjs --slots "$SLOTS" --max "$MAX" --out retention >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: retention-report
+          path: retention/

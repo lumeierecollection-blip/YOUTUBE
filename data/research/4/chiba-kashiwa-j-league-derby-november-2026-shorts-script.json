@@ -1,0 +1,66 @@
+{
+  "channel_id": "4",
+  "topic_slug": "chiba-kashiwa-j-league-derby-november-2026",
+  "format": "shorts",
+  "hook": "JEF United Chiba had not beaten Kashiwa Reysol away since 2005.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "JEF United Chiba had not beaten Kashiwa Reysol away since 2005.",
+      "b_roll": [
+        "Historic graphics depicting the derby rivalry timeline leading back to 2005"
+      ],
+      "text_overlay": {
+        "text": "First Away Win Since 2005"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 20, 2026, JEF United Chiba played Kashiwa Reysol at Sankyo Frontier Kashiwa Stadium. Who would break the deadlock for JEF United Chiba?",
+      "b_roll": [
+        "Stadium diagram map of Sankyo Frontier Kashiwa Stadium with Matchweek 15 graphic",
+        "Attendance counter showing 13,612 spectators and temperature display of 11.1°C"
+      ],
+      "text_overlay": {
+        "text": "Matchweek 15 • 13,612 Spectators"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the deadlock didn't hold when midfielder Takumi Tsukui intercepted the ball in the 76th minute.",
+      "b_roll": [
+        "Tactical diagram showing Takumi Tsukui intercepting pass in minute 76"
+      ],
+      "text_overlay": {
+        "text": "76th Minute Interception"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Tsukui passed directly to forward Hiroto Goya. A right-footed shot landed in the right corner for the 1-0 lead. That single goal secured JEF United Chiba their third straight win.",
+      "b_roll": [
+        "Pass trajectory graphic from Takumi Tsukui to Hiroto Goya",
+        "Shot placement diagram hitting the right corner of the goal net for 1-0 score",
+        "Sequence metric visual showing 3 consecutive wins line chart"
+      ],
+      "text_overlay": {
+        "text": "Hiroto Goya Scores 1-0"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "It was their first away win against Kashiwa Reysol since 2005.",
+      "b_roll": [
+        "Final scorecard graphic showing Kashiwa Reysol 0, JEF United Chiba 1"
+      ],
+      "text_overlay": {
+        "text": "JEF United Chiba Victory"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.jleague.jp/en/match/j1/2026/112001",
+    "https://www.nikkansports.com/soccer/news/202611200002255.html",
+    "https://hochi.news/articles/20261120-OHT1T51334.html"
+  ]
+}

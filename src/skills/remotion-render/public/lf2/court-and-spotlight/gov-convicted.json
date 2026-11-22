@@ -1,0 +1,114 @@
+{
+ "id": "gov-convicted",
+ "url": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/boris-becker-convicted-of-bankruptcy-offences",
+ "final_url": "https://web.archive.org/web/20230108163844id_/https://www.gov.uk/government/news/boris-becker-convicted-of-bankruptcy-offences",
+ "title": "Boris Becker convicted of bankruptcy offences - GOV.UK",
+ "captured": "2026-11-13T05:11:57.109Z",
+ "viewport": {
+  "width": 1280,
+  "height": 900
+ },
+ "scale": 2,
+ "page_height": 3574,
+ "shots": [
+  {
+   "file": "gov-convicted-0.png",
+   "label": "loaded",
+   "scrollY": 0,
+   "at_ms": 13291
+  }
+ ],
+ "rects": {
+  "Boris Becker convicted of bankruptcy offences": [
+   {
+    "x": 160,
+    "y": 192,
+    "w": 607,
+    "h": 45
+   },
+   {
+    "x": 160,
+    "y": 232,
+    "w": 143,
+    "h": 45
+   }
+  ],
+  "convicted of four counts against the Insolvency Act 1986": [
+   {
+    "x": 160,
+    "y": 883,
+    "w": 460,
+    "h": 23
+   }
+  ],
+  "Assets concealed included €426,930.90": [
+   {
+    "x": 160,
+    "y": 1188,
+    "w": 339,
+    "h": 23
+   }
+  ],
+  "Concealed a loan of €825,000 from the Bank of Alpinum of Lichtenstein": [
+   {
+    "x": 180,
+    "y": 1838,
+    "w": 586,
+    "h": 23
+   }
+  ],
+  "received a prison sentence": [
+   {
+    "x": 300,
+    "y": 719,
+    "w": 218,
+    "h": 23
+   }
+  ],
+  "of 2 years and 6 months at Southwark Crown Court on 29 April 2022": [
+   {
+    "x": 522,
+    "y": 719,
+    "w": 214,
+    "h": 23
+   },
+   {
+    "x": 192,
+    "y": 744,
+    "w": 340,
+    "h": 23
+   }
+  ],
+  "Removing property totalling close to €427,000 from his bankruptcy estate (count 4)": [
+   {
+    "x": 180,
+    "y": 1753,
+    "w": 607,
+    "h": 23
+   },
+   {
+    "x": 180,
+    "y": 1778,
+    "w": 77,
+    "h": 23
+   }
+  ],
+  "Ownership of 75,000 shares in Breaking Data Corp (count 14)": [
+   {
+    "x": 180,
+    "y": 1893,
+    "w": 502,
+    "h": 23
+   }
+  ],
+  "Failed to disclose ownership of a property in Leiman in Germany (count 10)": [
+   {
+    "x": 180,
+    "y": 1808,
+    "w": 602,
+    "h": 23
+   }
+  ]
+ },
+ "cursor_log": []
+}

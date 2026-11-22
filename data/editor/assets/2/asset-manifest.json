@@ -1,0 +1,95 @@
+{
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "channel_id": "2",
+  "channel_name": "AI Tested",
+  "topic_slug": "model-context-protocol-mcp",
+  "topic": "Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "created_at": "2026-11-07",
+  "asset_policy": "No generic AI imagery, no stock processor photos, no unrelated robots. All visuals are original motion graphics produced for this topic, or rendered frames of those graphics. Every illustrative graphic is labelled as such and accurately represents a sourced fact.",
+  "assets": [
+    {
+      "asset_id": "vis-hook-01",
+      "file_path": "output/final-pipeline-repair/ai-tested/assets/scene-1s.png",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production (original motion graphic)",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Used only within this production; illustrative graphic of the hook claim.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "4AAD9491CA05F75CEDB18ADAB2FF77DD748FA2099090B4AC5B908663C1BDBE52",
+      "scene_beat_assignment": "hook (00:00-00:03.5)",
+      "reason_relevant": "Rendered frame of the kinetic-typography hook 'AI assistants are trapped behind information silos' (claim C-01, source S1)."
+    },
+    {
+      "asset_id": "vis-setup-01",
+      "file_path": "output/final-pipeline-repair/ai-tested/assets/scene-6s.png",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production (original motion graphic)",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Used only within this production; article-highlight card with marker stroke.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "BD89DBCD907C809228E827876A9979AC0742DC3FE0E6152521CFA92562E224C5",
+      "scene_beat_assignment": "setup (00:03.5-00:09.5)",
+      "reason_relevant": "Rendered frame of the article-highlight card 'ONE OPEN STANDARD' with marker stroke and source URL (claim C-02, source S1)."
+    },
+    {
+      "asset_id": "vis-how-01",
+      "file_path": "output/final-pipeline-repair/ai-tested/assets/scene-12s.png",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production (original motion graphic)",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Used only within this production; animated client/server diagram labelled illustrative.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "8E895C83613D49EAFF1319E7C335353F82E828D1CDAFD0D524E5CA6B45784619",
+      "scene_beat_assignment": "how (00:09.5-00:15)",
+      "reason_relevant": "Rendered frame of the animated MCP client → server → data-sources diagram (claims C-03/C-04, source S2)."
+    },
+    {
+      "asset_id": "vis-servers-01",
+      "file_path": "output/final-pipeline-repair/ai-tested/assets/scene-18s.png",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production (original motion graphic)",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Used only within this production; terminal insert with MCP stdio config.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "0D785D571A5F65CB468FF180EDBF4F4ED1314224D45B7B2318090BCCE753B264",
+      "scene_beat_assignment": "servers (00:15-00:21.5)",
+      "reason_relevant": "Rendered frame of the terminal insert typing an MCP server config (claim C-05, source S1)."
+    },
+    {
+      "asset_id": "vis-close-01",
+      "file_path": "output/final-pipeline-repair/ai-tested/assets/scene-24s.png",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production (original motion graphic)",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Used only within this production; summary composition with credits.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "A300126F7C864D934C0A958E00832FE249B7CB48BA230FE32BCFD8528F9F5BD2",
+      "scene_beat_assignment": "close (00:21.5-00:26)",
+      "reason_relevant": "Rendered frame of the summary 'BUILD ONCE · INTEGRATE EVERYWHERE' with source credits (claim C-06, sources S1/S2)."
+    },
+    {
+      "asset_id": "vis-timeline-01",
+      "file_path": "data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "source_url": "https://github.com/lumeierecollection-blip/YOUTUBE/blob/main/data/editor/auto/model-context-protocol-mcp/timeline.json",
+      "creator_or_publisher": "AI Tested production",
+      "licence": "Original work — AI Tested (ch-02)",
+      "usage_conditions": "Source of truth for every animated layer in the video.",
+      "attribution": "AI Tested (@aitested)",
+      "retrieval_date": "2026-11-07",
+      "sha256": "DA7F5E72F2F1610DF8A7BBA65B35785ED2BFE013CFD2AEE949E8EFA4CE04E4BE",
+      "scene_beat_assignment": "all scenes",
+      "reason_relevant": "Defines every layer, keyframe, caption and asset used in the render; single source of truth for the motion graphics."
+    }
+  ],
+  "relevance_gate_result": {
+    "generic_or_unrelated_assets_rejected": [],
+    "missing_photo_replaced_by_unrelated_image": false,
+    "original_motion_graphics_used": true,
+    "all_assets_tied_to_a_claim": true
+  }
+}

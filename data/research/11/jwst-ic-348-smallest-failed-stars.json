@@ -1,0 +1,83 @@
+{
+  "topic_slug": "jwst-ic-348-smallest-failed-stars",
+  "strongest_angle": "Analyze the James Webb Space Telescope's observation of the IC 348 star cluster, detailing the discovery of record-breaking low-mass brown dwarfs with masses down to 3 to 4 times that of Jupiter.",
+  "key_facts": [
+    {
+      "fact": "The James Webb Space Telescope identified a record-breaking free-floating brown dwarf in the IC 348 star cluster with a mass of 3 to 4 times that of Jupiter.",
+      "source_url": "https://www.sciencealert.com/jwst-discovers-record-breaking-brown-dwarf-so-small-it-defies-explanation",
+      "source_name": "ScienceAlert",
+      "confidence": "high"
+    },
+    {
+      "fact": "Located 1,000 light-years from Earth in the Perseus constellation, the IC 348 young star cluster was targeted by astronomers using the James Webb Space Telescope.",
+      "source_url": "https://www.space.com/james-webb-space-telescope-record-breaking-failed-star-and-two-brown-dwarfs",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers used the NIRSpec spectrograph on the James Webb Space Telescope to obtain spectra of brown dwarf candidates in the IC 348 cluster.",
+      "source_url": "https://sites.psu.edu/kluhman/ic348",
+      "source_name": "Kevin Luhman's Homepage",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The faintest confirmed brown dwarf in IC 348 has an estimated mass of 3 to 4 times the mass of Jupiter, representing the least massive brown dwarf confirmed with spectroscopy.",
+      "source_url": "https://iopscience.iop.org/article/10.3847/2041-8213/addc55",
+      "source_name": "IOPscience",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Mass of record-breaking brown dwarf in Jupiters",
+      "value": 3,
+      "unit": "Jupiter masses",
+      "source_url": "https://www.sciencealert.com/jwst-discovers-record-breaking-brown-dwarf-so-small-it-defies-explanation"
+    },
+    {
+      "label": "Maximum mass of record-breaking brown dwarf in Jupiters",
+      "value": 4,
+      "unit": "Jupiter masses",
+      "source_url": "https://www.sciencealert.com/jwst-discovers-record-breaking-brown-dwarf-so-small-it-defies-explanation"
+    },
+    {
+      "label": "Distance to the IC 348 star cluster in light-years",
+      "value": 1000,
+      "unit": "light-years",
+      "source_url": "https://www.space.com/james-webb-space-telescope-record-breaking-failed-star-and-two-brown-dwarfs"
+    },
+    {
+      "label": "Alternative mass estimate in Jupiters",
+      "value": 8,
+      "unit": "Jupiter masses",
+      "source_url": "https://www.space.com/james-webb-space-telescope-record-breaking-failed-star-and-two-brown-dwarfs"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "James Webb Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "IC 348",
+      "kind": "place"
+    },
+    {
+      "name": "Jupiter",
+      "kind": "object"
+    },
+    {
+      "name": "Perseus",
+      "kind": "place"
+    },
+    {
+      "name": "Kevin Luhman",
+      "kind": "person"
+    },
+    {
+      "name": "NIRSpec",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}

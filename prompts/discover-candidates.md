@@ -21,3 +21,11 @@ ship, a factory, a city, a device), not only the authors. Do not propose a
 topic whose facts are only authorship or method, or a product/API release
 note, unless the search results also give measurements, dates, places or a
 process the video can draw.
+
+For a strict channel return up to FIVE candidates (never fewer than three),
+best first: the pipeline measures each candidate's research for drawable
+facts and moves down the list when one is starved, so a longer list of
+stories that each carry a stated figure, date, place, list or comparison
+in the search results is the most useful thing you can add. Prefer a story
+whose search results already contain those facts over one that only has a
+headline.

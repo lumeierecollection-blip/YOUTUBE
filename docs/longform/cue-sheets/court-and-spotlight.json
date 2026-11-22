@@ -1,0 +1,130 @@
+{
+ "channel": "court-and-spotlight",
+ "episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+ "estimated_minutes": 5.9,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:21.2",
+   "seconds": 21.2,
+   "scene": "C03..C03",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 10,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:34.4",
+   "seconds": 34.4,
+   "scene": "C05..C05",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 22.4,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:34.4",
+   "seconds": 34.4,
+   "scene": "C05",
+   "cue_type": "action",
+   "asset": "SFX_PAPER",
+   "purpose": "a court document is brought into view",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/Eipeiknip/sounds/344433 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "1:10.0",
+   "seconds": 70,
+   "scene": "C07..C07b",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 38,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "2:06.4",
+   "seconds": 126.4,
+   "scene": "C08",
+   "cue_type": "riser",
+   "asset": "SFX_RISER",
+   "purpose": "builds to the verdict count (convicted of four, acquitted of twenty); used once",
+   "duration_s": 4,
+   "level_db_rel_speech": -14,
+   "source_licence": "freesound https://freesound.org/people/soneproject/sounds/334522 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "2:11.4",
+   "seconds": 131.4,
+   "scene": "C08",
+   "cue_type": "accent",
+   "asset": "SFX_IMPACT",
+   "purpose": "the verdict count is revealed (four convictions)",
+   "duration_s": 3,
+   "level_db_rel_speech": -10,
+   "source_licence": "freesound https://freesound.org/people/AudioPapkin/sounds/430978 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "3:32.8",
+   "seconds": 212.8,
+   "scene": "C10..C10",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 15.6,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "4:33.1",
+   "seconds": 273.2,
+   "scene": "C11b..C12",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 31.2,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "5:31.5",
+   "seconds": 331.6,
+   "scene": "C13..C13",
+   "cue_type": "ambience",
+   "asset": "AMB_ROOM_TONE",
+   "purpose": "very low room tone under document and testimony scenes so they do not play in dead silence",
+   "duration_s": 1.6,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/jmbphilmes/sounds/129443 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "5:33.1",
+   "seconds": 333.2,
+   "scene": "C14",
+   "cue_type": "action",
+   "asset": "SFX_GAVEL",
+   "purpose": "the sentence is stated",
+   "duration_s": 2.3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/odditonic/sounds/187706 | by 4.0 | attribution: \"Gavel - 1 strike with room reverb\" by odditonic is licensed under CC BY 4.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/4.0/.",
+   "approval_status": "needs correction, then audition pending"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

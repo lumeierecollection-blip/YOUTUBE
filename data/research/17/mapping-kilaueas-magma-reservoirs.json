@@ -1,0 +1,86 @@
+{
+  "topic_slug": "mapping-kilaueas-magma-reservoirs",
+  "strongest_angle": "Researchers utilized a dense network of 1,815 seismic sensors to map Kīlauea’s subsurface magma storage by analyzing both natural earthquake activity and controlled artificial vibrations.",
+  "key_facts": [
+    {
+      "fact": "Scientists deployed 1,815 seismic sensors across the summit of Kīlauea to record seismic data.",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground",
+      "source_name": "Space Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research team recorded approximately 35,000 small earthquakes within a 30-kilometer radius of the Kīlauea summit.",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground",
+      "source_name": "Space Daily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers identified two distinct magma storage reservoirs: one beneath the Halemaʻumaʻu crater and another beneath the south caldera of Kīlauea.",
+      "source_url": "https://eos.org/research-spotlights/mapping-kilaueas-magma-reservoirs",
+      "source_name": "Eos",
+      "confidence": "high"
+    },
+    {
+      "fact": "The study involved the analysis of 192 million individual seismic waveforms to map the subsurface structure.",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground",
+      "source_name": "Space Daily",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Number of seismic sensors deployed",
+      "value": 1815,
+      "unit": "sensors",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground"
+    },
+    {
+      "label": "Number of small earthquakes recorded",
+      "value": 35000,
+      "unit": "earthquakes",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground"
+    },
+    {
+      "label": "Radius of earthquake detection",
+      "value": 30,
+      "unit": "kilometers",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground"
+    },
+    {
+      "label": "Total seismic waveforms analyzed",
+      "value": 192000000,
+      "unit": "waveforms",
+      "source_url": "https://spacedaily.com/n-scientists-covered-the-summit-of-kilauea-with-1815-seismic-sensors-in-a-single-season-recorded-35000-small-earthquakes-within-30-kilometres-and-analysed-192-million-waveforms-to-map-the-ground"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Kīlauea",
+      "kind": "place"
+    },
+    {
+      "name": "Halemaʻumaʻu",
+      "kind": "place"
+    },
+    {
+      "name": "Guoqing Lin",
+      "kind": "person"
+    },
+    {
+      "name": "Steven Roecker",
+      "kind": "person"
+    },
+    {
+      "name": "Roger Denlinger",
+      "kind": "person"
+    },
+    {
+      "name": "Dan O’Connell",
+      "kind": "person"
+    },
+    {
+      "name": "Ninfa Bennington",
+      "kind": "person"
+    }
+  ]
+}

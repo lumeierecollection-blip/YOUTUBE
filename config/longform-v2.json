@@ -1,0 +1,517 @@
+{
+  "_note": "Long form v2 themes. Colour lives here, never in a scene spec or a script. Each look cites the references it was drawn from (docs/longform/DESIGN-LAWS.md).",
+  "hidden-past": {
+    "ep": {
+      "_map": "map palette re-measured 20 Nov 2026 from Epic bhQe2cjr5XQ political maps (grey paper, crimson/royal-blue realms, black caps); the orange RlKJDwViNKs palette belongs to illustrated art, not maps",
+      "_from": "Epic History TV bhQe2cjr5XQ formula (text cards on black, caption plates, flat-colour campaign map, orange casualty card, red credits) in the channel own palette",
+      "paper": "#EBE1CA",
+      "ink": "#24190F",
+      "black": "#0B0A09",
+      "red": "#A8201A",
+      "blue": "#2E4C86",
+      "gold": "#C9A24B",
+      "orange": "#C2602A",
+      "england": "#C23A4C",
+      "normandy": "#4A5EA6",
+      "norway": "#B9973F",
+      "route": "#1A1A1A",
+      "sea": "#A7BBC7",
+      "land": "#E3DFD7",
+      "border": "#B7B0A4",
+      "mapInk": "#1C1A17",
+      "khaki": "#B5A764",
+      "khaki2": "#CFC49A",
+      "water": "#A9C3CF",
+      "arrow": "#C9F28B",
+      "cavalry": "#1F3566",
+      "map": {
+        "label": "#20170E",
+        "labelBg": "rgba(240,231,210,0.9)",
+        "zone": "#A8201A",
+        "font": "\"Cormorant Garamond\", \"Noto Serif\", serif"
+      }
+    },
+    "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
+    "map": {
+      "label": "#FFFFFF",
+      "labelBg": "rgba(12,14,18,0.86)",
+      "zone": "#D7263D",
+      "font": "\"Roboto Condensed\", sans-serif"
+    },
+    "route": "#FFD23F",
+    "route2": "#FFFFFF",
+    "held": "#D7263D",
+    "water": "#3FA9F5",
+    "accent": "#D7263D",
+    "countries": {
+      "West Germany": "#F2C14E",
+      "Sweden": "#3FA9F5",
+      "France": "#5B8DEF",
+      "United Kingdom": "#E5484D",
+      "United States": "#9AD06B",
+      "Poland": "#F28C8C",
+      "Bulgaria": "#55C2A2",
+      "Czechoslovakia": "#C69CF2"
+    }
+  },
+  "ai-tested": {
+    "_from": "AI Search: dark field, real screens in a browser frame, one bright highlight colour, winner outlined",
+    "bg": "#0A0C10",
+    "dot": "rgba(255,255,255,0.10)",
+    "accent": "#2BD9FE",
+    "good": "#2FBF71",
+    "bad": "#FF4D5E",
+    "desk": {
+      "_from": "How Money Works (WXV9emaUeo0): article clippings on a green desk",
+      "felt": "#2a6e46",
+      "mid": "#1f5638",
+      "edge": "#11321f",
+      "grid": "rgba(255,255,255,0.05)"
+    }
+  },
+  "court-and-spotlight": {
+    "_from": "SunnyV2 / FRONTLINE: near-black field, yellow marker on the claim line, white quote cards, pink-red date headers",
+    "bg": "#07080A",
+    "bg2": "#15181D",
+    "mark": "#FFE14D",
+    "accent": "#C8102E",
+    "accent2": "#FFE14D",
+    "date": "#FF5C7A",
+    "speaker": "#FFE14D"
+  },
+  "rival-lines": {
+    "ix": {
+      "_from": "intrcpt gp4cftwGLcQ, measured frames (channel-reverse/spec/carbon): grey paper with grain, dark teal with a soft glow and faint grid, plum for footage windows; vivid glowing bars; serif type throughout",
+      "paper": "#E4E1D9",
+      "paper2": "#CFCAC0",
+      "ink": "#1A1814",
+      "mute": "#6F6A5F",
+      "teal": "#0B332E",
+      "teal2": "#1C5B4F",
+      "plum": "#4A0F33",
+      "plum2": "#82225C",
+      "home": "#E21DAE",
+      "away": "#3E7BEA",
+      "draw": "#A39E90",
+      "accent": "#8B5CF6",
+      "red": "#E1283E",
+      "marker": "rgba(250,214,70,0.65)",
+      "arrow": "#D9262E",
+      "thumbBg": "#F3F3F1"
+    },
+    "_from": "Football Made Simple: black vignetted pitch, white markings, one accent",
+    "bg": "#050607",
+    "turfA": "#101412",
+    "turfB": "#0c100e",
+    "line": "#e9ece8",
+    "accent": "#C8F04B",
+    "keeper": "#E13CE1",
+    "teams": {
+      "Spain": {
+        "fill": "#D81E2C",
+        "ring": "#F6C700",
+        "ink": "#ffffff",
+        "heat": "#E8323F"
+      },
+      "England": {
+        "fill": "#F4F5F7",
+        "ring": "#1B2A5B",
+        "ink": "#12203f",
+        "heat": "#7FA6FF",
+        "bar": "#C9CED8"
+      },
+      "Leicester City": {
+        "fill": "#0053A0",
+        "ring": "#FDBE11",
+        "ink": "#ffffff",
+        "heat": "#3C8DE0",
+        "bar": "#0053A0"
+      },
+      "Arsenal": {
+        "fill": "#EF0107",
+        "ring": "#ffffff",
+        "ink": "#ffffff",
+        "heat": "#EF5A5F",
+        "bar": "#EF0107"
+      },
+      "Tottenham Hotspur": {
+        "fill": "#F4F5F7",
+        "ring": "#132257",
+        "ink": "#132257",
+        "heat": "#8EA0D8",
+        "bar": "#C9CED8"
+      },
+      "Opposition": {
+        "fill": "#C9CED8",
+        "ring": "#555",
+        "ink": "#111",
+        "heat": "#aaa",
+        "bar": "#C9CED8"
+      },
+      "Chelsea": {
+        "fill": "#034694",
+        "ring": "#ffffff",
+        "ink": "#ffffff",
+        "heat": "#4B86D1",
+        "bar": "#034694"
+      },
+      "Sunderland": {
+        "fill": "#EB172B",
+        "ring": "#ffffff",
+        "ink": "#ffffff",
+        "heat": "#F06A75",
+        "bar": "#EB172B"
+      },
+      "Manchester United": {
+        "fill": "#DA291C",
+        "ring": "#FBE122",
+        "ink": "#ffffff",
+        "heat": "#E8635B",
+        "bar": "#DA291C"
+      },
+      "Italy": {
+        "fill": "#1B5FAA",
+        "ring": "#FFFFFF",
+        "ink": "#ffffff",
+        "heat": "#2F7FD8",
+        "bar": "#1B5FAA"
+      },
+      "Argentina": {
+        "fill": "#75AADB",
+        "ring": "#F6B40E",
+        "ink": "#0a0a0a",
+        "heat": "#75AADB",
+        "bar": "#75AADB"
+      },
+      "France": {
+        "fill": "#1F3A93",
+        "ring": "#E1000F",
+        "ink": "#ffffff",
+        "heat": "#4C6FE0",
+        "bar": "#4C6FE0"
+      },
+      "First kicker": {
+        "fill": "#C8F04B",
+        "ring": "#556b1a",
+        "ink": "#0a0a0a",
+        "heat": "#C8F04B",
+        "bar": "#C8F04B"
+      },
+      "Second kicker": {
+        "fill": "#C9CED8",
+        "ring": "#555555",
+        "ink": "#111111",
+        "heat": "#aaaaaa",
+        "bar": "#C9CED8"
+      },
+      "Scored": {
+        "fill": "#C8F04B",
+        "ring": "#556b1a",
+        "ink": "#0a0a0a",
+        "heat": "#C8F04B",
+        "bar": "#C8F04B"
+      },
+      "Missed": {
+        "fill": "#E8323F",
+        "ring": "#7a1018",
+        "ink": "#ffffff",
+        "heat": "#E8323F",
+        "bar": "#E8323F"
+      },
+      "Dived right": {
+        "fill": "#C8F04B",
+        "ring": "#556b1a",
+        "ink": "#0a0a0a",
+        "heat": "#C8F04B",
+        "bar": "#C8F04B"
+      },
+      "Other": {
+        "fill": "#C9CED8",
+        "ring": "#555555",
+        "ink": "#111111",
+        "heat": "#aaaaaa",
+        "bar": "#C9CED8"
+      }
+    }
+  },
+  "red-space-facts": {
+    "_from": "Astrum/SEA: deep-space black, one cool accent for labels and scale markers; provenance badges in fixed colours (space.jsx KIND)",
+    "accent": "#5CE1E6"
+  },
+  "psychology": {
+    "_from": "our research-notebook look (not the references cartoon styles): warm paper, ink, one red accent",
+    "paper": "#F4EEDF",
+    "rule": "#D9CFB8",
+    "margin": "#D98E7A",
+    "ink": "#1E1B16",
+    "accent": "#C4421A",
+    "accentSoft": "#F2C4A8",
+    "warn": "#C98A00"
+  },
+  "celebrity-news": {
+    "_from": "magazine black with gold, evidence yellow marker shared with investigations",
+    "bg": "#0C0A10",
+    "bg2": "#251B2E",
+    "mark": "#FFE14D",
+    "accent": "#D6336C",
+    "accent2": "#E8C06A",
+    "date": "#FF8FB1",
+    "speaker": "#E8C06A",
+    "gold": "#E8C06A",
+    "light": "#F6F1E9",
+    "highlight": "#FFE14D"
+  },
+  "fx-stick": {
+    "_note": "Faceless experiment pilot B (original Peg characters). Colours live here, not in episodes.",
+    "accent": "#F2A93B",
+    "fx": {
+      "ink": "#1F2433",
+      "paper": "#F6F1E7",
+      "tone": {
+        "low": "#D9483B",
+        "mid": "#E39B2D",
+        "high": "#2FA45A"
+      },
+      "cast": {
+        "me": {
+          "top": "#E3B23C",
+          "pants": "#2B2F3A"
+        },
+        "mia": {
+          "top": "#D9708F",
+          "pants": "#3B3350",
+          "hair": "bob"
+        },
+        "dad": {
+          "top": "#3E5C8A",
+          "pants": "#4A4038",
+          "accent": "#B0413E"
+        },
+        "mom": {
+          "top": "#7E9F6E",
+          "pants": "#3E3A34",
+          "hair": "bun"
+        },
+        "teacher": {
+          "top": "#8A6E4E",
+          "pants": "#3A3A3A",
+          "accent": "#E8E1D2"
+        },
+        "kid1": {
+          "top": "#D2693C",
+          "pants": "#2E3440",
+          "hair": "curls"
+        },
+        "kid2": {
+          "top": "#3A7DBF",
+          "pants": "#22262E",
+          "hair": "band"
+        }
+      },
+      "room": {
+        "wall": "#F3E3C7",
+        "floor": "#C99D6B",
+        "floorLine": "rgba(0,0,0,0.08)",
+        "trim": "#8B5E3C",
+        "sky": "#BFE3F7",
+        "sun": "#FFD25A",
+        "board": "#2F5D50",
+        "desk": "#E8B77B",
+        "counter": "#D9CFC0"
+      },
+      "style": "conchaser"
+    }
+  },
+  "fx-toon": {
+    "_note": "Faceless experiment pilot C (original Bean characters, mood-lit sets).",
+    "accent": "#7CF5C8",
+    "fx": {
+      "ink": "#1F2433",
+      "paper": "#F6F1E7",
+      "tone": {
+        "low": "#E4572E",
+        "mid": "#F2A93B",
+        "high": "#2BA84A"
+      },
+      "ui": "#7CF5C8",
+      "cast": {
+        "you": {
+          "top": "#4F8FE0",
+          "hair": "none"
+        },
+        "sam": {
+          "top": "#E46FA0",
+          "hair": "long",
+          "hairColor": "#5A3A2A"
+        },
+        "lee": {
+          "top": "#3E9A5A",
+          "hair": "cap",
+          "hairColor": "#2F6B45"
+        },
+        "ava": {
+          "top": "#9B7BE0",
+          "hair": "long",
+          "hairColor": "#E6B655"
+        },
+        "coach": {
+          "top": "#C7863E",
+          "hair": "short"
+        },
+        "dad": {
+          "top": "#4A6A8A",
+          "hair": "short",
+          "hairColor": "#4A3A30"
+        }
+      },
+      "sets": {
+        "gym": {
+          "top": "#2B1B4A",
+          "wall": "#4B2C7A",
+          "light": "#C58BFF",
+          "floor": "#6B4A2F",
+          "floorDark": "#3A2617",
+          "accent": "#FF8A3D"
+        },
+        "classroom": {
+          "top": "#16324A",
+          "wall": "#24507A",
+          "light": "#8FD3FF",
+          "floor": "#5A4632",
+          "floorDark": "#30261B",
+          "accent": "#FFD25A"
+        },
+        "bedroom": {
+          "top": "#1E1838",
+          "wall": "#3A2E66",
+          "light": "#FF9EC7",
+          "floor": "#4A3A5E",
+          "floorDark": "#241C30",
+          "accent": "#7CF5C8"
+        },
+        "street": {
+          "top": "#0F2238",
+          "wall": "#1E3E62",
+          "light": "#FFB86B",
+          "floor": "#2F3440",
+          "floorDark": "#16181E",
+          "accent": "#FFB86B"
+        }
+      },
+      "laser": "#FF4FA8",
+      "laserText": "#FFE3F2",
+      "sets3d": {
+        "gym": {
+          "bg": "#3A2A55",
+          "wall": "#8063B0",
+          "floor": "#C08A5E",
+          "sky": "#D9C2FF",
+          "ground": "#3A2448",
+          "ambient": "#8B6BD6",
+          "key": "#FFE6D0",
+          "accent": "#FF8AC8"
+        },
+        "classroom": {
+          "bg": "#3A2E55",
+          "wall": "#8E78B8",
+          "floor": "#9E7C68",
+          "sky": "#E0CCFF",
+          "ground": "#3A2C44",
+          "ambient": "#9F86E0",
+          "key": "#FFD8B0",
+          "accent": "#FFB070"
+        },
+        "bedroom": {
+          "bg": "#2C2448",
+          "wall": "#6A5A9A",
+          "floor": "#7A6690",
+          "sky": "#C8B8FF",
+          "ground": "#2A2038",
+          "ambient": "#7A68C8",
+          "key": "#FFD6A8",
+          "accent": "#FF9EC7"
+        },
+        "street": {
+          "bg": "#24284A",
+          "wall": "#3A4070",
+          "floor": "#4A4E6A",
+          "sky": "#7C82D8",
+          "ground": "#1A1A2A",
+          "ambient": "#6A6ACF",
+          "key": "#FFC890",
+          "accent": "#FFB86B"
+        }
+      }
+    }
+  },
+  "fx-doc": {
+    "ep": {
+      "_map": "map palette re-measured 20 Nov 2026 from Epic bhQe2cjr5XQ political maps (grey paper, crimson/royal-blue realms, black caps); the orange RlKJDwViNKs palette belongs to illustrated art, not maps",
+      "_from": "Epic History TV bhQe2cjr5XQ formula (text cards on black, caption plates, flat-colour campaign map, orange casualty card, red credits) in the channel own palette",
+      "paper": "#EBE1CA",
+      "ink": "#24190F",
+      "black": "#0B0A09",
+      "red": "#A8201A",
+      "blue": "#2E4C86",
+      "gold": "#C9A24B",
+      "orange": "#C2602A",
+      "england": "#C23A4C",
+      "normandy": "#4A5EA6",
+      "norway": "#B9973F",
+      "route": "#1A1A1A",
+      "sea": "#7E9F9C",
+      "land": "#CDBB92",
+      "border": "#8A7A5C",
+      "mapInk": "#2A2014",
+      "khaki": "#B5A764",
+      "khaki2": "#CFC49A",
+      "water": "#A9C3CF",
+      "arrow": "#C9F28B",
+      "cavalry": "#1F3566",
+      "map": {
+        "label": "#20170E",
+        "labelBg": "rgba(240,231,210,0.9)",
+        "zone": "#A8201A",
+        "font": "\"Cormorant Garamond\", \"Noto Serif\", serif"
+      },
+      "usa": "#D2AC5C",
+      "denmark": "#C9785A",
+      "greenland": "#EFE6D2",
+      "canada": "#8DA67E",
+      "iceland": "#A7B9A4",
+      "russia": "#A98C7A",
+      "uk": "#B59A80",
+      "_okeanos": "vintage map palette measured from Okeanos frames 20 Nov 2026: ochre land, teal sea, salmon and green neighbours"
+    },
+    "_from": "RealLifeLore: natural satellite colour, dark label boxes with white caps, red for the zone that matters, white-box black-serif source captions",
+    "map": {
+      "label": "#FFFFFF",
+      "labelBg": "rgba(12,14,18,0.86)",
+      "zone": "#D7263D",
+      "font": "\"Roboto Condensed\", sans-serif"
+    },
+    "route": "#FFD23F",
+    "route2": "#FFFFFF",
+    "held": "#D7263D",
+    "water": "#3FA9F5",
+    "accent": "#D7263D",
+    "countries": {
+      "West Germany": "#F2C14E",
+      "Sweden": "#3FA9F5",
+      "France": "#5B8DEF",
+      "United Kingdom": "#E5484D",
+      "United States": "#9AD06B",
+      "Poland": "#F28C8C",
+      "Bulgaria": "#55C2A2",
+      "Czechoslovakia": "#C69CF2"
+    },
+    "_note": "Faceless experiment pilot A (documentary). Okeanos-like dark ground, red label banners; map palette for the Arctic story.",
+    "doc": {
+      "ground": "#120D08",
+      "ground2": "#2A2016",
+      "red": "#C8553A",
+      "gold": "#D9B677",
+      "mark": "rgba(200,85,58,0.22)"
+    }
+  }
+}

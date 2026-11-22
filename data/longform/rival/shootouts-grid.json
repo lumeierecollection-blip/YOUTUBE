@@ -1,0 +1,688 @@
+{
+ "shootouts": [
+  {
+   "tag": "WC18 R16",
+   "first": [
+    false,
+    true,
+    true,
+    false,
+    false
+   ],
+   "second": [
+    false,
+    true,
+    true,
+    false,
+    true
+   ],
+   "firstWon": false,
+   "score": "2–3",
+   "date": "2018-07-01",
+   "match": "Croatia v Denmark"
+  },
+  {
+   "tag": "WC18 R16",
+   "first": [
+    true,
+    true,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2018-07-01",
+   "match": "Spain v Russia"
+  },
+  {
+   "tag": "WC18 R16",
+   "first": [
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2018-07-03",
+   "match": "Colombia v England"
+  },
+  {
+   "tag": "WC18 QF",
+   "first": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    false,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2018-07-07",
+   "match": "Russia v Croatia"
+  },
+  {
+   "tag": "WWC19 R16",
+   "first": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    false,
+    true
+   ],
+   "firstWon": true,
+   "score": "4–1",
+   "date": "2019-06-22",
+   "match": "Norway Women's v Australia Women's"
+  },
+  {
+   "tag": "EURO20 R16",
+   "first": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "firstWon": true,
+   "score": "5–4",
+   "date": "2021-06-28",
+   "match": "France v Switzerland"
+  },
+  {
+   "tag": "EURO20 QF",
+   "first": [
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    false,
+    false,
+    false
+   ],
+   "firstWon": true,
+   "score": "3–1",
+   "date": "2021-07-02",
+   "match": "Switzerland v Spain"
+  },
+  {
+   "tag": "EURO20 SF",
+   "first": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2021-07-06",
+   "match": "Italy v Spain"
+  },
+  {
+   "tag": "EURO20 F",
+   "first": [
+    true,
+    false,
+    true,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    false,
+    false,
+    false
+   ],
+   "firstWon": true,
+   "score": "3–2",
+   "date": "2021-07-11",
+   "match": "Italy v England"
+  },
+  {
+   "tag": "WC22 R16",
+   "first": [
+    false,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "firstWon": false,
+   "score": "1–3",
+   "date": "2022-12-05",
+   "match": "Japan v Croatia"
+  },
+  {
+   "tag": "WC22 R16",
+   "first": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "second": [
+    false,
+    false,
+    false
+   ],
+   "firstWon": true,
+   "score": "3–0",
+   "date": "2022-12-06",
+   "match": "Morocco v Spain"
+  },
+  {
+   "tag": "WC22 QF",
+   "first": [
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2022-12-09",
+   "match": "Netherlands v Argentina"
+  },
+  {
+   "tag": "WC22 QF",
+   "first": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    true,
+    false
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2022-12-09",
+   "match": "Croatia v Brazil"
+  },
+  {
+   "tag": "WC22 F",
+   "first": [
+    true,
+    false,
+    false,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "2–4",
+   "date": "2022-12-18",
+   "match": "Argentina v France"
+  },
+  {
+   "tag": "WWC23 R16",
+   "first": [
+    true,
+    true,
+    true,
+    false,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    false,
+    false,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "4–5",
+   "date": "2023-08-06",
+   "match": "Sweden Women's v United States Women's"
+  },
+  {
+   "tag": "WWC23 R16",
+   "first": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2023-08-07",
+   "match": "England Women's v Nigeria Women's"
+  },
+  {
+   "tag": "WWC23 QF",
+   "first": [
+    false,
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    false
+   ],
+   "second": [
+    true,
+    false,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "firstWon": false,
+   "score": "6–7",
+   "date": "2023-08-12",
+   "match": "Australia Women's v France Women's"
+  },
+  {
+   "tag": "AFCON23 R16",
+   "first": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "7–8",
+   "date": "2024-01-28",
+   "match": "Egypt v Congo DR"
+  },
+  {
+   "tag": "AFCON23 R16",
+   "first": [
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "4–5",
+   "date": "2024-01-29",
+   "match": "Senegal v Côte d'Ivoire"
+  },
+  {
+   "tag": "AFCON23 QF",
+   "first": [
+    false,
+    false,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    false,
+    false,
+    true
+   ],
+   "firstWon": false,
+   "score": "1–2",
+   "date": "2024-02-03",
+   "match": "Cape Verde Islands v South Africa"
+  },
+  {
+   "tag": "AFCON23 SF",
+   "first": [
+    true,
+    true,
+    false,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2024-02-07",
+   "match": "Nigeria v South Africa"
+  },
+  {
+   "tag": "AFCON23 3RD",
+   "first": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    false
+   ],
+   "firstWon": true,
+   "score": "6–5",
+   "date": "2024-02-10",
+   "match": "South Africa v Congo DR"
+  },
+  {
+   "tag": "EURO24 R16",
+   "first": [
+    false,
+    false,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "0–3",
+   "date": "2024-07-01",
+   "match": "Portugal v Slovenia"
+  },
+  {
+   "tag": "EURO24 QF",
+   "first": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    true,
+    true,
+    false,
+    true
+   ],
+   "firstWon": true,
+   "score": "5–3",
+   "date": "2024-07-05",
+   "match": "Portugal v France"
+  },
+  {
+   "tag": "COPA24 QF",
+   "first": [
+    false,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    false,
+    true,
+    true
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2024-07-05",
+   "match": "Argentina v Ecuador"
+  },
+  {
+   "tag": "EURO24 QF",
+   "first": [
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    true,
+    true
+   ],
+   "firstWon": true,
+   "score": "5–3",
+   "date": "2024-07-06",
+   "match": "England v Switzerland"
+  },
+  {
+   "tag": "COPA24 QF",
+   "first": [
+    true,
+    false,
+    true,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    false,
+    true,
+    false,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2024-07-06",
+   "match": "Venezuela v Canada"
+  },
+  {
+   "tag": "COPA24 QF",
+   "first": [
+    true,
+    true,
+    true,
+    false,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    false,
+    true
+   ],
+   "firstWon": true,
+   "score": "4–2",
+   "date": "2024-07-07",
+   "match": "Uruguay v Brazil"
+  },
+  {
+   "tag": "COPA24 3RD",
+   "first": [
+    true,
+    true,
+    false,
+    true,
+    false
+   ],
+   "second": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "firstWon": false,
+   "score": "3–4",
+   "date": "2024-07-14",
+   "match": "Canada v Uruguay"
+  },
+  {
+   "tag": "WEURO25 QF",
+   "first": [
+    true,
+    false,
+    false,
+    false,
+    true,
+    false,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    false,
+    true,
+    false,
+    false,
+    false
+   ],
+   "firstWon": true,
+   "score": "3–2",
+   "date": "2025-07-17",
+   "match": "Sweden Women's v England Women's"
+  },
+  {
+   "tag": "WEURO25 QF",
+   "first": [
+    true,
+    true,
+    true,
+    false,
+    true,
+    true,
+    true
+   ],
+   "second": [
+    false,
+    true,
+    true,
+    true,
+    true,
+    true,
+    false
+   ],
+   "firstWon": true,
+   "score": "6–5",
+   "date": "2025-07-19",
+   "match": "France Women's v Germany Women's"
+  },
+  {
+   "tag": "WEURO25 F",
+   "first": [
+    false,
+    true,
+    true,
+    false,
+    true
+   ],
+   "second": [
+    true,
+    false,
+    false,
+    false
+   ],
+   "firstWon": true,
+   "score": "3–1",
+   "date": "2025-07-27",
+   "match": "England Women's v Spain Women's"
+  }
+ ],
+ "hi": [
+  8,
+  13
+ ]
+}

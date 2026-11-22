@@ -1,0 +1,108 @@
+{
+  "topic_slug": "england-45-22-australia-nations-championship",
+  "strongest_angle": "Analyzing England's record-breaking 45-22 victory over Australia at Allianz Stadium in the Nations Championship, highlighting Henry Pollock's two tries off the bench and Steve Borthwick's side's tactical dominance.",
+  "key_facts": [
+    {
+      "fact": "England defeated Australia with a record points tally of 45-22 at Allianz Stadium in London during the Nations Championship.",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia",
+      "source_name": "France 24",
+      "confidence": "high"
+    },
+    {
+      "fact": "England player Henry Pollock scored a double after coming off the bench at half-time to replace injured wing Immanuel Feyi-Waboso.",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia",
+      "source_name": "France 24",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia scored an intercept try through Max Jorgensen right at half-time to bring the score to 19-10 before England pulled away.",
+      "source_url": "https://www.rugby.com.au/news/five-things-we-learnt-from-wallabies-england-2026118",
+      "source_name": "Rugby.com.au",
+      "confidence": "high"
+    },
+    {
+      "fact": "England's team ran in a total of seven tries during their dominant performance against the Wallabies at Twickenham.",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia",
+      "source_name": "France 24",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "England points",
+      "value": 45,
+      "unit": "points",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia"
+    },
+    {
+      "label": "Australia points",
+      "value": 22,
+      "unit": "points",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia"
+    },
+    {
+      "label": "Tries scored by England",
+      "value": 7,
+      "unit": "tries",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia"
+    },
+    {
+      "label": "Half-time score for England",
+      "value": 19,
+      "unit": "points",
+      "source_url": "https://www.rugby.com.au/news/five-things-we-learnt-from-wallabies-england-2026118"
+    },
+    {
+      "label": "Half-time score for Australia",
+      "value": 10,
+      "unit": "points",
+      "source_url": "https://www.rugby.com.au/news/five-things-we-learnt-from-wallabies-england-2026118"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "England captain Maro Itoje said he was \"over the moon\" after his side opened their November Nations Championship campaign with a record 45-22 win over Australia at Twickenham on Sunday.",
+      "speaker": "Maro Itoje",
+      "source_name": "France 24",
+      "source_url": "https://www.france24.com/en/live-news/20261108-itoje-over-the-moon-after-england-dominate-australia"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "England",
+      "kind": "organization"
+    },
+    {
+      "name": "Australia",
+      "kind": "organization"
+    },
+    {
+      "name": "Henry Pollock",
+      "kind": "person"
+    },
+    {
+      "name": "Maro Itoje",
+      "kind": "person"
+    },
+    {
+      "name": "Immanuel Feyi-Waboso",
+      "kind": "person"
+    },
+    {
+      "name": "Max Jorgensen",
+      "kind": "person"
+    },
+    {
+      "name": "Steve Borthwick",
+      "kind": "person"
+    },
+    {
+      "name": "Allianz Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Twickenham",
+      "kind": "place"
+    }
+  ]
+}

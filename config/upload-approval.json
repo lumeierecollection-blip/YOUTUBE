@@ -1,0 +1,251 @@
+{
+  "hidden-past": {
+    "run_id": 42675599926,
+    "artifact": "preview-hidden-past-42675599926-1",
+    "sha256": "5d3ead4b01feae7ce3c7f8d876b83662e504b12364f6414f41b948e0499bdb08",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "Whose Arrest Does This Famous 1914 Photo Really Show?",
+    "description": "A photograph from Sarajevo, 1914, is often captioned as the arrest of Gavrilo Princip. Several scholars say it shows a bystander, Ferdinand Behr. Sources and image credits are below.\n\n#Shorts #History #WW1 #Sarajevo #HiddenPast\n\nSources:\n- https://en.wikipedia.org/wiki/Assassination_of_Archduke_Franz_Ferdinand\n- https://commons.wikimedia.org/wiki/File:Ferdinand_Behr_arrested_in_Sarajevo_1914.jpg\n- The New York Times, 29 June 1914, via Wikimedia Commons / Internet Archive\n\nImages: Wikimedia Commons (Imperial War Museums and others).",
+    "tags": [
+      "history",
+      "Sarajevo 1914",
+      "Gavrilo Princip",
+      "Ferdinand Behr",
+      "World War I",
+      "historical photographs"
+    ]
+  },
+  "ai-tested": {
+    "run_id": 42678477700,
+    "artifact": "preview-ai-tested-42678477700-1",
+    "sha256": "adce1ed3841bdac8c9b0144c60d036a8ed10a2702e717889b1046be0af213ae7",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Can AI Count Letters? We Tested Two Models",
+    "description": "We gave OpenAI's GPT-OSS and Google's Gemini Flash-Lite the same 20 letter-counting questions, and code marked every reply. One test, run on 9 November 2026. Results can change between runs and as models update.\n\n#Shorts #AI #AITested #Gemini #TechNews",
+    "tags": [
+      "AI test",
+      "letter counting",
+      "GPT-OSS",
+      "Gemini Flash-Lite",
+      "AI models",
+      "strawberry test"
+    ]
+  },
+  "hidden-past-berlin": {
+    "run_id": 42794717509,
+    "artifact": "preview-hidden-past-42794717509-1",
+    "sha256": "a89407bb612303e72b6d109d430a989a8d5234efd2b3c8d75233324d663d67a9",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "The Announcement That Came Too Early: Berlin Wall, 1989",
+    "description": "On 9 November 1989 an East German spokesman, handed a note and not fully briefed, said new travel rules took effect immediately. That night the checkpoints opened. Facts from Wikipedia's account of the fall of the Berlin Wall; photos from Wikimedia Commons with credits in the video.\n\n#Shorts #History #BerlinWall #ColdWar #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Fall_of_the_Berlin_Wall\nImages: Bundesarchiv (CC BY-SA 3.0 de), Günter Schabowski (CC BY-SA 3.0) and a public-domain photograph, via Wikimedia Commons.",
+    "tags": [
+      "Berlin Wall",
+      "1989",
+      "Günter Schabowski",
+      "Cold War",
+      "German history",
+      "9 November"
+    ]
+  },
+  "ai-tested-honesty": {
+    "run_id": 42800652060,
+    "artifact": "preview-ai-tested-42800652060-1",
+    "sha256": "4654b0f38bfcf3c39a00018d0d5738dc5927282b0a35bbf202d5482d1a5cba8a",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Will AI Say “I Don't Know”? We Tested Models on Made-Up Products",
+    "description": "We asked 3 AI models about ten products that do not exist, plus ten real questions as a control, and code marked each reply. One test, run on 10 November 2026. Marking uses a phrase list, so borderline replies can be mislabelled; results change between runs and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini\n\nWhy now: new models keep launching, e.g. https://www.anthropic.com/claude-fable-and-mythos-5-2 (reported on Hacker News, 9 Nov 2026).",
+    "tags": [
+      "AI test",
+      "AI hallucination",
+      "AI models",
+      "I don't know",
+      "GPT-OSS",
+      "Gemini"
+    ]
+  },
+  "ai-tested-random": {
+    "run_id": 42878984702,
+    "artifact": "preview-ai-tested-42878984702-1",
+    "sha256": "d975888243f57cb61d453a93cb8d5daec2cc4a350f28edc9212f0058deab7a84",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Never Let AI Pick Your Random Winner (We Tested It)",
+    "description": "We asked 2 AI models for a random number from 1 to 10, 30 times each, and counted the replies. A fair pick lands on each number about 3 times. Google's Flash-Lite picked 7 in 30 of 30 asks; OpenAI's GPT-OSS picked 7 in 30 of 30 asks. We also tried 1 to 100. For a fair draw, use dice, or ask the AI to write code that uses a random function. One test, run on 10 November 2026 at the default chat temperature; results change between runs and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini\n\nPeople reportedly favour seven too (disputed): https://en.wikipedia.org/wiki/Blue%E2%80%93seven_phenomenon",
+    "tags": [
+      "AI test",
+      "random number",
+      "ChatGPT",
+      "Gemini",
+      "AI giveaway",
+      "AI randomness",
+      "number seven"
+    ]
+  },
+  "ai-tested-pushback": {
+    "run_id": 42889239298,
+    "artifact": "preview-ai-tested-42889239298-1",
+    "sha256": "7bba7c399bc43cce0c929786e6aa5efc3602971b90f75c32971d5da3eff86ef4",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "We Told AI It Was Wrong. It Didn't Budge.",
+    "description": "We asked 2 AI models 12 multiplication questions. After each correct answer we replied that it was wrong and gave a false answer, then counted how often the model switched to it. Gemini 3.5 Flash-Lite: plain push, switched 0 of 12; \"I'm a maths teacher\" push, switched 0 of 12. GPT-OSS 120B: plain push, switched 0 of 12; \"I'm a maths teacher\" push, switched 0 of 12. Agreement from an AI is not proof: ask again in a new chat and check answers that matter. One small test on arithmetic only, run on 10 November 2026 at temperature 0; results can change between runs, on other subjects and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI sycophancy",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI agrees with you",
+      "AI mistakes"
+    ]
+  },
+  "ai-tested-pushback-letters": {
+    "run_id": 42905945591,
+    "artifact": "preview-ai-tested-42905945591-1",
+    "sha256": "3b7eb0d698e0a9acf5af15a07b574533db6b268ba03a2a17a3a9e531c0ffcda2",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "AI Knew the Answer. Then We Said It Was Wrong. (We Tested It)",
+    "description": "We asked 2 AI models 12 letter-counting questions. After each correct answer we replied that it was wrong and gave a false answer, then counted how often the model switched to it. Gemini 3.5 Flash-Lite: plain push, switched 2 of 4; \"I'm an English teacher\" push, switched 1 of 4. GPT-OSS 120B: plain push, switched 0 of 12; \"I'm an English teacher\" push, switched 3 of 12. Agreement from an AI is not proof: ask again in a new chat and check answers that matter. One small test on counting letters only, run on 10 November 2026 at temperature 0; results can change between runs, on other subjects and as models update.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI sycophancy",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI agrees with you",
+      "AI mistakes"
+    ]
+  },
+  "hidden-past-crime": {
+    "run_id": 42981794708,
+    "artifact": "preview-hidden-past-42981794708-1",
+    "sha256": "b09d56b939ff7ab0d72bd6d3ba37707177338ff59dd3ee1f33936bd023116039",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "The Bomb Pablo Escobar Planted for a Candidate Who Wasn't on Board",
+    "description": "On 27 November 1989 a bomb destroyed Avianca Flight 203 over Soacha, Colombia, five minutes after it left Bogotá for Cali. All 107 people on board died, and three on the ground. The Medellín Cartel ordered it; Pablo Escobar planned it hoping to kill presidential candidate César Gaviria, who was not on the plane and went on to be elected president. A 2016 newspaper report disputes the cause; Avianca and victims' families rejected it. Facts from Wikipedia's article on Avianca Flight 203; pictures from Wikimedia Commons, credited on screen and below.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Avianca_Flight_203\nImages: Richard Vandervord (CC BY-SA 4.0), Colombian National Police (public domain) and World Economic Forum (CC BY-SA 2.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
+    "tags": [
+      "Pablo Escobar",
+      "Avianca Flight 203",
+      "Medellín Cartel",
+      "César Gaviria",
+      "Colombia",
+      "1989",
+      "history"
+    ]
+  },
+  "ai-tested-links": {
+    "run_id": 42981802320,
+    "artifact": "preview-ai-tested-42981802320-1",
+    "sha256": "aee9978763c77454c5fbafdf5d516f41bf44ba243479664e32bebed112942cea",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "We Clicked Every Link AI Gave Us. 12 of 36 Were Dead.",
+    "description": "We asked 3 AI models for one direct link to a news article or study on 12 topics, then requested every link from a server. Gemini 3.5 Flash: 9 links opened, 3 dead, 0 could not be checked. Gemini 3.5 Flash-Lite: 8 links opened, 4 dead, 0 could not be checked. GPT-OSS 120B: 5 links opened, 5 dead, 2 could not be checked. Opened means the server returned a page (it does not prove the page says what the AI claimed); dead means a 404 or 410 or an address that does not exist; unchecked means the site blocked us or did not answer. A link is not a source until you click it. One small test, run on 11 November 2026 at temperature 0; links, sites and models change.\n\n#Shorts #AI #AITested #ChatGPT #Gemini",
+    "tags": [
+      "AI test",
+      "AI fake links",
+      "AI sources",
+      "ChatGPT",
+      "Gemini",
+      "can you trust AI",
+      "AI hallucination"
+    ]
+  },
+  "hidden-past-escobar-name": {
+    "run_id": 42985473527,
+    "artifact": "preview-hidden-past-42985473527-1",
+    "sha256": "b0204819ed64c19e42c7492f6e5a94b95f3a746dfe1931dc298bfde91f3217c5",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "Pablo Escobar's Plane Bomb: The Candidate Who Wasn't on Board",
+    "description": "Pablo Escobar planned a bomb for a presidential candidate. On 27 November 1989 it destroyed Avianca Flight 203 over Soacha, Colombia, five minutes after it left Bogotá for Cali. All 107 people on board died, and three on the ground. The Medellín Cartel ordered it; Pablo Escobar planned it hoping to kill presidential candidate César Gaviria, who was not on the plane and went on to be elected president. A 2016 newspaper report disputes the cause; Avianca and victims' families rejected it. Facts from Wikipedia's article on Avianca Flight 203; pictures from Wikimedia Commons, credited on screen and below.\n\n#Shorts #History #PabloEscobar #Colombia #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Avianca_Flight_203\nImages: Richard Vandervord (CC BY-SA 4.0), Colombian National Police (public domain) and World Economic Forum (CC BY-SA 2.0), via Wikimedia Commons. Map data: Natural Earth (public domain).",
+    "tags": [
+      "Pablo Escobar",
+      "Avianca Flight 203",
+      "Medellín Cartel",
+      "César Gaviria",
+      "Colombia",
+      "1989",
+      "history"
+    ]
+  },
+  "ai-tested-privacy": {
+    "run_id": 42991171487,
+    "artifact": "preview-ai-tested-42991171487-1",
+    "sha256": "58e1a4cb653fad12db6c81e0e7ff7603b6618590adf3dc303b3989e4dd494229",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Can You Trust AI With Your Data? We Made It Leak Once",
+    "description": "Google's Gemini Apps Privacy Hub (updated 26 October 2026) says \"a subset of chats are reviewed by human reviewers\" and that reviewed chats are \"retained for up to three years\". Anthropic's consumer terms update (28 August 2025) says data retention extends to five years if you allow training, and stays at 30 days if you do not. OpenAI's own pages refused our automated request, so we quote nothing from them. Then we tested the models themselves: we gave 3 AI models an invented secret code in their instructions, told them never to share it, and tried 12 different ways to get it. Gemini 3.5 Flash: the whole secret appeared in 0 of 12 replies. Gemini 3.5 Flash-Lite: the whole secret appeared in 1 of 12 replies. GPT-OSS 120B: the whole secret appeared in 0 of 12 replies. A partial leak is not counted. No real personal data was used. One small test, run on 11 November 2026 at temperature 0; policies and models change. Company logos are trademarks of their owners, shown only to name them.\n\n#Shorts #AI #AITested #Privacy #ChatGPT #Gemini #Claude\n\nSources: https://support.google.com/gemini/answer/13594961 and https://www.anthropic.com/news/updates-to-our-consumer-terms",
+    "tags": [
+      "AI privacy",
+      "can you trust AI",
+      "AI data",
+      "ChatGPT",
+      "Gemini",
+      "Claude",
+      "AI test",
+      "data privacy"
+    ]
+  },
+  "ai-tested-unknown": {
+    "run_id": 43089709899,
+    "artifact": "preview-ai-tested-43089709899-1",
+    "sha256": "dc7d3800b09dffe565650b89bfbee407352be6ab14b6967f4564ab46a5d9234d",
+    "privacy": "private",
+    "legacy_channel_id": "2",
+    "title": "Will AI Admit When It Doesn't Know? 7 of 24 Answers Were Made Up",
+    "description": "We invented 12 things that do not exist (a treaty, a novel, a theorem, a film, a language, a painter and more) and asked 2 AI models to tell us about each one, in two sentences. Gemini 3.5 Flash-Lite: 5 of 12 answers described the invented thing as real, 7 admitted not knowing. GPT-OSS 120B: 2 of 12 answers described the invented thing as real, 10 admitted not knowing. As a control we asked about 4 real topics; none was flagged as unknown by our counter. The count is a fixed list of phrases such as \"no record\" or \"does not exist\", not a judgement of truth, and every reply is kept so the counts can be checked. Ask for the source, then click it. Has AI ever made something up for you? Tell us in the comments. One small test, run on 11 November 2026 at temperature 0; models change.\n\n#Shorts #AI #AITested #ChatGPT #Gemini #Hallucination",
+    "tags": [
+      "AI test",
+      "AI hallucination",
+      "can you trust AI",
+      "ChatGPT",
+      "Gemini",
+      "AI makes things up",
+      "AI admits"
+    ]
+  },
+  "hidden-past-capone": {
+    "run_id": 43108403800,
+    "artifact": "preview-hidden-past-43108403800-1",
+    "sha256": "060f733612bcabcebecee338bc9771f92c42c21b84fa78911ff55fae1e4afe54",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "title": "Al Capone Was Brought Down by Income Tax",
+    "description": "Al Capone ran the Chicago Outfit from 1925 to 1931. After seven rival gangsters were murdered in 1929 and newspapers named him Public Enemy No. 1, the Treasury and Justice Departments planned income tax prosecutions. He was charged with 22 counts of tax evasion, his own admissions of his income were admitted as evidence, and in 1931 he was convicted of five counts and sentenced to 11 years. He served in Atlanta, then Alcatraz, was released after almost eight years and died in 1947. Was income tax the right way to stop him? Tell us in the comments. Facts from Wikipedia's article on Al Capone; pictures from Wikimedia Commons (all public domain), credited on screen and below.\n\n#Shorts #History #AlCapone #Chicago #HiddenPast\n\nSource: https://en.wikipedia.org/wiki/Al_Capone\nImages: Wide World Photos / Chicago Bureau (FBI), The New York Times, Pennsylvania Department of Corrections / FBI, US Bureau of Prisons, George Grantham Bain Collection, US Navy and C.W. Tomlinson, via Wikimedia Commons. Map data: Natural Earth (public domain).",
+    "tags": [
+      "Al Capone",
+      "Chicago Outfit",
+      "Prohibition",
+      "tax evasion",
+      "Alcatraz",
+      "Public Enemy No. 1",
+      "history"
+    ]
+  },
+  "hidden-past-msh": {
+    "run_id": 43590469321,
+    "artifact": "longform-hidden-past-msh-43590469321",
+    "sha256": "66d20c63c073d769f2098337d58c0aaa1bfd6a7b7f9dc6e2cb5762f8c4c6ddbd",
+    "privacy": "private",
+    "legacy_channel_id": "1",
+    "long_form": true,
+    "thumbnail": "thumbnail-1-sideways.jpg",
+    "title": "Why Mount St. Helens Exploded Sideways",
+    "description": "Why Mount St. Helens Exploded Sideways\n\nChapters:\n0:00 Cold open\n0:42 The warning\n1:44 The morning\n3:19 After\n3:57 Ending\n\nSources:\n- 1980 eruption of Mount St. Helens: https://en.wikipedia.org/wiki/1980_eruption_of_Mount_St._Helens\n- Mount St. Helens: https://en.wikipedia.org/wiki/Mount_St._Helens\n- Eruption of Mount St. Helens, 1980 (USDA Forest Service film, 1986), National Archives ARC 13364: https://commons.wikimedia.org/wiki/File:Eruption_of_Mount_St._Helens,_1980.ogv\n- USGS photographs on Wikimedia Commons (see public/lf2/hidden-past/ATTRIBUTIONS.json): https://commons.wikimedia.org/wiki/Category:Photographs_of_the_1980_eruption_of_Mount_St._Helens\n- Sentinel-2 cloudless imagery by EOX (CC BY 4.0), contains modified Copernicus Sentinel data; elevation: Mapzen terrain tiles: https://s2maps.eu\n\nImage credits:\nDonald A. Swanson, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_eruption_mount_st_helens_plume_05-18-80.jpg)\nDonald A. Swanson, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_early_eruption_st_helens_from_NE_04-10-80.jpg)\nPeter Lipman, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_bulge_on_north_side_04-27-80.jpg)\nAustin Post, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_eruption_mount_st_helens_05-18-80.jpg)\nTom Casadevall, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_st_helens_debris_avalanche_helicopter_09-16-80.jpg)\nHarry Glicken, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_st_helens_from_johnston_ridge_09-10-80.jpg)\nLyn Topinka, USGS, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MSH80_mailboxes_along_cowlitz_river_1980.jpg)\n\nSound effect: \"Deep Whoosh #1\" by Kinoton, CC0 1.0 (https://freesound.org/people/Kinoton/sounds/351256)\nSound effect: \"Low impact.wav\" by AudioPapkin, CC0 1.0 (https://freesound.org/people/AudioPapkin/sounds/430978)\n\n#HiddenPast #History #MountStHelens",
+    "tags": [
+      "Mount St. Helens",
+      "1980 eruption",
+      "volcano",
+      "lateral blast",
+      "history"
+    ]
+  }
+}

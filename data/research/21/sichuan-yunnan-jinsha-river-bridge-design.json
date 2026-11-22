@@ -1,0 +1,101 @@
+{
+  "topic_slug": "sichuan-yunnan-jinsha-river-bridge-design",
+  "strongest_angle": "Examining the engineering mechanics and structural parameters of the 1,140-meter Sichuan-Yunnan Jinsha River Bridge completed in November 2026, featuring a 1,060-meter main span and a rigorous 72-truck load test.",
+  "key_facts": [
+    {
+      "fact": "The Sichuan-Yunnan Jinsha River Bridge completed on November 20, 2026, has a total length of 1,140 meters and a main span of 1,060 meters across the canyon connecting Ningnan County and Qiaojia County.",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml",
+      "source_name": "China News Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "During structural testing on November 20, 2026, the bridge successfully passed a maximum condition load test conducted by 72 heavy trucks weighing 35 tons each.",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml",
+      "source_name": "China News Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "The dual-tower single-span simply supported steel truss suspension bridge features a design speed of 80 kilometers per hour for its four-lane configuration on the G4216 expressway.",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml",
+      "source_name": "China News Network",
+      "confidence": "high"
+    },
+    {
+      "fact": "The bridge's steel truss girder is divided into 71 segments with a standard segment maximum weight of approximately 269.3 tons, installed using a cable crane system.",
+      "source_url": "http://csdqyfh.ijournals.cn/csdqyfh/article/pdf/241233",
+      "source_name": "Journal of Construction",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total length",
+      "value": 1140,
+      "unit": "meters",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml"
+    },
+    {
+      "label": "Main span",
+      "value": 1060,
+      "unit": "meters",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml"
+    },
+    {
+      "label": "Number of test trucks",
+      "value": 72,
+      "unit": "trucks",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml"
+    },
+    {
+      "label": "Truck weight",
+      "value": 35,
+      "unit": "tons",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml"
+    },
+    {
+      "label": "Design speed",
+      "value": 80,
+      "unit": "kilometers per hour",
+      "source_url": "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml"
+    },
+    {
+      "label": "Truss girder segments",
+      "value": 71,
+      "unit": "segments",
+      "source_url": "http://csdqyfh.ijournals.cn/csdqyfh/article/pdf/241233"
+    },
+    {
+      "label": "Standard segment maximum weight",
+      "value": 269.3,
+      "unit": "tons",
+      "source_url": "http://csdqyfh.ijournals.cn/csdqyfh/article/pdf/241233"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sichuan-Yunnan Jinsha River Bridge",
+      "kind": "object"
+    },
+    {
+      "name": "Ningnan County",
+      "kind": "place"
+    },
+    {
+      "name": "Qiaojia County",
+      "kind": "place"
+    },
+    {
+      "name": "G4216 Chengdu–Lijiang Expressway",
+      "kind": "object"
+    },
+    {
+      "name": "Jinsha River",
+      "kind": "place"
+    },
+    {
+      "name": "Wu Deyong",
+      "kind": "person"
+    }
+  ]
+}

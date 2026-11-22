@@ -1,0 +1,87 @@
+{
+  "topic_slug": "emily-hobhouse-honored-100-years-after-funeral",
+  "strongest_angle": "Over 2,000 people gathered in Bloemfontein, South Africa, in November 2026 to recreate the 1926 state funeral of British humanitarian and Cornish native Emily Hobhouse.",
+  "key_facts": [
+    {
+      "fact": "More than 2,000 people attended the Emily100 commemoration at the National Women's Monument in Bloemfontein to recreate the 1926 state funeral of Emily Hobhouse.",
+      "source_url": "https://www.bbc.com/news/articles/c5zjxx0p19j7o",
+      "source_name": "BBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Two hundred girls from Eunice and Oranje schools led the procession dressed in white and carrying palm fronds in memory of Emily Hobhouse.",
+      "source_url": "https://www.cornish-times.co.uk/news/south-africa-remembers-cornwalls-forgotten-heroine-969678",
+      "source_name": "Cornish Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "On 8 June 1926, at age 66, Emily Hobhouse died in a flat at Bedford Gardens House in Kensington, London.",
+      "source_url": "https://thestoryofemily.com/stories-of-emily/her-state-funeral-%E2%80%93-a-century-later",
+      "source_name": "The Story of Emily",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total attendees at commemoration",
+      "value": 2000,
+      "unit": "people",
+      "source_url": "https://www.bbc.com/news/articles/c5zjxx0p19j7o"
+    },
+    {
+      "label": "Schoolgirls leading procession",
+      "value": 200,
+      "unit": "girls",
+      "source_url": "https://www.cornish-times.co.uk/news/south-africa-remembers-cornwalls-forgotten-heroine-969678"
+    },
+    {
+      "label": "Age at death",
+      "value": 66,
+      "unit": "years",
+      "source_url": "https://thestoryofemily.com/stories-of-emily/her-state-funeral-%E2%80%93-a-century-later"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Emily Hobhouse",
+      "kind": "person"
+    },
+    {
+      "name": "Bloemfontein",
+      "kind": "place"
+    },
+    {
+      "name": "National Women's Monument",
+      "kind": "place"
+    },
+    {
+      "name": "Eunice",
+      "kind": "organization"
+    },
+    {
+      "name": "Oranje",
+      "kind": "organization"
+    },
+    {
+      "name": "Leonard Hobhouse",
+      "kind": "person"
+    },
+    {
+      "name": "Bedford Gardens House",
+      "kind": "place"
+    },
+    {
+      "name": "Kensington",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Cornwall",
+      "kind": "place"
+    }
+  ]
+}

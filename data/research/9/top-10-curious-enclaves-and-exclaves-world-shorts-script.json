@@ -1,0 +1,64 @@
+{
+  "channel_id": "9",
+  "topic_slug": "top-10-curious-enclaves-exclaves-world",
+  "format": "shorts",
+  "hook": "What if 1 sovereign country was completely surrounded by another nation?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if 1 sovereign country was completely surrounded by another nation?",
+      "b_roll": [
+        "World map highlighting sovereign enclave territories inside host nations"
+      ],
+      "text_overlay": {
+        "text": "Sovereign Enclaves"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Lesotho is completely surrounded by South Africa as the largest enclave country. It's Italy whose territory completely surrounds both San Marino and Vatican City in Europe. Don't you wonder how Baarle-Nassau in the Netherlands and Baarle-Hertog in Belgium form nested enclaves?",
+      "b_roll": [
+        "Map showing Lesotho enclosed by South Africa",
+        "Map showing Italy encircling San Marino and Vatican City"
+      ],
+      "text_overlay": {
+        "text": "3 Sovereign Enclaves"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Unlike sovereign enclaves, Baarle-Nassau in the Netherlands and Baarle-Hertog in Belgium aren't sovereign countries.",
+      "b_roll": [
+        "Detailed border map of Baarle-Nassau and Baarle-Hertog"
+      ],
+      "text_overlay": {
+        "text": "Nested Enclaves"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "There are just 3 sovereign enclave countries in the world.",
+      "b_roll": [
+        "Map of the Netherlands and Belgium border enclave system",
+        "Graphic counter showing 3 sovereign enclave nations"
+      ],
+      "text_overlay": {
+        "text": "3 Sovereign Countries"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Only 3 sovereign enclave countries exist in the world today.",
+      "b_roll": [
+        "Global map displaying Lesotho, San Marino, and Vatican City"
+      ],
+      "text_overlay": {
+        "text": "World Enclaves"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.worldatlas.com/enclaves/countries-that-are-enclaves.html",
+    "https://www.thetravel.com/strangest-enclaves-and-exclaves-around-the-world"
+  ]
+}

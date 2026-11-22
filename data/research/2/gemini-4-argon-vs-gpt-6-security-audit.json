@@ -1,0 +1,95 @@
+{
+  "topic_slug": "gemini-4-argon-vs-gpt-6-security-audit",
+  "strongest_angle": "Google's Gemini 4 Argon and OpenAI's GPT-6.1 Sol compete across benchmarks, with Gemini 4 Argon leading on 18 of 28 shared benchmarks and solving all 12 end-to-end simulated cyberattack scenarios according to Google's October 2026 safety report.",
+  "key_facts": [
+    {
+      "fact": "Gemini 4 Argon leads on 18 of 28 shared benchmarks compared to OpenAI's GPT-6.1 Sol according to Vals AI comparison data.",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol",
+      "source_name": "Vals AI",
+      "confidence": "high"
+    },
+    {
+      "fact": "The largest observed score gap between Gemini 4 Argon and GPT-6.1 Sol is 38.57 points on CyberBench v1.1, where Gemini 4 Argon leads.",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol",
+      "source_name": "Vals AI",
+      "confidence": "high"
+    },
+    {
+      "fact": "Google's Gemini 4 Argon model solved all 12 of the end-to-end simulated cyberattack scenarios in safety evaluations published in October 2026.",
+      "source_url": "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security",
+      "source_name": "Google Blog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Gemini 4 Argon with ADK React achieved a 77.2% overall score at rank 1 on the Wiz cyber model arena leaderboard.",
+      "source_url": "https://www.wiz.io/ko-kr/cyber-model-arena",
+      "source_name": "Wiz",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Shared benchmarks led by Gemini 4 Argon",
+      "value": 18,
+      "unit": "benchmarks",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol"
+    },
+    {
+      "label": "Total shared benchmarks compared",
+      "value": 28,
+      "unit": "benchmarks",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol"
+    },
+    {
+      "label": "Shared benchmarks led by GPT-6.1 Sol",
+      "value": 9,
+      "unit": "benchmarks",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol"
+    },
+    {
+      "label": "Largest score gap on CyberBench v1.1",
+      "value": 38.57,
+      "unit": "points",
+      "source_url": "https://www.vals.ai/comparisons/google_gemini-4-argon-vs-openai_gpt-6.1-sol"
+    },
+    {
+      "label": "Cyberattack scenarios solved by Gemini 4 Argon",
+      "value": 12,
+      "unit": "scenarios",
+      "source_url": "https://blog.google/innovation-and-ai/technology/safety-security/gemini-4-model-safety-security"
+    },
+    {
+      "label": "Gemini 4 Argon overall score on Wiz leaderboard",
+      "value": 77.2,
+      "unit": "%",
+      "source_url": "https://www.wiz.io/ko-kr/cyber-model-arena"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "GPT-6.1 Sol",
+      "kind": "object"
+    },
+    {
+      "name": "Vals AI",
+      "kind": "organization"
+    },
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Wiz",
+      "kind": "organization"
+    }
+  ]
+}

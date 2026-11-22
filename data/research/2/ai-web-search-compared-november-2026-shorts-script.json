@@ -1,0 +1,37 @@
+{
+  "channel_id": "2",
+  "topic_slug": "ai-web-search-compared-november-2026",
+  "format": "shorts",
+  "hook": "Microsoft Copilot answered a sunrise question in 20.2 seconds, beating ChatGPT, Gemini, and Claude AI.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Microsoft Copilot answered a sunrise question in 20.2 seconds, beating ChatGPT, Gemini, and Claude AI.",
+      "visual_cue": "Digital stopwatch showing 20.2 seconds next to a Copilot logo."
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 2, 2026, an evaluation compared ChatGPT, Gemini, Claude, and Microsoft Copilot. Did Shunta Fujii test these 4 tools using 3 specific prompts in this November evaluation?",
+      "visual_cue": "Comparative chart showing 4 AI logos side-by-side with 3 prompt icons."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, researcher Shunta Fujii's November 2, 2026 AInformation report reveals how these 4 tools performed.",
+      "visual_cue": "Split-screen showing four search bar animations running simultaneously."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Microsoft Copilot answered the sunrise question in 20.2 seconds, the fastest time among the 4 tools.",
+      "visual_cue": "Bar chart comparing 20.2 seconds against three other unnamed bars."
+    },
+    {
+      "id": "close",
+      "voiceover": "Microsoft Copilot achieved the fastest response time of 20.2 seconds during this AInformation evaluation.",
+      "visual_cue": "Close up of the 20.2 seconds figure on a clean interface."
+    }
+  ],
+  "sources_used": [
+    "https://ainformation.jp/en/article/17317",
+    "https://exa.ai/blog/which-ai-chatbots-can-search-the-web"
+  ]
+}

@@ -1,0 +1,82 @@
+{{short description|None}}
+{{Use dmy dates|date=June 2025}}
+{{Use British English|date=June 2025}}
+{{Infobox referendum
+| title = On 12 July 2002 the Foreign Secretary, Jack Straw, in a formal statement in the House of Commons, said that after twelve months of negotiation the British Government and Spain are in broad agreement on many of the principles that should underpin a lasting settlement of Spain's sovereignty claim, which included the principle that Britain and Spain should share sovereignty over Gibraltar.<br />
+ <br />Do you approve of the principle that Britain and Spain should share sovereignty over Gibraltar?
+| country = Gibraltar
+| date = {{start date|2002|11|07|df=y}}
+| no = 17,900
+| yes = 187
+| total = 18,176
+| electorate = 20,678
+|previous_year=1967|previous_referendum=1967 Gibraltar sovereignty referendum}}{{Politics of Gibraltar}}{{History of Gibraltar}}
+
+The '''Gibraltar sovereignty referendum of 2002''' was a [[referendum]], called by the Government of [[Gibraltar]] and held on 7 November 2002 within the British overseas territory, on a proposal by the [[UK Government]] to share [[sovereignty]] of the territory between Spain and the United Kingdom. The result was a rejection of the proposal by a landslide majority, with little more than one per cent of the electorate in favour.
+
+==Background==
+[[File:Voggref02.jpg|thumb|right|A poster from the campaign]]
+Spain ceded Gibraltar to the [[Monarchy of the United Kingdom|British Crown]] under [[:s:Peace and Friendship Treaty of Utrecht between Spain and Great Britain#ARTICLE X|Article X]] of the [[Treaty of Utrecht]] in 1713. However, Spain [[Disputed status of Gibraltar|disputes the status of Gibraltar]] and has made numerous attempts to recover the territory, initially [[Great Siege of Gibraltar|by military force]] and later by economic and diplomatic means. Recovering sovereignty has been a publicly stated objective of successive Spanish governments.<ref>{{cite news|url=http://www.exteriores.gob.es/Portal/en/PoliticaExteriorCooperacion/Gibraltar/Paginas/Inicio.aspx|title=Spanish statement on Gibraltar|publisher=MAE|date=17 February 2012|archive-date=18 January 2022|access-date=17 February 2016|archive-url=https://web.archive.org/web/20220118042806/http://www.exteriores.gob.es/Portal/en/PoliticaExteriorCooperacion/Gibraltar/Paginas/Inicio.aspx|url-status=dead}}</ref>
+
+In July 2001, [[Jack Straw]], the British Foreign Secretary, began discussing the future of Gibraltar with Spain.<ref name=sparrow/> Following secret talks with Spain over the following year,<ref name="OWright">{{cite news | url=https://www.independent.co.uk/news/uk/politics/uk-came-close-to-sharing-gibraltar-with-spain-6293708.html |archive-url=https://ghostarchive.org/archive/20220501/https://www.independent.co.uk/news/uk/politics/uk-came-close-to-sharing-gibraltar-with-spain-6293708.html |archive-date=1 May 2022 |url-access=subscription |url-status=live | title=UK came close to sharing Gibraltar with Spain | work=The Independent | date=24 January 2012 | access-date=21 February 2016 | author=Wright, Oliver}}{{cbignore}}</ref> Straw announced in July 2002 that "the UK was willing to share sovereignty of Gibraltar with Spain" and that "the final decision would rest with the people of Gibraltar in a referendum."<ref>{{cite Hansard |url=https://api.parliament.uk/historic-hansard/commons/2002/jul/12/gibraltar#S6CV0388P1_20020712_HOC_106 |house=House of Commons |speaker=[[Jack Straw]] |volume=388 |column=1165–80 |title=Gibraltar |date=12 July 2002 |position= Foreign Secretary}}</ref>
+
+The [[Government of Gibraltar]] strongly opposed this announcement. They responded by announcing a referendum on the proposal of shared sovereignty with Spain, to be held on 7 November 2002. This pre-empted any plans for a referendum to be held only after the negotiations between Britain and Spain had concluded. Jack Straw described the Gibraltar referendum as "eccentric", and Britain's Foreign Office announced it would not recognise the results.<ref>{{cite news|url=https://news.bbc.co.uk/2/hi/uk_news/politics/2152265.stm|title=Rock referendum 'eccentric' – Straw|work=[[BBC News]]|date=26 July 2002}}</ref>
+
+Although Straw had announced the talks on joint sovereignty, numerous issues remained to be resolved. Firstly, Spain insisted on a time limit, after which full sovereignty would be transferred to Spain. Secondly, Spain would not agree to a referendum in Gibraltar on either joint sovereignty or [[self-determination]]. Finally, Spain wanted a greater role than simply joint use of Gibraltar as a military base.<ref name="Aznar">{{cite news | url=http://en.mercopress.com/2013/12/05/how-gibraltar-2002-referendum-foundered-plan-for-joint-sovereignty-with-spain | title=How Gibraltar 2002 referendum foundered plan for joint-sovereignty with Spain | date=5 December 2013 | agency=Mercopess | access-date=17 February 2016}}</ref> Writing in 2009, researcher Peter Gold argued that these disagreements made a final agreement, which would have then instigated a British-run referendum per Straw's July 2002 announcement, only a remote possibility.<ref name = "Gold">{{cite journal | last = Gold | first = Peter | title = The Tripartite Forum of Dialogue: Is this the Solution to the 'Problem' of Gibraltar? | journal = [[Mediterranean Politics]] | volume = 14 | issue = 1 | pages = 79–97 | publisher = [[Taylor and Francis]] | doi=10.1080/13629390902747475 | date = March 2009 | s2cid = 154528326 | url = http://eprints.uwe.ac.uk/16385/289/Tripartite%20forum%20Article%20Jan%2009%20revised.pdf }}</ref>
+
+==Referendum question==
+The referendum held by the Government of Gibraltar asked voters this question:
+
+{{quote|On 12 July 2002 the Foreign Secretary, Jack Straw, in a formal statement in the House of Commons, said that after twelve months of negotiation the British Government and Spain are in broad agreement on many of the principles that should underpin a lasting settlement of Spain's sovereignty claim, which included the principle that Britain and Spain should share sovereignty over Gibraltar.
+
+Do you approve of the principle that Britain and Spain should share sovereignty over Gibraltar?<ref>{{cite book|last1=Stockey|first1=Gareth|last2=Grocott|first2=Chris|title=Gibraltar: A Modern History|url=https://books.google.com/books?id=8lOuBwAAQBAJ&pg=PA116|year=2012|publisher=U of Wales P|isbn=9780708325155|page=116}}</ref>}}
+Permitted answers were '''YES''' or '''NO''', indicated by [[ballot|marking a box with an X]].
+
+==Conduct==
+The [[Government of Gibraltar]] invited a panel of observers headed by the British MP [[Gerald Kaufman]]. Their report stated that "The observers were extremely impressed with the organisation of the referendum and particularly welcome that the role of the observers was integral to the process, as distinct from the more passive role of observers in other elections. The meticulous way in which votes were counted exceeded requirements and went beyond requirements adopted for UK elections".<ref name="Gibraltar Observer's Report">{{cite web | url=http://www.gibnet.com/library/ref02or.pdf | title=Gibraltar Referendum Observer's Report | publisher=Report by the Committee of Observers | date=November 2002 | access-date=19 September 2015 | page=12}}</ref>
+
+==Results==
+[[File:Ref 2002 cm.ogg|thumb|Speech by Peter Caruana after the announcement of the result of the 2002 referendum]]
+{{Referendum results
+| against = 17900
+| for = 187
+| invalid = 89
+| electorate = 20678
+| source = ''Washington Post''<ref>{{cite news|url=https://www.washingtonpost.com/archive/politics/2002/11/08/gibraltar-votes-to-remain-british/aa4f79c0-ddb6-4141-ae3c-cf2f2523909d/?pagewanted=1|newspaper=[[The Washington Post]]|title=Gibraltar Votes to Remain British|date=8 November 2002|access-date=28 January 2019|last=Daly|first=Emma}}</ref>
+}}
+
+==Reactions==
+[[Peter Caruana]], the [[Chief Minister of Gibraltar]], said of the result: "We say to the British Government: Take stock of this referendum result, it's the will of the people of Gibraltar", and that the planned path to joint sovereignty was a "dead end road for everyone".<ref name=sparrow>{{cite news|url=https://www.telegraph.co.uk/news/uknews/4184374/Gibraltar-rejects-Straws-deal.html|title=Gibraltar rejects Straw's deal|author=Andrew Sparrow and Isambard Wilkinson|date=8 November 2002|work=[[The Daily Telegraph]]|access-date=17 February 2016}}</ref>
+
+Reaction in Spain was mostly negative, with ''[[El País]]'' calling the referendum a "dishonest consultation",<ref name="BBC">{{cite web|url=https://news.bbc.co.uk/2/hi/europe/2420945.stm|title=Gibraltar referendum result in quotes|date=8 November 2002|work=[[BBC News]]}}</ref> while [[Minister of Foreign Affairs (Spain)|Spanish Minister of Foreign Affairs]] [[Ana Palacio]] described it as "illegal" and "against all the UN resolutions".<ref>{{cite news|url=http://www.elpais.com/articulo/espana/Gobierno/dice/consulta/contraria/resoluciones/ONU/elpepiesp/20021109elpepinac_2/Tes|title=El Gobierno dice que la consulta es contraria a las resoluciones de la ONU|newspaper=[[El País]]|date=9 November 2002|language=es}}</ref> However, ''El País'' also said that "no Spanish Government, neither this one or its predecessors, has done enough to make joint sovereignty or integration with Spain an attractive prospect".<ref name="BBC" />
+
+In London, [[Jack Straw]] was criticised by the [[House of Commons Foreign Affairs Committee]], stating that he was wrong to agree to joint sovereignty with Spain, when this was unacceptable to the people of Gibraltar. Their report also emphasised the importance of the referendum, which represented the views of Gibraltarians. ''[[The Daily Telegraph]]'' said "the people of Gibraltar today overwhelmingly rejected the principle of Britain sharing sovereignty of [[Rock of Gibraltar|the Rock]] with Spain".<ref name=sparrow/>
+
+==Aftermath==
+Prior to the referendum the British Government stated that it would not recognise the outcome.<ref name="Gold2005">{{cite book|author=Peter Gold|title=Gibraltar: British Or Spanish?|url=https://books.google.com/books?id=b6SgDQvP3zMC&pg=PA310|date=January 2005|publisher=Psychology Press|isbn=978-0-415-34795-2|page=310}}</ref> After the referendum the Government of Gibraltar demanded involvement in any further talks with Spain.<ref name = "Dodds">*{{cite journal | title = Solid as a Rock? Britain and Gibraltar | journal = BBC History | date = December 2004 | first = Klaus | last = Dodds | pages = 18–21}}</ref>
+
+Under an initiative originally started in 1999, the Government of Gibraltar, together with opposition parties, negotiated a new [[Constitution of Gibraltar]]. The major issue in negotiations was the desire by Gibraltar politicians for a preamble whereby the "British Government ought to commit itself to the question of self-determination in unequivocal terms", which the British government initially resisted."<ref name='RESEARCH PAPER 06/48'> {{citation | title = Gibraltar: diplomatic and constitutional developments | website= House of Commons Library | first = Vaughne | last = Miller| url = https://researchbriefings.files.parliament.uk/documents/RP06-48/RP06-48.pdf | access-date = 2011-02-16}}</ref> After [[Margaret Beckett]] succeeded Straw as Foreign Secretary in 2006, there was a shift in British policy on Gibraltar that effectively recognised the preamble to the [[Gibraltar Constitution Order 1969|1969 constitution]], agreed that any future discussions on sovereignty would need to involve Gibraltar, and would require an improved relationship between Spain and Gibraltar.<ref>Gold, 2005, p.317</ref> This compromise led to the [[Gibraltar Constitution Order 2006]], which reduced the powers of the (British-appointed) [[Governor of Gibraltar]] and transferred them to local officials, and incorporated a bill of "fundamental rights and freedoms" into the constitution.<ref name="Constantine2009">{{cite book|author=Stephen Constantine| author-link = Stephen Constantine (historian) | title=Community and identity: the making of modern Gibraltar since 1704|url=https://books.google.com/books?id=hVMMAQAAMAAJ|year=2009|publisher=Manchester University Press|isbn=9780719080548|page=404}}</ref> This reform had cross-party support in Gibraltar, and was submitted to a referendum. The resulting [[2006 Gibraltarian constitutional referendum]] approved these reforms by 60-38%. Although this had cross-party support in Gibraltar, when submitted to a referendum on adoption a significant no vote emerged.  Although reasons were diverse, there were two aspects to objections:<ref name="RESEARCH PAPER 06/48"/> firstly, the commitment to retaining British sovereignty was seen to not be sufficiently secure;<ref name="RESEARCH PAPER 06/48"/> and secondly, the new constitution was deemed not advanced enough in allowing the exercise of the right to self-determination.<ref name="Constantine2009"/>
+
+==See also==
+*[[1967 Gibraltar sovereignty referendum]]
+*[[1980 Quebec referendum]]
+*[[1995 Quebec referendum]]
+*[[1999 Australian republic referendum]]
+*[[2008 Tuvaluan constitutional referendum]]
+*[[2009 Saint Vincent and the Grenadines constitutional referendum]]
+*[[2013 Falkland Islands sovereignty referendum]]
+*[[2014 Scottish independence referendum]]
+*[[Brexit referendum|Referendum on the United Kingdom's membership of the European Union, 2016]]
+
+==References==
+{{Reflist|30em}}
+
+{{Gibraltar elections}}
+{{Gibraltar topics}}
+
+[[Category:2002 elections in Gibraltar|Sovereignty referendum]]
+[[Category:2002 referendums|Gibraltar]]
+[[Category:Referendums in Gibraltar]]
+[[Category:Sovereignty referendums]]
+[[Category:November 2002 in Europe|Gibraltar]]
+[[Category:Spain–United Kingdom relations]]

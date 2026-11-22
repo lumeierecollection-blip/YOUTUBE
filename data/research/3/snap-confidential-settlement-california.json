@@ -1,0 +1,59 @@
+{
+  "topic_slug": "snap-confidential-settlement-california",
+  "strongest_angle": "Snap Inc. reached a confidential settlement with two teenage plaintiffs in Los Angeles County Superior Court, averting a high-profile social media addiction bellwether jury trial.",
+  "key_facts": [
+    {
+      "fact": "Snap Inc. reached a confidential settlement in Los Angeles County Superior Court with two teenage plaintiffs named SJ and KDB, avoiding a bellwether trial.",
+      "source_url": "https://thehill.com/policy/technology/6189431-snap-settles-addictive-app-claims",
+      "source_name": "The Hill",
+      "confidence": "high"
+    },
+    {
+      "fact": "The settlement agreement with Snap Inc. was reached partway through jury selection in Los Angeles, two days before opening statements.",
+      "source_url": "https://news.bloomberglaw.com/tech-and-telecom-law/snap-reaches-settlement-to-avoid-la-trial-in-addiction-case-1",
+      "source_name": "Bloomberg Law",
+      "confidence": "high"
+    },
+    {
+      "fact": "Los Angeles County Superior Court was set to host the bellwether trial involving Snap Inc. before the confidential settlement was announced on Monday.",
+      "source_url": "https://www.jurist.org/news/2026/11/snap-settles-california-social-media-addiction-lawsuit-days-after-meta-to-avert-trial",
+      "source_name": "JURIST",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Days before trial when settlement was announced",
+      "value": 2,
+      "unit": "days",
+      "source_url": "https://thehill.com/policy/technology/6189431-snap-settles-addictive-app-claims"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Snap Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "Snapchat",
+      "kind": "object"
+    },
+    {
+      "name": "SJ",
+      "kind": "person"
+    },
+    {
+      "name": "KDB",
+      "kind": "person"
+    },
+    {
+      "name": "Los Angeles",
+      "kind": "place"
+    },
+    {
+      "name": "Los Angeles County Superior Court",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

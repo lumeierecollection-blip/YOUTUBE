@@ -1,0 +1,762 @@
+{
+ "slug": "rival-lines-home-advantage",
+ "title": "Why Do Home Teams Win So Much?",
+ "channel": "rival-lines",
+ "beats": [
+  {
+   "id": "H01",
+   "part": "the 45.6% mystery",
+   "vo": "Forty-five point six percent. That is how often the home team won, across all twelve thousand seven hundred and four Premier League matches since the nineteen ninety-three, ninety-four season. The away team won twenty-eight point eight.",
+   "sentences": [
+    "Forty-five point six percent.",
+    "That is how often the home team won, across all twelve thousand seven hundred and four Premier League matches since the nineteen ninety-three, ninety-four season.",
+    "The away team won twenty-eight point eight."
+   ],
+   "kind": "stat",
+   "data": {
+    "value": "45.6%",
+    "label": "home wins, every Premier League match since 1993/94",
+    "chip": "28.8% away wins",
+    "image": "lf2/rival-lines/ha-fulham-3-cutout.png"
+   }
+  },
+  {
+   "id": "H02",
+   "part": "the 45.6% mystery",
+   "vo": "Same league. Same rules. The same clubs taking turns to host each other. And still a home win is far more common than an away win. So why does the team playing in front of its own fans win so much more often?",
+   "sentences": [
+    "Same league.",
+    "Same rules.",
+    "The same clubs taking turns to host each other.",
+    "And still a home win is far more common than an away win.",
+    "So why does the team playing in front of its own fans win so much more often?"
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "Who Wins A Premier League Match?",
+    "items": [
+     {
+      "label": "home wins · 45.6%",
+      "value": 46,
+      "max": 100,
+      "shown": "46",
+      "color": "VIOLET"
+     },
+     {
+      "label": "draws · 25.6%",
+      "value": 25,
+      "max": 100,
+      "shown": "25",
+      "color": "MUTED"
+     },
+     {
+      "label": "away wins · 28.8%",
+      "value": 29,
+      "max": 100,
+      "shown": "29",
+      "color": "BLUE"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H03",
+   "part": "the 45.6% mystery",
+   "vo": "That gap is called home advantage, and everyone has a favourite explanation: the crowd, the referee, the travel, the familiar pitch. So we are going to test them, one at a time, against the results.",
+   "sentences": [
+    "That gap is called home advantage, and everyone has a favourite explanation: the crowd, the referee, the travel, the familiar pitch.",
+    "So we are going to test them, one at a time, against the results."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "why does home advantage exist?",
+    "sub": "the usual suspects: the crowd · the referee · the travel · the pitch. We test them against every result since 1993."
+   }
+  },
+  {
+   "id": "H04",
+   "part": "is home advantage real?",
+   "vo": "First question: is it real, or just luck? Here is every season. Home wins in green, away wins in black. The home line sits above the away line in thirty-two of the thirty-three seasons.",
+   "sentences": [
+    "First question: is it real, or just luck?",
+    "Here is every season.",
+    "Home wins in green, away wins in black.",
+    "The home line sits above the away line in thirty-two of the thirty-three seasons."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "Real, Or Just Luck?",
+    "items": [
+     {
+      "label": "93/94",
+      "value": 41.6,
+      "max": 60,
+      "shown": "41.6%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "97/98",
+      "value": 48.4,
+      "max": 60,
+      "shown": "48.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "01/02",
+      "value": 43.4,
+      "max": 60,
+      "shown": "43.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "05/06",
+      "value": 50.5,
+      "max": 60,
+      "shown": "50.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "09/10",
+      "value": 50.8,
+      "max": 60,
+      "shown": "50.8%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "13/14",
+      "value": 47.1,
+      "max": 60,
+      "shown": "47.1%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "17/18",
+      "value": 45.5,
+      "max": 60,
+      "shown": "45.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "21/22",
+      "value": 42.9,
+      "max": 60,
+      "shown": "42.9%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "25/26",
+      "value": 42.6,
+      "max": 60,
+      "shown": "42.6%",
+      "color": "VIOLET"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H05",
+   "part": "is home advantage real?",
+   "vo": "The one exception is twenty twenty-one. Away teams won forty point three percent of matches that season, and home teams only thirty-seven point nine. Remember that season. We are coming back to it.",
+   "sentences": [
+    "The one exception is twenty twenty-one.",
+    "Away teams won forty point three percent of matches that season, and home teams only thirty-seven point nine.",
+    "Remember that season.",
+    "We are coming back to it."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "The One Season It Flipped",
+    "items": [
+     {
+      "label": "93/94",
+      "value": 41.6,
+      "max": 60,
+      "shown": "41.6%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "97/98",
+      "value": 48.4,
+      "max": 60,
+      "shown": "48.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "01/02",
+      "value": 43.4,
+      "max": 60,
+      "shown": "43.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "05/06",
+      "value": 50.5,
+      "max": 60,
+      "shown": "50.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "09/10",
+      "value": 50.8,
+      "max": 60,
+      "shown": "50.8%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "13/14",
+      "value": 47.1,
+      "max": 60,
+      "shown": "47.1%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "17/18",
+      "value": 45.5,
+      "max": 60,
+      "shown": "45.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "21/22",
+      "value": 42.9,
+      "max": 60,
+      "shown": "42.9%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "25/26",
+      "value": 42.6,
+      "max": 60,
+      "shown": "42.6%",
+      "color": "VIOLET"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H06",
+   "part": "is home advantage real?",
+   "vo": "Zoom out and the edge is slowly shrinking. A straight line through the thirty-three seasons slides from about forty-six point eight percent to forty-four point five. The Wikipedia article on home advantage says it has been steadily declining for over a century.",
+   "sentences": [
+    "Zoom out and the edge is slowly shrinking.",
+    "A straight line through the thirty-three seasons slides from about forty-six point eight percent to forty-four point five.",
+    "The Wikipedia article on home advantage says it has been steadily declining for over a century."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "Real, And Shrinking",
+    "items": [
+     {
+      "label": "93/94",
+      "value": 41.6,
+      "max": 60,
+      "shown": "41.6%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "97/98",
+      "value": 48.4,
+      "max": 60,
+      "shown": "48.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "01/02",
+      "value": 43.4,
+      "max": 60,
+      "shown": "43.4%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "05/06",
+      "value": 50.5,
+      "max": 60,
+      "shown": "50.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "09/10",
+      "value": 50.8,
+      "max": 60,
+      "shown": "50.8%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "13/14",
+      "value": 47.1,
+      "max": 60,
+      "shown": "47.1%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "17/18",
+      "value": 45.5,
+      "max": 60,
+      "shown": "45.5%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "21/22",
+      "value": 42.9,
+      "max": 60,
+      "shown": "42.9%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "25/26",
+      "value": 42.6,
+      "max": 60,
+      "shown": "42.6%",
+      "color": "VIOLET"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H06b",
+   "part": "is home advantage real?",
+   "vo": "So something real is going on, and it is getting smaller. Which brings us to the suspect everyone names first: the crowd.",
+   "sentences": [
+    "So something real is going on, and it is getting smaller.",
+    "Which brings us to the suspect everyone names first: the crowd."
+   ],
+   "kind": "image",
+   "data": {
+    "image": null,
+    "title": "is home advantage real?"
+   }
+  },
+  {
+   "id": "H07",
+   "part": "the crowd test",
+   "vo": "The idea is simple. Home fans vastly outnumber visiting fans. They cheer, they boo, and the players feel it. One study of five thousand Premier League games, by Ryan Boyko, then a Harvard research assistant, reported that every extra ten thousand people in the stadium added a tenth of a goal to the home advantage.",
+   "sentences": [
+    "The idea is simple.",
+    "Home fans vastly outnumber visiting fans.",
+    "They cheer, they boo, and the players feel it.",
+    "One study of five thousand Premier League games, by Ryan Boyko, then a Harvard research assistant, reported that every extra ten thousand people in the stadium added a tenth of a goal to the home advantage."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/rival-lines/ha-crowd-cincinnati.jpg",
+    "title": "The Twelfth Man",
+    "video": null
+   }
+  },
+  {
+   "id": "H08",
+   "part": "the crowd test",
+   "vo": "But a replication in the same journal, using more recent data, found no evidence to sustain either of his claims, not the crowd size and not the referee bias. So the crowd story was already shaky before twenty twenty.",
+   "sentences": [
+    "But a replication in the same journal, using more recent data, found no evidence to sustain either of his claims, not the crowd size and not the referee bias.",
+    "So the crowd story was already shaky before twenty twenty."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "Journal of Sports Sciences · 2008",
+    "lines": [
+     "On referee bias, crowd size, and home advantage in the English soccer Premiership",
+     "",
+     "identified differences in attendance and referee bias as factors influencing home advantage at soccer matches in the English Premiership. A replication of their study using more recent data found no evidence to sustain either of their claims."
+    ],
+    "hl": true
+   }
+  },
+  {
+   "id": "H09",
+   "part": "the crowd test",
+   "vo": "Then twenty twenty happened. When the league restarted on the seventeenth of June, every match was played behind closed doors, with no more than three hundred key people inside the stadium. It was the experiment nobody could have designed.",
+   "sentences": [
+    "Then twenty twenty happened.",
+    "When the league restarted on the seventeenth of June, every match was played behind closed doors, with no more than three hundred key people inside the stadium.",
+    "It was the experiment nobody could have designed."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "an experiment nobody designed",
+    "sub": "17 June 2020: all matches behind closed doors, at most 300 key people inside (Wikipedia, 2019-20 Premier League)"
+   }
+  },
+  {
+   "id": "H10",
+   "part": "the crowd test",
+   "vo": "Here is what our results say. In the ninety-two matches after the restart, home teams won forty-six point seven percent. No drop at all. But across the whole of twenty twenty-one, a season largely played behind closed doors, they won just thirty-seven point nine.",
+   "sentences": [
+    "Here is what our results say.",
+    "In the ninety-two matches after the restart, home teams won forty-six point seven percent.",
+    "No drop at all.",
+    "But across the whole of twenty twenty-one, a season largely played behind closed doors, they won just thirty-seven point nine."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "When The Stands Were Empty",
+    "items": [
+     {
+      "label": "33 seasons · 12,704 matches",
+      "value": 45.6,
+      "max": 60,
+      "shown": "45.6%",
+      "color": "MUTED"
+     },
+     {
+      "label": "Summer 2020 · 92 matches, no fans",
+      "value": 46.7,
+      "max": 60,
+      "shown": "46.7%",
+      "color": "VIOLET"
+     },
+     {
+      "label": "2020/21 · 380, mostly no fans",
+      "value": 37.9,
+      "max": 60,
+      "shown": "37.9%",
+      "color": "GREEN"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H11",
+   "part": "the crowd test",
+   "vo": "Be careful with both numbers. Ninety-two matches is a small sample, and twenty twenty-one had some fans back in December and again at the end of the season. One season cannot settle it.",
+   "sentences": [
+    "Be careful with both numbers.",
+    "Ninety-two matches is a small sample, and twenty twenty-one had some fans back in December and again at the end of the season.",
+    "One season cannot settle it."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "two samples. two answers.",
+    "sub": "92 matches vs 380 · in 2020/21 some fans returned in low-risk areas from 2 December 2020 and for the final rounds in May 2021 (Wikipedia, 2020-21 Premier League)"
+   }
+  },
+  {
+   "id": "H12",
+   "part": "the crowd test",
+   "vo": "Researchers who studied eight leagues from five countries, including England, found no significant difference with or without a crowd, except in the German and Spanish top divisions.",
+   "sentences": [
+    "Researchers who studied eight leagues from five countries, including England, found no significant difference with or without a crowd, except in the German and Spanish top divisions."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "Soccer & Society · 2020",
+    "lines": [
+     "Home advantage in European soccer without crowd",
+     "",
+     "The sample is made up of eight football leagues (soccer) from Germany, Spain, Italy, England and Austria. The results show that there are no significant differences between playing with or without a crowd, except in the German and Spanish top leagues."
+    ],
+    "hl": true
+   }
+  },
+  {
+   "id": "H13",
+   "part": "the crowd test",
+   "vo": "A different team, testing eight of the world's top leagues, did find a decrease in the probability of a home win. So the published studies disagree.",
+   "sentences": [
+    "A different team, testing eight of the world's top leagues, did find a decrease in the probability of a home win.",
+    "So the published studies disagree."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "Soccer & Society · 2022",
+    "lines": [
+     "Home team's advantage reduced without crowd support after the COVID-19 outbreak",
+     "",
+     "We performed comparative hypothesis tests with eight of the world's top soccer leagues, confirming a decrease in the probability of a home win, greatly affecting the matches' outcomes."
+    ],
+    "hl": true
+   }
+  },
+  {
+   "id": "H14",
+   "part": "the crowd test",
+   "vo": "In Germany, the home advantage fell in the Bundesliga but not in the lower divisions. The authors argue it is psychological. Their words: they cannot find strong evidence for a change in referee behaviour or tactics.",
+   "sentences": [
+    "In Germany, the home advantage fell in the Bundesliga but not in the lower divisions.",
+    "The authors argue it is psychological.",
+    "Their words: they cannot find strong evidence for a change in referee behaviour or tactics."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "Journal of Sports Economics · 2021",
+    "lines": [
+     "Does Crowd Support Drive the Home Advantage in Professional Football?",
+     "",
+     "We find that there is a reduced home advantage in the first division, whereas no change is observed in the second and third divisions. [...] We cannot find strong evidence for a change in referee behavior or teams' tactics as main impact channels of occupancy rates on the home advantage. Hence, we argue that psychological reasons are of higher importance."
+    ],
+    "hl": true
+   }
+  },
+  {
+   "id": "H15",
+   "part": "the referee question",
+   "vo": "That leaves the referee. In normal matches since two thousand and one, the home team picked up one point four eight yellow cards a match and the away team one point eight two. In the ninety-two restart matches, one point four six against one point four two. Across twenty twenty-one, one point four two against one point four five. The gap closes.",
+   "sentences": [
+    "That leaves the referee.",
+    "In normal matches since two thousand and one, the home team picked up one point four eight yellow cards a match and the away team one point eight two.",
+    "In the ninety-two restart matches, one point four six against one point four two.",
+    "Across twenty twenty-one, one point four two against one point four five.",
+    "The gap closes."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "Yellow Cards Per Match",
+    "items": [
+     {
+      "label": "Home · with fans",
+      "value": 1.48,
+      "max": 2.2,
+      "shown": "1.48",
+      "color": "VIOLET"
+     },
+     {
+      "label": "Away · with fans",
+      "value": 1.82,
+      "max": 2.2,
+      "shown": "1.82",
+      "color": "BLUE"
+     },
+     {
+      "label": "Home · summer 2020",
+      "value": 1.46,
+      "max": 2.2,
+      "shown": "1.46",
+      "color": "VIOLET"
+     },
+     {
+      "label": "Away · summer 2020",
+      "value": 1.42,
+      "max": 2.2,
+      "shown": "1.42",
+      "color": "BLUE"
+     },
+     {
+      "label": "Home · 2020/21",
+      "value": 1.42,
+      "max": 2.2,
+      "shown": "1.42",
+      "color": "VIOLET"
+     },
+     {
+      "label": "Away · 2020/21",
+      "value": 1.45,
+      "max": 2.2,
+      "shown": "1.45",
+      "color": "BLUE"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H16",
+   "part": "the referee question",
+   "vo": "A study of the Bundesliga's ghost matches found the same pattern. Before Covid, referees gave home teams fewer fouls and yellow cards than away teams. In the ghost matches those differences changed, and home teams were treated less favourably than before.",
+   "sentences": [
+    "A study of the Bundesliga's ghost matches found the same pattern.",
+    "Before Covid, referees gave home teams fewer fouls and yellow cards than away teams.",
+    "In the ghost matches those differences changed, and home teams were treated less favourably than before."
+   ],
+   "kind": "text",
+   "data": {
+    "title": "SSRN · 2020 (working paper)",
+    "lines": [
+     "Home-Bias in Referee Decisions: Evidence from 'Ghost Matches' During the COVID-19 Pandemic",
+     "",
+     "We find that pre-Covid19 referees gave fewer fouls and yellow cards for the home team relative to the away team. These differences in fouls and cards changed during the ghost matches so that home teams were treated less favorably than before."
+    ],
+    "hl": true
+   }
+  },
+  {
+   "id": "H17",
+   "part": "the referee question",
+   "vo": "A card gap alone does not prove bias. Away teams might simply foul more, or chase games more desperately when they are behind. Our numbers cannot separate those. A before-and-after comparison, like the German one, is the better test. And the Fischer and Haucap paper found no strong evidence for it. So this one is open.",
+   "sentences": [
+    "A card gap alone does not prove bias.",
+    "Away teams might simply foul more, or chase games more desperately when they are behind.",
+    "Our numbers cannot separate those.",
+    "A before-and-after comparison, like the German one, is the better test.",
+    "And the Fischer and Haucap paper found no strong evidence for it.",
+    "So this one is open."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "a card gap is not proof of bias",
+    "sub": "away teams may foul more, or chase games harder when behind. Our data cannot tell which."
+   }
+  },
+  {
+   "id": "H18",
+   "part": "how big is the edge?",
+   "vo": "How big is the edge in goals? Home teams averaged one point five three goals a match, away teams one point one seven. That is about thirty-one percent more. A two thousand and six study by The Times, quoted on Wikipedia, put it at thirty-seven percent.",
+   "sentences": [
+    "How big is the edge in goals?",
+    "Home teams averaged one point five three goals a match, away teams one point one seven.",
+    "That is about thirty-one percent more.",
+    "A two thousand and six study by The Times, quoted on Wikipedia, put it at thirty-seven percent."
+   ],
+   "kind": "bars",
+   "data": {
+    "title": "Goals Per Match",
+    "items": [
+     {
+      "label": "Home teams",
+      "value": 1.53,
+      "max": 2,
+      "shown": "1.53",
+      "color": "VIOLET"
+     },
+     {
+      "label": "Away teams",
+      "value": 1.17,
+      "max": 2,
+      "shown": "1.17",
+      "color": "BLUE"
+     }
+    ]
+   }
+  },
+  {
+   "id": "H18b",
+   "part": "how big is the edge?",
+   "vo": "It is not the same for every club. Across all those seasons, the average team took one point six two points a home match and one point one two away. Newcastle, with five hundred and ninety-three home matches in the data, took one point seven five at home and one point oh five away. Crystal Palace, with three hundred and six, took one point two one and one point one. Barely any gap at all.",
+   "sentences": [
+    "It is not the same for every club.",
+    "Across all those seasons, the average team took one point six two points a home match and one point one two away.",
+    "Newcastle, with five hundred and ninety-three home matches in the data, took one point seven five at home and one point oh five away.",
+    "Crystal Palace, with three hundred and six, took one point two one and one point one.",
+    "Barely any gap at all."
+   ],
+   "kind": "rows",
+   "data": {
+    "title": "The Home Boost, Club By Club",
+    "rows": [
+     [
+      "VIOLET",
+      "Newcastle",
+      "home 1.75 · away 1.05"
+     ],
+     [
+      "BLUE",
+      "Fulham",
+      "home 1.50 · away 0.84"
+     ],
+     [
+      "BLUE",
+      "Blackburn",
+      "home 1.68 · away 1.07"
+     ],
+     [
+      "BLUE",
+      "Leicester",
+      "home 1.43 · away 1.03"
+     ],
+     [
+      "VIOLET",
+      "Crystal Palace",
+      "home 1.21 · away 1.10"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "H18c",
+   "part": "how big is the edge?",
+   "vo": "Why would one club get a bigger boost than another? Nothing we found answers that. It could be the crowd, the stadium, or just the squads those clubs happened to have. Our data cannot say, and we would rather tell you that than guess.",
+   "sentences": [
+    "Why would one club get a bigger boost than another?",
+    "Nothing we found answers that.",
+    "It could be the crowd, the stadium, or just the squads those clubs happened to have.",
+    "Our data cannot say, and we would rather tell you that than guess."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "why does one club get more?",
+    "sub": "the crowd, the stadium, or just the squads? Our data cannot say."
+   }
+  },
+  {
+   "id": "H19",
+   "part": "how big is the edge?",
+   "vo": "And for the extreme case, go up. La Paz sits at three thousand six hundred metres. On the first of April two thousand and nine, Bolivia beat Argentina, then ranked sixth in the world, six goals to one. Argentina's heaviest defeat since nineteen fifty-eight.",
+   "sentences": [
+    "And for the extreme case, go up.",
+    "La Paz sits at three thousand six hundred metres.",
+    "On the first of April two thousand and nine, Bolivia beat Argentina, then ranked sixth in the world, six goals to one.",
+    "Argentina's heaviest defeat since nineteen fifty-eight."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "bolivia 6–1 argentina",
+    "sub": "La Paz, 3,600 m above sea level · 1 April 2009 · Argentina ranked sixth in the world then; its heaviest defeat since 1958"
+   }
+  },
+  {
+   "id": "H19b",
+   "part": "how big is the edge?",
+   "vo": "Altitude, travel, familiar surroundings, and the crowd all stack together. The article notes that the most commonly cited factors are the hardest to measure, so even their existence is debated.",
+   "sentences": [
+    "Altitude, travel, familiar surroundings, and the crowd all stack together.",
+    "The article notes that the most commonly cited factors are the hardest to measure, so even their existence is debated."
+   ],
+   "kind": "image",
+   "data": {
+    "image": null,
+    "title": "",
+    "video": "lf2/footage/fb-aerial.mp4"
+   }
+  },
+  {
+   "id": "H20",
+   "part": "why home still wins",
+   "vo": "So why do home teams win so much? Because the edge is real: about forty-six percent against twenty-nine, in thirty-two of thirty-three seasons. It is shrinking slowly. And the strongest signals point at people rather than place: what a crowd does to players, and what it may do to referees. The studies disagree on how much.",
+   "sentences": [
+    "So why do home teams win so much?",
+    "Because the edge is real: about forty-six percent against twenty-nine, in thirty-two of thirty-three seasons.",
+    "It is shrinking slowly.",
+    "And the strongest signals point at people rather than place: what a crowd does to players, and what it may do to referees.",
+    "The studies disagree on how much."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "it is real. it is shrinking. and people are part of it.",
+    "sub": "home 45.6% · away 28.8% · 32 of 33 seasons · studies disagree on the crowd's share"
+   }
+  },
+  {
+   "id": "H21",
+   "part": "why home still wins",
+   "vo": "What we cannot tell you is how much of the edge belongs to the crowd. One empty-stadium season says a lot. Ninety-two matches say almost nothing. Home advantage has not disappeared. It has just stopped being a guarantee.",
+   "sentences": [
+    "What we cannot tell you is how much of the edge belongs to the crowd.",
+    "One empty-stadium season says a lot.",
+    "Ninety-two matches say almost nothing.",
+    "Home advantage has not disappeared.",
+    "It has just stopped being a guarantee."
+   ],
+   "kind": "quote",
+   "data": {
+    "title": "not gone. just no longer a guarantee.",
+    "sub": ""
+   }
+  },
+  {
+   "id": "H22",
+   "part": "why home still wins",
+   "vo": "One last thing. In a two-legged tie, the team hosting the second leg gets the home advantage. Given everything you have just seen, would you rather host the first leg or the second? Tell us in the comments.",
+   "sentences": [
+    "One last thing.",
+    "In a two-legged tie, the team hosting the second leg gets the home advantage.",
+    "Given everything you have just seen, would you rather host the first leg or the second?",
+    "Tell us in the comments."
+   ],
+   "kind": "image",
+   "data": {
+    "image": "lf2/rival-lines/ha-crowd-cincinnati.jpg",
+    "title": "First Leg, Or Second?",
+    "video": null
+   },
+   "cta": true
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "channel": "ai-tested",
+ "episode": "At What Size Does AI Multiplication Break? We Tested It",
+ "estimated_minutes": 4.9,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "1:21.7",
+   "seconds": 81.8,
+   "scene": "A05",
+   "cue_type": "action",
+   "asset": "SFX_MOUSE_CLICK",
+   "purpose": "the click visible in the real browser capture",
+   "duration_s": 2.3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/Masgame/sounds/347544 | cc0 1.0",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "1:39.1",
+   "seconds": 99.2,
+   "scene": "A06",
+   "cue_type": "action",
+   "asset": "SFX_KEYBOARD",
+   "purpose": "typing that matches the command visibly being typed in the terminal capture",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/crz1990/sounds/135872 | by 3.0 | attribution: \"Keyboard Typing Sounds - ‎27 November ‎2011, ‏‎12:11:52 A.M.\" by crz1990 is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "2:17.5",
+   "seconds": 137.6,
+   "scene": "A09",
+   "cue_type": "silence",
+   "asset": "(none)",
+   "purpose": "a pause before the result is stated",
+   "duration_s": 1.5,
+   "level_db_rel_speech": null,
+   "source_licence": "n/a",
+   "approval_status": "n/a"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

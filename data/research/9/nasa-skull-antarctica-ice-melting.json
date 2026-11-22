@@ -1,0 +1,50 @@
+{
+  "topic_slug": "nasa-skull-antarctica-ice-melting",
+  "strongest_angle": "NASA Earth Observatory satellites captured a skull-shaped ice and rock formation on Vega Island in October 2026, revealing how unusually warm winter temperatures exposed dark ice and accelerated melting.",
+  "key_facts": [
+    {
+      "fact": "On Vega Island in the Weddell Sea, NASA Earth Observatory satellites observed an ice-covered land feature resembling a grinning human skull on October 30, 2026.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/vega-island-frozen-in-fright",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to ScienceDaily and NDTV reports from November 2026, unusually warm winter temperatures across Antarctica exposed large areas of dark ice on Vega Island, threatening faster glacial melting.",
+      "source_url": "https://www.sciencedaily.com/releases/2026/11/261101010538.htm",
+      "source_name": "ScienceDaily",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Times of India reported in October 2026 that satellite views of Vega Island near the Antarctic Peninsula display a rocky peak functioning as an eye socket and a lateral moraine forming the jaw.",
+      "source_url": "https://timesofindia.indiatimes.com/science/space/nasas-new-satellite-images-show-an-antarctic-island-that-looks-like-a-giant-skull-with-a-rocky-eye-socket-and-glacier-jaw-the-october-2026-view-reveals-more-bare-ice-after-an-unusually-warm-winter/articleshow/135399428.cms",
+      "source_name": "The Times of India",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/vega-island-frozen-in-fright"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Vega Island",
+      "kind": "place"
+    },
+    {
+      "name": "Weddell Sea",
+      "kind": "place"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Antarctic Peninsula",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "topic_slug": "raib-report-12-2026-bax-crossing-collision",
+  "strongest_angle": "Break down the official Rail Accident Investigation Branch report detailing the 71 mph collision between a passenger train and a stationary delivery van at Bax user-worked crossing near Teynham in Kent.",
+  "key_facts": [
+    {
+      "fact": "At around 12:42 on 13 July 2025, a passenger train travelling from Ramsgate to London Victoria collided with a stationary delivery van on Bax user worked crossing near Teynham in Kent.",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf",
+      "source_name": "Rail Accident Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Rail Accident Investigation Branch published Report 12/2026 on 9 November 2026, detailing the investigation into the collision at Bax level crossing which spans 58 pages and a file size of 18.1 MB.",
+      "source_url": "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026",
+      "source_name": "Rail Accident Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "The passenger train involved in the collision at Bax user-worked crossing was travelling at approximately 71 mph (114 km/h) at the time of the incident.",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf",
+      "source_name": "Rail Accident Investigation Branch",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Collision time hours and minutes",
+      "value": 12.42,
+      "unit": "time",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Collision date day",
+      "value": 13,
+      "unit": "day",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Collision date month",
+      "value": 7,
+      "unit": "month",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Collision date year",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Train speed mph",
+      "value": 71,
+      "unit": "mph",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Train speed km/h",
+      "value": 114,
+      "unit": "km/h",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af19bb2a9bae1ad0d15b9cd/R122026_261109_Bax_UWC.pdf"
+    },
+    {
+      "label": "Report number",
+      "value": 12,
+      "unit": "report",
+      "source_url": "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026"
+    },
+    {
+      "label": "Report year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026"
+    },
+    {
+      "label": "Report file size",
+      "value": 18.1,
+      "unit": "MB",
+      "source_url": "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026"
+    },
+    {
+      "label": "Report page count",
+      "value": 58,
+      "unit": "pages",
+      "source_url": "https://www.gov.uk/government/publications/raib-investigation-reports-safety-digests-and-urgent-safety-advice-2026"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Rail Accident Investigation Branch",
+      "kind": "organization"
+    },
+    {
+      "name": "Bax level crossing",
+      "kind": "place"
+    },
+    {
+      "name": "Teynham",
+      "kind": "place"
+    },
+    {
+      "name": "Kent",
+      "kind": "place"
+    },
+    {
+      "name": "Ramsgate",
+      "kind": "place"
+    },
+    {
+      "name": "London Victoria",
+      "kind": "place"
+    },
+    {
+      "name": "Emma Holden",
+      "kind": "person"
+    },
+    {
+      "name": "Network Rail",
+      "kind": "organization"
+    }
+  ]
+}

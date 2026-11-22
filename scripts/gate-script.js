@@ -42,7 +42,11 @@ const FORMAT_MIDPOINT_MINUTES = { shorts: 44 / 60, longform: (2 + 12) / 2 };
 // gate's effective rate, (superseded 2026-10-10: 80-98 words at the Gemini voice's pace) (scripts/test-word-budget.mjs).
 // Measured the same day the narrator speaks 1.8-2.5 words/s, so ~100 words is 40-55 s of
 // real voiceover; the workflow still trims anything over 58 s (scripts/fit-short.js).
-export const DURATION_RANGE_SECONDS = { shorts: { min: 36, max: 52 }, longform: { min: 30, max: 45 } };
+export const DURATION_RANGE_SECONDS = {
+  // The autopilot makes 30-second Shorts, so it sets a tighter window; the daily pipeline leaves these unset.
+  shorts: { min: Number(process.env.SHORTS_MIN_SECONDS) || 36, max: Number(process.env.SHORTS_MAX_SECONDS) || 52 },
+  longform: { min: 30, max: 45 },
+};
 
 /**
  * EdgeTTS speaks slower than the nominal WPM, so the nominal figure
@@ -109,6 +113,11 @@ const editDistanceAtMost1 = (a, b) => {
   return true;
 };
 
+// "Mesopotamian" for the research's "Mesopotamia" (Persia/Persian, Korea/Korean, Syria/Syrian...) is the adjective, not a
+// typo, yet it is one insertion away and was a BLOCKER on attempts 1-7 for ch-1 in run 40899483670. Only the
+// name-ending-in-"a" + "n" shape is exempt, either way round; a substitution (Post/Pest) stays a near-miss.
+const isAdjectiveForm = (a, b) => (a === b + "n" && b.endsWith("a")) || (b === a + "n" && a.endsWith("a"));
+
 /**
  * SCR-18 (BLOCKER near-miss / MAJOR unknown) â€” every proper noun is copied from
  * the research artifact, character for character.
@@ -146,7 +155,7 @@ export function nameFidelityProblems(script, research) {
   const nearMissOfToken = (token) => {
     for (const { name, tokens } of nameLower) {
       for (const t of tokens) {
-        if (t === token || t.length < 4 || t[0] !== token[0]) continue;
+        if (t === token || t.length < 4 || t[0] !== token[0] || isAdjectiveForm(token, t)) continue;
         if (editDistanceAtMost1(token, t)) return name;
       }
     }
@@ -158,7 +167,7 @@ export function nameFidelityProblems(script, research) {
       let matching = 0, near = 0, ok = true;
       for (let k = 0; k < nt.length; k++) {
         if (nt[k] === tokens[k]) { matching++; continue; }
-        if (nt[k][0] !== tokens[k][0] || nt[k].length < 4 || !editDistanceAtMost1(tokens[k], nt[k])) { ok = false; break; }
+        if (nt[k][0] !== tokens[k][0] || nt[k].length < 4 || isAdjectiveForm(tokens[k], nt[k]) || !editDistanceAtMost1(tokens[k], nt[k])) { ok = false; break; }
         near++;
       }
       if (ok && matching >= 1 && near === 1) return name;
@@ -167,7 +176,8 @@ export function nameFidelityProblems(script, research) {
   };
 
   const seen = new Set();
-  for (const text of collect(script)) {
+  // Per clause: "...Rio de Janeiro. How..." and "In Washington DC, November..." are a name beside another word, not one long name.
+  for (const text of collect(script).flatMap((t) => String(t).split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+|[,;:]\s+/))) {
     const toks = nameTokens(String(text));
     const runs = [];
     let cur = [];
@@ -188,6 +198,8 @@ export function nameFidelityProblems(script, research) {
       if (!key || seen.has(key)) continue;
       seen.add(key);
       if (present(core)) continue;
+      // "Check November" is a capitalised opening verb beside a name the research has. Every later word must still be researched.
+      if (run[0] === toks[0] && core.length >= 2 && present(core.slice(1))) continue;
 
       const near = nearMissOfWindow(core) || (core.length === 1 ? nearMissOfToken(core[0]) : null);
       if (near) {
@@ -206,7 +218,7 @@ export function nameFidelityProblems(script, research) {
  */
 export function wordsOnlyShare(sections = []) {
   const sentences = sections
-    .flatMap((s) => String(s.voiceover || "").split(/(?<=[.!?])\s+/))
+    .flatMap((s) => String(s.voiceover || "").split(/(?<=[.!?])(?<!\b[A-Z]\.)\s+/))
     .map((t) => t.trim()).filter(Boolean);
   const names = (t) => /\d/.test(t) || /(?:^|\s)(?!I\b)[A-Z][A-Za-z]+/.test(t.replace(/^\W*\S+\s*/, " ")) ||
     /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/.test(t);

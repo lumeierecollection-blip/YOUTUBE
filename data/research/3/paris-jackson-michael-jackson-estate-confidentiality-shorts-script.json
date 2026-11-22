@@ -1,0 +1,66 @@
+{
+  "channel_id": "3",
+  "topic_slug": "paris-jackson-michael-jackson-estate-confidentiality",
+  "format": "shorts",
+  "hook": "A Los Angeles judge sealed records in a $600 million battle.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A Los Angeles judge sealed records in a $600 million battle.",
+      "b_roll": [
+        "Graphic depiction of a courtroom gavel slamming onto confidential estate documents"
+      ],
+      "text_overlay": {
+        "text": "$600M Estate Case Sealed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, 2026, Paris Jackson petitioned a Los Angeles court. Her filing demanded $600 million move into the family trust. Can executor John Branca hide those financial records?",
+      "b_roll": [
+        "Motion graphic timeline highlighting October 29, 2026 filing date",
+        "Animated split-screen showing Paris Jackson filing papers alongside the $600 million trust figure",
+        "Graphic illustration of estate executor John Branca with sealed document icons"
+      ],
+      "text_overlay": {
+        "text": "October 29, 2026: Paris Jackson Files Petition"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But in November 2026, a Los Angeles judge allowed executor John Branca to keep key documents sealed.",
+      "b_roll": [
+        "Animated lock mechanism securing financial documents dated November 2026"
+      ],
+      "text_overlay": {
+        "text": "November 2026: Court Seals Filings"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Beneficiaries Prince Jackson and Bigi Jackson remain in the dispute. A court set a December 4, 2026 hearing on the petition.",
+      "b_roll": [
+        "Graphic news report headline referencing Page Six legal reporting",
+        "Motion graphic listing beneficiaries Prince Jackson and Bigi Jackson",
+        "Calendar graphic zooming in on December 4, 2026 hearing date"
+      ],
+      "text_overlay": {
+        "text": "Hearing Set: December 4, 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $600 million trust battle returns to court on December 4.",
+      "b_roll": [
+        "Summary graphic displaying $600 million trust amount with court date"
+      ],
+      "text_overlay": {
+        "text": "$600M Hearing Dec 4"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://rollingout.com/2026/11/07/michael-jackson-estate-paris-demands",
+    "https://pagesix.com/2026/11/05/celebrity-news/paris-jacksons-nasty-600m-battle-over-dad-michael-jacksons-fortune-takes-shocking-new-turn"
+  ]
+}

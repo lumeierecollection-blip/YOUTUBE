@@ -1,0 +1,95 @@
+{
+  "topic_slug": "eth-zurich-flexiquad-drone-impact-design",
+  "strongest_angle": "ETH Zurich's FlexiQuad drone uses a soft, ring-shaped frame built from four fiberglass composite strips to absorb impact energy, allowing it to withstand high-speed collisions and keep flying.",
+  "key_facts": [
+    {
+      "fact": "Researchers at ETH Zurich developed FlexiQuad, a quadcopter that can withstand collisions at speeds of up to about 25 km/h and keep flying thanks to its flexible design.",
+      "source_url": "https://www.heise.de/en/news/Flexible-quadcopter-deforms-on-impact-and-keeps-flying-11511115.html",
+      "source_name": "heise online",
+      "confidence": "high"
+    },
+    {
+      "fact": "The skeleton of ETH Zurich's FlexiQuad is a ring made of four strips, each measuring 145.5 x 54 x 0.5 mm, of a fiberglass composite called FR-4.",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision",
+      "source_name": "Xenospectrum",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The FlexiQuad drone by ETH Zurich features four 330 mAh 3-cell batteries placed one under each motor along its soft ring-shaped frame.",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision",
+      "source_name": "Xenospectrum",
+      "confidence": "medium"
+    },
+    {
+      "fact": "ETH Zurich researchers Luca Girardi, Gabriel Maquignaz, and Stefano Mintchev co-authored the bioinspired soft quadrotors study published in November 2025.",
+      "source_url": "https://arxiv.org/abs/2511.05426",
+      "source_name": "arXiv",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Collision survival speed",
+      "value": 25,
+      "unit": "km/h",
+      "source_url": "https://www.heise.de/en/news/Flexible-quadcopter-deforms-on-impact-and-keeps-flying-11511115.html"
+    },
+    {
+      "label": "Strip length",
+      "value": 145.5,
+      "unit": "mm",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+    },
+    {
+      "label": "Strip width",
+      "value": 54,
+      "unit": "mm",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+    },
+    {
+      "label": "Strip thickness",
+      "value": 0.5,
+      "unit": "mm",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+    },
+    {
+      "label": "Battery capacity",
+      "value": 330,
+      "unit": "mAh",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+    },
+    {
+      "label": "Battery cell count",
+      "value": 3,
+      "unit": "cells",
+      "source_url": "https://xenospectrum.com/en/eth-flexiquad-soft-drone-collision"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "ETH Zurich",
+      "kind": "organization"
+    },
+    {
+      "name": "FlexiQuad",
+      "kind": "object"
+    },
+    {
+      "name": "Luca Girardi",
+      "kind": "person"
+    },
+    {
+      "name": "Gabriel Maquignaz",
+      "kind": "person"
+    },
+    {
+      "name": "Stefano Mintchev",
+      "kind": "person"
+    },
+    {
+      "name": "FR-4",
+      "kind": "object"
+    }
+  ]
+}

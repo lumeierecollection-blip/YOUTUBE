@@ -1,0 +1,101 @@
+{
+  "topic_slug": "france-south-africa-21-19-nations-championship",
+  "strongest_angle": "France defeated world champion South Africa 21-19 at the Stade de France, ending a 21-year winless streak against the Springboks at their national stadium through a stellar display led by Antoine Dupont.",
+  "key_facts": [
+    {
+      "fact": "France defeated world champion South Africa 21-19 in a Nations Championship match at the Stade de France in Saint-Denis, recording a famous victory after holding a 21-7 halftime lead.",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter",
+      "source_name": "SA Rugby",
+      "confidence": "high"
+    },
+    {
+      "fact": "The victory marked the end of a 21-year winless streak for France against the Springboks at their national stadium in Paris.",
+      "source_url": "https://apnews.com/article/south-africa-springboks-france-nations-rugby-4c2ed5fa9df4a56da40fecd130c02677",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "French captain Antoine Dupont produced a standout individual performance, partnering with Maxime Lucu as a stopgap half-back duo with only one prior training session together.",
+      "source_url": "https://www.rugbypass.com/plus/if-you-want-to-beat-the-boks-give-them-the-ball-how-france-conquered-the-world-champions-in-pulsing-paris",
+      "source_name": "RugbyPass",
+      "confidence": "high"
+    },
+    {
+      "fact": "France recorded only their second win over South Africa across 11 meetings in the intense atmosphere of the Stade de France.",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter",
+      "source_name": "SA Rugby",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "France final score",
+      "value": 21,
+      "unit": "points",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    },
+    {
+      "label": "South Africa final score",
+      "value": 19,
+      "unit": "points",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    },
+    {
+      "label": "Years of Springbok streak at stadium",
+      "value": 21,
+      "unit": "years",
+      "source_url": "https://apnews.com/article/south-africa-springboks-france-nations-rugby-4c2ed5fa9df4a56da40fecd130c02677"
+    },
+    {
+      "label": "France halftime score",
+      "value": 21,
+      "unit": "points",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    },
+    {
+      "label": "South Africa halftime score",
+      "value": 7,
+      "unit": "points",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    },
+    {
+      "label": "Total meetings count",
+      "value": 11,
+      "unit": "matches",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    },
+    {
+      "label": "France wins in meetings",
+      "value": 2,
+      "unit": "wins",
+      "source_url": "https://springboks.rugby/news-features/articles/2026/11/14/boks-go-down-in-paris-nail-biter"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "France",
+      "kind": "organization"
+    },
+    {
+      "name": "South Africa",
+      "kind": "organization"
+    },
+    {
+      "name": "Stade de France",
+      "kind": "place"
+    },
+    {
+      "name": "Antoine Dupont",
+      "kind": "person"
+    },
+    {
+      "name": "Maxime Lucu",
+      "kind": "person"
+    },
+    {
+      "name": "Saint-Denis",
+      "kind": "place"
+    }
+  ]
+}

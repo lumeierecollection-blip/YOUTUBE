@@ -1,0 +1,61 @@
+{
+  "topic_slug": "arthurian-legend-excalibur-sword-in-the-stone-compared",
+  "strongest_angle": "Analyzing the distinction between King Arthur's two legendary swords, separating the Sword in the Stone of Robert de Boron's Merlin from Excalibur originating from the isle of Avalon in Geoffrey of Monmouth's Historia Regum Britanniae.",
+  "key_facts": [
+    {
+      "fact": "Geoffrey of Monmouth's Historia Regum Britanniae, published in 1136, provides the first reliably datable appearance of Excalibur as an excellent sword made in the isle of Avalon.",
+      "source_url": "https://arthurian.home.blog/2018/09/30/the-sword-in-the-stone-vs-excalibur",
+      "source_name": "arthurian.home.blog",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Sword in the Stone motif first enters the Arthurian corpus in the thirteenth century with Robert de Boron's Merlin.",
+      "source_url": "https://doi.org/10.1353/art.2025.a960017",
+      "source_name": "doi.org",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In some traditional versions of the Arthurian legend, the Sword in the Stone breaks in Arthur's first battle and is replaced by Excalibur.",
+      "source_url": "https://www.worldhistory.org/Excalibur",
+      "source_name": "worldhistory.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication year of Historia Regum Britanniae",
+      "value": 1136,
+      "unit": "year",
+      "source_url": "https://arthurian.home.blog/2018/09/30/the-sword-in-the-stone-vs-excalibur"
+    },
+    {
+      "label": "Century of Robert de Boron's Merlin introduction",
+      "value": 13,
+      "unit": "century",
+      "source_url": "https://doi.org/10.1353/art.2025.a960017"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Arthur",
+      "kind": "person"
+    },
+    {
+      "name": "Excalibur",
+      "kind": "object"
+    },
+    {
+      "name": "Avalon",
+      "kind": "place"
+    },
+    {
+      "name": "Geoffrey of Monmouth",
+      "kind": "person"
+    },
+    {
+      "name": "Robert de Boron",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

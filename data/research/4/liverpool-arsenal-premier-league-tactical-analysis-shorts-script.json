@@ -1,0 +1,42 @@
+{
+  "channel_id": "4",
+  "topic_slug": "liverpool-arsenal-premier-league-tactical-analysis",
+  "format": "shorts",
+  "hook": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Winning at Anfield is rare for Arsenal, but this 1-0 victory defied all historical logic."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Arsenal secured a 1-0 victory at Anfield, ending a 14-year winless streak at the stadium. How did they hold Liverpool scoreless?",
+      "text_overlay": {
+        "text": "14 years winless"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, Liverpool failed to register a single shot on target during the entire Premier League match.",
+      "text_overlay": {
+        "text": "0 shots on target"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This lack of shots on target is a first since records began in the 2003 season. Arteta successfully neutralized the entire Liverpool attack at home.",
+      "text_overlay": {
+        "text": "44% possession"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This 1-0 win stands as Arsenal's most significant tactical triumph at Anfield in 14 years."
+    }
+  ],
+  "sources_used": [
+    "https://www.espn.com/soccer/story/_/id/50348895/liverpool-arsenal-live-analysis-reaction-statistics-premier-league",
+    "https://www.arsenal.com/feature/arsenal-analysed-five-reasons-for-our-anfield-triumph-a9I8q7S7gaRm",
+    "https://www.goal.com/en/news/liverpool-vs-arsenal-kai-havertz-tactical-analysis/blt0de0eccbc20ce7a8"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "channel_id": "4",
+  "topic_slug": "como-lens-9-1-champions-league-record",
+  "format": "shorts",
+  "hook": "Most teams struggle to score three, but Italian Serie A side Como just netted nine.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most teams struggle to score three, but Italian Serie A side Como just netted nine."
+    },
+    {
+      "id": "setup",
+      "voiceover": "At Stade Bollaert-Delelis, Cesc Fabregas led his squad to a massive 9-1 Champions League win against Lens. How did they score so many?",
+      "text_overlay": {
+        "text": "Como 9-1 Lens"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Como didn't stop there, converting an expected goals value—a shot-quality metric—of 4.18 into nine goals.",
+      "text_overlay": {
+        "text": "4.18 xG"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Greek striker Anastasios Douvikas led the charge, scoring a hat-trick for the visiting Como side. Como turned 18 total shots, including 12 on target, into a historic nine-goal performance.",
+      "text_overlay": {
+        "text": "Record Equalled"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Como wasn't slowing down, matching the UEFA Champions League record for most goals with that 9-1 scoreline."
+    }
+  ],
+  "sources_used": [
+    "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas",
+    "https://www.afp.com/en/como-hit-nine-stunning-champions-league-win-lens"
+  ]
+}

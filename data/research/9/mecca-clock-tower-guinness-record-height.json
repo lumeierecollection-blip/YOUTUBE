@@ -1,0 +1,55 @@
+{
+  "topic_slug": "mecca-clock-tower-guinness-record-height",
+  "strongest_angle": "The Makkah Clock Tower in Saudi Arabia achieved two Guinness World Records on January 5, 2026, by housing the world's highest museum in a building and highest outdoor observation deck at 426.875 metres above ground.",
+  "key_facts": [
+    {
+      "fact": "The Royal Commission for Makkah City and Holy Sites achieved the Guinness World Record for the highest museum in a building at 426.875 metres on January 5, 2026.",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building",
+      "source_name": "Guinness World Records",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Makkah Clock Tower overlooks the Grand Mosque in Saudi Arabia and earned two new Guinness World Records for its museum and outdoor observation deck.",
+      "source_url": "https://www.arabnews.com/saudi-arabia/makkah-clock-tower-earns-2-guinness-world-records-3012487",
+      "source_name": "Arab News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Clock Tower Museum in Mecca stands 426.875 metres above ground, setting a new Guinness World Record recognized by Gulf News.",
+      "source_url": "https://gulfnews.com/world/gulf/saudi/worlds-highest-museum-and-outdoor-observation-deck-recognised-in-mecca-1.500750907",
+      "source_name": "Gulf News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Clock Tower Museum height",
+      "value": 426.875,
+      "unit": "metres",
+      "source_url": "https://www.guinnessworldrecords.com/world-records/775972-highest-museum-in-a-building"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Makkah Clock Tower",
+      "kind": "place"
+    },
+    {
+      "name": "Royal Commission for Makkah City and Holy Sites",
+      "kind": "organization"
+    },
+    {
+      "name": "Grand Mosque",
+      "kind": "place"
+    },
+    {
+      "name": "Saudi Arabia",
+      "kind": "place"
+    },
+    {
+      "name": "Clock Tower Museum",
+      "kind": "object"
+    }
+  ]
+}

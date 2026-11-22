@@ -1,0 +1,108 @@
+{
+  "production_id": "pt-ai-tested-mcp-20261107",
+  "channel_id": "2",
+  "channel_name": "AI Tested",
+  "topic_slug": "model-context-protocol-mcp",
+  "topic": "Model Context Protocol (MCP) — connecting AI assistants to your data",
+  "retrieval_date": "2026-11-07",
+  "coherence_note": "Every factual sentence in the script maps to one of two primary sources (Anthropic's official announcement and the official MCP site). No entity appears that is not named in a source. The story is one coherent subject: what MCP is, why it exists, how client/server works, which pre-built servers exist, and what it enables.",
+  "sources": [
+    {
+      "source_id": "S1",
+      "title": "Introducing the Model Context Protocol",
+      "url": "https://www.anthropic.com/news/model-context-protocol",
+      "publisher": "Anthropic PBC",
+      "publication_date": "2024-11-25",
+      "source_type": "Official company announcement",
+      "retrieved_at": "2026-11-07"
+    },
+    {
+      "source_id": "S2",
+      "title": "What is the Model Context Protocol?",
+      "url": "https://modelcontextprotocol.io",
+      "publisher": "Model Context Protocol / Anthropic",
+      "publication_date": null,
+      "documentation_dated": "2026-07-28",
+      "source_type": "Official documentation / product page",
+      "retrieved_at": "2026-11-07"
+    },
+    {
+      "source_id": "S3",
+      "title": "Model Context Protocol repositories",
+      "url": "https://github.com/modelcontextprotocol",
+      "publisher": "Model Context Protocol",
+      "publication_date": null,
+      "source_type": "Official repository",
+      "retrieved_at": "2026-11-07"
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "C-01",
+      "exact_claim": "AI assistants are constrained by their isolation from data — trapped behind information silos and legacy systems.",
+      "source_id": "S1",
+      "source_quote": "Yet even the most sophisticated models are constrained by their isolation from data... Every new data source requires its own custom implementation...",
+      "supporting_evidence": "Anthropic's official announcement states frontier models are constrained by isolation from data and that every new data source requires a custom implementation.",
+      "script_sentence": "AI assistants are trapped behind information silos.",
+      "script_section": "hook",
+      "visual_opportunity": "Kinetic typography hook; isolated-blocks graphic."
+    },
+    {
+      "claim_id": "C-02",
+      "exact_claim": "MCP is a universal, open standard for connecting AI systems with data sources.",
+      "source_id": "S1",
+      "source_quote": "MCP addresses this challenge. It provides a universal, open standard for connecting AI systems with data sources, replacing fragmented integrations with a single protocol.",
+      "supporting_evidence": "Anthropic's announcement describes MCP as a universal, open standard replacing fragmented integrations with a single protocol.",
+      "script_sentence": "Anthropic's Model Context Protocol is one open standard connecting AI to your data.",
+      "script_section": "setup",
+      "visual_opportunity": "Article-highlight card with marker stroke over 'one open standard', source URL on card."
+    },
+    {
+      "claim_id": "C-03",
+      "exact_claim": "Developers either expose their data through MCP servers or build AI applications (MCP clients) that connect to these servers.",
+      "source_id": "S2",
+      "source_quote": "developers can either expose their data through MCP servers or build AI applications (MCP clients) that connect to these servers.",
+      "supporting_evidence": "The official MCP site defines the server/client roles explicitly.",
+      "script_sentence": "An MCP server exposes your data; an MCP client like Claude connects to it.",
+      "script_section": "how",
+      "visual_opportunity": "Animated diagram: MCP client node -> connector -> MCP server node -> data sources."
+    },
+    {
+      "claim_id": "C-04",
+      "exact_claim": "MCP works like a USB-C port for AI applications — one standard port instead of a custom connector per data source.",
+      "source_id": "S2",
+      "source_quote": "Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect electronic devices, MCP provides a standardized way to connect AI applications to external systems.",
+      "supporting_evidence": "The official MCP site uses the USB-C analogy for the protocol.",
+      "script_sentence": "Think of it like USB-C for AI — one port instead of a custom connector for every data source.",
+      "script_section": "how",
+      "visual_opportunity": "USB-C-style connector icon next to the diagram (original graphic, labelled illustrative)."
+    },
+    {
+      "claim_id": "C-05",
+      "exact_claim": "Anthropic shares pre-built MCP servers for popular enterprise systems including Google Drive, Slack, GitHub, Git, Postgres and Puppeteer.",
+      "source_id": "S1",
+      "source_quote": "We're sharing pre-built MCP servers for popular enterprise systems like Google Drive, Slack, GitHub, Git, Postgres, and Puppeteer.",
+      "supporting_evidence": "Anthropic's announcement lists the pre-built servers by name.",
+      "script_sentence": "Pre-built MCP servers exist for Google Drive, Slack, GitHub, Postgres and Puppeteer.",
+      "script_section": "servers",
+      "visual_opportunity": "Terminal insert typing an MCP stdio server config; server names listed on screen."
+    },
+    {
+      "claim_id": "C-06",
+      "exact_claim": "MCP enables building once and integrating everywhere, giving AI systems access to the data where it lives.",
+      "source_id": "S2",
+      "source_quote": "...making it easy to build once and integrate everywhere... AI assistants... can connect to data sources... and perform tasks.",
+      "supporting_evidence": "The official MCP site describes broad ecosystem support and 'build once and integrate everywhere'.",
+      "script_sentence": "Build once, integrate everywhere. AI finally reaches your data.",
+      "script_section": "close",
+      "visual_opportunity": "Summary card; diagram settles to stable center composition with credits."
+    }
+  ],
+  "consistency_check": {
+    "unrelated_entities_rejected": ["Gemini", "Apptronik", "Apollo", "basketball", "Fairwind", "MiniMax", "MWAA", "Amazon MWAA", "Google Gemini Connected Apps"],
+    "claims_without_sources": [],
+    "contradictions_research_vs_script": [],
+    "unsupported_numbers_or_quotations": [],
+    "fabricated_demonstrations_or_interfaces": []
+  }
+}

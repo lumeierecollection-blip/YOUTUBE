@@ -1,0 +1,70 @@
+{
+ "channel": "psychology",
+ "episode": "The Pygmalion Effect: What the Famous Classroom Experiment Really Found",
+ "estimated_minutes": 6.9,
+ "basis": "timing from narration word count at 2.5 words/s; not a recorded voice-over",
+ "cues": [
+  {
+   "timecode": "0:00.0",
+   "seconds": 0,
+   "scene": "P01",
+   "cue_type": "ambience",
+   "asset": "AMB_CLASSROOM",
+   "purpose": "the classroom scenario",
+   "duration_s": 21.2,
+   "level_db_rel_speech": -30,
+   "source_licence": "freesound https://freesound.org/people/Bexhillcollege/sounds/274213 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:21.1",
+   "seconds": 21.2,
+   "scene": "P02",
+   "cue_type": "action",
+   "asset": "SFX_PENCIL",
+   "purpose": "the concept cycle is being drawn on screen",
+   "duration_s": 3,
+   "level_db_rel_speech": -12,
+   "source_licence": "freesound https://freesound.org/people/rivernile7/sounds/234016 | cc0 1.0",
+   "approval_status": "audition pending"
+  },
+  {
+   "timecode": "0:45.2",
+   "seconds": 45.2,
+   "scene": "P03..P08",
+   "cue_type": "bed",
+   "asset": "MUSIC_PIANO_1",
+   "purpose": "quiet piano bed under study and finding cards",
+   "duration_s": 159.2,
+   "level_db_rel_speech": -26,
+   "source_licence": "jamendo https://www.jamendo.com/track/1174818 | by 3.0 | attribution: \"Ghost\" by madelyn munsell is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "3:47.2",
+   "seconds": 227.2,
+   "scene": "P09..P11",
+   "cue_type": "bed",
+   "asset": "MUSIC_PIANO_1",
+   "purpose": "quiet piano bed under study and finding cards",
+   "duration_s": 76.4,
+   "level_db_rel_speech": -26,
+   "source_licence": "jamendo https://www.jamendo.com/track/1174818 | by 3.0 | attribution: \"Ghost\" by madelyn munsell is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "needs correction, then audition pending"
+  },
+  {
+   "timecode": "5:47.2",
+   "seconds": 347.2,
+   "scene": "P13..P13",
+   "cue_type": "bed",
+   "asset": "MUSIC_PIANO_1",
+   "purpose": "quiet piano bed under study and finding cards",
+   "duration_s": 20.4,
+   "level_db_rel_speech": -26,
+   "source_licence": "jamendo https://www.jamendo.com/track/1174818 | by 3.0 | attribution: \"Ghost\" by madelyn munsell is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
+   "approval_status": "needs correction, then audition pending"
+  }
+ ],
+ "unmatched_rules": [],
+ "listening_review": "NOT DONE"
+}

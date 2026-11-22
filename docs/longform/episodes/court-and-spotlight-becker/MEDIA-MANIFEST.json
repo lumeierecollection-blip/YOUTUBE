@@ -1,0 +1,270 @@
+{
+ "episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+ "channel": "court-and-spotlight",
+ "generated": "2026-11-13",
+ "rule": "usable is decided from the recorded licence, never from downloadability",
+ "assets": [
+  {
+   "asset": "lf2/court-and-spotlight/becker-1994.jpg",
+   "kind": "authentic",
+   "description": "Boris Becker at the 1994 Thriftway Championships, Cincinnati, Ohio",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_(cropped).jpg",
+   "creator": "Flickr-User mandj98",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/court-and-spotlight/becker-action-1994.jpg",
+   "kind": "authentic",
+   "description": "1994 Thriftway Championships Cincinnati, Ohio Film Scan Camera Canon AE1",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_in_action.jpg",
+   "creator": "James Phelps from USA",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C02"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/becker-2007.jpg",
+   "kind": "authentic",
+   "description": "Boris Becker at Stars & Cars 2007",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_2007_amk.jpg",
+   "creator": "AngMoKio",
+   "licence": "CC BY-SA 3.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/court-and-spotlight/becker-2013.jpg",
+   "kind": "authentic",
+   "description": "Boris Becker, Frankfurt Book Fair 2013",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_Frankfurter_Buchmesse_2013_1.JPG",
+   "creator": "Lesekreis",
+   "licence": "CC0",
+   "licence_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "credit requested by NASA/agency; not legally required",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/court-and-spotlight/becker-2018.jpg",
+   "kind": "authentic",
+   "description": "Boris Becker beim Battle of Malta",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_2018.jpg",
+   "creator": "Paf - Games Sport Casino",
+   "licence": "CC BY 2.0",
+   "licence_url": "https://creativecommons.org/licenses/by/2.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C01"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/becker-2019.jpg",
+   "kind": "authentic",
+   "description": "Boris Becker during Radio Regenbogen Award 2019 at Europapark, Rust, Baden-Württemberg, Germany on 2019-04-12, Photo: Sven Mandel",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Boris_Becker_-_2019102190927_2019-04-12_Radio_Regenbogen_Award_2019_-_Sven_-_1D_X_MK_II_-_0283_-_B70I6481-2.jpg",
+   "creator": "Sven Mandel",
+   "licence": "CC BY-SA 4.0",
+   "licence_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes; adapted versions must be shared under the same licence",
+   "attribution": "required: author, licence, link",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C15"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/gov-convicted-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Boris Becker convicted of bankruptcy offences - GOV.UK",
+   "source_url": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/boris-becker-convicted-of-bankruptcy-offences",
+   "creator": "web.archive.org",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Contains public sector information licensed under the Open Government Licence v3.0",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C01",
+    "C10"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/gov-restrictions-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Becker’s bankruptcy restrictions extended - GOV.UK",
+   "source_url": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/beckers-bankruptcy-restrictions-extended",
+   "creator": "web.archive.org",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Contains public sector information licensed under the Open Government Licence v3.0",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C07"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/judiciary-0.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Sentencing remarks: R -v- Boris Becker - Courts and Tribunals Judiciary",
+   "source_url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+   "creator": "www.judiciary.uk",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Contains public sector information licensed under the Open Government Licence v3.0",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": []
+  },
+  {
+   "asset": "lf2/court-and-spotlight/judiciary-1.jpg",
+   "kind": "web page capture (Playwright, 2026-11-13)",
+   "description": "Sentencing remarks: R -v- Boris Becker - Courts and Tribunals Judiciary",
+   "source_url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+   "creator": "www.judiciary.uk",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Contains public sector information licensed under the Open Government Licence v3.0",
+   "usable": "yes",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C01"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/sentencing-p1.jpg",
+   "kind": "court document page (rendered from the official PDF)",
+   "description": "R-v-Becker-Sentencing-remarks.pdf",
+   "source_url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+   "creator": "Judiciary of England and Wales",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Crown copyright; reuse terms on judiciary.uk to be re-read before upload (expected: Open Government Licence)",
+   "usable": "yes, pending a check of judiciary.uk terms",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C05"
+   ]
+  },
+  {
+   "asset": "lf2/court-and-spotlight/sentencing7-p7.jpg",
+   "kind": "court document page (rendered from the official PDF)",
+   "description": "R-v-Becker-Sentencing-remarks.pdf",
+   "source_url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+   "creator": "Judiciary of England and Wales",
+   "licence": "Open Government Licence v3.0",
+   "downloaded": "2026-11-13",
+   "commercial": "yes",
+   "editing": "yes (crop/highlight)",
+   "attribution": "Crown copyright; reuse terms on judiciary.uk to be re-read before upload (expected: Open Government Licence)",
+   "usable": "yes, pending a check of judiciary.uk terms",
+   "intended_channel": "court-and-spotlight",
+   "intended_episode": "Boris Becker: Four Guilty Verdicts, Twenty Acquittals",
+   "used_in_beats": [
+    "C12"
+   ]
+  }
+ ],
+ "footage_gaps": [
+  {
+   "beat": "C02",
+   "scene": "photo",
+   "reference_used": "broadcast clip in the reference",
+   "we_use": "lf2/court-and-spotlight/becker-action-1994.jpg",
+   "licensed_video_available": "no"
+  },
+  {
+   "beat": "C15",
+   "scene": "photo",
+   "reference_used": "broadcast clip in the reference",
+   "we_use": "lf2/court-and-spotlight/becker-2019.jpg",
+   "licensed_video_available": "no"
+  }
+ ],
+ "missing_files": [],
+ "sources": {
+  "J": {
+   "title": "Sentencing remarks, R v Boris Becker, Southwark Crown Court, 29 April 2022 (HHJ Deborah Taylor)",
+   "url": "https://www.judiciary.uk/judgments/sentencing-remarks-r-v-boris-becker/",
+   "file": "docs/longform/episodes/court-and-spotlight-becker/sources/R-v-Becker-Sentencing-remarks.pdf",
+   "status": "primary, court"
+  },
+  "G1": {
+   "title": "Insolvency Service: Boris Becker convicted of bankruptcy offences (8 April 2022, updated 29 April 2022)",
+   "url": "https://www.gov.uk/government/news/boris-becker-convicted-of-bankruptcy-offences",
+   "captured_from": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/boris-becker-convicted-of-bankruptcy-offences",
+   "status": "primary, official"
+  },
+  "G2": {
+   "title": "Insolvency Service: Becker's bankruptcy restrictions extended (5 November 2019)",
+   "url": "https://www.gov.uk/government/news/beckers-bankruptcy-restrictions-extended",
+   "captured_from": "https://web.archive.org/web/2022id_/https://www.gov.uk/government/news/beckers-bankruptcy-restrictions-extended",
+   "status": "primary, official"
+  },
+  "W": {
+   "title": "Wikipedia: Boris Becker",
+   "url": "https://en.wikipedia.org/wiki/Boris_Becker",
+   "retrieved": "2026-11-13",
+   "status": "secondary: used only for career facts and the release date, shown as REPORTED"
+  },
+  "COMMONS": {
+   "title": "Wikimedia Commons photographs (public/lf2/court-and-spotlight/ATTRIBUTIONS.json)",
+   "url": "https://commons.wikimedia.org/"
+  }
+ }
+}

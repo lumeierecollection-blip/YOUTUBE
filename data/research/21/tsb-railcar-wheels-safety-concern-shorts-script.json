@@ -1,0 +1,74 @@
+{
+  "channel_id": "21",
+  "topic_slug": "tsb-railcar-wheels-safety-concern",
+  "format": "shorts",
+  "hook": "A simple metal wheel shattered, causing a 14-car freight train derailment.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A simple metal wheel shattered, causing a 14-car freight train derailment.",
+      "visual_cue": "Close up of a damaged, rusted steel train wheel rim.",
+      "sfx_cue": "Metallic screeching followed by a heavy impact sound.",
+      "b_roll": [
+        "Close up shot of damaged steel railway wheel rim"
+      ],
+      "text_overlay": {
+        "text": "14-Car Derailment"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On February 4, 2025, a Canadian National freight train derailed near Emo, Ontario on the Fort Frances Subdivision. Why are pre-2003 railcar wheels with rims prone to shattering such a dangerous safety risk?",
+      "visual_cue": "Map showing Emo, Ontario and the Fort Frances Subdivision route.",
+      "sfx_cue": "Ambient wind and distant train whistle.",
+      "b_roll": [
+        "Map animation highlighting Emo, Ontario",
+        "Aerial view of Canadian National rail tracks in Ontario"
+      ],
+      "text_overlay": {
+        "text": "February 4, 2025"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Transportation Safety Board of Canada warns that unknown numbers of these aging wheels remain active.",
+      "visual_cue": "Close-up of a manufacturing date stamped into a metal rail wheel.",
+      "sfx_cue": "Mechanical clanking sound.",
+      "b_roll": [
+        "Close-up of metal stamping on industrial rail equipment"
+      ],
+      "text_overlay": {
+        "text": "Pre-2003 Wheels"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Investigation report R25W0010 confirms these aging components cause catastrophic derailments across the Fort Frances Subdivision. Canadian National operations near Emo, Ontario face ongoing risks from these brittle, outdated railcar wheels.",
+      "visual_cue": "Document cover of TSB report R25W0010 on a desk.",
+      "sfx_cue": "Paper rustling and page turning.",
+      "b_roll": [
+        "Official TSB investigation document R25W0010",
+        "Footage of freight train wheels moving on tracks"
+      ],
+      "text_overlay": {
+        "text": "Report R25W0010"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Rail safety remains compromised because these pre-2003 wheels are still rolling on tracks today.",
+      "visual_cue": "Wide shot of a freight train passing through a rural landscape.",
+      "sfx_cue": "Train engine rumble fading out.",
+      "b_roll": [
+        "Freight train passing through rural Ontario landscape"
+      ],
+      "text_overlay": {
+        "text": "Safety Warning"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.railwayage.com/regulatory/tsb-reiterates-safety-concern-over-pre-2003-railcar-wheel-failures",
+    "https://www.tsb.gc.ca/eng/medias-media/communiques/rail/2026/r25w0010-20261117.html"
+  ]
+}

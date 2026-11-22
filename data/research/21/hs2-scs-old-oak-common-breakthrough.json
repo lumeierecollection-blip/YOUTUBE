@@ -1,0 +1,75 @@
+{
+  "topic_slug": "hs2-scs-old-oak-common-breakthrough",
+  "strongest_angle": "Break down the tunnelling mechanics and structural integration used by Skanska Costain Strabag as they completed the 14km tunnel link connecting Old Oak Common to the north London line, including twin 360m mined tunnels and 100,000 tonnes of excavated London clay.",
+  "key_facts": [
+    {
+      "fact": "Tunnelling contractor Skanska Costain Strabag completed twin 360m mined tunnels linking the Victoria Road crossover box to Old Oak Common station.",
+      "source_url": "https://tunnellingjournal.com/mined-tunnel-breakthroughs-connect-hs2-to-old-oak-common-station",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Engineers excavated about 100,000 tonnes of London material when breaking through into the concrete-lined station box at Old Oak Common.",
+      "source_url": "https://www.newcivilengineer.com/latest/hs2-scs-breaks-through-into-old-oak-common-connecting-station-with-north-london-line-04-11-2026",
+      "source_name": "New Civil Engineer",
+      "confidence": "high"
+    },
+    {
+      "fact": "The construction of the underground station box at Old Oak Common reached a depth of 20 metres with six platforms planned inside.",
+      "source_url": "https://www.hs2.org.uk/construction/stations/old-oak-common",
+      "source_name": "HS2",
+      "confidence": "high"
+    },
+    {
+      "fact": "Skanska Costain Strabag formed the full 14km HS2 tunnel link connecting the Old Oak Common station box to the north London route.",
+      "source_url": "https://www.geomechanics.io/news/article/hs2-old-oak-common-breakthrough-design-and-monitoring-notes-for-tunnel-engineers",
+      "source_name": "Geomechanics.io News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Twin mined tunnels length",
+      "value": 360,
+      "unit": "metres",
+      "source_url": "https://tunnellingjournal.com/mined-tunnel-breakthroughs-connect-hs2-to-old-oak-common-station"
+    },
+    {
+      "label": "Excavated London material",
+      "value": 100000,
+      "unit": "tonnes",
+      "source_url": "https://www.newcivilengineer.com/latest/hs2-scs-breaks-through-into-old-oak-common-connecting-station-with-north-london-line-04-11-2026"
+    },
+    {
+      "label": "Station box underground depth",
+      "value": 20,
+      "unit": "metres",
+      "source_url": "https://www.hs2.org.uk/construction/stations/old-oak-common"
+    },
+    {
+      "label": "Full HS2 tunnel link length",
+      "value": 14,
+      "unit": "kilometres",
+      "source_url": "https://www.geomechanics.io/news/article/hs2-old-oak-common-breakthrough-design-and-monitoring-notes-for-tunnel-engineers"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Skanska Costain Strabag",
+      "kind": "organization"
+    },
+    {
+      "name": "Old Oak Common",
+      "kind": "place"
+    },
+    {
+      "name": "Victoria Road crossover box",
+      "kind": "place"
+    },
+    {
+      "name": "HS2",
+      "kind": "organization"
+    }
+  ]
+}

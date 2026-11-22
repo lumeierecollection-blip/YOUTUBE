@@ -1,0 +1,65 @@
+{
+  "topic_slug": "dutch-family-attic-national-archives-documents-stolen",
+  "strongest_angle": "A family clearing out a relative's attic in the Netherlands discovered 25 priceless documents stolen from the National Archives in The Hague 10 years prior by an archivist who used them as loan collateral.",
+  "key_facts": [
+    {
+      "fact": "A former employee stole 25 priceless documents from the Netherlands’ National Archives in The Hague 10 years prior, including 16th-century records and a 15th-century letter.",
+      "source_url": "https://www.smithsonianmag.com/smart-news/stolen-historic-documents-surface-in-attic-ten-years-after-an-employee-used-them-as-collateral-to-borrow-money-180986965",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The stolen documents relating to the Dutch trading company VOC from the early 17th century were discovered inside a cardboard box from the discount chain Action.",
+      "source_url": "https://www.dutchnews.nl/2025/07/stolen-voc-documents-turn-up-in-attic-packed-in-an-action-box",
+      "source_name": "DutchNews.nl",
+      "confidence": "high"
+    },
+    {
+      "fact": "Art detective Arthur Brand obtained the 25 stolen pieces and, in collaboration with the Amsterdam police, returned them to the National Archives in The Hague.",
+      "source_url": "https://nltimes.nl/2025/07/09/art-detective-recovers-centuries-old-documents-stolen-dutch-national-archives",
+      "source_name": "NL Times",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Stolen documents count",
+      "value": 25,
+      "unit": "documents",
+      "source_url": "https://www.smithsonianmag.com/smart-news/stolen-historic-documents-surface-in-attic-ten-years-after-an-employee-used-them-as-collateral-to-borrow-money-180986965"
+    },
+    {
+      "label": "Years since theft",
+      "value": 10,
+      "unit": "years",
+      "source_url": "https://www.smithsonianmag.com/smart-news/stolen-historic-documents-surface-in-attic-ten-years-after-an-employee-used-them-as-collateral-to-borrow-money-180986965"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "The Hague",
+      "kind": "place"
+    },
+    {
+      "name": "Netherlands' National Archives",
+      "kind": "organization"
+    },
+    {
+      "name": "Arthur Brand",
+      "kind": "person"
+    },
+    {
+      "name": "Amsterdam police",
+      "kind": "organization"
+    },
+    {
+      "name": "VOC",
+      "kind": "organization"
+    },
+    {
+      "name": "Action",
+      "kind": "organization"
+    }
+  ]
+}

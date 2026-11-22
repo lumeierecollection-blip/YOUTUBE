@@ -1,0 +1,94 @@
+{
+  "topic_slug": "como-lens-9-1-champions-league-record",
+  "strongest_angle": "Examine Cesc Fabregas's Como squad and their historic 9-1 Champions League victory away against Lens at Stade Bollaert-Delelis, where Anastasios Douvikas scored a hat-trick and the team equalled the record for the biggest winning margin and most goals in the competition.",
+  "key_facts": [
+    {
+      "fact": "Cesc Fabregas coached the Italian Serie A side Como to a 9-1 victory against Lens at Stade Bollaert-Delelis during the UEFA Champions League league phase.",
+      "source_url": "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas",
+      "source_name": "Opta Analyst",
+      "confidence": "high"
+    },
+    {
+      "fact": "Greek international striker Anastasios Douvikas scored a hat-trick for Como in their 9-1 win over French club Lens on Wednesday evening.",
+      "source_url": "https://www.afp.com/en/como-hit-nine-stunning-champions-league-win-lens",
+      "source_name": "AFP",
+      "confidence": "high"
+    },
+    {
+      "fact": "Como had 18 shots total, with 12 on target, converting them into nine goals with an expected goals value of 4.18 against Lens.",
+      "source_url": "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas",
+      "source_name": "Opta Analyst",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Como equalled the record for the biggest winning margin and most goals in a single modern Champions League match with their 9-1 scoreline.",
+      "source_url": "https://www.afp.com/en/como-hit-nine-stunning-champions-league-win-lens",
+      "source_name": "AFP",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Como goals",
+      "value": 9,
+      "unit": "goals",
+      "source_url": "https://www.bbc.com/sport/football/live/cqr7yp1k8l39t"
+    },
+    {
+      "label": "Lens goals",
+      "value": 1,
+      "unit": "goals",
+      "source_url": "https://www.bbc.com/sport/football/live/cqr7yp1k8l39t"
+    },
+    {
+      "label": "Como halftime goals",
+      "value": 3,
+      "unit": "goals",
+      "source_url": "https://www.bbc.com/sport/football/live/cqr7yp1k8l39t"
+    },
+    {
+      "label": "Como total shots",
+      "value": 18,
+      "unit": "shots",
+      "source_url": "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas"
+    },
+    {
+      "label": "Como shots on target",
+      "value": 12,
+      "unit": "shots",
+      "source_url": "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas"
+    },
+    {
+      "label": "Como expected goals",
+      "value": 4.18,
+      "unit": "xG",
+      "source_url": "https://theanalyst.com/articles/como-champions-league-history-nine-goals-lens-cesc-fabregas"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Cesc Fabregas",
+      "kind": "person"
+    },
+    {
+      "name": "Anastasios Douvikas",
+      "kind": "person"
+    },
+    {
+      "name": "Como",
+      "kind": "organization"
+    },
+    {
+      "name": "Lens",
+      "kind": "organization"
+    },
+    {
+      "name": "Stade Bollaert-Delelis",
+      "kind": "place"
+    },
+    {
+      "name": "UEFA Champions League",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "channel_id": "1",
+  "topic_slug": "teeth-reveal-african-origins-st-helena",
+  "format": "shorts",
+  "hook": "Scientists analyzed teeth from 152 people to uncover a hidden history.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Scientists analyzed teeth from 152 people to uncover a hidden history.",
+      "visual_cue": "Macro close-up shot of a human tooth enamel surface.",
+      "text_overlay": {
+        "text": "Hidden Origins Revealed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The British Royal Navy brought 450 intercepted slave ships to St. Helena. Nearly 27,000 liberated Africans arrived there, but 8,000 died soon after. What did their remains reveal about their lost homes?",
+      "visual_cue": "Historical map showing St. Helena in the South Atlantic.",
+      "text_overlay": {
+        "text": "27,000 Rescued"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But scientists couldn't prove their origins until testing tooth enamel from the St. Helena burials.",
+      "visual_cue": "Scientific diagram showing strontium isotope levels in enamel.",
+      "text_overlay": {
+        "text": "Locked in Enamel"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Researchers at the Globe Institute performed 193 strontium isotope measurements. These tests confirmed all 152 individuals grew up in sub-Saharan Africa.",
+      "visual_cue": "Laboratory footage showing researchers analyzing samples.",
+      "text_overlay": {
+        "text": "Origins: Sub-Saharan Africa"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Researchers at the University of Copenhagen and UC Santa Cruz published these findings in Science.",
+      "visual_cue": "Slow zoom out from a single tooth to a map of Africa.",
+      "text_overlay": {
+        "text": "A Geochemical Record"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/d44148-026-00348-w",
+    "https://www.science.org/doi/10.1126/science.aeb3661"
+  ]
+}

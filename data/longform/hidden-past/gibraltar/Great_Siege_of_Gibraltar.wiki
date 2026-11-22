@@ -1,0 +1,458 @@
+{{Short description|Siege of the American Revolutionary War}}
+{{Use British English|date=May 2025}}
+{{Use dmy dates|date=February 2019}}
+{{Infobox military conflict
+|conflict    = Great Siege of Gibraltar
+|part_of     = the [[American Revolutionary War]]
+|image       = The Sortie Made by the Garrison of Gibraltar.jpg
+|caption     = ''[[The Sortie Made by the Garrison of Gibraltar]]'' (1789)
+|date        = 24 June 1779 – 7 February 1783<br>({{Age in years, months, weeks and days|month1=06|day1=24|year1=1779|month2=02|day2=7|year2=1783}})
+|location    = [[Gibraltar]]
+|coordinates = {{Coord|36.1397|-5.3551|region:GI_type:event|display=inline,title}}
+|result      = British victory
+|combatant1  = {{flagcountry|Kingdom of Great Britain}} <br /> {{flagcountry|Electorate of Hanover|1692}}
+|combatant2  = {{flagcountry|Spain|1748}} <br /> {{flagcountry|Kingdom of France}}
+|commander1  = {{flagicon|Kingdom of Great Britain}} [[George Augustus Eliott, 1st Baron Heathfield|George Eliott]]<br>{{flagicon|Kingdom of Great Britain}} [[Roger Curtis]]{{Sfn|Chartrand|Courcelle|2006|pp=18–22}}<br>{{flagicon|Electorate of Hanover|1692}} [[August de la Motte]]
+|commander2  = {{flagicon|Spain|1748}} [[Louis des Balbes de Berton de Crillon, 1st Duke of Mahón|Louis de Crillon]]<br>{{flagicon|Spain|1748}} [[Martín Álvarez de Sotomayor|Martín Sotomayor]]{{Sfn|Norwich|2006|p=394}}<br>{{flagicon|Spain|1748}} [[Luis de Córdova y Córdova|Luis de Córdova]]<br>{{flagicon|Spain|1748}} [[Antonio Barceló]]{{Sfn|Chartrand|Courcelle|2006|pp=18–22}}
+|strength1   = 7,500{{Sfn|Montero|1860|p=339}}{{Sfn|Chartrand|Courcelle|2006|p=63|ps=: 'Of 7,500 men in the Gibraltar garrison in September (including 400 in hospital), some 3,430 were always on duty'}}{{Sfn|Monti|1852|p=133}}<br>12 gunboats{{Sfn|Falkner|2009|p=156}}
+|strength2   = 65,000{{Sfn|Montero|1860|p=338}}{{Sfn|Montero|1860|p=356}}{{Sfn|Chartrand|Courcelle|2006|p=79 'some 30,000 sailors in the combined fleet'}}{{Sfn|Chartrand|Courcelle|2006|p=49}}<br>47 ships of the line{{Sfn|Chartrand|Courcelle|2006|p=79}}<br>10 floating batteries<br>7 xebecs<br>40 gunboats{{Sfn|Montero|1860|p=338}}
+|casualties1 = 333 killed{{Sfn|Chartrand|Courcelle|2006|p=89}}{{sfn|Clodfelter|2017|p=132}}<br>1,010 wounded{{sfn|Clodfelter|2017|p=132}}<br>536{{Sfn|Drinkwater|1905|p=169}}–1,034{{sfn|Clodfelter|2017|p=132}} sick and dead from disease
+|casualties2 = 6,000 killed, wounded, captured and missing{{Sfn|Montero|1860|p=373}}<br>Unknown sick and dead from disease{{sfn|Clodfelter|2017|p=132}}<br>1 ship of the line captured<br>10 floating batteries destroyed{{Sfn|Chartrand|Courcelle|2006|pp=81–81}}
+|casualties3 = 196 civilians killed<br>800 civilians dead from disease{{sfn|Clodfelter|2017|p=132}}
+|campaignbox = {{Campaignbox Anglo-Spanish War (1779)}}<br>{{Campaignbox Battles of the American Revolutionary War Involving France}}
+}}
+{{History of Gibraltar}}
+
+The '''Great Siege of Gibraltar''' was an unsuccessful attempt by Spain and France to capture [[Gibraltar]] from Britain during the [[American Revolutionary War]].{{sfn|Eggenberger|2012|p=172}} It was the largest battle in the war by number of combatants.<ref>{{cite book |last1=Adkins |first1=Lesley and Roy |title=Gibraltar: The Greatest Siege in British History |date=2017 |publisher=Viking |isbn=978-1408708675}}</ref>
+
+On 16 June 1779, Spain entered the war on the side of France with the primary war aim of capturing Gibraltar from the British.{{sfn|Stockley|2001|p=19}} The vulnerable garrison of Gibraltar, commanded by [[George Augustus Eliott, 1st Baron Heathfield|George Eliott]], was besieged from June 1779 to February 1783.{{Sfn|Drinkwater|1905|p=161}} Initially, the siege was carried out solely by Spanish forces under [[Martín Álvarez de Sotomayor]]. The siege proved to be a failure because two British relief convoys entered unmolested, the first under [[Admiral of the White]] [[George Rodney]] in 1780 and the second under Admiral [[George Darby]] in 1781, despite the presence of the [[Spanish Navy]]. A major assault was planned by the Spanish in late 1781, but the British garrison [[sortie]]d in November of that year and destroyed many of the forward batteries.
+
+Following the Spanish failure to defeat the garrison or prevent the arrival of relief convoys, the besiegers were reinforced by French forces under [[Louis des Balbes de Berton de Crillon, 1st Duke of Mahón|Louis de Crillon]], who took over command in early 1782. After a lull in the siege, during which the Franco-Spanish besiegers gathered more guns, ships and troops, a "Grand Assault" was launched on 13 September 1782. This involved huge numbers—60,000 attackers, 49 ships of the line and 10 specially designed and newly invented [[floating batteries]]—against 5,000 British defenders. The assault proved to be a disastrous and humiliating failure, resulting in heavy losses for the French and Spanish. This was the largest action fought during the war in terms of numbers.
+
+The final sign of defeat for the besiegers came when a crucial British relief convoy under Admiral [[Richard Howe]] slipped through the blockading fleet and arrived at the garrison in October 1782. The siege was finally lifted on 7 February 1783 and resulted in a decisive victory for the British. It was a factor in ending the American Revolutionary War{{sfn|Allison|Ferreiro|2018|page=220|ps=: ''critical event in the war outside America was a contemporaneous European siege that was bigger, lasted longer, and ultimately was as critical to establishing peace as the Yorktown victory''}}<ref>{{cite book |last1=Botta |first1=Charles |title=History of the United States of America: War of independence, Volume 2 |date=1850 |publisher=Fullarton & Company |location=National Library of the Netherlands|page=552 |url=https://books.google.com/books?id=u9FSAAAAcAAJ}}</ref>{{sfn|Bemis|2012|p=77|ps=: ''That tremendous citadel thus became a vital factor in the diplomacy of the American Revolution''}}{{sfn|Mackesy|1992|pp=506–507}}—the [[Peace of Paris (1783)|Peace of Paris]] negotiations were reliant on news from the siege, particularly at its climax.{{sfn|Falkner|2009|p=xix}}{{Sfn|Chartrand|Courcelle|2006}} At three years, seven months and twelve days, it is the longest siege ever endured by the [[British Armed Forces]].{{sfn|Adkins|Adkins|2017|p=21}}{{sfn|Dupuy|Hammerman|Hayes|1977|p=130}}
+
+==Background==
+{{main|France in the American Revolutionary War|Spain and the American Revolutionary War}}
+
+The [[Rock of Gibraltar]] was first fortified with the [[Moorish Castle]] in 710 AD. It was the site of [[List of sieges of Gibraltar|ten sieges]] during the [[Middle Ages]], some of them successful. An Anglo-Dutch force [[Capture of Gibraltar|captured the Gibraltar peninsula]] in 1704 during the [[War of the Spanish Succession]]; possession was assigned to Britain in the 1713 peace [[Peace of Utrecht|Treaty of Utrecht]] that ended the war. The Spanish made an unsuccessful [[Thirteenth siege of Gibraltar|attempt to recapture Gibraltar in 1727]] during the [[Anglo-Spanish War (1727–1729)]]. After the war ended with the [[Treaty of Seville|Treaty of Seville (1729)]], in 1730 Spain built a line of fortifications across the north of the peninsula, cutting Gibraltar off from the mainland.{{sfn|Drinkwater|1905|p=11}}
+
+In 1738 a dispute between Spain and Great Britain arose over commerce between Europe and [[Americas|the Americas]]. This led to the outbreak of the [[War of Jenkins' Ear]] on 23 October 1739.<ref name="Sayer9">{{cite book|last1=Sayer|first1=Frederick|title=The History of Gibraltar and of Its Political Relation to Events in Europe: From the Commencement of the Moorish Dynasty in Spain to the Last Morocco War|date=1862|publisher=Saunders, Otley, and Company|page=[https://archive.org/details/bub_gb_68cNAAAAQAAJ/page/n25 9]|url=https://archive.org/details/bub_gb_68cNAAAAQAAJ}}</ref> Both sides planned to establish trenches near Gibraltar.{{sfn|Richmond|2012|p=9}} Seeing these first movements, Britain ordered [[Edward Vernon|Admiral Vernon]] to sail from [[Portobelo, Colón|Portobello]] and strengthen the squadron of [[Nicholas Haddock|Admiral Haddock]] who was already stationed in the [[Bay of Gibraltar]]. However, no substantial fighting occurred at Gibraltar before peace returned in 1748.{{sfn|Harding|2010|p=39}}
+
+[[Philip V of Spain|King Philip V of Spain]] had died on 9 July 1746 and his successor, [[Ferdinand VI of Spain|Ferdinand VI]], began negotiations with Britain on trade. The British Parliament was amenable: they considered lifting the British [[Economic sanctions|embargo]] on Spain and possibly ceding Gibraltar in return for a trade agreement. However, none was reached before Ferdinand VI died in 1759. The new king, [[Charles III of Spain|Charles III]], was less willing to negotiate with Britain. Instead, he signed a [[Pacte de Famille|Family Compact]] alliance with [[Louis XV|Louis XV of France]] on 15 August 1761. France was already at war with Britain in the [[Seven Years' War]] (1756–1763), so Britain responded by declaring war on Spain. In the following two years, the British captured [[Manila]] and [[Havana]], the capitals of the [[Spanish Empire|Spanish colonies]] of the [[Philippines]] and [[Cuba]], respectively. Again there was no fighting at Gibraltar. The peace [[Treaty of Paris (1763)]] that ended the war returned Manila and Havana to Spain, in exchange for [[Spanish Florida|Spanish holdings in Florida]]. The treaty also transferred most of France's colonies in North America to Britain.{{sfn|Simms|2007|p=496}}
+
+In the years of peace that followed both France and Spain sought an opportunity to fight Britain on more favourable terms, with the goal of recovering their lost colonial possessions. The outbreak of the [[American Revolutionary War|American War of Independence]] in 1775 provided that opportunity.
+
+Both France and Spain began by supplying funding and arms to the American revolutionaries, and drew up a strategy to intervene on the American side against Britain.{{Sfn|Harvey|2004|p=362}} France entered the war as allies of the new [[United States]] with a [[Treaty of Alliance (1778)|Treaty of Alliance]] in October 1778. On 12 April 1779 France signed the [[Treaty of Aranjuez (1779)|Treaty of Aranjuez]] with Spain based on its [[Pacte de Famille#Later Franco-Spanish Pacts|Third Pacte de Famille]] between the [[House of Bourbon|Bourbon kings]], wherein they agreed to aid one another in recovering lost territory from Britain. Spain then declared war on Britain on 16 June{{sfn|Pratt|1971|p=21}} and became a formal co-belligerent with the [[Second Continental Congress|United States Congress]].{{sfn|Davenport|Paullin|1917|p=168}} The first war aim for Spain at Aranjuez was to secure Gibraltar, and the agreement with France was not to make peace or agree to a truce until that place was recovered.{{sfn|Stockley|2001|p=19}} With the British occupied with the war in America, their base at Gibraltar was vulnerable,{{sfn|Eggenberger|2012|p=172}} and Spain expected its capture to be a straightforward opening to the war, to be followed by a Franco-Spanish invasion of Great Britain that could be used as a [[wikt:bargaining chip|bargaining chip]] in negotiations to recover the lost colonies.<ref name="c1">{{cite web|url=http://www.keepmilitarymuseum.org/gibraltar.php?&dx=1&ob=3|title=The Great Siege of Gibraltar|publisher=The Keep Military Museum|access-date=6 August 2007|archive-date=21 August 2014|archive-url=https://web.archive.org/web/20140821055415/http://www.keepmilitarymuseum.org/gibraltar.php?&dx=1&ob=3|url-status=dead}}</ref>
+
+===Opposing forces===
+{{Multiple image
+ |total_width=350
+ |header= Commanders
+ |header_background=#b0c4de
+ |image1= Agustín Esteve Y Marques - Portrait of a Gentleman - WGA07551.jpg
+ |caption1=[[Martín Álvarez de Sotomayor|Martín Antonio Álvarez de Sotomayor]]<br/>[[Spanish army]] commander
+ |image2= George Augustus Eliott, Baron Heathfield.jpg
+ |caption2=[[George Augustus Eliott, 1st Baron Heathfield]]<br/>British [[Governor of Gibraltar]]
+}}
+
+The Spanish blockade was to be directed by [[Martín Álvarez de Sotomayor]]. Spanish ground forces were composed of 16 infantry battalions, which included the [[Spanish Royal Guard|Royal Guards]] and the [[Walloon Guards]], along with artillery and 12 squadrons of cavalry. This yielded a total of about 14,000 men.{{Sfn|Chartrand|Courcelle|2006|p=33}} The artillery was commanded by [[Rudesindo Tilly]], while the cavalry and the French [[dragoon]]s were headed by the [[Marquis of Arellano]]. [[Antonio Barceló]] commanded the maritime forces responsible for blockading the bay. He established his base in [[Algeciras]], with a fleet of several [[xebec]]s and [[gunboat]]s.{{Sfn|Montero|1860|p=338}} French involvement was limited, but in 1781 the first of them arrived in numbers with the [[Régiment de Besançon]] (Half Company of artillery).
+
+A fleet of 11 [[ship of the line|ships of the line]] and two [[frigate]]s were placed in the [[Gulf of Cádiz|Gulf of Cadiz]] under the command of [[Luis de Córdova y Córdova]] to block the passage of British reinforcements.<ref>{{cite book|last1=Russell|first1=Jack|title=Gibraltar besieged, 1779–1783|date=1965|publisher=Heinemann|page=106|url=https://books.google.com/books?id=Bs0gAAAAMAAJ}}</ref>
+
+The British garrison in 1778 consisted of 5,382 soldiers under [[George Augustus Eliott, 1st Baron Heathfield|General Eliott]] as [[Governor of Gibraltar|Governor-General]]. All the defences were strengthened. The main physical task facing Eliott was an extensive building programme of new fortifications for Gibraltar, as set out in a report by a commission that had examined the state of the Rock's defences in the early 1770s. The most prominent new work was the [[King's Bastion]] designed by [[Sir William Green, 1st Baronet|Sir William Green]] and built by the [[Soldier Artificer Company]] on the main waterfront of the town in Gibraltar.<ref>{{cite web|title=Gates & Fortifications – King's Bastion|url=http://www.aboutourrock.com/sites/fortifications.htm|publisher=aboutourrock.com|access-date=30 March 2018|archive-url=https://web.archive.org/web/20121101022932/http://www.aboutourrock.com/sites/fortifications.htm|archive-date=1 November 2012|url-status=dead}}</ref> The King's Bastion comprised a stone battery holding 26 heavy guns and mortars, with barracks and [[casemate]]s to house a full battalion of foot. The [[Grand Battery, Gibraltar|Grand Battery]] protected the [[Landport (Gibraltar)|Land Port Gate]], the main entrance to Gibraltar from the isthmus connecting to the Spanish mainland. Other fortifications and batteries crowded along the town's waterfront and on the Rock.<ref>{{cite book| last1=Cornwell|first1=B |title=A Description of Gibraltar |publisher=B. Cornwell |year=1782 |pages=13–14 |url=https://books.google.com/books?id=MwIOAAAAYAAJ}}</ref>
+
+Eliott began a programme of increasing the number of guns deployed in the batteries and fortifications, which initially stood at 412, many of them inoperable. Many of the infantry assisted the artillery in serving the guns. The garrison included three battalions of [[Hanoverian Army|Hanoverian]] and around 80 [[Corsica]]n troops. Eliott also formed a unit of [[sharpshooter]]s. The [[Royal Navy]] had only a token force present—mostly sailors and marines on shore—but one former [[ship of the line]], {{HMS|Panther|1758|6}}, was moored in the harbour as a [[Hulk (ship type)|hulk]] and [[floating battery]]. The frigate {{HMS|Enterprise|1774|6}} and twelve gunboats were also present.{{Sfn|Chartrand|Courcelle|2006|p=40}} Eliott's preparations inspired confidence in his troops. The British had anticipated an attack for some time, and had received additional reinforcements and supplies by ship.{{Sfn|Sugden|2004|pp=109–110}} Britain stepped up preparations after France entered the conflict in 1778, although the French were initially more concerned with sending forces to America, and it was not until Spain joined the war that the long-expected siege commenced.{{Sfn|Harvey|2004|pp=385–387}}
+
+British troops included:<ref>{{Cite web|date=2007-10-13|title=British War with France and Spain, 1778–1783|url=http://www.regiments.org/wars/18thcent/78fr-es.htm|access-date=2020-07-06|archive-url=https://web.archive.org/web/20071013161946/http://www.regiments.org/wars/18thcent/78fr-es.htm|archive-date=13 October 2007}}</ref>
+* [[12th Regiment of Foot]], then [[12th (East Suffolk) Regiment of Foot]]
+* [[39th Regiment of Foot]], then [[39th (East Middlesex) Regiment of Foot]]
+* [[56th Regiment of Foot]], then [[56th (West Essex) Regiment of Foot]]
+* [[58th Regiment of Foot]], then [[58th (Rutlandshire) Regiment of Foot]]
+* [[65th Regiment of Foot]], then [[65th (2nd Yorkshire, North Riding) Regiment of Foot]]
+* [[72nd Regiment of Foot (Royal Manchester Volunteers)]]
+
+<gallery class="center" widths="275px" heights="350px">
+File:Bahía de Algeciras fortificaciones XVIII.png|Map of the [[Bay of Gibraltar]] where the positions of the Spanish and British forts and batteries are indicated
+File:Map of Gibratar, 1782.jpg|Detailed map of Gibraltar in 1782
+</gallery>
+
+==Siege==
+[[File:Vue perspective du siege de Gibraltar commence en 1779 par les Espagnols.jpeg|thumb|Panoramic view of Gibraltar under siege from Spanish fleet and land positions in foreground]]
+
+On 16 June 1779, the Spanish issued what was in effect a declaration of war against Great Britain, and a blockade immediately commenced. On 6 July 1779, an engagement took place between the British ships and Spanish vessels bringing supplies to the Spanish troops on shore. Several Spanish vessels were taken and the hostilities began. The combined Spanish and French fleets [[blockade]]d Gibraltar from the sea, while on the land side an enormous army constructed [[fortification|forts]], [[redoubt]]s, [[trench warfare|entrenchments]], and [[artillery battery|batteries]] from which to attack.{{Sfn|Drinkwater|1905|pp=28–29}}
+
+As the winter of 1779 came, provisions for the garrison soon became scarce. Bread was almost impossible to obtain and was not permitted to be issued except to the sick and to children. [[Salt-cured meat|Salt meat]] and biscuits soon became a major part of the [[rationing|rations]], with an occasional issue of four ounces of rice each day. Fuel was exhausted, and fires were made only with difficulty, using the salt-encrusted timbers of old ships broken up in the harbour for the purpose. As a result, a violent outbreak of [[scurvy]] occurred among the troops, owing to the lack of vegetables and medicines.{{sfn|Falkner|2009|p=46}} Eliott appealed to London for relief, but as the winter wore on, rations were reduced further. Despite this, the garrison's morale remained high, and the troops continued to take their turns at various posts of duty. They had also repulsed several small testing assaults made by the Spanish and had great faith that they would receive supplies by sea, thus enduring the cold and hunger.{{Sfn|Chartrand|Courcelle|2006|p=38}}
+
+The Spanish were forced to commit a greater number of troops and ships to the siege, postponing the planned invasion of England, owing to this and the cancellation of the [[Armada of 1779]].<ref>{{cite book|last1=Patterson|first1=Alfred Temple|title=The Other Armada: The Franco-Spanish Attempt to Invade Britain in 1779|date=1960|publisher=Manchester University Press|page=217|url=https://books.google.com/books?id=Lt9RAQAAIAAJ}}</ref>
+
+===First naval relief===
+[[File:Gibraltar Relieved By Sir George Rodney.jpg|thumb|left|[[Gibraltar Relieved By Sir George Rodney|1782 painting]] of [[Sir George Rodney]]'s relief fleet at Gibraltar]]
+
+In December 1779, a large convoy sailed from England to Gibraltar, escorted by 21 ships of the line under the command of [[Admiral of the White]] [[Sir George Rodney]]. On their way, they encountered and captured a Spanish convoy off [[Cape Finisterre]] in the [[action of 8 January 1780]], capturing valuable supplies which would be later delivered to the Gibraltar garrison.<ref>{{London Gazette|page=1|issue=12056|date=8 January 1780}}</ref> The Spanish soon learned of the convoy and sent a fleet under [[Chef d'escadre|Squadron Commander]] [[Juan de Lángara]] to intercept it, but underestimated the escort's strength, and Langara's ships soon had to flee. Rodney caught up with and defeated the Spanish at the [[Battle of Cape St. Vincent (1780)|Battle of Cape St. Vincent]] on 16 January, with Langara's fleet losing six ships of the line and large quantities of supplies.{{Sfn|Adkins|Adkins|2017|p=105}} Rodney's fleet proceeded to easily penetrate the Spanish blockade and reach Gibraltar on 25 January, bringing reinforcements of 1,052 men of the [[73rd (Highland) Regiment of Foot (MacLeod's Highlanders)]] under [[Lieutenant colonel (United Kingdom)|Lieutenant-colonel]] [[George Mackenzie (British Army officer)|George Mackenzie]] and a vast amount of supplies, including those captured from the Spanish.{{Sfn|Drinkwater|1905|pp=45–46}} This greatly heartened the garrison, but as soon as Rodney's fleet left, the siege resumed.{{sfn|Mahan|1898|pp=450–451}}
+
+The British defenders resisted every attempt to capture Gibraltar by assault. While the two sides unceasingly exchanged shot and shell, by the end of the summer provisions once again began to run low, and scurvy started to reappear thus reducing the effective strength of the garrison. Through the use of small, fast-sailing ships that ran the blockade, they were able to keep in communication with the British forces [[Invasion of Minorca (1781)|besieged]] on [[Menorca|Minorca]], but that force was also low on supplies.{{Sfn|Drinkwater|1905|p=54}}
+
+[[File:AntonioBarcelóAnónimo1848.jpg|thumb|upright|Spanish naval commander [[Antonio Barceló]]]]
+
+On 7 June the two largest ships in Gibraltar, HMS ''Panther'' and HMS ''Enterprise'', were targeted within Gibraltar's harbour by Spanish [[fire ship]]s.{{sfn|Davis|2003|pp=183–187}} Warning shots from ''Enterprise'' alerted the garrison and soon an intense bombardment slowed the fire ships. A few were sunk but the others carried on. The Spanish fleet waited just outside the harbour for any British ships trying to escape, so sailors from ''Panther'' and ''Enterprise'' set out in [[longboat]]s, intercepted the fire ships, and towed them off course.{{Sfn|Drinkwater|1905|pp=51-52}}
+
+===Second naval relief===
+Throughout the second winter the garrison faced foes, elements, disease, and starvation. By March the situation was serious: the garrison and civilians were on weekly rations and in need of a large supply. For the Spanish the blockade was working, with the few small ships that slipped past the blockade carrying insufficient supplies.{{sfn|Gardiner|1997|pp=177−179}}
+[[File:1783 Captain Spilsbury Map of Gibraltar Rosia and Spanish Gunboats.JPG|thumb|280px|left|Sketch of Spanish gunboats off [[Rosia Bay]], Gibraltar]]
+
+On 12 April 1781 Vice Admiral [[George Darby]]'s squadron of 29 ships of the line escorting 100 store ships from England entered the bay, despite the Spanish fleet.{{Sfn|Chartrand|Courcelle|2006|pp=41–42}} The Spanish, frustrated by this failure, for the first time in the siege opened up a terrific barrage while the stores were unloaded. Although they caused great damage to the town, the South Mole where the ships unloaded their stores was out of their reach. The civilian population of about 1,000 sailed with Darby for England on 21 April, leaving the garrison with fewer mouths to feed and allowing them to operate more freely. Again the fleet left without hindrance during the night and slipped past the blockading Spanish fleet. Provisions for the garrison were now plentiful, including black powder, guns and ammunition as well as food and other supplies.{{Sfn|Falkner|2009|p=53}}
+
+The French and Spanish thus found it impossible to starve the garrison out. They therefore resolved to make further attacks by land and sea and assembled a large army and fleet to carry this out. In addition, the Spanish built a succession of new batteries across the Isthmus:{{Sfn|Drinkwater|1905|p=69}} soon there were four of them each containing around fourteen guns. There were also the preexisting San Carlos, San Felipe, and Santa Barbara batteries, each containing around 24 to 27 guns.{{Sfn|Chartrand|Courcelle|2006|pp=41–42}}
+
+On 9 June, the British gunners hit a major Spanish magazine, which exploded. The main explosion was followed by a host of minor ones, as expense magazines, subsidiary stores and shells blew up.{{Sfn|Falkner|2009|p=81}} The Spanish lines were in pandemonium as the troops struggled to put out the numerous fires that started in their camp. Eventually order was restored and the fires failed to halt the battery-building efforts of the Spanish. By late 1781 there were around fifty mortars, bringing the besiegers' total to 114 guns, ranging from heavy 24-pounders to twelve-inch mortars.{{Sfn|Chartrand|Courcelle|2006|pp=41–42}}
+
+===Sortie===
+By November, just as hunger began to threaten the garrison, they received word from some Spanish deserters that a massive assault was planned. General Eliott decided that a night [[sortie]] to attack the Spanish and French on the eve of their assault would be the perfect move.{{sfn|Falkner|2009|pp=59–60}}
+[[File:1871 - The Sortie.jpg|thumb|700px|center|A detailed view of the sortie from above the [[Prince's Lines]]]]
+
+On 27 November 1781, the night before the launch of the grand attack, the British made their surprise sortie. In all, 2,435 soldiers with 99 officers were involved, organised into three columns of around 700–800 men each, including engineers and pioneers armed with axes and firing equipment.{{sfn|Falkner|2009|pp=59–60}} At around 2:00 they marched towards the besiegers' lines. The right column came across the Spanish sentries at the end of the parallel, charged, and stormed the lines, bayoneting the Spanish defenders. While the rest of the defenders retreated, the eastern flank of the Spanish advanced works was taken and consolidated.{{sfn|Davis|2003|pp=183–187}} One detachment of the right column, a group of Hanoverians, got lost in the dark, mistook their target, and found themselves at the base of the huge San Carlos mortar battery.<ref>
+{{cite book| last= Grant| first= James| title= British battles on land and sea, Volume 2| date= 1873| publisher= Cassell| pages= 181–182| url= https://books.google.com/books?id=ykkBAAAAQAAJ}}</ref> Having realised their mistake, they decided to attack the position, and after some heavy fighting the position was taken. This battery had been the intended target of the centre column, which came up, reinforced the position, and prepared for a Spanish counterattack. Meanwhile, the left column struck along the seashore meeting light resistance. The flank companies of the 73rd Foot charged ahead, stormed the San Pascual and the San Martín batteries, and took the trenches, putting the Spanish to flight.{{Sfn|Chartrand|Courcelle|2006|p=49}}
+
+[[File:Spanish Grenadier Napoles.jpg|thumb|upright|A Spanish grenadier of the Napoles Regiment]]
+[[File:73rdFootOfficer.jpg|thumb|left|upright|An officer of the [[71st (Highland) Regiment of Foot|73rd Foot]]]]
+
+Eliott decided to come out and view the victory, much to the surprise of the British officers. A badly wounded Spanish artillery officer, [[José de Barboza]], refused to be moved; Eliott tried to persuade him, but he asked to be "left alone and perish amid the ruin of my post." This would be an inspiration for a painting by John Trumbull.{{sfn|Hoock |2010|p=114}} With all the Spanish forward positions secured, the British set upon the destruction of provisions, ammunition, weapons, and defensive structures, taking booty and [[Touch hole#Spiking the guns|spiking]] the guns. They set fire to the ammunition and the siege works were engulfed in flames. Soon after, Spanish cavalry were observed coming up; they faced a Hanoverian battalion but did not charge. The Spanish under Alvarez had no plans and were neither expecting nor prepared for a British sortie.{{Sfn|Chartrand|Courcelle|2006|pp=52–53}}
+
+With the objective completed, the British withdrew back inside their fortifications. The total British and Hanoverian casualties in the sortie were two killed and 25 wounded. Spanish losses were over 100 men, which included thirty prisoners; a number of these were blue-coated Walloon soldiers of the [[Walloon Guards]].{{sfn|Falkner|2009|p=69}} The British did damage to the extent of two million pounds to the besiegers: fourteen months of work by the Spanish and a considerable quantity of ammunition had been destroyed. British troops and pioneers spiked ten 13-inch mortars and eighteen 26-pounder guns in the Spanish siege works. In addition the platforms and beds on which the guns were based were destroyed. As the British returned after their victorious sortie, the garrison watched in amazement as huge explosions from the ammunition ripped through the Spanish lines and destroyed what was left of them.{{Sfn|Drinkwater|1905|p=96}}
+[[File:Koehler's Depressing Carriage.jpg|thumb|Koehler's Depressing Carriage]]
+
+This sortie postponed the great Spanish assault for several months. In that time the British began building an [[Great Siege Tunnels|extensive tunnel network]] through the Rock of Gibraltar. The work was carried out by hand, aided by [[gunpowder]] blasts, which was dangerous. It took thirteen men five weeks to dig a tunnel with a length of {{convert|82|ft|m}}. [[Embrasure]]s were blasted overlooking the Spanish lines. Additionally, a new type of cannon mount was invented that allowed a cannon to fire at a downward angle: the [[Koehler Depressing Carriage|new depressing gun-carriage]] devised by [[George Koehler]] allowed guns to be fired down a slope.{{sfn|Falkner|2009|p=68}} This was demonstrated on 15 February 1782 at [[Princess Royal's Battery]].<ref>Red Plaque in [[Grand Casemates Square]].</ref> This new carriage enabled the defending guns to take advantage of the height of the [[Rock of Gibraltar]]: they could strike out far, but also be angled downward to fire on approaching attackers.{{sfn|Finlayson|2006|p=29}}
+
+At the beginning of March news of the surrender of the Minorca garrison was received, lowering morale for the besieged. The Spanish and French at Gibraltar would soon be reinforced by the victors of Minorca.{{Sfn|Drinkwater|1905|p=106}} Life in Gibraltar, however, was able to carry on with relief from merchants who ran the Spanish blockade. British ships arrived unmolested to bring in reinforcements, taking away the sick, prisoners and civilians. Portuguese vessels with [[lemon]]s, wine and vegetables helped the garrison, and gave valuable intelligence on the Spanish lines and the heavy casualties suffered from the British guns. News of HMS ''Success''{{'}}s [[Action of 16 March 1782|defeat]] of a Spanish frigate ''Santa Catalina'' brought much rejoicing to the Rock when she entered.{{sfn|Gardiner|1997|pp=167−170}}
+
+===Arrival of the French===
+[[File:Luis Berton de Balbe de Quiers, duque de Crillon.jpg|thumb|200px| [[Louis des Balbes de Berton de Crillon, duc de Mahon|De Crillon]], the French commander, who took over operations at Gibraltar]]
+Soon after the surrender of Minorca in February 1782, French forces from that siege arrived to help the Spanish at Gibraltar. In particular, French engineers and pioneers were brought in, and [[Louis des Balbes de Berton de Crillon, 1st Duke of Mahón|Louis des Balbes de Berton de Crillon, Duc de Mahon]] took over from Álvarez de Sotomayor as commander of the besiegers, with the final say in operations. Álvarez de Sotomayor was effectively demoted to take command of the Spanish contingent. Both the Spanish and the French hoped for more imaginative concepts and arrangements to bring about victory with the upcoming peace talks. The American diplomat [[Louis Littlepage]] acted as a volunteer aide to de Crillon during the siege and made sketches of the operations.<ref name="Howe">{{cite book|last1=Howe, Henry|title=Adventures and Achievements of Americans: A Series of Narratives Illustrating Their Heroism, Self-reliance, Genius and Enterprise|date=1858|publisher=Geo. F. Tuttle|page=[https://archive.org/details/achievmentsamer00howerich/page/632 632]|url=https://archive.org/details/achievmentsamer00howerich|author1-link=Henry Howe}}</ref> French ships joined de Córdova's already powerful Spanish navy to strengthen the blockade. During this time it was decided to construct the special floating batteries, and soon the British garrison observed hulks being brought into the [[Bay of Gibraltar]].{{Sfn|Adkins|Adkins|2017|p=287}}
+
+French reinforcements, mainly ground troops, all arrived at Gibraltar after the [[Invasion of Minorca (1781)|siege of Mahon]]:<ref>Louis Susane, History of the Ancient Infantry (Many Volumes).</ref>
+* [[Lyonnais Regiment]] (2 Battalions)
+* [[Brittany Regiment]] (2 Battalions)
+* [[Angoumois Regiment]] (2 Battalions)
+* [[Royal Swedish Regiment (France)|Royal Swedish Regiment]] (2 Battalions)
+* [[Bouillon Regiment]] (2 Battalions)
+
+With the arrival of more troops and ships, guns and mortars were also delivered to the Spanish siege lines, which were creeping forward and soon neared completion. A new Spanish battery, the Mahon, was erected in quick time, despite being hit many times by the British siege guns, which caused severe losses. Eliott did not strike though, once it had been finished in April 1782.{{Sfn|Drinkwater|1905|pp=109–110}}
+
+A lull in the siege then occurred, during which neither side knew when the other would bombard, which continued through the summer. On 11 June, a Spanish shell exploded inside the magazine of [[Princess Anne's Battery]] further up the Rock, causing a massive explosion that blew the flank of the battery into the [[Prince's Lines]], killing fourteen soldiers.<ref name="connolly">{{cite book|title=History of the Royal Sappers and Miners: from the formation of the Corps in March 1772, to the date when its designation was changed to that of Royal Engineers, in October 1856, Volume 1|year=1857|publisher=Longman, Brown, Green, Longmans, and Roberts|url=https://books.google.com/books?id=y0XzAAAAMAAJ&pg=PA23|author=Connolly, Thomas William John|edition=2|pages=16, 23}}</ref>
+
+===Peace negotiations===
+In March the British [[House of Commons of Great Britain|House of Commons]] had voted in parliament with a ''No offensive war'' against America as a result of the [[Siege of Yorktown (1781)|surrender of Yorktown]].<ref name="PHOE">{{cite book |last1=Great Britain. Parliament |title=Cobbett's Parliamentary History of England: 1781–1782: Volume 22 of Cobbett's Parliamentary History of England |date=1814 |publisher=T. Curson Hansard, Peterborough-Court, Fleet-Street |pages=825–826 |url=https://books.google.com/books?id=IthbAAAAQAAJ}}</ref> News of the surrender of Minorca and losses in the West Indies then brought down [[North ministry|the government]]. The [[Second Rockingham ministry|new government]] under the [[Charles Watson-Wentworth, 2nd Marquess of Rockingham|Marquess of Rockingham]] soon began the negotiations leading to the [[Peace of Paris (1783)|Peace of Paris]]. Although offensive operations against America had ended, the war continued elsewhere in the West and East Indies as well as Gibraltar.<ref name="PHOE"/>
+
+The appointment of [[William Petty, 2nd Earl of Shelburne|Lord Shelburne]] after Rockingham's death in July forced another change in government. Nevertheless, Shelburne accepted American independence without preconditions.{{sfn|Morris|1975|p=285}} France, under its treaty of alliance with Spain, could not make peace without their agreement—not without a guarantee that Gibraltar would be handed over to Spain.{{sfn|Pratt|1971|p=21}} Both wanted to speed up their major assault on Gibraltar with the hope of its capture, in order to gain a major diplomatic hand.<ref>{{cite book |last1=Fiske |first1=John |title=The critical period of American history, 1783–1789 Volume 12 |date=1902 |publisher=Riverside Press |page=20 |url=https://books.google.com/books?id=rT03AQAAMAAJ}}</ref> Gibraltar thus became a main factor in the peace talks.{{sfn|Bemis|2012|p=77|ps=: ''That tremendous citadel thus became a vital factor in the diplomacy of the American Revolution''}} [[John Jay]] the American peace commissioner during the negotiations realised the importance of the Gibraltar siege and the impending plan by France and Spain to capture the Rock.{{sfn|Morris|1975|p=323}}
+{{quote|We are very much occupied with Gibraltar. We stand at the threshold of great events. Pray God that they will be auspicious. I believe that they could bring very much closer the epoch of peace which we all wish for, a peace both good and solid.}}On 24 March 1782, four transports, escorted by frigates [[HMS Glory (1763)|HMS ''Apollo'']] and {{HMS|Cerberus|1779|6}}, landed the {{Interlanguage link|97th Regiment of Foot (1780)|lt=97th Regiment of Foot|fr|97e régiment d'infanterie (Grande-Bretagne, 1780-1783)}}{{Sfn|Chartrand|Courcelle|2006|p=23}}<ref>{{Cite journal |last=Cormack |first=Andrew |date=2022 |title=The 97th Regiment of Foot in the American War of Independence |url=https://www.jstor.org/stable/27243630 |journal=Journal of the Society for Army Historical Research |volume=100 |issue=403 |pages=255–270 |issn=0037-9700}}</ref>.
+
+=== Destruction of Spanish batteries ===
+In early September the Spanish advanced their lines further, right up to the British siege guns' effective range. Eliott suggested to his artillery general Boyd to bombard the lines with red-hot shot and grapeshot, which had been used to great effect against Spanish gunboats daring to come close enough to make an attack. These "hot potatoes", as they were nicknamed, were pre-heated to furnace temperatures before being fired at the dry wooden defences.{{sfn|Bond|2003|p=25}}
+
+At 7:00&nbsp;am on 8 September 1782 the bombardment commenced, concentrating mainly on the western parallel of the Spanish siege works. Supporting the heavy guns were the field artillery and other types of British guns. Within a few hours of intense bombardment the results became apparent and soon exceeded the garrison's expectations.{{Sfn|Chartrand|Courcelle|2006|pp=64–65}} The Mahon battery along with conjoining works were set on fire.{{Sfn|Adkins|Adkins|2017|p=309}} The other batteries, San Carlos and San Martín, were heavily damaged and had to be partly dismantled by French and Spanish pioneers.{{Sfn|Drinkwater|1905|p=131}}
+
+The bombardment was a huge success and had inflicted great damage: Spanish and French casualties numbered at least 280. The red-hot shot had proved such a success that furnaces and grates were installed right next to the batteries.{{sfn|Bond|2003|p=25}}
+
+== The Grand Assault ==
+{| class="wikitable" style="float:right; margin: 0.5em 0.5em 0.5em 1em; padding: 0.5em; font-size: 95%;"
+|+ The Floating Batteries:{{Sfn|Drinkwater|1905|p=140}}
+|-bgcolor=lightgrey align=center
+! Battery
+! Men
+!Guns in use
+!Guns in reserve
+! Captain
+|-----
+|- align=center
+| '''Pastora'''
+| 760
+| 21
+|10
+| Buenaventura Moreno
+|-bgcolor=lightgrey align=center
+| '''Talla Piedra'''
+| 760
+| 21
+| 10
+| [[Karl Heinrich von Nassau-Siegen|Príncipe Nassau]]
+|-----
+|- align=center
+| '''Paula Primera'''
+| 760
+| 21
+| 10
+| Cayetano de Lángara
+|-bgcolor=lightgrey align=center
+| '''Rosario'''
+| 700
+| 19
+| 10
+| Francisco Muñoz
+|-----
+|- align=center
+| '''San Cristóbal'''
+| 650
+| 18
+| 10
+| [[Federico Gravina]]
+|-----
+|-bgcolor=lightgrey align=center
+| '''Paula Segunda'''
+| 340
+| 9
+| 4
+| Pablo de Cózar
+|-----
+|- align=center
+| '''Santa Ana'''
+| 300
+| 7
+| 4
+| José Goicoechea
+|-bgcolor=lightgrey align=center
+| '''San Juan'''
+| 340
+| 9
+| 4
+| José Angeler
+|-----
+|- align=center
+| '''Príncipe Carlos'''
+| 400
+| 11
+| 4
+| Antonio Basurto
+|-----
+|-bgcolor=lightgrey align=center
+| '''Dolores'''
+| 250
+| 6
+| 4
+| Pedro Sánchez
+|-----
+|-bgcolor=lightgrey align=center
+|''' Total (10 ships)'''
+|5,260
+|142
+|70
+|
+|-----
+|}
+
+For the allies it was becoming clear that the recent blockades had been a complete failure and that an attack by land would be impossible. Ideas were put forward to break the siege once and for all. The plan was proposed that a squadron of battery ships should take on the British land-based batteries and pound them into submission by numbers and weight of shots fired, before a storming party attacked from the siege works on the Isthmus and further troops were put ashore from the waiting Spanish fleet.{{sfn|Falkner|2009|p=102}} The French engineer [[Jean Le Michaud d'Arçon]] invented and designed the floating batteries—'unsinkable' and 'unburnable'—intended to attack from the sea in tandem with other batteries bombarding the British from land.
+
+The floating batteries would have strong, thick wooden armour—{{convert|1|m|ft|0|adj=mid|-wide|spell=in}} timbers packed with layers of wet sand, with water pumped over them to avoid fire breaking out.{{sfn|Ferreiro|2016|pp=288–290}} In addition old cables would also deaden the fall of British shot and, as ballast, would counterbalance the guns' weight. Guns were to be fired from one side only; the starboard battery was removed completely and the port battery heavily augmented with timber and sand infill. The ten floating batteries would be supported by ships of the line and [[Bomb vessel|bomb ships]], which would try to draw away and split up the British fire. Five batteries each with two rows of guns, together with five smaller batteries each with a single row, would provide a total of 150 guns.{{sfn|Falkner|2009|p=102}} The Spanish enthusiastically received the proposal. D'Arçon sailed close to shore under enemy fire in a skiff to get more accurate intelligence.{{sfn|Bond|2003|p=25}}
+[[File:Le Michaud d'Arçon.jpg|thumb|left|200px|[[Jean Le Michaud d'Arçon]], French engineer and designer of the floating batteries]]
+
+On 13 September 1782 the [[House of Bourbon|Bourbon allies]] launched their great attack: 5,260 fighting men, both French and Spanish, aboard ten of the newly engineered '[[Floating battery|floating batteries]]' with 138{{Sfn|Monti|1852|p=140}} to 212 heavy guns under the command of Don Buenaventura Moreno.{{Sfn|Chartrand|Courcelle|2006|p=67}} Also in support were the combined Spanish and French fleet, which consisted of 49 ships of the line, 40 Spanish gunboats and 20 bomb-vessels, manned by a total of 30,000 sailors and marines{{sfn|Bond|2003|pp=28–29}} under the command of Spanish Admiral [[Luis de Córdova y Córdova|Luis de Córdova]].{{sfn|Falkner|2009|p=104}}{{Sfn|Monti|1852|p=138}} They were supported by 86 land guns{{Sfn|Monti|1852|p=138}} and 35,000 Spanish and 7,000{{Sfn|Monti|1852|p=132}}–8,000{{Sfn|Montero|1860|p=356}} French troops on land, intending to assault the fortifications once they had been demolished.{{Sfn|Chartrand|Courcelle|2006|p=76|ps=: '35,000 allied troops camped outside'}} An 'army' of over 80,000 spectators thronged the adjacent hills on the Spanish side, expecting to see the fortress beaten to powder and 'the [[Union Jack|British flag]] trailed in the dust.' Among them were the highest families in the land, including the [[Charles X of France|Comte D'Artois]].{{Sfn|Chartrand|Courcelle|2006|p=65}}
+
+The batteries slowly moved forward along the bay and one by one the 138 guns opened fire, but soon events did not go according to plan. The alignments were not correct: the two lead ships ''Pastora'' and the ''Tala Piedra'' moved further ahead than they should have.{{Sfn|Adkins|Adkins|2017|pp=335–338}} When they opened fire on their main target, the King's Battery, the British guns replied, but the cannonballs were observed to bounce off their hulls. Eventually the Spanish ''junks'' were anchored on the sandbanks near the Mole but were too spread out to create any significant damage to the British walls.{{Sfn|Chartrand|Courcelle|2006|pp=69–70}}
+
+Meanwhile, after weeks of preparatory artillery fire, the 200 heavy-calibre Spanish and French guns opened up on the land side from the North directed onto the fortifications. This caused some casualties and damage, but by noon the artificers had heated up [[Heated shot|red-hot shot]]. Once the shot were ready, Eliott ordered them to be fired. At first the heated shot made no difference, as many were doused on board the floating batteries.{{sfn|Bond|2003|p=28}}
+[[File:Vue du siege de Gibraltar et explosion des batteries flottantes 1782.jpeg|upright=1.35|thumb|Grand Assault on Gibraltar showing the allied lines and a detonation of one of the floating batteries]]
+
+Although the batteries had anchored, a number had soon grounded and began to suffer damage to their rigging and masts. The King's Bastion blasted away at the closest ships, the ''Pastora'' and the ''Talla Piedra'', and soon the British guns began to have an effect. Smoke was spotted coming from ''Talla Piedra'', already severely damaged and its rigging in tatters.{{Sfn|Adkins|Adkins|2017|pp=335–338}} Panic ensued since no vessel could come and support her; nor was there any way for the ship to escape. Meanwhile, the ''Pastora'' under the [[Karl Heinrich von Nassau-Siegen|Prince de Nassau]] began to emit a huge amount of smoke. Despite efforts to find the cause, the sailors on board were fighting a losing battle.{{sfn|Falkner|2009|p=118}} To make matters worse, the Spanish land guns had ceased firing. It soon became apparent to de Crillon that the Spanish army had run out of powder and were already low on shot. By nightfall it was clear that the assault had failed, but worse was to come, because the fire on the two batteries was out of control. To add to de Crillon's frustration, de Córdova's ships of the line failed to move in support, and neither did Barcelo's vessels.{{sfn|Bond|2003|p=28}} De Crillon, acknowledging defeat and not wishing to upset the Spanish by issuing demands, soon ordered the floating batteries to be scuttled and the crews rescued. Rockets were sent up from the batteries as distress signals.{{sfn|Falkner|2009|p=118}}
+
+===Destruction of the floating batteries===
+
+During this operation, [[Roger Curtis]], the British naval commander, seeing the attacking force in great danger, warned Eliott about the huge potential death toll and that something must be done. Eliott agreed and had the fleet of twelve gunboats under Curtis set out with 250 men. They headed towards the Spanish gunboats, firing as they advanced, after which the Spanish precipitated a quick retreat.{{Sfn|Chartrand|Courcelle|2006|pp=79–80}}
+<div style="text-align: center;">
+{{multiple image
+ | align=left
+ | direction=vertical
+ | width=260
+ | header= Spanish floating batteries at the<br>siege of Gibraltar
+ | width1=250
+ | image1= Floating Batteries at the Great Siege of Gibraltar.jpg
+ | alt1=
+ | caption1= Engraving of floating batteries depicting port (combat) side and starboard side
+ | image2= Thomas Whitcombe Batteries destruction1782c.jpg
+ | alt2=
+ | caption2=<div style="text-align: center;">Destruction of the floating batteries;<br>by [[Thomas Whitcombe]]</div>
+ | width2=250
+}}
+</div>
+
+Curtis's gunboats reached the batteries and one by one took them; but this soon turned into a rescue effort when they realised from prisoners that many men were still on board with the scuttling now taking place.{{Sfn|Adkins|Adkins|2017|pp=39–40}} British marines and sailors then stormed the ''Pastora'', taking the men on board as prisoners and eventually pulled them off the doomed ship, having also seized the Spanish Royal Standard which had been flying from the stern. As this was going on, the flames that had engulfed ''Talla Piedra'' soon reached the magazine. The ensuing explosion was tremendous, with a sound that reverberated around the bay and a huge [[mushroom cloud]] of smoke and debris that rose up in the air.{{Sfn|Chartrand|Courcelle|2006|pp=81–82}} Many were killed on board, but the British had few casualties. The Spanish, now in panic, all reached for the British boats by jumping in the water.
+
+Soon the ''Pastora'', engulfed in a mass of flames, followed the fate of the ''Talla Piedra''. The latter burnt to the water's edge and sank about 1:00&nbsp;am on 14 September after having lain upwards of fourteen hours under the fire of Gibraltar.<ref name="JOAR">{{cite web |last1=Ferreiro |first1=Larrie D |title=Our Man in Minorca: Lewis Littlepage, American Volunteer with the Spanish Armed Forces |url=https://allthingsliberty.com/2018/09/our-man-in-minorca-lewis-littlepage-american-volunteer-with-the-spanish-armed-forces/ |website=Journal of the American Revolution |date=18 September 2018 |access-date=19 July 2020}}</ref> The fire reached the powder magazine and another huge explosion ensued. This time many in the water were killed outright; a British boat was sunk and the [[coxswain]] of Curtis's boat was killed when hit by debris.{{sfn|Bond|2003|p=28}} Nassau, Littlepage and the surviving crew managed to make their way back to shore and eventually to the Spanish fleet.<ref name=Howe/><ref name="JOAR"/>
+
+Curtis realised that it was unsafe to be near the flaming batteries and soon withdrew men from two more floating batteries engulfed in flame, then finally ordered a withdrawal.{{sfn|Bond|2003|p=28}} The rescue operation was hindered further when Spanish batteries opened fire after receiving more powder and shot. Many more men drowned or were burned in the ensuing inferno; others were hit by their own artillery. The Spanish ceased fire only when the mistake was realised, but it was too late.{{Sfn|Adkins|Adkins|2017|pp=39–40}} The rest of the Spanish batteries blew up in similar horrific style; the explosions lofted huge mushroom clouds that rose nearly 1,000 feet in the air.{{sfn|Ferreiro|2016|pp=288–290}} Some men were still on board and those that had jumped overboard often drowned as the vast majority could not swim. By the early hours of the morning only two floating batteries remained. A Spanish [[felucca]] tried to set one on fire but was driven off by British guns. The two were promptly set alight by them and were finished in the same way as the others by the afternoon.{{Sfn|Montero|1860|pp=365–366}}
+
+By 4:00&nbsp;am, all the floating batteries had been sunk, leaving the Gibraltar waterfront a mass of debris and bodies from the wrecked Spanish ships. During the Grand Assault 40,000 rounds had been fired. Casualties in just twelve hours were heavy: 719 men on board the ships (many of whom drowned) were casualties.<ref>{{Citation| title= Bajas españolas de las baterías flotantes del ataque a Gibraltar el 13 de septiembre de 1782 | newspaper= Gaceta de Madrid| publisher= Todo a Babor| language= es| url= http://www.todoababor.es/datos_docum/bajas-flotantes.html| access-date= 11 March 2010}}</ref>
+[[File:Spanish flag RMG L0183.tiff|thumb|300px|Spanish flag captured during the Grand Assault in September 1782 ([[Royal Museums Greenwich]])]]
+
+Curtis had rescued a further 357 officers and men, who thus became prisoners, while in the siege lines more casualties brought up the allied total to 1,473 men for the Grand Assault, with all ten floating batteries destroyed.{{Sfn|Chartrand|Courcelle|2006|pp=81–82}} The engagement was the fiercest battle of the American Revolutionary War.{{sfn|Ferreiro|2016|pp=288–290}} The British lost 15 killed and 68 men were wounded, nearly half of them from the Royal Artillery. A [[Royal Marines|British marine]] who had taken ''Pastora'''s large Spanish colour later presented it to Eliott.<ref>{{cite book| last= McGuffie| first= Tom Henderson| title= The Siege of Gibraltar, 1779–1783| series= British battles| date= 1965| publisher= B. T. Batsford| page= [https://archive.org/details/siegeofgibraltar0000mcgu/page/164 164]| url= https://archive.org/details/siegeofgibraltar0000mcgu| url-access= registration}}</ref>
+
+For Eliott and the garrison it was a great victory and for the allies it was a brutal defeat, with their plans and hopes in tatters. De Córdova was heavily criticised for not coming to help the batteries, while d'Arçon and de Crillon threw accusations and recriminations at each other.{{Sfn|Adkins|Adkins|2017|pp=40–41}} In Spain the news was met with consternation and despair. The huge crowds that had been promised a crushing victory left the area chagrined.<ref name="Sayer">{{cite book |last1=Sayer |first1=Frederick |title=The History of Gibraltar and of Its Political Relation to Events in Europe |date=1865 |publisher=Chapman and Hall|url=https://archive.org/details/bub_gb_68cNAAAAQAAJ/page/n409|pages=393–394}}</ref>
+
+On 14 September 1782, another assault by the allies, this time on land, was planned. The Spanish army formed up behind the batteries at the northern end of the Isthmus. At the same time, the Spanish ships moved across the bay, packed with more troops. However, de Crillon cancelled the assault, judging that losses would have been huge.{{Sfn|Drinkwater|1905|pp=140–141}} Gibraltar nevertheless remained under siege, but Spanish bombardments decreased to about 200 rounds a day as both sides knew of the impending peace treaty.{{sfn|Falkner|2009|p=120}}
+
+===Impact on peace negotiations===
+From 20 September, reports of the great French and Spanish assault on Gibraltar began to reach Paris. By 27 September it was clear that the operation, involving more troops than had ever been in service at one time on the entire North American continent, had been a horrific disaster.{{Sfn|Adkins|Adkins|2017|pp=335–338}}{{sfn|Allison|Ferreiro|2018|page=220|ps=: ''critical event in the war outside America was a contemporaneous European siege that was bigger, lasted longer, and ultimately was as critical to establishing peace as the Yorktown victory''}} In Madrid news of the failure was received with dismay; the King was in mute despair as he read the intelligence reports at the [[Royal Palace of La Granja de San Ildefonso|Palace of San Ildefonso]].<ref name="Sayer"/> The French had done all they could to help the Spanish achieve their essential war aim, and began serious discussions on alternative exit strategies, urging Spain to offer Britain some very large concessions in return for Gibraltar.<ref>Jay, William [https://archive.org/details/lifeofjohnjaywit02jayw/page/493 The Life of John Jay] New York New York, Harper (1833), via Google Books – accessed 9 January 2008</ref>
+
+News also reached the British, ecstatic at the outcome, and at the same time just as John Jay submitted his draft treaty. The British promptly stiffened their terms, flatly refusing to cede land north of the old border with [[British North America|Canada]].{{Sfn|Harvey|2004|p=531}} They also insisted that the Americans pay their national pre-war debt to the British or compensate [[Loyalist (American Revolution)|Loyalists]] for their seized property. As a result, the Americans were forced to agree to these terms, and their Northern frontier was established along the line of the [[Great Lakes]].{{Sfn|Harvey|2004|p=531}} Preliminary Articles of Peace were to be signed between the two on 30 November.<ref>{{Cite web|url=https://books.google.com/books?id=SuSLDAEACAAJ|title=Preliminary Articles of Peace: November 30, 1782|via=Google Books}}</ref>
+
+==Final actions==
+[[File:LuisDeCórdovaYCórdovaCapitánGeneralDeLaRealArmada.jpg|thumb|250px|[[Luis de Córdova y Córdova]], commander of the Spanish fleet]]
+In Britain the [[British Admiralty|Admiralty]] considered plans for a major relief of Gibraltar, opting to send a larger but slower fleet, rather than a smaller, faster one. This was key to the outcome of the siege.{{Sfn|Syrett|2006|p=103}} Admiral [[Richard Howe]]'s orders were to deliver the supplies to Gibraltar and then to return to England. The fleet—composed of 35 ships of the line, a large convoy of transports destined for Gibraltar, and additional convoys destined for the East and West Indies—left [[Spithead]] on 11 September. Bad weather and contrary winds, however, meant that the British fleet did not arrive at [[Cape St. Vincent]] until 9 October.{{Sfn|Drinkwater|1905|pp=146–147}}
+
+===Capture of the ''San Miguel''===
+
+On 10 October a storm wreaked havoc on the allied fleet: one ship of the line was driven aground, and another was swept through the [[Strait of Gibraltar|Straits of Gibraltar]] into the Mediterranean.{{sfn|Mackesy|1992|p=483}} The 74-gun Spanish ship of the line {{ship|Spanish ship|San Miguel|1773|2}}, captained by [[Juan Joaquín Moreno de Mondragón]], lost its [[Mast (sailing)#Mizzen mast|mizzen mast]] in the storm.{{Sfn|Drinkwater|1905|pp=146–147}} It was driven helplessly into Gibraltar by the storm, and cannon fire from the [[King's Bastion]] was fired at the vessel, some of which penetrated and caused damage and casualties. ''San Miguel'' then tried with great difficulty to get out of danger but was soon grounded, and gunboats from the garrison quickly captured her. Mondragón agreed to surrender to avoid any further bloodshed, being too close to the guns of Gibraltar. A total of 634 Spanish sailors, marines and dismounted dragoons were captured.{{Sfn|Drinkwater|1905|pp=146–147}} An attempt by the Spanish and French on 17 December to bombard ''San Miguel'' with mortars failed and caused only minimal damage. By this time the powder magazine had been removed or thrown overboard.{{Sfn|Drinkwater|1905|p=148}}
+
+With the Franco-Spanish fleet dispersed by the gale, Howe met with all his captains and gave detailed instructions for ensuring the safe arrival of the transports. On 11 October the transports began entering the straits, followed by the covering fleet. Four transports successfully anchored at Gibraltar, but the remainder were carried by the strong currents into the Mediterranean. The British fleet followed them.{{sfn|Mackesy|1992|p=483}} Taking advantage of a change in the wind, de Córdova's fleet sailed in pursuit, while the Spanish admiral sent his smaller vessels to shadow the British. On 13 October, the British regrouped off the Spanish coast about 50 miles east of Gibraltar. They then sailed south towards the Moroccan coast upon the approach of the allied fleet, which failed to catch up and did not take any of the British ships.{{sfn|Lavery|2015|pp=78–79}}
+
+===Third and final relief===
+[[File:Relief of Gibraltar by Earl Howe, 11 October 1782 RMG BHC0453 (cropped).tiff|thumb|''Relief of Gibraltar by Earl Howe, 11 October 1782'', by [[Richard Paton]]. Howe's {{HMS|Victory}} (centre) enters Gibraltar—the Franco-Spanish fleet are anchored in [[Bay of Gibraltar]].]]
+
+All eyes at the Paris peace talks were now on the relief of Gibraltar. The French and Spanish hoped that its failure would lead to the surrender of the garrison, prompting negotiations.{{sfn|Falkner|2009|p=124}} With a fair wind on 15 October, the British re-entered the straits and on 16–18 October brought the convoy into Gibraltar—a total of 31 transport ships, which delivered vital supplies, food, and ammunition. The fleet also brought the [[King's Own Scottish Borderers|25th]] and [[59th (2nd Nottinghamshire) Regiment of Foot|59th]] regiments of foot, bringing the total number of the garrison to over 7,000.{{Sfn|Syrett|2006|pp=104–105}}{{Sfn|Chartrand|Courcelle|2006|p=23}} The large combined Franco-Spanish fleet hovered nearby, so on 20 October the British fleet, without seriously engaging for battle, [[Battle of Cape Spartel|lured them away]]. The Franco-Spanish van opened fire as the British under Howe formed line of battle.{{sfn|Lavery|2015|pp=78–79}} The British returned fire, while Howe signalled 'retreat all sail,' making at least fourteen Franco-Spanish ships redundant. De Córdova's ships attempted to chase the British fleet, but despite their efforts the British, with [[copper sheathing]], were able to avoid the trap.{{sfn|Falkner|2009|p=124}}
+
+This was the final action of the siege and demonstrated again the dismal failure of the allied navy to stop the relief for the third time. The Spanish fleet's performance under de Córdova was the single greatest factor in the siege's failure.{{Sfn|Chartrand|Courcelle|2006|p=27}}
+
+=== End of the siege ===
+News that Gibraltar was fully resupplied with no problems for the convoy reached London on 7 November and probably reached Paris about the same time. The French diplomat [[Charles Gravier, comte de Vergennes|Comte de Vergennes]], incensed at the failure, promptly reopened negotiations.{{Sfn|Falkner|2009|p=123}} Howe's relief had broken the Spanish resolve and they now realised Gibraltar was out of their reach, and so wanted to find an exit from the war.{{sfn|Kochin|Taylor|2020|pp=45–46}}
+
+With Gibraltar safe, along with Rodney's victory at the [[Battle of the Saintes]] back in April, British demands at the peace talks had now greatly strengthened, undermining the French confidence that had greeted the success at Yorktown. The British diplomats steadfastly refused to part with Gibraltar, despite offers by Spain to trade most of its gains.<ref>''The Cambridge Modern History'', pp. 6:379–380</ref> Time was also running out. Worried that another year of war would result in further British victories, and with France approaching the limits of its ability to borrow money, Vergennes was now desperate for peace. The objections of Spain ceased to be of any relevance, and the Spanish diplomat in Paris, the [[Pedro Pablo Abarca de Bolea, 10th Count of Aranda|Count of Aranda]], consented without consulting the court of Madrid.{{sfn|Kochin|Taylor|2020|pp=45–46}} The French accepted the preliminary peace treaty between Great Britain and America on 30 November, with protests but no action. The siege continued, but on 20 January 1783 preliminary treaties were signed with France and Spain.<ref>{{cite book|last1=McGuffie|first1=Tom Henderson|title=The siege of Gibraltar, 1779–1783|date=1965|publisher=B.T. Batsford|pages=[https://archive.org/details/siegeofgibraltar0000mcgu/page/179 179]–180|url=https://archive.org/details/siegeofgibraltar0000mcgu|url-access=registration}}</ref>
+
+Unbeknown to negotiators at the peace table, on 1 February the garrison opened a sustained and accurate fire upon the besiegers, causing some damage and inflicting casualties.{{Sfn|Adkins|Adkins|2017|pp=364–365}} The following day de Crillon had received a letter informing him that the preliminaries of the general peace had been signed. Four days later a Spanish vessel flying a flag of truce brought news of the preliminary treaty, the terms of which allowed Britain to remain in possession of Gibraltar. By the end of February, French and Spanish troops retired disheartened and defeated, after three years, seven months and twelve days of conflict.{{Sfn|Drinkwater|1905|p=166}}
+
+==Aftermath==
+[[File:1793 Main Street after the Siege by Captain Davis.jpg|thumb|Main Street after the siege looking South]]
+The British victory at Gibraltar marked the last major engagement of the American Revolutionary War.{{sfn|Allison|Ferreiro|2018|page=221|ps=:'' These, not the siege of Yorktown were the last engagements of the American Revolution''}}<ref>{{cite book |last1=Clowes |first1=William Laird |title=The Royal Navy, a History from the Earliest Times to Present, Volume 3 |date=1898 |publisher=S. Low, Marston, Company |page=542 |url=https://books.google.com/books?id=NSI6AQAAMAAJ}}</ref><ref>{{cite book |last1=Clare |first1=Israel Smith |title=American revolution to the present Volume 7 of Library of Universal History |date=1897 |publisher=R. S. Peale, J. A. Hill |location=University of Wisconsin – Madison |page=2535 |url=https://books.google.com/books?id=xu8pAQAAMAAJ |quote=The siege of Gibraltar was the last important event of the War of the American Revolution in Europe}}</ref> For the British, holding the Rock had proved a formidable undertaking—the victory against overwhelming odds was greeted with great rejoicing in Great Britain. Britain, though, had seen huge naval efforts to sustain the Gibraltar garrison, which otherwise could have been used to try to win the war in the North American colonies. As a result, holding Gibraltar arguably meant the loss of the latter.{{Sfn|Falkner|2009|p=137}}
+
+The British garrison during the three years of siege had sustained a loss of 333 killed{{Sfn|Chartrand|Courcelle|2006|p=89}} and 1,008 wounded, which included 219 of the garrison's gunners.{{Sfn|Drinkwater|1905|p=169}} Between 536 and 1,034 men died or were sick from disease.{{sfn|Clodfelter|2017|p=132}} In addition, 196 civilian employees were killed and 800 died of disease.{{sfn|Clodfelter|2017|p=132}} Between 12 April 1781 and 2 February 1783 Gibraltar was hit by 244,104 artillery rounds from guns ashore and 14,283 from cannon afloat. The guns of the defenders had fired 200,600 rounds and British ships had hurled another 4,728 shells,{{Sfn|Drinkwater|1905|p=368}} and in total had expended 8,000 barrels of gunpowder.{{Sfn|Chartrand|Courcelle|2006|p=89}} The besiegers had lost in excess of 6,000 killed or wounded,{{sfn|Clodfelter|2017|p=132}} with many others sick or dead from disease. In addition, many guns were destroyed, and the combined allied fleet lost a total of ten floating batteries, with one ship of the line and many gunboats captured. The great siege of Gibraltar is considered one of the most humiliating defeats in Spanish military history. Together both sides fired nearly half a million rounds of shot during the Great Siege.{{sfn|Falkner|2009|p=133}} Eliott's defence of the Rock had tied down large numbers of Spanish and French naval and military resources that could have been valuable in other theatres of operations.{{Sfn|Chartrand|Courcelle|2006|p=91}}
+
+Despite the Spanish attempt to regain Gibraltar at the negotiating table, they ended up merely retaining Minorca and territories in Florida, though for the Spanish this was of little or no value.<ref>Lawrence S. Kaplan, "The Treaty of Paris, 1783: A Historiographical Challenge", ''International History Review'', Sept 1983, Vol. 5 Issue 3, pp 431–442</ref> An attempt to exchange [[Puerto Rico]] for Gibraltar collapsed, as it would have brought too much competition for Jamaican products into the protected British market. They ceded East Florida to the Spanish in addition to the West Florida that Spain had conquered at [[Battle of Mobile (1781)|Mobile]] and [[Siege of Pensacola|Pensacola]]. At the Peace of Paris in September 1783, the Anglo-Spanish [[Peace of Paris (1783)#Treaty with Spain|Treaty of Versailles]] left Gibraltar with the British.{{Sfn|Chartrand|Courcelle|2006|p=88}}{{efn|The negotiations involving Gibraltar's fate did not involve any settlements with the United States, they were not submitted to US ministers in Paris, neither by British, Spanish nor French governments. US independence was recognized by [[Treaty of Alliance (1778)|treaty with France]] on 6 February 1778,{{sfn|Miller|1931|p=35}} by preliminary agreement with Britain in November 1782<ref>[[#avalon|Yale Law School, Avalon Project, Essay]]</ref> and George III's announcement on 5 December 1782, and by treaty with Spain in March 1783.<ref>[[#national|National Archives, Provisional Peace Treaty, 1783]], Essay</ref>}} Whilst after their defeat at [[Siege of Yorktown|Yorktown]] the British signed a Preliminary Peace in November 1782 to grant the US Congress independence, they also ceded the US its American territory to the "middle of the Mississippi River", and navigation "to the sea" that it had won [[Peace of Paris (1763)|in 1763]] from the French. Nine months later, their conclusive treaty in September 1783 was signed after Spain's defeat at Gibraltar. The Americans then agreed to allow Britain to keep Canada to their north where they had not conquered at [[Battle of Quebec (1775)|Quebec]], and in a secret protocol they promised that in the event of a British reconquest of Florida, they would not ally with Spain or France to contest any British acquisition there to their south.{{sfn|Harvey|2004|p=531}}{{efn|The Treaty of Paris between Britain and the US did nothing to reaffirm previous Great Power treaties for European balance of power, swapping their imperial territory worldwide, their trade agreements, or the ''status quo ante'' for Britain's Gibraltar.<ref>[[#TreatyParis1783|Treaty of Paris 1783]], Conclusive treaty: Britain grants US independence and cedes related North American territory to the Mississippi River.</ref>}}
+
+Eliott was made a [[Order of the Bath|Knight of the Bath]] and was created 1st [[Baron Heathfield]] of Gibraltar. Four British regiments engaged in the defence were granted the [[Coat of arms of Gibraltar|badge of the Castle of Gibraltar]] with the motto "Montis Insignia Calpe", in commemoration of the gallant part they took in the "Great Siege". The failure of the floating batteries reduced General d'Arçon to despair, and he was deeply resentful of the failure for the rest of his life, printing a vindication in 1783 under the title "Mémoires pour servir à l'histoire du siège de Gibraltar, par l'auteur des batteries flottantes."<ref name="Sayer"/> Soon after the siege the town of Gibraltar was reconstructed, the defenses strengthened, and bastions constructed. The tunnelling continued after the siege and a series of connecting galleries and communication tunnels to link them together with the Lines were built. By the end of the 18th century, nearly {{convert|4000|ft}} of tunnels had been dug.<ref>[[#Hughes|Hughes & Migos]], p. 248</ref> Spain made no further attempt to besiege or blockade Gibraltar until May 1968, when the Spanish Government [[History of Gibraltar#Post-war Gibraltar|closed the frontier]] and started an economic blockade.{{Sfn|Chartrand|Courcelle|2006|p=91}}
+
+==Legacy==
+===Literature===
+Captain [[John Drinkwater Bethune]], who was present during the siege, wrote an eye-witness account of the campaign, entitled, ''A history of the siege of Gibraltar, 1779–1783'', first published in 1785, considered one of the best accounts of that campaign.<ref>{{cite book |title=Volume 13 of Funk & Wagnalls Standard Encyclopedia of the World's Knowledge |date=1912 |publisher=Funk & Wagnalls company |page=223 |url=https://books.google.com/books?id=e9BSAAAAYAAJ |quote=Drinkwater's History of the Siege of Gibraltar is one of the best accounts of military heroism ever written.}}</ref>
+
+[[Baron Munchausen|Baron Münchhausen]] recorded in the fourth version of the book by [[Rudolf Erich Raspe|Rudolf Eric Raspe]] his visit to Gibraltar, arriving on board Admiral Rodney's flagship {{HMS|Sandwich|1759|6}}. Münchhausen writes that after seeing his "old friend Eliott", he dressed as a Catholic priest and slipped over to the Spanish lines where he caused considerable damage with a bomb.<ref>{{cite book|last1=Rudolf Erich, Raspe|title=The Surprising Adventures of Baron Münchhausen|date=1809|publisher=Oxford University|page=25|url=https://books.google.com/books?id=-74NAAAAQAAJ&pg=PA28|author1-link=Rudolf Erich Raspe}}</ref>
+
+===Music===
+In 1782 [[Wolfgang Amadeus Mozart]] composed ''[[Bardengesang auf Gibraltar: O Calpe! Dir donnert's am Fuße]],'' a piece of music commemorating the Great Siege.<ref>{{cite web|url=http://www.marksanchez.info/musicianslist.html|title=List of musicians connected to Gibraltar|publisher=Mark Sanchez|access-date=5 August 2007|archive-url=https://web.archive.org/web/20070219151355/http://www.marksanchez.info/musicianslist.html|archive-date=19 February 2007}}</ref> Mozart was known to have a favourable view of the British.<ref>{{cite web|url=http://www.thegibraltarmagazine.com/mozart_tribute.html|title=Mozart's Tribute to Gibraltar|work=The Gibraltar Magazine|access-date=5 August 2007|url-status=dead|archive-url=https://web.archive.org/web/20070815131821/http://www.thegibraltarmagazine.com/mozart_tribute.html|archive-date=15 August 2007}}</ref>
+
+===Paintings===
+There are numerous paintings of the siege by well known artists of the period.
+<gallery class="center" widths="250px" heights="250px">
+File:George Augustus Eliott, 1st Baron Heathfield - by Joshua Reynolds - Project Gutenberg eText 19009.jpg|Portrait of George Augustus Eliott by [[Sir Joshua Reynolds]]. [[National Gallery]]
+File:The Siege of Gibraltar, 1782 by George Carter.jpg|''The Siege of Gibraltar, 1782'' by [[George Carter (artist)|George Carter]], showing a catastrophic explosion of a floating battery. [[National Portrait Gallery, London|National Portrait Gallery]]
+File:The Siege and Relief of Gibraltar (2).jpg|''[[The Defeat of the Floating Batteries at Gibraltar, September 1782]]'', also known as ''The Siege and Relief of Gibraltar'', was painted in 1783 by American artist [[John Singleton Copley]].<ref>{{cite web|publisher=City of London|url=http://collage.cityoflondon.gov.uk/collage/app;jsessionid=28567CC810E31C8EDE1D0C4B4E932523?service=external/FullScreenImage&sp=I%3Acanvas%3A%3A&sp=8346&sp=X&sp=2|title=Defeat of the Floating Batteries at Gibraltar|work=Collage|access-date=10 September 2018|archive-url=https://web.archive.org/web/20110526194155/http://collage.cityoflondon.gov.uk/collage/app;jsessionid=28567CC810E31C8EDE1D0C4B4E932523?service=external%2FFullScreenImage&sp=I%3Acanvas%3A%3A&sp=8346&sp=X&sp=2|archive-date=26 May 2011|url-status=dead}}</ref> [[Guildhall Art Gallery]]
+File:Gibraltar explosion des batteries avec fuite des equipages et chaloupes 1782.jpeg|View of Robert Curtis' attempts to rescue Spanish sailors during their disastrous assault. Painting by [[James Jefferys]]. [[Maidstone Museum & Art Gallery]]
+File:August de la motte (cropped1).jpg|August de la Motte; commander of the Hanoverian brigade during the siege – painting by John Singleton Copley. [[Harvard Art Museum]]
+File:The Sortie Made by the Garrison of Gibraltar.jpg|A 1789 work by American painter [[John Trumbull]], ''[[The Sortie Made by the Garrison of Gibraltar, 1789]]'' shows the 1781 sortie that the garrison made against the besiegers. Here the dying officer Don [[José de Barboza]] is in a slightly different pose to the 1788 version, looking down instead of to the left.<ref>{{cite web|url=http://www.bostonathenaeum.org/trumbull.html|title=The Sortie Made by the Garrison of Gibraltar, 1789|publisher=Acquired Tastes–Trumbull|archive-url=https://web.archive.org/web/20070928051721/http://www.bostonathenaeum.org/trumbull.html|archive-date=28 September 2007}}</ref> [[Metropolitan Museum of Art]]
+File:The Duke de Crillon Giving Orders for the Siege of Gibraltar caricature.jpg|A British [[caricature]] of the siege: ''The Duke de Crillon Giving Orders for the Siege of Gibraltar''
+</gallery>
+
+===Poetry===
+[[Alexei Tsvetkov (poet)|Alexei Tsvetkov]]'s poem "The Rock" ({{Langx|ru|Скала|links=no}}) was inspired by the siege.{{citation needed|date=June 2018}}
+
+===Currency===
+In 2004 the Gibraltar National Mint released a commemorative coin into circulation. These coins feature on the obverse (front of the coin), a portrait of Queen Elizabeth II facing right and the lettering "ELIZABETH II GIBRALTAR" 2004, engraved by Raphael David Maklouf. On the coin's reverse, a cannon set for a downhill target and the lettering "1704 – 2004 THE GREAT SIEGE, 1779–1783 and ONE POUND" and was engraved by Philip Nathan.<ref>{{cite book|url=http://www.gibraltarnationalmint.gov.gi/GibraltarCoinageHigh.pdf|title=The Currency and Coinage of Gibraltar, 1704–2014|first=Richard J|last=Garcia|publisher=Her Majesty's Government of Gibraltar|year=2016|isbn=978-1919663401|pages=49–50|access-date=14 June 2018|archive-date=22 June 2017|archive-url=https://web.archive.org/web/20170622084933/http://www.gibraltarnationalmint.gov.gi/GibraltarCoinageHigh.pdf|url-status=dead}}</ref>{{sfn|Cuhaj|Michael|2011|p=299}}
+
+The 10 [[Gibraltar pound]] note shows [[John Trumbull]]'s painting ''[[The Sortie Made by the Garrison of Gibraltar]]'' on the reverse, depicting Spanish and English troops fighting and [[George Augustus Eliott, 1st Baron Heathfield|General George Eliott]] with officers attending to the dying Don José de Barboza.
+===Regimental Traditions===
+The [[73rd Hanoverian Fusiliers]], a regiment in the [[German Imperial Army]], wore Gibraltar as a [[battle honour]] up to the end of the [[First World War]].{{sfn|Middlebrook|1983|p=47}}
+
+==Today==
+The [[Great Siege Tunnels]] can today be accessed as part of the [[Gibraltar Nature Reserve|Upper Rock Nature Reserve]]; the exhibition includes dioramas and displays of the battle. After the siege the original cannon were replaced with more modern 64-pounder [[Muzzle-loading rifle|rifled muzzle loaders]] on iron carriages, some of which can still be seen in the tunnels.<ref>"History of the Tunnels." Great Siege Tunnels, Gibraltar.</ref> The tunnels have been hugely expanded and new tunnels built to connect to the first galleries. By 1790 around {{convert|4000|ft|m}} of tunnels had been constructed inside The Rock.{{Sfn|Chartrand|Courcelle|2006|p=24}} They were again expanded during the [[World War II|Second World War]].{{citation needed|date=March 2021}}
+<gallery class="center" widths="200px" heights="200px">
+File:Great Siege Tunnel gunners reconstruction.jpg|Reconstruction of one of the many guns and [[embrasure]]s within the [[Great Siege Tunnels]]
+File:Koehler gun.jpg|An example of Koehler's gun design is displayed in [[Grand Casemates Square]].
+File:General Eliott bronze bust in the Gibraltar Botanic Gardens.jpg|General Eliott bronze bust in the [[Gibraltar Botanic Gardens]]
+</gallery>
+
+== See also ==
+{{Portal|History}}
+* [[Capture of Gibraltar]]
+* [[Thirteenth siege of Gibraltar|Siege of Gibraltar (1727)]]
+* [[Ceremony of the Keys (Gibraltar)]]
+
+==References==
+
+===Notes===
+{{notelist}}
+{{Reflist|group=N}}
+
+===Footnotes===
+{{reflist}}
+
+==Bibliography==
+* {{cite book|last1=Adkins|first1=Lesley|last2=Adkins|first2=Roy|title=Gibraltar: The Greatest Siege in British History|date=2017|publisher=Hachette UK|isbn=978-1408708682}}
+* {{cite book |editor1-last=Allison |editor1-first=David K |editor2-last=Ferreiro |editor2-first=Larrie D |title=The American Revolution: A World War |date=2018 |publisher=Smithsonian Institution |isbn=978-1588346599 |url=https://books.google.com/books?id=IlpnDwAAQBAJ&q=shelburne}}
+* {{cite book | last1 = Barry | first1 = Quintin | title = From Ushant to Gibraltar: The Channel Fleet 1778–1783 | series = From Reason to Revolution | publisher = Helion & Company | year = 2022 | location = Warwick | isbn = 978-1915070395}}
+* {{cite book |last1=Bemis |first1=Samuel Flagg |title=The Diplomacy of the American Revolution |date=2012 |publisher=Read Books Ltd |isbn=978-1447485155}}
+* {{Citation |last=Bond|first=Peter|title=300 Years of British Gibraltar, 1704–2004|year=2003|publisher=Peter-Tan|chapter=Gibraltar's Finest Hour: The Great Siege, 1779–1783}}
+* {{cite book|last1=Chartrand|first1=René|first2=Patrice|last2=Courcelle|title=Gibraltar 1779–1783: The Great Siege|year=2006|url=https://archive.org/details/gibraltar-1779-1783-the-great-siege-osprey/mode/2up|publisher=Osprey (Wayback Machine)|location=Gibraltar|isbn=978-1841769776}}
+* {{cite book|last1=Clodfelter|first1=Micheal|title=Warfare and Armed Conflicts: A Statistical Encyclopedia of Casualty and Other Figures, 1492–2015, 4th ed|date=2017|publisher=McFarland|isbn=978-0786474707}}
+* {{cite book |last1=Cuhaj |first1=George S |last2=Michael |first2=Thomas |title=2012 Standard Catalog of World Coins 2001 to Date |url=https://books.google.com/books?id=1hFjDwAAQBAJ |date=2011 |publisher=Krause Publications |isbn=978-1440215759}}
+* {{cite book |last1= Davenport |first1=Frances Gardiner |last2=Paullin |first2=Charles Oscar |title=European Treaties Bearing On the History of the United States and Its Dependencies |date=1917 |publisher=Andesite Press |isbn=978-1298827005 |page=168 |edition=2015 }}
+* {{cite book|last1=Davis|first1=Paul K|title=Besieged: 100 Great Sieges from Jericho to Sarajevo|date=2003|publisher=Oxford University Press|isbn=978-0195219302}}
+* {{cite book |last=Drinkwater |first=John |author-link=John Drinkwater Bethune |title=A history of the siege of Gibraltar: With a description and account of that garrison, from the earliest periods |publisher=T. Nelson |year=1905 |url=https://archive.org/details/historyofsiegeof00beth/page/n7/mode/2up }}
+* {{cite book |last1=Dupuy |first1=Richard Ernest |last2=Hammerman |first2=Gay M |last3=Hayes |first3=Grace P |title=The American Revolution, a Global War |date=1977 |publisher=D. Mckay Company |isbn=978-0679506485}}
+* {{cite book |last1=Eggenberger |first1=David |title=An Encyclopedia of Battles: Accounts of Over 1,560 Battles from 1479 B.C. to the Present Dover Military History, Weapons, Armor |date=2012 |publisher=Courier Corporation |isbn=978-0486142012}}
+* {{Citation|last=Falkner|first=James|title=Fire Over The Rock: The Great Siege of Gibraltar 1779–1783|publisher=Pen and Sword|year=2009|isbn=978-1473814226}}
+* {{cite book|last1=Ferreiro|first1=Larrie D|title=Brothers at Arms: American Independence and the Men of France and Spain Who Saved It|date=2016|publisher=Knopf Doubleday Publishing Group|isbn=978-1101875254}}
+* {{cite book|last=Finlayson|first=Darren|title=The fortifications of Gibraltar: 1068–1945|year=2006|publisher=Osprey|location=Oxford [u.a.]|isbn=978-1846030161}}
+* {{cite book|last1=Gardiner|first1=Robert|chapter=Gibraltar: the second relief and after, 1781−1782|title= Navies and the American Revolution, 1775−1783|date=1997|publisher=Chatham Publishing|isbn=155750623X|url-access=registration|url=https://archive.org/details/naviesamericanre0000unse}}
+* {{cite web |last1=Hagist |first1=Don N |title=The Greatest Siege |publisher=Bruce H. Franklin |website=Journal of the American Revolution |date=2014 |access-date=31 August 2020 |url=https://allthingsliberty.com/2014/03/the-greatest-siege/ |ref=hagist |quote=There were many sieges during the American Revolution ...Yorktown ... [beginning in 1779] Gibraltar.}}
+* {{cite book|last1=Harding|first1=Richard|title=The Emergence of Britain's Global Naval Supremacy: The War of 1739–1748|date=2010|publisher=Boydell & Brewer|isbn=978-1843835806}}
+* {{cite book |last1=Harvey |first1=Robert |title=A Few Bloody Noses: The American Revolutionary War |date=2004 |publisher=Robinson |isbn=978-1841199528}}
+* {{cite book|last1=Hoock|first1=Holger|title=Empires of the Imagination: Politics, War, and the Arts in the British World, 1750–1850|date=2010|publisher=Profile Books|isbn=978-1861978592}}
+* {{cite book|last1=Hughes|first1=Quentin|last2=Migos|first2=Athanassios|title=Strong as the Rock of Gibraltar|publisher=Exchange Publications|location=Gibraltar|year=1995|oclc= 48491998}}
+* {{cite book |last1=Kochin |first1=Michael S |last2=Taylor |first2=Michael |title=An Independent Empire: Diplomacy & War in the Making of the United States |date=2020 |publisher=University of Michigan Press |isbn=978-0472054404}}
+* {{cite book|last1=Lavery|first1=Brian|title=Nelson's Victory: 250 Years of War and Peace|date=2015|publisher=Seaforth Publishing|isbn=978-1473854949}}
+* {{cite book|last1=Mackesy|first1=Piers|title=The War for America: 1775–1783|date=1992|publisher=Bison Books|isbn=978-0803281929}}
+* {{cite book|last=Mahan|first=Arthur T|url=https://archive.org/details/majoroperationso00maha|page=[https://archive.org/details/majoroperationso00maha/page/449 449]|quote=langara.|title=Major Operations of the Royal Navy, 1762–1783|publisher=Little, Brown|year=1898|location=Boston|oclc=46778589}}
+* {{cite book|first=Martin |last=Middlebrook|title=The Kaiser's Battle|publisher=Penguin|year=1983}}
+* {{cite book |editor1-last=Miller|editor1-first=Hunter|title=Treaties and Other International Acts of the United States of America: 1776–1818 &nbsp;<small>(Documents 1–40)</small> |volume=II|publisher=U.S. Government Printing Office |year=1931 |url=https://books.google.com/books?id=huu6xgEACAAJ }}
+* {{cite book|last=Montero|first=Francisco Maria|title=Historia de Gibraltar y de su campo|url=https://archive.org/details/bub_gb_4_AqUai2tkIC|publisher=Imprenta de la Revista Médica|year=1860|language=es}}
+* {{cite book |last=Monti |first=Ángel María |date=1852 |title=Historia De Gibraltar: Dedicada A SS. AA. RR., Los Serenisimos Señores Infantes Duques De Montpensier |url=https://books.google.com/books?id=lZcnKAG_8oUC | publisher=Juan Moyano | access-date=1 June 2020 }}
+* {{cite book |editor1-last=Morris |editor1-first=Richard Brandon |title=John Jay: The winning of the peace: unpublished papers, 1780–1784 Volume 2 |date=1975 |publisher=Harper & Row |isbn=978-0060130480}}
+* {{cite book|last1=Murphy|first1=Orville T|title=Charles Gravier, Comte de Vergennes: French Diplomacy in the Age of Revolution, 1719–1787|date=1982|publisher=SUNY Press|isbn=978-0873954839}}
+* {{cite book|last=Norwich|first=John Julius|author-link=John Julius Norwich|title=The Middle Sea: A History of the Mediterranean|publisher = Random House|year=2006}}
+* {{cite book |last=Pratt |first=Julius William |title=A History of United States Foreign Policy |date=1971 |publisher=Prentice-Hall |isbn=978-0133923162}}
+* {{cite book|last=Rodger|first=Nicholas|author-link=Nicholas Rodger|title=The Command of the Ocean: A Naval History of Britain, 1649–1815|place=London|year=2006}}
+* {{cite book|last1=Richmond|first1=Herbert William|title=The Navy in the War of 1739–48: Volume 1|date=2012|publisher=Cambridge University Press|isbn=978-1107690059}}
+* {{cite book|last=Simms|first=Brendan|title=Three Victories and a Defeat: The Rise and Fall of the First British Empire, 1714–1783 |year=2007|publisher=Allan Lane|isbn=978-0713994261}}
+* {{cite book|last=Stephens|first=Frederic|url=https://archive.org/stream/historyofgibralt00step#page/n5/mode/2up|title=A history of Gibraltar and its sieges|publisher=Provost & Co|year=1870}}
+* {{cite book |last1=Stockley |first1=Andrew |title=Britain and France at the Birth of America: The European Powers and the Peace Negotiations of 1782–1783 |date=2001 |publisher=University of Exeter Press |isbn=978-0859896153}}
+* {{cite book|last=Sugden|first=John|title=Nelson: A Dream of Glory|place=London|year=2004|isbn=022406097X|oclc=56656695}}
+* {{cite book|last=Syrett|first=David|title=Admiral Lord Howe: A Biography|place=London|year=2006}}
+* {{cite journal|last=Uxó|first=José Palasí|title=Referencias en torno al bloqueo naval durante los asedios|journal=Almoraima|number=34|year=2007|language=es}}
+* {{cite web |title=Continental Congress: Remarks on the Provisional Peace Treaty |year=1783 |access-date=15 July 2020 |publisher=U.S. National Archives|url=https://founders.archives.gov/documents/Hamilton/01-03-02-0186#ARHN-01-03-02-0186-fn-0001 |ref=national}}
+* {{cite web |title=British-American Diplomacy – Preliminary Articles of Peace; November 30, 1782 |url=https://avalon.law.yale.edu/18th_century/prel1782.asp |year=1782 |publisher=Yale Law School, [[Avalon Project]] |access-date=15 July 2020 |ref=avalon}}
+* {{cite web |url= https://avalon.law.yale.edu/subject_menus/parismen.asp |title= British-American Diplomacy, The Paris Peace Treaty 1783 and Associated Documents |author=<!--Not stated--> |website=The Avalon Project |publisher=Yale Law School |access-date= 30 July 2020 |quote= His Brittanic Majesty acknowledges the said United States|ref=TreatyParis1783}}
+
+==External links==
+{{Commons category}}
+* {{cite ODNB | title = Curtis, Sir Roger | type = subscription required | first = Roger | last = Knight | year = 2004 | doi = 10.1093/ref:odnb/6961 | url = http://www.oxforddnb.com/view/article/6961}}
+
+{{Sieges of Gibraltar}}
+{{Gibraltar topics}}
+{{American Revolutionary War|state=collapsed}}
+
+{{Authority control}}
+
+{{DEFAULTSORT:Gibraltar 1779–1783}}
+[[Category:Great Siege of Gibraltar| ]]
+[[Category:1782 in Gibraltar]]
+[[Category:1782 in Spain]]
+[[Category:Amphibious operations]]
+[[Category:1779 conflicts]]
+[[Category:1780 conflicts]]
+[[Category:1781 conflicts]]
+[[Category:1782 conflicts]]
+[[Category:1783 conflicts]]
+[[Category:Sieges of Gibraltar|14th]]
+[[Category:Sieges of the Anglo-French War (1778–1783)]]
+[[Category:Sieges of the Anglo-Spanish War (1779–1783)]]
+[[Category:Sieges of the American Revolutionary War involving France]]
+[[Category:Battles of the American Revolutionary War involving Spain]]
+[[Category:Sieges of the American Revolutionary War involving Great Britain]]
+[[Category:Naval bombing operations and battles]]
+[[Category:Anti-Gibraltarian sentiment]]

@@ -1,0 +1,62 @@
+{
+  "channel_id": "4",
+  "topic_slug": "utah-byu-holy-war-top-10-showdown",
+  "format": "shorts",
+  "hook": "104 games into college football's Holy War rivalry, history finally happened.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "104 games into college football's Holy War rivalry, history finally happened.",
+      "b_roll": [
+        "historic stadium graphic showing game 104 milestone"
+      ],
+      "text_overlay": {
+        "text": "104th Holy War Meeting"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Saturday, No. 3 Utah hosted No. 7 BYU at Rice-Eccles Stadium. Both rivals entered ranked in the top 10 for the first time. Where did No. 7 BYU lose control?",
+      "b_roll": [
+        "top ten rankings matchup graphic at Rice-Eccles Stadium"
+      ],
+      "text_overlay": {
+        "text": "No. 3 Utah vs No. 7 BYU"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Utah intercepted 4 passes against No. 7 BYU in the Big 12 matchup.",
+      "b_roll": [
+        "tactical diagram illustrating 4 turnover interceptions"
+      ],
+      "text_overlay": {
+        "text": "4 Interceptions"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Offensively, Utah's Devon Dampier accounted for 4 touchdowns and 264 yards of total offense. Utah outlasted the Cougars in a 28-20 home victory. Third-ranked Utah kept its undefeated record intact.",
+      "b_roll": [
+        "stat graphic showing 264 yards and 28-20 final score"
+      ],
+      "text_overlay": {
+        "text": "28-20 Final Score"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The Utes sealed their historic 28-20 win in game 104.",
+      "b_roll": [
+        "rivalry record card marking undefeated Utah victory"
+      ],
+      "text_overlay": {
+        "text": "Utah Wins Game 104"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://kutv.com/sports/college/no-3-utah-outlasts-no-9-byu-in-first-top-ten-rivalry-matchup",
+    "https://roundtable.io/sports/ncaa/byu/news/eight-things-to-remember-before-the-top-ten-holy-war-between-byu-and-utah"
+  ]
+}

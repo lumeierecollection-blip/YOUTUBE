@@ -1,0 +1,77 @@
+{
+  "topic_slug": "sherlock-holmes-study-in-scarlet-140-years",
+  "strongest_angle": "Arthur Conan Doyle originally published A Study in Scarlet in December 1887 in Beeton's Christmas Annual after relinquishing all rights for just £25.",
+  "key_facts": [
+    {
+      "fact": "December 1887 saw the publication of the first of sixty tales featuring Sherlock Holmes and Dr. Watson in Beeton's Christmas Annual.",
+      "source_url": "https://doi.org/10.17615/vds4-7x66",
+      "source_name": "University of North Carolina at Chapel Hill",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sir Arthur Conan Doyle agreed to relinquish all rights to the story A Study in Scarlet in exchange for the sum of £25.",
+      "source_url": "https://doi.org/10.17615/vds4-7x66",
+      "source_name": "University of North Carolina at Chapel Hill",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ward, Lock & Co. published the First British Book Edition of A Study in Scarlet in 1888 following its initial magazine appearance.",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf",
+      "source_name": "Beacon Society",
+      "confidence": "medium"
+    },
+    {
+      "fact": "J.B. Lippincott Company published the First American Book Edition of A Study in Scarlet in the year 1890.",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf",
+      "source_name": "Beacon Society",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Payment for rights",
+      "value": 25,
+      "unit": "pounds",
+      "source_url": "https://doi.org/10.17615/vds4-7x66"
+    },
+    {
+      "label": "First British Book Edition year",
+      "value": 1888,
+      "unit": "year",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf"
+    },
+    {
+      "label": "First American Book Edition year",
+      "value": 1890,
+      "unit": "year",
+      "source_url": "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Beeton's Christmas Annual",
+      "kind": "object"
+    },
+    {
+      "name": "Ward, Lock & Co.",
+      "kind": "organization"
+    },
+    {
+      "name": "J.B. Lippincott Company",
+      "kind": "organization"
+    }
+  ]
+}

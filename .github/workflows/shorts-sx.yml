@@ -1,0 +1,156 @@
+# SX Shorts (AI Tested, 19 Nov 2026): two Shorts in the measured style of the owner's reference uploads (v1 kinetic serif type, v3 photos + captures),
+# rendered on GitHub only: prep (Pixabay clips, Commons photos, real page captures, Gemini narration, faster-whisper word timings, props) ->
+# 10 parallel shards per Short -> join with the narration. Push a branch named sx/<anything>. Nothing uploads to YouTube.
+name: SX Shorts
+on:
+  push:
+    branches: ["sx/**"]
+  workflow_dispatch:
+    inputs:
+      slug: { description: "Short spec slug (platform/shorts-sx/specs/<slug>.mjs)", required: true }
+permissions:
+  contents: read
+  actions: write
+jobs:
+  pick:   # which Short this run builds: the dispatch input, else the slug in this branch's data/uploads/short-plan.json (a push to sx/<branch> used to always build Air Canada)
+    runs-on: ubuntu-latest
+    outputs: { slug: "${{ steps.s.outputs.slug }}" }
+    steps:
+      - uses: actions/checkout@v4
+      - id: s
+        run: echo "slug=${{ inputs.slug || '' }}" > /tmp/o; S=$(sed 's/slug=//' /tmp/o); [ -z "$S" ] && S=$(jq -r .slug data/uploads/short-plan.json); echo "slug=$S" >> "$GITHUB_OUTPUT"; echo "building $S"
+  prep:
+    needs: pick
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 1   # one narration at a time: the free Gemini TTS quota answers 429 to parallel takes
+      matrix:
+        slug: ${{ fromJSON(format('["{0}"]', needs.pick.outputs.slug)) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: actions/setup-python@v5   # rembg 2.0.67 (cut-outs) needs Python <= 3.11, as in cutout.yml
+        with: { python-version: "3.11" }
+      - name: Install tools
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
+          pip install --quiet edge-tts faster-whisper "av==15.1.0"
+      - uses: browser-actions/setup-chrome@v1
+        with: { chrome-version: stable }
+      - name: Pixabay clips (Content License, labelled illustrative on screen)
+        env: { PIXABAY_API_KEY: "${{ secrets.PIXABAY_API_KEY }}" }
+        run: node platform/longform/v2/fetch-footage.mjs "sx-${{ matrix.slug }}"
+      - name: Commons photos (licence checked, credit recorded)
+        run: |
+          node -e 'import("./platform/shorts-sx/specs/${{ matrix.slug }}.mjs").then(m=>{const a=m.PHOTOS.flat();require("fs").writeFileSync("photos.args",JSON.stringify(a))})'
+          if [ "$(cat photos.args)" != "[]" ]; then node -e 'const a=JSON.parse(require("fs").readFileSync("photos.args"));require("child_process").spawnSync("node",["platform/longform/v2/fetch-photos.mjs","ai-tested",...a],{stdio:"inherit"})'; fi
+      - name: People, companies and places named (Wikidata picture, licence-checked) and their cut-outs
+        run: |
+          node platform/shorts-sx/entities.mjs "${{ matrix.slug }}"
+          if [ -s "output/sx/${{ matrix.slug }}/cutouts.txt" ]; then
+            pip install --quiet "rembg[cpu]==2.0.67" pillow numpy scipy
+            while read -r f || [ -n "$f" ]; do o="${f%.*}-cutout.png"; [ -f "$o" ] || python platform/production/cutout.py "$f" "$o" --model birefnet-general --max 1600 || echo "cutout failed: $f"; done < "output/sx/${{ matrix.slug }}/cutouts.txt"
+          fi
+      - name: Real page captures (Playwright), with the on-page boxes of the quoted phrases
+        run: |
+          node -e 'import("./platform/shorts-sx/specs/${{ matrix.slug }}.mjs").then(m=>require("fs").writeFileSync("captures.json",JSON.stringify(m.CAPTURES)))'
+          node platform/longform/v2/capture.mjs captures.json "src/skills/remotion-render/public/sx/${{ matrix.slug }}"
+      - name: Narration (Gemini TTS, edge-tts fallback)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/shorts-sx/voice.mjs "${{ matrix.slug }}"
+      - name: Visual-sense gate (every picture must show what is said; vision model check, fails the build otherwise)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          VISION_API_BASE: ${{ secrets.VISION_API_BASE }}
+          VISION_API_KEY: ${{ secrets.VISION_API_KEY }}
+          VISION_MODEL: ${{ secrets.VISION_MODEL }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+        run: node platform/shorts-sx/check-visuals.mjs "${{ matrix.slug }}"
+      - name: Word timings and props
+        run: |
+          python platform/shorts-sx/words.py "${{ matrix.slug }}"
+          node platform/shorts-sx/build.mjs "${{ matrix.slug }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sx-prep-${{ matrix.slug }}
+          retention-days: 14
+          path: |
+            output/sx/${{ matrix.slug }}
+            src/skills/remotion-render/public/lf2/footage/sx-*.mp4
+            src/skills/remotion-render/public/lf2/ai-tested
+            src/skills/remotion-render/public/sx/${{ matrix.slug }}
+
+  shards:
+    needs: [pick, prep]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        slug: ${{ fromJSON(format('["{0}"]', needs.pick.outputs.slug)) }}
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]   # owner, 19 Nov 2026: 20 pieces per video
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Install tools
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          cd src/skills/remotion-render && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
+          for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
+      - uses: browser-actions/setup-chrome@v1
+        with: { chrome-version: stable }
+      - uses: actions/download-artifact@v4
+        with: { name: "sx-prep-${{ matrix.slug }}", path: . }
+      - name: Render shard ${{ matrix.shard }}/20
+        run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --shard ${{ matrix.shard }}/20
+      - uses: actions/upload-artifact@v4
+        with: { name: "sx-part-${{ matrix.slug }}-${{ matrix.shard }}", path: "output/sx/${{ matrix.slug }}/parts/part-${{ matrix.shard }}.mp4", retention-days: 7 }
+
+  join:
+    needs: [pick, shards]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        slug: ${{ fromJSON(format('["{0}"]', needs.pick.outputs.slug)) }}
+    steps:
+      - uses: actions/checkout@v4
+      - run: for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
+      - uses: actions/download-artifact@v4
+        with: { name: "sx-prep-${{ matrix.slug }}", path: . }
+      - uses: actions/download-artifact@v4
+        with: { pattern: "sx-part-${{ matrix.slug }}-*", path: "output/sx/${{ matrix.slug }}/parts", merge-multiple: true }
+      - name: Join the 20 shards with the narration
+        run: node platform/shorts-sx/render.mjs "${{ matrix.slug }}" --join
+      - uses: actions/upload-artifact@v4
+        with: { name: "sx-short-${{ matrix.slug }}", path: "output/sx/${{ matrix.slug }}/short.mp4", retention-days: 30 }
+      # a render started by the autopilot (GITHUB_TOKEN) does not fire the workflow_run trigger, so it asks for the private upload itself
+      - name: Ask for the private upload
+        if: ${{ github.actor == 'github-actions[bot]' }}
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: gh workflow run "Ship Short (private)" --ref main -f run="${{ github.run_id }}" -f branch="${{ github.ref_name }}"

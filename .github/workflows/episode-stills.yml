@@ -1,0 +1,39 @@
+# Visual approval for one long-form episode: two stills per beat (25 % and 70 % into it), no voice, no video, no upload.
+# Push a branch named epstills/<episode-slug>. Artifact: episode-stills-<slug> with every PNG and a labelled contact sheet.
+name: Episode stills
+on:
+  push:
+    branches: ["epstills/**"]
+permissions:
+  contents: read
+jobs:
+  stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - name: Install tools
+        run: |
+          npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+          cd src/skills/remotion-render && (npm ci --no-audit --no-fund || npm install --no-audit --no-fund)
+          for t in 1 2 3; do sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break; sleep 15; done
+      - uses: browser-actions/setup-chrome@v1
+        with: { chrome-version: stable }
+      - name: Render the stills
+        run: |
+          S="${GITHUB_REF_NAME#epstills/}"
+          node platform/longform/v2/render-episode.mjs "$S" --stills
+          cd "output/longform-prod/${S#*-*-}" 2>/dev/null || cd output/longform-prod/*/
+          ls stills | head
+          ffmpeg -loglevel error -y -pattern_type glob -i 'stills/*.png' -vf "scale=480:-2,drawtext=text='%{metadata\:lavf.image2dec.source_basename}':x=8:y=8:fontsize=18:fontcolor=white:box=1:boxcolor=black@0.6,tile=4x15" -frames:v 1 stills/contact.jpg || true
+      - name: Small JPEG copies (the full PNG artifact is too big to download reliably)
+        run: |
+          mkdir -p small; for f in output/longform-prod/*/stills/*.png; do ffmpeg -loglevel error -y -i "$f" -vf scale=960:-2 -q:v 5 "small/$(basename "${f%.png}").jpg"; done; ls small | wc -l
+      - uses: actions/upload-artifact@v4
+        with: { name: episode-stills-small, path: small }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: episode-stills
+          path: output/longform-prod/*/stills

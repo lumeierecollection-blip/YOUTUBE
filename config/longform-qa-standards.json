@@ -1,0 +1,974 @@
+{
+ "generated_from": "docs/longform/research/phase3/aggregate.json",
+ "method": "bands = min-max over reference videos per channel (sampled-frame shares, 1 frame / 15 s); shot rhythm from the dissolve-aware detector (+-15%); static share from the 0.75 s frame-difference score; audio from ebur128 and 50 ms RMS windows over the analysed span",
+ "tolerances": {
+  "share_points": 0.12,
+  "note": "dense 3 s re-labelling of 3 windows found the 15 s sampled share off by 5-20 points for the largest class; 12 points is the middle of that range"
+ },
+ "global_hard_rules": {
+  "attribution_required_on_every_third_party_asset": true,
+  "licence_recorded_for_every_asset": true,
+  "ai_generated_imagery_outside_ai_tested": 0.0,
+  "final_loudness_lufs": {
+   "target": -14,
+   "tolerance": 1.0,
+   "source": "YouTube playback reference; the references themselves range -23.4 to -11.7 LUFS"
+  },
+  "true_peak_dbtp_max": -1.0,
+  "music_bed_min_db_below_speech": {
+   "value": 20,
+   "source": "lowest reference value 19.7 dB (SunnyV2 Rogan/Stern)"
+  }
+ },
+ "channels": {
+  "hidden-past": {
+   "name": "Hidden Past",
+   "reference_videos": [
+    "WiRLNEl-4bk",
+    "U_UoAZrOTNU",
+    "FA-oEtccS_k",
+    "R60ZGwd3n9E",
+    "3IVbe0xrRt8"
+   ],
+   "reference_channels": [
+    "RealLifeLore"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "all references from a single channel"
+   ],
+   "real_captured_share": {
+    "min": 0.564,
+    "max": 0.729,
+    "n": 5
+   },
+   "constructed_share": {
+    "min": 0.271,
+    "max": 0.436,
+    "n": 5
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 5
+   },
+   "overlay_text_share": {
+    "min": 0.0,
+    "max": 0.327,
+    "n": 5
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.3,
+    "n": 5
+   },
+   "longest_constructed_run_s": {
+    "min": 60,
+    "max": 135,
+    "n": 5
+   },
+   "shots_per_min": {
+    "min": 7.1,
+    "max": 11.7,
+    "n": 5
+   },
+   "median_shot_s": {
+    "min": 3.5,
+    "max": 5.8,
+    "n": 5
+   },
+   "static_share": {
+    "min": 0.2,
+    "max": 0.3,
+    "n": 5
+   },
+   "longest_static_s": {
+    "min": 31,
+    "max": 57,
+    "n": 5
+   },
+   "lufs": {
+    "min": -17.2,
+    "max": -16.0,
+    "n": 5
+   },
+   "lra": {
+    "min": 1.5,
+    "max": 2.3,
+    "n": 5
+   },
+   "bed_below_speech_db": {
+    "min": 23.5,
+    "max": 33.3,
+    "n": 5
+   },
+   "pauses_per_min": {
+    "min": 6.7,
+    "max": 9.8,
+    "n": 5
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.393,
+     "max": 0.679,
+     "n": 5
+    },
+    "photos+archive P,R,A": {
+     "min": 0.0,
+     "max": 0.236,
+     "n": 5
+    },
+    "screen+docs S,X": {
+     "min": 0.014,
+     "max": 0.041,
+     "n": 5
+    },
+    "maps+data M,G": {
+     "min": 0.264,
+     "max": 0.416,
+     "n": 5
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.0,
+     "max": 0.041,
+     "n": 5
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.007,
+     "n": 5
+    }
+   }
+  },
+  "ai-tested": {
+   "name": "AI Tested",
+   "reference_videos": [
+    "1Aqhg0FVm-w",
+    "h5zkzon0gM4",
+    "cUeZMUGCxrw",
+    "tDWtcyeNNew",
+    "EfyQOAJjx1A"
+   ],
+   "reference_channels": [
+    "AI Search"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "all references from a single channel"
+   ],
+   "real_captured_share": {
+    "min": 0.557,
+    "max": 0.807,
+    "n": 5
+   },
+   "constructed_share": {
+    "min": 0.193,
+    "max": 0.436,
+    "n": 5
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.207,
+    "n": 5
+   },
+   "overlay_text_share": {
+    "min": 0.014,
+    "max": 0.064,
+    "n": 5
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.009,
+    "n": 5
+   },
+   "longest_constructed_run_s": {
+    "min": 75,
+    "max": 135,
+    "n": 5
+   },
+   "shots_per_min": {
+    "min": 6.3,
+    "max": 11.7,
+    "n": 5
+   },
+   "median_shot_s": {
+    "min": 3.0,
+    "max": 4.9,
+    "n": 5
+   },
+   "static_share": {
+    "min": 0.41,
+    "max": 0.64,
+    "n": 5
+   },
+   "longest_static_s": {
+    "min": 20,
+    "max": 137,
+    "n": 5
+   },
+   "lufs": {
+    "min": -20.2,
+    "max": -16.2,
+    "n": 5
+   },
+   "lra": {
+    "min": 2.6,
+    "max": 4.1,
+    "n": 5
+   },
+   "bed_below_speech_db": {
+    "min": 28.0,
+    "max": 29.3,
+    "n": 5
+   },
+   "pauses_per_min": {
+    "min": 1.8,
+    "max": 4.8,
+    "n": 5
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.0,
+     "max": 0.414,
+     "n": 5
+    },
+    "photos+archive P,R,A": {
+     "min": 0.0,
+     "max": 0.018,
+     "n": 5
+    },
+    "screen+docs S,X": {
+     "min": 0.328,
+     "max": 0.773,
+     "n": 5
+    },
+    "maps+data M,G": {
+     "min": 0.0,
+     "max": 0.107,
+     "n": 5
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.023,
+     "max": 0.19,
+     "n": 5
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.207,
+     "n": 5
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.028,
+     "n": 5
+    }
+   }
+  },
+  "court-and-spotlight": {
+   "name": "Court & Spotlight",
+   "reference_videos": [
+    "mxCZUz2F24E",
+    "1aAGV7G5zbo",
+    "jZpq6BCud7s",
+    "-p_TBe0Re_s",
+    "OJ8fsE_GOlg"
+   ],
+   "reference_channels": [
+    "FRONTLINE PBS | Official",
+    "SunnyV2",
+    "Themaxready"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "includes videos with <60% coverage"
+   ],
+   "real_captured_share": {
+    "min": 0.35,
+    "max": 0.986,
+    "n": 5
+   },
+   "constructed_share": {
+    "min": 0.0,
+    "max": 0.6,
+    "n": 5
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 5
+   },
+   "overlay_text_share": {
+    "min": 0.086,
+    "max": 0.7,
+    "n": 5
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.421,
+    "n": 5
+   },
+   "longest_constructed_run_s": {
+    "min": 0,
+    "max": 90,
+    "n": 5
+   },
+   "shots_per_min": {
+    "min": 7.4,
+    "max": 16.6,
+    "n": 5
+   },
+   "median_shot_s": {
+    "min": 3.0,
+    "max": 4.5,
+    "n": 5
+   },
+   "static_share": {
+    "min": 0.04,
+    "max": 0.25,
+    "n": 5
+   },
+   "longest_static_s": {
+    "min": 4,
+    "max": 26,
+    "n": 5
+   },
+   "lufs": {
+    "min": -23.4,
+    "max": -12.3,
+    "n": 5
+   },
+   "lra": {
+    "min": 3.0,
+    "max": 7.2,
+    "n": 5
+   },
+   "bed_below_speech_db": {
+    "min": 19.7,
+    "max": 25.9,
+    "n": 5
+   },
+   "pauses_per_min": {
+    "min": 0.0,
+    "max": 10.5,
+    "n": 5
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.05,
+     "max": 0.771,
+     "n": 5
+    },
+    "photos+archive P,R,A": {
+     "min": 0.049,
+     "max": 0.7,
+     "n": 5
+    },
+    "screen+docs S,X": {
+     "min": 0.0,
+     "max": 0.439,
+     "n": 5
+    },
+    "maps+data M,G": {
+     "min": 0.0,
+     "max": 0.024,
+     "n": 5
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.0,
+     "max": 0.6,
+     "n": 5
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "other B,?": {
+     "min": 0.014,
+     "max": 0.1,
+     "n": 5
+    }
+   }
+  },
+  "celebrity-news": {
+   "name": "Celebrity News",
+   "reference_videos": [
+    "8r3RQD8rE9E",
+    "nOZQlDg_Ei4"
+   ],
+   "reference_channels": [
+    "Nicki Swift",
+    "Patrick Cc:"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "only 2 videos analysed of 4 planned"
+   ],
+   "real_captured_share": {
+    "min": 0.957,
+    "max": 1.0,
+    "n": 2
+   },
+   "constructed_share": {
+    "min": 0.0,
+    "max": 0.043,
+    "n": 2
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 2
+   },
+   "overlay_text_share": {
+    "min": 0.143,
+    "max": 0.605,
+    "n": 2
+   },
+   "human_subject_share": {
+    "min": 0.023,
+    "max": 0.329,
+    "n": 2
+   },
+   "longest_constructed_run_s": {
+    "min": 0,
+    "max": 30,
+    "n": 2
+   },
+   "shots_per_min": {
+    "min": 10.5,
+    "max": 12.1,
+    "n": 2
+   },
+   "median_shot_s": {
+    "min": 4.0,
+    "max": 4.2,
+    "n": 2
+   },
+   "static_share": {
+    "min": 0.11,
+    "max": 0.2,
+    "n": 2
+   },
+   "longest_static_s": {
+    "min": 8,
+    "max": 28,
+    "n": 2
+   },
+   "lufs": {
+    "min": -17.8,
+    "max": -14.1,
+    "n": 2
+   },
+   "lra": {
+    "min": 2.3,
+    "max": 6.1,
+    "n": 2
+   },
+   "bed_below_speech_db": {
+    "min": 20.3,
+    "max": 23.7,
+    "n": 2
+   },
+   "pauses_per_min": {
+    "min": 1.1,
+    "max": 3.6,
+    "n": 2
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.514,
+     "max": 0.791,
+     "n": 2
+    },
+    "photos+archive P,R,A": {
+     "min": 0.209,
+     "max": 0.336,
+     "n": 2
+    },
+    "screen+docs S,X": {
+     "min": 0.0,
+     "max": 0.107,
+     "n": 2
+    },
+    "maps+data M,G": {
+     "min": 0.0,
+     "max": 0.007,
+     "n": 2
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.0,
+     "max": 0.036,
+     "n": 2
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    }
+   }
+  },
+  "rival-lines": {
+   "name": "Rival Lines",
+   "reference_videos": [
+    "N8PZt_9_adI",
+    "KC2Vgjw282s",
+    "Nx8h403Sj_s",
+    "oZaPKaIVIA0",
+    "Dki5tjN0rDE"
+   ],
+   "reference_channels": [
+    "Football Made Simple"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "all references from a single channel",
+    "includes videos with <60% coverage"
+   ],
+   "real_captured_share": {
+    "min": 0.143,
+    "max": 0.4,
+    "n": 5
+   },
+   "constructed_share": {
+    "min": 0.6,
+    "max": 0.857,
+    "n": 5
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 5
+   },
+   "overlay_text_share": {
+    "min": 0.2,
+    "max": 0.364,
+    "n": 5
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.093,
+    "n": 5
+   },
+   "longest_constructed_run_s": {
+    "min": 75,
+    "max": 180,
+    "n": 5
+   },
+   "shots_per_min": {
+    "min": 4.7,
+    "max": 9.8,
+    "n": 5
+   },
+   "median_shot_s": {
+    "min": 4.0,
+    "max": 9.0,
+    "n": 5
+   },
+   "static_share": {
+    "min": 0.3,
+    "max": 0.41,
+    "n": 5
+   },
+   "longest_static_s": {
+    "min": 8,
+    "max": 18,
+    "n": 5
+   },
+   "lufs": {
+    "min": -23.2,
+    "max": -15.7,
+    "n": 5
+   },
+   "lra": {
+    "min": 2.1,
+    "max": 16.8,
+    "n": 5
+   },
+   "bed_below_speech_db": {
+    "min": 21.8,
+    "max": 25.4,
+    "n": 5
+   },
+   "pauses_per_min": {
+    "min": 2.1,
+    "max": 6.6,
+    "n": 5
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.114,
+     "max": 0.364,
+     "n": 5
+    },
+    "photos+archive P,R,A": {
+     "min": 0.0,
+     "max": 0.221,
+     "n": 5
+    },
+    "screen+docs S,X": {
+     "min": 0.0,
+     "max": 0.021,
+     "n": 5
+    },
+    "maps+data M,G": {
+     "min": 0.028,
+     "max": 0.143,
+     "n": 5
+    },
+    "tactical Q": {
+     "min": 0.424,
+     "max": 0.686,
+     "n": 5
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.029,
+     "max": 0.061,
+     "n": 5
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.03,
+     "n": 5
+    }
+   }
+  },
+  "red-space-facts": {
+   "name": "Space (Red Space Facts)",
+   "reference_videos": [
+    "pZh5BWCNmmE",
+    "s0mNlXGd2Bc",
+    "4iC9Qi3y9q8",
+    "_IkaetPoBZM",
+    "0FH9cgRhQ-k",
+    "ZEyAs3NWH4A"
+   ],
+   "reference_channels": [
+    "Astrum",
+    "ElderFox Documentaries",
+    "History of the Universe",
+    "Kurzgesagt \u2013 In a Nutshell",
+    "SEA",
+    "The Space Race"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "small sample (<=6 videos); bands are observed ranges, not tolerances"
+   ],
+   "real_captured_share": {
+    "min": 0.018,
+    "max": 0.927,
+    "n": 6
+   },
+   "constructed_share": {
+    "min": 0.073,
+    "max": 0.982,
+    "n": 6
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 6
+   },
+   "overlay_text_share": {
+    "min": 0.079,
+    "max": 0.488,
+    "n": 6
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.071,
+    "n": 6
+   },
+   "longest_constructed_run_s": {
+    "min": 30,
+    "max": 765,
+    "n": 6
+   },
+   "shots_per_min": {
+    "min": 1.9,
+    "max": 10.3,
+    "n": 6
+   },
+   "median_shot_s": {
+    "min": 4.5,
+    "max": 31.4,
+    "n": 6
+   },
+   "static_share": {
+    "min": 0.19,
+    "max": 0.54,
+    "n": 6
+   },
+   "longest_static_s": {
+    "min": 8,
+    "max": 103,
+    "n": 6
+   },
+   "lufs": {
+    "min": -20.3,
+    "max": -14.2,
+    "n": 6
+   },
+   "lra": {
+    "min": 2.5,
+    "max": 16.7,
+    "n": 6
+   },
+   "bed_below_speech_db": {
+    "min": 20.6,
+    "max": 27.0,
+    "n": 6
+   },
+   "pauses_per_min": {
+    "min": 0.5,
+    "max": 16.2,
+    "n": 6
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.0,
+     "max": 0.207,
+     "n": 6
+    },
+    "photos+archive P,R,A": {
+     "min": 0.0,
+     "max": 0.927,
+     "n": 6
+    },
+    "screen+docs S,X": {
+     "min": 0.0,
+     "max": 0.05,
+     "n": 6
+    },
+    "maps+data M,G": {
+     "min": 0.0,
+     "max": 0.064,
+     "n": 6
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 6
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 6
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.073,
+     "max": 0.964,
+     "n": 6
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 6
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.068,
+     "n": 6
+    }
+   }
+  },
+  "psychology": {
+   "name": "Psychology",
+   "reference_videos": [
+    "4aN5TbGW5JA",
+    "CkP_8bkjf1E",
+    "fTltSulVbs8",
+    "-W-ML_dG_4Y",
+    "IqXpzcfdtn4"
+   ],
+   "reference_channels": [
+    "Aperture",
+    "Practical Psychology",
+    "Psych2Go",
+    "PsychToons",
+    "Sprouts"
+   ],
+   "provisional": true,
+   "provisional_reasons": [
+    "small sample (<=6 videos); bands are observed ranges, not tolerances"
+   ],
+   "real_captured_share": {
+    "min": 0.0,
+    "max": 0.76,
+    "n": 5
+   },
+   "constructed_share": {
+    "min": 0.232,
+    "max": 1.0,
+    "n": 5
+   },
+   "ai_generated_share": {
+    "min": 0.0,
+    "max": 0.0,
+    "n": 5
+   },
+   "overlay_text_share": {
+    "min": 0.042,
+    "max": 0.211,
+    "n": 5
+   },
+   "human_subject_share": {
+    "min": 0.0,
+    "max": 0.08,
+    "n": 5
+   },
+   "longest_constructed_run_s": {
+    "min": 60,
+    "max": 885,
+    "n": 5
+   },
+   "shots_per_min": {
+    "min": 2.1,
+    "max": 17.6,
+    "n": 5
+   },
+   "median_shot_s": {
+    "min": 3.0,
+    "max": 23.8,
+    "n": 5
+   },
+   "static_share": {
+    "min": 0.15,
+    "max": 0.74,
+    "n": 5
+   },
+   "longest_static_s": {
+    "min": 7,
+    "max": 31,
+    "n": 5
+   },
+   "lufs": {
+    "min": -22.6,
+    "max": -11.7,
+    "n": 5
+   },
+   "lra": {
+    "min": 2.0,
+    "max": 6.6,
+    "n": 5
+   },
+   "bed_below_speech_db": {
+    "min": 20.6,
+    "max": 36.0,
+    "n": 5
+   },
+   "pauses_per_min": {
+    "min": 1.0,
+    "max": 23.5,
+    "n": 5
+   },
+   "category_groups_sampled": {
+    "real footage V,N,I,H,K": {
+     "min": 0.0,
+     "max": 0.728,
+     "n": 5
+    },
+    "photos+archive P,R,A": {
+     "min": 0.0,
+     "max": 0.016,
+     "n": 5
+    },
+    "screen+docs S,X": {
+     "min": 0.0,
+     "max": 0.1,
+     "n": 5
+    },
+    "maps+data M,G": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "tactical Q": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "whiteboard W": {
+     "min": 0.0,
+     "max": 0.958,
+     "n": 5
+    },
+    "motion gfx/illus/text/decor D,O,T,F": {
+     "min": 0.042,
+     "max": 1.0,
+     "n": 5
+    },
+    "AI-gen Z": {
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "other B,?": {
+     "min": 0.0,
+     "max": 0.008,
+     "n": 5
+    }
+   }
+  }
+ }
+}

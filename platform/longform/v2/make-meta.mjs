@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+/**
+ * Long-form publishing metadata from a rendered episode: title, description with real chapters (from the measured beat lengths), sources, image and sound
+ * credits, tags and hashtags. Usage: node platform/longform/v2/make-meta.mjs <channel>. Output: output/longform-prod/<channel>/episode-meta.json. Nothing uploads.
+ */
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { basename, join } from "node:path";
+import { ROOT } from "../../preview/lib.mjs";
+
+const slug = process.argv[2], ch = slug.startsWith("hidden-past") ? "hidden-past" : slug.startsWith("ai-tested") ? "ai-tested" : slug.startsWith("rival-lines") ? "rival-lines" : slug, XF = 0.4, PAD = 0.55;
+const BASE = join(ROOT, "output/longform-prod", slug), VOICE = join(BASE, "voice");
+const { EPISODE: ep, SOURCES } = await import(`./episodes/${slug}.mjs`);
+const dur = (f) => Number(spawnSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", f], { encoding: "utf8" }).stdout.trim());
+const attrib = (() => { try { return JSON.parse(readFileSync(join(ROOT, `src/skills/remotion-render/public/lf2/${ch}/ATTRIBUTIONS.json`), "utf8")); } catch { return {}; } })();
+const images = [...new Set(ep.beats.flatMap((b) => { const img = b.scene.image || b.scene.photo; const k = img && basename(String(img)).replace(/\.\w+$/, ""); return k && attrib[k] ? [`${attrib[k].credit_line} (${attrib[k].source_url})`] : []; }))];
+const log = existsSync(join(BASE, "render-log.json")) ? JSON.parse(readFileSync(join(BASE, "render-log.json"), "utf8")) : {};
+const lib = Object.fromEntries(JSON.parse(readFileSync(join(ROOT, "config/longform-audio-library.json"), "utf8")).assets.map((a) => [a.slot, a]));
+const sounds = [...new Set((log.sfx || []).map((e) => e.asset))].map((k) => { const a = lib[k]; return a ? `Sound effect: "${a.title}" by ${a.creator}, ${a.license.toUpperCase().replace("BY 3.0", "CC BY 3.0")} (${a.source_page})` : null; }).filter(Boolean);
+let t = 0, last = null; const chapters = [];
+for (const b of ep.beats) { const f = join(VOICE, `${b.id}.mp3`); if (!existsSync(f)) continue; if (b.part !== last) { chapters.push([t, b.part]); last = b.part; } t += dur(f) + PAD - XF; }
+const fmt = (s) => `${Math.floor(Math.round(s) / 60)}:${String(Math.round(s) % 60).padStart(2, "0")}`;
+const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const TOPIC = { // per-episode hashtags and tags: topic words only, no claims
+  "hidden-past-msh": { hashtags: "#HiddenPast #History #MountStHelens", tags: ["Mount St. Helens", "1980 eruption", "volcano", "lateral blast", "history"] },
+  "hidden-past-hormuz": { hashtags: "#HiddenPast #History #StraitOfHormuz", tags: ["Strait of Hormuz", "USS Samuel B. Roberts", "Operation Praying Mantis", "Iran Air 655", "history"] },
+  "hidden-past": { hashtags: "#HiddenPast #History #SuezCanal", tags: ["Suez Canal", "Yellow Fleet", "Great Bitter Lake", "Six Day War", "history"] },
+  "hidden-past-kaliningrad": { hashtags: "#HiddenPast #History #Kaliningrad", tags: ["Kaliningrad", "Königsberg", "Suwałki Gap", "Potsdam Conference", "history"] },
+  "ai-tested-ai-bubble": { hashtags: "#AITested #AI #AIBubble", tags: ["AI bubble", "AI debt", "KOSPI crash", "data centres", "Nvidia OpenAI"] },
+  "rival-lines-home-advantage": { hashtags: "#RivalLines #PremierLeague #Football", tags: ["home advantage", "premier league", "football data", "statistics", "analysis", "referee bias", "ghost games", "fulham"] },
+  "hidden-past-hastings": { hashtags: "#HiddenPast #NormanConquest #1066", tags: ["Battle of Hastings", "1066", "Norman Conquest", "Harold Godwinson", "William the Conqueror", "Harald Hardrada", "Stamford Bridge", "Bayeux Tapestry", "medieval history", "English history", "military history", "history documentary"] },
+  "rival-lines-analyse": { hashtags: "#RivalLines #Football #Tactics", tags: ["how to analyse football", "football tactics", "Euro 2024 final", "Spain England", "StatsBomb"] },
+}[slug] || { hashtags: ch === "ai-tested" ? "#AITested #AI #Gemini" : "#HiddenPast #History", tags: ch === "ai-tested" ? ["AI test", "AI multiplication", "Gemini", "Faith and Fate", "chain of thought"] : ["history"] };
+const hashtags = TOPIC.hashtags;
+const meta = {
+  channel: ch, format: "long-form", title: ep.title, privacy: "private", upload_status: "NOT UPLOADED", seconds: +t.toFixed(1),
+  description: [...(ep.blurb ? [...ep.blurb, ""] : [ep.title, ""]), "Chapters:", ...chapters.map(([s, p]) => `${fmt(s)} ${cap(p)}`), "", "Sources:", ...Object.values(SOURCES).map((s) => `- ${s.title}: ${s.url}`), "", "Image credits:", ...(images.length ? images : ["(graphics and captures made for this video)"]), ...(sounds.length ? ["", ...sounds] : []), ...(existsSync(join(BASE, "credits.txt")) ? ["", readFileSync(join(BASE, "credits.txt"), "utf8").trim()] : []), "", hashtags].join("\n"),
+  tags: TOPIC.tags,
+};
+writeFileSync(join(BASE, "episode-meta.json"), JSON.stringify(meta, null, 2));
+console.log(`${meta.title}: ${chapters.length} chapters, ${meta.seconds}s, ${sounds.length} sound credit(s)`);

@@ -1,0 +1,38 @@
+{
+  "channel_id": "1",
+  "topic_slug": "spirit-of-1676-king-philips-war-350th-anniversary",
+  "format": "shorts",
+  "hook": "A 14-month conflict in 1676 remains the bloodiest war in American history.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 14-month conflict in 1676 remains the bloodiest war in American history.",
+      "visual_cue": "Historical map of New England showing colonial and Indigenous tribal territories."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In June 1675, Metacom led an alliance of Pokanoket, Nipmuc, and Narragansett tribes in Warren, Rhode Island. Why did the Massachusetts General Court enact the 1675 Indian Imprisonment Act, lasting until 2005?",
+      "visual_cue": "Illustration of Metacom standing before colonial representatives."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Massachusetts General Court enacted this law in 1675 and repealed it in 2005.",
+      "visual_cue": "Close-up of a 17th-century colonial document fragment."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Great Falls Massacre at Peskeompskut on May 19, 1676, marked a violent war turning point. We now mark the 350th anniversary of this brutal 14-month conflict across New England.",
+      "visual_cue": "Drawing of the Quinnehtukqut River landscape."
+    },
+    {
+      "id": "close",
+      "voiceover": "14 months of violence defined the spirit of 1676.",
+      "visual_cue": "Fading map of the Pocumtuck Homelands."
+    }
+  ],
+  "sources_used": [
+    "https://kpw350.org",
+    "https://historyofboston.cssh.northeastern.edu/topics/king-philips-war-in-history-and-memory",
+    "https://nolumbekaproject.org/350-2"
+  ]
+}

@@ -1,0 +1,255 @@
+// Hidden Past long-form, 16 Nov 2026 (v2): "Elizabeth I's Famous Speech: Did She Really Say It? (Tilbury, 1588)".
+// STRUCTURE REFERENCE (not a fact source, not a visual source): Epic History TV, "The Greatest Speech in History? Alexander the Great and the Opis Mutiny" (RlKJDwViNKs)
+// and "Napoleonic Wars: Battle of Austerlitz 1805" (bhQe2cjr5XQ), measured 16 Nov 2026 (channel-reverse/reports/EpichistoryTv.md). What we keep is the FORMULA only:
+//   a famous primary-source speech told in the speaker's own reconstructed words -> an honesty note that the exact words are not known -> context on a map ->
+//   chaptered, chronological beats -> a calm narrator, no direct address until the close -> a closing question. Everything else is ours: our script, our sources, our pictures.
+// Not reused from the reference: its illustrations, its text, its map animation, its thumbnails, its title. All pictures below are public-domain or CC-licensed Commons files
+// with the credit on screen; the speech text is the 1654 printed English of Leonel Sharp's version (public domain), quoted from the Wikipedia article.
+// v2 (same day, after watching the first render against the reference): 18 beats of 12-33 s on one slowly zooming picture became 38 beats of 6-16 s, each with its own picture or
+// detail crop (crops of the public-domain paintings, credited as "detail"), a stronger push, a red route line on the maps, and the modern photograph of Tilbury Fort removed
+// (it showed a flat riverside field and was anachronistic for 1588).
+// Facts: ONLY from the Wikipedia articles fetched 16 Nov 2026 (docs/longform/episodes/replicate-2026-11-16/hidden-past-sources/): Speech to the Troops at Tilbury, Spanish Armada, Elizabeth I.
+// Where those articles disagree (the date of the speech; when the army was disbanded) the narration says so and follows the article on the speech.
+import { readFileSync } from "node:fs";
+import { autoCut, montage } from "../autocut.mjs";
+import { join } from "node:path";
+import { ROOT } from "../../../preview/lib.mjs";
+const NE = JSON.parse(readFileSync(join(ROOT, "src/skills/remotion-render/public/geo/ne_50m_armada_sides.geojson"), "utf8"));
+// flat political colouring, one colour per side, as the reference colours its campaign maps (Natural Earth 50m, public domain)
+const FILL = (id, name, color, from = 0) => ({ id, data: { type: "FeatureCollection", features: NE.features.filter((f) => f.properties.NAME === name) }, color, opacity: 0.78, outline: "#F4EDD8", outlineWidth: 2, from, dur: 24 });
+const SIDES = [FILL("es", "Spain", "#B5342B"), FILL("pt", "Portugal", "#B5342B"), FILL("uk", "United Kingdom", "#2F4F8F"), FILL("fr", "France", "#8C8A7A"), FILL("nl", "Netherlands", "#9A8E6A"), FILL("be", "Belgium", "#9A8E6A"), FILL("ie", "Ireland", "#4E7A5A")];
+const GRADE = { saturation: 0.3 };
+const A = (id) => `lf2/hidden-past/${id}.jpg`;
+const C = { Tilbury: [0.3582, 51.4606], London: [-0.1275, 51.5072], Dunkirk: [2.3775, 51.0383], Calais: [1.8564, 50.9481], Gravelines: [2.1283, 50.9858], Plymouth: [-4.1422, 50.3714], Dover: [1.3089, 51.1295], Lisbon: [-9.15, 38.7253], Lizard: [-5.1833, 50.0333], Finisterre: [-9.2722, 42.8825], Ushant: [-5.0833, 48.4611] };
+const W = (t, slug) => ({ title: `Wikipedia: ${t}`, url: `https://en.wikipedia.org/wiki/${slug}`, retrieved: "2026-11-16" });
+
+export const SOURCES = {
+  SP: W("Speech to the Troops at Tilbury", "Speech_to_the_Troops_at_Tilbury"),
+  AR: W("Spanish Armada", "Spanish_Armada"),
+  EL: W("Elizabeth I", "Elizabeth_I"),
+  COORDS: { title: "Coordinates: Wikipedia API (prop=coordinates) for Tilbury, London, Dunkirk, Calais, Gravelines, Plymouth, Dover, Lisbon, The Lizard, Cape Finisterre, Ushant", url: "https://en.wikipedia.org/w/api.php", retrieved: "2026-11-16" },
+  COMMONS: { title: "Pictures via Wikimedia Commons (credits on screen; public/lf2/hidden-past/ATTRIBUTIONS.json)", url: "https://commons.wikimedia.org/", retrieved: "2026-11-16" },
+  NE: { title: "Country polygons: Natural Earth 50m (public domain)", url: "https://www.naturalearthdata.com/", retrieved: "2026-11-16" },
+  EOX: { title: "Sentinel-2 cloudless imagery by EOX (CC BY 4.0), contains modified Copernicus Sentinel data", url: "https://s2maps.eu", retrieved: "2026-11-16" },
+  EPIC: { title: "Structure reference (not a fact source): Epic History TV, The Greatest Speech in History? Alexander the Great and the Opis Mutiny", url: "https://www.youtube.com/watch?v=RlKJDwViNKs", retrieved: "2026-11-16" },
+};
+
+const SOUTHEAST = { f: 0, center: [1.0, 51.1], zoom: 6.6, pitch: 0, bearing: 0 };
+const THAMES = { f: 0, center: [0.9, 51.35], zoom: 8.2, pitch: 0, bearing: 0 };
+const L = (at, text, kind, from, dx, dy) => ({ at, text, kind, from, dx, dy });
+const SH = "Leonel Sharp's version, printed 1654 · as quoted in Wikipedia";
+// one picture or crop per beat; `z` = [start, end] zoom so neighbouring beats move in different directions
+const F = (image, date, text, source, o = {}) => ({ type: "footage", image: A(image), date, grade: "warm", pos: o.pos || "50% 50%", from: (o.z || [1.02, 1.12])[0], to: (o.z || [1.02, 1.12])[1], dur: o.dur || 330, captions: text ? [{ text, source, from: o.at ?? 40 }] : [] });
+const FIG = (image, title, rows) => ({ type: "figures", image: A(image), title, rows });
+const ROWS_DATE = [{ value: "9 / 19 Aug", label: "Old Style / New Style", source: "Wikipedia, 'Speech to the Troops at Tilbury'" }, { value: "18 Aug", label: "Elizabeth went to Tilbury", source: "Wikipedia, 'Spanish Armada'" }, { value: "8 Aug", label: "Old Style, Leicester's invitation to inspect the troops", source: "Wikipedia, 'Elizabeth I'" }];
+const ROWS_PATH = [{ value: "1588", label: "The speech at Tilbury", source: "Wikipedia, 'Speech to the Troops at Tilbury'" }, { value: "1654", label: "Sharp's version printed in 'Cabala, Mysteries of State'", source: "Wikipedia, 'Speech to the Troops at Tilbury'" }, { value: "66 years", label: "the gap between the two (our subtraction)", source: "1654 − 1588" }];
+const ROWS_VERDICT = [{ value: "Neale", label: "“I see no serious reason for rejecting the speech.”", source: "J. E. Neale · quoted in Wikipedia" }, { value: "Green · 1997", label: "“Substantial evidence exists for believing the Tilbury oration is genuine.”", source: "Sixteenth Century Journal · quoted in Wikipedia" }, { value: "Loades", label: "“Whether she used these words, we do not know.”", source: "David Loades · quoted in Wikipedia" }, { value: "Christy · 1919", label: "Questioned its authenticity", source: "Wikipedia, 'Speech to the Troops at Tilbury'" }];
+const ROWS_AFTER = [{ value: "Day after", label: "The army ordered disbanded", source: "Wikipedia, 'Spanish Armada'" }, { value: "Without pay", label: "The navy discharged and sent home", source: "Wikipedia, 'Spanish Armada'" }, { value: "200+ of 500", label: "Dead from the crew of the Bonaventure", source: "Wikipedia, 'Spanish Armada'" }, { value: "3,000+", label: "Men who perished in all", source: "Wikipedia, 'Spanish Armada'" }];
+
+// short licensed clips (Pixabay Content License), fetched and trimmed by platform/longform/v2/fetch-footage.mjs; generic footage of ships, sea, fire and coast, always labelled illustrative
+export const FOOTAGE_REQUIRE = /ship|sail|sea|ocean|castle|fort|fire|flame|horse|sword|armor|armour|candle|book|quill|cannon|flag|cathedral|storm|wave|map|torch|march|coast|cliff|beacon|river|estuary|rigging|medieval/i;
+export const FOOTAGE = [
+  { id: "t-ship", q: "tall ship sailing", alt: ["sailing ship sea", "old sailing ship"] },
+  { id: "t-fleet", q: "sailing ships sea sunset", alt: ["sailboats sea", "ships at sea"] },
+  { id: "t-sea", q: "stormy sea waves", alt: ["dark ocean waves", "rough sea"] },
+  { id: "t-fire", q: "fire flames night", alt: ["burning flames dark", "fire"] },
+  { id: "t-coast", q: "english coast cliffs sea", alt: ["cliffs coast sea", "sea cliffs aerial"] },
+  { id: "t-castle", q: "castle fortress walls", optional: true },
+  { id: "t-candle", q: "candle flame dark", optional: true },
+  { id: "t-book", q: "old book pages", optional: true },
+  { id: "t-quill", q: "writing quill parchment", optional: true },
+  { id: "t-cannon", q: "cannon", optional: true },
+  { id: "t-sword", q: "sword medieval", optional: true },
+  { id: "t-horse", q: "horse riding gallop", optional: true },
+  { id: "t-cathedral", q: "cathedral interior", optional: true },
+  { id: "t-flag", q: "flag waving wind", optional: true },
+  { id: "t-sunset", q: "clouds sea sunset", optional: true },
+  { id: "t-wave", q: "waves ship bow", optional: true },
+  { id: "t-armor", q: "medieval armor", optional: true },
+  { id: "t-map", q: "old map", optional: true },
+  { id: "t-estuary", q: "river estuary", optional: true },
+  { id: "t-storm", q: "storm clouds sea", optional: true },
+  { id: "t-torch", q: "torch flame", optional: true },
+  { id: "t-march", q: "soldiers marching", optional: true },
+  { id: "t-ropes", q: "ship ropes rigging", optional: true },
+  { id: "t-beacon", q: "bonfire hill night", alt: ["campfire night", "fire night hill"] },
+];
+const FV = (id, date, text, source, o = {}) => ({ type: "footage", video: `lf2/footage/${id}.mp4`, videoLen: o.len || 9, date, grade: "warm", credit: "Pixabay Content License · illustrative footage, not the event", captions: text ? [{ text, source, from: o.at ?? 40 }] : [] });
+
+export const EPISODE = {
+  channel: "hidden-past", slug: "tilbury", title: "Elizabeth I's Famous Speech: Did She Really Say It? (Tilbury, 1588)", target_minutes: 8,
+  sound: { bed: "MUSIC_DOC_PASSING", bed_rel_db: -9, dip_scenes: [] },
+  beats: [
+    { id: "T01", part: "the words", ref: "RlKJDwViNKs 0:00: the speech first, in the speaker's own words", src: ["SP", "COMMONS"],
+      vo: "“I know I have the body of a weak and feeble woman, but I have the heart and stomach of a king, and of a king of England too.” It is one of the most quoted speeches in English history.",
+      scene: F("tb-ap-face", "TILBURY · 1588", "“I have the heart and stomach of a king, and of a king of England too.”", SH, { pos: "50% 30%", z: [1.0, 1.1] }) },
+    { id: "T02", part: "the words", ref: "RlKJDwViNKs: the setting named", src: ["SP", "COMMONS"],
+      vo: "Queen Elizabeth the First is said to have given it to an army at Tilbury, in 1588. But the fleet that army was gathered to stop had already been driven away.",
+      scene: F("tb-bod-top", "TILBURY · 1588", "Queen Elizabeth at Tilbury Fort", "Print, Bodleian Libraries · public domain", { pos: "50% 50%", z: [1.12, 1.0], at: 30 }) },
+    { id: "T03", part: "the words", ref: "RlKJDwViNKs: the claim, then its limit", src: ["SP", "COMMONS"],
+      vo: "And the most trusted version of those words was not printed until 1654.",
+      scene: F("tb-ap-wrecks", "THE FLEET WAS GONE", "The most trusted version was printed in 1654.", "Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 40%", z: [1.0, 1.12], at: 30 }) },
+    { id: "T03b", part: "the question", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["COMMONS"],
+      vo: "Picture the south coast of England that summer.",
+      scene: montage(["t-coast", "t-estuary", "t-sunset"], 3) },
+    { id: "T04", part: "the question", ref: "RlKJDwViNKs 0:00-0:43: the honesty note before the speech", src: ["SP", "COMMONS"],
+      vo: "So what happened at Tilbury? Who heard her, what did she actually say, and why can nobody be sure? To answer that, we have to start with the fleet she was waiting for.",
+      scene: F("tb-tilbury-illus", "TILBURY", "Whether she used these words, we do not know.", "Historian David Loades, quoted in Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 30%", z: [1.0, 1.14], at: 120 }) },
+    { id: "T05", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the campaign map before the battle", src: ["AR", "EL", "COORDS", "EOX"],
+      vo: "In the summer of 1588 a great Spanish fleet, the Armada, set out for the English Channel. Its plan was to carry an invasion force under the Duke of Parma from the Netherlands to the south-east coast of England.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "SUMMER 1588", views: [{ ...SOUTHEAST, zoom: 5.8 }, { ...SOUTHEAST, f: 330 }],
+        points: [{ id: "pl", at: C.Plymouth, from: 40 }, { id: "ca", at: C.Calais, pulse: true, from: 70 }, { id: "du", at: C.Dunkirk, from: 90 }, { id: "lo", at: C.London, from: 110 }],
+        labels: [L(C.Plymouth, "Plymouth", "place", 44, 18, -26), L(C.Calais, "Calais", "place", 74, 18, 30), L(C.Dunkirk, "Dunkirk", "place", 94, 18, -26), L(C.London, "London", "place", 114, -150, -10), L([-1.2, 49.6], "English Channel", "water", 30), L([4.6, 52.0], "Netherlands", "country", 60)] } },
+    { id: "T06", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the size of the force, as a figure", src: ["AR", "COMMONS"],
+      vo: "When it left Lisbon, according to the article on the Armada, it had one hundred and forty-one ships, more than ten thousand sailors, and more than nineteen thousand soldiers.",
+      scene: F("tb-gr-left", "THE ARMADA", "141 ships · 10,138 sailors · 19,315 soldiers", "Wikipedia, 'Spanish Armada'", { pos: "40% 50%", z: [1.1, 1.0], at: 50 }) },
+    { id: "T06c", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Picture the fleet under sail.",
+      scene: montage(["t-fleet", "t-ship", "t-ropes"], 3) },
+    { id: "T06b", part: "the Armada", ref: "bhQe2cjr5XQ 1:03: the route on the map", src: ["AR", "COORDS", "EOX"],
+      vo: "It sailed from Lisbon on the twenty-first of July, new style, and was sighted off the Lizard, in Cornwall, on the twenty-ninth.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "21–29 JULY 1588 (NEW STYLE)", views: [{ f: 0, center: [-6.0, 44.5], zoom: 4.3, pitch: 0, bearing: 0 }, { f: 330, center: [-6.0, 45.0], zoom: 4.6, pitch: 0, bearing: 0 }],
+        points: [{ id: "li", at: C.Lisbon, from: 20 }, { id: "lz", at: C.Lizard, pulse: true, from: 150 }],
+        lines: [{ id: "route", coords: [C.Lisbon, C.Finisterre, C.Ushant, C.Lizard], color: "#D7263D", width: 7, from: 40, dur: 160, arrow: true }],
+        labels: [L([-3.7, 40.2], "Spain", "country", 30), L([2.3, 46.7], "France", "country", 30), L([-1.6, 52.9], "England", "country", 30), L(C.Lisbon, "Lisbon", "place", 24, 18, -26), L(C.Lizard, "The Lizard", "place", 154, 18, 30), L([-8.5, 47.5], "Bay of Biscay", "water", 30)],
+        tags: [{ text: "Sailed 21 July · sighted 29 July · route schematic", x: 700, y: 960, from: 120 }] } },
+    { id: "T07", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the fleets meet", src: ["AR", "EL", "COMMONS"],
+      vo: "An English fleet under Francis Drake and Charles Howard went out to meet it. The Armada reached Calais largely intact.",
+      scene: F("tb-gr-right", "CALAIS · 1588", null, null, { pos: "60% 50%", z: [1.0, 1.14] }) },
+    { id: "T07b", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Picture a single ship among them.",
+      scene: montage(["t-ship", "t-wave", "t-ropes"], 3) },
+    { id: "T08", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the night attack", src: ["AR", "COMMONS"],
+      vo: "Then, in the middle of the night of the seventh to the eighth of August, new style, the English set fireships alight and sent them downwind among the anchored Spanish ships.",
+      scene: F("tb-fs-left", "7–8 AUGUST 1588", "English fireships launched at the Spanish Armada off Calais.", "Wikipedia, 'Spanish Armada'", { pos: "50% 55%", z: [1.12, 1.0], at: 80 }) },
+    { id: "T08b", part: "the Armada", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Fire, in the dark, among crowded ships.",
+      scene: montage(["t-fire", "t-torch", "t-storm"], 3) },
+    { id: "T09", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the result", src: ["AR", "COMMONS"],
+      vo: "The Armada scattered, and it suffered further losses in the Battle of Gravelines.",
+      scene: F("tb-gr-low", "GRAVELINES · 8 AUGUST 1588", null, null, { pos: "50% 60%", z: [1.0, 1.12] }) },
+    { id: "T09b", part: "the Armada", ref: "bhQe2cjr5XQ 8:32: the aftermath of the battle on the map", src: ["EL", "COORDS", "EOX"],
+      vo: "The fireships dispersed the Spanish ships to the north-east. The Armada straggled home to Spain in shattered remnants, after disastrous losses on the coast of Ireland.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AFTER GRAVELINES", views: [{ ...SOUTHEAST, zoom: 5.4, center: [2.0, 52.0] }, { ...SOUTHEAST, f: 330, zoom: 5.0, center: [2.0, 52.5] }],
+        points: [{ id: "gr", at: C.Gravelines, pulse: true, from: 20 }],
+        lines: [{ id: "scatter", coords: [C.Gravelines, [4.2, 52.6]], color: "#D7263D", width: 7, from: 60, dur: 100, arrow: true }],
+        labels: [L(C.Gravelines, "Gravelines", "place", 24, 18, 30), L([-1.5, 49.9], "English Channel", "water", 20), L([3.0, 55.0], "North Sea", "water", 30)],
+        tags: [{ text: "Scattered to the north-east (direction only)", x: 940, y: 150, from: 100 }] } },
+    { id: "T10", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the move to the battlefield, on the map", src: ["AR", "COORDS", "EOX"],
+      vo: "But England did not yet know. The result of the fireship attack and of Gravelines had not reached the country.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8 }, { ...THAMES, f: 300 }],
+        points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 40 }, { id: "lo", at: C.London, from: 70 }],
+        labels: [L(C.Tilbury, "Tilbury", "place", 44, 18, 30), L(C.London, "London", "place", 74, -150, -26), L([1.0, 51.9], "North Sea", "water", 30)] } },
+    { id: "T11", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the forces, as a figure on the map", src: ["AR", "COORDS", "EOX"],
+      vo: "So the Earl of Leicester assembled four and a half thousand militia at West Tilbury, in Essex, to guard the Thames estuary against any attack upriver towards London.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 8.6, center: [0.4, 51.45] }, { ...THAMES, f: 330, zoom: 9.4, center: [0.3, 51.46] }],
+        points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 30 }, { id: "lo", at: C.London, from: 60 }],
+        labels: [L(C.Tilbury, "Tilbury", "place", 34, 18, 30), L(C.London, "London", "place", 64, -150, -26)],
+        tags: [{ text: "4,500 militia at West Tilbury", x: 1060, y: 260, from: 80 }] } },
+    { id: "T12", part: "the camp", ref: "bhQe2cjr5XQ 5:56: the feared route", src: ["SP", "COORDS", "EOX"],
+      vo: "The fear was that the Duke of Parma's army might still try to cross from Dunkirk.",
+      scene: { type: "map", base: "s2", terrain: 0, fills: SIDES, grade: GRADE, date: "AUGUST 1588", views: [{ ...THAMES, zoom: 6.8, center: [1.3, 51.3] }, { ...THAMES, f: 240, zoom: 7.4, center: [1.3, 51.3] }],
+        points: [{ id: "ti", at: C.Tilbury, pulse: true, from: 20 }, { id: "du", at: C.Dunkirk, from: 30 }],
+        lines: [{ id: "fear", coords: [C.Dunkirk, C.Tilbury], color: "#D7263D", width: 7, dash: [2, 1.5], from: 50, dur: 70, arrow: true }],
+        labels: [L(C.Tilbury, "Tilbury", "place", 24, 18, 30), L(C.Dunkirk, "Dunkirk", "place", 34, 18, -26)],
+        tags: [{ text: "The feared crossing", x: 760, y: 180, from: 100 }] } },
+    { id: "T12b", part: "the camp", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "Along the south coast, a system of beacons carried the news to London.",
+      scene: montage(["t-beacon", "t-torch", "t-fire"], 3) },
+    { id: "T13", part: "the camp", ref: "RlKJDwViNKs: the named commander beside the speaker", src: ["SP", "COMMONS"],
+      vo: "Leicester, Robert Dudley, was the Queen's lieutenant general, and he rode at her side on the day. In the speech, she tells the troops that he will command in her place.",
+      scene: F("tb-le-face", "ROBERT DUDLEY · EARL OF LEICESTER", "“My lieutenant general shall be in my stead.”", SH, { pos: "50% 25%", z: [1.0, 1.1], at: 110 }) },
+    { id: "T14", part: "the day", ref: "RlKJDwViNKs: the speaker arrives, shown, not told", src: ["SP", "COMMONS"],
+      vo: "On the day of the speech, the Queen left her bodyguard before Tilbury Fort and went among her troops with an escort of just six men.",
+      scene: F("tb-bod-top", "TILBURY", null, null, { pos: "40% 50%", z: [1.0, 1.16] }) },
+    { id: "T15", part: "the day", ref: "RlKJDwViNKs: the speaker, described", src: ["SP", "COMMONS"],
+      vo: "She wore white, with a silver breastplate, and rode a grey gelding. One account, quoted by the historian J. E. Neale, says she passed like some Amazonian empress through all her army.",
+      scene: F("tb-tilbury-illus", "TILBURY", "“She passed like some Amazonian empress through all her army.”", "Quoted by J. E. Neale; Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 45%", z: [1.12, 1.0], at: 100 }) },
+    { id: "T16", part: "the date", ref: "RlKJDwViNKs 0:00: the honesty note, stated plainly", src: ["SP"],
+      vo: "Even the date is not settled. The article on the speech gives the ninth of August in the old calendar, which is the nineteenth in ours.",
+      scene: FIG("tb-gr-low", "When was the speech? Wikipedia's articles disagree", ROWS_DATE.slice(0, 1)) },
+    { id: "T17", part: "the date", ref: "RlKJDwViNKs 0:00: the honesty note, stated plainly", src: ["SP", "AR", "EL"],
+      vo: "The article on the Armada says the eighteenth. The article on Elizabeth gives the eighth, old style. This video follows the article on the speech.",
+      scene: FIG("tb-gr-low", "When was the speech? Wikipedia's articles disagree", ROWS_DATE) },
+    { id: "T18", part: "the speech", ref: "RlKJDwViNKs: the speech in the speaker's words, illustrated", src: ["SP", "COMMONS"],
+      vo: "Here is the version most historians trust. “My loving people. We have been persuaded by some that are careful of our safety, to take heed how we commit ourselves to armed multitudes, for fear of treachery.”",
+      scene: F("tb-ap2-left", "THE SPEECH · 1", "“My loving people.”", SH, { pos: "50% 50%", z: [1.0, 1.12], at: 50 }) },
+    { id: "T19", part: "the speech", ref: "RlKJDwViNKs: the line that sets the tone", src: ["SP", "COMMONS"],
+      vo: "“But I assure you, I do not desire to live to distrust my faithful and loving people. Let tyrants fear.”",
+      scene: F("tb-ap2-mid", "THE SPEECH · 1", "“Let tyrants fear.”", SH, { pos: "50% 50%", z: [1.12, 1.0], at: 90 }) },
+    { id: "T20", part: "the speech", ref: "RlKJDwViNKs: the line everyone remembers", src: ["SP", "COMMONS"],
+      vo: "“I know I have the body but of a weak, feeble woman, but I have the heart and stomach of a king, and of a king of England too,”",
+      scene: F("tb-ap-face", "THE SPEECH · 2", "“I have the heart and stomach of a king.”", SH, { pos: "50% 25%", z: [1.1, 1.0], at: 80 }) },
+    { id: "T21", part: "the speech", ref: "RlKJDwViNKs: the defiance", src: ["SP", "COMMONS"],
+      vo: "“and think foul scorn that Parma or Spain, or any prince of Europe, should dare to invade the borders of my realm.”",
+      scene: F("tb-ap-fleet", "THE SPEECH · 2", "“Think foul scorn that Parma or Spain… should dare to invade.”", SH, { pos: "40% 50%", z: [1.0, 1.12], at: 70 }) },
+    { id: "T22", part: "the speech", ref: "RlKJDwViNKs: the promise to the soldiers", src: ["SP", "COMMONS"],
+      vo: "“I myself will take up arms. I myself will be your general, judge, and rewarder of every one of your virtues in the field.”",
+      scene: F("tb-tilbury-illus", "THE SPEECH · 3", "“I myself will be your general.”", SH, { pos: "50% 60%", z: [1.0, 1.12], at: 90 }) },
+    { id: "T23", part: "the speech", ref: "RlKJDwViNKs: the close of the speech", src: ["SP", "COMMONS"],
+      vo: "“We do assure you, on the word of a prince, that rewards shall be duly paid. We shall shortly have a famous victory over these enemies of my God, of my kingdom, and of my people.”",
+      scene: F("tb-ap-globe", "THE SPEECH · 3", "“We shall shortly have a famous victory.”", SH, { pos: "50% 50%", z: [1.12, 1.0], at: 110 }) },
+    { id: "T24", part: "the source", ref: "RlKJDwViNKs: where the words come from", src: ["SP"],
+      vo: "Now the problem. That version comes from a letter by Leonel Sharp, who was attached to Leicester at Tilbury and later became chaplain to the Duke of Buckingham.",
+      scene: FIG("tb-gr-right", "How the words reached us", ROWS_PATH.slice(0, 1)) },
+    { id: "T25", part: "the source", ref: "RlKJDwViNKs: the witness's own claim", src: ["SP", "COMMONS"],
+      vo: "Sharp wrote that he was ordered, the day after, to repeat the speech to the whole army. And he added: no man hath it but myself, and such as I have given it to.",
+      scene: F("tb-bod-top", "LEONEL SHARP · LETTER TO BUCKINGHAM", "“No man hath it but myself, and such as I have given it to.”", "Leonel Sharp · quoted in Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 50%", z: [1.0, 1.1], at: 100 }) },
+    { id: "T26", part: "the source", ref: "RlKJDwViNKs: the gap, as a figure", src: ["SP"],
+      vo: "It was printed in 1654, in a book called Cabala, Mysteries of State. That is sixty-six years after Tilbury.",
+      scene: FIG("tb-gr-right", "How the words reached us", ROWS_PATH) },
+    { id: "T27", part: "other versions", ref: "bhQe2cjr5XQ: a second account that complicates the first", src: ["SP", "COMMONS"],
+      vo: "There are other versions. A poet, James Aske, printed one in verse in 1588.",
+      scene: F("tb-ap2-right", "VERSION 2 · 1588", "A version in verse, in 'Elizabetha Triumphans'.", "James Aske, 1588 · Wikipedia", { pos: "50% 50%", z: [1.0, 1.12], at: 60 }) },
+    { id: "T28", part: "other versions", ref: "bhQe2cjr5XQ: a second account that complicates the first", src: ["SP", "COMMONS"],
+      vo: "In 1612 William Leigh recorded a very different one, full of scripture: what are these proud Philistines, that they should revile the host of the living God?",
+      scene: F("tb-fs-right", "VERSION 3 · 1612", "“What are these proud Philistines, that they should revile the host of the living God?”", "William Leigh's version, 1612 · as quoted in Wikipedia", { pos: "50% 50%", z: [1.12, 1.0], at: 80 }) },
+    { id: "T29", part: "other versions", ref: "bhQe2cjr5XQ: the count", src: ["AR"],
+      vo: "The article on the Armada says the speech survives in at least six slightly different versions.",
+      scene: FIG("tb-gr-left", "Versions of the speech", [{ value: "6+", label: "slightly different versions survive", source: "Wikipedia, 'Spanish Armada'" }]) },
+    { id: "T30", part: "the verdict", ref: "RlKJDwViNKs: the claim, then its limits", src: ["SP"],
+      vo: "So do historians believe it? Many do. J. E. Neale saw no serious reason to reject it. In 1997 Janet Green argued that substantial evidence exists for its being genuine.",
+      scene: FIG("tb-ap-wrecks", "Historians on the speech", ROWS_VERDICT.slice(0, 2)) },
+    { id: "T31", part: "the verdict", ref: "RlKJDwViNKs: the claim, then its limits", src: ["SP"],
+      vo: "But David Loades wrote that we do not know whether she used these words, though they have an authentic, theatrical ring. And some, such as Miller Christy in 1919, doubted it.",
+      scene: FIG("tb-ap-wrecks", "Historians on the speech", ROWS_VERDICT) },
+    { id: "T32", part: "what is certain", ref: "bhQe2cjr5XQ: the aftermath begins", src: ["SP", "COMMONS"],
+      vo: "What we can say is that a speech was given, and that people talked about it at once. On the tenth of August, one day after, a ballad describing the Queen's visit was registered by the London printer John Wolfe.",
+      scene: F("tb-fs-left", "10 AUGUST 1588", "A ballad on the Queen at Tilbury was registered the next day.", "Wikipedia, 'Speech to the Troops at Tilbury'", { pos: "50% 50%", z: [1.0, 1.12], at: 90 }) },
+    { id: "T33", part: "what is certain", ref: "bhQe2cjr5XQ: the aftermath begins", src: ["SP", "COMMONS"],
+      vo: "It was written by Thomas Deloney, one of the most popular poets of the day.",
+      scene: F("tb-bod-top", "THOMAS DELONEY · BALLAD", null, null, { pos: "70% 45%", z: [1.12, 1.0] }) },
+    { id: "T34", part: "the day after", ref: "bhQe2cjr5XQ 14:25: the aftermath, in numbers", src: ["AR", "SP"],
+      vo: "Then the effort was wound down. According to the article on the Armada, the day after her speech Elizabeth ordered the army disbanded; the article on the speech says the troops were discharged two days later.",
+      scene: FIG("tb-gr-low", "After the speech", ROWS_AFTER.slice(0, 1)) },
+    { id: "T35", part: "the day after", ref: "bhQe2cjr5XQ 14:25: the aftermath, in numbers", src: ["AR"],
+      vo: "The camp at Tilbury was dissolved five days later, and the navy was discharged and sent home without pay.",
+      scene: FIG("tb-gr-low", "After the speech", ROWS_AFTER.slice(0, 2)) },
+    { id: "T36", part: "the day after", ref: "bhQe2cjr5XQ 14:25: the aftermath, in numbers", src: ["AR"],
+      vo: "Typhus, scurvy and dysentery swept through the crews. Of one ship's crew of five hundred, more than two hundred died. In all, upwards of three thousand men perished.",
+      scene: FIG("tb-gr-low", "After the speech", ROWS_AFTER) },
+    { id: "T36b", part: "the day after", ref: "bhQe2cjr5XQ: a cutaway between map and painting", src: ["AR"],
+      vo: "The sea, for now, was quiet again.",
+      scene: montage(["t-sea", "t-wave", "t-storm"], 3) },
+    { id: "T37", part: "the cost", ref: "RlKJDwViNKs: the speaker's promise against what followed", src: ["AR", "COMMONS"],
+      vo: "The admiral, Lord Howard, wrote to the Queen's treasurer: it would grieve any man's heart to see them that have served so valiantly die so miserably.",
+      scene: F("tb-gr-left", "AFTER THE ARMADA", "“It would grieve any man's heart to see them that have served so valiantly die so miserably.”", "Lord Howard to Lord Burghley · quoted in Wikipedia, 'Spanish Armada'", { pos: "50% 50%", z: [1.0, 1.1], at: 60 }) },
+    { id: "T38", part: "the cost", ref: "RlKJDwViNKs: the promise against what followed", src: ["AR", "SP", "COMMONS"],
+      vo: "The speech promised the soldiers rewards, on the word of a prince. The sailors who had actually fought the Armada were sent home without pay. The defence had cost nearly four hundred thousand pounds.",
+      scene: F("tb-fs-right", "AFTER THE ARMADA", "The defence cost nearly £400,000.", "Wikipedia, 'Spanish Armada'", { pos: "50% 50%", z: [1.1, 1.0], at: 150 }) },
+    { id: "T39", part: "close", ref: "RlKJDwViNKs 7:11: the close", src: ["SP", "COMMONS"],
+      vo: "So here is what is solid. A queen rode among her troops at Tilbury, in armour, after the danger had passed, and the story of it spread within a day.",
+      scene: F("tb-ap-face", "TILBURY · 1588", null, null, { pos: "50% 30%", z: [1.12, 1.0] }) },
+    { id: "T40", part: "close", ref: "RlKJDwViNKs 7:11: then a question", src: ["SP", "COMMONS"],
+      vo: "And here is what is not: her exact words. Does it matter whether she said them? Tell us what you think in the comments.",
+      scene: F("tb-armada-portrait", "TILBURY · 1588", "Whether she used these words, we do not know.", "David Loades, quoted in Wikipedia", { pos: "50% 35%", z: [1.0, 1.1], at: 70 }) },
+  ],
+  thumbs: [
+    { name: "thumb1-panel", kind: "panel", big: "Did she\nsay it?", label: "Tilbury 1588", small: "Elizabeth I", image: A("tb-ap-face"), pos: "50% 30%" },
+    { name: "thumb2-quote", kind: "quote", quote: "“I have the heart and stomach of a king”", label: "Which version is real?", image: A("tb-ap-face"), pos: "50% 25%" },
+    { name: "thumb3-armada", kind: "panel", big: "The speech\nafter the\nvictory", label: "Armada 1588", small: "Elizabeth at Tilbury", image: A("tb-gr-left"), pos: "50% 50%" },
+  ],
+};
+
+// Epic History keeps the picture moving constantly: lay short clips over the map and figure beats too
+autoCut(EPISODE.beats, ["t-sea", "t-castle", "t-horse", "t-cannon", "t-flag", "t-candle", "t-wave", "t-sword", "t-cathedral", "t-armor", "t-march", "t-sunset"], { wps: 2.45, first: 0.3, skip: new Set(["T01", "T02", "T03"]) });

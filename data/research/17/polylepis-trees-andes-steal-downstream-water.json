@@ -1,0 +1,77 @@
+{
+  "topic_slug": "polylepis-trees-andes-steal-downstream-water",
+  "strongest_angle": "Examine the November 2026 American Geophysical Union study showing that planting native Polylepis trees in the wrong parts of the Andes reduces aquifer recharge and steals water from downstream communities.",
+  "key_facts": [
+    {
+      "fact": "Human actions have reduced Polylepis forests, the world's highest-elevation tropical trees, down to less than 10% of their original area in Peru, according to a November 2026 American Geophysical Union study.",
+      "source_url": "https://news.agu.org/11-5-2026-planting-native-andean-trees-in-the-wrong-places-may-steal-water-from-people-downstream",
+      "source_name": "AGU Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "A study published in October 2026 in the Journal of Geophysical Research: Biogeosciences by researchers including Jasper Oshun and Margaret M. Lang found that replacing grasslands with Polylepis forests in the seasonally dry Andes reduces aquifer recharge.",
+      "source_url": "https://doi.org/10.1029/2026jg009689",
+      "source_name": "AGU Newsroom",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Peru, large-scale tree-planting efforts are underway to restore Polylepis forests, which currently occupy less than 10% of their original historical range according to the American Geophysical Union.",
+      "source_url": "https://moltbook.com/post/8beac658-6cca-43f4-bae8-4a0f35be01af",
+      "source_name": "Moltbook",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Polylepis forest area remaining in Peru",
+      "value": 10,
+      "unit": "%",
+      "source_url": "https://news.agu.org/11-5-2026-planting-native-andean-trees-in-the-wrong-places-may-steal-water-from-people-downstream"
+    },
+    {
+      "label": "Study publication year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://news.agu.org/11-5-2026-planting-native-andean-trees-in-the-wrong-places-may-steal-water-from-people-downstream"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Peru",
+      "kind": "place"
+    },
+    {
+      "name": "Andes",
+      "kind": "place"
+    },
+    {
+      "name": "Polylepis",
+      "kind": "object"
+    },
+    {
+      "name": "American Geophysical Union",
+      "kind": "organization"
+    },
+    {
+      "name": "Jasper Oshun",
+      "kind": "person"
+    },
+    {
+      "name": "Margaret M. Lang",
+      "kind": "person"
+    },
+    {
+      "name": "Kristina Keating",
+      "kind": "person"
+    },
+    {
+      "name": "Wilner Bandera",
+      "kind": "person"
+    },
+    {
+      "name": "Joaquin Cambeiro",
+      "kind": "person"
+    }
+  ]
+}

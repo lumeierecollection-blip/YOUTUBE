@@ -1,0 +1,35 @@
+{{Short description|2024 Canadian small claims case}}
+{{Use Canadian English|date=September 2026}}
+{{Use mdy dates|date=September 2026}}
+{{Infobox court case
+| name = Moffatt v. Air Canada
+| court = [[Civil Resolution Tribunal]]
+| date decided = {{start date|2024|02|14}}
+| image = 
+| full name = Jake Moffatt v. Air Canada
+| citations = 2024 BCCRT 149
+| Holding = Air Canada is liable for negligent misrepresentation arising from incorrect information given to a customer from its AI chatbot.
+| ChiefJudge = Christopher C. Rivers
+| ChiefJudgeTitle = Tribunal Member
+}}
+
+'''''Moffatt v. Air Canada''''', 2024 BCCRT 149, is a decision of the [[Civil Resolution Tribunal]] of [[British Columbia]] which held that a company could be held liable for [[Hallucination (artificial intelligence)|misleading information]] given to customers by an [[Chatbot|AI chatbot]]. Despite being a [[Small claims court|small claims]] case with only {{CADConvert|880}} at stake, the case received significant international media attention because of its unique nature, being one of the earliest to hold that a company is liable for mistakes made by its AI agent, and because of the "remarkable" claim made by [[Air Canada]] that its chatbot constituted a separate [[legal entity]] over whose actions it could not be held responsible.
+
+== Background ==
+The grandmother of the plaintiff, Jake Moffatt, had passed away in 2022 on [[Remembrance Day]]. Following her death, Moffatt visited the website of the defendant Air Canada to purchase a round-trip airline ticket for immediate travel between [[Vancouver]] and [[Toronto]], where his grandmother had died. While visiting Air Canada's website, Moffatt interacted with an AI support chatbot and asked it about Air Canada's [[Bereavement flight|bereavement fare]] policy, to which the chatbot responded that Moffatt could purchase the tickets at full price and then subsequently claim a refund of the price difference by submitting an application within 90 days of the ticket's issuance. Moffatt then purchased the tickets from Air Canada at a cost of {{CADConvert|1630}}.<ref name="Proctor-2025">{{Cite web |last=Proctor |first=Jason |date=2025-02-15 |title=Air Canada found liable for chatbot's bad advice on plane tickets |url=https://www.cbc.ca/news/canada/british-columbia/air-canada-chatbot-lawsuit-1.7116416 |access-date=2026-09-17 |website=CBC}}</ref>
+
+Moffatt subsequently applied for a refund of the price difference, which Air Canada refused to give, citing a different section of their website which stated that bereavement fares could not be applied retroactively to completed flights and had to be applied for prior to the flight.<ref name="bbc-2024">{{Cite web |date=2024-02-23 |title=Airline held liable for its chatbot giving passenger bad advice - what this means for travellers |url=https://www.bbc.com/travel/article/20240222-air-canada-chatbot-misinformation-what-travellers-should-know |access-date=2026-09-18 |website=www.bbc.com |language=en-GB}}</ref> When Moffatt cited the information given to him by the chatbot, representatives of Air Canada stated that the chatbot had provided "misleading words".<ref name="Proctor-2025" /> Moffatt subsequently filed a claim against Air Canada in the Civil Resolution Tribunal seeking {{CADConvert|880}} as the difference between the price he paid and the bereavement fare he believed he would have been charged.<ref>{{cite web | title=Moffatt v. Air Canada | website=Civil Resolution Tribunal | date=February 14, 2024 | url=https://decisions.civilresolutionbc.ca/crt/crtd/en/item/525448/index.do | access-date=September 18, 2026}}</ref>
+
+== Decision ==
+The tribunal ruled that as the chatbot formed a part of Air Canada's website, Air Canada is fully responsible for the information it provides. In its submissions, Air Canada claimed that the chatbot was "a separate legal entity that is responsible for its own actions", a submission which tribunal member Christopher Rivers called "remarkable", but nonetheless rejected.<ref name="Proctor-2025" /> On this basis, Rivers found Air Canada liable for [[negligent misrepresentation]]<ref name="Am-Bar-Assn">{{Cite web |title=BC Tribunal Confirms Companies Remain Liable for Information Provided by AI Chatbot |url=https://www.americanbar.org/groups/business_law/resources/business-law-today/2024-february/bc-tribunal-confirms-companies-remain-liable-information-provided-ai-chatbot/ |access-date=2026-09-18 |website=www.americanbar.org |language=en}}</ref> and awarded Moffatt {{CADConvert|812|r=0}} as the difference between the price he paid and the cost of bereavement fares, plus costs and interest.<ref name="Proctor-2025" />
+
+== Reactions ==
+The case attracted international attention shortly after the release of the tribunal's decision. The [[American Bar Association]] called it "a helpful reminder that companies remain liable for the actions of their AI tools".<ref name="Am-Bar-Assn" /> Aviation industry expert Marisa Garcia said "For passengers, the only lesson is that they cannot fully rely on the information provided by airline chatbots."<ref name="bbc-2024" /> ''[[Business Insider]]'' labelled the chatbot's actions as an example of "[[Hallucination (artificial intelligence)|botshit]]", and "one example of how the use of AI might worsen companies' [[customer service]]".<ref>{{Cite web |last=Towfighi |first=John |title='Botshit' is an example of how AI is making customer service worse |url=https://www.businessinsider.com/ai-chatbots-bad-customer-service-botshit-inaccurate-information-airlines-accountability-2024-7 |access-date=2026-09-18 |website=Business Insider |language=en-US}}</ref>
+
+== References ==
+{{reflist}}
+
+
+
+[[Category:British Columbia case law]]
+[[Category:Air Canada]]

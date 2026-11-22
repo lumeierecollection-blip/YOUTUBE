@@ -1,0 +1,66 @@
+{
+  "channel_id": "3",
+  "topic_slug": "live-nation-35m-whistleblower-arbitration",
+  "format": "shorts",
+  "hook": "A $35 million whistleblower dispute was just pushed behind closed doors.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A $35 million whistleblower dispute was just pushed behind closed doors.",
+      "b_roll": [
+        "A gavel striking a wooden block next to a $35 million document"
+      ],
+      "text_overlay": {
+        "text": "$35 Million Lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 9, 2026, a Los Angeles judge sent Nicholas Rumanes to private arbitration. Rumanes worked as a Live Nation executive from 2022 until May 2025. Where will the $35 million evidence land?",
+      "b_roll": [
+        "An exterior shot of the Los Angeles County Superior Court building",
+        "A timeline showing employment from 2022 to May 2025 at Live Nation",
+        "A large question mark over sealed court evidence folders"
+      ],
+      "text_overlay": {
+        "text": "Sent to Arbitration"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the judge preserved court authority over future discovery disputes.",
+      "b_roll": [
+        "A judge signing an order reserving court jurisdiction over discovery"
+      ],
+      "text_overlay": {
+        "text": "Court Retains Oversight"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Arbitrator rules didn't stop oversight of Live Nation's $35 million whistleblower case. Los Angeles County Superior Court won't stop parties from bringing discovery disputes back.",
+      "b_roll": [
+        "A legal document highlighting arbitrator discovery rules",
+        "A news headline graphic referencing the TicketNews report",
+        "A balance scale showing judicial oversight versus private arbitration"
+      ],
+      "text_overlay": {
+        "text": "Discovery Stays Accountable"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The $35 million lawsuit stays private, but discovery remains open.",
+      "b_roll": [
+        "A legal folder closing with an open lock symbol next to it"
+      ],
+      "text_overlay": {
+        "text": "Case Status: Ongoing"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.ticketnews.com/2026/11/live-nation-whistleblower-lawsuit-arbitration-discovery",
+    "https://wearelegalrevolution.com/live-nation-whistleblower-case-goes-private"
+  ]
+}

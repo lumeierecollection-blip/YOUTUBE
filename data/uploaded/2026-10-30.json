@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-30",
+  "review_run_id": "41077143258",
+  "generated_at": "2026-10-30T15:38:30.662Z",
+  "uploads": [],
+  "not_uploaded": {
+    "1": "no video passed QA this run",
+    "2": "no video passed QA this run",
+    "48": "no video passed QA this run"
+  },
+  "no_credentials": [],
+  "note": "Nothing was uploaded today ΓÇö see not_uploaded for each channel reason."
+}

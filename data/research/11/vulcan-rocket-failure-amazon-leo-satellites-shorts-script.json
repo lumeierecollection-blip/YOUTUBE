@@ -1,0 +1,73 @@
+{
+  "channel_id": "11",
+  "topic_slug": "vulcan-rocket-failure-amazon-leo-satellites",
+  "format": "shorts",
+  "hook": "United Launch Alliance's Vulcan rocket, a heavy-lift launch vehicle, suffered a mission-ending catastrophe 10 minutes in.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "United Launch Alliance's Vulcan rocket, a heavy-lift launch vehicle, suffered a mission-ending catastrophe 10 minutes in.",
+      "visual_cue": "Graphic showing the Vulcan rocket mid-flight with a countdown overlay of 10 minutes.",
+      "sfx_cue": "Low, dramatic bass drone that cuts to silence.",
+      "b_roll": [
+        "Stock footage of a rocket ascent in the clouds"
+      ],
+      "text_overlay": {
+        "text": "10 minutes to failure"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 15, 2026, the Vulcan rocket launched from Cape Canaveral's pad 41 carrying 40 Amazon Leo satellites. But why did the Vulcan rocket mission suddenly end?",
+      "visual_cue": "Map showing Cape Canaveral and a satellite illustration.",
+      "sfx_cue": "Subtle wind and mechanical hum.",
+      "b_roll": [
+        "NASA footage of Cape Canaveral launch infrastructure"
+      ],
+      "text_overlay": {
+        "text": "40 satellites lost"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this failure marks the first total loss in United Launch Alliance's 20-year history.",
+      "visual_cue": "Timeline graphic showing the 20-year span.",
+      "sfx_cue": "A single resonant metallic chime.",
+      "b_roll": [
+        "Historical montage of ULA launches"
+      ],
+      "text_overlay": {
+        "text": "20 years of history"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Flight data reveals an inadequate fuel supply reached the BE-4 engines, the rocket's primary power source. The United Launch Alliance mission ended 10 minutes after liftoff from Cape Canaveral's pad 41.",
+      "visual_cue": "Diagram of the BE-4 engine fuel lines with an animation showing flow restriction.",
+      "sfx_cue": "Rising tension, then a dull thud.",
+      "b_roll": [
+        "Technical schematic of the BE-4 engine"
+      ],
+      "text_overlay": {
+        "text": "Fuel supply anomaly"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The November 15, 2026 failure destroyed all 40 Amazon Leo satellites during the Vulcan flight.",
+      "visual_cue": "Cinematic shot of stars and distant orbital debris.",
+      "sfx_cue": "Fading echo of a space-themed ambient track.",
+      "b_roll": [
+        "CC space imagery of orbital debris"
+      ],
+      "text_overlay": {
+        "text": "40 satellites lost"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites",
+    "https://www.reuters.com/5f374b32b07b/business/aerospace-defense/us-rocket-fails-after-launch-payload-amazon-internet-satellites-destroyed-2026-11-15",
+    "https://blog.ulalaunch.com/blog/vulcan-leo-1-updates"
+  ]
+}

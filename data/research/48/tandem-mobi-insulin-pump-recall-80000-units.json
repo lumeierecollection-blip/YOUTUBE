@@ -1,0 +1,57 @@
+{
+  "topic_slug": "tandem-mobi-insulin-pump-recall-80000-units",
+  "strongest_angle": "Examining how mechanical friction within the drive module of Tandem Diabetes Care's Mobi insulin pumps triggers false occlusion alarms and 230 adverse events across 80,000 units.",
+  "key_facts": [
+    {
+      "fact": "Tandem Diabetes Care initiated a recall and correction for more than 80,000 Mobi insulin pumps starting on September 23, 2026.",
+      "source_url": "https://medgadget.org/tandem-mobi-recall-false-occlusion-alarm",
+      "source_name": "MedGadget",
+      "confidence": "high"
+    },
+    {
+      "fact": "Increased friction within the pump's drive module reduces available motor power, causing the system to incorrectly detect an occlusion and suspend insulin delivery.",
+      "source_url": "https://www.medtechdive.com/news/tandem-recalls-mobi-insulin-pump-reports-230-adverse-events/874386",
+      "source_name": "MedTech Dive",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tandem Diabetes Care received 230 reports of adverse events requiring medical intervention linked to the false occlusion alarms.",
+      "source_url": "https://medgadget.org/tandem-mobi-recall-false-occlusion-alarm",
+      "source_name": "MedGadget",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Recalled Mobi insulin pumps",
+      "value": 80000,
+      "unit": "pumps",
+      "source_url": "https://www.medtechdive.com/news/tandem-recalls-mobi-insulin-pump-reports-230-adverse-events/874386"
+    },
+    {
+      "label": "Reported adverse events",
+      "value": 230,
+      "unit": "events",
+      "source_url": "https://www.medtechdive.com/news/tandem-recalls-mobi-insulin-pump-reports-230-adverse-events/874386"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Tandem Diabetes Care",
+      "kind": "organization"
+    },
+    {
+      "name": "Mobi",
+      "kind": "object"
+    },
+    {
+      "name": "MedTech Dive",
+      "kind": "organization"
+    },
+    {
+      "name": "MedGadget",
+      "kind": "organization"
+    }
+  ]
+}

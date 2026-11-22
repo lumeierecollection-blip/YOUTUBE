@@ -1,0 +1,8 @@
+{
+ "dir": "ait-air-canada",
+ "slot": "02",
+ "expect_channel": "AI Tested",
+ "category": "28",
+ "slug": "ai-tested-air-canada",
+ "branch": "air-canada"
+}

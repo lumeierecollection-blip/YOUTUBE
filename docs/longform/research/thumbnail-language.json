@@ -1,0 +1,35 @@
+{
+  "_note": "Observed thumbnail language per reference channel, read from boards/t/<channel_id>.jpg (top 5 by views of the newest 250 long videos + 5 newest), collected 2026-11-13. Measured colour statistics per thumbnail are in thumbnail-stats.json. Observation only; nothing here is copied into our thumbnails.",
+  "space": {
+    "Astrum": { "subject": "one celestial object or probe, full bleed, cinematic render or real image", "people": 0, "text": "2-4 words, very wide-tracked thin caps, centred ('THIS IS URANUS', 'WHAT WE FOUND', 'TITAN UPDATE')", "background": "the object itself; deep blacks", "symbols": "none", "evidence": "real mission images sometimes (SDO sun)", "hierarchy": "object then text", "note": "recent outlier 'Uranus: The Weirdest Planet' 3.0x median uses 'THIS IS URANUS' over the planet's limb" },
+    "The Space Race": { "subject": "dramatic landscape of a moon/planet (often exaggerated artistic render), or two leaders' faces for space-politics", "people": "0 or 2 (heads of state)", "text": "'THIS IS X' in heavy white caps with bevel, 2-4 words", "background": "full bleed; thin white inner border; logo bottom-left", "symbols": "split-screen 'SPACEX | NASA' labels", "evidence": "rarely", "note": "exaggerated terrain (Europa spike) = artistic, not data" },
+    "SEA": { "subject": "star/galaxy/void render", "text": "large title words, sometimes mixed weights ('THE LARGEST STAR')", "symbols": "scale markers: a tiny ring + arrow labelled 'SOLAR SYSTEM' against a giant star", "note": "scale-comparison device is the signature" },
+    "Kurzgesagt": { "subject": "flat vector illustration, one central subject", "text": "2-3 word caps headline at top ('LARGEST STAR', 'WE LOST CONTROL')", "symbols": "arrow + label for scale ('→ OUR SUN', 'EARTH ↓')", "background": "saturated dark gradients", "note": "illustration brand; not replicable without our own illustration style" },
+    "History of the Universe": { "subject": "cosmic collage, multiple bubbles/objects; occasional painted face (Einstein)", "text": "question or claim in boxed white-outline caps ('THIS IS WHERE IT ENDS.', 'EINSTEIN HATED THIS IDEA.')", "symbols": "labelled diagram callouts ('YOU ARE HERE')" },
+    "ElderFox Documentaries": { "subject": "REAL NASA rover/orbiter imagery, untreated", "text": "short sentence in a thin boxed caption ('Mars In 4K', '15 Months On Mars')", "symbols": "single red arrow pointing at an object in the real image", "evidence": "the real image is the hook", "note": "'Mars in 4K' 73M = 429x median: real imagery can outperform renders" }
+  },
+  "psychology": {
+    "Sprouts": { "subject": "hand-drawn ink illustration of the concept as a diagram (cycle of figures with arrows)", "text": "concept name as title ('PYGMALION EFFECT', 'ATTACHMENT THEORY')", "background": "beige paper (older) / flat blue (recent)", "note": "top video 'The Pygmalion Effect' 19M = 413x median" },
+    "PsychToons": { "subject": "faceless bald mannequin figure, glowing brain prop", "text": "2-4 words caps, one word in red ('DO IT ANYWAY')", "background": "black or white flat", "symbols": "word clouds in speech bubbles ('UGLY', 'STUPID')" },
+    "Psych2Go": { "subject": "cute pastel chibi character expressing the emotion", "text": "hand-lettered 3-6 words, question form", "background": "pastel" },
+    "Practical Psychology": { "subject": "old: celebrity photo + huge outlined text; new: flat illustration of a classic experiment", "text": "concept name in a white pill ('EXPERIMENTER BIAS', 'DOUBLE BLIND EXPERIMENT')" },
+    "Aperture": { "subject": "surreal 3D render: one red figure among blue/grey crowd; open head; levels", "text": "claim in caps ('MOST PEOPLE STUCK HERE', 'THE ONE WHO NEVER POSTS') with arrow", "symbols": "down arrow to the one figure; 'LEVEL 1 | LEVEL 5' split" }
+  },
+  "celebrity": {
+    "Nicki Swift": { "subject": "3-4 cut-out celebrity faces", "text": "yellow/white italic outlined caps ('WHERE ARE THEY NOW?', 'ARE THEY FAKE?!?')", "background": "saturated purple/blue stage gradient", "note": "median of newest 30 only 4.1k on 3.2M subs: list/then-and-now format has collapsed" },
+    "The List": { "subject": "2-4 cut-out faces", "text": "yellow outline caps with a crown or swash", "background": "purple/red stage", "note": "median 3k: same collapse" },
+    "Patrick Cc:": { "subject": "1-3 large photo-real faces with painterly retouch; props as metaphors (cards 'SCAMMER/FRAUD')", "text": "0-4 words; lowercase meme text ('it was all a lie'); recreated social post with date ('Megan Fox ✓ F*CK DISNEY August 31st 2008')", "symbols": "red falling chart arrow; red circle on a person", "note": "median 1.5M" },
+    "SWOOP": { "subject": "host's face centred (consistent persona), subjects either side", "text": "3-4 words bottom, one word red ('HE LIED FOR HER')", "symbols": "yellow arrow to a screenshot/document; red circle on evidence", "evidence": "screenshots of posts/documents as proof", "note": "videos ~2 h; median 864k" },
+    "SunnyV2": { "subject": "digitally painted faces (illustrated), eye-bar censor", "text": "big condensed caps or a quote card in quotation marks ('\"Netflix was sexist for giving me $11 million...\"')", "background": "dark", "note": "median 3.1M" },
+    "As Told by JP": { "subject": "1-3 tightly cropped real faces of music stars, dramatic expression", "text": "yellow condensed headline at top, opinion ('Icon or A Con?', 'it's worse than you think.')", "note": "35k subs, median 156k (4.5x subs): music-career explainers travel" }
+  },
+  "original four (editorial reference)": {
+    "RealLifeLore": { "subject": "relief map with one country filled red/yellow glow", "text": "white-on-black box caps ('WHY ESCAPE IS NO LONGER POSSIBLE'), 3-6 words", "symbols": "arrows, red Xs on places, a meme face (recent)", "note": "maps are the subject" },
+    "Johnny Harris": { "subject": "host face + archival collage; evidence documents; red circle", "text": "2-4 words, one in red ('WHO IS THE DEEP STATE?')" },
+    "AI Search": { "subject": "two result images side by side", "text": "one lowercase reaction phrase on a fixed light-blue top band ('this is wild', 'huge AI news')", "note": "rigid template; brand consistency over per-video text" },
+    "Matt Wolfe": { "subject": "host face reacting + product logo/phone", "text": "2-4 words caps, quoted claims" },
+    "Football Made Simple": { "subject": "manager face (cut-out) + tactical board or broadcast frame with drawn lines", "text": "1-3 words in a slanted box ('REALITY CHECK', 'JOSE'S MASTERCLASS')", "symbols": "club crests bottom, highlight circles on the pitch" },
+    "Tifo Football": { "subject": "illustrated player/manager, club crest, map, or table graphic", "text": "question ('HOW DOES IT WORK?', 'WHAT HAPPENED?')" },
+    "Law&Crime Network": { "subject": "real photos of the people involved, bodycam frames, mugshots", "text": "none; channel logo bottom-left", "evidence": "bodycam/mugshot is the image" }
+  }
+}

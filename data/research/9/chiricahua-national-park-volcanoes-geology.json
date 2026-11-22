@@ -1,0 +1,69 @@
+{
+  "topic_slug": "chiricahua-national-park-volcanoes-geology",
+  "strongest_angle": "Examine the colossal volcanic eruptions of the Turkey Creek caldera 27 million years ago that deposited massive layers of rhyolite tuff, which subsequently eroded into the towering stone spires of Chiricahua National Monument.",
+  "key_facts": [
+    {
+      "fact": "Chiricahua National Monument in Arizona features prominent rhyolite pinnacles created 27 million years ago by one of the largest known volcanic eruptions in the American Southwest.",
+      "source_url": "https://www.npshistory.com/publications/foundation-documents/chir-fd-overview.pdf",
+      "source_name": "NPS History Foundation Document",
+      "confidence": "high"
+    },
+    {
+      "fact": "Remnants of the Turkey Creek caldera in Arizona provide evidence for successive large volcanic eruptions beginning about 26.9 million years ago.",
+      "source_url": "https://www.nps.gov/articles/nps-geodiversity-atlas-chiricahua-national-monument-arizona.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "The sentinel spires and rock formations of Chiricahua National Monument rise hundreds of feet into the air within the Chiricahua Mountains Sky Island Complex.",
+      "source_url": "https://nps.gov/chir/learn/nature/geologicformations.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "A massive magma chamber grew just a few miles under the Earth's surface before erupting and spewing more than 100 cubic miles of material.",
+      "source_url": "https://www.nationalgeographic.com/environment/article/chiricahua-national-park-geology-volcano-ecology",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Geologic eruption age",
+      "value": 27,
+      "unit": "million years ago",
+      "source_url": "https://www.npshistory.com/publications/foundation-documents/chir-fd-overview.pdf"
+    },
+    {
+      "label": "Volcanic eruption start",
+      "value": 26.9,
+      "unit": "million years ago",
+      "source_url": "https://www.nps.gov/articles/nps-geodiversity-atlas-chiricahua-national-monument-arizona.htm"
+    },
+    {
+      "label": "Erupted volcanic material volume",
+      "value": 100,
+      "unit": "cubic miles",
+      "source_url": "https://www.nationalgeographic.com/environment/article/chiricahua-national-park-geology-volcano-ecology"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Chiricahua National Monument",
+      "kind": "place"
+    },
+    {
+      "name": "Turkey Creek caldera",
+      "kind": "place"
+    },
+    {
+      "name": "Chiricahua Mountains Sky Island Complex",
+      "kind": "place"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    }
+  ],
+  "quotes": []
+}

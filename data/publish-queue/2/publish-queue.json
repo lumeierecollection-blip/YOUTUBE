@@ -154,5 +154,101 @@
     "cancelled": true,
     "source_file": "anthropic-claude-haiku-5-5-pricing-breakdown-shorts-shorts-2026-10-26.mp4",
     "source_queue": "approved-review"
+  },
+  {
+    "video_id": "95VksrqBKRs",
+    "channel_id": "2",
+    "title": "Google Gemini Connected Apps Preview: Adobe and Peloton…",
+    "uploaded_at": "2026-11-01T15:33:19.821Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-01T16:33:19.821Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "google-gemini-connected-apps-preview-shorts-shorts-2026-11-01.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "HI9sMf9Lan0",
+    "channel_id": "2",
+    "title": "Gemini 4 Carbon vs Claude Opus 5.5 GDPx Benchmark Test…",
+    "uploaded_at": "2026-11-02T18:48:15.311Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-02T19:48:15.311Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "gemini-4-carbon-vs-claude-opus-5-5-gdpx-benchmark-shorts-shorts-2026-11-02.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "kDrn6aIL1P8",
+    "channel_id": "2",
+    "title": "AI Web Search Compared: ChatGPT, Gemini, Claude and…",
+    "uploaded_at": "2026-11-03T17:41:49.724Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-03T18:41:49.724Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "ai-web-search-compared-november-2026-shorts-shorts-2026-11-03.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "WQmVHCITbzs",
+    "channel_id": "2",
+    "title": "Aina Smart Ring $399 Hardware First Look and AI Voice Test",
+    "uploaded_at": "2026-11-05T17:17:53.608Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-05T18:17:53.607Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "aina-smart-ring-ai-agent-hardware-shorts-shorts-2026-11-05.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "2Uu8Y_7N2iU",
+    "channel_id": "2",
+    "title": "Gemini 4 Argon vs GPT-6 Astra: Head-to-Head Benchmark Test",
+    "uploaded_at": "2026-11-06T16:43:26.672Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-06T17:43:26.672Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "gemini-4-argon-vs-gpt-6-astra-benchmark-shorts-shorts-2026-11-06.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "bve8-6r-he8",
+    "channel_id": "2",
+    "title": "Google Gemini 4 Argon vs Meta Muse Spark Open Head-to-Head",
+    "uploaded_at": "2026-11-08T15:55:33.413Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-08T16:55:33.413Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "gemini-4-argon-vs-muse-spark-open-head-to-head-shorts-shorts-2026-11-08.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "3Juf7Wy6w3s",
+    "channel_id": "2",
+    "title": "Front Raises Autopilot Agent Pricing 680% to $0.39 a Chat",
+    "uploaded_at": "2026-11-09T19:57:13.545Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-09T20:57:13.545Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "front-autopilot-agent-pricing-surge-november-2026-shorts-shorts-2026-11-09.mp4",
+    "source_queue": "approved"
+  },
+  {
+    "video_id": "OdXfJiWkAjs",
+    "channel_id": "2",
+    "title": "Google Gemini 4 Carbon API Pricing and Token Rates Released",
+    "uploaded_at": "2026-11-10T17:17:51.923Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-10T18:17:51.923Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "google-gemini-4-carbon-api-pricing-breakdown-shorts-shorts-2026-11-10.mp4",
+    "source_queue": "approved"
   }
 ]

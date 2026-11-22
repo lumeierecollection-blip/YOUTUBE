@@ -1,0 +1,70 @@
+{
+  "topic_slug": "lumina-simulation-early-universe-evolution",
+  "strongest_angle": "The Lumina simulation provides an unprecedented look at the first 2 billion years of the universe by modeling a 1.6 billion light-year region with 432 billion individual particles.",
+  "key_facts": [
+    {
+      "fact": "The Lumina simulation recreates the evolution of the early universe across a region spanning 1.6 billion light-years.",
+      "source_url": "https://www.sciencedaily.com/releases/2026/11/261110042534.htm",
+      "source_name": "ScienceDaily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers at MIT and Harvard University developed the Lumina simulation to track the first 2 billion years of cosmic history.",
+      "source_url": "https://www.sciencedaily.com/releases/2026/11/261110042534.htm",
+      "source_name": "ScienceDaily",
+      "confidence": "high"
+    },
+    {
+      "fact": "Lumina calculates physical conditions by dividing the volume of space into 432 billion individual particles.",
+      "source_url": "https://www.scientificamerican.com/article/record-breaking-simulation-sheds-light-on-cosmic-dark-ages",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "The simulation is capable of modeling physical conditions at scales as small as 1,400 light-years within its massive 1.6 billion light-year volume.",
+      "source_url": "https://www.scientificamerican.com/article/record-breaking-simulation-sheds-light-on-cosmic-dark-ages",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Simulation width in light-years",
+      "value": 1.6,
+      "unit": "billion light-years",
+      "source_url": "https://www.sciencedaily.com/releases/2026/11/261110042534.htm"
+    },
+    {
+      "label": "Time period simulated",
+      "value": 2,
+      "unit": "billion years",
+      "source_url": "https://www.sciencedaily.com/releases/2026/11/261110042534.htm"
+    },
+    {
+      "label": "Total particles in simulation",
+      "value": 432,
+      "unit": "billion particles",
+      "source_url": "https://www.scientificamerican.com/article/record-breaking-simulation-sheds-light-on-cosmic-dark-ages"
+    },
+    {
+      "label": "Smallest simulation scale",
+      "value": 1400,
+      "unit": "light-years",
+      "source_url": "https://www.scientificamerican.com/article/record-breaking-simulation-sheds-light-on-cosmic-dark-ages"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Lumina",
+      "kind": "object"
+    },
+    {
+      "name": "MIT",
+      "kind": "organization"
+    },
+    {
+      "name": "Harvard University",
+      "kind": "organization"
+    }
+  ]
+}

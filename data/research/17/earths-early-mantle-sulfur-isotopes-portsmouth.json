@@ -1,0 +1,74 @@
+{
+  "topic_slug": "earths-early-mantle-sulfur-isotopes-portsmouth",
+  "strongest_angle": "Scientists from the University of Portsmouth and the European Synchrotron Radiation Facility measured the oxidation state of sulfur trapped inside mineral inclusions to trace the recycling of oxidised surface material into the Earth's interior to at least 3.4 billion years ago.",
+  "key_facts": [
+    {
+      "fact": "Researchers from the University of Portsmouth and the European Synchrotron Radiation Facility traced the recycling of oxidised surface material into the Earth's interior to at least 3.4 billion years ago by measuring sulfur oxidation states inside mineral inclusions.",
+      "source_url": "https://www.esrf.fr/home/news/general/content-news/general/earths-early-mantle-exchange-revealed.html",
+      "source_name": "European Synchrotron Radiation Facility",
+      "confidence": "high"
+    },
+    {
+      "fact": "Hugo Moreira, Emilie Bruand, Craig Storey, James Darling, and Mike Fowler published research in Nature Geoscience on October 14, 2026, examining how progressive oxidative weathering raised sub-arc mantle fugacity on the Archaean Earth.",
+      "source_url": "https://www.nature.com/articles/s41561-026-02119-6",
+      "source_name": "Nature Geoscience",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists explored inclusions of phosphate-mineral apatite in zircon grains crystallised in ancient subduction zone magmas, measuring their sulphur valence speciation using XANES at the ESRF's ID21 beamline.",
+      "source_url": "https://www.esrf.fr/home/news/general/content-news/general/new-research-reveals-earth-s-ancient-breath-.html",
+      "source_name": "European Synchrotron Radiation Facility",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Recycling timeframe threshold",
+      "value": 3.4,
+      "unit": "billion years ago",
+      "source_url": "https://www.esrf.fr/home/news/general/content-news/general/earths-early-mantle-exchange-revealed.html"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Scientists from the University of Portsmouth (UK) and the ESRF have revealed that activity at the Earth’s surface could have been influencing the deep mantle much earlier than previously thought.",
+      "speaker": "Unattributed news report",
+      "source_name": "European Synchrotron Radiation Facility",
+      "source_url": "https://www.esrf.fr/home/news/general/content-news/general/earths-early-mantle-exchange-revealed.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "University of Portsmouth",
+      "kind": "organization"
+    },
+    {
+      "name": "European Synchrotron Radiation Facility",
+      "kind": "organization"
+    },
+    {
+      "name": "Hugo Moreira",
+      "kind": "person"
+    },
+    {
+      "name": "Emilie Bruand",
+      "kind": "person"
+    },
+    {
+      "name": "Craig Storey",
+      "kind": "person"
+    },
+    {
+      "name": "James Darling",
+      "kind": "person"
+    },
+    {
+      "name": "Mike Fowler",
+      "kind": "person"
+    },
+    {
+      "name": "ID21 beamline",
+      "kind": "object"
+    }
+  ]
+}

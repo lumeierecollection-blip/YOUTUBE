@@ -1,0 +1,449 @@
+{
+  "match_id": 3869685,
+  "competition": "FIFA World Cup 2022",
+  "stage": "Final",
+  "date": "2022-12-18",
+  "score": {
+    "Argentina": 3,
+    "France": 3
+  },
+  "penalties": {
+    "Argentina": 4,
+    "France": 2
+  },
+  "formation": {
+    "Argentina": "433",
+    "France": "4231"
+  },
+  "lineup": {
+    "Argentina": [
+      {
+        "name": "Damián Emiliano Martínez",
+        "short": "Martínez",
+        "number": 23,
+        "position": "Goalkeeper"
+      },
+      {
+        "name": "Nahuel Molina Lucero",
+        "short": "Molina",
+        "number": 26,
+        "position": "Right Back"
+      },
+      {
+        "name": "Cristian Gabriel Romero",
+        "short": "Romero",
+        "number": 13,
+        "position": "Right Center Back"
+      },
+      {
+        "name": "Nicolás Hernán Otamendi",
+        "short": "Otamendi",
+        "number": 19,
+        "position": "Left Center Back"
+      },
+      {
+        "name": "Nicolás Alejandro Tagliafico",
+        "short": "Tagliafico",
+        "number": 3,
+        "position": "Left Back"
+      },
+      {
+        "name": "Enzo Fernandez",
+        "short": "Fernandez",
+        "number": 24,
+        "position": "Center Defensive Midfield"
+      },
+      {
+        "name": "Rodrigo Javier De Paul",
+        "short": "De Paul",
+        "number": 7,
+        "position": "Right Center Midfield"
+      },
+      {
+        "name": "Alexis Mac Allister",
+        "short": "MacAllister",
+        "number": 20,
+        "position": "Left Center Midfield"
+      },
+      {
+        "name": "Lionel Andrés Messi Cuccittini",
+        "short": "Messi",
+        "number": 10,
+        "position": "Right Wing"
+      },
+      {
+        "name": "Ángel Fabián Di María Hernández",
+        "short": "Di María",
+        "number": 11,
+        "position": "Left Wing"
+      },
+      {
+        "name": "Julián Álvarez",
+        "short": "Álvarez",
+        "number": 9,
+        "position": "Center Forward"
+      }
+    ],
+    "France": [
+      {
+        "name": "Hugo Lloris",
+        "short": "Lloris",
+        "number": 1,
+        "position": "Goalkeeper"
+      },
+      {
+        "name": "Jules Koundé",
+        "short": "Koundé",
+        "number": 5,
+        "position": "Right Back"
+      },
+      {
+        "name": "Raphaël Varane",
+        "short": "Varane",
+        "number": 4,
+        "position": "Right Center Back"
+      },
+      {
+        "name": "Dayotchanculle Upamecano",
+        "short": "Upamecano",
+        "number": 18,
+        "position": "Left Center Back"
+      },
+      {
+        "name": "Theo Bernard François Hernández",
+        "short": "Hernández",
+        "number": 22,
+        "position": "Left Back"
+      },
+      {
+        "name": "Aurélien Djani Tchouaméni",
+        "short": "Tchouaméni",
+        "number": 8,
+        "position": "Right Defensive Midfield"
+      },
+      {
+        "name": "Adrien Rabiot",
+        "short": "Rabiot",
+        "number": 14,
+        "position": "Left Defensive Midfield"
+      },
+      {
+        "name": "Ousmane Dembélé",
+        "short": "Dembélé",
+        "number": 11,
+        "position": "Right Wing"
+      },
+      {
+        "name": "Antoine Griezmann",
+        "short": "Griezmann",
+        "number": 7,
+        "position": "Center Attacking Midfield"
+      },
+      {
+        "name": "Kylian Mbappé Lottin",
+        "short": "Mbappé",
+        "number": 10,
+        "position": "Left Wing"
+      },
+      {
+        "name": "Olivier Giroud",
+        "short": "Giroud",
+        "number": 9,
+        "position": "Center Forward"
+      }
+    ]
+  },
+  "stats": {
+    "Argentina": {
+      "shots": 20,
+      "xg": 2.76,
+      "goals": 3,
+      "shots_before_79": 10,
+      "xg_before_79": 1.55,
+      "first_shot_minute": 4,
+      "first_40_completed_passes": 230,
+      "xg_series": [
+        [
+          0,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          0.025
+        ],
+        [
+          7,
+          0.025
+        ],
+        [
+          7,
+          0.087
+        ],
+        [
+          16,
+          0.087
+        ],
+        [
+          16,
+          0.194
+        ],
+        [
+          22,
+          0.194
+        ],
+        [
+          22,
+          0.978
+        ],
+        [
+          31,
+          0.978
+        ],
+        [
+          31,
+          0.988
+        ],
+        [
+          35,
+          0.988
+        ],
+        [
+          35,
+          1.292
+        ],
+        [
+          48,
+          1.292
+        ],
+        [
+          48,
+          1.332
+        ],
+        [
+          58,
+          1.332
+        ],
+        [
+          58,
+          1.391
+        ],
+        [
+          59,
+          1.391
+        ],
+        [
+          59,
+          1.507
+        ],
+        [
+          71,
+          1.507
+        ],
+        [
+          71,
+          1.549
+        ],
+        [
+          83,
+          1.549
+        ],
+        [
+          83,
+          1.579
+        ],
+        [
+          92,
+          1.579
+        ],
+        [
+          92,
+          1.598
+        ],
+        [
+          96,
+          1.598
+        ],
+        [
+          96,
+          1.641
+        ],
+        [
+          104,
+          1.641
+        ],
+        [
+          104,
+          1.874
+        ],
+        [
+          104,
+          1.874
+        ],
+        [
+          104,
+          1.894
+        ],
+        [
+          105,
+          1.894
+        ],
+        [
+          105,
+          2.034
+        ],
+        [
+          106,
+          2.034
+        ],
+        [
+          106,
+          2.059
+        ],
+        [
+          107,
+          2.059
+        ],
+        [
+          107,
+          2.163
+        ],
+        [
+          107,
+          2.163
+        ],
+        [
+          107,
+          2.652
+        ],
+        [
+          122,
+          2.652
+        ],
+        [
+          122,
+          2.758
+        ],
+        [
+          122,
+          2.758
+        ]
+      ],
+      "goal_minutes": [
+        22,
+        35,
+        107
+      ]
+    },
+    "France": {
+      "shots": 10,
+      "xg": 2.27,
+      "goals": 3,
+      "shots_before_79": 2,
+      "xg_before_79": 0.15,
+      "first_shot_minute": 67,
+      "first_40_completed_passes": 116,
+      "xg_series": [
+        [
+          0,
+          0
+        ],
+        [
+          67,
+          0
+        ],
+        [
+          67,
+          0.096
+        ],
+        [
+          70,
+          0.096
+        ],
+        [
+          70,
+          0.147
+        ],
+        [
+          79,
+          0.147
+        ],
+        [
+          79,
+          0.93
+        ],
+        [
+          80,
+          0.93
+        ],
+        [
+          80,
+          1.032
+        ],
+        [
+          92,
+          1.032
+        ],
+        [
+          92,
+          1.064
+        ],
+        [
+          93,
+          1.064
+        ],
+        [
+          93,
+          1.158
+        ],
+        [
+          99,
+          1.158
+        ],
+        [
+          99,
+          1.181
+        ],
+        [
+          115,
+          1.181
+        ],
+        [
+          115,
+          1.212
+        ],
+        [
+          117,
+          1.212
+        ],
+        [
+          117,
+          1.995
+        ],
+        [
+          122,
+          1.995
+        ],
+        [
+          122,
+          2.273
+        ],
+        [
+          122,
+          2.273
+        ]
+      ],
+      "goal_minutes": [
+        79,
+        80,
+        117
+      ]
+    }
+  },
+  "network_window": "first 40 minutes of the first half (before any substitution)",
+  "shot_map_window": "regulation and extra time up to the 78th minute; penalty shootout excluded",
+  "data_note": "StatsBomb Open Data event data. Locations are where events were recorded, not continuous tracking."
+}

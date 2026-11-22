@@ -1,0 +1,87 @@
+{
+  "topic_slug": "jason-sudeikis-olivia-wilde-nanny-arbitration",
+  "strongest_angle": "Examine the court petition filed in New York following the closed arbitration where former nanny Ericka Genaro's eight claims against Jason Sudeikis and Olivia Wilde were dismissed entirely, alongside a $1.27 million award.",
+  "key_facts": [
+    {
+      "fact": "Jason Sudeikis and Olivia Wilde's former nanny Ericka Genaro lost all eight of her claims in an arbitration battle.",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+      "source_name": "The Blast",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jason Sudeikis and Olivia Wilde filed a petition in New York asking a judge to formally confirm portions of the arbitration ruling.",
+      "source_url": "https://www.tmz.com/2026/11/11/jason-sudeikis-olivia-wilde-nanny-arbitration-results",
+      "source_name": "TMZ",
+      "confidence": "high"
+    },
+    {
+      "fact": "An arbitrator awarded Jason Sudeikis and Olivia Wilde more than $1.27 million in damages, legal fees, and other costs.",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+      "source_name": "The Blast",
+      "confidence": "high"
+    },
+    {
+      "fact": "Ericka Genaro originally filed a lawsuit in Los Angeles Superior Court alleging wrongful termination against Jason Sudeikis and Olivia Wilde in 2022.",
+      "source_url": "https://www.cbsnews.com/losangeles/news/jason-sudeikis-olivia-wilde-force-arbitration-of-nanny-suits-arbitration",
+      "source_name": "CBS News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Damages and fees awarded to Jason Sudeikis and Olivia Wilde",
+      "value": 1.27,
+      "unit": "million dollars",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow"
+    },
+    {
+      "label": "Number of claims dismissed by the arbitrator",
+      "value": 8,
+      "unit": "claims",
+      "source_url": "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow"
+    },
+    {
+      "label": "Year of the initial wrongful termination lawsuit by Ericka Genaro",
+      "value": 2022,
+      "unit": "year",
+      "source_url": "https://www.cbsnews.com/losangeles/news/jason-sudeikis-olivia-wilde-force-arbitration-of-nanny-suits-arbitration"
+    },
+    {
+      "label": "Year of the court order compelling arbitration in Los Angeles",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://www.eonline.com/news/1383309/olivia-wilde-and-jason-sudeikis-score-a-legal-victory-in-nannys-lawsuit"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Jason Sudeikis",
+      "kind": "person"
+    },
+    {
+      "name": "Olivia Wilde",
+      "kind": "person"
+    },
+    {
+      "name": "Ericka Genaro",
+      "kind": "person"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "Los Angeles Superior Court",
+      "kind": "organization"
+    },
+    {
+      "name": "TMZ",
+      "kind": "organization"
+    },
+    {
+      "name": "The Blast",
+      "kind": "organization"
+    }
+  ]
+}

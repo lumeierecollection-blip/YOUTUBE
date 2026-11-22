@@ -1,0 +1,54 @@
+{
+ "id": "faith-and-fate-arxiv",
+ "url": "https://arxiv.org/abs/2305.18654",
+ "final_url": "https://arxiv.org/abs/2305.18654",
+ "title": "[2305.18654] Faith and Fate: Limits of Transformers on Compositionality",
+ "captured": "2026-11-13T15:40:40.479Z",
+ "viewport": {
+  "width": 1600,
+  "height": 1000
+ },
+ "scale": 1.8,
+ "page_height": 1124,
+ "shots": [
+  {
+   "file": "faith-and-fate-arxiv-0.png",
+   "label": "loaded",
+   "scrollY": 0,
+   "at_ms": 5802
+  },
+  {
+   "file": "faith-and-fate-arxiv-1.png",
+   "label": "wait",
+   "scrollY": 0,
+   "at_ms": 6699
+  }
+ ],
+ "rects": {
+  "Faith and Fate: Limits of Transformers on Compositionality": [
+   {
+    "x": 20,
+    "y": 107,
+    "w": 656,
+    "h": 26
+   }
+  ],
+  "multi-digit multiplication, logic grid puzzles, and a classic dynamic programming problem": [
+   {
+    "x": 391,
+    "y": 254,
+    "w": 530,
+    "h": 15
+   }
+  ],
+  "linearized subgraph matching": [
+   {
+    "x": 937,
+    "y": 296,
+    "w": 178,
+    "h": 15
+   }
+  ]
+ },
+ "cursor_log": []
+}

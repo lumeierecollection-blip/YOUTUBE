@@ -1,0 +1,89 @@
+{
+ "id": "sentencing",
+ "pdf": "R-v-Becker-Sentencing-remarks.pdf",
+ "pages": {
+  "1": {
+   "file": "sentencing-p1.png",
+   "w": 1310,
+   "h": 1853
+  }
+ },
+ "rects": {
+  "you were found guilty after trial of four offences under the Insolvency Act 1986": [
+   {
+    "page": 1,
+    "x": 390,
+    "y": 779,
+    "w": 172,
+    "h": 24
+   },
+   {
+    "page": 1,
+    "x": 562,
+    "y": 779,
+    "w": 200,
+    "h": 24
+   },
+   {
+    "page": 1,
+    "x": 764,
+    "y": 779,
+    "w": 374,
+    "h": 24
+   },
+   {
+    "page": 1,
+    "x": 238,
+    "y": 825,
+    "w": 96,
+    "h": 18
+   }
+  ],
+  "You were acquitted of 20 other offences": [
+   {
+    "page": 1,
+    "x": 774,
+    "y": 916,
+    "w": 71,
+    "h": 18
+   },
+   {
+    "page": 1,
+    "x": 846,
+    "y": 915,
+    "w": 166,
+    "h": 24
+   },
+   {
+    "page": 1,
+    "x": 1009,
+    "y": 915,
+    "w": 101,
+    "h": 19
+   },
+   {
+    "page": 1,
+    "x": 238,
+    "y": 961,
+    "w": 88,
+    "h": 19
+   }
+  ],
+  "Bankruptcy Petition was presented to the High Court for": [
+   {
+    "page": 1,
+    "x": 953,
+    "y": 1451,
+    "w": 129,
+    "h": 24
+   },
+   {
+    "page": 1,
+    "x": 238,
+    "y": 1497,
+    "w": 467,
+    "h": 24
+   }
+  ]
+ }
+}

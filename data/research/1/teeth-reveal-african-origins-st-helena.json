@@ -1,0 +1,104 @@
+{
+  "topic_slug": "teeth-reveal-african-origins-st-helena",
+  "strongest_angle": "Dental strontium isotope analysis of 152 individuals buried on St. Helena provides geochemical proof of their childhood origins in sub-Saharan Africa after being rescued from nearly 450 intercepted slave ships.",
+  "key_facts": [
+    {
+      "fact": "British Royal Navy ships intercepted slave vessels and brought nearly 27,000 liberated Africans to the island of St. Helena, where around 8,000 individuals died shortly after arrival and were buried.",
+      "source_url": "https://www.nature.com/articles/d44148-026-00348-w",
+      "source_name": "Nature Africa",
+      "confidence": "high"
+    },
+    {
+      "fact": "In a study published in Science, researchers led by the Globe Institute at the University of Copenhagen and UC Santa Cruz analyzed 193 tooth enamel strontium isotope measurements from 152 individuals buried on St. Helena.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661",
+      "source_name": "Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The British Royal Navy brought approximately 450 intercepted slave ships to St. Helena, where a Vice-Admiralty court was established to process captured slave trading vessels.",
+      "source_url": "https://www.smithsonianmag.com/smart-news/thousands-of-kidnapped-africans-died-on-an-island-in-the-atlantic-after-being-rescued-from-slave-ships-evidence-in-their-teeth-traces-their-journeys-180989145",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Strontium isotope testing showed that all 152 tested individuals had tooth enamel strontium-87 to strontium-86 ratios significantly higher than the natural baseline of St. Helena, proving they grew up in sub-Saharan Africa.",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661",
+      "source_name": "Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Liberated Africans brought to St. Helena",
+      "value": 27000,
+      "unit": "people",
+      "source_url": "https://www.nature.com/articles/d44148-026-00348-w"
+    },
+    {
+      "label": "Liberated Africans buried on St. Helena",
+      "value": 8000,
+      "unit": "people",
+      "source_url": "https://www.nature.com/articles/d44148-026-00348-w"
+    },
+    {
+      "label": "Tooth enamel strontium measurements analyzed",
+      "value": 193,
+      "unit": "measurements",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    },
+    {
+      "label": "Individuals whose teeth were analyzed",
+      "value": 152,
+      "unit": "individuals",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    },
+    {
+      "label": "Intercepted slave ships brought to St. Helena",
+      "value": 450,
+      "unit": "ships",
+      "source_url": "https://www.smithsonianmag.com/smart-news/thousands-of-kidnapped-africans-died-on-an-island-in-the-atlantic-after-being-rescued-from-slave-ships-evidence-in-their-teeth-traces-their-journeys-180989145"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Because enamel forms during childhood and adolescence and incorporates local dietary strontium, it preserves a geochemical record of early-life residence.",
+      "speaker": "Xueye Wang et al.",
+      "source_name": "Science",
+      "source_url": "https://www.science.org/doi/10.1126/science.aeb3661"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "St. Helena",
+      "kind": "place"
+    },
+    {
+      "name": "sub-Saharan Africa",
+      "kind": "place"
+    },
+    {
+      "name": "British Royal Navy",
+      "kind": "organization"
+    },
+    {
+      "name": "Globe Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Copenhagen",
+      "kind": "organization"
+    },
+    {
+      "name": "UC Santa Cruz",
+      "kind": "organization"
+    },
+    {
+      "name": "Vice-Admiralty court",
+      "kind": "organization"
+    },
+    {
+      "name": "Science",
+      "kind": "organization"
+    }
+  ]
+}

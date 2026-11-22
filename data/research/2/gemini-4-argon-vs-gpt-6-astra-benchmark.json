@@ -1,0 +1,115 @@
+{
+  "topic_slug": "gemini-4-argon-vs-gpt-6-astra-benchmark",
+  "strongest_angle": "Comparing Google Gemini 4 Argon and OpenAI GPT-6 Astra across benchmark scores, cost, and specific task builds from November 2026 data.",
+  "key_facts": [
+    {
+      "fact": "On Artificial Analysis, Google Gemini 4 Argon achieved an Intelligence Index score of 50, while OpenAI GPT-6 Astra scored 52.",
+      "source_url": "https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-astra-medium",
+      "source_name": "Artificial Analysis",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the 23-task benchmark test published by Quant Slant, Gemini 4 Argon scored 99.5% with a total cost of $0.22 and a time of 135 seconds, while GPT-6 Astra scored 100% with a cost of $1.12 and a time of 200 seconds.",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra",
+      "source_name": "Quant Slant",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Pat Simmons at AI For Mortals in November 2026, OpenAI GPT-6 Astra outperformed Google Gemini 4 Argon in all four identical professional builds including a photoreal 3D product bottle and a car soccer game.",
+      "source_url": "https://www.aiformortals.co/blog/chatgpt-vs-gemini",
+      "source_name": "AI For Mortals",
+      "confidence": "high"
+    },
+    {
+      "fact": "DataCamp notes that out of 19 benchmarks in Google's launch table for Gemini 4 Argon, Argon scores higher than GPT-6 Astra on 14 tests, Astra wins 4 tests, and one is a tie.",
+      "source_url": "https://www.datacamp.com/blog/gemini-4-argon-vs-gpt-6-astra",
+      "source_name": "DataCamp",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Gemini 4 Argon Intelligence Index",
+      "value": 50,
+      "unit": "points",
+      "source_url": "https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-astra-medium"
+    },
+    {
+      "label": "GPT-6 Astra Intelligence Index",
+      "value": 52,
+      "unit": "points",
+      "source_url": "https://artificialanalysis.ai/models/comparisons/gemini-4-argon-vs-gpt-6-astra-medium"
+    },
+    {
+      "label": "Gemini 4 Argon task score",
+      "value": 99.5,
+      "unit": "percent",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    },
+    {
+      "label": "Gemini 4 Argon test cost",
+      "value": 0.22,
+      "unit": "USD",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    },
+    {
+      "label": "Gemini 4 Argon test time",
+      "value": 135,
+      "unit": "seconds",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    },
+    {
+      "label": "GPT-6 Astra task score",
+      "value": 100,
+      "unit": "percent",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    },
+    {
+      "label": "GPT-6 Astra test cost",
+      "value": 1.12,
+      "unit": "USD",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    },
+    {
+      "label": "GPT-6 Astra test time",
+      "value": 200,
+      "unit": "seconds",
+      "source_url": "https://quantslant.com/gemini-4-argon-test-vs-opus-5-5-gpt-6-astra"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Google",
+      "kind": "organization"
+    },
+    {
+      "name": "OpenAI",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini 4 Argon",
+      "kind": "object"
+    },
+    {
+      "name": "GPT-6 Astra",
+      "kind": "object"
+    },
+    {
+      "name": "Pat Simmons",
+      "kind": "person"
+    },
+    {
+      "name": "Artificial Analysis",
+      "kind": "organization"
+    },
+    {
+      "name": "Quant Slant",
+      "kind": "organization"
+    },
+    {
+      "name": "DataCamp",
+      "kind": "organization"
+    }
+  ]
+}

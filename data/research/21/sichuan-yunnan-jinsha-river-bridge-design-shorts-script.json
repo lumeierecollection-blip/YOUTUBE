@@ -1,0 +1,86 @@
+{
+  "channel_id": "21",
+  "topic_slug": "sichuan-yunnan-jinsha-river-bridge-design",
+  "format": "shorts",
+  "hook": "72 heavy trucks parked together on a 1,060 meter bridge span.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "72 heavy trucks parked together on a 1,060 meter bridge span.",
+      "visual_cue": "Aerial footage of heavy trucks lined up across a long bridge span high over a river canyon.",
+      "sfx_cue": "Low rumble of heavy vehicle engines idling.",
+      "b_roll": [
+        "Sichuan-Yunnan Jinsha River Bridge deck view",
+        "Trucks load testing bridge"
+      ],
+      "transition_out": "Hard cut to canyon wide shot.",
+      "text_overlay": {
+        "text": "1,060M MAIN SPAN"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:19",
+      "voiceover": "On November 20, 2026, engineers tested the Sichuan-Yunnan Jinsha River Bridge. How much weight could its 71 steel segments hold?",
+      "visual_cue": "Sweeping cinematic view of deep canyon landscape connecting steep mountains on both river banks.",
+      "sfx_cue": "Wind whistling through canyon cut.",
+      "b_roll": [
+        "Ningnan County to Qiaojia County Jinsha River canyon",
+        "Sichuan-Yunnan Jinsha River Bridge towers"
+      ],
+      "transition_out": "Wipe transition to cable structures.",
+      "text_overlay": {
+        "text": "1,140M TOTAL LENGTH"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:19-0:25",
+      "voiceover": "But engineers didn't certify the 1,060-meter main span without a maximum condition load test.",
+      "visual_cue": "Macro shot of steel suspension cables anchored to massive concrete towers.",
+      "sfx_cue": "Metallic cable tension stress creak.",
+      "b_roll": [
+        "Steel truss girder segment cable crane installation",
+        "Jinsha River bridge main tower engineering"
+      ],
+      "transition_out": "Quick flash cut to deck load test.",
+      "text_overlay": {
+        "text": "72 TRUCKS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:39",
+      "voiceover": "They parked 72 trucks weighing 35 tons each across the deck. Structural testing confirmed safety for 80 kilometer per hour traffic.",
+      "visual_cue": "Split-screen graphic showing cable cranes hoisting heavy steel segments alongside lines of load test trucks.",
+      "sfx_cue": "Heavy industrial machinery hum and mechanical confirmation tone.",
+      "b_roll": [
+        "Cable crane lifting 269.3 ton steel truss segment",
+        "G4216 expressway Jinsha River bridge four-lane deck"
+      ],
+      "transition_out": "Slow zoom out to full bridge span.",
+      "text_overlay": {
+        "text": "35 TONS EACH"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:39-0:45",
+      "voiceover": "That completed the 1,140 meter Jinsha River canyon crossing.",
+      "visual_cue": "Hero tracking shot along the center lane looking toward the opposite mountain peak.",
+      "sfx_cue": "Resonant sub-bass swell resolving softly.",
+      "b_roll": [
+        "Completed Sichuan-Yunnan Jinsha River Bridge scenic panorama"
+      ],
+      "transition_out": "Fade out to black.",
+      "text_overlay": {
+        "text": "1,140M CROSSING"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.chinanews.com.cn/cj/2026/11-20/10735414.shtml",
+    "http://csdqyfh.ijournals.cn/csdqyfh/article/pdf/241233"
+  ]
+}

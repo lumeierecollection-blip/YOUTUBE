@@ -1,0 +1,100 @@
+{
+  "topic_slug": "australia-jillaroos-wales-rugby-league-record",
+  "strongest_angle": "Analyze the historic 2026 Rugby League World Cup match at Commbank Stadium where the Australia Jillaroos defeated Wales 124-6, featuring Jaime Chapman scoring six tries in an all-time record-breaking win with an 118-point margin.",
+  "key_facts": [
+    {
+      "fact": "At Commbank Stadium during the Rugby League World Cup, the Australia Jillaroos defeated Wales with a score of 124-6 on November 1, 2026.",
+      "source_url": "https://www.theguardian.com/sport/2026/nov/01/australia-jillaroos-wales-womens-rugby-league-world-cup-match-report",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jaime Chapman crossed for six tries during the Australia Jillaroos win over Wales at the Rugby League World Cup.",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style",
+      "source_name": "NRL.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 118-point margin was the biggest in Jillaroos history, eclipsing their previous 92-0 victory over France at the 2022 World Cup.",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style",
+      "source_name": "NRL.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia racked up 124 points against Wales at the Rugby League World Cup while conceding only 6 points at Commbank Stadium.",
+      "source_url": "https://www.bbc.com/sport/rugby-league/articles/cked34glxp0no",
+      "source_name": "BBC Sport",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Australia score",
+      "value": 124,
+      "unit": "points",
+      "source_url": "https://www.theguardian.com/sport/2026/nov/01/australia-jillaroos-wales-womens-rugby-league-world-cup-match-report"
+    },
+    {
+      "label": "Wales score",
+      "value": 6,
+      "unit": "points",
+      "source_url": "https://www.theguardian.com/sport/2026/nov/01/australia-jillaroos-wales-womens-rugby-league-world-cup-match-report"
+    },
+    {
+      "label": "Winning margin",
+      "value": 118,
+      "unit": "points",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style"
+    },
+    {
+      "label": "Jaime Chapman tries",
+      "value": 6,
+      "unit": "tries",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style"
+    },
+    {
+      "label": "Previous record win points against France",
+      "value": 92,
+      "unit": "points",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style"
+    },
+    {
+      "label": "Previous record win points allowed against France",
+      "value": 0,
+      "unit": "points",
+      "source_url": "https://www.nrl.com/news/2026/11/01/chapman-sends-jillaroos-to-semis-in-style"
+    },
+    {
+      "label": "Australia goals kicked",
+      "value": 20,
+      "unit": "goals",
+      "source_url": "https://www.bbc.com/sport/rugby-league/articles/cked34glxp0no"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Australia Jillaroos",
+      "kind": "organization"
+    },
+    {
+      "name": "Wales",
+      "kind": "organization"
+    },
+    {
+      "name": "Jaime Chapman",
+      "kind": "person"
+    },
+    {
+      "name": "Commbank Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "France",
+      "kind": "place"
+    },
+    {
+      "name": "Kangaroos",
+      "kind": "organization"
+    }
+  ]
+}

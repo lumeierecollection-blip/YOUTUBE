@@ -1,0 +1,67 @@
+{
+  "topic_slug": "pulsars-mass-limits-supermassive-black-holes-2026",
+  "strongest_angle": "Researchers at Beijing Normal University used 18 years of pulsar timing observations from the Parkes Pulsar Timing Array to establish the first direct mass limits on supermassive black hole pairs during the cosmic dawn.",
+  "key_facts": [
+    {
+      "fact": "Yiqin Chen's team at Beijing Normal University analyzed 18 years of observations of 30 pulsars from the Parkes Pulsar Timing Array in Australia.",
+      "source_url": "https://orbital-wire.com/astronomy-astrophysics/first-mass-limits-early-universe-black-hole-pairs",
+      "source_name": "Orbital Wire",
+      "confidence": "high"
+    },
+    {
+      "fact": "The research established the first direct mass limits on supermassive black hole pairs in the early universe known as the cosmic dawn, published in Physical Review Letters.",
+      "source_url": "https://phys.org/news/2026-11-pulsars-mass-limits-supermassive-black.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The analysis combined search data with known positions and redshifts of two targets, including an ultrabright quasar observed less than 900 million years after the Big Bang.",
+      "source_url": "https://phys.org/news/2026-11-pulsars-mass-limits-supermassive-black.html",
+      "source_name": "Phys.org",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years of observations",
+      "value": 18,
+      "unit": "years",
+      "source_url": "https://orbital-wire.com/astronomy-astrophysics/first-mass-limits-early-universe-black-hole-pairs"
+    },
+    {
+      "label": "Number of pulsars",
+      "value": 30,
+      "unit": "pulsars",
+      "source_url": "https://orbital-wire.com/astronomy-astrophysics/first-mass-limits-early-universe-black-hole-pairs"
+    },
+    {
+      "label": "Time after Big Bang for quasar target",
+      "value": 900,
+      "unit": "million years",
+      "source_url": "https://phys.org/news/2026-11-pulsars-mass-limits-supermassive-black.html"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Yiqin Chen",
+      "kind": "person"
+    },
+    {
+      "name": "Beijing Normal University",
+      "kind": "organization"
+    },
+    {
+      "name": "Parkes Pulsar Timing Array",
+      "kind": "organization"
+    },
+    {
+      "name": "Australia",
+      "kind": "place"
+    },
+    {
+      "name": "Physical Review Letters",
+      "kind": "organization"
+    }
+  ]
+}

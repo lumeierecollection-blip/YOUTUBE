@@ -8,13 +8,10 @@
  * Usage:
  *   node scripts/youtube-upload.cjs --file <path> --title <string> [--description <string>] [--tags <comma-list>] [--channel <id>]
  *
- * Env vars required:
- *   YT_CLIENT_ID      — OAuth2 client ID
- *   YT_CLIENT_SECRET  — OAuth2 client secret
- *   YT_REFRESH_TOKEN  — OAuth2 refresh token
- *
- * On success: writes data/uploads/<channel>/<date>-<videoId>.json
- * On failure: exits non-zero with the API error
+ * Credentials are read from config/creds/ch-XX.json (materialized by the workflow
+ * from GitHub secrets). On success: writes data/uploads/<channel>/<date>-<videoId>.json.
+ * On failure: exits non-zero with the API error. Never exits 0 on a missing-credential
+ * or failed upload — fail closed.
  */
 
 const { readFileSync, writeFileSync, mkdirSync, existsSync } = require("node:fs");
@@ -71,14 +68,20 @@ async function getAccessToken() {
       },
       (res) => {
         let data = "";
-        res.on("data", (chunk) => (data += chunk));
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
         res.on("end", () => {
           try {
             const json = JSON.parse(data);
             if (json.access_token) {
               resolve(json.access_token);
             } else {
-              reject(new Error(`Token refresh failed: ${json.error_description || json.error || data}`));
+              reject(
+                new Error(
+                  `Token refresh failed: ${json.error_description || json.error || data}`
+                )
+              );
             }
           } catch (e) {
             reject(new Error(`Failed to parse token response: ${data}`));
@@ -86,7 +89,7 @@ async function getAccessToken() {
         });
       }
     );
-    req.on("error", reject);
+    req.on("error", (e) => reject(e));
     req.write(postData);
     req.end();
   });
@@ -95,7 +98,6 @@ async function getAccessToken() {
 /* ── YouTube Upload ──────────────────────────────────────────────── */
 
 async function uploadVideo(accessToken, { file, title, description, tags }) {
-  // Read file metadata
   const fileData = readFileSync(file);
   const fileSize = fileData.length;
 
@@ -118,39 +120,45 @@ async function uploadVideo(accessToken, { file, title, description, tags }) {
     throw new Error("FATAL: privacyStatus is not 'private' — refusing to upload");
   }
 
-  // Initialize resumable upload
-  const initMetadata = JSON.stringify(metadata);
-  const initReq = https.request(
-    {
-      hostname: "www.googleapis.com",
-      path: "/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json; charset=UTF-8",
-        "X-Upload-Content-Length": fileSize,
-        "X-Upload-Content-Type": "video/mp4",
+  return new Promise((resolve, reject) => {
+    // Initialize resumable upload
+    const initMetadata = JSON.stringify(metadata);
+    const initReq = https.request(
+      {
+        hostname: "www.googleapis.com",
+        path: "/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json; charset=UTF-8",
+          "X-Upload-Content-Length": fileSize,
+          "X-Upload-Content-Type": "video/mp4",
+        },
       },
-    },
-    (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        if (res.statusCode === 308) {
-          // Upload URL received, now upload the file
+      (res) => {
+        let data = "";
+        res.on("data", (chunk) => {
+          data += chunk;
+        });
+        res.on("end", () => {
+          // YouTube resumable upload init returns 308 with Location header.
+          // Some responses return 200; accept both and read the upload URL
+          // from the Location header.
           const uploadUrl = res.headers.location;
-          uploadFileData(accessToken, uploadUrl, fileData, fileSize)
-            .then(resolve)
-            .catch(reject);
-        } else {
-          reject(new Error(`Init upload failed (${res.statusCode}): ${data}`));
-        }
-      });
-    }
-  );
-  initReq.on("error", reject);
-  initReq.write(initMetadata);
-  initReq.end();
+          if ((res.statusCode === 308 || res.statusCode === 200) && uploadUrl) {
+            uploadFileData(accessToken, uploadUrl, fileData, fileSize)
+              .then(resolve)
+              .catch(reject);
+          } else {
+            reject(new Error(`Init upload failed (${res.statusCode}): ${data}`));
+          }
+        });
+      }
+    );
+    initReq.on("error", (e) => reject(e));
+    initReq.write(initMetadata);
+    initReq.end();
+  });
 }
 
 function uploadFileData(accessToken, uploadUrl, fileData, fileSize) {
@@ -205,18 +213,32 @@ async function main() {
     process.exit(1);
   }
 
-  // Only the deprecated V1 workflow called this uploader; the live path is
-  // src/skills/youtube-publish/run.js. Same allow-list as there (audit 2026-10-03).
-  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
-  if (!PUBLISH_CHANNELS.includes(Number(String(opts.channel).replace(/^ch-?/i, "")))) {
-    console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+  // Resolve channel identity and load credentials from config/creds/ch-XX.json
+  const { resolveChannel } = require("./lib/channel-lookup.cjs");
+  const channelId = opts.channel.replace(/^ch-?/i, "");
+  let ch;
+  try { ch = resolveChannel(channelId); } catch (e) { console.error(`::error::${e.message}`); process.exit(1); }
+  const credPath = join(ROOT, "config", "creds", ch.channel_id + ".json");
+  if (!existsSync(credPath)) {
+    console.error(`::error::No credentials file at ${credPath} — cannot upload`);
+    process.exit(1);
+  }
+  const creds = JSON.parse(readFileSync(credPath, "utf8"));
+  if (!(creds.client_id && creds.client_secret && creds.refresh_token)) {
+    console.error(`::error::Incomplete credentials in ${credPath} — cannot upload`);
     process.exit(1);
   }
 
-  // Check env vars early
-  if (!process.env.YT_CLIENT_ID || !process.env.YT_CLIENT_SECRET || !process.env.YT_REFRESH_TOKEN) {
-    console.warn("WARNING: YouTube credentials not set (YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN). Skipping upload.");
-    process.exit(0);
+  // Set env vars for the OAuth flow
+  process.env.YT_CLIENT_ID = creds.client_id;
+  process.env.YT_CLIENT_SECRET = creds.client_secret;
+  process.env.YT_REFRESH_TOKEN = creds.refresh_token;
+
+  // Only channels with working OAuth may upload (same allow-list as youtube-publish)
+  const PUBLISH_CHANNELS = [1, 2, 9, 26, 44, 48];
+  if (!PUBLISH_CHANNELS.includes(Number(channelId))) {
+    console.error(`channel "${opts.channel}" is not a publish channel — uploads are allowed only to ${PUBLISH_CHANNELS.join(", ")}`);
+    process.exit(1);
   }
 
   try {
@@ -257,9 +279,12 @@ async function main() {
     );
     console.log(`Upload record: ${uploadPath}`);
 
-    // Output for workflow
-    console.log(`::set-output name=videoId::${videoId}`);
-    console.log(`::set-output name=videoUrl::${videoUrl}`);
+    // Output for workflow (GITHUB_OUTPUT, not deprecated ::set-output)
+    const ghOutput = process.env.GITHUB_OUTPUT;
+    if (ghOutput) {
+      require("fs").appendFileSync(ghOutput, `videoId=${videoId}\n`);
+      require("fs").appendFileSync(ghOutput, `videoUrl=${videoUrl}\n`);
+    }
   } catch (err) {
     console.error(`Upload failed: ${err.message}`);
     process.exit(1);

@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "super-el-nino-atacama-desert-floral-bloom",
+  "format": "shorts",
+  "hook": "Nearly 7,000 square miles of Chile's Atacama Desert just carpeted in wildflowers.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Nearly 7,000 square miles of Chile's Atacama Desert just carpeted in wildflowers.",
+      "b_roll": [
+        "wide aerial shot over expansive desert terrain transforming into vibrant floral cover"
+      ],
+      "text_overlay": {
+        "text": "7,000 Sq Miles Blooming"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2026, heavy winter rain from an El Niño super cycle flooded Copiapó. Did heavy winter rains bring Copiapó its highest rainfall since records began in the 1950s?",
+      "b_roll": [
+        "map pinpointing Copiapó Chile with rain radar overlay",
+        "archival style record chart showing rainfall levels dating back to 1950"
+      ],
+      "text_overlay": {
+        "text": "Heaviest Rain Since 1950s"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Live Science reported on October 2, 2026, that El Niño awakened millions of seeds and bulbs.",
+      "b_roll": [
+        "macro shot of dormant desert seeds sprouting after heavy downpours"
+      ],
+      "text_overlay": {
+        "text": "Millions of Seeds Awakened"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The barren landscape across Chile transformed into a massive floral display. Nearly 7,000 square miles of land now stretch in full color.",
+      "b_roll": [
+        "panoramic satellite view of the Atacama landscape bursting in color",
+        "calendar Graphic marking October to November bloom window"
+      ],
+      "text_overlay": {
+        "text": "Visible Through November"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "AP News reported on October 1, 2026, that the Atacama Desert bloom lasts until November.",
+      "b_roll": [
+        "high altitude landscape view showcasing the super El Niño desert transformation"
+      ],
+      "text_overlay": {
+        "text": "Largest Bloom in Decades"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.npr.org/2026/11/08/nx-s1-6023812-e1/a-desert-stirs-to-life-chiles-atacama-erupts-in-its-biggest-floral-display-in-decades",
+    "https://www.npr.org/2026/11/08/nx-s1-6023812/chile-desert-el-nino",
+    "https://apnews.com/article/chile-atacama-desert-flowers-tourism-el-nino-78793a8c18ba92adaf389a0302a1eb2b",
+    "https://www.livescience.com/planet-earth/colorful-wildflowers-bloom-across-chiles-atacama-desert-in-wake-of-super-el-nino"
+  ]
+}

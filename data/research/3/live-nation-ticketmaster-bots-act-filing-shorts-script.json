@@ -1,0 +1,67 @@
+{
+  "channel_id": "3",
+  "topic_slug": "live-nation-ticketmaster-bots-act-filing",
+  "format": "shorts",
+  "hook": "Live Nation cut 16 affirmative defenses to 12 in federal court.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Live Nation cut 16 affirmative defenses to 12 in federal court.",
+      "b_roll": [
+        "A formal court document showing defense claims being reduced from 16 to 12."
+      ],
+      "text_overlay": {
+        "text": "16 to 12 Defenses"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 29, the company filed an amended answer in Los Angeles. The Federal Trade Commission sued under the 2016 BOTS Act. Where did the 16 defense claims go?",
+      "b_roll": [
+        "Map highlighting Los Angeles federal court location.",
+        "Text graphic displaying BOTS Act 2016 statute title.",
+        "Graphic showing 16 defense claims dropping to 12."
+      ],
+      "text_overlay": {
+        "text": "FTC Lawsuit"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Live Nation argued the FTC hasn't enforced this 2016 law against anyone else.",
+      "b_roll": [
+        "Timeline scale highlighting 2016 to present day zero enforcement history."
+      ],
+      "text_overlay": {
+        "text": "Zero Enforcements Since 2016"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "In official filings, Ticketmaster denied profiting from brokers who bypass artist ticket limits. The 33 page answer reduced 16 affirmative defenses to 12 pointed arguments against the FTC.",
+      "b_roll": [
+        "Digital chart outlining artist ticket limit rules vs broker transactions.",
+        "33-page legal filing document highlighted.",
+        "Filing date graphic showing October 13."
+      ],
+      "text_overlay": {
+        "text": "33-Page Court Filing"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The State of Tennessee, State of Utah, and Commonwealth of Virginia joined case 8884.",
+      "b_roll": [
+        "Exterior graphic of the Los Angeles federal courthouse."
+      ],
+      "text_overlay": {
+        "text": "Los Angeles Federal Court"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://decibel.news/p/live-nation-rewrites-its-bots-act-defense",
+    "https://www.digitalmusicnews.com/2026/11/02/ftc-live-nation-lawsuit",
+    "https://www.musicbusinessworldwide.com/live-nation-calls-ftcs-bots-act-lawsuit-misguided-says-agency-is-trying-to-flip-the-act-on-its-head"
+  ]
+}

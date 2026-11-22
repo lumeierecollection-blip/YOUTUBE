@@ -1,0 +1,70 @@
+{
+  "topic_slug": "global-ecosystem-restoration-252-million-hectares",
+  "strongest_angle": "Global conservation efforts have reached a record 252 million hectares across 149 countries, as documented in the United Nations Environment Programme's first-ever comprehensive restoration stocktake.",
+  "key_facts": [
+    {
+      "fact": "A United Nations report published on October 29, 2026, revealed that countries are restoring about 252 million hectares of nature across 149 countries.",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un",
+      "source_name": "The Straits Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "Out of the total global restoration efforts recorded in 149 countries, 232 million hectares have taken place on land.",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un",
+      "source_name": "The Straits Times",
+      "confidence": "high"
+    },
+    {
+      "fact": "The United Nations Environment Programme report published on October 29, 2026, is the first-ever stocktake of countries' efforts to bring degraded ecosystems back to life.",
+      "source_url": "https://www.unep.org/en/publications/report/restoration-progress-report-natures-comeback-scaling-ecosystem-restoration",
+      "source_name": "UNEP",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total area under restoration",
+      "value": 252,
+      "unit": "million hectares",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+    },
+    {
+      "label": "Total countries participating in restoration",
+      "value": 149,
+      "unit": "countries",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+    },
+    {
+      "label": "Land area under restoration",
+      "value": 232,
+      "unit": "million hectares",
+      "source_url": "https://www.straitstimes.com/world/europe/restored-nature-hits-record-252-million-hectares-but-still-off-target-un"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "This report captures the largest documented restoration effort in history",
+      "speaker": "Doreen Robinson",
+      "source_name": "Daily Tribune",
+      "source_url": "https://tribune.net.ph/2026/10/29/restored-nature-hits-record-252-m-hectares"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Doreen Robinson",
+      "kind": "person"
+    },
+    {
+      "name": "United Nations Environment Programme",
+      "kind": "organization"
+    },
+    {
+      "name": "Nairobi",
+      "kind": "place"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    }
+  ]
+}

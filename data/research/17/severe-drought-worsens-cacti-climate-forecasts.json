@@ -1,0 +1,98 @@
+{
+  "topic_slug": "severe-drought-worsens-cacti-climate-forecasts",
+  "strongest_angle": "Examine the November 2026 Nature study coauthored by researchers including Michiel D. Pillet and the IUCN Cactus and Succulent Plants Specialist Group, showing severe drought and warming increase extinction risk for cacti across the Americas.",
+  "key_facts": [
+    {
+      "fact": "A November 11, 2026 study published in Nature by lead author Michiel D. Pillet and colleagues revealed that severe drought and warming increase extinction risk for cacti.",
+      "source_url": "https://www.nature.com/articles/s41586-026-11265-1",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "A press release from the IUCN Cactus and Succulent Plants Specialist Group on November 11, 2026, states that over a quarter of nearly 1,000 cactus species could lose at least 80 percent of suitable habitat by 2100.",
+      "source_url": "https://iucn.org/press-release/202611/severe-drought-worsens-climate-change-forecasts-cacti",
+      "source_name": "IUCN",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research from the University of Arizona and Maitner Lab highlights that at least 30 percent of cactus species are already at risk of extinction due to accelerating threats across the Americas.",
+      "source_url": "https://news.arizona.edu/news/new-research-finds-even-cacti-are-severely-threatened-warmer-drier-world",
+      "source_name": "University of Arizona News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The Cactus and Succulent Society of America noted in November 2026 that poaching has accelerated dramatically alongside climate threats since the last assessment in 2015.",
+      "source_url": "https://cactusandsucculentsociety.org/2026/11/11/iucn-cactus-assessment-updates",
+      "source_name": "Cactus & Succulent Society of America, Inc.",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Species losing at least 80% habitat",
+      "value": 1000,
+      "unit": "species",
+      "source_url": "https://iucn.org/press-release/202611/severe-drought-worsens-climate-change-forecasts-cacti"
+    },
+    {
+      "label": "Habitat loss percentage threshold",
+      "value": 80,
+      "unit": "percent",
+      "source_url": "https://iucn.org/press-release/202611/severe-drought-worsens-climate-change-forecasts-cacti"
+    },
+    {
+      "label": "Cactus species already at risk",
+      "value": 30,
+      "unit": "percent",
+      "source_url": "https://maitnerlab.github.io/news/2026-11-11-cacti-drought-nature.html"
+    },
+    {
+      "label": "Year of previous assessment",
+      "value": 2015,
+      "unit": "year",
+      "source_url": "https://cactusandsucculentsociety.org/2026/11/11/iucn-cactus-assessment-updates"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michiel D. Pillet",
+      "kind": "person"
+    },
+    {
+      "name": "Brian S. Maitner",
+      "kind": "person"
+    },
+    {
+      "name": "Mónica Arakaki",
+      "kind": "person"
+    },
+    {
+      "name": "Diogo S. A. Araujo",
+      "kind": "person"
+    },
+    {
+      "name": "Marc A. Baker",
+      "kind": "person"
+    },
+    {
+      "name": "IUCN Species Survival Commission",
+      "kind": "organization"
+    },
+    {
+      "name": "IUCN Cactus and Succulent Plants Specialist Group",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Arizona",
+      "kind": "organization"
+    },
+    {
+      "name": "Cactus & Succulent Society of America",
+      "kind": "organization"
+    },
+    {
+      "name": "Americas",
+      "kind": "place"
+    }
+  ]
+}

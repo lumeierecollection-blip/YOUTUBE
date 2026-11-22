@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "csiro-team-confirms-m87-black-hole-shadow",
+  "format": "shorts",
+  "hook": "Four researchers at Australia's CSIRO science agency just independently confirmed the M87 black hole shadow.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Four researchers at Australia's CSIRO science agency just independently confirmed the M87 black hole shadow.",
+      "visual_cue": "Close up on the M87 black hole event horizon image, pulsing slightly.",
+      "sfx_cue": "Low atmospheric hum, bass drop.",
+      "b_roll": [
+        "Event Horizon Telescope M87 iconic image"
+      ],
+      "text_overlay": {
+        "text": "M87 Black Hole Confirmed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 12, 2026, CSIRO scientists verified the 2019 Event Horizon Telescope image of M87. How did they achieve such precision?",
+      "visual_cue": "Timeline graphic showing 2019 and 2026 dates, followed by a wide shot of the M87 galaxy.",
+      "sfx_cue": "Data processing digital blips.",
+      "b_roll": [
+        "NASA animation of M87 galaxy",
+        "CSIRO logo and research facility footage"
+      ],
+      "text_overlay": {
+        "text": "November 12, 2026: Verification"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But they didn't just verify data; they created GenDIReCT, a powerful new image reconstruction technique.",
+      "visual_cue": "Abstract geometric visualization of light patterns shifting into a circular shadow.",
+      "sfx_cue": "High-pitched digital shimmer.",
+      "b_roll": [
+        "GenDIReCT imaging simulation"
+      ],
+      "text_overlay": {
+        "text": "New Technique: GenDIReCT"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This GenDIReCT analysis confirms the M87 shadow shape matches the original 2019 telescope models.",
+      "visual_cue": "Portraits of the four researchers appearing in a grid, followed by a comparison of the 2019 and 2026 images.",
+      "sfx_cue": "Deep celestial resonance.",
+      "b_roll": [
+        "CSIRO researcher portrait montage",
+        "Comparison of 2019 and 2026 image data"
+      ],
+      "text_overlay": {
+        "text": "Independent Verification"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "CSIRO scientists are bringing the M87 black hole into sharper focus with GenDIReCT.",
+      "visual_cue": "Slow zoom out from the black hole shadow into the vast starry expanse of space.",
+      "sfx_cue": "Fading orchestral swell.",
+      "b_roll": [
+        "Deep field space imagery"
+      ],
+      "text_overlay": {
+        "text": "Cosmic Clarity"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.csiro.au/en/news/All/News/2026/November/confirm-black-hole",
+    "https://theconversation.com/is-this-iconic-black-hole-image-accurate-new-study-delivers-an-independent-result-296146"
+  ]
+}

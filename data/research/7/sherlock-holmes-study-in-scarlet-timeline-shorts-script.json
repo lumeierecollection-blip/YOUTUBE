@@ -1,0 +1,94 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-study-in-scarlet-timeline",
+  "format": "shorts",
+  "hook": "In 1881, Arthur Conan Doyle's A Study in Scarlet didn't span a full week.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "In 1881, Arthur Conan Doyle's A Study in Scarlet didn't span a full week.",
+      "visual_cue": "Historical vintage clock face overlaying an antique Victorian map of London.",
+      "sfx_cue": "Dramatic low ambient drone with clock ticking",
+      "b_roll": [
+        "Victorian London street scene in fog",
+        "vintage 1880s manuscript page"
+      ],
+      "animation_cue": "Slow slow zoom into vintage pocket watch",
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "1881: 4 DAYS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "Watson returned wounded from the Battle of Maiwand in Afghanistan. The timeline of this investigation ran from 4 March to 7 March 1881. Where was this 1881 story first published?",
+      "visual_cue": "Public domain illustration of British military campaign in Afghanistan moving to Victorian manuscript page.",
+      "sfx_cue": "Paper page turn followed by subtle tension swell",
+      "b_roll": [
+        "Battle of Maiwand historical illustration",
+        "handwritten Victorian journal entries"
+      ],
+      "animation_cue": "Pan across handwritten dates on old parchment",
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "MARCH 4–7, 1881"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "But Arthur Conan Doyle didn't publish A Study in Scarlet until years after 1881.",
+      "visual_cue": "Close-up of vintage ink pen resting beside an unpublished manuscript bundle.",
+      "sfx_cue": "Single heavy wood gavel thud",
+      "b_roll": [
+        "Victorian writing desk with oil lamp",
+        "close-up of 19th-century publishing desk"
+      ],
+      "animation_cue": "Push in on manuscript title page",
+      "transition_out": "quick-cut",
+      "text_overlay": {
+        "text": "PUBLISHED 1887"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:40",
+      "voiceover": "The novel first appeared in Beeton's Christmas Annual in 1887. Ward, Lock & Co. published the first British book edition in 1888. The research site ChronoHolmes confirms the investigation spanned 4 days in March 1881.",
+      "visual_cue": "Archive print cover of Beeton's Christmas Annual transitioning to the 1888 Ward, Lock & Co. book cover.",
+      "sfx_cue": "Subtle cinematic riser to triumphant resolution string note",
+      "b_roll": [
+        "Beeton's Christmas Annual 1887 cover print",
+        "1888 Ward Lock and Co book edition cover"
+      ],
+      "animation_cue": "Split screen comparing 1887 publication cover to 1888 book edition",
+      "transition_out": "cross-dissolve",
+      "text_overlay": {
+        "text": "BEETON'S CHRISTMAS ANNUAL"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "That 1881 timeline established the legacy of Sherlock Holmes.",
+      "visual_cue": "Silhouette illustration of Sherlock Holmes with magnifying glass over historical Baker Street map.",
+      "sfx_cue": "Deep resonant chime fading out",
+      "b_roll": [
+        "Victorian London 221B Baker Street historical sign",
+        "vintage silhouette portrait of Sherlock Holmes"
+      ],
+      "animation_cue": "Slow fade out on vintage Holmes silhouette",
+      "transition_out": "fade-to-black",
+      "text_overlay": {
+        "text": "THE 1881 CANON"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.arthur-conan-doyle.com/wiki/A_Study_in_Scarlet",
+    "https://chronoholmes.neocities.org/cases/study-in-scarlet",
+    "https://www.beaconsociety.com/uploads/3/7/3/8/37380505/the_sherlock_holmes_canon_timeline_--_july_2022.pdf",
+    "https://studyinsherlock.com/2020/05/19/1-a-study-in-scarlet"
+  ]
+}

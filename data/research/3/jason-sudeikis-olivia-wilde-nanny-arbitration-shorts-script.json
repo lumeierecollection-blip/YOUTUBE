@@ -1,0 +1,67 @@
+{
+  "channel_id": "3",
+  "topic_slug": "jason-sudeikis-olivia-wilde-nanny-arbitration",
+  "format": "shorts",
+  "hook": "A nanny's lawsuit ended in a $1.27 million penalty.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A nanny's lawsuit ended in a $1.27 million penalty.",
+      "b_roll": [
+        "Financial graphic displaying $1.27 million penalty figure"
+      ],
+      "text_overlay": {
+        "text": "$1.27 Million Penalty"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2022, Ericka Genaro sued Jason Sudeikis and Olivia Wilde in Los Angeles Superior Court. The court forced the wrongful termination lawsuit into private arbitration. What happened to all 8 of her claims?",
+      "b_roll": [
+        "Graphic of Los Angeles Superior Court document filing dated 2022",
+        "Motion graphic depicting transfer into private arbitration",
+        "Graphic display showing 8 dismissed claims list"
+      ],
+      "text_overlay": {
+        "text": "8 Claims Filed"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead of winning, the arbitrator dismissed all 8 claims entirely.",
+      "b_roll": [
+        "Motion graphic showing counter reaching 0 out of 8 claims remaining"
+      ],
+      "text_overlay": {
+        "text": "0 Claims Remaining"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The arbitrator awarded Jason Sudeikis and Olivia Wilde over $1.27 million in fees and costs. Both actors filed a petition in New York to confirm the ruling. That filing confirms their legal victory.",
+      "b_roll": [
+        "Chart depicting $1.27 million total legal fees and costs awarded",
+        "Map animation highlighting legal petition filing in New York",
+        "Document graphic showing confirmed arbitration ruling"
+      ],
+      "text_overlay": {
+        "text": "$1.27M Award Confirmed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Now, they've petitioned a New York court to formally confirm the $1.27 million award.",
+      "b_roll": [
+        "Split status graphic indicating confirmed arbitration award alongside pending New York court confirmation"
+      ],
+      "text_overlay": {
+        "text": "Court Confirmation Pending"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://theblast.com/883900/jason-sudeikis-and-olivia-wildes-ex-nanny-blow",
+    "https://www.tmz.com/2026/11/11/jason-sudeikis-olivia-wilde-nanny-arbitration-results",
+    "https://www.cbsnews.com/losangeles/news/jason-sudeikis-olivia-wilde-force-arbitration-of-nanny-suits-arbitration"
+  ]
+}

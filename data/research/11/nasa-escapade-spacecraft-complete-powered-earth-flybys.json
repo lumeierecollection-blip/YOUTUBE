@@ -1,0 +1,89 @@
+{
+  "topic_slug": "nasa-escapade-spacecraft-complete-powered-earth-flybys",
+  "strongest_angle": "Break down how the twin ESCAPADE spacecraft Blue and Gold completed powered Earth flybys in November 2026, combining gravity assists with engine burns to set a trajectory for Mars.",
+  "key_facts": [
+    {
+      "fact": "The NASA ESCAPADE spacecraft nicknamed Gold flew by Earth at about 6 a.m. Eastern on November 9, 2026, coming within about 1,050 kilometers of Earth.",
+      "source_url": "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The first ESCAPADE spacecraft, Blue, made its Earth flyby at an altitude of about 1,600 kilometers, more than 48 hours before the Gold spacecraft.",
+      "source_url": "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys",
+      "source_name": "SpaceNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The spacecraft Blue burned its engines for more than 9 minutes starting at 5 a.m. EST on Saturday, November 7, 2026, during its close approach to Earth.",
+      "source_url": "https://vcresearch.berkeley.edu/news/berkeleys-escapade-spacecraft-say-goodbye-earth-next-stop-mars",
+      "source_name": "Research UC Berkeley",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Gold close approach distance",
+      "value": 1050,
+      "unit": "kilometers",
+      "source_url": "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys"
+    },
+    {
+      "label": "Blue close approach altitude",
+      "value": 1600,
+      "unit": "kilometers",
+      "source_url": "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys"
+    },
+    {
+      "label": "Time elapsed between flybys",
+      "value": 48,
+      "unit": "hours",
+      "source_url": "https://spacenews.com/escapade-on-its-way-to-mars-after-earth-flybys"
+    },
+    {
+      "label": "Blue engine burn duration",
+      "value": 9,
+      "unit": "minutes",
+      "source_url": "https://vcresearch.berkeley.edu/news/berkeleys-escapade-spacecraft-say-goodbye-earth-next-stop-mars"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "ESCAPADE",
+      "kind": "object"
+    },
+    {
+      "name": "Blue",
+      "kind": "object"
+    },
+    {
+      "name": "Gold",
+      "kind": "object"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    },
+    {
+      "name": "Mars",
+      "kind": "place"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "UC Berkeley",
+      "kind": "organization"
+    },
+    {
+      "name": "Rocket Lab",
+      "kind": "organization"
+    },
+    {
+      "name": "SpaceNews",
+      "kind": "organization"
+    }
+  ]
+}

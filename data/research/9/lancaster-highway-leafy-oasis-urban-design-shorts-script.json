@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "lancaster-highway-leafy-oasis-urban-design",
+  "format": "shorts",
+  "hook": "What if a five-lane highway became a leafy, pedestrian-friendly urban oasis?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a five-lane highway became a leafy, pedestrian-friendly urban oasis?",
+      "text_overlay": {
+        "text": "Highway to Oasis"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Lancaster, California, officials transformed a five-lane section of Highway 14 in the Mojave Desert. How did they reshape such a busy thoroughfare?",
+      "text_overlay": {
+        "text": "Lancaster, California"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The project replaced those 15,000 daily cars with a total reconstruction of 9 city blocks.",
+      "text_overlay": {
+        "text": "9 blocks redesigned"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "They turned West Lancaster Boulevard, formerly part of Highway 14, into a vibrant community center. This streetscape investment successfully revitalized the core of Lancaster, California, for the local community.",
+      "text_overlay": {
+        "text": "Pedestrian-friendly design"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Now, 9 blocks serve as a vibrant, leafy oasis.",
+      "text_overlay": {
+        "text": "9 leafy blocks"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnu.org/what-we-do/build-great-places/lancaster-boulevard",
+    "https://www.cnu.org/publicsquare/2017/12/14/car-oriented-thoroughfare-community-center"
+  ]
+}

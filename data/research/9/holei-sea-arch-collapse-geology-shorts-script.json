@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "holei-sea-arch-collapse-geology",
+  "format": "shorts",
+  "hook": "What if a 90-foot landmark simply vanished into the Pacific Ocean?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if a 90-foot landmark simply vanished into the Pacific Ocean?",
+      "text_overlay": {
+        "text": "90-foot Landmark Vanishes"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Hōlei Sea Arch in Hawaiʻi Volcanoes National Park stood at the end of Chain of Craters Road. How did this massive formation disappear?",
+      "text_overlay": {
+        "text": "Hōlei Sea Arch"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Rough storms battered the coast, causing the Hōlei Sea Arch to collapse by September 27, 2026.",
+      "text_overlay": {
+        "text": "Storms Trigger Collapse"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Guardian reported that the structure fell by the night of September 27, 2026. Ocean erosion and volcanic geography made its eventual collapse inevitable. The 90-foot arch is now gone.",
+      "text_overlay": {
+        "text": "90 Feet Tall"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 90-foot height is now just a memory in Hawaiʻi.",
+      "text_overlay": {
+        "text": "Hawaiʻi Volcanoes"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nps.gov/places/holei-sea-arch.htm",
+    "https://www.theguardian.com/us-news/2026/oct/02/hawaii-holei-sea-arch-collapses"
+  ]
+}

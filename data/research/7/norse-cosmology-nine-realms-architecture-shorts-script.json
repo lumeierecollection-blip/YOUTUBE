@@ -1,0 +1,83 @@
+{
+  "channel_id": "7",
+  "topic_slug": "norse-cosmology-nine-realms-architecture",
+  "format": "shorts",
+  "hook": "The 13th century Poetic Edda split the entire cosmos into 9 realms.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The 13th century Poetic Edda split the entire cosmos into 9 realms.",
+      "visual_cue": "Close-up of an illuminated 13th-century Icelandic manuscript page showing ancient Old Norse runes.",
+      "sfx_cue": "Deep parchment rustle with low cinematic sub-bass drone",
+      "b_roll": [
+        "Parchment manuscript close up",
+        "Ancient runic text document"
+      ],
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "9 REALMS OF NORSE COSMOLOGY"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the 13th century, Snorri Sturluson compiled oral poems into the Prose Edda. What structural role did the world-tree Yggdrasil play in anchoring these 9 distinct realms?",
+      "visual_cue": "Historical illustration of compiler Snorri Sturluson writing, shifting to an intricate cosmological diagram of Yggdrasil.",
+      "sfx_cue": "Soft quill scratching transitioning to wind rushing through distant branches",
+      "b_roll": [
+        "Medieval scholar writing manuscript",
+        "World tree historical diagram"
+      ],
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "PROSE EDDA ARCHITECTURE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, scholar John Lindow notes that the cosmos faced constant threats from giants and gods.",
+      "visual_cue": "Dramatic historical artwork depicting ancient mythological giants surrounding the cosmic boundaries.",
+      "sfx_cue": "Low ominous brass hit with heavy reverberating thud",
+      "b_roll": [
+        "Mythological giant battle artwork",
+        "Cosmic realm boundary map"
+      ],
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "2021 LINDOW STUDY"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Yggdrasil physically supported all 9 realms, including divine Asgard and the home of the elves. Sturluson authored the Prose Edda, which serves as the primary structural source for these realms.",
+      "visual_cue": "Sweeping cinematic view across a medieval parchment map detailing Asgard, Alfheim, and the trunk of Yggdrasil.",
+      "sfx_cue": "Ethereal atmospheric drone swelling to a decisive musical strike",
+      "b_roll": [
+        "Norse mythology realm illustration",
+        "13th century manuscript detail"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "ASGARD TO ALFHEIM"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "9 realms remained bound together by the world-tree Yggdrasil.",
+      "visual_cue": "Centred depiction of the great ash tree Yggdrasil with all branches connecting the outer realms.",
+      "sfx_cue": "Resonant metallic gong fade",
+      "b_roll": [
+        "Yggdrasil world tree engraving"
+      ],
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "THE WORLD-TREE YGGDRASIL"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Norse_cosmology",
+    "https://dn721903.ca.archive.org/0/items/docuv3/Books/Mythology/The%20Prose%20Edda%20%28Penguin%20Classics%2C%202005%29.pdf",
+    "https://www.worldhistory.org/article/1305/nine-realms-of-norse-cosmology",
+    "https://doi.org/10.1093/oso/9780190852252.003.0002"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "un-correct-the-map-equal-earth-mercator-2026",
+  "format": "shorts",
+  "hook": "The United Nations voted 164 to 1 to abandon the Mercator projection, a map distorting continents.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The United Nations voted 164 to 1 to abandon the Mercator projection, a map distorting continents.",
+      "text_overlay": {
+        "text": "UN VOTE: 164 TO 1"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Member states passed the Correct the Map resolution to fix visual errors making Africa resemble Greenland. How can Africa actually be 14 times larger than the landmass of Greenland?",
+      "text_overlay": {
+        "text": "MERCATOR VS REALITY"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Togo, the African Union, and the Bahamas sponsored this resolution to ensure accurate mapping.",
+      "text_overlay": {
+        "text": "SPONSORED BY TOGO"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Africa is finally getting its true scale, which is 14 times larger than Greenland's landmass.",
+      "text_overlay": {
+        "text": "EQUAL EARTH ADOPTED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 164 nations are now shifting toward accurate global mapping standards.",
+      "text_overlay": {
+        "text": "164 NATIONS SHIFT"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.un.org/en/unis-nairobi/un-tells-world-stop-making-africa-look-small",
+    "https://www.bbc.com/news/articles/cly5r60v4mro"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "key": "hidden-past",
+  "name": "Hidden Past",
+  "palette_source": "config/channels.json autopilot_palette (channel 1)",
+  "background": "light archival paper with vignette, printed dots and grain; accent #A64B14 only",
+  "type": { "serif": "Cormorant Garamond", "roles": ["headline", "evidence tag", "claim ladder", "chapter opener"] },
+  "voice": { "tts": "en-GB-RyanNeural", "direction": "Serious, intriguing, documentary.", "status": "generated speech, never a human recording" },
+  "rules": [
+    "Archival photographs are never zoomed, panned, pushed or scaled.",
+    "Visual evidence comes before explanation.",
+    "Primary sources and later interpretation are labelled apart on screen.",
+    "Dated maps carry their date and say which parts were added later.",
+    "Only public-domain scans are given the document treatment."
+  ],
+  "scene_library": ["archival-photo-ledger", "modern-map-locator", "dated-historical-map", "newspaper-scan", "archival-photo-card-with-claim-ladder", "chapter-opener"]
+}

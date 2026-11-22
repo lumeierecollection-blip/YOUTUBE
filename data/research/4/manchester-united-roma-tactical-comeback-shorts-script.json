@@ -1,0 +1,68 @@
+{
+  "channel_id": "4",
+  "topic_slug": "manchester-united-roma-tactical-comeback",
+  "format": "shorts",
+  "hook": "Roma led 2-0 at Old Trafford, then registered 0 second-half shots.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Roma led 2-0 at Old Trafford, then registered 0 second-half shots.",
+      "b_roll": [
+        "Old Trafford stadium exterior photo",
+        "Roma scoreboard visual showing 2-0"
+      ],
+      "text_overlay": {
+        "text": "ROMA LED 2-0"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "By the 18th minute, Roma took a 2-0 lead using marking from Bryan Cristante. Replacing Carlos Baleba with Youri Tielemans helped regain control. Where did Bruno Fernandes find space to score?",
+      "b_roll": [
+        "Tactical diagram of high man-to-man marking",
+        "Substitution diagram of Baleba and Tielemans"
+      ],
+      "text_overlay": {
+        "text": "TACTICAL ADJUSTMENT"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But after the break, Roma's defensive structure collapsed and they registered 0 shots.",
+      "b_roll": [
+        "Diagram showing defensive structure collapse",
+        "Stat graphic showing 0 second-half shots"
+      ],
+      "text_overlay": {
+        "text": "0 SECOND-HALF SHOTS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "First, Bruno Fernandes scored to bring Manchester United to 2-1. Then substitute Shea Lacey assisted Matheus Cunha for the winning goal. That 3-2 comeback victory ended a 9-match winless streak.",
+      "b_roll": [
+        "Timeline of United goals from 2-1 to 3-2 victory",
+        "Stat graphic showing 9-match winless streak ended"
+      ],
+      "text_overlay": {
+        "text": "MANCHESTER UNITED 3-2 COMEBACK"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Manchester United moved to 17th in the UEFA Champions League standings.",
+      "b_roll": [
+        "UEFA Champions League standings table diagram highlighting rank 17"
+      ],
+      "text_overlay": {
+        "text": "RANK 17 IN UEFA CHAMPIONS LEAGUE"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.asroma.pl/analiza-taktyczna-manchester-united-roma-32",
+    "https://www.goal.com/en/news/manchester-united-vs-roma-the-tactics-board-roma-fail-register-shot-break-matheus-cunha-completes-united-comeback/bltd3081dc58198d169",
+    "https://www.unitedinfocus.com/news/michael-carrick-shares-how-shea-lacey-was-part-of-hidden-tactical-switch-to-secure-win-vs-roma-we-love-him",
+    "https://www.theguardian.com/football/2026/nov/03/michael-carrick-manchester-united-roma-old-trafford-champions-league"
+  ]
+}

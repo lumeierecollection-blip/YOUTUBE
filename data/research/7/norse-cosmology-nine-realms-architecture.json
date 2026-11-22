@@ -1,0 +1,69 @@
+{
+  "topic_slug": "norse-cosmology-nine-realms-architecture",
+  "strongest_angle": "Norse cosmology structures the universe around the world-tree Yggdrasil and divides existence into nine realms as recorded in the 13th-century Poetic Edda and Prose Edda.",
+  "key_facts": [
+    {
+      "fact": "Norse mythology and its concepts of time, space, and cosmogony are primarily recorded from oral sources in the Poetic Edda, a collection of poems compiled in the 13th century.",
+      "source_url": "https://en.wikipedia.org/wiki/Norse_cosmology",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Prose Edda was authored by Snorri Sturluson and incorporates stanzas of eddic poems directly into its prose, serving as a primary structural source for Norse cosmology.",
+      "source_url": "https://dn721903.ca.archive.org/0/items/docuv3/Books/Mythology/The%20Prose%20Edda%20%28Penguin%20Classics%2C%202005%29.pdf",
+      "source_name": "Internet Archive",
+      "confidence": "high"
+    },
+    {
+      "fact": "Norse cosmology divided the universe into nine realms, featuring Asgard as the realm of the Aesir and Alfheim as the realm of the Bright Elves around the world-tree Yggdrasil.",
+      "source_url": "https://www.worldhistory.org/article/1305/nine-realms-of-norse-cosmology",
+      "source_name": "World History Encyclopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "John Lindow's 2021 study on cosmogony and eschatology outlines the narrative sweep of Old Norse Mythology from the formation of the cosmos to the encounters between gods and giants.",
+      "source_url": "https://doi.org/10.1093/oso/9780190852252.003.0002",
+      "source_name": "Oxford Scholarship Online",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Century of Poetic Edda compilation",
+      "value": 13,
+      "unit": "century",
+      "source_url": "https://en.wikipedia.org/wiki/Norse_cosmology"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Poetic Edda",
+      "kind": "object"
+    },
+    {
+      "name": "Prose Edda",
+      "kind": "object"
+    },
+    {
+      "name": "Yggdrasil",
+      "kind": "object"
+    },
+    {
+      "name": "Asgard",
+      "kind": "place"
+    },
+    {
+      "name": "Alfheim",
+      "kind": "place"
+    },
+    {
+      "name": "Snorri Sturluson",
+      "kind": "person"
+    },
+    {
+      "name": "John Lindow",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

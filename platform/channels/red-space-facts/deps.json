@@ -1,0 +1,5 @@
+{
+  "_provisional": "Three.js via @remotion/three is a PROVISIONAL stand-in for the owner's unconfirmed 'SOLSYS' selection. Versions match src/skills/remotion-render/package.json (remotion and @remotion/three 4.0.507, three ^0.185.1). @react-three/fiber is the peer dependency of @remotion/three.",
+  "_flags": "--legacy-peer-deps is passed as the first entry because the workflow word-splits this list into `npm install --no-save`; without it npm stops on optional react-native/expo peers of @react-three/fiber.",
+  "npm": ["--legacy-peer-deps", "@remotion/three@4.0.507","@react-three/fiber@9.8.2", "three@0.185.1"]
+}
