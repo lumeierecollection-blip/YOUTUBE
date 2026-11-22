@@ -12,7 +12,7 @@ import { currentApproval, startReviewServer, storyboardHash, validateRivalLinesS
 import { validateRivalLinesScript } from "./rival-lines-script-gate.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "Root.jsx");
+const ROOT_JSX = join(ROOT, "src", "skills", "remotion-render", "RivalLinesRoot.jsx");
 const require = createRequire(import.meta.url);
 const ffmpeg = (() => { try { return require("ffmpeg-static"); } catch { return "ffmpeg"; } })();
 const get = (k, fallback = null) => { const i = process.argv.indexOf(`--${k}`); return i < 0 ? fallback : process.argv[i + 1] || fallback; };
