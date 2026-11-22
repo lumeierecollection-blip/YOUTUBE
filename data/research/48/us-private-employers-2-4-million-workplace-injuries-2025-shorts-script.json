@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "us-private-employers-2-4-million-workplace-injuries-2025",
+  "format": "shorts",
+  "hook": "Private employer workplace injuries dropped to 2.4 million in 2025.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Private employer workplace injuries dropped to 2.4 million in 2025.",
+      "b_roll": [
+        "Graphic display showing a steep drop to 2.4 million workplace injury cases in 2025"
+      ],
+      "text_overlay": {
+        "text": "2.4 Million Workplace Injuries in 2025"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 18, 2026, the U.S. Bureau of Labor Statistics published federal workplace data. The annual tally fell 3% compared with 2024. Why did cases hit their lowest point since 2003?",
+      "b_roll": [
+        "Document view of U.S. Bureau of Labor Statistics report dated November 18, 2026",
+        "Bar chart comparing 2024 injury rates to 2025 showing a 3% decline",
+        "Timeline graphic sweeping back to 2003 marking historical low"
+      ],
+      "text_overlay": {
+        "text": "Down 3% to Lowest Point Since 2003"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the U.S. Bureau of Labor Statistics reported 2025 marked the third consecutive annual decrease.",
+      "b_roll": [
+        "Trend graph illustrating three consecutive years of declining injury counts"
+      ],
+      "text_overlay": {
+        "text": "3 Consecutive Years of Declines"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Federal records back to 2003 show 2025 reached an all-time low. Private employers reported 2.4 million total nonfatal injuries and illnesses. The 3% decline highlights three straight years of workplace safety gains.",
+      "b_roll": [
+        "Historical line chart spanning 2003 to 2025 highlighting the historic low",
+        "Data graphic detailing 2.4 million nonfatal workplace injuries and illnesses",
+        "Progress bar chart showing 3% reduction over three consecutive years"
+      ],
+      "text_overlay": {
+        "text": "Historic Low: 2.4M Nonfatal Cases"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Federal records logged 2.4 million nonfatal cases in 2025.",
+      "b_roll": [
+        "Final summary card with federal data seal highlighting 2.4 million cases in 2025"
+      ],
+      "text_overlay": {
+        "text": "2025 Record: 2.4 Million Cases"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+    "https://www.safetyandhealthmagazine.com/nonfatal-injuries-and-illnesses-trending-downward-bls-data-shows"
+  ]
+}
