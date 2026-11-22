@@ -1,0 +1,86 @@
+{
+  "channel_id": "17",
+  "topic_slug": "3-9-billion-year-old-rocks-northern-china",
+  "format": "shorts",
+  "hook": "Rocks in China dated at 3.95 billion years sank 50 kilometers deep.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "Rocks in China dated at 3.95 billion years sank 50 kilometers deep.",
+      "visual_cue": "Macro shot of ancient crystalline rock formation with glowing depth graphics showing 50 kilometer depth marker.",
+      "sfx_cue": "Deep sub-bass rumble with low seismic thud",
+      "b_roll": [
+        "Geological rock strata close up shot",
+        "Subduction zone earth cross-section animation"
+      ],
+      "text_overlay": {
+        "text": "3.95 Billion Years Old • 50km Deep"
+      },
+      "transition_out": "Hard cut to map"
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:21",
+      "voiceover": "In Hebei Province, Yusheng Wan identified ancient crust in the Shimen Complex. Earth formed 4.5 billion years ago, leaving few ancient rocks. Where did this 3.95 billion year old crust go?",
+      "visual_cue": "Satellite view highlighting Hebei Province transitioning to geological map of the Shimen Complex.",
+      "sfx_cue": "Gentle ambient synth wave followed by subtle chime",
+      "b_roll": [
+        "Satellite map zoom into Hebei Province China",
+        "Geologists inspecting rock samples in field"
+      ],
+      "text_overlay": {
+        "text": "Shimen Complex, Hebei Province"
+      },
+      "transition_out": "Wipe right"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:21-0:27",
+      "voiceover": "But Nature reported the crust rapidly plunged over 50 kilometers deep and partially melted.",
+      "visual_cue": "3D Earth mantel diagram showing oceanic crust plunging rapidly into subterranean heat layers.",
+      "sfx_cue": "Rising tension riser sound",
+      "b_roll": [
+        "Scientific journal page graphic for Nature",
+        "3D tectonic plate burial animation"
+      ],
+      "text_overlay": {
+        "text": "Plunged >50 Kilometers"
+      },
+      "transition_out": "Flash zoom"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:41",
+      "voiceover": "They've found 3.95 billion year old oceanic crust in the Jidong region that partially melted. They are Asia's oldest rocks, behind Canada's 4.0 billion year old Acasta Gneiss.",
+      "visual_cue": "Comparative timeline showing Jidong rocks alongside Canada Acasta Gneiss with thermal magma graphics.",
+      "sfx_cue": "Resonant metallic tone",
+      "b_roll": [
+        "Microscopic mineral crystal lattice shot",
+        "Acasta Gneiss geological sample photograph"
+      ],
+      "text_overlay": {
+        "text": "Asia's Oldest Known Rocks"
+      },
+      "transition_out": "Slow fade"
+    },
+    {
+      "id": "close",
+      "timing": "0:41-0:46",
+      "voiceover": "Ancient crust sank 50 kilometers in Earth's early history.",
+      "visual_cue": "Cinematic wide shot of rocky geological outcrop under golden hour light.",
+      "sfx_cue": "Warm lingering bass swell",
+      "b_roll": [
+        "Panoramic view of rugged mountains in northern China"
+      ],
+      "text_overlay": {
+        "text": "Earth's Early Crust"
+      },
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://www.cgs.gov.cn/ywdt/ddyw/202611/t20261121_873066.html",
+    "https://www.nature.com/articles/d41586-026-03499-w"
+  ]
+}
