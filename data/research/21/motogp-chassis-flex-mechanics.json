@@ -1,0 +1,86 @@
+{
+  "topic_slug": "motogp-chassis-flex-mechanics",
+  "strongest_angle": "Analyzing MotoGP chassis engineering reveals how structural flexibility is tuned across specific frame components to maintain tire contact at high lean angles while sustaining massive longitudinal engine and braking loads.",
+  "key_facts": [
+    {
+      "fact": "Honda designed the 2002 MotoGP RC211V motorcycle chassis to handle an engine output about 30 percent higher than the previous NSR500 machine.",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02",
+      "source_name": "Honda Global",
+      "confidence": "high"
+    },
+    {
+      "fact": "Inside Motorcycles Magazine reports that MotoGP chassis rigidity is evaluated across 3 distinct directions: vertical, lateral, and torsional stiffness.",
+      "source_url": "https://www.insidemotorcycles.com/controlling-flex-in-motogp",
+      "source_name": "Inside Motorcycles Magazine",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Honda engineers analyze motorcycle chassis dynamics across 3 rotational moments: yaw around the vertical axis, pitch around the lateral axis, and roll around the longitudinal axis.",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part04",
+      "source_name": "Honda Global",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australian Motorcycle News identifies 5 structural components engineered for chassis stiffness and flex balance: the frame, swingarm, front fork, triple clamps, and ancillaries.",
+      "source_url": "https://amcn.com.au/editorial/framed-motogp-chassis-development",
+      "source_name": "Australian Motorcycle News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Engine output increase of Honda RC211V over NSR500",
+      "value": 30,
+      "unit": "percent",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02"
+    },
+    {
+      "label": "Directions of chassis rigidity evaluation",
+      "value": 3,
+      "unit": "directions",
+      "source_url": "https://www.insidemotorcycles.com/controlling-flex-in-motogp"
+    },
+    {
+      "label": "Rotational moments around motorcycle chassis",
+      "value": 3,
+      "unit": "moments",
+      "source_url": "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part04"
+    },
+    {
+      "label": "Structural components engineered for chassis stiffness",
+      "value": 5,
+      "unit": "components",
+      "source_url": "https://amcn.com.au/editorial/framed-motogp-chassis-development"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Incorporating flex into a chassis is not easy, as strength and stiffness are still desired in some directions while flex is advantageous only in certain directions.",
+      "speaker": "Inside Motorcycles Magazine",
+      "source_name": "Inside Motorcycles Magazine",
+      "source_url": "https://www.insidemotorcycles.com/controlling-flex-in-motogp"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Honda",
+      "kind": "organization"
+    },
+    {
+      "name": "RC211V",
+      "kind": "object"
+    },
+    {
+      "name": "NSR500",
+      "kind": "object"
+    },
+    {
+      "name": "Inside Motorcycles Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "Australian Motorcycle News",
+      "kind": "organization"
+    }
+  ]
+}

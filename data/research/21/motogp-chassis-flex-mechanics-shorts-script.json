@@ -1,0 +1,53 @@
+{
+  "channel_id": "21",
+  "topic_slug": "motogp-chassis-flex-mechanics",
+  "format": "shorts",
+  "hook": "Honda designed the 2002 RC211V with 30 percent more power, forcing a total frame redesign.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Honda designed the 2002 RC211V with 30 percent more power, forcing a total frame redesign.",
+      "visual_cue": "Side-by-side comparison graphic showing the NSR500 and the RC211V motorcycles.",
+      "text_overlay": {
+        "text": "30% Power Increase"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2002, the RC211V replaced the NSR500 to handle massive engine loads. How do they balance stiffness while maintaining tire contact?",
+      "visual_cue": "Technical diagram showing vertical, lateral, and torsional stiffness vectors on a chassis.",
+      "text_overlay": {
+        "text": "3 Rigidity Directions"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Inside Motorcycles Magazine notes that tuning flex across 3 directions prevents the chassis from snapping.",
+      "visual_cue": "Close-up macro shot of a motorcycle frame under stress testing.",
+      "text_overlay": {
+        "text": "Controlled Flex"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Honda engineers tune 3 rotational moments to ensure these components keep tires gripping the track.",
+      "visual_cue": "Animated exploded view of the 5 motorcycle chassis components.",
+      "text_overlay": {
+        "text": "5 Structural Components"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Performance relies on tuning these 5 components for chassis flex.",
+      "visual_cue": "Slow motion shot of a MotoGP bike leaning hard through a corner.",
+      "text_overlay": {
+        "text": "Tuned Chassis Flex"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://global.honda/en/tech/motorsports/MotoGP/RC211V_part02",
+    "https://www.insidemotorcycles.com/controlling-flex-in-motogp",
+    "https://amcn.com.au/editorial/framed-motogp-chassis-development"
+  ]
+}
