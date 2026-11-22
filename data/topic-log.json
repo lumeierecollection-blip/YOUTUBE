@@ -2012,9 +2012,14 @@
           "topic": "Stephen Fry on How Sherlock Holmes Altered the Course of Literature",
           "slug": "stephen-fry-sherlock-holmes-literature-legacy",
           "reserved_at": "2026-11-21T16:25:34.458Z"
+        },
+        {
+          "topic": "Stephen Fry on Sherlock Holmes: 100 Years of Canon Legacy Examined",
+          "slug": "stephen-fry-sherlock-holmes-canon-legacy",
+          "reserved_at": "2026-11-22T16:26:59.328Z"
         }
       ],
-      "last_generated": "2026-11-21T16:25:34.458Z"
+      "last_generated": "2026-11-22T16:26:59.328Z"
     },
     "8": {
       "channel_name": "Ledger",
