@@ -288,5 +288,17 @@
     "cancelled": true,
     "source_file": "2025-us-workplace-injury-statistics-bls-report-shorts-shorts-2026-11-21.mp4",
     "source_queue": "approved"
+  },
+  {
+    "video_id": "CQ4u_Siy3Ow",
+    "channel_id": "48",
+    "title": "U.S. Private Employers Report 2.4 Million Workplace…",
+    "uploaded_at": "2026-11-22T17:07:07.487Z",
+    "publish_delay_hours": 1,
+    "go_public_at": "2026-11-22T18:07:07.487Z",
+    "privacy_status": "private",
+    "cancelled": true,
+    "source_file": "us-private-employers-2-4-million-workplace-injuries-2025-shorts-shorts-2026-11-22.mp4",
+    "source_queue": "approved"
   }
 ]
