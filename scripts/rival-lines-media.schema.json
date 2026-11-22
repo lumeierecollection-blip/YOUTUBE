@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rival-lines-media-v1",
+  "title": "Rival Lines verified football media manifest",
+  "type": "object",
+  "required": ["channel_id", "assets"],
+  "properties": {
+    "channel_id": { "const": "ch-51" },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "path", "source_url", "rights", "verification"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["match-footage", "player-photo", "club-crest", "competition-mark", "stadium", "tactical-source"] },
+          "path": { "type": "string", "minLength": 1 },
+          "source_url": { "type": "string", "format": "uri" },
+          "player": { "type": ["string", "null"] },
+          "club": { "type": ["string", "null"] },
+          "competition": { "type": ["string", "null"] },
+          "match": { "type": ["string", "null"] },
+          "event": { "type": ["string", "null"] },
+          "narration_refs": { "type": "array", "items": { "type": "string" } },
+          "editorial_purpose": { "type": "string", "minLength": 12 },
+          "transformative_treatment": { "type": "string", "minLength": 20 },
+          "rights": {
+            "type": "object",
+            "required": ["basis", "evidence_url", "permitted_use", "status"],
+            "properties": {
+              "basis": { "enum": ["written-permission", "license", "public-domain", "creative-commons", "other-documented"] },
+              "evidence_url": { "type": "string", "format": "uri" },
+              "license_name": { "type": ["string", "null"] },
+              "permitted_use": { "type": "string", "minLength": 8 },
+              "status": { "enum": ["verified", "unverified", "rejected"] }
+            }
+          },
+          "verification": {
+            "type": "object",
+            "required": ["status", "evidence", "verified_by"],
+            "properties": {
+              "status": { "enum": ["verified", "unverified", "rejected"] },
+              "evidence": { "type": "string", "minLength": 12 },
+              "verified_by": { "type": "string", "minLength": 1 },
+              "verified_at": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    }
+  }
+}
