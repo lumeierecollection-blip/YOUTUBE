@@ -1,0 +1,732 @@
+{
+  "generatedAt": "2026-10-23T14:14:30.763Z",
+  "channel": "1",
+  "source": "gemini",
+  "iteration": "correction",
+  "totalBeats": 6,
+  "beats": [
+    {
+      "index": 0,
+      "kind": "EDITORIAL",
+      "visual_type": "MAP",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "SCENE-FULL",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "forgotten female ruler",
+      "emphasis_word": "female",
+      "scene_description": "An editorial collage depicting ancient Egyptian royal seals resting on weathered papyrus in the lower half of the frame, with the oversized serif headline sitting in the top band against a warm cream ground.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "seals",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "ancient female ruler",
+          "magnitude": "1"
+        }
+      ],
+      "capabilities": [
+        "contrast"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "forgotten female ruler",
+        "why": null,
+        "moment": "hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "data": {
+        "place": "Egypt"
+      },
+      "visual_headline": "forgotten female ruler",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "ancient female ruler"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "CUT_IN"
+      },
+      "recent_animations": [
+        "CUT_IN"
+      ],
+      "narration": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+      "reason": "An editorial collage depicting ancient Egyptian royal seals resting on weathered papyrus in the lower half of the frame, with the oversized serif headline sitting in the top band against a warm cream ground.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named"
+    },
+    {
+      "index": 1,
+      "kind": "EDITORIAL",
+      "visual_type": "PHOTO",
+      "canvas_composition": "PORTRAIT",
+      "shot": "PHOTO-CARD",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "tomb Y at Abydos",
+      "emphasis_word": "Abydos",
+      "scene_description": "A framed historical photograph of archaeologist William Matthew Flinders Petrie examining excavation artifacts inside a desert tent, set in a heavy dark frame in the lower half of the frame.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "William Matthew Flinders Petrie"
+        },
+        {
+          "type": "place",
+          "name": "Abydos"
+        }
+      ],
+      "entity_anchor_word": "Petrie",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": 0,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "excavation at Abydos"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": {
+        "text": "Abydos, Egypt",
+        "position": "top-left"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "entity": "William Matthew Flinders Petrie",
+        "entity_type": "person"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "excavation at Abydos"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "staggered",
+      "animation_family": "slide-in",
+      "animations": {
+        "headline": "SPLIT_REVEAL"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SPLIT_REVEAL"
+      ],
+      "narration": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit.",
+      "visual_headline": "tomb Y at Abydos",
+      "reason": "A framed historical photograph of archaeologist William Matthew Flinders Petrie examining excavation artifacts inside a desert tent, set in a heavy dark frame in the lower half of the frame.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default"
+    },
+    {
+      "index": 2,
+      "kind": "TYPE",
+      "visual_type": "TYPE",
+      "canvas_composition": "TYPE-FULL",
+      "shot": "STATEMENT",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "daughter of Djer",
+      "emphasis_word": "daughter",
+      "scene_description": "A stark dark ground with oversized serif typography posing the question about the royal lineage, featuring a clean horizontal divider line separating headline and subtext.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Djer"
+        }
+      ],
+      "entity_anchor_word": "Djer",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "lineage question"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "comparison"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "daughter of Djer",
+        "why": null,
+        "moment": "question",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": {
+        "text": "daughter of Djer",
+        "position": "middle",
+        "case": "as-written",
+        "tone": "accent"
+      },
+      "planner_chose_type": true,
+      "data": null,
+      "visual_headline": "daughter of Djer",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "appear",
+            "count": 1,
+            "scale": 1,
+            "label": ""
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "appear",
+            "count": 1,
+            "scale": 0.6,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "visual-first",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "LETTER_STAGGER"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SPLIT_REVEAL",
+        "LETTER_STAGGER"
+      ],
+      "narration": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+      "mechanism": "TYPOGRAPHY",
+      "reason": "A stark dark ground with oversized serif typography posing the question about the royal lineage, featuring a clean horizontal divider line separating headline and subtext.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex"
+    },
+    {
+      "index": 3,
+      "kind": "EDITORIAL",
+      "visual_type": "PHOTO",
+      "canvas_composition": "DOCUMENT",
+      "shot": "PHOTO-INSET",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "first female ruler",
+      "emphasis_word": "first",
+      "scene_description": "A close-up of a vintage Scientific American magazine cover featuring an inset cutout of analyzed royal seals, placed as a small rounded card with a block shadow in the upper half.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "Scientific American"
+        }
+      ],
+      "entity_anchor_word": "Scientific",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "population",
+          "label": "analyzed seals"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": {
+        "text": "Scientific American",
+        "position": "top-right"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "entity": "Scientific American",
+        "entity_type": "institution"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "silhouette",
+            "anchor": "center",
+            "motion": "appear",
+            "count": 12,
+            "scale": 1,
+            "label": "analyzed seals"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "together",
+      "animation_family": "slide-in",
+      "animations": {
+        "headline": "SCALE_PUNCH"
+      },
+      "recent_animations": [
+        "SPLIT_REVEAL",
+        "LETTER_STAGGER",
+        "SCALE_PUNCH"
+      ],
+      "narration": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+      "visual_headline": "first female ruler",
+      "reason": "A close-up of a vintage Scientific American magazine cover featuring an inset cutout of analyzed royal seals, placed as a small rounded card with a block shadow in the upper half.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named"
+    },
+    {
+      "index": 4,
+      "kind": "EDITORIAL",
+      "visual_type": "PHOTO",
+      "canvas_composition": "SCENE-LOW",
+      "shot": "SCENE-LOW",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "5000 years of history",
+      "emphasis_word": "5000",
+      "scene_description": "An AI-generated scene showing dusty excavation tools resting against ancient stone walls in Egypt, filling the lower two-thirds of the frame with a clean white top band housing the headline.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "William Matthew Flinders Petrie"
+        },
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "Petrie",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "5000 years"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "entity": "William Matthew Flinders Petrie",
+        "entity_type": "person"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "5000 years"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "staggered",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "FADE_LIFT"
+      },
+      "recent_animations": [
+        "LETTER_STAGGER",
+        "SCALE_PUNCH",
+        "FADE_LIFT"
+      ],
+      "narration": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+      "mechanism": "ACTION_CONSEQUENCE",
+      "cap_reassigned": {
+        "from": "CAPABILITY:revelation",
+        "why": "CAPABILITY:revelation exceeded 40% (max 2 of 6)"
+      },
+      "visual_headline": "5000 years of history",
+      "reason": "An AI-generated scene showing dusty excavation tools resting against ancient stone walls in Egypt, filling the lower two-thirds of the frame with a clean white top band housing the headline.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default"
+    },
+    {
+      "index": 5,
+      "kind": "EDITORIAL",
+      "visual_type": "COUNTER",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "SCENE-FULL",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "Meretneith ruled Egypt",
+      "emphasis_word": "Meretneith",
+      "scene_description": "An atmospheric editorial collage showing an ancient Egyptian cartouche bearing the name Meretneith carved in stone against a dark background, glowing softly with an accent light.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Meretneith"
+        },
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "Meretneith",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "Meretneith rule"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "Meretneith ruled Egypt",
+        "why": null,
+        "moment": "key_fact",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "value": "5000",
+        "label": "years ago"
+      },
+      "visual_headline": "Meretneith ruled Egypt",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "Meretneith rule"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "visual-first",
+      "animation_family": "count-up",
+      "animations": {
+        "headline": "TYPE_IN",
+        "label": "RISE_FROM_BASE",
+        "number": "SNAP_IN"
+      },
+      "recent_animations": [
+        "SCALE_PUNCH",
+        "FADE_LIFT",
+        "TYPE_IN",
+        "RISE_FROM_BASE",
+        "SNAP_IN"
+      ],
+      "narration": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+      "reason": "An atmospheric editorial collage showing an ancient Egyptian cartouche bearing the name Meretneith carved in stone against a dark background, glowing softly with an accent light.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex"
+    }
+  ],
+  "composedBeats": 0,
+  "compositionIssues": [],
+  "compilationReport": [
+    {
+      "beat": 1,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 2,
+      "errors": [
+        "scene covers only 29% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 29% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    }
+  ],
+  "capabilityDistribution": {
+    "contrast": 1,
+    "revelation": 3,
+    "typographic_emphasis": 1,
+    "comparison": 1,
+    "evidence": 1
+  },
+  "mechanismDistribution": "CAPABILITY:revelation:2 CAPABILITY:contrast:1 TYPOGRAPHY:1 ACTION_CONSEQUENCE:1 CAPABILITY:evidence:1",
+  "compositionsDropped": [],
+  "plannerDecisions": {
+    "grounds": {
+      "#F5EFE0": 2,
+      "white": 2,
+      "#0E0E10": 2
+    },
+    "types": {
+      "declared": 6,
+      "kept": 5,
+      "ungrounded": 1,
+      "defaultedType": 0
+    },
+    "compositionMappings": [
+      {
+        "beat": 0,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 1,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 3,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 4,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 4,
+        "field": "canvas_composition",
+        "wrote": "SCENE-LOW",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 5,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      }
+    ],
+    "compositions_used": {
+      "counts": {
+        "SCENE-FULL": 3,
+        "PORTRAIT": 1,
+        "TYPE-FULL": 1,
+        "DOCUMENT": 1
+      },
+      "n": 6,
+      "top": "SCENE-FULL",
+      "topShare": 0.5,
+      "templated": false
+    },
+    "styleSpec": null
+  }
+}

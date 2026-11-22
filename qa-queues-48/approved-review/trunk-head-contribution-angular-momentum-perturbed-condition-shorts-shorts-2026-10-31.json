@@ -1,0 +1,11 @@
+{
+  "run_id": "41250854919",
+  "channel": 48,
+  "verdict": "approved-review",
+  "failed_stage": "beat-check",
+  "failed_check": null,
+  "reason": "FAILED — frames do not match their sentences",
+  "duration_s": 51.3,
+  "queued_at": "2026-10-31T23:26:10.869Z",
+  "local_audit": "all checks passed"
+}

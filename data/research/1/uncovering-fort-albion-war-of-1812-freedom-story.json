@@ -1,0 +1,61 @@
+{
+  "topic_slug": "uncovering-fort-albion-war-of-1812-freedom-story",
+  "strongest_angle": "Examine the newly discovered British map revealing the location of Fort Albion on Tangier Island, highlighting the War of 1812 freedom story of formerly enslaved people as featured in PBS Secrets of the Dead.",
+  "key_facts": [
+    {
+      "fact": "A newly discovered British map reveals the location of Fort Albion, a War of 1812 outpost on Tangier Island.",
+      "source_url": "https://www.pbs.org/wnet/secrets/uncovering-fort-albions-forgotten-black-heroes-867uyh/8929",
+      "source_name": "PBS",
+      "confidence": "high"
+    },
+    {
+      "fact": "Tangier Island is a low-lying island located in the Chesapeake Bay within the state of Virginia.",
+      "source_url": "https://www.nps.gov/places/tangier-island.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "Evidence of a burial ground highlights the sacrifices made by formerly enslaved people who fought for their freedom during the War of 1812.",
+      "source_url": "https://www.pbs.org/wnet/secrets/uncovering-fort-albions-forgotten-black-heroes-867uyh/8929",
+      "source_name": "PBS",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Season Number",
+      "value": 23,
+      "unit": "season",
+      "source_url": "https://www.pbs.org/video/uncovering-fort-albions-forgotten-black-heroes-867uyh"
+    },
+    {
+      "label": "Episode Number",
+      "value": 7,
+      "unit": "episode",
+      "source_url": "https://www.pbs.org/video/uncovering-fort-albions-forgotten-black-heroes-867uyh"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Fort Albion",
+      "kind": "place"
+    },
+    {
+      "name": "Tangier Island",
+      "kind": "place"
+    },
+    {
+      "name": "Chesapeake Bay",
+      "kind": "place"
+    },
+    {
+      "name": "PBS",
+      "kind": "organization"
+    },
+    {
+      "name": "Benjamin Phelps",
+      "kind": "person"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "topic_slug": "paycom-october-2026-employment-compliance-updates",
+  "strongest_angle": "Paycom outlines October 2026 federal and state compliance updates, highlighting dependent care benefit reporting changes under IRS Form W-2, state paid family and medical leave tax treatment, and expanding pay transparency laws.",
+  "key_facts": [
+    {
+      "fact": "Paycom published the State of Compliance October 2026 report detailing federal and state compliance updates regarding dependent care benefit reporting and pay transparency.",
+      "source_url": "https://www.paycom.com/resources/blog/state-of-compliance-october-2026-federal-and-state-compliance-updates",
+      "source_name": "Paycom",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Internal Revenue Service issued a correction to the dependent care benefits exclusion amount in the 2026 General Instructions for Forms W-2 and W-3 under Box 10 following P.L. 119-21, section 70404.",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3",
+      "source_name": "Internal Revenue Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "Connecticut state pay transparency amendments go into effect on October 1, 2026.",
+      "source_url": "https://www.paycom.com/resources/blog/pay-transparency",
+      "source_name": "Paycom",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Internal Revenue Service 2026 General Instructions for Forms W-2 and W-3 specify that employee contributions and employer voluntary payments for State Paid Family and Medical Leave must be included as wages.",
+      "source_url": "https://www.irs.gov/pub/irs-prior/iw2w3--2026.pdf",
+      "source_name": "Internal Revenue Service",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Dependent care benefits exclusion amount",
+      "value": 5000,
+      "unit": "dollars",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Public law number",
+      "value": 119,
+      "unit": "law",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Section number",
+      "value": 70404,
+      "unit": "section",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Form number W-2",
+      "value": 2,
+      "unit": "form",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Form number W-3",
+      "value": 3,
+      "unit": "form",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Box number 10",
+      "value": 10,
+      "unit": "box",
+      "source_url": "https://www.irs.gov/forms-pubs/correction-to-the-dependent-care-benefits-exclusion-amount-in-the-2026-general-instructions-for-forms-w-2-and-w-3"
+    },
+    {
+      "label": "Month of Connecticut pay transparency amendments",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://www.paycom.com/resources/blog/pay-transparency"
+    },
+    {
+      "label": "Day of Connecticut pay transparency amendments",
+      "value": 1,
+      "unit": "day",
+      "source_url": "https://www.paycom.com/resources/blog/pay-transparency"
+    },
+    {
+      "label": "Year of Connecticut pay transparency amendments",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.paycom.com/resources/blog/pay-transparency"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Paycom",
+      "kind": "organization"
+    },
+    {
+      "name": "Internal Revenue Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Connecticut",
+      "kind": "place"
+    }
+  ]
+}

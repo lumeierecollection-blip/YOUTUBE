@@ -1,0 +1,120 @@
+{
+  "topic_slug": "cochrane-review-workplace-ergonomics-pain-evidence",
+  "strongest_angle": "The October 2026 Cochrane review shows that common workplace ergonomics – specialised equipment, standing desks and ergonomic education – provide little to no measurable benefit for pain, functional status, sick‑leave or recovery among workers with arm, neck or shoulder complaints.",
+  "key_facts": [
+    {
+      "fact": "The review, led by researchers from the University of Technology Sydney, analysed 20 trials of ergonomic interventions, of which 16 met the inclusion criteria.",
+      "source_name": "Cochrane",
+      "source_url": "https://www.cochrane.org/about-us/news/little-evidence-common-workplace-ergonomics-help-pain",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Across four studies involving 692 participants with work‑related arm, neck or shoulder (CANS) complaints, ergonomic changes made little to no difference in reported pain compared with no treatment.",
+      "source_name": "Cochrane",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In a single study of 68 workers, ergonomic adaptations did not meaningfully improve well‑being scores.",
+      "source_name": "Cochrane",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or",
+      "confidence": "medium"
+    },
+    {
+      "fact": "The University of Technology Sydney summarised that ergonomic interventions make little to no difference to short‑term pain, functional status, sick‑leave or recovery.",
+      "source_name": "University of Technology Sydney",
+      "source_url": "https://www.uts.edu.au/news/2026/10/little-evidence-that-common-workplace-ergonomics-help",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Medical Xpress reported that many companies invest heavily in ergonomic training, sit‑stand desks and specialised equipment, yet the evidence shows minimal impact on arm, neck or shoulder pain.",
+      "source_name": "Medical Xpress",
+      "source_url": "https://medicalxpress.com/news/2026-10-workplace-ergonomics-ease-arm-neck.html",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 20,
+      "unit": "trials",
+      "label": "Total trials analysed",
+      "source_url": "https://www.cochrane.org/about-us/news/little-evidence-common-workplace-ergonomics-help-pain"
+    },
+    {
+      "value": 16,
+      "unit": "trials",
+      "label": "Trials meeting inclusion criteria",
+      "source_url": "https://www.cochrane.org/about-us/news/little-evidence-common-workplace-ergonomics-help-pain"
+    },
+    {
+      "value": 4,
+      "unit": "studies",
+      "label": "Studies reporting pain outcomes",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or"
+    },
+    {
+      "value": 692,
+      "unit": "people",
+      "label": "Participants in pain studies",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or"
+    },
+    {
+      "value": 1,
+      "unit": "study",
+      "label": "Study reporting well‑being",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or"
+    },
+    {
+      "value": 68,
+      "unit": "people",
+      "label": "Participants in well‑being study",
+      "source_url": "https://www.cochrane.org/evidence/CD014644_what-changes-can-be-made-workplace-ergonomic-adaptations-treat-work-related-complaints-arm-neck-or"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "University of Technology Sydney",
+      "kind": "organization"
+    },
+    {
+      "name": "Cochrane",
+      "kind": "organization"
+    },
+    {
+      "name": "Poonam Mehta",
+      "kind": "person"
+    },
+    {
+      "name": "Peter W. Stubbs",
+      "kind": "person"
+    },
+    {
+      "name": "Sietske J. Tamminga",
+      "kind": "person"
+    },
+    {
+      "name": "Jeanette Trøstrup",
+      "kind": "person"
+    },
+    {
+      "name": "Siobhán M Stynes",
+      "kind": "person"
+    },
+    {
+      "name": "Bart Willem Koes",
+      "kind": "person"
+    },
+    {
+      "name": "work‑related arm, neck or shoulder (CANS)",
+      "kind": "object"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "An updated Cochrane review has found that ergonomic interventions show no meaningful benefit for pain, function, recovery or sick leave in workers with work‑related complaints of the arm, neck or shoulder (CANS), compared with no treatment.",
+      "speaker": "Cochrane",
+      "source_name": "Cochrane",
+      "source_url": "https://www.cochrane.org/about-us/news/little-evidence-common-workplace-ergonomics-help-pain"
+    }
+  ]
+}

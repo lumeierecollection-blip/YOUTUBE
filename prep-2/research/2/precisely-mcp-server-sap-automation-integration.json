@@ -1,0 +1,63 @@
+{
+  "topic_slug": "precisely-mcp-server-sap-automation-integration",
+  "strongest_angle": "Precisely has launched the new Precisely Automate MCP Server and native OData support in Burlington, Massachusetts, enabling AI assistants to connect directly to SAP automation while maintaining Clean Core alignment.",
+  "key_facts": [
+    {
+      "fact": "Precisely announced the release of the Precisely Automate MCP Server and native OData support on October 14, 2026, from Burlington, Massachusetts.",
+      "source_url": "https://www.hpcwire.com/bigdatawire/this-just-in/precisely-launches-mcp-server-for-precisely-automate",
+      "source_name": "HPCwire",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Precisely Automate MCP Server lets AI assistants and applications trigger SAP workflows directly through new OData support.",
+      "source_url": "https://www.digitalisationworld.com/news/24319-precisely-links-ai-assistants-to-sap-automation-via-mcp-server",
+      "source_name": "Digitalisation World",
+      "confidence": "high"
+    },
+    {
+      "fact": "Precisely Software Limited published the press release regarding the launch of the Precisely Automate MCP Server on October 14, 2026.",
+      "source_url": "https://www.prnewswire.com/news-releases/precisely-launches-mcp-server-for-precisely-automate-connecting-ai-assistants-to-sap-automation-302907674.html",
+      "source_name": "PR Newswire",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Launch Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.hpcwire.com/bigdatawire/this-just-in/precisely-launches-mcp-server-for-precisely-automate"
+    },
+    {
+      "label": "Launch Month",
+      "value": 10,
+      "unit": "month",
+      "source_url": "https://www.hpcwire.com/bigdatawire/this-just-in/precisely-launches-mcp-server-for-precisely-automate"
+    },
+    {
+      "label": "Launch Day",
+      "value": 14,
+      "unit": "day",
+      "source_url": "https://www.hpcwire.com/bigdatawire/this-just-in/precisely-launches-mcp-server-for-precisely-automate"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Precisely",
+      "kind": "organization"
+    },
+    {
+      "name": "Precisely Automate MCP Server",
+      "kind": "object"
+    },
+    {
+      "name": "Burlington",
+      "kind": "place"
+    },
+    {
+      "name": "Precisely Software Limited",
+      "kind": "organization"
+    }
+  ]
+}

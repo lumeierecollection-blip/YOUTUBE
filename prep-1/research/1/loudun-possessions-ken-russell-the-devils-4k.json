@@ -1,0 +1,99 @@
+{
+  "topic_slug": "loudun-possessions-ken-russell-the-devils-4k",
+  "strongest_angle": "Explore how Ken Russell's controversial 1971 film The Devils, starring Oliver Reed and Vanessa Redgrave, received a definitive 4K restoration released by BFI Distribution and Warner Bros. Clockwork in October 2026 after being censored for over half a century.",
+  "key_facts": [
+    {
+      "fact": "Ken Russell's 1971 historical horror drama film The Devils stars Vanessa Redgrave and Oliver Reed in a dramatised account of Urbain Grandier, a 17th-century Catholic priest accused of witchcraft following the possessions in Loudun, France.",
+      "source_url": "https://en.wikipedia.org/wiki/The_Devils_(film)",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The definitive 4K restoration of The Devils was released in cinemas in the UK and Ireland on October 30, 2026, by BFI Distribution in partnership with Warner Bros. Clockwork after being censored for over half a century.",
+      "source_url": "https://www.bfi.org.uk/news/ken-russells-devils-definitive-4k-restoration-launch-ahead-major-bfi-retrospective",
+      "source_name": "BFI",
+      "confidence": "high"
+    },
+    {
+      "fact": "The film has a runtime of 114 minutes and is based on Aldous Huxley's 1952 non-fiction book The Devils of Loudun, concerning the apparent possession of a convent of nuns after Sister Jeanne des Anges accuses a priest.",
+      "source_url": "https://www.filmlinc.org/nyff2026/films/the-devils",
+      "source_name": "Film at Lincoln Center",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Runtime",
+      "value": 114,
+      "unit": "minutes",
+      "source_url": "https://www.filmlinc.org/nyff2026/films/the-devils"
+    },
+    {
+      "label": "Release Year",
+      "value": 1971,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/The_Devils_(film)"
+    },
+    {
+      "label": "Restoration Release Day",
+      "value": 30,
+      "unit": "day",
+      "source_url": "https://www.bfi.org.uk/news/ken-russells-devils-definitive-4k-restoration-launch-ahead-major-bfi-retrospective"
+    },
+    {
+      "label": "Restoration Release Year",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.bfi.org.uk/news/ken-russells-devils-definitive-4k-restoration-launch-ahead-major-bfi-retrospective"
+    },
+    {
+      "label": "Cannes Festival Edition",
+      "value": 79,
+      "unit": "festival edition",
+      "source_url": "https://www.bfi.org.uk/bfi-film-releases/ken-russells-devils"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Ken Russell",
+      "kind": "person"
+    },
+    {
+      "name": "Oliver Reed",
+      "kind": "person"
+    },
+    {
+      "name": "Vanessa Redgrave",
+      "kind": "person"
+    },
+    {
+      "name": "Urbain Grandier",
+      "kind": "person"
+    },
+    {
+      "name": "Sister Jeanne des Anges",
+      "kind": "person"
+    },
+    {
+      "name": "Aldous Huxley",
+      "kind": "person"
+    },
+    {
+      "name": "BFI Distribution",
+      "kind": "organization"
+    },
+    {
+      "name": "Warner Bros. Clockwork",
+      "kind": "organization"
+    },
+    {
+      "name": "Loudun",
+      "kind": "place"
+    },
+    {
+      "name": "France",
+      "kind": "place"
+    }
+  ]
+}

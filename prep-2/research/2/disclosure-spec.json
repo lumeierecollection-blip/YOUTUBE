@@ -1,0 +1,38 @@
+{
+  "overall_disclosure_required": false,
+  "recommendation": "Self-disclosure not required for the automatically-checked components below",
+  "pipeline_assessment": [
+    {
+      "component": "TTS voiceover",
+      "disclosure_required": false,
+      "reason": "Placeholder (espeak) audio, not yet resolved to production EdgeTTS — either way, a generic synthetic voice, not cloning a specific real person",
+      "policy": "Non-impersonation AI voices generally do not require disclosure"
+    },
+    {
+      "component": "AI-generated scripts",
+      "disclosure_required": false,
+      "reason": "Production assistance (text only), not realistic visual/audio content",
+      "policy": "AI script generation does not require disclosure"
+    },
+    {
+      "component": "AI-assisted thumbnails",
+      "disclosure_required": false,
+      "reason": "Locally composited from gradient/color + text (sharp/canvas) — not photorealistic content",
+      "policy": "AI thumbnails do not require disclosure"
+    },
+    {
+      "component": "B-roll footage",
+      "disclosure_required": false,
+      "reason": "No b-roll used in this video",
+      "policy": "N/A — no visual asset to assess"
+    },
+    {
+      "component": "Remotion video rendering",
+      "disclosure_required": false,
+      "reason": "Programmatic video assembly, not AI-generated realistic content",
+      "policy": "Video rendering tools do not require disclosure"
+    }
+  ],
+  "manual_review_still_required": "Whether the script itself accurately represents a real person/event is not automatically checkable here — see upload_checklist.pre_upload.",
+  "auto_detection_note": "YouTube now auto-detects AI content. If you don't disclose, they'll label it for you. Labels can't be removed once applied."
+}

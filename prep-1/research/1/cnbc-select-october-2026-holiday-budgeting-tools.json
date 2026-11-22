@@ -1,0 +1,75 @@
+{
+  "topic_slug": "cnbc-select-october-2026-holiday-budgeting-tools",
+  "strongest_angle": "Review the latest budgeting tools featured by CNBC Select in October 2026, highlighting that only 36% of shoppers plan to stick to a holiday budget.",
+  "key_facts": [
+    {
+      "fact": "CNBC Select published a report on October 14, 2026, stating that 36% of shoppers plan to stick to a holiday budget this year.",
+      "source_url": "https://www.cnbc.com/select/budgeting-tools-for-holiday-shopping",
+      "source_name": "CNBC Select",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC Select put more than two dozen products through review, weighing costs, features, and user ratings for budgeting apps.",
+      "source_url": "https://qz.com/best-budgeting-apps-2026",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Rocket Money offers a free tier with basic budgeting and spending tracking, with a Premium plan running $7 to $14 a month.",
+      "source_url": "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances",
+      "source_name": "Bootstrapped Wealth",
+      "confidence": "medium"
+    },
+    {
+      "fact": "YNAB, built around zero-based budgeting, costs $14.99 a month according to reviews of holiday budgeting tools.",
+      "source_url": "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances",
+      "source_name": "Bootstrapped Wealth",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Shoppers planning to stick to a holiday budget",
+      "value": 36,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/select/budgeting-tools-for-holiday-shopping"
+    },
+    {
+      "label": "Rocket Money Premium plan minimum monthly cost",
+      "value": 7,
+      "unit": "dollars per month",
+      "source_url": "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances"
+    },
+    {
+      "label": "Rocket Money Premium plan maximum monthly cost",
+      "value": 14,
+      "unit": "dollars per month",
+      "source_url": "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances"
+    },
+    {
+      "label": "YNAB monthly cost",
+      "value": 14.99,
+      "unit": "dollars per month",
+      "source_url": "https://www.bootstrappedwealth.com/2026/10/15/paypal-survey-finds-58-more-worried-about-holiday-finances"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "CNBC Select",
+      "kind": "organization"
+    },
+    {
+      "name": "Rocket Money",
+      "kind": "organization"
+    },
+    {
+      "name": "YNAB",
+      "kind": "organization"
+    },
+    {
+      "name": "Jasmin Suknanan",
+      "kind": "person"
+    }
+  ]
+}

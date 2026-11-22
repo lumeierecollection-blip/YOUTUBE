@@ -1,0 +1,75 @@
+{
+  "topic_slug": "twenty-six-steamer-trunks-filipino-american-history",
+  "strongest_angle": "The discovery of twenty-six steamer trunks in 2005 by Antonio Somera at the Daguhoy Lodge in Stockton, California, reveals the overlooked histories of Filipino American farm workers and community members from the 1910s to the 1970s.",
+  "key_facts": [
+    {
+      "fact": "In 2005, Antonio Somera discovered twenty-six steamer trunks while cleaning out the basement of the Daguhoy Lodge in Stockton, California.",
+      "source_url": "https://apa.si.edu/exhibitions/filipino-american-stories",
+      "source_name": "Smithsonian Asian Pacific American Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Legionarios del Trabajo, a fraternal organization, preserved the personal effects of deceased members inside the twenty-six steamer trunks.",
+      "source_url": "https://americanhistory.si.edu/explore/exhibitions/how-can-you-forget-me",
+      "source_name": "National Museum of American History",
+      "confidence": "high"
+    },
+    {
+      "fact": "The exhibition titled How Can You Forget Me: Filipino American Stories at the National Museum of American History displays three of the twenty-six steamer trunks.",
+      "source_url": "https://americanhistory.si.edu/explore/exhibitions/how-can-you-forget-me",
+      "source_name": "National Museum of American History",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Steamer trunks found",
+      "value": 26,
+      "unit": "trunks",
+      "source_url": "https://apa.si.edu/exhibitions/filipino-american-stories"
+    },
+    {
+      "label": "Year trunks discovered",
+      "value": 2005,
+      "unit": "year",
+      "source_url": "https://apa.si.edu/exhibitions/filipino-american-stories"
+    },
+    {
+      "label": "Steamer trunks on display",
+      "value": 3,
+      "unit": "trunks",
+      "source_url": "https://americanhistory.si.edu/explore/exhibitions/how-can-you-forget-me"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Antonio Somera",
+      "kind": "person"
+    },
+    {
+      "name": "Stockton",
+      "kind": "place"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    },
+    {
+      "name": "Legionarios del Trabajo",
+      "kind": "organization"
+    },
+    {
+      "name": "Daguhoy Lodge",
+      "kind": "organization"
+    },
+    {
+      "name": "National Museum of American History",
+      "kind": "organization"
+    },
+    {
+      "name": "Smithsonian Asian Pacific American Center",
+      "kind": "organization"
+    }
+  ]
+}

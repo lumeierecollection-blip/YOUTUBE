@@ -1,0 +1,91 @@
+{
+  "channel_id": "2",
+  "topic_slug": "minimax-m3-1-flash-benchmark-analysis",
+  "format": "shorts",
+  "hook": "MiniMax M3.1 Flash hits 73.7 percent on coding benchmarks, bringing high hallucination risks.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "MiniMax M3.1 Flash hits 73.7 percent on coding benchmarks, bringing high hallucination risks.",
+      "visual_cue": "Close up shot of benchmark performance dashboard showing 73.7% metric score.",
+      "sfx_cue": "Digital whoosh and interface blip",
+      "b_roll": [
+        "Benchmark dashboard UI graphic"
+      ],
+      "animation_cue": "Fade in text overlay",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "73.7% Benchmark Score"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "CellCog reported that organization MiniMax published comparison tables against rival Claude Opus 5. Where did the 98% attempt rate come from?",
+      "visual_cue": "Split screen comparing model benchmarks and company research tables.",
+      "sfx_cue": "Subtle data processing hum",
+      "b_roll": [
+        "MiniMax Research comparison tables",
+        "DeepSWE v1.1 test interface"
+      ],
+      "animation_cue": "Slide up comparison columns",
+      "transition_out": "Quick crossfade",
+      "text_overlay": {
+        "text": "DeepSWE v1.1 Results"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Tech City Authority noted that rival DeepSeek V4.1 Flash beats it with a 77% score.",
+      "visual_cue": "Highlighted benchmark comparison graph showing DeepSeek V4.1 Flash leading at 77 percent.",
+      "sfx_cue": "Rising digital chime",
+      "b_roll": [
+        "Tech City Authority report graphic"
+      ],
+      "animation_cue": "Highlight bar chart difference",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "DeepSeek V4.1 Flash Leads at 77%"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "Tracker publication AGI Hunt reported that MiniMax M3.1 Flash attempts 98% of questions.",
+      "visual_cue": "Data chart expanding to display the 98% attempt rate alongside error metrics.",
+      "sfx_cue": "Alert tone on high attempt metric",
+      "b_roll": [
+        "AGI Hunt report interface",
+        "CellCog comparison tables"
+      ],
+      "animation_cue": "Zoom in on 98 percent stat",
+      "transition_out": "Quick crossfade",
+      "text_overlay": {
+        "text": "98% Attempt Rate"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "MiniMax M3.1 Flash achieves 73.7% on DeepSWE v1.1.",
+      "visual_cue": "Final summary card showing the 73.7 percent score clearly on screen.",
+      "sfx_cue": "Soft confirmation tone",
+      "b_roll": [
+        "Final metric summary card"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "73.7% on DeepSWE v1.1"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.minimax.io/blog/minimax-m31f",
+    "https://www.techcityauthority.com/2026/10/minimax-m3-1-flash-price-performance.html",
+    "https://agihunt.info/en/p/1a154e63b024eddc20dfa6affff",
+    "https://cellcog.ai/blog/minimax-m3-1-flash"
+  ]
+}

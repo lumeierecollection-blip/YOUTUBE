@@ -1,0 +1,47 @@
+{
+  "channel_id": "1",
+  "topic_slug": "investopedia-october-2026-budgeting-apps-ynab",
+  "format": "shorts",
+  "hook": "Paying $14.99 per month for a budgeting app might drain your wallet faster than it saves your cash.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Paying $14.99 per month for a budgeting app might drain your wallet faster than it saves your cash.",
+      "text_overlay": {
+        "text": "$14.99 Monthly Fee"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Investopedia ranked You Need a Budget as the best choice overall for zero-based spending in October 2026. Where does that $109 go?",
+      "text_overlay": {
+        "text": "$109 Annual Cost"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, Investopedia rated You Need a Budget at just 3.7 out of 5 stars for debt payoff planners.",
+      "text_overlay": {
+        "text": "3.7 Star Rating"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Billed annually, the monthly equivalent drops down to $9.08 per month. Zero-based budgeting simplifies your entire financial life.",
+      "text_overlay": {
+        "text": "$9.08 Monthly Equivalent"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Choose the annual subscription to save $49 every single year.",
+      "text_overlay": {
+        "text": "Save $49 Annually"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.investopedia.com/the-best-budgeting-apps-11725751",
+    "https://www.cnbc.com/select/best-budgeting-apps"
+  ]
+}

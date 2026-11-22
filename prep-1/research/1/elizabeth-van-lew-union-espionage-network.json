@@ -1,0 +1,79 @@
+{
+  "topic_slug": "elizabeth-van-lew-union-espionage-network",
+  "strongest_angle": "Elizabeth Van Lew operated a critical interracial Union spy ring directly out of Richmond, Virginia, using her family wealth and social standing to aid Union prisoners and transmit intelligence during the Civil War.",
+  "key_facts": [
+    {
+      "fact": "Elizabeth Van Lew was born on October 12, 1818, in Richmond, Virginia, and later died on September 25, 1900, in Richmond, where she is buried at Shockhoe Cemetery.",
+      "source_url": "https://nps.gov/people/elizabeth-van-lew.htm",
+      "source_name": "U.S. National Park Service",
+      "confidence": "high"
+    },
+    {
+      "fact": "During the first two years of the American Civil War, Elizabeth Van Lew aided Union officers imprisoned in Libby Prison in Richmond, Virginia, helping them survive and escape.",
+      "source_url": "https://www.lva.virginia.gov/collections/dvb/bio/van-lew-elizabeth",
+      "source_name": "Library of Virginia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Elizabeth Van Lew wrote letters of warning beginning in 1861 to the Union War Department in Washington, detailing troop numbers and movements from the Confederate capital of Richmond.",
+      "source_url": "https://womenshistory.si.edu/blog/discover-story-elizabeth-van-lew-mastermind-behind-critical-union-espionage-network-during",
+      "source_name": "Smithsonian American Women's History Museum",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of birth",
+      "value": 1818,
+      "unit": "year",
+      "source_url": "https://nps.gov/people/elizabeth-van-lew.htm"
+    },
+    {
+      "label": "Year of death",
+      "value": 1900,
+      "unit": "year",
+      "source_url": "https://nps.gov/people/elizabeth-van-lew.htm"
+    },
+    {
+      "label": "Start year of warning letters",
+      "value": 1861,
+      "unit": "year",
+      "source_url": "https://womenshistory.si.edu/blog/discover-story-elizabeth-van-lew-mastermind-behind-critical-union-espionage-network-during"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Elizabeth Van Lew",
+      "kind": "person"
+    },
+    {
+      "name": "Richmond",
+      "kind": "place"
+    },
+    {
+      "name": "Libby Prison",
+      "kind": "place"
+    },
+    {
+      "name": "Union War Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Shockhoe Cemetery",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. National Park Service",
+      "kind": "organization"
+    },
+    {
+      "name": "Library of Virginia",
+      "kind": "organization"
+    },
+    {
+      "name": "Smithsonian American Women's History Museum",
+      "kind": "organization"
+    }
+  ]
+}

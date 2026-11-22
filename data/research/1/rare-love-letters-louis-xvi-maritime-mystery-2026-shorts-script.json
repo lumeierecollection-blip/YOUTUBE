@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "rare-love-letters-louis-xvi-maritime-mystery-2026",
+  "format": "shorts",
+  "hook": "Twelve love letters vanished for 238 years resurfaced today.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Twelve love letters vanished for 238 years resurfaced today.",
+      "visual_cue": "Animated timeline showing 12 letters disappearing and reappearing after 238 years."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1785, scientist Jean‑André Mongez wrote twelve letters aboard La Pérouse before the fleet vanished. What did Mongez reveal to Louise Victoria Le Cloustier of Rouen?",
+      "visual_cue": "Old ship illustration, modern hand holding letters, map of Rouen with a question mark."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet Louis XVI asked for news of La Pérouse on his execution day.",
+      "visual_cue": "Portrait of Louis XVI with a speech bubble asking about La Pérouse."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mongez’s letters to Louise detail the expedition’s daily hardships. Twelve letters resurfaced after 238 years, giving voice to the lost fleet.",
+      "visual_cue": "Pages of letters, portrait of Louise, ghostly ship fading into sea."
+    },
+    {
+      "id": "close",
+      "voiceover": "Now twelve letters finally speak after 238 silent years.",
+      "visual_cue": "Fade to a stack of letters with a ticking clock overlay."
+    }
+  ],
+  "sources_used": [
+    "https://www.ladepeche.fr/2026/10/28/on-ignorait-leur-existence-238-ans-apres-la-disparition-de-laperouse-12-lettres-mysterieuses-refont-surface-et-affolent-les-historiens-13622546.php",
+    "https://mezha.net/eng/news/mezha-f8aafffe7a598d032568d604_rare_love_letters"
+  ]
+}

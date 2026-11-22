@@ -1,0 +1,45 @@
+{
+  "reviewedAt": "2026-10-23T14:14:48.515Z",
+  "source": "gemini-challenger/plan",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/ancient-egypts-first-female-king-royal-seals-shorts-script-visual-plan.json",
+  "approved": true,
+  "beats": [
+    {
+      "beat_index": 0,
+      "verdict": "OK",
+      "reason": "The headline and map clearly convey the sentence about a female ruler and ancient Egypt.",
+      "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago."
+    },
+    {
+      "beat_index": 1,
+      "verdict": "OK",
+      "reason": "The headline references tomb Y and the visual shows William Matthew Flinders Petrie as stated.",
+      "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit."
+    },
+    {
+      "beat_index": 2,
+      "verdict": "OK",
+      "reason": "The typography correctly highlights the question about being the daughter of Djer.",
+      "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?"
+    },
+    {
+      "beat_index": 3,
+      "verdict": "OK",
+      "reason": "The headline addresses the first female ruler and the photo shows Scientific American as named.",
+      "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler."
+    },
+    {
+      "beat_index": 4,
+      "verdict": "OK",
+      "reason": "The headline mentions 5000 years of history and the visual shows William Matthew Flinders Petrie.",
+      "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history."
+    },
+    {
+      "beat_index": 5,
+      "verdict": "OK",
+      "reason": "The headline states Meretneith ruled Egypt and the big number matches the 5000 years ago claim.",
+      "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago."
+    }
+  ],
+  "summary": "All beats accurately reflect their respective sentences without contradictions or mismatches."
+}

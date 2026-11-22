@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "aberfan-60-years-books-of-remembrance",
+  "format": "shorts",
+  "hook": "New books preserve 144 names after a village lost its future in seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:03",
+      "voiceover": "New books preserve 144 names after a village lost its future in seconds.",
+      "visual_cue": "Close up shot of heavy leather bound archive pages resting on a dark wooden table in an archive room.",
+      "sfx_cue": "Subtle low ambient tone with paper rustling",
+      "b_roll": [
+        "National Library of Wales archive room overview shot"
+      ],
+      "animation_cue": "fade in from black",
+      "transition_out": "quick cut to archival still",
+      "text_overlay": {
+        "text": "144 NAMES PRESERVED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:03-00:18",
+      "voiceover": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan. 116 children and 28 adults lost their lives in the disaster. Will the National Library of Wales protect these pages?",
+      "visual_cue": "Archival photograph of the village hillside showing the slide scar above houses.",
+      "sfx_cue": "Muffled wind sound effect",
+      "b_roll": [
+        "Aberfan historical disaster archival footage"
+      ],
+      "animation_cue": "subtle zoom in on photograph",
+      "transition_out": "smooth cross dissolve",
+      "text_overlay": {
+        "text": "21 October 1966"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:18-00:24",
+      "voiceover": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+      "visual_cue": "Extreme macro shot of aged handwriting and ink texture on a historical manuscript page.",
+      "sfx_cue": "Soft ticking clock element",
+      "b_roll": [
+        "Macro shots of historic book bindings"
+      ],
+      "animation_cue": "slow panning across manuscript lines",
+      "transition_out": "sharp wipe to modern bindery",
+      "text_overlay": {
+        "text": "FADING INK"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:24-00:39",
+      "voiceover": "The National Library of Wales finished new copies ahead of July 2026. Aberfan Memorial Charity chair Davies guards the community's history now. At 68 years old, Davies protects the village's memory.",
+      "visual_cue": "Modern bookbinder carefully pressing fresh gold foil lettering onto a dark memorial cover.",
+      "sfx_cue": "Foley of careful bookbinding tool work",
+      "b_roll": [
+        "National Library of Wales bindery workshop"
+      ],
+      "animation_cue": "pan across newly bound memorial cover",
+      "transition_out": "fade to warm archive lighting",
+      "text_overlay": {
+        "text": "National Library of Wales"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:39-00:45",
+      "voiceover": "144 names remain protected in fresh leather and ink.",
+      "visual_cue": "Open book showing clean memorial pages resting under soft archive desk lamps.",
+      "sfx_cue": "Gentle room tone fade out",
+      "b_roll": [
+        "Open Aberfan Book of Remembrance pages"
+      ],
+      "animation_cue": "slow push in on inscribed names",
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "144 NAMES"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.library.wales/news/article/new-aberfan-book-of-remembrance-presented-to-community-ahead-of-60th-anniversary-commemorations",
+    "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976",
+    "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive"
+  ]
+}

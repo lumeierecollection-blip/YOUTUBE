@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "uncovering-fort-albion-war-of-1812-freedom-story",
+  "format": "shorts",
+  "hook": "British map just placed Fort Albion on Tangier Island.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "British map just placed Fort Albion on Tangier Island.",
+      "visual_cue": "Close‑up of the newly discovered British map highlighting Fort Albion on Tangier Island."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Tangier Island sits low in Chesapeake Bay, Virginia. What does the burial ground reveal about the enslaved defenders?",
+      "visual_cue": "Map overlay showing Fort Albion location; aerial view of Tangier Island; question mark over a burial‑ground illustration."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the map also marks a burial ground of formerly enslaved fighters.",
+      "visual_cue": "Zoom on the map to a burial‑ground icon beside Fort Albion."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Archaeologists found a burial ground, proving enslaved fighters defended Fort Albion. The graves sit on Tangier Island, the exact location the map revealed. PBS aired it in season 23, episode 7 of Secrets of the Dead.",
+      "visual_cue": "Excavation footage of graves; map pinpointing the site; PBS logo with season 23, episode 7 badge."
+    },
+    {
+      "id": "close",
+      "voiceover": "The buried fighters finally have their story told.",
+      "visual_cue": "Sunset over Tangier Island with silhouettes of soldiers fading into the horizon."
+    }
+  ],
+  "sources_used": [
+    "https://www.pbs.org/wnet/secrets/uncovering-fort-albions-forgotten-black-heroes-867uyh/8929",
+    "https://www.nps.gov/places/tangier-island.htm"
+  ]
+}

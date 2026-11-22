@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-23T14:20:50.539Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "beats": [
+    {
+      "beat_index": 1,
+      "moved": "NO",
+      "change": "only text and source credit changed, photograph is identical in size and position",
+      "pixels": {
+        "moved": false,
+        "what": "scale 1, shift 0.03,-0.004, error 1462 -> 127"
+      },
+      "real": false
+    },
+    {
+      "beat_index": 4,
+      "moved": "NO",
+      "change": "only source credit text appeared, portrait photograph is identical in size and position",
+      "pixels": {
+        "moved": true,
+        "what": "scale 1.01, shift 0.089,0, error 962 -> 659"
+      },
+      "real": true
+    }
+  ],
+  "failing": [
+    1
+  ]
+}

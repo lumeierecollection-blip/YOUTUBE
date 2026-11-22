@@ -1,0 +1,103 @@
+{
+ "file": "aberfan-60-years-books-of-remembrance-shorts-script-vo.mp3",
+ "median_f0_hz": 183.91,
+ "rhythm": {
+  "pause_count": 15,
+  "pause_cv": 0.4318,
+  "pause_mean_s": 0.3147,
+  "silent_share": 0.1017,
+  "wps_cv": 0.1928
+ },
+ "sentences": [
+  {
+   "f0_range_st": 10.4669,
+   "f0_slope_st": 1.0863,
+   "f0_std_st": 4.3454,
+   "index": 0,
+   "median_f0_hz": 197.53,
+   "pauses": 1,
+   "voiced": 0.3922,
+   "wps": 2.1242
+  },
+  {
+   "f0_range_st": 7.7053,
+   "f0_slope_st": 0.9825,
+   "f0_std_st": 3.1716,
+   "index": 1,
+   "median_f0_hz": 190.48,
+   "pauses": 1,
+   "voiced": 0.3364,
+   "wps": 2.193
+  },
+  {
+   "f0_range_st": 9.4409,
+   "f0_slope_st": 1.6156,
+   "f0_std_st": 4.6449,
+   "index": 2,
+   "median_f0_hz": 177.78,
+   "pauses": 1,
+   "voiced": 0.2873,
+   "wps": 2.0265
+  },
+  {
+   "f0_range_st": 14.8571,
+   "f0_slope_st": 0.8414,
+   "f0_std_st": 5.5491,
+   "index": 3,
+   "median_f0_hz": 202.53,
+   "pauses": 0,
+   "voiced": 0.3345,
+   "wps": 3.2374
+  },
+  {
+   "f0_range_st": 13.1484,
+   "f0_slope_st": 1.912,
+   "f0_std_st": 5.9836,
+   "index": 4,
+   "median_f0_hz": 158.42,
+   "pauses": 1,
+   "voiced": 0.2241,
+   "wps": 3.0172
+  },
+  {
+   "f0_range_st": 7.765,
+   "f0_slope_st": 0.9125,
+   "f0_std_st": 3.8521,
+   "index": 5,
+   "median_f0_hz": 195.12,
+   "pauses": 2,
+   "voiced": 0.3486,
+   "wps": 2.2857
+  },
+  {
+   "f0_range_st": 8.4443,
+   "f0_slope_st": 0.7897,
+   "f0_std_st": 3.9715,
+   "index": 6,
+   "median_f0_hz": 168.42,
+   "pauses": 2,
+   "voiced": 0.2851,
+   "wps": 2.0367
+  },
+  {
+   "f0_range_st": 8.2365,
+   "f0_slope_st": 2.0709,
+   "f0_std_st": 4.4597,
+   "index": 7,
+   "median_f0_hz": 207.79,
+   "pauses": 0,
+   "voiced": 0.2669,
+   "wps": 2.7607
+  },
+  {
+   "f0_range_st": 7.671,
+   "f0_slope_st": 1.5591,
+   "f0_std_st": 4.5332,
+   "index": 8,
+   "median_f0_hz": 164.95,
+   "pauses": 2,
+   "voiced": 0.2469,
+   "wps": 1.8519
+  }
+ ]
+}

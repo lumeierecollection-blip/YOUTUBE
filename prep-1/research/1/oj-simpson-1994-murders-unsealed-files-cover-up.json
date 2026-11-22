@@ -1,0 +1,82 @@
+{
+  "topic_slug": "oj-simpson-1994-murders-unsealed-files-cover-up",
+  "strongest_angle": "Analyze newly unsealed investigative files from October 2026 revealing that a mafia-linked drug informant named Joseph Ippolito and his brother may have helped O.J. Simpson cover up the 1994 murders.",
+  "key_facts": [
+    {
+      "fact": "A New York Times report reviewed documents showing that a convicted drug smuggler and mob informant named Joseph Ippolito gave federal authorities information about the 1994 Nicole Brown Simpson and Ron Goldman killings.",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+      "source_name": "MyNewsLA.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The brother of mob informant Joseph Ippolito told reporters that he and Joseph helped O.J. Simpson dispose of the possible murder weapon following the 1994 double murder.",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+      "source_name": "MyNewsLA.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Mobster Joseph Ippolito died in 2006 after spending years on the run from the federal government before sharing information about O.J. Simpson toward the end of the prosecution.",
+      "source_url": "https://www.theguardian.com/us-news/2026/oct/18/oj-simpson-case-times-report",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Newly unsealed records from October 2026 indicate that O.J. Simpson may have had assistance covering up the 1994 murders, according to investigations detailed by CBS News and The Times.",
+      "source_url": "https://www.cbsnews.com/news/oj-simpson-1994-murders-unsealed-files-help-cover-up",
+      "source_name": "CBS News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of murders",
+      "value": 1994,
+      "unit": "year",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    },
+    {
+      "label": "Year informant died",
+      "value": 2006,
+      "unit": "year",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "A convicted drug smuggler with mob ties who died in 2006 gave federal authorities information about the 1994 Nicole Brown Simpson and Ron Goldman killings, and his brother told reporters that the two men helped O.J. Simpson dispose of the possible murder weapon, according to a New York Times report Sunday.",
+      "speaker": "New York Times",
+      "source_name": "MyNewsLA.com",
+      "source_url": "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "O.J. Simpson",
+      "kind": "person"
+    },
+    {
+      "name": "Nicole Brown Simpson",
+      "kind": "person"
+    },
+    {
+      "name": "Ron Goldman",
+      "kind": "person"
+    },
+    {
+      "name": "Joseph Ippolito",
+      "kind": "person"
+    },
+    {
+      "name": "New York Times",
+      "kind": "organization"
+    },
+    {
+      "name": "CBS News",
+      "kind": "organization"
+    },
+    {
+      "name": "The Guardian",
+      "kind": "organization"
+    }
+  ]
+}

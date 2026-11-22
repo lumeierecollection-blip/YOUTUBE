@@ -1,0 +1,81 @@
+{
+  "topic_slug": "hittite-empire-cuneiform-tablets-discovery-2026",
+  "strongest_angle": "Examine the newly uncovered cache of 131 cuneiform tablets at Kayalıpınar in central Turkey, detailing Hittite royal tragedies, daily life, and religious rituals.",
+  "key_facts": [
+    {
+      "fact": "Archaeologists working at Kayalıpınar in central Turkey discovered 131 cuneiform tablets written in Hittite and Hurrian.",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    },
+    {
+      "fact": "Culture and Tourism Minister Mehmet Nuri Ersoy announced that the tablets date to the reign of Hittite King Tudhaliya II.",
+      "source_url": "https://www.hurriyetdailynews.com/cuneiform-tablets-from-hittite-king-unearthed-227946",
+      "source_name": "Hurriyet Daily News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Çiğdem Maner of Koç University led excavations at the site since 2021, bringing the total number of tablets found at the site to 184.",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered",
+      "source_name": "Biblical Archaeology Society",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Newly discovered cuneiform tablets",
+      "value": 131,
+      "unit": "tablets",
+      "source_url": "https://www.nationalgeographic.com/history/article/hittites-cuneiform-tablets-discovery"
+    },
+    {
+      "label": "Total tablets found at the site",
+      "value": 184,
+      "unit": "tablets",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered"
+    },
+    {
+      "label": "Age of the royal archive in years",
+      "value": 3400,
+      "unit": "years",
+      "source_url": "https://arkeonews.net/hittite-royal-archive-discovered-in-turkiye-reveals-a-3400-year-old-royal-tragedy"
+    },
+    {
+      "label": "Excavation start year",
+      "value": 2021,
+      "unit": "year",
+      "source_url": "https://www.biblicalarchaeology.org/daily/ancient-cultures/ancient-near-eastern-world/archive-of-hittite-tablets-discovered"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Kayalıpınar",
+      "kind": "place"
+    },
+    {
+      "name": "Mehmet Nuri Ersoy",
+      "kind": "person"
+    },
+    {
+      "name": "Tudhaliya II",
+      "kind": "person"
+    },
+    {
+      "name": "Çiğdem Maner",
+      "kind": "person"
+    },
+    {
+      "name": "Koç University",
+      "kind": "organization"
+    },
+    {
+      "name": "Samuha",
+      "kind": "place"
+    },
+    {
+      "name": "Sivas",
+      "kind": "place"
+    }
+  ]
+}

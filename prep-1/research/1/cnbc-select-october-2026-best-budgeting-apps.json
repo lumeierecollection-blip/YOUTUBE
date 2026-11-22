@@ -1,0 +1,62 @@
+{
+  "topic_slug": "cnbc-select-october-2026-best-budgeting-apps",
+  "strongest_angle": "We examine CNBC Select's October 2026 evaluation of over two dozen budgeting apps, focusing specifically on Quicken Simplifi's pricing model and automated tracking features to help beginners select the right financial tool.",
+  "key_facts": [
+    {
+      "fact": "According to CNBC Select's October 2026 reviews, more than two dozen budgeting products were evaluated by Quartz and CNBC Select to determine the top tools for consumers.",
+      "source_url": "https://qz.com/best-budgeting-apps-2026",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "CNBC Select lists Quicken Simplifi at a cost of $3.49 per month for the first year, which represents a 50 percent discount before renewing at $6.99 per month billed annually.",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps",
+      "source_name": "CNBC",
+      "confidence": "high"
+    },
+    {
+      "fact": "Quartz reported on October 8, 2026, that three distinct budgeting apps stand out in CNBC Select's rankings, each utilizing a different mechanism to keep user spending on track.",
+      "source_url": "https://qz.com/best-budgeting-apps-2026",
+      "source_name": "Quartz",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Quicken Simplifi first year monthly cost",
+      "value": 3.49,
+      "unit": "dollars per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Quicken Simplifi discount percentage",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Quicken Simplifi standard annual billing monthly cost",
+      "value": 6.99,
+      "unit": "dollars per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "CNBC Select",
+      "kind": "organization"
+    },
+    {
+      "name": "Quartz",
+      "kind": "organization"
+    },
+    {
+      "name": "Quicken Simplifi",
+      "kind": "object"
+    },
+    {
+      "name": "Cris Tolomia",
+      "kind": "person"
+    }
+  ]
+}

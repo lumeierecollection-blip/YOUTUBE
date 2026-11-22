@@ -1,0 +1,152 @@
+{
+  "video": "ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "pass": true,
+  "checks": [
+    {
+      "id": "frames-nonempty",
+      "pass": true,
+      "detail": "6/6 beat frames > 15 KB"
+    },
+    {
+      "id": "canvas-fit",
+      "pass": true,
+      "detail": "6 beat(s): every element inside the safe area, no text overlap, caption band clear"
+    },
+    {
+      "id": "canvas-coverage",
+      "pass": true,
+      "detail": "every beat's content spans >= 60% of the frame height (min 62%)"
+    },
+    {
+      "id": "canvas-accent",
+      "pass": true,
+      "detail": "accent #D4A574 in beat 5 (0.7% of the frame)"
+    },
+    {
+      "id": "canvas-type",
+      "pass": true,
+      "detail": "nothing centred, sentence-case headlines, 3/6 beats with two type roles, no repeated composition"
+    },
+    {
+      "id": "canvas-ground",
+      "pass": true,
+      "detail": "the ground reads uniform white on every non-photo beat"
+    },
+    {
+      "id": "zones-no-overlap",
+      "pass": true,
+      "detail": "every element in one zone, one element type per zone, no ink across a zone edge"
+    },
+    {
+      "id": "middle-zone-filled",
+      "pass": true,
+      "advisory": true,
+      "detail": "every non-photo beat fills its middle zone"
+    },
+    {
+      "id": "pace",
+      "pass": true,
+      "detail": "no beat static for more than 1 s (longest 0.00 s; average beat 8.54 s)"
+    },
+    {
+      "id": "visual-contrast",
+      "pass": true,
+      "detail": "1 flag / card visual(s), each bounded all the way round against its ground"
+    },
+    {
+      "id": "entity-marks",
+      "pass": true,
+      "detail": "1 entity plate beat(s): each entity is its real mark or its name in type, none repeated"
+    },
+    {
+      "id": "image-sources",
+      "pass": true,
+      "detail": "3/3 image(s) on screen, each traced to a source URL that answers; no sample image"
+    },
+    {
+      "id": "grid",
+      "pass": true,
+      "detail": "every beat's words centred on x 540 and standing on y 1328 (± 40), measured on the frames"
+    },
+    {
+      "id": "flat-look",
+      "pass": true,
+      "detail": "1 chart / date / scale / plate / diagram beat(s): reference palette only, no shadow, sharp corners"
+    },
+    {
+      "id": "visual-centred",
+      "pass": true,
+      "detail": "4 visual(s) on the frame, none with its mass in the top third"
+    },
+    {
+      "id": "pop-transitions",
+      "pass": true,
+      "detail": "no empty frame across any beat boundary"
+    },
+    {
+      "id": "kinetic-rules",
+      "pass": true,
+      "detail": "every word pops in place (POP_HARDx6 POP_SOFTx12 POP_EMPHASISx3), no slide / drop / sweep / blur entrance, <=3 text elements a beat; number modes none"
+    },
+    {
+      "id": "motion-tiers",
+      "pass": true,
+      "detail": "3 major, 3 medium, all beats micro"
+    },
+    {
+      "id": "template-window",
+      "pass": true,
+      "detail": "6 beat(s), 2 draw a label: no two devices repeat inside any three-beat window, no device on three beats in a row"
+    },
+    {
+      "id": "no-photo-repeat",
+      "pass": true,
+      "detail": "no photo or cutout appears on two beats"
+    },
+    {
+      "id": "camera-moves",
+      "pass": true,
+      "detail": "every photo and graph beat declares a camera move of 8% or more (2 beat(s))"
+    },
+    {
+      "id": "entity-coverage",
+      "pass": true,
+      "detail": "6 beat(s) draw the entity they name; 0 words-only beat(s) name nothing"
+    },
+    {
+      "id": "sfx-rules",
+      "pass": true,
+      "detail": "3 SFX, all judged recorded, each within 100 ms of its event, 3/6 beats silent"
+    },
+    {
+      "id": "beat-durations",
+      "pass": true,
+      "detail": "every beat within ±0.1s of its cue"
+    },
+    {
+      "id": "library-names",
+      "pass": true,
+      "detail": "every library_shape name is registered"
+    },
+    {
+      "id": "beat-sentence-mechanism",
+      "pass": true,
+      "detail": "every beat has a sentence and a mechanism"
+    },
+    {
+      "id": "typography-count",
+      "pass": true,
+      "detail": "1 TYPOGRAPHY beat(s)"
+    },
+    {
+      "id": "mechanism-share",
+      "pass": true,
+      "detail": "max share 33%"
+    },
+    {
+      "id": "av-duration",
+      "pass": true,
+      "detail": "video 51.33s, audio 51.26s"
+    }
+  ]
+}

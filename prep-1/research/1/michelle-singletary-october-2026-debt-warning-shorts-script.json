@@ -1,0 +1,67 @@
+{
+  "channel_id": "1",
+  "topic_slug": "michelle-singletary-october-2026-debt-warning",
+  "format": "shorts",
+  "hook": "Washington Post columnist Michelle Singletary shows why your pay raise still leaves you broke.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Washington Post columnist Michelle Singletary shows why your pay raise still leaves you broke.",
+      "b_roll": [
+        "A close-up of a paycheck showing an income increase",
+        "A digital graph showing rising debt lines overtaking pay"
+      ],
+      "text_overlay": {
+        "text": "Why raises leave you broke"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 10, columnist Michelle Singletary published a report in The Washington Post examining why standard household pay fails. Where did October pay go?",
+      "b_roll": [
+        "The Washington Post masthead on a digital screen",
+        "CNBC broadcast studio showing financial research charts",
+        "A pile of bills next to a calculator"
+      ],
+      "text_overlay": {
+        "text": "The October 10 Post Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except debt is moving faster than any standard household raise can cover.",
+      "b_roll": [
+        "A fast-moving ticker of rising consumer debt balances"
+      ],
+      "text_overlay": {
+        "text": "Debt outpaces raises"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On October 16, CNBC featured Michelle Singletary sharing personal debt commentary. CNBC reporter Sharon Epperson highlighted how debt payments are outpacing standard household pay raises.",
+      "b_roll": [
+        "Michelle Singletary's published CNBC feature article",
+        "The Spokesman-Review newspaper print edition from October 18",
+        "A stressed consumer reviewing monthly debt statements"
+      ],
+      "text_overlay": {
+        "text": "October 18 debt warning"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Read The Spokesman-Review column on October 18.",
+      "b_roll": [
+        "A calendar page turned to October 18"
+      ],
+      "text_overlay": {
+        "text": "Pay vs Debt"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+    "https://www.cnbc.com/2026/10/16/debt-payments-rise-more-than-income.html"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "ancient-curse-tablets-athens-well",
+  "format": "shorts",
+  "hook": "Thirty lead tablets cursed a rival named Pytheas, hidden for 2,300 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Thirty lead tablets cursed a rival named Pytheas, hidden for 2,300 years.",
+      "visual_cue": "Close‑up of a lead tablet with ancient script, highlighting the name Pytheas and the number 30."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In Athens, German Archaeological Institute excavated a bathhouse well. Thirty lead curse tablets rested at the well’s bottom near the Kerameikos necropolis. What name does one of the thirty tablets record against a rival?",
+      "visual_cue": "Map of Athens pinpointing the excavation site, then a shot of the well interior showing stacked tablets, followed by a question overlay on a tablet."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the curses are 2,300 years old, predating the well itself.",
+      "visual_cue": "Timeline graphic spanning 2,300 years, with the well icon appearing later in the sequence."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The tablets prove Athenians cast lead curses to sabotage legal rivals. One tablet names Pytheas, singled out by an opponent in court. Dating 2,300 years old, the curse well links vendettas to ancient law.",
+      "visual_cue": "Series of tablets with highlighted inscriptions, zoom on the name Pytheas, then an ancient courtroom illustration, ending with a diagram connecting the well to legal conflict."
+    },
+    {
+      "id": "close",
+      "voiceover": "Thirty cursed tablets still whisper ancient grudges.",
+      "visual_cue": "Fade out on a stack of dust‑covered tablets, lingering on the number 30."
+    }
+  ],
+  "sources_used": [
+    "https://archaeology.org/issues/may-june-2020/digs-discoveries/digs-greece-curse-well",
+    "https://greekreporter.com/2026/11/01/ancient-curse-tablets-athens-well"
+  ]
+}

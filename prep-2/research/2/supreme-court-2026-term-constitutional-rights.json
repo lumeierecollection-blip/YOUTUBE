@@ -1,0 +1,108 @@
+{
+  "topic_slug": "supreme-court-2026-term-constitutional-rights",
+  "strongest_angle": "Analyze the constitutional implications of the major religious rights and Second Amendment cases scheduled for the Supreme Court's October-December 2026 term, focusing on how these rulings may reshape individual liberties.",
+  "key_facts": [
+    {
+      "fact": "Cutberto Viramontes filed the challenge to the ban on semiautomatic rifles in Cook County, Illinois, which is scheduled for Supreme Court review in December 2026.",
+      "source_url": "https://www.scotusblog.com/2026/09/court-announces-cases-it-will-hear-in-december-including-challenges-to-the-constitutionality-of-",
+      "source_name": "SCOTUSblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "The U.S. Supreme Court formally opened its new term on Monday, October 3, 2026, with major test cases on religion, bans on semi-automatic weapons, and climate change.",
+      "source_url": "https://www.npr.org/2026/10/03/nx-s1-5986341/supreme-court-term-religion-guns-environment-immigration",
+      "source_name": "NPR",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court Institute at Georgetown Law highlighted Viramontes v. Cook County, No. 25-238, and Grant v. Higgins, No. 25-566, in its October Term 2026 reports.",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf",
+      "source_name": "Georgetown Law Supreme Court Institute",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court announced cases it will hear in December 2026, including challenges to the constitutionality of bans on AR-15s originating from Cook County, Illinois and Connecticut.",
+      "source_url": "https://www.scotusblog.com/2026/09/court-announces-cases-it-will-hear-in-december-including-challenges-to-the-constitutionality-of-",
+      "source_name": "SCOTUSblog",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Viramontes v. Cook County Docket Number",
+      "value": 25,
+      "unit": "docket prefix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    },
+    {
+      "label": "Viramontes v. Cook County Docket Case Number",
+      "value": 238,
+      "unit": "docket suffix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    },
+    {
+      "label": "Grant v. Higgins Docket Number",
+      "value": 25,
+      "unit": "docket prefix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    },
+    {
+      "label": "Grant v. Higgins Docket Case Number",
+      "value": 566,
+      "unit": "docket suffix",
+      "source_url": "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf"
+    },
+    {
+      "label": "Sandy Hook Elementary School Shooting Year",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://www.scotusblog.com/2026/09/court-announces-cases-it-will-hear-in-december-including-challenges-to-the-constitutionality-of-"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Cutberto Viramontes",
+      "kind": "person"
+    },
+    {
+      "name": "Cook County",
+      "kind": "place"
+    },
+    {
+      "name": "Illinois",
+      "kind": "place"
+    },
+    {
+      "name": "Connecticut",
+      "kind": "place"
+    },
+    {
+      "name": "Sandy Hook Elementary School",
+      "kind": "place"
+    },
+    {
+      "name": "Newtown",
+      "kind": "place"
+    },
+    {
+      "name": "U.S. Supreme Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Georgetown Law",
+      "kind": "organization"
+    },
+    {
+      "name": "NPR",
+      "kind": "organization"
+    },
+    {
+      "name": "SCOTUSblog",
+      "kind": "organization"
+    },
+    {
+      "name": "AR-15s",
+      "kind": "object"
+    }
+  ]
+}

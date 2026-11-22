@@ -1,0 +1,83 @@
+{
+  "channel_id": "1",
+  "topic_slug": "raymond-briggs-archive-brighton-unveiled",
+  "format": "shorts",
+  "hook": "You won't believe what archivist Chris Olver found inside Raymond Briggs's personal archive.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:04",
+      "voiceover": "You won't believe what archivist Chris Olver found inside Raymond Briggs's personal archive.",
+      "visual_cue": "Archival boxes stacked inside The Keep in Brighton",
+      "sfx_cue": "low ambient room tone with paper rustling",
+      "b_roll": [
+        "The Keep archive building exterior in Brighton"
+      ],
+      "transition_out": "cut to black",
+      "text_overlay": {
+        "text": "Opening Tutankhamun's tomb"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "00:04-00:19",
+      "voiceover": "In January 2026, archivist Chris Olver began cataloguing the personal papers and work of Raymond Briggs at The Keep. The East Sussex and Brighton and Hove Record Office holds this collection. What funding backed the project?",
+      "visual_cue": "Archivist Chris Olver handling documents on a large wooden table",
+      "sfx_cue": "page turning sound",
+      "b_roll": [
+        "Chris Olver sorting through papers at The Keep"
+      ],
+      "transition_out": "smooth fade",
+      "text_overlay": {
+        "text": "Cataloguing Raymond Briggs at The Keep"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "00:19-00:26",
+      "voiceover": "The National Archives Archives Revealed Cataloguing Grant funded it, but who expected such vast records?",
+      "visual_cue": "Close up of grant documentation papers",
+      "sfx_cue": "soft paper slide",
+      "b_roll": [
+        "The National Archives logo document"
+      ],
+      "transition_out": "quick pan",
+      "text_overlay": {
+        "text": "The National Archives Grant"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "00:26-00:43",
+      "voiceover": "East Sussex and Brighton and Hove Record Office preserves these wonderful Snowman papers at The Keep.",
+      "visual_cue": "Archivist Chris Olver examining illustrations in a folder",
+      "sfx_cue": "subtle rising string note",
+      "b_roll": [
+        "Raymond Briggs artwork inside folder at The Keep"
+      ],
+      "transition_out": "subtle dissolve",
+      "text_overlay": {
+        "text": "Nine months of cataloguing"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "00:43-00:50",
+      "voiceover": "Nine months of cataloguing by archivist Chris Olver at The Keep.",
+      "visual_cue": "Wide shot of archival storage shelves in Brighton",
+      "sfx_cue": "ambient room tone fading out",
+      "b_roll": [
+        "Shelves of archived records at The Keep"
+      ],
+      "transition_out": "fade to black",
+      "text_overlay": {
+        "text": "The Keep in Brighton"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/cmy835y313qpo",
+    "https://www.thekeep.info/the-raymond-briggs-archive",
+    "https://www.thekeep.info/raymond-briggs-cataloguing-project"
+  ]
+}

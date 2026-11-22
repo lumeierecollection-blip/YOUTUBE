@@ -251,7 +251,7 @@ export function ladderAll(b, plan) {
     if (drawnOf(c).length === 1 && ["PORTRAIT", "PHOTO-CARD", "PHOTO-BAND", "SCENE-LOW", "SCENE-FULL", "ARCHITECTURE"].includes(String(c.composition || "").toUpperCase())) return [];
   }
 
-  const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" ? "figure" : e.type === "date" || e.type === "span" ? e.type : "plate-organization");
+  const kindOf = (e) => (e.type === "person" ? "plate-person" : e.type === "place" ? "plate-place" : e.type === "number" || e.type === "date" ? "figure" : e.type === "span" ? e.type : "plate-organization");
   // Deduped by name: a figure can be both NAMED and MISSING (it is named, and
   // the beat is not drawing it), and `missing` and `allFigures` then name it
   // twice — which put "50 percent, 50 percent" in one row. A row is a set of
@@ -283,9 +283,8 @@ export function ladderAll(b, plan) {
     // NOT A ROW, TWICE. Two adjacent beats both taking a `plates` row is the
     // same frame twice, and canvas-type refuses it: board 38321106622 ch-5
     // "ENTITY-ART:plates twice in a row" — beats 4 and 5, both rows of named
-    // entities, drawn by this ladder. The neighbour keeps its own visual and
-    // this beat names ride the shot it already has, which is the same rule the
-    // map rung has had all along ("a map beside a map is the same frame twice").
+    // entities, drawn by this ladder. When neighbour has a plates row, this beat
+    // must show its entities as individual plates instead of another row.
     // The plan is optional: without it the neighbour check cannot run and the beat
     // takes a row. Read the neighbours' APPLIED art (entityLadder applies each
     // directive in place as it walks the plan left to right, so a previous
@@ -304,9 +303,16 @@ export function ladderAll(b, plan) {
     //   ch-44 beat 1  organization "Google Scholar" -> draws plate-place
     // `kinds[0]` is the rung row[0]'s own type was given two lines above, so the
     // right rung was already computed and then discarded.
-    out.push(neighbourIsRow
-      ? { art: { kind: kinds[0] || "plate-organization", name: row[0].name }, replaces: !keeps, alongside: keeps }
-      : { art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    if (neighbourIsRow) {
+      // Neighbour has a plates row: emit individual plate directives instead
+      for (let i = 0; i < row.length; i++) {
+        const e = row[i];
+        const kind = kindOf(e);
+        out.push({ art: { kind, name: e.name }, replaces: false, alongside: true });
+      }
+    } else {
+      out.push({ art: { kind: "plates", name: names.join(", "), names, kinds }, replaces: !keeps, alongside: keeps });
+    }
     if (mapWorthy.length) out.push({ map: mapWorthy[0].name, region: mapWorthy[0].region, replaces: !keeps, alongside: keeps });
     return out;
   }

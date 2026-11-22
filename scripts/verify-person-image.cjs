@@ -19,9 +19,8 @@
  * malformed answer, and "no provider answered" all reject — an unverified
  * photo never reaches the render.
  *
- * Providers, cheapest first: Groq $GROQ_VISION_MODEL (qwen/qwen3.8-27b) ->
- * Gemini gemini-3.5-flash-lite -> Ollama $OLLAMA_VISION_MODEL (qwen2.5vl:3b).
- * A provider that errors or answers malformed JSON falls to the next.
+ * Providers: vision-providers.cjs — Ollama ($OLLAMA_VISION_MODEL) by default;
+ * $VISION_PROVIDERS can add groq / gemini.
  *
  * Cache: src/skills/remotion-render/public/entities/verified.json, keyed by
  * the person's slug. The entry holds the latest ACCEPTED photo's verdict

@@ -1,0 +1,89 @@
+{
+  "topic_slug": "rigid-body-mechanics-wearable-sensors-joint-mapping",
+  "strongest_angle": "Engineers leverage a classic rigid‑body mechanics theorem with modern wearable IMUs to accurately locate joint rotation centers across the whole body.",
+  "key_facts": [
+    {
+      "fact": "Engineers at Friedrich‑Alexander University Erlangen‑Nürnberg demonstrated that a century‑old rigid‑body mechanics principle, when combined with wearable inertial sensors, can pinpoint the rotation centers of joints in a musculoskeletal simulation, as reported in a 2026 BMC Biomedical Engineering paper.",
+      "source_url": "https://bioengineer.org/simple-physics-trick-could-let-wearable-sensors-map-every-joint-in-your-body",
+      "source_name": "Bioengineer.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2016 Journal of Biomechanics article \"Estimation of the center of rotation using wearable magneto‑inertial sensors\" by Michele Crabolu, Danilo Pani, Luigi Raffo and Andrea Cereatti has been cited 23 times, indicating growing scientific interest.",
+      "source_url": "https://doi.org/10.1016/j.jbiomech.2016.11.046",
+      "source_name": "Journal of Biomechanics (Elsevier)",
+      "confidence": "high"
+    },
+    {
+      "fact": "Wearable inertial measurement units (IMUs) consist of three sensor types—accelerometer, gyroscope and magnetometer—measuring acceleration in meters per second squared, angular velocity in radians per second and magnetic field in microteslas, according to a NIH PubMed Central review.",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8990391",
+      "source_name": "NIH PubMed Central",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 23,
+      "unit": "citations",
+      "label": "Citations for 2016 Biomechanics article",
+      "source_url": "https://doi.org/10.1016/j.jbiomech.2016.11.046"
+    },
+    {
+      "value": 3,
+      "unit": "sensor types",
+      "label": "Components of a wearable IMU",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8990391"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Friedrich‑Alexander University Erlangen‑Nürnberg",
+      "kind": "organization"
+    },
+    {
+      "name": "BMC Biomedical Engineering",
+      "kind": "organization"
+    },
+    {
+      "name": "Michele Crabolu",
+      "kind": "person"
+    },
+    {
+      "name": "Danilo Pani",
+      "kind": "person"
+    },
+    {
+      "name": "Luigi Raffo",
+      "kind": "person"
+    },
+    {
+      "name": "Andrea Cereatti",
+      "kind": "person"
+    },
+    {
+      "name": "Journal of Biomechanics",
+      "kind": "organization"
+    },
+    {
+      "name": "Inertial Measurement Units",
+      "kind": "object"
+    },
+    {
+      "name": "accelerometer",
+      "kind": "object"
+    },
+    {
+      "name": "gyroscope",
+      "kind": "object"
+    },
+    {
+      "name": "magnetometer",
+      "kind": "object"
+    },
+    {
+      "name": "NIH PubMed Central",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

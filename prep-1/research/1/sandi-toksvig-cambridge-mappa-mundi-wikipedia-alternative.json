@@ -1,0 +1,96 @@
+{
+  "topic_slug": "sandi-toksvig-cambridge-mappa-mundi-wikipedia-alternative",
+  "strongest_angle": "Investigate the October 2026 launch of the Mappa Mundi project by broadcaster Sandi Toksvig and the University of Cambridge, creating an interactive digital atlas to challenge gender bias on Wikipedia, where only 19% of biographies are of women.",
+  "key_facts": [
+    {
+      "fact": "Comedian and broadcaster Sandi Toksvig launched the Mappa Mundi project in October 2026 alongside the University of Cambridge to build an interactive digital atlas challenging Wikipedia's gender representation.",
+      "source_url": "https://www.bbc.com/audio/play/m0032rcx",
+      "source_name": "BBC Audio",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to reporting by The Guardian in October 2026, just 19% of Wikipedia's online biographies feature women.",
+      "source_url": "https://www.theguardian.com/technology/2026/oct/12/wikipedia-deeply-biased-sandi-toksvig-backing-rival",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Mappa Mundi project documentation notes that 36 countries worldwide limit what wives can inherit from their husbands.",
+      "source_url": "https://www.lcfi.ac.uk/research/project/mappa-mundi",
+      "source_name": "LCFI",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Mappa Mundi project at the University of Cambridge began pilot studies focusing initially on the UK and Afghanistan.",
+      "source_url": "https://www.philanthropy.cam.ac.uk/give-to-cambridge/humanities-and-social-sciences/the-mappa-mundi-project-at-cambridge",
+      "source_name": "University of Cambridge Philanthropy",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of Wikipedia biographies of women",
+      "value": 19,
+      "unit": "percent",
+      "source_url": "https://www.theguardian.com/technology/2026/oct/12/wikipedia-deeply-biased-sandi-toksvig-backing-rival"
+    },
+    {
+      "label": "Countries limiting what wives can inherit",
+      "value": 36,
+      "unit": "countries",
+      "source_url": "https://www.lcfi.ac.uk/research/project/mappa-mundi"
+    },
+    {
+      "label": "Countries allowing men to prohibit wives from working",
+      "value": 18,
+      "unit": "countries",
+      "source_url": "https://www.lcfi.ac.uk/research/project/mappa-mundi"
+    },
+    {
+      "label": "Countries limiting when and how women can travel",
+      "value": 17,
+      "unit": "countries",
+      "source_url": "https://www.lcfi.ac.uk/research/project/mappa-mundi"
+    },
+    {
+      "label": "Share of recorded history attributed to women in project metrics",
+      "value": 0.5,
+      "unit": "percent",
+      "source_url": "https://www.lcfi.ac.uk/research/project/mappa-mundi"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Sandi Toksvig’s Mappa Mundi Project is raising funds to support an interactive digital atlas that documents and amplifies women's voices and contributions, starting with pilot studies in the UK and Afghanistan.",
+      "speaker": "University of Cambridge",
+      "source_name": "University of Cambridge Philanthropy",
+      "source_url": "https://www.philanthropy.cam.ac.uk/give-to-cambridge/humanities-and-social-sciences/the-mappa-mundi-project-at-cambridge"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sandi Toksvig",
+      "kind": "person"
+    },
+    {
+      "name": "University of Cambridge",
+      "kind": "organization"
+    },
+    {
+      "name": "Wikipedia",
+      "kind": "organization"
+    },
+    {
+      "name": "Mappa Mundi",
+      "kind": "object"
+    },
+    {
+      "name": "Afghanistan",
+      "kind": "place"
+    },
+    {
+      "name": "United Kingdom",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "restoring-adelaide-herrmanns-lost-legacy",
+  "format": "shorts",
+  "hook": "A world‑renowned magician vanished from history for 80 years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A world‑renowned magician vanished from history for 80 years.",
+      "visual_cue": "Vintage theater marquee fades in, bold \"80 years\" graphic appears."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1875 Adelaide Herrmann married Alexander Herrmann at City Hall, overseen by Mayor Wickham. She earned Queen of Magic title, touring solo for 25 years. Why did her memoir disappear for eight decades until 2012?",
+      "visual_cue": "Period newspaper clipping of 1875 wedding, then a poster of the Queen of Magic tour, ending on a faded 1910 diary page."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet her daring bullet‑catch act terrified audiences worldwide for 25 years.",
+      "visual_cue": "Close‑up of a bullet‑catch performance, audience gasps, overlay of \"25 years\"."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Her memoir, written before her 1932 death, disappeared for eight decades. Researcher Margaret Steele finally uncovered it, publishing the work in 2012. The discovery restored the legacy of a performer who ruled stages for sixty years.",
+      "visual_cue": "Dusty manuscript revealed, then Margaret Steele holding the book, followed by a montage of stage lights spanning sixty years."
+    },
+    {
+      "id": "close",
+      "voiceover": "Eight decades finally gave Adelaide Herrmann her rightful place.",
+      "visual_cue": "Statue of Adelaide Herrmann illuminated as the words \"Eight decades\" fade in."
+    }
+  ],
+  "sources_used": [
+    "https://www.nypl.org/events/programs/2026/10/05/memoirs-magic-queen-restoring-adelaide-herrmanns-lost-legacy",
+    "https://en.wikipedia.org/wiki/Adelaide_Herrmann"
+  ]
+}

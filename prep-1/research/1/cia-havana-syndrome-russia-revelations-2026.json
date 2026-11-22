@@ -1,0 +1,82 @@
+{
+  "topic_slug": "cia-havana-syndrome-russia-revelations-2026",
+  "strongest_angle": "Investigative reporting and 2026 disclosures from books and news media point to Russian GRU Unit 29155 and state-sponsored directed energy weapons as the cause of Havana Syndrome.",
+  "key_facts": [
+    {
+      "fact": "In October 2026, major investigative books and reporting by journalists like Michael Rey and Oriana Zill de Granados detailed new evidence concerning Havana syndrome and Russian involvement.",
+      "source_url": "https://www.cbsnews.com/video/60-minutes-journalists-on-secret-weapons-a-spy-mystery-and-havana-syndrome",
+      "source_name": "CBS News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investigative partners at The Insider, 60 Minutes, and Der Spiegel uncovered evidence showing that Anomalous Health Incidents were linked to Russian GRU Unit 29155.",
+      "source_url": "https://theins.press/en/inv/290088",
+      "source_name": "The Insider",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Defense Department spent more than a year testing a device purchased in an undercover operation by Homeland Security Investigations that investigators suspect is tied to Havana syndrome.",
+      "source_url": "https://www.cnn.com/2026/01/13/politics/havana-syndrome-device-pentagon-hsi",
+      "source_name": "CNN Politics",
+      "confidence": "high"
+    },
+    {
+      "fact": "Former National Security Advisor John Bolton stated in October 2026 that Canada and the United States failed to properly probe allegations that Russia was behind Havana Syndrome.",
+      "source_url": "https://www.theglobeandmail.com/politics/article-canada-us-probe-allegations-russia-havana-syndrome-john-bolton-october",
+      "source_name": "The Globe and Mail",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Years the mystery has persisted according to 60 Minutes reporting",
+      "value": 9,
+      "unit": "years",
+      "source_url": "https://www.cbsnews.com/news/60-minutes-havana-syndrome-report-finds-u-s-government-tested-energy-weapon"
+    },
+    {
+      "label": "Year of the disclosures and investigative book releases regarding Russia and Havana syndrome",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.cbsnews.com/video/60-minutes-journalists-on-secret-weapons-a-spy-mystery-and-havana-syndrome"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Defense Department has spent more than a year testing a device purchased in an undercover operation that some investigators think could be the cause of a series of mysterious ailments impacting US spies, diplomats a",
+      "speaker": "Katie Bo Lillis, Natasha Bertrand, Priscilla Alvarez, Jim Sciutto, Zachary Cohen",
+      "source_name": "CNN Politics",
+      "source_url": "https://www.cnn.com/2026/01/13/politics/havana-syndrome-device-pentagon-hsi"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "CIA",
+      "kind": "organization"
+    },
+    {
+      "name": "Russia",
+      "kind": "place"
+    },
+    {
+      "name": "Michael Rey",
+      "kind": "person"
+    },
+    {
+      "name": "Oriana Zill de Granados",
+      "kind": "person"
+    },
+    {
+      "name": "GRU Unit 29155",
+      "kind": "organization"
+    },
+    {
+      "name": "John Bolton",
+      "kind": "person"
+    },
+    {
+      "name": "Defense Department",
+      "kind": "organization"
+    }
+  ]
+}

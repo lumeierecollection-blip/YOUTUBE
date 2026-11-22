@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-10-24T13:05:54.648Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "beats": [
+    {
+      "beat_index": 0,
+      "entity_shown": "YES",
+      "shown": "the number 144",
+      "missing": ""
+    },
+    {
+      "beat_index": 1,
+      "entity_shown": "YES",
+      "shown": "name plates for Aberfan, October 1966, and 21",
+      "missing": ""
+    },
+    {
+      "beat_index": 2,
+      "entity_shown": "YES",
+      "shown": "the number 116",
+      "missing": ""
+    },
+    {
+      "beat_index": 3,
+      "entity_shown": "YES",
+      "shown": "the name and logo of the National Library of Wales",
+      "missing": ""
+    },
+    {
+      "beat_index": 5,
+      "entity_shown": "YES",
+      "shown": "the name and logo of the National Library of Wales and date July 2026",
+      "missing": ""
+    },
+    {
+      "beat_index": 6,
+      "entity_shown": "YES",
+      "shown": "name plates for Davies and Aberfan Memorial Charity",
+      "missing": ""
+    },
+    {
+      "beat_index": 7,
+      "entity_shown": "YES",
+      "shown": "a name plate for Davies",
+      "missing": ""
+    },
+    {
+      "beat_index": 8,
+      "entity_shown": "YES",
+      "shown": "the number 144",
+      "missing": ""
+    }
+  ],
+  "failing": []
+}

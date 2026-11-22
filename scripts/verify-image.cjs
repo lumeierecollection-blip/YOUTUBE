@@ -16,9 +16,10 @@
  * NO, FIGURATIVE, META, DIRTY, ANGLED, a malformed answer, no provider — is a
  * rejection with its reason; the caller tries the next candidate.
  *
- * Providers: verify-cutout-image.cjs askProviders (Groq vision -> Gemini
- * flash-lite -> Ollama qwen2.5vl:3b). "No provider answered" is retried twice,
- * 15 s apart. Nothing is cached: every image is verified each time it is used.
+ * Providers: vision-providers.cjs (Ollama by default). "No provider answered"
+ * is retried twice, 15 s apart. Nothing is cached: every image is verified
+ * each time it is used. An accepted image then gets a second, blind pass (see
+ * blindCheck) that does not tell the model what the concept is.
  *
  * Portraits of named people keep verify-person-image.cjs (identity + a
  * visible face), and full-bleed place / building photos keep

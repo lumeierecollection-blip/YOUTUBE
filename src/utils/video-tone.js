@@ -56,7 +56,7 @@ export function toneOf({ text = "", channelTone = "" } = {}) {
   const sfx = gravity === "grave" ? { max: 0, deny: ["whoosh", "whip", "shutter", "swish", "switch"] }
     : gravity === "serious" ? { max: 3, deny: ["whip", "swish"] }
     : { max: Infinity, deny: [] };
-  const edge = gravity === "grave" ? { rate: "-4%", pitch: "-3Hz" } : gravity === "serious" ? { rate: "-2%", pitch: "-2Hz" } : { rate: null, pitch: null };
+  const edge = gravity === "grave" ? { rate: "-4%", pitch: "-3Hz" } : gravity === "serious" ? { rate: "-2%", pitch: "-2Hz" } : { rate: "+10%", pitch: "+0Hz" };
   return { gravity, emotion: EMOTION[gravity], hits: [...graveHits, ...seriousHits], sfx, music: gravity === "measured" || gravity === "light", edge };
 }
 

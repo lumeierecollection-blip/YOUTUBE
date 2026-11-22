@@ -1,0 +1,362 @@
+{
+  "generatedAt": "2026-10-24T13:06:13.123Z",
+  "video": "aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "channel": "1",
+  "technical": {
+    "width": 810,
+    "height": 1440,
+    "fps": 30,
+    "durationSec": 47.15,
+    "hasAudio": true
+  },
+  "visual": {
+    "ok": true,
+    "meanLuma": 0.973,
+    "blackFrames": [],
+    "blackFrameCount": 0,
+    "meanMotion": 0.028,
+    "lowMotion": false,
+    "sceneChanges": 7,
+    "maxStaticRunSec": 4.03,
+    "nearDuplicatePairs": 14
+  },
+  "plan_compliance": {
+    "ok": true,
+    "beatCountPlan": 9,
+    "beatCountRender": 9,
+    "textForwardPct": 100,
+    "textForwardSource": "drawn",
+    "distinctMechanisms": 9,
+    "distinctCapabilities": 0,
+    "longestMechanismRun": 1,
+    "monoculture": true,
+    "mechanismDistribution": {
+      "CAPABILITY": 3,
+      "STATE_CHANGE": 1,
+      "EVIDENCE_FIGURE": 1,
+      "PHYSICAL_GROWTH": 1,
+      "VISIBLE_CONSUMPTION": 1,
+      "ACTION_CONSEQUENCE": 1,
+      "PROPORTIONAL_OBJECTS": 1
+    },
+    "capabilityDistribution": {},
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "monoculture: 100% text-forward, 9 distinct mechanisms, longest run 1"
+      }
+    ]
+  },
+  "typography": {
+    "ok": true,
+    "textBeats": 8,
+    "totalBeats": 9,
+    "textBeatShare": 0.89,
+    "longestTextRun": 8,
+    "multiLineBeats": 0,
+    "wouldWrapBeats": 3,
+    "headlineLikeBeats": 0,
+    "transcriptLikeBeats": 6,
+    "repeatedPhrases": [],
+    "perBeat": [
+      {
+        "index": 0,
+        "hasText": true,
+        "phrase": "144 names preserved",
+        "words": 3,
+        "chars": 19,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 1,
+        "hasText": true,
+        "phrase": "coal waste tip collapsed",
+        "words": 4,
+        "chars": 24,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 2,
+        "hasText": true,
+        "phrase": "116 children and 28 adults lost",
+        "words": 6,
+        "chars": 31,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 3,
+        "hasText": true,
+        "phrase": "Will the National Library of Wales protect these?",
+        "words": 8,
+        "chars": 49,
+        "wouldWrap": true,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 4,
+        "hasText": true,
+        "phrase": "Original Book of Remembrance wears down",
+        "words": 6,
+        "chars": 39,
+        "wouldWrap": true,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 5,
+        "hasText": true,
+        "phrase": "National Library of Wales finished new copies",
+        "words": 7,
+        "chars": 45,
+        "wouldWrap": true,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 6,
+        "hasText": true,
+        "phrase": "guards community history",
+        "words": 3,
+        "chars": 24,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": false
+      },
+      {
+        "index": 7,
+        "hasText": true,
+        "phrase": "68 years old, protects memory",
+        "words": 5,
+        "chars": 29,
+        "wouldWrap": false,
+        "multiLine": false,
+        "headline": false,
+        "transcript": true
+      },
+      {
+        "index": 8,
+        "hasText": false
+      }
+    ],
+    "issues": [
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 1,
+        "problem": "\"coal waste tip collapsed\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 2,
+        "problem": "\"116 children and 28 adults lost\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "phrase needs 23px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "8 words is above the 7-word target"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "49 chars exceeds the 48-char single-line budget"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 3,
+        "problem": "\"Will the National Library of Wales protect these?\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "phrase needs 30px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 4,
+        "problem": "\"Original Book of Remembrance wears down\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "phrase needs 26px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 5,
+        "problem": "\"National Library of Wales finished new copies\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": 7,
+        "problem": "\"68 years old, protects memory\" reads as a transcript/subtitle of the narration"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "89% of beats carry on-screen text (max 40%) — typography must be selective, not the default treatment"
+      },
+      {
+        "owner": "DIRECTION_QUALITY",
+        "beat": null,
+        "problem": "8 consecutive text beats — TEXT->TEXT->TEXT reads as a slideshow, not visual storytelling"
+      }
+    ]
+  },
+  "audio": {
+    "ok": true,
+    "hasAudio": true,
+    "integratedLufs": -18.8,
+    "truePeakDb": -2.2,
+    "clipping": false,
+    "longSilenceCount": 0,
+    "maxSilenceSec": 0,
+    "effectivelySilent": false
+  },
+  "channel_history": {
+    "ok": true,
+    "recentAvgTextForwardPct": 100,
+    "thisTextForwardPct": 100,
+    "outlier": false
+  },
+  "risk": {
+    "score": 85,
+    "level": "HIGH",
+    "reasons": [
+      "14 near-duplicate frame pairs",
+      "monoculture (100% text-forward)",
+      "6 transcript-like phrase(s)",
+      "3 phrase(s) too long for one readable line",
+      "89% text beats (max 40%)",
+      "8 consecutive text beats"
+    ]
+  },
+  "gemini_required": true,
+  "uncertain_beats": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    7
+  ],
+  "blockers": [],
+  "corrections": [
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "monoculture: 100% text-forward, 9 distinct mechanisms, longest run 1",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 1,
+      "scene": "beat 1",
+      "problem": "\"coal waste tip collapsed\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 2,
+      "scene": "beat 2",
+      "problem": "\"116 children and 28 adults lost\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "phrase needs 23px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "8 words is above the 7-word target",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "49 chars exceeds the 48-char single-line budget",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 3,
+      "scene": "beat 3",
+      "problem": "\"Will the National Library of Wales protect these?\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "phrase needs 30px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 4,
+      "scene": "beat 4",
+      "problem": "\"Original Book of Remembrance wears down\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "phrase needs 26px to fit one line (below the 34px readable floor) — phrase is too long, rewrite shorter",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 5,
+      "scene": "beat 5",
+      "problem": "\"National Library of Wales finished new copies\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": 7,
+      "scene": "beat 7",
+      "problem": "\"68 years old, protects memory\" reads as a transcript/subtitle of the narration",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "89% of beats carry on-screen text (max 40%) — typography must be selective, not the default treatment",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    },
+    {
+      "owner": "DIRECTION_QUALITY",
+      "beat": null,
+      "scene": "whole video",
+      "problem": "8 consecutive text beats — TEXT->TEXT->TEXT reads as a slideshow, not visual storytelling",
+      "fix": "Rewrite this beat's DIRECTION so the problem cannot occur: choose a different phrase, figure, or mechanism. Do not restate the same idea more briefly — decide something different."
+    }
+  ]
+}

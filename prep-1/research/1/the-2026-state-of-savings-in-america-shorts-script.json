@@ -1,0 +1,32 @@
+{
+  "channel_id": "1",
+  "topic_slug": "the-2026-state-of-savings-in-america",
+  "format": "shorts",
+  "hook": "Only 35% of working Americans have an emergency fund, a shocking drop from previous years.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Only 35% of working Americans have an emergency fund, a shocking drop from previous years."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Pew Research Center found that more than half of Americans do not have rainy day funds."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But it's not just about having an emergency fund. The survey also found that 44% of Americans do not have $1,000 in emergency savings."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "That's a big drop from previous years. That's shockingly low, but you can prepare for it."
+    },
+    {
+      "id": "close",
+      "voiceover": "Start saving today and build your emergency fund."
+    }
+  ],
+  "sources_used": [
+    "https://www.thepennyhoarder.com/save-money/state-of-savings",
+    "https://www.pewresearch.org/chart/more-than-half-of-americans-do-not-have-rainy-day-funds"
+  ]
+}

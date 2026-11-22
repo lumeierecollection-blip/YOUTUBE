@@ -1,0 +1,69 @@
+{
+  "channel_id": "2",
+  "topic_slug": "newark-bans-rental-broker-fees-ordinance-october-2026",
+  "format": "shorts",
+  "::COMMENT::": "Word count check: hook (11) + setup (31) + rehook (11) + payoff (31) + close (8) = 92 words total. Fits the 80-98 word limit perfectly.",
+  "hook": "Landlords in Newark just lost the right to force broker fees onto residential tenants.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Landlords in Newark just lost the right to force broker fees onto residential tenants.",
+      "b_roll": [
+        "Exterior shot of a Newark residential building exterior",
+        "Close-up of a rental lease document"
+      ],
+      "text_overlay": {
+        "text": "Newark Bans Tenant Broker Fees"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 13, 2026, a strict municipal ordinance took effect across Newark. The Newark Municipal Council passed this exact change by a vote of 9 to 0. Who pays the broker fee now?",
+      "b_roll": [
+        "Calendar page showing October 13",
+        "Newark City Hall exterior view",
+        "City council chamber seating area"
+      ],
+      "text_overlay": {
+        "text": "Effective October 13, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Break this Newark rule and landlords face massive fines.",
+      "b_roll": [
+        "Warning symbol graphic overlay on city street",
+        "Close up of rental contract terms"
+      ],
+      "text_overlay": {
+        "text": "Massive Penalties"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Landlords face fines reaching up to $1,250 for every single violation. The Newark Municipal Council shifted the financial burden entirely onto property owners. Tenants keep their cash.",
+      "b_roll": [
+        "Courtroom gavel striking wooden desk",
+        "Financial document with red penalty stamp",
+        "Apartment keys resting on a lease"
+      ],
+      "text_overlay": {
+        "text": "Fines Up To $1,250 Per Violation"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 9 to 0 vote changed Newark renting forever.",
+      "b_roll": [
+        "Wide shot of Newark skyline at dusk"
+      ],
+      "text_overlay": {
+        "text": "9-0 Council Vote"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://hoodline.com/2026/09/newark-approves-ban-on-renter-paid-broker-fees-council-votes-9-0-to-shift-cost-to-landlords",
+    "https://explorenewjersey.org/newark-bans-broker-fees-for-renters-under-a-new-ordinance-that-took-effect-october-13-with-fines-of-up-to-1250-per-violation"
+  ]
+}

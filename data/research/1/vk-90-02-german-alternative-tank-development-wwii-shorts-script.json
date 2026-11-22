@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "vk-90-02-german-alternative-tank-development-wwii",
+  "format": "shorts",
+  "hook": "Germany planned a 90‑ton monster tank that never rolled out.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Germany planned a 90‑ton monster tank that never rolled out.",
+      "visual_cue": "Silhouette of a massive German tank with a 90‑ton label overlay."
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 1941, engineers drafted the Panzer VII Löwe as a 70‑to‑90‑ton super‑heavy tank. Did the 90‑ton Löwe ever see combat?",
+      "visual_cue": "Timeline graphic showing 1941 with a Panzer VII Löwe sketch, a Henschel concept sketch, and a question mark over the Löwe."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet the Tiger II, a 70‑ton design, entered production in 1942.",
+      "visual_cue": "Photo of a Tiger II tank with a 70‑ton label and a 1942 date stamp."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 90‑ton Löwe never materialized, its plans abandoned after 1941. Henschel redirected effort to the VK 45.02 Tiger II, started April 1942. The Tiger II weighed about 70 tons, the class’s lower limit.",
+      "visual_cue": "Split screen: abandoned Löwe blueprint fading, Henschel engineers at work on the VK 45.02 Tiger II, and a scale showing 70 tons."
+    },
+    {
+      "id": "close",
+      "voiceover": "A 90‑ton monster that never rolled out in history.",
+      "visual_cue": "Fade to an empty battlefield with a ghostly outline of the Löwe disappearing."
+    }
+  ],
+  "sources_used": [
+    "http://zxhistory.blogspot.com/2013/04/from-vk-7001-and-tiger-maus-to-e-100.html",
+    "https://www.panzernet.net/domains/panzernet.net/panzernet/en/tanky/tanky.php"
+  ]
+}

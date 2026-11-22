@@ -1,8 +1,11 @@
 // node scripts/test-verify-image.mjs — the three-question verifier's rules (scripts/verify-image.cjs), offline.
+// No model is reachable here (a dead port): a blind-pass question the words cannot settle must reject.
+process.env.OLLAMA_URL = "http://127.0.0.1:9";
+process.env.OLLAMA_TIMEOUT_MS = "3000";
 import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-const { promptFor, normalizer, judge, isMoney } = require("./verify-image.cjs");
-const { FLAT_MONEY, qualifyConcept } = require("./fetch-cutout-once.cjs");
+const { promptFor, normalizer, judge, isMoney, sameThing } = require("./verify-image.cjs");
+const { FLAT_MONEY, qualifyConcept, FREE_LICENCE } = require("./fetch-cutout-once.cjs");
 const { comparisonNumbers } = await import("./gemini-visual-plan.js");
 let bad = 0;
 const eq = (name, got, want) => { const ok = JSON.stringify(got) === JSON.stringify(want); if (!ok) bad++; console.log(`${ok ? "ok  " : "FAIL"} ${name} -> ${JSON.stringify(got)}${ok ? "" : ` (want ${JSON.stringify(want)})`}`); };
@@ -58,6 +61,16 @@ eq("'heavy plates' at a steel mill -> steel plates", qualifyConcept("plates", "R
 eq("the material right before the concept", qualifyConcept("wire", "They stole copper wire."), "copper wire");
 eq("an unambiguous noun is not given the text's material", qualifyConcept("gloves", "Workers at the steel mill wear gloves."), "gloves");
 eq("no material in the text -> unchanged (never invented)", qualifyConcept("plates", "Stack the plates after dinner."), "plates");
+
+// The blind pass (verify-image.cjs blindCheck): the subject the model names without being told
+// the concept must be the same thing. A shared word settles it; otherwise the text model is asked,
+// and no answer is a reject (never an accept by default).
+eq("blind pass: a shared word (plural / adjective) is the same thing", [(await sameThing("a pink piggy bank", "piggy bank")).same, (await sameThing("stack of gold coins", "coin"))].map((x) => x.same ?? x), [true, true]);
+eq("blind pass: no shared word and no model answer -> not the same", await sameThing("flashlight", "cave"), { same: false, how: "no answer" });
+
+// Commons candidates: commercial use and derivatives (a cutout is one) must be allowed.
+eq("free licences kept, NC / ND / all-rights refused", ["CC0", "CC BY 2.0", "CC BY-SA 4.0", "Public domain", "PD", "CC BY-NC 2.0", "CC BY-ND 4.0", "CC BY-NC-SA 4.0", "All rights reserved"].map((l) => FREE_LICENCE.test(l)),
+  [true, true, true, true, true, false, false, false, false]);
 
 console.log(bad ? `${bad} FAILED` : "all pass");
 process.exit(bad ? 1 : 0);

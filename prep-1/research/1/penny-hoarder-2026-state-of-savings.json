@@ -1,0 +1,62 @@
+{
+  "topic_slug": "penny-hoarder-2026-state-of-savings",
+  "strongest_angle": "Break down the shocking findings from The Penny Hoarder's October 2026 State of Savings survey revealing that only 35% of working Americans have an emergency fund and 44% lack $1,000 in emergency savings.",
+  "key_facts": [
+    {
+      "fact": "According to The Penny Hoarder's 2026 State of Savings survey published by Katie Sartoris and Tiffany Connors, only 35% of working Americans say they have an emergency fund.",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings",
+      "source_name": "The Penny Hoarder",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Penny Hoarder's 2026 State of Savings in America Survey found that 44% of Americans don’t have $1,000 in emergency savings.",
+      "source_url": "https://www.thepennyhoarder.com/save-money/how-to-save-money",
+      "source_name": "The Penny Hoarder",
+      "confidence": "high"
+    },
+    {
+      "fact": "Yahoo Finance reported on The Penny Hoarder's 2026 State of Savings in America survey on October 1, 2026, highlighting that only 35% of working Americans have an emergency fund.",
+      "source_url": "https://finance.yahoo.com/markets/articles/state-savings-america-only-37-145231939.html",
+      "source_name": "Yahoo Finance",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of working Americans with an emergency fund",
+      "value": 35,
+      "unit": "percent",
+      "source_url": "https://www.thepennyhoarder.com/save-money/state-of-savings"
+    },
+    {
+      "label": "Percentage of Americans lacking $1,000 in emergency savings",
+      "value": 44,
+      "unit": "percent",
+      "source_url": "https://www.thepennyhoarder.com/save-money/how-to-save-money"
+    },
+    {
+      "label": "Threshold for emergency savings not met by 44 percent of Americans",
+      "value": 1000,
+      "unit": "dollars",
+      "source_url": "https://www.thepennyhoarder.com/save-money/how-to-save-money"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "The Penny Hoarder",
+      "kind": "organization"
+    },
+    {
+      "name": "Katie Sartoris",
+      "kind": "person"
+    },
+    {
+      "name": "Tiffany Connors",
+      "kind": "person"
+    },
+    {
+      "name": "Yahoo Finance",
+      "kind": "organization"
+    }
+  ]
+}

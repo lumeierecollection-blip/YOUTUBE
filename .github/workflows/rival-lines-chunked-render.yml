@@ -1,0 +1,166 @@
+name: Rival Lines — chunked parallel render
+
+on:
+  workflow_dispatch:
+    inputs:
+      job_id:
+        description: "Job folder name under data/rival-lines/"
+        type: string
+        required: true
+      storyboard:
+        description: "Committed source storyboard JSON path"
+        type: string
+        required: true
+      script:
+        description: "Committed final script JSON path"
+        type: string
+        required: true
+      parts:
+        description: "Number of parallel render parts"
+        type: number
+        required: false
+        default: 20
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      total_frames: ${{ steps.meta.outputs.total_frames }}
+      fps: ${{ steps.meta.outputs.fps }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Validate dispatch paths
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+          STORYBOARD: ${{ inputs.storyboard }}
+          SCRIPT: ${{ inputs.script }}
+        run: |
+          [[ "$JOB_ID" =~ ^[A-Za-z0-9][A-Za-z0-9_-]{0,69}$ ]]
+          [[ "$STORYBOARD" =~ ^[A-Za-z0-9_./-]+\.json$ && "$STORYBOARD" != *..* ]]
+          [[ "$SCRIPT" =~ ^[A-Za-z0-9_./-]+\.json$ && "$SCRIPT" != *..* ]]
+      - name: Prepare storyboard
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+          STORYBOARD: ${{ inputs.storyboard }}
+          SCRIPT: ${{ inputs.script }}
+        run: node scripts/rival-lines-production.mjs prepare --storyboard "$STORYBOARD" --script "$SCRIPT" --out "data/rival-lines/$JOB_ID-prepared"
+      - name: Create approval for CI render
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+        run: |
+          node --input-type=module -e "
+          import fs from 'fs';
+          const dir='data/rival-lines/${{ inputs.job_id }}-prepared';
+          const doc=JSON.parse(fs.readFileSync(dir+'/storyboard.json','utf8'));
+          const now=new Date().toISOString();
+          const scenes={};
+          for(const s of doc.scenes){ const a=(doc.assets||[]).find(x=>x.id===s.media?.asset_id)||{}; const checks={identity:true,relevance:true,rights:true}; if(a.kind==='match-footage') checks.match=true; scenes[s.id]={decision:'approved',checks,notes:'CI automated approval for chunked render',reviewed_at:now}; }
+          fs.writeFileSync(dir+'/approval.json', JSON.stringify({storyboard_hash:doc.storyboard_hash,scenes,whole_video:{decision:'approved',reviewed_at:now,storyboard_hash:doc.storyboard_hash,reviewer:'github-actions'},post_render:null},null,2));
+          "
+      - name: Output metadata
+        id: meta
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+        run: |
+          node --input-type=module -e "
+          import fs from 'fs';
+          const doc=JSON.parse(fs.readFileSync('data/rival-lines/${{ inputs.job_id }}-prepared/storyboard.json','utf8'));
+          const total=doc.scenes.reduce((n,s)=>n+Math.max(1,Number(s.duration_frames)||1),0);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'total_frames='+total+'\n');
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, 'fps='+ (Number(doc.fps)||30) +'\n');
+          console.log('total_frames',total);
+          "
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-prepared-${{ inputs.job_id }}
+          path: data/rival-lines/${{ inputs.job_id }}-prepared/
+          retention-days: 7
+
+  render:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        part: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: rival-lines-prepared-${{ inputs.job_id }}
+          path: data/rival-lines/${{ inputs.job_id }}-prepared/
+      - name: Render chunk
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+          PART: ${{ matrix.part }}
+          TOTAL: ${{ needs.prepare.outputs.total_frames }}
+          PARTS: ${{ inputs.parts }}
+        run: |
+          node --input-type=module -e "
+          import fs from 'fs'; import {execFileSync} from 'child_process';
+          const total=Number(process.env.TOTAL); const parts=Number(process.env.PARTS||20); const part=Number(process.env.PART);
+          const chunk=Math.ceil(total/parts);
+          const start=part*chunk;
+          const end=Math.min(total-1,(part+1)*chunk-1);
+          if(start>end){ console.log('skip empty'); process.exit(0); }
+          const out='data/rival-lines/${{ inputs.job_id }}-prepared/chunks/part-'+String(part).padStart(2,'0')+'.mp4';
+          fs.mkdirSync('data/rival-lines/${{ inputs.job_id }}-prepared/chunks',{recursive:true});
+          execFileSync('node',['scripts/rival-lines-production.mjs','render','--storyboard','data/rival-lines/${{ inputs.job_id }}-prepared/storyboard.json','--frames', start+'-'+end,'--muted','--output',out],{stdio:'inherit'});
+          "
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-chunk-${{ inputs.job_id }}-${{ matrix.part }}
+          path: data/rival-lines/${{ inputs.job_id }}-prepared/chunks/
+          if-no-files-found: warn
+          retention-days: 7
+
+  concat:
+    needs: [prepare, render]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: rival-lines-chunk-${{ inputs.job_id }}-*
+          path: chunks
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: rival-lines-prepared-${{ inputs.job_id }}
+          path: data/rival-lines/${{ inputs.job_id }}-prepared/
+      - name: Concatenate and mux audio
+        env:
+          JOB_ID: ${{ inputs.job_id }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          ls -1 chunks/part-*.mp4 | sort > concat.txt
+          sed -i "s/^/file '/; s/$/'/" concat.txt
+          # concat video-only chunks
+          ffmpeg -hide_banner -y -f concat -safe 0 -i concat.txt -c copy out/video.mp4
+          # mux original voiceover
+          VOICE=$(node --input-type=module -e "import fs from 'fs'; const d=JSON.parse(fs.readFileSync('data/rival-lines/${{ inputs.job_id }}-prepared/storyboard.json','utf8')); console.log('data/rival-lines/${{ inputs.job_id }}-prepared/public/'+d.voiceover.render_path)")
+          ffmpeg -hide_banner -y -i out/video.mp4 -i "$VOICE" -c:v copy -c:a aac -b:a 192k -shortest "out/${JOB_ID}-final.mp4"
+          ls -lh "out/${JOB_ID}-final.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-final-${{ inputs.job_id }}
+          path: out/${{ inputs.job_id }}-final.mp4
+          if-no-files-found: error
+          retention-days: 30

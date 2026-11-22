@@ -1,0 +1,60 @@
+{
+  "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)",
+  "topic_slug": "pay-frequency-budgeting",
+  "channel_id": "1",
+  "strongest_angle": "Most people never think about their pay frequency — but whether you get paid weekly, biweekly, or monthly completely changes how you should budget, and getting it wrong is why your money feels tight even when you earn enough",
+  "key_facts": [
+    {
+      "fact": "Biweekly pay means every 2 weeks (26 paychecks/year). Semi-monthly means twice a month on fixed dates (24 paychecks/year). They sound identical but the math is completely different.",
+      "source": "PaycheckStubOnline 2026 + CloudBookkeeping 2026"
+    },
+    {
+      "fact": "On a $60,000 salary: biweekly paycheck = $2,307.69. Semi-monthly paycheck = $2,500. Same annual total, but the cash flow rhythm is totally different.",
+      "source": "PaycheckStubOnline 2026"
+    },
+    {
+      "fact": "Biweekly pay creates two 'magic third paycheck' months per year. Most people budget for 2 checks/month, so that third check feels like free money — and most people waste it.",
+      "source": "CloudBookkeeping 2026 + RisePeople 2025"
+    },
+    {
+      "fact": "2026 is a potential 27-paycheck year for companies whose biweekly cycle starts January 2. That means an extra check worth $2,307.69 on a $60K salary.",
+      "source": "PaycheckStubOnline 2026"
+    },
+    {
+      "fact": "43% of U.S. private employers use biweekly payroll, while only 20% use semi-monthly. Weekly and monthly are less common.",
+      "source": "Bureau of Labor Statistics via CloudBookkeeping 2026"
+    },
+    {
+      "fact": "Monthly pay creates the longest gap between paychecks — up to 31 days. This is the hardest schedule to budget on because you need to stretch one check across the entire month.",
+      "source": "TakeHomePayCalc + Phroogal 2026"
+    },
+    {
+      "fact": "Semi-monthly pay can create gaps of up to 16 days between paychecks, depending on month length. This catches people off guard when bills hit at the wrong time.",
+      "source": "ZayZoon 2024 + Kumospace"
+    },
+    {
+      "fact": "People who are paid more frequently report lower financial anxiety. Weekly pay reduces the stress of waiting for money to cover daily expenses.",
+      "source": "TakeHomePayCalc 2025"
+    },
+    {
+      "fact": "The best budgeting strategy: budget by pay period, not by month. Assign each paycheck a specific job before the money starts drifting into random spending.",
+      "source": "Phroogal 2026"
+    },
+    {
+      "fact": "Common mistake: treating biweekly 'extra' paycheck months as bonus money. Those two extra checks per year should go to savings, debt payoff, or sinking funds — not lifestyle creep.",
+      "source": "Phroogal 2026 + CloudBookkeeping 2026"
+    }
+  ],
+  "sources": [
+    "PaycheckStubOnline Feb 2026: https://www.paycheckstubonline.com/biweekly-vs-semi-monthly-pay",
+    "CloudBookkeeping May 2026: https://cloudbookkeeping.com/choosing-your-pay-cycle-biweekly-vs-semi-monthly-payroll-explained/",
+    "TakeHomePayCalc Jul 2025: https://takehomepaycalc.com/pay-frequency/",
+    "Phroogal Apr 2026: https://www.phroogal.com/guide/how-to-budget-when-you-get-paid-weekly-biweekly-or-twice-a-month/",
+    "RisePeople Sep 2025: https://risepeople.com/blog/semi-monthly-vs-biweekly-payroll/",
+    "ZayZoon Dec 2024: https://www.zayzoon.com/blog/bi-weekly-vs.-semi-monthly-pay-explained",
+    "Kumospace: https://www.kumospace.com/blog/semi-monthly-vs-biweekly",
+    "Raise Calculator Jun 2026: https://raise-calculator.com/blog/biweekly-vs-semimonthly-pay",
+    "PayCalculatorOnline May 2026: https://paycheckcalculatoronline.com/blog/monthly-vs-biweekly-pay",
+    "CashBalancer Jan 2026: https://www.cashbalancer.com/blog/personal-finance-blog-budgeting-and-saving-strategies-2026"
+  ]
+}

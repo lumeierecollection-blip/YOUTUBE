@@ -1,0 +1,62 @@
+{
+  "channel_id": "1",
+  "topic_slug": "cnbc-select-october-2026-best-budgeting-apps",
+  "format": "shorts",
+  "hook": "Most budgeting apps claim they save you money, but Quicken Simplifi costs just $3.49 right now.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most budgeting apps claim they save you money, but Quicken Simplifi costs just $3.49 right now.",
+      "b_roll": [
+        "Digital app interface showing pricing"
+      ],
+      "text_overlay": {
+        "text": "Quicken Simplifi Costs $3.49"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "CNBC Select evaluated over two dozen budgeting products in October 2026. Quartz reported on October 8, 2026, that three apps stand out. Where did that 50 percent discount come from?",
+      "b_roll": [
+        "List of evaluated budgeting apps"
+      ],
+      "text_overlay": {
+        "text": "50% Discount Evaluated"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "That 50 percent discount is only for the first year.",
+      "b_roll": [
+        "First year pricing tier highlight"
+      ],
+      "text_overlay": {
+        "text": "First Year Only"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "CNBC Select lists the standard rate at $6.99 per month billed annually. Quicken Simplifi uses automated tracking features to keep spending on track. CNBC Select highlights Quicken Simplifi for beginners choosing a financial tool.",
+      "b_roll": [
+        "Standard annual billing screen"
+      ],
+      "text_overlay": {
+        "text": "$6.99 Standard Annual Billing"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Quicken Simplifi renews at $6.99 per month billed annually.",
+      "b_roll": [
+        "Renewal rate summary screen"
+      ],
+      "text_overlay": {
+        "text": "Renews at $6.99 Monthly"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://qz.com/best-budgeting-apps-2026",
+    "https://www.cnbc.com/select/best-budgeting-apps"
+  ]
+}

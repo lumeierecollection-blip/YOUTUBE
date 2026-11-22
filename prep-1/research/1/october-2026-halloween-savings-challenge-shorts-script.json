@@ -1,0 +1,66 @@
+{
+  "channel_id": "1",
+  "topic_slug": "october-2026-halloween-savings-challenge",
+  "format": "shorts",
+  "hook": "Americans without emergency funds are 3 times more likely to go into debt for Halloween.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Americans without emergency funds are 3 times more likely to go into debt for Halloween.",
+      "b_roll": [
+        "Text overlay showing 3 times debt multiplier stat"
+      ],
+      "text_overlay": {
+        "text": "3x Holiday Debt Risk"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Sebastian Flückiger noted in October 2026 that seasonal bills stack up fast. Costumes, candy, and decorations can easily exceed $200 per household. Where does that money actually go?",
+      "b_roll": [
+        "Calendar pages turning to October",
+        "Shopping cart filled with seasonal items"
+      ],
+      "text_overlay": {
+        "text": "$200 Household Cost"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Gerald financial research shows simple planning stops the trap.",
+      "b_roll": [
+        "Calculator showing budget totals"
+      ],
+      "text_overlay": {
+        "text": "The Savings Trap"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Breaking expenses into goals like $15 per month adds up to $60 by October. BUDGT author Sebastian Flückiger proves families can dodge debt using Gerald guidance.",
+      "b_roll": [
+        "Coins dropping into a jar",
+        "Growing savings chart rising to $60"
+      ],
+      "text_overlay": {
+        "text": "$15 Monthly Goal"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Start saving $15 monthly to reach that $60 seasonal goal.",
+      "b_roll": [
+        "Piggy bank sitting on a desk"
+      ],
+      "text_overlay": {
+        "text": "Build Your Fund"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://joingerald.com/learn/money-basics/low-emergency-savings-halloween-spending",
+    "https://www.budgt.ch/blog/ways-to-save-money-in-october-2026",
+    "https://joingerald.com/learn/money-basics/halloween-decoration-budget-payday-financial-strategy",
+    "https://joingerald.com/learn/saving--investing/save-15-monthly-halloween-expenses"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "topic_slug": "finra-data-26-percent-spending-more-than-earn",
+  "strongest_angle": "Break down the Financial Industry Regulatory Authority National Financial Capability Study showing that 26 percent of Americans spend more than they earn, reversing a twelve-year trend.",
+  "key_facts": [
+    {
+      "fact": "The Financial Industry Regulatory Authority reported in its National Financial Capability Study that 26 percent of Americans spend more than they earn.",
+      "source_url": "https://www.investopedia.com/why-26-percent-of-americans-are-spending-beyond-their-means-as-financial-pressures-mount-11983948",
+      "source_name": "Investopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Financial Industry Regulatory Authority Investor Education Foundation sixth wave of the National Financial Capability Study reveals a decline in U.S. adults' ability to make ends meet.",
+      "source_url": "https://www.finra.org/investors/insights/finra-foundation-national-financial-capability-study",
+      "source_name": "FINRA",
+      "confidence": "high"
+    },
+    {
+      "fact": "The amount of Americans who say they pay off their credit cards in full every month decreased by 6 percentage points since 2021 according to the Financial Industry Regulatory Authority.",
+      "source_url": "https://www.finra.org/investors/insights/finra-foundation-national-financial-capability-study",
+      "source_name": "FINRA",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of Americans spending more than they earn",
+      "value": 26,
+      "unit": "percent",
+      "source_url": "https://www.investopedia.com/why-26-percent-of-americans-are-spending-beyond-their-means-as-financial-pressures-mount-11983948"
+    },
+    {
+      "label": "Percentage point decrease in paying credit cards in full",
+      "value": 6,
+      "unit": "percentage points",
+      "source_url": "https://www.finra.org/investors/insights/finra-foundation-national-financial-capability-study"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Financial Industry Regulatory Authority",
+      "kind": "organization"
+    },
+    {
+      "name": "National Financial Capability Study",
+      "kind": "object"
+    },
+    {
+      "name": "Investopedia",
+      "kind": "organization"
+    },
+    {
+      "name": "Aaron McDade",
+      "kind": "person"
+    },
+    {
+      "name": "Olivia Valdes",
+      "kind": "person"
+    }
+  ]
+}

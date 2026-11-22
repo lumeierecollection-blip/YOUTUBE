@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-10-23T14:13:31.786Z",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/ancient-egypts-first-female-king-royal-seals-shorts-script-visual-plan-resolved-enforced-attempt1.json",
+  "review": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/ancient-egypts-first-female-king-royal-seals-shorts-script-visual-plan-resolved-enforced-attempt1-challenge.json",
+  "corrections": [
+    {
+      "beat": 5,
+      "element": "visual_type",
+      "problem": "MISMATCH on visual_type: current value \"PHOTO\" (The plan shows a photograph of ancient Egypt, but there are no surviving real photographs of ancient Egypt from over 5000 years ago.)",
+      "fix": "set visual_type to \"AI_IMAGE\" so the beat shows exactly what its sentence says"
+    }
+  ],
+  "unresolved": []
+}

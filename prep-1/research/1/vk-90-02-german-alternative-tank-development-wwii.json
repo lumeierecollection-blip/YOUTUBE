@@ -1,0 +1,110 @@
+{
+  "topic_slug": "vk-90-02-german-alternative-tank-development-wwii",
+  "strongest_angle": "Investigate German super-heavy tank engineering projects such as the Panzer VII Löwe and Henschel proposals in the 70 to 90-ton weight class, as explored by researchers like Zarax and Kenneth W. Estes.",
+  "key_facts": [
+    {
+      "fact": "The Panzer VII Löwe was expected to be into the 70-90 ton class as a superheavy tank according to the analysis by Zarax on ZxHistory.",
+      "source_url": "http://zxhistory.blogspot.com/2013/04/from-vk-7001-and-tiger-maus-to-e-100.html",
+      "source_name": "ZxHistory",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Henschel proposed tank projects in the 70 to 90-ton class as unrealised projects that had to give way to the heavier Maus, documented by Panzernet.",
+      "source_url": "https://www.panzernet.net/domains/panzernet.net/panzernet/en/tanky/tanky.php",
+      "source_name": "Panzernet",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Kenneth W. Estes and Ian Palmer explored the conception and design of super-heavy tanks in their 2014 publication on World War II fighting vehicles.",
+      "source_url": "http://bvbr.bib-bvb.de/F?doc_library=BVB01&doc_number=028005417&func=service&func_code=DB_RECORDS&line_number=0001&local_base=BVB01&sequence=000002&service_type=MEDIA",
+      "source_name": "Super-heavy tanks of World War II",
+      "confidence": "medium"
+    },
+    {
+      "fact": "In April of 1942, Henschel began working on the VK 45.02 (H) tank, also known as the Tiger II, as detailed on Tank Archives.",
+      "source_url": "https://www.tankarchives.com/2017/04/e-50-and-e-75-story-of-failed.html",
+      "source_name": "Tank Archives",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "weight class lower bound",
+      "value": 70,
+      "unit": "ton",
+      "source_url": "http://zxhistory.blogspot.com/2013/04/from-vk-7001-and-tiger-maus-to-e-100.html"
+    },
+    {
+      "label": "weight class upper bound",
+      "value": 90,
+      "unit": "ton",
+      "source_url": "http://zxhistory.blogspot.com/2013/04/from-vk-7001-and-tiger-maus-to-e-100.html"
+    },
+    {
+      "label": "weight class lower bound Henschel",
+      "value": 70,
+      "unit": "ton",
+      "source_url": "https://www.panzernet.net/domains/panzernet.net/panzernet/en/tanky/tanky.php"
+    },
+    {
+      "label": "weight class upper bound Henschel",
+      "value": 90,
+      "unit": "ton",
+      "source_url": "https://www.panzernet.net/domains/panzernet.net/panzernet/en/tanky/tanky.php"
+    },
+    {
+      "label": "year of Panzer VII development start",
+      "value": 1941,
+      "unit": "year",
+      "source_url": "http://zxhistory.blogspot.com/2013/04/from-vk-7001-and-tiger-maus-to-e-100.html"
+    },
+    {
+      "label": "year of Henschel VK 45.02 work",
+      "value": 1942,
+      "unit": "year",
+      "source_url": "https://www.tankarchives.com/2017/04/e-50-and-e-75-story-of-failed.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Panzer VII Löwe",
+      "kind": "object"
+    },
+    {
+      "name": "Zarax",
+      "kind": "person"
+    },
+    {
+      "name": "Kenneth W. Estes",
+      "kind": "person"
+    },
+    {
+      "name": "Ian Palmer",
+      "kind": "person"
+    },
+    {
+      "name": "Henschel",
+      "kind": "organization"
+    },
+    {
+      "name": "Maus",
+      "kind": "object"
+    },
+    {
+      "name": "Tiger II",
+      "kind": "object"
+    },
+    {
+      "name": "ZxHistory",
+      "kind": "organization"
+    },
+    {
+      "name": "Panzernet",
+      "kind": "organization"
+    },
+    {
+      "name": "Tank Archives",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "topic_slug": "fingerprint-study-women-children-terracotta-warriors",
+  "strongest_angle": "Analysis of 79 fingerprints preserved on 36 terracotta warriors at Emperor Qin Shihuang's mausoleum in Xi'an reveals that women and juveniles under 15 accounted for 67 percent of the prints analyzed, challenging assumptions that the army was built by adult men alone.",
+  "key_facts": [
+    {
+      "fact": "Researchers from the Mausoleum Site Museum in Xi'an and Shandong University studied 79 well-preserved fingerprints found on 36 warriors in unit T23.",
+      "source_url": "https://archaeologymag.com/2026/10/fingerprints-in-the-terracotta-armys-clay",
+      "source_name": "Archaeology Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "A study published in the Journal of Cultural Heritage found that adult women and juveniles under the age of 15 accounted for 67 percent of the fingerprints analyzed.",
+      "source_url": "https://www.smithsonianmag.com/smart-news/did-women-and-children-collaborate-with-male-artisans-to-create-chinas-terra-cotta-army-fingerprints-left-on-the-2000-year-old-clay-warriors-may-hold-the-answer-180989767",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Terracotta Army was discovered in 1974 by farmers digging a well about a mile away from the 2,200-year-old tomb of Emperor Qin Shihuangdi.",
+      "source_url": "https://archaeology.org/news/2026/10/23/who-crafted-chinas-terracotta-army",
+      "source_name": "Archaeology Magazine",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Fingerprints analyzed",
+      "value": 79,
+      "unit": "fingerprints",
+      "source_url": "https://archaeologymag.com/2026/10/fingerprints-in-the-terracotta-armys-clay"
+    },
+    {
+      "label": "Warriors sampled",
+      "value": 36,
+      "unit": "warriors",
+      "source_url": "https://www.smithsonianmag.com/smart-news/did-women-and-children-collaborate-with-male-artisans-to-create-chinas-terra-cotta-army-fingerprints-left-on-the-2000-year-old-clay-warriors-may-hold-the-answer-180989767"
+    },
+    {
+      "label": "Percentage of women and juveniles",
+      "value": 67,
+      "unit": "percent",
+      "source_url": "https://www.smithsonianmag.com/smart-news/did-women-and-children-collaborate-with-male-artisans-to-create-chinas-terra-cotta-army-fingerprints-left-on-the-2000-year-old-clay-warriors-may-hold-the-answer-180989767"
+    },
+    {
+      "label": "Age threshold for juveniles",
+      "value": 15,
+      "unit": "years",
+      "source_url": "https://www.smithsonianmag.com/smart-news/did-women-and-children-collaborate-with-male-artisans-to-create-chinas-terra-cotta-army-fingerprints-left-on-the-2000-year-old-clay-warriors-may-hold-the-answer-180989767"
+    },
+    {
+      "label": "Age of the tomb",
+      "value": 2200,
+      "unit": "years",
+      "source_url": "https://archaeology.org/news/2026/10/23/who-crafted-chinas-terracotta-army"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "These findings challenge the long-held assumption that Terracotta Army production relied",
+      "speaker": "Unnamed source",
+      "source_name": "ScienceAlert",
+      "source_url": "https://www.sciencealert.com/2200-year-old-fingerprints-reveal-who-really-built-chinas-mysterious-terracotta-army"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Emperor Qin Shihuang",
+      "kind": "person"
+    },
+    {
+      "name": "Xi'an",
+      "kind": "place"
+    },
+    {
+      "name": "Mausoleum Site Museum",
+      "kind": "organization"
+    },
+    {
+      "name": "Shandong University",
+      "kind": "organization"
+    },
+    {
+      "name": "Terracotta Army",
+      "kind": "object"
+    },
+    {
+      "name": "Journal of Cultural Heritage",
+      "kind": "organization"
+    }
+  ]
+}

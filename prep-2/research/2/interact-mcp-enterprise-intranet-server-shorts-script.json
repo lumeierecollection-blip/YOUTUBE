@@ -1,0 +1,82 @@
+{
+  "channel_id": "2",
+  "topic_slug": "interact-mcp-enterprise-intranet-server",
+  "format": "shorts",
+  "hook": "Interact MCP brings corporate intranet data into compatible AI assistants.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Interact MCP brings corporate intranet data into compatible AI assistants.",
+      "visual_cue": "Interact software interface showing 10 integration tools.",
+      "sfx_cue": "digital click",
+      "b_roll": [
+        "Interact software interface showing 10 integration tools"
+      ],
+      "text_overlay": {
+        "text": "10 Tools"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "Tom Walters at Interact introduced the system. It builds on the foundational Cue and Conductor platforms. How does Interact MCP integrate internal knowledge bases and user permissions?",
+      "visual_cue": "Tom Walters presentation slide displaying Cue and Conductor architecture.",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        "Tom Walters presentation slide displaying Cue and Conductor architecture"
+      ],
+      "text_overlay": {
+        "text": "Interact MCP"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Tom Walters at Interact built this permission-aware connection for large enterprises.",
+      "visual_cue": "Dashboard showing active connections to AI models.",
+      "sfx_cue": "sub bass drop",
+      "b_roll": [
+        "Dashboard showing active connections to AI models"
+      ],
+      "text_overlay": {
+        "text": "Multiple AI Models"
+      },
+      "transition_out": "fade"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Claude, ChatGPT, and Microsoft 365 Copilot access internal intranet records safely. The Vinkius partner platform lists the Interact Software MCP connector. Gemini Enterprise joins SAP Joule and Workday Sana as compatible AI environments.",
+      "visual_cue": "Vinkius platform listing displaying Claude and ChatGPT logos.",
+      "sfx_cue": "chime",
+      "b_roll": [
+        "Vinkius platform listing displaying Claude and ChatGPT logos"
+      ],
+      "text_overlay": {
+        "text": "Claude and ChatGPT"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "Manage intranet people, content, and groups using 10 official tools.",
+      "visual_cue": "Interact software dashboard managing corporate groups.",
+      "sfx_cue": "soft ambient",
+      "b_roll": [
+        "Interact software dashboard managing corporate groups"
+      ],
+      "text_overlay": {
+        "text": "Manage Intranet Data"
+      },
+      "transition_out": "fade"
+    }
+  ],
+  "sources_used": [
+    "https://www.interactsoftware.com/news/introducing-interact-mcp",
+    "https://mcpforclaude.com/mcp/interact-software"
+  ]
+}

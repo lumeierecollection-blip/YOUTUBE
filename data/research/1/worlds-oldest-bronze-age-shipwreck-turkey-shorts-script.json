@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "worlds-oldest-bronze-age-shipwreck-turkey",
+  "format": "shorts",
+  "hook": "A 4,400‑year‑old ship lies 100 feet beneath Turkey’s coast off Kekova.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A 4,400‑year‑old ship lies 100 feet beneath Turkey’s coast off Kekova.",
+      "visual_cue": "Ancient hull silhouette at 100 feet depth over a map of Kekova Island."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Archaeologists uncovered the world’s oldest shipwreck near Kekova Island, Antalya, Turkey. How did they narrow the age to between 4,400 and 4,700 years?",
+      "visual_cue": "Divers photographing the wreck, depth gauge showing 30 m, timeline graphic of 4,400‑4,700 years."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But expert Karin Sowada found pottery that pushes the date toward the older limit.",
+      "visual_cue": "Close‑up of ancient pottery fragments with label “Karin Sowada analysis”."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The wreck proves seafaring existed at least 4,400 years ago. Preserved at 30 meters, it reveals Early Bronze Age trade routes.",
+      "visual_cue": "Guinness record badge, 30 m depth meter, animated trade‑route map across the Mediterranean."
+    },
+    {
+      "id": "close",
+      "voiceover": "A 4,400‑year relic rests beneath Turkey’s waves.",
+      "visual_cue": "Sunken ship silhouette fading into deep blue water."
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.com/news/articles/c6gr80rk1yyko",
+    "https://www.guinnessworldrecords.com/world-records/oldest-shipwreck"
+  ]
+}

@@ -1,0 +1,2105 @@
+{
+  "video": "aberfan-60-years-books-of-remembrance-shorts-shorts-2026-10-24.mp4",
+  "format": "shorts",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "renderScale": 0.75,
+  "accent": "#D4A574",
+  "ground": "#FFFFFF",
+  "engine": "canvas",
+  "sfx": [
+    {
+      "role": "whoosh",
+      "file": "cc0/whoosh.wav",
+      "db": -22,
+      "at_frame": 211,
+      "event_frame": 213,
+      "peak_frames": 2,
+      "beat": 1,
+      "reason": "cut NUMBER -> ENTITY",
+      "credit": {
+        "title": "Woosh",
+        "author": "1bob",
+        "source": "https://freesound.org/s/831936/",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/whoosh.wav"
+      }
+    },
+    {
+      "role": "switch",
+      "file": "cc0/switch.wav",
+      "db": -19,
+      "at_frame": 825,
+      "event_frame": 829,
+      "peak_frames": 4,
+      "beat": 5,
+      "reason": "headline words pop in",
+      "credit": {
+        "title": "UI Audio - Switch 35",
+        "author": "Kenney",
+        "source": "https://kenney.nl",
+        "license": "CC0 1.0",
+        "url": "https://remotion.media/switch.wav"
+      }
+    }
+  ],
+  "totalFrames": 1413,
+  "durationSec": 47.1,
+  "generatedAt": "2026-10-24T13:05:21.026Z",
+  "beats": [
+    {
+      "index": 0,
+      "beat_id": "d0",
+      "start_frame": 0,
+      "duration_frames": 213,
+      "start_sec": 0,
+      "duration_sec": 7.1,
+      "mechanism": "CAPABILITY",
+      "visual_type": "COUNTER",
+      "canvas": {
+        "composition": "NUMBER-STAT",
+        "hero": "number",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "label": {
+            "x": 300,
+            "y": 1296,
+            "w": 481,
+            "h": 44,
+            "role": "data",
+            "align": "center",
+            "rotate": null,
+            "size": 40,
+            "bleed": 0,
+            "lines": [
+              "NAMES AFTER VILLAGE"
+            ]
+          },
+          "number": {
+            "x": 162,
+            "y": 781,
+            "w": 756,
+            "h": 487,
+            "role": "number",
+            "align": "center",
+            "rotate": null,
+            "size": 518,
+            "bleed": 0,
+            "parts": {
+              "isQuantity": true,
+              "text": "144"
+            }
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 870,
+          "h": 1210
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "number"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "number",
+            "name": "144"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "144",
+          "label": "names after village"
+        },
+        "sentence": "New books preserve 144 names after a village lost its future in seconds.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": null,
+        "headline_align": null,
+        "accent_used": false,
+        "variant": 0,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "STAT",
+        "ground_color": null,
+        "headline_text": null,
+        "emphasis_text": null,
+        "animations": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "words": {
+          "label": [
+            {
+              "t": "NAMES"
+            },
+            {
+              "t": "AFTER"
+            },
+            {
+              "t": "VILLAGE"
+            }
+          ]
+        },
+        "headline_motion": null,
+        "vertical": false,
+        "number_snaps": false
+      },
+      "renders_typography": true,
+      "text": [
+        "144 names preserved"
+      ],
+      "on_screen_text": [
+        {
+          "text": "NAMES AFTER VILLAGE",
+          "role": "quiet",
+          "source": "canvas.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "144 names preserved"
+      ],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 1,
+      "beat_id": "d1",
+      "start_frame": 213,
+      "duration_frames": 164,
+      "start_sec": 7.1,
+      "duration_sec": 5.47,
+      "mechanism": "STATE_CHANGE",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "ENTITY-ART",
+        "hero": "art",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "art": {
+            "x": 60,
+            "y": 700,
+            "w": 960,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 81,
+            "y": 1208,
+            "w": 918,
+            "h": 95,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 100,
+            "bleed": 0,
+            "lines": [
+              "coal waste tip collapsed"
+            ]
+          },
+          "underline": {
+            "x": 579,
+            "y": 1309,
+            "w": 420,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 60,
+          "y": 130,
+          "w": 972,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": {
+          "kind": "plates",
+          "name": "Aberfan, October 1966, 21",
+          "names": [
+            "Aberfan",
+            "October 1966",
+            "21"
+          ],
+          "kinds": [
+            "plate-place",
+            "date",
+            "figure"
+          ],
+          "style": null,
+          "source_url": null,
+          "license": null,
+          "items": [
+            null,
+            null,
+            null
+          ],
+          "region": null,
+          "ends": null,
+          "text": null,
+          "asset": null
+        },
+        "entities": [
+          {
+            "type": "place",
+            "name": "Aberfan"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.3,
+            "target": "photo"
+          }
+        ],
+        "persists_from": 0,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "On 21 October 1966, a massive coal waste tip collapsed onto Aberfan.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 100,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 1,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "SCENE-FULL",
+        "ground_color": null,
+        "headline_text": "coal waste tip collapsed",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "coal",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "waste",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "tip",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "collapsed",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "coal waste tip collapsed",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "coal waste tip collapsed"
+      ],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "micro_pull",
+        "hold"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 2,
+      "beat_id": "d2",
+      "start_frame": 377,
+      "duration_frames": 198,
+      "start_sec": 12.57,
+      "duration_sec": 6.6,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_type": "COUNTER",
+      "canvas": {
+        "composition": "NUMBER-FULL",
+        "hero": "number",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "number": {
+            "x": 352,
+            "y": 650,
+            "w": 377,
+            "h": 270,
+            "role": "number",
+            "align": "center",
+            "rotate": null,
+            "size": 300,
+            "bleed": 0,
+            "parts": {
+              "isQuantity": true,
+              "text": "116"
+            }
+          },
+          "label": {
+            "x": 346,
+            "y": 948,
+            "w": 388,
+            "h": 44,
+            "role": "data",
+            "align": "center",
+            "rotate": null,
+            "size": 40,
+            "bleed": 0,
+            "lines": [
+              "CHILDREN ADULTS"
+            ]
+          },
+          "headline": {
+            "x": 145,
+            "y": 1130,
+            "w": 791,
+            "h": 198,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 104,
+            "bleed": 0,
+            "lines": [
+              "116 children and 28",
+              "adults lost"
+            ]
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 888,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "number",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "number",
+            "name": "116"
+          },
+          {
+            "type": "number",
+            "name": "28"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "chart"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "116",
+          "label": "children adults"
+        },
+        "sentence": "116 children and 28 adults lost their lives in the disaster.",
+        "entity_pop": {
+          "frame": 0,
+          "word": "one",
+          "from": 0,
+          "to": 9,
+          "kind": "number"
+        },
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "staggered",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 104,
+        "headline_align": "center",
+        "accent_used": true,
+        "variant": 2,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "FIGURE",
+        "ground_color": null,
+        "headline_text": "116 children and 28 adults lost",
+        "emphasis_text": null,
+        "animations": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ],
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "words": {
+          "label": [
+            {
+              "t": "CHILDREN"
+            },
+            {
+              "t": "ADULTS"
+            }
+          ],
+          "headline": [
+            {
+              "t": "116",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "children",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "and",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "28",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "adults",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "lost",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "crop-open",
+        "vertical": false,
+        "number_snaps": false
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "CHILDREN ADULTS",
+          "role": "quiet",
+          "source": "canvas.label"
+        },
+        {
+          "text": "116 children and 28 adults lost",
+          "role": "narrative",
+          "source": "canvas.headline"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "116 children and 28 adults lost"
+      ],
+      "banned_text": [],
+      "objects": [
+        "116 children and 28 adults lost"
+      ],
+      "camera": [
+        "slow_drift",
+        "drift_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 3,
+      "beat_id": "d3",
+      "start_frame": 575,
+      "duration_frames": 114,
+      "start_sec": 19.17,
+      "duration_sec": 3.8,
+      "mechanism": "PHYSICAL_GROWTH",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "HERO-OVER",
+        "hero": "cutout0",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 70,
+            "y": 1139,
+            "w": 940,
+            "h": 167,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 88,
+            "bleed": 0,
+            "lines": [
+              "Will the National Library of",
+              "Wales protect these?"
+            ]
+          },
+          "cutout0": {
+            "x": 70,
+            "y": 973,
+            "w": 940,
+            "h": 127,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 70,
+          "y": 130,
+          "w": 962,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline",
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "micro",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "institution",
+            "name": "National Library of Wales"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Will the National Library of Wales protect these pages?",
+        "entity_pop": null,
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [
+          {
+            "name": "National Library of Wales",
+            "class": "cutout",
+            "logo": true,
+            "money": false,
+            "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+            "license": "CC BY-SA 3.0"
+          }
+        ],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 88,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 3,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": null,
+        "ground_color": null,
+        "headline_text": "Will the National Library of Wales protect these?",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_STANDARD",
+          "entrances": {
+            "statement": [
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_EMPHASIS",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD",
+              "POP_STANDARD"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Will",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "the",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "National",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "Library",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "of",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Wales",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "protect",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "these?",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Will the National Library of Wales protect these?",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Will the National Library of Wales protect these?"
+      ],
+      "banned_text": [],
+      "objects": [
+        "NATIONAL LIBRARY",
+        "Will the National Library of Wales protect these?"
+      ],
+      "camera": [
+        "micro_pull",
+        "drift_out",
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 4,
+      "beat_id": "d4",
+      "start_frame": 689,
+      "duration_frames": 139,
+      "start_sec": 22.97,
+      "duration_sec": 4.63,
+      "mechanism": "VISIBLE_CONSUMPTION",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "TYPE-FULL",
+        "hero": "statement",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 228,
+            "y": 926,
+            "w": 624,
+            "h": 388,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 102,
+            "bleed": 0,
+            "lines": [
+              "Original Book",
+              "of",
+              "Remembrance",
+              "wears down"
+            ]
+          },
+          "underline": {
+            "x": 360,
+            "y": 1328,
+            "w": 360,
+            "h": 4,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "pull": {
+            "x": 48,
+            "y": 1450,
+            "w": 707.4099199999999,
+            "h": 68.44,
+            "role": "data",
+            "align": "left",
+            "rotate": null,
+            "size": 58,
+            "bleed": 0,
+            "lines": [
+              "fresh copies are needed"
+            ]
+          }
+        },
+        "content": {
+          "x": 228,
+          "y": 130,
+          "w": 804,
+          "h": 1202
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "object",
+            "name": "Aberfan Book of Remembrance"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.4,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": {
+            "text": "fresh copies are needed",
+            "position": "bottom",
+            "tone": "accent"
+          },
+          "type_led": true
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Time wears down the original Aberfan Book of Remembrance, but fresh copies are needed.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": true
+        },
+        "headline_size": 102,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 4,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PHOTO-CARD",
+        "ground_color": null,
+        "headline_text": "Original Book of Remembrance wears down",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "Original",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Book",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "of",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Remembrance",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "wears",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "down",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "Original Book of Remembrance wears down",
+          "role": "narrative",
+          "source": "canvas.statement"
+        },
+        {
+          "text": "fresh copies are needed",
+          "role": "quiet",
+          "source": "canvas.pull"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "Original Book of Remembrance wears down"
+      ],
+      "banned_text": [],
+      "objects": [
+        "total",
+        "Original Book of Remembrance wears down"
+      ],
+      "camera": [
+        "micro_pull",
+        "slow_drift",
+        "push_in"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 5,
+      "beat_id": "d5",
+      "start_frame": 828,
+      "duration_frames": 158,
+      "start_sec": 27.6,
+      "duration_sec": 5.27,
+      "mechanism": "CAPABILITY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "HERO-OVER",
+        "hero": "cutout0",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "kicker": {
+            "x": 841,
+            "y": 160,
+            "w": 191,
+            "h": 37,
+            "role": "data",
+            "align": "right",
+            "rotate": null,
+            "size": 34,
+            "bleed": 0,
+            "lines": [
+              "JULY 2026"
+            ]
+          },
+          "statement": {
+            "x": 144,
+            "y": 1156,
+            "w": 793,
+            "h": 152,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 80,
+            "bleed": 0,
+            "lines": [
+              "National Library of Wales",
+              "finished new copies"
+            ]
+          },
+          "cutout0": {
+            "x": 70,
+            "y": 973,
+            "w": 940,
+            "h": 127,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 70,
+          "y": 130,
+          "w": 962,
+          "h": 1198
+        },
+        "zones": {
+          "top": [
+            "headline"
+          ],
+          "middle": [
+            "headline",
+            "chart"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "institution",
+            "name": "National Library of Wales"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": {
+            "text": "JULY 2026",
+            "position": "top-right",
+            "drawn": [
+              "kicker"
+            ],
+            "planner": true
+          },
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "The National Library of Wales finished new copies ahead of July 2026.",
+        "entity_pop": null,
+        "source_credit": "commons.wikimedia.org",
+        "concept_visuals": [
+          {
+            "name": "National Library of Wales",
+            "class": "cutout",
+            "logo": true,
+            "money": false,
+            "asset": "cutouts-live/1/3-national-library-of-wales-logo.png",
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:National_Library_of_Wales_logo.svg",
+            "license": "CC BY-SA 3.0"
+          },
+          {
+            "name": "July 2026",
+            "class": "date",
+            "logo": false,
+            "money": false,
+            "asset": null,
+            "source": null,
+            "source_url": null,
+            "license": null
+          }
+        ],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 80,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 5,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "SCENE-LOW",
+        "ground_color": null,
+        "headline_text": "National Library of Wales finished new copies",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_EMPHASIS",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "kicker": [
+            {
+              "t": "JULY"
+            },
+            {
+              "t": "2026"
+            }
+          ],
+          "statement": [
+            {
+              "t": "National",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "Library",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "of",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "Wales",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "finished",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "new",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "copies",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "crop-open",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "JULY 2026",
+          "role": "quiet",
+          "source": "canvas.kicker"
+        },
+        {
+          "text": "National Library of Wales finished new copies",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "National Library of Wales finished new copies"
+      ],
+      "banned_text": [],
+      "objects": [
+        "new copies finished"
+      ],
+      "camera": [
+        "slow_drift"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 6,
+      "beat_id": "d6",
+      "start_frame": 986,
+      "duration_frames": 166,
+      "start_sec": 32.87,
+      "duration_sec": 5.53,
+      "mechanism": "ACTION_CONSEQUENCE",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "ENTITY-ART",
+        "hero": "art",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "art": {
+            "x": 140,
+            "y": 700,
+            "w": 800,
+            "h": 500,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 106,
+            "y": 1227,
+            "w": 868,
+            "h": 80,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 84,
+            "bleed": 0,
+            "lines": [
+              "guards community history"
+            ]
+          },
+          "underline": {
+            "x": 106,
+            "y": 1313,
+            "w": 420,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 926,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": {
+          "kind": "plates",
+          "name": "Davies, Aberfan Memorial Charity",
+          "names": [
+            "Davies",
+            "Aberfan Memorial Charity"
+          ],
+          "kinds": [
+            "plate-person",
+            "plate-organization"
+          ],
+          "style": null,
+          "source_url": null,
+          "license": null,
+          "items": [
+            null,
+            null
+          ],
+          "region": null,
+          "ends": null,
+          "text": null,
+          "asset": null
+        },
+        "entities": [
+          {
+            "type": "person",
+            "name": "Davies"
+          },
+          {
+            "type": "institution",
+            "name": "Aberfan Memorial Charity"
+          }
+        ],
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Aberfan Memorial Charity chair Davies guards the community's history now.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 84,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 6,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": null,
+        "ground": "white",
+        "shot": "PORTRAIT",
+        "ground_color": null,
+        "headline_text": "guards community history",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "guards",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "community",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "history",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "mask-reveal",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "guards community history",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "guards community history"
+      ],
+      "banned_text": [],
+      "objects": [],
+      "camera": [
+        "micro_pull",
+        "drift_down"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 7,
+      "beat_id": "d7",
+      "start_frame": 1152,
+      "duration_frames": 98,
+      "start_sec": 38.4,
+      "duration_sec": 3.27,
+      "mechanism": "CAPABILITY",
+      "visual_type": "TYPE",
+      "canvas": {
+        "composition": "ENTITY-ART",
+        "hero": "art",
+        "boxes": {
+          "rule": {
+            "x": 936,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "art": {
+            "x": 320,
+            "y": 700,
+            "w": 440,
+            "h": 440,
+            "role": "concept",
+            "align": "center",
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "statement": {
+            "x": 86,
+            "y": 1237,
+            "w": 909,
+            "h": 72,
+            "role": "headline",
+            "align": "center",
+            "rotate": null,
+            "size": 76,
+            "bleed": 0,
+            "lines": [
+              "68 years old, protects memory"
+            ]
+          },
+          "underline": {
+            "x": 575,
+            "y": 1315,
+            "w": 420,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          }
+        },
+        "content": {
+          "x": 86,
+          "y": 130,
+          "w": 946,
+          "h": 1198
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "chart",
+            "headline"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "medium",
+        "camera": null,
+        "art_push": 0,
+        "art": {
+          "kind": "plate-person",
+          "name": "Davies",
+          "names": null,
+          "kinds": null,
+          "style": null,
+          "source_url": null,
+          "license": null,
+          "items": null,
+          "region": null,
+          "ends": null,
+          "text": null,
+          "asset": null
+        },
+        "entities": [
+          {
+            "type": "person",
+            "name": "Davies"
+          },
+          {
+            "type": "number",
+            "name": "68"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "number"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "At 68 years old, Davies protects the village's memory.",
+        "entity_pop": null,
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "together",
+        "background": {
+          "paper": false,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": 76,
+        "headline_align": "center",
+        "accent_used": false,
+        "variant": 7,
+        "flip": 1,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "STAT",
+        "ground_color": null,
+        "headline_text": "68 years old, protects memory",
+        "emphasis_text": null,
+        "animations": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "words": {
+          "statement": [
+            {
+              "t": "68",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "years",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "old,",
+              "weight": 500,
+              "accent": false,
+              "emph": false
+            },
+            {
+              "t": "protects",
+              "weight": 700,
+              "accent": true,
+              "emph": true
+            },
+            {
+              "t": "memory",
+              "weight": 700,
+              "accent": false,
+              "emph": false
+            }
+          ]
+        },
+        "headline_motion": "slide-land",
+        "vertical": false,
+        "number_snaps": null
+      },
+      "renders_typography": true,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "68 years old, protects memory",
+          "role": "narrative",
+          "source": "canvas.statement"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [
+        "68 years old, protects memory"
+      ],
+      "banned_text": [],
+      "objects": [
+        "age 68"
+      ],
+      "camera": [
+        "micro_pull"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    },
+    {
+      "index": 8,
+      "beat_id": "d8",
+      "start_frame": 1250,
+      "duration_frames": 163,
+      "start_sec": 41.67,
+      "duration_sec": 5.43,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_type": "COUNTER",
+      "canvas": {
+        "composition": "NUMBER-FULL",
+        "hero": "number",
+        "boxes": {
+          "rule": {
+            "x": 48,
+            "y": 130,
+            "w": 96,
+            "h": 6,
+            "role": "rule",
+            "align": null,
+            "rotate": null,
+            "size": null,
+            "bleed": 0
+          },
+          "label": {
+            "x": 247,
+            "y": 1296,
+            "w": 586,
+            "h": 44,
+            "role": "data",
+            "align": "center",
+            "rotate": null,
+            "size": 40,
+            "bleed": 0,
+            "lines": [
+              "NAMES REMAIN PROTECTED"
+            ]
+          },
+          "number": {
+            "x": 162,
+            "y": 781,
+            "w": 756,
+            "h": 487,
+            "role": "number",
+            "align": "center",
+            "rotate": null,
+            "size": 518,
+            "bleed": 0,
+            "parts": {
+              "isQuantity": true,
+              "text": "144"
+            }
+          }
+        },
+        "content": {
+          "x": 48,
+          "y": 130,
+          "w": 870,
+          "h": 1210
+        },
+        "zones": {
+          "top": [],
+          "middle": [
+            "number"
+          ],
+          "bottom": [
+            "caption"
+          ]
+        },
+        "motion_tier": "major",
+        "camera": null,
+        "art_push": 0,
+        "art": null,
+        "entities": [
+          {
+            "type": "number",
+            "name": "144"
+          }
+        ],
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": true,
+        "photo": null,
+        "chrome": {
+          "label": null,
+          "pull_phrase": null,
+          "type_led": false
+        },
+        "visual_type": "COUNTER",
+        "data": {
+          "value": "144",
+          "label": "names remain protected in"
+        },
+        "sentence": "144 names remain protected in fresh leather and ink.",
+        "entity_pop": {
+          "frame": 0,
+          "word": "one",
+          "from": 0,
+          "to": 14,
+          "kind": "number"
+        },
+        "source_credit": null,
+        "concept_visuals": [],
+        "name_card": null,
+        "entrance_style": "visual-first",
+        "background": {
+          "paper": true,
+          "rule": false,
+          "gradient": false
+        },
+        "headline_size": null,
+        "headline_align": null,
+        "accent_used": false,
+        "variant": 8,
+        "flip": 0,
+        "dark": false,
+        "plan_layout": {
+          "used": false,
+          "axes": null,
+          "moved": [],
+          "rejected": [
+            "grid: the text grid places every beat's words"
+          ]
+        },
+        "ground": "white",
+        "shot": "PHOTO-INSET",
+        "ground_color": null,
+        "headline_text": null,
+        "emphasis_text": null,
+        "animations": {
+          "number": "ROLL_DIGIT"
+        },
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "label": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": "pop_roll"
+        },
+        "words": {
+          "label": [
+            {
+              "t": "NAMES"
+            },
+            {
+              "t": "REMAIN"
+            },
+            {
+              "t": "PROTECTED"
+            }
+          ]
+        },
+        "headline_motion": null,
+        "vertical": false,
+        "number_snaps": false
+      },
+      "renders_typography": false,
+      "text": [],
+      "on_screen_text": [
+        {
+          "text": "NAMES REMAIN PROTECTED",
+          "role": "quiet",
+          "source": "canvas.label"
+        },
+        {
+          "text": "144 names remain protected",
+          "role": "value",
+          "source": "objects.*.label"
+        }
+      ],
+      "draws_text": true,
+      "narrative_text": [],
+      "banned_text": [],
+      "objects": [
+        "144 names remain protected"
+      ],
+      "camera": [
+        "slow_drift",
+        "widen"
+      ],
+      "carries_forward": null,
+      "paper": null,
+      "layers": null,
+      "composed": false,
+      "composition": null,
+      "coverage": null
+    }
+  ]
+}

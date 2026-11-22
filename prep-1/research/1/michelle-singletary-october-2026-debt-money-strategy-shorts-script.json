@@ -1,0 +1,64 @@
+{
+  "channel_id": "1",
+  "topic_slug": "michelle-singletary-october-2026-debt-money-strategy",
+  "format": "shorts",
+  "hook": "Your debt payments grow eight times faster than your take-home pay.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Your debt payments grow eight times faster than your take-home pay.",
+      "b_roll": [
+        "A financial chart showing debt growth overtaking earnings."
+      ],
+      "text_overlay": {
+        "text": "Debt grows 8x faster than pay"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In October 2026, columnist Michelle Singletary launched Dollars and Sense at The Washington Post. Michelle Singletary's podcast featured a family tackling $100,000 in student debt. Why do debt payments grow eight times faster than pay?",
+      "b_roll": [
+        "The Washington Post logo and podcast art.",
+        "Student loan documents and repayment forms."
+      ],
+      "text_overlay": {
+        "text": "$100,000 in student loans"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "CNBC highlighted Michelle Singletary tackling $92,000 in Parent PLUS loans.",
+      "b_roll": [
+        "A pay stub with rising expenses highlighted."
+      ],
+      "text_overlay": {
+        "text": "Still feeling broke"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Washington Post reports debt payments grow eight times faster.",
+      "b_roll": [
+        "CNBC interview broadcast screen.",
+        "A family reviewing monthly budget sheets."
+      ],
+      "text_overlay": {
+        "text": "Exact debt strategy revealed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Watch Dollars & Sense with Michelle Singletary to fix your budget.",
+      "b_roll": [
+        "Summary graphic of debt versus income growth."
+      ],
+      "text_overlay": {
+        "text": "Debt outpaces income"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.washingtonpost.com/business/2026/10/10/heres-why-your-pay-raise-still-leaves-you-feeling-broke",
+    "https://www.washingtonpost.com/business/2026/10/13/here-how-handle-parent-plus-loans"
+  ]
+}

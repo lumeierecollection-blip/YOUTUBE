@@ -1,0 +1,66 @@
+{
+  "channel_id": "1",
+  "topic_slug": "cnbc-select-october-2026-budget-apps-review",
+  "format": "shorts",
+  "hook": "Most budgeting apps charge full price ever before you even test them.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Most budgeting apps charge full price ever before you even test them.",
+      "b_roll": [
+        "A 3D smartphone displaying budgeting apps"
+      ],
+      "text_overlay": {
+        "text": "Full Price Apps"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "CNBC Select reviewed over two dozen budgeting apps to check costs. Investopedia named You Need a Budget the best overall app. Where did Quicken Simplifi land in the pricing review?",
+      "b_roll": [
+        "A document showing app reviews",
+        "A graphic showing zero based budgeting",
+        "A question mark over a price tag"
+      ],
+      "text_overlay": {
+        "text": "App Review"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Quicken Simplifi costs $3.49 per month for the first year, but that price jumps later.",
+      "b_roll": [
+        "A price tag showing promotional rates"
+      ],
+      "text_overlay": {
+        "text": "$3.49 Monthly"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Quartz reported that CNBC Select found three standout budgeting apps built on different mechanisms. That introductory rate is a 50 percent discount before rising to $6.99 per month billed annually.",
+      "b_roll": [
+        "Three app icons on a screen",
+        "A discount percentage badge",
+        "An annual billing cycle graphic"
+      ],
+      "text_overlay": {
+        "text": "50% Off Rate"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Test your budget with a 7 day free trial.",
+      "b_roll": [
+        "A calendar showing seven days"
+      ],
+      "text_overlay": {
+        "text": "7 Day Trial"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.cnbc.com/select/best-budgeting-apps",
+    "https://qz.com/best-budgeting-apps-2026"
+  ]
+}

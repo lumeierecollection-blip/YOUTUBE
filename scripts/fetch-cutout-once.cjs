@@ -8,14 +8,17 @@
  *     -> { png_path, abs_path, source_url, license, verdict: "MATCH", literal, seen, width, height } | null
  *
  * For the concept: search Pixabay ("<concept> isolated", then "<concept>";
- * image_type=photo, safesearch=true), keep the first 6 results whose tags
- * name every word of the concept, and for each in order: download the
+ * image_type=photo, safesearch=true) and then Wikimedia Commons (free licences
+ * only; the second source, and the only one where there is no Pixabay key), keep
+ * up to 8 results whose tags / file title name every word of the concept, and
+ * for each in order: download the
  * largest size -> rembg u2net + the geometric checks (scripts/cutout_lib.py:
  * object >= 12% of the image, no opaque pixel on all four edges, one object,
  * real transparency) -> content verification of the ISOLATED PNG
  * (verify-cutout-image.cjs: accepted only for verdict LITERAL and
  * recognizable; FIGURATIVE, DIFFERENT, not recognizable and "no provider
- * answered" all reject) -> saved to
+ * answered" all reject; then a blind pass names the subject without being told
+ * the concept, and it must agree) -> saved to
  * public/cutouts-live/<channel>/<beat>-<slug>.png with a sidecar JSON.
  * All 6 rejected -> null, never the second-best: the beat renders without a
  * cutout. There is no library to fall back to (deleted 2026-10-02).
@@ -26,6 +29,10 @@
  * Reuse: per process (one channel's render), a concept in two beats is
  * fetched once, but the PNG is verified again before each reuse. Nothing is
  * kept across runs; public/cutouts-live/ is not committed.
+ *
+ * Resolution: an isolated object smaller than MIN_SIDE px on its long side is rejected
+ * before the judge sees it — the hero cutout is drawn ~600-900 px tall on a 1080x1920
+ * frame (the reference videos' cutouts are crisp), and an upscaled thumbnail is not.
  *
  * Where this stops: the verdict is a vision model's reading (an older prompt
  * once passed a sun dial as "calendar"); the frame reviewer checks the
@@ -306,8 +313,9 @@ async function fetchOnce({ concept, name, channel, beat_index, spec, scene, expl
     let width = null, height = null;
     try { const m = await require("sharp")(join(dir, file)).metadata(); width = m.width; height = m.height; } catch {}
     const out = { png_path: `cutouts-live/${channel}/${file}`, abs_path: join(dir, file), concept, name, source: c.source || "pixabay", source_url: c.page,
-      license: c.license || "Pixabay Content License", attribution: c.user ? `Image by ${c.user} on Pixabay` : c.source === "pixabay" ? "Pixabay" : "Wikimedia",
-      verdict: "MATCH", literal: v.kind, shows: v.shows, quality: v.quality, flat: v.flat, seen: v.seen, provider: v.provider,
+      license: c.license || "Pixabay Content License",
+      attribution: c.source === "pixabay" ? (c.user ? `Image by ${c.user} on Pixabay` : "Pixabay") : c.user ? `${c.user}, ${c.license}, via Wikimedia Commons` : `Wikimedia Commons (${c.license})`,
+      verdict: "MATCH", literal: v.kind, shows: v.shows, quality: v.quality, flat: v.flat, seen: v.seen, blind: v.blind || null, provider: v.provider,
       width, height, fetched_at: new Date().toISOString() };
     writeFileSync(join(dir, file.replace(/\.png$/, ".json")), JSON.stringify(out, null, 2) + "\n");
     log(`candidate ${n} ACCEPTED (${v.reason}, saw "${v.seen}") ${c.page}`);

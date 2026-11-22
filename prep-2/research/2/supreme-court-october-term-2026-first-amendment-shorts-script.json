@@ -1,0 +1,69 @@
+{
+  "channel_id": "2",
+  "topic_slug": "supreme-court-october-term-2026-first-amendment",
+  "format": "shorts",
+  "hook": "The Supreme Court just docketed a case that could rewrite your religious freedoms.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Supreme Court just docketed a case that could rewrite your religious freedoms.",
+      "b_roll": [
+        "Supreme Court building facade exterior",
+        "Gavel striking a wooden sound block"
+      ],
+      "text_overlay": {
+        "text": "Supreme Court Free Exercise"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Judges scheduled oral argument in St. Mary Catholic Parish versus Roy. Where will this leave your rights?",
+      "b_roll": [
+        "Court documents showing docket number 25-581",
+        "Law library shelves and legal briefs",
+        "Constitution text highlighting the First Amendment"
+      ],
+      "text_overlay": {
+        "text": "Docket 25-581"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except Missionaries of Saint John the Baptist, Inc. v. Frederic brings a parallel attack this term.",
+      "b_roll": [
+        "Zoning map of a city district",
+        "Building permit paperwork on a desk"
+      ],
+      "text_overlay": {
+        "text": "Religious Land Use"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Missionaries of Saint John the Baptist versus Frederic tests the Religious Land Use and Institutionalized Persons Act. Constitutional challenges define October arguments.",
+      "b_roll": [
+        "Supreme Court justices bench view",
+        "Legal brief open to case files",
+        "Constitution Center logo and seal"
+      ],
+      "text_overlay": {
+        "text": "Land Use Act Test"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Track docket 25-581 before oral arguments begin.",
+      "b_roll": [
+        "Georgetown Law Supreme Court Institute report cover",
+        "Close-up of a gavel on a desk"
+      ],
+      "text_overlay": {
+        "text": "Know Your Rights"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.law.georgetown.edu/supreme-court-institute/wp-content/uploads/sites/13/2026/09/SCI-Highlights-Report-OT26-final-2.pdf",
+    "https://www.scotusblog.com/cases/missionaries-of-saint-john-the-baptist-inc-v-frederic"
+  ]
+}

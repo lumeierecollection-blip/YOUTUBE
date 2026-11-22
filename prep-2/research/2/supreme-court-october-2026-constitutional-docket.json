@@ -1,0 +1,46 @@
+{
+  "topic_slug": "supreme-court-october-2026-constitutional-docket",
+  "strongest_angle": "An analysis of the Supreme Court October 2026 term docket highlights key cases scheduled for argument from October to December 2026, including major religious rights and Second Amendment challenges, while noting that the Court declined to hear certain felons' Second Amendment rights cases.",
+  "key_facts": [
+    {
+      "fact": "The Supreme Court announced its schedule for arguments from October to December 2026 featuring two major cases focusing on religious rights and a significant Second Amendment challenge.",
+      "source_url": "https://constitutioncenter.org/blog/new-supreme-court-term-features-first-amendment-other-challenges",
+      "source_name": "National Constitution Center",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court declined to hear cases concerning felons' Second Amendment rights, COVID-19 vaccine mandates, and 'Let's Go Brandon' sweatshirts as the 2026-27 term officially got underway.",
+      "source_url": "https://www.scotusblog.com/2026/10/the-october-sitting-so-far",
+      "source_name": "SCOTUSblog",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Supreme Court docket for October Term 2026 lists a total of 30 cases and arguments scheduled as of August 2026.",
+      "source_url": "https://www.supremecourt.gov/orders/26grantednotedlist.pdf",
+      "source_name": "Supreme Court of the United States",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total Cases Scheduled",
+      "value": 30,
+      "unit": "cases",
+      "source_url": "https://www.supremecourt.gov/orders/26grantednotedlist.pdf"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Supreme Court of the United States",
+      "kind": "organization"
+    },
+    {
+      "name": "National Constitution Center",
+      "kind": "organization"
+    },
+    {
+      "name": "SCOTUSblog",
+      "kind": "organization"
+    }
+  ]
+}

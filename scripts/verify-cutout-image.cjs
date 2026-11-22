@@ -22,10 +22,8 @@
  * the verifier version and the model chain. A different image, name, verifier version or model is a new key and a fresh verification.
  * A NONE (no provider answered) is never stored, so an outage is retried. The cache is .cache/cutout-verify (restored in CI).
  *
- * Providers, the same chain as verify-person-image.cjs: Groq
- * $GROQ_VISION_MODEL (qwen/qwen3.8-27b) -> Gemini gemini-3.5-flash-lite ->
- * Ollama $OLLAMA_VISION_MODEL (qwen2.5vl:3b). A provider that errors or
- * answers malformed JSON falls to the next.
+ * Providers: vision-providers.cjs — Ollama ($OLLAMA_VISION_MODEL) by default;
+ * $VISION_PROVIDERS can add groq / gemini.
  *
  * Where this stops: the verdict is a vision model's reading of one image,
  * not ground truth; a small model can be wrong in either direction. The
@@ -108,7 +106,8 @@ function cutoutCacheKey(jpeg, name, version = CUTOUT_VERIFIER_VERSION, models = 
   return createHash("sha256").update(JSON.stringify({ image, name: String(name), version, models })).digest("hex");
 }
 
-// `norm`: the answer parser (verify-place-image.cjs passes its own).
+// `norm`: the answer parser (verify-place-image.cjs passes its own). Which
+// model answers is decided in vision-providers.cjs (Ollama by default).
 async function askProviders(messages, norm = normalize) {
   const tried = [];
   const ollama = require("./ollama-client.cjs");

@@ -1,0 +1,93 @@
+{
+  "channel_id": "1",
+  "topic_slug": "gb-power-grid-cover-up-inquiry-october-2026",
+  "format": "shorts",
+  "hook": "Engineers accused Britain's grid operators of covering up blackout risks during a June heatwave.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Engineers accused Britain's grid operators of covering up blackout risks during a June heatwave.",
+      "visual_cue": "Close up shot of power lines against a bright summer sun",
+      "sfx_cue": "Low electric hum building tension",
+      "b_roll": [
+        "Britain national grid high voltage transmission lines aerial footage",
+        "Summer heatwave haze over city skyline"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut to investigation documents",
+      "text_overlay": {
+        "text": "Grid Cover-Up Allegations"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "On July 9, 2026, Eversheds Sutherland investigated the National Energy System Operator over operational records. Staff at the National Energy System Operator experienced high stress. Did bosses misrepresent those blackout risks during the June heatwave?",
+      "visual_cue": "Detailed official law firm inquiry documents on a wooden desk",
+      "sfx_cue": "Page turning sound effect",
+      "b_roll": [
+        "Eversheds Sutherland corporate office exterior sign",
+        "National Energy System Operator control room monitors flashing red"
+      ],
+      "animation_cue": "Subtle zoom in on investigation report title",
+      "transition_out": "Slide left to findings",
+      "text_overlay": {
+        "text": "July 9, 2026 Inquiry"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:20",
+      "voiceover": "Except the official report published on October 19, 2026, reached a shocking conclusion.",
+      "visual_cue": "Press release headline on a laptop screen",
+      "sfx_cue": "Sharp camera shutter click",
+      "b_roll": [
+        "The Daily Telegraph newspaper front page print edition",
+        "The Times office building exterior view"
+      ],
+      "animation_cue": "Quick pulse scale on laptop screen",
+      "transition_out": "Dissolve to conclusion",
+      "text_overlay": {
+        "text": "October 19, 2026 Report"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:20-0:32",
+      "voiceover": "Eversheds Sutherland found those four whistleblower claims were totally unsubstantiated.",
+      "visual_cue": "Official National Energy System Operator statement document showing conclusion",
+      "sfx_cue": "Soft resonant chime resolving tension",
+      "b_roll": [
+        "National Energy System Operator headquarters building entrance",
+        "Britain electricity transmission grid control panels"
+      ],
+      "animation_cue": "Slow pan across investigation document text",
+      "transition_out": "Cross dissolve to final reflection",
+      "text_overlay": {
+        "text": "Allegations Unsubstantiated"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:32-0:38",
+      "voiceover": "Read the Eversheds Sutherland report on Britain's National Energy System Operator.",
+      "visual_cue": "Wide shot of Britain power station generating electricity at dusk",
+      "sfx_cue": "Fading ambient electric hum",
+      "b_roll": [
+        "Britain countryside electricity pylons silhouette at sunset"
+      ],
+      "animation_cue": "Slow fade to black",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Britain Grid Scrutiny"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.neso.energy/independent-investigation-concludes-allegations-against-neso-were-unsubstantiated",
+    "https://www.telegraph.co.uk/business/2026/10/19/grid-operators-warn-net-zero-making-it-harder-to-keep-the-l",
+    "https://www.neso.energy/document/388821/download",
+    "https://www.thetimes.com/uk/environment/article/neso-engineers-review-national-grid-blackout-risks-6lqpq03sp"
+  ]
+}

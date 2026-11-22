@@ -1,0 +1,37 @@
+{
+  "channel_id": "2",
+  "topic_slug": "anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-benchmark",
+  "format": "shorts",
+  "hook": "Scores show Claude Sonnet 5.5 beats Kimi K3 by 12.5 points.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Scores show Claude Sonnet 5.5 beats Kimi K3 by 12.5 points.",
+      "visual_cue": "Bar chart highlighting the 12.5‑point gap"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Litellm.ai test, Claude Sonnet 5.5 scored 81.84 versus Kimi K3’s 69.34. How much, 50%, does Kimi K3 cost per token than Claude 5.5?",
+      "visual_cue": "Three‑part graphic: side‑by‑side scores, aggregate comparison, and cost‑percentage question"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet Kimi K3’s 50% higher cost may outweigh its aggregate lead.",
+      "visual_cue": "Contrast visual showing cost vs performance"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Claude’s 81.84 overall score translates to better accuracy across tasks. It handles 1,000,000 tokens, close enough for most apps.",
+      "visual_cue": "Sequence of accuracy chart, savings bar, and token‑limit illustration"
+    },
+    {
+      "id": "close",
+      "voiceover": "A 12.5‑point edge makes Claude the smarter choice.",
+      "visual_cue": "Final verdict text overlay with model logo"
+    }
+  ],
+  "sources_used": [
+    "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3",
+    "https://runtimewire.com/head-to-head/head-to-head-anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-2"
+  ]
+}

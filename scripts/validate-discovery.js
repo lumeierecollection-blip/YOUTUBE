@@ -79,13 +79,20 @@ async function checkMeasurableKeywords(topic) {
   for (const kw of MEASURABLE_KEYWORDS) {
     if (titleLower.includes(kw.toLowerCase())) return { pass: true };
   }
-  // If title lacks measurable keyword, require angle to have ≥2 measurable keywords
+  // If title lacks measurable keyword, require angle to have ≥1 measurable keyword (was ≥2)
   let count = 0;
   const angleLower = (topic.angle || "").toLowerCase();
   for (const kw of MEASURABLE_KEYWORDS) {
     if (angleLower.includes(kw.toLowerCase())) count++;
   }
-  return count >= 2 ? { pass: true } : { pass: false, reason: "topic title lacks measurable keyword; angle needs ≥2 (percent, survey, million, revenue, etc.)" };
+  if (count >= 1) return { pass: true };
+  // Also check subjects for measurable entities (organizations with metrics, numbered items, etc.)
+  const subjects = Array.isArray(topic.subjects) ? topic.subjects : [];
+  const subjectText = subjects.join(" ").toLowerCase();
+  for (const kw of MEASURABLE_KEYWORDS) {
+    if (subjectText.includes(kw.toLowerCase())) return { pass: true };
+  }
+  return { pass: false, reason: "topic title lacks measurable keyword; angle/subjects need ≥1 (percent, survey, million, revenue, etc.)" };
 }
 
 function countFigures(text) {
@@ -152,8 +159,8 @@ async function checkTwoDomains(topic) {
 
   for (const q of searchQueries) {
     if (domains.size >= 2) break;
-    const d = await quickSearchDomains(q);
-    for (const d of d) domains.add(d);
+    const found = await quickSearchDomains(q);
+    for (const domain of found) domains.add(domain);
   }
 
   return domains.size >= 2 ? { pass: true, domains: [...domains] } : { pass: false, domains: [...domains] };

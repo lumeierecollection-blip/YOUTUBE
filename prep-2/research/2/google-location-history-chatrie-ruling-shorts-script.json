@@ -1,0 +1,140 @@
+{
+  "channel_id": "2",
+  "topic_slug": "google-location-history-chatrie-ruling",
+  "format": "shorts",
+  "hook": "Your phone is tracking every move you make, and until now, the police could potentially use it to put you in a crime scene without a proper warrant.",
+  "sections": [
+    {
+      "id": "sec_1",
+      "voiceover": "The United States Supreme Court just delivered a massive win for your digital privacy in the case of Chatrie versus United States.",
+      "beats": [
+        {
+          "text": "Chatrie v. United States",
+          "archetype": "TERM_DEFINE",
+          "anchor_token": "Chatrie versus United States"
+        }
+      ],
+      "b_roll": [
+        "Supreme Court building exterior"
+      ],
+      "sfx_cue": "Gavel strike",
+      "text_overlay": {
+        "text": "MAJOR PRIVACY WIN"
+      }
+    },
+    {
+      "id": "sec_2",
+      "voiceover": "Police used a geofence warrant to scan a 150 meter radius for anyone's phone near a crime, eventually identifying three specific accounts.",
+      "beats": [
+        {
+          "text": "150 meters",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "150 meter",
+          "data": {
+            "unit": "meters",
+            "series": [
+              {
+                "label": "Warrant Radius",
+                "value": 150
+              }
+            ]
+          }
+        },
+        {
+          "text": "3 accounts",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "three specific accounts",
+          "data": {
+            "unit": "accounts",
+            "series": [
+              {
+                "label": "Identified",
+                "value": 3
+              }
+            ]
+          }
+        }
+      ],
+      "b_roll": [
+        "Digital map with a pulsing circular radius"
+      ],
+      "sfx_cue": "Digital scanning sound",
+      "text_overlay": {
+        "text": "GEOFENCE SEARCH"
+      }
+    },
+    {
+      "id": "sec_3",
+      "voiceover": "The government argued that short-term location data isn't a search, but Justice Elena Kagan disagreed, ruling that this data provides an intimate window into your life.",
+      "beats": [
+        {
+          "text": "Government vs. Court",
+          "archetype": "CONTRAST",
+          "anchor_token": "disagreed"
+        }
+      ],
+      "b_roll": [
+        "Split screen: Legal document vs. Justice Elena Kagan"
+      ],
+      "sfx_cue": "Whoosh transition",
+      "text_overlay": {
+        "text": "INTIMATE WINDOW"
+      }
+    },
+    {
+      "id": "sec_4",
+      "voiceover": "This 6 to 3 ruling confirms that accessing Google Location History is a Fourth Amendment search, regardless of how long the data was stored or who held it.",
+      "beats": [
+        {
+          "text": "6-3 Decision",
+          "archetype": "HERO_NUMBER",
+          "anchor_token": "6 to 3",
+          "data": {
+            "unit": "votes",
+            "series": [
+              {
+                "label": "Ruling",
+                "value": 6
+              }
+            ]
+          }
+        },
+        {
+          "text": "Fourth Amendment",
+          "archetype": "TERM_DEFINE",
+          "anchor_token": "Fourth Amendment"
+        }
+      ],
+      "b_roll": [
+        "Close up of the US Constitution"
+      ],
+      "sfx_cue": "Deep cinematic hit",
+      "text_overlay": {
+        "text": "FOURTH AMENDMENT"
+      }
+    },
+    {
+      "id": "sec_5",
+      "voiceover": "You have a reasonable expectation of privacy in your location records. Know your rights, and keep your data secure.",
+      "beats": [
+        {
+          "text": "Privacy Rights",
+          "archetype": "STATEMENT",
+          "anchor_token": "reasonable expectation"
+        }
+      ],
+      "b_roll": [
+        "Smartphone screen locking"
+      ],
+      "sfx_cue": "UI click sound",
+      "text_overlay": {
+        "text": "KNOW YOUR RIGHTS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scotusblog.com/cases/chatrie-v-united-states/",
+    "https://www.law.cornell.edu/supremecourt/text/25-112",
+    "https://supreme.justia.com/cases/federal/us/609/25-112/"
+  ]
+}

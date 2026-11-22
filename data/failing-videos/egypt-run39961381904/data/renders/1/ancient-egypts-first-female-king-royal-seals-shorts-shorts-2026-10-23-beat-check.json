@@ -1,0 +1,50 @@
+{
+  "checkedAt": "2026-10-23T14:19:33.294Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "beats": [
+    {
+      "beat_index": 0,
+      "matches": "YES",
+      "what_is_shown": "A map highlighting Egypt with a location pin and text reading 'Egypt' and 'forgotten female ruler'.",
+      "reason": "The map correctly shows Egypt, corresponding to the sentence about ancient Egypt.",
+      "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago."
+    },
+    {
+      "beat_index": 1,
+      "matches": "YES",
+      "what_is_shown": "A portrait of William Matthew Flinders Petrie with text reading 'Tomb Y at Abydos'.",
+      "reason": "The visual shows the portrait of Flinders Petrie as required for the beat type.",
+      "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit."
+    },
+    {
+      "beat_index": 2,
+      "matches": "YES",
+      "what_is_shown": "Typography showing the name 'Djer' and caption 'daughter of Djer'.",
+      "reason": "As a typography beat, the on-screen text appropriately captures the sentence's point about Djer.",
+      "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?"
+    },
+    {
+      "beat_index": 3,
+      "matches": "YES",
+      "what_is_shown": "Typography and text displaying 'Scientific American' and 'First female ruler'.",
+      "reason": "The typography beat correctly captures the publication and subject mentioned in the sentence.",
+      "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler."
+    },
+    {
+      "beat_index": 4,
+      "matches": "YES",
+      "what_is_shown": "A portrait of William Matthew Flinders Petrie with text stating '5000 years of history'.",
+      "reason": "The visual shows the correct portrait of Flinders Petrie for the assigned beat type.",
+      "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history."
+    },
+    {
+      "beat_index": 5,
+      "matches": "YES",
+      "what_is_shown": "A map highlighting Egypt with a location pin and text reading 'Meretneith ruled Egypt'.",
+      "reason": "The map correctly shows Egypt as specified in the sentence.",
+      "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago."
+    }
+  ],
+  "failing": [],
+  "wrong_person": []
+}

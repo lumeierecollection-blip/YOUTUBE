@@ -1,0 +1,87 @@
+{
+  "channel_id": "1",
+  "topic_slug": "twenty-six-steamer-trunks-filipino-american-history",
+  "format": "shorts",
+  "hook": "Twenty-six steamer trunks hidden in a basement revealed a forgotten history.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Twenty-six steamer trunks hidden in a basement revealed a forgotten history.",
+      "visual_cue": "Close up shot of an old wooden steamer trunk in a dark basement.",
+      "sfx_cue": "Low atmospheric drone",
+      "b_roll": [
+        "Stockton California historical basement photograph"
+      ],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "26 trunks discovered"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:18",
+      "voiceover": "In 2005, Antonio Somera found twenty-six steamer trunks while cleaning out the basement of the Daguhoy Lodge in Stockton, California. What was inside those trunks?",
+      "visual_cue": "Archival photograph of Antonio Somera and the Daguhoy Lodge exterior.",
+      "sfx_cue": "Subtle paper shuffling",
+      "b_roll": [
+        "Daguhoy Lodge historical building exterior"
+      ],
+      "animation_cue": "Slow zoom in",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Stockton, California"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Inside twenty-six steamer trunks, the Legionarios del Trabajo preserved decades of farm worker histories, but they nearly vanished.",
+      "visual_cue": "Historical photographs of farm workers arranged on a table.",
+      "sfx_cue": "Soft chime",
+      "b_roll": [
+        "Legionarios del Trabajo members archival portrait"
+      ],
+      "animation_cue": "Slide right",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Decades of history"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "Visitors at the National Museum of American History see three of the twenty-six steamer trunks.",
+      "visual_cue": "Museum exhibit display showcasing three steamer trunks behind glass.",
+      "sfx_cue": "Ambient museum room tone",
+      "b_roll": [
+        "National Museum of American History interior"
+      ],
+      "animation_cue": "Pan across display cases",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "3 trunks on display"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:48",
+      "voiceover": "Twenty-six steamer trunks preserve the past at the Smithsonian Asian Pacific American Center.",
+      "visual_cue": "Wide shot of the museum exhibition entrance sign.",
+      "sfx_cue": "Fading atmospheric tone",
+      "b_roll": [
+        "Smithsonian Asian Pacific American Center logo and display"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "Twenty-six steamer trunks"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apa.si.edu/exhibitions/filipino-american-stories",
+    "https://americanhistory.si.edu/explore/exhibitions/how-can-you-forget-me"
+  ]
+}

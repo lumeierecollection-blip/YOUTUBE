@@ -1,0 +1,13 @@
+{
+  "run_id": "41250854919",
+  "channel": 1,
+  "verdict": "rejected",
+  "failed_stage": "canvas-checks",
+  "failed_check": "entity-coverage",
+  "reason": "failed: entity-coverage",
+  "duration_s": 49.6,
+  "queued_at": "2026-10-31T23:19:34.110Z",
+  "local_audit": [
+    "entity-coverage: beat 4: span \"many years\", date \"2026\" — draws figure, none of it the entity; beat 7: span \"fifty years\", number \"17\" — draws span, none of it the entity"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "channel_id": "1",
+    "format": "longform",
+    "created_at": "2026-07-26T15:00:00Z",
+    "topic": "How Often You Should Get Paid (And Why It Matters More Than You Think)"
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "format": "png",
+    "max_filesize_kb": 2048
+  },
+  "background": {
+    "type": "gradient",
+    "colors": ["#0A1020", "#0F172A"],
+    "direction": "diagonal"
+  },
+  "elements": [
+    {
+      "type": "text",
+      "content": "SAME SALARY",
+      "position": { "x": "center", "y": "center", "margin": -40 },
+      "font": {
+        "family": "Inter",
+        "weight": 900,
+        "size": 100,
+        "color": "#22C55E",
+        "shadow": { "color": "#000000", "blur": 16, "offset_y": 6 }
+      },
+      "max_width": 1000
+    },
+    {
+      "type": "text",
+      "content": "DIFFERENT RESULTS",
+      "position": { "x": "center", "y": "center", "margin": 60 },
+      "font": {
+        "family": "Inter",
+        "weight": 900,
+        "size": 48,
+        "color": "#FFFFFF",
+        "shadow": { "color": "#000000", "blur": 12, "offset_y": 4 }
+      },
+      "max_width": 1000
+    },
+    {
+      "type": "text",
+      "content": "Why pay frequency changes everything",
+      "position": { "x": "center", "y": "bottom", "margin": 50 },
+      "font": {
+        "family": "Inter",
+        "weight": 400,
+        "size": 26,
+        "color": "#FFFFFF",
+        "shadow": { "color": "#000000", "blur": 8, "offset_y": 2 }
+      },
+      "max_width": 1000,
+      "opacity": 0.85
+    }
+  ],
+  "style_notes": "Dark moody background (#0A1020 to #0F172A), green accent (#22C55E), clean bold typography. 'SAME SALARY' is the dominant visual — large, green, impossible to miss. Creates curiosity gap.",
+  "hook_source": "Same salary but different pay frequency creates completely different financial outcomes — and most people never think about it",
+  "thumbnail_text": "SAME SALARY",
+  "revised_hook": "You and your coworker earn the exact same salary. But he gets paid $2,500 twice a month, and you get paid $2,307 every two weeks. Same money. Different rhythm. And that difference is why one of you is stressed about bills."
+}

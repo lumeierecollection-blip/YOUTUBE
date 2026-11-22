@@ -1,0 +1,77 @@
+{
+  "channel_id": "1",
+  "topic_slug": "british-library-acquires-as-byatt-archive",
+  "format": "shorts",
+  "hook": "Sixty-eight boxes of private diaries reveal the hidden mind of Dame A.S. Byatt.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0-4s",
+      "voiceover": "Sixty-eight boxes of private diaries reveal the hidden mind of Dame A.S. Byatt.",
+      "visual_cue": "Close up shot of stacked cardboard archive boxes in a dim institutional room",
+      "sfx_cue": "Subtle paper rustle",
+      "b_roll": [],
+      "animation_cue": "Fade in from black",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "68 boxes of private diaries"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "4-15s",
+      "voiceover": "The British Library acquired her entire literary archive spanning six decades of writing. Dame A.S. Byatt passed away in 2023 at the age of 87. What does a September 1956 diary entry tell us about her early life?",
+      "visual_cue": "Archivist hands opening an old leather bound journal on a wooden table",
+      "sfx_cue": "Library ambient murmur",
+      "b_roll": [],
+      "animation_cue": "Slow zoom on journal",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "The British Library archive"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "15-20s",
+      "voiceover": "Except the British Library holds her September 1956 diary entry from when she was twenty years old.",
+      "visual_cue": "Panning shot across handwritten ink pages with marginal notes",
+      "sfx_cue": "Pen scratching paper",
+      "b_roll": [],
+      "animation_cue": "Slide right",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Written at age 20"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "20-30s",
+      "voiceover": "That September 1956 diary entry captures Dame A.S. Byatt at twenty years old.",
+      "visual_cue": "Wide shot of rows of archival shelving in a climate controlled vault",
+      "sfx_cue": "Deep bass drone",
+      "b_roll": [],
+      "animation_cue": "Zoom out to reveal vault",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "68 boxes permanently stored"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "30-35s",
+      "voiceover": "All sixty-eight boxes successfully preserve her extraordinary literary legacy today.",
+      "visual_cue": "Static frame of a single archive box label reading A.S. Byatt",
+      "sfx_cue": "Soft chime",
+      "b_roll": [],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "68 boxes preserved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thepublishingtimes.com/blog/as-byatt-archive-british-library-68-boxes",
+    "https://www.modezone.com/a-new-as-byatt-archive-looks-inside-an-extraordinary-literary-mind"
+  ]
+}

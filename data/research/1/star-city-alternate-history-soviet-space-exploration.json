@@ -1,0 +1,95 @@
+{
+  "topic_slug": "star-city-alternate-history-soviet-space-exploration",
+  "strongest_angle": "Examine how KGB paranoia and state control dictated Soviet space development through an analysis of alternate history frameworks published in October 2026.",
+  "key_facts": [
+    {
+      "fact": "In the October 2026 issue of Reason, writer Jason Russell analyzed Star City on Apple TV, an alternate history where the Soviets reached the Moon first and KGB paranoia dictated space development.",
+      "source_url": "https://reason.com/2026/09/11/star-city",
+      "source_name": "Reason",
+      "confidence": "high"
+    },
+    {
+      "fact": "In May 2026, Smithsonian Magazine published reporting by Hunter Ingram on the Apple TV spinoff Star City, created by Ben Nedivi, Matt Wolpert, and Ronald D. Moore.",
+      "source_url": "https://www.smithsonianmag.com/history/soviet-cosmonauts-trained-at-star-city-as-they-raced-to-beat-america-to-the-moon-now-a-new-tv-series-imagines-what-happened-behind-the-bases-walls-180988823",
+      "source_name": "Smithsonian Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Writing for The Telegraph in May 2026, Owen Matthews described how western journalists first entered the top-secret Star City training base in 1997.",
+      "source_url": "https://www.telegraph.co.uk/tv/2026/05/31/star-city-where-kremlin-makes-and-breaks-cosmonauts",
+      "source_name": "The Telegraph",
+      "confidence": "high"
+    },
+    {
+      "fact": "Jeff Spry reported for Space in May 2026 that Apple TV launched Star City as a 10-episode spinoff of For All Mankind depicting a Soviet-first lunar landing.",
+      "source_url": "https://www.space.com/space-exploration/human-spaceflight/what-is-star-city-the-secret-cold-war-cosmonaut-training-town-in-apple-tvs-new-for-all-mankind-spinoff",
+      "source_name": "Space",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Episode count for Star City",
+      "value": 10,
+      "unit": "episodes",
+      "source_url": "https://www.space.com/space-exploration/human-spaceflight/what-is-star-city-the-secret-cold-war-cosmonaut-training-town-in-apple-tvs-new-for-all-mankind-spinoff"
+    },
+    {
+      "label": "Year journalists entered Star City",
+      "value": 1997,
+      "unit": "year",
+      "source_url": "https://www.telegraph.co.uk/tv/2026/05/31/star-city-where-kremlin-makes-and-breaks-cosmonauts"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Star City",
+      "kind": "place"
+    },
+    {
+      "name": "Apple TV",
+      "kind": "organization"
+    },
+    {
+      "name": "For All Mankind",
+      "kind": "object"
+    },
+    {
+      "name": "Jason Russell",
+      "kind": "person"
+    },
+    {
+      "name": "Hunter Ingram",
+      "kind": "person"
+    },
+    {
+      "name": "Ben Nedivi",
+      "kind": "person"
+    },
+    {
+      "name": "Matt Wolpert",
+      "kind": "person"
+    },
+    {
+      "name": "Ronald D. Moore",
+      "kind": "person"
+    },
+    {
+      "name": "Owen Matthews",
+      "kind": "person"
+    },
+    {
+      "name": "Boris Yeltsin",
+      "kind": "person"
+    },
+    {
+      "name": "Jeff Spry",
+      "kind": "person"
+    },
+    {
+      "name": "Yuri Gagarin",
+      "kind": "person"
+    }
+  ]
+}

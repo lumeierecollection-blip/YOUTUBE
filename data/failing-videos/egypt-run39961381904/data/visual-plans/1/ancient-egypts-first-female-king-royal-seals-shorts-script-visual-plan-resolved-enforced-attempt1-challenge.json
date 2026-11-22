@@ -1,0 +1,45 @@
+{
+  "reviewedAt": "2026-10-23T14:13:22.402Z",
+  "source": "gemini-challenger/plan",
+  "plan": "/home/runner/work/YOUTUBE/YOUTUBE/data/visual-plans/1/ancient-egypts-first-female-king-royal-seals-shorts-script-visual-plan-resolved-enforced-attempt1.json",
+  "approved": false,
+  "beats": [
+    {
+      "beat_index": 0,
+      "verdict": "OK",
+      "reason": "The plan captures the core concepts of a forgotten female ruler and ancient Egypt using text and a map.",
+      "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago."
+    },
+    {
+      "beat_index": 1,
+      "verdict": "OK",
+      "reason": "The visual correctly features William Matthew Flinders Petrie as stated in the sentence.",
+      "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit."
+    },
+    {
+      "beat_index": 2,
+      "verdict": "OK",
+      "reason": "The typography effectively represents the rhetorical question about being the daughter of Djer.",
+      "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?"
+    },
+    {
+      "beat_index": 3,
+      "verdict": "OK",
+      "reason": "The typography directly references Scientific American and the royal seals mentioned in the text.",
+      "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler."
+    },
+    {
+      "beat_index": 4,
+      "verdict": "OK",
+      "reason": "The plan correctly shows William Matthew Flinders Petrie in connection with excavating tomb Y.",
+      "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history."
+    },
+    {
+      "beat_index": 5,
+      "verdict": "MISMATCH",
+      "reason": "The plan shows a photograph of ancient Egypt, but there are no surviving real photographs of ancient Egypt from over 5000 years ago.",
+      "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago."
+    }
+  ],
+  "summary": "Most beats are well-planned, but beat 5 attempts to show a real photograph of ancient Egypt which is anachronistic and a mismatch."
+}

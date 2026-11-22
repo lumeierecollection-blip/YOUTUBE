@@ -1,0 +1,76 @@
+{
+  "topic_slug": "anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-benchmark",
+  "strongest_angle": "Claude Sonnet 5.5 vs Kimi K3: A Detailed Model Comparison",
+  "key_facts": [
+    {
+      "fact": "Claude Sonnet 5.5 outperforms Kimi K3 by a margin of 81.84 to 69.34 in overall benchmark scores, indicating superior accuracy and efficiency.",
+      "source_url": "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3",
+      "source_name": "Litellm.ai",
+      "confidence": "high"
+    },
+    {
+      "fact": "Kimi K3 leads Claude Sonnet 5.5 in the aggregate score, achieving a 101.9 to 99.0 lead, highlighting its superior performance in certain benchmarks.",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-2",
+      "source_name": "RuntimeWire",
+      "confidence": "high"
+    },
+    {
+      "fact": "Kimi K3 costs 50% more per input token than Claude Sonnet 5.5, with a larger context window of 1,048,576 tokens compared to Claude Sonnet 5.5's 1,000,000 tokens.",
+      "source_url": "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3",
+      "source_name": "Litellm.ai",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Claude Sonnet 5.5 Overall Score",
+      "value": 81.84,
+      "unit": "",
+      "source_url": "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3"
+    },
+    {
+      "label": "Kimi K3 Overall Score",
+      "value": 69.34,
+      "unit": "",
+      "source_url": "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3"
+    },
+    {
+      "label": "Kimi K3 Aggregate Score",
+      "value": 101.9,
+      "unit": "",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-2"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Claude Sonnet 5.5",
+      "kind": "person"
+    },
+    {
+      "name": "Kimi K3",
+      "kind": "person"
+    },
+    {
+      "name": "RuntimeWire",
+      "kind": "organization"
+    },
+    {
+      "name": "Litellm.ai",
+      "kind": "organization"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Claude Sonnet 5.5 outperforms Kimi K3 in overall benchmark scores, indicating superior accuracy and efficiency.",
+      "speaker": "Source from Litellm.ai",
+      "source_name": "Litellm.ai",
+      "source_url": "https://models.litellm.ai/compare/claude-sonnet-5-5-vs-kimi-k3"
+    },
+    {
+      "text": "Kimi K3 leads Claude Sonnet 5.5 in the aggregate score, achieving a 101.9 to 99.0 lead, highlighting its superior performance in certain benchmarks.",
+      "speaker": "Source from RuntimeWire",
+      "source_name": "RuntimeWire",
+      "source_url": "https://runtimewire.com/head-to-head/head-to-head-anthropic-claude-sonnet-5-5-vs-moonshotai-kimi-k3-2"
+    }
+  ]
+}

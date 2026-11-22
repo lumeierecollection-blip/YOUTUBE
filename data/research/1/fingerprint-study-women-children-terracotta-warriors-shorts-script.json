@@ -1,0 +1,37 @@
+{
+  "channel_id": "1",
+  "topic_slug": "fingerprint-study-women-children-terracotta-warriors",
+  "format": "shorts",
+  "hook": "Two-thirds of the Terracotta Army’s fingerprints belong to women and children.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two-thirds of the Terracotta Army’s fingerprints belong to women and children.",
+      "visual_cue": "Close‑up of a Terracotta warrior hand with a fingerprint overlay"
+    },
+    {
+      "id": "setup",
+      "voiceover": "Researchers from the Mausoleum Site Museum and Shandong University examined 79 fingerprints on 36 warriors in unit T23. The tomb dates back 2,200 years. Where did the 67 percent of prints come from?",
+      "visual_cue": "Laboratory scene showing researchers, fingerprint charts, and a timeline marking 2,200‑year‑old tomb"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet scholars long believed only adult men crafted the soldiers in Xi'an.",
+      "visual_cue": "Historical illustration of male artisans crossed with a map pinpointing Xi'an"
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The analysis of 79 prints shows women and children built the army. Their fingerprints appear on helmets, shields and horse fittings. Altogether 79 prints on 36 warriors confirm a mixed labor force.",
+      "visual_cue": "Animated montage of helmets, shields, horse fittings with fingerprint icons, plus a chart of 79 prints on 36 warriors"
+    },
+    {
+      "id": "close",
+      "voiceover": "So, 67 percent of prints belong to women and kids.",
+      "visual_cue": "Final graphic highlighting 67 % with silhouettes of women and children"
+    }
+  ],
+  "sources_used": [
+    "https://archaeologymag.com/2026/10/fingerprints-in-the-terracotta-armys-clay",
+    "https://www.smithsonianmag.com/smart-news/did-women-and-children-collaborate-with-male-artisans-to-create-chinas-terra-cotta-army-fingerprints-left-on-the-2000-year-old-clay-warriors-may-hold-the-answer-180989767"
+  ]
+}

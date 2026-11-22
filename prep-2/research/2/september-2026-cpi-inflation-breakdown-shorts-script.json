@@ -1,0 +1,87 @@
+{
+  "channel_id": "2",
+  "topic_slug": "september-2026-cpi-inflation-breakdown",
+  "format": "shorts",
+  "hook": "Annual inflation hit 3.7 percent in September, up from August.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Annual inflation hit 3.7 percent in September, up from August.",
+      "visual_cue": "Bold text overlay showing the 3.7 percent annual inflation rate on a dark background.",
+      "sfx_cue": "Subtle digital impact",
+      "b_roll": [
+        "U.S. Bureau of Labor Statistics data release screen"
+      ],
+      "animation_cue": "Fade in text",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "Annual Inflation 3.7%"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "The U.S. Bureau of Labor Statistics reported that the Consumer Price Index for All Urban Consumers increased 0.6 percent. CNBC reported gasoline prices climbed.",
+      "visual_cue": "Line graph showing the Consumer Price Index monthly climb and gasoline price increase.",
+      "sfx_cue": "Data tick",
+      "b_roll": [
+        "Gas station price board showing fuel costs"
+      ],
+      "animation_cue": "Slide up graph bars",
+      "transition_out": "Quick pan",
+      "text_overlay": {
+        "text": "CPI Increased 0.6%"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:21",
+      "voiceover": "Energy costs spiked five point two percent, but gasoline surged nine point one percent.",
+      "visual_cue": "Bar chart highlighting the 5.2 percent energy cost increase.",
+      "sfx_cue": "Rising tone",
+      "b_roll": [
+        "Energy grid infrastructure footage"
+      ],
+      "animation_cue": "Bar growth animation",
+      "transition_out": "Fast zoom",
+      "text_overlay": {
+        "text": "Energy Up 5.2%"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:21-0:32",
+      "voiceover": "CNBC reported Core CPI climbed zero point three percent. CNBC reported that Core CPI posted an annual reading of two point six percent.",
+      "visual_cue": "Detailed breakdown table displaying the 9.1 percent gasoline surge and 2.6 percent Core CPI.",
+      "sfx_cue": "Chime",
+      "b_roll": [
+        "CNBC financial report screen capture"
+      ],
+      "animation_cue": "Highlight figures",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "Gasoline Surge 9.1%"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:32-0:38",
+      "voiceover": "August annual CPI sat at 3.4 percent according to the official report.",
+      "visual_cue": "Comparison graphic showing August 3.4 percent versus September 3.7 percent annual CPI.",
+      "sfx_cue": "Soft low bell",
+      "b_roll": [
+        "U.S. Bureau of Labor Statistics document excerpt"
+      ],
+      "animation_cue": "Side by side comparison",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "August Annual CPI 3.4%"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bls.gov/news.release/cpi.nr0.htm",
+    "https://www.cnbc.com/2026/10/14/cpi-inflation-breakdown-september-2026.html"
+  ]
+}

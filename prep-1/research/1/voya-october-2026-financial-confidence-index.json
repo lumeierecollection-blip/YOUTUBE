@@ -1,0 +1,59 @@
+{
+  "topic_slug": "voya-october-2026-financial-confidence-index",
+  "strongest_angle": "Examine the inaugural Voya Financial index published in October 2026, which surveyed 4,097 employed Americans ages 25 to 64 and uncovers why workplace financial education drives positive habits more effectively than raw income alone.",
+  "key_facts": [
+    {
+      "fact": "Voya Financial released America's Financial Confidence Index in October 2026, based on a survey of 4,097 employed Americans ages 25 to 64 conducted between June 22 and July 5, 2026.",
+      "source_url": "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money",
+      "source_name": "6ix",
+      "confidence": "high"
+    },
+    {
+      "fact": "Voya Financial, Inc. is a retirement, employee benefits, and investment management company headquartered in Windsor, Connecticut.",
+      "source_url": "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money",
+      "source_name": "6ix",
+      "confidence": "high"
+    },
+    {
+      "fact": "Employees who participate in workplace financial education report stronger financial habits than those who do not, according to Voya Financial's America's Financial Confidence Index.",
+      "source_url": "https://insurancewire.net/article/voya-survey-finds-workplace-financial-education-drives-action-not",
+      "source_name": "Insurance Wire",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Surveyed employed Americans",
+      "value": 4097,
+      "unit": "people",
+      "source_url": "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money"
+    },
+    {
+      "label": "Minimum age of surveyed employees",
+      "value": 25,
+      "unit": "years",
+      "source_url": "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money"
+    },
+    {
+      "label": "Maximum age of surveyed employees",
+      "value": 64,
+      "unit": "years",
+      "source_url": "https://6ix.com/news/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Voya Financial",
+      "kind": "organization"
+    },
+    {
+      "name": "Windsor",
+      "kind": "place"
+    },
+    {
+      "name": "America's Financial Confidence Index",
+      "kind": "object"
+    }
+  ]
+}

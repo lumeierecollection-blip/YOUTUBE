@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-23T14:21:28.635Z",
+  "video": "/home/runner/work/YOUTUBE/YOUTUBE/data/renders/1/ancient-egypts-first-female-king-royal-seals-shorts-shorts-2026-10-23.mp4",
+  "beats": [
+    {
+      "beat_index": 0,
+      "names": [
+        {
+          "shown": "Egypt",
+          "expected": "ancient Egypt",
+          "ok": true,
+          "problem": ""
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 1,
+      "names": [
+        {
+          "shown": "ABYDOS, EGYPT",
+          "expected": "Abydos",
+          "ok": true,
+          "problem": ""
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 2,
+      "names": [],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 3,
+      "names": [
+        {
+          "shown": "SCIENTIFIC AMERICAN",
+          "expected": "Scientific American",
+          "ok": true,
+          "problem": ""
+        }
+      ],
+      "verdict": "PASS"
+    },
+    {
+      "beat_index": 4,
+      "names": [
+        {
+          "shown": "George Frederic Watts",
+          "expected": "William Matthew Flinders Petrie",
+          "ok": false,
+          "problem": "Photo credit names George Frederic Watts instead of William Matthew Flinders Petrie"
+        }
+      ],
+      "verdict": "FAIL",
+      "second_look": {
+        "beat_index": 4,
+        "names": [
+          {
+            "shown": "5000 years",
+            "expected": "5000 years",
+            "ok": true,
+            "problem": ""
+          },
+          {
+            "shown": "George Frederic Watts",
+            "expected": "William Matthew Flinders Petrie",
+            "ok": false,
+            "problem": "The on-screen photo credit names George Frederic Watts, whereas the sentence refers to William Matthew Flinders Petrie."
+          }
+        ],
+        "verdict": "FAIL"
+      }
+    },
+    {
+      "beat_index": 5,
+      "names": [
+        {
+          "shown": "Egypt",
+          "expected": "ancient Egypt",
+          "ok": true,
+          "problem": ""
+        }
+      ],
+      "verdict": "PASS"
+    }
+  ],
+  "failing": [
+    4
+  ]
+}

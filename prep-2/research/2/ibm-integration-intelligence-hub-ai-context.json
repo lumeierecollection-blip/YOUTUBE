@@ -1,0 +1,53 @@
+{
+  "topic_slug": "ibm-integration-intelligence-hub-ai-context",
+  "strongest_angle": "IBM has officially launched the Integration Intelligence Hub, a platform that gives AI agents the structured integration context they need to discover, understand and act on enterprise assets.",
+  "key_facts": [
+    {
+      "fact": "IBM announced the Integration Intelligence Hub on October 26, 2026, positioning it as a way to turn enterprise integration context into structured data for AI agents.",
+      "source_url": "https://www.ibm.com/new/announcements/ibm-integration-intelligence-hub-gives-ai-the-context-to-act-not-just-access",
+      "source_name": "IBM Announcement",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Hub delivers integration context to AI agents through the open Model Context Protocol (MCP), a capability showcased at IBM TechXchange 2026.",
+      "source_url": "https://community.ibm.com/community/user/blogs/krishna-k-n/2026/10/28/ibm-intelligence-hub-for-webmethods-b2b",
+      "source_name": "IBM Community Blog",
+      "confidence": "high"
+    },
+    {
+      "fact": "Product Management leaders Jiri De Jagere and Jigdesh Sampath authored the announcement that introduced the Integration Intelligence Hub.",
+      "source_url": "https://www.ibm.com/new/announcements/ibm-integration-intelligence-hub-gives-ai-the-context-to-act-not-just-access",
+      "source_name": "IBM Announcement",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "value": 2026,
+      "unit": "year",
+      "label": "Release year",
+      "source_url": "https://www.ibm.com/new/announcements/ibm-integration-intelligence-hub-gives-ai-the-context-to-act-not-just-access"
+    },
+    {
+      "value": 2026,
+      "unit": "year",
+      "label": "TechXchange demonstration year",
+      "source_url": "https://community.ibm.com/community/user/blogs/krishna-k-n/2026/10/28/ibm-intelligence-hub-for-webmethods-b2b"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "IBM",
+      "kind": "organization"
+    },
+    {
+      "name": "Jiri De Jagere",
+      "kind": "person"
+    },
+    {
+      "name": "Jigdesh Sampath",
+      "kind": "person"
+    }
+  ],
+  "quotes": []
+}

@@ -1,0 +1,51 @@
+{
+  "topic_slug": "voya-financial-confidence-index-2026",
+  "strongest_angle": "Examining Voya Financial's October 2026 inaugural America's Financial Confidence Index, which reveals a significant confidence gap where workplace education impacts financial mindset more than raw income.",
+  "key_facts": [
+    {
+      "fact": "Voya Financial, Inc. released the inaugural America's Financial Confidence Index on October 14, 2026, uncovering a confidence gap between employee feelings and actions.",
+      "source_url": "https://www.voya.com/news/2026/10/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive",
+      "source_name": "Voya.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Employee Benefit News reported on October 14, 2026, that 21 points separate worker confidence in retirement planning from another critical financial expectation.",
+      "source_url": "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits",
+      "source_name": "Employee Benefit News",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Business Wire published on October 15, 2026, that the new Voya Index finds workplace education drives financial confidence and positive action more than money.",
+      "source_url": "https://techrseries.com/employee-engagement/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive-action-more-than-money",
+      "source_name": "Business Wire",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "confidence gap points",
+      "value": 21,
+      "unit": "points",
+      "source_url": "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Voya Financial, Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "America's Financial Confidence Index",
+      "kind": "object"
+    },
+    {
+      "name": "Employee Benefit News",
+      "kind": "organization"
+    },
+    {
+      "name": "Business Wire",
+      "kind": "organization"
+    }
+  ]
+}

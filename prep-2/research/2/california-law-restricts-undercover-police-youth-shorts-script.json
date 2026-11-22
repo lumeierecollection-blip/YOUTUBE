@@ -1,0 +1,65 @@
+{
+  "channel_id": "2",
+  "topic_slug": "california-law-restricts-undercover-police-youth",
+  "format": "shorts",
+  "hook": "Undercover police officers in California could pose as inmates to trap teenagers aged 17 or younger.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Undercover police officers in California could pose as inmates to trap teenagers aged 17 or younger.",
+      "b_roll": [
+        "Animation showing an undercover jail cell scenario with a minor."
+      ],
+      "text_overlay": {
+        "text": "Undercover Trap"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Governor Gavin Newsom signed Assembly Bill 1905 to stop deceptive Perkins operations. Burbank Assemblymember Nick Schultz authored the measure. How do these custodial interrogations target young suspects?",
+      "b_roll": [
+        "Portrait graphic of Governor Gavin Newsom signing paperwork.",
+        "California state capitol building exterior shot.",
+        "Interrogation room graphic highlighting youth suspects."
+      ],
+      "text_overlay": {
+        "text": "Assembly Bill 1905"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Chapter 559 restricts tactics previously aimed at individuals under 26 years old.",
+      "b_roll": [
+        "Statute text document close-up showing Chapter 559."
+      ],
+      "text_overlay": {
+        "text": "Chapter 559"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Assembly Bill 1905 limits tactics targeting young people facing criminal allegations under age 17.",
+      "b_roll": [
+        "Courtroom gavel slamming down on a wooden block.",
+        "Shield symbol graphic over a juvenile detention facility."
+      ],
+      "text_overlay": {
+        "text": "New Legal Protections"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Assembly Bill 1905 protects youth rights statewide.",
+      "b_roll": [
+        "California state map with bill 1905 highlighted."
+      ],
+      "text_overlay": {
+        "text": "AB 1905"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://calmatters.org/justice/2026/10/undercover-police-new-law",
+    "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1905"
+  ]
+}

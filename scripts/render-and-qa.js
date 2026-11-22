@@ -24,7 +24,7 @@ import { join, dirname, basename, extname, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { createRequire as createRequireEntity } from "node:module";
-import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName, TEXT_GRID } from "../src/skills/remotion-render/visual/canvas-layout.js";
+import { compositionFor, canvasLayout as layoutOfCanvas, canvasManifest, normalizeCanvas as normalizeForLayout, shotComposition, layoutViolations, SHOT_COMPOSITIONS, SHOTS, CONTENT_SHOTS, HERO_SHOTS, shotName, TEXT_GRID, COMPOSITIONS } from "../src/skills/remotion-render/visual/canvas-layout.js";
 import { resolveGround } from "../src/skills/remotion-render/visual/backgrounds.js";
 import { styleCanvases } from "../src/skills/remotion-render/visual/canvas-style.js";
 import { enforceRotation, candidatesFor } from "./composition-rotation.js";
@@ -703,7 +703,9 @@ async function qaOne(runId, rendered, planPath) {
   let visionQaPromise;
   if (audit.code === 0 && geminiNeeded && (process.env.VISION_API_KEY || process.env.OLLAMA_URL)) {
     const chId = `ch-${String(channelId).padStart(2, "0")}`;
-    visionQaPromise = runChild("node", [VISUAL_QA_JS, "--channel", chId, "--video", outputPath], {
+    const visionQaArgs = [VISUAL_QA_JS, "--channel", chId, "--video", outputPath];
+    if (planPath && existsSync(planPath)) visionQaArgs.push("--plan", planPath);
+    visionQaPromise = runChild("node", visionQaArgs, {
       label: `qa/vision ${basename(outputPath)}`,
     });
   }
@@ -1471,9 +1473,13 @@ Respond ONLY with JSON: {"sequence": <number>}`);
     // variety is not a licence to un-draw a named entity — the ladder's visual
     // stands and the shot's own devices (symbol, headline) still apply.
     if (choice[i].figure) {
-      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type}) over the shot's own figure`);
+      if (b.ladder_visual) console.log(`[shots] ch-${channelId} beat ${b.index}: keeping the entity the ladder drew (${b.ladder_visual.data?.value || b.ladder_visual.visual_type || (b.ladder_visual.art ? b.ladder_visual.art.kind : "art")}) over the shot's own figure`);
       else { b.visual_type = choice[i].figure.visual_type; b.data = choice[i].figure.data; delete b.type_layout; }
     }
+    // If the ladder gave this beat an art (plates/span/flag/map), rebuild the canvas
+    // to preserve it while applying the chosen shot (camera/depth). The ladder's art
+    // is on b.art; canvasContentFor reads it and applies the current b.shot.
+    if (b.ladder_visual?.art) b.canvas = canvasContentFor(b, {});
   });
   plan.shots_final = { shots: choice.map((o) => o.shot), problems: problems.map((p) => p.why) };
   return { choice, problems, asked };
@@ -1839,7 +1845,16 @@ function canvasContentFor(b, { photo = null } = {}) {
   // middle zone 12% filled, rejected).
   const hasHero = (c.concept_visuals || []).length > 0;
   if (hasHero) delete c.type_layout;
-  c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  // Respect the planner's canvas_composition when it's a valid composition.
+  // The planner may specify a composition (e.g., "TIMELINE") that differs from the
+  // visual_type (e.g., "TYPE"). Use the planner's choice when valid.
+  const plannerComp = b.canvas_composition;
+  if (plannerComp && COMPOSITIONS.includes(plannerComp)) {
+    c.composition = plannerComp;
+    console.log(`[canvas] beat ${b.index ?? "?"}: using planner's canvas_composition "${plannerComp}" (visual_type was "${vt}")`);
+  } else {
+    c.composition = compositionFor(vt, !!c.photo, { view: c.photo?.view, split: !hasHero && c.type_layout === "split" && !!splitHeadline(c.headline) });
+  }
   // A flag is offered beside a country / state map (FLAG shot, chooseShots): the asset and its region travel with the canvas.
   if (b.flag_option) c.flag_option = b.flag_option;
   applyShot(c, b);

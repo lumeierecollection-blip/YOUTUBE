@@ -1,0 +1,47 @@
+{
+  "channel_id": "2",
+  "topic_slug": "colorado-ag-weiser-domestic-violence-housing-rules",
+  "format": "shorts",
+  "hook": "Landlords in Colorado are ignoring housing protections for domestic violence survivors.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Landlords in Colorado are ignoring housing protections for domestic violence survivors.",
+      "text_overlay": {
+        "text": "Colorado Housing Alert"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 6, 2026, Attorney General Phil Weiser issued an official public advisory. How many landlords are failing to uphold these state protections?",
+      "text_overlay": {
+        "text": "HB 251168 Protections"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Attorney General’s Office reports receiving multiple complaints of non-compliance. Why are these rights being overlooked?",
+      "text_overlay": {
+        "text": "Reports of Non-Compliance"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Weiser confirmed the office is actively monitoring reports of illegal evictions. These housing protections were sponsored by Representative Mandy Lindsay and others to prevent such outcomes. Survivors have clear, established rights under the law.",
+      "text_overlay": {
+        "text": "Preventing Illegal Evictions"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "House Bill 251168 mandates these specific protections for all survivors.",
+      "text_overlay": {
+        "text": "HB 251168"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://coag.gov/press-releases/weiser-reminds-colorado-landlords-of-expanded-housing-protections-for-domestic-violence-survivors",
+    "https://coag.gov/app/uploads/2026/10/Public-Advisory-Housing-Protections-for-DV-Victims-Survivors.pdf"
+  ]
+}

@@ -1,0 +1,2431 @@
+{
+  "generatedAt": "2026-10-23T14:14:30.763Z",
+  "channel": "1",
+  "source": "gemini",
+  "iteration": "correction",
+  "totalBeats": 6,
+  "beats": [
+    {
+      "index": 0,
+      "kind": "EDITORIAL",
+      "visual_type": "MAP",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "SCENE-FULL",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "forgotten female ruler",
+      "emphasis_word": "female",
+      "scene_description": "An editorial collage depicting ancient Egyptian royal seals resting on weathered papyrus in the lower half of the frame, with the oversized serif headline sitting in the top band against a warm cream ground.",
+      "named_entities": [
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "seals",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "ancient female ruler",
+          "magnitude": "1"
+        }
+      ],
+      "capabilities": [
+        "contrast"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "forgotten female ruler",
+        "why": null,
+        "moment": "hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "data": {
+        "place": "Egypt",
+        "labels": [
+          "5000 years"
+        ]
+      },
+      "visual_headline": "forgotten female ruler",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "ancient female ruler"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "together",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "CUT_IN"
+      },
+      "recent_animations": [
+        "CUT_IN"
+      ],
+      "narration": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+      "reason": "An editorial collage depicting ancient Egyptian royal seals resting on weathered papyrus in the lower half of the frame, with the oversized serif headline sitting in the top band against a warm cream ground.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named",
+      "canvas": {
+        "visual_type": "MAP",
+        "data": {
+          "place": "Egypt",
+          "labels": [
+            "5000 years"
+          ]
+        },
+        "sentence": "New evidence from royal seals reveals a forgotten female ruler who commanded ancient Egypt over 5000 years ago.",
+        "lead_in": null,
+        "headline": "forgotten female ruler",
+        "emphasis_word": "female",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_HARD",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#F5EFE0",
+        "entrance_style": "together",
+        "anchor_word": "seals",
+        "composition": "MAP-CENTERED",
+        "shot": "SCENE-FULL",
+        "shot_drawn": false,
+        "flag_option": {
+          "asset": "flags/eg.png",
+          "region": "country:EGY",
+          "name": "Egypt",
+          "aspect": 1.5005861664712778,
+          "source_url": "https://flagcdn.com/w1280/eg.png",
+          "license": "Public domain (a national / state flag)",
+          "credit": "flagcdn.com"
+        },
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "headline": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        }
+      },
+      "flag_option": {
+        "asset": "flags/eg.png",
+        "region": "country:EGY",
+        "name": "Egypt",
+        "aspect": 1.5005861664712778,
+        "source_url": "https://flagcdn.com/w1280/eg.png",
+        "license": "Public domain (a national / state flag)",
+        "credit": "flagcdn.com"
+      }
+    },
+    {
+      "index": 1,
+      "kind": "EDITORIAL",
+      "visual_type": "PHOTO",
+      "canvas_composition": "PORTRAIT",
+      "shot": "PHOTO-CARD",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "tomb Y at Abydos",
+      "emphasis_word": "Abydos",
+      "scene_description": "A framed historical photograph of archaeologist William Matthew Flinders Petrie examining excavation artifacts inside a desert tent, set in a heavy dark frame in the lower half of the frame.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "William Matthew Flinders Petrie"
+        },
+        {
+          "type": "place",
+          "name": "Abydos"
+        }
+      ],
+      "entity_anchor_word": "Petrie",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": 0,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "excavation at Abydos"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": {
+        "text": "Abydos, Egypt",
+        "position": "top-left"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "entity": "William Matthew Flinders Petrie",
+        "entity_type": "person"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "figure",
+            "anchor": "center",
+            "motion": "appear",
+            "scale": 1.2,
+            "label": "excavation at Abydos"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "staggered",
+      "animation_family": "slide-in",
+      "animations": {
+        "headline": "SPLIT_REVEAL"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SCALE_UP",
+        "SPLIT_REVEAL",
+        "FADE_OUT"
+      ],
+      "narration": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit.",
+      "visual_headline": "tomb Y at Abydos",
+      "reason": "A framed historical photograph of archaeologist William Matthew Flinders Petrie examining excavation artifacts inside a desert tent, set in a heavy dark frame in the lower half of the frame.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "PHOTO",
+        "data": {
+          "entity": "William Matthew Flinders Petrie",
+          "entity_type": "person"
+        },
+        "sentence": "William Matthew Flinders Petrie excavated tomb Y at Abydos and believed he found a new king named Merneit.",
+        "lead_in": null,
+        "headline": "Tomb Y at Abydos",
+        "emphasis_word": "Abydos",
+        "emphasis_words": [],
+        "photo": {
+          "asset": "entities/people/william-matthew-flinders-petrie.jpg",
+          "entity": "William Matthew Flinders Petrie",
+          "kind": "person",
+          "view": "person",
+          "w": 1400,
+          "h": 1611,
+          "credit": "Photo: George Frederic Watts / Wikimedia Commons, Public domain",
+          "source": "commons",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+          "license": "Public domain",
+          "verified_as": "File:Sir (William Matthew) Flinders Petrie by George Frederic Watts.jpg"
+        },
+        "motion_tier": "medium",
+        "camera_focus": null,
+        "persists_from": 0,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "William Matthew Flinders Petrie"
+          },
+          {
+            "type": "place",
+            "name": "Abydos"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "staggered",
+        "source_credit": "commons.wikimedia.org",
+        "anchor_word": "Petrie",
+        "composition": "PHOTO-CARD",
+        "shot": "PHOTO-CARD",
+        "shot_drawn": true,
+        "beat_index": 1,
+        "beat_total": 6,
+        "variant": 1,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "label": {
+          "text": "Abydos, Egypt",
+          "position": "top-left"
+        },
+        "pull_phrase": null
+      },
+      "asset": {
+        "id": "entities/people/william-matthew-flinders-petrie.jpg",
+        "source": "commons",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+        "license": "Public domain",
+        "attribution": "Photo: George Frederic Watts / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "index": 2,
+      "kind": "TYPE",
+      "visual_type": "TYPE",
+      "canvas_composition": "TYPE-FULL",
+      "shot": "STATEMENT",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "daughter of Djer",
+      "emphasis_word": "daughter",
+      "scene_description": "A stark dark ground with oversized serif typography posing the question about the royal lineage, featuring a clean horizontal divider line separating headline and subtext.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Djer"
+        }
+      ],
+      "entity_anchor_word": "Djer",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": null,
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "lineage question"
+        }
+      ],
+      "capabilities": [
+        "typographic_emphasis",
+        "comparison"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "daughter of Djer",
+        "why": null,
+        "moment": "question",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": {
+        "text": "daughter of Djer",
+        "position": "middle",
+        "case": "as-written",
+        "tone": "accent"
+      },
+      "planner_chose_type": true,
+      "data": null,
+      "visual_headline": "daughter of Djer",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "appear",
+            "count": 1,
+            "scale": 1,
+            "label": ""
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "appear",
+            "count": 1,
+            "scale": 0.6,
+            "label": ""
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "visual-first",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "LETTER_STAGGER"
+      },
+      "recent_animations": [
+        "CUT_IN",
+        "SCALE_UP",
+        "SPLIT_REVEAL",
+        "FADE_OUT"
+      ],
+      "narration": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+      "mechanism": "TYPOGRAPHY",
+      "reason": "A stark dark ground with oversized serif typography posing the question about the royal lineage, featuring a clean horizontal divider line separating headline and subtext.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Was she actually the daughter of Djer, the third king of the First Dynasty?",
+        "lead_in": null,
+        "headline": "daughter of Djer",
+        "emphasis_word": "daughter",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": null,
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "Djer"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "entrance_style": "visual-first",
+        "anchor_word": "Djer",
+        "composition": "ENTITY-ART",
+        "emphasis_beat": false,
+        "vertical": false,
+        "shot": "STATEMENT",
+        "shot_drawn": true,
+        "art": {
+          "kind": "plate-person",
+          "name": "Djer"
+        },
+        "concept_visuals": [],
+        "label": null,
+        "pull_phrase": {
+          "text": "daughter of Djer",
+          "position": "middle",
+          "case": "as-written",
+          "tone": "accent"
+        },
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {},
+          "number": null
+        }
+      },
+      "concept_visuals": [],
+      "art": {
+        "kind": "plate-person",
+        "name": "Djer"
+      },
+      "ladder_visual": {
+        "art": {
+          "kind": "plate-person",
+          "name": "Djer"
+        }
+      }
+    },
+    {
+      "index": 3,
+      "kind": "EDITORIAL",
+      "visual_type": "TYPE",
+      "canvas_composition": "DOCUMENT",
+      "shot": "PHOTO-INSET",
+      "ground": "#F5EFE0",
+      "lead_in": null,
+      "headline": "first female ruler",
+      "emphasis_word": "first",
+      "scene_description": "A close-up of a vintage Scientific American magazine cover featuring an inset cutout of analyzed royal seals, placed as a small rounded card with a block shadow in the upper half.",
+      "named_entities": [
+        {
+          "type": "institution",
+          "name": "Scientific American"
+        }
+      ],
+      "entity_anchor_word": "Scientific",
+      "concepts": [],
+      "motion_tier": "medium",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "population",
+          "label": "analyzed seals"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": {
+        "text": "Scientific American",
+        "position": "top-right"
+      },
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": null,
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "silhouette",
+            "anchor": "center",
+            "motion": "appear",
+            "count": 12,
+            "scale": 1,
+            "label": "analyzed seals"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "together",
+      "animation_family": "slide-in",
+      "animations": {
+        "headline": "SCALE_PUNCH"
+      },
+      "recent_animations": [
+        "SCALE_UP",
+        "SPLIT_REVEAL",
+        "FADE_OUT",
+        "RISE_FROM_BASE",
+        "SCALE_PUNCH",
+        "MASK_CLOSE"
+      ],
+      "narration": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+      "visual_headline": "first female ruler",
+      "reason": "A close-up of a vintage Scientific American magazine cover featuring an inset cutout of analyzed royal seals, placed as a small rounded card with a block shadow in the upper half.",
+      "emotional_weight": "calm",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "named",
+      "hero_cutout": {
+        "name": "Scientific American",
+        "class": "cutout",
+        "asset": "cutouts-live/1/3-scientific-american-logo.png",
+        "w": 1024,
+        "h": 282,
+        "logo": true,
+        "source": "wikipedia infobox",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Scientific_American_logo.svg",
+        "license": "Public domain",
+        "ink": {
+          "pts": [
+            [
+              0.041,
+              0.002
+            ],
+            [
+              0.042,
+              0.002
+            ],
+            [
+              0.125,
+              0.055
+            ],
+            [
+              0.154,
+              0.002
+            ],
+            [
+              0.167,
+              0.002
+            ],
+            [
+              0.216,
+              0.009
+            ],
+            [
+              0.25,
+              0.009
+            ],
+            [
+              0.292,
+              0.009
+            ],
+            [
+              0.334,
+              0.009
+            ],
+            [
+              0.375,
+              0.009
+            ],
+            [
+              0.417,
+              0.009
+            ],
+            [
+              0.491,
+              0.009
+            ],
+            [
+              0.5,
+              0.009
+            ],
+            [
+              0.542,
+              0.009
+            ],
+            [
+              0.584,
+              0.009
+            ],
+            [
+              0.625,
+              0.009
+            ],
+            [
+              0.667,
+              0.009
+            ],
+            [
+              0.709,
+              0.009
+            ],
+            [
+              0.75,
+              0.009
+            ],
+            [
+              0.792,
+              0.009
+            ],
+            [
+              0.834,
+              0.009
+            ],
+            [
+              0.875,
+              0.009
+            ],
+            [
+              0.948,
+              0.002
+            ],
+            [
+              0.959,
+              0.002
+            ],
+            [
+              0,
+              0.991
+            ],
+            [
+              0.064,
+              0.991
+            ],
+            [
+              0.084,
+              0.991
+            ],
+            [
+              0.125,
+              0.991
+            ],
+            [
+              0.192,
+              0.995
+            ],
+            [
+              0.217,
+              0.991
+            ],
+            [
+              0.25,
+              0.991
+            ],
+            [
+              0.292,
+              0.991
+            ],
+            [
+              0.334,
+              0.991
+            ],
+            [
+              0.375,
+              0.991
+            ],
+            [
+              0.419,
+              0.991
+            ],
+            [
+              0.459,
+              0.991
+            ],
+            [
+              0.516,
+              0.998
+            ],
+            [
+              0.559,
+              0.991
+            ],
+            [
+              0.584,
+              0.991
+            ],
+            [
+              0.667,
+              0.977
+            ],
+            [
+              0.687,
+              0.998
+            ],
+            [
+              0.709,
+              0.991
+            ],
+            [
+              0.75,
+              0.991
+            ],
+            [
+              0.808,
+              0.991
+            ],
+            [
+              0.834,
+              0.991
+            ],
+            [
+              0.875,
+              0.991
+            ],
+            [
+              0.958,
+              0.934
+            ],
+            [
+              0.971,
+              0.995
+            ],
+            [
+              0.019,
+              0.041
+            ],
+            [
+              0.012,
+              0.083
+            ],
+            [
+              0.011,
+              0.094
+            ],
+            [
+              0.011,
+              0.129
+            ],
+            [
+              0.013,
+              0.168
+            ],
+            [
+              0.022,
+              0.211
+            ],
+            [
+              0.01,
+              0.275
+            ],
+            [
+              0.01,
+              0.296
+            ],
+            [
+              0.01,
+              0.335
+            ],
+            [
+              0.01,
+              0.378
+            ],
+            [
+              0.01,
+              0.42
+            ],
+            [
+              0.054,
+              0.583
+            ],
+            [
+              0.05,
+              0.622
+            ],
+            [
+              0.046,
+              0.661
+            ],
+            [
+              0.042,
+              0.707
+            ],
+            [
+              0.038,
+              0.746
+            ],
+            [
+              0.033,
+              0.793
+            ],
+            [
+              0.029,
+              0.832
+            ],
+            [
+              0.025,
+              0.867
+            ],
+            [
+              0.02,
+              0.917
+            ],
+            [
+              0.015,
+              0.959
+            ],
+            [
+              0,
+              0.977
+            ],
+            [
+              0.998,
+              0.009
+            ],
+            [
+              0.998,
+              0.044
+            ],
+            [
+              0.998,
+              0.087
+            ],
+            [
+              0.998,
+              0.129
+            ],
+            [
+              0.998,
+              0.168
+            ],
+            [
+              0.927,
+              0.211
+            ],
+            [
+              0.928,
+              0.282
+            ],
+            [
+              1,
+              0.3
+            ],
+            [
+              0.997,
+              0.335
+            ],
+            [
+              0.991,
+              0.378
+            ],
+            [
+              0.978,
+              0.42
+            ],
+            [
+              0.996,
+              0.573
+            ],
+            [
+              0.984,
+              0.587
+            ],
+            [
+              0.978,
+              0.629
+            ],
+            [
+              0.978,
+              0.668
+            ],
+            [
+              0.978,
+              0.711
+            ],
+            [
+              0.978,
+              0.754
+            ],
+            [
+              0.978,
+              0.796
+            ],
+            [
+              0.978,
+              0.835
+            ],
+            [
+              0.978,
+              0.878
+            ],
+            [
+              0.978,
+              0.92
+            ],
+            [
+              0.978,
+              0.963
+            ]
+          ]
+        }
+      },
+      "canvas": {
+        "visual_type": "TYPE",
+        "data": null,
+        "sentence": "Scientific American reported on those newly analyzed royal seals that unveil Ancient Egypt's first female ruler.",
+        "lead_in": null,
+        "headline": "First female ruler",
+        "emphasis_word": "first",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "medium",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "institution",
+            "name": "Scientific American"
+          }
+        ],
+        "hero_cutout": {
+          "name": "Scientific American",
+          "class": "cutout",
+          "asset": "cutouts-live/1/3-scientific-american-logo.png",
+          "w": 1024,
+          "h": 282,
+          "logo": true,
+          "source": "wikipedia infobox",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Scientific_American_logo.svg",
+          "license": "Public domain",
+          "ink": {
+            "pts": [
+              [
+                0.041,
+                0.002
+              ],
+              [
+                0.042,
+                0.002
+              ],
+              [
+                0.125,
+                0.055
+              ],
+              [
+                0.154,
+                0.002
+              ],
+              [
+                0.167,
+                0.002
+              ],
+              [
+                0.216,
+                0.009
+              ],
+              [
+                0.25,
+                0.009
+              ],
+              [
+                0.292,
+                0.009
+              ],
+              [
+                0.334,
+                0.009
+              ],
+              [
+                0.375,
+                0.009
+              ],
+              [
+                0.417,
+                0.009
+              ],
+              [
+                0.491,
+                0.009
+              ],
+              [
+                0.5,
+                0.009
+              ],
+              [
+                0.542,
+                0.009
+              ],
+              [
+                0.584,
+                0.009
+              ],
+              [
+                0.625,
+                0.009
+              ],
+              [
+                0.667,
+                0.009
+              ],
+              [
+                0.709,
+                0.009
+              ],
+              [
+                0.75,
+                0.009
+              ],
+              [
+                0.792,
+                0.009
+              ],
+              [
+                0.834,
+                0.009
+              ],
+              [
+                0.875,
+                0.009
+              ],
+              [
+                0.948,
+                0.002
+              ],
+              [
+                0.959,
+                0.002
+              ],
+              [
+                0,
+                0.991
+              ],
+              [
+                0.064,
+                0.991
+              ],
+              [
+                0.084,
+                0.991
+              ],
+              [
+                0.125,
+                0.991
+              ],
+              [
+                0.192,
+                0.995
+              ],
+              [
+                0.217,
+                0.991
+              ],
+              [
+                0.25,
+                0.991
+              ],
+              [
+                0.292,
+                0.991
+              ],
+              [
+                0.334,
+                0.991
+              ],
+              [
+                0.375,
+                0.991
+              ],
+              [
+                0.419,
+                0.991
+              ],
+              [
+                0.459,
+                0.991
+              ],
+              [
+                0.516,
+                0.998
+              ],
+              [
+                0.559,
+                0.991
+              ],
+              [
+                0.584,
+                0.991
+              ],
+              [
+                0.667,
+                0.977
+              ],
+              [
+                0.687,
+                0.998
+              ],
+              [
+                0.709,
+                0.991
+              ],
+              [
+                0.75,
+                0.991
+              ],
+              [
+                0.808,
+                0.991
+              ],
+              [
+                0.834,
+                0.991
+              ],
+              [
+                0.875,
+                0.991
+              ],
+              [
+                0.958,
+                0.934
+              ],
+              [
+                0.971,
+                0.995
+              ],
+              [
+                0.019,
+                0.041
+              ],
+              [
+                0.012,
+                0.083
+              ],
+              [
+                0.011,
+                0.094
+              ],
+              [
+                0.011,
+                0.129
+              ],
+              [
+                0.013,
+                0.168
+              ],
+              [
+                0.022,
+                0.211
+              ],
+              [
+                0.01,
+                0.275
+              ],
+              [
+                0.01,
+                0.296
+              ],
+              [
+                0.01,
+                0.335
+              ],
+              [
+                0.01,
+                0.378
+              ],
+              [
+                0.01,
+                0.42
+              ],
+              [
+                0.054,
+                0.583
+              ],
+              [
+                0.05,
+                0.622
+              ],
+              [
+                0.046,
+                0.661
+              ],
+              [
+                0.042,
+                0.707
+              ],
+              [
+                0.038,
+                0.746
+              ],
+              [
+                0.033,
+                0.793
+              ],
+              [
+                0.029,
+                0.832
+              ],
+              [
+                0.025,
+                0.867
+              ],
+              [
+                0.02,
+                0.917
+              ],
+              [
+                0.015,
+                0.959
+              ],
+              [
+                0,
+                0.977
+              ],
+              [
+                0.998,
+                0.009
+              ],
+              [
+                0.998,
+                0.044
+              ],
+              [
+                0.998,
+                0.087
+              ],
+              [
+                0.998,
+                0.129
+              ],
+              [
+                0.998,
+                0.168
+              ],
+              [
+                0.927,
+                0.211
+              ],
+              [
+                0.928,
+                0.282
+              ],
+              [
+                1,
+                0.3
+              ],
+              [
+                0.997,
+                0.335
+              ],
+              [
+                0.991,
+                0.378
+              ],
+              [
+                0.978,
+                0.42
+              ],
+              [
+                0.996,
+                0.573
+              ],
+              [
+                0.984,
+                0.587
+              ],
+              [
+                0.978,
+                0.629
+              ],
+              [
+                0.978,
+                0.668
+              ],
+              [
+                0.978,
+                0.711
+              ],
+              [
+                0.978,
+                0.754
+              ],
+              [
+                0.978,
+                0.796
+              ],
+              [
+                0.978,
+                0.835
+              ],
+              [
+                0.978,
+                0.878
+              ],
+              [
+                0.978,
+                0.92
+              ],
+              [
+                0.978,
+                0.963
+              ]
+            ]
+          }
+        },
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#F5EFE0",
+        "concept_visuals": [
+          {
+            "name": "Scientific American",
+            "class": "cutout",
+            "asset": "cutouts-live/1/3-scientific-american-logo.png",
+            "w": 1024,
+            "h": 282,
+            "logo": true,
+            "source": "wikipedia infobox",
+            "source_url": "https://commons.wikimedia.org/wiki/File:Scientific_American_logo.svg",
+            "license": "Public domain",
+            "ink": {
+              "pts": [
+                [
+                  0.041,
+                  0.002
+                ],
+                [
+                  0.042,
+                  0.002
+                ],
+                [
+                  0.125,
+                  0.055
+                ],
+                [
+                  0.154,
+                  0.002
+                ],
+                [
+                  0.167,
+                  0.002
+                ],
+                [
+                  0.216,
+                  0.009
+                ],
+                [
+                  0.25,
+                  0.009
+                ],
+                [
+                  0.292,
+                  0.009
+                ],
+                [
+                  0.334,
+                  0.009
+                ],
+                [
+                  0.375,
+                  0.009
+                ],
+                [
+                  0.417,
+                  0.009
+                ],
+                [
+                  0.491,
+                  0.009
+                ],
+                [
+                  0.5,
+                  0.009
+                ],
+                [
+                  0.542,
+                  0.009
+                ],
+                [
+                  0.584,
+                  0.009
+                ],
+                [
+                  0.625,
+                  0.009
+                ],
+                [
+                  0.667,
+                  0.009
+                ],
+                [
+                  0.709,
+                  0.009
+                ],
+                [
+                  0.75,
+                  0.009
+                ],
+                [
+                  0.792,
+                  0.009
+                ],
+                [
+                  0.834,
+                  0.009
+                ],
+                [
+                  0.875,
+                  0.009
+                ],
+                [
+                  0.948,
+                  0.002
+                ],
+                [
+                  0.959,
+                  0.002
+                ],
+                [
+                  0,
+                  0.991
+                ],
+                [
+                  0.064,
+                  0.991
+                ],
+                [
+                  0.084,
+                  0.991
+                ],
+                [
+                  0.125,
+                  0.991
+                ],
+                [
+                  0.192,
+                  0.995
+                ],
+                [
+                  0.217,
+                  0.991
+                ],
+                [
+                  0.25,
+                  0.991
+                ],
+                [
+                  0.292,
+                  0.991
+                ],
+                [
+                  0.334,
+                  0.991
+                ],
+                [
+                  0.375,
+                  0.991
+                ],
+                [
+                  0.419,
+                  0.991
+                ],
+                [
+                  0.459,
+                  0.991
+                ],
+                [
+                  0.516,
+                  0.998
+                ],
+                [
+                  0.559,
+                  0.991
+                ],
+                [
+                  0.584,
+                  0.991
+                ],
+                [
+                  0.667,
+                  0.977
+                ],
+                [
+                  0.687,
+                  0.998
+                ],
+                [
+                  0.709,
+                  0.991
+                ],
+                [
+                  0.75,
+                  0.991
+                ],
+                [
+                  0.808,
+                  0.991
+                ],
+                [
+                  0.834,
+                  0.991
+                ],
+                [
+                  0.875,
+                  0.991
+                ],
+                [
+                  0.958,
+                  0.934
+                ],
+                [
+                  0.971,
+                  0.995
+                ],
+                [
+                  0.019,
+                  0.041
+                ],
+                [
+                  0.012,
+                  0.083
+                ],
+                [
+                  0.011,
+                  0.094
+                ],
+                [
+                  0.011,
+                  0.129
+                ],
+                [
+                  0.013,
+                  0.168
+                ],
+                [
+                  0.022,
+                  0.211
+                ],
+                [
+                  0.01,
+                  0.275
+                ],
+                [
+                  0.01,
+                  0.296
+                ],
+                [
+                  0.01,
+                  0.335
+                ],
+                [
+                  0.01,
+                  0.378
+                ],
+                [
+                  0.01,
+                  0.42
+                ],
+                [
+                  0.054,
+                  0.583
+                ],
+                [
+                  0.05,
+                  0.622
+                ],
+                [
+                  0.046,
+                  0.661
+                ],
+                [
+                  0.042,
+                  0.707
+                ],
+                [
+                  0.038,
+                  0.746
+                ],
+                [
+                  0.033,
+                  0.793
+                ],
+                [
+                  0.029,
+                  0.832
+                ],
+                [
+                  0.025,
+                  0.867
+                ],
+                [
+                  0.02,
+                  0.917
+                ],
+                [
+                  0.015,
+                  0.959
+                ],
+                [
+                  0,
+                  0.977
+                ],
+                [
+                  0.998,
+                  0.009
+                ],
+                [
+                  0.998,
+                  0.044
+                ],
+                [
+                  0.998,
+                  0.087
+                ],
+                [
+                  0.998,
+                  0.129
+                ],
+                [
+                  0.998,
+                  0.168
+                ],
+                [
+                  0.927,
+                  0.211
+                ],
+                [
+                  0.928,
+                  0.282
+                ],
+                [
+                  1,
+                  0.3
+                ],
+                [
+                  0.997,
+                  0.335
+                ],
+                [
+                  0.991,
+                  0.378
+                ],
+                [
+                  0.978,
+                  0.42
+                ],
+                [
+                  0.996,
+                  0.573
+                ],
+                [
+                  0.984,
+                  0.587
+                ],
+                [
+                  0.978,
+                  0.629
+                ],
+                [
+                  0.978,
+                  0.668
+                ],
+                [
+                  0.978,
+                  0.711
+                ],
+                [
+                  0.978,
+                  0.754
+                ],
+                [
+                  0.978,
+                  0.796
+                ],
+                [
+                  0.978,
+                  0.835
+                ],
+                [
+                  0.978,
+                  0.878
+                ],
+                [
+                  0.978,
+                  0.92
+                ],
+                [
+                  0.978,
+                  0.963
+                ]
+              ]
+            }
+          }
+        ],
+        "entrance_style": "together",
+        "source_credit": "commons.wikimedia.org",
+        "anchor_word": "Scientific",
+        "composition": "TYPE-FULL",
+        "shot": "PHOTO-INSET",
+        "shot_drawn": false,
+        "beat_index": 3,
+        "beat_total": 6,
+        "variant": 3,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "statement": [
+              "POP_SOFT",
+              "POP_EMPHASIS",
+              "POP_SOFT"
+            ],
+            "kicker": [
+              "POP_SOFT",
+              "POP_SOFT"
+            ]
+          },
+          "number": null
+        },
+        "label": {
+          "text": "Scientific American",
+          "position": "top-right"
+        },
+        "pull_phrase": null
+      }
+    },
+    {
+      "index": 4,
+      "kind": "EDITORIAL",
+      "visual_type": "PHOTO",
+      "canvas_composition": "SCENE-LOW",
+      "shot": "SCENE-LOW",
+      "ground": "white",
+      "lead_in": null,
+      "headline": "5000 years of history",
+      "emphasis_word": "5000",
+      "scene_description": "An AI-generated scene showing dusty excavation tools resting against ancient stone walls in Egypt, filling the lower two-thirds of the frame with a clean white top band housing the headline.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "William Matthew Flinders Petrie"
+        },
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "Petrie",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_SOFT",
+      "visual_events": [
+        {
+          "type": "accumulation",
+          "label": "5000 years"
+        }
+      ],
+      "capabilities": [
+        "revelation"
+      ],
+      "objects": {},
+      "typography_direction": null,
+      "label": null,
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "entity": "William Matthew Flinders Petrie",
+        "entity_type": "person"
+      },
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "fill",
+            "count": 10,
+            "scale": 1,
+            "label": "5000 years"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "staggered",
+      "animation_family": "pop-in",
+      "animations": {
+        "headline": "FADE_LIFT"
+      },
+      "recent_animations": [
+        "RISE_FROM_BASE",
+        "SCALE_PUNCH",
+        "MASK_CLOSE",
+        "FADE_LIFT"
+      ],
+      "narration": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+      "mechanism": "ACTION_CONSEQUENCE",
+      "cap_reassigned": {
+        "from": "CAPABILITY:revelation",
+        "why": "CAPABILITY:revelation exceeded 40% (max 2 of 6)"
+      },
+      "visual_headline": "5000 years of history",
+      "reason": "An AI-generated scene showing dusty excavation tools resting against ancient stone walls in Egypt, filling the lower two-thirds of the frame with a clean white top band housing the headline.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "default",
+      "canvas": {
+        "visual_type": "PHOTO",
+        "data": {
+          "entity": "William Matthew Flinders Petrie",
+          "entity_type": "person"
+        },
+        "sentence": "Excavating tomb Y at Abydos, William Matthew Flinders Petrie uncovered 5000 years of history.",
+        "lead_in": null,
+        "headline": "5000 years of history",
+        "emphasis_word": "5000",
+        "emphasis_words": [],
+        "photo": {
+          "asset": "entities/people/william-matthew-flinders-petrie.jpg",
+          "entity": "William Matthew Flinders Petrie",
+          "kind": "person",
+          "view": "person",
+          "w": 1400,
+          "h": 1611,
+          "credit": "Photo: George Frederic Watts / Wikimedia Commons, Public domain",
+          "source": "commons",
+          "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+          "license": "Public domain",
+          "verified_as": "File:Sir (William Matthew) Flinders Petrie by George Frederic Watts.jpg"
+        },
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "William Matthew Flinders Petrie"
+          },
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_SOFT",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": null,
+        "entrance_style": "staggered",
+        "source_credit": "commons.wikimedia.org",
+        "anchor_word": "Petrie",
+        "composition": "SCENE-LOW",
+        "shot": "SCENE-LOW",
+        "shot_drawn": true,
+        "beat_index": 4,
+        "beat_total": 6,
+        "variant": 4,
+        "hero_headline": false,
+        "emphasis_beat": false,
+        "vertical": false,
+        "dark": false,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": false,
+          "style": "POP_SOFT",
+          "entrances": {
+            "headline": [
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_SOFT",
+              "POP_EMPHASIS"
+            ]
+          },
+          "number": null
+        },
+        "label": null,
+        "pull_phrase": null
+      },
+      "asset": {
+        "id": "entities/people/william-matthew-flinders-petrie.jpg",
+        "source": "commons",
+        "source_url": "https://commons.wikimedia.org/wiki/File:Sir_(William_Matthew)_Flinders_Petrie_by_George_Frederic_Watts.jpg",
+        "license": "Public domain",
+        "attribution": "Photo: George Frederic Watts / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "index": 5,
+      "kind": "EDITORIAL",
+      "visual_type": "MAP",
+      "canvas_composition": "SCENE-FULL",
+      "shot": "SCENE-FULL",
+      "ground": "#0E0E10",
+      "lead_in": null,
+      "headline": "Meretneith ruled Egypt",
+      "emphasis_word": "Meretneith",
+      "scene_description": "An atmospheric editorial collage showing an ancient Egyptian cartouche bearing the name Meretneith carved in stone against a dark background, glowing softly with an accent light.",
+      "named_entities": [
+        {
+          "type": "person",
+          "name": "Meretneith"
+        },
+        {
+          "type": "number",
+          "name": "5000"
+        }
+      ],
+      "entity_anchor_word": "Meretneith",
+      "concepts": [],
+      "motion_tier": "major",
+      "camera_focus": [
+        {
+          "at_percent": 0.5,
+          "target": "photo"
+        }
+      ],
+      "persists_from": null,
+      "match_cut_prev": false,
+      "text_entrance": "POP_HARD",
+      "visual_events": [
+        {
+          "type": "revelation",
+          "label": "Meretneith rule"
+        }
+      ],
+      "capabilities": [
+        "evidence"
+      ],
+      "objects": {},
+      "typography_direction": {
+        "phrase": "Meretneith ruled Egypt",
+        "why": null,
+        "moment": "key_fact",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": null
+      },
+      "label": null,
+      "pull_phrase": null,
+      "planner_chose_type": true,
+      "data": {
+        "place": "Egypt"
+      },
+      "visual_headline": "Meretneith ruled Egypt",
+      "compiledScene": {
+        "narrative_role": "statement",
+        "mechanism": "CAPABILITY",
+        "reason": "capability-based scene",
+        "subject": "",
+        "material": "abstract",
+        "objects": [
+          {
+            "kind": "document",
+            "anchor": "center",
+            "motion": "reveal",
+            "scale": 1,
+            "label": "Meretneith rule"
+          }
+        ],
+        "shots": [
+          {
+            "phase": 0,
+            "phaseDuration": 1,
+            "camera": "hold",
+            "focus": "center"
+          }
+        ],
+        "typography": {
+          "role": "primary",
+          "style": "kinetic",
+          "emphasis_words": []
+        }
+      },
+      "entrance_style": "visual-first",
+      "animation_family": "count-up",
+      "animations": {
+        "headline": "TYPE_IN",
+        "label": "RISE_FROM_BASE",
+        "number": "SNAP_IN"
+      },
+      "recent_animations": [
+        "RISE_FROM_BASE",
+        "SCALE_PUNCH",
+        "MASK_CLOSE",
+        "FADE_LIFT",
+        "TYPE_IN"
+      ],
+      "narration": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+      "reason": "An atmospheric editorial collage showing an ancient Egyptian cartouche bearing the name Meretneith carved in stone against a dark background, glowing softly with an accent light.",
+      "emotional_weight": "sharp",
+      "carries_forward": null,
+      "headline_zone": "top",
+      "chart_zone": "middle",
+      "caption_zone": "bottom",
+      "ground_source": "hex",
+      "canvas": {
+        "visual_type": "MAP",
+        "data": {
+          "place": "Egypt"
+        },
+        "sentence": "Meretneith ruled ancient Egypt more than 5000 years ago.",
+        "lead_in": null,
+        "headline": "Meretneith ruled Egypt",
+        "emphasis_word": "Meretneith",
+        "emphasis_words": [],
+        "photo": null,
+        "motion_tier": "major",
+        "camera_focus": [
+          {
+            "at_percent": 0.5,
+            "target": "photo"
+          }
+        ],
+        "persists_from": null,
+        "match_cut_prev": false,
+        "named_entities": [
+          {
+            "type": "person",
+            "name": "Meretneith"
+          },
+          {
+            "type": "number",
+            "name": "5000"
+          }
+        ],
+        "hero_cutout": null,
+        "text_entrance": "POP_HARD",
+        "headline_zone": "top",
+        "chart_zone": "middle",
+        "caption_zone": "bottom",
+        "ground_color": "#0E0E10",
+        "entrance_style": "visual-first",
+        "anchor_word": "Meretneith",
+        "composition": "MAP-CENTERED",
+        "shot": "SCENE-FULL",
+        "shot_drawn": false,
+        "flag_option": {
+          "asset": "flags/eg.png",
+          "region": "country:EGY",
+          "name": "Egypt",
+          "aspect": 1.5005861664712778,
+          "source_url": "https://flagcdn.com/w1280/eg.png",
+          "license": "Public domain (a national / state flag)",
+          "credit": "flagcdn.com"
+        },
+        "label": null,
+        "pull_phrase": null,
+        "anim": {},
+        "kinetic": {
+          "seed": "1",
+          "edge": true,
+          "style": "POP_HARD",
+          "entrances": {
+            "headline": [
+              "POP_HARD",
+              "POP_HARD",
+              "POP_HARD"
+            ]
+          },
+          "number": null
+        }
+      },
+      "concept_visuals": [],
+      "ladder_visual": {
+        "visual_type": "MAP",
+        "data": {
+          "place": "Egypt"
+        },
+        "map": "Egypt"
+      },
+      "flag_option": {
+        "asset": "flags/eg.png",
+        "region": "country:EGY",
+        "name": "Egypt",
+        "aspect": 1.5005861664712778,
+        "source_url": "https://flagcdn.com/w1280/eg.png",
+        "license": "Public domain (a national / state flag)",
+        "credit": "flagcdn.com"
+      }
+    }
+  ],
+  "composedBeats": 0,
+  "compositionIssues": [],
+  "compilationReport": [
+    {
+      "beat": 1,
+      "errors": [
+        "scene covers only 26% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 26% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    },
+    {
+      "beat": 2,
+      "errors": [
+        "scene covers only 29% of the frame (minimum 35%) — this is the empty-frame defect: add objects, raise a count, or use a larger primitive (grid, field, document, vessel)"
+      ],
+      "warnings": [
+        "Scene coverage 29% is below minimum 35% — NOT adding a ground plane (one drawing per beat; the field panel is no longer drawn)"
+      ]
+    }
+  ],
+  "capabilityDistribution": {
+    "contrast": 1,
+    "revelation": 3,
+    "typographic_emphasis": 1,
+    "comparison": 1,
+    "evidence": 1
+  },
+  "mechanismDistribution": "CAPABILITY:revelation:2 CAPABILITY:contrast:1 TYPOGRAPHY:1 ACTION_CONSEQUENCE:1 CAPABILITY:evidence:1",
+  "compositionsDropped": [],
+  "plannerDecisions": {
+    "grounds": {
+      "#F5EFE0": 2,
+      "white": 2,
+      "#0E0E10": 2
+    },
+    "types": {
+      "declared": 6,
+      "kept": 5,
+      "ungrounded": 1,
+      "defaultedType": 0
+    },
+    "compositionMappings": [
+      {
+        "beat": 0,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 1,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 3,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 4,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 4,
+        "field": "canvas_composition",
+        "wrote": "SCENE-LOW",
+        "mappedTo": "SCENE-FULL"
+      },
+      {
+        "beat": 5,
+        "field": "visual_type",
+        "wrote": "AI_IMAGE",
+        "mappedTo": "SCENE-FULL"
+      }
+    ],
+    "compositions_used": {
+      "counts": {
+        "SCENE-FULL": 3,
+        "PORTRAIT": 1,
+        "TYPE-FULL": 1,
+        "DOCUMENT": 1
+      },
+      "n": 6,
+      "top": "SCENE-FULL",
+      "topShare": 0.5,
+      "templated": false
+    },
+    "styleSpec": null
+  },
+  "variety": {
+    "type_full": 1,
+    "beats": 6,
+    "max_type": 2,
+    "adjacent_type": 0,
+    "max_consecutive_same": 1,
+    "distinct_compositions": 5,
+    "converted": 0,
+    "entrance_styles": [
+      "together",
+      "staggered",
+      "visual-first",
+      "together",
+      "staggered",
+      "visual-first"
+    ]
+  },
+  "recent_animations": [
+    [
+      "CUT_IN"
+    ],
+    [
+      "CUT_IN",
+      "SPLIT_REVEAL"
+    ],
+    [
+      "CUT_IN",
+      "SPLIT_REVEAL",
+      "LETTER_STAGGER"
+    ],
+    [
+      "SPLIT_REVEAL",
+      "LETTER_STAGGER",
+      "SCALE_PUNCH"
+    ],
+    [
+      "LETTER_STAGGER",
+      "SCALE_PUNCH",
+      "FADE_LIFT"
+    ],
+    [
+      "SCALE_PUNCH",
+      "FADE_LIFT",
+      "TYPE_IN",
+      "RISE_FROM_BASE",
+      "SNAP_IN"
+    ]
+  ],
+  "visual_summary": {
+    "beats": 6,
+    "pngs": 3,
+    "no_concept": 0
+  },
+  "shots_final": {
+    "shots": [
+      "FIGURE",
+      "PHOTO-EDGE",
+      "AS-RESOLVED",
+      "HERO-STACK",
+      "SCENE-FULL",
+      "FIGURE"
+    ],
+    "problems": []
+  },
+  "entity_report": {
+    "resolved": [
+      "beat 1: person \"William Matthew Flinders Petrie\" -> entities/people/william-matthew-flinders-petrie.jpg (found, commons, Public domain)",
+      "beat 3: institution \"Scientific American\" -> logo cutouts-live/1/3-scientific-american-logo.png (found)",
+      "beat 4: person \"William Matthew Flinders Petrie\" -> entities/people/william-matthew-flinders-petrie.jpg (found, commons, Public domain)"
+    ],
+    "fell_back": [
+      "beat 1: place \"Abydos\": not confirmed as the script's place: UNSURE — no Wikipedia summary to compare against",
+      "beat 2: person \"Djer\": no verified portrait of \"Djer\" (2 candidate(s) rejected)"
+    ],
+    "rejected": [],
+    "name_cards": []
+  }
+}

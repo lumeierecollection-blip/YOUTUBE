@@ -1,0 +1,88 @@
+{
+  "channel_id": "1",
+  "topic_slug": "oj-simpson-1994-murders-unsealed-files-cover-up",
+  "format": "shorts",
+  "hook": "Newly unsealed records from October 2026 expose a secret helper in the 1994 murders.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "Newly unsealed records from October 2026 expose a secret helper in the 1994 murders.",
+      "visual_cue": "Close up of unsealed archival court documents on a dark wooden desk.",
+      "sfx_cue": "Low documentary tension hit",
+      "b_roll": [
+        "Archival court documents unsealed in 2026"
+      ],
+      "animation_cue": "Fade in",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "Unsealed 2026 Files"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:20",
+      "voiceover": "In 1994, Nicole Brown Simpson and Ron Goldman were killed in Los Angeles. Federal documents reviewed by the New York Times revealed new details. Where did the potential murder weapon go?",
+      "visual_cue": "Historical photograph of Los Angeles crime scene tape from 1994.",
+      "sfx_cue": "Subtle document paper rustle",
+      "b_roll": [
+        "Los Angeles 1994 crime scene archive footage"
+      ],
+      "animation_cue": "Slow push in",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "1994 Crime Scene Files"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:27",
+      "voiceover": "Convicted drug smuggler Joseph Ippolito had a brother who helped.",
+      "visual_cue": "Newspaper clipping headline from The Guardian and CBS News reports.",
+      "sfx_cue": "Dramatic riser note",
+      "b_roll": [
+        "CBS News and The Guardian reports archive"
+      ],
+      "animation_cue": "Zoom in on headline text",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "The Brother's Confession"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:45",
+      "voiceover": "Joseph Ippolito and his brother helped O.J. Simpson dispose of the weapon. Convicted drug smuggler Joseph Ippolito died in 2006 after years on the run. CBS News and The Times detailed records about Joseph Ippolito.",
+      "visual_cue": "Archival portrait photograph of Joseph Ippolito next to court papers.",
+      "sfx_cue": "Deep bass drop",
+      "b_roll": [
+        "Joseph Ippolito federal investigative records"
+      ],
+      "animation_cue": "Slide right",
+      "transition_out": "Cut",
+      "text_overlay": {
+        "text": "Disposing of the Weapon"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:45-0:52",
+      "voiceover": "The 1994 case files remain sealed no longer.",
+      "visual_cue": "Wide shot of federal archive storage room with stacked case files.",
+      "sfx_cue": "Gentle documentary fade out",
+      "b_roll": [
+        "Federal court archive room 2026"
+      ],
+      "animation_cue": "Fade to black",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "1994 Files Unsealed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://mynewsla.com/crime/2026/10/18/nyt-mob-informant-may-have-helped-o-j-simpson-at-1994-murder-scene",
+    "https://www.theguardian.com/us-news/2026/oct/18/oj-simpson-case-times-report",
+    "https://www.cbsnews.com/news/oj-simpson-1994-murders-unsealed-files-help-cover-up"
+  ]
+}

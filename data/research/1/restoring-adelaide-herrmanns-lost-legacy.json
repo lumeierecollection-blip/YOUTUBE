@@ -1,0 +1,111 @@
+{
+  "topic_slug": "restoring-adelaide-herrmanns-lost-legacy",
+  "strongest_angle": "Examine how 19th-century illusionist Adelaide Herrmann ruled the global stage for nearly sixty years, famously performing the dangerous bullet catch trick and touring a massive solo act after her husband Alexander's death, only for her memoir to remain lost for eight decades until Margaret Steele published it in 2012.",
+  "key_facts": [
+    {
+      "fact": "For nearly sixty years, Adelaide Herrmann lived from 1853 to 1932 and ruled the global stage as a legendary illusionist.",
+      "source_url": "https://www.nypl.org/events/programs/2026/10/05/memoirs-magic-queen-restoring-adelaide-herrmanns-lost-legacy",
+      "source_name": "The New York Public Library",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 1875, Adelaide married magician Alexander Herrmann at City Hall, where New York City Mayor William H. Wickham performed the ceremony.",
+      "source_url": "https://en.wikipedia.org/wiki/Adelaide_Herrmann",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "In 2012, researcher Margaret Steele published Adelaide Herrmann's memoir, which had been lost for eight decades following her death.",
+      "source_url": "https://magicana.ca/exhibition/adelaide-herrmann",
+      "source_name": "Magicana",
+      "confidence": "high"
+    },
+    {
+      "fact": "At the peak of her career, Adelaide Herrmann was heralded as the Queen of Magic and toured an enormously successful solo act for more than 25 years.",
+      "source_url": "https://ago.ca/agoinsider/queen-magic",
+      "source_name": "Art Gallery of Ontario",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Adelaide Herrmann birth year",
+      "value": 1853,
+      "unit": "year",
+      "source_url": "https://www.nypl.org/events/programs/2026/10/05/memoirs-magic-queen-restoring-adelaide-herrmanns-lost-legacy"
+    },
+    {
+      "label": "Adelaide Herrmann death year",
+      "value": 1932,
+      "unit": "year",
+      "source_url": "https://www.nypl.org/events/programs/2026/10/05/memoirs-magic-queen-restoring-adelaide-herrmanns-lost-legacy"
+    },
+    {
+      "label": "Marriage year to Alexander",
+      "value": 1875,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/Adelaide_Herrmann"
+    },
+    {
+      "label": "Memoir publication year by Margaret Steele",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://magicana.ca/exhibition/adelaide-herrmann"
+    },
+    {
+      "label": "Years lost for Adelaide Herrmann's memoir",
+      "value": 8,
+      "unit": "decades",
+      "source_url": "https://magicana.ca/exhibition/adelaide-herrmann"
+    },
+    {
+      "label": "Years Adelaide Herrmann toured her solo act",
+      "value": 25,
+      "unit": "years",
+      "source_url": "https://ago.ca/agoinsider/queen-magic"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Adelaide Herrmann",
+      "kind": "person"
+    },
+    {
+      "name": "Harry Houdini",
+      "kind": "person"
+    },
+    {
+      "name": "Alexander Herrmann",
+      "kind": "person"
+    },
+    {
+      "name": "Margaret Steele",
+      "kind": "person"
+    },
+    {
+      "name": "William H. Wickham",
+      "kind": "person"
+    },
+    {
+      "name": "City Hall",
+      "kind": "place"
+    },
+    {
+      "name": "New York",
+      "kind": "place"
+    },
+    {
+      "name": "The New York Public Library",
+      "kind": "organization"
+    },
+    {
+      "name": "Magicana",
+      "kind": "organization"
+    },
+    {
+      "name": "Art Gallery of Ontario",
+      "kind": "organization"
+    }
+  ]
+}

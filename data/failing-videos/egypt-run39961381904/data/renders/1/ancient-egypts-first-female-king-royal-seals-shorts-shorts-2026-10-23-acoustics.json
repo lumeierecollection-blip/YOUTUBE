@@ -1,0 +1,73 @@
+{
+ "file": "ancient-egypts-first-female-king-royal-seals-shorts-script-vo.mp3",
+ "median_f0_hz": 202.53,
+ "rhythm": {
+  "pause_count": 15,
+  "pause_cv": 0.503,
+  "pause_mean_s": 0.274,
+  "silent_share": 0.0813,
+  "wps_cv": 0.201
+ },
+ "sentences": [
+  {
+   "f0_range_st": 11.6638,
+   "f0_slope_st": 1.1644,
+   "f0_std_st": 5.0268,
+   "index": 0,
+   "median_f0_hz": 210.53,
+   "pauses": 2,
+   "voiced": 0.3665,
+   "wps": 1.6453
+  },
+  {
+   "f0_range_st": 15.0332,
+   "f0_slope_st": 2.0755,
+   "f0_std_st": 6.6239,
+   "index": 1,
+   "median_f0_hz": 205.13,
+   "pauses": 1,
+   "voiced": 0.3161,
+   "wps": 2.0179
+  },
+  {
+   "f0_range_st": 13.9913,
+   "f0_slope_st": 1.6796,
+   "f0_std_st": 5.8211,
+   "index": 2,
+   "median_f0_hz": 216.22,
+   "pauses": 2,
+   "voiced": 0.2419,
+   "wps": 1.6279
+  },
+  {
+   "f0_range_st": 14.5146,
+   "f0_slope_st": 1.8248,
+   "f0_std_st": 6.0586,
+   "index": 3,
+   "median_f0_hz": 195.12,
+   "pauses": 1,
+   "voiced": 0.3536,
+   "wps": 2.6316
+  },
+  {
+   "f0_range_st": 13.8526,
+   "f0_slope_st": 1.9026,
+   "f0_std_st": 5.5867,
+   "index": 4,
+   "median_f0_hz": 183.91,
+   "pauses": 2,
+   "voiced": 0.2688,
+   "wps": 1.8182
+  },
+  {
+   "f0_range_st": 12.6298,
+   "f0_slope_st": 2.3174,
+   "f0_std_st": 6.4193,
+   "index": 5,
+   "median_f0_hz": 190.48,
+   "pauses": 4,
+   "voiced": 0.2267,
+   "wps": 1.5
+  }
+ ]
+}

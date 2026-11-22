@@ -1,0 +1,540 @@
+{
+  "generatedAt": "2026-09-22T07:48:28.635Z",
+  "source": "local",
+  "totalBeats": 8,
+  "iteration": 1,
+  "beats": [
+    {
+      "index": 0,
+      "mechanism": "TYPOGRAPHY",
+      "visual_headline": "Growing three",
+      "reason": "Rule A: hook is always TYPOGRAPHY",
+      "emphasis_words": [
+        "Growing",
+        "three"
+      ],
+      "visual_events": [
+        {
+          "type": "growth",
+          "label": "Growing three"
+        }
+      ],
+      "capabilities": [
+        "growth"
+      ],
+      "objects": {
+        "figure": "Growing three"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "block",
+            "anchor": "center",
+            "motion": "grow",
+            "label": "Growing three",
+            "emphasis": true
+          },
+          {
+            "kind": "field",
+            "anchor": "beside_subject",
+            "motion": "fade_in",
+            "label": "",
+            "emphasis": false
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "Growing three",
+        "why": "Rule-based: subject=\"three\", action=\"think\", number=none → PHYSICAL_GROWTH",
+        "moment": "hook",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"three\", action=\"think\", number=none → PHYSICAL_GROWTH",
+        "subject": "Growing three",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "Growing three",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"three\", action=\"think\", number=none → PHYSICAL_GROWTH",
+        "muted_read": "Growing three",
+        "why_visual": "Visualizes: Rule-based: subject=\"three\", action=\"think\", number=none → PHYSICAL_GROWTH",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 1,
+      "mechanism": "PROPORTIONAL_OBJECTS",
+      "visual_headline": "Comparing families",
+      "reason": "Rule-based: subject=\"families\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+      "emphasis_words": [
+        "Comparing",
+        "families"
+      ],
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "Comparing families"
+        }
+      ],
+      "capabilities": [
+        "comparison",
+        "population"
+      ],
+      "objects": {
+        "label_a": "A",
+        "label_b": "B"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "grow",
+            "label": "A",
+            "emphasis": false
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "grow",
+            "label": "B",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "Comparing families",
+        "why": "Rule-based: subject=\"families\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"families\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "subject": "Comparing families",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "Comparing families",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"families\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "muted_read": "Comparing families",
+        "why_visual": "Visualizes: Rule-based: subject=\"families\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 2,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "The standard advice says save three months.",
+      "reason": "Rule-based: subject=\"standard advice says\", action=\"save\", number=none → STATE_CHANGE",
+      "emphasis_words": [
+        "The",
+        "standard",
+        "advice"
+      ],
+      "visual_events": [
+        {
+          "type": "contrast",
+          "label": "The standard advice says save three months."
+        }
+      ],
+      "capabilities": [
+        "contrast"
+      ],
+      "objects": {
+        "label_a": "EXPECTED",
+        "label_b": "ACTUAL"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "static",
+            "label": "EXPECTED",
+            "emphasis": false
+          },
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "fade_in",
+            "label": "ACTUAL",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "The standard advice says save three months.",
+        "why": "Rule-based: subject=\"standard advice says\", action=\"save\", number=none → STATE_CHANGE",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"standard advice says\", action=\"save\", number=none → STATE_CHANGE",
+        "subject": "The standard advice says save three months.",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "The standard advice says save three months.",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"standard advice says\", action=\"save\", number=none → STATE_CHANGE",
+        "muted_read": "The standard advice says save three months.",
+        "why_visual": "Visualizes: Rule-based: subject=\"standard advice says\", action=\"save\", number=none → STATE_CHANGE",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 3,
+      "mechanism": "VISIBLE_CONSUMPTION",
+      "visual_headline": "average job depleting",
+      "reason": "Rule-based: subject=\"average job\", action=\"search\", number=none → VISIBLE_CONSUMPTION",
+      "emphasis_words": [
+        "average",
+        "job",
+        "depleting"
+      ],
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "average job depleting"
+        }
+      ],
+      "capabilities": [
+        "depletion"
+      ],
+      "objects": {
+        "figure": "average job depleting"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "static",
+            "label": "total",
+            "emphasis": false
+          },
+          {
+            "kind": "block",
+            "anchor": "overlay",
+            "motion": "shrink",
+            "label": "average job depleting",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "average job depleting",
+        "why": "Rule-based: subject=\"average job\", action=\"search\", number=none → VISIBLE_CONSUMPTION",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"average job\", action=\"search\", number=none → VISIBLE_CONSUMPTION",
+        "subject": "average job depleting",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "average job depleting",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"average job\", action=\"search\", number=none → VISIBLE_CONSUMPTION",
+        "muted_read": "average job depleting",
+        "why_visual": "Visualizes: Rule-based: subject=\"average job\", action=\"search\", number=none → VISIBLE_CONSUMPTION",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 4,
+      "mechanism": "VISIBLE_CONSUMPTION",
+      "visual_headline": "single emergency room visit depleting",
+      "reason": "Rule-based: subject=\"single emergency room visit\", action=\"add\", number=none → VISIBLE_CONSUMPTION",
+      "emphasis_words": [
+        "single",
+        "emergency",
+        "room"
+      ],
+      "visual_events": [
+        {
+          "type": "depletion",
+          "label": "single emergency room visit depleting"
+        }
+      ],
+      "capabilities": [
+        "depletion"
+      ],
+      "objects": {
+        "figure": "single emergency room visit depleting"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "stack",
+            "anchor": "center",
+            "motion": "static",
+            "label": "total",
+            "emphasis": false
+          },
+          {
+            "kind": "block",
+            "anchor": "overlay",
+            "motion": "shrink",
+            "label": "single emergency room visit depleting",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "single emergency room visit depleting",
+        "why": "Rule-based: subject=\"single emergency room visit\", action=\"add\", number=none → VISIBLE_CONSUMPTION",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"single emergency room visit\", action=\"add\", number=none → VISIBLE_CONSUMPTION",
+        "subject": "single emergency room visit depleting",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "single emergency room visit depleting",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"single emergency room visit\", action=\"add\", number=none → VISIBLE_CONSUMPTION",
+        "muted_read": "single emergency room visit depleting",
+        "why_visual": "Visualizes: Rule-based: subject=\"single emergency room visit\", action=\"add\", number=none → VISIBLE_CONSUMPTION",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 5,
+      "mechanism": "EVIDENCE_FIGURE",
+      "visual_headline": "family",
+      "reason": "Rule-based: subject=\"family\", action=\"recommend\", number=none → EVIDENCE_FIGURE",
+      "emphasis_words": [
+        "family"
+      ],
+      "visual_events": [
+        {
+          "type": "evidence",
+          "label": "family"
+        }
+      ],
+      "capabilities": [
+        "evidence",
+        "accumulation"
+      ],
+      "objects": {
+        "figure": "family"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "grow",
+            "label": "family",
+            "count": 1,
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "family",
+        "why": "Rule-based: subject=\"family\", action=\"recommend\", number=none → EVIDENCE_FIGURE",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"family\", action=\"recommend\", number=none → EVIDENCE_FIGURE",
+        "subject": "family",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "family",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"family\", action=\"recommend\", number=none → EVIDENCE_FIGURE",
+        "muted_read": "family",
+        "why_visual": "Visualizes: Rule-based: subject=\"family\", action=\"recommend\", number=none → EVIDENCE_FIGURE",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 6,
+      "mechanism": "STATE_CHANGE",
+      "visual_headline": "Start with one extra month this year.",
+      "reason": "Rule-based: subject=\"one\", action=\"start\", number=none → STATE_CHANGE",
+      "emphasis_words": [
+        "Start",
+        "with",
+        "one"
+      ],
+      "visual_events": [
+        {
+          "type": "contrast",
+          "label": "Start with one extra month this year."
+        }
+      ],
+      "capabilities": [
+        "contrast"
+      ],
+      "objects": {
+        "label_a": "EXPECTED",
+        "label_b": "ACTUAL"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "static",
+            "label": "EXPECTED",
+            "emphasis": false
+          },
+          {
+            "kind": "field",
+            "anchor": "center",
+            "motion": "fade_in",
+            "label": "ACTUAL",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "Start with one extra month this year.",
+        "why": "Rule-based: subject=\"one\", action=\"start\", number=none → STATE_CHANGE",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"one\", action=\"start\", number=none → STATE_CHANGE",
+        "subject": "Start with one extra month this year.",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "Start with one extra month this year.",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"one\", action=\"start\", number=none → STATE_CHANGE",
+        "muted_read": "Start with one extra month this year.",
+        "why_visual": "Visualizes: Rule-based: subject=\"one\", action=\"start\", number=none → STATE_CHANGE",
+        "graph_justified": false
+      }
+    },
+    {
+      "index": 7,
+      "mechanism": "TYPOGRAPHY",
+      "visual_headline": "Comparing difference",
+      "reason": "Rule B: CTA is always TYPOGRAPHY",
+      "emphasis_words": [
+        "Comparing",
+        "difference"
+      ],
+      "visual_events": [
+        {
+          "type": "comparison",
+          "label": "Comparing difference"
+        }
+      ],
+      "capabilities": [
+        "comparison",
+        "population"
+      ],
+      "objects": {
+        "label_a": "A",
+        "label_b": "B"
+      },
+      "composition": {
+        "objects": [
+          {
+            "kind": "bar",
+            "anchor": "left",
+            "motion": "grow",
+            "label": "A",
+            "emphasis": false
+          },
+          {
+            "kind": "bar",
+            "anchor": "right",
+            "motion": "grow",
+            "label": "B",
+            "emphasis": true
+          }
+        ]
+      },
+      "carries_forward": null,
+      "emotional_weight": "calm",
+      "typography_direction": {
+        "phrase": "Comparing difference",
+        "why": "Rule-based: subject=\"difference\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "moment": "statement",
+        "single_line": true,
+        "not_a_headline": true,
+        "not_a_transcript": true,
+        "relation_to_visual": "Text reinforces the narration"
+      },
+      "direction": {
+        "narrative_purpose": "Rule-based: subject=\"difference\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "subject": "Comparing difference",
+        "environment": "clean data void",
+        "action_start": "empty",
+        "action_end": "populated",
+        "camera": "hold",
+        "motion": "fade_in",
+        "typography": "Comparing difference",
+        "sound": "silence",
+        "consequence": "Rule-based: subject=\"difference\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "muted_read": "Comparing difference",
+        "why_visual": "Visualizes: Rule-based: subject=\"difference\", action=\"none\", number=none → PROPORTIONAL_OBJECTS",
+        "graph_justified": false
+      }
+    }
+  ]
+}

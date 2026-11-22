@@ -1,0 +1,89 @@
+{
+  "channel_id": "1",
+  "topic_slug": "library-of-virginia-free-negro-registers",
+  "format": "shorts",
+  "hook": "Ninety-nine historic volumes reveal personal narratives that history almost forgot across Virginia.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:04",
+      "voiceover": "Ninety-nine historic volumes reveal personal narratives that history almost forgot across Virginia.",
+      "visual_cue": "Close up of archival records in the Library of Virginia.",
+      "sfx_cue": "Page turn rustle",
+      "b_roll": [
+        "Library of Virginia archive room"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "99 Historic Volumes"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:04-0:18",
+      "voiceover": "Library of Virginia completed a five-year archival preservation effort for Virginia Untold: The African American Narrative. Volumes originate from nearly 60 localities statewide. Lydia Neuroth traveled to Southwest Virginia for courthouse archiving. Where did Lydia Neuroth find these fragile registry pages?",
+      "visual_cue": "Archivist handling historical documents in Virginia",
+      "sfx_cue": "Subtle paper shuffle",
+      "b_roll": [
+        "Library of Virginia headquarters",
+        "Southwest Virginia courthouse archives"
+      ],
+      "animation_cue": "slide up",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "5-Year Preservation Effort"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:25",
+      "voiceover": "Except these records span nearly 60 localities statewide.",
+      "visual_cue": "Map graphic showing Virginia localities",
+      "sfx_cue": "Document stamp",
+      "b_roll": [
+        "Historical map of Virginia regions"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "60 Virginia Localities"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:40",
+      "voiceover": "Library of Virginia published ninety-nine digitized Free Negro Registers online. Lydia Neuroth uncovered hidden entries across Southwest Virginia.",
+      "visual_cue": "Digital screen displaying scanned historical register pages",
+      "sfx_cue": "Digital chime",
+      "b_roll": [
+        "Computer screen showing digital archive portal"
+      ],
+      "animation_cue": "pan right",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "99 Registers Digitized Online"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:48",
+      "voiceover": "Ninety-nine preserved volumes remain accessible through Virginia Untold.",
+      "visual_cue": "Wide shot of archival storage shelves at Library of Virginia",
+      "sfx_cue": "Soft ambient room tone",
+      "b_roll": [
+        "Library of Virginia archive shelves"
+      ],
+      "animation_cue": "fade out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Virginia Untold"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lva.virginia.gov/about/news/press/release/2026-10-15",
+    "https://www.linkedin.com/posts/libraryofvirginia_today-were-announcing-a-huge-milestone-in-activity-7516570358871654401-aHo7",
+    "https://uncommonwealth.lva.virginia.gov/blog/2025/01/22/hittin-the-road-virginia-untold-style"
+  ]
+}

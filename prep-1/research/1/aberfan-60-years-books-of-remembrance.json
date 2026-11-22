@@ -1,0 +1,74 @@
+{
+  "topic_slug": "aberfan-60-years-books-of-remembrance",
+  "strongest_angle": "Examining how the National Library of Wales has created new copies of the Aberfan Book of Remembrance to properly honour the 116 children and 28 adults who lost their lives in the 1966 disaster.",
+  "key_facts": [
+    {
+      "fact": "The National Library of Wales completed a special commemorative project to create new copies of the Aberfan Book of Remembrance ahead of the 60th anniversary commemorations on 20 July 2026.",
+      "source_url": "https://www.library.wales/news/article/new-aberfan-book-of-remembrance-presented-to-community-ahead-of-60th-anniversary-commemorations",
+      "source_name": "National Library of Wales",
+      "confidence": "high"
+    },
+    {
+      "fact": "The National Library of Wales created new copies of the Aberfan Book of Remembrance to ensure the memory of 116 children and 28 adults who lost their lives in the disaster on 21 October 1966 continue to be honoured.",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976",
+      "source_name": "Cambrian News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Davies, now 68 and chair of the Aberfan Memorial Charity, returned to the family farmhouse on the northern side of the village after a career as a finance solicitor.",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Victims who were children",
+      "value": 116,
+      "unit": "children",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976"
+    },
+    {
+      "label": "Victims who were adults",
+      "value": 28,
+      "unit": "adults",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976"
+    },
+    {
+      "label": "Age of Davies",
+      "value": 68,
+      "unit": "years",
+      "source_url": "https://www.theguardian.com/uk-news/2026/oct/20/telling-our-story-means-it-matters-60-years-after-aberfan-disaster-survivors-fight-to-keep-memory-alive"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "National Library of Wales",
+      "kind": "organization"
+    },
+    {
+      "name": "Aberfan",
+      "kind": "place"
+    },
+    {
+      "name": "Pantglas primary school",
+      "kind": "organization"
+    },
+    {
+      "name": "Aberfan Memorial Charity",
+      "kind": "organization"
+    },
+    {
+      "name": "Davies",
+      "kind": "person"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The National Library of Wales has created new copies of the Aberfan Book of Remembrance to ensure the memory of 116 children and 28 adults who lost their lives in the disaster on 21 October 1966 continue to be honoured.",
+      "speaker": "Julie McNicholls Vale",
+      "source_name": "Cambrian News",
+      "source_url": "https://www.cambrian-news.co.uk/news/entertainment/national-library-honours-aberfan-disaster-victims-with-new-book-of-remembrance-930976"
+    }
+  ]
+}

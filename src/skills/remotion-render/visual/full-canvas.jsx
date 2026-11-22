@@ -36,8 +36,11 @@
  *             only pops
  *   data      labels, kickers, chart labels, captions: POP_SOFT
  *   emphasis  the one-word beat: POP_EMPHASIS
- * Beat transitions never carry the incoming beat's text in: the header is
- * drawn outside the transition layer and pops once the outgoing beat is gone.
+ * Beat transitions (transitions.js, measured from the reference videos
+ * 2026-10-18): a hard cut, then the new scene's groups enter — a cutout band
+ * rises in from below with motion blur, a full-bleed photo settles from a
+ * slight zoom, text is there and builds word by word — under a slow camera
+ * push. Nothing of the outgoing beat survives the cut.
  *
  * Camera through information (beat.canvas.camera_focus): each focus event
  * {at_percent, target} moves the camera over 0.7 s to frame that element
@@ -1642,16 +1645,28 @@ function PopGroups({ beat, idx, fps, accent, state, live = null }) {
   return groups.map((g) => {
     const p = state(g);
     if (p.o <= 0.001) return null;
+    // The band's clip rides WITH it (it is on the moving layer): a band travelling in from below
+    // enters from the frame's edge, still cut to its own band — the header drawn in the same
+    // layer never shows inside it.
     const clip = g.clip ? `inset(${g.clip[0]}px 0 ${FRAME.h - g.clip[1]}px 0)` : "none";
+    const blur = p.blur > 0.5 ? Math.round(p.blur) : 0, fid = `mb-${idx}-${g.key}-${blur}`;
+    const dir = Math.hypot(p.tx || 0, p.ty || 0) || 1;
     return (
-      <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, clipPath: clip, opacity: p.o }}>
-        <div style={{ position: "absolute", inset: 0, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
+      <div key={`${idx}-${g.key}`} style={{ position: "absolute", inset: 0, opacity: p.o,
+        transform: `translate(${(p.tx || 0).toFixed(1)}px, ${(p.ty || 0).toFixed(1)}px)`, filter: blur ? `url(#${fid})` : "none" }}>
+        {blur ? (
+          <svg width="0" height="0" style={{ position: "absolute" }}>
+            <filter id={fid} x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation={`${(blur * Math.abs(p.tx || 0) / dir).toFixed(1)} ${(blur * Math.abs(p.ty || 0) / dir).toFixed(1)}`} />
+            </filter>
+          </svg>
+        ) : null}
+        <div style={{ position: "absolute", inset: 0, clipPath: clip, transformOrigin: `${g.cx.toFixed(0)}px ${g.cy.toFixed(0)}px`, transform: `scale(${p.s.toFixed(4)})` }}>
           {/* Part D (owner's spec 2026-10-03, "motion on every beat"): every group is drawn at the
               beat's LIVE frame, so its own build plays — words pop one by one, bars grow, the
               line and the arrows draw, nodes pop in sequence, the number counts up, the map
               outlines its region. (Until today the compositor drew every group SETTLED.) Word
-              exits are off (exitAt 9), so nothing leaves before the beat's pop-out. The
-              outgoing beat is drawn at its last frame: complete. */}
+              exits are off (exitAt 9), so nothing leaves before the hard cut. */}
           <BeatCanvas beat={beat} idx={idx} bodyLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : settled} headerLocal={live != null ? Math.max(LIVE_HEAD_START, Math.min(beat.duration_frames - 1, live)) : headerSettled} fps={fps} accent={accent} hero={null} show={g.show} still photoShown={photoShown} />
         </div>
       </div>

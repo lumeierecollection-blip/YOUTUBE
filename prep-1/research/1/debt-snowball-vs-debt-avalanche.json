@@ -1,0 +1,57 @@
+{
+  "channel_id": "1",
+  "channel_name": "Money Mind",
+  "topic": "Debt Snowball vs Debt Avalanche: Which Actually Works",
+  "topic_slug": "debt-snowball-vs-debt-avalanche",
+  "format": "shorts",
+  "researched_at": "2026-08-03T00:00:00.000Z",
+  "source": "deep-research",
+  "strongest_angle": "The avalanche is mathematically 'better' and the snowball is 'worse' — but the whole debate is a $215 difference on an average debt load, while the real cost is not finishing at all. Paying off small debts first is the only thing that measurably predicts actually getting debt-free (Kellogg 6,000-client study). Best method = the one you don't quit.",
+  "hook_candidates": [
+    "The 'correct' way to pay off debt might be the one that costs you more.",
+    "The snowball vs avalanche debate is a $215 question. Choosing neither costs you $13,600.",
+    "Paying off your smallest debt first is mathematically wrong. It's also the only thing that predicts you'll actually finish."
+  ],
+  "key_facts": [
+    {
+      "fact": "In a study of roughly 6,000 debt-settlement clients, researchers at Northwestern's Kellogg School found that closing individual debt accounts predicted successfully eliminating overall debt — regardless of the dollar balance of the closed accounts. The number of accounts closed predicted finishing better than the dollar amount paid off.",
+      "source": "Gal, D. & McShane, B., 'Can Small Victories Help Win the War? Evidence from Consumer Debt Management', Journal of Marketing Research, 2012 — reproduced at blakemcshane.com/Papers/jmr_debt.pdf and Kellogg news articles",
+      "year": "2012"
+    },
+    {
+      "fact": "On a realistic $10,636 debt load at $500/month, the avalanche method finished in 27 months with $2,838 in interest vs the snowball's 28 months and $3,053 — a gap of just $215 and one month. The snowball closed its first account in month 4; the avalanche closed nothing until month 10.",
+      "source": "Untaught, 'Debt Snowball vs. Avalanche: Which One Actually Works?', getuntaught.com, 2026-07-20",
+      "year": "2026"
+    },
+    {
+      "fact": "A 1,000-profile simulation (Snowballr, 2026-01-15) found avalanche was cheaper in 70.3% of profiles, but the median savings was only $556 in interest. The 90th-percentile gap was $8,066, and it only appears when a high-APR balance hides behind several large low-APR balances.",
+      "source": "snowballr.io/research/debt-snowball-vs-avalanche-1000-scenarios, 2026-01-15",
+      "year": "2026"
+    },
+    {
+      "fact": "A 2026 simulation of 10,000 U.S. debtor profiles found avalanche beat snowball on total cost in 94% of profiles with an average $1,847 in savings; snowball won on adherence (the separate, documented behavior point), especially when the smallest balance could be cleared in 2-4 months.",
+      "source": "CC Payoff Calc, '2026 Debt Payoff Strategy Index', ccpayoffcalc.com, 2026-05-02",
+      "year": "2026"
+    },
+    {
+      "fact": "LendingTree's four-scenario study found the two methods nearly equally effective: on a realistic consumer the total paid differed by just $29 over 57 months ($17,039 avalanche vs $17,068 snowball). Savings only become large when a high-APR balance is significant.",
+      "source": "LendingTree, 'Debt Avalanche vs. Debt Snowball: Effectiveness', lendingtree.com, 2023-07-17",
+      "year": "2023"
+    },
+    {
+      "fact": "Quantifying the downside of the snowball: using the 2016 Survey of Consumer Finances, an economics study found the average household that follows the debt snowball pays an extra 1.8%-4.3% in interest, an aggregate transfer of roughly $46-54 billion from borrowers to lenders, hitting lower-income and Black households hardest.",
+      "source": "Hamilton, B., 'Two steps forward, one step back?', Southern Economic Journal 89(3), 2023 (via ideas.repec.org)",
+      "year": "2023"
+    },
+    {
+      "fact": "The real-world consensus from personal-finance communities (r/personalfinance, r/DaveRamsey, r/debtfree): 'Avalanche is mathematically better, snowball keeps people going.' A common pattern: 'I did the snowball and swear by it — it's not optimal, but it was optimal because I actually finished.'",
+      "source": "Reddit threads: r/personalfinance 1p6hjiz, r/DaveRamsey 1avv4wo, r/debtfree 1f6dhun",
+      "year": "2026"
+    }
+  ],
+  "practitioner_notes": "Debt-payoff is a proven recurring Shorts topic in 2026 (debt payoff challenge series, '3 buckets' prioritization videos, pay-off-with-me formats). The snowball/avalanche comparison is a staple because it is evergreen, numeric, and generates strong comments (people defend their method) — high comment/engagement potential for a Short.",
+  "open_questions": [
+    "Specific user debt profiles vary; the script should stay at the 'which to pick' decision level, not give personalized financial advice.",
+    "All dollar figures come from simulations/studies on US data; keep the framing general."
+  ]
+}

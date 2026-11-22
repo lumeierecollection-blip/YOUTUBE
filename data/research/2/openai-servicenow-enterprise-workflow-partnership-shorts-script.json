@@ -1,0 +1,91 @@
+{
+  "channel_id": "2",
+  "topic_slug": "openai-servicenow-enterprise-workflow-partnership",
+  "format": "shorts",
+  "hook": "On October 28, 2026, OpenAI and ServiceNow signed an expanded partnership deal in Santa Clara.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:03",
+      "voiceover": "On October 28, 2026, OpenAI and ServiceNow signed an expanded partnership deal in Santa Clara.",
+      "visual_cue": "Text overlay showing the October 28 date and Santa Clara location.",
+      "sfx_cue": "sub drop",
+      "b_roll": [
+        "Santa Clara California street sign",
+        "OpenAI logo headquarters"
+      ],
+      "animation_cue": "zoom in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "October 28, 2026 Deal"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:03-0:15",
+      "voiceover": "Does this January 2026 foundation power development and security workflows?",
+      "visual_cue": "Display NYSE stock ticker interface alongside product workflow diagrams.",
+      "sfx_cue": "whoosh",
+      "b_roll": [
+        "NYSE stock exchange trading floor",
+        "ServiceNow software dashboard screen"
+      ],
+      "animation_cue": "pan right",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "NYSE: NOW Partnership"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:15-0:22",
+      "voiceover": "AI Affairs reported that the October 28, 2026 expansion covers security and employee workflows.",
+      "visual_cue": "Highlighting Business Wire press release document text on screen.",
+      "sfx_cue": "impact hit",
+      "b_roll": [
+        "Business Wire press release publication interface"
+      ],
+      "animation_cue": "pulse",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "Business Wire Record"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:22-0:35",
+      "voiceover": "OpenAI models integrate into ServiceNow to automate workflows on October 28, 2026. Santa Clara headquarters confirmed the October 28, 2026 rollout for OpenAI integration.",
+      "visual_cue": "Showing enterprise workflow automation steps connected in a sequence.",
+      "sfx_cue": "success chime",
+      "b_roll": [
+        "Santa Clara California building exterior",
+        "ChatGPT interface on office monitor"
+      ],
+      "animation_cue": "zoom out",
+      "transition_out": "fade",
+      "text_overlay": {
+        "text": "Agentic Development Tools"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:35-0:42",
+      "voiceover": "October 28, 2026 marked the exact expansion date.",
+      "visual_cue": "Displaying calendar date October 28, 2026 on screen.",
+      "sfx_cue": "bell ring",
+      "b_roll": [
+        "Calendar page showing October 28"
+      ],
+      "animation_cue": "fade in",
+      "transition_out": "cut",
+      "text_overlay": {
+        "text": "October 28, 2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://openai.com/index/openai-servicenow-partnership-expansion",
+    "https://www.businesswire.com/news/home/20261028776113/en/ServiceNow-and-OpenAI-accelerate-enterprise-AI-from-models-and-operations-to-cybersecurity-and-agentic-development",
+    "https://www.aiaffairs.com/corporate/openai-servicenow-expand-enterprise-workflow-partnership"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "channel_id": "48",
+  "topic_slug": "rigid-body-mechanics-wearable-sensors-joint-mapping",
+  "format": "shorts",
+  "hook": "A century‑old physics trick maps every joint with three sensors.",
+  "sections": [
+    {
+      "id": "setup",
+      "voiceover": "Engineers at Friedrich‑Alexander University Erlangen‑Nürnberg used a theorem with IMUs to locate joint centers in 2026. Each IMU holds three sensors—accelerometer, gyroscope, magnetometer—measuring motion. How many sensor types—three—enable this mapping?",
+      "text_overlay": null
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The 2016 study on this method has been cited 23 times, showing rapid adoption.",
+      "text_overlay": null
+    },
+    {
+      "id": "payoff",
+      "voiceover": "2026 Engineering paper proved the method pinpoints joint centers across the body. Three‑sensor IMUs achieved sub‑centimeter accuracy for each joint.",
+      "text_overlay": null
+    },
+    {
+      "id": "close",
+      "voiceover": "Three sensors unlock full‑body joint mapping in real time.",
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://bioengineer.org/simple-physics-trick-could-let-wearable-sensors-map-every-joint-in-your-body",
+    "https://doi.org/10.1016/j.jbiomech.2016.11.046"
+  ]
+}

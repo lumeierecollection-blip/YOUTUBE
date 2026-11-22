@@ -1,0 +1,72 @@
+{
+  "topic_slug": "workplace-financial-education-confidence-index",
+  "strongest_angle": "Workplace financial education programs provide a more reliable foundation for long-term financial confidence and positive behavioral change than higher income alone, according to the new Voya Financial Confidence Index.",
+  "key_facts": [
+    {
+      "fact": "The America’s Financial Confidence Index from Voya Financial, Inc. identifies a significant gap between how U.S. workers feel about their finances and their actual daily financial habits.",
+      "source_url": "https://www.voya.com/news/2026/10/new-voya-index-finds-workplace-education-drives-financial-confidence-and-positive",
+      "source_name": "Voya Financial",
+      "confidence": "high"
+    },
+    {
+      "fact": "Research from the Employee Benefit Research Institute (EBRI) indicates that employees who engage in employer-provided financial education report higher levels of literacy, satisfaction, and confidence.",
+      "source_url": "https://www.investmentnews.com/retirement-planning/workplace-financial-education-linked-to-stronger-financial-habits-but-participation-remains-low/267361",
+      "source_name": "InvestmentNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "A study by the FINRA Foundation found that over 50 percent of participants in workplace-based financial education programs had household incomes exceeding 150,000 dollars.",
+      "source_url": "https://www.finrafoundation.org/sites/finrafoundation/files/2026-07/From_the_Break_Room_to_the_Bank.pdf",
+      "source_name": "FINRA Foundation",
+      "confidence": "high"
+    },
+    {
+      "fact": "Employee Benefit News reports a 21-point disparity separating worker confidence in retirement planning from other critical financial expectations.",
+      "source_url": "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits",
+      "source_name": "Employee Benefit News",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Percentage of workplace financial education participants with household income over $150,000",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://www.finrafoundation.org/sites/finrafoundation/files/2026-07/From_the_Break_Room_to_the_Bank.pdf"
+    },
+    {
+      "label": "Income threshold for majority of financial education participants",
+      "value": 150000,
+      "unit": "dollars",
+      "source_url": "https://www.finrafoundation.org/sites/finrafoundation/files/2026-07/From_the_Break_Room_to_the_Bank.pdf"
+    },
+    {
+      "label": "Point gap between retirement confidence and other financial expectations",
+      "value": 21,
+      "unit": "points",
+      "source_url": "https://www.benefitnews.com/news/Workplace-Financial-Education-Boosts-Employee-Financial-Habits"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Voya Financial, Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "America’s Financial Confidence Index",
+      "kind": "object"
+    },
+    {
+      "name": "Employee Benefit Research Institute",
+      "kind": "organization"
+    },
+    {
+      "name": "FINRA Foundation",
+      "kind": "organization"
+    },
+    {
+      "name": "Windsor, Conn.",
+      "kind": "place"
+    }
+  ]
+}

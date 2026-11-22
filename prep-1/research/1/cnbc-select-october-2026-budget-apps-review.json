@@ -1,0 +1,82 @@
+{
+  "topic_slug": "cnbc-select-october-2026-budget-apps-review",
+  "strongest_angle": "CNBC Select reviewed over two dozen budgeting apps in October 2026, highlighting Quicken Simplifi's pricing tiers and features alongside Quartz and Investopedia findings.",
+  "key_facts": [
+    {
+      "fact": "CNBC Select reviewed more than two dozen budgeting apps to evaluate their costs, features, and user ratings for 2026.",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps",
+      "source_name": "CNBC Select",
+      "confidence": "high"
+    },
+    {
+      "fact": "Quartz reported on October 8, 2026, that CNBC Select identified three standout budgeting apps built on different planning mechanisms.",
+      "source_url": "https://qz.com/best-budgeting-apps-2026",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Investopedia found You Need a Budget to be the best overall budgeting app due to its zero-based budgeting approach.",
+      "source_url": "https://www.investopedia.com/the-best-budgeting-apps-11725751",
+      "source_name": "Investopedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Quicken Simplifi costs $3.49 per month for the first year, which is 50 percent off before rising to $6.99 per month billed annually.",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps",
+      "source_name": "CNBC Select",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Quicken Simplifi promotional monthly cost",
+      "value": 3.49,
+      "unit": "dollars per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Quicken Simplifi standard monthly cost",
+      "value": 6.99,
+      "unit": "dollars per month",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Quicken Simplifi discount percentage",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    },
+    {
+      "label": "Quicken Simplifi free trial duration",
+      "value": 7,
+      "unit": "days",
+      "source_url": "https://www.cnbc.com/select/best-budgeting-apps"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "CNBC Select",
+      "kind": "organization"
+    },
+    {
+      "name": "Quicken Simplifi",
+      "kind": "organization"
+    },
+    {
+      "name": "Monarch Money",
+      "kind": "organization"
+    },
+    {
+      "name": "You Need a Budget",
+      "kind": "organization"
+    },
+    {
+      "name": "Quartz",
+      "kind": "organization"
+    },
+    {
+      "name": "Investopedia",
+      "kind": "organization"
+    }
+  ]
+}
