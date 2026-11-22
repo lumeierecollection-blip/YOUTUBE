@@ -1,0 +1,222 @@
+[
+  {
+    "section": "hook",
+    "incident": "Gyokeres tap-in vs penalty (reference example) / generic penalty value",
+    "who": "Gyokeres / general",
+    "timing": "0-60",
+    "required_visual": "Split comparison: tap-in vs penalty",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "probability",
+    "incident": "xG/penalty probability stats",
+    "who": "General",
+    "timing": "60-120",
+    "required_visual": "Stat graphic/explanation",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "fulham",
+    "incident": "Wilson one-on-one vs Fulham; Gravenberch foul context",
+    "who": "Harry Wilson / Fulham / Gravenberch",
+    "timing": "120-180",
+    "required_visual": "Match footage/reconstruction",
+    "asset": "RECONSTRUCTION NEEDED",
+    "source": "No Commons video/photo candidate found for Wilson/Fulham 2024 specific incident",
+    "rights": "N/A - reconstruction",
+    "status": "reconstruction-needed"
+  },
+  {
+    "section": "history",
+    "incident": "Penalty invention, William McCrum 1891",
+    "who": "Historical",
+    "timing": "180-240",
+    "required_visual": "Archive/graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "growth",
+    "incident": "VAR, modern preparation",
+    "who": "General",
+    "timing": "240-300",
+    "required_visual": "VAR/modern footage",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "palmer",
+    "incident": "Cole Palmer penalty scoring numbers",
+    "who": "Cole Palmer / Chelsea",
+    "timing": "300-360",
+    "required_visual": "Player footage/stats",
+    "asset": "ColePalmer22.jpg (candidate)",
+    "source": "https://commons.wikimedia.org/wiki/File:ColePalmer22.jpg",
+    "rights": "CC BY-SA 4.0 (candidate, not downloaded due to Wikimedia 429)",
+    "status": "sourced-not-downloaded"
+  },
+  {
+    "section": "comparison",
+    "incident": "Penalty vs high-quality open-play chance",
+    "who": "General",
+    "timing": "360-420",
+    "required_visual": "Comparison graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "welbeck",
+    "incident": "Wide attack/defender late challenge counterfactual",
+    "who": "General example",
+    "timing": "420-480",
+    "required_visual": "Reconstruction",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "var",
+    "incident": "VAR review atmosphere",
+    "who": "General",
+    "timing": "480-540",
+    "required_visual": "VAR footage/reconstruction",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "specialists",
+    "incident": "Harry Kane penalty record/specialist takers",
+    "who": "Harry Kane",
+    "timing": "540-600",
+    "required_visual": "Player footage/stats",
+    "asset": "FWC 2018 - Round of 16 - COL v ENG - Team England penalty shootout.jpg (candidate)",
+    "source": "https://commons.wikimedia.org/wiki/File:FWC_2018_-_Round_of_16_-_COL_v_ENG_-_Team_England_penalty_shootout.jpg",
+    "rights": "CC BY 3.0 (candidate, not downloaded due to Wikimedia 429)",
+    "status": "sourced-not-downloaded"
+  },
+  {
+    "section": "solutions",
+    "incident": "Rule/procedure solutions",
+    "who": "General",
+    "timing": "600-660",
+    "required_visual": "Graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "brentford",
+    "incident": "Brentford penalty pressure case study",
+    "who": "Brentford",
+    "timing": "660-720",
+    "required_visual": "Team footage/stats",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "counterfactual",
+    "incident": "Forward near corner of area, foul vs no foul",
+    "who": "General",
+    "timing": "720-780",
+    "required_visual": "Reconstruction/graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "creators",
+    "incident": "Penalty-winning vs assists/creative credit",
+    "who": "General",
+    "timing": "780-840",
+    "required_visual": "Graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "graph",
+    "incident": "Leading scorers total vs open play goals",
+    "who": "General",
+    "timing": "840-900",
+    "required_visual": "Chart",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "ethics",
+    "incident": "Incentives/behaviour",
+    "who": "General",
+    "timing": "900-960",
+    "required_visual": "Graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "shootout",
+    "incident": "Knockout shootout context",
+    "who": "General",
+    "timing": "960-1020",
+    "required_visual": "Shootout footage",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "pressure",
+    "incident": "Roberto Baggio 1994 World Cup final miss",
+    "who": "Roberto Baggio / Italy / 1994 WC final",
+    "timing": "1020-1080",
+    "required_visual": "Match footage/reconstruction",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "premier-league",
+    "incident": "Season accumulation of penalty decisions",
+    "who": "Premier League",
+    "timing": "1080-1140",
+    "required_visual": "Stats/compilation",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  },
+  {
+    "section": "close",
+    "incident": "Conclusion: keep drama, raise threshold",
+    "who": "General",
+    "timing": "1140-1147.6",
+    "required_visual": "Closing graphic",
+    "asset": "",
+    "source": "",
+    "rights": "",
+    "status": "unresolved"
+  }
+]

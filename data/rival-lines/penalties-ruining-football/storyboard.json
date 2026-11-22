@@ -81,7 +81,8 @@
         "type": "reference-adaptation",
         "treatment": "split-hook",
         "reference_start": "00:00",
-        "reference_end": "01:00"
+        "reference_end": "01:00",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -103,7 +104,8 @@
         "type": "reference-adaptation",
         "treatment": "xg-bars",
         "reference_start": "01:00",
-        "reference_end": "02:00"
+        "reference_end": "02:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -123,9 +125,10 @@
       "duration_sec": 60,
       "visual": {
         "type": "reference-adaptation",
-        "treatment": "rounded-action",
+        "treatment": "freeze-counterfactual",
         "reference_start": "02:00",
-        "reference_end": "03:00"
+        "reference_end": "03:00",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "football-action",
@@ -133,7 +136,7 @@
       },
       "kicker": "THE COUNTERFACTUAL",
       "title": "What did the foul replace?",
-      "caption": "The whistle can swap a fragile attack for a fixed shot.",
+      "caption": "Labelled reconstruction \u2014 Wilson/Fulham incident (specific footage not yet verified)",
       "narration": "Think about the difference between a one-on-one and a foul. A forward can beat the last defender, take a heavy touch and give the goalkeeper a chance. If the defender clips the same player a fraction earlier, the referee may award the most valuable restart in the sport. The attacking team does not receive the probability of the original chance; it receives a new chance with a higher baseline. That is why a harmless-looking collision can matter more than a brilliant piece of creation. The rule is consistent, but the reward can feel disconnected from the football that produced the incident.",
       "narration_start_sec": 120,
       "narration_end_sec": 180,
@@ -147,7 +150,8 @@
         "type": "reference-adaptation",
         "treatment": "history-timeline",
         "reference_start": "03:00",
-        "reference_end": "04:00"
+        "reference_end": "04:00",
+        "background": "#1A1A1A"
       },
       "media": {
         "asset_id": "match-atmosphere",
@@ -169,7 +173,8 @@
         "type": "reference-adaptation",
         "treatment": "var-timeline",
         "reference_start": "04:00",
-        "reference_end": "05:00"
+        "reference_end": "05:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "match-atmosphere",
@@ -191,7 +196,8 @@
         "type": "reference-adaptation",
         "treatment": "player-comparison",
         "reference_start": "05:00",
-        "reference_end": "06:00"
+        "reference_end": "06:00",
+        "background": "#5A1E3A"
       },
       "media": {
         "asset_id": "football-action",
@@ -199,7 +205,7 @@
       },
       "kicker": "GOALS ARE NOT EQUAL",
       "title": "What does a goal count for?",
-      "caption": "Open play and spot kicks tell different stories.",
+      "caption": "Cole Palmer \u2014 verified player photo pending download (CC BY-SA 4.0 candidate)",
       "narration": "Cole Palmer's recent scoring numbers show why the debate becomes personal. A player can be genuinely outstanding in open play and still receive a large boost from a steady stream of penalties. The two facts can coexist. The problem begins when a goals total is used as if every goal carried the same difficulty. Four finishes in one match may contain a penalty, a rebound, a long-range strike and a created chance, yet the headline number compresses them into one statistic. Penalties do not make a player fraudulent. They do make simple goal totals less informative than they appear.",
       "narration_start_sec": 300,
       "narration_end_sec": 360,
@@ -213,7 +219,8 @@
         "type": "reference-adaptation",
         "treatment": "split-comparison",
         "reference_start": "06:00",
-        "reference_end": "07:00"
+        "reference_end": "07:00",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -235,7 +242,8 @@
         "type": "reference-adaptation",
         "treatment": "freeze-counterfactual",
         "reference_start": "07:00",
-        "reference_end": "08:00"
+        "reference_end": "08:00",
+        "background": "#1A1A1A"
       },
       "media": {
         "asset_id": "football-action",
@@ -257,7 +265,8 @@
         "type": "reference-adaptation",
         "treatment": "var-freeze",
         "reference_start": "08:00",
-        "reference_end": "09:00"
+        "reference_end": "09:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "match-atmosphere",
@@ -279,7 +288,8 @@
         "type": "reference-adaptation",
         "treatment": "specialist-card",
         "reference_start": "09:00",
-        "reference_end": "10:00"
+        "reference_end": "10:00",
+        "background": "#5A1E3A"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -287,7 +297,7 @@
       },
       "kicker": "THE SPECIALIST",
       "title": "A rehearsed advantage",
-      "caption": "Technique turns a high-value chance into a routine.",
+      "caption": "Harry Kane \u2014 England penalty shootout photo candidate (CC BY 3.0, pending download)",
       "narration": "Specialist takers expose another uncomfortable truth. The very best penalty takers can turn a high-value chance into a near routine. Harry Kane's record, and the consistency of other elite finishers, show how much technique can be built around a stationary ball. That is a compliment to the taker, not an insult. But it also means that a team with one specialist can convert a marginal foul into a reliable goal. The advantage is distributed unevenly: the defender makes one mistake, while the taker arrives with a rehearsed sequence designed to exploit the rules.",
       "narration_start_sec": 540,
       "narration_end_sec": 600,
@@ -301,7 +311,8 @@
         "type": "reference-adaptation",
         "treatment": "solution-ladder",
         "reference_start": "10:00",
-        "reference_end": "11:00"
+        "reference_end": "11:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "football-action",
@@ -323,7 +334,8 @@
         "type": "reference-adaptation",
         "treatment": "rounded-action",
         "reference_start": "11:00",
-        "reference_end": "12:00"
+        "reference_end": "12:00",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "football-action",
@@ -345,7 +357,8 @@
         "type": "reference-adaptation",
         "treatment": "xg-bars",
         "reference_start": "12:00",
-        "reference_end": "13:00"
+        "reference_end": "13:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -367,7 +380,8 @@
         "type": "reference-adaptation",
         "treatment": "comparison-table",
         "reference_start": "13:00",
-        "reference_end": "14:00"
+        "reference_end": "14:00",
+        "background": "#1A1A1A"
       },
       "media": {
         "asset_id": "football-action",
@@ -389,7 +403,8 @@
         "type": "reference-adaptation",
         "treatment": "scatter-graph",
         "reference_start": "14:00",
-        "reference_end": "15:00"
+        "reference_end": "15:00",
+        "background": "#5A1E3A"
       },
       "media": {
         "asset_id": "match-atmosphere",
@@ -411,7 +426,8 @@
         "type": "reference-adaptation",
         "treatment": "argument-card",
         "reference_start": "15:00",
-        "reference_end": "16:00"
+        "reference_end": "16:00",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "football-action",
@@ -433,7 +449,8 @@
         "type": "reference-adaptation",
         "treatment": "shootout",
         "reference_start": "16:00",
-        "reference_end": "17:00"
+        "reference_end": "17:00",
+        "background": "#1A1A1A"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -441,7 +458,7 @@
       },
       "kicker": "WHEN PENALTIES BELONG",
       "title": "Knockout football is different",
-      "caption": "After open play ends, the kick becomes a test of nerve.",
+      "caption": "After open play ends, the kick becomes a test of nerve. \u2014 Labelled reconstruction",
       "narration": "There is a setting where penalties feel completely right: the knockout shootout. The match has already exhausted open play. Every player knows that the next kick carries the weight of a season. The goalkeeper can become a hero, a substitute can create a legacy, and an unexpected taker can define a generation. In that context the penalty is not replacing an attack. It is testing nerve after the football has reached its limit. The same mechanism that feels artificial in a league match can feel dramatic and fair in a tournament conclusion.",
       "narration_start_sec": 960,
       "narration_end_sec": 1020,
@@ -455,7 +472,8 @@
         "type": "reference-adaptation",
         "treatment": "pressure-freeze",
         "reference_start": "17:00",
-        "reference_end": "18:00"
+        "reference_end": "18:00",
+        "background": "#5A1E3A"
       },
       "media": {
         "asset_id": "penalty-footage",
@@ -463,7 +481,7 @@
       },
       "kicker": "THE HUMAN MOMENT",
       "title": "Simple technique, enormous pressure",
-      "caption": "The numbers never remove the emotion.",
+      "caption": "The numbers never remove the emotion. \u2014 Labelled reconstruction",
       "narration": "Missed penalties explain why the kick remains human despite its statistical value. Roberto Baggio's 1994 World Cup final miss is remembered not because he lacked ability, but because the moment exposed the pressure that numbers cannot erase. A penalty is technically simple and emotionally enormous. That contradiction is part of its power. The argument is not that every kick should be made difficult. It is that the sport should decide when this particular kind of pressure is the appropriate consequence for an action.",
       "narration_start_sec": 1020,
       "narration_end_sec": 1080,
@@ -477,7 +495,8 @@
         "type": "reference-adaptation",
         "treatment": "league-density",
         "reference_start": "18:00",
-        "reference_end": "19:00"
+        "reference_end": "19:00",
+        "background": "#F1EEE7"
       },
       "media": {
         "asset_id": "match-atmosphere",
@@ -499,7 +518,8 @@
         "type": "reference-adaptation",
         "treatment": "close",
         "reference_start": "19:00",
-        "reference_end": "19:07.6"
+        "reference_end": "19:07.6",
+        "background": "#0B3D2E"
       },
       "media": {
         "asset_id": "penalty-footage",
