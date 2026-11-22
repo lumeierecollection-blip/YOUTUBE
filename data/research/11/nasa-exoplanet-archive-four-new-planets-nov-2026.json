@@ -1,0 +1,113 @@
+{
+  "topic_slug": "nasa-exoplanet-archive-four-new-planets-nov-2026",
+  "strongest_angle": "Break down the November 19, 2026 NASA Exoplanet Archive update adding four new planets, highlighted by RX J0534 b with a mass of 2.8 Jupiters orbiting an M-type star, alongside TOI-2535 b and OGLE discoveries.",
+  "key_facts": [
+    {
+      "fact": "The NASA Exoplanet Archive update on November 19, 2026 added four new planets and 21 transmission spectra, featuring RX J0534 b orbiting a low-mass star.",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu",
+      "source_name": "NASA Exoplanet Archive",
+      "confidence": "high"
+    },
+    {
+      "fact": "The exoplanet RX J0534.0-0221 b has a mass of 2.8 Jupiters, an orbital radius of 14 AU, and an orbital period of 76.7 years.",
+      "source_url": "https://science.nasa.gov/exoplanet-catalog/rx-j0534-0-0221-b",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The newly added exoplanet OGLE-2015-BLG-1395L b is located 2500 parsecs from Earth and has a mass of 0.17 Jupiters.",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "Another newly added planet in the November 2026 archive update is TOI-2535 b, located 343.587 parsecs from Earth with a mass of 0.205 Jupiters.",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "New planets in November 2026 update",
+      "value": 4,
+      "unit": "planets",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu"
+    },
+    {
+      "label": "New spectra in November 2026 update",
+      "value": 21,
+      "unit": "spectra",
+      "source_url": "https://exoplanetarchive.ipac.caltech.edu"
+    },
+    {
+      "label": "RX J0534.0-0221 b Mass",
+      "value": 2.8,
+      "unit": "Jupiters",
+      "source_url": "https://science.nasa.gov/exoplanet-catalog/rx-j0534-0-0221-b"
+    },
+    {
+      "label": "RX J0534.0-0221 b Orbital Radius",
+      "value": 14,
+      "unit": "AU",
+      "source_url": "https://science.nasa.gov/exoplanet-catalog/rx-j0534-0-0221-b"
+    },
+    {
+      "label": "RX J0534.0-0221 b Orbital Period",
+      "value": 76.7,
+      "unit": "years",
+      "source_url": "https://science.nasa.gov/exoplanet-catalog/rx-j0534-0-0221-b"
+    },
+    {
+      "label": "OGLE-2015-BLG-1395L b Distance",
+      "value": 2500,
+      "unit": "parsecs",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries"
+    },
+    {
+      "label": "OGLE-2015-BLG-1395L b Mass",
+      "value": 0.17,
+      "unit": "Jupiters",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries"
+    },
+    {
+      "label": "TOI-2535 b Distance",
+      "value": 343.587,
+      "unit": "parsecs",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries"
+    },
+    {
+      "label": "TOI-2535 b Mass",
+      "value": 0.205,
+      "unit": "Jupiters",
+      "source_url": "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NASA Exoplanet Archive",
+      "kind": "organization"
+    },
+    {
+      "name": "RX J0534 b",
+      "kind": "object"
+    },
+    {
+      "name": "TOI-2535 b",
+      "kind": "object"
+    },
+    {
+      "name": "OGLE-2013-BLG-1125L b",
+      "kind": "object"
+    },
+    {
+      "name": "OGLE-2015-BLG-1395L b",
+      "kind": "object"
+    },
+    {
+      "name": "Earth",
+      "kind": "place"
+    }
+  ]
+}

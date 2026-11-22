@@ -1,0 +1,91 @@
+{
+  "channel_id": "11",
+  "topic_slug": "nasa-exoplanet-archive-four-new-planets-nov-2026",
+  "format": "shorts",
+  "hook": "A giant planet orbiting 14 AU away takes 76.7 years per orbit.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00 - 0:05",
+      "voiceover": "A giant planet orbiting 14 AU away takes 76.7 years per orbit.",
+      "visual_cue": "Cinematic 3D render of a massive gas giant slowly tracing a wide orbital path around a distant red star.",
+      "sfx_cue": "Deep space drone rumble",
+      "b_roll": [
+        "Deep space gas giant render",
+        "Star system orbital diagram"
+      ],
+      "animation_cue": "Camera slow zoom past planet ring plane",
+      "transition_out": "Fast whip pan",
+      "text_overlay": {
+        "text": "76.7 YEAR ORBIT"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05 - 0:17",
+      "voiceover": "On November 19, 2026, NASA Exoplanet Archive added 4 new planets. OGLE-2015-BLG-1395L b sits 2500 parsecs from Earth with 0.17 Jupiters mass. Where does TOI-2535 b sit at 343.587 parsecs?",
+      "visual_cue": "Telescope imagery panning across starry sky with catalog overlay showing exoplanet locations and distant systems.",
+      "sfx_cue": "Data scanner chime",
+      "b_roll": [
+        "NASA Exoplanet Archive interface",
+        "Star map distance visualization"
+      ],
+      "animation_cue": "Coordinates grid appearing over star field",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "4 NEW PLANETS ADDED"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:17 - 0:22",
+      "voiceover": "Yet giant RX J0534.0-0221 b dwarfs them with 2.8 Jupiters mass.",
+      "visual_cue": "Comparison graphic placing RX J0534.0-0221 b next to Jupiter to highlight giant mass.",
+      "sfx_cue": "Low pitch impact swell",
+      "b_roll": [
+        "Gas giant mass scale comparison"
+      ],
+      "animation_cue": "Scale up side-by-side planet models",
+      "transition_out": "Quick flash",
+      "text_overlay": {
+        "text": "2.8x JUPITER MASS"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:22 - 0:34",
+      "voiceover": "Astronomers confirmed RX J0534.0-0221 b orbits at a distance of 14 AU. That massive world completes one orbit every 76.7 years. TOI-2535 b carries a smaller mass of 0.205 Jupiters.",
+      "visual_cue": "Detailed orbital path trajectory showing 14 AU distance marker and speed readout.",
+      "sfx_cue": "Subtle pulse synthesizer",
+      "b_roll": [
+        "Astronomical orbit simulation",
+        "Exoplanet mass chart"
+      ],
+      "animation_cue": "Orbital trail highlighting distance",
+      "transition_out": "Fade",
+      "text_overlay": {
+        "text": "ORBITAL RADIUS: 14 AU"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:34 - 0:40",
+      "voiceover": "NASA added 21 transmission spectra across 4 newly discovered planets.",
+      "visual_cue": "Spectroscopy wavelength graph displaying light absorption spectrum data across the galaxy.",
+      "sfx_cue": "Resolution tone",
+      "b_roll": [
+        "Transmission spectra plot animation"
+      ],
+      "animation_cue": "Spectral lines flickering onto telemetry graph",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "21 TRANSMISSION SPECTRA"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://exoplanetarchive.ipac.caltech.edu",
+    "https://science.nasa.gov/exoplanet-catalog/rx-j0534-0-0221-b",
+    "https://science.nasa.gov/category/universe/exoplanets/exoplanet-discoveries"
+  ]
+}
