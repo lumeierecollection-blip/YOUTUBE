@@ -1,0 +1,69 @@
+{
+  "channel_id": "3",
+  "topic_slug": "prince-harry-elton-john-privacy-costs-appeal",
+  "format": "shorts",
+  "hook": "Six claimants face joint legal costs of up to £34.5 million, but they're challenging the ruling.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Six claimants face joint legal costs of up to £34.5 million, but they're challenging the ruling.",
+      "b_roll": [
+        "High Court building exterior in London",
+        "Headshot graphic of Prince Harry"
+      ],
+      "text_overlay": {
+        "text": "£34.5M LEGAL COSTS"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 6, 2026, Prince Harry petitioned the High Court over a privacy dismissal. Why did 6 claimants challenge the High Court order?",
+      "b_roll": [
+        "Legal document displaying petition date November 6 2026",
+        "Graphics showing Sir Elton John and Elizabeth Hurley",
+        "Associated Newspapers publisher logo graphic"
+      ],
+      "text_overlay": {
+        "text": "6 CLAIMANTS PETITION COURT"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, in August 2026, Mr Justice Nicklin ordered an initial £9.54 million payment that wasn't final.",
+      "b_roll": [
+        "Court gavel and judgment paper graphic",
+        "Financial graphic highlighting £9.54 million initial order"
+      ],
+      "text_overlay": {
+        "text": "£9.54M INITIAL ORDER"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Court filings show the group faces joint costs up to £34.5 million. Associated Newspapers won the dismissal against all 6 claimants.",
+      "b_roll": [
+        "Chart depicting joint legal costs total of 34.5 million pounds",
+        "BBC News article graphic headline on appeal application",
+        "Scale graphic representing court dismissal outcome"
+      ],
+      "text_overlay": {
+        "text": "INDEMNITY COSTS APPEAL"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Elizabeth Hurley and five other claimants petitioned the High Court for permission to appeal.",
+      "b_roll": [
+        "High Court scales of justice symbol",
+        "Summary graphic displaying 6 claimants pending appeal status"
+      ],
+      "text_overlay": {
+        "text": "APPEAL PENDING"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo",
+    "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626"
+  ]
+}
