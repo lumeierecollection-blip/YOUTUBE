@@ -1,0 +1,92 @@
+{
+  "id": "10",
+  "slug": "google-tabletop-v2",
+  "title": "Google Tabletop Builds Planning Tools With AI",
+  "voice": "en-US-AndrewNeural",
+  "duration_target_sec": 45,
+  "sources": [
+    "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
+    "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  ],
+  "script": "Google just turned group planning into an AI workspace. It’s called Tabletop, a Google Labs experiment where groups share one online space and ask an AI agent to build the tools they need. Instead of juggling chats, docs, and links, you can ask @tabletop to create an itinerary, a dinner poll, an expense splitter, or even a tournament bracket. Everyone in the space can edit together, like in a Google Doc. Google says the experiment is limited for now to U.S. users 18 and older through a waitlist. The bigger idea is simple: AI isn’t just answering questions anymore. It’s building the small apps your group needs, right in the moment.",
+  "scenes": [
+    {
+      "t": 0,
+      "dur": 3.5,
+      "type": "hook",
+      "headline": [
+        "GOOGLE",
+        "TABLETOP"
+      ],
+      "sub": "AI BUILDS THE TOOL",
+      "logos": [
+        "google"
+      ]
+    },
+    {
+      "t": 3.5,
+      "dur": 8.5,
+      "type": "feature",
+      "headline": [
+        "SHARED SPACE",
+        "AI AGENT"
+      ],
+      "sub": "GOOGLE LABS EXPERIMENT",
+      "logos": [
+        "google"
+      ]
+    },
+    {
+      "t": 12,
+      "dur": 9,
+      "type": "tools",
+      "headline": [
+        "@TABLETOP",
+        "MAKE THIS"
+      ],
+      "sub": "ITINERARY · POLL · SPLITTER · BRACKET",
+      "logos": [
+        "google"
+      ]
+    },
+    {
+      "t": 21,
+      "dur": 5.5,
+      "type": "feature",
+      "headline": [
+        "EDIT TOGETHER",
+        "REAL TIME"
+      ],
+      "sub": "LIKE A GOOGLE DOC, BUT GENERATIVE",
+      "logos": [
+        "google"
+      ]
+    },
+    {
+      "t": 26.5,
+      "dur": 6.5,
+      "type": "statement",
+      "headline": [
+        "US WAITLIST",
+        "18+ ONLY"
+      ],
+      "sub": "LIMITED GOOGLE LABS TEST",
+      "logos": [
+        "google"
+      ]
+    },
+    {
+      "t": 33,
+      "dur": 7,
+      "type": "close",
+      "headline": [
+        "NOT JUST ANSWERS.",
+        "BUILDING APPS."
+      ],
+      "sub": "AI IN THE MOMENT",
+      "logos": [
+        "google"
+      ]
+    }
+  ]
+}
