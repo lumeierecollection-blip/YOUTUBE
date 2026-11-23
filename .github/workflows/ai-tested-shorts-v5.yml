@@ -54,6 +54,11 @@ jobs:
       - name: Install render deps
         working-directory: data/ai-tested/shorts-v5/render
         run: npm install && npx remotion browser ensure
+      - name: Gemini pre-render creative direction
+        working-directory: data/ai-tested/shorts-v5
+        run: |
+          mkdir -p production-records
+          node ../../../scripts/ai-tested-v5-director.mjs --root . || echo "DIRECTOR_NONBLOCKING_FAILURE" > production-records/DIRECTOR_FAILED.txt
       - name: Generate TTS
         working-directory: data/ai-tested/shorts-v5
         run: node generate-tts.mjs
@@ -72,24 +77,34 @@ jobs:
             ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
             ffmpeg -y -i "$f" -vf "select='not(mod(n\,45))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
           done
-      - name: Gemini visual review (actual frames)
-        working-directory: data/ai-tested/shorts-v5
-        run: |
-          mkdir -p reviews
-          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews || (mkdir -p reviews && echo "REVIEW_NONBLOCKING_FAILURE" > reviews/REVIEW_FAILED.txt)
-      - name: Apply one correction pass and rerender failures
+      - name: Gemini review and correction loop (up to 3 cycles)
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
-          node ../../../scripts/ai-tested-v5-correct.mjs --root . --reviews reviews --plans plans || true
-          if [ -f reviews/correction.json ]; then
-            echo "Correction pass ran"
-            (cd render && node render-all.mjs)
-          fi
-      - name: Re-extract frames and final Gemini review
-        working-directory: data/ai-tested/shorts-v5
-        run: |
-          set -euo pipefail
+          mkdir -p reviews production-records
+          for cycle in 1 2 3; do
+            echo "=== REVIEW CYCLE $cycle ==="
+            rm -rf qa/frames qa/contact-sheets "reviews/cycle-$cycle"
+            mkdir -p qa/frames qa/contact-sheets "reviews/cycle-$cycle"
+            for f in out/*.mp4; do
+              [ -f "$f" ] || continue
+              base=$(basename "$f" .mp4)
+              mkdir -p "qa/frames/$base"
+              ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
+              ffmpeg -y -i "$f" -vf "select='not(mod(n\,45))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
+            done
+            node ../../../scripts/ai-tested-v4-review.mjs --root . --out "reviews/cycle-$cycle" || echo "REVIEW_FAILED_$cycle" > "reviews/cycle-$cycle/REVIEW_FAILED.txt"
+            node ../../../scripts/ai-tested-v5-correct.mjs --root . --reviews "reviews/cycle-$cycle" --plans plans || true
+            if [ -f "reviews/cycle-$cycle/correction.json" ]; then
+              changed=$(python -c "import json; d=json.load(open('reviews/cycle-$cycle/correction.json')); print(len([c for c in d.get('changed',[]) if c.get('mode')!='none']))")
+              echo "changed=$changed"
+              if [ "$changed" = "0" ]; then echo "No corrections needed"; break; fi
+              (cd render && node render-all.mjs)
+            else
+              break
+            fi
+          done
+          # final review after last rerender
           rm -rf qa/frames qa/contact-sheets reviews/final && mkdir -p qa/frames qa/contact-sheets reviews/final
           for f in out/*.mp4; do
             [ -f "$f" ] || continue
@@ -98,7 +113,7 @@ jobs:
             ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
             ffmpeg -y -i "$f" -vf "select='not(mod(n\,45))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
           done
-          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final || (mkdir -p reviews/final && echo "REVIEW_NONBLOCKING_FAILURE" > reviews/final/REVIEW_FAILED.txt)
+          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final || echo "FINAL_REVIEW_FAILED" > reviews/final/REVIEW_FAILED.txt
       - name: QA
         working-directory: data/ai-tested/shorts-v5
         run: python qa-verify.py out qa
