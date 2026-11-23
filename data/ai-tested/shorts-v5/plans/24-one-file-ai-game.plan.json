@@ -108,7 +108,7 @@
       "accent": "#111827",
       "bg": "#E2E8F0",
       "assets": [
-        "claude"
+        "anthropic"
       ],
       "focal": {
         "x": 50,
