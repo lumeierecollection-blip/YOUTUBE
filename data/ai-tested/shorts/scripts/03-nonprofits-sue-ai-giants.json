@@ -1,0 +1,20 @@
+{
+  "id": "03",
+  "slug": "nonprofits-sue-ai-giants",
+  "title": "Nonprofits Ask Court to Freeze Frontier AI",
+  "duration_target_sec": 47,
+  "voice": "en-US-AndrewNeural",
+  "sources": [
+    "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
+  ],
+  "hook": "Four nonprofits just asked a court to freeze frontier AI development.",
+  "script": "Four nonprofits just asked a court to freeze frontier AI development. In a lawsuit filed in San Francisco Superior Court, the Irreplaceable Education Fund, Public Citizen, Heat Initiative, and the Alliance for Secure AI sued Anthropic, Google, Meta, OpenAI, and SpaceX. They’re asking for an emergency injunction to pause next-generation AI models until companies can prove the systems are under human control. The complaint cites AI-driven cyberattacks, warnings about rogue behavior, and the companies’ own admissions about catastrophic risk. The plaintiffs argue no other industry is allowed to develop products that could cause this level of harm without safeguards. Whether the court agrees or not, this case marks a new phase: AI safety is no longer just a debate. It’s now a legal fight.",
+  "scenes": [
+    {"t": 0, "dur": 3.8, "caption": ["FREEZE", "FRONTIER AI"], "visual": "headline"},
+    {"t": 3.8, "dur": 9, "caption": ["4 NONPROFITS", "5 AI GIANTS"], "visual": "parties"},
+    {"t": 12.8, "dur": 7.5, "caption": ["EMERGENCY INJUNCTION", "HUMAN CONTROL"], "visual": "injunction"},
+    {"t": 20.3, "dur": 7.5, "caption": ["CYBERATTACKS", "CATASTROPHIC RISK"], "visual": "risk"},
+    {"t": 27.8, "dur": 7.2, "caption": ["NO OTHER INDUSTRY", "SAFEGUARDS"], "visual": "argument"},
+    {"t": 35, "dur": 6.5, "caption": ["NOT JUST A DEBATE", "A LEGAL FIGHT"], "visual": "close"}
+  ]
+}

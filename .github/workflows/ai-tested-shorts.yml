@@ -1,0 +1,117 @@
+name: AI Tested Shorts - Vox Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_note:
+        description: "Manual trigger for AI Tested 5 Shorts production"
+        required: false
+        default: "run"
+  push:
+    branches:
+      - "feat/ai-tested-shorts-*"
+    paths:
+      - "data/ai-tested/shorts/**"
+      - ".github/workflows/ai-tested-shorts.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  render-shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2
+          python -m pip install --upgrade pip
+          pip install edge-tts
+
+      - name: Install render deps
+        working-directory: data/ai-tested/shorts/render
+        run: |
+          npm install
+          npx remotion browser ensure
+
+      - name: Generate narration (TTS)
+        working-directory: data/ai-tested/shorts
+        run: |
+          node generate-tts.mjs
+          ls -la audio
+
+      - name: Render all 5 Shorts on GitHub
+        working-directory: data/ai-tested/shorts/render
+        run: |
+          node render-all.mjs
+          ls -la ../out
+
+      - name: QA - verify outputs
+        working-directory: data/ai-tested/shorts
+        run: |
+          set -euo pipefail
+          mkdir -p qa
+          ok=1
+          for f in out/*.mp4; do
+            echo "Checking $f"
+            ffprobe -v error -show_entries stream=codec_type,codec_name,width,height,duration -show_entries format=duration,size,bit_rate -of default=noprint_wrappers=1 "$f" | tee "qa/$(basename "$f").txt"
+            w=$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of csv=p=0 "$f")
+            h=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of csv=p=0 "$f")
+            has_audio=$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_type -of csv=p=0 "$f" | head -n1 || true)
+            dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+            if [ "$w" != "1080" ] || [ "$h" != "1920" ]; then echo "BAD SIZE $f $w x $h"; ok=0; fi
+            if [ "$has_audio" != "audio" ]; then echo "NO AUDIO $f"; ok=0; fi
+            python - <<'PY' "$dur" "$f" "$ok"
+import sys
+dur=float(sys.argv[1]); f=sys.argv[2]
+if dur < 30 or dur > 75:
+    print(f"BAD DURATION {f} {dur}")
+    sys.exit(2)
+PY
+          done
+          if [ "$ok" != "1" ]; then exit 1; fi
+          echo "QA passed"
+
+      - name: Build production summary
+        working-directory: data/ai-tested/shorts
+        run: |
+          python - <<'PY'
+import json, glob, os
+manifest=json.load(open('manifest.json',encoding='utf-8'))
+lines=["AI Tested Shorts - Production Summary","=================================",""]
+for s in manifest['stories']:
+    lines.append(f"{s['id']} - {s['title']}")
+    lines.append("Sources:")
+    for src in s['sources']:
+        lines.append(f"  - {src}")
+    mp4=f"out/{s['id']}-{s['slug']}.mp4"
+    lines.append(f"File: {os.path.basename(mp4)} exists={os.path.exists(mp4)}")
+    lines.append("")
+open('production-summary.txt','w',encoding='utf-8').write('\n'.join(lines))
+print(open('production-summary.txt').read())
+PY
+
+      - name: Upload finished Shorts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-tested-shorts
+          path: |
+            data/ai-tested/shorts/out/*.mp4
+            data/ai-tested/shorts/production-summary.txt
+            data/ai-tested/shorts/qa/*.txt
+          if-no-files-found: error
+          retention-days: 14
