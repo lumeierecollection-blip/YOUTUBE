@@ -1,0 +1,104 @@
+{
+  "topic_slug": "3-9-billion-year-old-rocks-northern-china",
+  "strongest_angle": "In November 2026, Nature reported that 3.95-billion-year-old rocks found in Hebei, China reveal oceanic crust was buried over 50 kilometers deep in Earth's early history.",
+  "key_facts": [
+    {
+      "fact": "A research team led by Yusheng Wan at the Chinese Academy of Geological Sciences identified 3.95-billion-year-old rocks in the Shimen Complex in the Jidong region of Hebei Province, China.",
+      "source_url": "https://www.cgs.gov.cn/ywdt/ddyw/202611/t20261121_873066.html",
+      "source_name": "China Geological Survey",
+      "confidence": "high"
+    },
+    {
+      "fact": "A study published in Nature reported that by 3.95 billion years ago, surface-altered oceanic crust was rapidly buried to depths greater than 50 kilometers and partially melted.",
+      "source_url": "https://www.nature.com/articles/d41586-026-03499-w",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 3.95-billion-year-old rocks from northern China represent the oldest rocks found in Asia and the second-oldest in the world after Canada's 4.0-billion-year-old Acasta Gneiss.",
+      "source_url": "https://www.cgs.gov.cn/ywdt/ddyw/202611/t20261121_873066.html",
+      "source_name": "China Geological Survey",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists estimate Earth formed approximately 4.5 billion years ago, but surface rocks older than 3.9 billion years remain exceptionally rare.",
+      "source_url": "https://phys.org/news/2026-11-oldest-earth-early-history.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Age of northern China rocks",
+      "value": 3.95,
+      "unit": "billion years",
+      "source_url": "https://www.cgs.gov.cn/ywdt/ddyw/202611/t20261121_873066.html"
+    },
+    {
+      "label": "Burial depth of oceanic crust",
+      "value": 50,
+      "unit": "kilometers",
+      "source_url": "https://www.nature.com/articles/d41586-026-03499-w"
+    },
+    {
+      "label": "Age of Canada Acasta Gneiss",
+      "value": 4,
+      "unit": "billion years",
+      "source_url": "https://www.cgs.gov.cn/ywdt/ddyw/202611/t20261121_873066.html"
+    },
+    {
+      "label": "Estimated age of Earth",
+      "value": 4.5,
+      "unit": "billion years",
+      "source_url": "https://phys.org/news/2026-11-oldest-earth-early-history.html"
+    },
+    {
+      "label": "Rarity threshold for ancient rocks",
+      "value": 3.9,
+      "unit": "billion years",
+      "source_url": "https://interestingengineering.com/science/3-95-gya-rocks-china-reveal-earths-tectonics"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "Ancient rocks in northern China reveal that by 3.95 billion years ago, surface-altered oceanic crust had been buried rapidly to depths greater than 50 kilometres and partly melted.",
+      "speaker": "Nature",
+      "source_name": "Nature",
+      "source_url": "https://www.nature.com/articles/d41586-026-03499-w"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Yusheng Wan",
+      "kind": "person"
+    },
+    {
+      "name": "Chinese Academy of Geological Sciences",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Jidong region",
+      "kind": "place"
+    },
+    {
+      "name": "Hebei Province",
+      "kind": "place"
+    },
+    {
+      "name": "Shimen Complex",
+      "kind": "place"
+    },
+    {
+      "name": "Acasta Gneiss",
+      "kind": "object"
+    },
+    {
+      "name": "Canada",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "topic_slug": "us-private-employers-2-4-million-workplace-injuries-2025",
+  "strongest_angle": "Analysis of the November 2026 U.S. Bureau of Labor Statistics data showing that private industry employers reported 2.4 million nonfatal workplace injuries and illnesses in 2025, marking a 3.0 percent decrease and the lowest count in records dating back to 2003.",
+  "key_facts": [
+    {
+      "fact": "Private industry employers reported 2.4 million nonfatal workplace injuries and illnesses in 2025 according to the U.S. Bureau of Labor Statistics.",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+      "source_name": "Occupational Health & Safety",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2.4 million nonfatal injuries and illnesses reported for 2025 represents a 3.0 percent decrease compared with 2024.",
+      "source_url": "https://jbiznews.com/employer-reported-workplace-injury-and-illness-cases-fall-3-to-lowest-since-2003",
+      "source_name": "JBizNews",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2025 data released on November 18, 2026, by the U.S. Bureau of Labor Statistics marked the third consecutive annual decrease in workplace injuries and illnesses.",
+      "source_url": "https://www.safetyandhealthmagazine.com/nonfatal-injuries-and-illnesses-trending-downward-bls-data-shows",
+      "source_name": "Safety+Health Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2025 employer-reported count is the lowest in a data series maintained by the U.S. Bureau of Labor Statistics going back to 2003.",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx",
+      "source_name": "Occupational Health & Safety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Nonfatal workplace injuries and illnesses in 2025",
+      "value": 2.4,
+      "unit": "million",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Percentage decrease from 2024",
+      "value": 3,
+      "unit": "percent",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Start year of federal records data series",
+      "value": 2003,
+      "unit": "year",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    },
+    {
+      "label": "Reporting year for workplace injuries and illnesses",
+      "value": 2025,
+      "unit": "year",
+      "source_url": "https://ohsonline.com/articles/2026/11/20/private-employers-report-lowest-injury-and-illness-count-in-federal-records-dating-to-2003.aspx"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "U.S. Bureau of Labor Statistics",
+      "kind": "organization"
+    },
+    {
+      "name": "Occupational Health & Safety",
+      "kind": "organization"
+    },
+    {
+      "name": "Safety+Health Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "JBizNews",
+      "kind": "organization"
+    }
+  ]
+}

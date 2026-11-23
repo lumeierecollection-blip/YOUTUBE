@@ -1,0 +1,91 @@
+{
+  "topic_slug": "stephen-fry-sherlock-holmes-canon-legacy",
+  "strongest_angle": "Examining Stephen Fry's commentary on Arthur Conan Doyle's original Sherlock Holmes canon, comprising 60 stories written between 1887 and 1927.",
+  "key_facts": [
+    {
+      "fact": "Stephen Fry recorded the entire Canon for Audible, consisting of 60 original stories penned by Arthur Conan Doyle between 1887 and 1927.",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life",
+      "source_name": "Arts & Voices",
+      "confidence": "high"
+    },
+    {
+      "fact": "Stephen Fry previously portrayed the character Mycroft Holmes in the film A Game of Shadows.",
+      "source_url": "https://www.sleuthsayers.org/2026/11/sherlock-holmes-and-english-fry-up.html?m=0",
+      "source_name": "SleuthSayers",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Conan Doyle Estate authorized variations involving Adrian Conan Doyle and John sending the pair against the Nazis, and between 2014 and 2023 further adaptations.",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life",
+      "source_name": "Arts & Voices",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total original Sherlock Holmes stories",
+      "value": 60,
+      "unit": "stories",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life"
+    },
+    {
+      "label": "Start year of Conan Doyle writing the canon",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life"
+    },
+    {
+      "label": "End year of Conan Doyle writing the canon",
+      "value": 1927,
+      "unit": "year",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life"
+    },
+    {
+      "label": "Start year of estate authorized variations",
+      "value": 2014,
+      "unit": "year",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life"
+    },
+    {
+      "label": "End year of estate authorized variations",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Stephen Fry",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Audible",
+      "kind": "organization"
+    },
+    {
+      "name": "Mycroft Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "A Game of Shadows",
+      "kind": "object"
+    },
+    {
+      "name": "Adrian Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Conan Doyle Estate",
+      "kind": "organization"
+    }
+  ]
+}

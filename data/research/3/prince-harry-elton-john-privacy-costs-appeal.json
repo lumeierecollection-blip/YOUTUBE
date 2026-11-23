@@ -1,0 +1,71 @@
+{
+  "topic_slug": "prince-harry-elton-john-privacy-costs-appeal",
+  "strongest_angle": "Analyze the November 2026 court filings where Prince Harry, Sir Elton John, and Elizabeth Hurley petitioned the High Court for permission to challenge a massive privacy ruling and joint legal costs of up to £34.5 million owed to Associated Newspapers.",
+  "key_facts": [
+    {
+      "fact": "Prince Harry and five other claimants applied for permission to appeal against the dismissal of their privacy case against Associated Newspapers and an indemnity costs order on November 6, 2026.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "In August 2026, the judge ordered the claimants to make an initial costs payment of £9.54 million while the final total was calculated, facing joint legal costs of up to £34.5 million.",
+      "source_url": "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626",
+      "source_name": "Quartz",
+      "confidence": "high"
+    },
+    {
+      "fact": "Sir Elton John and actress Elizabeth Hurley are among the high-profile claimants challenging the High Court judgment delivered by Mr Justice Nicklin.",
+      "source_url": "https://londondaily.com/harry-and-five-others-seek-appeal-over-mail-privacy-defeat-and-costs-order",
+      "source_name": "London Daily",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Initial costs payment",
+      "value": 9.54,
+      "unit": "million pounds",
+      "source_url": "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626"
+    },
+    {
+      "label": "Joint legal costs up to",
+      "value": 34.5,
+      "unit": "million pounds",
+      "source_url": "https://qz.com/prince-harry-elton-john-seek-appeal-mail-publisher-privacy-ruling-110626"
+    },
+    {
+      "label": "Number of claimants seeking appeal",
+      "value": 6,
+      "unit": "claimants",
+      "source_url": "https://www.bbc.co.uk/news/articles/c8p3gg2ex4wlo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Prince Harry",
+      "kind": "person"
+    },
+    {
+      "name": "Sir Elton John",
+      "kind": "person"
+    },
+    {
+      "name": "Elizabeth Hurley",
+      "kind": "person"
+    },
+    {
+      "name": "Associated Newspapers",
+      "kind": "organization"
+    },
+    {
+      "name": "High Court",
+      "kind": "organization"
+    },
+    {
+      "name": "Mr Justice Nicklin",
+      "kind": "person"
+    }
+  ]
+}

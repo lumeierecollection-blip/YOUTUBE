@@ -1,0 +1,66 @@
+{
+  "channel_id": "9",
+  "topic_slug": "ben-nevis-britain-highest-mountain-1345m",
+  "format": "shorts",
+  "hook": "What if Britain’s highest peak conceals a 100-acre summit plateau?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if Britain’s highest peak conceals a 100-acre summit plateau?",
+      "b_roll": [
+        "Aerial view approaching the mountain summit plateau"
+      ],
+      "text_overlay": {
+        "text": "100-Acre Summit Plateau"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In the Grampian Mountains near Fort William, Ben Nevis reaches 1,345 metres above sea level. How wide is this 1,345-metre Scottish Highlands giant?",
+      "b_roll": [
+        "Topographical map showing Fort William and Grampian Mountains",
+        "Elevation comparison graphic between Ben Nevis and Snowdon"
+      ],
+      "text_overlay": {
+        "text": "1,345m Elevation (+260m vs Snowdon)"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, it claims a topographic isolation radius of 739 kilometres.",
+      "b_roll": [
+        "Map radius circle expanding across 739 kilometres around Ben Nevis"
+      ],
+      "text_overlay": {
+        "text": "739km Isolation Radius"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The high plateau spans 100 acres with a steep northeast cliff. Those hikers climb past 4,413 feet of sheer elevation.",
+      "b_roll": [
+        "Top-down view of the 100-acre summit plateau and northeast cliff face",
+        "Hikers ascending the trail in the Scottish Highlands"
+      ],
+      "text_overlay": {
+        "text": "125,000 Annual Visitors"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 1,345-metre peak remains the highest point in the British Isles.",
+      "b_roll": [
+        "Cinematic wide shot of the Ben Nevis peak towering over the landscape"
+      ],
+      "text_overlay": {
+        "text": "Highest Point in British Isles"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Ben_Nevis",
+    "https://www.discoveringbritain.org/activities/scotland/1818/britain-from-the-air-ben-nevis.html",
+    "https://kids.britannica.com/scholars/article/Ben-Nevis/78533",
+    "https://www.visitscotland.com/things-to-do/nature-outdoors/walking/mountains-hills/ben-nevis"
+  ]
+}

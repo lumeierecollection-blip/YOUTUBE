@@ -1,0 +1,53 @@
+{
+  "channel_id": "4",
+  "topic_slug": "columbus-crew-inter-miami-playoff-tactics",
+  "format": "shorts",
+  "hook": "The 7th-seeded Columbus Crew defeated 2nd-seeded Inter Miami 3-0 in Game 1.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The 7th-seeded Columbus Crew defeated 2nd-seeded Inter Miami 3-0 in Game 1.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "7th Seed Crew 3 - 0 2nd Seed Miami"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On Saturday, Gonzalo Tapia converted a 9th-minute penalty for Columbus Crew. The Chilean international later scored his second goal of the match. Could Inter Miami turn the match around down 2-0?",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Gonzalo Tapia: 9' Penalty & 2nd Goal"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead, Inter Miami defender Gonzalo Luján saw red in the 36th minute.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Gonzalo Luján Red Card (36')"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Taha Habroune scored a second-half strike for Columbus Crew. Ten-man Inter Miami failed to score a single goal. That sealed a dominant 3-0 victory against the 2nd seed.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Taha Habroune Seals 3-0 Upset"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Columbus Crew now lead this MLS Cup Playoffs series 1-0.",
+      "b_roll": [],
+      "text_overlay": {
+        "text": "Columbus Crew Lead Series 1-0"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.mlssoccer.com/news/columbus-crew-stun-lionel-messi-miami-in-game-1-upset",
+    "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026",
+    "https://www.flashscore.com/news/soccer-mls-mls-roundup-miami-messi-stunned-by-columbus-dallas-new-england-post-clean-sheets/2y9e6bYp"
+  ]
+}

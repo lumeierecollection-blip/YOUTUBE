@@ -1,0 +1,99 @@
+{
+  "topic_slug": "columbus-crew-inter-miami-playoff-tactics",
+  "strongest_angle": "The seventh-seeded Columbus Crew secured a dominant 3-0 victory over second-seeded Inter Miami in Game 1 of the MLS Cup Playoffs, driven by goals from Gonzalo Tapia and Taha Habroune alongside a crucial red card to Gonzalo Luján.",
+  "key_facts": [
+    {
+      "fact": "The seventh-seeded Columbus Crew defeated second-seeded Inter Miami CF 3-0 on Saturday in Game 1 of their MLS Cup Playoffs series.",
+      "source_url": "https://www.mlssoccer.com/news/columbus-crew-stun-lionel-messi-miami-in-game-1-upset",
+      "source_name": "MLSSoccer.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chile international Gonzalo Tapia scored twice for the Columbus Crew, converting a 9th-minute penalty against Inter Miami.",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026",
+      "source_name": "MLSSoccer.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Inter Miami defender Gonzalo Luján was sent off in the 36th minute during the match against the Columbus Crew.",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026",
+      "source_name": "MLSSoccer.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Taha Habroune scored a second-half strike for the Columbus Crew to seal the 3-0 victory over Inter Miami.",
+      "source_url": "https://www.flashscore.com/news/soccer-mls-mls-roundup-miami-messi-stunned-by-columbus-dallas-new-england-post-clean-sheets/2y9e6bYp",
+      "source_name": "Flashscore.com",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Columbus Crew Goals",
+      "value": 3,
+      "unit": "goals",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026"
+    },
+    {
+      "label": "Inter Miami Goals",
+      "value": 0,
+      "unit": "goals",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026"
+    },
+    {
+      "label": "Penalty Minute",
+      "value": 9,
+      "unit": "minute",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026"
+    },
+    {
+      "label": "Red Card Minute",
+      "value": 36,
+      "unit": "minute",
+      "source_url": "https://www.mlssoccer.com/competitions/mls-cup-playoffs/2026/matches/miavsclb-11-21-2026"
+    },
+    {
+      "label": "Columbus Crew Seed",
+      "value": 7,
+      "unit": "seed",
+      "source_url": "https://www.mlssoccer.com/news/columbus-crew-stun-lionel-messi-miami-in-game-1-upset"
+    },
+    {
+      "label": "Inter Miami Seed",
+      "value": 2,
+      "unit": "seed",
+      "source_url": "https://www.mlssoccer.com/news/columbus-crew-stun-lionel-messi-miami-in-game-1-upset"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Columbus Crew",
+      "kind": "organization"
+    },
+    {
+      "name": "Inter Miami CF",
+      "kind": "organization"
+    },
+    {
+      "name": "Lionel Messi",
+      "kind": "person"
+    },
+    {
+      "name": "Gonzalo Tapia",
+      "kind": "person"
+    },
+    {
+      "name": "Taha Habroune",
+      "kind": "person"
+    },
+    {
+      "name": "Gonzalo Luján",
+      "kind": "person"
+    },
+    {
+      "name": "ScottsMiracle-Gro Field",
+      "kind": "place"
+    }
+  ]
+}

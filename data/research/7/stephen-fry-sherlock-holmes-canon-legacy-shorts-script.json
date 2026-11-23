@@ -1,0 +1,87 @@
+{
+  "channel_id": "7",
+  "topic_slug": "stephen-fry-sherlock-holmes-canon-legacy",
+  "format": "shorts",
+  "hook": "For Audible, Stephen Fry recorded the entire canon of 60 original Sherlock Holmes stories.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "For Audible, Stephen Fry recorded the entire canon of 60 original Sherlock Holmes stories.",
+      "visual_cue": "Archival audio recording setup overlaid with title text detailing the 60 original stories catalog.",
+      "sfx_cue": "Vintage microphone click",
+      "b_roll": [
+        "Historical manuscript pages of Sherlock Holmes stories",
+        "Classic audio recording studio setup"
+      ],
+      "transition_out": "Cut to archival timeline graphic",
+      "text_overlay": {
+        "text": "60 Original Stories Recorded"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Between 1887 and 1927, Arthur Conan Doyle penned the 60 original stories. Previously, Fry portrayed the character Mycroft Holmes in the film A Game of Shadows. What variations did the Conan Doyle Estate authorize?",
+      "visual_cue": "Timeline display spanning from 1887 to 1927 showing original publishing dates alongside film credit stills.",
+      "sfx_cue": "Subtle paper turn sound effect",
+      "b_roll": [
+        "First edition publication covers from 1887 to 1927",
+        "Film studio production slate"
+      ],
+      "transition_out": "Wipe transition to document archives",
+      "text_overlay": {
+        "text": "1887–1927 Canon Era"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "But the Conan Doyle Estate authorized variations sending the pair against the Nazis.",
+      "visual_cue": "Archival document records highlighting estate authorizations for mid-century literary variations.",
+      "sfx_cue": "Low dramatic bass tone",
+      "b_roll": [
+        "Vintage literary manuscript authorization papers",
+        "Mid-twentieth century book printings"
+      ],
+      "transition_out": "Fast flash to contemporary dates",
+      "text_overlay": {
+        "text": "Estate Authorized Variations"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:40",
+      "voiceover": "The Conan Doyle Estate also authorized variations involving Adrian Conan Doyle and John. From 2014 to 2023, the estate authorized further adaptations.",
+      "visual_cue": "Graphic timeline mapping authorization dates from 2014 to 2023 leading into digital audio studio display.",
+      "sfx_cue": "Digital audio waveform hum",
+      "b_roll": [
+        "Timeline of 2014–2023 literary adaptations",
+        "Modern digital audio master tape reel"
+      ],
+      "transition_out": "Fade to archival summary sheet",
+      "text_overlay": {
+        "text": "2014–2023 Adaptations"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:40-0:45",
+      "voiceover": "Doyle finished writing the 60 original stories in 1927.",
+      "visual_cue": "Final historical date display focusing on 1927 as the completion of the original written canon.",
+      "sfx_cue": "Final resolving chime",
+      "b_roll": [
+        "Close-up of final printed page date 1927",
+        "Archival photograph of vintage writing desk"
+      ],
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "Canon Completed 1927"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://artsandvoices.com/articles/stephen-fry-sherlock-holmes-altered-the-course-of-my-whole-life",
+    "https://www.sleuthsayers.org/2026/11/sherlock-holmes-and-english-fry-up.html?m=0"
+  ]
+}
