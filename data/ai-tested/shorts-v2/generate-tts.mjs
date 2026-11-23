@@ -6,7 +6,7 @@ const scriptsDir = path.join(root, "scripts");
 const audioDir = path.join(root, "audio");
 fs.mkdirSync(audioDir, { recursive: true });
 for (const f of fs.readdirSync(scriptsDir).filter(f => f.endsWith(".json")).sort()) {
-  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8"));
+  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8").replace(/^\uFEFF/,""));
   const out = path.join(audioDir, `${story.id}.mp3`);
   if (fs.existsSync(out)) { console.log("exists", out); continue; }
   console.log("TTS", story.id);
@@ -17,3 +17,4 @@ for (const f of fs.readdirSync(scriptsDir).filter(f => f.endsWith(".json")).sort
   }
 }
 console.log("TTS done");
+

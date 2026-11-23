@@ -25,7 +25,7 @@ copyDir(path.join(assetsDir, "photos"), path.join(publicDir, "photos"));
 
 const files = fs.readdirSync(scriptsDir).filter(f => f.endsWith(".json")).sort();
 for (const f of files) {
-  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8"));
+  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8").replace(/^\uFEFF/,""));
   const id = story.id;
   const audioPath = path.join(audioDir, `${id}.mp3`);
   let dur = story.duration_target_sec;
@@ -44,3 +44,4 @@ for (const f of files) {
   });
 }
 console.log("All renders complete");
+
