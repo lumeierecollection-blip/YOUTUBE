@@ -6,6 +6,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 function arg(name, def = null) { const i = process.argv.indexOf(`--${name}`); return i > -1 ? process.argv[i + 1] : def; }
 const root = path.resolve(arg("root", "."));
 const outDir = path.resolve(root, arg("out", "reviews"));
+const force = process.argv.includes("--force");
 fs.mkdirSync(outDir, { recursive: true });
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -33,6 +34,12 @@ for (const plan of plans) {
   const treatment = readJson(path.join(root, "treatments", `${base}.treatment.json`));
   const qaTxtPath = path.join(root, "qa", `${base}.mp4.txt`);
   const qaTxt = fs.existsSync(qaTxtPath) ? fs.readFileSync(qaTxtPath, "utf8").slice(0, 2000) : "";
+  const existing = !force ? readJson(reportPath) : null;
+  if (existing?.status === "reviewed" && existing?.pass === true) {
+    summary.push({ id: plan.id, slug: plan.slug, status: existing.status, pass: true, reason: existing.reason || null, visual_score: existing.visual_score ?? null });
+    console.log(base, "skip-pass");
+    continue;
+  }
   let review = { id: plan.id, slug: plan.slug, title: plan.title, status: "not_reviewed", reason: null, findings: [], issues: [], strengths: [], pass: false, reviewedAt: new Date().toISOString(), evidence: { contactSheet: fs.existsSync(contact), frameCount: frames.length, sampledFrames: sampled.map(f => path.basename(f)) } };
 
   if (!fs.existsSync(contact) && sampled.length === 0) {

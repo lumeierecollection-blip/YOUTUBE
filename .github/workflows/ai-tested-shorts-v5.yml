@@ -123,6 +123,12 @@ jobs:
             ffmpeg -y -i "$f" -vf "select='not(mod(n\,45))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
           done
           node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final || echo "FINAL_REVIEW_EXEC_FAILED" > reviews/final/EXEC_FAILED.txt
+          # Retry once if any review hit transient LLM error
+          if grep -l '"reason": "llm_error"' reviews/final/*.review.json >/dev/null 2>&1; then
+            echo "Retrying final review for llm_error cases after 90s..."
+            sleep 90
+            node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final || echo "FINAL_REVIEW_EXEC_FAILED_2" > reviews/final/EXEC_FAILED_2.txt
+          fi
       - name: Technical QA
         id: tech_qa
         working-directory: data/ai-tested/shorts-v5
