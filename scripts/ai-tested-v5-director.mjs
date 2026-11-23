@@ -67,7 +67,7 @@ for (const sf of scriptFiles) {
 
   let rec = { id: script.id, slug: script.slug, stage: "director", status: "failed", at: new Date().toISOString(), attempts: [] };
   let ok = false;
-  for (let attempt = 1; attempt <= 6 && !ok; attempt++) {
+  for (let attempt = 1; attempt <= 8 && !ok; attempt++) {
     try {
       const res = await llm.callLLM([{ role: "user", content: [{ type: "text", text: prompt }] }], { maxTokens: 4000 }, "v5-director");
       writeJson(rawPath, { attempt, at: new Date().toISOString(), res });
@@ -77,7 +77,7 @@ for (const sf of scriptFiles) {
         const detail = res?.error || (llm.isProviderError?.(res) ? "provider_error" : "invalid_response");
         const transient = /503|429|unavailable|high demand|timeout|ECONN|temporar|rate/i.test(String(detail));
         rec.attempts.push({ attempt, status: "invalid", detail, transient });
-        await sleep(transient ? Math.min(90000, 15000 * attempt) : 3000 * attempt);
+        await sleep(transient ? Math.min(150000, 20000 * attempt) : 4000 * attempt);
         continue;
       }
       plan.id = script.id; plan.slug = script.slug; plan.title = script.title; plan.sources = script.sources; plan.cta = script.cta;
