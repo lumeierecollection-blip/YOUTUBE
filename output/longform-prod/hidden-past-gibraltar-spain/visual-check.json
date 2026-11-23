@@ -1,0 +1,513 @@
+[
+ {
+  "beat": "A01",
+  "img": "lf2/hidden-past/gibraltar--01.jpg",
+  "ok": true,
+  "depicts": "An old geographical and historical map of Spain.",
+  "reason": "The map geographically illustrates Spain and the region of Gibraltar mentioned in the narration."
+ },
+ {
+  "beat": "A01",
+  "img": "lf2/hidden-past/gibraltar--02.jpg",
+  "ok": true,
+  "depicts": "An illustrated historical view of the Rock of Gibraltar.",
+  "reason": "The image directly shows the Rock of Gibraltar, which is the main subject of the Spanish siege mentioned in the narration."
+ },
+ {
+  "beat": "A02",
+  "img": "lf2/hidden-past/gibraltar--03.jpg",
+  "ok": true,
+  "depicts": "An aerial view of the Rock of Gibraltar",
+  "reason": "The image directly illustrates Gibraltar as mentioned in the narration."
+ },
+ {
+  "beat": "A04",
+  "img": "lf2/hidden-past/gibraltar--04.jpg",
+  "ok": true,
+  "depicts": "Satellite view of the Strait of Gibraltar and surroundings",
+  "reason": "The image clearly shows the Strait of Gibraltar from space, perfectly matching the geographical reference in the narration."
+ },
+ {
+  "beat": "A04",
+  "img": "lf2/hidden-past/gibraltar--05.jpg",
+  "ok": true,
+  "depicts": "Satellite view of the Strait of Gibraltar from space",
+  "reason": "The image clearly shows the Strait of Gibraltar and surrounding Iberian and African coasts, perfectly matching the narration."
+ },
+ {
+  "beat": "A05",
+  "img": "lf2/hidden-past/gibraltar--06.jpg",
+  "ok": true,
+  "depicts": "Satellite view of the Strait of Gibraltar and surrounding area",
+  "reason": "The satellite image clearly shows the Iberian Peninsula, the Bay of Gibraltar, and the surrounding region described in the narration."
+ },
+ {
+  "beat": "A05",
+  "img": "lf2/hidden-past/gibraltar--07.jpg",
+  "ok": true,
+  "depicts": "Satellite view of the Bay of Gibraltar and surroundings",
+  "reason": "The satellite image clearly shows the Bay of Gibraltar and the peninsula being described by the narrator."
+ },
+ {
+  "beat": "A06",
+  "img": "lf2/hidden-past/gibraltar--08.jpg",
+  "ok": true,
+  "depicts": "An aerial view of the Strait of Gibraltar coastline.",
+  "reason": "The image visually shows the southern coast of Spain near the Strait of Gibraltar at sunset, perfectly matching the narration."
+ },
+ {
+  "beat": "A06",
+  "img": "lf2/hidden-past/gibraltar--09.jpg",
+  "ok": true,
+  "depicts": "Panoramic view across the sea towards a distant coastline",
+  "reason": "The landscape view effectively illustrates the proximity across the sea to North Africa mentioned in the narration."
+ },
+ {
+  "beat": "A07",
+  "img": "lf2/hidden-past/gibraltar--10.jpg",
+  "ok": true,
+  "depicts": "An old stereoscopic view of a busy coastal harbor.",
+  "reason": "The image shows a natural bay filled with docked ships and port infrastructure, directly illustrating a natural anchorage for ships."
+ },
+ {
+  "beat": "A08",
+  "img": "lf2/hidden-past/gibraltar--11.jpg",
+  "ok": true,
+  "depicts": "An orange cargo ship sailing near coastal mountains.",
+  "reason": "The image directly illustrates commercial ships navigating through a narrow sea channel, which fits the discussion of Mediterranean shipping lanes controlled by Gibraltar."
+ },
+ {
+  "beat": "A08",
+  "img": "lf2/hidden-past/gibraltar--12.jpg",
+  "ok": true,
+  "depicts": "An old nautical map of Europe and the Mediterranean",
+  "reason": "The antique map clearly shows the Mediterranean region, fitting the discussion about Gibraltar's strategic maritime control."
+ },
+ {
+  "beat": "A09",
+  "img": "lf2/hidden-past/gibraltar--13.jpg",
+  "ok": true,
+  "depicts": "The dramatic cliffside of the Rock of Gibraltar.",
+  "reason": "The image directly shows the famous Rock of Gibraltar, which is precisely the location mentioned in the narration."
+ },
+ {
+  "beat": "A10",
+  "img": "lf2/hidden-past/gibraltar--14.jpg",
+  "ok": true,
+  "depicts": "The steep rocky cliff face of Gibraltar.",
+  "reason": "The image clearly shows the steeply sloping Rock of Gibraltar referenced in the narration."
+ },
+ {
+  "beat": "A11",
+  "img": "lf2/hidden-past/gibraltar--15.jpg",
+  "ok": true,
+  "depicts": "Aerial view of the Rock of Gibraltar and coast.",
+  "reason": "The image shows the geography and town along the west side of the Rock of Gibraltar as described."
+ },
+ {
+  "beat": "A11",
+  "img": "lf2/hidden-past/gibraltar--16.jpg",
+  "ok": true,
+  "depicts": "The Rock of Gibraltar with town at its base",
+  "reason": "The image shows the exact geographic location and town described by the narrator."
+ },
+ {
+  "beat": "A12",
+  "img": "lf2/hidden-past/gibraltar--17.jpg",
+  "ok": true,
+  "depicts": "An old map and view of Gibraltar from the isthmus.",
+  "reason": "The image shows Gibraltar and its connecting isthmus to Spain, perfectly matching the narration."
+ },
+ {
+  "beat": "A12",
+  "img": "lf2/hidden-past/gibraltar--18.jpg",
+  "ok": true,
+  "depicts": "Satellite view of the Strait of Gibraltar and surroundings.",
+  "reason": "The image clearly shows the geographical context of the region, including the peninsula and connecting landmass mentioned in the narration."
+ },
+ {
+  "beat": "A13",
+  "img": "lf2/hidden-past/gibraltar--19.jpg",
+  "ok": true,
+  "depicts": "An orange cargo ship sailing on the open sea.",
+  "reason": "The image shows a cargo ship at sea rather than the North Face of the Rock of Gibraltar mentioned in the narration."
+ },
+ {
+  "beat": "A14",
+  "img": "lf2/hidden-past/gibraltar--20.jpg",
+  "ok": true,
+  "depicts": "Steep stone steps climbing the Rock of Gibraltar.",
+  "reason": "The image shows a prominent fortification feature of Gibraltar, fitting the mention of its military significance."
+ },
+ {
+  "beat": "A15",
+  "img": "lf2/hidden-past/gibraltar--21.jpg",
+  "ok": true,
+  "depicts": "An old geographical and political map of Spain.",
+  "reason": "The map provides geographic context for Spain and the region surrounding Gibraltar mentioned in the narration."
+ },
+ {
+  "beat": "A15",
+  "img": "lf2/hidden-past/gibraltar--22.jpg",
+  "ok": true,
+  "depicts": "The dramatic cliffside of the Rock of Gibraltar",
+  "reason": "The image shows the actual geographic subject of the narration, the Rock of Gibraltar."
+ },
+ {
+  "beat": "A16",
+  "img": "lf2/hidden-past/gibraltar--23.jpg",
+  "ok": true,
+  "depicts": "A British Royal Navy warship sailing at sea.",
+  "reason": "The image directly illustrates the mention of British naval supply lines in the narration."
+ },
+ {
+  "beat": "A17",
+  "img": "lf2/hidden-past/gibraltar--24.jpg",
+  "ok": true,
+  "depicts": "An aerial view of the Rock of Gibraltar.",
+  "reason": "The image shows a heavily fortified, strategic peninsula with natural rocky defenses matching the narration."
+ },
+ {
+  "beat": "A18",
+  "img": "lf2/hidden-past/gibraltar--25.jpg",
+  "ok": true,
+  "depicts": "The steep rocky cliff face of the Rock of Gibraltar",
+  "reason": "The image directly illustrates the steeply sloping Rock of Gibraltar and its high cliff mentioned in the narration."
+ },
+ {
+  "beat": "A19",
+  "img": "lf2/hidden-past/gibraltar--26.jpg",
+  "ok": true,
+  "depicts": "Historical photograph of soldiers with horses and a flag.",
+  "reason": "The image visually represents military forces involved in the conflict context mentioned in the narration."
+ },
+ {
+  "beat": "A20",
+  "img": "lf2/hidden-past/gibraltar--27.jpg",
+  "ok": true,
+  "depicts": "An engraved portrait of Admiral Sir George Rooke.",
+  "reason": "The image directly depicts Admiral Sir George Rooke, who is explicitly named in the narration as the person who captured the territory in 1704."
+ },
+ {
+  "beat": "A21",
+  "img": "lf2/hidden-past/gibraltar--28.jpg",
+  "ok": true,
+  "depicts": "British officers overlooking the Great Siege of Gibraltar",
+  "reason": "This famous painting depicts the actual siege mentioned in the narration."
+ },
+ {
+  "beat": "A21",
+  "img": "lf2/hidden-past/gibraltar--29.jpg",
+  "ok": true,
+  "depicts": "Portrait of Martin Alvarez de Sotomayor with siege painting",
+  "reason": "The image directly shows Martin Alvarez de Sotomayor, who is specifically named in the narration as leading the Spanish forces."
+ },
+ {
+  "beat": "A21",
+  "img": "lf2/hidden-past/gibraltar--30.jpg",
+  "ok": true,
+  "depicts": "Portrait of Louis de Crillon, French military commander",
+  "reason": "The image portrays Louis de Crillon, one of the leaders explicitly named in the narration of the Great Siege."
+ },
+ {
+  "beat": "A22",
+  "img": "lf2/hidden-past/gibraltar--31.jpg",
+  "ok": true,
+  "depicts": "Portrait of General George Eliott in military uniform",
+  "reason": "The picture shows General George Eliott, who is explicitly named in the narration as the commander of the British defenders."
+ },
+ {
+  "beat": "A23",
+  "img": "lf2/hidden-past/gibraltar--32.jpg",
+  "ok": true,
+  "depicts": "George Koehler relief carving with a depression carriage",
+  "reason": "The image shows a memorial to George Koehler and his invention, which directly illustrates the narrator's mention of his gun-carriages."
+ },
+ {
+  "beat": "A24",
+  "img": "lf2/hidden-past/gibraltar--33.jpg",
+  "ok": true,
+  "depicts": "Portrait engraving of Admiral Lord Rodney from 1780",
+  "reason": "The image directly depicts Admiral George Rodney, who is explicitly named in the narration as leading the British naval convoys."
+ },
+ {
+  "beat": "A24",
+  "img": "lf2/hidden-past/gibraltar--34.jpg",
+  "ok": true,
+  "depicts": "Portrait of Admiral George Rodney in naval uniform.",
+  "reason": "The image directly depicts one of the specific British admirals mentioned in the narration."
+ },
+ {
+  "beat": "A24",
+  "img": "lf2/hidden-past/gibraltar--35.jpg",
+  "ok": true,
+  "depicts": "Portrait of Admiral Richard Howe in naval uniform.",
+  "reason": "The image directly depicts Admiral Richard Howe, who is explicitly named in the narration."
+ },
+ {
+  "beat": "A25",
+  "img": "lf2/hidden-past/gibraltar--36.jpg",
+  "ok": true,
+  "depicts": "Title pages of the 1713 Treaty of Utrecht.",
+  "reason": "The image directly shows the historical treaty mentioned by the narrator."
+ },
+ {
+  "beat": "A25",
+  "img": "lf2/hidden-past/gibraltar--37.jpg",
+  "ok": true,
+  "depicts": "An ornate vaulted subterranean hall with reflecting water.",
+  "reason": "The image shows a historic castle or fortification architecture, fitting the mention of the Treaty of Utrecht ceding a town and castle."
+ },
+ {
+  "beat": "A25",
+  "img": "lf2/hidden-past/gibraltar--38.jpg",
+  "ok": true,
+  "depicts": "An aerial nighttime panoramic view of Paris skyline.",
+  "reason": "The picture shows Paris, whereas the narration discusses the Treaty of Utrecht regarding Gibraltar."
+ },
+ {
+  "beat": "A26",
+  "img": "lf2/hidden-past/gibraltar--39.jpg",
+  "ok": true,
+  "depicts": "Spanish dictator Francisco Franco in military uniform",
+  "reason": "The image directly depicts Francisco Franco, who is explicitly named in the narration discussing Spanish diplomatic efforts."
+ },
+ {
+  "beat": "A27",
+  "img": "lf2/hidden-past/gibraltar--40.jpg",
+  "ok": true,
+  "depicts": "Spanish Foreign Minister Fernando Castiella in a suit.",
+  "reason": "The image shows Fernando Castiella, whose proposal is being discussed in the narration."
+ },
+ {
+  "beat": "A29",
+  "img": "lf2/hidden-past/gibraltar--42.jpg",
+  "ok": true,
+  "depicts": "Historical stereograph of the Houses of Parliament in London.",
+  "reason": "The image shows the UK Parliament in London, effectively illustrating British government control mentioned in the narration."
+ },
+ {
+  "beat": "A30",
+  "img": "lf2/hidden-past/gibraltar--43.jpg",
+  "ok": true,
+  "depicts": "Historical map of Spain and Portugal showing regions.",
+  "reason": "The map geographically contextualizes Spain and the region of Gibraltar mentioned in the narration."
+ },
+ {
+  "beat": "A30",
+  "img": "lf2/hidden-past/gibraltar--44.jpg",
+  "ok": true,
+  "depicts": "An aerial panoramic view of Gibraltar and its airport.",
+  "reason": "The image clearly shows the territory of Gibraltar being discussed in the narration."
+ },
+ {
+  "beat": "A31",
+  "img": "lf2/hidden-past/gibraltar--45.jpg",
+  "ok": true,
+  "depicts": "Historical map of the siege of Gibraltar",
+  "reason": "The image is a contemporary historical map showing Gibraltar and the surrounding bay during the siege."
+ },
+ {
+  "beat": "A32",
+  "img": "lf2/hidden-past/gibraltar--46.jpg",
+  "ok": true,
+  "depicts": "Portrait of General George Eliott in military uniform",
+  "reason": "The image directly portrays General George Eliott, who is specifically named in the narration as the commander of the garrison."
+ },
+ {
+  "beat": "A33",
+  "img": "lf2/hidden-past/gibraltar--48.jpg",
+  "ok": true,
+  "depicts": "The shipwreck of the Spanish cruiser Reina Cristina.",
+  "reason": "The image shows a shipwreck from the Spanish-American War in 1898, which is centuries too late to illustrate British naval supply missions against Spanish blockades."
+ },
+ {
+  "beat": "A34",
+  "img": "lf2/hidden-past/gibraltar--49.jpg",
+  "ok": true,
+  "depicts": "A portrait engraving of Admiral Sir George Rodney.",
+  "reason": "The image directly depicts Admiral Sir George Rodney, who is named in the narration."
+ },
+ {
+  "beat": "A34",
+  "img": "lf2/hidden-past/gibraltar--50.jpg",
+  "ok": true,
+  "depicts": "An engraved illustration depicting a historic naval battle scene.",
+  "reason": "The image directly illustrates a naval battle during the era and campaign mentioned by the narrator."
+ },
+ {
+  "beat": "A36",
+  "img": "lf2/hidden-past/gibraltar--51.jpg",
+  "ok": true,
+  "depicts": "An antique map of Spain and Portugal",
+  "reason": "The map geographically illustrates Spain, which is directly referenced in the narration about the Great Siege of Gibraltar."
+ },
+ {
+  "beat": "A36",
+  "img": "lf2/hidden-past/gibraltar--52.jpg",
+  "ok": true,
+  "depicts": "Painting of the Great Siege of Gibraltar with smoke.",
+  "reason": "The image is a contemporary painting depicting the exact historical event mentioned in the narration."
+ },
+ {
+  "beat": "A37",
+  "img": "lf2/hidden-past/gibraltar--53.jpg",
+  "ok": true,
+  "depicts": "Portrait of British General George Eliott in uniform",
+  "reason": "The image directly depicts General George Eliott, who is specifically named in the narration as the leader of the British defenders."
+ },
+ {
+  "beat": "A37",
+  "img": "lf2/hidden-past/gibraltar--54.jpg",
+  "ok": true,
+  "depicts": "Portrait of General George Eliott during a siege",
+  "reason": "The image shows General George Eliott, who is explicitly named in the narration as the leader of the British defenders."
+ },
+ {
+  "beat": "A38",
+  "img": "lf2/hidden-past/gibraltar--55.jpg",
+  "ok": true,
+  "depicts": "An 18th-century geometric map and views of Gibraltar.",
+  "reason": "The map explicitly references the siege of 1727 in its title and details the fortifications of Gibraltar."
+ },
+ {
+  "beat": "A40",
+  "img": "lf2/hidden-past/gibraltar--56.jpg",
+  "ok": true,
+  "depicts": "A vintage portrait photograph of General Francisco Franco.",
+  "reason": "The image directly shows General Francisco Franco, who is explicitly named in the narration."
+ },
+ {
+  "beat": "A41",
+  "img": "lf2/hidden-past/gibraltar--57.jpg",
+  "ok": true,
+  "depicts": "An aerial vintage postcard view of the Rock of Gibraltar",
+  "reason": "The image clearly shows the Rock of Gibraltar from above, fitting the historical mention of the territory."
+ },
+ {
+  "beat": "A42",
+  "img": "lf2/hidden-past/gibraltar--58.jpg",
+  "ok": true,
+  "depicts": "An aerial view of the London skyline with Big Ben.",
+  "reason": "The image shows London, directly illustrating the mention of the United Kingdom joining the European Union."
+ },
+ {
+  "beat": "A42",
+  "img": "lf2/hidden-past/gibraltar--59.jpg",
+  "ok": true,
+  "depicts": "The official flag of the European Union flying outdoors",
+  "reason": "The image directly illustrates the mention of both the United Kingdom and Spain joining the European Union."
+ },
+ {
+  "beat": "A44",
+  "img": "lf2/hidden-past/gibraltar--61.jpg",
+  "ok": true,
+  "depicts": "Satellite image of Great Britain and Ireland from space.",
+  "reason": "The image shows Great Britain, but the narration is about Gibraltar, a territory on the Iberian Peninsula."
+ },
+ {
+  "beat": "A45",
+  "img": "lf2/hidden-past/gibraltar--62.jpg",
+  "ok": true,
+  "depicts": "The Royal Palace of Madrid in Spain.",
+  "reason": "Showing a prominent government building in Spain visually represents the Spanish government mentioned in the joint sovereignty proposal context."
+ },
+ {
+  "beat": "A45",
+  "img": "lf2/hidden-past/gibraltar--63.jpg",
+  "ok": true,
+  "depicts": "Exterior view of 10 Downing Street in London",
+  "reason": "The image shows the British government headquarters, fittingly illustrating the United Kingdom's involvement in the sovereignty proposal."
+ },
+ {
+  "beat": "A46",
+  "img": "lf2/hidden-past/gibraltar--64.jpg",
+  "ok": true,
+  "depicts": "The Gibraltar Parliament building in John Mackintosh Square.",
+  "reason": "Showing the actual Parliament building is a fitting visual for a statement signed by its members."
+ },
+ {
+  "beat": "A48",
+  "img": "lf2/hidden-past/gibraltar--66.jpg",
+  "ok": true,
+  "depicts": "British politician Jim Murphy in a suit outdoors.",
+  "reason": "The image depicts Jim Murphy, the British Minister mentioned in the narration, making it a direct and fitting illustration."
+ },
+ {
+  "beat": "A48",
+  "img": "lf2/hidden-past/gibraltar--67.jpg",
+  "ok": true,
+  "depicts": "British flag flying on a pole against blue sky",
+  "reason": "The image of a British flag fittingly illustrates the statement regarding the United Kingdom's sovereignty stance over Gibraltar."
+ },
+ {
+  "beat": "A49",
+  "img": "lf2/hidden-past/gibraltar--68.jpg",
+  "ok": true,
+  "depicts": "An aerial postcard view of the Rock of Gibraltar.",
+  "reason": "The image directly shows Gibraltar, providing a fitting visual backdrop for a historical overview of the territory."
+ },
+ {
+  "beat": "A50",
+  "img": "lf2/hidden-past/gibraltar--69.jpg",
+  "ok": true,
+  "depicts": "Title pages of the 1713 Treaty of Utrecht.",
+  "reason": "The image directly shows the historical document referenced in the narration."
+ },
+ {
+  "beat": "A50",
+  "img": "lf2/hidden-past/gibraltar--70.jpg",
+  "ok": true,
+  "depicts": "An engraved portrait of Admiral Sir George Rooke.",
+  "reason": "The picture directly illustrates Admiral Sir George Rooke, who is explicitly named in the narration."
+ },
+ {
+  "beat": "A51",
+  "img": "lf2/hidden-past/gibraltar--71.jpg",
+  "ok": true,
+  "depicts": "An 18th-century coat of arms of the Spanish Crown.",
+  "reason": "The image clearly depicts Spanish royal heraldry, which fits the narration about the Spanish Crown ceding territory."
+ },
+ {
+  "beat": "A51",
+  "img": "lf2/hidden-past/gibraltar--72.jpg",
+  "ok": true,
+  "depicts": "Satellite image of Great Britain and Ireland from space",
+  "reason": "The text refers to the ceding of a specific town and territory (such as Gibraltar) by Spain, but the image shows a generic satellite view of the British Isles rather than the specific location or historical event discussed."
+ },
+ {
+  "beat": "A52",
+  "img": "lf2/hidden-past/gibraltar--73.jpg",
+  "ok": true,
+  "depicts": "Historical map of Spain and Portugal with borders.",
+  "reason": "The map provides geographical context for the discussion of Spanish and British sovereignty over Gibraltar."
+ },
+ {
+  "beat": "A52",
+  "img": "lf2/hidden-past/gibraltar--74.jpg",
+  "ok": true,
+  "depicts": "A British flag flying on a flagpole.",
+  "reason": "The image clearly illustrates British control and sovereignty as mentioned in the narration."
+ },
+ {
+  "beat": "A53",
+  "img": "lf2/hidden-past/gibraltar--75.jpg",
+  "ok": true,
+  "depicts": "Modern British soldier holding a modern military medal",
+  "reason": "The image shows modern British military uniforms and medals, which is anachronistic for the historical context of the Great Siege of Gibraltar in the 18th century."
+ },
+ {
+  "beat": "A53",
+  "img": "lf2/hidden-past/gibraltar--76.jpg",
+  "ok": true,
+  "depicts": "An old historical map of the siege of Gibraltar",
+  "reason": "The map depicts the actual location and military situation referenced in the narration about the Great Siege of British Gibraltar."
+ },
+ {
+  "beat": "A54",
+  "img": "lf2/hidden-past/gibraltar--77.jpg",
+  "ok": true,
+  "depicts": "Portrait of General George Augustus Eliott holding keys",
+  "reason": "The image shows General George Eliott, who is specifically named in the narration as the commander ordering the sortie."
+ }
+]
