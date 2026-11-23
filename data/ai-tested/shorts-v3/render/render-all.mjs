@@ -36,6 +36,23 @@ for (const f of files) {
       if (Number.isFinite(d) && d > 5) dur = d;
     } catch {}
   }
+  // Scale scene timings to actual audio duration to avoid dead air / overruns
+  const scenes = Array.isArray(story.scenes) ? story.scenes : [];
+  const planned = scenes.reduce((a,s)=>a + (Number(s.dur)||0), 0) || story.duration_target_sec || dur;
+  const scale = dur / planned;
+  let cursor = 0;
+  story.scenes = scenes.map((s, i) => {
+    const sd = Math.max(0.8, (Number(s.dur) || 2) * scale);
+    const t = cursor;
+    cursor += sd;
+    return { ...s, t: +t.toFixed(3), dur: +sd.toFixed(3) };
+  });
+  // Ensure last scene covers to end
+  if (story.scenes.length) {
+    const last = story.scenes[story.scenes.length - 1];
+    const end = last.t + last.dur;
+    if (end < dur) last.dur = +(dur - last.t + 0.2).toFixed(3);
+  }
   const props = JSON.stringify({ story, audioSrc: `audio/${id}.mp3`, audioDurationSec: dur });
   const outFile = path.join(outDir, `${id}-${story.slug}.mp4`);
   console.log(`Rendering ${id} -> ${outFile} (dur=${dur}s)`);

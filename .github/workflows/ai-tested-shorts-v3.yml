@@ -35,14 +35,31 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p assets/photos/cutouts
+          shopt -s nullglob
           for f in assets/photos/*.jpg assets/photos/*.jpeg assets/photos/*.png; do
-            [ -e "$f" ] || continue
-            base=$(basename "$f"); out="assets/photos/cutouts/${base%.*}.png"
+            [ -f "$f" ] || continue
+            base=$(basename "$f")
+            stem="${base%.*}"
+            out="assets/photos/cutouts/${stem}.png"
+            echo "rembg $f -> $out"
             rembg i "$f" "$out" || true
+            if [ -f "$out" ]; then
+              cp "$out" "assets/photos/${stem}.png"
+            else
+              # fallback: ensure a png exists for render
+              if [[ "$f" != *.png ]]; then
+                ffmpeg -y -i "$f" "assets/photos/${stem}.png" || cp "$f" "assets/photos/${stem}.png" || true
+              fi
+            fi
           done
-          if [ -d assets/photos/cutouts ]; then
-            for f in assets/photos/cutouts/*.png; do [ -e "$f" ] || continue; base=$(basename "$f" .png); cp "$f" "assets/photos/${base}.png" || true; done
-          fi
+          # final guarantee: every jpg/jpeg has a png sibling
+          for f in assets/photos/*.jpg assets/photos/*.jpeg; do
+            [ -f "$f" ] || continue
+            base=$(basename "$f"); stem="${base%.*}"
+            [ -f "assets/photos/${stem}.png" ] || ffmpeg -y -i "$f" "assets/photos/${stem}.png" || true
+          done
+          ls -la assets/photos || true
+          ls -la assets/photos/cutouts || true
       - name: Install render deps
         working-directory: data/ai-tested/shorts-v3/render
         run: npm install && npx remotion browser ensure
