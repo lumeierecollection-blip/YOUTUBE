@@ -61,7 +61,7 @@ const Stat: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
 const BarChart: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
   const frame=useCurrentFrame(); const {durationInFrames}=useVideoConfig();
   const pts=(beat.chart?.points||[]).slice(0,6);
-  const max=Math.max(1, num(beat.chart?.max,0) || ...pts.map(p=>num(p.value,0)));
+  const max=Math.max(1, num(beat.chart?.max,0), ...pts.map(p=>num(p.value,0)));
   const prog=interpolate(frame,[0,Math.min(24,durationInFrames-1)],[0,1],{extrapolateRight:"clamp"});
   const ink=dark?"#FAFAF8":"#111"; const muted=dark?"rgba(250,250,248,0.68)":"#555";
   return <div style={{width:"100%"}}>
@@ -85,7 +85,7 @@ const LineChart: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
   const pts=(beat.chart?.points||[]).slice(0,8);
   const W=920,H=520,padL=70,padR=30,padT=30,padB=70;
   const vals=pts.map(p=>num(p.value,0));
-  const max=Math.max(1,num(beat.chart?.max,0)||...vals);
+  const max=Math.max(1, num(beat.chart?.max,0), ...vals);
   const min=Math.min(0,...vals);
   const range=Math.max(1,max-min);
   const xFor=(i:number)=>padL + (i*(W-padL-padR))/Math.max(1,pts.length-1);
