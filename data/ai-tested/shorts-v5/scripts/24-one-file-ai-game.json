@@ -1,0 +1,14 @@
+{
+  "id": "24",
+  "slug": "one-file-ai-game",
+  "title": "An AI Made a 3D Shooter in One File",
+  "voice": "en-US-AndrewNeural",
+  "sources": [
+    "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
+    "https://saltline.games"
+  ],
+  "script": "An AI made a playable 3D shooter in one file. No game studio. No artists. No sound team. An Anthropic engineer ran Claude Fable 5.2 with no human feedback during the build. Eight hours later: Saltline, a browser FPS in a rainy harbor. The whole game is 1.4 megabytes. No images. No audio files. No 3D models. Code generates the geometry, textures, and sound. Reported cost: around five hundred fifty dollars in API compute. Not AAA. But it’s a scary preview of what one AI can build.",
+  "cta": "Follow AI Tested for AI builds that bend reality.",
+  "concept": "Build-log/code-lab: terminal shock, file-size reveal, no-assets teardown, code-generates-everything diagram, cost/payoff.",
+  "duration_target_sec": 21.1
+}
