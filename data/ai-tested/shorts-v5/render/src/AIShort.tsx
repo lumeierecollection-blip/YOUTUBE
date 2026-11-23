@@ -60,17 +60,17 @@ const Stat: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
 
 const BarChart: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
   const frame=useCurrentFrame(); const {durationInFrames}=useVideoConfig();
-  const pts=(beat.chart?.points||[]).slice(0,5);
-  const max=Math.max(1, beat.chart?.max || ...pts.map(p=>num(p.value,0)));
+  const pts=(beat.chart?.points||[]).slice(0,6);
+  const max=Math.max(1, num(beat.chart?.max,0) || ...pts.map(p=>num(p.value,0)));
   const prog=interpolate(frame,[0,Math.min(24,durationInFrames-1)],[0,1],{extrapolateRight:"clamp"});
   const ink=dark?"#FAFAF8":"#111"; const muted=dark?"rgba(250,250,248,0.68)":"#555";
   return <div style={{width:"100%"}}>
-    <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",gap:18,height:520,padding:"20px 10px 0"}}>
+    <div style={{display:"flex",alignItems:"flex-end",justifyContent:"space-between",gap:18,height:560,padding:"10px 10px 0"}}>
       {pts.map((p,i)=>{
-        const h=(num(p.value)/max)*460*prog;
+        const h=(num(p.value)/max)*480*prog;
         return <div key={i} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:12}}>
           <div style={{fontFamily:inter,fontWeight:800,fontSize:28,color:ink}}>{p.value}{beat.chart?.unit||""}</div>
-          <div style={{width:"100%",maxWidth:120,height:460,display:"flex",alignItems:"flex-end",background:dark?"rgba(255,255,255,0.06)":"#EFEFEA",borderRadius:18,overflow:"hidden"}}>
+          <div style={{width:"100%",maxWidth:120,height:480,display:"flex",alignItems:"flex-end",background:dark?"rgba(255,255,255,0.06)":"#EFEFEA",borderRadius:18,overflow:"hidden"}}>
             <div style={{width:"100%",height:h,background:p.color||beat.accent||"#111",borderRadius:18}} />
           </div>
           <div style={{fontFamily:inter,fontWeight:700,fontSize:24,color:muted,textAlign:"center",lineHeight:1.2,minHeight:56}}>{p.label}</div>
@@ -80,15 +80,55 @@ const BarChart: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
   </div>;
 };
 
+const LineChart: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
+  const frame=useCurrentFrame(); const {durationInFrames}=useVideoConfig();
+  const pts=(beat.chart?.points||[]).slice(0,8);
+  const W=920,H=520,padL=70,padR=30,padT=30,padB=70;
+  const vals=pts.map(p=>num(p.value,0));
+  const max=Math.max(1,num(beat.chart?.max,0)||...vals);
+  const min=Math.min(0,...vals);
+  const range=Math.max(1,max-min);
+  const xFor=(i:number)=>padL + (i*(W-padL-padR))/Math.max(1,pts.length-1);
+  const yFor=(v:number)=>padT + (H-padT-padB) - ((v-min)/range)*(H-padT-padB);
+  const pathD=pts.map((p,i)=>`${i===0?"M":"L"} ${xFor(i).toFixed(1)} ${yFor(num(p.value,0)).toFixed(1)}`).join(" ");
+  const prog=interpolate(frame,[0,Math.min(28,durationInFrames-1)],[0,1],{extrapolateRight:"clamp"});
+  const visible=Math.max(1,Math.ceil(prog*pts.length));
+  const partial=pts.slice(0,visible);
+  const partD=partial.map((p,i)=>`${i===0?"M":"L"} ${xFor(i).toFixed(1)} ${yFor(num(p.value,0)).toFixed(1)}`).join(" ");
+  const ink=dark?"#FAFAF8":"#111"; const muted=dark?"rgba(250,250,248,0.68)":"#555"; const grid=dark?"rgba(255,255,255,0.12)":"#E2E2DC";
+  return <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{maxWidth:"100%",height:"auto"}}>
+      {[0,0.25,0.5,0.75,1].map((t,i)=>{ const y=padT+(H-padT-padB)*t; const val=(max - range*t); return <g key={i}><line x1={padL} x2={W-padR} y1={y} y2={y} stroke={grid} strokeWidth="2" /><text x={padL-12} y={y+8} textAnchor="end" fontSize="22" fill={muted} fontFamily={inter}>{Math.round(val)}{beat.chart?.unit||""}</text></g>; })}
+      <path d={pathD} fill="none" stroke={dark?"rgba(255,255,255,0.18)":"#D7D7D0"} strokeWidth="8" strokeLinecap="round" />
+      <path d={partD} fill="none" stroke={beat.accent||"#111"} strokeWidth="8" strokeLinecap="round" />
+      {partial.map((p,i)=>{ const x=xFor(i), y=yFor(num(p.value,0)); return <g key={i}><circle cx={x} cy={y} r="10" fill={p.color||beat.accent||"#111"} /><text x={x} y={y-18} textAnchor="middle" fontSize="24" fontWeight="800" fill={ink} fontFamily={inter}>{p.value}{beat.chart?.unit||""}</text><text x={x} y={H-24} textAnchor="middle" fontSize="24" fill={muted} fontFamily={inter}>{p.label}</text></g>; })}
+    </svg>
+  </div>;
+};
+
 const Timeline: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
   const frame=useCurrentFrame(); const {durationInFrames}=useVideoConfig();
-  const steps=(beat.timeline?.steps||[]).slice(0,5);
+  const raw = beat.timeline as any;
+  const steps=(Array.isArray(raw)?raw:(raw?.steps||[])).slice(0,6).map((s:any)=>typeof s==="string"?s:(s?.label||s?.text||JSON.stringify(s)));
   const reveal=Math.floor(interpolate(frame,[0,Math.min(30,durationInFrames-1)],[1,steps.length+0.99],{extrapolateRight:"clamp"}));
   const ink=dark?"#FAFAF8":"#111";
   return <div style={{width:"100%",display:"flex",flexDirection:"column",gap:18}}>
-    {steps.map((s,i)=>{ const on=i<reveal; return <div key={i} style={{display:"flex",gap:18,alignItems:"center",opacity:on?1:0.2}}>
+    {steps.map((s:string,i:number)=>{ const on=i<reveal; return <div key={i} style={{display:"flex",gap:18,alignItems:"center",opacity:on?1:0.18}}>
       <div style={{width:54,height:54,borderRadius:999,background:on?(beat.accent||"#111"):(dark?"rgba(255,255,255,0.12)":"#DDD"),color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:inter,fontWeight:800,fontSize:24}}>{i+1}</div>
-      <div style={{flex:1,padding:"20px 22px",background:dark?"rgba(255,255,255,0.06)":"#fff",border:`2px solid ${dark?"rgba(255,255,255,0.12)":"#E2E2DC"}`,fontFamily:inter,fontWeight:700,fontSize:32,color:ink}}>{s}</div>
+      <div style={{flex:1,padding:"20px 22px",background:dark?"rgba(255,255,255,0.06)":"#fff",border:`2px solid ${dark?"rgba(255,255,255,0.12)":"#E2E2DC"}`,fontFamily:inter,fontWeight:700,fontSize:32,color:ink,lineHeight:1.2}}>{s}</div>
+    </div>; })}
+  </div>;
+};
+
+const ProgressBarViz: React.FC<{beat:Beat;dark:boolean}> = ({beat,dark}) => {
+  const frame=useCurrentFrame(); const {durationInFrames}=useVideoConfig();
+  const pts=(beat.chart?.points||[{label:beat.sub||"Progress",value:100}]).slice(0,4);
+  const prog=interpolate(frame,[0,Math.min(24,durationInFrames-1)],[0,1],{extrapolateRight:"clamp"});
+  const ink=dark?"#FAFAF8":"#111"; const muted=dark?"rgba(250,250,248,0.68)":"#555";
+  return <div style={{width:"100%",display:"flex",flexDirection:"column",gap:28}}>
+    {pts.map((p,i)=>{ const max=Math.max(1,num(beat.chart?.max,100)); const w=(num(p.value)/max)*100*prog; return <div key={i}>
+      <div style={{display:"flex",justifyContent:"space-between",fontFamily:inter,fontWeight:800,fontSize:30,color:ink,marginBottom:10}}><span>{p.label}</span><span>{p.value}{beat.chart?.unit||""}</span></div>
+      <div style={{height:34,background:dark?"rgba(255,255,255,0.08)":"#EAEAE4",borderRadius:999,overflow:"hidden"}}><div style={{height:"100%",width:`${w}%`,background:p.color||beat.accent||"#111"}} /></div>
     </div>; })}
   </div>;
 };
@@ -119,7 +159,7 @@ const BeatView: React.FC<{beat:Beat}> = ({beat}) => {
   const exit=interpolate(frame,[durationInFrames-6,durationInFrames],[1,0],{extrapolateLeft:"clamp",extrapolateRight:"clamp"});
   const v=beat.visual;
   const centralTypes=["stat_counter","bar_chart","line_graph","timeline","hero_cutout","split_compare","logo_grid","evidence_board"];
-  const topType = !["hero_cutout","stat_counter","bar_chart","line_graph","timeline","kinetic_type","full_bleed_type","final_question"].includes(v);
+  const topType = !["hero_cutout","stat_counter","bar_chart","line_graph","timeline","progress_bar","kinetic_type","full_bleed_type","final_question"].includes(v);
   return <AbsoluteFill style={{opacity:exit}}>
     <Bg bg={bg} accent={accent} dark={dark} />
     <div style={{position:"absolute",inset:0,padding:"68px 60px 84px"}}>
@@ -128,11 +168,13 @@ const BeatView: React.FC<{beat:Beat}> = ({beat}) => {
         <div style={{fontFamily:inter,fontWeight:700,fontSize:20,color:dark?"rgba(250,250,248,0.62)":"#666"}}>{(beat.kicker||"V5").toUpperCase()}</div>
       </div>
       {topType ? <MainType beat={beat} dark={dark} center={["stamp_document","warning_panel","quote_card","product_card","tool_card","legal_stack"].includes(v)} /> : <Kicker beat={beat} dark={dark} />}
-      <div style={{position:"absolute",left:60,right:60,top:topType?500:260,bottom:150,display:"flex",alignItems:"center",justifyContent:"center"}}>
+      <div style={{position:"absolute",left:60,right:60,top:topType?430:220,bottom:140,display:"flex",alignItems:"center",justifyContent:"center"}}>
         {v==="hero_cutout" ? <HeroCutout beat={beat} dark={dark} /> : null}
         {v==="stat_counter" ? <Stat beat={beat} dark={dark} /> : null}
-        {v==="bar_chart" || v==="line_graph" ? <BarChart beat={beat} dark={dark} /> : null}
+        {v==="bar_chart" ? <BarChart beat={beat} dark={dark} /> : null}
+        {v==="line_graph" ? <LineChart beat={beat} dark={dark} /> : null}
         {v==="timeline" ? <Timeline beat={beat} dark={dark} /> : null}
+        {v==="progress_bar" ? <ProgressBarViz beat={beat} dark={dark} /> : null}
         {v==="split_compare" ? <Split beat={beat} dark={dark} /> : null}
         {v==="logo_grid" ? <Logos logos={beat.assets} dark={dark} size={148} /> : null}
         {v==="evidence_board" ? <Timeline beat={{...beat, timeline:{steps:(beat.sub||"").split("·").map(s=>s.trim()).filter(Boolean)}}} dark={dark} /> : null}

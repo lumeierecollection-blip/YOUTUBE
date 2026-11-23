@@ -3,66 +3,79 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-function arg(name, def=null){ const i=process.argv.indexOf(`--${name}`); return i>-1?process.argv[i+1]:def; }
+function arg(name, def = null) { const i = process.argv.indexOf(`--${name}`); return i > -1 ? process.argv[i + 1] : def; }
 const root = path.resolve(arg("root", "."));
 const outDir = path.resolve(root, arg("out", "reviews"));
 fs.mkdirSync(outDir, { recursive: true });
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-async function loadLLM(){
-  try {
-    const mod = await import(pathToFileURL(path.join(repoRoot, "src/lib/llm.js")).href);
-    return mod;
-  } catch (e) {
-    return { error: String(e) };
-  }
+async function loadLLM() {
+  try { return await import(pathToFileURL(path.join(repoRoot, "src/lib/llm.js")).href); } catch (e) { return { error: String(e) }; }
 }
-
-function readJson(p){ return JSON.parse(fs.readFileSync(p,"utf8").replace(/^\uFEFF/,"")); }
-function list(dir, ext){ return fs.existsSync(dir)?fs.readdirSync(dir).filter(f=>f.endsWith(ext)).sort():[]; }
-function imgPart(p){ const b=fs.readFileSync(p).toString("base64"); return {type:"image_url", image_url:{url:`data:image/jpeg;base64,${b}`}}; }
+function readJson(p) { try { return JSON.parse(fs.readFileSync(p, "utf8").replace(/^\uFEFF/, "")); } catch { return null; } }
+function list(dir, ext) { return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith(ext)).sort() : []; }
+function imgPart(p) { const b = fs.readFileSync(p).toString("base64"); return { type: "image_url", image_url: { url: `data:image/jpeg;base64,${b}` } }; }
+function evenly(arr, n) { if (arr.length <= n) return arr; const out = []; for (let i = 0; i < n; i++) out.push(arr[Math.round(i * (arr.length - 1) / Math.max(1, n - 1))]); return [...new Set(out)]; }
 
 const llm = await loadLLM();
-const plans = list(path.join(root,"plans"), ".plan.json").map(f=>readJson(path.join(root,"plans",f)));
+const plans = list(path.join(root, "plans"), ".plan.json").map(f => readJson(path.join(root, "plans", f))).filter(Boolean);
 const summary = [];
 
 for (const plan of plans) {
   const base = `${plan.id}-${plan.slug}`;
-  const contact = path.join(root,"qa/contact-sheets",`${base}.jpg`);
-  const framesDir = path.join(root,"qa/frames",base);
-  const frames = list(framesDir, ".jpg").slice(0,8).map(f=>path.join(framesDir,f));
+  const contact = path.join(root, "qa/contact-sheets", `${base}.jpg`);
+  const framesDir = path.join(root, "qa/frames", base);
+  const frames = list(framesDir, ".jpg").map(f => path.join(framesDir, f));
+  const sampled = evenly(frames, 12);
   const reportPath = path.join(outDir, `${base}.review.json`);
   const mdPath = path.join(outDir, `${base}.review.md`);
-  let review = { id: plan.id, slug: plan.slug, title: plan.title, status: "not_reviewed", reason: null, findings: [], pass: false };
+  const script = readJson(path.join(root, "scripts", `${base}.json`));
+  const treatment = readJson(path.join(root, "treatments", `${base}.treatment.json`));
+  const qaTxtPath = path.join(root, "qa", `${base}.mp4.txt`);
+  const qaTxt = fs.existsSync(qaTxtPath) ? fs.readFileSync(qaTxtPath, "utf8").slice(0, 2000) : "";
+  let review = { id: plan.id, slug: plan.slug, title: plan.title, status: "not_reviewed", reason: null, findings: [], issues: [], pass: false, reviewedAt: new Date().toISOString(), evidence: { contactSheet: fs.existsSync(contact), frameCount: frames.length, sampledFrames: sampled.map(f => path.basename(f)) } };
 
-  if (!fs.existsSync(contact) && frames.length===0) {
+  if (!fs.existsSync(contact) && sampled.length === 0) {
     review.reason = "no_frames";
   } else if (llm.error || typeof llm.callLLM !== "function") {
-    review.reason = "llm_unavailable";
-    review.detail = llm.error || "callLLM missing";
+    review.reason = "llm_unavailable"; review.detail = llm.error || "callLLM missing";
   } else if (llm.llmConfigured && !llm.llmConfigured()) {
     review.reason = "llm_not_configured";
   } else {
     const prompt = [
-      "You are reviewing an AI Tested YouTube Short against its visual plan.",
-      "Return ONLY JSON with keys: pass(boolean), summary(string), issues(array of {beat,severity,problem,fix}), strengths(array of strings).",
-      "Be specific and harsh. Check: hook visual strength, beat-to-visual match, repetition/template feel, text readability, prominence of subject, pacing/progression, payoff/CTA clarity.",
+      "You are a harsh Gemini creative reviewer for an AI Tested YouTube Short (1080x1920).",
+      "Review the actual rendered frames against the script, approved plan, and treatment.",
+      "Return ONLY JSON with keys: pass(boolean), summary(string), issues(array of {beat,severity,problem,fix,timestamp}), strengths(array), visual_score(number 0-10), audio_notes(string), central_composition_ok(boolean), repetition_ok(boolean).",
+      "Fail if: hook weak in first 2s, repetitive/template feel, top-heavy or small central content, visuals don't match narration, graphs unreadable/inaccurate, debug/duplicate text, poor progression/payoff, or obvious production defects.",
+      "Be specific and timestamped. Do not pass mediocre work.",
       `TITLE: ${plan.title}`,
-      `CONCEPT: ${plan.concept}`,
-      "BEATS:",
-      ...plan.beats.map((b,i)=>`${i+1}. [${b.t}-${(b.t+b.dur).toFixed(1)}s] ${b.narration} | visual=${b.visual} | headline=${b.headline} | sub=${b.sub||""}`)
+      `SCRIPT: ${script?.script || ""}`,
+      `CONCEPT: ${plan.concept || ""}`,
+      `TREATMENT: ${JSON.stringify(treatment || {})}`,
+      `PLAN_BEATS: ${JSON.stringify(plan.beats || [])}`,
+      `TECH_QA: ${qaTxt}`,
+      "EVIDENCE: contact sheet and timestamped sampled frames below. Audio was not directly listened to by you unless attached; state uncertainty in audio_notes."
     ].join("\n");
-    const content = [{type:"text", text: prompt}];
-    if (fs.existsSync(contact)) content.push({type:"text", text:"Contact sheet:"}), content.push(imgPart(contact));
-    for (const f of frames.slice(0,6)) content.push({type:"text", text:`Frame ${path.basename(f)}`}), content.push(imgPart(f));
+    const content = [{ type: "text", text: prompt }];
+    if (fs.existsSync(contact)) { content.push({ type: "text", text: "Contact sheet (whole video overview):" }); content.push(imgPart(contact)); }
+    for (const f of sampled) {
+      const name = path.basename(f, ".jpg");
+      content.push({ type: "text", text: `Frame ~${name}s/index ${name}` });
+      content.push(imgPart(f));
+    }
     try {
-      const res = await llm.callLLM([{role:"user", content}], {maxTokens:1200}, "v4-review");
-      if (llm.isProviderError && llm.isProviderError(res)) {
-        review.reason = "llm_error"; review.detail = res;
+      const res = await llm.callLLM([{ role: "user", content }], { maxTokens: 1600 }, "v5-review");
+      if (llm.isProviderError?.(res)) {
+        review.reason = "llm_error"; review.detail = res?.error || res;
       } else {
         const obj = res?.content && typeof res.content === "object" ? res.content : res;
-        review = { ...review, status: "reviewed", ...obj };
-        review.pass = !!obj.pass;
+        if (!obj || typeof obj !== "object") { review.reason = "invalid_response"; review.detail = obj; }
+        else {
+          review = { ...review, status: "reviewed", ...obj };
+          review.pass = obj.pass === true;
+          review.issues = Array.isArray(obj.issues) ? obj.issues : [];
+          review.strengths = Array.isArray(obj.strengths) ? obj.strengths : [];
+        }
       }
     } catch (e) {
       review.reason = "exception"; review.detail = String(e);
@@ -70,11 +83,27 @@ for (const plan of plans) {
   }
 
   fs.writeFileSync(reportPath, JSON.stringify(review, null, 2));
-  const md = [`# Review ${base}`, `- Status: ${review.status}`, `- Pass: ${review.pass}`, review.summary?`- Summary: ${review.summary}`:"", review.reason?`- Reason: ${review.reason}`:"", "", "## Issues", ...(Array.isArray(review.issues)&&review.issues.length?review.issues.map(i=>`- [${i.severity||"med"}] beat ${i.beat||"?"}: ${i.problem} -> ${i.fix}`):["- None reported"]), "", "## Strengths", ...(Array.isArray(review.strengths)&&review.strengths.length?review.strengths.map(s=>`- ${s}`):["- None reported"])].join("\n");
+  const md = [
+    `# Review ${base}`,
+    `- Status: ${review.status}`,
+    `- Pass: ${review.pass}`,
+    `- Visual score: ${review.visual_score ?? "n/a"}`,
+    `- Central composition ok: ${review.central_composition_ok ?? "n/a"}`,
+    `- Repetition ok: ${review.repetition_ok ?? "n/a"}`,
+    review.summary ? `- Summary: ${review.summary}` : "",
+    review.reason ? `- Reason: ${review.reason}` : "",
+    review.audio_notes ? `- Audio notes: ${review.audio_notes}` : "",
+    "",
+    "## Issues",
+    ...(review.issues.length ? review.issues.map(i => `- [${i.severity || "med"}] ${i.timestamp || ""} beat ${i.beat || "?"}: ${i.problem} -> ${i.fix}`) : ["- None reported"]),
+    "",
+    "## Strengths",
+    ...(review.strengths.length ? review.strengths.map(s => `- ${s}`) : ["- None reported"]),
+  ].filter(Boolean).join("\n");
   fs.writeFileSync(mdPath, md);
-  summary.push({id:plan.id, slug:plan.slug, status:review.status, pass:review.pass, reason:review.reason||null});
-  console.log(base, review.status, review.pass, review.reason||"");
+  summary.push({ id: plan.id, slug: plan.slug, status: review.status, pass: review.pass, reason: review.reason || null, visual_score: review.visual_score ?? null });
+  console.log(base, review.status, review.pass, review.reason || "");
 }
 
-fs.writeFileSync(path.join(outDir,"summary.json"), JSON.stringify({generatedAt:new Date().toISOString(), summary}, null, 2));
+fs.writeFileSync(path.join(outDir, "summary.json"), JSON.stringify({ generatedAt: new Date().toISOString(), summary }, null, 2));
 console.log("Wrote", summary.length, "reviews");
