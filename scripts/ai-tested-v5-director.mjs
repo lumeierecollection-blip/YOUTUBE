@@ -44,7 +44,9 @@ for (const sf of scriptFiles) {
     "plan must include: id, slug, title, concept, sources, cta, visual_identity, beats(array).",
     "Each beat must include: t,dur,narration,kicker,visual,headline,sub,accent,bg,assets(array), and optional photo,photo_credit,left,right,cta.",
     "Rules: no debug labels, no repeated generic template, every beat has visual change, hook visually strong in first 2s, bridge escalates, visuals match narration, factual only.",
-    "Use only these visual types: full_bleed_type,hero_cutout,warning_panel,split_compare,kinetic_type,stat_counter,stamp_document,legal_stack,quote_card,final_question,product_card,logo_grid,evidence_board,tool_card.",
+    "Use only these visual types: full_bleed_type,hero_cutout,warning_panel,split_compare,kinetic_type,stat_counter,stamp_document,legal_stack,quote_card,final_question,product_card,logo_grid,evidence_board,tool_card,bar_chart,line_graph,timeline,progress_bar.",
+    "For bar_chart/line_graph include beat.chart={type,unit,points:[{label,value,color}]}. For timeline include beat.timeline={steps:[...]}",
+    "Also include plan.audio.sfx as an array of {src,t,volume,dur} for meaningful visual events (use existing sfx/ files like sfx/whoosh.wav,sfx/click.wav,sfx/hit.wav,sfx/riser.wav only if present; otherwise empty array).",
     `SCRIPT: ${JSON.stringify(script)}`,
     `SEED_TREATMENT: ${JSON.stringify(seedTreat)}`,
     `SEED_PLAN: ${JSON.stringify(seedPlan)}`

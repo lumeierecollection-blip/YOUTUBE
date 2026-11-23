@@ -9,7 +9,7 @@ const audioDir = path.resolve(root, "../audio");
 const assetsDir = path.resolve(root, "../assets");
 const outDir = path.resolve(root, "../out");
 const publicDir = path.resolve(root, "public");
-for (const d of ["audio", "logos", "photos"]) fs.mkdirSync(path.join(publicDir, d), { recursive: true });
+for (const d of ["audio", "logos", "photos", "sfx"]) fs.mkdirSync(path.join(publicDir, d), { recursive: true });
 fs.mkdirSync(outDir, { recursive: true });
 
 function copyDir(src, dst) {
@@ -23,6 +23,7 @@ function copyDir(src, dst) {
 copyDir(audioDir, path.join(publicDir, "audio"));
 copyDir(path.join(assetsDir, "logos"), path.join(publicDir, "logos"));
 copyDir(path.join(assetsDir, "photos"), path.join(publicDir, "photos"));
+copyDir(path.join(assetsDir, "sfx"), path.join(publicDir, "sfx"));
 
 const files = fs.readdirSync(plansDir).filter(f => f.endsWith(".plan.json")).sort();
 for (const f of files) {

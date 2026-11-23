@@ -51,6 +51,15 @@ jobs:
             rembg i "$f" "$out" || true
             if [ -f "$out" ]; then cp "$out" "assets/photos/${stem}.png"; elif [[ "$f" != *.png ]]; then ffmpeg -y -i "$f" "assets/photos/${stem}.png" || true; fi
           done
+      - name: Generate SFX assets
+        working-directory: data/ai-tested/shorts-v5
+        run: |
+          set -euo pipefail
+          mkdir -p assets/sfx
+          ffmpeg -y -f lavfi -i "sine=frequency=1200:duration=0.08" -af "afade=t=in:st=0:d=0.01,afade=t=out:st=0.05:d=0.03,volume=0.3" assets/sfx/click.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=220:duration=0.18" -af "afade=t=in:st=0:d=0.01,afade=t=out:st=0.1:d=0.08,volume=0.35" assets/sfx/hit.wav
+          ffmpeg -y -f lavfi -i "anoisesrc=d=0.35:c=pink:r=44100:a=0.2" -af "afade=t=in:st=0:d=0.03,afade=t=out:st=0.2:d=0.15,highpass=f=500,lowpass=f=6000,volume=0.25" assets/sfx/whoosh.wav
+          ffmpeg -y -f lavfi -i "sine=frequency=440:duration=0.6" -af "afade=t=in:st=0:d=0.2,afade=t=out:st=0.35:d=0.25,volume=0.18" assets/sfx/riser.wav
       - name: Install render deps
         working-directory: data/ai-tested/shorts-v5/render
         run: npm install && npx remotion browser ensure
