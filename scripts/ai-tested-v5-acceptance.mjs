@@ -9,6 +9,7 @@ const outDir = path.join(root, "out");
 const qaDir = path.join(root, "qa");
 const recordsDir = path.join(root, "production-records");
 fs.mkdirSync(recordsDir, { recursive: true });
+fs.mkdirSync(reviewsDir, { recursive: true });
 
 function readJson(p) { try { return JSON.parse(fs.readFileSync(p, "utf8").replace(/^\uFEFF/, "")); } catch { return null; } }
 function list(dir, ext) { return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith(ext)).sort() : []; }

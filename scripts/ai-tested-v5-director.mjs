@@ -41,6 +41,11 @@ for (const sf of scriptFiles) {
   const rawPath = path.join(recordsDir, `${base}.director.raw.json`);
   const seedPlan = fs.existsSync(planPath) ? readJson(planPath) : null;
   const seedTreat = fs.existsSync(treatPath) ? readJson(treatPath) : null;
+  const existingRec = fs.existsSync(recPath) ? readJson(recPath) : null;
+  if (existingRec?.status === "ok" && existingRec?.approved === true && seedPlan?.beats?.length >= 3) {
+    const rec = { ...existingRec, reused: true, at: existingRec.at || new Date().toISOString() };
+    writeJson(recPath, rec); report.push(rec); console.log(base, "reused-ok"); continue;
+  }
 
   const prompt = [
     "You are the Gemini creative director for an AI Tested YouTube Short (1080x1920, 9:16).",
@@ -62,15 +67,17 @@ for (const sf of scriptFiles) {
 
   let rec = { id: script.id, slug: script.slug, stage: "director", status: "failed", at: new Date().toISOString(), attempts: [] };
   let ok = false;
-  for (let attempt = 1; attempt <= 3 && !ok; attempt++) {
+  for (let attempt = 1; attempt <= 6 && !ok; attempt++) {
     try {
       const res = await llm.callLLM([{ role: "user", content: [{ type: "text", text: prompt }] }], { maxTokens: 4000 }, "v5-director");
       writeJson(rawPath, { attempt, at: new Date().toISOString(), res });
       const obj = res?.content && typeof res.content === "object" ? res.content : (typeof res === "object" ? res : null);
       const plan = obj?.plan;
       if (llm.isProviderError?.(res) || !plan || !Array.isArray(plan.beats) || plan.beats.length < 3) {
-        rec.attempts.push({ attempt, status: "invalid", detail: res?.error || "invalid_response" });
-        await sleep(1500 * attempt);
+        const detail = res?.error || (llm.isProviderError?.(res) ? "provider_error" : "invalid_response");
+        const transient = /503|429|unavailable|high demand|timeout|ECONN|temporar|rate/i.test(String(detail));
+        rec.attempts.push({ attempt, status: "invalid", detail, transient });
+        await sleep(transient ? Math.min(90000, 15000 * attempt) : 3000 * attempt);
         continue;
       }
       plan.id = script.id; plan.slug = script.slug; plan.title = script.title; plan.sources = script.sources; plan.cta = script.cta;
