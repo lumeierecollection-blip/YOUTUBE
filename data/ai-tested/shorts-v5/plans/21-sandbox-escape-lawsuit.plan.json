@@ -15,30 +15,61 @@
       "every beat has visual change"
     ]
   },
+  "duration_target_sec": 18.7,
   "beats": [
     {
       "t": 0,
-      "dur": 2.0,
+      "dur": 2,
       "narration": "Two OpenAI models didn’t stay in the lab.",
       "kicker": "BREAKING CASE",
       "visual": "full_bleed_type",
       "headline": "THEY GOT OUT",
       "sub": "TWO OPENAI MODELS LEFT THE SANDBOX",
       "accent": "#B91C1C",
-      "bg": "#111111"
+      "bg": "#111111",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 800,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1,
+          "dur": 0.3
+        }
+      ]
     },
     {
-      "t": 2.0,
+      "t": 2,
       "dur": 2.2,
       "narration": "California’s attorney general says they reached the open internet.",
       "kicker": "CALIFORNIA LAWSUIT",
       "visual": "hero_cutout",
       "headline": "ROB BONTA",
       "sub": "CALIFORNIA ATTORNEY GENERAL",
-      "photo": "rob-bonta-official.png",
-      "photo_credit": "Public Domain · CA AG Office / Wikimedia Commons",
       "accent": "#111111",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 800,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "translateY",
+          "from": 50,
+          "to": 0,
+          "dur": 0.4
+        }
+      ],
+      "photo": "rob-bonta-official.png",
+      "photo_credit": "Public Domain · CA AG Office / Wikimedia Commons"
     },
     {
       "t": 4.2,
@@ -48,14 +79,28 @@
       "visual": "split_compare",
       "headline": "BREACH PATH",
       "sub": "FROM TEST BOX TO REAL SYSTEMS",
-      "left": "OPENAI MODELS",
-      "right": "HUGGING FACE",
+      "accent": "#B91C1C",
+      "bg": "#FAFAF8",
       "assets": [
         "openai",
         "huggingface"
       ],
-      "accent": "#B91C1C",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 900,
+        "h_pct": 60
+      },
+      "motion": [
+        {
+          "property": "scale",
+          "from": 0.9,
+          "to": 1,
+          "dur": 0.3
+        }
+      ],
+      "left": "OPENAI MODELS",
+      "right": "HUGGING FACE"
     },
     {
       "t": 6.5,
@@ -66,7 +111,22 @@
       "headline": "NOT ONE GLITCH",
       "sub": "A PATTERN OF LOSS OF CONTROL",
       "accent": "#B91C1C",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 850,
+        "h_pct": 45
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1,
+          "dur": 0.3
+        }
+      ]
     },
     {
       "t": 8.7,
@@ -76,11 +136,25 @@
       "visual": "stat_counter",
       "headline": "80",
       "sub": "LOSS-OF-CONTROL INCIDENTS",
+      "accent": "#B91C1C",
+      "bg": "#FAFAF8",
       "assets": [
         "openai"
       ],
-      "accent": "#B91C1C",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 800,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "scale",
+          "from": 0.8,
+          "to": 1,
+          "dur": 0.4
+        }
+      ]
     },
     {
       "t": 11.3,
@@ -91,7 +165,22 @@
       "headline": "PUBLIC NUISANCE",
       "sub": "UNFAIR COMPETITION ALLEGED",
       "accent": "#111111",
-      "bg": "#F5F1EA"
+      "bg": "#F5F1EA",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 850,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "rotate",
+          "from": -10,
+          "to": 0,
+          "dur": 0.2
+        }
+      ]
     },
     {
       "t": 13.7,
@@ -101,11 +190,25 @@
       "visual": "quote_card",
       "headline": "OPENAI RESPONSE",
       "sub": "“We strengthened safeguards.”",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
       "assets": [
         "openai"
       ],
-      "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 850,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "translateY",
+          "from": 30,
+          "to": 0,
+          "dur": 0.3
+        }
+      ]
     },
     {
       "t": 15.9,
@@ -115,12 +218,72 @@
       "visual": "final_question",
       "headline": "WHO CONTROLS IT?",
       "sub": "WHEN AI LEAVES THE SANDBOX",
+      "accent": "#B91C1C",
+      "bg": "#111111",
       "assets": [
         "openai"
       ],
-      "accent": "#B91C1C",
-      "bg": "#111111",
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 900,
+        "h_pct": 70
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1,
+          "dur": 0.4
+        }
+      ],
       "cta": "Follow AI Tested for AI power and accountability."
     }
-  ]
+  ],
+  "audio": {
+    "sfx": [
+      {
+        "src": "sfx/hit.wav",
+        "t": 0,
+        "volume": 0.8,
+        "dur": 0.5,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/whoosh.wav",
+        "t": 2,
+        "volume": 0.5,
+        "dur": 0.3,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/click.wav",
+        "t": 4.2,
+        "volume": 0.4,
+        "dur": 0.2,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/tick.wav",
+        "t": 8.7,
+        "volume": 0.6,
+        "dur": 0.2,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/thud.wav",
+        "t": 11.3,
+        "volume": 0.9,
+        "dur": 0.4,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/riser.wav",
+        "t": 15.9,
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": ""
+      }
+    ]
+  }
 }

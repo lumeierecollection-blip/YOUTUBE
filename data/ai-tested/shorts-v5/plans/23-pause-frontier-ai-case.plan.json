@@ -15,26 +15,78 @@
       "every beat has visual change"
     ]
   },
+  "duration_target_sec": 17,
+  "audio": {
+    "sfx": [
+      {
+        "src": "sfx/impact.wav",
+        "t": 0,
+        "volume": 0.8,
+        "dur": 0.5,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/whoosh.wav",
+        "t": 2,
+        "volume": 0.5,
+        "dur": 0.4,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/hit.wav",
+        "t": 4.6,
+        "volume": 0.7,
+        "dur": 0.4,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/tick.wav",
+        "t": 9.3,
+        "volume": 0.4,
+        "dur": 0.3,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/riser.wav",
+        "t": 14.2,
+        "volume": 0.6,
+        "dur": 0.8,
+        "purpose": ""
+      }
+    ]
+  },
   "beats": [
     {
       "t": 0,
-      "dur": 2.0,
+      "dur": 2,
       "narration": "A court is being asked to hit pause on frontier AI.",
       "kicker": "LEGAL SHOWDOWN",
       "visual": "stamp_document",
       "headline": "HIT PAUSE",
       "sub": "A JUDGE IS BEING ASKED TO INTERVENE",
       "accent": "#B91C1C",
-      "bg": "#F5F1EA"
+      "bg": "#F5F1EA",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 800,
+        "h_pct": 30
+      },
+      "motion": [
+        "slide_down"
+      ]
     },
     {
-      "t": 2.0,
+      "t": 2,
       "dur": 2.6,
       "narration": "Four nonprofits are suing Anthropic, Google, Meta, OpenAI, and SpaceX.",
       "kicker": "THE DEFENDANTS",
       "visual": "logo_grid",
       "headline": "FIVE GIANTS",
       "sub": "ANTHROPIC · GOOGLE · META · OPENAI · SPACEX",
+      "accent": "#111111",
+      "bg": "#FAFAF8",
       "assets": [
         "anthropic",
         "google",
@@ -42,8 +94,15 @@
         "openai",
         "spacex"
       ],
-      "accent": "#111111",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 900,
+        "h_pct": 40
+      },
+      "motion": [
+        "fade_in"
+      ]
     },
     {
       "t": 4.6,
@@ -54,10 +113,20 @@
       "headline": "EMERGENCY INJUNCTION",
       "sub": "STOP NEXT-GEN MODELS",
       "accent": "#B91C1C",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 850,
+        "h_pct": 35
+      },
+      "motion": [
+        "zoom_in"
+      ]
     },
     {
-      "t": 7.0,
+      "t": 7,
       "dur": 2.3,
       "narration": "Until companies can prove humans stay in control.",
       "kicker": "THE CONDITION",
@@ -65,7 +134,17 @@
       "headline": "PROVE CONTROL",
       "sub": "HUMANS MUST STAY IN CHARGE",
       "accent": "#111111",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 800,
+        "h_pct": 30
+      },
+      "motion": [
+        "fade_in"
+      ]
     },
     {
       "t": 9.3,
@@ -76,22 +155,41 @@
       "headline": "THE EVIDENCE",
       "sub": "CYBERATTACKS · ROGUE WARNINGS · CATASTROPHIC RISK",
       "accent": "#B91C1C",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 900,
+        "h_pct": 40
+      },
+      "motion": [
+        "slide_up"
+      ]
     },
     {
-      "t": 12.0,
+      "t": 12,
       "dur": 2.2,
       "narration": "The wild part? Some warnings came from the builders themselves.",
       "kicker": "THE TWIST",
       "visual": "quote_card",
       "headline": "FROM THE BUILDERS",
       "sub": "The warnings didn’t only come from outsiders.",
+      "accent": "#111111",
+      "bg": "#F7F7F4",
       "assets": [
         "openai",
         "anthropic"
       ],
-      "accent": "#111111",
-      "bg": "#F7F7F4"
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 850,
+        "h_pct": 35
+      },
+      "motion": [
+        "fade_in"
+      ]
     },
     {
       "t": 14.2,
@@ -103,6 +201,16 @@
       "sub": "CAN WE BUILD IT VS. SHOULD WE PAUSE IT",
       "accent": "#B91C1C",
       "bg": "#111111",
+      "assets": [],
+      "focal": {
+        "x": 540,
+        "y": 960,
+        "w": 900,
+        "h_pct": 45
+      },
+      "motion": [
+        "fade_in"
+      ],
       "cta": "Follow AI Tested for the AI court fight."
     }
   ]

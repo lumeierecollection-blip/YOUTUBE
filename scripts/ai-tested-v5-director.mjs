@@ -113,14 +113,20 @@ for (const sf of scriptFiles) {
     writeJson(recPath, rec);
     report.push(rec);
     console.error(base, "DIRECTOR FAILED");
-    writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, failed: base });
-    fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FAILED.txt"), `Director failed for ${base}\n`);
-    process.exit(1);
+    writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, failedSoFar: report.filter(r=>r.status!=="ok"||r.approved!==true).map(r=>r.id) });
+    fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FAILED.txt"), `Director failed for ${report.filter(r=>r.status!=="ok"||r.approved!==true).map(r=>r.id).join(",")}\n`);
+    continue;
   }
   writeJson(recPath, rec);
   report.push(rec);
   console.log(base, rec.status, "approved=" + rec.approved);
 }
 
-writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, allOk: true });
+const failed = report.filter(r => r.status !== "ok" || r.approved !== true);
+writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, allOk: failed.length === 0, failed: failed.map(r => r.id) });
+if (failed.length) {
+  fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FAILED.txt"), `Director failed for ${failed.map(r => r.id).join(",")}\n`);
+  console.error("DIRECTOR FAILED for", failed.map(r => r.id).join(","));
+  process.exit(1);
+}
 console.log("director done", report.length);
