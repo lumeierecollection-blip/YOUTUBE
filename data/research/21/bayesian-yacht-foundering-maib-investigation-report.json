@@ -1,0 +1,85 @@
+{
+  "topic_slug": "bayesian-yacht-foundering-maib-investigation-report",
+  "strongest_angle": "The Marine Accident Investigation Branch Report 22/2026 identifies high-wind vulnerabilities and safety gaps following the sinking of the sailing yacht Bayesian off Porticello, Italy.",
+  "key_facts": [
+    {
+      "fact": "At 0406 on 19 August 2024, the sailing yacht Bayesian sank 0.5 nautical miles south-east of Porticello, Italy, resulting in 7 lives lost.",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf",
+      "source_name": "Marine Accident Investigation Branch",
+      "confidence": "high"
+    },
+    {
+      "fact": "On 19 November 2026, the Marine Accident Investigation Branch published Report No 22/2026 examining high-wind vulnerabilities of the superyacht Bayesian owned by Mike Lynch.",
+      "source_url": "https://www.theguardian.com/world/2026/nov/19/mike-lynch-superyacht-bayesian-vulnerability-to-high-winds-report",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "Italian prosecutors placed chief engineer Tim Parker Eaton and deckhand Matthew Griffith under investigation over potential charges of multiple manslaughter and culpable shipwreck.",
+      "source_url": "https://www.bbc.co.uk/news/articles/c6e9kn15z9d7o",
+      "source_name": "BBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Marine Accident Investigation Branch recommended that the Maritime and Coastguard Agency amend its yacht master training syllabus to include risks from downbursts.",
+      "source_url": "https://www.gov.uk/maib-reports/foundering-of-the-sailing-yacht-bayesian-with-the-loss-of-seven-lives",
+      "source_name": "GOV.UK",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Distance off Porticello",
+      "value": 0.5,
+      "unit": "nautical miles",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf"
+    },
+    {
+      "label": "Fatalities",
+      "value": 7,
+      "unit": "lives lost",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf"
+    },
+    {
+      "label": "MAIB Report Number",
+      "value": 22,
+      "unit": "report number",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Bayesian",
+      "kind": "object"
+    },
+    {
+      "name": "Porticello, Italy",
+      "kind": "place"
+    },
+    {
+      "name": "Marine Accident Investigation Branch",
+      "kind": "organization"
+    },
+    {
+      "name": "Maritime and Coastguard Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "Red Ensign Group",
+      "kind": "organization"
+    },
+    {
+      "name": "Mike Lynch",
+      "kind": "person"
+    },
+    {
+      "name": "Tim Parker Eaton",
+      "kind": "person"
+    },
+    {
+      "name": "Matthew Griffith",
+      "kind": "person"
+    }
+  ]
+}
