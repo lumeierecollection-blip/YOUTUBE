@@ -212,6 +212,5 @@ export const AIShort: React.FC<AIShortProps> = ({plan, audioSrc, audioDurationSe
         <BeatView beat={b} />
       </Sequence>
     ))}
-    <Sequence from={Math.round(total*fps)-5} durationInFrames={5}><AbsoluteFill style={{background:"#FAFAF8"}} /></Sequence>
   </AbsoluteFill>;
 };

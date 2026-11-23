@@ -48,9 +48,9 @@
       "dur": 2.2,
       "narration": "No game studio. No artists. No sound team.",
       "kicker": "NO TEAM",
-      "visual": "kinetic_type",
+      "visual": "split_compare",
       "headline": "NO STUDIO",
-      "sub": "NO ARTISTS · NO SOUND TEAM",
+      "sub": "BUILT WITHOUT A TRADITIONAL TEAM",
       "accent": "#FAFAF8",
       "bg": "#111827",
       "assets": [],
@@ -66,7 +66,9 @@
           "from": 20,
           "to": 0
         }
-      ]
+      ],
+      "left": "NO ARTISTS",
+      "right": "NO SOUND TEAM"
     },
     {
       "t": 4.2,
@@ -100,12 +102,14 @@
       "dur": 2.3,
       "narration": "Eight hours later: Saltline, a browser FPS in a rainy harbor.",
       "kicker": "RESULT",
-      "visual": "full_bleed_type",
+      "visual": "logo_grid",
       "headline": "SALTLINE",
       "sub": "BROWSER FPS · RAINY HARBOR",
       "accent": "#111827",
       "bg": "#E2E8F0",
-      "assets": [],
+      "assets": [
+        "claude"
+      ],
       "focal": {
         "x": 50,
         "y": 50,
@@ -175,9 +179,9 @@
       "dur": 2.5,
       "narration": "Code generates the geometry, textures, and sound.",
       "kicker": "HOW",
-      "visual": "evidence_board",
+      "visual": "timeline",
       "headline": "CODE BUILT IT",
-      "sub": "GEOMETRY · TEXTURES · SOUND",
+      "sub": "EVERYTHING GENERATED FROM CODE",
       "accent": "#2563EB",
       "bg": "#F8FAFC",
       "assets": [],
@@ -193,7 +197,15 @@
           "from": 0,
           "to": 1
         }
-      ]
+      ],
+      "timeline": {
+        "steps": [
+          "Geometry",
+          "Textures",
+          "Sound",
+          "Game logic"
+        ]
+      }
     },
     {
       "t": 16.1,

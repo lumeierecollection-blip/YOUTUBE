@@ -90,9 +90,9 @@
       "dur": 1.9,
       "narration": "Dinner poll? Built.",
       "kicker": "BUILT",
-      "visual": "tool_card",
-      "headline": "DINNER POLL",
-      "sub": "BUILT FROM A PROMPT",
+      "visual": "split_compare",
+      "headline": "GROUP DECISION",
+      "sub": "ANOTHER APP BUILT FROM A PROMPT",
       "accent": "#111111",
       "bg": "#F7F7F4",
       "assets": [
@@ -106,16 +106,18 @@
       },
       "motion": [
         "slide_in"
-      ]
+      ],
+      "left": "DINNER",
+      "right": "POLL"
     },
     {
       "t": 8.1,
       "dur": 2.1,
       "narration": "Expense splitter, tournament bracket, whatever the group needs.",
       "kicker": "BUILT",
-      "visual": "tool_card",
+      "visual": "timeline",
       "headline": "ANY TOOL",
-      "sub": "SPLITTER · BRACKET · MORE",
+      "sub": "BUILT ON DEMAND",
       "accent": "#2563EB",
       "bg": "#FAFAF8",
       "assets": [
@@ -129,7 +131,15 @@
       },
       "motion": [
         "slide_in"
-      ]
+      ],
+      "timeline": {
+        "steps": [
+          "Splitter",
+          "Bracket",
+          "Planner",
+          "Poll"
+        ]
+      }
     },
     {
       "t": 10.2,
