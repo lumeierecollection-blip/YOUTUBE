@@ -1,0 +1,56 @@
+{
+  "project": "ai-tested-shorts-v5",
+  "channel": "ch-02 AI Tested",
+  "analytics_source": "data/ai-tested/v4/analytics/RETENTION.md",
+  "design": "Gemini-directed V5 pipeline; per-video treatments/plans; no debug labels; beat-matched visuals; correction loop in CI",
+  "videos": [
+    {
+      "id": "21",
+      "slug": "sandbox-escape-lawsuit",
+      "title": "California Says OpenAI's AI Got Out",
+      "sources": [
+        "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html"
+      ],
+      "concept": "Investigative dossier: evidence board opens, mugshot-style portrait cutout, breach timeline stamps, 80-incident counter, courtroom verdict question."
+    },
+    {
+      "id": "22",
+      "slug": "model-price-war",
+      "title": "The AI Price War Just Got Brutal",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+        "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+      ],
+      "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close."
+    },
+    {
+      "id": "23",
+      "slug": "pause-frontier-ai-case",
+      "title": "A Court Could Pause Frontier AI",
+      "sources": [
+        "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
+      ],
+      "concept": "Legal showdown: gavel/stamp opening, giant defendant lineup, injunction demand, risk evidence board, courtroom cliffhanger."
+    },
+    {
+      "id": "24",
+      "slug": "one-file-ai-game",
+      "title": "An AI Made a 3D Shooter in One File",
+      "sources": [
+        "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
+        "https://saltline.games"
+      ],
+      "concept": "Build-log/code-lab: terminal shock, file-size reveal, no-assets teardown, code-generates-everything diagram, cost/payoff."
+    },
+    {
+      "id": "25",
+      "slug": "ai-builds-the-app",
+      "title": "Google’s AI Didn’t Answer. It Built the App.",
+      "sources": [
+        "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
+        "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+      ],
+      "concept": "Product transformation: prompt becomes tool, rapid app cards, collaboration split, waitlist reality check, software-on-demand close."
+    }
+  ]
+}

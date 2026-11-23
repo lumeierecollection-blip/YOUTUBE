@@ -1,56 +1,110 @@
 ---
 name: "article-highlights"
-description: "Editorial highlight overlays for motion-graphics: marker-stroke animation over article headlines, key-phrase emphasis, and document callouts. Used for third-party reporting excerpts and documentation quotes."
+description: "Editorial Remotion article inserts with mandatory format/background intake, layered highlights, zero neon/glow, and mobile QA."
 ---
 
-# Article Highlights — Liam Johnston Skill
+# Article Highlights
 
-## Core identity
+Use with `remotion-best-practices`, `motion-graphics`, and `cinematic-camera` for news, release, trend, and article-proof moments where a terminal would feel forced.
 
-Article highlights show the viewer what reputable sources say about the technology. A marker stroke draws across key phrases as the narrator reads them, connecting the spoken claim to visible evidence. Each highlight is synchronized to the narration beat.
+## Mandatory intake
 
-## Visual specification
+Before coding, ask for any missing decision:
 
-### Marker stroke
-- Draw-on animation: stroke left-to-right over highlighted text
-- Stroke width: 6px at 1080 scale (recomputed per A4.3 rule)
-- Colour: channel accent (the ONE accent colour per beat)
-- Animation duration: 10–15 frames per phrase
-- Ease: linear draw-on, no easing (constant reveal speed)
+> Which format do you want: 4:3 half-screen Instagram insert or 9:16 full-screen Instagram? And which background: warm light, clean dark, light grid, or dark grid?
 
-### Highlight card
-- Surface panel: surface fill, radius 16, 32px padding
-- Headline text: 64px w800, textPrimary
-- Key phrase: accent colour, bold weight
-- Citation: 32px label, textDim, small caps via tracking +2
-- Source URL: 28px textDim, monospace, bottom-right of card
+- 4:3 insert: 1440×1080, designed to remain readable at roughly half of a 9:16 frame.
+- 9:16 full-screen: 1080×1920, respecting caption/interface zones.
+- Use 16:9 only when explicitly requested.
+- If the user delegates the background, use warm light.
 
-### Animation sequence
-1. Card fades in (8 frames, opacity 0→1, translate-y 20→0)
-2. Marker stroke draws across key phrase (10–15 frames)
-3. Hold for 2–3 seconds while narration delivers the claim
-4. Fade out (8 frames, opacity 1→0)
+The article paper can remain light on a clean-dark or dark-grid scene. Do not silently change the whole composition to dark.
 
-## Animation cues (from script)
-- animation_cue: "marker stroke left-to-right over highlighted text"
-- sfx_cue: "subtle bass drop" on highlight completion
+## Absolute visual ban
 
-## Application in AI Tested
-- Hook: "50 CONNECTED APPS" highlighted on card
-- Setup: "CONNECTED APPS PLATFORM" command-line highlight
-- Rehook: TechCrunch headline "BEYOND GOOGLE APPS" with marker stroke
-- Payoff: partner logos with channel-accent highlighting
-- Each highlight beat is 3–5 seconds
+Zero neon, glow, bloom, luminous edges, colored shadows, cyan-purple gradients, gradient orbs, radial color washes, glassmorphism, cyberpunk lighting, or vibe-coded AI decoration. Highlights must look like physical marker/paper treatment—not emitted light.
 
-## What this skill forbids
-- Highlight appearing instantly (must be marker stroke draw-on)
-- More than one accent-colour highlight per beat
-- Highlight card without source citation
-- Highlight text that doesn't match spoken words
-- Highlight outlasting the narration beat
+Reject any prohibited treatment before delivery.
 
-## Article source requirements
-- Every highlighted article must be real and verifiable
-- Source URL displayed on card
-- No fabricated headlines or quotes
-- Third-party reporting only (not company marketing copy)
+## Approved reference
+
+Inspect `assets/examples/article-highlight.mp4` and contact/reference frames before coding. Continue its editorial hierarchy, generous paper spacing, restrained marker treatment, slow camera, and legibility. Use the canonical repository gallery when local assets are unavailable: `https://github.com/Liamrjohnston/remotion-motion-graphics-skill`.
+
+## When to use
+
+Use for:
+
+- Informative/news/release/trend beats.
+- “Something changed or launched” proof.
+- Real article excerpts with meaningful highlighted phrases.
+- Non-terminal evidence where editorial material clarifies the point.
+
+Use `terminal-inserts` for CLI/setup/agent-run stories. Use authentic product footage/UI when the beat is a product demo.
+
+## Core architecture
+
+Do not flatten the article when marker strokes must sit behind text. Build layered Remotion DOM/SVG:
+
+1. Selected scene surface.
+2. Editorial paper/card with generous safe padding.
+3. Rough.js/SVG marker layer above paper.
+4. DOM/SVG text above marker.
+
+The marker must sit visibly behind words and above paper.
+
+## Material and layout
+
+- Paper: warm white/off-white with neutral border and soft neutral shadow; never colored glow.
+- Typography: editorial/news hierarchy—small section label, large serif/editorial headline, muted byline/date, and at most 2–3 short body lines.
+- Highlights: restrained semi-transparent physical marker color such as muted yellow; never fluorescent.
+- Use real article/source identity and supplied copy. Do not invent publications, dates, claims, or quotes.
+- Hard-wrap intentionally and keep text inside transformed safe margins.
+- Do not center like a title slide; it should feel like an authentic article excerpt.
+- Remove nonessential pills/buttons/source clutter if unreadable at destination size.
+
+## Animation
+
+- Begin with a brief restrained blur-to-focus only when it supports the approved reference; blur is optical focus, not glow.
+- No marker visible during the early focus phase.
+- Use a slow subtle camera push and restrained perspective rotation.
+- Start marker strokes after focus settles.
+- Draw each highlight left-to-right using a mask/wipe.
+- Sequence highlights; never reveal all at once.
+- End with all key phrases readable and a stable hold.
+- Drive animation with `useCurrentFrame()`, `spring()`, and `interpolate()`; no CSS animation.
+
+## Highlighter rules
+
+- Use rough.js or an irregular SVG marker shape.
+- Marker remains behind text.
+- Slight imperfection is good; a perfect gradient rectangle is not.
+- Highlight only meaningful verified phrases, not whole paragraphs.
+- Marker opacity must preserve text contrast.
+- No fluorescent yellow, light emission, blur halo, or glowing edge.
+
+## No redundant narration
+
+Article/source text may appear when it is the actual evidence. Do not add a separate headline that merely repeats the spoken VO. Use only the authentic excerpt and minimal structural metadata.
+
+## First-pass rejection gate
+
+Do not deliver until every answer is “no”:
+
+1. Was format or background unconfirmed?
+2. Is there neon, glow, luminous marker treatment, colored shadow, gradient wash, or glassmorphism?
+3. Is the source/article identity or claim invented?
+4. Is the card a generic centered title slide instead of an editorial surface?
+5. Is any key text unreadable at the selected Instagram placement?
+6. Does marker sit above/obscure text or appear too early?
+7. Does the camera crop the paper or create empty travel?
+8. Does the result miss the approved reference’s restraint and polish?
+
+Revise privately until the gate passes.
+
+## QA and delivery
+
+1. Typecheck or run the smallest meaningful validation.
+2. Render an early no-highlight still, a mid-stroke still, a final-highlight still, and the end hold.
+3. Confirm the marker is invisible early, behind text, and complete at the end.
+4. Inspect for clipping, unreadable copy, invented source details, neon/glow, and weak framing.
+5. Deliver MP4 with dimensions, duration, exact render command, and editor placement note.

@@ -1,0 +1,15 @@
+{
+  "project": "ai-tested-shorts-v3",
+  "channel": "ch-02 AI Tested",
+  "created": "2026-11-23",
+  "design": "white editorial motion graphics, large centered subjects, fast 1-3s pacing, transparent cutouts",
+  "identity_reference": "data/ai-tested/identity-reference.md",
+  "analytics_audit": "data/ai-tested/analytics/audit-2026-11-23.md",
+  "stories": [
+    {"id":"11","slug":"gpt62-race","title":"OpenAI Strikes Back With GPT-6.2","sources":["https://openai.com/index/introducing-gpt-6-2-astra-sol/","https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"]},
+    {"id":"12","slug":"california-openai-lawsuit","title":"California Sues OpenAI After AI Breakout","sources":["https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html"]},
+    {"id":"13","slug":"ai-giants-lawsuit","title":"4 Nonprofits Want Frontier AI Frozen","sources":["https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"]},
+    {"id":"14","slug":"saltline-ai-game","title":"An AI Built a 1.4MB Shooter","sources":["https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html","https://saltline.games"]},
+    {"id":"15","slug":"google-tabletop","title":"Google Tabletop Builds Apps From Prompts","sources":["https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/","https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"]}
+  ]
+}

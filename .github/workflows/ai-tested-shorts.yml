@@ -1,0 +1,83 @@
+name: AI Tested Shorts - Vox Production
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch_note:
+        description: "Manual trigger for AI Tested 5 Shorts production"
+        required: false
+        default: "run"
+  push:
+    branches:
+      - "feat/ai-tested-shorts-*"
+    paths:
+      - "data/ai-tested/shorts/**"
+      - ".github/workflows/ai-tested-shorts.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  render-shorts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2
+          python -m pip install --upgrade pip
+          pip install edge-tts
+
+      - name: Install render deps
+        working-directory: data/ai-tested/shorts/render
+        run: |
+          npm install
+          npx remotion browser ensure
+
+      - name: Generate narration (TTS)
+        working-directory: data/ai-tested/shorts
+        run: |
+          node generate-tts.mjs
+          ls -la audio
+
+      - name: Render all 5 Shorts on GitHub
+        working-directory: data/ai-tested/shorts/render
+        run: |
+          node render-all.mjs
+          ls -la ../out
+
+      - name: QA - verify outputs
+        working-directory: data/ai-tested/shorts
+        run: |
+          set -euo pipefail
+          python qa-verify.py out qa
+
+      - name: Build production summary
+        working-directory: data/ai-tested/shorts
+        run: |
+          python build-summary.py .
+
+      - name: Upload finished Shorts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-tested-shorts
+          path: |
+            data/ai-tested/shorts/out/*.mp4
+            data/ai-tested/shorts/production-summary.txt
+            data/ai-tested/shorts/qa/*.txt
+          if-no-files-found: error
+          retention-days: 14

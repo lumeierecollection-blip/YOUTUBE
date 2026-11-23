@@ -118,6 +118,12 @@ channels/_shared/ref-frames/
 # YouTube trending feed (regenerate: node scripts/fetch-trending.cjs <ch> --force, needs
 # YOUTUBE_API_KEY; 12h cache per channel). Same convention as data/renders/ above.
 data/trending/
+
+# AI Tested Shorts production artifacts (rendered on GitHub Actions; do not commit binaries)
+data/ai-tested/shorts/out/
+data/ai-tested/shorts/audio/
+data/ai-tested/shorts/render/public/audio/
+data/ai-tested/shorts/qa/
 # CC0 SFX: fetched on the runner by scripts/sfx-cc0.mjs (cached), never committed.
 src/skills/remotion-render/public/sfx/cc0/
 # National / state flags fetched at run time by scripts/fetch-flag.mjs (flagcdn.com), never committed.
@@ -132,3 +138,8 @@ data/editor/qa/
 data/autopilot-runs/
 output/autopilot/
 .bake-stills.mjs
+
+# AI Tested Shorts V2 artifacts
+data/ai-tested/shorts-v2/out/
+data/ai-tested/shorts-v2/audio/
+data/ai-tested/shorts-v2/render/public/

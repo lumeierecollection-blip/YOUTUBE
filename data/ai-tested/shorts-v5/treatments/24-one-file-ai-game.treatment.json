@@ -1,0 +1,13 @@
+{
+  "id": "24",
+  "slug": "one-file-ai-game",
+  "title": "An AI Made a 3D Shooter in One File",
+  "creative_concept": "Build-log/code-lab: terminal shock, file-size reveal, no-assets teardown, code-generates-everything diagram, cost/payoff.",
+  "sources": [
+    "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
+    "https://saltline.games"
+  ],
+  "hook": "An AI made a playable 3D shooter in one file.",
+  "payoff": "Not AAA. But it’s a scary preview of what one AI can build.",
+  "cta": "Follow AI Tested for AI builds that bend reality."
+}

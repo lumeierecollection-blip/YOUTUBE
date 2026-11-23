@@ -1,0 +1,13 @@
+{
+  "id": "18",
+  "slug": "frontier-ai-court-freeze",
+  "title": "These Nonprofits Want AI Development Paused",
+  "voice": "en-US-AndrewNeural",
+  "sources": [
+    "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
+  ],
+  "script": "Four nonprofits just asked a judge to hit pause on frontier AI. Not slow it down. Pause it. They filed in San Francisco, going after Anthropic, Google, Meta, OpenAI, and SpaceX. Their demand is simple: no next-generation models until companies can prove human control. Why? The complaint points to AI-driven cyberattacks, rogue behavior warnings, and the companies’ own catastrophic risk admissions. Think about that. The people building the tech have warned about the danger. Now a court is being asked whether that risk is acceptable. AI safety just left the lab. It’s in front of a judge.",
+  "cta": "Follow AI Tested as this legal fight unfolds.",
+  "concept": "Courtroom vs tech giants: plaintiffs vs defendants lineup, injunction stamp, risk evidence board, blunt closing argument.",
+  "duration_target_sec": 24.0
+}

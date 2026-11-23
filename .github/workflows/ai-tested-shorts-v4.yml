@@ -1,0 +1,107 @@
+name: AI Tested Shorts V4 - Gemini Directed Production
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "feat/ai-tested-shorts-vox"
+    paths:
+      - "data/ai-tested/shorts-v4/**"
+      - "data/ai-tested/v4/**"
+      - ".github/workflows/ai-tested-shorts-v4.yml"
+      - "scripts/ai-tested-v4-review.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  render-shorts-v4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+      GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+      GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+      GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+      GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+          python -m pip install --upgrade pip
+          pip install edge-tts rembg[cli] pillow || pip install edge-tts pillow
+      - name: Remove photo backgrounds
+        working-directory: data/ai-tested/shorts-v4
+        run: |
+          set -euo pipefail
+          mkdir -p assets/photos/cutouts
+          shopt -s nullglob
+          for f in assets/photos/*.jpg assets/photos/*.jpeg assets/photos/*.png; do
+            [ -f "$f" ] || continue
+            base=$(basename "$f"); stem="${base%.*}"; out="assets/photos/cutouts/${stem}.png"
+            rembg i "$f" "$out" || true
+            if [ -f "$out" ]; then cp "$out" "assets/photos/${stem}.png"; elif [[ "$f" != *.png ]]; then ffmpeg -y -i "$f" "assets/photos/${stem}.png" || true; fi
+          done
+          for f in assets/photos/*.jpg assets/photos/*.jpeg; do [ -f "$f" ] || continue; stem="$(basename "${f%.*}")"; [ -f "assets/photos/${stem}.png" ] || ffmpeg -y -i "$f" "assets/photos/${stem}.png" || true; done
+      - name: Install render deps
+        working-directory: data/ai-tested/shorts-v4/render
+        run: npm install && npx remotion browser ensure
+      - name: Generate TTS
+        working-directory: data/ai-tested/shorts-v4
+        run: node generate-tts.mjs
+      - name: Render
+        working-directory: data/ai-tested/shorts-v4/render
+        run: node render-all.mjs
+      - name: Extract frames and contact sheets
+        working-directory: data/ai-tested/shorts-v4
+        run: |
+          set -euo pipefail
+          mkdir -p qa/frames qa/contact-sheets
+          for f in out/*.mp4; do
+            [ -f "$f" ] || continue
+            base=$(basename "$f" .mp4)
+            mkdir -p "qa/frames/$base"
+            ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
+            ffmpeg -y -i "$f" -vf "select='not(mod(n\,45))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
+          done
+      - name: Gemini visual review (actual frames)
+        working-directory: data/ai-tested/shorts-v4
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
+          GEMINI_API_KEY_2: ${{ secrets.GEMINI_API_KEY_2 }}
+          GEMINI_API_KEY_3: ${{ secrets.GEMINI_API_KEY_3 }}
+          GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
+          GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
+        run: |
+          mkdir -p reviews
+          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews || (mkdir -p reviews && echo "REVIEW_NONBLOCKING_FAILURE" > reviews/REVIEW_FAILED.txt)
+      - name: QA
+        working-directory: data/ai-tested/shorts-v4
+        run: python qa-verify.py out qa
+      - name: Summary
+        working-directory: data/ai-tested/shorts-v4
+        run: python build-summary.py .
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-tested-shorts-v4
+          path: |
+            data/ai-tested/shorts-v4/out/*.mp4
+            data/ai-tested/shorts-v4/production-summary.txt
+            data/ai-tested/shorts-v4/qa/**
+            data/ai-tested/shorts-v4/reviews/**
+            data/ai-tested/shorts-v4/plans/*.json
+            data/ai-tested/shorts-v4/scripts/*.json
+            data/ai-tested/shorts-v4/manifest.json
+          if-no-files-found: error
+          retention-days: 14

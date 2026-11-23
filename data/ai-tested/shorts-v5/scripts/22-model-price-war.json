@@ -1,0 +1,14 @@
+{
+  "id": "22",
+  "slug": "model-price-war",
+  "title": "The AI Price War Just Got Brutal",
+  "voice": "en-US-AndrewNeural",
+  "sources": [
+    "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+    "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+  ],
+  "script": "OpenAI didn’t just clap back. It started a price war. One week after Claude Fable 5.2, OpenAI launched Astra and Sol. Astra is for heavy work: docs, slides, code, even 3D frontends. Sol is the faster, cheaper everyday model. Astra: eight dollars in, forty out per million tokens. Sol: two dollars in, ten out. That’s not just a benchmark win. It’s market pressure. The real winner might be anyone who can now afford powerful AI.",
+  "cta": "Follow AI Tested for the next model war move.",
+  "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
+  "duration_target_sec": 18.4
+}

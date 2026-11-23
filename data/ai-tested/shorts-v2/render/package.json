@@ -1,0 +1,16 @@
+{
+  "name": "ai-tested-shorts-v2-render",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render-all.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.507",
+    "@remotion/google-fonts": "4.0.507",
+    "@remotion/media": "4.0.507",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "remotion": "4.0.507"
+  }
+}
