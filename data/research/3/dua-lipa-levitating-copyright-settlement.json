@@ -1,0 +1,79 @@
+{
+  "topic_slug": "dua-lipa-levitating-copyright-settlement",
+  "strongest_angle": "Break down the stipulation filed in November 2026 in the US District Court for the Central District of California ending producer Bosko Kante's three-year copyright lawsuit against Dua Lipa over remixes of her 2020 song Levitating.",
+  "key_facts": [
+    {
+      "fact": "On November 9, 2026, lawyers for producer Bosko Kante and singer Dua Lipa filed court documents in the US District Court for the Central District of California dismissing the copyright lawsuit with prejudice.",
+      "source_url": "https://www.rollingstone.com/music/music-news/dua-lipa-settles-levitating-lawsuit-bosko-kante-1235655179",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "Producer Bosko Kante originally filed the copyright-infringement and breach-of-contract lawsuit against Dua Lipa in 2023 over unauthorized use of his talk-box performance in song remixes.",
+      "source_url": "https://www.billboard.com/pro/dua-lipa-levitating-copyright-case-ends-settlement-talk-box",
+      "source_name": "Billboard",
+      "confidence": "high"
+    },
+    {
+      "fact": "The dismissed litigation centered around Dua Lipa's 2020 hit song Levitating and various popular remixes, including a version featuring rapper DaBaby.",
+      "source_url": "https://www.billboard.com/pro/dua-lipa-levitating-copyright-case-ends-settlement-talk-box",
+      "source_name": "Billboard",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of song release",
+      "value": 2020,
+      "unit": "year",
+      "source_url": "https://www.billboard.com/pro/dua-lipa-levitating-copyright-case-ends-settlement-talk-box"
+    },
+    {
+      "label": "Year of lawsuit filing",
+      "value": 2023,
+      "unit": "year",
+      "source_url": "https://www.billboard.com/pro/dua-lipa-levitating-copyright-case-ends-settlement-talk-box"
+    },
+    {
+      "label": "Month of settlement filing",
+      "value": 11,
+      "unit": "month",
+      "source_url": "https://www.rollingstone.com/music/music-news/dua-lipa-settles-levitating-lawsuit-bosko-kante-1235655179"
+    },
+    {
+      "label": "Day of settlement filing",
+      "value": 9,
+      "unit": "day",
+      "source_url": "https://www.rollingstone.com/music/music-news/dua-lipa-settles-levitating-lawsuit-bosko-kante-1235655179"
+    },
+    {
+      "label": "Year of settlement filing",
+      "value": 2026,
+      "unit": "year",
+      "source_url": "https://www.rollingstone.com/music/music-news/dua-lipa-settles-levitating-lawsuit-bosko-kante-1235655179"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Dua Lipa",
+      "kind": "person"
+    },
+    {
+      "name": "Bosko Kante",
+      "kind": "person"
+    },
+    {
+      "name": "DaBaby",
+      "kind": "person"
+    },
+    {
+      "name": "Levitating",
+      "kind": "object"
+    },
+    {
+      "name": "US District Court for the Central District of California",
+      "kind": "organization"
+    }
+  ],
+  "quotes": []
+}

@@ -1,0 +1,64 @@
+{
+  "channel_id": "3",
+  "topic_slug": "dua-lipa-levitating-copyright-settlement",
+  "format": "shorts",
+  "hook": "1 talk-box performance triggered a 3-year copyright battle over Levitating.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "1 talk-box performance triggered a 3-year copyright battle over Levitating.",
+      "b_roll": [
+        "Graphic motion text showing 1 talk-box performance leading to copyright dispute"
+      ],
+      "text_overlay": {
+        "text": "1 Talk-Box Performance"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2023, producer Bosko Kante sued Dua Lipa over copyright infringement. The lawsuit targeted her 2020 hit Levitating and remixes featuring rapper DaBaby. Did the court force Dua Lipa to surrender millions?",
+      "b_roll": [
+        "Split motion graphic illustrating 2023 filing between Bosko Kante and Dua Lipa",
+        "Title graphic for 2020 song Levitating and DaBaby remix feature"
+      ],
+      "text_overlay": {
+        "text": "2023 Copyright Lawsuit"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Instead, on November 9, 2026, attorneys filed to end the lawsuit completely.",
+      "b_roll": [
+        "Calendar graphic revealing November 9, 2026 settlement filing date"
+      ],
+      "text_overlay": {
+        "text": "November 9, 2026"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Lawyers filed documents in the US District Court for the Central District of California. The filing officially dismissed the copyright action with prejudice. Legal stipulations closed all claims surrounding the 2020 track.",
+      "b_roll": [
+        "Court seal motion graphic for US District Court for the Central District of California",
+        "Document graphic with text dismissed with prejudice overlay"
+      ],
+      "text_overlay": {
+        "text": "Dismissed With Prejudice"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The 2023 copyright case is now permanently resolved.",
+      "b_roll": [
+        "Final summary card showing litigation officially closed"
+      ],
+      "text_overlay": {
+        "text": "Case Closed"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.rollingstone.com/music/music-news/dua-lipa-settles-levitating-lawsuit-bosko-kante-1235655179",
+    "https://www.billboard.com/pro/dua-lipa-levitating-copyright-case-ends-settlement-talk-box"
+  ]
+}
