@@ -159,6 +159,7 @@ const BeatView: React.FC<{beat:Beat}> = ({beat}) => {
   const exit=interpolate(frame,[durationInFrames-6,durationInFrames],[1,0],{extrapolateLeft:"clamp",extrapolateRight:"clamp"});
   const v=beat.visual;
   const centralTypes=["stat_counter","bar_chart","line_graph","timeline","hero_cutout","split_compare","logo_grid","evidence_board"];
+  const selfComposed = ["warning_panel","quote_card","stamp_document","legal_stack","product_card","tool_card","evidence_board"].includes(v);
   const topType = !["hero_cutout","stat_counter","bar_chart","line_graph","timeline","progress_bar","kinetic_type","full_bleed_type","final_question"].includes(v);
   return <AbsoluteFill style={{opacity:exit}}>
     <Bg bg={bg} accent={accent} dark={dark} />
@@ -167,8 +168,8 @@ const BeatView: React.FC<{beat:Beat}> = ({beat}) => {
         <div style={{fontFamily:sg,fontWeight:700,fontSize:28,letterSpacing:"0.14em",color:dark?"#FAFAF8":"#111"}}>AI TESTED</div>
         <div style={{fontFamily:inter,fontWeight:700,fontSize:20,color:dark?"rgba(250,250,248,0.62)":"#666"}}>{(beat.kicker||"V5").toUpperCase()}</div>
       </div>
-      {topType ? <MainType beat={beat} dark={dark} center={["stamp_document","warning_panel","quote_card","product_card","tool_card","legal_stack"].includes(v)} /> : <Kicker beat={beat} dark={dark} />}
-      <div style={{position:"absolute",left:60,right:60,top:topType?430:220,bottom:140,display:"flex",alignItems:"center",justifyContent:"center"}}>
+      {(topType && !selfComposed) ? <MainType beat={beat} dark={dark} /> : <Kicker beat={beat} dark={dark} />}
+      <div style={{position:"absolute",left:60,right:60,top:(topType && !selfComposed)?430:220,bottom:140,display:"flex",alignItems:"center",justifyContent:"center"}}>
         {v==="hero_cutout" ? <HeroCutout beat={beat} dark={dark} /> : null}
         {v==="stat_counter" ? <Stat beat={beat} dark={dark} /> : null}
         {v==="bar_chart" ? <BarChart beat={beat} dark={dark} /> : null}
