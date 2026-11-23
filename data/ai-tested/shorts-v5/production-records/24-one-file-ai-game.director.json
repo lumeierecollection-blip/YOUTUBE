@@ -1,0 +1,18 @@
+{
+  "id": "24",
+  "slug": "one-file-ai-game",
+  "stage": "director",
+  "status": "ok",
+  "at": "2026-11-23T15:35:35.478Z",
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "invalid",
+      "detail": "failed",
+      "transient": false
+    }
+  ],
+  "approved": true,
+  "beats": 9,
+  "attempt": 2
+}

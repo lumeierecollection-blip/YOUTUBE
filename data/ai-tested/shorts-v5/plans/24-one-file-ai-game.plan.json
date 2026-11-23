@@ -16,20 +16,35 @@
       "every beat has visual change"
     ]
   },
+  "duration_target_sec": 21.1,
   "beats": [
     {
       "t": 0,
-      "dur": 2.0,
+      "dur": 2,
       "narration": "An AI made a playable 3D shooter in one file.",
       "kicker": "BUILD LOG",
       "visual": "full_bleed_type",
       "headline": "ONE FILE",
       "sub": "A PLAYABLE 3D SHOOTER",
       "accent": "#2563EB",
-      "bg": "#0F172A"
+      "bg": "#0F172A",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1
+        }
+      ]
     },
     {
-      "t": 2.0,
+      "t": 2,
       "dur": 2.2,
       "narration": "No game studio. No artists. No sound team.",
       "kicker": "NO TEAM",
@@ -37,7 +52,21 @@
       "headline": "NO STUDIO",
       "sub": "NO ARTISTS · NO SOUND TEAM",
       "accent": "#FAFAF8",
-      "bg": "#111827"
+      "bg": "#111827",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "translateY",
+          "from": 20,
+          "to": 0
+        }
+      ]
     },
     {
       "t": 4.2,
@@ -47,11 +76,24 @@
       "visual": "product_card",
       "headline": "CLAUDE FABLE 5.2",
       "sub": "INITIAL PROMPT · NO HUMAN FEEDBACK",
+      "accent": "#2563EB",
+      "bg": "#F8FAFC",
       "assets": [
         "anthropic"
       ],
-      "accent": "#2563EB",
-      "bg": "#F8FAFC"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "scale",
+          "from": 0.95,
+          "to": 1
+        }
+      ]
     },
     {
       "t": 6.7,
@@ -62,10 +104,24 @@
       "headline": "SALTLINE",
       "sub": "BROWSER FPS · RAINY HARBOR",
       "accent": "#111827",
-      "bg": "#E2E8F0"
+      "bg": "#E2E8F0",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1
+        }
+      ]
     },
     {
-      "t": 9.0,
+      "t": 9,
       "dur": 2.3,
       "narration": "The whole game is 1.4 megabytes.",
       "kicker": "FILE SIZE",
@@ -73,7 +129,21 @@
       "headline": "1.4 MB",
       "sub": "THE ENTIRE GAME",
       "accent": "#2563EB",
-      "bg": "#F8FAFC"
+      "bg": "#F8FAFC",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "scale",
+          "from": 0.9,
+          "to": 1
+        }
+      ]
     },
     {
       "t": 11.3,
@@ -84,7 +154,21 @@
       "headline": "NO ASSETS",
       "sub": "NO IMAGES · NO AUDIO · NO 3D MODELS",
       "accent": "#B91C1C",
-      "bg": "#F1F5F9"
+      "bg": "#F1F5F9",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 45
+      },
+      "motion": [
+        {
+          "property": "translateX",
+          "from": -10,
+          "to": 0
+        }
+      ]
     },
     {
       "t": 13.6,
@@ -95,7 +179,21 @@
       "headline": "CODE BUILT IT",
       "sub": "GEOMETRY · TEXTURES · SOUND",
       "accent": "#2563EB",
-      "bg": "#F8FAFC"
+      "bg": "#F8FAFC",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 45
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1
+        }
+      ]
     },
     {
       "t": 16.1,
@@ -106,7 +204,21 @@
       "headline": "~$550",
       "sub": "REPORTED API-EQUIVALENT COST",
       "accent": "#111827",
-      "bg": "#E2E8F0"
+      "bg": "#E2E8F0",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 40
+      },
+      "motion": [
+        {
+          "property": "scale",
+          "from": 0.95,
+          "to": 1
+        }
+      ]
     },
     {
       "t": 18.3,
@@ -116,12 +228,71 @@
       "visual": "final_question",
       "headline": "WHAT'S NEXT?",
       "sub": "NOT AAA — BUT A REAL PREVIEW",
+      "accent": "#2563EB",
+      "bg": "#0F172A",
       "assets": [
         "anthropic"
       ],
-      "accent": "#2563EB",
-      "bg": "#0F172A",
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 50
+      },
+      "motion": [
+        {
+          "property": "opacity",
+          "from": 0,
+          "to": 1
+        }
+      ],
       "cta": "Follow AI Tested for AI builds that bend reality."
     }
-  ]
+  ],
+  "audio": {
+    "sfx": [
+      {
+        "src": "sfx/hit.wav",
+        "t": 0,
+        "volume": 0.8,
+        "dur": 0.5,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/whoosh.wav",
+        "t": 2,
+        "volume": 0.5,
+        "dur": 0.4,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/click.wav",
+        "t": 4.2,
+        "volume": 0.6,
+        "dur": 0.2,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/impact.wav",
+        "t": 9,
+        "volume": 0.9,
+        "dur": 0.4,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/thud.wav",
+        "t": 11.3,
+        "volume": 0.7,
+        "dur": 0.3,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/tick.wav",
+        "t": 16.1,
+        "volume": 0.5,
+        "dur": 0.2,
+        "purpose": ""
+      }
+    ]
+  }
 }
