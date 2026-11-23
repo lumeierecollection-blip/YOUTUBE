@@ -1,0 +1,114 @@
+{
+  "id": "13",
+  "slug": "ai-giants-lawsuit",
+  "title": "4 Nonprofits Want Frontier AI Frozen",
+  "voice": "en-US-AndrewNeural",
+  "duration_target_sec": 24.6,
+  "sources": [
+    "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
+  ],
+  "script": "Four nonprofits just asked a court to freeze frontier AI. The lawsuit was filed in San Francisco Superior Court. The plaintiffs: Irreplaceable Education Fund, Public Citizen, Heat Initiative, Alliance for Secure AI. The defendants: Anthropic, Google, Meta, OpenAI, and SpaceX. They want an emergency injunction. Pause next-generation models. Until companies prove human control. The complaint cites AI cyberattacks. Warnings about rogue behavior. And the companies’ own catastrophic risk admissions. Their argument is blunt. No other industry gets this pass. AI safety is now a legal fight.",
+  "scenes": [
+    {
+      "t": 0,
+      "dur": 2.0,
+      "type": "hook",
+      "big": "FREEZE FRONTIER AI",
+      "sub": "4 NONPROFITS GO TO COURT",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 2.0,
+      "dur": 2.4,
+      "type": "legal",
+      "big": "SAN FRANCISCO COURT",
+      "sub": "LAWSUIT FILED THURSDAY",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 4.4,
+      "dur": 2.6,
+      "type": "list",
+      "big": "THE PLAINTIFFS",
+      "sub": "IRREPLACEABLE · PUBLIC CITIZEN · HEAT · ALLIANCE FOR SECURE AI",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 7.0,
+      "dur": 3.0,
+      "type": "versus",
+      "big": "THE DEFENDANTS",
+      "sub": "ANTHROPIC · GOOGLE · META · OPENAI · SPACEX",
+      "logos": [
+        "anthropic",
+        "google",
+        "meta",
+        "openai",
+        "spacex"
+      ],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 10.0,
+      "dur": 2.6,
+      "type": "legal",
+      "big": "EMERGENCY INJUNCTION",
+      "sub": "PAUSE NEXT-GEN AI MODELS",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 12.6,
+      "dur": 2.4,
+      "type": "statement",
+      "big": "PROVE HUMAN CONTROL",
+      "sub": "BEFORE DEVELOPMENT CONTINUES",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 15.0,
+      "dur": 2.4,
+      "type": "risk",
+      "big": "AI CYBERATTACKS",
+      "sub": "CITED IN THE COMPLAINT",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 17.4,
+      "dur": 2.4,
+      "type": "risk",
+      "big": "CATASTROPHIC RISK",
+      "sub": "COMPANIES' OWN ADMISSIONS",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 19.8,
+      "dur": 2.4,
+      "type": "statement",
+      "big": "NO OTHER INDUSTRY",
+      "sub": "GETS TO SHIP THIS RISK",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 22.2,
+      "dur": 2.4,
+      "type": "close",
+      "big": "A LEGAL FIGHT",
+      "sub": "AI SAFETY JUST LEFT THE DEBATE STAGE",
+      "logos": [
+        "openai",
+        "google",
+        "anthropic"
+      ],
+      "accent": "#111111",
+      "cta": "Follow AI Tested as this case develops."
+    }
+  ]
+}

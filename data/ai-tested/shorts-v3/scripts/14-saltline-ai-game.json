@@ -1,0 +1,118 @@
+{
+  "id": "14",
+  "slug": "saltline-ai-game",
+  "title": "An AI Built a 1.4MB Shooter",
+  "voice": "en-US-AndrewNeural",
+  "duration_target_sec": 26.0,
+  "sources": [
+    "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
+    "https://saltline.games"
+  ],
+  "script": "An AI built a playable 3D shooter in one HTML file. It’s called Saltline. Anthropic engineer Felix Rieseberg used Claude Fable 5.2. One initial prompt. No human feedback during the run. Eight hours later: a playable FPS. Set in a rainy industrial harbor. The file size? About 1.4 megabytes. No image files. No audio files. No 3D model downloads. Code generates geometry, textures, and sound. The reported run: 2.7 million output tokens. Roughly five hundred fifty dollars in API cost. Not a AAA game. But a wild proof of what AI can build.",
+  "scenes": [
+    {
+      "t": 0,
+      "dur": 2.0,
+      "type": "hook",
+      "big": "1 HTML FILE",
+      "sub": "AN AI BUILT A 3D SHOOTER",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 2.0,
+      "dur": 2.2,
+      "type": "reveal",
+      "big": "SALTLINE",
+      "sub": "PLAYABLE FPS IN A BROWSER",
+      "logos": [],
+      "accent": "#2563EB"
+    },
+    {
+      "t": 4.2,
+      "dur": 2.6,
+      "type": "person",
+      "big": "FELIX RIESEBERG",
+      "sub": "ANTHROPIC ENGINEER · CLAUDE FABLE 5.2",
+      "logos": [
+        "anthropic"
+      ],
+      "accent": "#111111"
+    },
+    {
+      "t": 6.8,
+      "dur": 2.2,
+      "type": "statement",
+      "big": "NO HUMAN FEEDBACK",
+      "sub": "JUST THE INITIAL PROMPT",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 9.0,
+      "dur": 2.4,
+      "type": "stat",
+      "big": "8 HOURS",
+      "sub": "FROM PROMPT TO PLAYABLE GAME",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 11.4,
+      "dur": 2.4,
+      "type": "stat",
+      "big": "1.4 MB",
+      "sub": "THE ENTIRE GAME FILE",
+      "logos": [],
+      "accent": "#2563EB"
+    },
+    {
+      "t": 13.8,
+      "dur": 2.6,
+      "type": "list",
+      "big": "NO ASSETS",
+      "sub": "NO IMAGES · NO AUDIO · NO 3D MODELS",
+      "logos": [],
+      "accent": "#DC2626"
+    },
+    {
+      "t": 16.4,
+      "dur": 2.6,
+      "type": "feature",
+      "big": "CODE MAKES IT",
+      "sub": "GEOMETRY · TEXTURES · SOUND",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 19.0,
+      "dur": 2.4,
+      "type": "stat",
+      "big": "2.7M TOKENS",
+      "sub": "REPORTED OUTPUT TOKENS",
+      "logos": [],
+      "accent": "#2563EB"
+    },
+    {
+      "t": 21.4,
+      "dur": 2.2,
+      "type": "stat",
+      "big": "~$550",
+      "sub": "ESTIMATED API-EQUIVALENT COST",
+      "logos": [],
+      "accent": "#111111"
+    },
+    {
+      "t": 23.6,
+      "dur": 2.4,
+      "type": "close",
+      "big": "NOT AAA. STILL WILD.",
+      "sub": "WHAT ONE AI CAN ASSEMBLE",
+      "logos": [
+        "anthropic"
+      ],
+      "accent": "#111111",
+      "cta": "Follow AI Tested for wild AI build breakdowns."
+    }
+  ]
+}
