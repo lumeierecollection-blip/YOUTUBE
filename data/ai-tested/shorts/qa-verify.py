@@ -13,10 +13,11 @@ for f in sorted(glob.glob(os.path.join(out_dir, "*.mp4"))):
         fh.write(txt)
     def probe(args):
         r = subprocess.run(["ffprobe","-v","error",*args,"-of","csv=p=0",f], capture_output=True, text=True)
-        return r.stdout.strip()
+        return r.stdout.strip().replace(",", "")
     w = probe(["-select_streams","v:0","-show_entries","stream=width"])
     h = probe(["-select_streams","v:0","-show_entries","stream=height"])
-    a = probe(["-select_streams","a:0","-show_entries","stream=codec_type"]).splitlines()[0] if probe(["-select_streams","a:0","-show_entries","stream=codec_type"]) else ""
+    a_raw = probe(["-select_streams","a:0","-show_entries","stream=codec_type"])
+    a = a_raw.splitlines()[0].strip() if a_raw else ""
     dur_s = probe(["-show_entries","format=duration"])
     try: dur = float(dur_s)
     except: dur = 0.0
