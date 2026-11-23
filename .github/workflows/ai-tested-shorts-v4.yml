@@ -83,7 +83,8 @@ jobs:
           GEMINI_API_KEY_4: ${{ secrets.GEMINI_API_KEY_4 }}
           GOOGLE_GENERATIVE_AI_API_KEY: ${{ secrets.GOOGLE_GENERATIVE_AI_API_KEY }}
         run: |
-          node ../../scripts/ai-tested-v4-review.mjs --root . --out reviews || echo "REVIEW_NONBLOCKING_FAILURE" > reviews/REVIEW_FAILED.txt
+          mkdir -p reviews
+          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews || (mkdir -p reviews && echo "REVIEW_NONBLOCKING_FAILURE" > reviews/REVIEW_FAILED.txt)
       - name: QA
         working-directory: data/ai-tested/shorts-v4
         run: python qa-verify.py out qa
