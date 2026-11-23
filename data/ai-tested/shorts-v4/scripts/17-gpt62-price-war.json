@@ -1,0 +1,14 @@
+{
+  "id": "17",
+  "slug": "gpt62-price-war",
+  "title": "OpenAI Just Made the AI Race Cheaper",
+  "voice": "en-US-AndrewNeural",
+  "sources": [
+    "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+    "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+  ],
+  "script": "OpenAI didn’t just answer Anthropic. It undercut the whole race. One week after Claude Fable 5.2, OpenAI dropped two new models: Astra and Sol. Astra is the heavy lifter. Docs, slides, code, even 3D frontends. Sol is the speed play. Cheaper, faster, built for everyday work. Now look at the price. Astra costs eight dollars in, forty out per million tokens. Sol costs two in, ten out. That’s not a small tweak. That’s pressure. The AI race isn’t only about smarter models anymore. It’s about who gets powerful work into more hands.",
+  "cta": "Follow AI Tested for the next model war update.",
+  "concept": "Product-race scoreboard: fast split screens, giant price cards, model role contrast, finish on market-pressure takeaway.",
+  "duration_target_sec": 24.7
+}

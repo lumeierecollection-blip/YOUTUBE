@@ -1,0 +1,186 @@
+{
+  "id": "20",
+  "slug": "google-tabletop-builds-tools",
+  "title": "Google’s AI Just Built the App for You",
+  "concept": "Product demo storyboard: prompt turns into tools, rapid tool cards, collaborative workspace, finish on shift from answers to apps.",
+  "sources": [
+    "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
+    "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  ],
+  "cta": "Follow AI Tested for AI tools that actually change workflows.",
+  "visual_identity": {
+    "base": "white editorial",
+    "note": "story-specific variation; no fixed template"
+  },
+  "beats": [
+    {
+      "t": 0,
+      "dur": 2.0,
+      "narration": "What if you didn’t search for an app? What if AI just built it.",
+      "visual": "full_bleed_type",
+      "headline": "AI BUILT IT",
+      "sub": "WHAT IF YOU DIDN’T SEARCH FOR AN APP?",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
+      "anim": "slam",
+      "assets": [],
+      "purpose": "story beat",
+      "on_screen_text": "AI BUILT IT",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 2.0,
+      "dur": 2.4,
+      "narration": "Google’s new Labs experiment, Tabletop, gives groups one shared space and one AI agent.",
+      "visual": "product_card",
+      "headline": "TABLETOP",
+      "sub": "GOOGLE LABS · SHARED SPACE + AI AGENT",
+      "accent": "#111111",
+      "bg": "#F7F7F4",
+      "anim": "rise",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "TABLETOP",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 4.4,
+      "dur": 2.0,
+      "narration": "You type what you need. It makes the tool.",
+      "visual": "kinetic_type",
+      "headline": "TYPE IT",
+      "sub": "THE TOOL APPEARS",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
+      "anim": "jolt",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "TYPE IT",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 6.4,
+      "dur": 1.9,
+      "narration": "Need a trip itinerary? Built.",
+      "visual": "tool_card",
+      "headline": "ITINERARY",
+      "sub": "BUILT IN THE MOMENT",
+      "accent": "#2563EB",
+      "bg": "#F7F7F4",
+      "anim": "pop",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "ITINERARY",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 8.3,
+      "dur": 1.8,
+      "narration": "Dinner poll? Built.",
+      "visual": "tool_card",
+      "headline": "DINNER POLL",
+      "sub": "BUILT IN THE MOMENT",
+      "accent": "#111111",
+      "bg": "#FAFAF8",
+      "anim": "pop",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "DINNER POLL",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 10.1,
+      "dur": 1.8,
+      "narration": "Expense splitter? Tournament bracket? Built right there.",
+      "visual": "tool_card",
+      "headline": "SPLITTER + BRACKET",
+      "sub": "BUILT RIGHT THERE",
+      "accent": "#2563EB",
+      "bg": "#F7F7F4",
+      "anim": "pop",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "SPLITTER + BRACKET",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 11.9,
+      "dur": 2.4,
+      "narration": "Everyone can edit together, like a Google Doc.",
+      "visual": "split_compare",
+      "headline": "EDIT TOGETHER",
+      "sub": "REAL-TIME COLLABORATION",
+      "left": "PROMPT",
+      "right": "SHARED TOOL",
+      "accent": "#111111",
+      "bg": "#FAFAF8",
+      "anim": "split",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "EDIT TOGETHER",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 14.3,
+      "dur": 2.1,
+      "narration": "It’s still a limited US waitlist test.",
+      "visual": "stamp_document",
+      "headline": "US WAITLIST",
+      "sub": "LIMITED GOOGLE LABS TEST",
+      "accent": "#6B7280",
+      "bg": "#F5F1EA",
+      "anim": "stamp",
+      "assets": [
+        "google"
+      ],
+      "purpose": "story beat",
+      "on_screen_text": "US WAITLIST",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 16.4,
+      "dur": 2.3,
+      "narration": "But the shift is bigger than one demo.",
+      "visual": "kinetic_type",
+      "headline": "BIGGER SHIFT",
+      "sub": "MORE THAN A DEMO",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
+      "anim": "slide",
+      "assets": [],
+      "purpose": "story beat",
+      "on_screen_text": "BIGGER SHIFT",
+      "transition": "cut_or_motion"
+    },
+    {
+      "t": 18.7,
+      "dur": 3.0,
+      "narration": "AI isn’t just answering questions anymore. It’s making the software in the moment you need it.",
+      "visual": "final_question",
+      "headline": "MAKES SOFTWARE",
+      "sub": "NOT JUST ANSWERS — APPS ON DEMAND",
+      "accent": "#111111",
+      "bg": "#111111",
+      "anim": "zoom",
+      "assets": [
+        "google"
+      ],
+      "cta": "Follow AI Tested for AI tools that actually change workflows.",
+      "purpose": "story beat",
+      "on_screen_text": "MAKES SOFTWARE",
+      "transition": "cut_or_motion"
+    }
+  ]
+}
