@@ -33,7 +33,7 @@ for (const plan of plans) {
   const treatment = readJson(path.join(root, "treatments", `${base}.treatment.json`));
   const qaTxtPath = path.join(root, "qa", `${base}.mp4.txt`);
   const qaTxt = fs.existsSync(qaTxtPath) ? fs.readFileSync(qaTxtPath, "utf8").slice(0, 2000) : "";
-  let review = { id: plan.id, slug: plan.slug, title: plan.title, status: "not_reviewed", reason: null, findings: [], issues: [], pass: false, reviewedAt: new Date().toISOString(), evidence: { contactSheet: fs.existsSync(contact), frameCount: frames.length, sampledFrames: sampled.map(f => path.basename(f)) } };
+  let review = { id: plan.id, slug: plan.slug, title: plan.title, status: "not_reviewed", reason: null, findings: [], issues: [], strengths: [], pass: false, reviewedAt: new Date().toISOString(), evidence: { contactSheet: fs.existsSync(contact), frameCount: frames.length, sampledFrames: sampled.map(f => path.basename(f)) } };
 
   if (!fs.existsSync(contact) && sampled.length === 0) {
     review.reason = "no_frames";
@@ -83,6 +83,8 @@ for (const plan of plans) {
   }
 
   fs.writeFileSync(reportPath, JSON.stringify(review, null, 2));
+  const issues = Array.isArray(review.issues) ? review.issues : [];
+  const strengths = Array.isArray(review.strengths) ? review.strengths : [];
   const md = [
     `# Review ${base}`,
     `- Status: ${review.status}`,
@@ -95,10 +97,10 @@ for (const plan of plans) {
     review.audio_notes ? `- Audio notes: ${review.audio_notes}` : "",
     "",
     "## Issues",
-    ...(review.issues.length ? review.issues.map(i => `- [${i.severity || "med"}] ${i.timestamp || ""} beat ${i.beat || "?"}: ${i.problem} -> ${i.fix}`) : ["- None reported"]),
+    ...(issues.length ? issues.map(i => `- [${i.severity || "med"}] ${i.timestamp || ""} beat ${i.beat || "?"}: ${i.problem} -> ${i.fix}`) : ["- None reported"]),
     "",
     "## Strengths",
-    ...(review.strengths.length ? review.strengths.map(s => `- ${s}`) : ["- None reported"]),
+    ...(strengths.length ? strengths.map(s => `- ${s}`) : ["- None reported"]),
   ].filter(Boolean).join("\n");
   fs.writeFileSync(mdPath, md);
   summary.push({ id: plan.id, slug: plan.slug, status: review.status, pass: review.pass, reason: review.reason || null, visual_score: review.visual_score ?? null });

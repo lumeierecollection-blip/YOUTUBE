@@ -16,31 +16,51 @@
       "every beat has visual change"
     ]
   },
+  "duration_target_sec": 17.3,
   "beats": [
     {
       "t": 0,
-      "dur": 2.0,
+      "dur": 2,
       "narration": "You didn’t open an app. You asked for one.",
       "kicker": "NEW SHIFT",
       "visual": "full_bleed_type",
       "headline": "ASKED FOR IT",
       "sub": "YOU DIDN’T OPEN AN APP",
       "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 20
+      },
+      "motion": [
+        "fade_in"
+      ]
     },
     {
-      "t": 2.0,
+      "t": 2,
       "dur": 2.3,
       "narration": "Google Tabletop turns a prompt into a working tool for your group.",
       "kicker": "GOOGLE TABLETOP",
       "visual": "product_card",
       "headline": "TABLETOP",
       "sub": "PROMPT → WORKING TOOL",
+      "accent": "#111111",
+      "bg": "#F7F7F4",
       "assets": [
         "google"
       ],
-      "accent": "#111111",
-      "bg": "#F7F7F4"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 40
+      },
+      "motion": [
+        "scale_up"
+      ]
     },
     {
       "t": 4.3,
@@ -50,11 +70,20 @@
       "visual": "tool_card",
       "headline": "ITINERARY",
       "sub": "BUILT FROM A PROMPT",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
       "assets": [
         "google"
       ],
-      "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 30
+      },
+      "motion": [
+        "slide_in"
+      ]
     },
     {
       "t": 6.2,
@@ -64,11 +93,20 @@
       "visual": "tool_card",
       "headline": "DINNER POLL",
       "sub": "BUILT FROM A PROMPT",
+      "accent": "#111111",
+      "bg": "#F7F7F4",
       "assets": [
         "google"
       ],
-      "accent": "#111111",
-      "bg": "#F7F7F4"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 30
+      },
+      "motion": [
+        "slide_in"
+      ]
     },
     {
       "t": 8.1,
@@ -78,11 +116,20 @@
       "visual": "tool_card",
       "headline": "ANY TOOL",
       "sub": "SPLITTER · BRACKET · MORE",
+      "accent": "#2563EB",
+      "bg": "#FAFAF8",
       "assets": [
         "google"
       ],
-      "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 30
+      },
+      "motion": [
+        "slide_in"
+      ]
     },
     {
       "t": 10.2,
@@ -92,27 +139,43 @@
       "visual": "split_compare",
       "headline": "LIVE TOGETHER",
       "sub": "PROMPT ON ONE SIDE, SHARED TOOL ON THE OTHER",
-      "left": "PROMPT",
-      "right": "SHARED TOOL",
+      "accent": "#111111",
+      "bg": "#FAFAF8",
       "assets": [
         "google"
       ],
-      "accent": "#111111",
-      "bg": "#FAFAF8"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 90,
+        "h_pct": 50
+      },
+      "motion": [
+        "split_reveal"
+      ]
     },
     {
       "t": 12.5,
-      "dur": 2.0,
+      "dur": 2,
       "narration": "It’s still a limited US waitlist test.",
       "kicker": "REALITY CHECK",
       "visual": "stamp_document",
       "headline": "US WAITLIST",
       "sub": "LIMITED LABS TEST",
+      "accent": "#6B7280",
+      "bg": "#F5F1EA",
       "assets": [
         "google"
       ],
-      "accent": "#6B7280",
-      "bg": "#F5F1EA"
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 70,
+        "h_pct": 40
+      },
+      "motion": [
+        "fade_in"
+      ]
     },
     {
       "t": 14.5,
@@ -122,12 +185,53 @@
       "visual": "final_question",
       "headline": "SOFTWARE ON DEMAND",
       "sub": "NOT JUST ANSWERS ANYMORE",
+      "accent": "#2563EB",
+      "bg": "#111111",
       "assets": [
         "google"
       ],
-      "accent": "#2563EB",
-      "bg": "#111111",
+      "focal": {
+        "x": 50,
+        "y": 50,
+        "w": 80,
+        "h_pct": 40
+      },
+      "motion": [
+        "fade_in"
+      ],
       "cta": "Follow AI Tested for the next AI workflow shift."
     }
-  ]
+  ],
+  "audio": {
+    "sfx": [
+      {
+        "src": "sfx/whoosh.wav",
+        "t": 0,
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/click.wav",
+        "t": 4.3,
+        "volume": 0.4,
+        "dur": 0.2,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/click.wav",
+        "t": 6.2,
+        "volume": 0.4,
+        "dur": 0.2,
+        "purpose": ""
+      },
+      {
+        "src": "sfx/impact.wav",
+        "t": 14.5,
+        "volume": 0.6,
+        "dur": 0.5,
+        "purpose": ""
+      }
+    ]
+  }
 }
