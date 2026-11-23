@@ -2965,9 +2965,14 @@
           "topic": "NASA Exoplanet Archive Adds Four New Planets and 21 Spectra",
           "slug": "nasa-exoplanet-archive-four-new-planets-nov-2026",
           "reserved_at": "2026-11-22T16:26:50.579Z"
+        },
+        {
+          "topic": "NASA Spitzer Space Telescope Discovers 27 New Bodies Beyond Neptune",
+          "slug": "spitzer-space-telescope-discovers-bodies-beyond-neptune",
+          "reserved_at": "2026-11-23T20:26:27.424Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:50.579Z"
+      "last_generated": "2026-11-23T20:26:27.425Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
