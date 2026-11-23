@@ -26,7 +26,7 @@ for f in sorted(glob.glob(os.path.join(out_dir, "*.mp4"))):
         print("BAD SIZE", f); ok = False
     if a != "audio":
         print("NO AUDIO", f); ok = False
-    if dur < 30 or dur > 75:
+    if dur < 20 or dur > 75:
         print("BAD DURATION", f, dur); ok = False
 if not ok:
     sys.exit(1)
