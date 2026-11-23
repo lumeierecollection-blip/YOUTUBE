@@ -138,3 +138,8 @@ data/editor/qa/
 data/autopilot-runs/
 output/autopilot/
 .bake-stills.mjs
+
+# AI Tested Shorts V2 artifacts
+data/ai-tested/shorts-v2/out/
+data/ai-tested/shorts-v2/audio/
+data/ai-tested/shorts-v2/render/public/
