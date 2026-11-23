@@ -1,0 +1,48 @@
+{
+  "channel_id": "4",
+  "topic_slug": "world-athletics-ratifies-records-kejelcha-dos-santos",
+  "format": "shorts",
+  "hook": "World Athletics ratified a half marathon record faster by 29 seconds.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "World Athletics ratified a half marathon record faster by 29 seconds.",
+      "text_overlay": {
+        "text": "29 SECONDS FASTER"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On August 23, 2026, Yomif Kejelcha ran 56:51 at the Buenos Aires City Half Marathon. Which other major world record did World Athletics ratify on November 9, 2026?",
+      "text_overlay": {
+        "text": "YOMIF KEJELCHA 56:51"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But in Zurich, Alison dos Santos shattered the 400m hurdles record before World Athletics ratified it.",
+      "text_overlay": {
+        "text": "RATIFIED RECORDS"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "In Zurich, Alison dos Santos ran 45.80 seconds in the 400m hurdles. On August 27, 2026, he set that mark at the Diamond League meeting. World Athletics officially ratified four world records in total.",
+      "text_overlay": {
+        "text": "ALISON DOS SANTOS 45.80"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Yomif Kejelcha now holds the ratified 56:51 record.",
+      "text_overlay": {
+        "text": "WORLD ATHLETICS RECORD"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record",
+    "https://english.news.cn/20261110/3446b416592940c9a8a140b3fa4b55fa/c.html",
+    "https://runningvalencia.com/en/news/world-athletics-ratified-world-records"
+  ]
+}

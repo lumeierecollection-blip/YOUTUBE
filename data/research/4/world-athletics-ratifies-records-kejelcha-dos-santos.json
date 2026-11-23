@@ -1,0 +1,91 @@
+{
+  "topic_slug": "world-athletics-ratifies-records-kejelcha-dos-santos",
+  "strongest_angle": "Examine the newly ratified world records announced by World Athletics in November 2026, focusing on Yomif Kejelcha's 56:51 half marathon in Buenos Aires and Alison dos Santos's 45.80 400m hurdles in Zurich.",
+  "key_facts": [
+    {
+      "fact": "Yomif Kejelcha ran a world record half marathon time of 56:51 at the Buenos Aires City Half Marathon on August 23, 2026.",
+      "source_url": "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record",
+      "source_name": "Running Valencia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Alison dos Santos set a world record of 45.80 seconds in the 400m hurdles at the Diamond League meeting in Zurich on August 27, 2026.",
+      "source_url": "https://english.news.cn/20261110/3446b416592940c9a8a140b3fa4b55fa/c.html",
+      "source_name": "Xinhua",
+      "confidence": "high"
+    },
+    {
+      "fact": "World Athletics announced the official ratification of four world records on November 9, 2026.",
+      "source_url": "https://runningvalencia.com/en/news/world-athletics-ratified-world-records",
+      "source_name": "Running Valencia",
+      "confidence": "high"
+    },
+    {
+      "fact": "Yomif Kejelcha's 56:51 time was 29 seconds faster than Jacob Kiplimo's previous half marathon record of 57:20 set in Lisbon.",
+      "source_url": "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record",
+      "source_name": "Running Valencia",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Yomif Kejelcha half marathon time",
+      "value": 56.51,
+      "unit": "minutes:seconds",
+      "source_url": "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record"
+    },
+    {
+      "label": "Alison dos Santos 400m hurdles time",
+      "value": 45.8,
+      "unit": "seconds",
+      "source_url": "https://english.news.cn/20261110/3446b416592940c9a8a140b3fa4b55fa/c.html"
+    },
+    {
+      "label": "Time difference faster than previous record",
+      "value": 29,
+      "unit": "seconds",
+      "source_url": "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record"
+    },
+    {
+      "label": "Jacob Kiplimo previous half marathon record",
+      "value": 57.2,
+      "unit": "minutes:seconds",
+      "source_url": "https://runningvalencia.com/en/news/yomif-kejelcha-half-marathon-world-record"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Yomif Kejelcha",
+      "kind": "person"
+    },
+    {
+      "name": "Alison dos Santos",
+      "kind": "person"
+    },
+    {
+      "name": "World Athletics",
+      "kind": "organization"
+    },
+    {
+      "name": "Buenos Aires",
+      "kind": "place"
+    },
+    {
+      "name": "Zurich",
+      "kind": "place"
+    },
+    {
+      "name": "Jacob Kiplimo",
+      "kind": "person"
+    },
+    {
+      "name": "Josh Kerr",
+      "kind": "person"
+    },
+    {
+      "name": "Masai Russell",
+      "kind": "person"
+    }
+  ]
+}
