@@ -27,7 +27,7 @@ for (const plan of plans) {
   const contact = path.join(root, "qa/contact-sheets", `${base}.jpg`);
   const framesDir = path.join(root, "qa/frames", base);
   const frames = list(framesDir, ".jpg").map(f => path.join(framesDir, f));
-  const sampled = evenly(frames, 12);
+  const sampled = evenly(frames, 24);
   const reportPath = path.join(outDir, `${base}.review.json`);
   const mdPath = path.join(outDir, `${base}.review.md`);
   const script = readJson(path.join(root, "scripts", `${base}.json`));
@@ -51,17 +51,17 @@ for (const plan of plans) {
   } else {
     const prompt = [
       "You are a harsh Gemini creative reviewer for an AI Tested YouTube Short (1080x1920).",
-      "Review the actual rendered frames against the script, approved plan, and treatment.",
-      "Return ONLY JSON with keys: pass(boolean), summary(string), issues(array of {beat,severity,problem,fix,timestamp}), strengths(array), visual_score(number 0-10), audio_notes(string), central_composition_ok(boolean), repetition_ok(boolean).",
-      "Fail if: hook weak in first 2s, repetitive/template feel, top-heavy or small central content, visuals don't match narration, graphs unreadable/inaccurate, debug/duplicate text, poor progression/payoff, or obvious production defects.",
-      "Be specific and timestamped. Do not pass mediocre work.",
+      "Review the actual rendered frames against the script, approved plan, and treatment. Judge the real visual output, not intent.",
+      "Return ONLY JSON with keys: pass(boolean), summary(string), issues(array of {beat,severity,problem,fix,timestamp}), strengths(array), visual_score(number 0-10), audio_notes(string), central_composition_ok(boolean), repetition_ok(boolean), storytelling_ok(boolean), assets_ok(boolean), motion_ok(boolean).",
+      "Fail if any of these are true: weak hook in first 2s; repetitive/template feel across videos or beats; top-heavy or small central content; main subject not prominent/centered; visuals don't match narration; graphs unreadable/inaccurate/fabricated; debug/duplicate/stale text; poor progression/payoff; missing or irrelevant key assets/logos/photos; poor background removal/cutout quality; robotic/cheap motion; sound design feels absent/generic/misaligned based on plan evidence; obvious production defects; mobile readability problems.",
+      "Be specific and timestamped. Do not pass mediocre work. If evidence is insufficient, fail with reason in issues.",
       `TITLE: ${plan.title}`,
       `SCRIPT: ${script?.script || ""}`,
       `CONCEPT: ${plan.concept || ""}`,
       `TREATMENT: ${JSON.stringify(treatment || {})}`,
       `PLAN_BEATS: ${JSON.stringify(plan.beats || [])}`,
       `TECH_QA: ${qaTxt}`,
-      "EVIDENCE: contact sheet and timestamped sampled frames below. Audio was not directly listened to by you unless attached; state uncertainty in audio_notes."
+      "EVIDENCE: contact sheet and timestamped sampled frames below. Audio may not be directly audible; evaluate audio plan/sfx timing from evidence and state uncertainty clearly in audio_notes."
     ].join("\n");
     const content = [{ type: "text", text: prompt }];
     if (fs.existsSync(contact)) { content.push({ type: "text", text: "Contact sheet (whole video overview):" }); content.push(imgPart(contact)); }

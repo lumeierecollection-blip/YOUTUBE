@@ -19,35 +19,35 @@
   "audio": {
     "sfx": [
       {
-        "src": "sfx/impact.wav",
+        "src": "sfx/impact.ogg",
         "t": 0,
         "volume": 0.8,
         "dur": 0.5,
         "purpose": ""
       },
       {
-        "src": "sfx/whoosh.wav",
+        "src": "sfx/whoosh.mp3",
         "t": 2,
         "volume": 0.5,
         "dur": 0.4,
         "purpose": ""
       },
       {
-        "src": "sfx/hit.wav",
+        "src": "sfx/hit.ogg",
         "t": 4.6,
         "volume": 0.7,
         "dur": 0.4,
         "purpose": ""
       },
       {
-        "src": "sfx/tick.wav",
+        "src": "sfx/tick.ogg",
         "t": 9.3,
         "volume": 0.4,
         "dur": 0.3,
         "purpose": ""
       },
       {
-        "src": "sfx/riser.wav",
+        "src": "sfx/riser.mp3",
         "t": 14.2,
         "volume": 0.6,
         "dur": 0.8,

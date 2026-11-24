@@ -209,35 +209,35 @@
   "audio": {
     "sfx": [
       {
-        "src": "sfx/hit.wav",
+        "src": "sfx/hit.ogg",
         "t": 0,
         "volume": 0.8,
         "dur": 0.5,
         "purpose": ""
       },
       {
-        "src": "sfx/whoosh.wav",
+        "src": "sfx/whoosh.mp3",
         "t": 2,
         "volume": 0.6,
         "dur": 0.4,
         "purpose": ""
       },
       {
-        "src": "sfx/click.wav",
+        "src": "sfx/click.ogg",
         "t": 8.6,
         "volume": 0.5,
         "dur": 0.2,
         "purpose": ""
       },
       {
-        "src": "sfx/click.wav",
+        "src": "sfx/click.ogg",
         "t": 11,
         "volume": 0.5,
         "dur": 0.2,
         "purpose": ""
       },
       {
-        "src": "sfx/impact.wav",
+        "src": "sfx/impact.ogg",
         "t": 13.4,
         "volume": 0.9,
         "dur": 0.6,

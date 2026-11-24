@@ -1,0 +1,17 @@
+{
+  "id": "25",
+  "slug": "ai-builds-the-app",
+  "generatedAt": "2026-11-24T20:41:20.463Z",
+  "assets": [
+    {
+      "file": "assets/logos/google-white.svg",
+      "type": "logo",
+      "source": "Repo asset library",
+      "license": "Trademarked brand mark - editorial use",
+      "scene": "Throughout",
+      "transparent": "svg",
+      "resolution": "vector",
+      "status": "present"
+    }
+  ]
+}
