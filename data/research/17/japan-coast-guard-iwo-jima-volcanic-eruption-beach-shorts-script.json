@@ -1,0 +1,93 @@
+{
+  "channel_id": "17",
+  "topic_slug": "japan-coast-guard-iwo-jima-volcanic-eruption-beach",
+  "format": "shorts",
+  "hook": "A submarine volcanic eruption created 50 hectares of land off Japan.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "A submarine volcanic eruption created 50 hectares of land off Japan.",
+      "visual_cue": "Satellite aerial view of dark volcanic plume erupting through Pacific ocean water near a coastline.",
+      "sfx_cue": "Low volcanic rumble impact",
+      "b_roll": [
+        "Satellite imagery of Pacific ocean eruption plume",
+        "Thermal aerial view of active marine volcanic blast"
+      ],
+      "animation_cue": "Fast zoom to ocean origin point",
+      "transition_out": "Hard cut",
+      "text_overlay": {
+        "text": "50 HECTARES CREATED"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:18",
+      "voiceover": "On October 27, an underwater volcanic eruption began off Ioto. The Japan Coast Guard confirmed an underwater volcanic eruption off Ioto created new land. Where did this 125-acre expansion stretch off Iwo Jima?",
+      "visual_cue": "Map graphic zooming into Ioto in the Ogasawara Islands while Coast Guard vessel monitors smoking coastline.",
+      "sfx_cue": "Radar sweep with ocean surf sound",
+      "b_roll": [
+        "Japan Coast Guard patrol vessel off Ioto shore",
+        "Topographic mapping line expanding along Iwo Jima coastline"
+      ],
+      "animation_cue": "Map outline animation expanding seaward",
+      "transition_out": "Wipe left",
+      "text_overlay": {
+        "text": "OCTOBER 27 ERUPTION"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:18-0:24",
+      "voiceover": "However, NASA's Earth Observatory confirmed it's attached directly to the existing black sand beach.",
+      "visual_cue": "NASA Earth Observatory split screen showing black sand beach baseline before and after new land mass joined.",
+      "sfx_cue": "Digital shutter click",
+      "b_roll": [
+        "NASA Earth Observatory satellite imagery comparison",
+        "Close drone pass over fresh black volcanic sand shore"
+      ],
+      "animation_cue": "Split-screen slider transition showing terrain growth",
+      "transition_out": "Dissolve",
+      "text_overlay": {
+        "text": "50 HECTARES ADDED"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:24-0:38",
+      "voiceover": "NASA's Earth Observatory reported that the submarine eruption added 50 hectares of land. Seoul Economic Daily noted the total area equals 10 Tokyo Domes.",
+      "visual_cue": "Graphic scale line measuring distance from Tokyo to Iwo Jima, morphing into 10 stadium footprint outlines over the beach.",
+      "sfx_cue": "Subtle telemetry ping sequence",
+      "b_roll": [
+        "Graphic distance scale from Tokyo south into Pacific Ocean",
+        "Architectural aerial footage of Tokyo Dome stadium for scale"
+      ],
+      "animation_cue": "3D stadium outlines multiplying across new terrain map",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "10 TOKYO DOMES"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:38-0:43",
+      "voiceover": "50 hectares of new land created by submarine volcanic fire.",
+      "visual_cue": "Wide drone camera shot panning across fresh smoking black sand beach meeting open Pacific waves.",
+      "sfx_cue": "Deep ocean wave swell",
+      "b_roll": [
+        "Sweeping drone view of new volcanic coastline",
+        "Steaming Pacific shoreline against fresh black sand"
+      ],
+      "animation_cue": "Slow cinematic pull back",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "NEW LANDFORM"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://thesciencebeat.com/news/undersea-eruption-adds-about-50-hectares-of-black-sand-to-iwo-jima",
+    "https://www3.nhk.or.jp/nhkworld/news/20261118de77493",
+    "https://en.sedaily.com/world/2026/11/22/volcanic-eruption-creates-new-land-off-japans-iwo-jima"
+  ]
+}
