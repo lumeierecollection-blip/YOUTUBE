@@ -3192,9 +3192,14 @@
           "topic": "Ancient Failed Rift Reawakening Inside the Kalahari Craton in Botswana",
           "slug": "kalahari-craton-ancient-rift-botswana",
           "reserved_at": "2026-11-23T20:33:17.912Z"
+        },
+        {
+          "topic": "Japan Coast Guard Reports Volcanic Eruption Adds 50 Hectares to Iwo Jima Beach",
+          "slug": "japan-coast-guard-iwo-jima-volcanic-eruption-beach",
+          "reserved_at": "2026-11-24T19:42:52.496Z"
         }
       ],
-      "last_generated": "2026-11-23T20:33:17.912Z"
+      "last_generated": "2026-11-24T19:42:52.496Z"
     },
     "18": {
       "channel_name": "Brief History",
