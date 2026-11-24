@@ -1,69 +1,60 @@
 {
   "topic_slug": "chiricahua-national-park-volcanoes-geology",
-  "strongest_angle": "Examine the colossal volcanic eruptions of the Turkey Creek caldera 27 million years ago that deposited massive layers of rhyolite tuff, which subsequently eroded into the towering stone spires of Chiricahua National Monument.",
+  "strongest_angle": "The geological formation of Chiricahua National Park 27 million years ago through massive volcanic eruptions from the Turkey Creek Volcano, creating extensive rhyolite tuff deposits and iconic rock pinnacles.",
   "key_facts": [
     {
-      "fact": "Chiricahua National Monument in Arizona features prominent rhyolite pinnacles created 27 million years ago by one of the largest known volcanic eruptions in the American Southwest.",
-      "source_url": "https://www.npshistory.com/publications/foundation-documents/chir-fd-overview.pdf",
-      "source_name": "NPS History Foundation Document",
+      "fact": "Some 27 million years ago, a volcano in southeastern Arizona unleashed a series of eruptions, strewing more than 1,000 times as much volcanic material across the landscape as Mount St. Helens did in 1980.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/the-land-of-the-standing-up-rocks",
+      "source_name": "NASA Earth Observatory",
       "confidence": "high"
     },
     {
-      "fact": "Remnants of the Turkey Creek caldera in Arizona provide evidence for successive large volcanic eruptions beginning about 26.9 million years ago.",
-      "source_url": "https://www.nps.gov/articles/nps-geodiversity-atlas-chiricahua-national-monument-arizona.htm",
-      "source_name": "U.S. National Park Service",
+      "fact": "The rock pinnacles, columns, and balanced rocks at Chiricahua were eroded from layers of ash deposited by the eruption of the Turkey Creek Volcano 27 million years ago.",
+      "source_url": "https://irma.nps.gov/DataStore/FileSource/Get/2214601?filename=Hoodoos_Overview_5-3-10.pdf",
+      "source_name": "National Park Service / IRMA",
       "confidence": "high"
     },
     {
-      "fact": "The sentinel spires and rock formations of Chiricahua National Monument rise hundreds of feet into the air within the Chiricahua Mountains Sky Island Complex.",
-      "source_url": "https://nps.gov/chir/learn/nature/geologicformations.htm",
-      "source_name": "U.S. National Park Service",
-      "confidence": "high"
-    },
-    {
-      "fact": "A massive magma chamber grew just a few miles under the Earth's surface before erupting and spewing more than 100 cubic miles of material.",
-      "source_url": "https://www.nationalgeographic.com/environment/article/chiricahua-national-park-geology-volcano-ecology",
-      "source_name": "National Geographic",
+      "fact": "The Civilian Conservation Corps (CCC), during their occupation here in the 1930s, named many of the prominent rhyolite formations along trails like the Ed Riggs Trail.",
+      "source_url": "https://www.nps.gov/chir/learn/nature/geologicformations.htm",
+      "source_name": "National Park Service",
       "confidence": "high"
     }
   ],
   "numbers": [
     {
-      "label": "Geologic eruption age",
-      "value": 27,
-      "unit": "million years ago",
-      "source_url": "https://www.npshistory.com/publications/foundation-documents/chir-fd-overview.pdf"
+      "label": "Years ago of volcanic eruption",
+      "value": 27000000,
+      "unit": "years",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/the-land-of-the-standing-up-rocks"
     },
     {
-      "label": "Volcanic eruption start",
-      "value": 26.9,
-      "unit": "million years ago",
-      "source_url": "https://www.nps.gov/articles/nps-geodiversity-atlas-chiricahua-national-monument-arizona.htm"
-    },
-    {
-      "label": "Erupted volcanic material volume",
-      "value": 100,
-      "unit": "cubic miles",
-      "source_url": "https://www.nationalgeographic.com/environment/article/chiricahua-national-park-geology-volcano-ecology"
+      "label": "Eruption material volume multiplier compared to Mount St. Helens",
+      "value": 1000,
+      "unit": "times",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/the-land-of-the-standing-up-rocks"
     }
   ],
   "named_entities": [
     {
-      "name": "Chiricahua National Monument",
+      "name": "Chiricahua National Park",
       "kind": "place"
     },
     {
-      "name": "Turkey Creek caldera",
+      "name": "Turkey Creek Volcano",
       "kind": "place"
     },
     {
-      "name": "Chiricahua Mountains Sky Island Complex",
+      "name": "Mount St. Helens",
       "kind": "place"
     },
     {
-      "name": "Arizona",
+      "name": "Civilian Conservation Corps",
+      "kind": "organization"
+    },
+    {
+      "name": "Ed Riggs Trail",
       "kind": "place"
     }
-  ],
-  "quotes": []
+  ]
 }
