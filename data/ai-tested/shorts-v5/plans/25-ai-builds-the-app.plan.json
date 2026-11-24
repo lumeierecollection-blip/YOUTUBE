@@ -17,18 +17,17 @@
       "t": 0,
       "dur": 2,
       "narration": "You didn’t open an app. You asked for one. Google Tabletop turns a prompt into a working tool for your group.",
-      "kicker": "GOOGLE TABLETOP",
-      "visual": "kinetic_type",
-      "headline": "YOU ASKED FOR AN APP.",
-      "sub": "Prompt to software in seconds",
+      "visual": "browser_mockup",
+      "headline": "SAY GOODBYE TO APP STORES.",
+      "sub": "",
       "accent": "#1A73E8",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
         "x": 0.5,
         "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
+        "w": 0.85,
+        "h_pct": 0.55
       },
       "motion": [
         "slide_up_fade"
@@ -41,18 +40,17 @@
       "t": 2,
       "dur": 4.5,
       "narration": "Need an itinerary? It builds it. Dinner poll? Built. Expense splitter, tournament bracket, whatever the group needs.",
-      "kicker": "INSTANT GENERATION",
-      "visual": "product_card",
-      "headline": "CUSTOM TOOLS ON DEMAND",
-      "sub": "Itinerary • Polls • Splitters • Brackets",
+      "visual": "ui_card_stack",
+      "headline": "BUILD INSTANTLY",
+      "sub": "",
       "accent": "#34A853",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
         "x": 0.5,
         "y": 0.5,
-        "w": 0.85,
-        "h_pct": 0.6
+        "w": 0.9,
+        "h_pct": 0.65
       },
       "motion": [
         "stagger_pop"
@@ -66,17 +64,16 @@
       "t": 6.5,
       "dur": 3,
       "narration": "Everyone can edit together in real time, like a Google Doc.",
-      "kicker": "REAL-TIME COLLABORATION",
-      "visual": "split_compare",
-      "headline": "LIVE MULTI-USER EDITING",
-      "sub": "Built for group workflows",
+      "visual": "multi_user_cursors",
+      "headline": "LIVE COLLABORATION",
+      "sub": "",
       "accent": "#1A73E8",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
         "x": 0.5,
         "y": 0.5,
-        "w": 0.8,
+        "w": 0.85,
         "h_pct": 0.5
       },
       "motion": [
@@ -90,10 +87,9 @@
       "t": 9.5,
       "dur": 3.8,
       "narration": "It’s still a limited US waitlist test.",
-      "kicker": "AVAILABILITY",
-      "visual": "warning_panel",
-      "headline": "LIMITED US WAITLIST",
-      "sub": "Early experimental rollout",
+      "visual": "status_pill",
+      "headline": "US WAITLIST ONLY",
+      "sub": "",
       "accent": "#EA4335",
       "bg": "#FAFAF8",
       "assets": [],
@@ -114,8 +110,7 @@
       "t": 13.3,
       "dur": 4,
       "narration": "But the big shift is clear: AI isn’t just answering anymore. It’s making software on demand.",
-      "kicker": "AI TESTED",
-      "visual": "final_question",
+      "visual": "bold_statement",
       "headline": "SOFTWARE ON DEMAND",
       "sub": "Follow AI Tested for the next AI workflow shift.",
       "accent": "#111111",

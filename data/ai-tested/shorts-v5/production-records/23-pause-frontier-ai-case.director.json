@@ -7,5 +7,6 @@
   "attempts": [],
   "approved": true,
   "beats": 6,
-  "attempt": 1
+  "attempt": 1,
+  "reused": true
 }

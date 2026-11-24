@@ -30,43 +30,84 @@ const sfxFiles = fs.existsSync(sfxDir) ? fs.readdirSync(sfxDir).filter(f => /\.(
 const sfxByBase = new Map();
 for (const f of sfxFiles) sfxByBase.set(f.replace(/\.(ogg|mp3|wav)$/i, "").toLowerCase(), `sfx/${f}`);
 function resolveSfxRef(v) {
-  if (!v || typeof v !== "string") return v;
+  if (!v || typeof v !== "string") return null;
   if (/^(https?:|data:)/.test(v)) return v;
   let p = v.replace(/^\/+/, "");
+  // music refs that don't exist - drop; music/ is not a real dir
+  if (p.startsWith("music/")) {
+    const mbase = p.slice(6).replace(/\.(ogg|mp3|wav)$/i, "").toLowerCase();
+    if (sfxByBase.has(mbase)) return sfxByBase.get(mbase);
+    return null;
+  }
   if (!p.startsWith("sfx/")) return p;
   const name = p.slice(4);
   const base = name.replace(/\.(ogg|mp3|wav)$/i, "").toLowerCase();
   if (sfxByBase.has(base)) return sfxByBase.get(base);
-  // common aliases
   const alias = { hit:"hit", impact:"impact", boom:"impact", thump:"thud", whoosh:"whoosh", swoosh:"whoosh", riser:"riser", tension:"riser", glitch:"glitch", digital:"glitch", click:"click", tick:"tick", bell:"bell", chime:"bell", reveal:"reveal", pop:"reveal", confirm:"confirm", success:"confirm", error:"error", alert:"error", switch:"switch", drop:"drop", sweep:"sweep" };
   for (const [k, val] of Object.entries(alias)) { if (base.includes(k) && sfxByBase.has(val)) return sfxByBase.get(val); }
-  return sfxFiles.length ? `sfx/${sfxFiles[0]}` : p; // safe fallback
+  return sfxFiles.length ? `sfx/${sfxFiles[0]}` : null;
 }
 
+const knownLogos = new Set(["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"]);
+function publicExists(rel) {
+  if (!rel || typeof rel !== "string") return false;
+  if (/^(https?:|data:)/.test(rel)) return true;
+  return fs.existsSync(path.join(publicDir, rel.replace(/^\/+/, "")));
+}
 function sanitizeAssetRef(v) {
   if (v && typeof v === "object") v = v.file || v.src || v.name || v.logo || "";
   if (!v || typeof v !== "string") return "";
-  const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
-  const base = v.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
-  if (known.includes(base)) return base; // renderer resolves to logos/<base>-white.svg
-  return v;
+  const clean = v.replace(/^\/+/, "");
+  const base = clean.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+  if (knownLogos.has(base)) return base; // renderer resolves to logos/<base>-white.svg
+  // if it's a path to an existing public file, keep it
+  if (clean.includes("/") && publicExists(clean)) return clean;
+  if (publicExists(`logos/${clean}`)) return `logos/${clean}`;
+  if (publicExists(`photos/${clean}`)) return `photos/${clean}`;
+  return ""; // drop missing/unknown assets to avoid render crash
+}
+function sanitizePhotoRef(v) {
+  if (!v || typeof v !== "string") return null;
+  const clean = v.replace(/^\/+/, "").replace(/^photos\//, "");
+  const base = clean.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
+  if (knownLogos.has(base)) return { kind: "logo", value: base };
+  if (publicExists(`photos/${clean}`)) return { kind: "photo", value: clean };
+  if (publicExists(clean)) return { kind: "photo", value: clean };
+  return null;
 }
 function sanitizePlan(plan) {
   for (const b of plan.beats || []) {
-    if (Array.isArray(b.assets)) b.assets = b.assets.map(sanitizeAssetRef);
+    if (Array.isArray(b.assets)) b.assets = b.assets.map(sanitizeAssetRef).filter(Boolean);
     if (b.photo && typeof b.photo === "string") {
-      const p = b.photo.replace(/^photos\//, "");
-      const base = p.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
-      const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
-      if (known.includes(base)) b.assets = Array.from(new Set([...(b.assets||[]), base]));
-      else b.photo = p;
+      const pr = sanitizePhotoRef(b.photo);
+      if (!pr) { delete b.photo; }
+      else if (pr.kind === "logo") { b.assets = Array.from(new Set([...(b.assets||[]), pr.value])); delete b.photo; }
+      else { b.photo = pr.value; }
     }
-    if (Array.isArray(b.sfx)) b.sfx = b.sfx.map(s => typeof s === "string" ? resolveSfxRef(s) : s);
+    // also sanitize bg_image if present
+    if (b.bg_image && typeof b.bg_image === "string") {
+      const bg = b.bg_image.replace(/^\/+/, "");
+      if (!publicExists(bg) && !publicExists(`photos/${bg}`)) delete b.bg_image;
+      else if (!bg.includes("/") && publicExists(`photos/${bg}`)) b.bg_image = `photos/${bg}`;
+    }
+    if (Array.isArray(b.sfx)) b.sfx = b.sfx.map(s => typeof s === "string" ? resolveSfxRef(s) : s).filter(Boolean);
   }
   if (plan.audio && Array.isArray(plan.audio.sfx)) {
-    plan.audio.sfx = plan.audio.sfx.map(s => ({ ...s, src: resolveSfxRef(s.src) }));
+    plan.audio.sfx = plan.audio.sfx.map(s => ({ ...s, src: resolveSfxRef(s?.src) })).filter(s => s.src);
   }
-  if (plan.audio?.music?.src) plan.audio.music.src = resolveSfxRef(plan.audio.music.src);
+  if (plan.audio?.music?.src) {
+    const m = resolveSfxRef(plan.audio.music.src);
+    if (m) plan.audio.music.src = m; else delete plan.audio.music;
+  }
+  if (Array.isArray(plan.asset_manifest)) {
+    plan.asset_manifest = plan.asset_manifest.map(a => {
+      if (!a || typeof a !== "object") return a;
+      const f = String(a.file || "");
+      const clean = f.replace(/^\/+/, "");
+      const ok = knownLogos.has(clean.replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/,"").replace(/_logo$/,"")) || publicExists(clean) || publicExists(`logos/${clean}`) || publicExists(`photos/${clean}`) || publicExists(`sfx/${clean}`);
+      return { ...a, status: ok ? (a.status || "ready") : "missing" };
+    });
+  }
   return plan;
 }
 
@@ -100,13 +141,17 @@ for (const f of files) {
   plan.duration_target_sec = dur;
   const props = JSON.stringify({ plan, audioSrc: `audio/${id}.mp3`, audioDurationSec: dur });
   const outFile = path.join(outDir, `${id}-${plan.slug}.mp4`);
+  const tmpFile = path.join(outDir, `.${id}-${plan.slug}.tmp.mp4`);
   console.log(`Rendering ${id} -> ${outFile} (dur=${dur}s)`);
   try {
-    execFileSync("npx", ["remotion", "render", "src/index.ts", `Short-${id}`, outFile, "--props", props, "--codec=h264", "--crf=18", "--audio-bitrate=192k"], {
+    if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
+    execFileSync("npx", ["remotion", "render", "src/index.ts", `Short-${id}`, tmpFile, "--props", props, "--codec=h264", "--crf=18", "--audio-bitrate=192k"], {
       cwd: root, stdio: "inherit", shell: process.platform === "win32"
     });
+    fs.renameSync(tmpFile, outFile);
   } catch (e) {
     console.error(`RENDER FAILED ${id}:`, e?.message || e);
+    try { if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile); } catch {}
     failures.push({ id, slug: plan.slug, error: String(e?.message || e).slice(0, 500) });
   }
 }
