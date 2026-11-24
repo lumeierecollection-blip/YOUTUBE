@@ -2980,9 +2980,14 @@
           "topic": "NASA Spitzer Space Telescope Discovers 27 New Bodies Beyond Neptune",
           "slug": "spitzer-space-telescope-discovers-bodies-beyond-neptune",
           "reserved_at": "2026-11-23T20:26:27.424Z"
+        },
+        {
+          "topic": "Physical Size of the Milky Way 7.3 Billion km Orbit and Cosmic Scale Compared to Earth",
+          "slug": "milky-way-7-3-billion-km-orbit-scale",
+          "reserved_at": "2026-11-24T19:40:26.682Z"
         }
       ],
-      "last_generated": "2026-11-23T20:26:27.425Z"
+      "last_generated": "2026-11-24T19:40:26.683Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
