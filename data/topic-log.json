@@ -3347,9 +3347,14 @@
           "topic": "Airbus Wire-Directed Energy Deposition 3D Printing for Titanium Parts",
           "slug": "airbus-wire-directed-energy-deposition-titanium-parts",
           "reserved_at": "2026-11-23T20:33:09.901Z"
+        },
+        {
+          "topic": "Colorado State University TeCoBot Shape-Shifting Robot Design",
+          "slug": "colorado-state-university-tecobot-design",
+          "reserved_at": "2026-11-24T19:45:11.156Z"
         }
       ],
-      "last_generated": "2026-11-23T20:33:09.902Z"
+      "last_generated": "2026-11-24T19:45:11.156Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
