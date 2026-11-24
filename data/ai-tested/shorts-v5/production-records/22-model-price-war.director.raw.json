@@ -1,0 +1,377 @@
+{
+  "attempt": 1,
+  "at": "2026-11-24T22:11:06.081Z",
+  "res": {
+    "approved": true,
+    "creative_treatment": {
+      "concept": "Market scoreboard and aggressive price-drop face-off between new AI models, breaking down token costs with stark kinetic typography and direct product cards.",
+      "visual_identity": "Industrial brutalist tech theme with stark high-contrast typography, electric crimson and safety yellow accent pulses on deep charcoal and pure white backgrounds.",
+      "storytelling_approach": "Direct market disruption breakdown: immediate hook establishing the brutal escalation, rapid head-to-head model card comparison, jaw-dropping cost stats, and a user-empowerment takeaway.",
+      "hook_visual": "A flashing red warning panel stamping the screen with 'PRICE WAR BRUTAL' over a cracking glass texture.",
+      "escalation": "Rapid sequence introducing Claude Fable's shadow, followed by the lightning-fast drop of OpenAI's Astra and Sol models with tumbling token pricing.",
+      "payoff": "Final bold question placing the power back into the everyday creator's wallet.",
+      "asset_requirements": [
+        {
+          "type": "logo",
+          "subject": "OpenAI Logo",
+          "source_hint": "openai logo vector transparent",
+          "transparent_bg": true,
+          "scene": "Model introduction"
+        },
+        {
+          "type": "logo",
+          "subject": "Claude Logo",
+          "source_hint": "anthropic claude logo vector transparent",
+          "transparent_bg": true,
+          "scene": "Competitor mention"
+        }
+      ],
+      "constraints": [
+        "No camera moves, zooms, or pans",
+        "No debug labels",
+        "Strict 9:16 vertical mobile composition",
+        "Exact pricing tokens: Astra $8/$40, Sol $2/$10"
+      ],
+      "motion_direction": {
+        "visual_event_schedule": [
+          {
+            "t": 0,
+            "dur": 2.5,
+            "event": "Hook Warning Stamp",
+            "animation": "slide_down",
+            "easing": "ease-out"
+          },
+          {
+            "t": 2.5,
+            "dur": 3,
+            "event": "Claude vs OpenAI clash",
+            "animation": "fade_in",
+            "easing": "linear"
+          },
+          {
+            "t": 5.5,
+            "dur": 4,
+            "event": "Astra & Sol Card Reveal",
+            "animation": "pop",
+            "easing": "ease-out"
+          },
+          {
+            "t": 9.5,
+            "dur": 4.5,
+            "event": "Price Slash Stat Counters",
+            "animation": "scale_up",
+            "easing": "ease-in-out"
+          },
+          {
+            "t": 14,
+            "dur": 4.4,
+            "event": "Final Takeaway & CTA",
+            "animation": "slide_up",
+            "easing": "ease-out"
+          }
+        ],
+        "rhythm": "Fast, punchy, high-impact cuts aligned with aggressive pricing milestones.",
+        "staging_notes": "Central vertical alignment with heavy reliance on contrast cards and stat counters in the middle 60% of the screen.",
+        "transitions": [
+          {
+            "t": 2.5,
+            "type": "cut",
+            "purpose": "Rhythmic beat shift"
+          },
+          {
+            "t": 5.5,
+            "type": "cut",
+            "purpose": "Introduce new models"
+          },
+          {
+            "t": 9.5,
+            "type": "cut",
+            "purpose": "Focus on token economics"
+          },
+          {
+            "t": 14,
+            "type": "cut",
+            "purpose": "Call to action resolution"
+          }
+        ]
+      },
+      "audio_direction": {
+        "music_direction": "Driving industrial synth beat with heavy low-end sub-bass pulses and urgent mechanical rhythms.",
+        "ambience_direction": "Low-level digital hum with subtle room resonance.",
+        "sfx_events": [
+          {
+            "t": 0,
+            "src": "sfx/impact.ogg",
+            "volume": 0.9,
+            "dur": 0.5,
+            "purpose": "Hook impact"
+          },
+          {
+            "t": 2.5,
+            "src": "sfx/whoosh.mp3",
+            "volume": 0.7,
+            "dur": 0.4,
+            "purpose": "Transition sweep"
+          },
+          {
+            "t": 5.5,
+            "src": "sfx/reveal.ogg",
+            "volume": 0.8,
+            "dur": 0.6,
+            "purpose": "Model reveal chime"
+          },
+          {
+            "t": 9.5,
+            "src": "sfx/hit.ogg",
+            "volume": 0.85,
+            "dur": 0.4,
+            "purpose": "Price drop slam"
+          },
+          {
+            "t": 14,
+            "src": "sfx/confirm.ogg",
+            "volume": 0.8,
+            "dur": 0.5,
+            "purpose": "CTA lock"
+          }
+        ],
+        "narration_protection": "Duck music by 12dB during active speech, keeping transients pristine.",
+        "silence_moments": [],
+        "mix_notes": {
+          "master_target_LUFS": -14,
+          "peak_limit_dB": -1
+        }
+      },
+      "central_composition": {
+        "focal_zone": "middle_third",
+        "max_width_pct": 82,
+        "element_stacking": "Headline on top, clear visual card/stat counter in the absolute center, subtext anchoring the bottom."
+      },
+      "typography": {
+        "primary_font": "Inter, system-ui, sans-serif",
+        "headline_weight": "900",
+        "body_weight": "700",
+        "scaling_rules": "Auto-fit container with strict max-width boundaries."
+      },
+      "color_palette": [
+        "#0F1115",
+        "#FAFAF8",
+        "#FF334B",
+        "#FFCC00",
+        "#222629"
+      ],
+      "rendering_requirements": {
+        "resolution": "1080x1920",
+        "fps": 30,
+        "color_space": "srgb"
+      }
+    },
+    "plan": {
+      "id": "22",
+      "slug": "model-price-war",
+      "title": "The AI Price War Just Got Brutal",
+      "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
+      "sources": [
+        "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+        "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+      ],
+      "cta": "Follow AI Tested for the next model war move.",
+      "visual_identity": {
+        "theme": "brutalist_tech"
+      },
+      "duration_target_sec": 18.4,
+      "beats": [
+        {
+          "t": 0,
+          "dur": 2.5,
+          "narration": "OpenAI didn’t just clap back. It started a price war.",
+          "kicker": "AI TESTED",
+          "visual": "warning_panel",
+          "headline": "THE AI PRICE WAR JUST GOT BRUTAL",
+          "sub": "OpenAI strikes back immediately",
+          "accent": "#FF334B",
+          "bg": "#0F1115",
+          "assets": [],
+          "focal": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.8,
+            "h_pct": 0.6
+          },
+          "motion": [
+            "slide_down"
+          ],
+          "sfx": [
+            "sfx/impact.ogg"
+          ]
+        },
+        {
+          "t": 2.5,
+          "dur": 3,
+          "narration": "One week after Claude Fable 5.2, OpenAI launched Astra and Sol.",
+          "kicker": "TIMELINE SHIFT",
+          "visual": "split_compare",
+          "headline": "CLAUDE FABLE 5.2 VS OPENAI",
+          "sub": "Just one week later...",
+          "accent": "#FFCC00",
+          "bg": "#FAFAF8",
+          "assets": [],
+          "focal": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.85,
+            "h_pct": 0.65
+          },
+          "motion": [
+            "fade_in"
+          ],
+          "sfx": [
+            "sfx/whoosh.mp3"
+          ]
+        },
+        {
+          "t": 5.5,
+          "dur": 4,
+          "narration": "Astra is for heavy work: docs, slides, code, even 3D frontends. Sol is the faster, cheaper everyday model.",
+          "kicker": "MODEL LINEUP",
+          "visual": "product_card",
+          "headline": "ASTRA & SOL",
+          "sub": "Heavy workflows vs everyday speed",
+          "accent": "#FF334B",
+          "bg": "#0F1115",
+          "assets": [],
+          "focal": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.82,
+            "h_pct": 0.68
+          },
+          "motion": [
+            "pop"
+          ],
+          "sfx": [
+            "sfx/reveal.ogg"
+          ]
+        },
+        {
+          "t": 9.5,
+          "dur": 4.5,
+          "narration": "Astra: eight dollars in, forty out per million tokens. Sol: two dollars in, ten out. That’s not just a benchmark win. It’s market pressure.",
+          "kicker": "TOKEN ECONOMICS",
+          "visual": "stat_counter",
+          "headline": "ASTRA: $8 / $40  •  SOL: $2 / $10",
+          "sub": "Per million tokens (In / Out)",
+          "accent": "#FFCC00",
+          "bg": "#222629",
+          "assets": [],
+          "focal": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.85,
+            "h_pct": 0.7
+          },
+          "motion": [
+            "scale_up"
+          ],
+          "sfx": [
+            "sfx/hit.ogg"
+          ]
+        },
+        {
+          "t": 14,
+          "dur": 4.4,
+          "narration": "The real winner might be anyone who can now afford powerful AI.",
+          "kicker": "MARKET IMPACT",
+          "visual": "final_question",
+          "headline": "WHO WINS THE PRICE WAR?",
+          "sub": "Follow AI Tested for the next model war move.",
+          "accent": "#FF334B",
+          "bg": "#0F1115",
+          "assets": [],
+          "focal": {
+            "x": 0.5,
+            "y": 0.5,
+            "w": 0.8,
+            "h_pct": 0.6
+          },
+          "motion": [
+            "slide_up"
+          ],
+          "sfx": [
+            "sfx/confirm.ogg"
+          ],
+          "cta": "Follow AI Tested for the next model war move."
+        }
+      ],
+      "audio": {
+        "music": {
+          "volume": 0.15
+        },
+        "sfx": [
+          {
+            "src": "sfx/impact.ogg",
+            "t": 0,
+            "volume": 0.9,
+            "dur": 0.5,
+            "purpose": "Hook impact"
+          },
+          {
+            "src": "sfx/whoosh.mp3",
+            "t": 2.5,
+            "volume": 0.7,
+            "dur": 0.4,
+            "purpose": "Transition sweep"
+          },
+          {
+            "src": "sfx/reveal.ogg",
+            "t": 5.5,
+            "volume": 0.8,
+            "dur": 0.6,
+            "purpose": "Model reveal chime"
+          },
+          {
+            "src": "sfx/hit.ogg",
+            "t": 9.5,
+            "volume": 0.85,
+            "dur": 0.4,
+            "purpose": "Price drop slam"
+          },
+          {
+            "src": "sfx/confirm.ogg",
+            "t": 14,
+            "volume": 0.8,
+            "dur": 0.5,
+            "purpose": "CTA lock"
+          }
+        ]
+      },
+      "asset_manifest": [
+        {
+          "file": "openai_logo.png",
+          "type": "logo",
+          "source": "vector_source",
+          "license": "fair_use_news",
+          "scene": "Model introduction",
+          "transparent": true,
+          "resolution": "512x512",
+          "status": "ready"
+        },
+        {
+          "file": "claude_logo.png",
+          "type": "logo",
+          "source": "vector_source",
+          "license": "fair_use_news",
+          "scene": "Competitor mention",
+          "transparent": true,
+          "resolution": "512x512",
+          "status": "ready"
+        }
+      ]
+    },
+    "self_critique": {
+      "praise": "The pricing numbers ($8/$40 and $2/$10) are precisely verified against the source text. Pacing is punchy, structured cleanly with distinct visual beats.",
+      "improvements": "Ensure Remotion safely clamps font sizing on the token price stat beat to prevent text clipping on smaller 9:16 viewports.",
+      "risk_factors": "Fast text transitions require robust text wrapping in Remotion components to avoid overflow."
+    }
+  }
+}

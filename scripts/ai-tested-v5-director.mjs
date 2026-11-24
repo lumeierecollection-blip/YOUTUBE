@@ -17,6 +17,15 @@ function readJson(p) { return JSON.parse(fs.readFileSync(p, "utf8").replace(/^\u
 function list(dir, ext) { return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith(ext)).sort() : []; }
 function writeJson(p, obj) { fs.writeFileSync(p, JSON.stringify(obj, null, 2)); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+function parseJsonLoose(v) {
+  if (v && typeof v === "object") return v;
+  if (typeof v !== "string") return null;
+  let s = v.trim().replace(/^```(?:json)?\s*/i, "").replace(/\s*```$/i, "").trim();
+  try { return JSON.parse(s); } catch {}
+  const m = s.match(/\{[\s\S]*\}/);
+  if (m) { try { return JSON.parse(m[0]); } catch {} }
+  return null;
+}
 
 const llm = await loadLLM();
 const canLLM = !llm.error && typeof llm.callLLM === "function" && (!llm.llmConfigured || llm.llmConfigured());
@@ -71,7 +80,7 @@ for (const sf of scriptFiles) {
     try {
       const res = await llm.callLLM([{ role: "user", content: [{ type: "text", text: prompt }] }], { maxTokens: 4000 }, "v5-director");
       writeJson(rawPath, { attempt, at: new Date().toISOString(), res });
-      const obj = res?.content && typeof res.content === "object" ? res.content : (typeof res === "object" ? res : null);
+      const obj = parseJsonLoose(res?.content) || parseJsonLoose(res);
       const plan = obj?.plan;
       if (llm.isProviderError?.(res) || !plan || !Array.isArray(plan.beats) || plan.beats.length < 3) {
         const detail = res?.error || (llm.isProviderError?.(res) ? "provider_error" : "invalid_response");

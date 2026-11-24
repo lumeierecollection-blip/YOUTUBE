@@ -2,36 +2,200 @@
   "id": "25",
   "slug": "ai-builds-the-app",
   "title": "Google’s AI Didn’t Answer. It Built the App.",
-  "concept": "Product transformation",
+  "concept": "Google Tabletop transforms prompts into working, collaborative apps instantly.",
   "sources": [
     "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
     "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
   ],
   "cta": "Follow AI Tested for the next AI workflow shift.",
-  "visual_identity": {},
-  "duration_target_sec": 30,
+  "visual_identity": {
+    "theme": "Google Labs clean light mode"
+  },
+  "duration_target_sec": 17.3,
   "beats": [
     {
       "t": 0,
-      "dur": 30,
-      "narration": "Google’s AI Didn’t Answer. It Built the App.",
+      "dur": 2,
+      "narration": "You didn’t open an app. You asked for one. Google Tabletop turns a prompt into a working tool for your group.",
+      "kicker": "GOOGLE TABLETOP",
+      "visual": "kinetic_type",
+      "headline": "YOU ASKED FOR AN APP.",
+      "sub": "Prompt to software in seconds",
+      "accent": "#1A73E8",
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.8,
+        "h_pct": 0.5
+      },
+      "motion": [
+        "slide_up_fade"
+      ],
+      "sfx": [
+        "sfx/whoosh.mp3"
+      ]
+    },
+    {
+      "t": 2,
+      "dur": 4.5,
+      "narration": "Need an itinerary? It builds it. Dinner poll? Built. Expense splitter, tournament bracket, whatever the group needs.",
+      "kicker": "INSTANT GENERATION",
+      "visual": "product_card",
+      "headline": "CUSTOM TOOLS ON DEMAND",
+      "sub": "Itinerary • Polls • Splitters • Brackets",
+      "accent": "#34A853",
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.85,
+        "h_pct": 0.6
+      },
+      "motion": [
+        "stagger_pop"
+      ],
+      "sfx": [
+        "sfx/reveal.mp3",
+        "sfx/click-soft.ogg"
+      ]
+    },
+    {
+      "t": 6.5,
+      "dur": 3,
+      "narration": "Everyone can edit together in real time, like a Google Doc.",
+      "kicker": "REAL-TIME COLLABORATION",
+      "visual": "split_compare",
+      "headline": "LIVE MULTI-USER EDITING",
+      "sub": "Built for group workflows",
+      "accent": "#1A73E8",
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.8,
+        "h_pct": 0.5
+      },
+      "motion": [
+        "scale_in"
+      ],
+      "sfx": [
+        "sfx/confirm.ogg"
+      ]
+    },
+    {
+      "t": 9.5,
+      "dur": 3.8,
+      "narration": "It’s still a limited US waitlist test.",
+      "kicker": "AVAILABILITY",
+      "visual": "warning_panel",
+      "headline": "LIMITED US WAITLIST",
+      "sub": "Early experimental rollout",
+      "accent": "#EA4335",
+      "bg": "#FAFAF8",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.8,
+        "h_pct": 0.4
+      },
+      "motion": [
+        "slide_in"
+      ],
+      "sfx": [
+        "sfx/tick-tight.ogg"
+      ]
+    },
+    {
+      "t": 13.3,
+      "dur": 4,
+      "narration": "But the big shift is clear: AI isn’t just answering anymore. It’s making software on demand.",
       "kicker": "AI TESTED",
-      "visual": "full_bleed_type",
-      "headline": "GOOGLE’S AI DIDN’T ANSWER. IT BUILT THE ",
-      "sub": "Product transformation",
+      "visual": "final_question",
+      "headline": "SOFTWARE ON DEMAND",
+      "sub": "Follow AI Tested for the next AI workflow shift.",
       "accent": "#111111",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
         "x": 0.5,
-        "y": 0.52,
-        "w": 0.72,
-        "h_pct": 0.62
+        "y": 0.5,
+        "w": 0.85,
+        "h_pct": 0.6
       },
-      "motion": []
+      "motion": [
+        "fade_in_up"
+      ],
+      "cta": "Follow AI Tested for the next AI workflow shift.",
+      "sfx": [
+        "sfx/riser.mp3"
+      ]
     }
   ],
   "audio": {
-    "sfx": []
-  }
+    "music": {
+      "src": "music/ambient_tech.mp3",
+      "volume": 0.2
+    },
+    "sfx": [
+      {
+        "src": "sfx/whoosh.mp3",
+        "t": 0,
+        "volume": 0.7,
+        "dur": 0.5,
+        "purpose": "Intro hook transition"
+      },
+      {
+        "src": "sfx/reveal.mp3",
+        "t": 2,
+        "volume": 0.6,
+        "dur": 0.5,
+        "purpose": "App generation reveal"
+      },
+      {
+        "src": "sfx/click-soft.ogg",
+        "t": 3.5,
+        "volume": 0.5,
+        "dur": 0.2,
+        "purpose": "App card pop"
+      },
+      {
+        "src": "sfx/confirm.ogg",
+        "t": 6.5,
+        "volume": 0.6,
+        "dur": 0.4,
+        "purpose": "Collaboration mode active"
+      },
+      {
+        "src": "sfx/tick-tight.ogg",
+        "t": 9.5,
+        "volume": 0.5,
+        "dur": 0.3,
+        "purpose": "Waitlist notice"
+      },
+      {
+        "src": "sfx/riser.mp3",
+        "t": 13.3,
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": "Final paradigm shift crescendo"
+      }
+    ]
+  },
+  "asset_manifest": [
+    {
+      "file": "google_labs_logo.png",
+      "type": "logo",
+      "source": "Google Labs brand assets",
+      "license": "Fair use / editorial",
+      "scene": "hero",
+      "transparent": true,
+      "resolution": "512x512",
+      "status": "ready"
+    }
+  ]
 }

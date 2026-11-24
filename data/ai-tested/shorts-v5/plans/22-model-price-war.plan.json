@@ -2,36 +2,202 @@
   "id": "22",
   "slug": "model-price-war",
   "title": "The AI Price War Just Got Brutal",
-  "concept": "Market scoreboard",
+  "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
   "sources": [
     "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
     "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
   ],
   "cta": "Follow AI Tested for the next model war move.",
-  "visual_identity": {},
-  "duration_target_sec": 30,
+  "visual_identity": {
+    "theme": "brutalist_tech"
+  },
+  "duration_target_sec": 18.4,
   "beats": [
     {
       "t": 0,
-      "dur": 30,
-      "narration": "The AI Price War Just Got Brutal",
+      "dur": 2.5,
+      "narration": "OpenAI didn’t just clap back. It started a price war.",
       "kicker": "AI TESTED",
-      "visual": "full_bleed_type",
+      "visual": "warning_panel",
       "headline": "THE AI PRICE WAR JUST GOT BRUTAL",
-      "sub": "Market scoreboard",
-      "accent": "#111111",
+      "sub": "OpenAI strikes back immediately",
+      "accent": "#FF334B",
+      "bg": "#0F1115",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.8,
+        "h_pct": 0.6
+      },
+      "motion": [
+        "slide_down"
+      ],
+      "sfx": [
+        "sfx/impact.ogg"
+      ]
+    },
+    {
+      "t": 2.5,
+      "dur": 3,
+      "narration": "One week after Claude Fable 5.2, OpenAI launched Astra and Sol.",
+      "kicker": "TIMELINE SHIFT",
+      "visual": "split_compare",
+      "headline": "CLAUDE FABLE 5.2 VS OPENAI",
+      "sub": "Just one week later...",
+      "accent": "#FFCC00",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
         "x": 0.5,
-        "y": 0.52,
-        "w": 0.72,
-        "h_pct": 0.62
+        "y": 0.5,
+        "w": 0.85,
+        "h_pct": 0.65
       },
-      "motion": []
+      "motion": [
+        "fade_in"
+      ],
+      "sfx": [
+        "sfx/whoosh.mp3"
+      ]
+    },
+    {
+      "t": 5.5,
+      "dur": 4,
+      "narration": "Astra is for heavy work: docs, slides, code, even 3D frontends. Sol is the faster, cheaper everyday model.",
+      "kicker": "MODEL LINEUP",
+      "visual": "product_card",
+      "headline": "ASTRA & SOL",
+      "sub": "Heavy workflows vs everyday speed",
+      "accent": "#FF334B",
+      "bg": "#0F1115",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.82,
+        "h_pct": 0.68
+      },
+      "motion": [
+        "pop"
+      ],
+      "sfx": [
+        "sfx/reveal.ogg"
+      ]
+    },
+    {
+      "t": 9.5,
+      "dur": 4.5,
+      "narration": "Astra: eight dollars in, forty out per million tokens. Sol: two dollars in, ten out. That’s not just a benchmark win. It’s market pressure.",
+      "kicker": "TOKEN ECONOMICS",
+      "visual": "stat_counter",
+      "headline": "ASTRA: $8 / $40  •  SOL: $2 / $10",
+      "sub": "Per million tokens (In / Out)",
+      "accent": "#FFCC00",
+      "bg": "#222629",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.85,
+        "h_pct": 0.7
+      },
+      "motion": [
+        "scale_up"
+      ],
+      "sfx": [
+        "sfx/hit.ogg"
+      ]
+    },
+    {
+      "t": 14,
+      "dur": 4.4,
+      "narration": "The real winner might be anyone who can now afford powerful AI.",
+      "kicker": "MARKET IMPACT",
+      "visual": "final_question",
+      "headline": "WHO WINS THE PRICE WAR?",
+      "sub": "Follow AI Tested for the next model war move.",
+      "accent": "#FF334B",
+      "bg": "#0F1115",
+      "assets": [],
+      "focal": {
+        "x": 0.5,
+        "y": 0.5,
+        "w": 0.8,
+        "h_pct": 0.6
+      },
+      "motion": [
+        "slide_up"
+      ],
+      "cta": "Follow AI Tested for the next model war move.",
+      "sfx": [
+        "sfx/confirm.ogg"
+      ]
     }
   ],
   "audio": {
-    "sfx": []
-  }
+    "music": {
+      "src": "",
+      "volume": 0.15
+    },
+    "sfx": [
+      {
+        "src": "sfx/impact.ogg",
+        "t": 0,
+        "volume": 0.9,
+        "dur": 0.5,
+        "purpose": "Hook impact"
+      },
+      {
+        "src": "sfx/whoosh.mp3",
+        "t": 2.5,
+        "volume": 0.7,
+        "dur": 0.4,
+        "purpose": "Transition sweep"
+      },
+      {
+        "src": "sfx/reveal.ogg",
+        "t": 5.5,
+        "volume": 0.8,
+        "dur": 0.6,
+        "purpose": "Model reveal chime"
+      },
+      {
+        "src": "sfx/hit.ogg",
+        "t": 9.5,
+        "volume": 0.85,
+        "dur": 0.4,
+        "purpose": "Price drop slam"
+      },
+      {
+        "src": "sfx/confirm.ogg",
+        "t": 14,
+        "volume": 0.8,
+        "dur": 0.5,
+        "purpose": "CTA lock"
+      }
+    ]
+  },
+  "asset_manifest": [
+    {
+      "file": "openai_logo.png",
+      "type": "logo",
+      "source": "vector_source",
+      "license": "fair_use_news",
+      "scene": "Model introduction",
+      "transparent": true,
+      "resolution": "512x512",
+      "status": "ready"
+    },
+    {
+      "file": "claude_logo.png",
+      "type": "logo",
+      "source": "vector_source",
+      "license": "fair_use_news",
+      "scene": "Competitor mention",
+      "transparent": true,
+      "resolution": "512x512",
+      "status": "ready"
+    }
+  ]
 }

@@ -17,6 +17,7 @@ function readJson(p) { try { return JSON.parse(fs.readFileSync(p, "utf8").replac
 function list(dir, ext) { return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith(ext)).sort() : []; }
 function imgPart(p) { const b = fs.readFileSync(p).toString("base64"); return { type: "image_url", image_url: { url: `data:image/jpeg;base64,${b}` } }; }
 function evenly(arr, n) { if (arr.length <= n) return arr; const out = []; for (let i = 0; i < n; i++) out.push(arr[Math.round(i * (arr.length - 1) / Math.max(1, n - 1))]); return [...new Set(out)]; }
+function parseJsonLoose(v){ if(v&&typeof v==='object') return v; if(typeof v!=='string') return null; let s=v.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim(); try{return JSON.parse(s);}catch{} const m=s.match(/\{[\s\S]*\}/); if(m){try{return JSON.parse(m[0]);}catch{}} return null; }
 
 const llm = await loadLLM();
 const plans = list(path.join(root, "plans"), ".plan.json").map(f => readJson(path.join(root, "plans", f))).filter(Boolean);
@@ -79,12 +80,12 @@ for (const plan of plans) {
         if (llm.isProviderError?.(res2)) {
           review.reason = "llm_error"; review.detail = res2?.error || res2;
         } else {
-          const obj2 = res2?.content && typeof res2.content === "object" ? res2.content : res2;
+          const obj2 = parseJsonLoose(res2?.content) || parseJsonLoose(res2);
           if (!obj2 || typeof obj2 !== "object") { review.reason = "invalid_response"; review.detail = obj2; }
           else { review = { ...review, status: "reviewed", ...obj2 }; review.pass = obj2.pass === true; review.issues = Array.isArray(obj2.issues) ? obj2.issues : []; review.strengths = Array.isArray(obj2.strengths) ? obj2.strengths : []; }
         }
       } else {
-        const obj = res?.content && typeof res.content === "object" ? res.content : res;
+        const obj = parseJsonLoose(res?.content) || parseJsonLoose(res);
         if (!obj || typeof obj !== "object") { review.reason = "invalid_response"; review.detail = obj; }
         else {
           review = { ...review, status: "reviewed", ...obj };

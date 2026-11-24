@@ -10,6 +10,7 @@ const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
 async function loadLLM(){ try { return await import(pathToFileURL(path.join(repoRoot,"src/lib/llm.js")).href); } catch(e){ return {error:String(e)}; } }
 function readJson(p){ return JSON.parse(fs.readFileSync(p,"utf8").replace(/^\uFEFF/,"")); }
 function list(dir,ext){ return fs.existsSync(dir)?fs.readdirSync(dir).filter(f=>f.endsWith(ext)).sort():[]; }
+function parseJsonLoose(v){ if(v&&typeof v==='object') return v; if(typeof v!=='string') return null; let s=v.trim().replace(/^```(?:json)?\s*/i,'').replace(/\s*```$/i,'').trim(); try{return JSON.parse(s);}catch{} const m=s.match(/\{[\s\S]*\}/); if(m){try{return JSON.parse(m[0]);}catch{}} return null; }
 const llm=await loadLLM();
 const reviewFiles=list(reviewsDir,".review.json").filter(f=>f!=="summary.json");
 let changed=[];
@@ -36,7 +37,7 @@ for(const rf of reviewFiles){
   ].join("\n");
   try {
     const res = await llm.callLLM([{role:"user", content:[{type:"text", text:prompt}]}], {maxTokens:2400}, "v5-correct");
-    const obj = res?.content && typeof res.content === "object" ? res.content : res;
+    const obj = parseJsonLoose(res?.content) || parseJsonLoose(res);
     if(obj && obj.id && Array.isArray(obj.beats) && !llm.isProviderError?.(res)) {
       fs.writeFileSync(planPath, JSON.stringify(obj,null,2));
       changed.push({id:r.id, mode:"llm"});

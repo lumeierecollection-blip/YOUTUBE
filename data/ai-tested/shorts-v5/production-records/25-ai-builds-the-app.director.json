@@ -1,0 +1,11 @@
+{
+  "id": "25",
+  "slug": "ai-builds-the-app",
+  "stage": "director",
+  "status": "ok",
+  "at": "2026-11-24T22:13:59.017Z",
+  "attempts": [],
+  "approved": true,
+  "beats": 5,
+  "attempt": 1
+}
