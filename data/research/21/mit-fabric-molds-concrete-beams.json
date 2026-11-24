@@ -1,0 +1,101 @@
+{
+  "topic_slug": "mit-fabric-molds-concrete-beams",
+  "strongest_angle": "In late 2026, MIT researchers demonstrated that combining computer topology optimization with flexible fabric molds can cut concrete material needs by two-thirds, though high labor costs in the Global North affect commercial feasibility.",
+  "key_facts": [
+    {
+      "fact": "In September 2026, researchers Mark Hellrich, Abhinit Sati, Jackson L. Jewett, Edward Chien, Emily Whiting, and Josephine V. Carstensen from the Massachusetts Institute of Technology published findings on fabric formwork in the Journal of Building Engineering.",
+      "source_url": "https://doi.org/10.1016/j.jobe.2026.117472",
+      "source_name": "Journal of Building Engineering",
+      "confidence": "high"
+    },
+    {
+      "fact": "Casting topology-optimized reinforced concrete structural beams inside flexible fabric formwork reduces the concrete volume needed by 66.7% compared to conventional rigid molds.",
+      "source_url": "https://www.bdcnetwork.com/concrete/article/55420136/casting-concrete-beams-in-fabric-formwork-reduces-concrete-needed-by-two-thirds",
+      "source_name": "Building Design + Construction",
+      "confidence": "high"
+    },
+    {
+      "fact": "In regions with lower labor costs, using fabric formwork for complex concrete beams reduced total estimated manufacturing costs by 10% to 20%.",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams",
+      "source_name": "World Construction Today",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the Global North, high labor costs associated with sewing fabric molds reversed cost advantages, making fabric formwork 16% to 55% more expensive than standard molds.",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams",
+      "source_name": "World Construction Today",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Concrete material savings percentage",
+      "value": 66.7,
+      "unit": "percent",
+      "source_url": "https://www.bdcnetwork.com/concrete/article/55420136/casting-concrete-beams-in-fabric-formwork-reduces-concrete-needed-by-two-thirds"
+    },
+    {
+      "label": "Minimum fabric formwork cost savings",
+      "value": 10,
+      "unit": "percent",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams"
+    },
+    {
+      "label": "Maximum fabric formwork cost savings",
+      "value": 20,
+      "unit": "percent",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams"
+    },
+    {
+      "label": "Global North minimum fabric cost premium",
+      "value": 16,
+      "unit": "percent",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams"
+    },
+    {
+      "label": "Global North maximum fabric cost premium",
+      "value": 55,
+      "unit": "percent",
+      "source_url": "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Massachusetts Institute of Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Journal of Building Engineering",
+      "kind": "organization"
+    },
+    {
+      "name": "Mark Hellrich",
+      "kind": "person"
+    },
+    {
+      "name": "Abhinit Sati",
+      "kind": "person"
+    },
+    {
+      "name": "Jackson L. Jewett",
+      "kind": "person"
+    },
+    {
+      "name": "Edward Chien",
+      "kind": "person"
+    },
+    {
+      "name": "Emily Whiting",
+      "kind": "person"
+    },
+    {
+      "name": "Josephine V. Carstensen",
+      "kind": "person"
+    },
+    {
+      "name": "Global North",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "channel_id": "21",
+  "topic_slug": "mit-fabric-molds-concrete-beams",
+  "format": "shorts",
+  "hook": "Casting concrete inside flexible fabric molds cuts material needs by 66.7%.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Casting concrete inside flexible fabric molds cuts material needs by 66.7%.",
+      "visual_cue": "Cinematic macro shot of liquid concrete pouring into a flexible textile mold, revealing fluid curved contours under pressure.",
+      "sfx_cue": "Deep resonant metallic hum fading into pouring concrete fluid sounds.",
+      "b_roll": [
+        "Concrete pouring into flexible textile mold detail",
+        "Fabric formwork expanding under wet concrete weight"
+      ],
+      "animation_cue": "Text overlay animating in with concrete volume reduction stat",
+      "transition_out": "Hard cut on concrete settling",
+      "text_overlay": {
+        "text": "66.7% CONCRETE SAVINGS"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "In September 2026, Massachusetts Institute of Technology researchers poured concrete beams into fabric formwork. Why did Global North factories see prices soar?",
+      "visual_cue": "Archival footage of traditional rigid wooden concrete formwork transitioning to computer topology optimization models on screen.",
+      "sfx_cue": "Subtle acoustic room tone with quiet mechanical keyboard clicks.",
+      "b_roll": [
+        "Construction workers assembling heavy wooden beam formwork",
+        "Computer monitor displaying structural topology optimization mesh"
+      ],
+      "animation_cue": "Side-by-side cost percentage split graphic",
+      "transition_out": "Wipe left across structural diagram",
+      "text_overlay": {
+        "text": "MIT FABRIC FORMWORK STUDY"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:25",
+      "voiceover": "However, sewing fabric molds in the Global North wasn't cheaper, raising production costs by 16% to 55%.",
+      "visual_cue": "Close-up tracking shot of high-tension industrial sewing machines stitching thick reinforcement fabric seams.",
+      "sfx_cue": "Sharp rhythmic industrial sewing machine needle clatter.",
+      "b_roll": [
+        "Industrial sewing machine stitching heavy technical fabric",
+        "Worker inspecting stitched textile formwork seams"
+      ],
+      "animation_cue": "Red cost premium callout box animating over fabric seam close-up",
+      "transition_out": "Quick flash cut to completed beam",
+      "text_overlay": {
+        "text": "+55% LABOR PREMIUM"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:25-0:42",
+      "voiceover": "Carstensen proved topology optimization cuts concrete volume by 66.7%. High labor turned material savings into a 55% penalty.",
+      "visual_cue": "Cross-section comparison of a solid rectangular concrete beam versus an organic hollowed-out topology-optimized structural beam.",
+      "sfx_cue": "Low bass thud marking structural weight comparison.",
+      "b_roll": [
+        "Engineers inspecting cured organic concrete structural beam",
+        "Laboratory stress test of topology-optimized concrete element"
+      ],
+      "animation_cue": "3D beam model dissolving non-structural mass to show internal stress lines",
+      "transition_out": "Slow push in toward structural beam center",
+      "text_overlay": {
+        "text": "TOPOLOGY OPTIMIZATION"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Researchers published their fabric formwork findings in the Journal of Building Engineering.",
+      "visual_cue": "Wide shot of an empty modern automated precast concrete factory floor with motionless machinery.",
+      "sfx_cue": "Echoing factory ambient air release cut short.",
+      "b_roll": [
+        "Empty modern precast concrete manufacturing facility",
+        "Static shot of finished curved concrete beam sitting in warehouse"
+      ],
+      "animation_cue": "Fade to black with study citation line",
+      "transition_out": "Fade out",
+      "text_overlay": {
+        "text": "LABOR VS MATERIAL COST"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.bdcnetwork.com/concrete/article/55420136/casting-concrete-beams-in-fabric-formwork-reduces-concrete-needed-by-two-thirds",
+    "https://www.worldconstructiontoday.com/news/fabric-formwork-enables-material-efficient-concrete-beams"
+  ]
+}
