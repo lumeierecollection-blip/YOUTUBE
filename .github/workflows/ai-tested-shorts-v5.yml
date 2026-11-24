@@ -76,6 +76,7 @@ jobs:
         working-directory: data/ai-tested/shorts-v5/render
         run: node render-all.mjs
       - name: Gemini review and correction loop (continues until pass or blocker)
+        if: always()
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
@@ -147,6 +148,7 @@ jobs:
           fi
       - name: Technical QA
         id: tech_qa
+        if: always()
         working-directory: data/ai-tested/shorts-v5
         run: python qa-verify.py out qa || (echo "TECH_QA_FAILED" > qa/TECH_QA_FAILED.txt; exit 1)
       - name: Production summary and acceptance gate

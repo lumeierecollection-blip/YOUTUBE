@@ -44,7 +44,8 @@ function resolveSfxRef(v) {
 }
 
 function sanitizeAssetRef(v) {
-  if (!v || typeof v !== "string") return v;
+  if (v && typeof v === "object") v = v.file || v.src || v.name || v.logo || "";
+  if (!v || typeof v !== "string") return "";
   const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
   const base = v.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
   if (known.includes(base)) return base; // renderer resolves to logos/<base>-white.svg
@@ -70,6 +71,7 @@ function sanitizePlan(plan) {
 }
 
 const files = fs.readdirSync(plansDir).filter(f => f.endsWith(".plan.json")).sort();
+const failures = [];
 for (const f of files) {
   const plan = sanitizePlan(JSON.parse(fs.readFileSync(path.join(plansDir, f), "utf8").replace(/^\uFEFF/, "")));
   const id = plan.id;
@@ -99,8 +101,18 @@ for (const f of files) {
   const props = JSON.stringify({ plan, audioSrc: `audio/${id}.mp3`, audioDurationSec: dur });
   const outFile = path.join(outDir, `${id}-${plan.slug}.mp4`);
   console.log(`Rendering ${id} -> ${outFile} (dur=${dur}s)`);
-  execFileSync("npx", ["remotion", "render", "src/index.ts", `Short-${id}`, outFile, "--props", props, "--codec=h264", "--crf=18", "--audio-bitrate=192k"], {
-    cwd: root, stdio: "inherit", shell: process.platform === "win32"
-  });
+  try {
+    execFileSync("npx", ["remotion", "render", "src/index.ts", `Short-${id}`, outFile, "--props", props, "--codec=h264", "--crf=18", "--audio-bitrate=192k"], {
+      cwd: root, stdio: "inherit", shell: process.platform === "win32"
+    });
+  } catch (e) {
+    console.error(`RENDER FAILED ${id}:`, e?.message || e);
+    failures.push({ id, slug: plan.slug, error: String(e?.message || e).slice(0, 500) });
+  }
+}
+if (failures.length) {
+  fs.writeFileSync(path.join(outDir, "RENDER_FAILURES.json"), JSON.stringify(failures, null, 2));
+  console.error("Some renders failed:", failures.map(f=>f.id).join(","));
+  process.exit(1);
 }
 console.log("All renders complete");

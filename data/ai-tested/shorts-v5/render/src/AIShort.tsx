@@ -26,32 +26,33 @@ const isDarkBg = (bg?: string) => {
   const r = parseInt(b.slice(0, 2), 16), g = parseInt(b.slice(2, 4), 16), bl = parseInt(b.slice(4, 6), 16);
   return (r * 299 + g * 587 + bl * 114) / 1000 < 140;
 };
-const resolveAsset = (p?: string) => {
-  if (!p) return null;
-  if (/^(https?:|data:)/.test(p)) return p;
-  if (p.startsWith("sfx/") || p.startsWith("photos/") || p.startsWith("logos/") || p.startsWith("audio/") || p.startsWith("images/")) return staticFile(p);
-  if (p.includes("/")) return staticFile(p);
-  if (/\.(png|jpg|jpeg|webp|svg)$/i.test(p)) {
-    // Common LLM mistakes: openai-logo.png -> logos/openai-white.svg, etc.
-    const base = p.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
+const resolveAsset = (p?: any) => {
+  let v: string = typeof p === "string" ? p : (p?.file || p?.src || p?.name || "");
+  if (!v || typeof v !== "string") return null;
+  if (/^(https?:|data:)/.test(v)) return v;
+  if (v.startsWith("sfx/") || v.startsWith("photos/") || v.startsWith("logos/") || v.startsWith("audio/") || v.startsWith("images/")) return staticFile(v);
+  if (v.includes("/")) return staticFile(v);
+  if (/\.(png|jpg|jpeg|webp|svg)$/i.test(v)) {
+    const base = v.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
     const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
     if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
-    return staticFile(`photos/${p}`);
+    return staticFile(`photos/${v}`);
   }
-  return staticFile(`logos/${p}-white.svg`);
+  return staticFile(`logos/${v}-white.svg`);
 };
-const logoSrc = (l: string) => {
-  if (!l) return staticFile("logos/openai-white.svg");
-  if (/^(https?:|data:)/.test(l)) return l;
-  if (l.startsWith("logos/") || l.startsWith("photos/") || l.startsWith("images/")) return staticFile(l);
-  if (l.includes("/")) return staticFile(l);
-  if (/\.(svg|png|jpg|jpeg|webp)$/i.test(l)) {
-    const base = l.replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+const logoSrc = (l: any) => {
+  let v: string = typeof l === "string" ? l : (l?.file || l?.src || l?.name || l?.logo || "");
+  if (!v || typeof v !== "string") return staticFile("logos/openai-white.svg");
+  if (/^(https?:|data:)/.test(v)) return v;
+  if (v.startsWith("logos/") || v.startsWith("photos/") || v.startsWith("images/")) return staticFile(v);
+  if (v.includes("/")) return staticFile(v);
+  if (/\.(svg|png|jpg|jpeg|webp)$/i.test(v)) {
+    const base = v.replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
     const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
     if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
-    return staticFile(`logos/${l}`);
+    return staticFile(`logos/${v}`);
   }
-  const clean = l.replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+  const clean = v.replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
   return staticFile(`logos/${clean}-white.svg`);
 };
 
@@ -87,13 +88,14 @@ const Headline: React.FC<{ beat: Beat; dark: boolean; center?: boolean; maxW?: n
   const frame = useCurrentFrame();
   const ink = dark ? "#FAFAF8" : "#111";
   const muted = dark ? "rgba(250,250,248,0.72)" : "#555";
-  const size = beat.headline.length > 18 ? 84 : beat.headline.length > 12 ? 104 : 122;
+  const hl = String(beat.headline || "");
+  const size = hl.length > 24 ? 72 : hl.length > 18 ? 84 : hl.length > 12 ? 104 : 122;
   const barW = interpolate(frame, [2, 20], [0, Math.min(860, maxW)], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return <FadeSlide delay={2} y={30} dur={16}>
-    <div style={{ textAlign: center ? "center" : "left", maxWidth: maxW, margin: center ? "0 auto" : undefined }}>
-      <div style={{ fontFamily: sg, fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.04em", color: ink, textTransform: "uppercase", textWrap: "balance" as any }}>{beat.headline}</div>
+    <div style={{ textAlign: center ? "center" : "left", maxWidth: maxW, width: "100%", margin: center ? "0 auto" : undefined, overflow: "hidden" }}>
+      <div style={{ fontFamily: sg, fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.04em", color: ink, textTransform: "uppercase", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%" }}>{hl}</div>
       <div style={{ marginTop: 20, width: barW, maxWidth: "100%", height: 10, background: beat.accent || "#111", marginLeft: center ? "auto" : undefined, marginRight: center ? "auto" : undefined }} />
-      {beat.sub ? <div style={{ marginTop: 20, fontFamily: inter, fontWeight: 700, fontSize: 38, lineHeight: 1.22, color: muted, maxWidth: 920, marginLeft: center ? "auto" : undefined, marginRight: center ? "auto" : undefined }}>{beat.sub}</div> : null}
+      {beat.sub ? <div style={{ marginTop: 20, fontFamily: inter, fontWeight: 700, fontSize: 38, lineHeight: 1.22, color: muted, maxWidth: 920, overflowWrap: "anywhere", marginLeft: center ? "auto" : undefined, marginRight: center ? "auto" : undefined }}>{beat.sub}</div> : null}
     </div>
   </FadeSlide>;
 };
@@ -101,11 +103,11 @@ const Headline: React.FC<{ beat: Beat; dark: boolean; center?: boolean; maxW?: n
 const Logos: React.FC<{ logos?: string[]; dark: boolean; size?: number }> = ({ logos = [], dark, size = 108 }) => {
   if (!logos.length) return null;
   return <div style={{ display: "flex", gap: 18, flexWrap: "wrap", justifyContent: "center", alignItems: "center" }}>
-    {logos.map((l, i) => <FadeSlide key={`${l}-${i}`} delay={i * 3} y={18} dur={12}>
+    {logos.map((l: any, i) => { const ls = typeof l === "string" ? l : (l?.file || l?.src || l?.name || ""); return <FadeSlide key={`${ls}-${i}`} delay={i * 3} y={18} dur={12}>
       <div style={{ width: size, height: size, borderRadius: 28, background: dark ? "rgba(255,255,255,0.08)" : "#fff", border: `2px solid ${dark ? "rgba(255,255,255,0.14)" : "#E2E2DC"}`, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: dark ? "none" : "0 10px 30px rgba(17,17,17,0.06)" }}>
-        <Img src={logoSrc(l)} style={{ width: size * 0.56, height: size * 0.56, objectFit: "contain", filter: dark && !l.includes("/") ? "none" : l.endsWith(".svg") && !dark ? "brightness(0)" : undefined }} />
+        <Img src={logoSrc(l)} style={{ width: size * 0.56, height: size * 0.56, objectFit: "contain", filter: dark && !ls.includes("/") ? "none" : ls.endsWith(".svg") && !dark ? "brightness(0)" : undefined }} />
       </div>
-    </FadeSlide>)}
+    </FadeSlide>; })}
   </div>;
 };
 
@@ -129,10 +131,13 @@ const Stat: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => {
   const p = interpolate(frame, [0, Math.min(18, durationInFrames - 1)], [0, 1], { extrapolateRight: "clamp" });
   const raw = beat.headline.replace(/[^0-9.\-]/g, "");
   const target = Number(raw);
-  const display = Number.isFinite(target) && raw ? `${beat.headline.includes("$") ? "$" : ""}${Math.round(target * p).toLocaleString()}${beat.headline.replace(/[$0-9,.\-\s]/g, "")}` : beat.headline;
-  return <div style={{ textAlign: "center", width: "100%" }}>
-    <div style={{ fontFamily: sg, fontWeight: 800, fontSize: 160, lineHeight: 0.84, color: beat.accent || "#111", letterSpacing: "-0.05em" }}>{display}</div>
-    {beat.sub ? <div style={{ marginTop: 22, fontFamily: inter, fontWeight: 800, fontSize: 40, color: dark ? "#FAFAF8" : "#111", lineHeight: 1.2 }}>{beat.sub}</div> : null}
+  const suffix = beat.headline.replace(/[$0-9,.\-\s]/g, "");
+  const prefix = beat.headline.includes("$") ? "$" : "";
+  const display = Number.isFinite(target) && raw ? `${prefix}${Math.round(target * p).toLocaleString()}${suffix ? " " + suffix : ""}` : beat.headline;
+  const fs = display.length > 14 ? 96 : display.length > 10 ? 120 : 160;
+  return <div style={{ textAlign: "center", width: "100%", maxWidth: "100%", overflow: "hidden" }}>
+    <div style={{ fontFamily: sg, fontWeight: 800, fontSize: fs, lineHeight: 0.9, color: beat.accent || "#111", letterSpacing: "-0.04em", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", padding: "0 8px" }}>{display}</div>
+    {beat.sub ? <div style={{ marginTop: 22, fontFamily: inter, fontWeight: 800, fontSize: 40, color: dark ? "#FAFAF8" : "#111", lineHeight: 1.2, overflowWrap: "anywhere", padding: "0 8px" }}>{beat.sub}</div> : null}
     <div style={{ marginTop: 28 }}><Logos logos={beat.assets} dark={dark} size={112} /></div>
   </div>;
 };
