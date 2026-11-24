@@ -1,0 +1,90 @@
+{
+  "channel_id": "7",
+  "topic_slug": "greek-pantheon-zeus-poseidon-mythos",
+  "format": "shorts",
+  "hook": "In Book 15 of Homer's Iliad, 3 divine brothers divided the cosmos between themselves.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:06",
+      "voiceover": "In Book 15 of Homer's Iliad, 3 divine brothers divided the cosmos between themselves.",
+      "visual_cue": "Classical manuscript scroll unrolling across a starry celestial map",
+      "sfx_cue": "Low thunder rumble blending into ocean swell",
+      "b_roll": [
+        "Ancient Greek manuscript illustration of Mount Olympus"
+      ],
+      "animation_cue": "Camera pan across parchment map",
+      "transition_out": "Cross dissolve",
+      "text_overlay": {
+        "text": "ILIAD BOOK 15"
+      }
+    },
+    {
+      "id": "setup",
+      "timing": "0:06-0:20",
+      "voiceover": "During the Titanomachy, the war against the Titans, 12 Olympians overthrew their father Cronus. Who actually held supreme authority during the Trojan War?",
+      "visual_cue": "Split frame depicting stormy seas beside lightning-lit mountain peaks",
+      "sfx_cue": "Ocean waves crashing against rock",
+      "b_roll": [
+        "Engraving of Titanomachy divine struggle",
+        "Illustration of Poseidon trident and sea"
+      ],
+      "animation_cue": "Split screen slider motion",
+      "transition_out": "Wipe left",
+      "text_overlay": {
+        "text": "COSMIC DIVISION: SEAS vs SKY"
+      }
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:26",
+      "voiceover": "However, during the Trojan War, Poseidon confronted Zeus, claiming equal dignity despite Zeus's ultimate authority.",
+      "visual_cue": "Ancient marble relief depiction of Poseidon facing the throne of Olympus",
+      "sfx_cue": "Dramatic low brass swell",
+      "b_roll": [
+        "Classical marble statue of Poseidon"
+      ],
+      "animation_cue": "Slow push-in on statue face",
+      "transition_out": "Flash cut",
+      "text_overlay": {
+        "text": "EQUAL DIGNITY?"
+      }
+    },
+    {
+      "id": "payoff",
+      "timing": "0:26-0:42",
+      "voiceover": "Homer shows Zeus maintained ultimate authority on Olympus. In Odyssey Book 13, Poseidon turned a Phaeacian ship into stone after consulting Zeus. Odyssey lines 122 to 184 record Poseidon turning a Phaeacian ship into stone after consulting Zeus.",
+      "visual_cue": "Classical artwork showing a wooden vessel transforming to stone off a coastline",
+      "sfx_cue": "Stone grinding impact sound effect",
+      "b_roll": [
+        "Illustration of Phaeacian ship near stone reef"
+      ],
+      "animation_cue": "Vignette darkening around ship illustration",
+      "transition_out": "Fade to dark",
+      "text_overlay": {
+        "text": "ODYSSEY BOOK 13"
+      }
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:48",
+      "voiceover": "The 2 divine brothers shared cosmic dominion under Zeus.",
+      "visual_cue": "Dual emblem showing trident and lightning bolt uniting under Olympus crown",
+      "sfx_cue": "Final echoing thunder tone",
+      "b_roll": [
+        "Ancient Greek temple ruins silhouette against sunset"
+      ],
+      "animation_cue": "Fade out icon overlay",
+      "transition_out": "Fade to black",
+      "text_overlay": {
+        "text": "AUTHORITY OF OLYMPUS"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://doi.org/10.4324/9780203356982-10",
+    "https://www.greekmythology.com/sources/figures/poseidon",
+    "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference",
+    "https://mythographia.com/compare/zeus-vs-poseidon"
+  ]
+}
