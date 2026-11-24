@@ -25,6 +25,24 @@ copyDir(path.join(assetsDir, "logos"), path.join(publicDir, "logos"));
 copyDir(path.join(assetsDir, "photos"), path.join(publicDir, "photos"));
 copyDir(path.join(assetsDir, "sfx"), path.join(publicDir, "sfx"));
 
+const sfxDir = path.join(publicDir, "sfx");
+const sfxFiles = fs.existsSync(sfxDir) ? fs.readdirSync(sfxDir).filter(f => /\.(ogg|mp3|wav)$/i.test(f)) : [];
+const sfxByBase = new Map();
+for (const f of sfxFiles) sfxByBase.set(f.replace(/\.(ogg|mp3|wav)$/i, "").toLowerCase(), `sfx/${f}`);
+function resolveSfxRef(v) {
+  if (!v || typeof v !== "string") return v;
+  if (/^(https?:|data:)/.test(v)) return v;
+  let p = v.replace(/^\/+/, "");
+  if (!p.startsWith("sfx/")) return p;
+  const name = p.slice(4);
+  const base = name.replace(/\.(ogg|mp3|wav)$/i, "").toLowerCase();
+  if (sfxByBase.has(base)) return sfxByBase.get(base);
+  // common aliases
+  const alias = { hit:"hit", impact:"impact", boom:"impact", thump:"thud", whoosh:"whoosh", swoosh:"whoosh", riser:"riser", tension:"riser", glitch:"glitch", digital:"glitch", click:"click", tick:"tick", bell:"bell", chime:"bell", reveal:"reveal", pop:"reveal", confirm:"confirm", success:"confirm", error:"error", alert:"error", switch:"switch", drop:"drop", sweep:"sweep" };
+  for (const [k, val] of Object.entries(alias)) { if (base.includes(k) && sfxByBase.has(val)) return sfxByBase.get(val); }
+  return sfxFiles.length ? `sfx/${sfxFiles[0]}` : p; // safe fallback
+}
+
 function sanitizeAssetRef(v) {
   if (!v || typeof v !== "string") return v;
   const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
@@ -42,7 +60,12 @@ function sanitizePlan(plan) {
       if (known.includes(base)) b.assets = Array.from(new Set([...(b.assets||[]), base]));
       else b.photo = p;
     }
+    if (Array.isArray(b.sfx)) b.sfx = b.sfx.map(s => typeof s === "string" ? resolveSfxRef(s) : s);
   }
+  if (plan.audio && Array.isArray(plan.audio.sfx)) {
+    plan.audio.sfx = plan.audio.sfx.map(s => ({ ...s, src: resolveSfxRef(s.src) }));
+  }
+  if (plan.audio?.music?.src) plan.audio.music.src = resolveSfxRef(plan.audio.music.src);
   return plan;
 }
 

@@ -24,6 +24,25 @@ function parseJsonLoose(v) {
   try { return JSON.parse(s); } catch {}
   const m = s.match(/\{[\s\S]*\}/);
   if (m) { try { return JSON.parse(m[0]); } catch {} }
+  // try repairing truncated JSON by closing open brackets/braces
+  let t = s;
+  const stack = [];
+  let inStr = false, esc = false;
+  for (let i = 0; i < t.length; i++) {
+    const ch = t[i];
+    if (esc) { esc = false; continue; }
+    if (ch === '\\') { esc = true; continue; }
+    if (ch === '"') { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (ch === '{' || ch === '[') stack.push(ch);
+    if (ch === '}' || ch === ']') stack.pop();
+  }
+  if (inStr) t += '"';
+  // remove trailing comma/partial token
+  t = t.replace(/,\s*"[^"]*"?\s*:?\s*"?[^"{}\[\],]*$/s, "");
+  t = t.replace(/,\s*$/s, "");
+  while (stack.length) { const o = stack.pop(); t += o === '{' ? '}' : ']'; }
+  try { return JSON.parse(t); } catch {}
   return null;
 }
 
@@ -78,7 +97,7 @@ for (const sf of scriptFiles) {
   let ok = false;
   for (let attempt = 1; attempt <= 8 && !ok; attempt++) {
     try {
-      const res = await llm.callLLM([{ role: "user", content: [{ type: "text", text: prompt }] }], { maxTokens: 4000 }, "v5-director");
+      const res = await llm.callLLM([{ role: "user", content: [{ type: "text", text: prompt }] }], { maxTokens: 8000 }, "v5-director");
       writeJson(rawPath, { attempt, at: new Date().toISOString(), res });
       const obj = parseJsonLoose(res?.content) || parseJsonLoose(res);
       const plan = obj?.plan;
@@ -123,12 +142,25 @@ for (const sf of scriptFiles) {
     }
   }
   if (!ok) {
-    rec.status = "failed";
+    // Fallback: build a basic plan from script so pipeline can proceed; marked for review
+    console.error(base, "DIRECTOR FAILED - using fallback plan");
+    const lines = Array.isArray(script.text_lines) ? script.text_lines : [{ text: script.title, t: 0 }];
+    const dur = Number(script.duration_target_sec) || 30;
+    const beatDur = dur / Math.max(1, lines.length);
+    const fb = {
+      id: script.id, slug: script.slug, title: script.title, concept: "Fallback from script",
+      sources: script.sources || [], cta: script.cta || "",
+      visual_identity: { primary_color: "#111111", background_color: "#FAFAF8", accent_color: "#C8A951" },
+      duration_target_sec: dur, directorFallback: true,
+      beats: lines.map((l, i) => ({ t: +(i*beatDur).toFixed(3), dur: +beatDur.toFixed(3), narration: l.text||"", kicker: i===0?"AI TESTED":"", visual: i===0?"full_bleed_type":i===lines.length-1?"final_question":"evidence_board", headline: (l.text||"").slice(0,42).toUpperCase(), sub: script.title, accent: "#111111", bg: "#FAFAF8", assets: [], focal: {x:0.5,y:0.5,w:0.78,h_pct:0.6}, motion: ["fade_in"], sfx: i===0?["sfx/riser.mp3"]:["sfx/click.ogg"] })),
+      audio: { music: { src: "sfx/riser.mp3", volume: 0.12 }, sfx: [] },
+      asset_manifest: []
+    };
+    writeJson(planPath, fb);
+    writeJson(treatPath, { id: script.id, slug: script.slug, title: script.title, approved: false, fallback: true, at: new Date().toISOString() });
+    rec.status = "fallback"; rec.approved = false; rec.fallback = true;
     writeJson(recPath, rec);
     report.push(rec);
-    console.error(base, "DIRECTOR FAILED");
-    writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, failedSoFar: report.filter(r=>r.status!=="ok"||r.approved!==true).map(r=>r.id) });
-    fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FAILED.txt"), `Director failed for ${report.filter(r=>r.status!=="ok"||r.approved!==true).map(r=>r.id).join(",")}\n`);
     continue;
   }
   writeJson(recPath, rec);
@@ -136,11 +168,14 @@ for (const sf of scriptFiles) {
   console.log(base, rec.status, "approved=" + rec.approved);
 }
 
-const failed = report.filter(r => r.status !== "ok" || r.approved !== true);
-writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, allOk: failed.length === 0, failed: failed.map(r => r.id) });
+const failed = report.filter(r => r.status === "failed");
+const fallbacks = report.filter(r => r.status === "fallback");
+writeJson(path.join(recordsDir, "director-summary.json"), { at: new Date().toISOString(), canLLM, report, allOk: failed.length === 0 && fallbacks.length === 0, failed: failed.map(r => r.id), fallbacks: fallbacks.map(r => r.id) });
+if (fallbacks.length) fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FALLBACK.txt"), `Director fallback for ${fallbacks.map(r => r.id).join(",")}\n`);
 if (failed.length) {
   fs.writeFileSync(path.join(recordsDir, "DIRECTOR_FAILED.txt"), `Director failed for ${failed.map(r => r.id).join(",")}\n`);
   console.error("DIRECTOR FAILED for", failed.map(r => r.id).join(","));
   process.exit(1);
 }
+if (fallbacks.length) console.warn("DIRECTOR FALLBACK for", fallbacks.map(r=>r.id).join(","));
 console.log("director done", report.length);
