@@ -117,7 +117,7 @@ jobs:
               break
             fi
             echo "Rerendering after corrections..."
-            (cd render && node render-all.mjs)
+            (cd render && node render-all.mjs) || { echo "RERENDER_FAILED_$cycle" > "production-records/RERENDER_FAILED_cycle_$cycle.txt"; echo "Rerender failed in cycle $cycle; continuing to next review"; }
           done
           if [ ! -d reviews/final ]; then
             mkdir -p reviews/final
@@ -126,6 +126,7 @@ jobs:
           echo "all_pass=$all_pass" > production-records/review-loop-state.txt
       - name: Final Gemini review (mandatory, actual rendered output)
         id: final_review
+        if: always()
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail

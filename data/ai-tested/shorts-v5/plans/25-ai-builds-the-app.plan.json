@@ -2,246 +2,36 @@
   "id": "25",
   "slug": "ai-builds-the-app",
   "title": "Google’s AI Didn’t Answer. It Built the App.",
-  "concept": "Product transformation: prompt becomes tool, rapid app cards, collaboration split, waitlist reality check, software-on-demand close.",
+  "concept": "Product transformation",
   "sources": [
     "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
     "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
   ],
   "cta": "Follow AI Tested for the next AI workflow shift.",
-  "visual_identity": {
-    "base": "white editorial with story-specific variation",
-    "rules": [
-      "no debug labels",
-      "no repeated template cards",
-      "every beat has visual change"
-    ]
-  },
-  "duration_target_sec": 17.3,
+  "visual_identity": {},
+  "duration_target_sec": 30,
   "beats": [
     {
       "t": 0,
-      "dur": 2,
-      "narration": "You didn’t open an app. You asked for one.",
-      "kicker": "NEW SHIFT",
+      "dur": 30,
+      "narration": "Google’s AI Didn’t Answer. It Built the App.",
+      "kicker": "AI TESTED",
       "visual": "full_bleed_type",
-      "headline": "ASKED FOR IT",
-      "sub": "YOU DIDN’T OPEN AN APP",
-      "accent": "#2563EB",
+      "headline": "GOOGLE’S AI DIDN’T ANSWER. IT BUILT THE ",
+      "sub": "Product transformation",
+      "accent": "#111111",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 20
+        "x": 0.5,
+        "y": 0.52,
+        "w": 0.72,
+        "h_pct": 0.62
       },
-      "motion": [
-        "fade_in"
-      ]
-    },
-    {
-      "t": 2,
-      "dur": 2.3,
-      "narration": "Google Tabletop turns a prompt into a working tool for your group.",
-      "kicker": "GOOGLE TABLETOP",
-      "visual": "product_card",
-      "headline": "TABLETOP",
-      "sub": "PROMPT → WORKING TOOL",
-      "accent": "#111111",
-      "bg": "#F7F7F4",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 40
-      },
-      "motion": [
-        "scale_up"
-      ]
-    },
-    {
-      "t": 4.3,
-      "dur": 1.9,
-      "narration": "Need an itinerary? It builds it.",
-      "kicker": "BUILT",
-      "visual": "tool_card",
-      "headline": "ITINERARY",
-      "sub": "BUILT FROM A PROMPT",
-      "accent": "#2563EB",
-      "bg": "#FAFAF8",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 30
-      },
-      "motion": [
-        "slide_in"
-      ]
-    },
-    {
-      "t": 6.2,
-      "dur": 1.9,
-      "narration": "Dinner poll? Built.",
-      "kicker": "BUILT",
-      "visual": "split_compare",
-      "headline": "GROUP DECISION",
-      "sub": "ANOTHER APP BUILT FROM A PROMPT",
-      "accent": "#111111",
-      "bg": "#F7F7F4",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 30
-      },
-      "motion": [
-        "slide_in"
-      ],
-      "left": "DINNER",
-      "right": "POLL"
-    },
-    {
-      "t": 8.1,
-      "dur": 2.1,
-      "narration": "Expense splitter, tournament bracket, whatever the group needs.",
-      "kicker": "BUILT",
-      "visual": "timeline",
-      "headline": "ANY TOOL",
-      "sub": "BUILT ON DEMAND",
-      "accent": "#2563EB",
-      "bg": "#FAFAF8",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 30
-      },
-      "motion": [
-        "slide_in"
-      ],
-      "timeline": {
-        "steps": [
-          "Splitter",
-          "Bracket",
-          "Planner",
-          "Poll"
-        ]
-      }
-    },
-    {
-      "t": 10.2,
-      "dur": 2.3,
-      "narration": "Everyone can edit together in real time, like a Google Doc.",
-      "kicker": "COLLAB",
-      "visual": "split_compare",
-      "headline": "LIVE TOGETHER",
-      "sub": "PROMPT ON ONE SIDE, SHARED TOOL ON THE OTHER",
-      "accent": "#111111",
-      "bg": "#FAFAF8",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 50
-      },
-      "motion": [
-        "split_reveal"
-      ]
-    },
-    {
-      "t": 12.5,
-      "dur": 2,
-      "narration": "It’s still a limited US waitlist test.",
-      "kicker": "REALITY CHECK",
-      "visual": "stamp_document",
-      "headline": "US WAITLIST",
-      "sub": "LIMITED LABS TEST",
-      "accent": "#6B7280",
-      "bg": "#F5F1EA",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 70,
-        "h_pct": 40
-      },
-      "motion": [
-        "fade_in"
-      ]
-    },
-    {
-      "t": 14.5,
-      "dur": 2.8,
-      "narration": "But the big shift is clear: AI isn’t just answering anymore. It’s making software on demand.",
-      "kicker": "THE SHIFT",
-      "visual": "final_question",
-      "headline": "SOFTWARE ON DEMAND",
-      "sub": "NOT JUST ANSWERS ANYMORE",
-      "accent": "#2563EB",
-      "bg": "#111111",
-      "assets": [
-        "google"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 80,
-        "h_pct": 40
-      },
-      "motion": [
-        "fade_in"
-      ],
-      "cta": "Follow AI Tested for the next AI workflow shift."
+      "motion": []
     }
   ],
   "audio": {
-    "sfx": [
-      {
-        "src": "sfx/whoosh.mp3",
-        "t": 0,
-        "volume": 0.5,
-        "dur": 0.5,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/click.ogg",
-        "t": 4.3,
-        "volume": 0.4,
-        "dur": 0.2,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/click.ogg",
-        "t": 6.2,
-        "volume": 0.4,
-        "dur": 0.2,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/impact.ogg",
-        "t": 14.5,
-        "volume": 0.6,
-        "dur": 0.5,
-        "purpose": ""
-      }
-    ]
+    "sfx": []
   }
 }

@@ -73,7 +73,16 @@ for (const plan of plans) {
     try {
       const res = await llm.callLLM([{ role: "user", content }], { maxTokens: 1600 }, "v5-review");
       if (llm.isProviderError?.(res)) {
-        review.reason = "llm_error"; review.detail = res?.error || res;
+        // one retry after short backoff for transient provider errors
+        await new Promise(r => setTimeout(r, 15000));
+        const res2 = await llm.callLLM([{ role: "user", content }], { maxTokens: 1600 }, "v5-review-retry");
+        if (llm.isProviderError?.(res2)) {
+          review.reason = "llm_error"; review.detail = res2?.error || res2;
+        } else {
+          const obj2 = res2?.content && typeof res2.content === "object" ? res2.content : res2;
+          if (!obj2 || typeof obj2 !== "object") { review.reason = "invalid_response"; review.detail = obj2; }
+          else { review = { ...review, status: "reviewed", ...obj2 }; review.pass = obj2.pass === true; review.issues = Array.isArray(obj2.issues) ? obj2.issues : []; review.strengths = Array.isArray(obj2.strengths) ? obj2.strengths : []; }
+        }
       } else {
         const obj = res?.content && typeof res.content === "object" ? res.content : res;
         if (!obj || typeof obj !== "object") { review.reason = "invalid_response"; review.detail = obj; }

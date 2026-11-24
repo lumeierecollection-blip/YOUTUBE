@@ -25,9 +25,30 @@ copyDir(path.join(assetsDir, "logos"), path.join(publicDir, "logos"));
 copyDir(path.join(assetsDir, "photos"), path.join(publicDir, "photos"));
 copyDir(path.join(assetsDir, "sfx"), path.join(publicDir, "sfx"));
 
+function sanitizeAssetRef(v) {
+  if (!v || typeof v !== "string") return v;
+  const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
+  const base = v.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+  if (known.includes(base)) return base; // renderer resolves to logos/<base>-white.svg
+  return v;
+}
+function sanitizePlan(plan) {
+  for (const b of plan.beats || []) {
+    if (Array.isArray(b.assets)) b.assets = b.assets.map(sanitizeAssetRef);
+    if (b.photo && typeof b.photo === "string") {
+      const p = b.photo.replace(/^photos\//, "");
+      const base = p.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
+      const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
+      if (known.includes(base)) b.assets = Array.from(new Set([...(b.assets||[]), base]));
+      else b.photo = p;
+    }
+  }
+  return plan;
+}
+
 const files = fs.readdirSync(plansDir).filter(f => f.endsWith(".plan.json")).sort();
 for (const f of files) {
-  const plan = JSON.parse(fs.readFileSync(path.join(plansDir, f), "utf8").replace(/^\uFEFF/, ""));
+  const plan = sanitizePlan(JSON.parse(fs.readFileSync(path.join(plansDir, f), "utf8").replace(/^\uFEFF/, "")));
   const id = plan.id;
   const audioPath = path.join(audioDir, `${id}.mp3`);
   let dur = plan.beats.reduce((a, b) => a + (Number(b.dur) || 0), 0) || 30;

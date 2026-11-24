@@ -31,12 +31,28 @@ const resolveAsset = (p?: string) => {
   if (/^(https?:|data:)/.test(p)) return p;
   if (p.startsWith("sfx/") || p.startsWith("photos/") || p.startsWith("logos/") || p.startsWith("audio/") || p.startsWith("images/")) return staticFile(p);
   if (p.includes("/")) return staticFile(p);
-  if (/\.(png|jpg|jpeg|webp|svg)$/i.test(p)) return staticFile(`photos/${p}`);
+  if (/\.(png|jpg|jpeg|webp|svg)$/i.test(p)) {
+    // Common LLM mistakes: openai-logo.png -> logos/openai-white.svg, etc.
+    const base = p.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
+    const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
+    if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
+    return staticFile(`photos/${p}`);
+  }
   return staticFile(`logos/${p}-white.svg`);
 };
 const logoSrc = (l: string) => {
-  if (l.includes("/") || /\.(svg|png|jpg|jpeg|webp)$/i.test(l)) return staticFile(l.startsWith("logos/") ? l : l);
-  return staticFile(`logos/${l}-white.svg`);
+  if (!l) return staticFile("logos/openai-white.svg");
+  if (/^(https?:|data:)/.test(l)) return l;
+  if (l.startsWith("logos/") || l.startsWith("photos/") || l.startsWith("images/")) return staticFile(l);
+  if (l.includes("/")) return staticFile(l);
+  if (/\.(svg|png|jpg|jpeg|webp)$/i.test(l)) {
+    const base = l.replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+    const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
+    if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
+    return staticFile(`logos/${l}`);
+  }
+  const clean = l.replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+  return staticFile(`logos/${clean}-white.svg`);
 };
 
 const Bg: React.FC<{ bg: string; accent: string; dark: boolean; bgImage?: string }> = ({ bg, accent, dark, bgImage }) => {

@@ -2,247 +2,36 @@
   "id": "22",
   "slug": "model-price-war",
   "title": "The AI Price War Just Got Brutal",
-  "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
+  "concept": "Market scoreboard",
   "sources": [
     "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
     "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
   ],
   "cta": "Follow AI Tested for the next model war move.",
-  "visual_identity": {
-    "base": "white editorial with story-specific variation",
-    "rules": [
-      "no debug labels",
-      "no repeated template cards",
-      "every beat has visual change"
-    ]
-  },
-  "duration_target_sec": 18.4,
+  "visual_identity": {},
+  "duration_target_sec": 30,
   "beats": [
     {
       "t": 0,
-      "dur": 2,
-      "narration": "OpenAI didn’t just clap back. It started a price war.",
-      "kicker": "MODEL WAR",
+      "dur": 30,
+      "narration": "The AI Price War Just Got Brutal",
+      "kicker": "AI TESTED",
       "visual": "full_bleed_type",
-      "headline": "PRICE WAR",
-      "sub": "OPENAI DIDN’T JUST ANSWER BACK",
+      "headline": "THE AI PRICE WAR JUST GOT BRUTAL",
+      "sub": "Market scoreboard",
       "accent": "#111111",
-      "bg": "#FAFAF8",
-      "assets": [
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 30
-      },
-      "motion": [
-        "scale_in"
-      ]
-    },
-    {
-      "t": 2,
-      "dur": 2.3,
-      "narration": "One week after Claude Fable 5.2, OpenAI launched Astra and Sol.",
-      "kicker": "ONE WEEK LATER",
-      "visual": "split_compare",
-      "headline": "NEW CHALLENGERS",
-      "sub": "THE RACE MOVED IN SEVEN DAYS",
-      "accent": "#2563EB",
-      "bg": "#FAFAF8",
-      "assets": [
-        "anthropic",
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
-      },
-      "motion": [
-        "slide_in"
-      ],
-      "left": "CLAUDE FABLE 5.2",
-      "right": "ASTRA + SOL"
-    },
-    {
-      "t": 4.3,
-      "dur": 2.2,
-      "narration": "Astra is for heavy work: docs, slides, code, even 3D frontends.",
-      "kicker": "ASTRA",
-      "visual": "product_card",
-      "headline": "ASTRA",
-      "sub": "DOCS · SLIDES · CODE · 3D FRONTENDS",
-      "accent": "#111111",
-      "bg": "#F7F7F4",
-      "assets": [
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
-      },
-      "motion": [
-        "fade_up"
-      ]
-    },
-    {
-      "t": 6.5,
-      "dur": 2.1,
-      "narration": "Sol is the faster, cheaper everyday model.",
-      "kicker": "SOL",
-      "visual": "product_card",
-      "headline": "SOL",
-      "sub": "FASTER · CHEAPER · EVERYDAY",
-      "accent": "#2563EB",
-      "bg": "#FAFAF8",
-      "assets": [
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
-      },
-      "motion": [
-        "flip_horizontal"
-      ]
-    },
-    {
-      "t": 8.6,
-      "dur": 2.4,
-      "narration": "Astra: eight dollars in, forty out per million tokens.",
-      "kicker": "PRICE DROP",
-      "visual": "stat_counter",
-      "headline": "$8 / $40",
-      "sub": "ASTRA · IN / OUT PER 1M TOKENS",
-      "accent": "#111111",
-      "bg": "#FAFAF8",
-      "assets": [
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
-      },
-      "motion": [
-        "odometer"
-      ]
-    },
-    {
-      "t": 11,
-      "dur": 2.4,
-      "narration": "Sol: two dollars in, ten out.",
-      "kicker": "PRICE DROP",
-      "visual": "stat_counter",
-      "headline": "$2 / $10",
-      "sub": "SOL · IN / OUT PER 1M TOKENS",
-      "accent": "#2563EB",
-      "bg": "#F7F7F4",
-      "assets": [
-        "openai"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
-      },
-      "motion": [
-        "odometer"
-      ]
-    },
-    {
-      "t": 13.4,
-      "dur": 2.2,
-      "narration": "That’s not just a benchmark win. It’s market pressure.",
-      "kicker": "PRESSURE",
-      "visual": "warning_panel",
-      "headline": "MARKET PRESSURE",
-      "sub": "SMARTER ISN’T ENOUGH ANYMORE",
-      "accent": "#B91C1C",
       "bg": "#FAFAF8",
       "assets": [],
       "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 40
+        "x": 0.5,
+        "y": 0.52,
+        "w": 0.72,
+        "h_pct": 0.62
       },
-      "motion": [
-        "pulse"
-      ]
-    },
-    {
-      "t": 15.6,
-      "dur": 2.8,
-      "narration": "The real winner might be anyone who can now afford powerful AI.",
-      "kicker": "THE SHIFT",
-      "visual": "final_question",
-      "headline": "WHO WINS?",
-      "sub": "THE PEOPLE WHO CAN AFFORD POWERFUL AI",
-      "accent": "#2563EB",
-      "bg": "#111111",
-      "assets": [
-        "openai",
-        "anthropic"
-      ],
-      "focal": {
-        "x": 50,
-        "y": 50,
-        "w": 90,
-        "h_pct": 45
-      },
-      "motion": [
-        "fade_up"
-      ],
-      "cta": "Follow AI Tested for the next model war move."
+      "motion": []
     }
   ],
   "audio": {
-    "sfx": [
-      {
-        "src": "sfx/hit.ogg",
-        "t": 0,
-        "volume": 0.8,
-        "dur": 0.5,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/whoosh.mp3",
-        "t": 2,
-        "volume": 0.6,
-        "dur": 0.4,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/click.ogg",
-        "t": 8.6,
-        "volume": 0.5,
-        "dur": 0.2,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/click.ogg",
-        "t": 11,
-        "volume": 0.5,
-        "dur": 0.2,
-        "purpose": ""
-      },
-      {
-        "src": "sfx/impact.ogg",
-        "t": 13.4,
-        "volume": 0.9,
-        "dur": 0.6,
-        "purpose": ""
-      }
-    ]
+    "sfx": []
   }
 }
