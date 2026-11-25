@@ -19,7 +19,7 @@ permissions:
 jobs:
   render-shorts-v5:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 150
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       GEMINI_API_KEY_1: ${{ secrets.GEMINI_API_KEY_1 }}
@@ -83,7 +83,7 @@ jobs:
           mkdir -p reviews production-records
           MAX_CYCLES=6
           LOOP_START=$SECONDS
-          MAX_LOOP_SECONDS=5400
+          MAX_LOOP_SECONDS=3600
           all_pass=false
           for cycle in $(seq 1 $MAX_CYCLES); do
             if [ $((SECONDS - LOOP_START)) -gt $MAX_LOOP_SECONDS ]; then echo "LOOP_TIME_CAP_REACHED"; break; fi
