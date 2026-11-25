@@ -57,15 +57,27 @@ async function ask(parts, tag, maxTokens = 8000) {
   if (!llm.llmConfigured()) throw new Error("no Gemini key configured");
   let last = "no attempt";
   const maxAttempts = parseInt(process.env.GEMINI_MAX_ATTEMPTS || "8", 10);
+  const attemptTimeoutMs = parseInt(process.env.GEMINI_ATTEMPT_TIMEOUT_MS || "240000", 10);
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    const res = await llm.callLLMWithProvenance([{ role: "user", content: parts }], { maxTokens, model: MODEL, noCache: true, _noOllamaFirst: true, temperature: 0.2 }, tag);
-    if (res.provider !== "gemini") throw new Error(`answered by ${res.provider}, not gemini`);
-    if (res.error || llm.isProviderError(res.value)) last = `provider error: ${res.error || res.value?.error} ${String(res.value?.detail || "").slice(0, 200)}`;
-    else {
-      const v = res.value;
-      const obj = typeof v?.content === "string" ? parseJsonLoose(v.content) : parseJsonLoose(v);
-      if (obj && typeof obj === "object") return { obj, provider: "gemini", model: MODEL, chain: res.chain };
-      last = "unparseable JSON: " + JSON.stringify(v).slice(0, 200);
+    let timer;
+    try {
+      const call = llm.callLLMWithProvenance([{ role: "user", content: parts }], { maxTokens, model: MODEL, noCache: true, _noOllamaFirst: true, temperature: 0.2 }, tag);
+      const res = await Promise.race([
+        call,
+        new Promise((_, rej) => { timer = setTimeout(() => rej(new Error(`gemini attempt timed out after ${attemptTimeoutMs}ms`)), attemptTimeoutMs); }),
+      ]);
+      if (res.provider !== "gemini") throw new Error(`answered by ${res.provider}, not gemini`);
+      if (res.error || llm.isProviderError(res.value)) last = `provider error: ${res.error || res.value?.error} ${String(res.value?.detail || "").slice(0, 200)}`;
+      else {
+        const v = res.value;
+        const obj = typeof v?.content === "string" ? parseJsonLoose(v.content) : parseJsonLoose(v);
+        if (obj && typeof obj === "object") return { obj, provider: "gemini", model: MODEL, chain: res.chain };
+        last = "unparseable JSON: " + JSON.stringify(v).slice(0, 200);
+      }
+    } catch (e) {
+      last = String(e?.message || e).slice(0, 300);
+    } finally {
+      clearTimeout(timer);
     }
     console.error(`[${tag}] attempt ${attempt} failed: ${last}`);
     await sleep(Math.min(attempt * 30000, 150000));
