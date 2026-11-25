@@ -54,8 +54,9 @@ jobs:
           set -euo pipefail
           mkdir -p data/ai-tested/shorts-v5/out
           gh run download "${{ inputs.render_artifact_run_id }}" -n ai-tested-shorts-v5-render -D /tmp/v5-prerender
-          cp /tmp/v5-prerender/data/ai-tested/shorts-v5/out/*.mp4 data/ai-tested/shorts-v5/out/
+          find /tmp/v5-prerender -name '*.mp4' -exec cp {} data/ai-tested/shorts-v5/out/ \;
           ls -la data/ai-tested/shorts-v5/out/
+          test "$(ls data/ai-tested/shorts-v5/out/*.mp4 | wc -l)" -ge 5
       - name: Remove photo backgrounds
         if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5
