@@ -274,10 +274,10 @@ const BeatView: React.FC<{ beat: Beat }> = ({ beat }) => {
         {v === "stat_counter" ? <Stat beat={beat} dark={dark} /> : null}
         {v === "bar_chart" ? <div style={{ width: "100%" }}><Headline beat={{ ...beat, sub: beat.sub }} dark={dark} center /><div style={{ marginTop: 24 }}><BarChart beat={beat} dark={dark} /></div></div> : null}
         {v === "line_graph" ? <div style={{ width: "100%" }}><Headline beat={{ ...beat, sub: beat.sub }} dark={dark} center /><div style={{ marginTop: 24 }}><LineChart beat={beat} dark={dark} /></div></div> : null}
-        {v === "timeline" ? <div style={{ width: "100%" }}><Headline beat={beat} dark={dark} /><div style={{ marginTop: 24 }}><Timeline beat={beat} dark={dark} /></div></div> : null}
-        {v === "progress_bar" ? <div style={{ width: "100%" }}><Headline beat={beat} dark={dark} /><div style={{ marginTop: 28 }}><ProgressBarViz beat={beat} dark={dark} /></div></div> : null}
-        {v === "split_compare" ? <div style={{ width: "100%" }}><Headline beat={beat} dark={dark} center /><div style={{ marginTop: 24 }}><Split beat={beat} dark={dark} /></div></div> : null}
-        {v === "logo_grid" ? <div style={{ width: "100%", textAlign: "center" }}><Headline beat={beat} dark={dark} center /><div style={{ marginTop: 36 }}><Logos logos={beat.assets} dark={dark} size={148} /></div></div> : null}
+        {v === "timeline" ? <div style={{ width: "100%" }}><div style={{ marginTop: 0 }}><Timeline beat={beat} dark={dark} /></div></div> : null}
+        {v === "progress_bar" ? <div style={{ width: "100%" }}><div style={{ marginTop: 0 }}><ProgressBarViz beat={beat} dark={dark} /></div></div> : null}
+        {v === "split_compare" ? <div style={{ width: "100%" }}><Split beat={beat} dark={dark} /></div> : null}
+        {v === "logo_grid" ? <div style={{ width: "100%", textAlign: "center" }}><Logos logos={beat.assets} dark={dark} size={148} /></div> : null}
         {v === "evidence_board" ? <div style={{ width: "100%" }}><Headline beat={{...beat, sub: ""}} dark={dark} /><div style={{ marginTop: 24 }}><EvidenceBoard beat={beat} dark={dark} /></div><div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}><Logos logos={beat.assets} dark={dark} size={120} /></div></div> : null}
         {v === "warning_panel" ? <div style={{ width: "100%", padding: "40px", background: accent, color: "#fff" }}><div style={{ fontFamily: sg, fontWeight: 800, fontSize: 90, lineHeight: 0.9, textTransform: "uppercase" }}>{beat.headline}</div><div style={{ marginTop: 20, fontFamily: inter, fontWeight: 700, fontSize: 40, lineHeight: 1.2 }}>{beat.sub}</div><div style={{ marginTop: 24 }}><Logos logos={beat.assets} dark={true} /></div></div> : null}
         {v === "quote_card" ? <div style={{ width: "100%", padding: "42px", background: dark ? "rgba(255,255,255,0.06)" : "#fff", border: `2px solid ${dark ? "rgba(255,255,255,0.12)" : "#E2E2DC"}`, borderLeft: `16px solid ${accent}` }}><div style={{ fontFamily: sg, fontWeight: 800, fontSize: 96, lineHeight: 0.8, color: accent }}>"</div><div style={{ fontFamily: inter, fontWeight: 800, fontSize: 46, lineHeight: 1.2, color: dark ? "#FAFAF8" : "#111" }}>{beat.sub}</div><div style={{ marginTop: 26 }}><Logos logos={beat.assets} dark={dark} /></div></div> : null}
@@ -293,11 +293,11 @@ const BeatView: React.FC<{ beat: Beat }> = ({ beat }) => {
           <div style={{ marginTop: 26, fontFamily: inter, fontWeight: 700, fontSize: 40, lineHeight: 1.22, color: dark ? "rgba(250,250,248,0.76)" : "#555" }}>{beat.sub}</div>
           <div style={{ marginTop: 36 }}><Logos logos={beat.assets} dark={dark} size={v === "final_question" ? 136 : 116} /></div>
         </div> : null}
-        {!["hero_cutout","photo","full_bleed_photo","stat_counter","bar_chart","line_graph","timeline","progress_bar","split_compare","logo_grid","evidence_board","warning_panel","quote_card","stamp_document","legal_stack","product_card","tool_card","kinetic_type","full_bleed_type","final_question"].includes(v) ? <div style={{ width: "100%", textAlign: "center" }}><Headline beat={beat} dark={dark} center /><div style={{ marginTop: 32 }}><Logos logos={beat.assets} dark={dark} size={128} /></div>{hasPhoto ? <div style={{ marginTop: 24 }}><Photo src={beat.photo!} dark={dark} accent={accent} credit={beat.photo_credit} h={520} /></div> : null}</div> : null}
+        {!["hero_cutout","photo","full_bleed_photo","stat_counter","bar_chart","line_graph","timeline","progress_bar","split_compare","logo_grid","evidence_board","warning_panel","quote_card","stamp_document","legal_stack","product_card","tool_card","kinetic_type","full_bleed_type","final_question"].includes(v) ? <div style={{ width: "100%", textAlign: "center" }}><div style={{ marginTop: 8 }}><Logos logos={beat.assets} dark={dark} size={128} /></div>{hasPhoto ? <div style={{ marginTop: 24 }}><Photo src={beat.photo!} dark={dark} accent={accent} credit={beat.photo_credit} h={520} /></div> : null}{beat.sub ? <div style={{ marginTop: 24, fontFamily: inter, fontWeight: 700, fontSize: 40, lineHeight: 1.25, color: dark ? "rgba(250,250,248,0.76)" : "#555" }}>{beat.sub}</div> : null}</div> : null}
       </div>
       <div style={{ position: "absolute", left: 56, right: 56, bottom: 46, display: "flex", justifyContent: "space-between", gap: 20, alignItems: "flex-end" }}>
         <div style={{ fontFamily: inter, fontSize: 18, color: dark ? "rgba(250,250,248,0.58)" : "#666", maxWidth: 640, lineHeight: 1.3 }}>{beat.photo_credit && !hasPhoto ? beat.photo_credit : ""}</div>
-        {beat.cta ? <div style={{ fontFamily: inter, fontWeight: 800, fontSize: 22, color: accent, maxWidth: 360, textAlign: "right" }}>{beat.cta}</div> : null}
+        {beat.cta && !["final_question"].includes(v) ? <div style={{ fontFamily: inter, fontWeight: 800, fontSize: 22, color: accent, maxWidth: 360, textAlign: "right" }}>{beat.cta}</div> : null}
       </div>
     </div>
   </AbsoluteFill>;
@@ -318,10 +318,12 @@ export const AIShort: React.FC<AIShortProps> = ({ plan, audioSrc, audioDurationS
       if (!src) return null;
       return <Sequence key={`sfx-${i}`} from={Math.round(num(s.t, 0) * fps)} durationInFrames={Math.max(1, Math.round(num(s.dur, 0.4) * fps))}><Audio src={src} volume={clamp(num(s.volume, 0.25), 0, 1)} /></Sequence>;
     })}
-    {plan.beats.map((b, i) => (
-      <Sequence key={i} from={Math.round((b.t || 0) * fps)} durationInFrames={Math.max(1, Math.round((b.dur || 2) * fps))}>
-        <BeatView beat={b} />
-      </Sequence>
-    ))}
+    {plan.beats.map((b, i) => {
+      const from = Math.round((b.t || 0) * fps);
+      const planned = Math.max(1, Math.round((b.dur || 2) * fps));
+      const isLast = i === plan.beats.length - 1;
+      const durationInFrames = isLast ? Math.max(planned, Math.round(total * fps) - from) : planned;
+      return <Sequence key={i} from={from} durationInFrames={durationInFrames}><BeatView beat={b} /></Sequence>;
+    })}
   </AbsoluteFill>;
 };
