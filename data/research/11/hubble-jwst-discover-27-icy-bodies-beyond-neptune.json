@@ -1,0 +1,105 @@
+{
+  "topic_slug": "hubble-jwst-discover-27-icy-bodies-beyond-neptune",
+  "strongest_angle": "The joint discovery by NASA's Hubble Space Telescope and James Webb Space Telescope of 27 new Trans-Neptunian Objects beyond Neptune reveals small icy bodies less than 25 miles across that provide clues about primordial solar system formation.",
+  "key_facts": [
+    {
+      "fact": "NASA's Hubble Space Telescope and James Webb Space Telescope collectively discovered 27 new Trans-Neptunian Objects beyond Neptune, as reported by Space.com on September 14, 2026.",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 27 newly discovered Trans-Neptunian Objects are all less than 25 miles or 40 kilometers across, with the smallest being only 6 miles or 10 kilometers in diameter according to Space.com.",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune",
+      "source_name": "Space.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "Future observations planned by the team using the James Webb Space Telescope could search for Trans-Neptunian Objects as small as 1km or 0.6 miles across, according to BBC Sky at Night Magazine.",
+      "source_url": "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune",
+      "source_name": "BBC Sky at Night Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists used the joint power of NASA's Hubble Space Telescope and James Webb Space Telescope to study Trans-Neptunian Objects, as detailed in NASA Science publications on September 8, 2026.",
+      "source_url": "https://science.nasa.gov/missions/hubble/nasas-hubble-webb-find-far-out-solar-system-objects-remember-past",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Newly Discovered Trans-Neptunian Objects",
+      "value": 27,
+      "unit": "objects",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune"
+    },
+    {
+      "label": "Maximum Diameter of Discovered TNOs",
+      "value": 25,
+      "unit": "miles",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune"
+    },
+    {
+      "label": "Maximum Diameter in Kilometers",
+      "value": 40,
+      "unit": "kilometers",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune"
+    },
+    {
+      "label": "Smallest Diameter of Discovered TNOs",
+      "value": 6,
+      "unit": "miles",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune"
+    },
+    {
+      "label": "Smallest Diameter in Kilometers",
+      "value": 10,
+      "unit": "kilometers",
+      "source_url": "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune"
+    },
+    {
+      "label": "Target Size for Future JWST Observations",
+      "value": 1,
+      "unit": "kilometer",
+      "source_url": "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune"
+    },
+    {
+      "label": "Target Size in Miles for Future JWST",
+      "value": 0.6,
+      "unit": "miles",
+      "source_url": "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Hubble Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "James Webb Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Neptune",
+      "kind": "object"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    },
+    {
+      "name": "Space.com",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC Sky at Night Magazine",
+      "kind": "organization"
+    },
+    {
+      "name": "Uranus",
+      "kind": "object"
+    }
+  ],
+  "quotes": []
+}
