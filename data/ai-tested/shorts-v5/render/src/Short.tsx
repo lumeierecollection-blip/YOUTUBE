@@ -1,6 +1,6 @@
-import React from "react";
+﻿import React from "react";
 import { AbsoluteFill, Audio, Sequence, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
-import { C, CANVAS, F, Glitch, Ground, Crt, OUT, Pic, Plate, asset, clamp, rnd, useT } from "./kit";
+import { C, CANVAS, F, Glitch, Ground, Crt, OUT, Pic, Plate, asset, clamp, rnd, useT } from "./kit7";
 import { Widget, WidgetView } from "./widgets";
 import { staticFile } from "remotion";
 
@@ -176,3 +176,4 @@ export const Short: React.FC<ShortProps> = ({ plan, audioSrc, audioDurationSec }
     {a.sfx.map((s, i) => <Sequence key={i} from={Math.max(0, Math.round(s.t * fps))} durationInFrames={Math.max(3, Math.round((s.dur ?? 2.5) * fps))} layout="none"><Audio src={asset(s.src)!} volume={s.volume ?? 0.6} /></Sequence>)}
   </AbsoluteFill>;
 };
+

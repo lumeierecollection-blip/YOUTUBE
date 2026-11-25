@@ -1,5 +1,5 @@
-import React from "react";
-import { C, CANVAS, F, OUT, clamp } from "./kit";
+﻿import React from "react";
+import { C, CANVAS, F, OUT, clamp } from "./kit7";
 
 // Data widgets drawn in the reference's ink-on-paper language. Every number shown here must come from a
 // facts file; the plan validator checks that (plan-lib.mjs). Times (`at`) are seconds from beat start.
@@ -149,3 +149,4 @@ export const WidgetView: React.FC<{ w: Widget; bt: number }> = ({ w, bt }) => {
   }
   return null;
 };
+
