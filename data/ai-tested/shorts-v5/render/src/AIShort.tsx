@@ -64,7 +64,7 @@ export const AIShort: React.FC<AIShortProps> = ({ plan, audioSrc }) => {
     const s = fr / fps;
     const fin = interpolate(s, [0, mu.fadeIn ?? 0.8], [0, 1], { extrapolateRight: "clamp" });
     const fout = interpolate(s, [total - (mu.fadeOut ?? 1.4), total], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-    const duck = (a.sfx || []).reduce((m, e) => { const d = Math.abs(s - e.t); return d < 0.35 ? Math.min(m, 1 - (mu.duck ?? 0.35) * (1 - d / 0.35)) : m; }, 1);
+    const duck = (a.sfx || []).filter(Boolean).reduce((m, e) => { const d = Math.abs(s - (e.t ?? 0)); return d < 0.35 ? Math.min(m, 1 - (mu.duck ?? 0.35) * (1 - d / 0.35)) : m; }, 1);
     return base * fin * fout * duck;
   };
   const ambVol = (fr: number) => {
@@ -84,7 +84,7 @@ export const AIShort: React.FC<AIShortProps> = ({ plan, audioSrc }) => {
     {audioSrc ? <Audio src={asset(audioSrc)!} volume={1} /> : null}
     {mu?.src ? <Audio src={asset(mu.src)!} volume={musicVol} loop /> : null}
     {a.ambience?.src ? <Audio src={asset(a.ambience.src)!} volume={ambVol} loop /> : null}
-    {(a.sfx || []).map((s, i) => <Sequence key={`sfx${i}`} from={Math.max(0, Math.round(s.t * fps))} durationInFrames={Math.max(2, Math.round((s.dur ?? 3) * fps))} layout="none">
+    {(a.sfx || []).filter(Boolean).map((s, i) => <Sequence key={`sfx${i}`} from={Math.max(0, Math.round((s.t ?? 0) * fps))} durationInFrames={Math.max(2, Math.round((s.dur ?? 3) * fps))} layout="none">
       <Audio src={asset(s.src)!} volume={s.volume ?? 0.7} />
     </Sequence>)}
   </AbsoluteFill>;

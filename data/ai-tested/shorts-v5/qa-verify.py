@@ -34,14 +34,19 @@ def block_std(g, b=12):
 for f in sorted(glob.glob(os.path.join(out_dir, "*.mp4"))):
     base = os.path.basename(f)[:-4]
     lines, bad = [], []
-    vinfo = probe(f, ["-select_streams", "v:0", "-show_entries", "stream=codec_name,width,height,r_frame_rate,pix_fmt"]).split(",")
-    ainfo = probe(f, ["-select_streams", "a:0", "-show_entries", "stream=codec_name,sample_rate,channels"]).split(",")
-    dur = float(probe(f, ["-show_entries", "format=duration"]) or 0)
+    def vfield(k):
+        return probe(f, ["-select_streams", "v:0", "-show_entries", f"stream={k}", "-of", "default=noprint_wrappers=1:nokey=1"])
+    def afield(k):
+        return probe(f, ["-select_streams", "a:0", "-show_entries", f"stream={k}", "-of", "default=noprint_wrappers=1:nokey=1"])
+    vinfo = [vfield("codec_name"), vfield("width"), vfield("height"), vfield("r_frame_rate"), vfield("pix_fmt")]
+    ainfo = [afield("codec_name"), afield("sample_rate"), afield("channels")]
+    dur = float(probe(f, ["-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1"]) or 0)
     size = os.path.getsize(f)
     lines.append(f"video={vinfo} audio={ainfo} dur={dur:.2f}s size={size}")
     if len(vinfo) < 5 or vinfo[0] != "h264": bad.append("BAD codec not h264")
     if len(vinfo) >= 3 and (vinfo[1] != "1080" or vinfo[2] != "1920"): bad.append(f"BAD size {vinfo[1:3]}")
     if len(vinfo) >= 4 and vinfo[3] not in ("30/1", "30000/1001"): bad.append(f"BAD fps {vinfo[3]}")
+    if len(vinfo) >= 5 and vinfo[4] not in ("yuv420p", ""): bad.append(f"BAD pix_fmt {vinfo[4]}")
     if len(ainfo) < 2 or ainfo[0] == "": bad.append("BAD no audio stream")
     if not (LIMITS["min_dur"] <= dur <= LIMITS["max_dur"]): bad.append(f"BAD duration {dur:.2f}")
     # audio levels measured at render time on the mastered file

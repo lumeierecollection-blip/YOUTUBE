@@ -71,6 +71,9 @@ for (const f of files) {
   if (only.length && !only.includes(id)) continue;
   const base = `${id}-${plan.slug}`;
   try {
+    plan.beats = (Array.isArray(plan.beats) ? plan.beats : []).filter(b => b && typeof b === "object");
+    plan.audio = plan.audio && typeof plan.audio === "object" ? plan.audio : {};
+    plan.audio.sfx = (Array.isArray(plan.audio.sfx) ? plan.audio.sfx : []).filter(s => s && typeof s === "object" && typeof s.src === "string");
     const script = readJson(path.join(scriptsDir, `${base}.json`));
     const factsP = path.join(factsDir, `${id}.facts.json`);
     const facts = fs.existsSync(factsP) ? readJson(factsP) : null;
@@ -81,7 +84,7 @@ for (const f of files) {
     if (!Number.isFinite(dur) || dur < 5) throw new Error("bad narration duration");
     const vttPath = path.join(audioDir, `${id}.vtt`);
     const cues = fs.existsSync(vttPath) ? parseVtt(fs.readFileSync(vttPath, "utf8")) : [];
-    for (const b of plan.beats) for (const m of b.media || []) { const sz = imageSize(m.src); if (sz) { m.w = sz.w; m.h = sz.h; } }
+    for (const b of plan.beats) for (const m of (Array.isArray(b.media) ? b.media : [])) { const sz = imageSize(m?.src); if (sz) { m.w = sz.w; m.h = sz.h; } }
     const sync = syncBeats(plan, script.script, cues, dur);
     if (sync.mode !== "vtt") throw new Error(`narration sync fell back to ${sync.mode}: ${sync.notes.join("; ")}`);
     const v = validatePlan(plan, { publicDir, script: script.script, facts });
@@ -95,7 +98,7 @@ for (const f of files) {
     const outFile = path.join(outDir, `${base}.mp4`);
     for (const p of [raw, outFile]) if (fs.existsSync(p)) fs.unlinkSync(p);
     console.log(`Rendering ${id} (${dur.toFixed(2)}s narration, ${plan.beats.length} beats, stills_only=${stillsOnly})`);
-    const args = ["remotion", "render", "src/index.ts", `Short-${id}`, raw, `--props=${propsFile}`, "--codec=h264", stillsOnly ? "--crf=30" : "--crf=17", "--audio-bitrate=192k", "--log=warn"];
+    const args = ["remotion", "render", "src/index.ts", `Short-${id}`, raw, `--props=${propsFile}`, "--codec=h264", "--pixel-format=yuv420p", stillsOnly ? "--crf=30" : "--crf=17", "--audio-bitrate=192k", "--log=warn"];
     if (stillsOnly) args.push("--scale=0.5");
     execFileSync("npx", args, { cwd: root, stdio: "inherit", shell: process.platform === "win32" });
     if (stillsOnly) { fs.renameSync(raw, outFile); }

@@ -334,6 +334,8 @@ async function correctOne(plan, planFile, issues, cycle) {
     work = trial; rec.applied = applied; rec.rejected = rejected; rec.notes = r.obj.notes;
     break;
   }
+  if (work && work.audio && Array.isArray(work.audio.sfx)) work.audio.sfx = work.audio.sfx.filter(s => s && typeof s === "object");
+  if (work && Array.isArray(work.beats)) work.beats = work.beats.filter(b => b && typeof b === "object");
   if (JSON.stringify(work) !== original) { fs.writeFileSync(planFile, JSON.stringify(work, null, 2)); rec.plan_changed = true; }
   return rec;
 }

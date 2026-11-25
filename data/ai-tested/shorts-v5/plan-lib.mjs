@@ -71,10 +71,10 @@ export function syncBeats(plan, script, cues, audioDur) {
   plan.beats.forEach((b, i) => { const nx = i + 1 < plan.beats.length ? plan.beats[i + 1].t : end; b.dur = +(nx - b.t).toFixed(3); });
   // resolve sfx {beat, offset}
   const a = plan.audio || (plan.audio = {});
-  a.sfx = (a.sfx || []).map((s) => {
+  a.sfx = (a.sfx || []).filter(s => s && typeof s === "object").map((s) => {
     if (s.beat !== undefined) { const bb = plan.beats[s.beat]; return { ...s, t: +(((bb ? bb.t : 0) + (s.offset || 0))).toFixed(3) }; }
     return s;
-  }).filter(s => s.t < end);
+  }).filter(s => Number.isFinite(Number(s.t)) && s.t < end);
   return { mode, notes };
 }
 
@@ -146,10 +146,11 @@ export function validatePlan(plan, ctx) {
   const au = plan.audio || {};
   if (!au.music?.src) E("audio.music missing"); else needAsset(au.music.src, "music");
   if (!au.ambience?.src) E("audio.ambience missing"); else needAsset(au.ambience.src, "ambience");
-  const sfx = au.sfx || [];
+  const sfx = (au.sfx || []).filter(s => s && typeof s === "object");
+  au.sfx = sfx;
   if (sfx.length < beats.length * 1.5) E(`sfx plan thin: ${sfx.length} events for ${beats.length} beats (need >= ${Math.ceil(beats.length * 1.5)})`);
   sfx.forEach((s, i) => { if (!exists(s.src)) E(`sfx ${i}: missing ${s.src}`); if (!s.purpose) W(`sfx ${i}: no purpose`); });
-  beats.forEach((b, i) => { if (!sfx.some(s => s.beat === i || (s.t >= b.t - 0.01 && s.t < b.t + b.dur))) E(`beat ${i}: no sfx`); });
+  beats.forEach((b, i) => { if (!sfx.some(s => Number(s.beat) === i || (Number(s.t) >= b.t - 0.01 && Number(s.t) < b.t + b.dur))) E(`beat ${i}: no sfx`); });
   // manifest completeness
   manifest.forEach((m, i) => {
     for (const k of ["file", "type", "source", "license", "scene", "transparent", "resolution", "status"]) if (m[k] === undefined || m[k] === "") E(`asset_manifest[${i}] missing ${k}`);
