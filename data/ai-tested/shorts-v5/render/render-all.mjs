@@ -55,7 +55,20 @@ function publicExists(rel) {
   return fs.existsSync(path.join(publicDir, rel.replace(/^\/+/, "")));
 }
 function sanitizeAssetRef(v) {
-  if (v && typeof v === "object") v = v.file || v.src || v.name || v.logo || "";
+  if (v && typeof v === "object") {
+    const raw = v.a || v.file || v.src || v.name || v.logo || "";
+    const clean = typeof raw === "string" ? raw.replace(/^\/+/, "") : "";
+    const base = clean.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
+    let resolved = "";
+    if (knownLogos.has(base)) resolved = base;
+    else if (clean.includes("/") && publicExists(clean)) resolved = clean;
+    else if (publicExists(`logos/${clean}`)) resolved = `logos/${clean}`;
+    else if (publicExists(`photos/${clean}`)) resolved = `photos/${clean}`;
+    if (!resolved) return "";
+    const out = { ...v };
+    if (out.a) out.a = resolved; else if (out.file) out.file = resolved; else if (out.src) out.src = resolved; else if (out.name) out.name = resolved; else out.a = resolved;
+    return out;
+  }
   if (!v || typeof v !== "string") return "";
   const clean = v.replace(/^\/+/, "");
   const base = clean.replace(/^logos\//, "").replace(/^photos\//, "").replace(/\.(svg|png|jpg|jpeg|webp)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
