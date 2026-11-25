@@ -1,0 +1,85 @@
+{
+  "topic_slug": "norse-cosmology-nine-realms-architecture-design",
+  "strongest_angle": "Analyze the spatial layout of Norse cosmology, examining how medieval skaldic sources and modern architectural installations like the 1225 square meter Worlds of Valhalla project represent Yggdrasil and the structural domains.",
+  "key_facts": [
+    {
+      "fact": "The Worlds of Valhalla project in Reykjavik is a 1225 square meter immersive experience designed by Gagarín, Aron Þór Leifsson, and Tobia Zambotti in 2024.",
+      "source_url": "https://gagarin.is/work/worlds-of-valhalla",
+      "source_name": "Gagarín",
+      "confidence": "high"
+    },
+    {
+      "fact": "Snorri Sturluson describes in Gylfaginning 8-9 that the earth was imagined to be disc-shaped, surrounded by ocean, with Midgard fenced in at the centre.",
+      "source_url": "https://eldar-heide.net/onewebmedia/PDFer/Kultur-%20og%20religionshistorie/Heide%202014,%20Contradictory%20cosmology.pdf",
+      "source_name": "Eldar Heide PDF",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Seiðr Loom interactive map notes that while poems speak of nine worlds in a tree, no medieval text lists all nine or draws a complete map.",
+      "source_url": "https://seidrloom.com/cosmos",
+      "source_name": "Seiðr Loom",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Worlds of Valhalla exhibition area",
+      "value": 1225,
+      "unit": "square meters",
+      "source_url": "https://gagarin.is/work/worlds-of-valhalla"
+    },
+    {
+      "label": "Development year of Worlds of Valhalla",
+      "value": 2024,
+      "unit": "year",
+      "source_url": "https://gagarin.is/work/worlds-of-valhalla"
+    },
+    {
+      "label": "Gylfaginning chapter start",
+      "value": 8,
+      "unit": "chapter",
+      "source_url": "https://eldar-heide.net/onewebmedia/PDFer/Kultur-%20og%20religionshistorie/Heide%202014,%20Contradictory%20cosmology.pdf"
+    },
+    {
+      "label": "Gylfaginning chapter end",
+      "value": 9,
+      "unit": "chapter",
+      "source_url": "https://eldar-heide.net/onewebmedia/PDFer/Kultur-%20og%20religionshistorie/Heide%202014,%20Contradictory%20cosmology.pdf"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Yggdrasil",
+      "kind": "object"
+    },
+    {
+      "name": "Reykjavik",
+      "kind": "place"
+    },
+    {
+      "name": "Gagarín",
+      "kind": "organization"
+    },
+    {
+      "name": "Aron Þór Leifsson",
+      "kind": "person"
+    },
+    {
+      "name": "Tobia Zambotti",
+      "kind": "person"
+    },
+    {
+      "name": "Snorri Sturluson",
+      "kind": "person"
+    },
+    {
+      "name": "Midgard",
+      "kind": "place"
+    },
+    {
+      "name": "Seiðr Loom",
+      "kind": "organization"
+    }
+  ]
+}
