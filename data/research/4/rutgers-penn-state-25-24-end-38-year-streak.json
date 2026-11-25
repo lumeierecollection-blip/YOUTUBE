@@ -1,0 +1,83 @@
+{
+  "topic_slug": "rutgers-penn-state-25-24-end-38-year-streak",
+  "strongest_angle": "Break down the exact 25-24 victory by Rutgers over Penn State at Beaver Stadium on November 21, 2026, featuring Antwan Raymond's 101 rushing yards and the critical lateral to Ben Black.",
+  "key_facts": [
+    {
+      "fact": "Rutgers defeated Penn State 25-24 at Beaver Stadium on November 21, 2026, ending a long-standing losing drought in the series.",
+      "source_url": "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Running back Antwan Raymond ran for 101 yards and scored two touchdowns for Rutgers in the 25-24 victory.",
+      "source_url": "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "Rutgers executed a crucial backward pitch from Antwan Raymond to Ben Black near the goal line during the game-winning touchdown sequence.",
+      "source_url": "https://www.inquirer.com/college-sports/penn-state/penn-state-rutgers-football-big-ten-fbs-20261121.html",
+      "source_name": "The Philadelphia Inquirer",
+      "confidence": "high"
+    },
+    {
+      "fact": "Penn State running back Cam Wallace opened the scoring in the game with a 56-yard play at Beaver Stadium.",
+      "source_url": "https://gopsusports.com/news/2026/11/21/penn-state-falls-to-rutgers-in-final-home-game-of-2026-campaign",
+      "source_name": "Penn State Athletics",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Rutgers final score",
+      "value": 25,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c"
+    },
+    {
+      "label": "Penn State final score",
+      "value": 24,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c"
+    },
+    {
+      "label": "Antwan Raymond rushing yards",
+      "value": 101,
+      "unit": "yards",
+      "source_url": "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c"
+    },
+    {
+      "label": "Cam Wallace touchdown length",
+      "value": 56,
+      "unit": "yards",
+      "source_url": "https://gopsusports.com/news/2026/11/21/penn-state-falls-to-rutgers-in-final-home-game-of-2026-campaign"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Antwan Raymond",
+      "kind": "person"
+    },
+    {
+      "name": "Ben Black",
+      "kind": "person"
+    },
+    {
+      "name": "Cam Wallace",
+      "kind": "person"
+    },
+    {
+      "name": "Rutgers",
+      "kind": "organization"
+    },
+    {
+      "name": "Penn State",
+      "kind": "organization"
+    },
+    {
+      "name": "Beaver Stadium",
+      "kind": "place"
+    }
+  ]
+}
