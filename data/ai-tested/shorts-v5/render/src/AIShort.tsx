@@ -27,7 +27,7 @@ const isDarkBg = (bg?: string) => {
   return (r * 299 + g * 587 + bl * 114) / 1000 < 140;
 };
 const resolveAsset = (p?: any) => {
-  let v: string = typeof p === "string" ? p : (p?.file || p?.src || p?.name || "");
+  let v: string = typeof p === "string" ? p : (p?.a || p?.file || p?.src || p?.name || "");
   if (!v || typeof v !== "string") return null;
   if (/^(https?:|data:)/.test(v)) return v;
   if (v.startsWith("sfx/") || v.startsWith("photos/") || v.startsWith("logos/") || v.startsWith("audio/") || v.startsWith("images/")) return staticFile(v);
@@ -45,7 +45,7 @@ const resolveAsset = (p?: any) => {
   return staticFile(`logos/${v}-white.svg`);
 };
 const logoSrc = (l: any) => {
-  let v: string = typeof l === "string" ? l : (l?.file || l?.src || l?.name || l?.logo || "");
+  let v: string = typeof l === "string" ? l : (l?.a || l?.file || l?.src || l?.name || l?.logo || "");
   if (!v || typeof v !== "string") return staticFile("logos/openai-white.svg");
   if (/^(https?:|data:)/.test(v)) return v;
   if (v.startsWith("logos/") || v.startsWith("photos/") || v.startsWith("images/")) return staticFile(v);
