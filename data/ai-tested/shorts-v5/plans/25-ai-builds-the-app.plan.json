@@ -44,7 +44,7 @@
       "dur": 4.5,
       "narration": "Need an itinerary? It builds it. Dinner poll? Built. Expense splitter, tournament bracket, whatever the group needs.",
       "kicker": "INSTANT BUILD",
-      "visual": "product_card",
+      "visual": "hero_cutout",
       "headline": "BUILDS IT INSTANTLY",
       "sub": "Itinerary • Dinner poll • Expense splitter • Bracket",
       "accent": "#34A853",
@@ -64,20 +64,21 @@
       "sfx": [
         "sfx/reveal.mp3",
         "sfx/click-soft.ogg"
-      ]
+      ],
+      "photo": "tabletop_itinerary.svg",
+      "photo_credit": "Illustrative UI mockup"
     },
     {
       "t": 6.5,
       "dur": 3,
       "narration": "Everyone can edit together in real time, like a Google Doc.",
       "kicker": "REAL TIME",
-      "visual": "split_compare",
+      "visual": "hero_cutout",
       "headline": "EDIT TOGETHER",
       "sub": "Real-time collaboration for the whole group",
       "accent": "#1A73E8",
       "bg": "#FAFAF8",
       "assets": [
-        "google-white.svg",
         "google-white.svg"
       ],
       "focal": {
@@ -91,14 +92,16 @@
       ],
       "sfx": [
         "sfx/confirm.ogg"
-      ]
+      ],
+      "photo": "tabletop_poll.svg",
+      "photo_credit": "Illustrative UI mockup"
     },
     {
       "t": 9.5,
       "dur": 3.8,
       "narration": "It's still a limited US waitlist test.",
       "kicker": "LIMITED TEST",
-      "visual": "warning_panel",
+      "visual": "hero_cutout",
       "headline": "US WAITLIST ONLY",
       "sub": "Limited Google Labs test",
       "accent": "#EA4335",
@@ -117,7 +120,9 @@
       ],
       "sfx": [
         "sfx/tick-tight.ogg"
-      ]
+      ],
+      "photo": "tabletop_expenses.svg",
+      "photo_credit": "Illustrative UI mockup"
     },
     {
       "t": 13.3,
@@ -206,6 +211,46 @@
       "scene": "all",
       "transparent": true,
       "resolution": "svg",
+      "status": "ready"
+    },
+    {
+      "file": "tabletop_itinerary.svg",
+      "type": "ui_mockup",
+      "source": "Illustrative mockup based on Google Tabletop reporting",
+      "license": "original",
+      "scene": "beat_2",
+      "transparent": false,
+      "resolution": "900x560",
+      "status": "ready"
+    },
+    {
+      "file": "tabletop_poll.svg",
+      "type": "ui_mockup",
+      "source": "Illustrative mockup based on Google Tabletop reporting",
+      "license": "original",
+      "scene": "beat_3",
+      "transparent": false,
+      "resolution": "900x560",
+      "status": "ready"
+    },
+    {
+      "file": "tabletop_expenses.svg",
+      "type": "ui_mockup",
+      "source": "Illustrative mockup based on Google Tabletop reporting",
+      "license": "original",
+      "scene": "beat_4",
+      "transparent": false,
+      "resolution": "900x560",
+      "status": "ready"
+    },
+    {
+      "file": "tabletop_bracket.svg",
+      "type": "ui_mockup",
+      "source": "Illustrative mockup based on Google Tabletop reporting",
+      "license": "original",
+      "scene": "extra",
+      "transparent": false,
+      "resolution": "900x560",
       "status": "ready"
     }
   ]

@@ -80,7 +80,7 @@
       "dur": 3,
       "narration": "An Anthropic engineer ran Claude Fable 5.2 with no human feedback during the build.",
       "kicker": "AUTONOMOUS RUN",
-      "visual": "hero_cutout",
+      "visual": "product_card",
       "headline": "CLAUDE FABLE 5.2",
       "sub": "Zero human feedback",
       "accent": "#00F0FF",
@@ -97,7 +97,7 @@
       "motion": [
         "fade_in"
       ],
-      "photo": "anthropic-white.svg",
+      "photo": "",
       "photo_credit": "Anthropic",
       "sfx": [
         "sfx/reveal.ogg"

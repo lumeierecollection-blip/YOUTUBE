@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+  <rect width="900" height="560" rx="32" fill="#FFFFFF" stroke="#E2E2DC" stroke-width="4"/>
+  <text x="40" y="72" font-family="Arial,sans-serif" font-size="34" fill="#202124" font-weight="700">Expense splitter</text>
+  <rect x="40" y="110" width="820" height="110" rx="20" fill="#F8F9FA"/>
+  <text x="72" y="155" font-family="Arial,sans-serif" font-size="26" fill="#5F6368">Total</text>
+  <text x="72" y="196" font-family="Arial,sans-serif" font-size="44" fill="#202124" font-weight="700">$240.00</text>
+  <rect x="40" y="250" width="820" height="72" rx="16" fill="#E6F4EA"/>
+  <text x="72" y="295" font-family="Arial,sans-serif" font-size="26" fill="#202124">You owe</text>
+  <text x="730" y="295" font-family="Arial,sans-serif" font-size="30" fill="#137333" font-weight="700">$60.00</text>
+  <rect x="40" y="338" width="820" height="72" rx="16" fill="#F8F9FA"/>
+  <text x="72" y="383" font-family="Arial,sans-serif" font-size="26" fill="#202124">Alex owes</text>
+  <text x="730" y="383" font-family="Arial,sans-serif" font-size="30" fill="#202124" font-weight="700">$60.00</text>
+  <rect x="40" y="426" width="820" height="72" rx="16" fill="#F8F9FA"/>
+  <text x="72" y="471" font-family="Arial,sans-serif" font-size="26" fill="#202124">Sam owes</text>
+  <text x="730" y="471" font-family="Arial,sans-serif" font-size="30" fill="#202124" font-weight="700">$60.00</text>
+</svg>

@@ -36,7 +36,10 @@ const resolveAsset = (p?: any) => {
     const base = v.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
     const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
     if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
-    if (/\.svg$/i.test(v)) return staticFile(`logos/${v}`);
+    if (/\.svg$/i.test(v)) {
+      if (/logo|seal|icon|badge|mark/i.test(v)) return staticFile(`logos/${v}`);
+      return staticFile(`photos/${v}`);
+    }
     return staticFile(`photos/${v}`);
   }
   return staticFile(`logos/${v}-white.svg`);
@@ -135,7 +138,7 @@ const Stat: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => {
   const raw = numMatches[0]?.replace(/,/g, "") || "";
   const target = Number(raw);
   const decimals = (raw.split(".")[1] || "").length;
-  const animatedNum = decimals > 0 ? (target * p).toFixed(decimals) : Math.round(target * p).toLocaleString();
+  const animatedNum = decimals > 0 ? target.toFixed(decimals) : Math.round(target * p).toLocaleString();
   const display = simpleNumber && Number.isFinite(target)
     ? beat.headline.replace(numMatches[0], animatedNum)
     : beat.headline;
