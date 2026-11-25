@@ -27,7 +27,7 @@
   "beats": [
     {
       "scene": "type_slam",
-      "narration": "A San Francisco court is being asked to stop next-generation AI models.",
+      "narration": "Four nonprofits are asking a San Francisco court to stop next-generation AI.",
       "kicker": "SF SUPERIOR COURT",
       "headline": "A court vs next-gen AI",
       "hl": [
@@ -46,7 +46,7 @@
     },
     {
       "scene": "logo_wall",
-      "narration": "Four nonprofits are suing Anthropic, Google, Meta, OpenAI, and SpaceX.",
+      "narration": "Their targets: Anthropic, Google, Meta, OpenAI, and SpaceX.",
       "kicker": "4 NONPROFITS SUE",
       "headline": "Five AI companies named",
       "logos": [
@@ -85,7 +85,7 @@
     },
     {
       "scene": "document",
-      "narration": "They want an emergency injunction, until companies can prove humans stay in control.",
+      "narration": "The ask: an emergency injunction until companies can prove humans stay in control.",
       "kicker": "THE REQUEST",
       "headline": "What the plaintiffs want",
       "doc": {

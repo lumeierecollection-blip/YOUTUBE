@@ -27,7 +27,7 @@
   "beats": [
     {
       "scene": "type_slam",
-      "narration": "OpenAI just launched two new models with very different prices.",
+      "narration": "Same OpenAI family. One model costs four times more.",
       "kicker": "OPENAI // GPT-6.2",
       "headline": "Two new models. Very different prices.",
       "hl": [
@@ -181,7 +181,7 @@
     },
     {
       "scene": "stat_hero",
-      "narration": "Same family, four times apart on price.",
+      "narration": "That's four times apart on both input and output.",
       "kicker": "THE GAP",
       "headline": "Astra costs 4x Sol",
       "stat": {

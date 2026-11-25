@@ -27,7 +27,7 @@
   "beats": [
     {
       "scene": "type_slam",
-      "narration": "An AI made a playable 3D shooter in one file.",
+      "narration": "One prompt. One file. A playable 3D shooter, built by AI.",
       "kicker": "BUILD LOG // SALTLINE",
       "headline": "3D shooter. One file.",
       "hl": [
@@ -52,7 +52,7 @@
     },
     {
       "scene": "manifest",
-      "narration": "One prompt. No human feedback during the build.",
+      "narration": "No human feedback during the build.",
       "kicker": "BUILD INPUT",
       "headline": "How it was built",
       "sub": "build.log",
