@@ -5,30 +5,27 @@ const root = path.resolve(import.meta.dirname);
 const scriptsDir = path.join(root, "scripts");
 const audioDir = path.join(root, "audio");
 fs.mkdirSync(audioDir, { recursive: true });
+const py = process.platform === "win32" ? "python" : "python3";
 
 function tts(story, out) {
   const vtt = out.replace(/\.mp3$/, ".vtt");
-  const voice = story.voice || "en-US-AndrewNeural";
-  const text = story.script;
-  const attempts = [
-    () => execFileSync("edge-tts", ["--voice", voice, "--text", text, "--write-media", out, "--write-subtitles", vtt], { stdio: "inherit", shell: process.platform === "win32" }),
-    () => execFileSync("python", ["-m", "edge_tts", "--voice", voice, "--text", text, "--write-media", out, "--write-subtitles", vtt], { stdio: "inherit", shell: process.platform === "win32" }),
-  ];
+  const txt = out.replace(/\.mp3$/, ".txt");
+  fs.writeFileSync(txt, story.script, "utf8");
   let last;
-  for (let i = 0; i < 3; i++) {
-    for (const a of attempts) {
-      try { a(); if (fs.existsSync(out) && fs.statSync(out).size > 1000) return; } catch (e) { last = e; }
-    }
+  for (let i = 0; i < 4; i++) {
+    try {
+      execFileSync(py, [path.join(root, "tts-words.py"), story.voice || "en-US-AndrewNeural", txt, out, vtt], { stdio: "inherit" });
+      if (fs.statSync(out).size > 1000 && fs.statSync(vtt).size > 100) return;
+    } catch (e) { last = e; }
     console.log(`retry ${i + 1} for ${story.id}`);
-    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 3000);
+    Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 4000);
   }
-  throw last || new Error("TTS failed");
+  throw last || new Error("TTS failed for " + story.id);
 }
 
-for (const f of fs.readdirSync(scriptsDir).filter(f => f.endsWith(".json")).sort()) {
-  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8").replace(/^\uFEFF/, ""));
+for (const f of fs.readdirSync(scriptsDir).filter((f) => f.endsWith(".json")).sort()) {
+  const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8").replace(/^﻿/, ""));
   const out = path.join(audioDir, `${story.id}.mp3`);
-  if (fs.existsSync(out) && fs.statSync(out).size > 1000 && fs.existsSync(out.replace(/\.mp3$/, ".vtt"))) { console.log("exists", out); continue; }
   console.log("TTS", story.id);
   tts(story, out);
 }

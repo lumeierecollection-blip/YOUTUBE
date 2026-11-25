@@ -139,6 +139,7 @@ jobs:
             ${{ env.V5 }}/logs/**
             ${{ env.V5 }}/plans-timed/*.timed.json
             ${{ env.V5 }}/assets/photos/cutouts/**
+            ${{ env.V5 }}/audio/*.vtt
             ${{ env.V5 }}/production-records/**
           if-no-files-found: warn
           retention-days: 14
@@ -181,6 +182,7 @@ jobs:
             ${{ env.V5 }}/scripts/*.json
             ${{ env.V5 }}/facts/*.json
             ${{ env.V5 }}/assets/photos/cutouts/**
+            ${{ env.V5 }}/audio/*.vtt
             ${{ env.V5 }}/assets/audio-licences.json
             ${{ env.V5 }}/assets/manifests/**
             ${{ env.V5 }}/logs/**
