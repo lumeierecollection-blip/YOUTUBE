@@ -1,0 +1,59 @@
+{
+  "topic_slug": "waymo-recall-robotaxis-closed-freeway-lanes",
+  "strongest_angle": "Waymo LLC recalled 4,488 vehicles equipped with 5th and 6th generation automated driving systems following 11 incidents of robotaxis entering closed freeway lanes since October 1, 2026.",
+  "key_facts": [
+    {
+      "fact": "Waymo LLC announced a voluntary recall covering 4,488 vehicles equipped with 5th and 6th generation automated driving systems.",
+      "source_url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26E086-1357.pdf",
+      "source_name": "NHTSA Recall Report",
+      "confidence": "high"
+    },
+    {
+      "fact": "Since October 1, 2026, Waymo robotaxis recorded 11 incidents of entering closed freeway lanes, with three occurring on November 9.",
+      "source_url": "https://www.investing.com/news/stock-market-news/waymo-recalls-4500-robotaxis-after-11-closed-lane-incidents-93CH-5048710",
+      "source_name": "Investing.com",
+      "confidence": "high"
+    },
+    {
+      "fact": "California's DMV issued a statewide ban on driverless freeway operations after the automated-driving system repeatedly failed to recognize closed freeway lanes across 11 incidents.",
+      "source_url": "https://autos.yahoo.com/safety-and-recalls/articles/waymo-recalls-4-488-robotaxis-154924320.html",
+      "source_name": "Yahoo Autos",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total number of potentially involved vehicles in Waymo recall",
+      "value": 4488,
+      "unit": "vehicles",
+      "source_url": "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26E086-1357.pdf"
+    },
+    {
+      "label": "Number of incidents where robotaxis entered closed freeway lanes",
+      "value": 11,
+      "unit": "incidents",
+      "source_url": "https://www.investing.com/news/stock-market-news/waymo-recalls-4500-robotaxis-after-11-closed-lane-incidents-93CH-5048710"
+    },
+    {
+      "label": "Number of incidents that occurred on November 9",
+      "value": 3,
+      "unit": "incidents",
+      "source_url": "https://www.investing.com/news/stock-market-news/waymo-recalls-4500-robotaxis-after-11-closed-lane-incidents-93CH-5048710"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Waymo LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Mountain View",
+      "kind": "place"
+    },
+    {
+      "name": "California",
+      "kind": "place"
+    }
+  ]
+}
