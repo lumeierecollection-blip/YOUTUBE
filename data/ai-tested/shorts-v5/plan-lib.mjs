@@ -17,7 +17,7 @@ export function parseVtt(text) {
     const i = lines.findIndex(l => l.includes("-->"));
     if (i < 0) continue;
     const [a, z] = lines[i].split("-->");
-    const t0 = ts(a), t1 = ts(z.split(" ")[0]);
+    const t0 = ts(a), t1 = ts(z.trim().split(/\s+/)[0]);
     const txt = lines.slice(i + 1).join(" ").trim();
     if (Number.isFinite(t0) && Number.isFinite(t1) && txt) cues.push({ start: t0, end: t1, text: txt });
   }
