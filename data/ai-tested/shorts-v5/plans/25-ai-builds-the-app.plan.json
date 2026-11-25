@@ -16,21 +16,24 @@
     {
       "t": 0,
       "dur": 2,
-      "narration": "You didn’t open an app. You asked for one. Google Tabletop turns a prompt into a working tool for your group.",
-      "visual": "browser_mockup",
-      "headline": "SAY GOODBYE TO APP STORES.",
-      "sub": "",
+      "narration": "You didn't open an app. You asked for one.",
+      "kicker": "GOOGLE LABS",
+      "visual": "kinetic_type",
+      "headline": "ASK FOR AN APP",
+      "sub": "Google Tabletop turns a prompt into a working tool",
       "accent": "#1A73E8",
       "bg": "#FAFAF8",
-      "assets": [],
+      "assets": [
+        "google-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
         "w": 0.85,
-        "h_pct": 0.55
+        "h_pct": 0.6
       },
       "motion": [
-        "slide_up_fade"
+        "slide_up"
       ],
       "sfx": [
         "sfx/whoosh.mp3"
@@ -40,20 +43,23 @@
       "t": 2,
       "dur": 4.5,
       "narration": "Need an itinerary? It builds it. Dinner poll? Built. Expense splitter, tournament bracket, whatever the group needs.",
-      "visual": "ui_card_stack",
-      "headline": "BUILD INSTANTLY",
-      "sub": "",
+      "kicker": "INSTANT BUILD",
+      "visual": "product_card",
+      "headline": "BUILDS IT INSTANTLY",
+      "sub": "Itinerary • Dinner poll • Expense splitter • Bracket",
       "accent": "#34A853",
-      "bg": "#FAFAF8",
-      "assets": [],
+      "bg": "#F8FAFF",
+      "assets": [
+        "google-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
-        "w": 0.9,
+        "w": 0.86,
         "h_pct": 0.65
       },
       "motion": [
-        "stagger_pop"
+        "pop"
       ],
       "sfx": [
         "sfx/reveal.mp3",
@@ -64,20 +70,24 @@
       "t": 6.5,
       "dur": 3,
       "narration": "Everyone can edit together in real time, like a Google Doc.",
-      "visual": "multi_user_cursors",
-      "headline": "LIVE COLLABORATION",
-      "sub": "",
+      "kicker": "REAL TIME",
+      "visual": "split_compare",
+      "headline": "EDIT TOGETHER",
+      "sub": "Real-time collaboration for the whole group",
       "accent": "#1A73E8",
       "bg": "#FAFAF8",
-      "assets": [],
+      "assets": [
+        "google-white.svg",
+        "google-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
         "w": 0.85,
-        "h_pct": 0.5
+        "h_pct": 0.6
       },
       "motion": [
-        "scale_in"
+        "fade_in"
       ],
       "sfx": [
         "sfx/confirm.ogg"
@@ -86,18 +96,21 @@
     {
       "t": 9.5,
       "dur": 3.8,
-      "narration": "It’s still a limited US waitlist test.",
-      "visual": "status_pill",
+      "narration": "It's still a limited US waitlist test.",
+      "kicker": "LIMITED TEST",
+      "visual": "warning_panel",
       "headline": "US WAITLIST ONLY",
-      "sub": "",
+      "sub": "Limited Google Labs test",
       "accent": "#EA4335",
       "bg": "#FAFAF8",
-      "assets": [],
+      "assets": [
+        "google-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.4
+        "w": 0.84,
+        "h_pct": 0.55
       },
       "motion": [
         "slide_in"
@@ -109,13 +122,16 @@
     {
       "t": 13.3,
       "dur": 4,
-      "narration": "But the big shift is clear: AI isn’t just answering anymore. It’s making software on demand.",
-      "visual": "bold_statement",
+      "narration": "But the big shift is clear: AI isn't just answering anymore. It's making software on demand.",
+      "kicker": "THE SHIFT",
+      "visual": "final_question",
       "headline": "SOFTWARE ON DEMAND",
       "sub": "Follow AI Tested for the next AI workflow shift.",
       "accent": "#111111",
       "bg": "#FAFAF8",
-      "assets": [],
+      "assets": [
+        "google-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
@@ -123,7 +139,7 @@
         "h_pct": 0.6
       },
       "motion": [
-        "fade_in_up"
+        "fade_in"
       ],
       "cta": "Follow AI Tested for the next AI workflow shift.",
       "sfx": [
@@ -133,8 +149,8 @@
   ],
   "audio": {
     "music": {
-      "src": "music/ambient_tech.mp3",
-      "volume": 0.2
+      "src": "",
+      "volume": 0.15
     },
     "sfx": [
       {
@@ -183,13 +199,13 @@
   },
   "asset_manifest": [
     {
-      "file": "google_labs_logo.png",
+      "file": "google-white.svg",
       "type": "logo",
-      "source": "Google Labs brand assets",
-      "license": "Fair use / editorial",
-      "scene": "hero",
+      "source": "Repo Google brand asset",
+      "license": "editorial/fair use",
+      "scene": "all",
       "transparent": true,
-      "resolution": "512x512",
+      "resolution": "svg",
       "status": "ready"
     }
   ]

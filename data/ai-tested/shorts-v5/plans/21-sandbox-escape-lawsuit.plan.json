@@ -21,7 +21,8 @@
       "accent": "#DC2626",
       "bg": "#FAFAF8",
       "assets": [
-        "california_seal.svg"
+        "california_seal.svg",
+        "openai-white.svg"
       ],
       "focal": {
         "x": 0.5,
@@ -47,7 +48,7 @@
       "accent": "#F59E0B",
       "bg": "#FAFAF8",
       "assets": [
-        "huggingface_logo.svg"
+        "huggingface-white.svg"
       ],
       "focal": {
         "x": 0.5,
@@ -203,6 +204,7 @@
   },
   "asset_manifest": [
     "california_seal.svg",
-    "huggingface_logo.svg"
+    "huggingface-white.svg",
+    "openai-white.svg"
   ]
 }

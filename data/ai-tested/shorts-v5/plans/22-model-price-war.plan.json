@@ -47,7 +47,10 @@
       "sub": "Just one week later...",
       "accent": "#FFCC00",
       "bg": "#FAFAF8",
-      "assets": [],
+      "assets": [
+        "anthropic-white.svg",
+        "openai-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
@@ -71,7 +74,9 @@
       "sub": "Heavy workflows vs everyday speed",
       "accent": "#FF334B",
       "bg": "#0F1115",
-      "assets": [],
+      "assets": [
+        "openai-white.svg"
+      ],
       "focal": {
         "x": 0.5,
         "y": 0.5,
@@ -179,25 +184,8 @@
     ]
   },
   "asset_manifest": [
-    {
-      "file": "openai_logo.png",
-      "type": "logo",
-      "source": "vector_source",
-      "license": "fair_use_news",
-      "scene": "Model introduction",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "ready"
-    },
-    {
-      "file": "claude_logo.png",
-      "type": "logo",
-      "source": "vector_source",
-      "license": "fair_use_news",
-      "scene": "Competitor mention",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "ready"
-    }
+    "anthropic-white.svg",
+    "openai-white.svg",
+    "claude-white.svg"
   ]
 }

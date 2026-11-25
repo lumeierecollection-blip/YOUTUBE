@@ -86,16 +86,7 @@
       "accent": "#00F0FF",
       "bg": "#090D16",
       "assets": [
-        {
-          "file": "anthropic_logo.png",
-          "type": "photo",
-          "source": "anthropic",
-          "license": "fair_use",
-          "scene": "beat_2",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "ready"
-        }
+        "anthropic-white.svg"
       ],
       "focal": {
         "x": 0.5,
@@ -106,7 +97,7 @@
       "motion": [
         "fade_in"
       ],
-      "photo": "anthropic_logo.png",
+      "photo": "anthropic-white.svg",
       "photo_credit": "Anthropic",
       "sfx": [
         "sfx/reveal.ogg"
@@ -331,8 +322,8 @@
       "status": "ready"
     },
     {
-      "file": "anthropic_logo.png",
-      "type": "photo",
+      "file": "anthropic-white.svg",
+      "type": "logo",
       "source": "anthropic",
       "license": "fair_use",
       "scene": "beat_2",

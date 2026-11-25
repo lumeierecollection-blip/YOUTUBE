@@ -135,7 +135,9 @@ const Stat: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => {
   const prefix = beat.headline.includes("$") ? "$" : "";
   // Only animate simple single-number headlines; complex multi-value headlines display as-is
   const simpleNumber = Number.isFinite(target) && raw && /^[\s$]*[0-9][0-9,.\-\s]*[A-Za-z%+]*\s*$/.test(beat.headline);
-  const display = simpleNumber ? `${prefix}${Math.round(target * p).toLocaleString()}${suffix ? " " + suffix : ""}` : beat.headline;
+  const decimals = (raw.split(".")[1] || "").length;
+  const animated = decimals > 0 ? (target * p).toFixed(decimals) : Math.round(target * p).toLocaleString();
+  const display = simpleNumber ? `${prefix}${animated}${suffix ? " " + suffix : ""}` : beat.headline;
   const fs = display.length > 22 ? 72 : display.length > 14 ? 96 : display.length > 10 ? 120 : 160;
   return <div style={{ textAlign: "center", width: "100%", maxWidth: "100%", overflow: "hidden" }}>
     <div style={{ fontFamily: sg, fontWeight: 800, fontSize: fs, lineHeight: 0.95, color: beat.accent || "#111", letterSpacing: "-0.03em", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", padding: "0 8px", whiteSpace: "pre-line" }}>{display}</div>
@@ -271,7 +273,7 @@ const BeatView: React.FC<{ beat: Beat }> = ({ beat }) => {
         {v === "progress_bar" ? <div style={{ width: "100%" }}><Headline beat={beat} dark={dark} /><div style={{ marginTop: 28 }}><ProgressBarViz beat={beat} dark={dark} /></div></div> : null}
         {v === "split_compare" ? <div style={{ width: "100%" }}><Headline beat={beat} dark={dark} center /><div style={{ marginTop: 24 }}><Split beat={beat} dark={dark} /></div></div> : null}
         {v === "logo_grid" ? <div style={{ width: "100%", textAlign: "center" }}><Headline beat={beat} dark={dark} center /><div style={{ marginTop: 36 }}><Logos logos={beat.assets} dark={dark} size={148} /></div></div> : null}
-        {v === "evidence_board" ? <div style={{ width: "100%" }}><Headline beat={{...beat, sub: ""}} dark={dark} /><div style={{ marginTop: 24 }}><EvidenceBoard beat={beat} dark={dark} /></div></div> : null}
+        {v === "evidence_board" ? <div style={{ width: "100%" }}><Headline beat={{...beat, sub: ""}} dark={dark} /><div style={{ marginTop: 24 }}><EvidenceBoard beat={beat} dark={dark} /></div><div style={{ marginTop: 20, display: "flex", justifyContent: "center" }}><Logos logos={beat.assets} dark={dark} size={120} /></div></div> : null}
         {v === "warning_panel" ? <div style={{ width: "100%", padding: "40px", background: accent, color: "#fff" }}><div style={{ fontFamily: sg, fontWeight: 800, fontSize: 90, lineHeight: 0.9, textTransform: "uppercase" }}>{beat.headline}</div><div style={{ marginTop: 20, fontFamily: inter, fontWeight: 700, fontSize: 40, lineHeight: 1.2 }}>{beat.sub}</div><div style={{ marginTop: 24 }}><Logos logos={beat.assets} dark={true} /></div></div> : null}
         {v === "quote_card" ? <div style={{ width: "100%", padding: "42px", background: dark ? "rgba(255,255,255,0.06)" : "#fff", border: `2px solid ${dark ? "rgba(255,255,255,0.12)" : "#E2E2DC"}`, borderLeft: `16px solid ${accent}` }}><div style={{ fontFamily: sg, fontWeight: 800, fontSize: 96, lineHeight: 0.8, color: accent }}>"</div><div style={{ fontFamily: inter, fontWeight: 800, fontSize: 46, lineHeight: 1.2, color: dark ? "#FAFAF8" : "#111" }}>{beat.sub}</div><div style={{ marginTop: 26 }}><Logos logos={beat.assets} dark={dark} /></div></div> : null}
         {["stamp_document", "legal_stack", "product_card", "tool_card"].includes(v) ? <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: 24, alignItems: "center" }}>
