@@ -1,0 +1,12 @@
+# Written by film-researcher (Phase 1) per .opencode/skills/filmmaker/references/schemas.md.
+# Researcher owns ONLY: mode, aspectRatio, targetPlatform, crossRendererTransitionPolicy.
+# name/created/status are initialised here on first run (schema: orchestrator-owned; the orchestrator may overwrite).
+name: ai-tested-shorts-21-25
+created: "2026-11-26"
+status: research
+mode: cinematic            # none of the ui-animation trigger phrases apply: these are news/explainer Shorts, not UI demos
+aspectRatio: "9:16"
+# Schema enum is youtube | tiktok | reels | linkedin | web | pitch | other. There is no "youtube-shorts" value,
+# so "youtube" is written and the Shorts constraint (vertical, <=60 s) is recorded in 01-research-brief.md.
+targetPlatform: youtube
+crossRendererTransitionPolicy: warn   # default; brief specifies no broadcast-strict cross-renderer consistency
