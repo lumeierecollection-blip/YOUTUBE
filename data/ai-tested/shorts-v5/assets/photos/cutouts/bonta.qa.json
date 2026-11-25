@@ -1,0 +1,16 @@
+{
+ "file": "assets/photos/cutouts/bonta.png",
+ "size": [
+  800,
+  1081
+ ],
+ "coverage": 0.651,
+ "largest_component": 1.0,
+ "hole_ratio": 0.0,
+ "edge_pixels": 9717,
+ "edge_minus_interior_luma": -13.1,
+ "model": "isnet-general-use",
+ "alpha_matting": true,
+ "decontaminated": true,
+ "pass": true
+}

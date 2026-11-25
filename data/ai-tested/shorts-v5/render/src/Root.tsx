@@ -1,24 +1,16 @@
 import React from "react";
 import { Composition, CalculateMetadataFunction } from "remotion";
-import { AIShort, AIShortProps } from "./AIShort";
-import s21 from "../../plans/21-sandbox-escape-lawsuit.plan.json";
-import s22 from "../../plans/22-model-price-war.plan.json";
-import s23 from "../../plans/23-pause-frontier-ai-case.plan.json";
-import s24 from "../../plans/24-one-file-ai-game.plan.json";
-import s25 from "../../plans/25-ai-builds-the-app.plan.json";
+import { Short, ShortProps, Plan } from "./Short";
 
-const stories = [s21, s22, s23, s24, s25] as any[];
-const planEnd = (s: any) => (s.beats || []).reduce((m: number, b: any) => Math.max(m, (b.t || 0) + (b.dur || 0)), 30);
-const calc: CalculateMetadataFunction<AIShortProps> = async ({ props }) => {
-  const dur = (props.audioDurationSec || planEnd(props.plan)) + 0.5;
-  return { durationInFrames: Math.ceil(dur * 30), props };
-};
+const IDS = ["21", "22", "23", "24", "25"];
+const stub = (id: string): Plan => ({ id, slug: "stub", title: "stub", schema: 7, words: [], beats: [], audio: { sfx: [] } });
+const calc: CalculateMetadataFunction<ShortProps> = async ({ props }) => ({
+  durationInFrames: Math.max(30, Math.ceil(((props.audioDurationSec || 1) + 0.5) * 30)),
+  props,
+});
 export const RemotionRoot: React.FC = () => (<>
-  {stories.map((s) => (
-    <Composition key={s.id} id={`Short-${s.id}`} component={AIShort}
-      durationInFrames={Math.ceil((planEnd(s) + 0.5) * 30)}
-      fps={30} width={1080} height={1920}
-      defaultProps={{ plan: s, audioSrc: `audio/${s.id}.mp3`, audioDurationSec: planEnd(s) } as AIShortProps}
-      calculateMetadata={calc} />
+  {IDS.map((id) => (
+    <Composition key={id} id={`Short-${id}`} component={Short} durationInFrames={30 * 30} fps={30} width={1080} height={1920}
+      defaultProps={{ plan: stub(id), audioSrc: "", audioDurationSec: 30 } as ShortProps} calculateMetadata={calc} />
   ))}
 </>);
