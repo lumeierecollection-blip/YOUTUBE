@@ -3222,9 +3222,14 @@
           "topic": "Japan Coast Guard Reports Volcanic Eruption Adds 50 Hectares to Iwo Jima Beach",
           "slug": "japan-coast-guard-iwo-jima-volcanic-eruption-beach",
           "reserved_at": "2026-11-24T19:42:52.496Z"
+        },
+        {
+          "topic": "Super El Niño Ocean Temperatures Hit 30 Celsius in October 2026",
+          "slug": "super-el-nino-ocean-temperatures-30-celsius-2026",
+          "reserved_at": "2026-11-25T18:59:07.361Z"
         }
       ],
-      "last_generated": "2026-11-24T19:42:52.496Z"
+      "last_generated": "2026-11-25T18:59:07.361Z"
     },
     "18": {
       "channel_name": "Brief History",
