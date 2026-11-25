@@ -2,6 +2,11 @@ name: AI Tested Shorts V5 - Gemini Directed Production
 
 on:
   workflow_dispatch:
+    inputs:
+      render_artifact_run_id:
+        description: 'Run ID to download ai-tested-shorts-v5-render artifact from (skips render)'
+        required: false
+        type: string
   push:
     branches:
       - "feat/ai-tested-shorts-vox"
@@ -41,7 +46,18 @@ jobs:
           sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
           python -m pip install --upgrade pip
           pip install edge-tts rembg[cli] pillow || pip install edge-tts pillow
+      - name: Download pre-rendered artifact (review-only rerun)
+        if: ${{ inputs.render_artifact_run_id != '' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p data/ai-tested/shorts-v5/out
+          gh run download "${{ inputs.render_artifact_run_id }}" -n ai-tested-shorts-v5-render -D /tmp/v5-prerender
+          cp /tmp/v5-prerender/data/ai-tested/shorts-v5/out/*.mp4 data/ai-tested/shorts-v5/out/
+          ls -la data/ai-tested/shorts-v5/out/
       - name: Remove photo backgrounds
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
@@ -54,6 +70,7 @@ jobs:
             if [ -f "$out" ]; then cp "$out" "assets/photos/${stem}.png"; elif [[ "$f" != *.png ]]; then ffmpeg -y -i "$f" "assets/photos/${stem}.png" || true; fi
           done
       - name: Verify real SFX library (no sine-wave substitutes)
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
@@ -61,22 +78,26 @@ jobs:
           node -e "const m=require('./assets/sfx/manifest.json'); if(!Array.isArray(m)||m.length<8){console.error('SFX manifest too small'); process.exit(1)}; for(const e of m){ if(!e.file||!e.source||!e.license) {console.error('bad manifest entry',e); process.exit(1)} } console.log('SFX ok', m.length)"
           ls -la assets/sfx
       - name: Install render deps
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5/render
         run: npm install && npx remotion browser ensure
       - name: Gemini pre-render creative direction (MANDATORY)
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5
         run: |
           mkdir -p production-records
           node ../../../scripts/ai-tested-v5-director.mjs --root .
           test ! -f production-records/DIRECTOR_FAILED.txt
       - name: Generate TTS
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5
         run: node generate-tts.mjs
       - name: Render
+        if: ${{ inputs.render_artifact_run_id == '' }}
         working-directory: data/ai-tested/shorts-v5/render
         run: node render-all.mjs
       - name: Upload render outputs (early salvage)
-        if: always()
+        if: ${{ always() && inputs.render_artifact_run_id == '' }}
         uses: actions/upload-artifact@v4
         with:
           name: ai-tested-shorts-v5-render
