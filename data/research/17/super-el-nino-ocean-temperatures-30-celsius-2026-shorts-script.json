@@ -1,0 +1,74 @@
+{
+  "channel_id": "17",
+  "topic_slug": "super-el-nino-ocean-temperatures-30-celsius-2026",
+  "format": "shorts",
+  "hook": "For the first time in history, the Pacific Ocean hit 30 degrees Celsius.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "For the first time in history, the Pacific Ocean hit 30 degrees Celsius.",
+      "visual_cue": "Satellite view of the Pacific Ocean with heat map overlay.",
+      "sfx_cue": "Deep, low-frequency atmospheric drone.",
+      "b_roll": [
+        "Global satellite map showing the Pacific region."
+      ],
+      "text_overlay": {
+        "text": "30°C Pacific Record"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 18, 2026, researchers monitoring the central and equatorial Pacific recorded this unprecedented temperature. How did these waters reach 86 degrees Fahrenheit?",
+      "visual_cue": "Graph showing rising sea surface temperatures.",
+      "sfx_cue": "Soft, ticking sound of a clock.",
+      "b_roll": [
+        "Historical ocean temperature data chart.",
+        "Pacific ocean surface waves."
+      ],
+      "text_overlay": {
+        "text": "October 18, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "This surge is fueling extreme weather patterns globally, ahead of the expected December peak.",
+      "visual_cue": "Animated map showing weather system movement.",
+      "sfx_cue": "Wind gust sound effect.",
+      "b_roll": [
+        "Weather pattern visualization map."
+      ],
+      "text_overlay": {
+        "text": "Extreme Weather Ahead"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Meteorologists confirmed that central tropical Pacific temperatures exceeded 30 degrees Celsius for the first time. The ocean heat remains at record levels across the equatorial region.",
+      "visual_cue": "Close up of ocean water surface.",
+      "sfx_cue": "Low rumbling sound.",
+      "b_roll": [
+        "Ocean surface footage.",
+        "Weather reporting graphic."
+      ],
+      "text_overlay": {
+        "text": "Super El Nino 2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Average temperatures in the central Pacific now exceed 30 degrees Celsius.",
+      "visual_cue": "Wide shot of the Pacific Ocean horizon.",
+      "sfx_cue": "Fading ambient ocean sounds.",
+      "b_roll": [
+        "Pacific Ocean sunset."
+      ],
+      "text_overlay": {
+        "text": "30°C Threshold"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.sciencenews.org/article/super-el-nino-historic-effect-hurricane",
+    "https://www.weatherzone.com/au/news/central-pacific-ocean-exceeds-30c-for-first-time-on-record-as-el-nino-strengthens/1891592"
+  ]
+}
