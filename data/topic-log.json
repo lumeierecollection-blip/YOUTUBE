@@ -3382,9 +3382,14 @@
           "topic": "Colorado State University TeCoBot Shape-Shifting Robot Design",
           "slug": "colorado-state-university-tecobot-design",
           "reserved_at": "2026-11-24T19:45:11.156Z"
+        },
+        {
+          "topic": "MTR Corporation Skidding Method for Building Hung Shui Kiu Station",
+          "slug": "mtr-hung-shui-kiu-station-skidding-method",
+          "reserved_at": "2026-11-25T19:13:53.359Z"
         }
       ],
-      "last_generated": "2026-11-24T19:45:11.156Z"
+      "last_generated": "2026-11-25T19:13:53.359Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
