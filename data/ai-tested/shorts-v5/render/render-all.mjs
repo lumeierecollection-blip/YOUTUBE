@@ -81,6 +81,19 @@ for (const f of files) {
     if (!Number.isFinite(dur) || dur < 5) throw new Error("bad narration duration");
     const vttPath = path.join(audioDir, `${id}.vtt`);
     const cues = fs.existsSync(vttPath) ? parseVtt(fs.readFileSync(vttPath, "utf8")) : [];
+    // Word timings for renderer audio ducking (Short.tsx expects plan.words[{t0,t1}]).
+    const words = [];
+    for (const c of cues) {
+      const toks = String(c.text || "").trim().split(/\s+/).filter(Boolean);
+      if (!toks.length) continue;
+      const span = Math.max(0.01, (c.end - c.start));
+      for (let i = 0; i < toks.length; i++) {
+        const t0 = c.start + (i / toks.length) * span;
+        const t1 = c.start + ((i + 1) / toks.length) * span;
+        words.push({ t0: +t0.toFixed(3), t1: +t1.toFixed(3), text: toks[i] });
+      }
+    }
+    plan.words = words;
     for (const b of plan.beats) for (const m of b.media || []) { const sz = imageSize(m.src); if (sz) { m.w = sz.w; m.h = sz.h; } }
     const sync = syncBeats(plan, script.script, cues, dur);
     if (sync.mode !== "vtt") throw new Error(`narration sync fell back to ${sync.mode}: ${sync.notes.join("; ")}`);
