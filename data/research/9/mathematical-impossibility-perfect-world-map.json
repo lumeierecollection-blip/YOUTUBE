@@ -1,0 +1,65 @@
+{
+  "topic_slug": "mathematical-impossibility-perfect-world-map",
+  "strongest_angle": "Exploring the centuries-old mathematical challenge of flattening a 3D sphere into a 2D surface, highlighted by the United Nations' recent resolution urging organizations to move away from the Mercator projection.",
+  "key_facts": [
+    {
+      "fact": "On September 4, 2026, the United Nations adopted a resolution encouraging governments, schools, and organizations to replace the Mercator projection.",
+      "source_url": "https://www.scientificamerican.com/article/the-mathematical-impossibility-of-making-a-perfect-world-map",
+      "source_name": "Scientific American",
+      "confidence": "high"
+    },
+    {
+      "fact": "Member States endorsed a resolution promoting map projections by 164 votes to one on Friday, September 4, 2026.",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284",
+      "source_name": "UN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Greenland's size relative to other land areas corresponds to less than one-tenth that of Africa.",
+      "source_url": "https://www.ams.org/publicoutreach/mathmoments/mm143-equal-earth-podcast",
+      "source_name": "AMS",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "UN resolution vote count in favor",
+      "value": 164,
+      "unit": "votes",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284"
+    },
+    {
+      "label": "UN resolution vote count against",
+      "value": 1,
+      "unit": "votes",
+      "source_url": "https://news.un.org/en/story/2026/09/1168284"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "United Nations",
+      "kind": "organization"
+    },
+    {
+      "name": "Mercator",
+      "kind": "person"
+    },
+    {
+      "name": "Greenland",
+      "kind": "place"
+    },
+    {
+      "name": "Africa",
+      "kind": "place"
+    },
+    {
+      "name": "Scientific American",
+      "kind": "organization"
+    },
+    {
+      "name": "UN News",
+      "kind": "organization"
+    }
+  ]
+}
