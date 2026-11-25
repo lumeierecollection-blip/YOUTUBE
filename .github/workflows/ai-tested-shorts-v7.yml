@@ -15,6 +15,10 @@ on:
       - 'data/ai-tested/shorts-v5/boards/**'
       - 'data/ai-tested/shorts-v5/render7.mjs'
       - 'data/ai-tested/shorts-v5/plan7-lib.mjs'
+      - 'data/ai-tested/shorts-v5/scripts/**'
+      - 'data/ai-tested/shorts-v5/facts/**'
+      - 'data/ai-tested/shorts-v5/audio/**'
+      - 'data/ai-tested/shorts-v5/assets/**'
       - 'data/ai-tested/shorts-v5/render/src/**'
   workflow_dispatch:
     inputs:
