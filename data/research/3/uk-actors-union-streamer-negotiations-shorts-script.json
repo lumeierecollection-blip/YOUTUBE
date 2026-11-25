@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "uk-actors-union-streamer-negotiations",
+  "format": "shorts",
+  "hook": "Equity's preparing contract talks with Netflix, Disney, and Apple at the start of 2027.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Equity's preparing contract talks with Netflix, Disney, and Apple at the start of 2027.",
+      "text_overlay": {
+        "text": "50% Fee Rise in 2027"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "UK actors union Equity reached an agreement with trade body Pact. The deal adds 3 percentage points to streaming platform use fees. Will Netflix, Disney, and Apple accept this 50 percent baseline?",
+      "text_overlay": {
+        "text": "+3% Streaming Platform Use Fees"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Equity uses those terms for talks at the start of 2027.",
+      "text_overlay": {
+        "text": "Negotiations Start 2027"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Negotiations launch with Netflix, Disney, and Apple using the Pact agreement. The 3 percentage point uplift delivers a real term 50 percent rise. Union actors establish higher streaming platform use fees.",
+      "text_overlay": {
+        "text": "Real Term 50% Increase"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Equity starts negotiations with streamers at the start of 2027.",
+      "text_overlay": {
+        "text": "Equity vs Major Streamers"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://deadline.com/2026/11/streamer-negotiation-equity-actors-union-contracts-next-year-1237227832",
+    "https://deadline.com/2026/11/equity-pact-deal-offer-ai-provisions-streamer-residuals-1237222636"
+  ]
+}

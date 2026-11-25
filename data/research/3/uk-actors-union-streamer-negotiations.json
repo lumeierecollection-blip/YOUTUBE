@@ -1,0 +1,69 @@
+{
+  "topic_slug": "uk-actors-union-streamer-negotiations",
+  "strongest_angle": "The UK actors union Equity is preparing to launch contract negotiations with major streaming services including Netflix, Disney, and Apple at the start of 2027, utilizing its newly negotiated agreement with trade body Pact as a baseline.",
+  "key_facts": [
+    {
+      "fact": "Following its multi-year negotiations and agreement with the Producers Alliance for Cinema and Television (Pact), the UK actors union Equity plans to begin talks with Netflix, Disney, and Apple at the start of 2027.",
+      "source_url": "https://deadline.com/2026/11/streamer-negotiation-equity-actors-union-contracts-next-year-1237227832",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The final Equity-Pact deal offer includes a 3 percentage point uplift to streaming platform use fees, which Equity states could equate to a real term rise of as much as 50 percent.",
+      "source_url": "https://deadline.com/2026/11/equity-pact-deal-offer-ai-provisions-streamer-residuals-1237222636",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "The UK actors union Equity is using its pending Pact agreement as a baseline for upcoming negotiations with Netflix, Disney, and Apple.",
+      "source_url": "https://mezha.net/eng/news/mezha-162f11d6e9de7610513c0cc9_equity_plans_streamer",
+      "source_name": "Mezha",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Streaming platform use fees uplift percentage",
+      "value": 3,
+      "unit": "percentage points",
+      "source_url": "https://deadline.com/2026/11/equity-pact-deal-offer-ai-provisions-streamer-residuals-1237222636"
+    },
+    {
+      "label": "Real term rise in streaming platform use fees",
+      "value": 50,
+      "unit": "percent",
+      "source_url": "https://deadline.com/2026/11/equity-pact-deal-offer-ai-provisions-streamer-residuals-1237222636"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Equity",
+      "kind": "organization"
+    },
+    {
+      "name": "Netflix",
+      "kind": "organization"
+    },
+    {
+      "name": "Disney",
+      "kind": "organization"
+    },
+    {
+      "name": "Apple",
+      "kind": "organization"
+    },
+    {
+      "name": "Producers Alliance for Cinema and Television",
+      "kind": "organization"
+    },
+    {
+      "name": "Pact",
+      "kind": "organization"
+    },
+    {
+      "name": "Max Goldbart",
+      "kind": "person"
+    }
+  ]
+}
