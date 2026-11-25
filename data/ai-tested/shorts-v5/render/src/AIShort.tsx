@@ -33,9 +33,10 @@ const resolveAsset = (p?: any) => {
   if (v.startsWith("sfx/") || v.startsWith("photos/") || v.startsWith("logos/") || v.startsWith("audio/") || v.startsWith("images/")) return staticFile(v);
   if (v.includes("/")) return staticFile(v);
   if (/\.(png|jpg|jpeg|webp|svg)$/i.test(v)) {
-    const base = v.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "");
+    const base = v.replace(/\.(png|jpg|jpeg|webp|svg)$/i, "").replace(/-logo$/, "").replace(/_logo$/, "").replace(/-white$/, "");
     const known = ["openai","google","meta","anthropic","nvidia","huggingface","spacex","claude","gemini"];
     if (known.includes(base)) return staticFile(`logos/${base}-white.svg`);
+    if (/\.svg$/i.test(v)) return staticFile(`logos/${v}`);
     return staticFile(`photos/${v}`);
   }
   return staticFile(`logos/${v}-white.svg`);
@@ -129,15 +130,15 @@ const Stat: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
   const p = interpolate(frame, [0, Math.min(18, durationInFrames - 1)], [0, 1], { extrapolateRight: "clamp" });
-  const raw = beat.headline.replace(/[^0-9.\-]/g, "");
+  const numMatches = beat.headline.match(/-?\d[\d,.]*/g) || [];
+  const simpleNumber = numMatches.length === 1;
+  const raw = numMatches[0]?.replace(/,/g, "") || "";
   const target = Number(raw);
-  const suffix = beat.headline.replace(/[$0-9,.\-\s]/g, "");
-  const prefix = beat.headline.includes("$") ? "$" : "";
-  // Only animate simple single-number headlines; complex multi-value headlines display as-is
-  const simpleNumber = Number.isFinite(target) && raw && /^[\s$]*[0-9][0-9,.\-\s]*[A-Za-z%+]*\s*$/.test(beat.headline);
   const decimals = (raw.split(".")[1] || "").length;
-  const animated = decimals > 0 ? (target * p).toFixed(decimals) : Math.round(target * p).toLocaleString();
-  const display = simpleNumber ? `${prefix}${animated}${suffix ? " " + suffix : ""}` : beat.headline;
+  const animatedNum = decimals > 0 ? (target * p).toFixed(decimals) : Math.round(target * p).toLocaleString();
+  const display = simpleNumber && Number.isFinite(target)
+    ? beat.headline.replace(numMatches[0], animatedNum)
+    : beat.headline;
   const fs = display.length > 22 ? 72 : display.length > 14 ? 96 : display.length > 10 ? 120 : 160;
   return <div style={{ textAlign: "center", width: "100%", maxWidth: "100%", overflow: "hidden" }}>
     <div style={{ fontFamily: sg, fontWeight: 800, fontSize: fs, lineHeight: 0.95, color: beat.accent || "#111", letterSpacing: "-0.03em", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", padding: "0 8px", whiteSpace: "pre-line" }}>{display}</div>
@@ -225,7 +226,7 @@ const Split: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => (
     {[{ t: beat.left || "", a: beat.assets?.[0] }, { t: beat.right || "", a: beat.assets?.[1] }].map((side, i) => (
       <FadeSlide key={i} delay={i * 4} y={24} dur={14}>
         <div style={{ background: dark ? "rgba(255,255,255,0.06)" : "#fff", border: `2px solid ${dark ? "rgba(255,255,255,0.12)" : "#E2E2DC"}`, padding: "30px 22px", minHeight: 420, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 26 }}>
-          {side.a ? <Img src={logoSrc(side.a)} style={{ width: 112, height: 112, objectFit: "contain", filter: dark && !side.a.includes("/") ? "none" : side.a.endsWith(".svg") && !dark ? "brightness(0)" : undefined }} /> : null}
+          {side.a ? (() => { const src = logoSrc(side.a); const isWhite = typeof src === "string" && src.includes("-white.svg"); return <Img src={src} style={{ width: 112, height: 112, objectFit: "contain", filter: isWhite && !dark ? "brightness(0)" : undefined }} />; })() : null}
           <div style={{ fontFamily: sg, fontWeight: 800, fontSize: 46, lineHeight: 0.95, color: i === 0 ? (beat.accent || "#111") : (dark ? "#FAFAF8" : "#111"), textAlign: "center", textTransform: "uppercase" }}>{side.t}</div>
         </div>
       </FadeSlide>
