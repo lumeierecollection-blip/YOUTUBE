@@ -52,6 +52,11 @@ function audioQa(file) {
 
 const boardFiles = fs.readdirSync(path.join(shorts, "boards")).filter((f) => /^\d+\.board\.mjs$/.test(f)).sort();
 const failures = [], validation = {};
+if (!stillsOnly && !planOnly && !only.length) {
+  for (const id of ["21", "22", "23", "24", "25"]) {
+    if (!boardFiles.includes(`${id}.board.mjs`)) failures.push({ id, error: `no board for ${id}: a full render of all five needs every board` });
+  }
+}
 for (const bf of boardFiles) {
   const id = bf.split(".")[0];
   if (only.length && !only.includes(id)) continue;

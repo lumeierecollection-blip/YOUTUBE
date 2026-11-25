@@ -5,6 +5,17 @@ name: AI Tested Shorts V7 - Reference-led render
 # mode=full renders the final 1080x1920 files, masters audio and writes QA reports. Nothing here swallows a failure.
 
 on:
+  # A workflow that exists only on a feature branch cannot be dispatched (the API 404s until it is on the
+  # default branch, and merging to main is not allowed). A push to this branch that touches the V7 pipeline
+  # therefore runs a stills-mode render of every board that exists. Full renders need workflow_dispatch.
+  push:
+    branches: [feat/ai-tested-shorts-vox]
+    paths:
+      - '.github/workflows/ai-tested-shorts-v7.yml'
+      - 'data/ai-tested/shorts-v5/boards/**'
+      - 'data/ai-tested/shorts-v5/render7.mjs'
+      - 'data/ai-tested/shorts-v5/plan7-lib.mjs'
+      - 'data/ai-tested/shorts-v5/render/src/**'
   workflow_dispatch:
     inputs:
       mode:
@@ -35,7 +46,7 @@ jobs:
         shell: bash
     env:
       V5: data/ai-tested/shorts-v5
-      STILLS_ONLY: ${{ inputs.mode == 'stills' && '1' || '0' }}
+      STILLS_ONLY: ${{ inputs.mode == 'full' && '0' || '1' }}
       ONLY_IDS: ${{ inputs.only_ids }}
     steps:
       - uses: actions/checkout@v4
@@ -80,7 +91,7 @@ jobs:
           node render7.mjs 2>&1 | tee logs/render7.log
 
       - name: Dense contact sheets and beat stills (preview mode)
-        if: ${{ inputs.mode == 'stills' }}
+        if: ${{ inputs.mode != 'full' }}
         working-directory: ${{ env.V5 }}
         run: |
           set -euo pipefail
@@ -107,7 +118,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: ai-tested-shorts-v7-${{ inputs.mode }}
+          name: ai-tested-shorts-v7-${{ inputs.mode || 'stills' }}-${{ github.run_number }}
           overwrite: true
           path: |
             ${{ env.V5 }}/out/*
