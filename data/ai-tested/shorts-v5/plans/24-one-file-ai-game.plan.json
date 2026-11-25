@@ -25,7 +25,7 @@
       "bg": "#090D16",
       "assets": [
         {
-          "file": "saltline_gameplay.png",
+          "file": "saltline_gameplay.webp",
           "type": "photo",
           "source": "saltline.games",
           "license": "fair_use",
@@ -44,7 +44,7 @@
       "motion": [
         "fade_in"
       ],
-      "photo": "saltline_gameplay.png",
+      "photo": "saltline_gameplay.webp",
       "photo_credit": "Saltline",
       "sfx": [
         "sfx/glitch.ogg"
@@ -321,7 +321,7 @@
   },
   "asset_manifest": [
     {
-      "file": "saltline_gameplay.png",
+      "file": "saltline_gameplay.webp",
       "type": "photo",
       "source": "saltline.games",
       "license": "fair_use",
