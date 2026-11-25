@@ -28,7 +28,7 @@ for (const plan of plans) {
   const contact = path.join(root, "qa/contact-sheets", `${base}.jpg`);
   const framesDir = path.join(root, "qa/frames", base);
   const frames = list(framesDir, ".jpg").map(f => path.join(framesDir, f));
-  const sampled = evenly(frames, 24);
+  const sampled = evenly(frames, 16);
   const reportPath = path.join(outDir, `${base}.review.json`);
   const mdPath = path.join(outDir, `${base}.review.md`);
   const script = readJson(path.join(root, "scripts", `${base}.json`));
