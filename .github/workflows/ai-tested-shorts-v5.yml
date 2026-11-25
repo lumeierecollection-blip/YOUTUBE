@@ -77,7 +77,7 @@ jobs:
         run: node render-all.mjs
       - name: Gemini review and correction loop (continues until pass or blocker)
         if: always()
-        timeout-minutes: 70
+        timeout-minutes: 45
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
