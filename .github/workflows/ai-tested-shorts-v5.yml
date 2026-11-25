@@ -97,7 +97,7 @@ jobs:
               ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
               ffmpeg -y -i "$f" -vf "select='not(mod(n\,30))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
             done
-            node ../../../scripts/ai-tested-v4-review.mjs --root . --out "reviews/cycle-$cycle" || echo "REVIEW_EXEC_FAILED_$cycle" > "reviews/cycle-$cycle/REVIEW_EXEC_FAILED.txt"
+            timeout 15m node ../../../scripts/ai-tested-v4-review.mjs --root . --out "reviews/cycle-$cycle" || echo "REVIEW_EXEC_FAILED_$cycle" > "reviews/cycle-$cycle/REVIEW_EXEC_FAILED.txt"
             cp "reviews/cycle-$cycle/summary.json" "production-records/review-cycle-$cycle-summary.json" 2>/dev/null || true
             # Determine if all reviewed and passed
             pass_state=$(python -c "import json,glob,os; fs=glob.glob('reviews/cycle-$cycle/*.review.json'); rs=[json.load(open(f)) for f in fs if os.path.basename(f)!='summary.json']; print('all_pass' if rs and all(r.get('status')=='reviewed' and r.get('pass') is True for r in rs) and len(rs)>=5 else 'needs_work')")
@@ -108,7 +108,7 @@ jobs:
               cp -r "reviews/cycle-$cycle" reviews/final || true
               break
             fi
-            node ../../../scripts/ai-tested-v5-correct.mjs --root . --reviews "reviews/cycle-$cycle" --plans plans || echo "CORRECT_EXEC_FAILED_$cycle" > "reviews/cycle-$cycle/CORRECT_EXEC_FAILED.txt"
+            timeout 5m node ../../../scripts/ai-tested-v5-correct.mjs --root . --reviews "reviews/cycle-$cycle" --plans plans || echo "CORRECT_EXEC_FAILED_$cycle" > "reviews/cycle-$cycle/CORRECT_EXEC_FAILED.txt"
             cp "reviews/cycle-$cycle/correction.json" "production-records/correction-cycle-$cycle.json" 2>/dev/null || true
             changed=0
             if [ -f "reviews/cycle-$cycle/correction.json" ]; then
@@ -121,7 +121,7 @@ jobs:
               break
             fi
             echo "Rerendering after corrections..."
-            (cd render && node render-all.mjs) || { echo "RERENDER_FAILED_$cycle" > "production-records/RERENDER_FAILED_cycle_$cycle.txt"; echo "Rerender failed in cycle $cycle; continuing to next review"; }
+            (cd render && timeout 45m node render-all.mjs) || { echo "RERENDER_FAILED_$cycle" > "production-records/RERENDER_FAILED_cycle_$cycle.txt"; echo "Rerender failed in cycle $cycle; continuing to next review"; }
           done
           if [ ! -d reviews/final ]; then
             mkdir -p reviews/final
@@ -142,12 +142,12 @@ jobs:
             ffmpeg -y -i "$f" -vf "fps=1,scale=540:-1" "qa/frames/$base/%03d.jpg"
             ffmpeg -y -i "$f" -vf "select='not(mod(n\,30))',scale=360:-1,tile=4x4" -frames:v 1 "qa/contact-sheets/${base}.jpg" || true
           done
-          node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final --force || echo "FINAL_REVIEW_EXEC_FAILED" > reviews/final/EXEC_FAILED.txt
+          timeout 15m node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final --force || echo "FINAL_REVIEW_EXEC_FAILED" > reviews/final/EXEC_FAILED.txt
           # Retry once if any review hit transient LLM error
           if grep -l '"reason": "llm_error"' reviews/final/*.review.json >/dev/null 2>&1; then
             echo "Retrying final review for llm_error cases after 90s..."
             sleep 90
-            node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final --force || echo "FINAL_REVIEW_EXEC_FAILED_2" > reviews/final/EXEC_FAILED_2.txt
+            timeout 15m node ../../../scripts/ai-tested-v4-review.mjs --root . --out reviews/final --force || echo "FINAL_REVIEW_EXEC_FAILED_2" > reviews/final/EXEC_FAILED_2.txt
           fi
       - name: Technical QA
         id: tech_qa
