@@ -56,7 +56,8 @@ const lib = await import(pathToFileURL(path.join(root, "plan-lib.mjs")).href);
 async function ask(parts, tag, maxTokens = 8000) {
   if (!llm.llmConfigured()) throw new Error("no Gemini key configured");
   let last = "no attempt";
-  for (let attempt = 1; attempt <= 4; attempt++) {
+  const maxAttempts = parseInt(process.env.GEMINI_MAX_ATTEMPTS || "8", 10);
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     const res = await llm.callLLMWithProvenance([{ role: "user", content: parts }], { maxTokens, model: MODEL, noCache: true, _noOllamaFirst: true, temperature: 0.2 }, tag);
     if (res.provider !== "gemini") throw new Error(`answered by ${res.provider}, not gemini`);
     if (res.error || llm.isProviderError(res.value)) last = `provider error: ${res.error || res.value?.error} ${String(res.value?.detail || "").slice(0, 200)}`;
@@ -67,7 +68,7 @@ async function ask(parts, tag, maxTokens = 8000) {
       last = "unparseable JSON: " + JSON.stringify(v).slice(0, 200);
     }
     console.error(`[${tag}] attempt ${attempt} failed: ${last}`);
-    await sleep(attempt * 25000);
+    await sleep(Math.min(attempt * 30000, 150000));
   }
   throw new Error(`gemini failed after retries: ${last}`);
 }
