@@ -133,10 +133,12 @@ const Stat: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => {
   const target = Number(raw);
   const suffix = beat.headline.replace(/[$0-9,.\-\s]/g, "");
   const prefix = beat.headline.includes("$") ? "$" : "";
-  const display = Number.isFinite(target) && raw ? `${prefix}${Math.round(target * p).toLocaleString()}${suffix ? " " + suffix : ""}` : beat.headline;
-  const fs = display.length > 14 ? 96 : display.length > 10 ? 120 : 160;
+  // Only animate simple single-number headlines; complex multi-value headlines display as-is
+  const simpleNumber = Number.isFinite(target) && raw && /^[\s$]*[0-9][0-9,.\-\s]*[A-Za-z%+]*\s*$/.test(beat.headline);
+  const display = simpleNumber ? `${prefix}${Math.round(target * p).toLocaleString()}${suffix ? " " + suffix : ""}` : beat.headline;
+  const fs = display.length > 22 ? 72 : display.length > 14 ? 96 : display.length > 10 ? 120 : 160;
   return <div style={{ textAlign: "center", width: "100%", maxWidth: "100%", overflow: "hidden" }}>
-    <div style={{ fontFamily: sg, fontWeight: 800, fontSize: fs, lineHeight: 0.9, color: beat.accent || "#111", letterSpacing: "-0.04em", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", padding: "0 8px" }}>{display}</div>
+    <div style={{ fontFamily: sg, fontWeight: 800, fontSize: fs, lineHeight: 0.95, color: beat.accent || "#111", letterSpacing: "-0.03em", overflowWrap: "anywhere", wordBreak: "break-word", maxWidth: "100%", padding: "0 8px", whiteSpace: "pre-line" }}>{display}</div>
     {beat.sub ? <div style={{ marginTop: 22, fontFamily: inter, fontWeight: 800, fontSize: 40, color: dark ? "#FAFAF8" : "#111", lineHeight: 1.2, overflowWrap: "anywhere", padding: "0 8px" }}>{beat.sub}</div> : null}
     <div style={{ marginTop: 28 }}><Logos logos={beat.assets} dark={dark} size={112} /></div>
   </div>;

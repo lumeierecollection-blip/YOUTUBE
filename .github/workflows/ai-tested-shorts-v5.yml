@@ -81,9 +81,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p reviews production-records
-          MAX_CYCLES=10
+          MAX_CYCLES=6
+          LOOP_START=$SECONDS
+          MAX_LOOP_SECONDS=5400
           all_pass=false
           for cycle in $(seq 1 $MAX_CYCLES); do
+            if [ $((SECONDS - LOOP_START)) -gt $MAX_LOOP_SECONDS ]; then echo "LOOP_TIME_CAP_REACHED"; break; fi
             echo "=== REVIEW CYCLE $cycle / $MAX_CYCLES ==="
             rm -rf qa/frames qa/contact-sheets "reviews/cycle-$cycle"
             mkdir -p qa/frames qa/contact-sheets "reviews/cycle-$cycle"
