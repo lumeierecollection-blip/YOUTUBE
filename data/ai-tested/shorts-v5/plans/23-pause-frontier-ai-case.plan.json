@@ -2,349 +2,388 @@
   "id": "23",
   "slug": "pause-frontier-ai-case",
   "title": "A Court Could Pause Frontier AI",
-  "concept": "Legal showdown over frontier AI suspension",
-  "sources": [
-    "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
-  ],
-  "cta": "Follow AI Tested for the AI court fight.",
-  "visual_identity": {
-    "palette": [
-      "#0A0A0A",
-      "#FAFAF8",
-      "#D93838",
-      "#E5E5E0",
-      "#2C2C2C"
-    ]
+  "schema": 6,
+  "concept": "Legal showdown: a gavel slam on a courtroom-paper look, five defendant logos landing one by one, the injunction request as a court filing, the complaint's cited risks, Congress's gap, and the court's question.",
+  "creative_direction": {
+    "why_this_look": "A court case deserves a courtroom palette: warm legal-pad paper, ink black, oxblood red and navy, serif document styling. It is deliberately the light, formal video in the set so it does not look like the dark tech ones.",
+    "motion": "Gavel-hit slams, defendant logos tilt in one at a time with a live counter, filing slides up and gets stamped.",
+    "sound": "Dark piano bed, courtroom room tone, a real gavel on the opening, impacts per defendant, paper and stamp thud on the filing."
   },
-  "duration_target_sec": 17,
+  "theme": {
+    "mode": "light",
+    "bg": "#EFE7D6",
+    "bg2": "#E4D9C0",
+    "ink": "#1B1410",
+    "muted": "#6B5E4F",
+    "accent": "#A4161A",
+    "accent2": "#1D3557",
+    "panel": "#FFFDF7",
+    "panelInk": "#1B1410",
+    "line": "#CDBF9F",
+    "texture": "paper",
+    "display": "anton",
+    "body": "inter"
+  },
   "beats": [
     {
-      "t": 0,
-      "dur": 2.5,
-      "narration": "A court is being asked to hit pause on frontier AI.",
-      "kicker": "FEDERAL LAWSUIT",
-      "visual": "stamp_document",
-      "headline": "PAUSE FRONTIER AI",
-      "sub": "Emergency Injunction Filed",
-      "accent": "#D93838",
-      "bg": "#FAFAF8",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        {
-          "property": "scale",
-          "from": 1.2,
-          "to": 1,
-          "duration": 0.5
-        }
+      "scene": "type_slam",
+      "narration": "A San Francisco court is being asked to stop next-generation AI models.",
+      "kicker": "SF SUPERIOR COURT",
+      "headline": "A court vs next-gen AI",
+      "hl": [
+        "COURT"
       ],
-      "sfx": [
-        "sfx/impact.ogg"
+      "sub": "Emergency injunction requested",
+      "ghost": "COURT",
+      "callouts": [
+        "FILED NOV 12, 2026"
+      ],
+      "transition": "cut",
+      "evidence": [
+        "f3",
+        "f4"
       ]
     },
     {
-      "t": 2.5,
-      "dur": 3,
+      "scene": "logo_wall",
       "narration": "Four nonprofits are suing Anthropic, Google, Meta, OpenAI, and SpaceX.",
-      "kicker": "DEFENDANTS",
-      "visual": "logo_grid",
-      "headline": "THE TECH GIANTS",
-      "sub": "Anthropic • Google • Meta • OpenAI • SpaceX",
-      "accent": "#2C2C2C",
-      "bg": "#E5E5E0",
-      "assets": [
+      "kicker": "4 NONPROFITS SUE",
+      "headline": "Five AI companies named",
+      "logos": [
         {
-          "file": "anthropic.png",
-          "type": "logo",
-          "source": "wikimedia",
-          "license": "public_domain",
-          "scene": "defendants",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "approved"
+          "id": "anthropic-white",
+          "label": "Anthropic",
+          "color": "#1B1410"
         },
         {
-          "file": "google.png",
-          "type": "logo",
-          "source": "wikimedia",
-          "license": "public_domain",
-          "scene": "defendants",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "approved"
+          "id": "google-white",
+          "label": "Google",
+          "color": "#1D3557"
         },
         {
-          "file": "meta.png",
-          "type": "logo",
-          "source": "wikimedia",
-          "license": "public_domain",
-          "scene": "defendants",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "approved"
+          "id": "meta-white",
+          "label": "Meta",
+          "color": "#1D3557"
         },
         {
-          "file": "openai.png",
-          "type": "logo",
-          "source": "wikimedia",
-          "license": "public_domain",
-          "scene": "defendants",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "approved"
+          "id": "openai-white",
+          "label": "OpenAI",
+          "color": "#1B1410"
         },
         {
-          "file": "spacex.png",
-          "type": "logo",
-          "source": "wikimedia",
-          "license": "public_domain",
-          "scene": "defendants",
-          "transparent": true,
-          "resolution": "512x512",
-          "status": "approved"
+          "id": "spacex-white",
+          "label": "SpaceX",
+          "color": "#A4161A"
         }
       ],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.85,
-        "h_pct": 0.6
-      },
-      "motion": [
-        {
-          "property": "opacity",
-          "from": 0,
-          "to": 1,
-          "duration": 0.3
-        }
-      ],
-      "sfx": [
-        "sfx/whoosh.mp3"
+      "sub": "Defendants named",
+      "transition": "wipe",
+      "evidence": [
+        "f1",
+        "f2"
       ]
     },
     {
-      "t": 5.5,
-      "dur": 3,
-      "narration": "They want an emergency injunction to stop next-gen models. Until companies can prove humans stay in control.",
-      "kicker": "DEMAND",
-      "visual": "warning_panel",
-      "headline": "PROVE HUMAN CONTROL",
-      "sub": "Emergency Injunction Requested",
-      "accent": "#D93838",
-      "bg": "#0A0A0A",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
+      "scene": "document",
+      "narration": "They want an emergency injunction, until companies can prove humans stay in control.",
+      "kicker": "THE REQUEST",
+      "headline": "What the plaintiffs want",
+      "doc": {
+        "title": "Request for emergency injunction",
+        "sub": "Plaintiffs: Irreplaceable Education Fund · Public Citizen · Heat Initiative · Alliance for Secure AI",
+        "clauses": [
+          "Immediate injunction on next-generation models.",
+          "Companies must prove the technology is under human control."
+        ],
+        "stamp": "SOUGHT"
       },
-      "motion": [
-        {
-          "property": "y",
-          "from": 50,
-          "to": 0,
-          "duration": 0.4
-        }
-      ],
-      "sfx": [
-        "sfx/hit.ogg"
+      "transition": "slide",
+      "evidence": [
+        "f1",
+        "f4",
+        "f5"
       ]
     },
     {
-      "t": 8.5,
-      "dur": 3.5,
-      "narration": "The complaint cites cyberattacks, rogue warnings, and catastrophic risk admissions.",
-      "kicker": "EVIDENCE",
-      "visual": "evidence_board",
-      "headline": "CATASTROPHIC RISK",
-      "sub": "Cyberattacks & Rogue AI Admissions",
-      "accent": "#2C2C2C",
-      "bg": "#FAFAF8",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.9,
-        "h_pct": 0.7
-      },
-      "motion": [
+      "scene": "manifest",
+      "narration": "The complaint cites AI-driven cyberattacks and the companies' own admissions that AI could go rogue.",
+      "kicker": "CITED IN THE COMPLAINT",
+      "headline": "Evidence on the board",
+      "sub": "evidence_board.txt",
+      "items": [
         {
-          "property": "x",
-          "from": -100,
-          "to": 0,
-          "duration": 0.5
+          "label": "AI-driven",
+          "value": "CYBERATTACKS",
+          "color": "#A4161A"
+        },
+        {
+          "label": "Companies' own admissions",
+          "value": "COULD GO ROGUE",
+          "color": "#A4161A"
         }
       ],
-      "sfx": [
-        "sfx/sweep.ogg"
+      "callouts": [
+        "FROM THE COMPLAINT",
+        "PER AL JAZEERA"
+      ],
+      "transition": "push",
+      "evidence": [
+        "f6"
       ]
     },
     {
-      "t": 12,
-      "dur": 3,
-      "narration": "The wild part? Some warnings came from the builders themselves.",
-      "kicker": "INSIDER WARNINGS",
-      "visual": "quote_card",
-      "headline": "BUILDER WARNINGS",
-      "sub": "Warnings Came From The Creators",
-      "accent": "#D93838",
-      "bg": "#E5E5E0",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.85,
-        "h_pct": 0.5
-      },
-      "motion": [
-        {
-          "property": "opacity",
-          "from": 0,
-          "to": 1,
-          "duration": 0.3
-        }
+      "scene": "type_slam",
+      "narration": "Congress has yet to pass legislation governing AI.",
+      "kicker": "THE GAP",
+      "headline": "Congress has yet to pass AI legislation",
+      "hl": [
+        "YET"
       ],
-      "sfx": [
-        "sfx/click-soft.ogg"
+      "ghost": "NO LAW",
+      "sub": "Per Al Jazeera, Nov 12, 2026",
+      "transition": "zoom",
+      "evidence": [
+        "f8"
       ]
     },
     {
-      "t": 15,
-      "dur": 2,
-      "narration": "So now the question isn’t just can we build it. It’s should a court let it keep going?",
-      "kicker": "AI TESTED",
-      "visual": "final_question",
-      "headline": "SHOULD A COURT STOP AI?",
-      "sub": "Follow AI Tested for the AI court fight.",
-      "accent": "#0A0A0A",
-      "bg": "#FAFAF8",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.85,
-        "h_pct": 0.6
-      },
-      "motion": [
-        {
-          "property": "scale",
-          "from": 0.9,
-          "to": 1,
-          "duration": 0.3
-        }
+      "scene": "question",
+      "narration": "So the question isn't just can we build it. It's should a court let it keep going?",
+      "kicker": "THE QUESTION",
+      "headline": "Should a court let it keep going?",
+      "hl": [
+        "COURT"
       ],
+      "sub": "The case is in San Francisco Superior Court.",
       "cta": "Follow AI Tested for the AI court fight.",
-      "sfx": [
-        "sfx/bell.ogg"
-      ]
+      "transition": "flash"
     }
   ],
   "audio": {
     "music": {
-      "src": "",
-      "volume": 0
+      "src": "music/m23_dark.mp3",
+      "volume": 0.2,
+      "fadeIn": 0.8,
+      "fadeOut": 1.8,
+      "duck": 0.4
+    },
+    "ambience": {
+      "src": "ambience/amb_courtroom.mp3",
+      "volume": 0.14
     },
     "sfx": [
       {
-        "src": "sfx/impact.ogg",
-        "t": 0,
-        "volume": 0.9,
-        "dur": 0.5,
-        "purpose": "Gavel strike"
+        "beat": 0,
+        "offset": 0,
+        "src": "ambience/sfx_gavel.mp3",
+        "volume": 1,
+        "dur": 2.2,
+        "purpose": "gavel opens the case"
       },
       {
-        "src": "sfx/whoosh.mp3",
-        "t": 2.5,
-        "volume": 0.6,
-        "dur": 0.4,
-        "purpose": "Defendants"
-      },
-      {
-        "src": "sfx/hit.ogg",
-        "t": 5.5,
+        "beat": 0,
+        "offset": 0.5,
+        "src": "sfx2/impact_low.mp3",
         "volume": 0.8,
-        "dur": 0.4,
-        "purpose": "Injunction"
+        "dur": 1.8,
+        "purpose": "weight under the gavel"
       },
       {
-        "src": "sfx/sweep.ogg",
-        "t": 8.5,
-        "volume": 0.7,
-        "dur": 0.5,
-        "purpose": "Evidence"
-      },
-      {
-        "src": "sfx/click-soft.ogg",
-        "t": 12,
+        "beat": 0,
+        "offset": 2.2,
+        "src": "sfx/click.ogg",
         "volume": 0.5,
-        "dur": 0.2,
-        "purpose": "Warnings"
+        "dur": 0.5,
+        "purpose": "date chip lands"
       },
       {
-        "src": "sfx/bell.ogg",
-        "t": 15,
+        "beat": 1,
+        "offset": 0,
+        "src": "sfx/whoosh.mp3",
+        "volume": 0.6,
+        "dur": 1,
+        "purpose": "wipe to defendants"
+      },
+      {
+        "beat": 1,
+        "offset": 0.9,
+        "src": "sfx/hit.ogg",
         "volume": 0.8,
-        "dur": 0.6,
-        "purpose": "Cliffhanger"
+        "dur": 1,
+        "purpose": "defendant 1"
+      },
+      {
+        "beat": 1,
+        "offset": 1.5,
+        "src": "sfx/hit.ogg",
+        "volume": 0.8,
+        "dur": 1,
+        "purpose": "defendant 2"
+      },
+      {
+        "beat": 1,
+        "offset": 2.1,
+        "src": "sfx/hit.ogg",
+        "volume": 0.8,
+        "dur": 1,
+        "purpose": "defendant 3"
+      },
+      {
+        "beat": 1,
+        "offset": 2.7,
+        "src": "sfx/hit.ogg",
+        "volume": 0.8,
+        "dur": 1,
+        "purpose": "defendant 4"
+      },
+      {
+        "beat": 1,
+        "offset": 3.3,
+        "src": "sfx/thud.ogg",
+        "volume": 0.9,
+        "dur": 1.2,
+        "purpose": "defendant 5"
+      },
+      {
+        "beat": 2,
+        "offset": 0,
+        "src": "sfx2/paper.mp3",
+        "volume": 0.75,
+        "dur": 1.4,
+        "purpose": "filing slides up"
+      },
+      {
+        "beat": 2,
+        "offset": 1.4,
+        "src": "sfx2/keyboard.mp3",
+        "volume": 0.45,
+        "dur": 1.2,
+        "purpose": "clause typed"
+      },
+      {
+        "beat": 2,
+        "offset": 3.8,
+        "src": "sfx/thud.ogg",
+        "volume": 1,
+        "dur": 1.4,
+        "purpose": "SOUGHT stamp"
+      },
+      {
+        "beat": 3,
+        "offset": 0,
+        "src": "sfx/sweep.ogg",
+        "volume": 0.6,
+        "dur": 1,
+        "purpose": "push to evidence"
+      },
+      {
+        "beat": 3,
+        "offset": 1,
+        "src": "sfx/error.ogg",
+        "volume": 0.5,
+        "dur": 0.8,
+        "purpose": "first risk"
+      },
+      {
+        "beat": 3,
+        "offset": 2.6,
+        "src": "sfx/glitch.ogg",
+        "volume": 0.5,
+        "dur": 1,
+        "purpose": "second risk"
+      },
+      {
+        "beat": 3,
+        "offset": 4,
+        "src": "sfx/click-soft.ogg",
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": "chip"
+      },
+      {
+        "beat": 4,
+        "offset": 0,
+        "src": "sfx2/impact_low.mp3",
+        "volume": 0.85,
+        "dur": 1.8,
+        "purpose": "gap slam"
+      },
+      {
+        "beat": 4,
+        "offset": 1.3,
+        "src": "sfx2/record_scratch.mp3",
+        "volume": 0.45,
+        "dur": 1,
+        "purpose": "no law yet"
+      },
+      {
+        "beat": 5,
+        "offset": 0,
+        "src": "sfx2/riser.mp3",
+        "volume": 0.7,
+        "dur": 3.2,
+        "purpose": "tension into question"
+      },
+      {
+        "beat": 5,
+        "offset": 3,
+        "src": "sfx/bell.ogg",
+        "volume": 0.5,
+        "dur": 2,
+        "purpose": "closing sting"
       }
     ]
   },
   "asset_manifest": [
     {
-      "file": "anthropic.png",
+      "file": "logos/anthropic-white.svg",
       "type": "logo",
-      "source": "wikimedia",
-      "license": "public_domain",
-      "scene": "defendants",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "approved"
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     },
     {
-      "file": "google.png",
+      "file": "logos/google-white.svg",
       "type": "logo",
-      "source": "wikimedia",
-      "license": "public_domain",
-      "scene": "defendants",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "approved"
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     },
     {
-      "file": "meta.png",
+      "file": "logos/meta-white.svg",
       "type": "logo",
-      "source": "wikimedia",
-      "license": "public_domain",
-      "scene": "defendants",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "approved"
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     },
     {
-      "file": "openai.png",
+      "file": "logos/openai-white.svg",
       "type": "logo",
-      "source": "wikimedia",
-      "license": "public_domain",
-      "scene": "defendants",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "approved"
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     },
     {
-      "file": "spacex.png",
+      "file": "logos/spacex-white.svg",
       "type": "logo",
-      "source": "wikimedia",
-      "license": "public_domain",
-      "scene": "defendants",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "approved"
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     }
   ]
 }

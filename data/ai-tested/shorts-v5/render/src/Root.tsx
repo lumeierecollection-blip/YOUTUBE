@@ -7,17 +7,18 @@ import s23 from "../../plans/23-pause-frontier-ai-case.plan.json";
 import s24 from "../../plans/24-one-file-ai-game.plan.json";
 import s25 from "../../plans/25-ai-builds-the-app.plan.json";
 
-const stories = [s21,s22,s23,s24,s25] as any[];
+const stories = [s21, s22, s23, s24, s25] as any[];
+const planEnd = (s: any) => (s.beats || []).reduce((m: number, b: any) => Math.max(m, (b.t || 0) + (b.dur || 0)), 30);
 const calc: CalculateMetadataFunction<AIShortProps> = async ({ props }) => {
-  const dur = Math.max(20, (props.audioDurationSec || props.plan.duration_target_sec || 30) + 0.6);
+  const dur = (props.audioDurationSec || planEnd(props.plan)) + 0.5;
   return { durationInFrames: Math.ceil(dur * 30), props };
 };
 export const RemotionRoot: React.FC = () => (<>
   {stories.map((s) => (
     <Composition key={s.id} id={`Short-${s.id}`} component={AIShort}
-      durationInFrames={Math.ceil(((s.beats?.reduce((a:any,b:any)=>a+(b.dur||0),0))||30)+1.2)*30}
+      durationInFrames={Math.ceil((planEnd(s) + 0.5) * 30)}
       fps={30} width={1080} height={1920}
-      defaultProps={{ plan:s, audioSrc:`audio/${s.id}.mp3`, audioDurationSec:(s.beats?.reduce((a:any,b:any)=>a+(b.dur||0),0)||30) } as AIShortProps}
+      defaultProps={{ plan: s, audioSrc: `audio/${s.id}.mp3`, audioDurationSec: planEnd(s) } as AIShortProps}
       calculateMetadata={calc} />
   ))}
 </>);

@@ -1,0 +1,88 @@
+{
+ "id": "25",
+ "sources": [
+  {
+   "url": "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
+   "fetched": true,
+   "note": "Fetched via WebFetch (summarised extraction). Dated Nov 11, 2026."
+  },
+  {
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/",
+   "fetched": true,
+   "note": "Fetched via WebFetch (summarised extraction)."
+  }
+ ],
+ "facts": [
+  {
+   "id": "f1",
+   "claim": "Tabletop is a Google Labs experiment where groups share an online space and ask an AI agent to build the planning tools they need.",
+   "verbatim_support": "groups share an online space and ask an artificial intelligence agent to build the planning tools they need",
+   "url": "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/"
+  },
+  {
+   "id": "f2",
+   "claim": "It can create interactive trip itineraries, dinner polls, expense splitters and tournament brackets.",
+   "verbatim_support": "custom interactive trip itineraries, dinner polls, expense splitters, and tournament brackets",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  },
+  {
+   "id": "f3",
+   "claim": "Users can use it at the same time, like in a Google Doc.",
+   "verbatim_support": "use it at the same time, like in a Google Doc",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  },
+  {
+   "id": "f4",
+   "claim": "Tabletop is rolling out in the U.S. (18+) via waitlist.",
+   "verbatim_support": "Tabletop is rolling out in the U.S. (18+) via waitlist",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  },
+  {
+   "id": "f5",
+   "claim": "Users add links, files and ideas, then prompt @tabletop or pick a starter template.",
+   "verbatim_support": "links, files, and ideas, then prompt @tabletop — or pick a starter template",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/"
+  },
+  {
+   "id": "f6",
+   "claim": "Google said it would let more people in each week; no timeline or pricing given.",
+   "verbatim_support": "let more people in each week",
+   "url": "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/"
+  }
+ ],
+ "numbers": [
+  {
+   "label": "Minimum age",
+   "value": 18,
+   "unit": "years (US only)",
+   "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/",
+   "verbatim_support": "rolling out in the U.S. (18+) via waitlist",
+   "id": "n1"
+  }
+ ],
+ "timeline": [
+  {
+   "date": "2026-11-11",
+   "event": "Google begins testing Tabletop (SiliconANGLE article date).",
+   "url": "https://siliconangle.com/2026/11/11/google-tests-tabletop-letting-groups-build-planning-tools-with-an-ai-agent/",
+   "verbatim_support": "Google began testing Tabletop on November 11, 2026, according to the article's publication date",
+   "id": "t1"
+  }
+ ],
+ "unsupported": [
+  "'AI isn't just answering anymore. It's making software on demand.': opinion/framing, unsourced.",
+  "'Turns a prompt into a working tool': sources say the agent builds planning tools; 'working software' is a framing."
+ ],
+ "wording_fixes": [
+  {
+   "script_phrase": "It's making software on demand.",
+   "problem": "Opinion; sources call them planning tools.",
+   "safer_phrase": "It's building planning tools on demand."
+  },
+  {
+   "script_phrase": "It's still a limited US waitlist test.",
+   "problem": "Supported; add age limit if desired.",
+   "safer_phrase": "It's still a US-only waitlist test for adults 18 and over."
+  }
+ ]
+}

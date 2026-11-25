@@ -2,337 +2,473 @@
   "id": "24",
   "slug": "one-file-ai-game",
   "title": "An AI Made a 3D Shooter in One File",
-  "concept": "Build-log/code-lab: terminal shock, file-size reveal, no-assets teardown, code-generates-everything diagram, cost/payoff.",
-  "sources": [
-    "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
-    "https://saltline.games"
-  ],
-  "cta": "Follow AI Tested for AI builds that bend reality.",
-  "visual_identity": {
-    "style": "Code-lab dark mode terminal"
+  "schema": 6,
+  "concept": "Build log in a code-lab look: terminal-green on black, the real Saltline screenshots with HUD callouts, a one-prompt/zero-feedback readout, 8-hour and 1.4 MB counters, a no-assets teardown and the cost.",
+  "creative_direction": {
+    "why_this_look": "The story is about code that makes everything, so the look is a terminal: mono headlines, scanlines, green-on-black, readout panels. The only real imagery is the game's own published screenshots, cropped to the HUD details.",
+    "motion": "Mono headlines type in, readout rows land like log lines, crop callouts punch into the real screenshot, counters tick up.",
+    "sound": "Space-synth bed, rain ambience matching the game's rainy harbor, keyboard and click for the build log, shutter on screenshot crops, hits on the numbers."
   },
-  "duration_target_sec": 21.1,
+  "theme": {
+    "mode": "dark",
+    "bg": "#04080A",
+    "bg2": "#0A1418",
+    "ink": "#E8FFF4",
+    "muted": "#7FA394",
+    "accent": "#00FF9C",
+    "accent2": "#00B8FF",
+    "panel": "#0A1317",
+    "panelInk": "#E8FFF4",
+    "line": "#17332C",
+    "texture": "scan",
+    "display": "mono",
+    "body": "inter"
+  },
   "beats": [
     {
-      "t": 0,
-      "dur": 2.5,
+      "scene": "type_slam",
       "narration": "An AI made a playable 3D shooter in one file.",
-      "kicker": "BREAKING BUILD",
-      "visual": "hero_cutout",
-      "headline": "PLAYABLE 3D SHOOTER",
-      "sub": "Single file architecture",
-      "accent": "#00F0FF",
-      "bg": "#090D16",
-      "assets": [
+      "kicker": "BUILD LOG // SALTLINE",
+      "headline": "3D shooter. One file.",
+      "hl": [
+        "ONE",
+        "FILE."
+      ],
+      "ghost": "1 FILE",
+      "media": [
         {
-          "file": "saltline_gameplay.webp",
-          "type": "photo",
-          "source": "saltline.games",
-          "license": "fair_use",
-          "scene": "beat_0",
-          "transparent": false,
-          "resolution": "1080x1920",
-          "status": "ready"
+          "src": "photos/real/hf-saltline-blog.webp",
+          "role": "bg",
+          "credit": "Image: Hugging Face blog (softroyals)"
         }
       ],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        "fade_in"
+      "callouts": [
+        "BROWSER FPS"
       ],
-      "photo": "saltline_gameplay.webp",
-      "photo_credit": "Saltline",
-      "sfx": [
-        "sfx/glitch.ogg"
+      "transition": "cut",
+      "evidence": [
+        "f1"
       ]
     },
     {
-      "t": 2.5,
-      "dur": 2.5,
-      "narration": "No game studio. No artists. No sound team.",
-      "kicker": "ZERO INFRASTRUCTURE",
-      "visual": "warning_panel",
-      "headline": "NO STUDIO. NO TEAM.",
-      "sub": "Zero artists. Zero sound team. Zero game studio.",
-      "accent": "#EF4444",
-      "bg": "#090D16",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        "slide_up"
-      ],
-      "sfx": [
-        "sfx/click-soft.ogg",
-        "sfx/confirm.ogg"
-      ]
-    },
-    {
-      "t": 5,
-      "dur": 3,
-      "narration": "An Anthropic engineer ran Claude Fable 5.2 with no human feedback during the build.",
-      "kicker": "AUTONOMOUS RUN",
-      "visual": "product_card",
-      "headline": "CLAUDE FABLE 5.2",
-      "sub": "Zero human feedback",
-      "accent": "#00F0FF",
-      "bg": "#090D16",
-      "assets": [
-        "anthropic-white.svg"
-      ],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.7,
-        "h_pct": 0.4
-      },
-      "motion": [
-        "fade_in"
-      ],
-      "photo": "",
-      "photo_credit": "Anthropic",
-      "sfx": [
-        "sfx/reveal.ogg"
-      ]
-    },
-    {
-      "t": 8,
-      "dur": 3,
-      "narration": "Eight hours later: Saltline, a browser FPS in a rainy harbor.",
-      "kicker": "TIMELINE",
-      "visual": "timeline",
-      "headline": "8 HOURS",
-      "sub": "Saltline browser FPS",
-      "accent": "#38BDF8",
-      "bg": "#090D16",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        "slide_up"
-      ],
-      "timeline": [
+      "scene": "manifest",
+      "narration": "One prompt. No human feedback during the build.",
+      "kicker": "BUILD INPUT",
+      "headline": "How it was built",
+      "sub": "build.log",
+      "items": [
         {
-          "label": "Start",
-          "value": "0h"
+          "label": "prompts",
+          "value": "1"
         },
         {
-          "label": "Build",
-          "value": "8h"
-        },
-        {
-          "label": "Result",
-          "value": "FPS"
+          "label": "human feedback",
+          "value": "0",
+          "color": "#00B8FF"
         }
       ],
-      "sfx": [
-        "sfx/tick-tight.ogg"
+      "transition": "slide",
+      "evidence": [
+        "f2"
       ]
     },
     {
-      "t": 11,
-      "dur": 2.5,
-      "narration": "The whole game is 1.4 megabytes.",
+      "scene": "stat_hero",
+      "narration": "An Anthropic engineer ran Claude Fable 5.2 for about eight hours.",
+      "kicker": "GENERATION TIME",
+      "headline": "About eight hours",
+      "stat": {
+        "value": 8,
+        "suffix": " hrs",
+        "label": "of generation",
+        "ghost": "8H"
+      },
+      "items": [
+        {
+          "label": "Model",
+          "value": "Claude Fable 5.2"
+        },
+        {
+          "label": "Run by",
+          "value": "Anthropic engineer",
+          "color": "#00B8FF"
+        }
+      ],
+      "transition": "wipe",
+      "evidence": [
+        "f2",
+        "f3",
+        "n2"
+      ]
+    },
+    {
+      "scene": "screenshot",
+      "narration": "The result: Saltline, a free browser shooter set in a rainy harbor.",
+      "kicker": "THE RESULT // SALTLINE",
+      "headline": "Free. In your browser.",
+      "media": [
+        {
+          "src": "photos/real/hf-saltline-blog.webp",
+          "role": "shot",
+          "credit": "Image: Hugging Face blog (softroyals)"
+        }
+      ],
+      "crops": [
+        {
+          "x": 0,
+          "y": 0,
+          "w": 0.26,
+          "h": 0.17,
+          "label": "OBJECTIVE HUD"
+        },
+        {
+          "x": 0.83,
+          "y": 0.8,
+          "w": 0.17,
+          "h": 0.2,
+          "label": "AMMO HUD"
+        }
+      ],
+      "transition": "push",
+      "evidence": [
+        "f1",
+        "f6"
+      ]
+    },
+    {
+      "scene": "stat_hero",
+      "narration": "The whole game is one 1.4 megabyte file.",
       "kicker": "FILE SIZE",
-      "visual": "stat_counter",
-      "headline": "1.4 MB",
-      "sub": "Complete playable game",
-      "accent": "#00F0FF",
-      "bg": "#090D16",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
+      "headline": "The whole game",
+      "stat": {
+        "value": 1.4,
+        "suffix": " MB",
+        "decimals": 1,
+        "label": "one HTML file",
+        "ghost": "1.4MB"
       },
-      "motion": [
-        "scale_in"
+      "items": [
+        {
+          "label": "File type",
+          "value": "HTML"
+        },
+        {
+          "label": "Files",
+          "value": "1",
+          "color": "#00B8FF"
+        }
       ],
-      "sfx": [
-        "sfx/impact.ogg"
+      "transition": "zoom",
+      "evidence": [
+        "f4",
+        "n1"
       ]
     },
     {
-      "t": 13.5,
-      "dur": 3,
-      "narration": "No images. No audio files. No 3D models. Code generates the geometry, textures, and sound.",
-      "kicker": "PROCEDURAL",
-      "visual": "split_compare",
-      "headline": "CODE GENERATES EVERYTHING",
-      "sub": "Geometry • Textures • Sound",
-      "accent": "#EF4444",
-      "bg": "#090D16",
-      "assets": [
-        "anthropic-white.svg",
-        "openai-white.svg"
+      "scene": "manifest",
+      "narration": "No separate images, audio files, or 3D models. Code generates the visuals and the sound.",
+      "kicker": "ASSET FOLDER",
+      "headline": "Nothing packaged",
+      "sub": "assets/",
+      "media": [
+        {
+          "src": "photos/real/saltline-terminal.webp",
+          "role": "bg",
+          "credit": "Image: saltline.games"
+        }
       ],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        "fade_in"
+      "items": [
+        {
+          "label": "separate images",
+          "value": "0"
+        },
+        {
+          "label": "audio files",
+          "value": "0"
+        },
+        {
+          "label": "3D models",
+          "value": "0"
+        },
+        {
+          "label": "visuals + sound",
+          "value": "CODE",
+          "color": "#00B8FF"
+        }
       ],
-      "sfx": [
-        "sfx/switch.ogg"
+      "transition": "iris",
+      "evidence": [
+        "f5"
       ]
     },
     {
-      "t": 16.5,
-      "dur": 2.5,
-      "narration": "Reported cost: around five hundred fifty dollars in API compute.",
-      "kicker": "COMPUTE COST",
-      "visual": "stat_counter",
-      "headline": "$550",
-      "sub": "Total API compute cost",
-      "accent": "#00F0FF",
-      "bg": "#090D16",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
+      "scene": "stat_hero",
+      "narration": "Estimated API cost: about five hundred fifty dollars.",
+      "kicker": "THE BILL",
+      "headline": "Estimated API cost",
+      "stat": {
+        "value": 550,
+        "prefix": "$",
+        "label": "about",
+        "ghost": "$$$"
       },
-      "motion": [
-        "slide_up"
+      "items": [
+        {
+          "label": "Output tokens",
+          "value": "2.7M"
+        },
+        {
+          "label": "Input tokens",
+          "value": "445M",
+          "color": "#00B8FF"
+        }
       ],
-      "sfx": [
-        "sfx/bell.ogg"
-      ]
-    },
-    {
-      "t": 19,
-      "dur": 2.1,
-      "narration": "Not AAA. But it’s a scary preview of what one AI can build.",
-      "kicker": "THE FUTURE",
-      "visual": "final_question",
-      "headline": "THE SHIFT",
-      "sub": "What one AI can build",
-      "accent": "#38BDF8",
-      "bg": "#090D16",
-      "assets": [],
-      "focal": {
-        "x": 0.5,
-        "y": 0.5,
-        "w": 0.8,
-        "h_pct": 0.5
-      },
-      "motion": [
-        "fade_in"
-      ],
-      "cta": "Follow AI Tested for AI builds that bend reality.",
-      "sfx": [
-        "sfx/riser.mp3"
+      "transition": "flash",
+      "evidence": [
+        "n3",
+        "n4",
+        "n5",
+        "f7"
       ]
     }
   ],
   "audio": {
     "music": {
-      "src": "",
-      "volume": 0.2
+      "src": "music/m24_space.mp3",
+      "volume": 0.17,
+      "fadeIn": 0.8,
+      "fadeOut": 1.8,
+      "duck": 0.4
+    },
+    "ambience": {
+      "src": "ambience/amb_rain.mp3",
+      "volume": 0.16
     },
     "sfx": [
       {
-        "src": "sfx/glitch.ogg",
-        "t": 0,
-        "volume": 0.8,
-        "dur": 0.5,
-        "purpose": "Hook impact"
+        "beat": 0,
+        "offset": 0,
+        "src": "sfx2/impact_low.mp3",
+        "volume": 0.85,
+        "dur": 1.6,
+        "purpose": "title slam"
       },
       {
-        "src": "sfx/click-soft.ogg",
-        "t": 2.5,
+        "beat": 0,
+        "offset": 0.4,
+        "src": "sfx2/keyboard.mp3",
         "volume": 0.5,
-        "dur": 0.3,
-        "purpose": "Transition click"
+        "dur": 1.4,
+        "purpose": "terminal typing"
       },
       {
-        "src": "sfx/confirm.ogg",
-        "t": 2.8,
-        "volume": 0.6,
-        "dur": 0.4,
-        "purpose": "Studio absence check"
-      },
-      {
-        "src": "sfx/reveal.ogg",
-        "t": 5,
-        "volume": 0.7,
+        "beat": 0,
+        "offset": 2,
+        "src": "sfx/click.ogg",
+        "volume": 0.5,
         "dur": 0.5,
-        "purpose": "Claude Fable reveal"
+        "purpose": "chip lands"
       },
       {
+        "beat": 1,
+        "offset": 0,
+        "src": "sfx/sweep.ogg",
+        "volume": 0.55,
+        "dur": 1,
+        "purpose": "slide to log"
+      },
+      {
+        "beat": 1,
+        "offset": 0.9,
         "src": "sfx/tick-tight.ogg",
-        "t": 8,
-        "volume": 0.5,
-        "dur": 0.3,
-        "purpose": "Time lapse tick"
-      },
-      {
-        "src": "sfx/impact.ogg",
-        "t": 11,
-        "volume": 0.9,
-        "dur": 0.6,
-        "purpose": "1.4MB file size impact"
-      },
-      {
-        "src": "sfx/switch.ogg",
-        "t": 13.5,
         "volume": 0.6,
-        "dur": 0.3,
-        "purpose": "Code generation toggle"
-      },
-      {
-        "src": "sfx/bell.ogg",
-        "t": 16.5,
-        "volume": 0.7,
         "dur": 0.5,
-        "purpose": "Cost reveal"
+        "purpose": "prompt line"
       },
       {
-        "src": "sfx/riser.mp3",
-        "t": 19,
+        "beat": 1,
+        "offset": 1.7,
+        "src": "sfx/click.ogg",
+        "volume": 0.6,
+        "dur": 0.5,
+        "purpose": "feedback line"
+      },
+      {
+        "beat": 1,
+        "offset": 2.2,
+        "src": "sfx/confirm.ogg",
+        "volume": 0.45,
+        "dur": 0.8,
+        "purpose": "log complete"
+      },
+      {
+        "beat": 2,
+        "offset": 0,
+        "src": "sfx/whoosh.mp3",
+        "volume": 0.55,
+        "dur": 1,
+        "purpose": "wipe to counter"
+      },
+      {
+        "beat": 2,
+        "offset": 0.4,
+        "src": "sfx/tick-tight.ogg",
+        "volume": 0.55,
+        "dur": 1.6,
+        "purpose": "hours counting"
+      },
+      {
+        "beat": 2,
+        "offset": 2,
+        "src": "sfx/hit.ogg",
+        "volume": 0.8,
+        "dur": 1,
+        "purpose": "eight lands"
+      },
+      {
+        "beat": 2,
+        "offset": 3,
+        "src": "sfx/click-soft.ogg",
         "volume": 0.5,
-        "dur": 2.1,
-        "purpose": "Outro riser"
+        "dur": 0.5,
+        "purpose": "model row"
+      },
+      {
+        "beat": 3,
+        "offset": 0,
+        "src": "sfx2/whoosh_deep.mp3",
+        "volume": 0.6,
+        "dur": 1.4,
+        "purpose": "push to screenshot"
+      },
+      {
+        "beat": 3,
+        "offset": 1,
+        "src": "sfx2/shutter.mp3",
+        "volume": 0.7,
+        "dur": 0.8,
+        "purpose": "screenshot crop 1"
+      },
+      {
+        "beat": 3,
+        "offset": 2.4,
+        "src": "sfx2/shutter.mp3",
+        "volume": 0.7,
+        "dur": 0.8,
+        "purpose": "screenshot crop 2"
+      },
+      {
+        "beat": 3,
+        "offset": 3.6,
+        "src": "sfx2/mouse_click.mp3",
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": "callout settles"
+      },
+      {
+        "beat": 4,
+        "offset": 0,
+        "src": "sfx2/riser.mp3",
+        "volume": 0.55,
+        "dur": 1.5,
+        "purpose": "build to size"
+      },
+      {
+        "beat": 4,
+        "offset": 1,
+        "src": "sfx/impact.ogg",
+        "volume": 0.85,
+        "dur": 1.4,
+        "purpose": "1.4 MB lands"
+      },
+      {
+        "beat": 5,
+        "offset": 0,
+        "src": "sfx/glitch.ogg",
+        "volume": 0.5,
+        "dur": 1,
+        "purpose": "iris into assets"
+      },
+      {
+        "beat": 5,
+        "offset": 0.9,
+        "src": "sfx/error.ogg",
+        "volume": 0.4,
+        "dur": 0.7,
+        "purpose": "zero images"
+      },
+      {
+        "beat": 5,
+        "offset": 1.8,
+        "src": "sfx/error.ogg",
+        "volume": 0.4,
+        "dur": 0.7,
+        "purpose": "zero audio"
+      },
+      {
+        "beat": 5,
+        "offset": 2.7,
+        "src": "sfx/error.ogg",
+        "volume": 0.4,
+        "dur": 0.7,
+        "purpose": "zero models"
+      },
+      {
+        "beat": 5,
+        "offset": 3.8,
+        "src": "sfx/confirm.ogg",
+        "volume": 0.6,
+        "dur": 0.8,
+        "purpose": "code generates"
+      },
+      {
+        "beat": 6,
+        "offset": 0,
+        "src": "sfx2/record_scratch.mp3",
+        "volume": 0.45,
+        "dur": 1,
+        "purpose": "cost reveal"
+      },
+      {
+        "beat": 6,
+        "offset": 0.6,
+        "src": "sfx/bell.ogg",
+        "volume": 0.6,
+        "dur": 1.6,
+        "purpose": "price chime"
+      },
+      {
+        "beat": 6,
+        "offset": 2,
+        "src": "sfx/thud.ogg",
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": "cost lands"
       }
     ]
   },
   "asset_manifest": [
     {
-      "file": "saltline_gameplay.webp",
-      "type": "photo",
-      "source": "saltline.games",
-      "license": "fair_use",
-      "scene": "beat_0",
+      "file": "photos/real/hf-saltline-blog.webp",
+      "type": "press image",
+      "source": "https://huggingface.co/blog/softroyals/how-saltline-ai-game-was-built-1-4mb-html",
+      "license": "Publisher image shown as editorial commentary with on-screen credit; not openly licensed",
+      "scene": "beats 0,3",
       "transparent": false,
-      "resolution": "1080x1920",
-      "status": "ready"
+      "resolution": "1200x750",
+      "status": "present",
+      "note": "Real screenshot of the game from the blog post"
     },
     {
-      "file": "anthropic-white.svg",
-      "type": "logo",
-      "source": "anthropic",
-      "license": "fair_use",
-      "scene": "beat_2",
-      "transparent": true,
-      "resolution": "512x512",
-      "status": "ready"
+      "file": "photos/real/saltline-terminal.webp",
+      "type": "press image",
+      "source": "https://saltline.games",
+      "license": "Publisher image shown as editorial commentary with on-screen credit; not openly licensed",
+      "scene": "beat 5 background",
+      "transparent": false,
+      "resolution": "1200x750",
+      "status": "present",
+      "note": "Real image from the game site"
     }
   ]
 }

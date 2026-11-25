@@ -7,11 +7,12 @@ const audioDir = path.join(root, "audio");
 fs.mkdirSync(audioDir, { recursive: true });
 
 function tts(story, out) {
+  const vtt = out.replace(/\.mp3$/, ".vtt");
   const voice = story.voice || "en-US-AndrewNeural";
   const text = story.script;
   const attempts = [
-    () => execFileSync("edge-tts", ["--voice", voice, "--text", text, "--write-media", out], { stdio: "inherit", shell: process.platform === "win32" }),
-    () => execFileSync("python", ["-m", "edge_tts", "--voice", voice, "--text", text, "--write-media", out], { stdio: "inherit", shell: process.platform === "win32" }),
+    () => execFileSync("edge-tts", ["--voice", voice, "--text", text, "--write-media", out, "--write-subtitles", vtt], { stdio: "inherit", shell: process.platform === "win32" }),
+    () => execFileSync("python", ["-m", "edge_tts", "--voice", voice, "--text", text, "--write-media", out, "--write-subtitles", vtt], { stdio: "inherit", shell: process.platform === "win32" }),
   ];
   let last;
   for (let i = 0; i < 3; i++) {
@@ -27,7 +28,7 @@ function tts(story, out) {
 for (const f of fs.readdirSync(scriptsDir).filter(f => f.endsWith(".json")).sort()) {
   const story = JSON.parse(fs.readFileSync(path.join(scriptsDir, f), "utf8").replace(/^\uFEFF/, ""));
   const out = path.join(audioDir, `${story.id}.mp3`);
-  if (fs.existsSync(out) && fs.statSync(out).size > 1000) { console.log("exists", out); continue; }
+  if (fs.existsSync(out) && fs.statSync(out).size > 1000 && fs.existsSync(out.replace(/\.mp3$/, ".vtt"))) { console.log("exists", out); continue; }
   console.log("TTS", story.id);
   tts(story, out);
 }
