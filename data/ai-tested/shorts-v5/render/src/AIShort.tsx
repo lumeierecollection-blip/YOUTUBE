@@ -231,6 +231,7 @@ const Split: React.FC<{ beat: Beat; dark: boolean }> = ({ beat, dark }) => (
         <div style={{ background: dark ? "rgba(255,255,255,0.06)" : "#fff", border: `2px solid ${dark ? "rgba(255,255,255,0.12)" : "#E2E2DC"}`, padding: "30px 22px", minHeight: 420, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 26 }}>
           {side.a ? (() => { const src = logoSrc(side.a); const isWhite = typeof src === "string" && src.includes("-white.svg"); return <Img src={src} style={{ width: 112, height: 112, objectFit: "contain", filter: isWhite && !dark ? "brightness(0)" : undefined }} />; })() : null}
           <div style={{ fontFamily: sg, fontWeight: 800, fontSize: 46, lineHeight: 0.95, color: i === 0 ? (beat.accent || "#111") : (dark ? "#FAFAF8" : "#111"), textAlign: "center", textTransform: "uppercase" }}>{side.t}</div>
+          {side.sub ? <div style={{ fontFamily: inter, fontWeight: 700, fontSize: 28, lineHeight: 1.2, color: dark ? "rgba(250,250,248,0.72)" : "#555", textAlign: "center" }}>{side.sub}</div> : null}
         </div>
       </FadeSlide>
     ))}
@@ -265,7 +266,7 @@ const BeatView: React.FC<{ beat: Beat }> = ({ beat }) => {
     <div style={{ position: "absolute", inset: 0, padding: "64px 56px 84px" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 22 }}>
         <div style={{ fontFamily: sg, fontWeight: 700, fontSize: 28, letterSpacing: "0.14em", color: dark ? "#FAFAF8" : "#111" }}>AI TESTED</div>
-        <div style={{ fontFamily: inter, fontWeight: 700, fontSize: 20, color: dark ? "rgba(250,250,248,0.62)" : "#666", textTransform: "uppercase" }}>{beat.kicker || "V5"}</div>
+        <div style={{ fontFamily: inter, fontWeight: 700, fontSize: 20, color: dark ? "rgba(250,250,248,0.62)" : "#666", textTransform: "uppercase" }}>{(beat.kicker && beat.kicker.toUpperCase() !== "AI TESTED") ? beat.kicker : "SHORT"}</div>
       </div>
       {(topType && !selfComposed) ? <Headline beat={beat} dark={dark} /> : <Kicker beat={beat} dark={dark} />}
       <div style={{ position: "absolute", left: 56, right: 56, top: (topType && !selfComposed) ? 340 : 190, bottom: 120, display: "flex", alignItems: "center", justifyContent: "center" }}>

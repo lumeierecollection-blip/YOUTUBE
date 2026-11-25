@@ -17,7 +17,7 @@
       "t": 0,
       "dur": 2.5,
       "narration": "OpenAI didn’t just clap back. It started a price war.",
-      "kicker": "AI TESTED",
+      "kicker": "BREAKING",
       "visual": "warning_panel",
       "headline": "THE AI PRICE WAR JUST GOT BRUTAL",
       "sub": "OpenAI strikes back immediately",
@@ -48,8 +48,14 @@
       "accent": "#FFCC00",
       "bg": "#FAFAF8",
       "assets": [
-        "anthropic-white.svg",
-        "openai-white.svg"
+        {
+          "a": "claude-white.svg",
+          "t": "CLAUDE FABLE 5.2"
+        },
+        {
+          "a": "openai-white.svg",
+          "t": "OPENAI ASTRA & SOL"
+        }
       ],
       "focal": {
         "x": 0.5,
@@ -69,13 +75,22 @@
       "dur": 4,
       "narration": "Astra is for heavy work: docs, slides, code, even 3D frontends. Sol is the faster, cheaper everyday model.",
       "kicker": "MODEL LINEUP",
-      "visual": "product_card",
-      "headline": "ASTRA & SOL",
+      "visual": "split_compare",
+      "headline": "TWO NEW MODELS",
       "sub": "Heavy workflows vs everyday speed",
-      "accent": "#FF334B",
-      "bg": "#0F1115",
+      "accent": "#00E5A0",
+      "bg": "#111318",
       "assets": [
-        "openai-white.svg"
+        {
+          "a": "openai-white.svg",
+          "t": "ASTRA",
+          "sub": "Docs, slides, code, 3D"
+        },
+        {
+          "a": "openai-white.svg",
+          "t": "SOL",
+          "sub": "Faster, cheaper everyday"
+        }
       ],
       "focal": {
         "x": 0.5,
