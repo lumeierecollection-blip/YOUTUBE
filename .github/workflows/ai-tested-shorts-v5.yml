@@ -75,16 +75,27 @@ jobs:
       - name: Render
         working-directory: data/ai-tested/shorts-v5/render
         run: node render-all.mjs
+      - name: Upload render outputs (early salvage)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-tested-shorts-v5-render
+          overwrite: true
+          path: |
+            data/ai-tested/shorts-v5/out/*.mp4
+            data/ai-tested/shorts-v5/logs/**
+            data/ai-tested/shorts-v5/render/render-log.txt
+          if-no-files-found: warn
       - name: Gemini review and correction loop (continues until pass or blocker)
         if: always()
-        timeout-minutes: 45
+        timeout-minutes: 25
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
           mkdir -p reviews production-records
-          MAX_CYCLES=6
+          MAX_CYCLES=2
           LOOP_START=$SECONDS
-          MAX_LOOP_SECONDS=3600
+          MAX_LOOP_SECONDS=1200
           all_pass=false
           for cycle in $(seq 1 $MAX_CYCLES); do
             if [ $((SECONDS - LOOP_START)) -gt $MAX_LOOP_SECONDS ]; then echo "LOOP_TIME_CAP_REACHED"; break; fi
@@ -132,6 +143,7 @@ jobs:
       - name: Final Gemini review (mandatory, actual rendered output)
         id: final_review
         if: always()
+        timeout-minutes: 20
         working-directory: data/ai-tested/shorts-v5
         run: |
           set -euo pipefail
