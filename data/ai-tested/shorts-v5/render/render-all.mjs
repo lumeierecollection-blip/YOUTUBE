@@ -83,7 +83,7 @@ for (const f of files) {
     const cues = fs.existsSync(vttPath) ? parseVtt(fs.readFileSync(vttPath, "utf8")) : [];
     for (const b of plan.beats) for (const m of b.media || []) { const sz = imageSize(m.src); if (sz) { m.w = sz.w; m.h = sz.h; } }
     const sync = syncBeats(plan, script.script, cues, dur);
-    if (sync.mode !== "vtt") console.warn(`[${id}] narration sync fell back to ${sync.mode}: ${sync.notes.join("; ")}`);
+    if (sync.mode !== "vtt") throw new Error(`narration sync fell back to ${sync.mode}: ${sync.notes.join("; ")}`);
     const v = validatePlan(plan, { publicDir, script: script.script, facts });
     validation[id] = { ...v, sync };
     fs.writeFileSync(path.join(timedDir, `${base}.timed.json`), JSON.stringify(plan, null, 2));
