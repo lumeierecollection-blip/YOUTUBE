@@ -295,6 +295,10 @@ function allowedPath(tk) {
 function applyOp(plan, op) {
   const tk = tokens(op.path);
   if (!allowedPath(tk)) throw new Error(`path not allowed: ${op.path}`);
+  if ((op.op === "set" || op.op === "append") && (op.value === null || op.value === undefined)) throw new Error(`null value not allowed: ${op.path}`);
+  if (tk[0] === "audio" && tk[1] === "sfx" && (op.op === "append" || (op.op === "set" && typeof tk[2] === "number"))) {
+    if (!op.value || typeof op.value !== "object" || !op.value.src) throw new Error(`invalid sfx entry: ${op.path}`);
+  }
   let cur = plan;
   for (let i = 0; i < tk.length - 1; i++) { if (cur[tk[i]] === undefined || cur[tk[i]] === null) { if (op.op === "set") cur[tk[i]] = typeof tk[i + 1] === "number" ? [] : {}; else throw new Error(`no such path ${op.path}`); } cur = cur[tk[i]]; }
   const last = tk[tk.length - 1];

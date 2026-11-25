@@ -71,9 +71,9 @@ export function syncBeats(plan, script, cues, audioDur) {
   plan.beats.forEach((b, i) => { const nx = i + 1 < plan.beats.length ? plan.beats[i + 1].t : end; b.dur = +(nx - b.t).toFixed(3); });
   // resolve sfx {beat, offset}
   const a = plan.audio || (plan.audio = {});
-  a.sfx = (a.sfx || []).map((s) => {
+  a.sfx = (a.sfx || []).filter((s) => s && typeof s === "object").map((s) => {
     if (s.beat !== undefined) { const bb = plan.beats[s.beat]; return { ...s, t: +(((bb ? bb.t : 0) + (s.offset || 0))).toFixed(3) }; }
-    return s;
+    return { ...s, t: +(Number(s.t) || 0).toFixed(3) };
   }).filter(s => s.t < end);
   return { mode, notes };
 }

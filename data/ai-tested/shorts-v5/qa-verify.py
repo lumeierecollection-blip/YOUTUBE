@@ -20,6 +20,11 @@ def run(cmd):
 def probe(f, args):
     return run(["ffprobe", "-v", "error", *args, "-of", "csv=p=0", f]).stdout.strip()
 
+def probe_json(f, args):
+    r = run(["ffprobe", "-v", "error", *args, "-of", "json", f]).stdout.strip()
+    try: return json.loads(r) if r else {}
+    except Exception: return {}
+
 def frames(f, tmp):
     os.makedirs(tmp, exist_ok=True)
     for old in glob.glob(os.path.join(tmp, "*.png")): os.remove(old)
@@ -34,16 +39,20 @@ def block_std(g, b=12):
 for f in sorted(glob.glob(os.path.join(out_dir, "*.mp4"))):
     base = os.path.basename(f)[:-4]
     lines, bad = [], []
-    vinfo = probe(f, ["-select_streams", "v:0", "-show_entries", "stream=codec_name,width,height,r_frame_rate,pix_fmt"]).split(",")
-    ainfo = probe(f, ["-select_streams", "a:0", "-show_entries", "stream=codec_name,sample_rate,channels"]).split(",")
+    vj = probe_json(f, ["-select_streams", "v:0", "-show_entries", "stream=codec_name,width,height,r_frame_rate,pix_fmt"])
+    aj = probe_json(f, ["-select_streams", "a:0", "-show_entries", "stream=codec_name,sample_rate,channels"])
+    vs = (vj.get("streams") or [{}])[0]
+    as_ = (aj.get("streams") or [{}])[0]
+    vinfo = [str(vs.get("codec_name","")), str(vs.get("width","")), str(vs.get("height","")), str(vs.get("r_frame_rate","")), str(vs.get("pix_fmt",""))]
+    ainfo = [str(as_.get("codec_name","")), str(as_.get("sample_rate","")), str(as_.get("channels",""))]
     dur = float(probe(f, ["-show_entries", "format=duration"]) or 0)
     size = os.path.getsize(f)
     lines.append(f"video={vinfo} audio={ainfo} dur={dur:.2f}s size={size}")
-    if len(vinfo) < 5 or vinfo[0] != "h264": bad.append("BAD codec not h264")
-    if len(vinfo) >= 3 and (vinfo[1] != "1080" or vinfo[2] != "1920"): bad.append(f"BAD size {vinfo[1:3]}")
-    if len(vinfo) >= 4 and vinfo[3] not in ("30/1", "30000/1001"): bad.append(f"BAD fps {vinfo[3]}")
-    if len(ainfo) < 2 or ainfo[0] == "": bad.append("BAD no audio stream")
-    if not (LIMITS["min_dur"] <= dur <= LIMITS["max_dur"]): bad.append(f"BAD duration {dur:.2f}")
+    if not vinfo[0] or vinfo[0] != "h264": bad.append(f"BAD codec not h264 ({vinfo[0]})")
+    if vinfo[1] != "1080" or vinfo[2] != "1920": bad.append(f"BAD size {vinfo[1:3]}")
+    if vinfo[3] not in ("30/1", "30000/1001"): bad.append(f"BAD fps {vinfo[3]}")
+    if not ainfo[0]: bad.append("BAD no audio stream")
+    if not (LIMITS["min_dur"] <= dur <= LIMITS["max_dur"]): bad.append(f"BAD duration {dur:.2f}s")
     # audio levels measured at render time on the mastered file
     ap = os.path.join(out_dir, base + ".audio.json")
     audio = json.load(open(ap)) if os.path.exists(ap) else None
