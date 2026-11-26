@@ -1,0 +1,75 @@
+name: IF-style Short (single video)
+
+# One-off render of Short 25 in the InsiderForce-style template. A new workflow file cannot be dispatched from a
+# feature branch, so a push to this branch touching the IF files runs it.
+on:
+  push:
+    branches: [render/short-26-rewrite]
+    paths:
+      - '.github/workflows/if-short.yml'
+      - 'data/ai-tested/shorts-v5/if/**'
+      - 'data/ai-tested/shorts-v5/render/src/IF.tsx'
+      - 'data/ai-tested/shorts-v5/render/src/Root.tsx'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: if-short-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: bash
+    env:
+      V5: data/ai-tested/shorts-v5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: System dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+
+      - name: Install Remotion
+        working-directory: ${{ env.V5 }}/render
+        run: |
+          set -euo pipefail
+          npm install
+          npx remotion browser ensure
+
+      - name: Render
+        working-directory: ${{ env.V5 }}
+        run: |
+          set -euo pipefail
+          node if/render-if.mjs
+
+      - name: Verify
+        working-directory: ${{ env.V5 }}
+        run: |
+          set -euo pipefail
+          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,duration -of default=nw=1 if/out/if25.mp4
+          ffmpeg -v error -i if/out/if25.mp4 -f null -
+
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: if-short-25-${{ github.run_number }}
+          overwrite: true
+          path: |
+            ${{ env.V5 }}/if/out/if25.mp4
+            ${{ env.V5 }}/if/out/contact.png
+            ${{ env.V5 }}/if/out/stills/*
+            ${{ env.V5 }}/if/out/if25.props.json
+          if-no-files-found: warn
+          retention-days: 14
