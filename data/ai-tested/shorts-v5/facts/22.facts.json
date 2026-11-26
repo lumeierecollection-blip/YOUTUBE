@@ -47,7 +47,15 @@
    "id": "f6",
    "claim": "OpenAI says Astra more than doubled Claude Fable 5.2's pass rate at about one-sixth the cost on Harvey LAB-AA legal evaluations.",
    "verbatim_support": "more than doubled Claude Fable 5.2's pass rate at about one-sixth the cost",
-   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verification_note": "The word 'legal' (Harvey LAB-AA legal evaluations) is NOT in the fetched verbatim; the 9to5google article has no legal-benchmark mention. The script says 'a benchmark it cites'. The cost metric (per task or per run) is not defined in the extraction."
+  },
+  {
+   "id": "f7",
+   "claim": "Sol keeps its predecessor's pricing (not used in the script).",
+   "verbatim_support": "Sol maintains predecessor pricing (extraction wording, not a verbatim quote)",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/",
+   "added": "2026-11-26 from research brief item 22-N1"
   }
  ],
  "numbers": [
@@ -98,6 +106,14 @@
    "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
    "verbatim_support": "Cached input: $0.10",
    "id": "n6"
+  },
+  {
+   "label": "Astra-to-Sol price ratio (input 8/2, output 40/10, cached 0.40/0.10)",
+   "value": 4,
+   "unit": "x",
+   "derived": true,
+   "derivation": "8/2 = 4; 40/10 = 4; 0.40/0.10 = 4",
+   "id": "n7"
   }
  ],
  "timeline": [

@@ -7,8 +7,8 @@
     "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
     "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
   ],
-  "script": "Same OpenAI family. One model costs four times more. A week after Claude 5.2, here come Astra and Sol. Astra is for the hardest projects: documents, slides, code, even 3D design. Sol is the efficient everyday model. Astra: eight dollars in, forty out per million tokens. Sol: two dollars in, ten out. That's four times apart on both input and output. OpenAI says Astra more than doubled Claude Fable 5.2's pass rate on a legal test, at about one-sixth the cost.",
-  "cta": "Follow AI Tested for the next model war move.",
-  "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
-  "fact_review": "Wording corrected against facts/22.facts.json: unsourced framing removed, allegations attributed."
+  "script": "One OpenAI launch. Two models. Four times apart on price. Astra costs eight dollars per million input tokens, and forty for output. Sol costs two and ten. That's four times, both ways. Astra is for the hardest projects: documents, slides, code, even 3D design. Sol is for everyday work. OpenAI says Astra more than doubled Claude Fable 5.2's pass rate on a benchmark it cites, at about one-sixth the cost. We haven't tested that. One launch. Four times apart.",
+  "cta": "Follow AI Tested for the next AI model launch.",
+  "concept": "Price card face-off: two model cards, the 8/40 and 2/10 per-million-token prices on screen early, a 4x ratio, OpenAI's own claim shown as OpenAI's claim, then the loop back to four times apart.",
+  "fact_review": "V7 rewrite 2026-11-26 against facts/22.facts.json. 'Legal' dropped (not in the fetched OpenAI wording). Ratio four times is derived (8/2, 40/10, 0.40/0.10). The pass-rate and cost line is attributed to OpenAI and flagged as untested by us."
 }
