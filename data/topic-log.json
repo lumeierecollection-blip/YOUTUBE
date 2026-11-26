@@ -2067,9 +2067,14 @@
           "topic": "Norse Cosmology Nine Realms Architecture and Worldbuilding Design",
           "slug": "norse-cosmology-nine-realms-architecture-design",
           "reserved_at": "2026-11-25T20:36:38.846Z"
+        },
+        {
+          "topic": "Sherlock Holmes and Arthur Conan Doyle Canon Origins in A Study in Scarlet",
+          "slug": "sherlock-holmes-study-in-scarlet-canon-origins",
+          "reserved_at": "2026-11-26T19:17:59.965Z"
         }
       ],
-      "last_generated": "2026-11-26T18:37:58.131Z"
+      "last_generated": "2026-11-26T19:17:59.965Z"
     },
     "8": {
       "channel_name": "Ledger",
