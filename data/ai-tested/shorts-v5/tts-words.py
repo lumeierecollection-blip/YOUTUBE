@@ -41,7 +41,7 @@ async def tight(rate, gap):
         mp3 = os.path.join(tmp, "s%d.mp3" % i)
         ws = []
         with open(mp3, "wb") as f:
-            async for ch in edge_tts.Communicate(sent, voice, rate=rate, boundary="WordBoundary").stream():
+            async for ch in edge_tts.Communicate(sent, voice, rate=rate, pitch=os.environ.get("TTS_PITCH", "+0Hz"), boundary="WordBoundary").stream():
                 if ch["type"] == "audio":
                     f.write(ch["data"])
                 elif ch["type"] == "WordBoundary":

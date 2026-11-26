@@ -2,7 +2,7 @@
   "id": "26",
   "slug": "cincinnatus-sixteen-days",
   "title": "Rome Made a Farmer Dictator. He Quit in 16 Days",
-  "voice": "en-GB-RyanNeural",
+  "voice": "en-GB-ThomasNeural",
   "channel": "Hidden Past (slot 01)",
   "sources": [
     "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0026%3Abook%3D3%3Achapter%3D26",
@@ -13,5 +13,6 @@
   "script": "Rome made one farmer dictator for six months. He quit on day sixteen. In 458 BC, the Aequi trapped a Roman army. The senate sent envoys to Cincinnatus. He worked a four-acre field across the Tiber. They found him digging a ditch, or ploughing. The envoys saluted him as Dictator. The Aequi were attacked on both sides, and they begged for mercy. He sent them under a yoke of three spears. Livy says he resigned on the sixteenth day. The office was meant to last six months. Six months of power. He took sixteen days.",
   "cta": "Follow Hidden Past for the history that got left out.",
   "concept": "Reference-led: paper-blue map of Italy with date chip, hex portrait badge, full-bleed period paintings, small word-by-word caption chips, dark circle-portrait beat.",
-  "fact_review": "2026-11-26 against facts/26.facts.json. Year 458 BC: Wikipedia gives '458 or 457 BC' (f1); script says 458 BC, the date Wikipedia lists first. 'Trapped' attributed via Wikipedia citing Livy III.26. Ploughing/ditch and four-acre field: Livy 3.26 (Roberts). Dictator salute: 3.26. Yoke of three spears and supplication: 3.28. Sixteenth day and six months: 3.29. Wikipedia's own text also says 'fifteen days' in one sentence; the script follows Livy's 'sixteenth day'. 'Farmer' is the video's shorthand for 'cultivated a four-acre field' (3.26). Rewrite 2026-11-26: body rebuilt so every sentence names its subject (the Aequi, the envoys, Cincinnatus) and maps to one fact: f1 (Aequi trapped the army), f2/f3 (envoys, four-acre field, ditch or plough), f4 (saluted as Dictator), f5 (attacked on both sides, supplication, yoke of three spears), f6 (sixteenth day, six months). Removed 'He surrounded the enemy' (not in the fetched text) and 'an enemy army had trapped a Roman army' (ambiguous). Intro (first two sentences) unchanged."
+  "fact_review": "2026-11-26 against facts/26.facts.json. Year 458 BC: Wikipedia gives '458 or 457 BC' (f1); script says 458 BC, the date Wikipedia lists first. 'Trapped' attributed via Wikipedia citing Livy III.26. Ploughing/ditch and four-acre field: Livy 3.26 (Roberts). Dictator salute: 3.26. Yoke of three spears and supplication: 3.28. Sixteenth day and six months: 3.29. Wikipedia's own text also says 'fifteen days' in one sentence; the script follows Livy's 'sixteenth day'. 'Farmer' is the video's shorthand for 'cultivated a four-acre field' (3.26). Rewrite 2026-11-26: body rebuilt so every sentence names its subject (the Aequi, the envoys, Cincinnatus) and maps to one fact: f1 (Aequi trapped the army), f2/f3 (envoys, four-acre field, ditch or plough), f4 (saluted as Dictator), f5 (attacked on both sides, supplication, yoke of three spears), f6 (sixteenth day, six months). Removed 'He surrounded the enemy' (not in the fetched text) and 'an enemy army had trapped a Roman army' (ambiguous). Intro (first two sentences) unchanged.",
+  "voice_pitch": "-25Hz"
 }

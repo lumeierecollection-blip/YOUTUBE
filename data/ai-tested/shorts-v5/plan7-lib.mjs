@@ -130,7 +130,7 @@ export function buildPlan(board, { script, cues, audioDur, imageSize }) {
   const plan = {
     schema: 7, id: board.id, slug: board.slug, title: board.title,
     words: tl.map((x) => ({ w: x.w, t0: r3(x.t0), t1: r3(x.t1) })),
-    beats, audio: { music: board.audio?.music, ambience: board.audio?.ambience, sfx },
+    beats, audio: { music: board.audio?.music, ambience: board.audio?.ambience, bed: board.audio?.bed, sfx },
     asset_manifest: board.asset_manifest || [], blueprint: board.blueprint || null,
   };
   return { plan, errors, warns };
@@ -203,8 +203,11 @@ export function validatePlan7(plan, ctx) {
   if (darkCount < 2) W("fewer than 2 dark plates; reference alternates every 3-5 s");
   const au = plan.audio || {};
   const sfx = au.sfx || [];
-  if (!au.music?.src) E("audio.music missing"); else if (!exists(au.music.src)) E(`music missing ${au.music.src}`);
-  if (!au.ambience?.src) W("no ambience bed"); else if (!exists(au.ambience.src)) E(`ambience missing ${au.ambience.src}`);
+  if (au.bed === "none") { if (au.music?.src || au.ambience?.src) E('audio.bed "none" but music/ambience is set'); }
+  else {
+    if (!au.music?.src) E("audio.music missing"); else if (!exists(au.music.src)) E(`music missing ${au.music.src}`);
+    if (!au.ambience?.src) W("no ambience bed"); else if (!exists(au.ambience.src)) E(`ambience missing ${au.ambience.src}`);
+  }
   if (sfx.length < beats.length) E(`sfx plan thin: ${sfx.length} events for ${beats.length} beats`);
   const kinds = new Set(sfx.map((s) => s.src));
   if (kinds.size < 5) E(`only ${kinds.size} distinct sound effects (>=5 required; a single whoosh repeated is rejected)`);

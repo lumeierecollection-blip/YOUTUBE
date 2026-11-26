@@ -173,7 +173,7 @@ export const Short: React.FC<ShortProps> = ({ plan, audioSrc, audioDurationSec }
     {audioSrc ? <Audio src={asset(audioSrc)!} volume={1} /> : null}
     {a.music?.src ? <Audio src={asset(a.music.src)!} volume={musicVol} loop /> : null}
     {a.ambience?.src ? <Audio src={asset(a.ambience.src)!} volume={ambVol} loop /> : null}
-    {a.sfx.map((s, i) => <Sequence key={i} from={Math.max(0, Math.round(s.t * fps))} durationInFrames={Math.max(3, Math.round((s.dur ?? 2.5) * fps))} layout="none"><Audio src={asset(s.src)!} volume={s.volume ?? 0.6} /></Sequence>)}
+    {a.sfx.map((s, i) => { const d = Math.max(3, Math.round((s.dur ?? 2.5) * fps)); const fo = Math.min(6, d); return <Sequence key={i} from={Math.max(0, Math.round(s.t * fps))} durationInFrames={d} layout="none"><Audio src={asset(s.src)!} volume={(fr) => (s.volume ?? 0.6) * Math.min(1, (d - fr) / fo)} /></Sequence>; })}
   </AbsoluteFill>;
 };
 

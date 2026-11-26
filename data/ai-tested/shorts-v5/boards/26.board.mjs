@@ -2,13 +2,12 @@ import { S, sfx, serif, kw, tile, photo } from "./lib.mjs";
 
 // History (Hidden Past) Short. Layout follows the Washington-1783 reference: pale map plate with a date chip, full-bleed period paintings, short caption chips.
 // Known gap vs the reference: schema-7 has no highlighted map regions or hex badge connectors, so the map is a plain framed photo.
-// Sound: documentary history bed + open-plain wind (field/army setting); SFX are physical impacts, sweeps, paper and a clock tick for the counter - no UI clicks, chimes or camera shutter.
+// Sound: no music or ambience bed (user decision); SFX are physical impacts, sweeps, paper and a clock tick for the counter - no UI clicks, chimes or camera shutter.
 const A = "v7/26/";
 export default {
   id: "26", slug: "cincinnatus-sixteen-days", title: "Rome Made a Farmer Dictator. He Quit in 16 Days",
   audio: {
-    music: { src: "music/m26_history_doc.mp3", volume: 0.12 },
-    ambience: { src: "ambience/amb_open_plain_wind.mp3", volume: 0.1 },
+    bed: "none", // user decision 2026-11-26: no music, no ambience; narration plus SFX only
     sfx: [
       sfx("hook", S.deep, "soft low sweep as the painting opens the hook", { at: -0.1, v: 0.16, dur: 1.6 }),
       sfx("quit", S.low, "the reversal lands on 'sixteen'", { cue: "sixteen", v: 0.28, dur: 1.6 }),
@@ -21,7 +20,7 @@ export default {
       sfx("surrounded", S.deep, "the army closes in", { v: 0.15, dur: 1.4 }),
       sfx("yoke", S.low, "the one heavy hit: three spears", { cue: "three", at: -0.05, v: 0.3, dur: 2.0 }),
       sfx("resigned", S.paper, "the office laid down", { cue: "resigned", v: 0.16, dur: 1.0 }),
-      sfx("office", S.clock, "counter ticks to six", { cue: "six", v: 0.2, dur: 0.8 }),
+      sfx("office", S.clock, "counter ticks to six (sample peaks at -24 dB, so full volume)", { cue: "six", v: 1.0, dur: 1.0 }),
       sfx("power", S.thud, "six months of power lands", { v: 0.18, dur: 1.0 }),
       sfx("took", S.impact, "final beat: sixteen days", { v: 0.2, dur: 1.2 }),
     ],
