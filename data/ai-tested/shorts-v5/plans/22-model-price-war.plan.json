@@ -1,135 +1,439 @@
 {
   "id": "22",
   "slug": "model-price-war",
-  "title": "The AI Price War Just Got Brutal",
-  "concept": "Market scoreboard: race countdown, model face-off cards, giant price slam, pressure meter, audience-impact close.",
-  "sources": [
-    "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
-    "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
-  ],
-  "cta": "Follow AI Tested for the next model war move.",
-  "visual_identity": {
-    "base": "white editorial with story-specific variation",
-    "rules": [
-      "no debug labels",
-      "no repeated template cards",
-      "every beat has visual change"
-    ]
+  "title": "OpenAI's Two New Models Are 4x Apart on Price",
+  "schema": 6,
+  "concept": "Market scoreboard: the launch headline, two logos, a face-off of what each model is for, animated price bars, the four-times gap, and OpenAI's own benchmark claim shown as a claim.",
+  "creative_direction": {
+    "why_this_look": "The facts are two price lists, so the video is a scoreboard: deep navy, electric lime for Astra, cyan for Sol, big counting numbers and bars that grow to scale. OpenAI's performance claim is labelled as OpenAI's own.",
+    "motion": "Bars grow to scale, numbers count up, face-off cards slide in from opposite sides, the 4x badge stamps on.",
+    "sound": "Tech bed with mission-control hum, ticks as bars fill, hits as each price lands, reveal on the gap."
+  },
+  "theme": {
+    "mode": "dark",
+    "bg": "#06122A",
+    "bg2": "#0B1F44",
+    "ink": "#F4F8FF",
+    "muted": "#8FA6C8",
+    "accent": "#B8FF2C",
+    "accent2": "#38BDF8",
+    "panel": "#0E2247",
+    "panelInk": "#F4F8FF",
+    "line": "#1F3A6B",
+    "texture": "grid",
+    "display": "anton",
+    "body": "inter"
   },
   "beats": [
     {
-      "t": 0,
-      "dur": 2.0,
-      "narration": "OpenAI didn’t just clap back. It started a price war.",
-      "kicker": "MODEL WAR",
-      "visual": "full_bleed_type",
-      "headline": "PRICE WAR",
-      "sub": "OPENAI DIDN’T JUST ANSWER BACK",
-      "assets": [
-        "openai"
+      "scene": "type_slam",
+      "narration": "Same OpenAI family. One model costs four times more.",
+      "kicker": "OPENAI // GPT-6.2",
+      "headline": "Two new models. Very different prices.",
+      "hl": [
+        "PRICES"
       ],
-      "accent": "#111111",
-      "bg": "#FAFAF8"
+      "ghost": "$$",
+      "logos": [
+        {
+          "id": "openai-white",
+          "label": "OpenAI"
+        }
+      ],
+      "callouts": [
+        "ASTRA",
+        "SOL"
+      ],
+      "transition": "cut",
+      "evidence": [
+        "f1",
+        "f2"
+      ]
     },
     {
-      "t": 2.0,
-      "dur": 2.3,
-      "narration": "One week after Claude Fable 5.2, OpenAI launched Astra and Sol.",
-      "kicker": "ONE WEEK LATER",
-      "visual": "split_compare",
-      "headline": "NEW CHALLENGERS",
-      "sub": "THE RACE MOVED IN SEVEN DAYS",
-      "left": "CLAUDE FABLE 5.2",
-      "right": "ASTRA + SOL",
-      "assets": [
-        "anthropic",
-        "openai"
+      "scene": "logo_wall",
+      "narration": "A week after Claude 5.2, here come Astra and Sol.",
+      "kicker": "THE TIMELINE",
+      "headline": "One week after Claude 5.2",
+      "logos": [
+        {
+          "id": "claude-white",
+          "label": "Claude 5.2",
+          "color": "#38BDF8"
+        },
+        {
+          "id": "openai-white",
+          "label": "GPT-6.2 Astra + Sol",
+          "color": "#B8FF2C"
+        }
       ],
-      "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "sub": "Launch Nov 17, 2026",
+      "transition": "push",
+      "evidence": [
+        "f5"
+      ]
     },
     {
-      "t": 4.3,
-      "dur": 2.2,
-      "narration": "Astra is for heavy work: docs, slides, code, even 3D frontends.",
-      "kicker": "ASTRA",
-      "visual": "product_card",
-      "headline": "ASTRA",
-      "sub": "DOCS · SLIDES · CODE · 3D FRONTENDS",
-      "assets": [
-        "openai"
-      ],
-      "accent": "#111111",
-      "bg": "#F7F7F4"
+      "scene": "compare",
+      "narration": "Astra is for the hardest projects: documents, slides, code, even 3D design. Sol is the efficient everyday model.",
+      "kicker": "WHAT EACH IS FOR",
+      "headline": "Astra vs Sol",
+      "compare": {
+        "left": {
+          "title": "Astra",
+          "logo": "openai-white",
+          "color": "#B8FF2C",
+          "tag": "Frontier model",
+          "rows": [
+            {
+              "k": "Built for",
+              "v": "Hardest projects"
+            },
+            {
+              "k": "Use cases",
+              "v": "Docs, slides, code, 3D design"
+            },
+            {
+              "k": "OpenAI says",
+              "v": "New frontier model"
+            }
+          ]
+        },
+        "right": {
+          "title": "Sol",
+          "logo": "openai-white",
+          "color": "#38BDF8",
+          "tag": "Everyday model",
+          "rows": [
+            {
+              "k": "Built for",
+              "v": "Everyday work"
+            },
+            {
+              "k": "Style",
+              "v": "Efficient, versatile"
+            },
+            {
+              "k": "OpenAI says",
+              "v": "Efficient, versatile"
+            }
+          ]
+        },
+        "vs": "VS"
+      },
+      "transition": "slide",
+      "evidence": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ]
     },
     {
-      "t": 6.5,
-      "dur": 2.1,
-      "narration": "Sol is the faster, cheaper everyday model.",
-      "kicker": "SOL",
-      "visual": "product_card",
-      "headline": "SOL",
-      "sub": "FASTER · CHEAPER · EVERYDAY",
-      "assets": [
-        "openai"
-      ],
-      "accent": "#2563EB",
-      "bg": "#FAFAF8"
+      "scene": "bar_chart",
+      "narration": "Astra: eight dollars in, forty out per million tokens. Sol: two dollars in, ten out.",
+      "kicker": "API PRICE PER 1M TOKENS",
+      "headline": "What it costs",
+      "chart": {
+        "prefix": "$",
+        "yMax": 40,
+        "rows": [
+          {
+            "label": "Input",
+            "values": [
+              {
+                "name": "Astra",
+                "v": 8,
+                "color": "#B8FF2C"
+              },
+              {
+                "name": "Sol",
+                "v": 2,
+                "color": "#38BDF8"
+              }
+            ]
+          },
+          {
+            "label": "Output",
+            "values": [
+              {
+                "name": "Astra",
+                "v": 40,
+                "color": "#B8FF2C"
+              },
+              {
+                "name": "Sol",
+                "v": 10,
+                "color": "#38BDF8"
+              }
+            ]
+          }
+        ],
+        "note": "Source: OpenAI launch page"
+      },
+      "transition": "wipe",
+      "evidence": [
+        "n1",
+        "n2",
+        "n4",
+        "n5"
+      ]
     },
     {
-      "t": 8.6,
-      "dur": 2.4,
-      "narration": "Astra: eight dollars in, forty out per million tokens.",
-      "kicker": "PRICE DROP",
-      "visual": "stat_counter",
-      "headline": "$8 / $40",
-      "sub": "ASTRA · IN / OUT PER 1M TOKENS",
-      "assets": [
-        "openai"
+      "scene": "stat_hero",
+      "narration": "That's four times apart on both input and output.",
+      "kicker": "THE GAP",
+      "headline": "Astra costs 4x Sol",
+      "stat": {
+        "value": 4,
+        "suffix": "x",
+        "label": "price gap",
+        "derived": true,
+        "ghost": "4X"
+      },
+      "items": [
+        {
+          "label": "Input: $8 vs $2",
+          "value": "4x",
+          "color": "#B8FF2C"
+        },
+        {
+          "label": "Output: $40 vs $10",
+          "value": "4x",
+          "color": "#38BDF8"
+        }
       ],
-      "accent": "#111111",
-      "bg": "#FAFAF8"
+      "transition": "zoom",
+      "evidence": [
+        "n1",
+        "n2",
+        "n4",
+        "n5"
+      ]
     },
     {
-      "t": 11.0,
-      "dur": 2.4,
-      "narration": "Sol: two dollars in, ten out.",
-      "kicker": "PRICE DROP",
-      "visual": "stat_counter",
-      "headline": "$2 / $10",
-      "sub": "SOL · IN / OUT PER 1M TOKENS",
-      "assets": [
-        "openai"
+      "scene": "manifest",
+      "narration": "OpenAI says Astra more than doubled Claude Fable 5.2's pass rate on a legal test, at about one-sixth the cost.",
+      "kicker": "OPENAI'S OWN CLAIM",
+      "headline": "Astra vs Claude Fable 5.2",
+      "sub": "Harvey LAB-AA legal evals · per OpenAI",
+      "items": [
+        {
+          "label": "Pass rate",
+          "value": "2x+",
+          "color": "#B8FF2C"
+        },
+        {
+          "label": "Cost",
+          "value": "~1/6",
+          "color": "#38BDF8"
+        }
       ],
-      "accent": "#2563EB",
-      "bg": "#F7F7F4"
+      "callouts": [
+        "VENDOR-REPORTED",
+        "NOT INDEPENDENTLY TESTED"
+      ],
+      "transition": "flash",
+      "evidence": [
+        "f6"
+      ]
+    }
+  ],
+  "audio": {
+    "music": {
+      "src": "music/m22_tech.ogg",
+      "volume": 0.17,
+      "fadeIn": 0.6,
+      "fadeOut": 1.8,
+      "duck": 0.4
+    },
+    "ambience": {
+      "src": "ambience/amb_mission_control.mp3",
+      "volume": 0.1
+    },
+    "sfx": [
+      {
+        "beat": 0,
+        "offset": 0,
+        "src": "sfx/impact.ogg",
+        "volume": 0.85,
+        "dur": 1.4,
+        "purpose": "headline slam"
+      },
+      {
+        "beat": 0,
+        "offset": 0.4,
+        "src": "sfx/whoosh.mp3",
+        "volume": 0.55,
+        "dur": 1.2,
+        "purpose": "chips swipe in"
+      },
+      {
+        "beat": 0,
+        "offset": 1.8,
+        "src": "sfx/click.ogg",
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": "model chip lands"
+      },
+      {
+        "beat": 1,
+        "offset": 0,
+        "src": "sfx2/whoosh_deep.mp3",
+        "volume": 0.6,
+        "dur": 1.4,
+        "purpose": "push transition"
+      },
+      {
+        "beat": 1,
+        "offset": 0.9,
+        "src": "sfx/hit.ogg",
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": "first logo lands"
+      },
+      {
+        "beat": 1,
+        "offset": 1.5,
+        "src": "sfx/hit.ogg",
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": "second logo lands"
+      },
+      {
+        "beat": 2,
+        "offset": 0,
+        "src": "sfx/sweep.ogg",
+        "volume": 0.6,
+        "dur": 1,
+        "purpose": "slide transition"
+      },
+      {
+        "beat": 2,
+        "offset": 0.5,
+        "src": "sfx/click-soft.ogg",
+        "volume": 0.5,
+        "dur": 0.6,
+        "purpose": "left panel"
+      },
+      {
+        "beat": 2,
+        "offset": 1,
+        "src": "sfx/click.ogg",
+        "volume": 0.5,
+        "dur": 0.6,
+        "purpose": "VS badge"
+      },
+      {
+        "beat": 2,
+        "offset": 3,
+        "src": "sfx/tick.ogg",
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": "row appears"
+      },
+      {
+        "beat": 2,
+        "offset": 5,
+        "src": "sfx/click-soft.ogg",
+        "volume": 0.5,
+        "dur": 0.5,
+        "purpose": "row appears"
+      },
+      {
+        "beat": 3,
+        "offset": 0,
+        "src": "sfx/whoosh.mp3",
+        "volume": 0.6,
+        "dur": 1,
+        "purpose": "wipe into chart"
+      },
+      {
+        "beat": 3,
+        "offset": 0.8,
+        "src": "sfx/tick-tight.ogg",
+        "volume": 0.6,
+        "dur": 1.5,
+        "purpose": "Astra input bar fills"
+      },
+      {
+        "beat": 3,
+        "offset": 2.4,
+        "src": "sfx/hit.ogg",
+        "volume": 0.7,
+        "dur": 1,
+        "purpose": "Astra output lands"
+      },
+      {
+        "beat": 3,
+        "offset": 3.6,
+        "src": "sfx/tick.ogg",
+        "volume": 0.6,
+        "dur": 1,
+        "purpose": "Sol bars fill"
+      },
+      {
+        "beat": 4,
+        "offset": 0,
+        "src": "sfx2/riser.mp3",
+        "volume": 0.55,
+        "dur": 1.6,
+        "purpose": "build to the gap"
+      },
+      {
+        "beat": 4,
+        "offset": 1.1,
+        "src": "sfx/impact.ogg",
+        "volume": 0.9,
+        "dur": 1.4,
+        "purpose": "4x lands"
+      },
+      {
+        "beat": 5,
+        "offset": 0.1,
+        "src": "sfx/reveal.ogg",
+        "volume": 0.6,
+        "dur": 1.4,
+        "purpose": "claim card"
+      },
+      {
+        "beat": 5,
+        "offset": 1.8,
+        "src": "sfx/click.ogg",
+        "volume": 0.5,
+        "dur": 0.6,
+        "purpose": "pass rate row"
+      },
+      {
+        "beat": 5,
+        "offset": 3.2,
+        "src": "sfx/bell.ogg",
+        "volume": 0.5,
+        "dur": 1.6,
+        "purpose": "cost row"
+      }
+    ]
+  },
+  "asset_manifest": [
+    {
+      "file": "logos/openai-white.svg",
+      "type": "logo",
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beats 0,2 type_slam/compare",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     },
     {
-      "t": 13.4,
-      "dur": 2.2,
-      "narration": "That’s not just a benchmark win. It’s market pressure.",
-      "kicker": "PRESSURE",
-      "visual": "warning_panel",
-      "headline": "MARKET PRESSURE",
-      "sub": "SMARTER ISN’T ENOUGH ANYMORE",
-      "accent": "#B91C1C",
-      "bg": "#FAFAF8"
-    },
-    {
-      "t": 15.6,
-      "dur": 2.8,
-      "narration": "The real winner might be anyone who can now afford powerful AI.",
-      "kicker": "THE SHIFT",
-      "visual": "final_question",
-      "headline": "WHO WINS?",
-      "sub": "THE PEOPLE WHO CAN AFFORD POWERFUL AI",
-      "assets": [
-        "openai",
-        "anthropic"
-      ],
-      "accent": "#2563EB",
-      "bg": "#111111",
-      "cta": "Follow AI Tested for the next model war move."
+      "file": "logos/claude-white.svg",
+      "type": "logo",
+      "source": "repo assets/logos (monochrome SVG in Simple Icons format; upstream file origin not re-verified)",
+      "license": "Brand mark: trademark of its owner, shown only to identify that company (nominative editorial use)",
+      "scene": "beat 1 logo_wall",
+      "transparent": "vector (alpha)",
+      "resolution": "vector",
+      "status": "present"
     }
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "id": "21",
+  "slug": "sandbox-escape-lawsuit",
+  "generatedAt": "2026-11-24T20:41:20.211Z",
+  "assets": [
+    {
+      "file": "assets/photos/rob-bonta-official.jpg",
+      "type": "photo",
+      "source": "https://commons.wikimedia.org/wiki/File:Rob_Bonta_official_portrait.jpg",
+      "license": "Public Domain (CA official portrait - verify on Commons)",
+      "scene": "Beat 2",
+      "transparent": "pending-rembg",
+      "resolution": "source",
+      "status": "present"
+    },
+    {
+      "file": "assets/logos/openai-white.svg",
+      "type": "logo",
+      "source": "Repo asset library / brand asset",
+      "license": "Trademarked brand mark - editorial use",
+      "scene": "Beats 3,5,7,8",
+      "transparent": "svg",
+      "resolution": "vector",
+      "status": "present"
+    },
+    {
+      "file": "assets/logos/huggingface-white.svg",
+      "type": "logo",
+      "source": "Repo asset library / brand asset",
+      "license": "Trademarked brand mark - editorial use",
+      "scene": "Beat 3",
+      "transparent": "svg",
+      "resolution": "vector",
+      "status": "present"
+    }
+  ]
+}

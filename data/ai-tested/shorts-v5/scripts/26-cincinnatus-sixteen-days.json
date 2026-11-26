@@ -1,0 +1,17 @@
+{
+  "id": "26",
+  "slug": "cincinnatus-sixteen-days",
+  "title": "Rome Made a Farmer Dictator. He Quit in 16 Days",
+  "voice": "en-GB-RyanNeural",
+  "channel": "Hidden Past (slot 01)",
+  "sources": [
+    "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0026%3Abook%3D3%3Achapter%3D26",
+    "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0026%3Abook%3D3%3Achapter%3D28",
+    "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.02.0026%3Abook%3D3%3Achapter%3D29",
+    "https://en.wikipedia.org/wiki/Cincinnatus"
+  ],
+  "script": "Rome made one farmer dictator for six months. He quit on day sixteen. In 458 BC, an enemy army had trapped a Roman army. The senate sent envoys to a four-acre field across the Tiber. They found Cincinnatus digging a ditch, or ploughing. They saluted him as Dictator. He surrounded the enemy, and they begged for mercy. He sent them under a yoke made of three spears. Then Livy says he resigned, on the sixteenth day, from an office meant to last six months. Six months of power. He took sixteen days.",
+  "cta": "Follow Hidden Past for the history that got left out.",
+  "concept": "Reference-led: paper-blue map of Italy with date chip, hex portrait badge, full-bleed period paintings, small word-by-word caption chips, dark circle-portrait beat.",
+  "fact_review": "2026-11-26 against facts/26.facts.json. Year 458 BC: Wikipedia gives '458 or 457 BC' (f1); script says 458 BC, the date Wikipedia lists first. 'Trapped' attributed via Wikipedia citing Livy III.26. Ploughing/ditch and four-acre field: Livy 3.26 (Roberts). Dictator salute: 3.26. Yoke of three spears and supplication: 3.28. Sixteenth day and six months: 3.29. Wikipedia's own text also says 'fifteen days' in one sentence; the script follows Livy's 'sixteenth day'. 'Farmer' is the video's shorthand for 'cultivated a four-acre field' (3.26)."
+}

@@ -1,23 +1,31 @@
 import React from "react";
 import { Composition, CalculateMetadataFunction } from "remotion";
 import { AIShort, AIShortProps } from "./AIShort";
-import s21 from "../../plans/21-sandbox-escape-lawsuit.plan.json";
-import s22 from "../../plans/22-model-price-war.plan.json";
-import s23 from "../../plans/23-pause-frontier-ai-case.plan.json";
-import s24 from "../../plans/24-one-file-ai-game.plan.json";
-import s25 from "../../plans/25-ai-builds-the-app.plan.json";
+import { Short, ShortProps } from "./Short";
 
-const stories = [s21,s22,s23,s24,s25] as any[];
-const calc: CalculateMetadataFunction<AIShortProps> = async ({ props }) => {
-  const dur = Math.max(20, (props.audioDurationSec || props.plan.duration_target_sec || 30) + 0.6);
-  return { durationInFrames: Math.ceil(dur * 30), props };
+const IDS = ["21", "22", "23", "24", "25", "26"];
+
+const isV7 = (plan: any) => plan?.schema === 7 || (Array.isArray(plan?.beats) && plan.beats[0] && ("pics" in plan.beats[0] || "text" in plan.beats[0]));
+
+const AnyShort: React.FC<any> = (props) => {
+  if (isV7(props.plan)) return <Short {...(props as ShortProps)} />;
+  return <AIShort {...(props as AIShortProps)} />;
 };
+
+const calc: CalculateMetadataFunction<any> = async ({ props }) => {
+  const plan = props.plan || {};
+  const planEnd = (s: any) => (s.beats || []).reduce((m: number, b: any) => Math.max(m, (b.t || 0) + (b.dur || 0)), 30);
+  const dur = (props.audioDurationSec || planEnd(plan)) + 0.5;
+  return { durationInFrames: Math.max(30, Math.ceil(dur * 30)), props };
+};
+
+const stubV5 = (id: string): any => ({ id, slug: "stub", title: "stub", theme: { bg: "#fff", bg2: "#eee", ink: "#111", muted: "#666", accent: "#f00", accent2: "#0f0", accent3: "#00f", panel: "#fff", panelInk: "#111", line: "#ddd", texture: "none", display: "anton" }, beats: [], audio: { sfx: [] } });
+
 export const RemotionRoot: React.FC = () => (<>
-  {stories.map((s) => (
-    <Composition key={s.id} id={`Short-${s.id}`} component={AIShort}
-      durationInFrames={Math.ceil(((s.beats?.reduce((a:any,b:any)=>a+(b.dur||0),0))||30)+1.2)*30}
-      fps={30} width={1080} height={1920}
-      defaultProps={{ plan:s, audioSrc:`audio/${s.id}.mp3`, audioDurationSec:(s.beats?.reduce((a:any,b:any)=>a+(b.dur||0),0)||30) } as AIShortProps}
+  {IDS.map((id) => (
+    <Composition key={id} id={`Short-${id}`} component={AnyShort}
+      durationInFrames={30 * 30} fps={30} width={1080} height={1920}
+      defaultProps={{ plan: stubV5(id), audioSrc: `audio/${id}.mp3`, audioDurationSec: 30 } as any}
       calculateMetadata={calc} />
   ))}
 </>);

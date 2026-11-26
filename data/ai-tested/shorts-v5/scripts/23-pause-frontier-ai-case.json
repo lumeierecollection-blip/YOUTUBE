@@ -6,8 +6,8 @@
   "sources": [
     "https://www.aljazeera.com/economy/2026/11/12/us-nonprofits-sue-tech-giants-to-halt-ai-development"
   ],
-  "script": "A court is being asked to hit pause on frontier AI. Four nonprofits are suing Anthropic, Google, Meta, OpenAI, and SpaceX. They want an emergency injunction to stop next-gen models. Until companies can prove humans stay in control. The complaint cites cyberattacks, rogue warnings, and catastrophic risk admissions. The wild part? Some warnings came from the builders themselves. So now the question isn’t just can we build it. It’s should a court let it keep going?",
+  "script": "Four nonprofits are asking a San Francisco court to stop next-generation AI. Their targets: Anthropic, Google, Meta, OpenAI, and SpaceX. The ask: an emergency injunction until companies can prove humans stay in control. The complaint cites AI-driven cyberattacks and the companies' own admissions that AI could go rogue. Congress has yet to pass legislation governing AI. So the question isn't just can we build it. It's should a court let it keep going?",
   "cta": "Follow AI Tested for the AI court fight.",
   "concept": "Legal showdown: gavel/stamp opening, giant defendant lineup, injunction demand, risk evidence board, courtroom cliffhanger.",
-  "duration_target_sec": 17.0
+  "fact_review": "Wording corrected against facts/23.facts.json: unsourced framing removed, allegations attributed."
 }

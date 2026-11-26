@@ -1,0 +1,15 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+  <rect width="900" height="560" rx="32" fill="#FFFFFF" stroke="#E2E2DC" stroke-width="4"/>
+  <text x="40" y="72" font-family="Arial,sans-serif" font-size="34" fill="#202124" font-weight="700">Dinner poll</text>
+  <rect x="40" y="110" width="820" height="90" rx="18" fill="#E8F0FE" stroke="#1A73E8" stroke-width="3"/>
+  <text x="72" y="164" font-family="Arial,sans-serif" font-size="28" fill="#202124">Taco place</text>
+  <text x="760" y="164" font-family="Arial,sans-serif" font-size="28" fill="#1A73E8" font-weight="700">4 votes</text>
+  <rect x="40" y="225" width="820" height="90" rx="18" fill="#F8F9FA" stroke="#DADCE0" stroke-width="3"/>
+  <text x="72" y="279" font-family="Arial,sans-serif" font-size="28" fill="#202124">Pizza spot</text>
+  <text x="760" y="279" font-family="Arial,sans-serif" font-size="28" fill="#5F6368" font-weight="700">2 votes</text>
+  <rect x="40" y="340" width="820" height="90" rx="18" fill="#F8F9FA" stroke="#DADCE0" stroke-width="3"/>
+  <text x="72" y="394" font-family="Arial,sans-serif" font-size="28" fill="#202124">Sushi bar</text>
+  <text x="760" y="394" font-family="Arial,sans-serif" font-size="28" fill="#5F6368" font-weight="700">1 vote</text>
+  <rect x="40" y="460" width="250" height="56" rx="28" fill="#1A73E8"/>
+  <text x="95" y="497" font-family="Arial,sans-serif" font-size="24" fill="#FFFFFF" font-weight="700">Add option</text>
+</svg>

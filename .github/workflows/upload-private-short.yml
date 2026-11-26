@@ -1,0 +1,71 @@
+name: Upload Short (private)
+
+# Manual one-off: uploads a committed mp4 to the channel as PRIVATE.
+# scripts/youtube-upload.cjs hardcodes privacyStatus "private"; this workflow cannot make anything public.
+on:
+  push:
+    branches: [feat/ai-tested-shorts-vox]
+    paths: ["data/ai-tested/uploads/upload-request.json"]
+  workflow_dispatch:
+    inputs:
+      file:
+        description: "Repo path of the mp4"
+        required: true
+      title:
+        description: "Video title"
+        required: true
+      description:
+        description: "Video description"
+        required: false
+        default: ""
+      tags:
+        description: "Comma-separated tags"
+        required: false
+        default: ""
+      channel:
+        description: "Channel slot (2 = AI Tested)"
+        required: true
+        default: "2"
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CH02_CLIENT_ID: ${{ secrets.CHANNEL_02_CLIENT_ID }}
+      CH02_CLIENT_SECRET: ${{ secrets.CHANNEL_02_CLIENT_SECRET }}
+      CH02_REFRESH_TOKEN: ${{ secrets.CHANNEL_02_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Materialize credentials (channel 2 only)
+        run: |
+          if [ -n "${{ inputs.channel }}" ] && [ "${{ inputs.channel }}" != "2" ]; then echo "::error::this workflow only holds ch-02 credentials"; exit 1; fi
+          node -e "
+            const fs = require('fs');
+            const { resolveChannel } = require('./scripts/lib/channel-lookup.cjs');
+            const ch = resolveChannel('2');
+            if (!(process.env.CH02_CLIENT_ID && process.env.CH02_CLIENT_SECRET && process.env.CH02_REFRESH_TOKEN)) { console.error('::error::missing ch-02 secrets'); process.exit(1); }
+            fs.mkdirSync('config/creds', { recursive: true });
+            fs.writeFileSync('config/creds/' + ch.channel_id + '.json', JSON.stringify({ client_id: process.env.CH02_CLIENT_ID, client_secret: process.env.CH02_CLIENT_SECRET, refresh_token: process.env.CH02_REFRESH_TOKEN }));
+            console.log('credentials ready for ' + ch.channel_name + ' (' + ch.channel_id + ')');
+          "
+      - name: Upload (private)
+        env:
+          IN_FILE: ${{ inputs.file }}
+          IN_TITLE: ${{ inputs.title }}
+          IN_DESC: ${{ inputs.description }}
+          IN_TAGS: ${{ inputs.tags }}
+        run: |
+          R=data/ai-tested/uploads/upload-request.json
+          if [ -n "$IN_FILE" ]; then FILE="$IN_FILE"; TITLE="$IN_TITLE"; DESC="$IN_DESC"; TAGS="$IN_TAGS"
+          else
+            FILE=$(node -p "require('./$R').file"); TITLE=$(node -p "require('./$R').title")
+            DESC=$(node -p "require('./$R').description"); TAGS=$(node -p "require('./$R').tags")
+          fi
+          test -f "$FILE" || { echo "::error::no such file $FILE"; exit 1; }
+          node scripts/youtube-upload.cjs --file "$FILE" --title "$TITLE" --description "$DESC" --tags "$TAGS" --channel 2 | tee upload.log
+          echo "### Private upload" >> "$GITHUB_STEP_SUMMARY"
+          grep -E "Upload successful" upload.log >> "$GITHUB_STEP_SUMMARY" || true

@@ -1,0 +1,27 @@
+{
+  "id": "24",
+  "slug": "one-file-ai-game",
+  "generatedAt": "2026-11-24T20:41:20.460Z",
+  "assets": [
+    {
+      "file": "assets/logos/anthropic-white.svg",
+      "type": "logo",
+      "source": "Repo asset library",
+      "license": "Trademarked brand mark - editorial use",
+      "scene": "Claude/Anthropic reference",
+      "transparent": "svg",
+      "resolution": "vector",
+      "status": "present"
+    },
+    {
+      "file": "assets/logos/huggingface-white.svg",
+      "type": "logo",
+      "source": "Repo asset library",
+      "license": "Trademarked brand mark - editorial use",
+      "scene": "Source reference",
+      "transparent": "svg",
+      "resolution": "vector",
+      "status": "present"
+    }
+  ]
+}

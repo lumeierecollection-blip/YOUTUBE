@@ -1,0 +1,164 @@
+{
+  "checked_at": "2026-11-26T00:20:43+00:00",
+  "total": 14,
+  "pass": -11,
+  "fail": 25,
+  "providers": {
+    "ppq": {
+      "status": "NO_KEY",
+      "credit_status": "\u274c NO_KEY",
+      "credit_detail": "",
+      "probe_model": "",
+      "model_count": 0
+    },
+    "deepseek": {
+      "status": "OK",
+      "credit_status": "\u274c FAIL",
+      "credit_detail": "\u274c PAYMENT_REQUIRED: Insufficient Balance (request_id: 1d516b97-677d-4d88-8ccc-9ca8edbc3da0)",
+      "probe_model": "deepseek-v4-flash",
+      "model_count": 2
+    },
+    "openai": {
+      "status": "NO_TOKEN",
+      "credit_status": "\u274c NO_TOKEN",
+      "credit_detail": "No OpenAI auth in auth.json",
+      "probe_model": "openai/gpt-5.4-mini",
+      "model_count": 8
+    },
+    "zai-coding-plan": {
+      "status": "NO_KEY",
+      "credit_status": "\u274c NO_KEY",
+      "credit_detail": "",
+      "probe_model": "",
+      "model_count": 0
+    }
+  },
+  "checks": [
+    {
+      "name": "alt (runway)",
+      "model": "ppq/runway-gen4",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "film-assembly-editor",
+      "model": "openai/gpt-5.1-codex",
+      "provider": "openai",
+      "status": "\u274c NO_TOKEN",
+      "detail": "OAuth: No OpenAI auth in auth.json",
+      "credit": "\u274c NO_TOKEN",
+      "credit_detail": "No OpenAI auth in auth.json"
+    },
+    {
+      "name": "film-creative-director",
+      "model": "ppq/anthropic/claude-sonnet-4.5",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "film-maker",
+      "model": "zai-coding-plan/glm-5.1",
+      "provider": "zai-coding-plan",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "film-manim-engineer",
+      "model": "deepseek/deepseek-v4-pro",
+      "provider": "deepseek",
+      "status": "\u2705 OK",
+      "detail": "",
+      "credit": "\u274c FAIL",
+      "credit_detail": "\u274c PAYMENT_REQUIRED: Insufficient Balance (request_id: 1d516b97-677d-4d88-8ccc-9ca8edbc3da0)"
+    },
+    {
+      "name": "film-prompt-architect",
+      "model": "ppq/moonshotai/kimi-k2.6",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "film-remotion-engineer",
+      "model": "openai/gpt-5.5",
+      "provider": "openai",
+      "status": "\u274c NO_TOKEN",
+      "detail": "OAuth: No OpenAI auth in auth.json",
+      "credit": "\u274c NO_TOKEN",
+      "credit_detail": "No OpenAI auth in auth.json"
+    },
+    {
+      "name": "film-researcher",
+      "model": "deepseek/deepseek-v4-pro",
+      "provider": "deepseek",
+      "status": "\u2705 OK",
+      "detail": "",
+      "credit": "\u274c FAIL",
+      "credit_detail": "\u274c PAYMENT_REQUIRED: Insufficient Balance (request_id: 1d516b97-677d-4d88-8ccc-9ca8edbc3da0)"
+    },
+    {
+      "name": "film-script-director",
+      "model": "deepseek/deepseek-v4-pro",
+      "provider": "deepseek",
+      "status": "\u2705 OK",
+      "detail": "",
+      "credit": "\u274c FAIL",
+      "credit_detail": "\u274c PAYMENT_REQUIRED: Insufficient Balance (request_id: 1d516b97-677d-4d88-8ccc-9ca8edbc3da0)"
+    },
+    {
+      "name": "film-storyboard-artist",
+      "model": "openai/gpt-5.5",
+      "provider": "openai",
+      "status": "\u274c NO_TOKEN",
+      "detail": "OAuth: No OpenAI auth in auth.json",
+      "credit": "\u274c NO_TOKEN",
+      "credit_detail": "No OpenAI auth in auth.json"
+    },
+    {
+      "name": "film-visual-designer",
+      "model": "ppq/anthropic/claude-sonnet-4.5",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "i2v (img2vid)",
+      "model": "ppq/kling-o3-standard-i2v",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "t2i (image)",
+      "model": "ppq/nano-banana-pro",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    },
+    {
+      "name": "t2v (video)",
+      "model": "ppq/kling-3.0",
+      "provider": "ppq",
+      "status": "\u274c NO_KEY",
+      "detail": "",
+      "credit": "\u274c NO_KEY",
+      "credit_detail": ""
+    }
+  ]
+}
