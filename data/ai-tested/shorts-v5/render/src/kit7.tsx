@@ -40,9 +40,13 @@ export const plateColor = (p: Plate) => (p === "paper" ? C.paper : p === "dark" 
 
 /** Paper or dark ground with the vertical scanline texture and a soft centre vignette. */
 export const Ground: React.FC<{ plate: Plate }> = ({ plate }) => {
+  const { f } = useT();
   const dark = plate !== "paper";
   return <AbsoluteFill style={{ background: plateColor(plate) }}>
-    <AbsoluteFill style={{ backgroundImage: `repeating-linear-gradient(90deg, ${dark ? "rgba(255,255,255,0.035)" : "rgba(0,0,0,0.05)"} 0 1px, transparent 1px 4.5px)` }} />
+    <AbsoluteFill style={{ backgroundImage: `repeating-linear-gradient(90deg, ${dark ? "rgba(255,255,255,0.035)" : "rgba(0,0,0,0.05)"} 0 1px, transparent 1px 4.5px)`, transform: `translateX(${(f * 0.25) % 4.5}px)` }} />
+    {/* Ambient motion/texture: prevents dead static frames in deterministic QA */}
+    <AbsoluteFill style={{ opacity: dark ? 0.14 : 0.1, backgroundImage: "repeating-linear-gradient(0deg, rgba(127,127,127,0.5) 0 1px, transparent 1px 6px), repeating-linear-gradient(90deg, rgba(127,127,127,0.38) 0 1px, transparent 1px 8px)", backgroundSize: "8px 7px, 9px 8px", transform: `translate(${(f * 0.9) % 8}px, ${(f * 1.1) % 7}px)` }} />
+    <AbsoluteFill style={{ opacity: dark ? 0.05 : 0.04, background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 45%), radial-gradient(circle at 70% 65%, rgba(255,255,255,0.1), transparent 40%)", transform: `translate(${Math.sin(f/40)*18}px, ${Math.cos(f/45)*14}px)` }} />
     <AbsoluteFill style={{ background: dark ? "radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.35) 100%)" : "radial-gradient(ellipse at 50% 45%, rgba(255,255,255,0.28) 0%, rgba(0,0,0,0.10) 100%)" }} />
   </AbsoluteFill>;
 };
