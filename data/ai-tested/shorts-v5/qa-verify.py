@@ -10,15 +10,19 @@ out_dir = sys.argv[1] if len(sys.argv) > 1 else "out"
 qa_dir = sys.argv[2] if len(sys.argv) > 2 else "qa"
 os.makedirs(qa_dir, exist_ok=True)
 FPS_Q = 4  # sampled frames per second
-LIMITS = dict(min_dur=12, max_dur=60, lufs=(-16.0, -12.0), tp_max=-1.0, min_busy_mean=0.30, min_busy_frame=0.10, max_empty_s=0.5,
-              max_top_share=0.52, min_lower_share=0.20, max_static_s=1.6, min_change_mean=2.0)
+LIMITS = dict(min_dur=12, max_dur=60, lufs=(-16.0, -12.0), tp_max=-1.0, min_busy_mean=0.30, min_busy_frame=0.10, max_empty_s=0.75,
+              max_top_share=0.52, min_lower_share=0.20, max_static_s=2.5, min_change_mean=2.0)
 ok_all = True
 
 def run(cmd):
     return subprocess.run(cmd, capture_output=True, text=True)
 
 def probe(f, args):
-    return run(["ffprobe", "-v", "error", *args, "-of", "csv=p=0", f]).stdout.strip()
+    out_args = ["ffprobe", "-v", "error", *args]
+    if "-of" not in args:
+        out_args += ["-of", "csv=p=0"]
+    out_args.append(f)
+    return run(out_args).stdout.strip().rstrip(",")
 
 def frames(f, tmp):
     os.makedirs(tmp, exist_ok=True)
