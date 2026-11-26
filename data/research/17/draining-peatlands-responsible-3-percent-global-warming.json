@@ -1,0 +1,80 @@
+{
+  "topic_slug": "draining-peatlands-responsible-3-percent-global-warming",
+  "strongest_angle": "Explore how MIT researchers led by Jevan B. Yu quantified that the long-term decomposition of drained bogs, fens, and swamps is responsible for about 2.7 to 3 percent of human-caused global warming.",
+  "key_facts": [
+    {
+      "fact": "A study led by Jevan Yu at MIT found that the long-term decomposition of drained bogs, fens, and swamps is responsible for about 3 percent of human-caused climate warming.",
+      "source_url": "https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125",
+      "source_name": "MIT News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Researchers noted that some 600 billion tons of carbon are held in vast stores of peat, which is more than you can find in all the world's living vegetation.",
+      "source_url": "https://arstechnica.com/science/2026/11/draining-peatlands-is-responsible-for-a-few-percent-of-our-global-warming",
+      "source_name": "Ars Technica",
+      "confidence": "high"
+    },
+    {
+      "fact": "A study published in Nature estimated that draining the world's peatlands across a 220-year period has caused about 2.7 percent of human-made warming.",
+      "source_url": "https://www.natureworldnews.com/articles/74076/20261126/draining-worlds-peatlands-has-caused-about-27-human-made-warming-nature-study-estimates.htm",
+      "source_name": "Nature World News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Human-caused climate warming percentage from drained peatlands",
+      "value": 3,
+      "unit": "percent",
+      "source_url": "https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125"
+    },
+    {
+      "label": "Estimated human-made warming percentage from drained peatlands",
+      "value": 2.7,
+      "unit": "percent",
+      "source_url": "https://www.natureworldnews.com/articles/74076/20261126/draining-worlds-peatlands-has-caused-about-27-human-made-warming-nature-study-estimates.htm"
+    },
+    {
+      "label": "Carbon held in peat stores",
+      "value": 600000000000,
+      "unit": "tons",
+      "source_url": "https://arstechnica.com/science/2026/11/draining-peatlands-is-responsible-for-a-few-percent-of-our-global-warming"
+    },
+    {
+      "label": "Historical period of peatland drainage reconstruction",
+      "value": 220,
+      "unit": "years",
+      "source_url": "https://www.natureworldnews.com/articles/74076/20261126/draining-worlds-peatlands-has-caused-about-27-human-made-warming-nature-study-estimates.htm"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Jevan B. Yu",
+      "kind": "person"
+    },
+    {
+      "name": "MIT",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "Etienne Fluet-Chouinard",
+      "kind": "person"
+    },
+    {
+      "name": "Susan E. Page",
+      "kind": "person"
+    },
+    {
+      "name": "Chris D. Evans",
+      "kind": "person"
+    },
+    {
+      "name": "Charles F. Harvey",
+      "kind": "person"
+    }
+  ]
+}

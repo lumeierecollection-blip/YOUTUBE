@@ -1,0 +1,86 @@
+{
+  "channel_id": "17",
+  "topic_slug": "draining-peatlands-responsible-3-percent-global-warming",
+  "format": "shorts",
+  "hook": "Drained bogs and swamps cause 3% of human-made climate warming.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "0:00-0:05",
+      "voiceover": "Drained bogs and swamps cause 3% of human-made climate warming.",
+      "visual_cue": "Aerial footage of cracked, dried peatland soil stretching toward the horizon under hazy sunlight.",
+      "sfx_cue": "Low cinematic drone rumble",
+      "b_roll": [
+        "cracked dried peat soil aerial view",
+        "misty wetland bog morning shot"
+      ],
+      "text_overlay": {
+        "text": "3% OF GLOBAL WARMING"
+      },
+      "transition_out": "whip_cut"
+    },
+    {
+      "id": "setup",
+      "timing": "0:05-0:20",
+      "voiceover": "Over 220 years, humans drained peatlands for farming and land development. How did dried soil release 600 billion tons of carbon?",
+      "visual_cue": "Historical archive style footage of drainage canals cut through peat bogs, transitioning to soil testing equipment.",
+      "sfx_cue": "Subtle earth digging sound followed by wind whistling over barren ground",
+      "b_roll": [
+        "agricultural drainage canal peatland",
+        "soil moisture research equipment field work"
+      ],
+      "text_overlay": {
+        "text": "600 BILLION TONS OF CARBON"
+      },
+      "transition_out": "fade_to_black"
+    },
+    {
+      "id": "rehook",
+      "timing": "0:20-0:27",
+      "voiceover": "However, a Nature study shows that decomposition accelerates rapidly as water drains from these bogs.",
+      "visual_cue": "Extreme macro close-up of decaying organic peat fibers exposed to ambient air oxygen.",
+      "sfx_cue": "Tense rising string note",
+      "b_roll": [
+        "peat moss texture macro exposure to oxygen"
+      ],
+      "text_overlay": {
+        "text": "DECOMPOSITION ACCELERATES"
+      },
+      "transition_out": "cut"
+    },
+    {
+      "id": "payoff",
+      "timing": "0:27-0:42",
+      "voiceover": "MIT researcher Jevan B. Yu led the team quantifying this 2.7 percent warming impact. These bogs store more carbon than all living vegetation combined.",
+      "visual_cue": "High-contrast map visualization showing global peatland distribution and relative carbon density comparison against global forest biomass.",
+      "sfx_cue": "Deep bass pulse impact",
+      "b_roll": [
+        "lush tropical forest canopy aerial shot",
+        "drained peatland landscape panorama"
+      ],
+      "text_overlay": {
+        "text": "2.7% CLIMATE IMPACT"
+      },
+      "transition_out": "dissolve"
+    },
+    {
+      "id": "close",
+      "timing": "0:42-0:47",
+      "voiceover": "Draining peatlands created a long-term legacy of 3% global warming.",
+      "visual_cue": "Wide landscape shot of a protected natural wetland fen glowing under golden hour light.",
+      "sfx_cue": "Sustained warm ambient chime fade",
+      "b_roll": [
+        "natural protected wetland fen golden hour light"
+      ],
+      "text_overlay": {
+        "text": "3% WARMING LEGACY"
+      },
+      "transition_out": "fade_out"
+    }
+  ],
+  "sources_used": [
+    "https://news.mit.edu/2026/draining-peatlands-leaves-long-warming-legacy-1125",
+    "https://www.natureworldnews.com/articles/74076/20261126/draining-worlds-peatlands-has-caused-about-27-human-made-warming-nature-study-estimates.htm",
+    "https://arstechnica.com/science/2026/11/draining-peatlands-is-responsible-for-a-few-percent-of-our-global-warming"
+  ]
+}
