@@ -3,7 +3,7 @@ import { Composition, CalculateMetadataFunction } from "remotion";
 import { AIShort, AIShortProps } from "./AIShort";
 import { Short, ShortProps } from "./Short";
 
-const IDS = ["21", "22", "23", "24", "25"];
+const IDS = ["21", "22", "23", "24", "25", "26"];
 
 const isV7 = (plan: any) => plan?.schema === 7 || (Array.isArray(plan?.beats) && plan.beats[0] && ("pics" in plan.beats[0] || "text" in plan.beats[0]));
 
