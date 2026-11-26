@@ -17,14 +17,18 @@ const p01 = (t: number, at: number, d = 0.4) => OUT(clamp((t - at) / d, 0, 1));
 const inkText = (bar: string) => (bar === "blue" || bar === "red" ? "#fff" : C.ink);
 const barStyle = (bar: string | undefined, p: number): React.CSSProperties => bar ? ({ backgroundImage: `linear-gradient(${C.bars[bar]},${C.bars[bar]})`, backgroundRepeat: "no-repeat", backgroundPosition: "0 62%", backgroundSize: `${p * 100}% 72%`, padding: "0 14px", color: inkText(bar) }) : {};
 
-const Counter: React.FC<Extract<Widget, { k: "counter" }> & { bt: number }> = (w) => {
-  const p = p01(w.bt, w.at, w.dur ?? 1.1);
+const Counter: React.FC<Extract<Widget, { k: "counter" }> & { bt: number; plate?: string }> = (w) => {
+  // Eases to the final value in 0.25 s so no unlisted intermediate number stays on screen.
+  const p = p01(w.bt, w.at, Math.min(w.dur ?? 1.1, 0.25));
   const v = (w.from ?? 0) + (w.to - (w.from ?? 0)) * p;
   const txt = `${w.prefix ?? ""}${v.toFixed(w.decimals ?? 0)}${w.suffix ?? ""}`;
+  const finalLen = `${w.prefix ?? ""}${w.to.toFixed(w.decimals ?? 0)}${w.suffix ?? ""}`.length;
+  const size = Math.min(w.size ?? 330, Math.floor((CANVAS.w * 0.84) / (Math.max(finalLen, 2) * 0.72)));
+  const ink = w.plate && w.plate !== "paper" ? "#F4F4F0" : C.ink;
   const vis = clamp((w.bt - w.at) / 0.12, 0, 1);
-  return <div style={{ position: "absolute", left: w.x * CANVAS.w, top: w.y * CANVAS.h, transform: "translate(-50%,-50%)", textAlign: "center", opacity: vis }}>
-    <div style={{ fontFamily: F.sans, fontSize: w.size ?? 330, lineHeight: 0.9, letterSpacing: "-0.05em", color: w.bar ? inkText(w.bar) : C.ink, ...barStyle(w.bar, vis), display: "inline-block" }}>{txt}</div>
-    {w.label ? <div style={{ fontFamily: F.serif, fontStyle: "italic", fontSize: 92, lineHeight: 1, marginTop: 18, color: C.ink, opacity: p01(w.bt, w.at + 0.25, 0.35) }}>{w.label}</div> : null}
+  return <div style={{ position: "absolute", left: w.x * CANVAS.w, top: w.y * CANVAS.h, transform: "translate(-50%,-50%)", textAlign: "center", opacity: vis, maxWidth: CANVAS.w * 0.92 }}>
+    <div style={{ fontFamily: F.sans, fontSize: size, lineHeight: 0.9, letterSpacing: "-0.05em", whiteSpace: "nowrap", color: w.bar ? inkText(w.bar) : ink, ...barStyle(w.bar, vis), display: "inline-block" }}>{txt}</div>
+    {w.label ? <div style={{ fontFamily: F.serif, fontStyle: "italic", fontSize: 92, lineHeight: 1, marginTop: 18, color: ink, opacity: p01(w.bt, w.at + 0.25, 0.35) }}>{w.label}</div> : null}
   </div>;
 };
 
@@ -137,9 +141,9 @@ const Terminal: React.FC<Extract<Widget, { k: "terminal" }> & { bt: number }> = 
   </div>;
 };
 
-export const WidgetView: React.FC<{ w: Widget; bt: number }> = ({ w, bt }) => {
+export const WidgetView: React.FC<{ w: Widget; bt: number; plate?: string }> = ({ w, bt, plate }) => {
   switch (w.k) {
-    case "counter": return <Counter {...w} bt={bt} />;
+    case "counter": return <Counter {...w} bt={bt} plate={plate} />;
     case "bars": return <Bars {...w} bt={bt} />;
     case "timeline": return <Timeline {...w} bt={bt} />;
     case "compare": return <Compare {...w} bt={bt} />;

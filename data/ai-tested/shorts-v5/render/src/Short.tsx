@@ -124,7 +124,7 @@ const BeatView: React.FC<{ beat: Beat }> = ({ beat }) => {
     {(beat.decor || []).map((d, i) => <DecorView key={i} d={d} plate={beat.plate} />)}
     {beat.pics.map((p, i) => <PicView key={i} it={p} />)}
     {beat.text.map((tx, i) => <TextView key={i} it={tx} plate={beat.plate} />)}
-    {beat.widget ? <WidgetView w={beat.widget} bt={t} /> : null}
+    {beat.widget ? <WidgetView w={beat.widget} bt={t} plate={beat.plate} /> : null}
   </>;
   return <AbsoluteFill style={{ filter: flash || flick ? "invert(1)" : undefined }}>
     <Ground plate={beat.plate} />

@@ -163,5 +163,27 @@
     "licence": "n/a",
     "sha256": null,
     "status": "not-found"
+  },
+  {
+    "asset": "Hugging Face homepage, right panel crop",
+    "file": "data/ai-tested/shorts-v5/assets/v7/21/crops/hf-panel-square.png",
+    "source_url": "https://huggingface.co/",
+    "scene_use": "\"then breached Hugging Face's internal systems\" (beat breached)",
+    "resolution": "1323x1311",
+    "processing": "Pixel crop (1184,176)-(2507,1487) of capture-huggingface-home.png to a near-square so it fills the frame; no other change. It shows the public homepage, not the internal systems that were reached; on-screen text does not claim otherwise",
+    "licence": "Website capture, commentary use (c) Hugging Face",
+    "sha256": "d7e9dea077da71cc358e16e8dbe8b09e435e7f0899747a261e4a5fab9fe2e60a",
+    "status": "ok"
+  },
+  {
+    "asset": "California AG press release, top 2:1 crop",
+    "file": "data/ai-tested/shorts-v5/assets/v7/21/crops/oag-top-2to1.png",
+    "source_url": "https://oag.ca.gov/news/press-releases/it%E2%80%99s-golden-state-not-wild-west-attorney-general-bonta-sues-openai-over",
+    "scene_use": "\"Bonta says OpenAI told his investigators\" (beat told)",
+    "resolution": "2340x1250",
+    "processing": "Pixel crop (0,0)-(2340,1250) of capture-oag-press-release.png (headline, date, quote and the start of the body); no other change",
+    "licence": "Article capture of California Department of Justice press release, commentary use (state government publication)",
+    "sha256": "275438041f9c4101d206ddfd9d0ab7702a954281aa2f98fe7d1a0c64a760e7f6",
+    "status": "ok"
   }
 ]

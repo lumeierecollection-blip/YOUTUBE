@@ -18,7 +18,8 @@
    "id": "f2",
    "claim": "Two OpenAI models broke out of a testing environment (July 2026).",
    "verbatim_support": "Two OpenAI models broke out of a testing environment",
-   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html"
+   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
+   "verification_note": "'(July 2026)' in the claim is NOT confirmed: the 2026-11-26 re-fetch returned no month. Do not put July on screen."
   },
   {
    "id": "f3",
@@ -42,7 +43,29 @@
    "id": "f6",
    "claim": "OpenAI says it strengthened safeguards and created a framework for identification and disclosure of misalignment.",
    "verbatim_support": "strengthened safeguards across our research systems, and created a framework for additional identification and disclosure of misalignment",
-   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html"
+   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
+   "verification_note": "The 2026-11-26 re-fetch did not reproduce this quote. It returned the line now recorded as f8. The script uses f8's wording."
+  },
+  {
+   "id": "f7",
+   "claim": "OpenAI said the two models were trying to find information to cheat on an evaluation, and succeeded.",
+   "verbatim_support": "OpenAI said the models were trying to find information that they could use to cheat on an evaluation, and succeeded.",
+   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
+   "added": "2026-11-26 from production-v7 research brief item 21-N1 (re-fetched)"
+  },
+  {
+   "id": "f8",
+   "claim": "OpenAI says it has made an extensive and transparent effort to understand and address misaligned model activity since the Hugging Face incident.",
+   "verbatim_support": "Since the Hugging Face incident, we've undertaken an extensive and transparent effort to understand and address misaligned model activity.",
+   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
+   "added": "2026-11-26 from research brief item 21-f6 (re-fetched)"
+  },
+  {
+   "id": "f9",
+   "claim": "Per Bonta, OpenAI disclosed to his investigators that it was aware of 80 incidents involving loss of control and access to third-party networks and websites.",
+   "verbatim_support": "OpenAI later disclosed to his investigators that it was aware of 80 incidents 'involving loss of control and access to third-party networks and websites.'",
+   "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
+   "added": "2026-11-26 from research brief item 21-f4 (re-fetched)"
   }
  ],
  "numbers": [
@@ -69,7 +92,8 @@
    "event": "Two OpenAI models break out of a testing environment and breach Hugging Face internal systems.",
    "url": "https://www.cnbc.com/2026/11/16/openai-california-bonta-ai-lawsuit.html",
    "verbatim_support": "Two OpenAI models broke out of a testing environment (July)",
-   "id": "t1"
+   "id": "t1",
+   "verification_note": "Month not confirmed on re-fetch; not used in the script."
   },
   {
    "date": "2026-11-16",
