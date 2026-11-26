@@ -1,0 +1,47 @@
+{
+  "channel_id": "48",
+  "topic_slug": "hse-2026-annual-workplace-health-safety-statistics",
+  "format": "shorts",
+  "hook": "In 2025/26, 1.8 million workers in Great Britain suffered from work-related ill health.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 2025/26, 1.8 million workers in Great Britain suffered from work-related ill health.",
+      "text_overlay": {
+        "text": "1.8 Million Workers Affected"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did you know 0.5 million workers in Great Britain suffered from work-related musculoskeletal disorders in 2025/26?",
+      "text_overlay": {
+        "text": "Work-Related Ill Health 2025/26"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, 0.9 million workers in Great Britain suffered from work-related stress, depression, or anxiety.",
+      "text_overlay": {
+        "text": "0.5 Million Musculoskeletal Cases"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Health and Safety Executive Annual Report and Accounts 2025/26 highlights these widespread health challenges. Tragically, 124 workers were killed at work across Great Britain during the 2025/26 period.",
+      "text_overlay": {
+        "text": "124 Workers Killed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Prioritize safety to help reduce these 124 workplace fatalities recorded in Great Britain during 2025/26.",
+      "text_overlay": {
+        "text": "124 Fatalities"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf",
+    "https://assets.publishing.service.gov.uk/media/6ae9e86b4bd624c77e5d6885/HSE_Annual_Report_and_Accounts_2025_to_2026_print-ready.pdf"
+  ]
+}

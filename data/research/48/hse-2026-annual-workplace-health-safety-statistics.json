@@ -1,0 +1,78 @@
+{
+  "topic_slug": "hse-2026-annual-workplace-health-safety-statistics",
+  "strongest_angle": "The Health and Safety Executive's 2025/26 statistics reveal persistent workplace ill-health challenges in Great Britain, driven by stress and musculoskeletal disorders.",
+  "key_facts": [
+    {
+      "fact": "The Health and Safety Executive reported in its summary statistics that 1.8 million workers in Great Britain suffered from work-related ill health during 2025/26.",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf",
+      "source_name": "Health and Safety Executive",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to the Health and Safety Executive's 2025/26 summary statistics for Great Britain, 0.9 million workers suffered from work-related stress, depression, or anxiety.",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf",
+      "source_name": "Health and Safety Executive",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Health and Safety Executive recorded 0.5 million workers in Great Britain suffering from work-related musculoskeletal disorders in 2025/26.",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf",
+      "source_name": "Health and Safety Executive",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Health and Safety Executive Annual Report and Accounts 2025/26 documented 124 workers killed at work across Great Britain.",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ae9e86b4bd624c77e5d6885/HSE_Annual_Report_and_Accounts_2025_to_2026_print-ready.pdf",
+      "source_name": "Health & Safety Executive",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Workers suffering from work-related ill health",
+      "value": 1.8,
+      "unit": "million workers",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf"
+    },
+    {
+      "label": "Workers suffering from work-related stress, depression, or anxiety",
+      "value": 0.9,
+      "unit": "million workers",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf"
+    },
+    {
+      "label": "Workers suffering from work-related musculoskeletal disorders",
+      "value": 0.5,
+      "unit": "million workers",
+      "source_url": "https://www.hse.gov.uk/STATISTICS/assets/docs/hssh2526.pdf"
+    },
+    {
+      "label": "Workers killed at work",
+      "value": 124,
+      "unit": "workers",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ae9e86b4bd624c77e5d6885/HSE_Annual_Report_and_Accounts_2025_to_2026_print-ready.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "The Health and Safety Executive (HSE) has today (Thursday 19 November) published its annual statistics covering work-related ill health and workplace injuries for the year 2025/26.",
+      "speaker": "Health and Safety Executive Media Centre",
+      "source_name": "HSE Media Centre",
+      "source_url": "https://press.hse.gov.uk/2026/11/20/annual-workplace-health-and-safety-statistics-show-challenge-of-addressing-ill-health-remains"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Health and Safety Executive",
+      "kind": "organization"
+    },
+    {
+      "name": "Great Britain",
+      "kind": "place"
+    },
+    {
+      "name": "Annual Report and Accounts 2025/26",
+      "kind": "object"
+    }
+  ]
+}
