@@ -150,6 +150,11 @@ const scenes = [
     ] },
   ] },
 ];
+// Reference layout: lead text above the card, bold keyword below it.
+for (const s of scenes) {
+  if (!s.els.some((e) => e.k === "card")) continue;
+  for (const e of s.els) if (e.k === "lines") for (const l of e.lines) { if (l.y === 165) l.y = 595; else if (l.y === 100) l.y = 117; }
+}
 const planScenes = scenes.map((s, k) => ({ t0: k === 0 ? 0 : t0(s.i), t1: k === scenes.length - 1 ? 999 : t0(scenes[k + 1].i), grid: !!s.grid, els: s.els }));
 
 const sfxAt = (t, src, vol, d) => ({ t, src, vol, dur: d });
@@ -191,7 +196,7 @@ fs.unlinkSync(raw);
 const stillDir = path.join(outDir, "stills");
 fs.mkdirSync(stillDir, { recursive: true });
 planScenes.forEach((sc, k) => {
-  const t = Math.min(dur - 0.1, sc.t0 + Math.min(1.6, (Math.min(sc.t1, dur) - sc.t0) * 0.8));
+  const t = Math.min(dur - 0.1, Math.min(sc.t1, dur) - 0.25);
   execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-ss", t.toFixed(2), "-i", outFile, "-frames:v", "1", path.join(stillDir, `s${String(k + 1).padStart(2, "0")}_${t.toFixed(1)}s.png`)]);
 });
 execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-framerate", "1", "-pattern_type", "glob", "-i", path.join(stillDir, "s*.png"), "-vf", "scale=270:480,tile=8x2:padding=6:color=white", "-frames:v", "1", path.join(outDir, "contact.png")]);
