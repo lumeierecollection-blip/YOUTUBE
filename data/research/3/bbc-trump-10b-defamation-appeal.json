@@ -1,0 +1,77 @@
+{
+  "topic_slug": "bbc-trump-10b-defamation-appeal",
+  "strongest_angle": "Examine the BBC's emergency court filings in November 2026 seeking to overturn a judge's decision to take Donald Trump's $10 billion defamation lawsuit to trial over a Panorama documentary edit.",
+  "key_facts": [
+    {
+      "fact": "Donald Trump filed a defamation lawsuit against the BBC in December 2025 initially seeking at least $10 billion before it was later reduced to about $5 billion.",
+      "source_url": "https://www.thedailybeast.com/bbc-fights-back-after-surprise-decision-in-5b-trump-lawsuit",
+      "source_name": "The Daily Beast",
+      "confidence": "high"
+    },
+    {
+      "fact": "In November 2026, Federal Judge Jeffrey T. Kuntz denied the BBC's bid to throw out the case and allowed the defamation claim to proceed.",
+      "source_url": "https://www.thedailybeast.com/bbc-fights-back-after-surprise-decision-in-5b-trump-lawsuit",
+      "source_name": "The Daily Beast",
+      "confidence": "high"
+    },
+    {
+      "fact": "The BBC lodged an urgent appeal with the US Court of Appeals for the 11th Circuit on November 25, 2026.",
+      "source_url": "https://www.theguardian.com/us-news/2026/nov/25/bbc-trump-defamation-case-10bn-urgent-appeal",
+      "source_name": "The Guardian",
+      "confidence": "high"
+    },
+    {
+      "fact": "The defamation lawsuit stems from an episode of Panorama that edited a speech Donald Trump gave in January 2021 before the US Capitol riot.",
+      "source_url": "https://www.bbc.com/news/articles/cwdd1zn9npdpo",
+      "source_name": "BBC News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Original lawsuit amount",
+      "value": 10,
+      "unit": "billion dollars",
+      "source_url": "https://www.aa.com.tr/en/world/bbc-lodges-urgent-appeal-against-ruling-in-trump-s-10b-defamation-lawsuit/4138620"
+    },
+    {
+      "label": "Adjusted lawsuit amount",
+      "value": 5,
+      "unit": "billion dollars",
+      "source_url": "https://www.thedailybeast.com/bbc-fights-back-after-surprise-decision-in-5b-trump-lawsuit"
+    },
+    {
+      "label": "UK pound valuation of lawsuit",
+      "value": 7.6,
+      "unit": "billion pounds",
+      "source_url": "https://www.bbc.com/news/articles/cwdd1zn9npdpo"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Donald Trump",
+      "kind": "person"
+    },
+    {
+      "name": "BBC",
+      "kind": "organization"
+    },
+    {
+      "name": "Panorama",
+      "kind": "object"
+    },
+    {
+      "name": "Jeffrey T. Kuntz",
+      "kind": "person"
+    },
+    {
+      "name": "US Court of Appeals for the 11th Circuit",
+      "kind": "organization"
+    },
+    {
+      "name": "US Capitol",
+      "kind": "place"
+    }
+  ]
+}
