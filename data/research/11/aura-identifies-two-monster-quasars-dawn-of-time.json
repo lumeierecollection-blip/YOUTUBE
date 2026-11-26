@@ -1,0 +1,73 @@
+{
+  "topic_slug": "aura-identifies-two-monster-quasars-dawn-of-time",
+  "strongest_angle": "The Association of Universities for Research in Astronomy (AURA) and the Gemini North Telescope discovered Nāpōwawāʻenakaulua (J1602+4228AB), an extraordinary pair of quasars from the Cosmic Dawn 900 million years after the Big Bang.",
+  "key_facts": [
+    {
+      "fact": "The Association of Universities for Research in Astronomy discovered the quasar pair Nāpōwawāʻenakaulua, also designated as J1602+4228AB, located at a distance placing them 900 million years after the Big Bang.",
+      "source_url": "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The two monster black holes powering the quasar pair have masses of 1.5 billion and 400 million times that of the sun, respectively.",
+      "source_url": "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html",
+      "source_name": "Phys.org",
+      "confidence": "high"
+    },
+    {
+      "fact": "The quasar pair Nāpōwawāʻenakaulua is separated by a distance of approximately 18,100 light-years, which is roughly one-fifth the diameter of the Milky Way galaxy.",
+      "source_url": "https://www.maunakeaobservatories.org/stories/gemini-north-telescope-helps-discover-npwawenakaulua-a-rare-quasar-pair-from-the-early-universe",
+      "source_name": "Maunakea Observatories",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Time after Big Bang",
+      "value": 900,
+      "unit": "million years",
+      "source_url": "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html"
+    },
+    {
+      "label": "First black hole mass",
+      "value": 1.5,
+      "unit": "billion solar masses",
+      "source_url": "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html"
+    },
+    {
+      "label": "Second black hole mass",
+      "value": 400,
+      "unit": "million solar masses",
+      "source_url": "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html"
+    },
+    {
+      "label": "Separation distance",
+      "value": 18100,
+      "unit": "light-years",
+      "source_url": "https://www.maunakeaobservatories.org/stories/gemini-north-telescope-helps-discover-npwawenakaulua-a-rare-quasar-pair-from-the-early-universe"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Association of Universities for Research in Astronomy",
+      "kind": "organization"
+    },
+    {
+      "name": "Gemini North Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Nāpōwawāʻenakaulua",
+      "kind": "object"
+    },
+    {
+      "name": "J1602+4228AB",
+      "kind": "object"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "place"
+    }
+  ]
+}

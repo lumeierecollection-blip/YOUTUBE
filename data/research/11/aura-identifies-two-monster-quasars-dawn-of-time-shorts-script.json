@@ -1,0 +1,74 @@
+{
+  "channel_id": "11",
+  "topic_slug": "aura-identifies-two-monster-quasars-dawn-of-time",
+  "format": "shorts",
+  "hook": "Astronomers found Nāpōwawāʻenakaulua, a pair of quasars, which are incredibly bright, active centers of distant galaxies.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Astronomers found Nāpōwawāʻenakaulua, a pair of quasars, which are incredibly bright, active centers of distant galaxies.",
+      "visual_cue": "CGI animation of two bright, swirling quasars in deep space.",
+      "sfx_cue": "Low, rumbling space ambience with a sharp synth chime.",
+      "b_roll": [
+        "CGI rendering of binary quasars from the early universe"
+      ],
+      "text_overlay": {
+        "text": "Quasars at the Dawn of Time"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Did the Association of Universities for Research in Astronomy find this pair using Gemini North Telescope?",
+      "visual_cue": "Graphic showing the Gemini North Telescope pointing toward the distant, early universe.",
+      "sfx_cue": "Technological scanning sound effect.",
+      "b_roll": [
+        "Gemini North Telescope facility exterior",
+        "Deep space star field visualization"
+      ],
+      "text_overlay": {
+        "text": "900 Million Years After Big Bang"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Gemini North Telescope shows these two massive black holes sit just 18,100 light-years apart.",
+      "visual_cue": "Split-screen comparison of the distance between the two quasars.",
+      "sfx_cue": "Deep bass thrum.",
+      "b_roll": [
+        "Diagram showing 18,100 light-year separation"
+      ],
+      "text_overlay": {
+        "text": "18,100 Light-Years Apart"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This distance is just one-fifth the diameter of our Milky Way galaxy. These massive objects existed 900 million years after the Big Bang.",
+      "visual_cue": "Side-by-side comparison of the Milky Way galaxy next to the 18,100 light-year gap.",
+      "sfx_cue": "Glitchy, high-energy space distortion sound.",
+      "b_roll": [
+        "Milky Way galaxy spiral comparison graphic",
+        "Animation of two massive black holes orbiting each other"
+      ],
+      "text_overlay": {
+        "text": "1.5 Billion and 400 Million Solar Masses"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Nāpōwawāʻenakaulua contains two black holes weighing 1.5 billion and 400 million times the sun's mass.",
+      "visual_cue": "Slow zoom out into the vast, dark expanse of the early universe.",
+      "sfx_cue": "Fading, ethereal cosmic hum.",
+      "b_roll": [
+        "Cinematic pan across the early universe"
+      ],
+      "text_overlay": {
+        "text": "Cosmic Dawn"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://phys.org/news/2026-11-earliest-compact-quasar-pair-poses.html",
+    "https://www.maunakeaobservatories.org/stories/gemini-north-telescope-helps-discover-npwawenakaulua-a-rare-quasar-pair-from-the-early-universe"
+  ]
+}
