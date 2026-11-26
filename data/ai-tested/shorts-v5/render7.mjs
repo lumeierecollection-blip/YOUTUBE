@@ -39,7 +39,7 @@ function loudnorm(inFile, outFile) {
   const m = (r1.stderr || "").match(/\{[\s\S]*?"target_offset"[\s\S]*?\}/);
   if (!m) throw new Error("loudnorm pass 1 produced no stats: " + (r1.stderr || "").slice(-400));
   const s = JSON.parse(m[0]);
-  const af = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true,alimiter=limit=0.89:level=false`;
+  const af = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true,alimiter=limit=0.78:attack=3:release=40:level=false`;
   execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", inFile, "-c:v", "copy", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", outFile], { stdio: "inherit" });
   return s;
 }

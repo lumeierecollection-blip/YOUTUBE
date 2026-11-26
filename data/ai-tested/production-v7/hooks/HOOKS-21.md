@@ -12,6 +12,12 @@ Scored with the critic's hook_effectiveness (0-10, 8 = publish) plus the honesty
 | 6 | "Who controls an AI once it breaks out? California just sued over it." | WHO CONTROLS IT? | f1, f2 | pass but the question-first form is generic. | 6 |
 | 7 | "OpenAI says its models cheated on a test. California says they got onto the internet." | CHEATED. THEN BREACHED. | f7, f3, f1 | pass with both attributions. 15 words, too long for frame one. | 6 |
 
-Selected: hook 1. It is attributed, names the actors in seven words, passes the honesty gate and keeps the loop: the last line ("once it breaks out") returns to it. Hook 4 is held in reserve for the bridge: the cheat-on-evaluation line is already placed at about 11-15 s.
+Selected (revised 2026-11-26): hook 8, below. Hook 1 was rendered first and rejected by the channel owner ("the hook is horrible"). Diagnosis: an anchor-style sentence with no number-plus-consequence pairing, small logos, and a slow word reveal.
 
-Not used: any hook with "eighty" unattributed (2), "sandbox" (5, not the source's wording).
+| # | Spoken line | On-screen text | Facts | Honesty | Score |
+|---|---|---|---|---|---|
+| 8 | "California is suing OpenAI. It says two of its AI models broke out of a testing environment." | CALIFORNIA IS SUING / TWO OF ITS AI MODELS / BROKE OUT | f1, f2, n2 | pass: the lawsuit is stated first (f1); "It says" keeps the breakout attributed to California; no "July", no "sandbox" | 8 |
+
+Why 8: the analytics (ANALYTICS-SUMMARY.md) show the lawyer video, which opened on a concrete number plus a named consequence, lost 3.8% in the first 3 s against 17-19% for the others. Hook 8 puts the consequence ("suing") and the number ("two") inside the first four seconds. The bridge (about 4-9 s) adds new evidence each beat: open internet, then Hugging Face (f3), then the cheat-on-evaluation finding (f7). The last line ("once it breaks out") returns to the hook's "broke out", which keeps the loop.
+
+Not used: any hook with "eighty" unattributed (2), "sandbox" (5, not the source's wording). Hook 4 stays at about 11-15 s as the twist.
