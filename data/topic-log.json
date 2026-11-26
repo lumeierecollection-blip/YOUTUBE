@@ -3417,9 +3417,14 @@
           "topic": "MTR Corporation Skidding Method for Building Hung Shui Kiu Station",
           "slug": "mtr-hung-shui-kiu-station-skidding-method",
           "reserved_at": "2026-11-25T19:13:53.359Z"
+        },
+        {
+          "topic": "Herrenknecht TBM Completes First Mechanized Tunnel Under Panama Canal",
+          "slug": "herrenknecht-tbm-panama-canal-tunnel-breakthrough",
+          "reserved_at": "2026-11-26T18:43:03.186Z"
         }
       ],
-      "last_generated": "2026-11-25T19:13:53.359Z"
+      "last_generated": "2026-11-26T18:43:03.186Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
