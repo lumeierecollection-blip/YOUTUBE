@@ -1,0 +1,43 @@
+{
+  "channel_id": "11",
+  "topic_slug": "spitzer-space-telescope-discovers-bodies-beyond-neptune",
+  "format": "shorts",
+  "hook": "Astronomers found 27 new worlds beyond Neptune, changing our understanding of the solar system.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Astronomers found 27 new worlds beyond Neptune, changing our understanding of the solar system.",
+      "visual_cue": "A map of the solar system with 27 new trans-Neptunian objects highlighted.",
+      "sfx_cue": "Sound of telescope zooming in on distant stars."
+    },
+    {
+      "id": "setup",
+      "voiceover": "The smallest of these objects is only 3 miles wide.",
+      "visual_cue": "A timeline showing the discovery process, with the Hubble and James Webb telescopes highlighted.",
+      "sfx_cue": "Sound of telescopes turning and focusing."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These discoveries are changing our understanding of early solar system formation, but they also highlight the vastness of our solar system.",
+      "visual_cue": "A comparison chart showing the size of the smallest trans-Neptunian object against the size of a city block.",
+      "sfx_cue": "Sound of a question mark being raised."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "These 27 new trans-Neptunian objects, the smallest of which is only 3 miles wide, were published in The Astronomical Journal on September 8, 2026.",
+      "visual_cue": "A diagram showing the orbit of one of the new trans-Neptunian objects.",
+      "sfx_cue": "Sound of a planet zooming in on screen."
+    },
+    {
+      "id": "close",
+      "voiceover": "These discoveries could help us find clues about how other planets form.",
+      "visual_cue": "A map of the solar system with a question mark over the 27 new trans-Neptunian objects.",
+      "sfx_cue": "Sound of a question mark being raised."
+    }
+  ],
+  "sources_used": [
+    "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune",
+    "https://timesofindia.indiatimes.com/science/hubble-and-webb-find-27-tiny-worlds-beyond-neptune-the-smallest-is-only-3-miles-wide/articleshow/135357607.cms",
+    "https://doi.org/10.3847/1538-3881/ae907f"
+  ]
+}

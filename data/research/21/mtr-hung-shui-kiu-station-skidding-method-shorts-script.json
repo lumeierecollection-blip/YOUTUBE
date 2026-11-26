@@ -1,0 +1,73 @@
+{
+  "channel_id": "21",
+  "topic_slug": "mtr-hung-shui-kiu-station-skidding-method",
+  "format": "shorts",
+  "hook": "MTR Corporation is building a station directly over an active railway viaduct.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "MTR Corporation is building a station directly over an active railway viaduct.",
+      "visual_cue": "Wide aerial view of the Tuen Ma Line viaduct at Hung Shui Kiu.",
+      "sfx_cue": "Low industrial hum and wind noise.",
+      "b_roll": [
+        "Aerial footage of Tuen Ma Line viaduct"
+      ],
+      "text_overlay": {
+        "text": "World's First Station Skidding"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Construction crews are developing Hung Shui Kiu Station between Tin Shui Wai Station and Siu Hong Station. Engineers must maneuver two 10,000 ton structures. How will they move these massive sections without stopping trains?",
+      "visual_cue": "Map graphic highlighting the location of Hung Shui Kiu Station.",
+      "sfx_cue": "Mechanical ratcheting sound.",
+      "b_roll": [
+        "Map of Tuen Ma Line showing station locations"
+      ],
+      "text_overlay": {
+        "text": "10,000 tons per structure"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except this project uses a skidding method, a world-first for heavy-rail.",
+      "visual_cue": "Close-up animation of a steel skid rail mechanism.",
+      "sfx_cue": "Metallic grinding sound.",
+      "b_roll": [
+        "Animation of heavy structure skidding"
+      ],
+      "text_overlay": {
+        "text": "World-first skidding method"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "MTR Corporation will slide each 210 metre long, 15 metre wide structure into place. This operation is planned for Stage 2 between 2027 and 2028. The entire station project reaches completion by 2030.",
+      "visual_cue": "Time-lapse style render of the structures moving into position.",
+      "sfx_cue": "Deep hydraulic pressure release.",
+      "b_roll": [
+        "Digital render of station structure movement"
+      ],
+      "text_overlay": {
+        "text": "Completion: 2030"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Two main structures will define the final Hung Shui Kiu Station.",
+      "visual_cue": "Final render of the completed station over the viaduct.",
+      "sfx_cue": "Fading industrial ambient sound.",
+      "b_roll": [
+        "Render of finished station layout"
+      ],
+      "text_overlay": {
+        "text": "Hung Shui Kiu Station"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://mtrhungshuikiu.hk/en/hung-shui-kiu-station-on-the-tuen-ma-line-overcoming-challenges-to-enable-the-world-first-station-skidding-construction-on-a-live-railway-viaduct",
+    "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-053-E.pdf",
+    "https://www.scmp.com/news/hong-kong/transport/article/3365627/mtr-corp-deploy-world-first-use-skidding-method-hung-shui-kiu-station"
+  ]
+}

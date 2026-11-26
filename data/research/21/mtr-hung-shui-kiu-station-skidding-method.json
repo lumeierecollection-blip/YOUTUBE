@@ -1,0 +1,79 @@
+{
+  "topic_slug": "mtr-hung-shui-kiu-station-skidding-method",
+  "strongest_angle": "Explore how MTR Corporation applied a heavy-structure skidding method for the first time worldwide to a heavy-rail project over the operating Tuen Ma Line viaduct at Hung Shui Kiu Station, handling two main structures weighing 10,000 tons each.",
+  "key_facts": [
+    {
+      "fact": "Hung Shui Kiu Station is located between Tin Shui Wai Station and Siu Hong Station on the existing Tuen Ma Line.",
+      "source_url": "https://mtrhungshuikiu.hk/en/hung-shui-kiu-station-on-the-tuen-ma-line-overcoming-challenges-to-enable-the-world-first-station-skidding-construction-on-a-live-railway-viaduct",
+      "source_name": "MTR Hung Shui Kiu Official Site",
+      "confidence": "high"
+    },
+    {
+      "fact": "Each of the main structures for Hung Shui Kiu Station will be 210 metres long, 15 metres wide and weigh approximately 10,000 tons.",
+      "source_url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-053-E.pdf",
+      "source_name": "MTR Press Release",
+      "confidence": "high"
+    },
+    {
+      "fact": "MTR Corporation will use a skidding method—the first worldwide for a heavy-rail project—to build Hung Shui Kiu station by 2030.",
+      "source_url": "https://www.scmp.com/news/hong-kong/transport/article/3365627/mtr-corp-deploy-world-first-use-skidding-method-hung-shui-kiu-station",
+      "source_name": "South China Morning Post",
+      "confidence": "high"
+    },
+    {
+      "fact": "Stage 2 of the Hung Shui Kiu Station construction, scheduled for Q1-Q3 2027, involves station skidding and connection with the Tuen Ma Line.",
+      "source_url": "https://mtrhungshuikiu.hk/en/construction-en",
+      "source_name": "MTR Hung Shui Kiu Official Site",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Structure Length",
+      "value": 210,
+      "unit": "metres",
+      "source_url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-053-E.pdf"
+    },
+    {
+      "label": "Structure Width",
+      "value": 15,
+      "unit": "metres",
+      "source_url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-053-E.pdf"
+    },
+    {
+      "label": "Structure Weight",
+      "value": 10000,
+      "unit": "tons",
+      "source_url": "https://www.mtr.com.hk/archive/corporate/en/press_release/PR-26-053-E.pdf"
+    },
+    {
+      "label": "Completion Year",
+      "value": 2030,
+      "unit": "year",
+      "source_url": "https://www.scmp.com/news/hong-kong/transport/article/3365627/mtr-corp-deploy-world-first-use-skidding-method-hung-shui-kiu-station"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "MTR Corporation",
+      "kind": "organization"
+    },
+    {
+      "name": "Hung Shui Kiu Station",
+      "kind": "place"
+    },
+    {
+      "name": "Tuen Ma Line",
+      "kind": "organization"
+    },
+    {
+      "name": "Tin Shui Wai Station",
+      "kind": "place"
+    },
+    {
+      "name": "Siu Hong Station",
+      "kind": "place"
+    }
+  ]
+}

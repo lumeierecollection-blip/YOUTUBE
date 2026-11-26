@@ -1,0 +1,91 @@
+{
+  "topic_slug": "sawai-jai-singh-jaipur-strict-grid-1727",
+  "strongest_angle": "Explore the 1727 founding of Jaipur by Maharaja Sawai Jai Singh II, featuring straight streets crossing at right angles and a division into nine distinct urban sectors as documented by UNESCO.",
+  "key_facts": [
+    {
+      "fact": "In 1727, Maharaja Sawai Jai Singh II founded the walled city of Jaipur on a plain in Rajasthan, establishing a grid plan based on Vedic architecture.",
+      "source_url": "https://whc.unesco.org/en/list/1605",
+      "source_name": "UNESCO World Heritage Centre",
+      "confidence": "high"
+    },
+    {
+      "fact": "Before establishing Jaipur in 1727, the Kachwaha rulers governed from Amer, a hilltop capital located nine kilometers northeast of the new site.",
+      "source_url": "https://thebetterindia.com/culture/jaipur-grid-plan-before-google-maps-12789617",
+      "source_name": "The Better India",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA Earth Observatory notes that Jaipur was founded in 1726 or 1727 as India's first planned city, shifting the capital 11 kilometers from Amber due to congestion.",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/the-first-planned-city-in-india-145509",
+      "source_name": "NASA Science",
+      "confidence": "high"
+    },
+    {
+      "fact": "The historic walled city of Jaipur is roughly divided into nine rectangular sectors with straight roads intersecting at right angles.",
+      "source_url": "https://whc.unesco.org/document/166320",
+      "source_name": "UNESCO World Heritage Centre",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Year of founding",
+      "value": 1727,
+      "unit": "year",
+      "source_url": "https://whc.unesco.org/en/list/1605"
+    },
+    {
+      "label": "Distance from Amer to Jaipur",
+      "value": 9,
+      "unit": "kilometers",
+      "source_url": "https://thebetterindia.com/culture/jaipur-grid-plan-before-google-maps-12789617"
+    },
+    {
+      "label": "Distance moved from Amber",
+      "value": 11,
+      "unit": "kilometers",
+      "source_url": "https://science.nasa.gov/earth/earth-observatory/the-first-planned-city-in-india-145509"
+    },
+    {
+      "label": "Number of rectangular sectors",
+      "value": 9,
+      "unit": "sectors",
+      "source_url": "https://whc.unesco.org/document/166320"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Sawai Jai Singh II",
+      "kind": "person"
+    },
+    {
+      "name": "Jaipur",
+      "kind": "place"
+    },
+    {
+      "name": "Rajasthan",
+      "kind": "place"
+    },
+    {
+      "name": "Amer",
+      "kind": "place"
+    },
+    {
+      "name": "Amber",
+      "kind": "place"
+    },
+    {
+      "name": "UNESCO World Heritage Centre",
+      "kind": "organization"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "The Better India",
+      "kind": "organization"
+    }
+  ]
+}

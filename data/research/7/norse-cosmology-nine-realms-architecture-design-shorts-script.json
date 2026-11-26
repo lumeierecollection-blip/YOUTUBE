@@ -1,0 +1,57 @@
+{
+  "channel_id": "7",
+  "topic_slug": "norse-cosmology-nine-realms-architecture-design",
+  "format": "shorts",
+  "hook": "The Norse cosmos was never mapped, yet we try to build it.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "The Norse cosmos was never mapped, yet we try to build it.",
+      "visual_cue": "Abstract geometric lines forming a tree structure on a dark background.",
+      "text_overlay": {
+        "text": "Norse Cosmology: Unmapped"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2024, the Worlds of Valhalla project opened in Reykjavik as a 1225 square meter immersive experience. How do we visualize a world with no complete map?",
+      "visual_cue": "Architectural floor plan of the 1225 square meter exhibition space in Reykjavik.",
+      "b_roll": [
+        "Floor plan of the Worlds of Valhalla exhibition",
+        "Manuscript illustration of the world disc"
+      ],
+      "text_overlay": {
+        "text": "Worlds of Valhalla: 1225m²"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The Seiðr Loom research project notes that no medieval text lists all nine worlds.",
+      "visual_cue": "Text overlay highlighting the discrepancy between modern installations and medieval records.",
+      "text_overlay": {
+        "text": "No complete medieval map"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Designers Aron Þór Leifsson and Tobia Zambotti utilized Gagarín, a design firm, for this interpretation. This project attempts to anchor Yggdrasil, the cosmic tree, in a 3D space.",
+      "visual_cue": "Close-up of digital design software rendering 3D nodes of the World Tree.",
+      "text_overlay": {
+        "text": "Yggdrasil in 3D"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Gagarín's 1225 square meter installation now shapes how we perceive the ancient Norse universe today.",
+      "visual_cue": "Wide shot of the exhibition installation fading into an old Norse manuscript page.",
+      "text_overlay": {
+        "text": "Modern architectural view"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://gagarin.is/work/worlds-of-valhalla",
+    "https://eldar-heide.net/onewebmedia/PDFer/Kultur-%20og%20religionshistorie/Heide%202014,%20Contradictory%20cosmology.pdf",
+    "https://seidrloom.com/cosmos"
+  ]
+}

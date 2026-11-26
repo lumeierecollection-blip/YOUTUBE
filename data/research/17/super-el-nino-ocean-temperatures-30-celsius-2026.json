@@ -1,0 +1,57 @@
+{
+  "topic_slug": "super-el-nino-ocean-temperatures-30-celsius-2026",
+  "strongest_angle": "Examine how the central and equatorial Pacific Ocean reached unprecedented surface temperatures above 30 degrees Celsius for the first time in history by October 2026, driving extreme weather patterns worldwide.",
+  "key_facts": [
+    {
+      "fact": "By October 18, 2026, the central and equatorial Pacific Ocean area used by researchers to monitor El Nino severity climbed to an average temperature of over 30 degrees Celsius for the first time in history.",
+      "source_url": "https://www.sciencenews.org/article/super-el-nino-historic-effect-hurricane",
+      "source_name": "Science News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Australia's Bureau of Meteorology reported in October 2026 that average weekly sea-surface temperatures in the central Pacific reached their highest level on record ahead of the expected peak in December.",
+      "source_url": "https://www.bbc.com/weather/articles/cmlye0d7q7zno",
+      "source_name": "BBC Weather",
+      "confidence": "high"
+    },
+    {
+      "fact": "In October 2026, sea surface temperatures in the central tropical Pacific Ocean exceeded 30 degrees Celsius for the first time on record as reported by meteorologists.",
+      "source_url": "https://www.weatherzone.com/au/news/central-pacific-ocean-exceeds-30c-for-first-time-on-record-as-el-nino-strengthens/1891592",
+      "source_name": "Weatherzone",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Peak temperature threshold",
+      "value": 30,
+      "unit": "Celsius",
+      "source_url": "https://www.sciencenews.org/article/super-el-nino-historic-effect-hurricane"
+    },
+    {
+      "label": "Peak temperature threshold Fahrenheit",
+      "value": 86,
+      "unit": "Fahrenheit",
+      "source_url": "https://www.sciencenews.org/article/super-el-nino-historic-effect-hurricane"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Pacific Ocean",
+      "kind": "place"
+    },
+    {
+      "name": "Australia's Bureau of Meteorology",
+      "kind": "organization"
+    },
+    {
+      "name": "Science News",
+      "kind": "organization"
+    },
+    {
+      "name": "BBC Weather",
+      "kind": "organization"
+    }
+  ]
+}

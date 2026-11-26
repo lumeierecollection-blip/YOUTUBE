@@ -1,0 +1,105 @@
+{
+  "topic_slug": "honda-toyota-recall-1-6-million-vehicles-takata-airbags",
+  "strongest_angle": "Examine the 1.6-million-vehicle recall issued by Honda and Toyota regarding Takata airbag inflator rupture risks, detailing the vehicle breakdown across Honda and Toyota and the lack of reported injuries.",
+  "key_facts": [
+    {
+      "fact": "Honda and Toyota Motor announced a recall of approximately 1.6 million cars, trucks, and SUVs due to rupture risks in Takata airbag inflators.",
+      "source_url": "https://www.nbcnews.com/business/autos/takata-airbag-recall-rcna610576",
+      "source_name": "NBC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "Late-model Hondas comprise over 810,000 units in the recall, while Toyota accounts for 790,000 units worldwide.",
+      "source_url": "https://www.roadandtrack.com/news/a74507664/honda-recall-800000-vehicles-faulty-takata-airbags",
+      "source_name": "Road & Track",
+      "confidence": "high"
+    },
+    {
+      "fact": "Toyota's portion of the recall includes 314,000 vehicles located specifically in the United States.",
+      "source_url": "https://www.carc.com/news/honda-toyota-takata-airbag-recall-1-6-million-november-2026",
+      "source_name": "CARC.com",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Honda's recall covers certain model year 2012-2013 Honda and Acura vehicles originally sold or registered in 14 U.S. states and territories.",
+      "source_url": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f47831d8dd1-statement-by-american-honda-regarding-takata-desiccated-airbag-inflator-recall",
+      "source_name": "Honda News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total recalled vehicles",
+      "value": 1600000,
+      "unit": "vehicles",
+      "source_url": "https://www.nbcnews.com/business/autos/takata-airbag-recall-rcna610576"
+    },
+    {
+      "label": "Honda recalled vehicles",
+      "value": 810000,
+      "unit": "vehicles",
+      "source_url": "https://www.roadandtrack.com/news/a74507664/honda-recall-800000-vehicles-faulty-takata-airbags"
+    },
+    {
+      "label": "Toyota recalled vehicles worldwide",
+      "value": 790000,
+      "unit": "vehicles",
+      "source_url": "https://www.carc.com/news/honda-toyota-takata-airbag-recall-1-6-million-november-2026"
+    },
+    {
+      "label": "Toyota recalled vehicles in the United States",
+      "value": 314000,
+      "unit": "vehicles",
+      "source_url": "https://www.carc.com/news/honda-toyota-takata-airbag-recall-1-6-million-november-2026"
+    },
+    {
+      "label": "Honda recall model year start",
+      "value": 2012,
+      "unit": "year",
+      "source_url": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f47831d8dd1-statement-by-american-honda-regarding-takata-desiccated-airbag-inflator-recall"
+    },
+    {
+      "label": "Honda recall model year end",
+      "value": 2013,
+      "unit": "year",
+      "source_url": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f47831d8dd1-statement-by-american-honda-regarding-takata-desiccated-airbag-inflator-recall"
+    },
+    {
+      "label": "U.S. states and territories included in Honda recall",
+      "value": 14,
+      "unit": "states and territories",
+      "source_url": "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f47831d8dd1-statement-by-american-honda-regarding-takata-desiccated-airbag-inflator-recall"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Honda",
+      "kind": "organization"
+    },
+    {
+      "name": "Toyota Motor",
+      "kind": "organization"
+    },
+    {
+      "name": "Takata",
+      "kind": "organization"
+    },
+    {
+      "name": "Acura",
+      "kind": "organization"
+    },
+    {
+      "name": "National Highway Traffic Safety Administration",
+      "kind": "organization"
+    },
+    {
+      "name": "United States",
+      "kind": "place"
+    },
+    {
+      "name": "Torrance",
+      "kind": "place"
+    }
+  ]
+}

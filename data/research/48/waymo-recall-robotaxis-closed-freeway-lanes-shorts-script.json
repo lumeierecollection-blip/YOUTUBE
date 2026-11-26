@@ -1,0 +1,32 @@
+{
+  "channel_id": "48",
+  "topic_slug": "waymo-recall-robotaxis-closed-freeway-lanes",
+  "format": "shorts",
+  "hook": "Waymo recalled 4,488 vehicles after 11 robotaxis entered closed freeway lanes.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Waymo recalled 4,488 vehicles after 11 robotaxis entered closed freeway lanes."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Do Waymo's 5th and 6th generation automated driving systems cause these 11 dangerous freeway incidents?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The software failed to recognize closed freeway lanes across California starting on October 1, 2026."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "California's DMV banned driverless freeway operations after these 11 incidents, including three on November 9. Waymo LLC issued a voluntary recall for 4,488 vehicles following these 11 recorded safety incidents."
+    },
+    {
+      "id": "close",
+      "voiceover": "California officials now prohibit all driverless freeway operations due to these 11 recorded safety incidents."
+    }
+  ],
+  "sources_used": [
+    "https://static.nhtsa.gov/odi/rcl/2026/RCLRPT-26E086-1357.pdf",
+    "https://www.investing.com/news/stock-market-news/waymo-recalls-4500-robotaxis-after-11-closed-lane-incidents-93CH-5048710"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "channel_id": "17",
+  "topic_slug": "kalahari-craton-ancient-rift-botswana",
+  "format": "shorts",
+  "hook": "A magnitude 6.5 earthquake shook the Kalahari Craton in 2017, and it's waking up again.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A magnitude 6.5 earthquake shook the Kalahari Craton in 2017, and it's waking up again.",
+      "visual_cue": "A map of the Kalahari Craton with a red circle around the area where the earthquake occurred."
+    },
+    {
+      "id": "setup",
+      "voiceover": "The Kalahari Craton is built from blocks of crust up to 3.7 billion years old in eastern Botswana.",
+      "visual_cue": "A map of the Kalahari Craton with a red circle around the area where the earthquake occurred, and a timeline showing the 2017 earthquake and the 3.7 billion-year-old age of the crust."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except this wasn't just a random tremor; the ancient failed rift is reawakening.",
+      "visual_cue": "A map of the Kalahari Craton with a red circle around the area where the earthquake occurred, and a graphic showing the ancient failed rift and the current geological activity."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The 3.7 billion-year-old landmass shows signs of fresh geological activity, with a magnitude 6.5 earthquake shaking it in April 2017. The ancient failed rift is reawakening.",
+      "visual_cue": "A map of the Kalahari Craton with a red circle around the area where the earthquake occurred, and a graphic showing the ancient failed rift and the current geological activity."
+    },
+    {
+      "id": "close",
+      "voiceover": "Stay informed about geological discoveries and sign up for our newsletter.",
+      "visual_cue": "A map of the Kalahari Craton with a red circle around the area where the earthquake occurred, and a graphic showing the ancient failed rift and the current geological activity."
+    }
+  ],
+  "sources_used": [
+    "https://news.climate.columbia.edu/2026/11/19/an-ancient-failed-rift-is-reawakening-inside-one-of-africas-oldest-landmasses",
+    "https://lamont.columbia.edu/news/ancient-failed-rift-reawakening-inside-one-africas-oldest-landmasses"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "channel_id": "21",
+  "topic_slug": "bayesian-yacht-foundering-maib-investigation-report",
+  "format": "shorts",
+  "hook": "A superyacht with a history of vulnerabilities sank off Italy, claiming 7 lives.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "On August 19, 2024, the sailing yacht Bayesian sank 0.5 nautical miles off Porticello, Italy, resulting in 7 lives lost.",
+      "visual_cue": "A distressed sailing yacht with a red flag flying, sinking into the ocean waves."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Why'd Italian prosecutors place chief engineer Tim Parker Eaton under investigation after Bayesian sank?",
+      "visual_cue": "A map of the area, with a red X marking the location of the sinking. The MAIB logo appears in the corner.",
+      "text_overlay": {
+        "text": "MAIB Report No 22/2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the MAIB also recommended that yacht masters be trained to better handle such extreme weather conditions.",
+      "visual_cue": "A person, Tim Parker Eaton, the chief engineer of the yacht, is shown being interviewed. The MAIB logo appears in the corner.",
+      "text_overlay": {
+        "text": "Tim Parker Eaton, Chief Engineer"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The MAIB report found high-wind vulnerabilities and safety gaps leading to the catastrophic sinking of the yacht, resulting in 7 lives lost.",
+      "visual_cue": "A timeline showing the sinking of the yacht, the investigation process, and the recommendation for training. The MAIB logo appears in the corner.",
+      "text_overlay": {
+        "text": "MAIB Report No 22/2026"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "MAIB didn't hesitate to recommend that the Maritime and Coastguard Agency amend its syllabus for downburst risks.",
+      "visual_cue": "A person, the Maritime and Coastguard Agency, is shown discussing the recommendation. The MAIB logo appears in the corner.",
+      "text_overlay": {
+        "text": "MAIB Report No 22/2026"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://assets.publishing.service.gov.uk/media/6afec1bb60771543f4a44f61/2026-22-Bayesian-ReportAndAnnexes.pdf",
+    "https://www.theguardian.com/world/2026/nov/19/mike-lynch-superyacht-bayesian-vulnerability-to-high-winds-report"
+  ]
+}

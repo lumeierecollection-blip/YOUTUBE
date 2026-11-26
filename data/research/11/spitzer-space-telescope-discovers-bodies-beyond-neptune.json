@@ -1,0 +1,63 @@
+{
+  "topic_slug": "spitzer-space-telescope-discovers-bodies-beyond-neptune",
+  "strongest_angle": "Astronomers utilizing the Hubble Space Telescope and James Webb Space Telescope discovered twenty-seven new trans-Neptunian objects orbiting beyond Neptune, providing insight into early solar system formation.",
+  "key_facts": [
+    {
+      "fact": "Astronomers combined observations from the Hubble Space Telescope and James Webb Space Telescope to study twenty-seven newly discovered trans-Neptunian objects orbiting beyond Neptune.",
+      "source_url": "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune",
+      "source_name": "BBC Sky at Night Magazine",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Hubble and James Webb space telescopes collectively discovered twenty-seven new trans-Neptunian objects, with the smallest measuring approximately 3 miles wide.",
+      "source_url": "https://timesofindia.indiatimes.com/science/hubble-and-webb-find-27-tiny-worlds-beyond-neptune-the-smallest-is-only-3-miles-wide/articleshow/135357607.cms",
+      "source_name": "The Times of India",
+      "confidence": "high"
+    },
+    {
+      "fact": "The findings regarding twenty-seven ultrafaint trans-Neptunian objects were published in The Astronomical Journal on September 8, 2026.",
+      "source_url": "https://doi.org/10.3847/1538-3881/ae907f",
+      "source_name": "The Astronomical Journal",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Newly discovered trans-Neptunian objects",
+      "value": 27,
+      "unit": "objects",
+      "source_url": "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune"
+    },
+    {
+      "label": "Smallest object width in miles",
+      "value": 3,
+      "unit": "miles",
+      "source_url": "https://timesofindia.indiatimes.com/science/hubble-and-webb-find-27-tiny-worlds-beyond-neptune-the-smallest-is-only-3-miles-wide/articleshow/135357607.cms"
+    },
+    {
+      "label": "Publication day",
+      "value": 8,
+      "unit": "day",
+      "source_url": "https://doi.org/10.3847/1538-3881/ae907f"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Hubble Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "James Webb Space Telescope",
+      "kind": "object"
+    },
+    {
+      "name": "Neptune",
+      "kind": "place"
+    },
+    {
+      "name": "The Astronomical Journal",
+      "kind": "organization"
+    }
+  ]
+}

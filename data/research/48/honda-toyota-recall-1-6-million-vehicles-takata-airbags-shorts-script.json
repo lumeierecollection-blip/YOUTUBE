@@ -1,0 +1,64 @@
+{
+  "channel_id": "48",
+  "topic_slug": "honda-toyota-recall-1-6-million-vehicles-takata-airbags",
+  "format": "shorts",
+  "hook": "Faulty Takata inflators caused a recall of 1.6 million vehicles.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Faulty Takata inflators caused a recall of 1.6 million vehicles.",
+      "b_roll": [
+        "graphic animation of airbag inflator warning with 1.6 million vehicle count"
+      ],
+      "text_overlay": {
+        "text": "1.6 million vehicles"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Toyota Motor recalled 314,000 vehicles in the United States over Takata airbag risks. Honda included 2012 to 2013 Acura cars in 14 U.S. states and territories. Which automaker recalled over 800,000 units?",
+      "b_roll": [
+        "map of United States highlighting 14 U.S. states and territories"
+      ],
+      "text_overlay": {
+        "text": "314,000 vehicles"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But Toyota wasn't alone, because Honda recalled over 810,000 late-model vehicles due to Takata inflators.",
+      "b_roll": [
+        "bar comparison chart showing 810,000 units versus 790,000 units"
+      ],
+      "text_overlay": {
+        "text": "810,000 vs 790,000"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Honda accounted for 810,000 vehicles in the 1.6 million total. Toyota Motor logged 790,000 units worldwide, with 314,000 in the United States.",
+      "b_roll": [
+        "world map chart split between 810,000 and 790,000 units"
+      ],
+      "text_overlay": {
+        "text": "Toyota Motor: 790,000 units"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Takata airbag risks triggered 1.6 million vehicle recalls.",
+      "b_roll": [
+        "summary graphic showing Takata airbag inflators and 1.6 million count"
+      ],
+      "text_overlay": {
+        "text": "1.6 million vehicle recall"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nbcnews.com/business/autos/takata-airbag-recall-rcna610576",
+    "https://www.roadandtrack.com/news/a74507664/honda-recall-800000-vehicles-faulty-takata-airbags",
+    "https://www.carc.com/news/honda-toyota-takata-airbag-recall-1-6-million-november-2026",
+    "https://hondanews.com/en-US/honda-corporate/releases/release-b26ae02ff5dca50cb32a1f47831d8dd1-statement-by-american-honda-regarding-takata-desiccated-airbag-inflator-recall"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "channel_id": "11",
+  "topic_slug": "milky-way-7-3-billion-km-orbit-scale",
+  "format": "shorts",
+  "hook": "Our solar system races through space at 828,000 kilometers per hour.",
+  "sections": [
+    {
+      "id": "hook",
+      "timing": "00:00-00:06",
+      "voiceover": "Our solar system races through space at 828,000 kilometers per hour.",
+      "visual_cue": "3D astronomical simulation showing the solar system moving around the galactic center of the Milky Way.",
+      "sfx_cue": "Deep space rumble sound transition",
+      "b_roll": [
+        "Galactic center star motion rendering"
+      ],
+      "text_overlay": {
+        "text": "828,000 km/h"
+      },
+      "transition_out": "Cut to diagram"
+    },
+    {
+      "id": "setup",
+      "timing": "00:06-00:23",
+      "voiceover": "NASA data shows our solar system moving along this galactic spiral. Where does the Milky Way stretch if Earth is a 0.004 inch grain of salt?",
+      "visual_cue": "Scientific graphic illustrating Earth's physical diameter of 12,756 kilometers alongside orbital trajectory markers.",
+      "sfx_cue": "Subtle electronic chime",
+      "b_roll": [
+        "Globe measurement rendering",
+        "Macro shot of a grain of salt"
+      ],
+      "text_overlay": {
+        "text": "12,756 km Diameter"
+      },
+      "transition_out": "Dissolve to macro shot"
+    },
+    {
+      "id": "rehook",
+      "timing": "00:23-00:29",
+      "voiceover": "Scaling down our planet reveals a staggering gap in galactic scale.",
+      "visual_cue": "Extreme macro lens view focusing on a single 0.004 inch grain of salt resting on a dark surface.",
+      "sfx_cue": "Low bass drop",
+      "b_roll": [
+        "Microscope view of salt crystal"
+      ],
+      "text_overlay": {
+        "text": "0.004 Inch Scale"
+      },
+      "transition_out": "Wipe to galaxy overview"
+    },
+    {
+      "id": "payoff",
+      "timing": "00:29-00:46",
+      "voiceover": "The National Radio Astronomy Observatory calculated this cosmic model. The Milky Way galaxy diameter then spans 5.1 million miles.",
+      "visual_cue": "Wide visualization expanding from a micro grain of salt to a full view of the Milky Way spanning 5.1 million miles.",
+      "sfx_cue": "Sweeping cinematic synth drone",
+      "b_roll": [
+        "Telescope dish array footage",
+        "Milky Way galaxy spiral visualization"
+      ],
+      "text_overlay": {
+        "text": "5.1 Million Miles"
+      },
+      "transition_out": "Slow fade"
+    },
+    {
+      "id": "close",
+      "timing": "00:46-00:52",
+      "voiceover": "That tiny 0.004 inch grain sits inside 5.1 million miles.",
+      "visual_cue": "Final composite image comparing the microscopic grain scale against the vast galaxy backdrop.",
+      "sfx_cue": "Reverb trail fade",
+      "b_roll": [
+        "Deep space field shot"
+      ],
+      "text_overlay": {
+        "text": "Milky Way Galaxy"
+      },
+      "transition_out": "Fade to black"
+    }
+  ],
+  "sources_used": [
+    "https://infiniteorbit.space/news/solar-system-spiral-through-the-milky-way",
+    "https://britastro.org/2018/the-size-of-things",
+    "https://public.nrao.edu/ask/relative-sizes-of-the-earth-and-the-milky-way-galaxy"
+  ]
+}

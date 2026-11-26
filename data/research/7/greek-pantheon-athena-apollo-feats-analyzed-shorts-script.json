@@ -1,0 +1,52 @@
+{
+  "channel_id": "7",
+  "topic_slug": "greek-pantheon-athena-apollo-feats-analyzed",
+  "format": "shorts",
+  "hook": "Did you know Athena's wisdom outshines Apollo's legendary archery skills in the ancient Iliad?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Athena's wisdom outshines Apollo's legendary archery skills in the ancient Iliad?",
+      "visual_cue": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow",
+      "text_overlay": {
+        "text": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "The ancient Iliad describes Athena as the goddess of wisdom, war, and craft, while Apollo is known for his archery skills. Naoko Yamagata analyzed their roles and feats in a recent study.",
+      "visual_cue": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow",
+      "text_overlay": {
+        "text": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Naoko Yamagata's analysis reveals surprising insights about their roles and feats.",
+      "visual_cue": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow",
+      "text_overlay": {
+        "text": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Athena's wisdom outshines Apollo's archery skills, as Naoko Yamagata's analysis reveals.",
+      "visual_cue": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow",
+      "text_overlay": {
+        "text": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Naoko Yamagata's analysis challenges the traditional view of their roles and reveals surprising insights.",
+      "visual_cue": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow",
+      "text_overlay": {
+        "text": "Athena and Apollo in the Iliad, Athena with a crown of wisdom, Apollo with a bow and arrow"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://mythohub.com/greek-figures-comparison/athena-vs-apollo",
+    "https://doi.org/10.1093/acprof:oso/9780199589036.003.0012"
+  ]
+}

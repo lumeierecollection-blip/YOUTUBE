@@ -1,0 +1,73 @@
+{
+  "topic_slug": "milky-way-7-3-billion-km-orbit-scale",
+  "strongest_angle": "Exploring the vast scale of the Milky Way galaxy by comparing the Earth's annual orbital motion around the Sun with the Sun's galactic journey at 828,000 km/h.",
+  "key_facts": [
+    {
+      "fact": "According to NASA data reported by Infinite Orbit, our solar system orbits the center of the Milky Way at a speed of 828,000 kilometers per hour.",
+      "source_url": "https://infiniteorbit.space/news/solar-system-spiral-through-the-milky-way",
+      "source_name": "Infinite Orbit",
+      "confidence": "high"
+    },
+    {
+      "fact": "The British Astronomical Association notes that the planet Earth possesses a physical diameter of 12,756 kilometers.",
+      "source_url": "https://britastro.org/2018/the-size-of-things",
+      "source_name": "British Astronomical Association",
+      "confidence": "high"
+    },
+    {
+      "fact": "As calculated by the National Radio Astronomy Observatory, if the Earth were scaled down to a 0.004-inch grain of salt, the Milky Way galaxy's diameter would span approximately 5.1 million miles.",
+      "source_url": "https://public.nrao.edu/ask/relative-sizes-of-the-earth-and-the-milky-way-galaxy",
+      "source_name": "National Radio Astronomy Observatory",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Solar system orbit speed around the Milky Way",
+      "value": 828000,
+      "unit": "km/h",
+      "source_url": "https://infiniteorbit.space/news/solar-system-spiral-through-the-milky-way"
+    },
+    {
+      "label": "Earth physical diameter",
+      "value": 12756,
+      "unit": "kilometers",
+      "source_url": "https://britastro.org/2018/the-size-of-things"
+    },
+    {
+      "label": "Milky Way diameter relative to grain-of-salt Earth",
+      "value": 5100000,
+      "unit": "miles",
+      "source_url": "https://public.nrao.edu/ask/relative-sizes-of-the-earth-and-the-milky-way-galaxy"
+    },
+    {
+      "label": "Earth scaled size as a grain of salt",
+      "value": 0.004,
+      "unit": "inches",
+      "source_url": "https://public.nrao.edu/ask/relative-sizes-of-the-earth-and-the-milky-way-galaxy"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Earth",
+      "kind": "object"
+    },
+    {
+      "name": "Milky Way",
+      "kind": "place"
+    },
+    {
+      "name": "National Radio Astronomy Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "British Astronomical Association",
+      "kind": "organization"
+    },
+    {
+      "name": "NASA",
+      "kind": "organization"
+    }
+  ]
+}

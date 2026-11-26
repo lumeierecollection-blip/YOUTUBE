@@ -1,0 +1,67 @@
+{
+  "topic_slug": "inside-liberland-danube-disputed-territory-2026",
+  "strongest_angle": "Examine the 7-square-kilometer disputed territory of Gornja Siga on the Danube River where Vít Jedlička founded the micronation of Liberland in 2015 amidst ongoing border tensions between Croatia and Serbia.",
+  "key_facts": [
+    {
+      "fact": "In 2014, Czech politician Vít Jedlička identified a 7-kilometer-squared terra nullius known as Gornja Siga on the west bank of the Danube River.",
+      "source_url": "https://www.wired.com/story/liberland-crypto-micronation-border-dispute",
+      "source_name": "WIRED",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Free Republic of Liberland is situated on a 7 square kilometer parcel located between Croatia and Serbia near the towns of Zmajevac and Bački Monoštor.",
+      "source_url": "https://liberland.org/about",
+      "source_name": "Liberland",
+      "confidence": "high"
+    },
+    {
+      "fact": "Liberland was founded in 2015 as a sovereign state by president Vít Jedlička, though Croatia views the claim as an attack on its territorial integrity.",
+      "source_url": "https://www.dw.com/en/voluntary-taxes-no-bureaucracy-liberland-on-the-banks-of-the-danube/a-75503131",
+      "source_name": "DW",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Liberland territory size",
+      "value": 7,
+      "unit": "square kilometers",
+      "source_url": "https://www.wired.com/story/liberland-crypto-micronation-border-dispute"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Vít Jedlička",
+      "kind": "person"
+    },
+    {
+      "name": "Liberland",
+      "kind": "organization"
+    },
+    {
+      "name": "Gornja Siga",
+      "kind": "place"
+    },
+    {
+      "name": "Danube River",
+      "kind": "place"
+    },
+    {
+      "name": "Croatia",
+      "kind": "place"
+    },
+    {
+      "name": "Serbia",
+      "kind": "place"
+    },
+    {
+      "name": "Zmajevac",
+      "kind": "place"
+    },
+    {
+      "name": "Bački Monoštor",
+      "kind": "place"
+    }
+  ]
+}

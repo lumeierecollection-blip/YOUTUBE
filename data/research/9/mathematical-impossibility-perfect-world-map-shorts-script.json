@@ -1,0 +1,67 @@
+{
+  "channel_id": "9",
+  "topic_slug": "mathematical-impossibility-perfect-world-map",
+  "format": "shorts",
+  "hook": "What if Greenland is less than 1/10th the size of Africa?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if Greenland is less than 1/10th the size of Africa?",
+      "b_roll": [
+        "world map showing greenland and africa side by side",
+        "globe spinning with highlighted landmasses"
+      ],
+      "text_overlay": {
+        "text": "Greenland vs Africa Size"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 4, 2026, the United Nations voted to replace Mercator maps. Mercator projections inflate northern landmasses while shrinking equatorial regions. Why did 164 votes back new map standards across global classrooms?",
+      "b_roll": [
+        "united nations hall during vote",
+        "mercator map distortion diagram",
+        "classroom map visual"
+      ],
+      "text_overlay": {
+        "text": "UN Vote: Sept 4, 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except only 1 vote opposed this United Nations resolution.",
+      "b_roll": [
+        "tally of votes showing 164 to 1"
+      ],
+      "text_overlay": {
+        "text": "Vote Tally: 164 to 1"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "UN News reported Member States passed the resolution by 164 votes to 1. Flattening a 3D sphere into 2D maps mathematically distorts land sizes. Schools are now encouraged to replace Mercator with equal-area projections.",
+      "b_roll": [
+        "3D sphere flattening into 2D plane animation",
+        "equal area map projection comparison"
+      ],
+      "text_overlay": {
+        "text": "Sphere to 2D Distortion"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Africa remains 10 times larger than Greenland on accurate maps.",
+      "b_roll": [
+        "accurate equal earth map displaying africa and greenland scale"
+      ],
+      "text_overlay": {
+        "text": "Africa = 10x Greenland"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://news.un.org/en/story/2026/09/1168284",
+    "https://www.ams.org/publicoutreach/mathmoments/mm143-equal-earth-podcast",
+    "https://www.scientificamerican.com/article/the-mathematical-impossibility-of-making-a-perfect-world-map"
+  ]
+}

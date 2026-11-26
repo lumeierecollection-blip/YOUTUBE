@@ -1514,9 +1514,29 @@
           "topic": "Prince Harry and Five Others Seek to Challenge £34.5M Costs Ruling",
           "slug": "prince-harry-elton-john-privacy-costs-appeal",
           "reserved_at": "2026-11-22T16:26:55.836Z"
+        },
+        {
+          "topic": "Dua Lipa Settles Levitating Copyright Lawsuit With Producer Bosko Kante",
+          "slug": "dua-lipa-levitating-copyright-settlement",
+          "reserved_at": "2026-11-23T20:26:15.885Z"
+        },
+        {
+          "topic": "Michael Mann and New Regency Clash in Heat Ownership Lawsuit",
+          "slug": "michael-mann-new-regency-heat-lawsuit",
+          "reserved_at": "2026-11-24T19:39:21.117Z"
+        },
+        {
+          "topic": "UK Actors Union to Enter Contract Negotiations with Netflix and Disney",
+          "slug": "uk-actors-union-streamer-negotiations",
+          "reserved_at": "2026-11-25T18:51:05.374Z"
+        },
+        {
+          "topic": "BBC Lodges Urgent Appeal in Donald Trump $10B Defamation Lawsuit",
+          "slug": "bbc-trump-10b-defamation-appeal",
+          "reserved_at": "2026-11-26T18:38:49.918Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:55.836Z"
+      "last_generated": "2026-11-26T18:38:49.918Z"
     },
     "4": {
       "channel_name": "Rival Lines",
@@ -1686,9 +1706,24 @@
           "topic": "Columbus Crew 3-0 Inter Miami MLS Cup Playoff Upset Tactics",
           "slug": "columbus-crew-inter-miami-playoff-tactics",
           "reserved_at": "2026-11-22T16:26:46.327Z"
+        },
+        {
+          "topic": "World Athletics Ratifies World Records for Yomif Kejelcha and Alison dos Santos",
+          "slug": "world-athletics-ratifies-records-kejelcha-dos-santos",
+          "reserved_at": "2026-11-23T20:26:01.866Z"
+        },
+        {
+          "topic": "Rutgers Beats Penn State 25-24 to End 38-Year Losing Streak",
+          "slug": "rutgers-penn-state-25-24-end-38-year-streak",
+          "reserved_at": "2026-11-25T18:53:54.899Z"
+        },
+        {
+          "topic": "England 37-12 New Zealand Rugby Nations Championship Match Report",
+          "slug": "england-new-zealand-37-12-nations-championship",
+          "reserved_at": "2026-11-26T18:38:22.395Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:46.327Z"
+      "last_generated": "2026-11-26T18:38:22.395Z"
     },
     "5": {
       "channel_name": "Broadsheet",
@@ -2017,9 +2052,29 @@
           "topic": "Stephen Fry on Sherlock Holmes: 100 Years of Canon Legacy Examined",
           "slug": "stephen-fry-sherlock-holmes-canon-legacy",
           "reserved_at": "2026-11-22T16:26:59.328Z"
+        },
+        {
+          "topic": "Greek Pantheon Feats: Athena Versus Apollo in Classical Mythos Analyzed",
+          "slug": "greek-pantheon-athena-apollo-feats-analyzed",
+          "reserved_at": "2026-11-23T21:49:10.685Z"
+        },
+        {
+          "topic": "Sherlock Holmes vs Count Dracula Canonical Feats Analysis",
+          "slug": "sherlock-holmes-count-dracula-canon-feats",
+          "reserved_at": "2026-11-24T20:37:44.592Z"
+        },
+        {
+          "topic": "Norse Cosmology Nine Realms Architecture and Worldbuilding Design",
+          "slug": "norse-cosmology-nine-realms-architecture-design",
+          "reserved_at": "2026-11-25T20:36:38.846Z"
+        },
+        {
+          "topic": "Sherlock Holmes and Arthur Conan Doyle Canon Origins in A Study in Scarlet",
+          "slug": "sherlock-holmes-study-in-scarlet-canon-origins",
+          "reserved_at": "2026-11-26T19:17:59.965Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:59.328Z"
+      "last_generated": "2026-11-26T19:17:59.965Z"
     },
     "8": {
       "channel_name": "Ledger",
@@ -2691,9 +2746,29 @@
           "topic": "Dahala Khagrabari: The 0.7 Hectare Former Indian Exclave Inside Bangladesh",
           "slug": "dahala-khagrabari-indian-exclave-bangladesh",
           "reserved_at": "2026-11-22T16:27:40.006Z"
+        },
+        {
+          "topic": "How Sawai Jai Singh II Built Jaipur on a Strict Grid in 1727",
+          "slug": "sawai-jai-singh-jaipur-strict-grid-1727",
+          "reserved_at": "2026-11-23T20:23:38.633Z"
+        },
+        {
+          "topic": "How Chiricahua National Park Formed 27 Million Years Ago",
+          "slug": "chiricahua-national-park-volcanoes-geology",
+          "reserved_at": "2026-11-24T19:38:38.076Z"
+        },
+        {
+          "topic": "The Mathematical Impossibility of a Perfect World Map Explored by Science",
+          "slug": "mathematical-impossibility-perfect-world-map",
+          "reserved_at": "2026-11-25T18:51:13.083Z"
+        },
+        {
+          "topic": "Inside Liberland: The 7-Square-Kilometer Disputed Danube Territory",
+          "slug": "inside-liberland-danube-disputed-territory-2026",
+          "reserved_at": "2026-11-26T18:37:54.595Z"
         }
       ],
-      "last_generated": "2026-11-22T16:27:40.006Z"
+      "last_generated": "2026-11-26T18:37:54.595Z"
     },
     "10": {
       "channel_name": "Margin Note",
@@ -2945,9 +3020,29 @@
           "topic": "NASA Exoplanet Archive Adds Four New Planets and 21 Spectra",
           "slug": "nasa-exoplanet-archive-four-new-planets-nov-2026",
           "reserved_at": "2026-11-22T16:26:50.579Z"
+        },
+        {
+          "topic": "NASA Spitzer Space Telescope Discovers 27 New Bodies Beyond Neptune",
+          "slug": "spitzer-space-telescope-discovers-bodies-beyond-neptune",
+          "reserved_at": "2026-11-23T20:26:27.424Z"
+        },
+        {
+          "topic": "Physical Size of the Milky Way 7.3 Billion km Orbit and Cosmic Scale Compared to Earth",
+          "slug": "milky-way-7-3-billion-km-orbit-scale",
+          "reserved_at": "2026-11-24T19:40:26.682Z"
+        },
+        {
+          "topic": "Hubble and JWST Discover 27 New Icy Bodies Beyond Neptune",
+          "slug": "hubble-jwst-discover-27-icy-bodies-beyond-neptune",
+          "reserved_at": "2026-11-25T20:36:19.145Z"
+        },
+        {
+          "topic": "AURA Identifies Two Monster Quasars From Dawn of Time",
+          "slug": "aura-identifies-two-monster-quasars-dawn-of-time",
+          "reserved_at": "2026-11-26T18:37:51.249Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:50.579Z"
+      "last_generated": "2026-11-26T18:37:51.249Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
@@ -3147,9 +3242,29 @@
           "topic": "Rain of Pebbles Generated Water During Earth's Formation",
           "slug": "rain-pebbles-generated-water-earth-formation",
           "reserved_at": "2026-11-22T16:31:56.761Z"
+        },
+        {
+          "topic": "Ancient Failed Rift Reawakening Inside the Kalahari Craton in Botswana",
+          "slug": "kalahari-craton-ancient-rift-botswana",
+          "reserved_at": "2026-11-23T20:33:17.912Z"
+        },
+        {
+          "topic": "Japan Coast Guard Reports Volcanic Eruption Adds 50 Hectares to Iwo Jima Beach",
+          "slug": "japan-coast-guard-iwo-jima-volcanic-eruption-beach",
+          "reserved_at": "2026-11-24T19:42:52.496Z"
+        },
+        {
+          "topic": "Super El Niño Ocean Temperatures Hit 30 Celsius in October 2026",
+          "slug": "super-el-nino-ocean-temperatures-30-celsius-2026",
+          "reserved_at": "2026-11-25T18:59:07.361Z"
+        },
+        {
+          "topic": "Draining Peatlands Responsible for 3 Percent of Human-Caused Climate Warming",
+          "slug": "draining-peatlands-responsible-3-percent-global-warming",
+          "reserved_at": "2026-11-26T18:43:08.218Z"
         }
       ],
-      "last_generated": "2026-11-22T16:31:56.761Z"
+      "last_generated": "2026-11-26T18:43:08.218Z"
     },
     "18": {
       "channel_name": "Brief History",
@@ -3292,9 +3407,29 @@
           "topic": "THK Dynamic Stiffness in Machine Design and Dynamic Performance Limits",
           "slug": "thk-dynamic-stiffness-machine-design",
           "reserved_at": "2026-11-22T16:32:58.725Z"
+        },
+        {
+          "topic": "Airbus Wire-Directed Energy Deposition 3D Printing for Titanium Parts",
+          "slug": "airbus-wire-directed-energy-deposition-titanium-parts",
+          "reserved_at": "2026-11-23T20:33:09.901Z"
+        },
+        {
+          "topic": "Colorado State University TeCoBot Shape-Shifting Robot Design",
+          "slug": "colorado-state-university-tecobot-design",
+          "reserved_at": "2026-11-24T19:45:11.156Z"
+        },
+        {
+          "topic": "MTR Corporation Skidding Method for Building Hung Shui Kiu Station",
+          "slug": "mtr-hung-shui-kiu-station-skidding-method",
+          "reserved_at": "2026-11-25T19:13:53.359Z"
+        },
+        {
+          "topic": "Herrenknecht TBM Completes First Mechanized Tunnel Under Panama Canal",
+          "slug": "herrenknecht-tbm-panama-canal-tunnel-breakthrough",
+          "reserved_at": "2026-11-26T18:43:03.186Z"
         }
       ],
-      "last_generated": "2026-11-22T16:32:58.725Z"
+      "last_generated": "2026-11-26T18:43:03.186Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
@@ -5003,9 +5138,24 @@
           "topic": "U.S. Private Employers Report 2.4 Million Workplace Injuries in 2025",
           "slug": "us-private-employers-2-4-million-workplace-injuries-2025",
           "reserved_at": "2026-11-22T16:26:53.255Z"
+        },
+        {
+          "topic": "Honda and Toyota Recall 1.6 Million Vehicles Over Takata Airbags",
+          "slug": "honda-toyota-recall-1-6-million-vehicles-takata-airbags",
+          "reserved_at": "2026-11-24T19:41:18.728Z"
+        },
+        {
+          "topic": "Waymo Recall: 4,500 Robotaxis Entering Closed Freeway Lanes",
+          "slug": "waymo-recall-robotaxis-closed-freeway-lanes",
+          "reserved_at": "2026-11-25T20:36:48.937Z"
+        },
+        {
+          "topic": "RAIB Report 13/2026: Investigating the Washwood Heath Near Miss",
+          "slug": "raib-report-13-2026-washwood-heath-near-miss",
+          "reserved_at": "2026-11-26T18:38:30.243Z"
         }
       ],
-      "last_generated": "2026-11-22T16:26:53.256Z"
+      "last_generated": "2026-11-26T18:38:30.243Z"
     },
     "49": {
       "channel_name": "Picture House",

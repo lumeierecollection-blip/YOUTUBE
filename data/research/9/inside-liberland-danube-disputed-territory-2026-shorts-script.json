@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "inside-liberland-danube-disputed-territory-2026",
+  "format": "shorts",
+  "hook": "What if you could claim 7 square kilometers of land between two nations?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "What if you could claim 7 square kilometers of land between two nations?",
+      "text_overlay": {
+        "text": "7 square kilometers"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2014, Vít Jedlička identified Gornja Siga as unclaimed land on the Danube River. Do Croatia or Serbia legally own this 7 square kilometer parcel near Zmajevac and Bački Monoštor?",
+      "text_overlay": {
+        "text": "Gornja Siga, Danube River"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Jedlička founded the micronation of Liberland here in 2015, which Croatia considers a territorial threat.",
+      "text_overlay": {
+        "text": "Croatia vs. Liberland"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Croatia and Serbia dispute this 7 square kilometer zone along the Danube River since 2015.",
+      "text_overlay": {
+        "text": "Liberland founded 2015"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Gornja Siga remains a disputed 7 square kilometer border zone.",
+      "text_overlay": {
+        "text": "Gornja Siga"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.wired.com/story/liberland-crypto-micronation-border-dispute",
+    "https://www.dw.com/en/voluntary-taxes-no-bureaucracy-liberland-on-the-banks-of-the-danube/a-75503131"
+  ]
+}

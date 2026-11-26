@@ -1,0 +1,84 @@
+{
+  "topic_slug": "michael-mann-new-regency-heat-lawsuit",
+  "strongest_angle": "Examine the federal court lawsuit filed by New Regency against director Michael Mann in the Central District of California regarding copyright termination rights and ownership of the 1995 crime film Heat.",
+  "key_facts": [
+    {
+      "fact": "On November 13, 2026, New Regency Productions filed a federal lawsuit in the U.S. District Court for the Central District of California against director Michael Mann under Case Number 2:26-cv-13316.",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf",
+      "source_name": "U.S. District Court / CourtListener",
+      "confidence": "high"
+    },
+    {
+      "fact": "New Regency took Michael Mann to federal court to get a trio of copyright termination notices declared defective and invalid after the director attempted to reclaim ownership of the original Heat screenplay.",
+      "source_url": "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655",
+      "source_name": "Deadline",
+      "confidence": "high"
+    },
+    {
+      "fact": "Representatives for director Michael Mann stated that the ownership lawsuit is unrelated to the production of Heat 2, which is scheduled to begin filming on January 19.",
+      "source_url": "https://variety.com/2026/film/news/michael-mann-new-regency-heat-screenplay-lawsuit-1236947532",
+      "source_name": "Variety",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Case Number Year",
+      "value": 2,
+      "unit": "case prefix",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf"
+    },
+    {
+      "label": "Case Number District",
+      "value": 26,
+      "unit": "year",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf"
+    },
+    {
+      "label": "Case Sequence Number",
+      "value": 13316,
+      "unit": "docket number",
+      "source_url": "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf"
+    },
+    {
+      "label": "Filming Start Day",
+      "value": 19,
+      "unit": "day of January",
+      "source_url": "https://variety.com/2026/film/news/michael-mann-new-regency-heat-screenplay-lawsuit-1236947532"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "For clarification, this is unrelated to production of Heat 2 which will begin shooting on January 19,",
+      "speaker": "Mann’s rep",
+      "source_name": "Variety",
+      "source_url": "https://variety.com/2026/film/news/michael-mann-new-regency-heat-screenplay-lawsuit-1236947532"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Michael Mann",
+      "kind": "person"
+    },
+    {
+      "name": "New Regency Productions, Inc.",
+      "kind": "organization"
+    },
+    {
+      "name": "Yariv Milchan",
+      "kind": "person"
+    },
+    {
+      "name": "Heat",
+      "kind": "object"
+    },
+    {
+      "name": "Heat 2",
+      "kind": "object"
+    },
+    {
+      "name": "U.S. District Court for the Central District of California",
+      "kind": "place"
+    }
+  ]
+}

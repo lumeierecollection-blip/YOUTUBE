@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "bbc-trump-10b-defamation-appeal",
+  "format": "shorts",
+  "hook": "A massive $5 billion defamation lawsuit against the BBC is barreling toward a high-stakes trial.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive $5 billion defamation lawsuit against the BBC is barreling toward a high-stakes trial.",
+      "text_overlay": {
+        "text": "$5 Billion Lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "But can the BBC avoid trial over a Panorama edit of a Trump January 2021 speech?",
+      "text_overlay": {
+        "text": "Panorama Documentary Dispute"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Judge Jeffrey T. Kuntz just denied the BBC's bid to throw out the case.",
+      "text_overlay": {
+        "text": "Urgent Appeal Filed"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The BBC lodged an urgent appeal with the US Court of Appeals on November 25, 2026. Donald Trump initially sought $10 billion in damages before reducing the claim to $5 billion.",
+      "text_overlay": {
+        "text": "11th Circuit Court of Appeals"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Judges at the 11th Circuit now hold the power to decide this massive legal battle.",
+      "text_overlay": {
+        "text": "Unresolved Legal Battle"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.thedailybeast.com/bbc-fights-back-after-surprise-decision-in-5b-trump-lawsuit",
+    "https://www.theguardian.com/us-news/2026/nov/25/bbc-trump-defamation-case-10bn-urgent-appeal"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "channel_id": "3",
+  "topic_slug": "michael-mann-new-regency-heat-lawsuit",
+  "format": "shorts",
+  "hook": "New Regency filed lawsuit 2:26-cv-13316 to stop Michael Mann reclaiming Heat.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "New Regency filed lawsuit 2:26-cv-13316 to stop Michael Mann reclaiming Heat.",
+      "b_roll": [
+        "Federal court gavel resting on legal document",
+        "Title logo graphic of movie Heat"
+      ],
+      "text_overlay": {
+        "text": "Case 2:26-cv-13316 Filed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 13, 2026, New Regency sued Michael Mann in California federal court. Filings show the studio wants 3 copyright termination notices declared invalid. Will court 2:26-cv-13316 resolve ownership before January 19?",
+      "b_roll": [
+        "Court filing document header with date November 13 2026",
+        "Document page highlighting 3 termination notices text",
+        "Calendar graphics zooming on January 19 date"
+      ],
+      "text_overlay": {
+        "text": "3 Copyright Notices Contested"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the director attempted to reclaim ownership of the original Heat screenplay.",
+      "b_roll": [
+        "Deadline news outlet headline graphic",
+        "Original 1995 film manuscript graphic"
+      ],
+      "text_overlay": {
+        "text": "1995 Screenplay Ownership"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mann's representatives stated the lawsuit isn't related to Heat 2 filming on January 19. Production remains scheduled to begin filming on January 19. Court records confirm Case 13316 leaves ownership rights disputed in California.",
+      "b_roll": [
+        "Variety reporting graphics with logo",
+        "Movie production slate with date January 19",
+        "Central District of California court seal"
+      ],
+      "text_overlay": {
+        "text": "Heat 2 Filming Begins Jan 19"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Filming starts January 19 while federal courts evaluate case 13316.",
+      "b_roll": [
+        "Split view of camera equipment and federal court docket text"
+      ],
+      "text_overlay": {
+        "text": "Ownership Unresolved"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://storage.courtlistener.com/recap/gov.uscourts.cacd.1048092/gov.uscourts.cacd.1048092.1.0.pdf",
+    "https://deadline.com/2026/11/michael-mann-lawsuit-heat-rights-1237223655",
+    "https://variety.com/2026/film/news/michael-mann-new-regency-heat-screenplay-lawsuit-1236947532"
+  ]
+}

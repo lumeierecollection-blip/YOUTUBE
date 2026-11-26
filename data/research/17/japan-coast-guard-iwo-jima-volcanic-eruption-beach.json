@@ -1,0 +1,77 @@
+{
+  "topic_slug": "japan-coast-guard-iwo-jima-volcanic-eruption-beach",
+  "strongest_angle": "Examine how a shallow underwater volcanic eruption near Iwo Jima formed new land, expanding the island's black sand beach by approximately 50 hectares as confirmed by the Japan Coast Guard.",
+  "key_facts": [
+    {
+      "fact": "The Japan Coast Guard confirmed that an underwater volcanic eruption off the Pacific island of Ioto in the Ogasawara Islands began on October 27, forming a new stretch of land.",
+      "source_url": "https://www3.nhk.or.jp/nhkworld/news/20261118de77493",
+      "source_name": "NHK WORLD-JAPAN News",
+      "confidence": "high"
+    },
+    {
+      "fact": "NASA's Earth Observatory reported that the submarine eruption off the southeast coast of Iwo Jima added roughly 50 hectares, or 125 acres, of new land attached to the existing black sand beach.",
+      "source_url": "https://thesciencebeat.com/news/undersea-eruption-adds-about-50-hectares-of-black-sand-to-iwo-jima",
+      "source_name": "The Science Beat",
+      "confidence": "high"
+    },
+    {
+      "fact": "Seoul Economic Daily noted that the newly formed land is located in the Pacific Ocean about 1,000 kilometers from Tokyo, covering an area equivalent to 10 Tokyo Domes.",
+      "source_url": "https://en.sedaily.com/world/2026/11/22/volcanic-eruption-creates-new-land-off-japans-iwo-jima",
+      "source_name": "Seoul Economic Daily",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "New land area in hectares",
+      "value": 50,
+      "unit": "hectares",
+      "source_url": "https://thesciencebeat.com/news/undersea-eruption-adds-about-50-hectares-of-black-sand-to-iwo-jima"
+    },
+    {
+      "label": "New land area in acres",
+      "value": 125,
+      "unit": "acres",
+      "source_url": "https://thesciencebeat.com/news/undersea-eruption-adds-about-50-hectares-of-black-sand-to-iwo-jima"
+    },
+    {
+      "label": "Distance from Tokyo",
+      "value": 1000,
+      "unit": "kilometers",
+      "source_url": "https://en.sedaily.com/world/2026/11/22/volcanic-eruption-creates-new-land-off-japans-iwo-jima"
+    },
+    {
+      "label": "Equivalent area in Tokyo Domes",
+      "value": 10,
+      "unit": "Tokyo Domes",
+      "source_url": "https://en.sedaily.com/world/2026/11/22/volcanic-eruption-creates-new-land-off-japans-iwo-jima"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Japan Coast Guard",
+      "kind": "organization"
+    },
+    {
+      "name": "Iwo Jima",
+      "kind": "place"
+    },
+    {
+      "name": "Ioto",
+      "kind": "place"
+    },
+    {
+      "name": "Ogasawara Islands",
+      "kind": "place"
+    },
+    {
+      "name": "NASA Earth Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "Tokyo",
+      "kind": "place"
+    }
+  ]
+}

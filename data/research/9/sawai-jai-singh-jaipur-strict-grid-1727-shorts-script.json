@@ -1,0 +1,68 @@
+{
+  "channel_id": "9",
+  "topic_slug": "sawai-jai-singh-jaipur-strict-grid-1727",
+  "format": "shorts",
+  "hook": "In 1727, Maharaja Sawai Jai Singh II built India's first planned city.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "In 1727, Maharaja Sawai Jai Singh II built India's first planned city.",
+      "b_roll": [
+        "Historical map of Rajasthan showing Jaipur in 1727"
+      ],
+      "text_overlay": {
+        "text": "India's First Planned City (1727)"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "Kachwaha rulers moved their capital 9 kilometers from hilltop Amer. NASA Earth Observatory notes the shift covered 11 kilometers from Amber. Why did the plan split Jaipur into 9 rectangular sectors?",
+      "b_roll": [
+        "Map showing 9 km distance from hilltop Amer to Jaipur",
+        "NASA Earth Observatory satellite view of Amber and Jaipur",
+        "Diagram highlighting 9 rectangular urban sectors"
+      ],
+      "text_overlay": {
+        "text": "Amer to Jaipur: 9 km Shift"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, congestion meant Amber couldn't remain the capital, so rulers chose a plain in Rajasthan.",
+      "b_roll": [
+        "Grid overlay highlighting roads intersecting at right angles"
+      ],
+      "text_overlay": {
+        "text": "Right-Angle Grid Plan"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "UNESCO documented the walled city layout in Rajasthan. Sawai Jai Singh II based the grid on Vedic architecture. Straight roads divided the city into 9 distinct urban sectors.",
+      "b_roll": [
+        "UNESCO World Heritage documentation graphics of walled Jaipur",
+        "Architectural plan referencing Vedic principles",
+        "High-angle view of straight roads forming 9 sectors"
+      ],
+      "text_overlay": {
+        "text": "9 Sectors based on Vedic Architecture"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Jaipur remains India's planned grid city built in 1727.",
+      "b_roll": [
+        "Panoramic graphic of modern walled Jaipur grid layout"
+      ],
+      "text_overlay": {
+        "text": "Jaipur (1727)"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://whc.unesco.org/en/list/1605",
+    "https://whc.unesco.org/document/166320",
+    "https://science.nasa.gov/earth/earth-observatory/the-first-planned-city-in-india-145509",
+    "https://thebetterindia.com/culture/jaipur-grid-plan-before-google-maps-12789617"
+  ]
+}

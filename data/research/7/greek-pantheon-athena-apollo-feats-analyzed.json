@@ -1,0 +1,73 @@
+{
+  "topic_slug": "greek-pantheon-athena-apollo-feats-analyzed",
+  "strongest_angle": "Examine the strategic wisdom and archery feats of Athena and Apollo using classical mythological sources such as the Iliad and Homeric Hymns.",
+  "key_facts": [
+    {
+      "fact": "Athena is identified in classical sources on Mythohub as the goddess of wisdom, war, and craft, sharing parentage under Zeus with Apollo.",
+      "source_url": "https://mythohub.com/greek-figures-comparison/athena-vs-apollo",
+      "source_name": "Mythohub",
+      "confidence": "high"
+    },
+    {
+      "fact": "Apollo is documented in Mythology Unbound as holding epithets such as Pythian for killing the Python and Far-Shooter for his archery skills.",
+      "source_url": "https://digitalcommons.usu.edu/cgi/viewcontent.cgi?article=1003&context=oer_textbooks",
+      "source_name": "Mythology Unbound",
+      "confidence": "high"
+    },
+    {
+      "fact": "Naoko Yamagata analyzes the cosmological rivalry between Athena and Apollo within the Iliad in research hosted by Hiroshima University.",
+      "source_url": "https://hiroshima.repo.nii.ac.jp/records/2014809",
+      "source_name": "Hiroshima University Institutional Repository",
+      "confidence": "high"
+    },
+    {
+      "fact": "Nancy Felson examines intergenerational conflict and divine attributes in the long Homeric Hymn to Apollo and the twenty-eighth Hymn to Athena.",
+      "source_url": "https://doi.org/10.1093/acprof:oso/9780199589036.003.0012",
+      "source_name": "Oxford Academic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Hymn to Athena number",
+      "value": 28,
+      "unit": "hymn",
+      "source_url": "https://doi.org/10.1093/acprof:oso/9780199589036.003.0012"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Athena",
+      "kind": "person"
+    },
+    {
+      "name": "Apollo",
+      "kind": "person"
+    },
+    {
+      "name": "Zeus",
+      "kind": "person"
+    },
+    {
+      "name": "Naoko Yamagata",
+      "kind": "person"
+    },
+    {
+      "name": "Nancy Felson",
+      "kind": "person"
+    },
+    {
+      "name": "Iliad",
+      "kind": "object"
+    },
+    {
+      "name": "Hiroshima University",
+      "kind": "organization"
+    },
+    {
+      "name": "Mythohub",
+      "kind": "organization"
+    }
+  ]
+}

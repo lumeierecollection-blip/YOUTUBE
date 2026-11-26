@@ -1,0 +1,72 @@
+{
+  "channel_id": "11",
+  "topic_slug": "hubble-jwst-discover-27-icy-bodies-beyond-neptune",
+  "format": "shorts",
+  "hook": "NASA telescopes just found 27 mysterious icy objects orbiting far beyond Neptune.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "NASA telescopes just found 27 mysterious icy objects orbiting far beyond Neptune.",
+      "visual_cue": "Graphic showing Hubble and James Webb Space Telescope in orbit.",
+      "sfx_cue": "Deep space ambient hum.",
+      "b_roll": [
+        "NASA Hubble Space Telescope public domain illustration",
+        "James Webb Space Telescope public domain image"
+      ],
+      "text_overlay": {
+        "text": "27 New Objects Discovered"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On September 14, 2026, researchers confirmed these bodies exist in the deep solar system. Each of the 27 Trans-Neptunian Objects measures less than 25 miles across. How do these tiny remnants reveal our ancient origins?",
+      "visual_cue": "Animation showing Neptune and the icy belt beyond it.",
+      "sfx_cue": "Low frequency pulse.",
+      "b_roll": [
+        "Public domain diagram of the outer solar system"
+      ],
+      "text_overlay": {
+        "text": "Objects under 25 miles wide"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Except the smallest of these icy worlds is only 6 miles wide.",
+      "visual_cue": "Close up of a small, cratered icy body.",
+      "sfx_cue": "Sharp metallic chime.",
+      "b_roll": [
+        "Public domain artist impression of a small Trans-Neptunian Object"
+      ],
+      "text_overlay": {
+        "text": "Only 6 miles in diameter"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Hubble Space Telescope and James Webb Space Telescope captured these distant targets together. Scientists now plan to search for even smaller rocks just 1 kilometer wide. These observations provide vital clues about primordial solar system formation.",
+      "visual_cue": "Split screen of Hubble and Webb telescope lenses.",
+      "sfx_cue": "Data processing sound effect.",
+      "b_roll": [
+        "NASA Science archival imagery of telescope operations"
+      ],
+      "text_overlay": {
+        "text": "Future target: 1 kilometer wide"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "These 27 icy relics whisper secrets of our distant past.",
+      "visual_cue": "Wide shot of the solar system fading to black.",
+      "sfx_cue": "Fade to silence.",
+      "b_roll": [
+        "Public domain deep space starfield"
+      ],
+      "text_overlay": null
+    }
+  ],
+  "sources_used": [
+    "https://www.space.com/astronomy/james-webb-space-telescope/james-webb-space-telescope-and-hubble-discover-27-puzzling-new-objects-orbiting-the-sun-far-beyond-neptune",
+    "https://www.skyatnightmagazine.com/news/27-new-bodies-beyond-neptune",
+    "https://science.nasa.gov/missions/hubble/nasas-hubble-webb-find-far-out-solar-system-objects-remember-past"
+  ]
+}

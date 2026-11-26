@@ -1,0 +1,32 @@
+{
+  "channel_id": "4",
+  "topic_slug": "rutgers-penn-state-25-24-end-38-year-streak",
+  "format": "shorts",
+  "hook": "Rutgers just stunned Penn State with a 25-24 win at Beaver Stadium on November 21, 2026.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Rutgers just stunned Penn State with a 25-24 win at Beaver Stadium on November 21, 2026."
+    },
+    {
+      "id": "setup",
+      "voiceover": "What led to the game-winning backward pitch from Antwan Raymond to Ben Black near the goal?"
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But the real drama unfolded after Raymond rushed for 101 yards and two massive touchdowns."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The game-winning lateral play finally snapped their long-standing losing drought against the Nittany Lions."
+    },
+    {
+      "id": "close",
+      "voiceover": "Cam Wallace opened the scoring with a 56-yard play, but Rutgers secured the historic win."
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/rutgers-penn-state-football-score-ec6050a74ebbab7fa15974eff152053c",
+    "https://gopsusports.com/news/2026/11/21/penn-state-falls-to-rutgers-in-final-home-game-of-2026-campaign"
+  ]
+}

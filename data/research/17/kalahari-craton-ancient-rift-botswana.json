@@ -1,0 +1,57 @@
+{
+  "topic_slug": "kalahari-craton-ancient-rift-botswana",
+  "strongest_angle": "Geological findings published in November 2026 reveal that an ancient failed rift inside the Kalahari Craton in eastern Botswana is reawakening following a magnitude 6.5 earthquake in April 2017.",
+  "key_facts": [
+    {
+      "fact": "In April 2017, a magnitude 6.5 earthquake shook southern Africa from the middle of the Kalahari Craton in eastern Botswana.",
+      "source_url": "https://news.climate.columbia.edu/2026/11/19/an-ancient-failed-rift-is-reawakening-inside-one-of-africas-oldest-landmasses",
+      "source_name": "State of the Planet",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Kalahari Craton is built from blocks of crust up to 3.7 billion years old in eastern Botswana.",
+      "source_url": "https://lamont.columbia.edu/news/ancient-failed-rift-reawakening-inside-one-africas-oldest-landmasses",
+      "source_name": "Lamont-Doherty Earth Observatory",
+      "confidence": "high"
+    },
+    {
+      "fact": "A new study published in November 2026 was led by researchers at the Botswana International University of Science and Technology and the Lamont-Doherty Earth Observatory.",
+      "source_url": "https://news.climate.columbia.edu/2026/11/19/an-ancient-failed-rift-is-reawakening-inside-one-of-africas-oldest-landmasses",
+      "source_name": "State of the Planet",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Earthquake magnitude in April 2017",
+      "value": 6.5,
+      "unit": "magnitude",
+      "source_url": "https://news.climate.columbia.edu/2026/11/19/an-ancient-failed-rift-is-reawakening-inside-one-of-africas-oldest-landmasses"
+    },
+    {
+      "label": "Crust age in the Kalahari Craton",
+      "value": 3.7,
+      "unit": "billion years",
+      "source_url": "https://lamont.columbia.edu/news/ancient-failed-rift-reawakening-inside-one-africas-oldest-landmasses"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Kalahari Craton",
+      "kind": "place"
+    },
+    {
+      "name": "Botswana",
+      "kind": "place"
+    },
+    {
+      "name": "Botswana International University of Science and Technology",
+      "kind": "organization"
+    },
+    {
+      "name": "Lamont-Doherty Earth Observatory",
+      "kind": "organization"
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel-breakthrough",
+  "strongest_angle": "The engineering feat of the Herrenknecht Mixshield TBM named Panamá completing the first mechanized 4.5-kilometer tunnel drive beneath the Panama Canal on October 26, 2026, reaching depths of 65 meters and excavating 700,000 cubic meters of material.",
+  "key_facts": [
+    {
+      "fact": "On October 26, 2026, a 13.46-meter diameter Herrenknecht Mixshield tunnel boring machine named Panamá completed its 4.5-kilometer drive beneath the Panama Canal, achieving breakthrough near Albrook station.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Project owner Metro de Panamá reported that the TBM excavated approximately 700,000 cubic meters of rock and soil while reaching a maximum depth of approximately 65 meters below mean sea level.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "A total of 2,295 precast concrete lining rings were installed along the 4.5-kilometer alignment for Panama Metro Line 3, with each ring comprising nine segments.",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "Consorcio HPH utilized the XXL Herrenknecht Mixshield tunnel boring machine to achieve peak performances of up to 150 segment rings or 300 meters per month during the Panama Metro Line 3 project.",
+      "source_url": "https://www.herrenknecht.com/en/references/referencesdetail/panama-metro-line-3",
+      "source_name": "Herrenknecht",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM Diameter",
+      "value": 13.46,
+      "unit": "meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Tunnel Length",
+      "value": 4.5,
+      "unit": "kilometers",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Maximum Depth",
+      "value": 65,
+      "unit": "meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Excavated Volume",
+      "value": 700000,
+      "unit": "cubic meters",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Concrete Lining Rings",
+      "value": 2295,
+      "unit": "rings",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Segments per Ring",
+      "value": 9,
+      "unit": "segments",
+      "source_url": "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive"
+    },
+    {
+      "label": "Peak Monthly Rings",
+      "value": 150,
+      "unit": "rings",
+      "source_url": "https://www.herrenknecht.com/en/references/referencesdetail/panama-metro-line-3"
+    },
+    {
+      "label": "Peak Monthly Distance",
+      "value": 300,
+      "unit": "meters",
+      "source_url": "https://www.herrenknecht.com/en/references/referencesdetail/panama-metro-line-3"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Panama Canal",
+      "kind": "place"
+    },
+    {
+      "name": "Panama Metro Line 3",
+      "kind": "organization"
+    },
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "Consorcio HPH",
+      "kind": "organization"
+    },
+    {
+      "name": "Albrook",
+      "kind": "place"
+    },
+    {
+      "name": "Panamá",
+      "kind": "object"
+    },
+    {
+      "name": "Metro de Panamá",
+      "kind": "organization"
+    }
+  ]
+}

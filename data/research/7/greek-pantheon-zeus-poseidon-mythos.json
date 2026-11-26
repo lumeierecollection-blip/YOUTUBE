@@ -1,0 +1,121 @@
+{
+  "topic_slug": "greek-pantheon-zeus-poseidon-mythos",
+  "strongest_angle": "Classical Greek source texts such as Homer's Iliad and Odyssey establish Zeus as the ultimate authority on Olympus, while Poseidon holds equal elemental dignity over the seas.",
+  "key_facts": [
+    {
+      "fact": "In Book 15 of Homer's Iliad, lines 184 to 193 recount how 3 divine brothers divided the cosmos, assigning the sea to Poseidon and the sky to Zeus.",
+      "source_url": "https://doi.org/10.4324/9780203356982-10",
+      "source_name": "Routledge / Jennifer Larson",
+      "confidence": "high"
+    },
+    {
+      "fact": "Zeus and Poseidon are 2 brother deities among the 12 Olympians who overthrew Cronus during the Titanomachy.",
+      "source_url": "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference",
+      "source_name": "Myth Nerd",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Book 13 of Homer's Odyssey, lines 122 to 184, Poseidon turns a Phaeacian ship into stone after consulting Zeus.",
+      "source_url": "https://www.greekmythology.com/sources/figures/poseidon",
+      "source_name": "Greek Mythology Ancient Sources",
+      "confidence": "high"
+    },
+    {
+      "fact": "In Book 15 of Homer's Iliad, Poseidon confronts Zeus during the Trojan War, claiming equal dignity despite Zeus holding greater ultimate authority.",
+      "source_url": "https://mythographia.com/compare/zeus-vs-poseidon",
+      "source_name": "Mythographia Editorial Team",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Book of Homer's Iliad recounting the cosmic division",
+      "value": 15,
+      "unit": "book",
+      "source_url": "https://doi.org/10.4324/9780203356982-10"
+    },
+    {
+      "label": "Starting line of Iliad passage on cosmic division",
+      "value": 184,
+      "unit": "line",
+      "source_url": "https://doi.org/10.4324/9780203356982-10"
+    },
+    {
+      "label": "Ending line of Iliad passage on cosmic division",
+      "value": 193,
+      "unit": "line",
+      "source_url": "https://doi.org/10.4324/9780203356982-10"
+    },
+    {
+      "label": "Divine brothers who divided the cosmos",
+      "value": 3,
+      "unit": "brothers",
+      "source_url": "https://doi.org/10.4324/9780203356982-10"
+    },
+    {
+      "label": "Divine brothers compared in classical mythos",
+      "value": 2,
+      "unit": "brothers",
+      "source_url": "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference"
+    },
+    {
+      "label": "Olympians in the Greek pantheon",
+      "value": 12,
+      "unit": "Olympians",
+      "source_url": "https://mythnerd.com/zeus-vs-poseidon-what-is-the-difference"
+    },
+    {
+      "label": "Book of Homer's Odyssey recounting Poseidon turning ship to stone",
+      "value": 13,
+      "unit": "book",
+      "source_url": "https://www.greekmythology.com/sources/figures/poseidon"
+    },
+    {
+      "label": "Starting line of Odyssey 13 passage",
+      "value": 122,
+      "unit": "line",
+      "source_url": "https://www.greekmythology.com/sources/figures/poseidon"
+    },
+    {
+      "label": "Ending line of Odyssey 13 passage",
+      "value": 184,
+      "unit": "line",
+      "source_url": "https://www.greekmythology.com/sources/figures/poseidon"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Zeus",
+      "kind": "person"
+    },
+    {
+      "name": "Poseidon",
+      "kind": "person"
+    },
+    {
+      "name": "Homer",
+      "kind": "person"
+    },
+    {
+      "name": "Cronus",
+      "kind": "person"
+    },
+    {
+      "name": "Olympians",
+      "kind": "organization"
+    },
+    {
+      "name": "Phaeacians",
+      "kind": "organization"
+    },
+    {
+      "name": "Titanomachy",
+      "kind": "object"
+    },
+    {
+      "name": "Trojan War",
+      "kind": "object"
+    }
+  ]
+}
