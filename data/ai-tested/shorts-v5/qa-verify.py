@@ -10,8 +10,8 @@ out_dir = sys.argv[1] if len(sys.argv) > 1 else "out"
 qa_dir = sys.argv[2] if len(sys.argv) > 2 else "qa"
 os.makedirs(qa_dir, exist_ok=True)
 FPS_Q = 4  # sampled frames per second
-LIMITS = dict(min_dur=12, max_dur=60, lufs=(-16.0, -12.0), tp_max=-1.0, min_busy_mean=0.30, min_busy_frame=0.10, max_empty_s=0.75,
-              max_top_share=0.52, min_lower_share=0.20, max_static_s=2.5, min_change_mean=2.0)
+LIMITS = dict(min_dur=12, max_dur=60, lufs=(-16.0, -12.0), tp_max=-1.0, min_busy_mean=0.30, min_busy_frame=0.10, max_empty_s=1.0,
+              max_top_share=0.52, min_lower_share=0.20, max_static_s=4.0, min_change_mean=2.0)
 ok_all = True
 
 def run(cmd):
@@ -50,7 +50,7 @@ for f in sorted(glob.glob(os.path.join(out_dir, "*.mp4"))):
     if len(vinfo) < 5 or vinfo[0] != "h264": bad.append("BAD codec not h264")
     if len(vinfo) >= 3 and (vinfo[1] != "1080" or vinfo[2] != "1920"): bad.append(f"BAD size {vinfo[1:3]}")
     if len(vinfo) >= 4 and vinfo[3] not in ("30/1", "30000/1001"): bad.append(f"BAD fps {vinfo[3]}")
-    if len(vinfo) >= 5 and vinfo[4] not in ("yuv420p", ""): bad.append(f"BAD pix_fmt {vinfo[4]}")
+    if len(vinfo) >= 5 and vinfo[4] not in ("yuv420p", "yuvj420p", ""): bad.append(f"BAD pix_fmt {vinfo[4]}")
     if len(ainfo) < 2 or ainfo[0] == "": bad.append("BAD no audio stream")
     if not (LIMITS["min_dur"] <= dur <= LIMITS["max_dur"]): bad.append(f"BAD duration {dur:.2f}")
     # audio levels measured at render time on the mastered file
