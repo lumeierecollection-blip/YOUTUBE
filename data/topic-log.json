@@ -1529,9 +1529,14 @@
           "topic": "UK Actors Union to Enter Contract Negotiations with Netflix and Disney",
           "slug": "uk-actors-union-streamer-negotiations",
           "reserved_at": "2026-11-25T18:51:05.374Z"
+        },
+        {
+          "topic": "BBC Lodges Urgent Appeal in Donald Trump $10B Defamation Lawsuit",
+          "slug": "bbc-trump-10b-defamation-appeal",
+          "reserved_at": "2026-11-26T18:38:49.918Z"
         }
       ],
-      "last_generated": "2026-11-25T18:51:05.374Z"
+      "last_generated": "2026-11-26T18:38:49.918Z"
     },
     "4": {
       "channel_name": "Rival Lines",
