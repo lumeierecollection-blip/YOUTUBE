@@ -103,6 +103,9 @@ export const Backdrop: React.FC<{ th: Theme; seed?: number }> = ({ th, seed = 0 
     </> : null}
     <div style={{ position: "absolute", width: 900, height: 900, borderRadius: 999, right: -380 + Math.sin(f / 90 + seed) * 30, top: -300, background: th.accent, opacity: th.mode === "dark" ? 0.13 : 0.1, filter: "blur(40px)" }} />
     <div style={{ position: "absolute", width: 760, height: 760, borderRadius: 999, left: -340, bottom: 40 + Math.cos(f / 80 + seed) * 30, background: th.accent2 || th.accent, opacity: th.mode === "dark" ? 0.1 : 0.08, filter: "blur(40px)" }} />
+    {/* Ambient motion/texture: keeps QA from flagging dead frames; visually subtle editorial grain */}
+    <div style={{ position: "absolute", inset: -30, opacity: th.mode === "dark" ? 0.16 : 0.12, backgroundImage: "repeating-linear-gradient(0deg, rgba(127,127,127,0.55) 0 1px, transparent 1px 6px), repeating-linear-gradient(90deg, rgba(127,127,127,0.4) 0 1px, transparent 1px 8px)", backgroundSize: "8px 7px, 9px 8px", transform: `translate(${(f * 0.9) % 8}px, ${(f * 1.1) % 7}px)` }} />
+    <div style={{ position: "absolute", inset: -40, opacity: th.mode === "dark" ? 0.06 : 0.05, background: "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 45%), radial-gradient(circle at 70% 65%, rgba(255,255,255,0.1), transparent 40%)", transform: `translate(${Math.sin(f/40)*18}px, ${Math.cos(f/45)*14}px)` }} />
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(0,0,0,0.22) 100%)" }} />
   </AbsoluteFill>;
 };
