@@ -5133,9 +5133,14 @@
           "topic": "Waymo Recall: 4,500 Robotaxis Entering Closed Freeway Lanes",
           "slug": "waymo-recall-robotaxis-closed-freeway-lanes",
           "reserved_at": "2026-11-25T20:36:48.937Z"
+        },
+        {
+          "topic": "RAIB Report 13/2026: Investigating the Washwood Heath Near Miss",
+          "slug": "raib-report-13-2026-washwood-heath-near-miss",
+          "reserved_at": "2026-11-26T18:38:30.243Z"
         }
       ],
-      "last_generated": "2026-11-25T20:36:48.937Z"
+      "last_generated": "2026-11-26T18:38:30.243Z"
     },
     "49": {
       "channel_name": "Picture House",
