@@ -1,0 +1,64 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-study-in-scarlet-canon-origins",
+  "format": "shorts",
+  "hook": "Arthur Conan Doyle began the journey of his famous detective in a Southsea office in 1886.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Arthur Conan Doyle began the journey of his famous detective in a Southsea office in 1886.",
+      "visual_cue": "Close up of an 1880s medical ledger and a quill pen resting on a wooden desk.",
+      "sfx_cue": "Scratching of a quill on parchment.",
+      "b_roll": [
+        "1880s style medical office interior illustration"
+      ],
+      "text_overlay": {
+        "text": "1886: The Origin"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "He started writing A Study in Scarlet while waiting for patients in Portsmouth, England. But what was the reality behind the fictional 221B Baker Street address in London?",
+      "visual_cue": "Map animation zooming from Edinburgh down to Southsea, Portsmouth.",
+      "sfx_cue": "Soft ticking of a clock.",
+      "b_roll": [
+        "Vintage map of 19th century Portsmouth",
+        "University of Edinburgh 1881 graduation register image"
+      ]
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Yet, this famous address was merely a fictional flat shared by two iconic literary characters.",
+      "visual_cue": "Silhouette of two men standing in a Victorian-style doorway.",
+      "sfx_cue": "Echoing footsteps on cobblestone.",
+      "b_roll": [
+        "Victorian London street scene silhouette"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Sherlock Holmes and Dr. Watson first appeared in Beeton's Christmas Annual in December 1887.",
+      "visual_cue": "Faded, public domain cover of an 1887 periodical.",
+      "sfx_cue": "Page turning sound.",
+      "b_roll": [
+        "Beeton's Christmas Annual 1887 cover art (public domain)"
+      ],
+      "text_overlay": {
+        "text": "1887: First Publication"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Conan Doyle officially introduced this iconic duo to the world in December 1887.",
+      "visual_cue": "Portrait of Arthur Conan Doyle, public domain.",
+      "sfx_cue": "Quiet ambient street noise.",
+      "b_roll": [
+        "Arthur Conan Doyle portrait 1887"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://catdir.loc.gov/catdir/enhancements/fy0711/2004100773-s.html",
+    "https://en.wikipedia.org/wiki/A_Study_In_Scarlet"
+  ]
+}

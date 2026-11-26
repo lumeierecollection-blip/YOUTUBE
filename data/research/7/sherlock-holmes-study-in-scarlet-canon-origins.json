@@ -1,0 +1,107 @@
+{
+  "topic_slug": "sherlock-holmes-study-in-scarlet-canon-origins",
+  "strongest_angle": "Arthur Conan Doyle structured the foundational world of Sherlock Holmes in 1886 and 1887, writing the first novel in Southsea, Portsmouth and featuring the fictional address 221B Baker Street.",
+  "key_facts": [
+    {
+      "fact": "Arthur Conan Doyle was born on May 22, 1859, in Edinburgh, Scotland, and completed his medical qualifications at the University of Edinburgh in 1881 before writing Sherlock Holmes.",
+      "source_url": "https://www.ebsco.com/research-starters/history/first-appearance-sherlock-holmes",
+      "source_name": "EBSCOhost",
+      "confidence": "high"
+    },
+    {
+      "fact": "Arthur Conan Doyle began writing A Study in Scarlet in 1886 while waiting for patients in his newly furnished doctor's office in Southsea, Portsmouth.",
+      "source_url": "https://catdir.loc.gov/catdir/enhancements/fy0711/2004100773-s.html",
+      "source_name": "Library of Congress",
+      "confidence": "high"
+    },
+    {
+      "fact": "The detective novel A Study in Scarlet was published in December 1887 in Beeton's Christmas Annual, marking the first appearance of Sherlock Holmes and Dr. Watson.",
+      "source_url": "https://en.wikipedia.org/wiki/A_Study_In_Scarlet",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "The famous address 221B Baker Street in London consists of two bedrooms and a large flat shared by Sherlock Holmes and Dr. Watson.",
+      "source_url": "https://www.ebsco.com/research-starters/literature-and-writing/study-scarlet-analysis-setting",
+      "source_name": "EBSCOhost",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "birth year of arthur conan doyle",
+      "value": 1859,
+      "unit": "year",
+      "source_url": "https://www.ebsco.com/research-starters/history/first-appearance-sherlock-holmes"
+    },
+    {
+      "label": "medical qualification year",
+      "value": 1881,
+      "unit": "year",
+      "source_url": "https://www.ebsco.com/research-starters/history/first-appearance-sherlock-holmes"
+    },
+    {
+      "label": "year writing began in southsea",
+      "value": 1886,
+      "unit": "year",
+      "source_url": "https://catdir.loc.gov/catdir/enhancements/fy0711/2004100773-s.html"
+    },
+    {
+      "label": "year of publication",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://en.wikipedia.org/wiki/A_Study_In_Scarlet"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. Watson",
+      "kind": "person"
+    },
+    {
+      "name": "Dr. Joseph Bell",
+      "kind": "person"
+    },
+    {
+      "name": "Edinburgh",
+      "kind": "place"
+    },
+    {
+      "name": "Southsea",
+      "kind": "place"
+    },
+    {
+      "name": "Portsmouth",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Baker Street",
+      "kind": "place"
+    },
+    {
+      "name": "University of Edinburgh",
+      "kind": "organization"
+    },
+    {
+      "name": "Beeton's Christmas Annual",
+      "kind": "object"
+    },
+    {
+      "name": "A Study in Scarlet",
+      "kind": "object"
+    }
+  ]
+}
