@@ -1,0 +1,113 @@
+{
+  "topic_slug": "england-new-zealand-37-12-nations-championship",
+  "strongest_angle": "England secured a record-breaking 37-12 victory over New Zealand at Allianz Stadium in the Nations Championship, powered by five tries and a shift in tactical approach under Steve Borthwick.",
+  "key_facts": [
+    {
+      "fact": "England defeated New Zealand 37-12 at Allianz Stadium in Twickenham during the Nations Championship, marking their biggest-ever win by margin over the All Blacks.",
+      "source_url": "https://apnews.com/article/england-new-zealand-all-blacks-nations-rugby-1845b94ec36184356c6f773fbbafe8b6",
+      "source_name": "Associated Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "England scored five tries through Henry Slade, Jack van Poortvliet, Ben Earl, Ollie Chessum, and Charlie Atkinson during the match at Allianz Stadium.",
+      "source_url": "https://www.skysports.com/rugby-union/england-vs-new-zealand/111694",
+      "source_name": "Sky Sports",
+      "confidence": "high"
+    },
+    {
+      "fact": "England shifted their tactical approach significantly compared to the previous year, recording 176 passes to just 29 kicks against New Zealand.",
+      "source_url": "https://www.bbc.com/sport/rugby-union/articles/c6gregx71gjro",
+      "source_name": "BBC Sport",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Steve Borthwick's side claimed back-to-back victories over New Zealand for the first time since 2003 with this 37-12 win at Twickenham.",
+      "source_url": "https://www.englandrugby.com/follow/news-and-media/impressive-england-claim-record-win-over-all-blacks-nations-championship",
+      "source_name": "Rugby Football Union",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "England points",
+      "value": 37,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/england-new-zealand-all-blacks-nations-rugby-1845b94ec36184356c6f773fbbafe8b6"
+    },
+    {
+      "label": "New Zealand points",
+      "value": 12,
+      "unit": "points",
+      "source_url": "https://apnews.com/article/england-new-zealand-all-blacks-nations-rugby-1845b94ec36184356c6f773fbbafe8b6"
+    },
+    {
+      "label": "England tries",
+      "value": 5,
+      "unit": "tries",
+      "source_url": "https://apnews.com/article/england-new-zealand-all-blacks-nations-rugby-1845b94ec36184356c6f773fbbafe8b6"
+    },
+    {
+      "label": "England passes",
+      "value": 176,
+      "unit": "passes",
+      "source_url": "https://www.bbc.com/sport/rugby-union/articles/c6gregx71gjro"
+    },
+    {
+      "label": "England kicks",
+      "value": 29,
+      "unit": "kicks",
+      "source_url": "https://www.bbc.com/sport/rugby-union/articles/c6gregx71gjro"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "England",
+      "kind": "organization"
+    },
+    {
+      "name": "New Zealand",
+      "kind": "organization"
+    },
+    {
+      "name": "Marcus Smith",
+      "kind": "person"
+    },
+    {
+      "name": "Will Stuart",
+      "kind": "person"
+    },
+    {
+      "name": "Allianz Stadium",
+      "kind": "place"
+    },
+    {
+      "name": "Henry Slade",
+      "kind": "person"
+    },
+    {
+      "name": "Jack van Poortvliet",
+      "kind": "person"
+    },
+    {
+      "name": "Ben Earl",
+      "kind": "person"
+    },
+    {
+      "name": "Ollie Chessum",
+      "kind": "person"
+    },
+    {
+      "name": "Charlie Atkinson",
+      "kind": "person"
+    },
+    {
+      "name": "Steve Borthwick",
+      "kind": "person"
+    },
+    {
+      "name": "Twickenham",
+      "kind": "place"
+    }
+  ]
+}

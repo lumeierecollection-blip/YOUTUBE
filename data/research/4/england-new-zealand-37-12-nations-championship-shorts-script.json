@@ -1,0 +1,47 @@
+{
+  "channel_id": "4",
+  "topic_slug": "england-new-zealand-37-12-nations-championship",
+  "format": "shorts",
+  "hook": "England just crushed New Zealand 37-12, their largest winning margin ever against the All Blacks rugby team.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "England just crushed New Zealand 37-12, their largest winning margin ever against the All Blacks rugby team.",
+      "text_overlay": {
+        "text": "England 37-12 New Zealand"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "At Allianz Stadium in Twickenham, Steve Borthwick led England to this historic Nations Championship win. But how did they dominate?",
+      "text_overlay": {
+        "text": "England's 5 Tries"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The catch is they abandoned kicking-heavy tactics, recording 176 passes to just 29 kicks against New Zealand.",
+      "text_overlay": {
+        "text": "176 Passes vs 29 Kicks"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "This tactical evolution secured England back-to-back wins over New Zealand for the first time since 2003.",
+      "text_overlay": {
+        "text": "5 Scorers: Slade, van Poortvliet, Earl, Chessum, Atkinson"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 37-12 record-breaking victory marks a new tactical era.",
+      "text_overlay": {
+        "text": "Record Victory: 37-12"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://apnews.com/article/england-new-zealand-all-blacks-nations-rugby-1845b94ec36184356c6f773fbbafe8b6",
+    "https://www.bbc.com/sport/rugby-union/articles/c6gregx71gjro"
+  ]
+}
