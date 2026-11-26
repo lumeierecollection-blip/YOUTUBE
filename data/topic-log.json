@@ -3015,9 +3015,14 @@
           "topic": "Hubble and JWST Discover 27 New Icy Bodies Beyond Neptune",
           "slug": "hubble-jwst-discover-27-icy-bodies-beyond-neptune",
           "reserved_at": "2026-11-25T20:36:19.145Z"
+        },
+        {
+          "topic": "AURA Identifies Two Monster Quasars From Dawn of Time",
+          "slug": "aura-identifies-two-monster-quasars-dawn-of-time",
+          "reserved_at": "2026-11-26T18:37:51.249Z"
         }
       ],
-      "last_generated": "2026-11-25T20:36:19.145Z"
+      "last_generated": "2026-11-26T18:37:51.249Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
