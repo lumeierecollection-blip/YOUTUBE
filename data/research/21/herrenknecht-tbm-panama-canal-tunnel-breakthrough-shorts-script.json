@@ -1,0 +1,77 @@
+{
+  "channel_id": "21",
+  "topic_slug": "herrenknecht-tbm-panama-canal-tunnel-breakthrough",
+  "format": "shorts",
+  "hook": "A massive machine just carved a tunnel 65 meters beneath the Panama Canal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive machine just carved a tunnel 65 meters beneath the Panama Canal.",
+      "visual_cue": "Close-up of the Herrenknecht Mixshield TBM cutterhead rotating slowly.",
+      "sfx_cue": "Deep mechanical grinding sound building in intensity.",
+      "b_roll": [
+        "Archives of Herrenknecht Mixshield TBM cutterhead",
+        "Stock footage of Panama Canal water surface"
+      ],
+      "text_overlay": {
+        "text": "65 meters below the canal"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 26, 2026, the 13.46-meter wide TBM named Panamá completed its 4.5-kilometer drive. How much earth did it move to reach Albrook station?",
+      "visual_cue": "Animated map showing the Panama Metro Line 3 path under the canal.",
+      "sfx_cue": "Whirring of mechanical assembly.",
+      "b_roll": [
+        "Animated map of Panama Metro Line 3 route",
+        "Technical diagram of Mixshield TBM"
+      ],
+      "text_overlay": {
+        "text": "4.5-kilometer tunnel drive"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The excavation resulted in a massive 700,000 cubic meters of rock and soil removed.",
+      "visual_cue": "Wide shot of the excavated material volume represented by an infographic.",
+      "sfx_cue": "Heavy thud of earth falling.",
+      "b_roll": [
+        "Stock footage of tunnel spoil removal",
+        "Infographic of 700,000 cubic meters"
+      ],
+      "text_overlay": {
+        "text": "700,000 cubic meters excavated"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "To stabilize the tunnel, the team installed 2,295 concrete rings along the path. Peak performance reached 300 meters per month during the project.",
+      "visual_cue": "Time-lapse style animation of concrete segments fitting into a ring.",
+      "sfx_cue": "Metallic clicking of segments locking together.",
+      "b_roll": [
+        "Animation of precast concrete ring assembly",
+        "Herrenknecht technical footage of segment installation"
+      ],
+      "text_overlay": {
+        "text": "2,295 concrete rings installed"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "This breakthrough officially connects the metro line beneath the Panama Canal.",
+      "visual_cue": "Final breakthrough shot at the construction site.",
+      "sfx_cue": "Mechanical powering down sound.",
+      "b_roll": [
+        "Site footage near Albrook station",
+        "Panama Canal aerial view"
+      ],
+      "text_overlay": {
+        "text": "Panama Metro Line 3 breakthrough"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/herrenknecht-tbm-completes-4-5km-panama-canal-tunnel-drive",
+    "https://www.herrenknecht.com/en/references/referencesdetail/panama-metro-line-3"
+  ]
+}
