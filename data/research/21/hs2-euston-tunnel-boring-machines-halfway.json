@@ -1,0 +1,85 @@
+{
+  "topic_slug": "hs2-euston-tunnel-boring-machines-halfway",
+  "strongest_angle": "Examine the engineering progress of HS2's two 1624-tonne tunnel boring machines, Karen and Madeleine, as they reach the halfway milestone on their 4.5-mile journey from Old Oak Common toward London Euston.",
+  "key_facts": [
+    {
+      "fact": "The two Herrenknecht tunnel boring machines, named Karen and Madeleine, have drilled 2.25 miles of their 4.5-mile journey from Old Oak Common to London Euston.",
+      "source_url": "https://tunnellingjournal.com/hs2s-euston-tbms-reach-halfway",
+      "source_name": "The Tunnelling Journal",
+      "confidence": "high"
+    },
+    {
+      "fact": "The giant tunnel boring machines, weighing 1,624 tonnes each, were launched in January and March 2026 by the Skanska Costain STRABAG joint venture.",
+      "source_url": "https://www.skanska.com/uk/en-gb/news-insights/press-releases/2026/skanska-costain-strabag-jv-tunnel-boring-machines-reach-halfway-point-on-journey-to-euston",
+      "source_name": "Skanska in the UK",
+      "confidence": "high"
+    },
+    {
+      "fact": "By 17 November 2026, both machines were located between West Hampstead and Kilburn High Road stations on HS2's fifth and final deep-bored tunnel.",
+      "source_url": "https://www.ianvisits.co.uk/articles/hs2s-tunnel-boring-machines-are-halfway-to-euston-94341",
+      "source_name": "Ian Visits",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "TBM weight",
+      "value": 1624,
+      "unit": "tonnes",
+      "source_url": "https://tunnellingjournal.com/hs2s-euston-tbms-reach-halfway"
+    },
+    {
+      "label": "Distance bored",
+      "value": 2.25,
+      "unit": "miles",
+      "source_url": "https://mediacentre.hs2.org.uk/news/hs2-tunnel-boring-machines-reach-halfway-on-journey-to-euston"
+    },
+    {
+      "label": "Total journey distance",
+      "value": 4.5,
+      "unit": "miles",
+      "source_url": "https://www.ianvisits.co.uk/articles/hs2s-tunnel-boring-machines-are-halfway-to-euston-94341"
+    },
+    {
+      "label": "Total drive distance in kilometers",
+      "value": 7.2,
+      "unit": "km",
+      "source_url": "https://tunnellingjournal.com/hs2s-euston-tbms-reach-halfway"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Karen",
+      "kind": "object"
+    },
+    {
+      "name": "Madeleine",
+      "kind": "object"
+    },
+    {
+      "name": "Old Oak Common",
+      "kind": "place"
+    },
+    {
+      "name": "London Euston",
+      "kind": "place"
+    },
+    {
+      "name": "Skanska Costain STRABAG JV",
+      "kind": "organization"
+    },
+    {
+      "name": "Herrenknecht",
+      "kind": "organization"
+    },
+    {
+      "name": "West Hampstead",
+      "kind": "place"
+    },
+    {
+      "name": "Kilburn High Road",
+      "kind": "place"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "channel_id": "21",
+  "topic_slug": "hs2-euston-tunnel-boring-machines-halfway",
+  "format": "shorts",
+  "hook": "Two 1,624-tonne machines are cutting a 4.5-mile path beneath London.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Two 1,624-tonne machines are cutting a 4.5-mile path beneath London.",
+      "visual_cue": "Close-up of a massive circular tunnel boring machine cutterhead rotating in a dark tunnel.",
+      "sfx_cue": "Deep, mechanical grinding sound of heavy machinery.",
+      "b_roll": [
+        "Stock footage of a Herrenknecht tunnel boring machine cutterhead"
+      ],
+      "text_overlay": {
+        "text": "1,624 Tonnes of Engineering"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On January and March 2026, the Skanska Costain STRABAG joint venture launched Karen and Madeleine from Old Oak Common. These Herrenknecht machines have now bored 2.25 miles through the earth. Where exactly are they now?",
+      "visual_cue": "Map animation showing the route from Old Oak Common toward London Euston with a progress bar.",
+      "sfx_cue": "Sound of a rhythmic, heavy thudding drill.",
+      "b_roll": [
+        "Animated map of the HS2 tunnel route from Old Oak Common to London Euston"
+      ],
+      "text_overlay": {
+        "text": "Halfway to London Euston"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But by 17 November 2026, both machines worked between West Hampstead and Kilburn High Road stations.",
+      "visual_cue": "Wide shot showing the tunnel alignment markers near West Hampstead.",
+      "sfx_cue": "Subtle ambient industrial hum.",
+      "b_roll": [
+        "Topographical map overlay of London transit stations"
+      ],
+      "text_overlay": {
+        "text": "West Hampstead to Kilburn High Road"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Karen and Madeleine are currently halfway through their journey. The project marks a critical milestone for the fifth deep-bored tunnel on the HS2 line. This engineering feat covers exactly 2.25 miles of the total 4.5-mile drive.",
+      "visual_cue": "Split screen showing both machines inside the tunnel bores.",
+      "sfx_cue": "Engine roar increasing in intensity.",
+      "b_roll": [
+        "Technical diagram of the tunnel boring machine structure"
+      ],
+      "text_overlay": {
+        "text": "2.25 Miles Bored"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The machines continue their 7.2-kilometer journey toward London Euston.",
+      "visual_cue": "Slow zoom on the tunnel boring machine moving forward in the dark.",
+      "sfx_cue": "Sound of rock and soil being moved.",
+      "b_roll": [
+        "Cinematic footage of tunnel walls inside the HS2 site"
+      ],
+      "text_overlay": {
+        "text": "7.2 km Total Progress"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://tunnellingjournal.com/hs2s-euston-tbms-reach-halfway",
+    "https://www.ianvisits.co.uk/articles/hs2s-tunnel-boring-machines-are-halfway-to-euston-94341"
+  ]
+}
