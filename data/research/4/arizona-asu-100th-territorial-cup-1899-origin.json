@@ -1,0 +1,93 @@
+{
+  "topic_slug": "arizona-asu-100th-territorial-cup-1899-origin",
+  "strongest_angle": "Examine the historic roots of the Territorial Cup as the oldest rivalry trophy in college football, dating back to 1899 when Arizona Normal School won the initial football championship before Arizona even achieved statehood.",
+  "key_facts": [
+    {
+      "fact": "The Arizona Territorial Normal School football team claimed the original Territorial Cup after winning the Arizona Territorial Football League Championship following a three-game season in 1899.",
+      "source_url": "https://news.asu.edu/20201228-territorial-cup-series-begins",
+      "source_name": "ASU News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Territorial Cup matchup between Arizona State University and the University of Arizona is recognized by the NCAA as the oldest rivalry trophy game in college football.",
+      "source_url": "https://cronkitenews.azpbs.org/2026/11/27/arizona-asu-100th-territorial-cup",
+      "source_name": "Cronkite News",
+      "confidence": "high"
+    },
+    {
+      "fact": "The first gridiron meeting between the University of Arizona and Arizona State University, known at the time as Arizona Normal School, took place on November 30, 1899, nearly 13 years before Arizona became a state in 1912.",
+      "source_url": "https://www.cfbhall.com/news-and-happenings/blog/the-territorial-cup-arizona-vs-arizona-state-and-college-footballs-oldest-rivalry-trophy",
+      "source_name": "College Football Hall of Fame",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2026 meeting marked the 100th Territorial Cup game between Arizona State and the University of Arizona, held at Casino Del Sand Stadium in Tucson.",
+      "source_url": "https://cronkitenews.azpbs.org/2026/11/27/arizona-asu-100th-territorial-cup",
+      "source_name": "Cronkite News",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "First Territorial Football League Championship season length",
+      "value": 3,
+      "unit": "games",
+      "source_url": "https://news.asu.edu/20201228-territorial-cup-series-begins"
+    },
+    {
+      "label": "Territorial Cup game milestone",
+      "value": 100,
+      "unit": "games",
+      "source_url": "https://cronkitenews.azpbs.org/2026/11/27/arizona-asu-100th-territorial-cup"
+    },
+    {
+      "label": "Years before statehood the first game occurred",
+      "value": 13,
+      "unit": "years",
+      "source_url": "https://cronkitenews.azpbs.org/2026/11/27/arizona-asu-100th-territorial-cup"
+    },
+    {
+      "label": "Year Arizona achieved statehood",
+      "value": 1912,
+      "unit": "year",
+      "source_url": "https://www.cfbhall.com/news-and-happenings/blog/the-territorial-cup-arizona-vs-arizona-state-and-college-footballs-oldest-rivalry-trophy"
+    },
+    {
+      "label": "Year of the first Territorial Cup game",
+      "value": 1899,
+      "unit": "year",
+      "source_url": "https://www.cfbhall.com/news-and-happenings/blog/the-territorial-cup-arizona-vs-arizona-state-and-college-footballs-oldest-rivalry-trophy"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Arizona State University",
+      "kind": "organization"
+    },
+    {
+      "name": "University of Arizona",
+      "kind": "organization"
+    },
+    {
+      "name": "Arizona Territorial Normal School",
+      "kind": "organization"
+    },
+    {
+      "name": "Territorial Cup",
+      "kind": "object"
+    },
+    {
+      "name": "Arizona",
+      "kind": "place"
+    },
+    {
+      "name": "Tucson",
+      "kind": "place"
+    },
+    {
+      "name": "Casino Del Sol Stadium",
+      "kind": "place"
+    }
+  ]
+}

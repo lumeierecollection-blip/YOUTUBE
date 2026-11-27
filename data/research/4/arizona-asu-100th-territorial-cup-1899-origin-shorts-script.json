@@ -1,0 +1,67 @@
+{
+  "channel_id": "4",
+  "topic_slug": "arizona-asu-100th-territorial-cup-1899-origin",
+  "format": "shorts",
+  "hook": "College football's oldest rivalry trophy was born 13 years before Arizona statehood.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "College football's oldest rivalry trophy was born 13 years before Arizona statehood.",
+      "b_roll": [
+        "Historic vintage photograph of early football equipment from 1899",
+        "Map graphic highlighting Arizona territorial boundaries prior to 1912"
+      ],
+      "text_overlay": {
+        "text": "13 Years Before Statehood"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 30, 1899, Arizona Normal School played the University of Arizona. They claimed the original Territorial Cup after a 3-game season. Who would win the 100th game in Tucson?",
+      "b_roll": [
+        "Diagram showing 1899 Arizona Football League match schedule",
+        "Historic photograph of Tucson gridiron field in 1899"
+      ],
+      "text_overlay": {
+        "text": "November 30, 1899"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, the NCAA recognizes the Territorial Cup as college football's oldest rivalry trophy game.",
+      "b_roll": [
+        "Graphic display of NCAA official recognition mark",
+        "Motion graphic timeline of college football trophy origins"
+      ],
+      "text_overlay": {
+        "text": "Oldest Rivalry Trophy"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The Arizona Territorial Football League created this historic gridiron battle. The 2026 meeting marked their 100th Territorial Cup game.",
+      "b_roll": [
+        "Diagram mapping Arizona State University versus University of Arizona head-to-head history",
+        "Graphic counter accumulating games from 1 to 100",
+        "Historic stadium photo in Tucson"
+      ],
+      "text_overlay": {
+        "text": "100th Cup Game"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 1899 trophy remains college football's oldest rivalry tradition.",
+      "b_roll": [
+        "Historic photograph of the original Territorial Cup"
+      ],
+      "text_overlay": {
+        "text": "1899 Tradition"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://cronkitenews.azpbs.org/2026/11/27/arizona-asu-100th-territorial-cup",
+    "https://news.asu.edu/20201228-territorial-cup-series-begins"
+  ]
+}
