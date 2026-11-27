@@ -35,9 +35,9 @@ export const Thumb: React.FC<any> = ({ theme, data, thumb }) => {
   const trailMask = `linear-gradient(${inner}, #000 0%, transparent 100%)`;
 
   return (
-    <AbsoluteFill style={{ background: `radial-gradient(ellipse at ${left ? "62%" : "38%"} 40%, #ffffff 0%, #ffffff 40%, ${theme.paper} 100%)` }}>
+    <AbsoluteFill style={{ background: `radial-gradient(ellipse at ${left ? "62%" : "38%"} 40%, #ffffff 0%, #ffffff 55%, #ebebeb 100%)` }}>
       <div style={{ position: "absolute", top: cut.top, height: cut.h, ...edge, display: "flex" }}>
-        <Img src={src} style={{ height: cut.h, width: "auto", filter: "blur(22px)", opacity: 0.28, transform: `scaleX(1.25) translateX(${left ? 40 : -40}px)`, transformOrigin: left ? "left center" : "right center", WebkitMaskImage: trailMask, maskImage: trailMask }} />
+        <Img src={src} style={{ height: cut.h, width: "auto", filter: "blur(22px)", opacity: 0.2, transform: `scaleX(1.25) translateX(${left ? 40 : -40}px)`, transformOrigin: left ? "left center" : "right center", WebkitMaskImage: trailMask, maskImage: trailMask, clipPath: "inset(0 0 55% 0)" }} />
       </div>
       <div style={{ position: "absolute", top: cut.top, height: cut.h, ...edge, display: "flex" }}>
         <Img src={src} style={{ height: cut.h, width: "auto", ...mask }} />
