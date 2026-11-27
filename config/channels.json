@@ -376,8 +376,8 @@
       "asset_treatment": "color",
       "channel_name": "Rival Lines",
       "handle": "@rivallines",
-      "tts_voice": "en-US-AriaNeural",
-      "font": "Inter",
+      "tts_voice": "en-GB-RyanNeural",
+      "font": "Newsreader",
       "estimated_rpm": "8-15",
       "google_account": "CH4",
       "channel_id": "ch-04",
@@ -399,11 +399,17 @@
         "why it happens"
       ],
       "colors": {
-        "primary": "#0F172A",
-        "secondary": "#1E293B",
-        "accent": "#22C55E",
-        "bg": "#0A1020",
-        "canvas_accent": "#1B7A4D"
+        "primary": "#1F1D1A",
+        "secondary": "#3A3631",
+        "accent": "#C8452D",
+        "bg": "#F4EFE4",
+        "canvas_accent": "#2F6F8F",
+        "paper": "#F4EFE4",
+        "ink": "#1F1D1A",
+        "accent2": "#2F6F8F",
+        "highlight": "#F1C84B",
+        "muted": "#8A8478",
+        "grid": "#DDD5C4"
       },
       "target_audience": "Sports fans 16-45",
       "tone": "energetic-analytical",

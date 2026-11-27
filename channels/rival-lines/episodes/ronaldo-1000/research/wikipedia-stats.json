@@ -1,0 +1,605 @@
+{
+ "source": "Wikipedia, Cristiano Ronaldo, Career statistics (CC BY-SA 4.0)",
+ "url": "https://en.wikipedia.org/w/index.php?title=Cristiano_Ronaldo&oldid=1387620804",
+ "revision_id": 1387620804,
+ "revision_timestamp": "2026-11-24T21:33:21Z",
+ "fetched_at": "2026-11-27T07:34:53+00:00",
+ "club": [
+  {
+   "club": "Sporting CP B[4][5]",
+   "season": "2002–03",
+   "division": "Segunda Divisão B",
+   "apps": 2,
+   "goals": 0,
+   "lg_apps": 2,
+   "lg_goals": 0,
+   "co_apps": null,
+   "co_goals": null
+  },
+  {
+   "club": "Sporting CP",
+   "season": "2002–03",
+   "division": "Primeira Liga",
+   "apps": 31,
+   "goals": 5,
+   "lg_apps": 25,
+   "lg_goals": 3,
+   "co_apps": 3,
+   "co_goals": 0
+  },
+  {
+   "club": "Manchester United",
+   "season": "2003–04",
+   "division": "Premier League",
+   "apps": 40,
+   "goals": 6,
+   "lg_apps": 29,
+   "lg_goals": 4,
+   "co_apps": 5,
+   "co_goals": 0
+  },
+  {
+   "club": "Manchester United",
+   "season": "2004–05",
+   "division": "Premier League",
+   "apps": 50,
+   "goals": 9,
+   "lg_apps": 33,
+   "lg_goals": 5,
+   "co_apps": 8,
+   "co_goals": 0
+  },
+  {
+   "club": "Manchester United",
+   "season": "2005–06",
+   "division": "Premier League",
+   "apps": 47,
+   "goals": 12,
+   "lg_apps": 33,
+   "lg_goals": 9,
+   "co_apps": 8,
+   "co_goals": 1
+  },
+  {
+   "club": "Manchester United",
+   "season": "2006–07",
+   "division": "Premier League",
+   "apps": 53,
+   "goals": 23,
+   "lg_apps": 34,
+   "lg_goals": 17,
+   "co_apps": 11,
+   "co_goals": 3
+  },
+  {
+   "club": "Manchester United",
+   "season": "2007–08",
+   "division": "Premier League",
+   "apps": 49,
+   "goals": 42,
+   "lg_apps": 34,
+   "lg_goals": 31,
+   "co_apps": 11,
+   "co_goals": 8
+  },
+  {
+   "club": "Manchester United",
+   "season": "2008–09",
+   "division": "Premier League",
+   "apps": 53,
+   "goals": 26,
+   "lg_apps": 33,
+   "lg_goals": 18,
+   "co_apps": 12,
+   "co_goals": 4
+  },
+  {
+   "club": "Manchester United",
+   "season": "Total",
+   "division": "Total",
+   "apps": 292,
+   "goals": 118,
+   "lg_apps": 196,
+   "lg_goals": 84,
+   "co_apps": 55,
+   "co_goals": 16
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2009–10",
+   "division": "La Liga",
+   "apps": 35,
+   "goals": 33,
+   "lg_apps": 29,
+   "lg_goals": 26,
+   "co_apps": 6,
+   "co_goals": 7
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2010–11",
+   "division": "La Liga",
+   "apps": 54,
+   "goals": 53,
+   "lg_apps": 34,
+   "lg_goals": 40,
+   "co_apps": 12,
+   "co_goals": 6
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2011–12",
+   "division": "La Liga",
+   "apps": 55,
+   "goals": 60,
+   "lg_apps": 38,
+   "lg_goals": 46,
+   "co_apps": 10,
+   "co_goals": 10
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2012–13",
+   "division": "La Liga",
+   "apps": 55,
+   "goals": 55,
+   "lg_apps": 34,
+   "lg_goals": 34,
+   "co_apps": 12,
+   "co_goals": 12
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2013–14",
+   "division": "La Liga",
+   "apps": 47,
+   "goals": 51,
+   "lg_apps": 30,
+   "lg_goals": 31,
+   "co_apps": 11,
+   "co_goals": 17
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2014–15",
+   "division": "La Liga",
+   "apps": 54,
+   "goals": 61,
+   "lg_apps": 35,
+   "lg_goals": 48,
+   "co_apps": 12,
+   "co_goals": 10
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2015–16",
+   "division": "La Liga",
+   "apps": 48,
+   "goals": 51,
+   "lg_apps": 36,
+   "lg_goals": 35,
+   "co_apps": 12,
+   "co_goals": 16
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2016–17",
+   "division": "La Liga",
+   "apps": 46,
+   "goals": 42,
+   "lg_apps": 29,
+   "lg_goals": 25,
+   "co_apps": 13,
+   "co_goals": 12
+  },
+  {
+   "club": "Real Madrid",
+   "season": "2017–18",
+   "division": "La Liga",
+   "apps": 44,
+   "goals": 44,
+   "lg_apps": 27,
+   "lg_goals": 26,
+   "co_apps": 13,
+   "co_goals": 15
+  },
+  {
+   "club": "Real Madrid",
+   "season": "Total",
+   "division": "Total",
+   "apps": 438,
+   "goals": 450,
+   "lg_apps": 292,
+   "lg_goals": 311,
+   "co_apps": 101,
+   "co_goals": 105
+  },
+  {
+   "club": "Juventus",
+   "season": "2018–19",
+   "division": "Serie A",
+   "apps": 43,
+   "goals": 28,
+   "lg_apps": 31,
+   "lg_goals": 21,
+   "co_apps": 9,
+   "co_goals": 6
+  },
+  {
+   "club": "Juventus",
+   "season": "2019–20",
+   "division": "Serie A",
+   "apps": 46,
+   "goals": 37,
+   "lg_apps": 33,
+   "lg_goals": 31,
+   "co_apps": 8,
+   "co_goals": 4
+  },
+  {
+   "club": "Juventus",
+   "season": "2020–21",
+   "division": "Serie A",
+   "apps": 44,
+   "goals": 36,
+   "lg_apps": 33,
+   "lg_goals": 29,
+   "co_apps": 6,
+   "co_goals": 4
+  },
+  {
+   "club": "Juventus",
+   "season": "2021–22",
+   "division": "Serie A",
+   "apps": 1,
+   "goals": 0,
+   "lg_apps": 1,
+   "lg_goals": 0,
+   "co_apps": null,
+   "co_goals": null
+  },
+  {
+   "club": "Juventus",
+   "season": "Total",
+   "division": "Total",
+   "apps": 134,
+   "goals": 101,
+   "lg_apps": 98,
+   "lg_goals": 81,
+   "co_apps": 23,
+   "co_goals": 14
+  },
+  {
+   "club": "Manchester United",
+   "season": "2021–22",
+   "division": "Premier League",
+   "apps": 38,
+   "goals": 24,
+   "lg_apps": 30,
+   "lg_goals": 18,
+   "co_apps": 7,
+   "co_goals": 6
+  },
+  {
+   "club": "Manchester United",
+   "season": "2022–23",
+   "division": "Premier League",
+   "apps": 16,
+   "goals": 3,
+   "lg_apps": 10,
+   "lg_goals": 1,
+   "co_apps": 6,
+   "co_goals": 2
+  },
+  {
+   "club": "Manchester United",
+   "season": "Total",
+   "division": "Total",
+   "apps": 54,
+   "goals": 27,
+   "lg_apps": 40,
+   "lg_goals": 19,
+   "co_apps": 13,
+   "co_goals": 8
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "2022–23",
+   "division": "Saudi Pro League",
+   "apps": 19,
+   "goals": 14,
+   "lg_apps": 16,
+   "lg_goals": 14,
+   "co_apps": null,
+   "co_goals": null
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "2023–24",
+   "division": "Saudi Pro League",
+   "apps": 51,
+   "goals": 50,
+   "lg_apps": 31,
+   "lg_goals": 35,
+   "co_apps": 9,
+   "co_goals": 6
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "2024–25",
+   "division": "Saudi Pro League",
+   "apps": 41,
+   "goals": 35,
+   "lg_apps": 30,
+   "lg_goals": 25,
+   "co_apps": 8,
+   "co_goals": 8
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "2025–26",
+   "division": "Saudi Pro League",
+   "apps": 37,
+   "goals": 30,
+   "lg_apps": 30,
+   "lg_goals": 28,
+   "co_apps": 4,
+   "co_goals": 1
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "2026–27",
+   "division": "Saudi Pro League",
+   "apps": 14,
+   "goals": 11,
+   "lg_apps": 11,
+   "lg_goals": 8,
+   "co_apps": 3,
+   "co_goals": 2
+  },
+  {
+   "club": "Al-Nassr",
+   "season": "Total",
+   "division": "Total",
+   "apps": 162,
+   "goals": 140,
+   "lg_apps": 118,
+   "lg_goals": 110,
+   "co_apps": 24,
+   "co_goals": 17
+  },
+  {
+   "club": "Career total",
+   "season": "Career total",
+   "division": "Career total",
+   "apps": 1113,
+   "goals": 841,
+   "lg_apps": 771,
+   "lg_goals": 608,
+   "co_apps": 219,
+   "co_goals": 160
+  }
+ ],
+ "international": [
+  {
+   "team": "Portugal U15",
+   "year": "2001",
+   "apps": 9,
+   "goals": 7
+  },
+  {
+   "team": "Portugal U17",
+   "year": "2001",
+   "apps": 3,
+   "goals": 2
+  },
+  {
+   "team": "Portugal U17",
+   "year": "2002",
+   "apps": 4,
+   "goals": 3
+  },
+  {
+   "team": "Portugal U17",
+   "year": "Total",
+   "apps": 7,
+   "goals": 5
+  },
+  {
+   "team": "Portugal U20",
+   "year": "2003",
+   "apps": 5,
+   "goals": 1
+  },
+  {
+   "team": "Portugal U21",
+   "year": "2002",
+   "apps": 1,
+   "goals": 1
+  },
+  {
+   "team": "Portugal U21",
+   "year": "2003",
+   "apps": 9,
+   "goals": 2
+  },
+  {
+   "team": "Portugal U21",
+   "year": "Total",
+   "apps": 10,
+   "goals": 3
+  },
+  {
+   "team": "Portugal U23",
+   "year": "2004",
+   "apps": 3,
+   "goals": 2
+  },
+  {
+   "team": "Portugal",
+   "year": "2003",
+   "apps": 2,
+   "goals": 0
+  },
+  {
+   "team": "Portugal",
+   "year": "2004",
+   "apps": 16,
+   "goals": 7
+  },
+  {
+   "team": "Portugal",
+   "year": "2005",
+   "apps": 11,
+   "goals": 2
+  },
+  {
+   "team": "Portugal",
+   "year": "2006",
+   "apps": 14,
+   "goals": 6
+  },
+  {
+   "team": "Portugal",
+   "year": "2007",
+   "apps": 10,
+   "goals": 5
+  },
+  {
+   "team": "Portugal",
+   "year": "2008",
+   "apps": 8,
+   "goals": 1
+  },
+  {
+   "team": "Portugal",
+   "year": "2009",
+   "apps": 7,
+   "goals": 1
+  },
+  {
+   "team": "Portugal",
+   "year": "2010",
+   "apps": 11,
+   "goals": 3
+  },
+  {
+   "team": "Portugal",
+   "year": "2011",
+   "apps": 8,
+   "goals": 7
+  },
+  {
+   "team": "Portugal",
+   "year": "2012",
+   "apps": 13,
+   "goals": 5
+  },
+  {
+   "team": "Portugal",
+   "year": "2013",
+   "apps": 9,
+   "goals": 10
+  },
+  {
+   "team": "Portugal",
+   "year": "2014",
+   "apps": 9,
+   "goals": 5
+  },
+  {
+   "team": "Portugal",
+   "year": "2015",
+   "apps": 5,
+   "goals": 3
+  },
+  {
+   "team": "Portugal",
+   "year": "2016",
+   "apps": 13,
+   "goals": 13
+  },
+  {
+   "team": "Portugal",
+   "year": "2017",
+   "apps": 11,
+   "goals": 11
+  },
+  {
+   "team": "Portugal",
+   "year": "2018",
+   "apps": 7,
+   "goals": 6
+  },
+  {
+   "team": "Portugal",
+   "year": "2019",
+   "apps": 10,
+   "goals": 14
+  },
+  {
+   "team": "Portugal",
+   "year": "2020",
+   "apps": 6,
+   "goals": 3
+  },
+  {
+   "team": "Portugal",
+   "year": "2021",
+   "apps": 14,
+   "goals": 13
+  },
+  {
+   "team": "Portugal",
+   "year": "2022",
+   "apps": 12,
+   "goals": 3
+  },
+  {
+   "team": "Portugal",
+   "year": "2023",
+   "apps": 9,
+   "goals": 10
+  },
+  {
+   "team": "Portugal",
+   "year": "2024",
+   "apps": 12,
+   "goals": 7
+  },
+  {
+   "team": "Portugal",
+   "year": "2025",
+   "apps": 9,
+   "goals": 8
+  },
+  {
+   "team": "Portugal",
+   "year": "2026",
+   "apps": 8,
+   "goals": 3
+  },
+  {
+   "team": "Portugal",
+   "year": "Total",
+   "apps": 234,
+   "goals": 146
+  },
+  {
+   "team": "Career total",
+   "year": "Career total",
+   "apps": 268,
+   "goals": 164
+  }
+ ],
+ "club_total": {
+  "apps": 1113,
+  "goals": 841
+ },
+ "portugal_total": {
+  "apps": 234,
+  "goals": 146
+ },
+ "official_goals": 987,
+ "official_apps": 1347
+}

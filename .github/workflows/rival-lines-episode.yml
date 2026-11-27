@@ -1,0 +1,139 @@
+name: Rival Lines episode
+
+# A new workflow file cannot be dispatched from a feature branch, so a push to this branch that touches the Rival Lines
+# files runs it. Stills and the gate run on every push. The full video renders only when the head commit message
+# contains "[render]" (or on workflow_dispatch once this file is on the default branch).
+on:
+  push:
+    branches: [render/short-26-rewrite]
+    paths:
+      - '.github/workflows/rival-lines-episode.yml'
+      - 'channels/rival-lines/**'
+      - 'config/channels.json'
+  workflow_dispatch:
+    inputs:
+      render_video:
+        description: 'Also render the full video'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rival-lines-episode-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  EP: channels/rival-lines/episodes/ronaldo-1000
+  RL: channels/rival-lines
+
+jobs:
+  stills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: System dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+
+      - name: Build plan (cues must all resolve)
+        run: STRICT_CUES=1 node $RL/scripts/build-plan.mjs $EP
+
+      - name: Gate
+        run: node $RL/scripts/gate-episode.mjs $EP
+
+      - name: Install Remotion
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          npm install
+          npx remotion browser ensure
+
+      - name: Stills
+        working-directory: channels/rival-lines/render
+        run: MODE=stills node render.mjs ../episodes/ronaldo-1000
+
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-stills-${{ github.run_number }}
+          overwrite: true
+          path: |
+            ${{ env.EP }}/out/stills/**
+            ${{ env.EP }}/out/contact.png
+          if-no-files-found: warn
+          retention-days: 14
+
+  video:
+    needs: stills
+    if: ${{ contains(github.event.head_commit.message, '[render]') || inputs.render_video }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: System dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+
+      - name: Build plan
+        run: STRICT_CUES=1 node $RL/scripts/build-plan.mjs $EP
+
+      - name: Install Remotion
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          npm install
+          npx remotion browser ensure
+
+      - name: Render
+        working-directory: channels/rival-lines/render
+        run: MODE=full node render.mjs ../episodes/ronaldo-1000
+
+      - name: Loudness and verify
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          node finish.mjs ../episodes/ronaldo-1000 ronaldo-1000
+          ffmpeg -v error -i ../episodes/ronaldo-1000/out/ronaldo-1000.mp4 -f null -
+          rm -f ../episodes/ronaldo-1000/out/video-raw.mp4
+
+      - name: Frames from the final video
+        run: |
+          set -euo pipefail
+          mkdir -p $EP/out/final-frames
+          for t in 3 40 95 150 215 250 300 340 380 412; do
+            ffmpeg -hide_banner -loglevel error -y -ss $t -i $EP/out/ronaldo-1000.mp4 -frames:v 1 $EP/out/final-frames/t$t.png
+          done
+
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-video-${{ github.run_number }}
+          overwrite: true
+          path: |
+            ${{ env.EP }}/out/ronaldo-1000.mp4
+            ${{ env.EP }}/out/final-frames/**
+          if-no-files-found: warn
+          retention-days: 14
