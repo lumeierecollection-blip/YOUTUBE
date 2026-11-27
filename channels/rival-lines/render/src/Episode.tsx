@@ -106,7 +106,7 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
           })}
         </div>
       ) : null}
-      <div style={{ position: "absolute", left: 80, bottom: 26, right: 300, fontFamily: sans, fontWeight: 500, fontSize: 21, opacity: 0.6, zIndex: 2 }}>Photo: {im.credit}</div>
+      <div style={{ position: "absolute", ...(has && idx % 2 === 0 ? { right: 80, left: 700, textAlign: "right" as const } : { left: 80, right: 300 }), bottom: 26, fontFamily: sans, fontWeight: 500, fontSize: 21, opacity: 0.6, zIndex: 2 }}>Photo: {im.credit}</div>
     </Fill>
   );
 };
