@@ -97,8 +97,8 @@ const Dots2: React.FC<{ scene: any }> = ({ scene }) => {
   const v = scene.visual;
   const cg = v.cues?.[0] ?? 0.5;
   const cm = v.cues?.[1] ?? 1.5;
-  const size = 96;
-  const gap = 22;
+  const size = 70;
+  const gap = 14;
   const x0 = 110 + 330;
   return (
     <Fill>
@@ -110,7 +110,7 @@ const Dots2: React.FC<{ scene: any }> = ({ scene }) => {
       <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
         {Array.from({ length: v.goals }).map((_, i) => {
           const p = pg(t, cg + i * 0.1, 0.35);
-          return <circle key={i} cx={x0 + i * (size + gap) + size / 2} cy={500} r={(size / 2 - 6) * p} fill={theme.accent} stroke={theme.ink} strokeWidth={4} />;
+          return <circle key={i} cx={x0 + i * (size + gap) + size / 2} cy={500} r={(size / 2 - 4) * p} fill={theme.accent} stroke={theme.ink} strokeWidth={4} />;
         })}
         {Array.from({ length: v.matches }).map((_, i) => {
           const p = pg(t, cm + i * 0.07, 0.3);
@@ -182,7 +182,7 @@ const Ruler: React.FC<{ scene: any }> = ({ scene }) => {
           return (
             <g key={val}>
               <line x1={X(val)} x2={X(val)} y1={y - (val % 5 === 0 ? 22 : 12)} y2={y + (val % 5 === 0 ? 22 : 12)} stroke={theme.ink} strokeWidth={3} />
-              {val % 2 === 0 ? <text x={X(val)} y={y + 60} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={0.6}>{val === 1000 ? "1,000" : val}</text> : null}
+              {val % 2 === 0 && !v.markers.some((m: any) => m.v === val) ? <text x={X(val)} y={y + 60} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={0.6}>{val === 1000 ? "1,000" : val}</text> : null}
             </g>
           );
         })}
@@ -286,14 +286,14 @@ const SeasonBars: React.FC<{ scene: any }> = ({ scene }) => {
   const y0 = 880;
   const y1 = 260;
   const bw = (x1 - x0) / n;
-  const max = 70;
+  const max = 80;
   const hi = rows.findIndex((r: any) => r.season === v.highlight);
   const cue = v.cues?.[0] ?? 3;
   return (
     <Fill>
       <Head title="Goals for his clubs, season by season" sub="all official club competitions" top={130} />
       <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
-        {[0, 20, 40, 60].map((g) => {
+        {[0, 20, 40, 60, 80].map((g) => {
           const yy = y0 - (g / max) * (y0 - y1);
           return (
             <g key={g}>
@@ -315,12 +315,16 @@ const SeasonBars: React.FC<{ scene: any }> = ({ scene }) => {
             </g>
           );
         })}
-        {hi >= 0 ? (
-          <g opacity={pg(t, cue, 0.5)}>
-            <path d={`M ${x0 + hi * bw - 230} ${y1 + 8} Q ${x0 + hi * bw - 120} ${y1 + 8} ${x0 + hi * bw - 8} ${y1 + 60}`} fill="none" stroke={theme.accent} strokeWidth={5} />
-            <text x={x0 + hi * bw - 240} y={y1 - 6} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={64} fill={theme.accent}>{rows[hi].goals} goals in {rows[hi].apps} matches</text>
-          </g>
-        ) : null}
+        {hi >= 0 ? (() => {
+          const bx = x0 + hi * bw + bw / 2;
+          const top = y0 - (rows[hi].goals / max) * (y0 - y1);
+          return (
+            <g opacity={pg(t, cue, 0.5)}>
+              <path d={`M ${bx - 150} ${top - 20} Q ${bx - 40} ${top - 30} ${bx - 6} ${top - 10}`} fill="none" stroke={theme.accent} strokeWidth={5} />
+              <text x={bx - 160} y={top - 14} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={64} fill={theme.accent}>{rows[hi].goals} goals in {rows[hi].apps} matches</text>
+            </g>
+          );
+        })() : null}
       </svg>
       <Src text={SRC_WIKI + ". Clubs sharing a season are added together." } />
     </Fill>
@@ -538,13 +542,17 @@ const Curve: React.FC<{ scene: any }> = ({ scene }) => {
             <g key={i} opacity={a}>
               <line x1={X(mk.m)} x2={X(mk.m)} y1={Y(p)} y2={y0} stroke={colors[mk.scn]} strokeWidth={3} strokeDasharray="8 8" />
               <circle cx={X(mk.m)} cy={Y(p)} r={16} fill={colors[mk.scn]} stroke={theme.ink} strokeWidth={4} />
-              <text x={X(mk.m) + 26} y={Y(p) + 58} fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
+              {mk.m >= 11 ? (
+                <text x={X(mk.m) - 26} y={Y(p) + 70} textAnchor="end" fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
+              ) : (
+                <text x={X(mk.m) + 26} y={p < 0.2 ? Y(p) - 26 : Y(p) + 58} fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
+              )}
             </g>
           );
         })}
         <g>
           {v.show.map((k: string, i: number) => (
-            <g key={k} transform={`translate(1060 ${620 + i * 54})`}>
+            <g key={k} transform={`translate(1060 ${770 + i * 54})`}>
               <line x1={0} x2={70} y1={0} y2={0} stroke={colors[k]} strokeWidth={k === "decline" ? 6 : 9} strokeDasharray={k === "decline" ? "8 6" : undefined} />
               <text x={90} y={9} fontFamily={sans} fontWeight={500} fontSize={28} fill={theme.paper}>{res.scenarios[k].label}</text>
             </g>
@@ -586,28 +594,29 @@ const Dumbbell: React.FC<{ scene: any }> = ({ scene }) => {
         </g>
         {Array.from({ length: 9 }).map((_, m) => (
           <g key={m}>
-            <line x1={X(m)} x2={X(m)} y1={360} y2={860} stroke={theme.ink} strokeWidth={1.5} opacity={0.2} />
-            <text x={X(m)} y={900} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={26} fill={theme.ink} opacity={0.7}>27 {MONTHS[m]}</text>
+            <line x1={X(m)} x2={X(m)} y1={360} y2={890} stroke={theme.ink} strokeWidth={1.5} opacity={0.2} />
+            <text x={X(m)} y={925} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={26} fill={theme.ink} opacity={0.7}>27 {MONTHS[m]}</text>
           </g>
         ))}
         {rows.map((r, i) => {
-          const y = 460 + i * 190;
+          const y = 450 + i * 160;
           const a = data.results.wikipedia.scenarios[r.k];
           const b = data.results.tracker_low.scenarios[r.k];
           const pb = pg(t, k16(r.k, cue16, cueJune), 0.5);
+          const same = a.median_month === b.median_month;
           return (
             <g key={r.k}>
               <text x={110} y={y + 12} fontFamily={serif} fontWeight={600} fontSize={46} fill={theme.ink}>{r.label}</text>
               <line x1={X(a.median_month)} x2={X(a.median_month + (b.median_month - a.median_month) * pb)} y1={y} y2={y} stroke={theme.ink} strokeWidth={6} />
               <circle cx={X(a.median_month)} cy={y} r={20} fill={theme.accent2} stroke={theme.ink} strokeWidth={5} />
               <text x={X(a.median_month)} y={y - 34} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink}>27 {MONTHS[a.median_month]}</text>
-              <circle cx={X(b.median_month)} cy={y} r={20 * pb} fill={theme.accent} stroke={theme.ink} strokeWidth={5} />
-              <text x={X(b.median_month)} y={y + 62} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pb}>27 {MONTHS[b.median_month]}</text>
+              <circle cx={X(b.median_month)} cy={y} r={same ? 11 * pb : 20 * pb} fill={theme.accent} stroke={theme.ink} strokeWidth={5} />
+              {same ? <text x={X(a.median_month)} y={y + 62} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={pb * 0.75}>same with 16</text> : <text x={X(b.median_month)} y={y + 62} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pb}>27 {MONTHS[b.median_month]}</text>}
             </g>
           );
         })}
         <g opacity={pg(t, cuePct - 0.2, 0.5)}>
-          <text x={1760} y={1000} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={54} fill={theme.accent}>sharp drop, late May: {pct(data.results.wikipedia.scenarios.sharp.p6)} at 13 needed, {pct(data.results.tracker_low.scenarios.sharp.p6)} at 16</text>
+          <text x={1760} y={985} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={54} fill={theme.accent}>sharp drop, late May: {pct(data.results.wikipedia.scenarios.sharp.p6)} at 13 needed, {pct(data.results.tracker_low.scenarios.sharp.p6)} at 16</text>
         </g>
       </svg>
       <Src text="Source: scenario model, 40,000 simulations per case, fixed seed. Dates are 27th of the month, 27 Nov 2026 plus whole months." />
@@ -683,23 +692,23 @@ const RangeBar: React.FC<{ scene: any }> = ({ scene }) => {
         {Array.from({ length: 9 }).map((_, m) => (
           <g key={m}>
             <line x1={X(m)} x2={X(m)} y1={y - 14} y2={y + 14} stroke={theme.ink} strokeWidth={4} />
-            <text x={X(m)} y={y + 64} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={26} fill={theme.ink} opacity={0.7}>27 {MONTHS[m]}</text>
+            <text x={X(m)} y={y + 100} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={26} fill={theme.ink} opacity={0.7}>27 {MONTHS[m]}</text>
           </g>
         ))}
-        <rect x={X(3)} y={y - 70} width={(X(6) - X(3)) * pg(t, cLo, 0.9)} height={140} fill={theme.highlight} stroke={theme.ink} strokeWidth={5} opacity={0.9} />
+        <rect x={X(3)} y={y - 45} width={(X(6) - X(3)) * pg(t, cLo, 0.9)} height={90} fill={theme.highlight} stroke={theme.ink} strokeWidth={5} opacity={0.9} />
         <g opacity={pg(t, cLo, 0.4)}>
-          <text x={X(3)} y={y - 100} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={60} fill={theme.ink}>{pct(hold.p_by_month[3])}</text>
+          <text x={X(3)} y={y - 75} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={60} fill={theme.ink}>{pct(hold.p_by_month[3])}</text>
         </g>
         <g opacity={pg(t, cHi, 0.4)}>
-          <text x={X(6)} y={y - 100} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={60} fill={theme.ink}>{pct(hold.p_by_month[6])}</text>
+          <text x={X(6)} y={y - 75} textAnchor="middle" fontFamily={serif} fontWeight={700} fontSize={60} fill={theme.ink}>{pct(hold.p_by_month[6])}</text>
         </g>
         <g opacity={pg(t, cMid, 0.5)}>
-          <line x1={X(4)} x2={X(4)} y1={y - 90} y2={y + 90} stroke={theme.accent} strokeWidth={10} />
+          <line x1={X(4)} x2={X(4)} y1={y - 70} y2={y + 70} stroke={theme.accent} strokeWidth={10} />
           <circle cx={X(4)} cy={y} r={20} fill={theme.accent} stroke={theme.ink} strokeWidth={5} />
-          <text x={X(4)} y={y + 190} textAnchor="middle" fontFamily={hand} fontWeight={700} fontSize={72} fill={theme.accent}>middle: end of March 2027</text>
+          <text x={X(4)} y={y + 230} textAnchor="middle" fontFamily={hand} fontWeight={700} fontSize={72} fill={theme.accent}>middle: end of March 2027</text>
         </g>
-        <text x={X(3)} y={y + 130} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={pg(t, cLo, 0.4)}>by late Feb</text>
-        <text x={X(6)} y={y + 130} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={pg(t, cHi, 0.4)}>by late May</text>
+        <text x={X(3)} y={y + 160} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pg(t, cLo, 0.4)}>by late Feb</text>
+        <text x={X(6)} y={y + 160} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pg(t, cHi, 0.4)}>by late May</text>
       </svg>
       <Src text="Source: scenario model, Wikipedia baseline. A range from assumptions, not a prediction." />
     </Fill>
