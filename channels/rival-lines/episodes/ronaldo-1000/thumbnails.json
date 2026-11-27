@@ -8,8 +8,8 @@
       "focus": "50% 18%",
       "headline": [[{ "t": "the " }, { "t": "odds?", "b": true }]],
       "visual": "curve",
-      "arrow": { "left": 420, "top": 330 },
-      "note": { "left": 330, "top": 400, "text": "median: {median}" }
+      "arrow": { "left": 80, "top": 480, "flip": true },
+      "note": { "left": 330, "top": 590, "text": "median: {median}" }
     },
     {
       "id": "b",

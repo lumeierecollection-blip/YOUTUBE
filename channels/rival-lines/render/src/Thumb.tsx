@@ -39,7 +39,7 @@ export const Thumb: React.FC<any> = ({ theme, images, data, thumb }) => {
       <svg width={700} height={250} viewBox="0 0 700 250" style={{ position: "absolute", left: 40, top: 430 }}>
         {thumb.visual === "curve" ? (() => {
           const ps: number[] = res.scenarios.hold.p_by_month;
-          const x0 = 20, x1 = 680, y0 = 210, y1 = 20;
+          const x0 = 20, x1 = 680, y0 = 210, y1 = 44;
           const X = (m: number) => x0 + ((x1 - x0) * m) / (ps.length - 1), Y = (p: number) => y0 - (y0 - y1) * p;
           const med = res.scenarios.hold.median_month;
           return (
@@ -48,7 +48,7 @@ export const Thumb: React.FC<any> = ({ theme, images, data, thumb }) => {
               <line x1={x0} x2={x1} y1={Y(1)} y2={Y(1)} stroke={theme.accent} strokeWidth={3} strokeDasharray="10 8" />
               <path d={ps.map((p, m) => `${m ? "L" : "M"} ${X(m)} ${Y(p)}`).join(" ")} fill="none" stroke={theme.ink} strokeWidth={8} strokeLinejoin="round" />
               <circle cx={X(med)} cy={Y(ps[med] ?? 0.5)} r={13} fill={theme.accent} stroke={theme.ink} strokeWidth={4} />
-              <text x={x1} y={Y(1) - 8} textAnchor="end" fontFamily={sans} fontWeight={700} fontSize={22} fill={theme.accent}>1,000 reached</text>
+              <text x={x1} y={Y(1) - 20} textAnchor="end" fontFamily={sans} fontWeight={700} fontSize={22} fill={theme.accent}>1,000 reached</text>
             </g>
           );
         })() : (() => {
@@ -64,7 +64,7 @@ export const Thumb: React.FC<any> = ({ theme, images, data, thumb }) => {
         })()}
       </svg>
 
-      <svg width={260} height={150} viewBox="0 0 260 150" style={{ position: "absolute", left: thumb.arrow.left, top: thumb.arrow.top }}>
+      <svg width={260} height={150} viewBox="0 0 260 150" style={{ position: "absolute", left: thumb.arrow.left, top: thumb.arrow.top, transform: thumb.arrow.flip ? "scaleX(-1)" : undefined }}>
         <path d="M 10 130 Q 120 120 190 40" fill="none" stroke={theme.accent} strokeWidth={7} strokeLinecap="round" />
         <path d="M 190 40 L 168 52 M 190 40 L 192 66" fill="none" stroke={theme.accent} strokeWidth={7} strokeLinecap="round" />
       </svg>
