@@ -401,15 +401,15 @@
       "colors": {
         "primary": "#1F1D1A",
         "secondary": "#3A3631",
-        "accent": "#C8452D",
-        "bg": "#F4EFE4",
+        "accent": "#A3202D",
+        "bg": "#ECE7DB",
         "canvas_accent": "#2F6F8F",
-        "paper": "#F4EFE4",
+        "paper": "#ECE7DB",
         "ink": "#1F1D1A",
-        "accent2": "#2F6F8F",
-        "highlight": "#F1C84B",
+        "accent2": "#5E5A52",
+        "highlight": "#E6DCC4",
         "muted": "#8A8478",
-        "grid": "#DDD5C4"
+        "grid": "#D8D1C1"
       },
       "target_audience": "Sports fans 16-45",
       "tone": "energetic-analytical",

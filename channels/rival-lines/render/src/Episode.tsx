@@ -1,12 +1,12 @@
 import React, { createContext, useContext } from "react";
 import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { loadFont as loadSerif } from "@remotion/google-fonts/Newsreader";
+import { loadFont as loadSerif } from "@remotion/google-fonts/PlayfairDisplay";
 import { loadFont as loadSans } from "@remotion/google-fonts/InterTight";
-import { loadFont as loadHand } from "@remotion/google-fonts/Caveat";
+import { loadFont as loadHand } from "@remotion/google-fonts/PlayfairDisplay";
 
-const serif = loadSerif("normal", { weights: ["400", "600", "700"], subsets: ["latin"] }).fontFamily;
+const serif = loadSerif("normal", { weights: ["400", "600", "700", "900"], subsets: ["latin"] }).fontFamily;
 const sans = loadSans("normal", { weights: ["500", "700"], subsets: ["latin"] }).fontFamily;
-const hand = loadHand("normal", { weights: ["600", "700"], subsets: ["latin"] }).fontFamily;
+const hand = loadHand("italic", { weights: ["400", "500"], subsets: ["latin"] }).fontFamily;
 
 const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (x: number) => 1 - Math.pow(1 - clamp(x), 3);
@@ -28,12 +28,12 @@ const Fill: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
   <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080 }}>{children}</div>
 );
 
-const Head: React.FC<{ title: string; sub?: string; top?: number }> = ({ title, sub, top = 150 }) => {
+const Head: React.FC<{ title: string; sub?: string; top?: number }> = ({ title, sub, top = 100 }) => {
   const { dark } = useCtx();
   return (
     <div style={{ position: "absolute", left: 110, top, right: 110 }}>
-      <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 50, lineHeight: 1.1 }}>{title}</div>
-      {sub ? <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 26, marginTop: 10, opacity: dark ? 0.7 : 0.6 }}>{sub}</div> : null}
+      <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 64, lineHeight: 1.1, textTransform: "lowercase" }}>{title}</div>
+      {sub ? <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 24, marginTop: 8, opacity: dark ? 0.6 : 0.5 }}>{sub}</div> : null}
     </div>
   );
 };
@@ -60,16 +60,15 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   const h = Math.round(im.h * s);
   const left = has ? (idx % 2 === 0 ? 130 : 1920 - 130 - w) : Math.round((1920 - w) / 2);
   const top = Math.round((1080 - h) / 2) - 14;
-  const rot = idx % 2 === 0 ? -1.2 : 1.2;
   const dur = durationInFrames / fps;
   const panelLeft = idx % 2 === 0 ? left + w + 100 : 110;
   const panelW = has ? 1920 - w - 130 - 100 - 110 : 0;
   return (
     <Fill>
-      <div style={{ position: "absolute", left, top, width: w, height: h, transform: `rotate(${rot}deg)`, boxShadow: `20px 20px 0 ${theme.accent2}`, border: `4px solid ${theme.ink}`, overflow: "hidden", background: theme.ink }}>
+      <Img src={staticFile(im.file)} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, objectFit: "cover", filter: "blur(40px) brightness(0.32)", transform: "scale(1.15)" }} />
+      <div style={{ position: "absolute", left, top, width: w, height: h, boxShadow: "0 24px 70px rgba(0,0,0,.55)", overflow: "hidden", background: theme.ink }}>
         <Img src={staticFile(im.file)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1 + 0.06 * (t / dur)})` }} />
       </div>
-      <div style={{ position: "absolute", left: left + w / 2 - 80, top: top - 22, width: 160, height: 44, background: theme.highlight, opacity: 0.85, transform: `rotate(${-rot * 2 - 2}deg)` }} />
       {has ? (
         <div style={{ position: "absolute", left: panelLeft, top: 0, width: panelW, height: 1080, display: "flex", flexDirection: "column", justifyContent: "center", gap: 46 }}>
           {stats.map((st, i) => {
@@ -78,7 +77,7 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
             const size = len <= 4 ? 220 : len <= 8 ? 140 : 84;
             return (
               <div key={i} style={{ opacity: p, transform: `translateY(${(1 - p) * 26}px)` }}>
-                <div style={{ display: "inline-block", fontFamily: serif, fontWeight: 700, fontSize: size, lineHeight: 1.02, background: `linear-gradient(transparent 64%, ${theme.highlight} 64%, ${theme.highlight} 92%, transparent 92%)` }}>{st.value}</div>
+                <div style={{ display: "inline-block", fontFamily: serif, fontWeight: 900, fontSize: size, lineHeight: 1.02 }}>{st.value}</div>
                 <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 36, opacity: 0.78, marginTop: 6 }}>{st.label}</div>
               </div>
             );
@@ -222,11 +221,11 @@ const Cards3: React.FC<{ scene: any }> = ({ scene }) => {
         {v.cards.map((c: any, i: number) => {
           const p = pg(t, c.cue - 0.2, 0.5);
           return (
-            <div key={i} style={{ flex: 1, height: 560, border: `5px solid ${theme.ink}`, boxShadow: `14px 14px 0 ${i === 0 ? theme.accent2 : theme.muted}`, background: theme.paper, padding: 36, opacity: p, transform: `translateY(${(1 - p) * 40}px) rotate(${(i - 1) * 0.8}deg)` }}>
+            <div key={i} style={{ flex: 1, height: 560, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", background: theme.paper, padding: 36, opacity: p, transform: `translateY(${(1 - p) * 40}px) rotate(${(i - 1) * 0.8}deg)` }}>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 48 }}>{c.name}</div>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 170, lineHeight: 1.05, marginTop: 20 }}>{c.goals}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 30, opacity: 0.7 }}>official goals</div>
-              <div style={{ marginTop: 40, display: "inline-block", fontFamily: serif, fontWeight: 700, fontSize: 80, background: `linear-gradient(transparent 62%, ${theme.highlight} 62%, ${theme.highlight} 92%, transparent 92%)` }}>{fmt(c.matches)}</div>
+              <div style={{ marginTop: 40, display: "inline-block", fontFamily: serif, fontWeight: 700, fontSize: 80 }}>{fmt(c.matches)}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 30, opacity: 0.7 }}>official matches</div>
             </div>
           );
@@ -321,7 +320,7 @@ const SeasonBars: React.FC<{ scene: any }> = ({ scene }) => {
           return (
             <g opacity={pg(t, cue, 0.5)}>
               <path d={`M ${bx - 150} ${top - 20} Q ${bx - 40} ${top - 30} ${bx - 6} ${top - 10}`} fill="none" stroke={theme.accent} strokeWidth={5} />
-              <text x={bx - 160} y={top - 14} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={64} fill={theme.accent}>{rows[hi].goals} goals in {rows[hi].apps} matches</text>
+              <text x={bx - 160} y={top - 14} textAnchor="end" fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={64} fill={theme.accent}>{rows[hi].goals} goals in {rows[hi].apps} matches</text>
             </g>
           );
         })() : null}
@@ -363,7 +362,7 @@ const AgeCurve: React.FC<{ scene: any }> = ({ scene }) => {
         ))}
         <g opacity={pg(t, c33 - 0.3, 0.5)}>
           <line x1={X(33)} x2={X(33)} y1={y1 - 20} y2={y0} stroke={theme.accent2} strokeWidth={4} strokeDasharray="12 10" />
-          <text x={X(33) + 12} y={y1 + 10} fontFamily={hand} fontWeight={700} fontSize={50} fill={theme.accent2}>age 33</text>
+          <text x={X(33) + 12} y={y1 + 10} fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={50} fill={theme.accent2}>age 33</text>
         </g>
         <path d={d} fill="none" stroke={theme.ink} strokeWidth={7} strokeLinejoin="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - p} />
         {rows.map((r: any, i: number) => {
@@ -373,7 +372,7 @@ const AgeCurve: React.FC<{ scene: any }> = ({ scene }) => {
         {mk ? (
           <g opacity={pg(t, cLow - 0.2, 0.5)}>
             <circle cx={X(mk.age_aug)} cy={Y(mk.per_match)} r={18} fill={theme.accent} stroke={theme.ink} strokeWidth={4} />
-            <text x={X(mk.age_aug)} y={Y(mk.per_match) + 74} textAnchor="middle" fontFamily={hand} fontWeight={700} fontSize={64} fill={theme.accent}>{mk.per_match.toFixed(2)}</text>
+            <text x={X(mk.age_aug)} y={Y(mk.per_match) + 74} textAnchor="middle" fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={64} fill={theme.accent}>{mk.per_match.toFixed(2)}</text>
             <text x={X(mk.age_aug)} y={Y(mk.per_match) + 112} textAnchor="middle" fontFamily={sans} fontWeight={500} fontSize={24} fill={theme.ink} opacity={0.7}>{mk.season.replace("–", " to ")}</text>
           </g>
         ) : null}
@@ -398,7 +397,7 @@ const Recent4: React.FC<{ scene: any }> = ({ scene }) => {
           const p = pg(t, (v.cues?.[i] ?? i * 2) - 0.25, 0.5);
           const last = i === rows.length - 1;
           return (
-            <div key={r.season} style={{ flex: 1, height: 600, border: `5px solid ${theme.ink}`, boxShadow: `12px 12px 0 ${last ? theme.accent : theme.accent2}`, padding: 28, opacity: p, transform: `translateY(${(1 - p) * 40}px)` }}>
+            <div key={r.season} style={{ flex: 1, height: 600, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", padding: 28, opacity: p, transform: `translateY(${(1 - p) * 40}px)` }}>
               <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 44 }}>{r.season.replace("–", " to ")}{last ? " so far" : ""}</div>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 190, lineHeight: 1.05, marginTop: 12 }}>{r.goals}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 30, opacity: 0.7 }}>goals in {r.apps} matches</div>
@@ -449,7 +448,7 @@ const MatchTiles: React.FC<{ scene: any }> = ({ scene }) => {
       <div style={{ position: "absolute", left: 960, top: 330, width: 840 }}>
         <div style={{ opacity: pg(t, c0 - 0.2, 0.5), fontFamily: serif, fontWeight: 700, fontSize: 110, lineHeight: 1.05 }}>{rate}</div>
         <div style={{ opacity: pg(t, c0 - 0.2, 0.5), fontFamily: sans, fontWeight: 500, fontSize: 36, opacity: undefined, marginBottom: 60 }}>goals a match, 2024 to 25 and 2025 to 26</div>
-        <div style={{ opacity: pg(t, c1 - 0.2, 0.5), fontFamily: serif, fontWeight: 700, fontSize: 150, lineHeight: 1.05, background: `linear-gradient(transparent 64%, ${theme.highlight} 64%, ${theme.highlight} 92%, transparent 92%)`, display: "inline-block" }}>about {Math.round(data.matches_needed_at_club_rate)}</div>
+        <div style={{ opacity: pg(t, c1 - 0.2, 0.5), fontFamily: serif, fontWeight: 700, fontSize: 150, lineHeight: 1.05, display: "inline-block" }}>about {Math.round(data.matches_needed_at_club_rate)}</div>
         <div style={{ opacity: pg(t, c1 - 0.2, 0.5), fontFamily: sans, fontWeight: 500, fontSize: 36 }}>matches for 13 goals</div>
       </div>
       <Src text={SRC_WIKI + ". Each tile is one match; each ball is one goal at the average rate."} />
@@ -488,7 +487,7 @@ const RequiredBars: React.FC<{ scene: any }> = ({ scene }) => {
           );
         })}
         <line x1={x0 + (ref / max) * W} x2={x0 + (ref / max) * W} y1={300} y2={940} stroke={theme.ink} strokeWidth={5} strokeDasharray="14 10" />
-        <text x={x0 + (ref / max) * W + 16} y={940} fontFamily={hand} fontWeight={700} fontSize={50} fill={theme.ink}>last two seasons: {ref.toFixed(2)}</text>
+        <text x={x0 + (ref / max) * W + 16} y={940} fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={50} fill={theme.ink}>last two seasons: {ref.toFixed(2)}</text>
         <line x1={x0} x2={x0} y1={300} y2={940} stroke={theme.ink} strokeWidth={4} />
       </svg>
       <Src text="Model assumption: about 4.7 matches a month (club and Portugal). Source of rates: Wikipedia career statistics, revision of 24 Nov 2026." />
@@ -616,7 +615,7 @@ const Dumbbell: React.FC<{ scene: any }> = ({ scene }) => {
           );
         })}
         <g opacity={pg(t, cuePct - 0.2, 0.5)}>
-          <text x={1760} y={985} textAnchor="end" fontFamily={hand} fontWeight={700} fontSize={54} fill={theme.accent}>sharp drop, late May: {pct(data.results.wikipedia.scenarios.sharp.p6)} at 13 needed, {pct(data.results.tracker_low.scenarios.sharp.p6)} at 16</text>
+          <text x={1760} y={985} textAnchor="end" fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={54} fill={theme.accent}>sharp drop, late May: {pct(data.results.wikipedia.scenarios.sharp.p6)} at 13 needed, {pct(data.results.tracker_low.scenarios.sharp.p6)} at 16</text>
         </g>
       </svg>
       <Src text="Source: scenario model, 40,000 simulations per case, fixed seed. Dates are 27th of the month, 27 Nov 2026 plus whole months." />
@@ -634,7 +633,7 @@ const Icon: React.FC<{ scene: any }> = ({ scene }) => {
   const sw = 8;
   return (
     <Fill>
-      <div style={{ position: "absolute", left: 160, top: 230, width: 620, height: 620, background: theme.grid, border: `5px solid ${theme.ink}`, boxShadow: `18px 18px 0 ${theme.accent2}`, transform: `rotate(-1.5deg) scale(${0.9 + 0.1 * p})`, opacity: p }}>
+      <div style={{ position: "absolute", left: 160, top: 230, width: 620, height: 620, background: theme.grid, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", transform: `rotate(-1.5deg) scale(${0.9 + 0.1 * p})`, opacity: p }}>
         <svg viewBox="0 0 400 400" width={620} height={620}>
           {v.kind === "injury" ? (
             <g transform="rotate(-35 200 200)">
@@ -665,7 +664,7 @@ const Icon: React.FC<{ scene: any }> = ({ scene }) => {
       </div>
       <div style={{ position: "absolute", left: 900, top: 330, width: 900, opacity: pg(t, 0.5, 0.6), transform: `translateX(${(1 - pg(t, 0.5, 0.6)) * 40}px)` }}>
         <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 112, lineHeight: 1.05 }}>{v.label}</div>
-        <div style={{ fontFamily: hand, fontWeight: 700, fontSize: 76, color: theme.accent, transform: "rotate(-3deg)", marginTop: 26 }}>not in the model</div>
+        <div style={{ fontFamily: hand, fontStyle: "italic", fontWeight: 500, fontSize: 64, color: theme.accent, marginTop: 26 }}>not in the model</div>
       </div>
     </Fill>
   );
@@ -705,7 +704,7 @@ const RangeBar: React.FC<{ scene: any }> = ({ scene }) => {
         <g opacity={pg(t, cMid, 0.5)}>
           <line x1={X(4)} x2={X(4)} y1={y - 70} y2={y + 70} stroke={theme.accent} strokeWidth={10} />
           <circle cx={X(4)} cy={y} r={20} fill={theme.accent} stroke={theme.ink} strokeWidth={5} />
-          <text x={X(4)} y={y + 230} textAnchor="middle" fontFamily={hand} fontWeight={700} fontSize={72} fill={theme.accent}>middle: end of March 2027</text>
+          <text x={X(4)} y={y + 230} textAnchor="middle" fontFamily={hand} fontStyle="italic" fontWeight={500} fontSize={72} fill={theme.accent}>middle: end of March 2027</text>
         </g>
         <text x={X(3)} y={y + 160} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pg(t, cLo, 0.4)}>by late Feb</text>
         <text x={X(6)} y={y + 160} textAnchor="middle" fontFamily={sans} fontWeight={700} fontSize={28} fill={theme.ink} opacity={pg(t, cHi, 0.4)}>by late May</text>
@@ -737,7 +736,7 @@ const Collage: React.FC<{ scene: any }> = ({ scene }) => {
           const col = i % 3;
           const row = Math.floor(i / 3);
           return (
-            <div key={id} style={{ position: "absolute", left: col * 330, top: row * 420 + 20, width: 300, height: 380, background: theme.paper, border: `3px solid ${theme.ink}`, boxShadow: `8px 8px 0 ${theme.accent2}`, padding: 12, transform: `rotate(${rot[i]}deg) scale(${0.85 + 0.15 * p})`, opacity: p }}>
+            <div key={id} style={{ position: "absolute", left: col * 330, top: row * 420 + 20, width: 300, height: 380, background: theme.paper, border: `1px solid ${theme.grid}`, boxShadow: "0 8px 22px rgba(31,29,26,.2)", padding: 12, transform: `rotate(${rot[i]}deg) scale(${0.85 + 0.15 * p})`, opacity: p }}>
               <Img src={staticFile(im.file)} style={{ width: 274, height: 300, objectFit: "cover" }} />
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 16, marginTop: 8, opacity: 0.7 }}>{im.author.slice(0, 34)}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 16, opacity: 0.7 }}>{im.license}</div>
@@ -778,16 +777,18 @@ const Visual: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   }
 };
 
-const GridBg: React.FC = () => {
+const PaperBg: React.FC = () => {
   const { theme, dark } = useCtx();
   return (
     <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
       <defs>
-        <pattern id="g" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke={dark ? theme.paper : theme.grid} strokeWidth={dark ? 1 : 1.5} opacity={dark ? 0.07 : 0.6} />
-        </pattern>
+        <radialGradient id="v" cx="50%" cy="46%" r="75%">
+          {dark ? (<><stop offset="0%" stopColor="#2B2826" /><stop offset="100%" stopColor="#0E0D0C" /></>) : (<><stop offset="55%" stopColor={theme.paper} stopOpacity="0" /><stop offset="100%" stopColor="#B9B0A0" stopOpacity="0.45" /></>)}
+        </radialGradient>
+        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" /><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.55 0" /></filter>
       </defs>
-      <rect width={1920} height={1080} fill="url(#g)" />
+      <rect width={1920} height={1080} fill="url(#v)" />
+      {dark ? null : <rect width={1920} height={1080} filter="url(#n)" opacity={0.28} />}
     </svg>
   );
 };
@@ -798,8 +799,8 @@ const ChapterTitle: React.FC<{ ch: any }> = ({ ch }) => {
   const a = pg(t, 0.1, 0.5) * (1 - pg(t, 4.4, 0.6));
   if (a <= 0) return null;
   return (
-    <div style={{ position: "absolute", left: 80, top: 44, opacity: a, transform: `translateY(${(1 - a) * -12}px)`, fontFamily: serif, fontWeight: 600, fontSize: 56, background: theme.paper, padding: "4px 22px 8px 18px", border: `4px solid ${theme.ink}`, boxShadow: `8px 8px 0 ${theme.accent}` }}>
-      <span style={{ color: theme.accent, marginRight: 18 }}>{ch.n}</span>{ch.title}
+    <div style={{ position: "absolute", left: 110, top: 30, opacity: a * 0.7, fontFamily: serif, fontStyle: "italic", fontWeight: 400, fontSize: 38, textTransform: "lowercase" }}>
+      {ch.title}.
     </div>
   );
 };
@@ -807,17 +808,16 @@ const ChapterTitle: React.FC<{ ch: any }> = ({ ch }) => {
 const SceneShell: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   const { theme, data, images } = useCtx();
   const t = useT();
-  const dark = !!scene.visual.dark;
+  const dark = !!scene.visual.dark || scene.visual.type === "photo";
   const fade = pg(t, 0, 0.3);
   return (
     <C.Provider value={{ theme, data, images, dark }}>
-      <AbsoluteFill style={{ background: dark ? theme.ink : theme.paper, color: dark ? theme.paper : theme.ink }}>
-        <GridBg />
+      <AbsoluteFill style={{ background: dark ? "#0E0D0C" : theme.paper, color: dark ? theme.paper : theme.ink }}>
+        <PaperBg />
         <div style={{ opacity: fade }}>
           <Visual scene={scene} idx={idx} />
         </div>
         {scene.chapter ? <ChapterTitle ch={scene.chapter} /> : null}
-        <div style={{ position: "absolute", right: 60, bottom: 30, fontFamily: serif, fontWeight: 600, fontSize: 30, opacity: 0.75 }}>rival lines</div>
       </AbsoluteFill>
     </C.Provider>
   );
