@@ -1,0 +1,60 @@
+{
+  "channel_id": "7",
+  "topic_slug": "sherlock-holmes-vs-arsene-lupin-canon-feats-2026",
+  "format": "shorts",
+  "hook": "A gentleman burglar once stole a watch from Sherlock Holmes at the Château of Thibermesnil.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A gentleman burglar once stole a watch from Sherlock Holmes at the Château of Thibermesnil.",
+      "visual_cue": "Close-up of a Victorian-era pocket watch being lifted by gloved hands.",
+      "b_roll": [
+        "Historical illustration of a 19th-century pocket watch"
+      ]
+    },
+    {
+      "id": "setup",
+      "voiceover": "Arthur Conan Doyle introduced his famous London detective to the world in 1887. Does the London detective or the Paris gentleman burglar, Arsène Lupin, hold the superior edge?",
+      "visual_cue": "Split-screen showing London skyline on the left and Paris skyline on the right.",
+      "b_roll": [
+        "Public domain map of 1887 London",
+        "Public domain drawing of 19th-century Paris"
+      ],
+      "text_overlay": {
+        "text": "London vs. Paris"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Brian Clark presented a 2024 comparative analysis to the John Openshaw Society in Houston, Texas.",
+      "visual_cue": "Document cover showing the John Openshaw Society logo.",
+      "b_roll": [
+        "Historical academic paper document"
+      ]
+    },
+    {
+      "id": "payoff",
+      "voiceover": "David Drake from Université Paris VIII confirms Lupin solved the Château of Thibermesnil mystery. Lupin steals the watch while solving the mystery of the Château of Thibermesnil from Holmes.",
+      "visual_cue": "Diagram showing the Château of Thibermesnil location and a watch icon.",
+      "b_roll": [
+        "Architectural sketch of a French chateau"
+      ],
+      "text_overlay": {
+        "text": "Lupin's 1 Success"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Doyle published A Study in Scarlet in 1887, but Lupin ultimately secured the watch victory.",
+      "visual_cue": "Text overlay of the year 1887 fading into the name Arsène Lupin.",
+      "b_roll": [
+        "Vintage calligraphy of the year 1887"
+      ]
+    }
+  ],
+  "sources_used": [
+    "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html",
+    "https://johnopenshaw.org/wp-content/uploads/2024/04/20240421-Holmes-v.-Lupin.pdf",
+    "https://bond-lab.github.io/Detecting-Meaning/pdf/drake.pdf"
+  ]
+}

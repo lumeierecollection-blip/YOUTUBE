@@ -1,0 +1,98 @@
+{
+  "topic_slug": "sherlock-holmes-vs-arsene-lupin-canon-feats-2026",
+  "strongest_angle": "A canonical and literary comparison of Arthur Conan Doyle's Sherlock Holmes and Maurice Leblanc's Arsène Lupin, examining their contrasting methods, residences, and iconic fictional encounters.",
+  "key_facts": [
+    {
+      "fact": "Arthur Conan Doyle first introduced Sherlock Holmes in his 1887 novel A Study in Scarlet, establishing his residence in London.",
+      "source_url": "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html",
+      "source_name": "Slate",
+      "confidence": "high"
+    },
+    {
+      "fact": "Brian Clark presented a comparative analysis of Sherlock Holmes and Arsène Lupin to the John Openshaw Society in Houston, Texas, USA on 21st April 2024.",
+      "source_url": "https://johnopenshaw.org/wp-content/uploads/2024/04/20240421-Holmes-v.-Lupin.pdf",
+      "source_name": "John Openshaw Society",
+      "confidence": "high"
+    },
+    {
+      "fact": "Maurice Leblanc's character Arsène Lupin is characterized as a gentleman burglar residing in Paris, contrasting with Holmes's base in London.",
+      "source_url": "https://johnopenshaw.org/wp-content/uploads/2024/04/20240421-Holmes-v.-Lupin.pdf",
+      "source_name": "John Openshaw Society",
+      "confidence": "high"
+    },
+    {
+      "fact": "David Drake from Université Paris VIII documented that Arsène Lupin triumphs by solving the mystery of the Château of Thibermesnil while relieving Holmes of his watch.",
+      "source_url": "https://bond-lab.github.io/Detecting-Meaning/pdf/drake.pdf",
+      "source_name": "Detecting-Meaning GitHub",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Publication Year of A Study in Scarlet",
+      "value": 1887,
+      "unit": "year",
+      "source_url": "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html"
+    },
+    {
+      "label": "Presentation Year at John Openshaw Society",
+      "value": 2024,
+      "unit": "year",
+      "source_url": "https://johnopenshaw.org/wp-content/uploads/2024/04/20240421-Holmes-v.-Lupin.pdf"
+    }
+  ],
+  "quotes": [
+    {
+      "text": "when I encounter an adversary like Arsène Lupin, I do not take advantage of chance opportunities, I create them.",
+      "speaker": "Sherlock Holmes",
+      "source_name": "Slate",
+      "source_url": "https://slate.com/culture/2021/06/lupin-part-2-netflix-herlock-sholmes-not-sherlock.html"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Sherlock Holmes",
+      "kind": "person"
+    },
+    {
+      "name": "Arsène Lupin",
+      "kind": "person"
+    },
+    {
+      "name": "Arthur Conan Doyle",
+      "kind": "person"
+    },
+    {
+      "name": "Maurice Leblanc",
+      "kind": "person"
+    },
+    {
+      "name": "Brian Clark",
+      "kind": "person"
+    },
+    {
+      "name": "John Openshaw Society",
+      "kind": "organization"
+    },
+    {
+      "name": "Houston",
+      "kind": "place"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "Paris",
+      "kind": "place"
+    },
+    {
+      "name": "Château of Thibermesnil",
+      "kind": "place"
+    },
+    {
+      "name": "Université Paris VIII",
+      "kind": "organization"
+    }
+  ]
+}
