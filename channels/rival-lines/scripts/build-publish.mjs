@@ -26,23 +26,24 @@ for (let i = 1; i < chapters.length; i++) if (chapters[i].t - chapters[i - 1].t 
 
 const last = script.beats[script.beats.length - 1];
 const closing = sentences(last.text).find((s) => s.includes("?")) || sentences(last.text)[0];
-const hook = [...sentences(beat("b01").text), ...sentences(beat("b02").text).slice(0, 2)].join(" ");
+const b03 = sentences(beat("b03").text);
+const hook = [...sentences(beat("b01").text), ...sentences(beat("b02").text).slice(0, 2), b03[b03.length - 1]].join(" ");
 
 const usedKeys = new Set(JSON.stringify(props.scenes).match(/"img":"(c\d+)"/g)?.map((m) => m.slice(7, -1)) || []);
 const usedImages = Object.entries(props.images).filter(([k]) => usedKeys.has(k)).map(([, im]) => im);
 const credits = [...new Set(usedImages.map((im) => im.credit))];
 
-const title = script.title_working;
+const pkg = readJson(path.join(ep, "packaging.json"));
+const titles = pkg.titles;
+const tags = pkg.tags;
 const channelTag = "Rival Lines";
-const tags = [
-  "Cristiano Ronaldo", "Ronaldo 1000 goals", "Ronaldo goals record", "Al-Nassr", "Portugal national team", "most goals in football history",
-  "can Ronaldo reach 1000 goals", "Ronaldo goal tracker", "football probability model", "football statistics",
-  "football analysis", "football data", "football explained", channelTag,
-];
+if (tags.length < 17 || tags.length > 21) throw new Error("study section 7: 17 to 21 tags");
+if (tags.join(",").length > 480) throw new Error("YouTube tag field limit is 500 characters");
+for (const [k, t] of Object.entries(titles)) { const n = t.split(/\s+/).length; if (!t.endsWith("?") || n < 6 || n > 9) throw new Error(`title ${k}: needs a question of 6 to 9 words`); }
 
 const L = [];
 L.push(`# Packaging draft: ${path.basename(ep)}`, "", "Draft for a person to read. Nothing here has been uploaded. Upload as private first (CLAUDE.md hard rule), then auto-public after the channel's delay.", "");
-L.push("## Title", "", title, "", `${title.split(/\s+/).length} words, a question in Title Case: the Paper Pitch shape.`, "");
+L.push("## Titles (A/B)", "", ...Object.entries(titles).map(([k, t]) => `${k.toUpperCase()}: ${t} (${t.split(/\s+/).length} words)`), "", "Both are questions in Title Case, the Paper Pitch shape. Thumbnail a goes with title a, thumbnail b with title b.", "");
 L.push("## Description", "");
 L.push(hook, "");
 L.push(closing, "");
@@ -55,4 +56,7 @@ if (st) L.push("Music", ...st.credits.map((c) => `- ${c}`), "");
 L.push("## Tags", "", tags.join(", "), "", `${tags.length} tags, entities first, the four fixed tags last (football analysis, football data, football explained, ${channelTag}). Hashtags: none, as in the reference.`, "");
 L.push("## Not drafted here", "", "- The thumbnail, the avatar and the banner (formulas are in the study, sections 6 and 8; they need artwork, not text).", "- Any claim about views or growth.", "- Match footage: this episode uses none, so no footage line is written.", "");
 fs.writeFileSync(path.join(ep, "out", "publish.md"), L.join("\n"));
+const descStart = L.indexOf("## Description") + 2;
+const description = L.slice(descStart, L.indexOf("## Tags") - 1).join("\n").trim();
+fs.writeFileSync(path.join(ep, "out", "publish.json"), JSON.stringify({ titles, description, tags, chapters: chapters.map((c) => ({ t: c.t, title: c.title })) }, null, 1));
 console.log(`publish draft: ${chapters.length} chapters, ${credits.length} image credits, ${tags.length} tags`);

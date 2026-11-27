@@ -1,0 +1,14 @@
+{
+  "note": "Two titles for the A/B test, both questions in the Paper Pitch shape (study section 5: How/Could/Is, Title Case, 6 to 9 words, 'Actually' as the one intensifier). Tags follow study section 7: entities first, topic phrases, then the four fixed tags last.",
+  "titles": {
+    "a": "Could Ronaldo Actually Reach 1,000 Goals?",
+    "b": "How Likely Is Ronaldo To Reach 1,000 Goals?"
+  },
+  "tags": [
+    "Cristiano Ronaldo", "Ronaldo 1000 goals", "Ronaldo 987 goals", "Ronaldo goals record", "Ronaldo 1000 goals date",
+    "how many goals does Ronaldo have", "can Ronaldo reach 1000 goals", "Al-Nassr", "Portugal national team",
+    "most goals in football history", "Ronaldo goal tracker", "Ronaldo goals model", "football probability model",
+    "football statistics", "football records", "goals per match",
+    "football analysis", "football data", "football explained", "Rival Lines"
+  ]
+}

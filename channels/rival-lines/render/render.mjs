@@ -1,6 +1,7 @@
 // Renders a Rival Lines episode. usage: node render.mjs <episode_dir>
 // MODE=stills  one PNG per scene (late in the scene, when everything has appeared) plus a contact sheet
 // MODE=full    the whole video with the narration, to out/video-raw.mp4
+// MODE=thumbs one 1280x720 PNG per variant in <episode>/thumbnails.json, to out/thumbs/
 // MODE=chunk   CHUNK=i CHUNKS=n, silent frame range i of n, to out/chunks/chunk-i.mp4
 import path from "node:path";
 import fs from "node:fs";
@@ -31,6 +32,20 @@ if (mode === "stills") {
   console.log(`stills: ${props.scenes.length}`);
 } else if (mode === "full") {
   await renderMedia({ composition: comp, serveUrl, codec: "h264", crf: 18, pixelFormat: "yuv420p", audioBitrate: "192k", outputLocation: path.join(out, "video-raw.mp4"), inputProps: props, onProgress: (p) => { if (p.renderedFrames % 600 === 0) console.log(`frame ${p.renderedFrames}/${comp.durationInFrames}`); } });
+} else if (mode === "thumbs") {
+  const specs = JSON.parse(fs.readFileSync(path.join(ep, "thumbnails.json"), "utf8")).variants;
+  const dir = path.join(out, "thumbs");
+  fs.mkdirSync(dir, { recursive: true });
+  const w = props.data.results.wikipedia;
+  const dateText = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+  const fill = (t) => t.replace("{median}", dateText(w.scenarios.hold.median_date)).replace("{needed}", String(w.needed)).replace("{official}", String(props.data.totals.official_goals));
+  for (const v of specs) {
+    const thumb = { ...v, note: { ...v.note, text: fill(v.note.text) } };
+    const tprops = { ...props, thumb };
+    const tc = await selectComposition({ serveUrl, id: "Thumb", inputProps: tprops });
+    await renderStill({ composition: tc, serveUrl, output: path.join(dir, `thumb-${v.id}.png`), inputProps: tprops, frame: 0, imageFormat: "png" });
+    console.log(`thumb ${v.id}: ${thumb.note.text}`);
+  }
 } else if (mode === "chunk") {
   const n = Number(process.env.CHUNKS), i = Number(process.env.CHUNK);
   const per = Math.ceil(comp.durationInFrames / n);

@@ -57,7 +57,8 @@ jobs:
         run: |
           set -euo pipefail
           node $RL/scripts/pick-audio.mjs $EP
-          node $RL/scripts/gate-soundtrack.mjs $EP
+          STRICT_LICENCE=1 node $RL/scripts/gate-soundtrack.mjs $EP
+          node $RL/scripts/build-publish.mjs $EP
 
       - name: Install Remotion
         working-directory: channels/rival-lines/render
@@ -70,6 +71,10 @@ jobs:
         working-directory: channels/rival-lines/render
         run: MODE=stills node render.mjs ../episodes/ronaldo-1000
 
+      - name: Thumbnails
+        working-directory: channels/rival-lines/render
+        run: MODE=thumbs node render.mjs ../episodes/ronaldo-1000
+
       - name: Upload
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -78,6 +83,8 @@ jobs:
           overwrite: true
           path: |
             ${{ env.EP }}/out/stills/**
+            ${{ env.EP }}/out/thumbs/**
+            ${{ env.EP }}/out/publish.md
             ${{ env.EP }}/out/contact.png
           if-no-files-found: warn
           retention-days: 14
@@ -110,8 +117,9 @@ jobs:
           set -euo pipefail
           node $RL/scripts/pick-audio.mjs $EP
           node $RL/scripts/mix-audio.mjs $EP
-          node $RL/scripts/gate-soundtrack.mjs $EP
+          STRICT_LICENCE=1 node $RL/scripts/gate-soundtrack.mjs $EP
           STRICT_CUES=1 node $RL/scripts/build-plan.mjs $EP
+          node $RL/scripts/build-publish.mjs $EP
 
       - name: Install Remotion
         working-directory: channels/rival-lines/render
@@ -132,6 +140,18 @@ jobs:
           ffmpeg -v error -i ../episodes/ronaldo-1000/out/ronaldo-1000.mp4 -f null -
           rm -f ../episodes/ronaldo-1000/out/video-raw.mp4
 
+      - name: Thumbnails
+        working-directory: channels/rival-lines/render
+        run: MODE=thumbs node render.mjs ../episodes/ronaldo-1000
+
+      - name: Upload to YouTube as private (only when the commit message contains [upload])
+        if: ${{ contains(github.event.head_commit.message, '[upload]') }}
+        env:
+          YT_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: node $RL/scripts/upload-private.mjs $EP ronaldo-1000
+
       - name: Frames from the final video
         run: |
           set -euo pipefail
@@ -149,6 +169,10 @@ jobs:
           path: |
             ${{ env.EP }}/out/ronaldo-1000.mp4
             ${{ env.EP }}/out/final-frames/**
+            ${{ env.EP }}/out/thumbs/**
+            ${{ env.EP }}/out/publish.md
+            ${{ env.EP }}/out/publish.json
+            ${{ env.EP }}/out/upload-result.json
             ${{ env.EP }}/out/soundtrack.json
             ${{ env.EP }}/out/mix-report.json
           if-no-files-found: warn

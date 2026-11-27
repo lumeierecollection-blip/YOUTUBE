@@ -1,6 +1,7 @@
 import React from "react";
 import { Composition, CalculateMetadataFunction } from "remotion";
 import { Episode } from "./Episode";
+import { Thumb } from "./Thumb";
 
 const calc: CalculateMetadataFunction<any> = async ({ props }) => ({
   durationInFrames: Math.max(30, Math.ceil((props.durationSec || 10) * (props.fps || 30))),
@@ -9,6 +10,16 @@ const calc: CalculateMetadataFunction<any> = async ({ props }) => ({
 });
 
 export const RemotionRoot: React.FC = () => (
+  <>
+  <Composition
+    id="Thumb"
+    component={Thumb as any}
+    durationInFrames={1}
+    fps={30}
+    width={1280}
+    height={720}
+    defaultProps={{} as any}
+  />
   <Composition
     id="Episode"
     component={Episode as any}
@@ -19,4 +30,5 @@ export const RemotionRoot: React.FC = () => (
     defaultProps={{ theme: { paper: "#fff", ink: "#000", accent: "#c00", accent2: "#06c", highlight: "#fc0", muted: "#888", grid: "#ddd" }, durationSec: 10, fps: 30, audioSrc: "", scenes: [], images: {}, data: {} } as any}
     calculateMetadata={calc}
   />
+  </>
 );

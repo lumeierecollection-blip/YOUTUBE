@@ -8,6 +8,7 @@
     "tp": -1.5,
     "lra": 9
   },
+  "require_verified_licence": true,
   "allowed_licences": [
     "cc0",
     "pdm",

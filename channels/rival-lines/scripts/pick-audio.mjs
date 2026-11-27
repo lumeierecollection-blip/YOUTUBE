@@ -35,6 +35,7 @@ function profile(c, m) {
 const candidates = lib.licensed_candidates
   .filter((c) => rules.allowed_licences.includes(lic(c)))
   .filter((c) => meas[c.id] && c.download_url)
+  .filter((c) => !rules.require_verified_licence || c.licence_verified_at_source)
   .filter((c) => !(c.tags || []).some((t) => /^(vocal|vocals|lyrics|singing|male|female|voice)$/i.test(t)))
   .map((c) => ({ c, m: meas[c.id], p: profile(c, meas[c.id]) }));
 

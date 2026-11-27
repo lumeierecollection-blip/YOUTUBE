@@ -360,8 +360,10 @@
     "synthesizer"
    ],
    "attribution": "\"Dramatic Ending\" by Soft and Furious is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
-   "licence_verified_at_source": false,
-   "download_url": "https://prod-1.storage.jamendo.com/?trackid=1535216&format=mp32"
+   "licence_verified_at_source": true,
+   "download_url": "https://prod-1.storage.jamendo.com/?trackid=1535216&format=mp32",
+   "licence_verified_on": "2026-11-27",
+   "licence_verified_note": "Jamendo track page shows the cc-by icon (Attribution only: no NC, ND or SA). The page does not state the version; 3.0 comes from the Openverse index."
   },
   {
    "id": "13db2999-f1e8-440f-a188-f39fa01ca952",
@@ -386,8 +388,10 @@
     "speed_medium"
    ],
    "attribution": "\"Lux aeterna\" by zero-project is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
-   "licence_verified_at_source": false,
-   "download_url": "https://prod-1.storage.jamendo.com/?trackid=703935&format=mp32"
+   "licence_verified_at_source": true,
+   "download_url": "https://prod-1.storage.jamendo.com/?trackid=703935&format=mp32",
+   "licence_verified_on": "2026-11-27",
+   "licence_verified_note": "Jamendo track page shows the cc-by icon (Attribution only: no NC, ND or SA). The page does not state the version; 3.0 comes from the Openverse index."
   },
   {
    "id": "44a8e591-4815-46dc-8cfa-216ccbace0a5",
@@ -769,8 +773,10 @@
     "strings"
    ],
    "attribution": "\"A Good Dream\" by Jesse Keller is licensed under CC BY 3.0. To view a copy of this license, visit https://creativecommons.org/licenses/by/3.0/.",
-   "licence_verified_at_source": false,
-   "download_url": "https://prod-1.storage.jamendo.com/?trackid=1540856&format=mp32"
+   "licence_verified_at_source": true,
+   "download_url": "https://prod-1.storage.jamendo.com/?trackid=1540856&format=mp32",
+   "licence_verified_on": "2026-11-27",
+   "licence_verified_note": "Jamendo track page shows the cc-by icon (Attribution only: no NC, ND or SA). The page does not state the version; 3.0 comes from the Openverse index."
   },
   {
    "id": "8742bb03-d57e-4ebc-801f-bc8efa545c5f",
@@ -827,7 +833,7 @@
    "id": "15c8f8bf-b46b-43c2-bfc5-c1805301637b",
    "title": "Driving in the rain",
    "creator": "Timecrawler 82",
-   "duration_s": 346.0,
+   "duration_s": 346,
    "tempo_bpm_est": 117.5,
    "mean_db": -14.3,
    "p10_db": -19.1,
@@ -851,9 +857,9 @@
    "creator": "recyclesound",
    "duration_s": 164.7,
    "tempo_bpm_est": 143.6,
-   "mean_db": -22.0,
+   "mean_db": -22,
    "p10_db": -38.4,
-   "p90_db": -12.0,
+   "p90_db": -12,
    "dynamic_range_db": 26.3,
    "centroid_hz": 1209,
    "onsets_per_s": 2.89,
@@ -901,7 +907,7 @@
    "dynamic_range_db": 16.2,
    "centroid_hz": 1762,
    "onsets_per_s": 2.7,
-   "onset_strength_mean": 1.0,
+   "onset_strength_mean": 1,
    "thirds_db": [
     -15.5,
     -21.9,
@@ -948,7 +954,7 @@
    "onset_strength_mean": 1.8,
    "thirds_db": [
     -9.5,
-    -11.0,
+    -11,
     -14.3
    ],
    "arc": "fades",
@@ -981,7 +987,7 @@
    "id": "44a8e591-4815-46dc-8cfa-216ccbace0a5",
    "title": "Symphony No. 7 in G minor, Op. 32 (Movement 1, Molto Allegro)",
    "creator": "Daniel Bautista",
-   "duration_s": 223.0,
+   "duration_s": 223,
    "tempo_bpm_est": 107.7,
    "mean_db": -12.1,
    "p10_db": -13.7,
@@ -992,7 +998,7 @@
    "onset_strength_mean": 1.21,
    "thirds_db": [
     -11.9,
-    -12.0,
+    -12,
     -12.5
    ],
    "arc": "steady",
@@ -1048,7 +1054,7 @@
    "title": "Universal Drone",
    "creator": "Jesse Keller",
    "duration_s": 298.8,
-   "tempo_bpm_est": 123.0,
+   "tempo_bpm_est": 123,
    "mean_db": -23.8,
    "p10_db": -29.8,
    "p90_db": -16.4,
@@ -1071,7 +1077,7 @@
    "creator": "Ehma",
    "duration_s": 160.7,
    "tempo_bpm_est": 99.4,
-   "mean_db": -30.0,
+   "mean_db": -30,
    "p10_db": -40.1,
    "p90_db": -19.6,
    "dynamic_range_db": 20.5,
@@ -1080,7 +1086,7 @@
    "onset_strength_mean": 0.71,
    "thirds_db": [
     -32.7,
-    -28.0,
+    -28,
     -29.4
    ],
    "arc": "builds",
@@ -1179,7 +1185,7 @@
    "id": "9ed70e43-311b-4725-8cae-77065b3208b2",
    "title": "Rising Phoenix",
    "creator": "Daniel Bautista",
-   "duration_s": 236.0,
+   "duration_s": 236,
    "tempo_bpm_est": 161.5,
    "mean_db": -12.5,
    "p10_db": -13.9,
@@ -1226,7 +1232,7 @@
    "duration_s": 97.4,
    "tempo_bpm_est": 107.7,
    "mean_db": -19.1,
-   "p10_db": -20.0,
+   "p10_db": -20,
    "p90_db": -14.7,
    "dynamic_range_db": 5.2,
    "centroid_hz": 586,
@@ -1235,7 +1241,7 @@
    "thirds_db": [
     -18.7,
     -16.5,
-    -22.0
+    -22
    ],
    "arc": "fades",
    "quietest_10s_at": 0,
@@ -1247,7 +1253,7 @@
    "creator": "zero-project",
    "duration_s": 246.4,
    "tempo_bpm_est": 143.6,
-   "mean_db": -18.0,
+   "mean_db": -18,
    "p10_db": -25.8,
    "p90_db": -11.6,
    "dynamic_range_db": 14.3,
@@ -1255,7 +1261,7 @@
    "onsets_per_s": 1.61,
    "onset_strength_mean": 0.88,
    "thirds_db": [
-    -22.0,
+    -22,
     -14.6,
     -17.3
    ],
@@ -1268,7 +1274,7 @@
    "title": "Benedictus",
    "creator": "zero-project",
    "duration_s": 220.7,
-   "tempo_bpm_est": 123.0,
+   "tempo_bpm_est": 123,
    "mean_db": -17.2,
    "p10_db": -21.4,
    "p90_db": -11.8,
@@ -1289,7 +1295,7 @@
    "id": "c37c19bc-ebb1-42ab-94b5-12a8b566a36a",
    "title": "Dawning of Darkness",
    "creator": "Hyperreal",
-   "duration_s": 183.0,
+   "duration_s": 183,
    "tempo_bpm_est": 161.5,
    "mean_db": -23.7,
    "p10_db": -37.6,
@@ -1311,8 +1317,8 @@
    "id": "c7a34551-9ec8-46fe-9d16-65c4b2344250",
    "title": "Coming From Above",
    "creator": "Jesse Keller",
-   "duration_s": 332.0,
-   "tempo_bpm_est": 123.0,
+   "duration_s": 332,
+   "tempo_bpm_est": 123,
    "mean_db": -25.2,
    "p10_db": -29.8,
    "p90_db": -16.4,
@@ -1333,11 +1339,11 @@
    "id": "cc1cb35d-2ca6-46e4-a05d-238ba83cf0a0",
    "title": "A Good Dream",
    "creator": "Jesse Keller",
-   "duration_s": 212.0,
-   "tempo_bpm_est": 123.0,
+   "duration_s": 212,
+   "tempo_bpm_est": 123,
    "mean_db": -25.5,
    "p10_db": -32.9,
-   "p90_db": -16.0,
+   "p90_db": -16,
    "dynamic_range_db": 16.9,
    "centroid_hz": 1453,
    "onsets_per_s": 0.98,
@@ -1356,7 +1362,7 @@
    "title": "Gaining Steam",
    "creator": "Jesse Keller",
    "duration_s": 108.5,
-   "tempo_bpm_est": 123.0,
+   "tempo_bpm_est": 123,
    "mean_db": -28.9,
    "p10_db": -44.4,
    "p90_db": -17.2,
@@ -1379,7 +1385,7 @@
    "creator": "Jesse Keller",
    "duration_s": 270.8,
    "tempo_bpm_est": 117.5,
-   "mean_db": -22.0,
+   "mean_db": -22,
    "p10_db": -28.4,
    "p90_db": -15.7,
    "dynamic_range_db": 12.7,
@@ -1401,10 +1407,10 @@
    "creator": "E. Erkut",
    "duration_s": 96.1,
    "tempo_bpm_est": 107.7,
-   "mean_db": -23.0,
+   "mean_db": -23,
    "p10_db": -25.1,
    "p90_db": -18.1,
-   "dynamic_range_db": 7.0,
+   "dynamic_range_db": 7,
    "centroid_hz": 744,
    "onsets_per_s": 4.53,
    "onset_strength_mean": 1.41,

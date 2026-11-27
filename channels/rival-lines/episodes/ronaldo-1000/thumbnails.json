@@ -1,0 +1,25 @@
+{
+  "note": "Two thumbnail variants for the title test. Layout follows the Paper Pitch formula (study section 6). Numbers in note text are filled from the episode's own model by render.mjs MODE=thumbs.",
+  "variants": [
+    {
+      "id": "a",
+      "title_id": "a",
+      "img": "c15",
+      "focus": "50% 18%",
+      "headline": [[{ "t": "the " }, { "t": "odds?", "b": true }]],
+      "visual": "curve",
+      "arrow": { "left": 420, "top": 330 },
+      "note": { "left": 330, "top": 400, "text": "median: {median}" }
+    },
+    {
+      "id": "b",
+      "title_id": "b",
+      "img": "c14",
+      "focus": "52% 40%",
+      "headline": [[{ "t": "13", "b": true }, { "t": " to go." }]],
+      "visual": "ruler",
+      "arrow": { "left": 400, "top": 330 },
+      "note": { "left": 40, "top": 640, "text": "Wikipedia count, {official}" }
+    }
+  ]
+}
