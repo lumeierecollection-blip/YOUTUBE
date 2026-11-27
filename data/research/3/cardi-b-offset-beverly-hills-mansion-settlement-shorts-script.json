@@ -1,0 +1,47 @@
+{
+  "channel_id": "3",
+  "topic_slug": "cardi-b-offset-beverly-hills-mansion-settlement",
+  "format": "shorts",
+  "hook": "A secret Beverly Hills mansion video triggered a major lawsuit.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A secret Beverly Hills mansion video triggered a major lawsuit.",
+      "text_overlay": {
+        "text": "BEVERLY HILLS LAWSUIT"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 25, 2026, Cardi B and Offset settled with Bi LLC. Filings alleged the couple filmed 'Like What' inside a Beverly Hills mansion. Why was the January 5 trial date canceled?",
+      "text_overlay": {
+        "text": "MANSION DISPUTE"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But a confidential settlement on November 25, 2026, officially dismissed the lawsuit before trial.",
+      "text_overlay": {
+        "text": "CASE DISMISSED"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Bi LLC dropped the suit, removing the January 5 trial date. Rolling Stone verified that settlement details remain strictly private.",
+      "text_overlay": {
+        "text": "TRIAL CANCELED"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Bi LLC officially dismissed the Beverly Hills mansion lawsuit before the scheduled January 5 trial.",
+      "text_overlay": {
+        "text": "OFFICIALLY RESOLVED"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.rollingstone.com/music/music-news/cardi-b-offset-beverly-hills-mansion-lawsuit-settlement-1235664297",
+    "https://www.complex.com/music/a/alex-ocho/cardi-b-offset-like-what-mansion-lawsuit-settlement"
+  ]
+}

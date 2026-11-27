@@ -1,0 +1,65 @@
+{
+  "topic_slug": "cardi-b-offset-beverly-hills-mansion-settlement",
+  "strongest_angle": "Cardi B and Offset reached a confidential out-of-court settlement on November 25, 2026, dismissing the lawsuit brought by property owner Bi LLC over the unauthorized music video shoot at a Beverly Hills mansion.",
+  "key_facts": [
+    {
+      "fact": "Cardi B and Offset reached a confidential settlement dismissing the lawsuit over the Beverly Hills mansion used for the 'Like What' music video, as reported by Rolling Stone on November 25, 2026.",
+      "source_url": "https://www.rollingstone.com/music/music-news/cardi-b-offset-beverly-hills-mansion-lawsuit-settlement-1235664297",
+      "source_name": "Rolling Stone",
+      "confidence": "high"
+    },
+    {
+      "fact": "The lawsuit brought by property owner Bi LLC against Cardi B and Offset was dismissed after a confidential settlement, removing a scheduled January 5 trial date from the court docket.",
+      "source_url": "https://www.complex.com/music/a/alex-ocho/cardi-b-offset-like-what-mansion-lawsuit-settlement",
+      "source_name": "Complex",
+      "confidence": "high"
+    },
+    {
+      "fact": "Property owner Bi LLC accused Cardi B and Offset of filming the 'Like What' music video at the Beverly Hills mansion under the false guise of shooting a TikTok clip.",
+      "source_url": "https://creebhills.com/2026/11/cardi-b-and-offset-settle-the-like-what",
+      "source_name": "Creebhills",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Trial month",
+      "value": 1,
+      "unit": "month",
+      "source_url": "https://www.complex.com/music/a/alex-ocho/cardi-b-offset-like-what-mansion-lawsuit-settlement"
+    },
+    {
+      "label": "Trial day",
+      "value": 5,
+      "unit": "day",
+      "source_url": "https://www.complex.com/music/a/alex-ocho/cardi-b-offset-like-what-mansion-lawsuit-settlement"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Cardi B",
+      "kind": "person"
+    },
+    {
+      "name": "Offset",
+      "kind": "person"
+    },
+    {
+      "name": "Beverly Hills",
+      "kind": "place"
+    },
+    {
+      "name": "Bi LLC",
+      "kind": "organization"
+    },
+    {
+      "name": "Rolling Stone",
+      "kind": "organization"
+    },
+    {
+      "name": "Like What",
+      "kind": "object"
+    }
+  ]
+}
