@@ -12,73 +12,331 @@
   "https://en.wikipedia.org/wiki/2026–27_Manchester_United_F.C._season"
  ],
  "beats": [
-  {"id": "b01", "accent": ["8", "points"],
+  {
+   "id": "b01",
+   "accent": [
+    "8",
+    "points"
+   ],
    "text": "Manchester United have 8 points from 11 league games. In the last two weeks they sacked their manager, hired a new one, and lost 4-0 at Anfield.",
-   "visual": {"type": "bigstat", "value": "8", "count": true, "label": "points from 11 games", "sub": "Manchester United, 19th", "size": 520, "cue": "8"}},
-  {"id": "b02", "accent": ["sacked", "15"],
+   "visual": {
+    "type": "bigstat",
+    "value": "8",
+    "count": true,
+    "label": "points from 11 games",
+    "sub": "Manchester United, 19th",
+    "size": 520,
+    "cue": "8"
+   }
+  },
+  {
+   "id": "b02",
+   "accent": [
+    "sacked",
+    "15"
+   ],
    "text": "Michael Carrick signed a two-year contract in May. He was sacked on 12 November, 15 games into it. Al Jazeera reports 3 wins from those 15 matches. In the league, 1 win and 8 points from 10 games.",
-   "visual": {"type": "cards", "items": [
-     {"value": "15", "label": "games", "sub": "into a two-year deal", "img": "carrick2"},
-     {"value": "3", "label": "wins", "sub": "all competitions"},
-     {"value": "1", "label": "league win", "sub": "from 10 games", "hot": true}],
-    "cues": ["15", "3", "1"]}},
-  {"id": "b03", "accent": ["13", "22"],
+   "visual": {
+    "type": "cutout",
+    "img": "carrick2",
+    "label": "15 games",
+    "sub": "3 wins, 1 league win",
+    "side": "left",
+    "cue": "15"
+   }
+  },
+  {
+   "id": "b03",
+   "accent": [
+    "13",
+    "22"
+   ],
    "text": "A day later, on 13 November, United announced Mauricio Pochettino. His first match was Liverpool, on 22 November.",
-   "visual": {"type": "cards3", "img": "pochettino1", "cards": [
-     {"value": "12 Nov", "label": "Carrick sacked"},
-     {"value": "13 Nov", "label": "Pochettino named"},
-     {"value": "22 Nov", "label": "first match"}],
-    "cues": ["day", "13", "22"]}},
-  {"id": "b04", "accent": ["2028", "only"],
+   "visual": {
+    "type": "cards3",
+    "img": "pochettino1",
+    "cards": [
+     {
+      "value": "12 Nov",
+      "label": "Carrick sacked"
+     },
+     {
+      "value": "13 Nov",
+      "label": "Pochettino named"
+     },
+     {
+      "value": "22 Nov",
+      "label": "first match"
+     }
+    ],
+    "cues": [
+     "day",
+     "13",
+     "22"
+    ],
+    "noop": true,
+    "size": 120
+   }
+  },
+  {
+   "id": "b04",
+   "accent": [
+    "2028",
+    "only"
+   ],
    "text": "His contract runs two and a half years, through the end of the 2028 to 29 season. ESPN reports he was the only candidate United spoke to directly. He leaves his job as head coach of the United States.",
-   "visual": {"type": "cutout", "img": "pochettino1", "label": "Only candidate", "sub": "Contract to the end of 2028/29", "side": "right", "cue": "only"}},
-  {"id": "b05", "accent": ["10", "million"],
+   "visual": {
+    "type": "cutout",
+    "img": "pochettino1",
+    "label": "Only candidate",
+    "sub": "Contract to the end of 2028/29",
+    "side": "right",
+    "cue": "only"
+   }
+  },
+  {
+   "id": "b05",
+   "accent": [
+    "10",
+    "million"
+   ],
    "text": "ESPN reports a $10 million release clause, triggered by United. France 24 says US Soccer is set to receive around $10 million in compensation.",
-   "visual": {"type": "bigstat", "value": "$10M", "label": "reported compensation", "sub": "ESPN and France 24", "size": 440, "cue": "$10"}},
-  {"id": "b06", "accent": ["Manchester", "difficult"],
+   "visual": {
+    "type": "bigstat",
+    "value": "$10M",
+    "label": "reported compensation",
+    "sub": "ESPN and France 24",
+    "size": 440,
+    "cue": "$10"
+   }
+  },
+  {
+   "id": "b06",
+   "accent": [
+    "Manchester",
+    "difficult"
+   ],
    "text": "His reason, quoted by France 24: Not too many opportunities can happen in your career with a side like Manchester United. That is difficult to turn down when it arrives.",
-   "visual": {"type": "quote", "img": "pochettino1", "text": "Not too many opportunities can happen in your career with a side like Manchester United.", "who": "Mauricio Pochettino, via France 24", "cue": "Not"}},
-  {"id": "b07", "accent": ["8th", "sent off"],
+   "visual": {
+    "type": "quote",
+    "img": "pochettino1",
+    "text": "Not too many opportunities can happen in your career with a side like Manchester United.",
+    "who": "Mauricio Pochettino, via France 24",
+    "cue": "Not"
+   }
+  },
+  {
+   "id": "b07",
+   "accent": [
+    "8th",
+    "sent off"
+   ],
    "text": "Then Anfield. In the 8th minute, Leny Yoro was sent off for denying a goal-scoring opportunity. Szoboszlai scored in the 10th, Florian Wirtz in the 13th, Rio Ngumoha in the 66th, and Víctor Muñoz in the 82nd. Liverpool 4, United 0.",
-   "visual": {"type": "timeline", "items": [
-     {"when": "8'", "what": "Yoro sent off"},
-     {"when": "10'", "what": "Szoboszlai scores"},
-     {"when": "13'", "what": "Wirtz scores"},
-     {"when": "66'", "what": "Ngumoha scores"},
-     {"when": "82'", "what": "Muñoz scores"}],
-    "cues": ["8th", "Szoboszlai", "Wirtz", "Ngumoha", "Muñoz"]}},
-  {"id": "b08", "accent": ["2-0", "10 men"],
+   "visual": {
+    "type": "timeline",
+    "items": [
+     {
+      "when": "8'",
+      "what": "Yoro sent off"
+     },
+     {
+      "when": "10'",
+      "what": "Szoboszlai scores"
+     },
+     {
+      "when": "13'",
+      "what": "Wirtz scores"
+     },
+     {
+      "when": "66'",
+      "what": "Ngumoha scores"
+     },
+     {
+      "when": "82'",
+      "what": "Muñoz scores"
+     }
+    ],
+    "cues": [
+     "8th",
+     "Szoboszlai",
+     "Wirtz",
+     "Ngumoha",
+     "Muñoz"
+    ]
+   }
+  },
+  {
+   "id": "b08",
+   "accent": [
+    "2-0",
+    "10 men"
+   ],
    "text": "Within 13 minutes it was 2-0, and United were down to 10 men. It was Pochettino's first match in charge.",
-   "visual": {"type": "faces", "caption": "2-0 in 13 minutes", "imgs": ["szoboszlai1", "wirtz2"], "cue": "Within"}},
-  {"id": "b09", "accent": ["19th", "8"],
+   "visual": {
+    "type": "faces",
+    "caption": "2-0 in 13 minutes",
+    "imgs": [
+     "szoboszlai1",
+     "wirtz2"
+    ],
+    "cue": "Within"
+   }
+  },
+  {
+   "id": "b09",
+   "accent": [
+    "19th",
+    "8"
+   ],
    "text": "This is the table on 23 November. Arsenal lead with 28 points from 11 games. Nottingham Forest and Sunderland have 9. United are 19th with 8, and only Crystal Palace, on 7, are below them.",
-   "visual": {"type": "table", "note": "Premier League, 23 November 2026", "rows": [
-     {"pos": 1, "team": "Arsenal", "played": 11, "points": 28},
-     {"pos": 17, "team": "Nottingham Forest", "played": 11, "points": 9},
-     {"pos": 18, "team": "Sunderland", "played": 11, "points": 9},
-     {"pos": 19, "team": "Manchester United", "played": 11, "points": 8, "hot": true},
-     {"pos": 20, "team": "Crystal Palace", "played": 11, "points": 7}],
-    "cues": ["Arsenal", "Forest", "Sunderland", "United", "Palace"]}},
-  {"id": "b10", "accent": ["20", "1"],
+   "visual": {
+    "type": "table",
+    "note": "Premier League, 23 November 2026",
+    "rows": [
+     {
+      "pos": 1,
+      "team": "Arsenal",
+      "played": 11,
+      "points": 28
+     },
+     {
+      "pos": 17,
+      "team": "Nottingham Forest",
+      "played": 11,
+      "points": 9
+     },
+     {
+      "pos": 18,
+      "team": "Sunderland",
+      "played": 11,
+      "points": 9
+     },
+     {
+      "pos": 19,
+      "team": "Manchester United",
+      "played": 11,
+      "points": 8,
+      "hot": true
+     },
+     {
+      "pos": 20,
+      "team": "Crystal Palace",
+      "played": 11,
+      "points": 7
+     }
+    ],
+    "cues": [
+     "Arsenal",
+     "Forest",
+     "Sunderland",
+     "United",
+     "Palace"
+    ]
+   }
+  },
+  {
+   "id": "b10",
+   "accent": [
+    "20",
+    "1"
+   ],
    "text": "That is a gap of 20 points to the top. And it is only 1 point to Nottingham Forest in 17th.",
-   "visual": {"type": "bars", "title": "Points after 11 games", "max": 28, "items": [
-     {"label": "Arsenal", "value": 28},
-     {"label": "Forest", "value": 9},
-     {"label": "United", "value": 8, "hot": true}],
-    "cues": ["20", "top", "1"]}},
-  {"id": "b11", "accent": ["40", "worst"],
+   "visual": {
+    "type": "bars",
+    "title": "Points after 11 games",
+    "max": 28,
+    "items": [
+     {
+      "label": "Arsenal",
+      "value": 28
+     },
+     {
+      "label": "Forest",
+      "value": 9
+     },
+     {
+      "label": "United",
+      "value": 8,
+      "hot": true
+     }
+    ],
+    "cues": [
+     "20",
+     "top",
+     "1"
+    ]
+   }
+  },
+  {
+   "id": "b11",
+   "accent": [
+    "40",
+    "worst"
+   ],
    "text": "Al Jazeera and France 24 both describe it as United's worst start to a league campaign in 40 years.",
-   "visual": {"type": "dots", "count": 40, "label": "years since a worse league start", "cue": "40"}},
-  {"id": "b12", "accent": ["23", "conceded"],
+   "visual": {
+    "type": "dots",
+    "count": 40,
+    "label": "years since a worse league start",
+    "cue": "40"
+   }
+  },
+  {
+   "id": "b12",
+   "accent": [
+    "23",
+    "conceded"
+   ],
    "text": "The record, after 11 games: 1 win, 5 draws, 5 defeats. 14 goals scored, 23 conceded.",
-   "visual": {"type": "tiles", "tiles": [
-     {"value": "1", "label": "win", "icon": "bars"},
-     {"value": "5", "label": "draws", "icon": "page"},
-     {"value": "5", "label": "defeats", "icon": "warn"},
-     {"value": "23", "label": "goals conceded", "icon": "person"}],
-    "cues": ["1", "5", "5", "23"]}},
-  {"id": "b13", "accent": ["Pochettino", "?"],
+   "visual": {
+    "type": "tiles",
+    "tiles": [
+     {
+      "value": "1",
+      "label": "win",
+      "icon": "bars"
+     },
+     {
+      "value": "5",
+      "label": "draws",
+      "icon": "page"
+     },
+     {
+      "value": "5",
+      "label": "defeats",
+      "icon": "warn"
+     },
+     {
+      "value": "23",
+      "label": "goals conceded",
+      "icon": "person"
+     }
+    ],
+    "cues": [
+     "1",
+     "5",
+     "5",
+     "23"
+    ]
+   }
+  },
+  {
+   "id": "b13",
+   "accent": [
+    "Pochettino",
+    "?"
+   ],
    "text": "Can Pochettino turn it around? No report can say yet. What the numbers say is that his first match was a 4-0 defeat, and he has two and a half years to change it.",
-   "visual": {"type": "faces", "caption": "Turn it around?", "imgs": ["pochettino1", "carrick2"], "cue": "Can", "kind": "close"}}
+   "visual": {
+    "type": "faces",
+    "caption": "Turn it around?",
+    "imgs": [
+     "pochettino1",
+     "carrick2"
+    ],
+    "cue": "Can",
+    "kind": "close"
+   }
+  }
  ]
 }

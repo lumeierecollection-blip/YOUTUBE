@@ -14,7 +14,21 @@
    "w": 3333,
    "h": 5000,
    "id": "pochettino1",
-   "file": "files/pochettino1.jpg"
+   "file": "files/pochettino1.jpg",
+   "mask": [
+    [
+     0.58,
+     0,
+     1,
+     0.36
+    ],
+    [
+     0.9,
+     0,
+     1,
+     0.9
+    ]
+   ]
   },
   {
    "key": "carrick",
@@ -29,7 +43,15 @@
    "w": 1637,
    "h": 2307,
    "id": "carrick2",
-   "file": "files/carrick2.jpg"
+   "file": "files/carrick2.jpg",
+   "mask": [
+    [
+     0.8,
+     0.45,
+     1,
+     1
+    ]
+   ]
   },
   {
    "key": "szoboszlai",

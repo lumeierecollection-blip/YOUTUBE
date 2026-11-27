@@ -99,7 +99,7 @@ const Timeline: React.FC<{ v: any }> = ({ v }) => {
         return (
           <div key={i} style={{ position: "absolute", left: x - 230, width: 460, top: 0, height: 1080, opacity: clamp(p) }}>
             <div style={{ position: "absolute", left: 190, top: 490, width: 80, height: 80, borderRadius: 80, background: theme.circle, border: `6px solid ${theme.text}`, transform: `scale(${clamp(p, 0, 1.2)})`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: 46, color: theme.card_ink }}>{i + 1}</div>
-            <div style={{ position: "absolute", left: 0, width: 460, textAlign: "center", top: up ? 300 : 620, transform: `translateY(${(1 - ease(p)) * (up ? 30 : -30)}px)` }}>
+            <div style={{ position: "absolute", left: 0, width: 460, textAlign: "center", top: up ? 190 : 640, transform: `translateY(${(1 - ease(p)) * (up ? 30 : -30)}px)` }}>
               <div style={{ fontFamily: cond, fontSize: 80, lineHeight: 1, color: theme.accent_word }}>{it.when}</div>
               <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 2, color: theme.text, marginTop: 12, textTransform: "uppercase" }}>{it.what}</div>
             </div>
@@ -243,7 +243,7 @@ const Coins: React.FC<{ v: any }> = ({ v }) => {
 
 const Faces: React.FC<{ v: any }> = ({ v }) => {
   const { theme } = useCtx(); const t = useT();
-  const n = v.imgs.length, D = v.kind === "close" ? 300 : 260, step = D * 0.82;
+  const n = v.imgs.length, D = n <= 3 ? 400 : v.kind === "close" ? 300 : 260, step = D * 0.82;
   const total = step * (n - 1) + D, x0 = (1920 - total) / 2;
   return (
     <>
@@ -251,7 +251,7 @@ const Faces: React.FC<{ v: any }> = ({ v }) => {
         const p = pop(t, 0.2 + i * 0.18);
         return <div key={i} style={{ position: "absolute", left: x0 + i * step, top: 250 + (i % 2 ? 40 : 0), transform: `scale(${clamp(p, 0, 1.1)})`, zIndex: i % 2 }}><Person img={im} d={D} /></div>;
       })}
-      <div style={{ position: "absolute", left: 0, right: 0, top: 690, textAlign: "center", fontFamily: cond, fontSize: v.kind === "close" ? 190 : 120, lineHeight: 1, color: theme.accent_word, textTransform: "uppercase", textShadow: `0 8px 0 ${shade(theme.black, 40)}`, opacity: pg(t, 0.9, 0.6) }}>{v.caption}</div>
+      <div style={{ position: "absolute", left: 0, right: 0, top: Math.max(690, 250 + D + 80), textAlign: "center", fontFamily: cond, fontSize: v.kind === "close" ? 190 : 120, lineHeight: 1, color: theme.accent_word, textTransform: "uppercase", textShadow: `0 8px 0 ${shade(theme.black, 40)}`, opacity: pg(t, 0.9, 0.6) }}>{v.caption}</div>
     </>
   );
 };
@@ -281,13 +281,13 @@ const Ladder: React.FC<{ v: any }> = ({ v }) => {
 const Ranking: React.FC<{ v: any }> = ({ v }) => {
   const { theme } = useCtx(); const t = useT();
   return (
-    <div style={{ position: "absolute", left: 200, top: 56, width: 1520 }}>
+    <div style={{ position: "absolute", left: 200, top: 36, width: 1520 }}>
       {v.rows.map((r: any, i: number) => {
         const p = pg(t, cue(v, i, 0.3 + i * 0.6), 0.45);
         const hot = i < 2;
         return (
-          <div key={i} style={{ display: "flex", alignItems: "center", height: 90, marginBottom: 6, opacity: clamp(p), transform: `translateX(${(1 - p) * -60}px)` }}>
-            <Face img={r.img} d={78} n={i + 1} hot={hot} />
+          <div key={i} style={{ display: "flex", alignItems: "center", height: 80, marginBottom: 4, opacity: clamp(p), transform: `translateX(${(1 - p) * -60}px)` }}>
+            <Face img={r.img} d={68} n={i + 1} hot={hot} />
             <div style={{ width: 330, marginLeft: 20, fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 1, color: theme.text, textTransform: "uppercase" }}>{r.name}</div>
             <div style={{ flex: 1, height: 52, position: "relative", marginRight: 20 }}>
               <div style={{ width: `${(r.value / v.max) * 100 * p}%`, height: 52, background: hot ? theme.accent_word : theme.circle, border: `3px solid ${theme.outline}` }} />
@@ -322,8 +322,8 @@ const Ruler: React.FC<{ v: any }> = ({ v }) => {
         <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 34, color: theme.accent_word, textTransform: "uppercase" }}>{v.b.label}</div>
         <div style={{ fontFamily: cond, fontSize: 70, color: theme.accent_word }}>{mmn(v.b.value)}</div>
       </div>
-      <div style={{ position: "absolute", left: (xa + xb) / 2 - 300, width: 600, top: 120, textAlign: "center", transform: `scale(${clamp(g, 0, 1.15)})` }}>
-        <div style={{ fontFamily: cond, fontSize: 300, lineHeight: 1, color: theme.accent_word, textShadow: `0 10px 0 ${shade(theme.black, 40)}` }}>{v.gap}</div>
+      <div style={{ position: "absolute", left: (xa + xb) / 2 - 300, width: 600, top: 30, textAlign: "center", transform: `scale(${clamp(g, 0, 1.15)})` }}>
+        <div style={{ fontFamily: cond, fontSize: 260, lineHeight: 1, color: theme.accent_word, textShadow: `0 10px 0 ${shade(theme.black, 40)}` }}>{v.gap}</div>
         <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 4, color: theme.text }}>POINTS, ON A SCALE OF {mmn(v.max)}</div>
       </div>
     </>
@@ -348,7 +348,7 @@ const Ballot: React.FC<{ v: any }> = ({ v }) => {
             <div key={i} style={{ position: "absolute", left: 40, right: 40, top: 112 + i * 78, height: 68, display: "flex", alignItems: "center", opacity: clamp(q), background: hot ? shade(theme.accent_word, 85 * rowHot) : "transparent", borderBottom: `3px solid ${shade(theme.card_ink, 30)}` }}>
               <div style={{ width: 90, fontFamily: cond, fontSize: 52, color: theme.card_ink, paddingLeft: 14 }}>{i + 1}</div>
               <div style={{ flex: 1, fontFamily: sans, fontWeight: 900, fontSize: 40, color: theme.card_ink, textTransform: "uppercase" }}>{known[i + 1] || ""}</div>
-              <div style={{ width: 130, textAlign: "right", fontFamily: cond, fontSize: 52, color: theme.card_ink, paddingRight: 14 }}>{pts} pts</div>
+              <div style={{ width: 200, whiteSpace: "nowrap", textAlign: "right", fontFamily: cond, fontSize: 52, color: theme.card_ink, paddingRight: 14 }}>{pts} pts</div>
             </div>
           );
         })}
@@ -383,12 +383,12 @@ const Cards3: React.FC<{ v: any }> = ({ v }) => {
         return (
           <div key={i} style={{ position: "absolute", left: 790 + i * 370, top: 250 + (i === 2 ? 60 : 0), width: 340, textAlign: "center", transform: `scale(${clamp(q, 0, 1.1)})` }}>
             <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 2, color: theme.text, textTransform: "uppercase", marginBottom: 14 }}>{c.label}</div>
-            <div style={{ background: i === 2 ? theme.accent_word : theme.card, color: theme.card_ink, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, fontFamily: cond, fontSize: 210, lineHeight: 1, padding: "26px 0 8px", transform: `rotate(${(i - 1) * 3}deg)` }}>{c.value}</div>
+            <div style={{ background: i === 2 ? theme.accent_word : theme.card, color: theme.card_ink, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, fontFamily: cond, fontSize: v.size || 210, whiteSpace: "nowrap", lineHeight: 1, padding: "26px 0 8px", transform: `rotate(${(i - 1) * 3}deg)` }}>{c.value}</div>
           </div>
         );
       })}
-      <div style={{ position: "absolute", left: 1075, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 1, 1.8), 0.3) }}>−</div>
-      <div style={{ position: "absolute", left: 1445, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 2, 2.8), 0.3) }}>=</div>
+      {v.noop ? null : <div style={{ position: "absolute", left: 1075, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 1, 1.8), 0.3) }}>−</div>}
+      {v.noop ? null : <div style={{ position: "absolute", left: 1445, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 2, 2.8), 0.3) }}>=</div>}
     </>
   );
 };
@@ -430,21 +430,21 @@ const Tiles: React.FC<{ v: any }> = ({ v }) => {
 const Table: React.FC<{ v: any }> = ({ v }) => {
   const { theme } = useCtx(); const t = useT();
   return (
-    <div style={{ position: "absolute", left: 300, top: 70, width: 1320 }}>
+    <div style={{ position: "absolute", left: 260, top: 130, width: 1400 }}>
       {v.rows.map((r: any, i: number) => {
         const p = pg(t, cue(v, i, 0.2 + i * 0.12), 0.35);
         const hot = !!r.hot;
         return (
-          <div key={i} style={{ display: "flex", alignItems: "center", height: 70, marginBottom: 6, opacity: clamp(p), background: hot ? theme.accent_word : shade(theme.text, 8), border: hot ? `3px solid ${theme.outline}` : "none", transform: `translateX(${(1 - p) * 80}px)` }}>
-            <div style={{ width: 90, textAlign: "center", fontFamily: cond, fontSize: 48, color: hot ? theme.card_ink : theme.text }}>{r.pos}</div>
-            <div style={{ flex: 1, fontFamily: sans, fontWeight: 900, fontSize: 36, color: hot ? theme.card_ink : theme.text, textTransform: "uppercase" }}>{r.team}</div>
-            <div style={{ width: 130, textAlign: "center", fontFamily: sans, fontWeight: 700, fontSize: 34, color: hot ? theme.card_ink : theme.text }}>{r.played}</div>
-            <div style={{ width: 150, textAlign: "center", fontFamily: cond, fontSize: 48, color: hot ? theme.card_ink : theme.text }}>{r.points}</div>
+          <div key={i} style={{ display: "flex", alignItems: "center", height: 110, marginBottom: 10, opacity: clamp(p), background: hot ? theme.accent_word : shade(theme.text, 8), border: hot ? `3px solid ${theme.outline}` : "none", transform: `translateX(${(1 - p) * 80}px)` }}>
+            <div style={{ width: 110, textAlign: "center", fontFamily: cond, fontSize: 72, color: hot ? theme.card_ink : theme.text }}>{r.pos}</div>
+            <div style={{ flex: 1, fontFamily: sans, fontWeight: 900, fontSize: 52, color: hot ? theme.card_ink : theme.text, textTransform: "uppercase" }}>{r.team}</div>
+            <div style={{ width: 150, textAlign: "center", fontFamily: sans, fontWeight: 700, fontSize: 48, color: hot ? theme.card_ink : theme.text }}>{r.played}</div>
+            <div style={{ width: 190, textAlign: "center", fontFamily: cond, fontSize: 80, color: hot ? theme.card_ink : theme.text }}>{r.points}</div>
           </div>
         );
       })}
-      <div style={{ display: "flex", fontFamily: sans, fontWeight: 700, fontSize: 24, color: theme.text, opacity: 0.7, marginTop: 8 }}>
-        <div style={{ width: 90 }} /><div style={{ flex: 1 }}>{v.note || ""}</div><div style={{ width: 130, textAlign: "center" }}>P</div><div style={{ width: 150, textAlign: "center" }}>PTS</div>
+      <div style={{ display: "flex", fontFamily: sans, fontWeight: 700, fontSize: 30, color: theme.text, opacity: 0.8, marginTop: 12 }}>
+        <div style={{ width: 110 }} /><div style={{ flex: 1 }}>{v.note || ""}</div><div style={{ width: 150, textAlign: "center" }}>P</div><div style={{ width: 190, textAlign: "center" }}>PTS</div>
       </div>
     </div>
   );
@@ -503,7 +503,7 @@ const Bars: React.FC<{ v: any }> = ({ v }) => {
       {v.title ? <div style={{ position: "absolute", left: 0, right: 0, top: 70, textAlign: "center", fontFamily: cond, fontSize: 90, color: theme.accent_word, textTransform: "uppercase" }}>{v.title}</div> : null}
       {v.items.map((it: any, i: number) => {
         const p = pg(t, cue(v, i, 0.5 + i * 0.7), 0.7);
-        const h = (it.value / max) * 560 * p;
+        const h = (it.value / max) * 480 * p;
         return (
           <div key={i} style={{ position: "absolute", left: x0 + i * (bw + 30), width: bw, top: 230, height: 700 }}>
             <div style={{ position: "absolute", bottom: 90, left: 0, width: bw, height: h, background: it.hot ? theme.accent_word : theme.circle, border: `4px solid ${theme.outline}` }} />

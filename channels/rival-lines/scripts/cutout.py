@@ -29,11 +29,19 @@ if props.get("format") == "realm":
     for sc in props["scenes"]: walk(sc["visual"], keys)
 else:
     keys |= {sc["visual"]["img"] for sc in props["scenes"] if sc["visual"].get("type") == "photo" and sc["visual"].get("stats")}
+ij = os.path.join(ep, "images", "images.json")
+masks = {i["id"]: i["mask"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("mask")} if os.path.exists(ij) else {}
 for img in sorted(keys):
     src = os.path.join(pub, props["images"][img]["file"])
     im = Image.open(src).convert("RGB")
     im.thumbnail((1800, 1800))
     out = remove(im, session=session)
+    # Optional per-image "mask" in images.json: fractional boxes [x0,y0,x1,y1] cleared after the cut, for a second person the model kept.
+    if img in masks:
+        from PIL import ImageDraw
+        al = out.getchannel("A"); dr = ImageDraw.Draw(al); W, H = out.size
+        for x0, y0, x1, y1 in masks[img]: dr.rectangle([x0 * W, y0 * H, x1 * W, y1 * H], fill=0)
+        out.putalpha(al)
     # Clean the edge: pull the matte in a few pixels so the old background colour does not show as a fringe, then soften it.
     a = out.getchannel("A").point(lambda v: 255 if v > 128 else 0).filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(2.2))
     out.putalpha(a)

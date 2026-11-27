@@ -33,10 +33,10 @@ export const RealmThumb: React.FC<any> = ({ theme, thumb, images }) => {
       <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 55%, ${theme.red} 0%, ${theme.red} 28%, ${theme.black} 100%)` }}>
         <Cut img={t.left.img} h={t.left.h || 690} ring={theme.white} style={{ left: t.left.x ?? -30, bottom: 0 }} />
         <Cut img={t.right.img} h={t.right.h || 690} ring={theme.white} style={{ right: t.right.x ?? -30, bottom: 0 }} />
-        <div style={{ position: "absolute", left: 34, top: 60, fontFamily: serif, fontWeight: 900, fontSize: 150, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
+        <div style={{ position: "absolute", left: 330, top: 40, fontFamily: serif, fontWeight: 900, fontSize: 130, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
           {t.left.words.map((w: string, i: number) => <div key={i}>{w}</div>)}
         </div>
-        <div style={{ position: "absolute", right: 34, top: 60, textAlign: "right", fontFamily: serif, fontWeight: 900, fontSize: 150, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
+        <div style={{ position: "absolute", right: 330, top: 210, textAlign: "right", fontFamily: serif, fontWeight: 900, fontSize: 130, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
           {t.right.words.map((w: string, i: number) => <div key={i}>{w}</div>)}
         </div>
         {t.centre ? <div style={{ position: "absolute", left: 0, right: 0, bottom: 34, textAlign: "center", fontFamily: cond, fontSize: 168, lineHeight: 1, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 70)}` }}>{t.centre}</div> : null}
