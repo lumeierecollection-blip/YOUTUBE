@@ -53,22 +53,44 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   const im = images[v.img];
   const stats: any[] = v.stats || [];
   const has = stats.length > 0;
-  const maxW = has ? 940 : 1180;
+  const maxW = 1180;
   const maxH = 800;
   const s = Math.min(maxW / im.w, maxH / im.h);
   const w = Math.round(im.w * s);
   const h = Math.round(im.h * s);
-  const left = has ? (idx % 2 === 0 ? 130 : 1920 - 130 - w) : Math.round((1920 - w) / 2);
+  const left = Math.round((1920 - w) / 2);
   const top = Math.round((1080 - h) / 2) - 14;
   const dur = durationInFrames / fps;
-  const panelLeft = idx % 2 === 0 ? left + w + 100 : 110;
-  const panelW = has ? 1920 - w - 130 - 100 - 110 : 0;
+  const cutW = 880;
+  const cutH = 960;
+  const cutLeft = idx % 2 === 0 ? 90 : 1920 - 90 - cutW;
+  const panelLeft = idx % 2 === 0 ? cutLeft + cutW + 70 : 110;
+  const panelW = has ? 1920 - cutW - 90 - 70 - 110 : 0;
+  const cut = staticFile(`ep/images/cutout-${v.img}.png`);
+  const dir = idx % 2 === 0 ? -1 : 1;
+  const slide = (1 - ease(t / 0.7)) * 40 * dir;
+  const smear = (k: number, color: string, op: number, blur: number): React.CSSProperties => ({
+    position: "absolute", left: 0, top: 0, width: cutW, height: cutH, background: color, opacity: op, filter: `blur(${blur}px)`,
+    WebkitMaskImage: `url(${cut})`, maskImage: `url(${cut})`, WebkitMaskSize: "contain", maskSize: "contain",
+    WebkitMaskRepeat: "no-repeat", maskRepeat: "no-repeat", WebkitMaskPosition: "center bottom", maskPosition: "center bottom",
+    transform: `translateX(${dir * k * 26 + slide}px)`,
+  });
   return (
     <Fill>
-      <Img src={staticFile(im.file)} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, objectFit: "cover", filter: "blur(40px) brightness(0.32)", transform: "scale(1.15)" }} />
-      <div style={{ position: "absolute", left, top, width: w, height: h, boxShadow: `0 24px 70px color-mix(in srgb, ${theme.ink} 80%, black)`, overflow: "hidden", background: theme.ink }}>
-        <Img src={staticFile(im.file)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1 + 0.06 * (t / dur)})` }} />
-      </div>
+      {has ? (
+        <div style={{ position: "absolute", left: cutLeft, top: 1080 - cutH, width: cutW, height: cutH }}>
+          <div style={smear(2, theme.accent2, 0.55, 8)} />
+          <div style={smear(1, theme.accent, 0.85, 3)} />
+          <Img src={cut} style={{ position: "absolute", left: 0, top: 0, width: cutW, height: cutH, objectFit: "contain", objectPosition: "center bottom", transform: `translateX(${slide * 0.4}px)` }} />
+        </div>
+      ) : (
+        <>
+          <Img src={staticFile(im.file)} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, objectFit: "cover", filter: "blur(40px) brightness(0.32)", transform: "scale(1.15)" }} />
+          <div style={{ position: "absolute", left, top, width: w, height: h, boxShadow: `0 24px 70px color-mix(in srgb, ${theme.ink} 80%, black)`, overflow: "hidden", background: theme.ink }}>
+            <Img src={staticFile(im.file)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1 + 0.06 * (t / dur)})` }} />
+          </div>
+        </>
+      )}
       {has ? (
         <div style={{ position: "absolute", left: panelLeft, top: 0, width: panelW, height: 1080, display: "flex", flexDirection: "column", justifyContent: "center", gap: 46 }}>
           {stats.map((st, i) => {
@@ -84,7 +106,7 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
           })}
         </div>
       ) : null}
-      <div style={{ position: "absolute", left: 80, bottom: 26, right: 300, fontFamily: sans, fontWeight: 500, fontSize: 21, opacity: 0.6 }}>Photo: {im.credit}</div>
+      <div style={{ position: "absolute", left: 80, bottom: 26, right: 300, fontFamily: sans, fontWeight: 500, fontSize: 21, opacity: 0.6, zIndex: 2 }}>Photo: {im.credit}</div>
     </Fill>
   );
 };
