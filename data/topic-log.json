@@ -3055,9 +3055,14 @@
           "topic": "AURA Identifies Two Monster Quasars From Dawn of Time",
           "slug": "aura-identifies-two-monster-quasars-dawn-of-time",
           "reserved_at": "2026-11-26T18:37:51.249Z"
+        },
+        {
+          "topic": "Euclid Space Telescope Discovers 360 Million Solar Mass Quasar",
+          "slug": "euclid-space-telescope-360-million-quasar",
+          "reserved_at": "2026-11-27T19:17:09.365Z"
         }
       ],
-      "last_generated": "2026-11-27T18:28:31.342Z"
+      "last_generated": "2026-11-27T19:17:09.366Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
