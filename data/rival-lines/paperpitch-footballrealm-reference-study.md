@@ -4,7 +4,10 @@ Written 2026-11-27 for the Rival Lines channel. Everything here is observed from
 
 Limits, stated plainly:
 - Paper Pitch was studied from frames and metadata. Its audio was not listened to by a person; music is taken from the creator's own credit line, not from recognition.
-- The Football Realm was studied from channel metadata, thumbnails and one video's audio only. Its videos were not frame-studied.
+- The Football Realm was first studied from channel metadata, thumbnails and one video's audio only. On 2026-11-28 one video (YN31DA3o2Qs, 12 minutes, about Mourinho) was frame-studied, 60 frames one every 12 seconds. One video cannot show the channel's range.
+  - Observed in those frames: roughly 12 of every 20 frames are real footage (press conference, interview, wide match play, a clip from another creator's video), with bottom-centre white uppercase word captions; occasional larger mixed-case captions with one orange italic word. The rest are maroon graphics: a person cutout on an orange circle, a person cutout on a drawn red stadium-crowd and green pitch strip, three-card rows with player, age and fee tags, club crests, a big fee tag beside a cutout, and a "tfr" logo sting.
+  - Not seen in those frames: clocks, ballots, dot grids, coin stacks, ladders, rulers, bar charts, tables. Rival Lines' scene types of that kind are our own design, not copied from The Football Realm.
+  - Not checked: how the footage is licensed, how it is labelled across the video, and whether other Football Realm videos use less footage.
 - View counts, dates and subscriber numbers are as read on 2026-11-27 and change.
 - "What works" below is inferred from one breakout (926,857 views) and two videos that did not break out (3,290 and 3,443 views). Three videos cannot separate the format from the topic or from luck. The 1,000-goals topic itself is probably most of the reach.
 
