@@ -1,0 +1,53 @@
+{
+  "channel_id": "17",
+  "topic_slug": "nothing-fully-transparent-physicists-discover",
+  "format": "shorts",
+  "hook": "True transparency is physically impossible because quantum decay turns photons into phonons, Scientific American reports.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "True transparency is physically impossible because quantum decay turns photons into phonons, Scientific American reports.",
+      "visual_cue": "Macro shot of a clear glass prism refracting light into a rainbow.",
+      "text_overlay": {
+        "text": "Transparency is impossible"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 8, 2026, researchers Angelo Esposito, Alberto Nicolis, and Federico Piazza published an arXiv study explaining why. But how much light actually survives inside the clearest materials on Earth?",
+      "visual_cue": "Split-screen showing the arXiv manuscript text and a light beam passing through a crystal.",
+      "text_overlay": {
+        "text": "The arXiv study"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Ivan Smalyukh at the University of Colorado Boulder holds the Guinness record for the clearest material.",
+      "visual_cue": "Portrait of Ivan Smalyukh next to a laboratory setup at the University of Colorado Boulder.",
+      "text_overlay": {
+        "text": "World record holder"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Gels from the University of Colorado Boulder become light-absorbing when you apply a 30 cm layer.",
+      "visual_cue": "Graphic showing a 30 cm light-absorbing gel layer being measured with a digital caliper.",
+      "text_overlay": {
+        "text": "30 cm limit"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "In a mathematically perfect superfluid, light travels the diameter of Earth before fading, Yahoo News reports.",
+      "visual_cue": "Wide shot of Earth from space with a fading beam of light passing through the planet.",
+      "text_overlay": {
+        "text": "Light always fades"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.scientificamerican.com/article/nothing-can-be-fully-transparent-physicists-discover",
+    "https://arxiv.org/abs/2610.12560",
+    "https://news.kg/en/news/physicists-discover-that-nothing-can-be-completely-transparent"
+  ]
+}
