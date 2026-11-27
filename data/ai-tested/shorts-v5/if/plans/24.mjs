@@ -43,7 +43,7 @@ export default function build(T) {
         { y: 595, ...BO, words: [b(36, "Felix"), b(37, "Rieseberg")] },
         { y: 650, sz: 33, wt: 700, words: run(38, ["ran", "the", "experiment"], { pill: true }) },
       ] },
-      { k: "card", img: A + "hf-blog-title-capture.png", y: 368, w: 462, h: 260, t: T[34] },
+      { k: "card", img: A + "hf-blog-title-capture.png", y: 368, w: 462, h: 216, t: T[34] },
     ] },
     cardScene(41, run(41, ["the", "whole", "game", "is"]), [b(45, "One"), b(46, "HTML"), b(47, "File")], A + "github-repo-single-index-html.png", { h: 150 }),
     cardScene(48, [w(48, "about")], [b(49, "1.4"), b(52, "Megabytes")], A + "hf-blog-1.4MB-sentence.png", { h: 170 }),

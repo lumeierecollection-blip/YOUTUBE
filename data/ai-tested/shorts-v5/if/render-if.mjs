@@ -38,12 +38,24 @@ console.log(`plan: ${planScenes.length} scenes, ${sfx.length} sfx, narration ${d
 const raw = path.join(outDir, `.raw${ID0}.mp4`), outFile = path.join(outDir, `if${ID0}.mp4`);
 execFileSync("npx", ["remotion", "render", "src/index.ts", `IF-${ID0}`, raw, `--props=${propsFile}`, "--codec=h264", "--pixel-format=yuv420p", "--crf=17", "--audio-bitrate=192k", "--log=warn"], { cwd: root, stdio: "inherit", shell: process.platform === "win32" });
 
-const r1 = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-i", raw, "-vn", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"], { encoding: "utf8" });
+// Background song under narration + SFX, ducked by the voice. Skipped if the file is absent.
+const song = path.join(shorts, "assets", "music", "bgsong.mp3");
+let base = raw;
+if (fs.existsSync(song) && process.env.NO_MUSIC !== "1") {
+  const total = parseFloat(probe(["-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", raw]));
+  const start = parseFloat(process.env.MUSIC_START || "0"), vol = process.env.MUSIC_VOL || "0.22";
+  base = path.join(outDir, `.mix${ID0}.mp4`);
+  const fc = `[1:a]volume=${vol},afade=t=in:d=0.8,afade=t=out:st=${(total - 1.8).toFixed(2)}:d=1.8[m];[0:a]asplit[v][k];[m][k]sidechaincompress=threshold=0.02:ratio=6:attack=15:release=350[md];[v][md]amix=inputs=2:normalize=0:duration=first[a]`;
+  execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", raw, "-ss", String(start), "-t", total.toFixed(2), "-i", song, "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", base], { stdio: "inherit" });
+  console.log(`music: bgsong.mp3 from ${start}s, vol ${vol}`);
+}
+const r1 = spawnSync("ffmpeg", ["-hide_banner", "-nostats", "-i", base, "-vn", "-af", "loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json", "-f", "null", "-"], { encoding: "utf8" });
 const m = (r1.stderr || "").match(/\{[\s\S]*?"target_offset"[\s\S]*?\}/);
 const s = JSON.parse(m[0]);
 const af = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${s.input_i}:measured_TP=${s.input_tp}:measured_LRA=${s.input_lra}:measured_thresh=${s.input_thresh}:offset=${s.target_offset}:linear=true,alimiter=limit=0.78:attack=3:release=40:level=false`;
-execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", raw, "-c:v", "copy", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", outFile], { stdio: "inherit" });
+execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", base, "-c:v", "copy", "-af", af, "-ar", "48000", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", outFile], { stdio: "inherit" });
 fs.unlinkSync(raw);
+if (base !== raw) fs.unlinkSync(base);
 
 // stills at the middle of each scene, native 1080x1920 and a contact sheet
 const stillDir = path.join(outDir, "stills", ID0);
