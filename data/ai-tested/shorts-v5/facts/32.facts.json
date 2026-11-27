@@ -1,0 +1,58 @@
+{
+ "id": "32",
+ "sources": [
+  {
+   "url": "https://claude.com/resources/articles/introducing-claude-ship",
+   "fetched": true,
+   "note": "Fetched with curl, HTML stripped to text, read in full."
+  }
+ ],
+ "facts": [
+  {
+   "id": "f1",
+   "claim": "Claude Ship is available in beta and can review PRs, fix them, and decide what is ready to merge based on team policies.",
+   "verbatim_support": "available today in beta. It can review PRs, fix them, and decide what's ready to merge based on policies each team sets.",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f2",
+   "claim": "Claude Ship is made of Code Review plus two new beta agents: PR Steward and Claude Approvals.",
+   "verbatim_support": "Claude Ship is made up of Code Review, which is already generally available, and two new agents in beta: PR Steward and Claude Approvals.",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f3",
+   "claim": "Code Review posts categorized findings to the pull request.",
+   "verbatim_support": "collects findings, adversarially verifies them, categorizes them, and posts them to a PR",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f4",
+   "claim": "PR Steward works on failing CI checks, merge conflicts and review feedback, and is designed not to approve or merge pull requests.",
+   "verbatim_support": "designed not to approve or merge pull requests. It jumps in on failing CI checks, merge conflicts, and review feedback",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f5",
+   "claim": "Claude Approvals applies an approval policy the team writes as a file in the repository.",
+   "verbatim_support": "applies an approval policy that the team writes as a file in the repository",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f6",
+   "claim": "Developers can run /ship in Claude Code; Claude pushes the change, opens the PR, reviews it, and works on feedback and failing checks.",
+   "verbatim_support": "they run /ship. Claude pushes it, opens the PR, reviews the change, and works on feedback and failing checks",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  },
+  {
+   "id": "f7",
+   "claim": "Claude Ship is available on Claude Team and Enterprise plans for repositories on GitHub.",
+   "verbatim_support": "Claude Ship is available on Claude Team and Enterprise plans for repositories on GitHub.",
+   "url": "https://claude.com/resources/articles/introducing-claude-ship"
+  }
+ ],
+ "numbers": [],
+ "timeline": [],
+ "unsupported": [],
+ "wording_fixes": []
+}

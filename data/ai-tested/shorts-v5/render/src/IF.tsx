@@ -18,7 +18,7 @@ export type El =
   | { k: "card"; img: string; y: number; w: number; h: number; t: number; pos?: string }
   | { k: "bullets"; y: number; gap: number; sz?: number; items: { words: Word[] }[] }
   | { k: "chip"; img: string; label: string; y: number; t: number }
-  | { k: "props"; t: number }
+  | { k: "props"; t: number; a: string; b: string; bWide?: boolean }
   | { k: "mark"; y: number; t: number };
 export type Scene = { t0: number; t1: number; grid?: boolean; els: El[] };
 export type IFProps = { plan: { scenes: Scene[]; sfx: { t: number; src: string; vol: number; dur: number }[]; watermark: string }; audioSrc: string; audioDurationSec: number };
@@ -90,15 +90,16 @@ const Disc: React.FC<{ x: number; y: number; d: number; img: string; wide?: bool
   </div>
 );
 
-const Props: React.FC<{ time: number; t: number }> = ({ time, t }) => {
+const Props: React.FC<{ time: number; el: Extract<El, { k: "props" }> }> = ({ time, el }) => {
+  const t = el.t;
   const a = clamp((time - t) / 0.55), e = easeOut(a), drift = (time - t) * 5;
   const fly = (dx: number, dy: number) => `translate(${(1 - e) * dx}px, ${(1 - e) * dy}px)`;
   return (
     <>
       <div style={{ position: "absolute", inset: 0, transform: fly(120, -120) }}><Star x={540} y={40} r={150} rot={drift} seed={1} /></div>
       <div style={{ position: "absolute", inset: 0, transform: fly(-120, 120) }}><Star x={60} y={1050} r={160} rot={-drift} seed={2} /></div>
-      <div style={{ position: "absolute", inset: 0, transform: fly(-140, -60) }}><Disc x={166} y={198} d={190} img="v7/25/google-g-logo-tile.png" /></div>
-      <div style={{ position: "absolute", inset: 0, transform: fly(140, 80) }}><Disc x={424} y={872} d={190} img="v7/25/tabletop-logo-endcard-crop.png" wide /></div>
+      <div style={{ position: "absolute", inset: 0, transform: fly(-140, -60) }}><Disc x={166} y={198} d={190} img={el.a} /></div>
+      <div style={{ position: "absolute", inset: 0, transform: fly(140, 80) }}><Disc x={424} y={872} d={190} img={el.b} wide={el.bWide} /></div>
     </>
   );
 };
@@ -167,7 +168,7 @@ const SceneView: React.FC<{ scene: Scene; time: number }> = ({ scene, time }) =>
       if (el.k === "card") return <Card key={i} el={el} time={time} />;
       if (el.k === "bullets") return <Bullets key={i} el={el} time={time} />;
       if (el.k === "chip") return <Chip key={i} el={el} time={time} />;
-      if (el.k === "props") return <Props key={i} time={time} t={el.t} />;
+      if (el.k === "props") return <Props key={i} time={time} el={el} />;
       return <Mark key={i} el={el} time={time} />;
     })}
   </>

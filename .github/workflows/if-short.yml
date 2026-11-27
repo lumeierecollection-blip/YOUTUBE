@@ -1,6 +1,6 @@
 name: IF-style Short (single video)
 
-# One-off render of Short 25 in the InsiderForce-style template. A new workflow file cannot be dispatched from a
+# Render of Shorts 25, 22, 24, 31, 32, 33 in the InsiderForce-style template. A new workflow file cannot be dispatched from a
 # feature branch, so a push to this branch touching the IF files runs it.
 on:
   push:
@@ -51,25 +51,30 @@ jobs:
         working-directory: ${{ env.V5 }}
         run: |
           set -euo pipefail
-          node if/render-if.mjs
+          for id in 25 22 24 31 32 33; do
+            IF_ID=$id node if/render-if.mjs
+          done
 
       - name: Verify
         working-directory: ${{ env.V5 }}
         run: |
           set -euo pipefail
-          ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,duration -of default=nw=1 if/out/if25.mp4
-          ffmpeg -v error -i if/out/if25.mp4 -f null -
+          for id in 25 22 24 31 32 33; do
+            echo "== $id"
+            ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,duration -of default=nw=1 if/out/if$id.mp4
+            ffmpeg -v error -i if/out/if$id.mp4 -f null -
+          done
 
       - name: Upload
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
-          name: if-short-25-${{ github.run_number }}
+          name: if-shorts-${{ github.run_number }}
           overwrite: true
           path: |
-            ${{ env.V5 }}/if/out/if25.mp4
-            ${{ env.V5 }}/if/out/contact.png
-            ${{ env.V5 }}/if/out/stills/*
-            ${{ env.V5 }}/if/out/if25.props.json
+            ${{ env.V5 }}/if/out/if*.mp4
+            ${{ env.V5 }}/if/out/contact*.png
+            ${{ env.V5 }}/if/out/stills/**
+            ${{ env.V5 }}/if/out/if*.props.json
           if-no-files-found: warn
           retention-days: 14

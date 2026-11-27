@@ -1,0 +1,69 @@
+{
+ "id": "33",
+ "sources": [
+  {
+   "url": "https://claude.com/resources/articles/sheets-whiteboards-data",
+   "fetched": true,
+   "note": "Fetched with curl, HTML stripped to text, read in full."
+  },
+  {
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets",
+   "fetched": true,
+   "note": "Fetched with curl, HTML stripped to text, read in full."
+  }
+ ],
+ "facts": [
+  {
+   "id": "f1",
+   "claim": "Claude Sheets is a spreadsheet inside Claude, launched in beta on 10 November 2026.",
+   "verbatim_support": "Today we’re launching Claude Whiteboards and Claude Sheets in beta",
+   "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+  },
+  {
+   "id": "f2",
+   "claim": "Ask for a tracker, budget or model and Claude builds a working sheet.",
+   "verbatim_support": "Ask for a tracker, budget, or model, and Claude builds a working sheet",
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets"
+  },
+  {
+   "id": "f3",
+   "claim": "Claude can generate spreadsheets with tabs, formulas, formatting and drop-downs, e.g. a campaign tracker or hiring budget.",
+   "verbatim_support": "Claude can now generate spreadsheets with tabs, formulas, formatting, and drop-downs, often from just a prompt like asking for a campaign tracker or a hiring budget.",
+   "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+  },
+  {
+   "id": "f4",
+   "claim": "When Claude changes a sheet, each edit is outlined as it lands.",
+   "verbatim_support": "When Claude changes a sheet, each edit is outlined as it lands, so you can see what changed.",
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets"
+  },
+  {
+   "id": "f5",
+   "claim": "When other people are in the sheet, everyone works in the same cells at the same time.",
+   "verbatim_support": "When other people are in the sheet, you all work in the same cells at the same time.",
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets"
+  },
+  {
+   "id": "f6",
+   "claim": "Claude Sheets includes over 250 functions.",
+   "verbatim_support": "Claude Sheets includes over 250 functions.",
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets"
+  },
+  {
+   "id": "f7",
+   "claim": "For full Excel functionality, export to .xlsx or CSV or use Claude for Excel.",
+   "verbatim_support": "you can export your file to .xlsx or CSV, or use",
+   "url": "https://claude.com/resources/articles/sheets-whiteboards-data"
+  },
+  {
+   "id": "f8",
+   "claim": "Claude Sheets is in beta on Pro, Max, Ultra, Team and Enterprise plans.",
+   "verbatim_support": "Claude Sheets is available in beta on Pro, Max, Ultra, Team, and Enterprise plans.",
+   "url": "https://support.claude.com/en/articles/18324300-get-started-with-claude-sheets"
+  }
+ ],
+ "numbers": [],
+ "timeline": [],
+ "unsupported": [],
+ "wording_fixes": []
+}

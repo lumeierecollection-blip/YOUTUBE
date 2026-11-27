@@ -1,0 +1,64 @@
+{
+ "id": "31",
+ "sources": [
+  {
+   "url": "https://claude.com/resources/articles/install-as-app",
+   "fetched": true,
+   "note": "Fetched with curl, HTML stripped to text, read in full."
+  }
+ ],
+ "facts": [
+  {
+   "id": "f1",
+   "claim": "Install as app turns a Claude artifact into a Mac or Windows app; it is rolling out in beta.",
+   "verbatim_support": "The \"Install as app\" feature is rolling out in beta in Claude for Mac and Windows.",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f2",
+   "claim": "An installed app gets its own icon and opens in its own window instead of inside Claude.",
+   "verbatim_support": "it gets its own icon and opens in its own window instead of inside Claude",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f3",
+   "claim": "Each app can use Claude and your connectors and updates automatically when the artifact is edited.",
+   "verbatim_support": "Each app can use Claude and your connectors, and it updates automatically when the underlying artifact is edited.",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f4",
+   "claim": "Installed apps can send notifications or add items to the menu bar or system tray.",
+   "verbatim_support": "Installed apps can send notifications or add items to your menu bar or system tray.",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f5",
+   "claim": "There are three permission levels: Default, App permissions, Full computer access.",
+   "verbatim_support": "There are three levels of permissions:",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f6",
+   "claim": "Anthropic people made Linnet, a full layered image editor.",
+   "verbatim_support": "Linnet , a full layered image editor",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f7",
+   "claim": "Anthropic people made Tern, a terminal with Claude by your side.",
+   "verbatim_support": "Tern , a terminal with Claude by your side to help and explain",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  },
+  {
+   "id": "f8",
+   "claim": "You need to be online and signed in to Claude to open an app.",
+   "verbatim_support": "You need to be online and signed in to Claude to open an app.",
+   "url": "https://claude.com/resources/articles/install-as-app"
+  }
+ ],
+ "numbers": [],
+ "timeline": [],
+ "unsupported": [],
+ "wording_fixes": []
+}

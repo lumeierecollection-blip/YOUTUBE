@@ -1,0 +1,164 @@
+{
+ "id": "22",
+ "sources": [
+  {
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "fetched": true,
+   "note": "Fetched via WebFetch (summarised extraction)."
+  },
+  {
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/",
+   "fetched": true,
+   "note": "Fetched via WebFetch (summarised extraction). Article dated Nov 17, 2026."
+  }
+ ],
+ "facts": [
+  {
+   "id": "f1",
+   "claim": "GPT-6.2 Astra is OpenAI's new frontier model for hardest projects.",
+   "verbatim_support": "our new frontier model for your hardest projects",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+  },
+  {
+   "id": "f2",
+   "claim": "GPT-6.2 Sol is an efficient, versatile model for everyday work.",
+   "verbatim_support": "our efficient, versatile model for everyday work",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+  },
+  {
+   "id": "f3",
+   "claim": "Astra is positioned for documents, slides, coding and more.",
+   "verbatim_support": "documents, slides, coding, and more",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+  },
+  {
+   "id": "f4",
+   "claim": "OpenAI lists 3D design and interactive web experiences among use cases, and enhanced frontend development for Astra.",
+   "verbatim_support": "3D design and interactive web experiences; enhanced frontend development (extraction)",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/"
+  },
+  {
+   "id": "f5",
+   "claim": "9to5google reports the OpenAI launch came a week after a Claude 5.2 release ('Claude Fable and Mythos 5.2').",
+   "verbatim_support": "Claude Fable and Mythos 5.2 released a week before OpenAI's announcement (extraction); URL slug: ...a-week-after-claude-5-2",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/"
+  },
+  {
+   "id": "f6",
+   "claim": "OpenAI says Astra more than doubled Claude Fable 5.2's pass rate at about one-sixth the cost on Harvey LAB-AA legal evaluations.",
+   "verbatim_support": "more than doubled Claude Fable 5.2's pass rate at about one-sixth the cost",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verification_note": "The word 'legal' (Harvey LAB-AA legal evaluations) is NOT in the fetched verbatim; the 9to5google article has no legal-benchmark mention. The script says 'a benchmark it cites'. The cost metric (per task or per run) is not defined in the extraction."
+  },
+  {
+   "id": "f7",
+   "claim": "Sol keeps its predecessor's pricing (not used in the script).",
+   "verbatim_support": "Sol maintains predecessor pricing (extraction wording, not a verbatim quote)",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/",
+   "added": "2026-11-26 from research brief item 22-N1"
+  }
+ ],
+ "numbers": [
+  {
+   "label": "Astra input price",
+   "value": 8,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Input: $8",
+   "id": "n1"
+  },
+  {
+   "label": "Astra output price",
+   "value": 40,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Output: $40",
+   "id": "n2"
+  },
+  {
+   "label": "Astra cached input price",
+   "value": 0.4,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Cached input: $0.40",
+   "id": "n3"
+  },
+  {
+   "label": "Sol input price",
+   "value": 2,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Input: $2",
+   "id": "n4"
+  },
+  {
+   "label": "Sol output price",
+   "value": 10,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Output: $10",
+   "id": "n5"
+  },
+  {
+   "label": "Sol cached input price",
+   "value": 0.1,
+   "unit": "USD per 1M tokens",
+   "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+   "verbatim_support": "Cached input: $0.10",
+   "id": "n6"
+  },
+  {
+   "label": "Astra-to-Sol price ratio (input 8/2, output 40/10, cached 0.40/0.10)",
+   "value": 4,
+   "unit": "x",
+   "derived": true,
+   "derivation": "8/2 = 4; 40/10 = 4; 0.40/0.10 = 4",
+   "id": "n7"
+  }
+ ],
+ "timeline": [
+  {
+   "date": "~2026-11-10",
+   "event": "Claude 5.2 release, about a week before OpenAI's launch (exact date not confirmed in fetched extraction).",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/",
+   "verbatim_support": "a week before OpenAI's announcement",
+   "id": "t1"
+  },
+  {
+   "date": "2026-11-17",
+   "event": "OpenAI releases GPT-6.2 Astra and Sol (9to5google article date).",
+   "url": "https://9to5google.com/2026/11/17/openai-releases-gpt-6-2-astra-and-sol-for-complex-projects-a-week-after-claude-5-2/",
+   "verbatim_support": "Article Date: November 17, 2026",
+   "id": "t2"
+  }
+ ],
+ "unsupported": [
+  "'It started a price war': no fetched page says price war or compares prices against a competitor; no competitor prices were fetched.",
+  "'OpenAI didn't just clap back': no source frames the launch as a response.",
+  "'It's market pressure' and 'the real winner might be anyone who can now afford powerful AI': opinion, unsourced.",
+  "'That's not just a benchmark win': only a Harvey LAB-AA legal benchmark claim is on the page; no 'benchmark win' framing.",
+  "'Heavy work... even 3D frontends': OpenAI wording is '3D design and interactive web experiences' / 'enhanced frontend development'."
+ ],
+ "wording_fixes": [
+  {
+   "script_phrase": "OpenAI didn't just clap back. It started a price war.",
+   "problem": "No source supports 'price war' or 'clap back'; no competitor pricing fetched.",
+   "safer_phrase": "OpenAI just launched two new models with very different prices."
+  },
+  {
+   "script_phrase": "One week after Claude Fable 5.2",
+   "problem": "9to5google names 'Claude Fable and Mythos 5.2'; fine to say a week after Claude 5.2.",
+   "safer_phrase": "A week after Claude 5.2"
+  },
+  {
+   "script_phrase": "Astra is for heavy work: docs, slides, code, even 3D frontends.",
+   "problem": "'3D frontends' is not OpenAI's phrasing.",
+   "safer_phrase": "Astra is for the hardest projects: documents, slides, code, even 3D design."
+  },
+  {
+   "script_phrase": "That's not just a benchmark win. It's market pressure.",
+   "problem": "Unsourced opinion.",
+   "safer_phrase": "Same family, five times apart on price."
+  }
+ ]
+}
