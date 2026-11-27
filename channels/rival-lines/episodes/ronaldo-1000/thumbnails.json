@@ -4,9 +4,9 @@
     {
       "id": "a",
       "title_id": "a",
-      "img": "c13",
+      "img": "c10",
       "side": "left",
-      "cutout": { "h": 700, "top": 30, "edge": 0 },
+      "cutout": { "h": 780, "top": 0, "edge": -20, "fadeSide": 72 },
       "headline": [[{ "t": "the " }, { "t": "odds?", "b": true }]],
       "visual": "curve",
       "note": "median, {median}"

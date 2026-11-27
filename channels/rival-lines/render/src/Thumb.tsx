@@ -37,7 +37,7 @@ export const Thumb: React.FC<any> = ({ theme, data, thumb }) => {
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at ${left ? "62%" : "38%"} 40%, #ffffff 0%, #ffffff 40%, ${theme.paper} 100%)` }}>
       <div style={{ position: "absolute", top: cut.top, height: cut.h, ...edge, display: "flex" }}>
-        <Img src={src} style={{ height: cut.h, width: "auto", filter: "blur(16px)", opacity: 0.45, transform: `scaleX(1.35) translateX(${left ? 40 : -40}px)`, transformOrigin: left ? "left center" : "right center", WebkitMaskImage: trailMask, maskImage: trailMask }} />
+        <Img src={src} style={{ height: cut.h, width: "auto", filter: "blur(22px)", opacity: 0.28, transform: `scaleX(1.25) translateX(${left ? 40 : -40}px)`, transformOrigin: left ? "left center" : "right center", WebkitMaskImage: trailMask, maskImage: trailMask }} />
       </div>
       <div style={{ position: "absolute", top: cut.top, height: cut.h, ...edge, display: "flex" }}>
         <Img src={src} style={{ height: cut.h, width: "auto", ...mask }} />
@@ -68,7 +68,7 @@ export const Thumb: React.FC<any> = ({ theme, data, thumb }) => {
               <text x={x0} y={y1 - 22} fontFamily={didone} fontWeight={900} fontSize={44} fill={theme.ink}>100%</text>
               <line x1={x0} x2={x1} y1={y1} y2={y1} stroke={theme.ink} strokeWidth={4} strokeDasharray="12 10" />
               <line x1={x0} x2={x1} y1={y0} y2={y0} stroke={theme.muted} strokeOpacity={0.6} strokeWidth={4} />
-              {[6, 12, 18].map((m) => <text key={m} x={X(m)} y={y0 + 42} textAnchor="middle" fontFamily={didone} fontWeight={700} fontSize={32} fill={theme.muted}>{m}</text>)}
+              {[6, 12].map((m) => <text key={m} x={X(m)} y={y0 + 42} textAnchor="middle" fontFamily={didone} fontWeight={700} fontSize={32} fill={theme.muted}>{m}</text>)}
               <text x={x1} y={y0 + 42} textAnchor="end" fontFamily={didone} fontWeight={700} fontSize={32} fill={theme.muted}>24 months</text>
               <path d={ps.map((p, m) => `${m ? "L" : "M"} ${X(m)} ${Y(p)}`).join(" ")} fill="none" stroke={theme.ink} strokeWidth={13} strokeLinejoin="round" strokeLinecap="round" />
               <circle cx={mx} cy={my} r={17} fill={theme.ink} />
@@ -85,7 +85,7 @@ export const Thumb: React.FC<any> = ({ theme, data, thumb }) => {
               <text x={290} y={80} {...rowGrey} fontWeight={700}>the target</text>
               <line x1={0} x2={colW} y1={125} y2={125} stroke={theme.accent} strokeWidth={5} strokeDasharray="10 8" />
               <text x={0} y={250} {...rowHot}>{data.totals.official_goals}</text>
-              <text x={280} y={250} {...rowHot} fontSize={76}>Ronaldo, now</text>
+              <text x={280} y={250} {...rowHot} fontSize={62}>Ronaldo, now</text>
               <text x={150} y={380} fontFamily={didoneItalic} fontStyle="italic" fontWeight={500} fontSize={46} fill={theme.ink}>{thumb.note}</text>
               <Arrow from={[120, 345]} to={[60, 285]} bend={-20} color={theme.accent} />
             </g>

@@ -30,6 +30,8 @@ const b03 = sentences(beat("b03").text);
 const hook = [...sentences(beat("b01").text), ...sentences(beat("b02").text).slice(0, 2), b03[b03.length - 1]].join(" ");
 
 const usedKeys = new Set(JSON.stringify(props.scenes).match(/"img":"(c\d+)"/g)?.map((m) => m.slice(7, -1)) || []);
+const thumbSpec = path.join(ep, "thumbnails.json");
+if (fs.existsSync(thumbSpec)) for (const v of readJson(thumbSpec).variants) usedKeys.add(v.img);
 const usedImages = Object.entries(props.images).filter(([k]) => usedKeys.has(k)).map(([, im]) => im);
 const credits = [...new Set(usedImages.map((im) => im.credit))];
 
