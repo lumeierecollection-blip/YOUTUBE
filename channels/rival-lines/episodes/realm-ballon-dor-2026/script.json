@@ -9,7 +9,9 @@
   "https://www.beinsports.com/en-us/soccer/articles/did-harry-kane-win-the-2026-ballon-d-or-the-announcement-that-sparked-chaos-2026-10-26",
   "https://www.goal.com/en/news/the-ballon-d-or-a-glaring-error-by-the-official-website-sparks-controversy-over-the-identity-of-the-winner/blt1074e0fb1608b97a",
   "https://www.goal.com/en/news/potential-scandal-french-police-investigate-suspicions-over-ballon-d-or-voting/blt1e23865c65cd016f",
-  "https://www.goal.com/en/lists/does-it-shake-the-credibility-of-the-ballon-d-or-journalist-admits-his-voting-error-i-apologise-to-kane/blteeb0d7807521b9fb"
+  "https://www.goal.com/en/lists/does-it-shake-the-credibility-of-the-ballon-d-or-journalist-admits-his-voting-error-i-apologise-to-kane/blteeb0d7807521b9fb",
+  "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_at_Real_Madrid%27s_UEFA_Champions_League_game_versus_Juventus_Turin_on_22_October_2025_(video).webm",
+  "https://commons.wikimedia.org/wiki/File:The_Wave_at_Netherlands_v_Tunisia_2026_World_Cup.webm"
  ],
  "beats": [
   {
@@ -37,6 +39,87 @@
      "Kane",
      "Mbappé",
      "gap"
+    ]
+   }
+  },
+  {
+   "id": "n01",
+   "accent": [
+    "fifth",
+    "2001"
+   ],
+   "text": "Kane is the fifth Englishman to win the award. The last before him was Michael Owen, in 2001.",
+   "visual": {
+    "type": "cutout",
+    "img": "kane3",
+    "label": "Fifth Englishman",
+    "sub": "Last one: Michael Owen, 2001",
+    "side": "left",
+    "cue": "fifth"
+   }
+  },
+  {
+   "id": "n02",
+   "accent": [
+    "73",
+    "Gerd Müller"
+   ],
+   "text": "He also took the Gerd Müller Trophy, for the top striker, with 73 goals. The vote covered 3 August 2025 to 19 July 2026.",
+   "visual": {
+    "type": "bigstat",
+    "value": "73",
+    "count": true,
+    "label": "goals, Gerd Müller Trophy",
+    "sub": "Eligibility: 3 Aug 2025 to 19 Jul 2026",
+    "size": 460,
+    "cue": "73"
+   }
+  },
+  {
+   "id": "n03",
+   "accent": [
+    "Mbappé",
+    "Juventus"
+   ],
+   "text": "Second place went to Kylian Mbappé, of Real Madrid. This is him at a Champions League game against Juventus, in October 2025.",
+   "visual": {
+    "type": "footage",
+    "clip": "mbappe",
+    "tag": {
+     "value": "1,027",
+     "label": "Mbappé, 2nd"
+    },
+    "cues": [
+     "Second",
+     "This"
+    ]
+   }
+  },
+  {
+   "id": "n04",
+   "accent": [
+    "881",
+    "618"
+   ],
+   "text": "Third was Lamine Yamal, on 881, who also won the Kopa Trophy for the best young player. In the women's vote, Alexia Putellas won with 618 points, ahead of Ewa Pajor on 532.",
+   "visual": {
+    "type": "bars",
+    "title": "Women's Ballon d'Or, points",
+    "max": 700,
+    "items": [
+     {
+      "label": "Putellas",
+      "value": 618,
+      "hot": true
+     },
+     {
+      "label": "Pajor",
+      "value": 532
+     }
+    ],
+    "cues": [
+     "Alexia",
+     "Ewa"
     ]
    }
   },
@@ -382,6 +465,26 @@
     "sub": "3rd overall, 881 points",
     "side": "right",
     "cue": "Yamal"
+   }
+  },
+  {
+   "id": "n05",
+   "accent": [
+    "25",
+    "June"
+   ],
+   "text": "The voting window ran from 3 August 2025 to 19 July 2026. A World Cup match like Netherlands against Tunisia, on 25 June 2026, sits inside it.",
+   "visual": {
+    "type": "footage",
+    "clip": "wave",
+    "tag": {
+     "value": "25 JUN",
+     "label": "Netherlands v Tunisia"
+    },
+    "cues": [
+     "voting",
+     "World"
+    ]
    }
   },
   {

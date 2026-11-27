@@ -1,0 +1,25 @@
+{
+  "_note": "Audio plan for the Football Realm style episodes. Reference (data/rival-lines/audio-library/audio-design-analysis.md, Football Realm video YN31DA3o2Qs): one continuous bed at 112-136 bpm, about 17 dB under the voice, and frequent short hits on scene changes (3.5 impact candidates a minute, 0.8 whooshes). The only recorded CC0 sounds we hold are the five in scripts/sfx-cc0.mjs; there is no impact recording, so none is played. Beds are licence-verified at source (audio/tracks_manual.json licence_verified_at_source). Music choice per episode is a judgement, not a measurement of taste; not auditioned by ear.",
+  "episodes": {
+    "realm-ballon-dor-2026": { "bed": "Driving in the rain", "why": "117 bpm, energetic, 346 s: longer than the 312 s episode, so it never loops; closest to the reference's 112-129 bpm upbeat sections" },
+    "realm-man-united-2026": { "bed": "Status Quo", "why": "dark cinematic, builds, 144 bpm: suits a club in a slump; 165 s so it loops once over 204 s" }
+  },
+  "bed_lufs_under_voice": -30,
+  "sfx_max_per_minute": 5,
+  "sfx_min_gap_s": 5,
+  "sfx_by_visual": {
+    "cutout": { "slot": "shutter", "offset_s": 0.1 },
+    "footage": { "slot": "whip", "offset_s": 0.0 },
+    "bigstat": { "slot": "switch", "offset_s": 0.1 },
+    "ballot": { "slot": "switch", "offset_s": 0.1 },
+    "ruler": { "slot": "whoosh", "offset_s": 0.0 },
+    "timeline": { "slot": "whoosh", "offset_s": 0.0 },
+    "headlines": { "slot": "paper", "offset_s": 0.1 },
+    "quote": { "slot": "paper", "offset_s": 0.1 },
+    "versus": { "slot": "whoosh", "offset_s": 0.0 },
+    "ranking": { "slot": "whoosh", "offset_s": 0.0 },
+    "tiles": { "slot": "shutter", "offset_s": 0.1 },
+    "faces": { "slot": "shutter", "offset_s": 0.1 },
+    "results": { "slot": "switch", "offset_s": 0.1 }
+  }
+}

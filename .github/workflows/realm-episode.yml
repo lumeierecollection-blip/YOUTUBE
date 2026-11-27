@@ -66,6 +66,7 @@ jobs:
         run: |
           set -euo pipefail
           STRICT_CUES=1 node $RL/scripts/build-realm-plan.mjs $EP
+          node $RL/scripts/pick-audio-realm.mjs $EP
           node $RL/scripts/gate-realm.mjs $EP
           node $RL/scripts/build-realm-publish.mjs $EP
       - name: Install Remotion
@@ -130,6 +131,10 @@ jobs:
       - name: Plan, gate and publish text
         run: |
           set -euo pipefail
+          STRICT_CUES=1 node $RL/scripts/build-realm-plan.mjs $EP
+          node $RL/scripts/pick-audio-realm.mjs $EP
+          node $RL/scripts/mix-audio.mjs $EP
+          STRICT_LICENCE=1 node $RL/scripts/gate-soundtrack.mjs $EP
           STRICT_CUES=1 node $RL/scripts/build-realm-plan.mjs $EP
           node $RL/scripts/gate-realm.mjs $EP
           node $RL/scripts/build-realm-publish.mjs $EP

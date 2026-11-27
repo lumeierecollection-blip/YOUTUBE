@@ -1,6 +1,6 @@
 // Gate for a Rival Lines "realm" episode. usage: node gate-realm.mjs <episode_dir>
 // Checks: SCR-14 (every sources_used URL appears in the research files), every number spoken in the script traces to a number in
-// research/facts.json or gate-allow.json, every scene has a non-text visual and its own visual signature, every image used has
+// research/facts.json or gate-allow.json, every scene has a non-text visual and its own visual signature, every image and clip used has
 // author, licence and page, SCR-13 (no colour literals in the realm render source), every cue found in the narration, closing scene.
 // Limits, stated plainly: numbers written as words ("three", "ten") are not checked; a number that appears in the facts by
 // coincidence passes; the gate cannot tell whether a sentence says what the cited page says, only that its numbers and URLs exist.
@@ -44,7 +44,7 @@ for (const b of script.beats) {
   }
 }
 
-const nonText = new Set(["versus", "timeline", "clock", "headlines", "quote", "dots", "coins", "faces", "ladder", "ranking", "ruler", "ballot", "cutout", "cards3", "tiles", "table", "bigstat", "results", "bars", "cards"]);
+const nonText = new Set(["versus", "timeline", "clock", "headlines", "quote", "dots", "coins", "faces", "ladder", "ranking", "ruler", "ballot", "cutout", "cards3", "tiles", "table", "bigstat", "results", "bars", "cards", "footage"]);
 const sigs = new Map();
 const keysOf = (v, out = []) => {
   if (Array.isArray(v)) v.forEach((x) => keysOf(x, out));
@@ -80,6 +80,13 @@ for (const id of used) {
   if (!im) { fail("IMG", `${id} not in props.images`); continue; }
   if (!im.author || !im.license || !im.page) fail("IMG", `${id} lacks author, licence or page`);
   if (!fs.existsSync(path.join(repo, "channels", "rival-lines", "render", "public", im.file))) fail("IMG", `${id} file missing: ${im.file}`);
+}
+
+for (const [id, c] of Object.entries(props.footage || {})) {
+  if (!c.author || !c.license || !c.page || !c.date) fail("FTG", `clip ${id} lacks author, licence, page or date`);
+  if (!/CC0|CC BY|public domain/i.test(c.license)) fail("FTG", `clip ${id} licence "${c.license}" is not an accepted open licence`);
+  if (!/(19|20)\d\d/.test(c.label)) fail("FTG", `clip ${id} label does not state when it was filmed`);
+  if (!fs.existsSync(path.join(repo, "channels", "rival-lines", "render", "public", c.file))) fail("FTG", `clip ${id} file missing: ${c.file}`);
 }
 
 const colour = /#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/;

@@ -1,0 +1,15 @@
+{
+ "note": "Real clip from Wikimedia Commons under an open licence, trimmed to the phone-video portion and re-encoded without audio. It is filmed at Old Trafford on Boxing Day 2023, not this season, and the on-screen label says so.",
+ "clips": [
+  {
+   "id": "villa2023", "file": "oldtrafford-villa-2023.mp4", "w": 410, "h": 720, "dur": 14,
+   "label": "Manchester United v Aston Villa, Old Trafford, Boxing Day 26 December 2023",
+   "archive": true,
+   "author": "Locked Down Spectator", "license": "CC BY 3.0", "date": "2023-12-26",
+   "page": "https://commons.wikimedia.org/wiki/File:Alejandro_Garnacho_e_Rasmus_H%C3%B8jlund_marcam_gols_contra_o_Aston_Villa.webm",
+   "source_file": "Alejandro Garnacho e Rasmus Højlund marcam gols contra o Aston Villa.webm",
+   "description_on_commons": "Alejandro Garnacho scoring a double against Aston Villa; Rasmus Højlund scoring the winning goal against Aston Villa on Boxing Day of the 2023/24 Premier League",
+   "trim": "144-158 s of 200 s, cropped to the portrait phone video"
+  }
+ ]
+}

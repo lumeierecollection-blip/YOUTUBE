@@ -1,0 +1,23 @@
+{
+ "note": "Real clips from Wikimedia Commons under open licences, trimmed and re-encoded without audio (the original audio is not used). Each label says what the clip is and when it was filmed; none shows the event it sits next to, and none is presented as if it did.",
+ "clips": [
+  {
+   "id": "mbappe", "file": "mbappe-juventus.mp4", "w": 720, "h": 1280, "dur": 6.6,
+   "label": "Kylian Mbappé at Real Madrid v Juventus, Champions League, 22 October 2025",
+   "archive": true,
+   "author": "SdHb", "license": "CC BY-SA 4.0", "date": "2025-10-22",
+   "page": "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_at_Real_Madrid%27s_UEFA_Champions_League_game_versus_Juventus_Turin_on_22_October_2025_(video).webm",
+   "source_file": "Kylian Mbappe at Real Madrid's UEFA Champions League game versus Juventus Turin on 22 October 2025 (video).webm",
+   "trim": "whole clip, 0-6.6 s, scaled to 720x1280"
+  },
+  {
+   "id": "wave", "file": "worldcup-wave.mp4", "w": 1280, "h": 720, "dur": 14,
+   "label": "Netherlands v Tunisia, 2026 World Cup, 25 June 2026 (the crowd's wave)",
+   "archive": false,
+   "author": "elisfkc3", "license": "CC BY-SA 4.0", "date": "2026-06-25",
+   "page": "https://commons.wikimedia.org/wiki/File:The_Wave_at_Netherlands_v_Tunisia_2026_World_Cup.webm",
+   "source_file": "The Wave at Netherlands v Tunisia 2026 World Cup.webm",
+   "trim": "22-36 s of 64 s, scaled from 3840x2160 to 1280x720"
+  }
+ ]
+}

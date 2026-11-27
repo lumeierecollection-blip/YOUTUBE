@@ -1,13 +1,14 @@
 import React, { createContext, useContext } from "react";
-import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Img, Loop, OffthreadVideo, Sequence, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont as loadSans } from "@remotion/google-fonts/InterTight";
 import { loadFont as loadCond } from "@remotion/google-fonts/Anton";
 
 // The Football Realm look, measured from its frames (data/rival-lines/paperpitch-footballrealm-reference-study.md and the frame sheet
 // built from one of its videos): a maroon halftone ground, people cut out of their photos and set in a salmon circle with a thin
 // outline, price-tag cards, short bottom captions with one accent word. Every colour comes from props.theme (channels.json realm_colors).
-// What this does not copy: the reference runs press-conference and match footage under all of it. We use none, so every scene is
-// a photo cutout or a graphic. Photos are real Wikimedia Commons files with their credit shown on screen.
+// The reference runs press-conference and match footage under all of it. Broadcast footage is not ours to use; the footage scene here
+// plays only clips with a verified open licence (Wikimedia Commons), labelled with what and when they really are. Photos are
+// Wikimedia Commons files with their credit shown on screen.
 const sans = loadSans("normal", { weights: ["500", "700", "900"], subsets: ["latin"] }).fontFamily;
 const cond = loadCond("normal", { weights: ["400"], subsets: ["latin"] }).fontFamily;
 
@@ -18,8 +19,8 @@ const pg = (t: number, at: number, dur = 0.5) => ease((t - at) / dur);
 const pop = (t: number, at: number, dur = 0.45) => back((t - at) / dur);
 const norm = (s: string) => String(s).toLowerCase().replace(/[^a-z0-9é,.:]/g, "").replace(/^[,.:]+|[,.:]+$/g, "");
 
-type Ctx = { theme: any; images: any };
-const C = createContext<Ctx>({ theme: {}, images: {} });
+type Ctx = { theme: any; images: any; footage: any };
+const C = createContext<Ctx>({ theme: {}, images: {}, footage: {} });
 const useCtx = () => useContext(C);
 const useT = () => { const f = useCurrentFrame(); const { fps } = useVideoConfig(); return f / fps; };
 const shade = (c: string, pctv: number) => `color-mix(in srgb, ${c} ${pctv}%, transparent)`;
@@ -535,9 +536,37 @@ const Cards: React.FC<{ v: any }> = ({ v }) => {
   );
 };
 
+/* real licensed footage in a framed panel; the label says exactly what the clip is and when it was filmed */
+const Footage: React.FC<{ v: any }> = ({ v }) => {
+  const { theme, footage } = useCtx(); const t = useT(); const { fps } = useVideoConfig();
+  const clip = footage[v.clip];
+  if (!clip) return null;
+  const portrait = clip.h > clip.w;
+  const H = portrait ? 790 : 664, W = portrait ? Math.round((790 * clip.w) / clip.h) : 1180;
+  const left = portrait ? 220 : 150, top = portrait ? 110 : 150;
+  const a = pop(t, 0.1), b = pop(t, cue(v, 0, 1.2)), c = pop(t, cue(v, 1, 2.4));
+  const colX = left + W + 90;
+  return (
+    <>
+      <div style={{ position: "absolute", left, top, width: W, height: H, border: `8px solid ${theme.outline}`, boxShadow: `14px 16px 0 ${shade(theme.black, 55)}`, overflow: "hidden", background: theme.black, transform: `scale(${clamp(a, 0, 1.03)}) rotate(${portrait ? -1.2 : -0.8}deg)`, opacity: clamp(a) }}>
+        <Loop durationInFrames={Math.max(1, Math.floor(clip.dur * fps))}>
+          <OffthreadVideo src={staticFile(clip.file)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </Loop>
+      </div>
+      <div style={{ position: "absolute", left: colX, top: top + 20, right: 80, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 34 }}>
+        {v.tag ? <div style={{ transform: `scale(${clamp(b, 0, 1.1)})`, transformOrigin: "left center" }}><Tag value={v.tag.value} label={v.tag.label} size={portrait ? 120 : 84} tilt={2} hot /></div> : null}
+        <div style={{ transform: `scale(${clamp(c, 0, 1.05)})`, transformOrigin: "left center", background: theme.card, color: theme.card_ink, border: `3px solid ${theme.card_ink}`, boxShadow: `6px 8px 0 ${shade(theme.black, 45)}`, padding: "16px 22px", maxWidth: portrait ? 760 : 420 }}>
+          <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 22, letterSpacing: 3, color: theme.red, textTransform: "uppercase" }}>{clip.archive ? "Archive footage" : "Footage"}</div>
+          <div style={{ fontFamily: sans, fontWeight: 700, fontSize: 30, lineHeight: 1.15, marginTop: 4 }}>{clip.label}</div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 const VISUALS: Record<string, React.FC<{ v: any }>> = {
   versus: Versus, timeline: Timeline, clock: Clock, headlines: Headlines, quote: Quote, dots: Dots, coins: Coins, faces: Faces, ladder: Ladder,
-  ranking: Ranking, ruler: Ruler, ballot: Ballot, cutout: CutoutScene, cards3: Cards3, tiles: Tiles, table: Table, bigstat: BigStat, results: Results, bars: Bars, cards: Cards,
+  ranking: Ranking, ruler: Ruler, ballot: Ballot, cutout: CutoutScene, cards3: Cards3, tiles: Tiles, table: Table, bigstat: BigStat, results: Results, bars: Bars, cards: Cards, footage: Footage,
 };
 
 /* ---------- shell: ground, captions, credit ---------- */
@@ -578,24 +607,26 @@ const Captions: React.FC<{ scene: any }> = ({ scene }) => {
 };
 
 const SceneShell: React.FC<{ scene: any }> = ({ scene }) => {
-  const { theme, images } = useCtx();
+  const { theme, images, footage } = useCtx();
   const t = useT();
   const V = VISUALS[scene.visual.type];
   const imgs = [...collectImgs(scene.visual)];
   const credit = [...new Set(imgs.map((i) => images[i]?.credit).filter(Boolean))].join("  ·  ");
+  const clipCredit = scene.visual.clip && footage[scene.visual.clip] ? footage[scene.visual.clip].credit : "";
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 42%, ${theme.bg} 0%, ${theme.bg} 45%, ${theme.bg_dark} 100%)`, opacity: ease(t / 0.25) }}>
       <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle, ${shade(theme.halftone, 90)} 2.2px, transparent 2.8px)`, backgroundSize: "15px 15px", WebkitMaskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)", maskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)" }} />
       <div style={{ position: "absolute", left: 40, top: 32, width: 70, height: 70, borderRadius: 70, background: theme.card, border: `4px solid ${theme.card_ink}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: 36, color: theme.card_ink }}>RL</div>
       {V ? <V v={scene.visual} /> : null}
       {credit ? <div style={{ position: "absolute", right: 36, top: 36, maxWidth: 900, textAlign: "right", fontFamily: sans, fontWeight: 500, fontSize: 18, color: theme.text, opacity: 0.6 }}>Photo: {credit}</div> : null}
+      {clipCredit ? <div style={{ position: "absolute", right: 36, top: 36, maxWidth: 900, textAlign: "right", fontFamily: sans, fontWeight: 500, fontSize: 18, color: theme.text, opacity: 0.6 }}>Video: {clipCredit}</div> : null}
       <Captions scene={scene} />
     </AbsoluteFill>
   );
 };
 
-export const RealmEpisode: React.FC<any> = ({ theme, scenes, images, audioSrc, fps }) => (
-  <C.Provider value={{ theme, images }}>
+export const RealmEpisode: React.FC<any> = ({ theme, scenes, images, footage, audioSrc, fps }) => (
+  <C.Provider value={{ theme, images, footage: footage || {} }}>
     <AbsoluteFill style={{ background: theme.bg_dark }}>
       {scenes.map((s: any) => (
         <Sequence key={s.id} from={Math.round(s.t0 * fps)} durationInFrames={Math.max(1, Math.round((s.t1 - s.t0) * fps))}>

@@ -9,7 +9,8 @@
   "https://www.france24.com/en/live-news/20261113-pochettino-appointed-as-man-utd-boss-after-carrick-sacking",
   "https://www.espn.com/soccer/report/_/gameId/401878755",
   "https://en.wikipedia.org/wiki/2026–27_Premier_League",
-  "https://en.wikipedia.org/wiki/2026–27_Manchester_United_F.C._season"
+  "https://en.wikipedia.org/wiki/2026–27_Manchester_United_F.C._season",
+  "https://commons.wikimedia.org/wiki/File:Alejandro_Garnacho_e_Rasmus_H%C3%B8jlund_marcam_gols_contra_o_Aston_Villa.webm"
  ],
  "beats": [
   {
@@ -43,6 +44,71 @@
     "sub": "3 wins, 1 league win",
     "side": "left",
     "cue": "15"
+   }
+  },
+  {
+   "id": "n01",
+   "accent": [
+    "4-4",
+    "sacked"
+   ],
+   "text": "Look at what his United did in the league. A 5-2 win over Ipswich. A 0-3 home loss to Bournemouth. A 2-0 defeat at Chelsea. Then, on 8 November, a 4-4 draw at home to Aston Villa. Four days later he was sacked.",
+   "visual": {
+    "type": "results",
+    "title": "Carrick's United, league",
+    "items": [
+     {
+      "r": "W",
+      "score": "5-2",
+      "vs": "Ipswich",
+      "when": "30 Aug"
+     },
+     {
+      "r": "L",
+      "score": "0-3",
+      "vs": "Bournemouth",
+      "when": "25 Oct"
+     },
+     {
+      "r": "L",
+      "score": "0-2",
+      "vs": "Chelsea",
+      "when": "31 Oct"
+     },
+     {
+      "r": "D",
+      "score": "4-4",
+      "vs": "Aston Villa",
+      "when": "8 Nov"
+     }
+    ],
+    "foot": "Sacked 12 Nov",
+    "cues": [
+     "win",
+     "loss",
+     "defeat",
+     "Then"
+    ]
+   }
+  },
+  {
+   "id": "n02",
+   "accent": [
+    "archive",
+    "one"
+   ],
+   "text": "This is Old Trafford against the same opponent, Aston Villa, on Boxing Day 2023. It is archive footage, not from this season. This season, United have won one league game.",
+   "visual": {
+    "type": "footage",
+    "clip": "villa2023",
+    "tag": {
+     "value": "1",
+     "label": "league wins, 2026-27"
+    },
+    "cues": [
+     "Boxing",
+     "season"
+    ]
    }
   },
   {
@@ -92,6 +158,43 @@
     "sub": "Contract to the end of 2028/29",
     "side": "right",
     "cue": "only"
+   }
+  },
+  {
+   "id": "n03",
+   "accent": [
+    "Messi",
+    "Mbappé",
+    "Neymar"
+   ],
+   "text": "His previous jobs include Southampton, Tottenham, Chelsea and Paris Saint-Germain, where he managed Messi, Mbappé and Neymar.",
+   "visual": {
+    "type": "tiles",
+    "img": "pochettino1",
+    "tiles": [
+     {
+      "value": "SOU",
+      "label": "Southampton"
+     },
+     {
+      "value": "TOT",
+      "label": "Tottenham"
+     },
+     {
+      "value": "CHE",
+      "label": "Chelsea"
+     },
+     {
+      "value": "PSG",
+      "label": "Paris Saint-Germain"
+     }
+    ],
+    "cues": [
+     "Southampton",
+     "Tottenham",
+     "Chelsea",
+     "Paris"
+    ]
    }
   },
   {
@@ -317,6 +420,36 @@
      "5",
      "5",
      "23"
+    ]
+   }
+  },
+  {
+   "id": "n04",
+   "accent": [
+    "Brentford",
+    "Newcastle"
+   ],
+   "text": "After Liverpool come Brentford at home on 28 November, then Newcastle away on 2 December.",
+   "visual": {
+    "type": "timeline",
+    "items": [
+     {
+      "when": "22 Nov",
+      "what": "Liverpool, lost 4-0"
+     },
+     {
+      "when": "28 Nov",
+      "what": "Brentford, home"
+     },
+     {
+      "when": "2 Dec",
+      "what": "Newcastle, away"
+     }
+    ],
+    "cues": [
+     "Liverpool",
+     "Brentford",
+     "Newcastle"
     ]
    }
   },

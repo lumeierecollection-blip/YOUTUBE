@@ -87,6 +87,21 @@ const pub = path.join(repo, "channels", "rival-lines", "render", "public", "ep")
 fs.rmSync(pub, { recursive: true, force: true });
 fs.mkdirSync(path.join(pub, "images"), { recursive: true });
 fs.cpSync(path.join(ep, "images"), path.join(pub, "images"), { recursive: true, filter: (s) => !s.endsWith(".json") && !s.endsWith("contact.jpg") });
+const footage = {};
+const fpath = path.join(ep, "footage", "footage.json");
+if (fs.existsSync(fpath)) {
+  const used = new Set();
+  const grab = (v) => { if (Array.isArray(v)) v.forEach(grab); else if (v && typeof v === "object") for (const [k, val] of Object.entries(v)) { if (k === "clip" && typeof val === "string") used.add(val); else grab(val); } };
+  scenes.forEach((s) => grab(s.visual));
+  fs.mkdirSync(path.join(pub, "footage"), { recursive: true });
+  for (const c of readJson(fpath).clips) {
+    if (!used.has(c.id)) continue;
+    const author = String(c.author).replace(/\s+/g, " ").trim();
+    fs.copyFileSync(path.join(ep, "footage", c.file), path.join(pub, "footage", c.file));
+    footage[c.id] = { file: `ep/footage/${c.file}`, w: c.w, h: c.h, dur: c.dur, label: c.label, archive: !!c.archive, author, license: c.license, page: c.page, date: c.date, credit: `${author}, ${c.license}, Wikimedia Commons` };
+  }
+  for (const id of used) if (!footage[id]) throw new Error(`clip ${id} not in footage.json`);
+}
 const mixFile = path.join(ep, "out", "mix.mp3");
 const hasMix = fs.existsSync(mixFile);
 fs.copyFileSync(path.join(ep, "audio", "narration.mp3"), path.join(pub, "narration.mp3"));
@@ -94,8 +109,8 @@ if (hasMix) fs.copyFileSync(mixFile, path.join(pub, "mix.mp3"));
 
 const theme = { ...ch.realm_colors, font: ch.font };
 delete theme.realm_note;
-const props = { format: "realm", theme, durationSec: end, fps: 30, audioSrc: hasMix ? "ep/mix.mp3" : "ep/narration.mp3", scenes, images };
+const props = { format: "realm", theme, durationSec: end, fps: 30, audioSrc: hasMix ? "ep/mix.mp3" : "ep/narration.mp3", scenes, images, footage };
 fs.mkdirSync(path.join(ep, "out"), { recursive: true });
 fs.writeFileSync(path.join(ep, "out", "props.json"), JSON.stringify(props));
-console.log(`realm plan: ${scenes.length} scenes, ${end.toFixed(1)}s, ${usedImgs.size} photos, audio ${hasMix ? "mix.mp3" : "narration only"}`);
+console.log(`realm plan: ${scenes.length} scenes, ${end.toFixed(1)}s, ${usedImgs.size} photos, ${Object.keys(footage).length} clips, audio ${hasMix ? "mix.mp3" : "narration only"}`);
 if (warnings.length) { console.log("CUE WARNINGS:\n" + warnings.join("\n")); process.exitCode = process.env.STRICT_CUES ? 1 : 0; }

@@ -1,69 +1,205 @@
 {
-  "as_of": "2026-11-27",
-  "note": "Every line below was read on the cited page on 2026-11-27 (WebFetch). 'reported' means the page presents it as an allegation or suspicion, not a finding. Where two pages disagree, both are kept.",
-  "sources": [
-    {"url": "https://en.wikipedia.org/wiki/2026_Ballon_d%27Or", "title": "2026 Ballon d'Or (Wikipedia)", "fetched": "2026-11-27"},
-    {"url": "https://www.tntsports.co.uk/football/ballon-d-or/2026/voting-criteria-nominees-points-explained-awards_sto23337809/story.shtml", "title": "How does Ballon d'Or 2026 voting work (TNT Sports)", "fetched": "2026-11-27"},
-    {"url": "https://www.beinsports.com/en-us/soccer/articles/did-harry-kane-win-the-2026-ballon-d-or-the-announcement-that-sparked-chaos-2026-10-26", "title": "Did Harry Kane win the 2026 Ballon d'Or? (beIN SPORTS)", "fetched": "2026-11-27"},
-    {"url": "https://www.goal.com/en/news/the-ballon-d-or-a-glaring-error-by-the-official-website-sparks-controversy-over-the-identity-of-the-winner/blt1074e0fb1608b97a", "title": "A glaring error by the official website (Goal)", "fetched": "2026-11-27"},
-    {"url": "https://www.goal.com/en/news/potential-scandal-french-police-investigate-suspicions-over-ballon-d-or-voting/blt1e23865c65cd016f", "title": "French police investigate suspicions over Ballon d'Or voting (Goal)", "fetched": "2026-11-27"},
-    {"url": "https://www.goal.com/en/lists/does-it-shake-the-credibility-of-the-ballon-d-or-journalist-admits-his-voting-error-i-apologise-to-kane/blteeb0d7807521b9fb", "title": "Journalist admits his voting error: I apologise to Kane (Goal)", "fetched": "2026-11-27"}
-  ],
-  "ceremony": {"date": "October 26, 2026", "venue": "London Palladium, London", "source": "wikipedia"},
-  "men_top10": [
-    {"rank": 1, "name": "Harry Kane", "country": "England", "club": "Bayern Munich", "points": 1055},
-    {"rank": 2, "name": "Kylian Mbappé", "country": "France", "club": "Real Madrid", "points": 1027},
-    {"rank": 3, "name": "Lamine Yamal", "country": "Spain", "club": "Barcelona", "points": 881},
-    {"rank": 4, "name": "Rodri", "country": "Spain", "club": "Manchester City", "points": 726},
-    {"rank": 5, "name": "Lionel Messi", "country": "Argentina", "club": "Inter Miami", "points": 612},
-    {"rank": 6, "name": "Khvicha Kvaratskhelia", "country": "Georgia", "club": "PSG", "points": 541},
-    {"rank": 7, "name": "Ousmane Dembélé", "country": "France", "club": "PSG", "points": 418},
-    {"rank": 8, "name": "Erling Haaland", "country": "Norway", "club": "Manchester City", "points": 378},
-    {"rank": 9, "name": "Michael Olise", "country": "France", "club": "Bayern Munich", "points": 296},
-    {"rank": 10, "name": "Fabián Ruiz", "country": "Spain", "club": "PSG", "points": 201}
-  ],
-  "voting": {
-    "jurors": "100 voters, all of whom are journalists selected from the top 100 FIFA nations with one representative per country",
-    "ballot": "Each juror chooses their top 10 players in descending order from the list of 30",
-    "points_by_rank": {"1": 15, "2": 12, "3": 10, "4": 8, "5": 7, "6": 5, "7": 4, "8": 3, "9": 2, "10": 1},
-    "tie_break": "number of first-place votes, then second-place votes, and so on",
-    "source": "tntsports"
+ "as_of": "2026-11-27",
+ "note": "Every line below was read on the cited page on 2026-11-27 (WebFetch). 'reported' means the page presents it as an allegation or suspicion, not a finding. Where two pages disagree, both are kept.",
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/2026_Ballon_d%27Or",
+   "title": "2026 Ballon d'Or (Wikipedia)",
+   "fetched": "2026-11-27"
   },
-  "website_leak": {
-    "date": "October 26, 2026",
-    "time": "shortly after 5:15 PM London time on Monday; the ceremony was still several hours away",
-    "what": "The official Ballon d'Or website published articles announcing different winners: Harry Kane, Kylian Mbappé and Lamine Yamal, plus the women's candidates Alexia Putellas and Ewa Pajor (beIN)",
-    "quote_mbappe_headline": "Kylian Mbappé wins the 2026 Ballon d'Or thanks to his consistency at the highest levels",
-    "voting_closed": "late September",
-    "explanation_status": "One possible explanation is that the organizers had prepared several articles in advance. It remains unclear exactly how the articles went live or whether their removal was part of an effort to contain the mistake. (reported, not confirmed)",
-    "source": "beinsports, goal (website error)"
+  {
+   "url": "https://www.tntsports.co.uk/football/ballon-d-or/2026/voting-criteria-nominees-points-explained-awards_sto23337809/story.shtml",
+   "title": "How does Ballon d'Or 2026 voting work (TNT Sports)",
+   "fetched": "2026-11-27"
   },
-  "police_investigation": {
-    "article_date": "November 9, 2026",
-    "complaint_by": "France Football, the magazine that runs the Ballon d'Or",
-    "suspected": "suspected manipulation and the leaking of information relating to the results of the 2026 Ballon d'Or; owners of prediction accounts had got hold of information that was not yet public",
-    "accounts": 12,
-    "profit": "nearly 200,000 euros net across the 12 accounts on a predictions platform",
-    "status": "reported allegations only. The only confirmed fact in the article is that France Football filed a complaint. The manipulation, if any occurred, remains unproven. No jurors are named.",
-    "source": "goal (police)"
+  {
+   "url": "https://www.beinsports.com/en-us/soccer/articles/did-harry-kane-win-the-2026-ballon-d-or-the-announcement-that-sparked-chaos-2026-10-26",
+   "title": "Did Harry Kane win the 2026 Ballon d'Or? (beIN SPORTS)",
+   "fetched": "2026-11-27"
   },
-  "juror_rijec": {
-    "name": "Dravko Rijec",
-    "paper": "Sportske Novosti, Croatia",
-    "kane_rank_on_his_ballot": 6,
-    "omitted": "Lamine Yamal, who finished third overall",
-    "his_top3": "Rodri first, Haaland second, Messi third",
-    "reason": "He overweighted World Cup performances rather than club form",
-    "quote": "From the outset, I acknowledge my mistake and take responsibility for it, as a member of the France Football Ballon d'Or 2026 jury, in assessing Harry Kane's performance, after I placed him only sixth on the list of the ten players I selected.",
-    "kane_world_cup": "six World Cup goals and one assist, reaching the semifinals with England",
-    "source": "goal (journalist admits)"
+  {
+   "url": "https://www.goal.com/en/news/the-ballon-d-or-a-glaring-error-by-the-official-website-sparks-controversy-over-the-identity-of-the-winner/blt1074e0fb1608b97a",
+   "title": "A glaring error by the official website (Goal)",
+   "fetched": "2026-11-27"
   },
-  "derived": {
-    "winning_margin": "1055 - 1027 = 28 points (Kane over Mbappé)",
-    "max_points_per_juror": "15 points for a first place",
-    "max_total": "100 jurors x 15 points = 1500",
-    "kane_share_of_max": "1055 / 1500 = 70 percent (70.3)",
-    "points_for_sixth": 5,
-    "rijec_gap": "A first place is worth 15 and a sixth place is worth 5, so a ballot with Kane first instead of sixth gives him 10 more points"
+  {
+   "url": "https://www.goal.com/en/news/potential-scandal-french-police-investigate-suspicions-over-ballon-d-or-voting/blt1e23865c65cd016f",
+   "title": "French police investigate suspicions over Ballon d'Or voting (Goal)",
+   "fetched": "2026-11-27"
+  },
+  {
+   "url": "https://www.goal.com/en/lists/does-it-shake-the-credibility-of-the-ballon-d-or-journalist-admits-his-voting-error-i-apologise-to-kane/blteeb0d7807521b9fb",
+   "title": "Journalist admits his voting error: I apologise to Kane (Goal)",
+   "fetched": "2026-11-27"
+  },
+  {
+   "url": "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_at_Real_Madrid%27s_UEFA_Champions_League_game_versus_Juventus_Turin_on_22_October_2025_(video).webm",
+   "title": "Commons file page: Kylian Mbappe at Real Madrid's Champions League game versus Juventus, 22 October 2025 (CC BY-SA 4.0, SdHb)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://commons.wikimedia.org/wiki/File:The_Wave_at_Netherlands_v_Tunisia_2026_World_Cup.webm",
+   "title": "Commons file page: The Wave at Netherlands v Tunisia 2026 World Cup, 25 June 2026 (CC BY-SA 4.0, elisfkc3)",
+   "fetched": "2026-11-28"
   }
+ ],
+ "ceremony": {
+  "date": "October 26, 2026",
+  "venue": "London Palladium, London",
+  "source": "wikipedia"
+ },
+ "men_top10": [
+  {
+   "rank": 1,
+   "name": "Harry Kane",
+   "country": "England",
+   "club": "Bayern Munich",
+   "points": 1055
+  },
+  {
+   "rank": 2,
+   "name": "Kylian Mbappé",
+   "country": "France",
+   "club": "Real Madrid",
+   "points": 1027
+  },
+  {
+   "rank": 3,
+   "name": "Lamine Yamal",
+   "country": "Spain",
+   "club": "Barcelona",
+   "points": 881
+  },
+  {
+   "rank": 4,
+   "name": "Rodri",
+   "country": "Spain",
+   "club": "Manchester City",
+   "points": 726
+  },
+  {
+   "rank": 5,
+   "name": "Lionel Messi",
+   "country": "Argentina",
+   "club": "Inter Miami",
+   "points": 612
+  },
+  {
+   "rank": 6,
+   "name": "Khvicha Kvaratskhelia",
+   "country": "Georgia",
+   "club": "PSG",
+   "points": 541
+  },
+  {
+   "rank": 7,
+   "name": "Ousmane Dembélé",
+   "country": "France",
+   "club": "PSG",
+   "points": 418
+  },
+  {
+   "rank": 8,
+   "name": "Erling Haaland",
+   "country": "Norway",
+   "club": "Manchester City",
+   "points": 378
+  },
+  {
+   "rank": 9,
+   "name": "Michael Olise",
+   "country": "France",
+   "club": "Bayern Munich",
+   "points": 296
+  },
+  {
+   "rank": 10,
+   "name": "Fabián Ruiz",
+   "country": "Spain",
+   "club": "PSG",
+   "points": 201
+  }
+ ],
+ "voting": {
+  "jurors": "100 voters, all of whom are journalists selected from the top 100 FIFA nations with one representative per country",
+  "ballot": "Each juror chooses their top 10 players in descending order from the list of 30",
+  "points_by_rank": {
+   "1": 15,
+   "2": 12,
+   "3": 10,
+   "4": 8,
+   "5": 7,
+   "6": 5,
+   "7": 4,
+   "8": 3,
+   "9": 2,
+   "10": 1
+  },
+  "tie_break": "number of first-place votes, then second-place votes, and so on",
+  "source": "tntsports"
+ },
+ "website_leak": {
+  "date": "October 26, 2026",
+  "time": "shortly after 5:15 PM London time on Monday; the ceremony was still several hours away",
+  "what": "The official Ballon d'Or website published articles announcing different winners: Harry Kane, Kylian Mbappé and Lamine Yamal, plus the women's candidates Alexia Putellas and Ewa Pajor (beIN)",
+  "quote_mbappe_headline": "Kylian Mbappé wins the 2026 Ballon d'Or thanks to his consistency at the highest levels",
+  "voting_closed": "late September",
+  "explanation_status": "One possible explanation is that the organizers had prepared several articles in advance. It remains unclear exactly how the articles went live or whether their removal was part of an effort to contain the mistake. (reported, not confirmed)",
+  "source": "beinsports, goal (website error)"
+ },
+ "police_investigation": {
+  "article_date": "November 9, 2026",
+  "complaint_by": "France Football, the magazine that runs the Ballon d'Or",
+  "suspected": "suspected manipulation and the leaking of information relating to the results of the 2026 Ballon d'Or; owners of prediction accounts had got hold of information that was not yet public",
+  "accounts": 12,
+  "profit": "nearly 200,000 euros net across the 12 accounts on a predictions platform",
+  "status": "reported allegations only. The only confirmed fact in the article is that France Football filed a complaint. The manipulation, if any occurred, remains unproven. No jurors are named.",
+  "source": "goal (police)"
+ },
+ "juror_rijec": {
+  "name": "Dravko Rijec",
+  "paper": "Sportske Novosti, Croatia",
+  "kane_rank_on_his_ballot": 6,
+  "omitted": "Lamine Yamal, who finished third overall",
+  "his_top3": "Rodri first, Haaland second, Messi third",
+  "reason": "He overweighted World Cup performances rather than club form",
+  "quote": "From the outset, I acknowledge my mistake and take responsibility for it, as a member of the France Football Ballon d'Or 2026 jury, in assessing Harry Kane's performance, after I placed him only sixth on the list of the ten players I selected.",
+  "kane_world_cup": "six World Cup goals and one assist, reaching the semifinals with England",
+  "source": "goal (journalist admits)"
+ },
+ "derived": {
+  "winning_margin": "1055 - 1027 = 28 points (Kane over Mbappé)",
+  "max_points_per_juror": "15 points for a first place",
+  "max_total": "100 jurors x 15 points = 1500",
+  "kane_share_of_max": "1055 / 1500 = 70 percent (70.3)",
+  "points_for_sixth": 5,
+  "rijec_gap": "A first place is worth 15 and a sixth place is worth 5, so a ballot with Kane first instead of sixth gives him 10 more points"
+ },
+ "ceremony_extra": {
+  "source": "https://en.wikipedia.org/wiki/2026_Ballon_d%27Or (re-read 2026-11-28)",
+  "hosts": "Kate Scott and Thierry Henry",
+  "first_outside": "first time the ceremony was organised outside France or Switzerland",
+  "kane_englishman": "Kane became the fifth Englishman to win the award; the latest before him was Michael Owen in 2001",
+  "gerd_muller_men": "Harry Kane, 73 goals",
+  "kopa_men": "Lamine Yamal",
+  "eligibility": "3 August 2025 to 19 July 2026",
+  "womens": {
+   "winner": "Alexia Putellas (Spain, Barcelona), 618 points",
+   "runner_up": "Ewa Pajor (Poland, Barcelona), 532 points"
+  }
+ },
+ "footage": {
+  "mbappe": {
+   "page": "https://commons.wikimedia.org/wiki/File:Kylian_Mbappe_at_Real_Madrid%27s_UEFA_Champions_League_game_versus_Juventus_Turin_on_22_October_2025_(video).webm",
+   "what": "Kylian Mbappe at Real Madrid's Champions League game versus Juventus Turin, 22 October 2025",
+   "licence": "CC BY-SA 4.0",
+   "author": "SdHb"
+  },
+  "wave": {
+   "page": "https://commons.wikimedia.org/wiki/File:The_Wave_at_Netherlands_v_Tunisia_2026_World_Cup.webm",
+   "what": "The Wave going through the stadium during Netherlands v Tunisia, 2026 World Cup, 25 June 2026",
+   "licence": "CC BY-SA 4.0",
+   "author": "elisfkc3"
+  }
+ }
 }
