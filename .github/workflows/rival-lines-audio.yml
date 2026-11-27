@@ -1,0 +1,44 @@
+name: Rival Lines audio analysis
+
+# Raw reference audio never leaves the runner: this repo is public. Only derived data (timestamps, tags, spectrograms) is uploaded.
+on:
+  push:
+    branches: [audio/rival-lines-library]
+    paths:
+      - '.github/workflows/rival-lines-audio.yml'
+      - 'channels/rival-lines/audio/**'
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Tools
+        run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
+          pip install -U "yt-dlp[default]"
+          yt-dlp --version
+      - name: Fetch metadata and audio
+        run: python channels/rival-lines/audio/fetch.py work
+      - name: Summary
+        run: |
+          python - <<'PY'
+          import json,glob
+          for f in sorted(glob.glob('work/*/status.json')):
+              s=json.load(open(f)); print(s)
+          PY
+          du -sh work
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rival-lines-audio-meta-${{ github.run_number }}
+          path: |
+            work/*/meta.json
+            work/*/status.json
+          retention-days: 14

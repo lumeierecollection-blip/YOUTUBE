@@ -1,0 +1,24 @@
+{
+  "_note": "Every Rival Lines reference video found in the repo and its archive on 2026-11-27. Sources: docs/longform/REFERENCES.md (Football Made Simple), YOUTUBE-archive/rival-lines-old/data/rival-lines/intrcpt-reference-research.md (INTRCPT), data/rival-lines/paperpitch-footballrealm-reference-study.md (Paper Pitch, The Football Realm). Titles are as recorded in those files and are re-read from YouTube by fetch.py.",
+  "refs": [
+    {"id": "N8PZt_9_adI", "group": "football-made-simple", "title": "Flick's Barcelona Tactics Are Crazy", "source": "docs/longform/REFERENCES.md"},
+    {"id": "KC2Vgjw282s", "group": "football-made-simple", "title": "How Chelsea's Tactics Beat United", "source": "docs/longform/REFERENCES.md"},
+    {"id": "Nx8h403Sj_s", "group": "football-made-simple", "title": "This Was Elite Tactical Problem Solving", "source": "docs/longform/REFERENCES.md"},
+    {"id": "oZaPKaIVIA0", "group": "football-made-simple", "title": "How Mourinho's Tactics Won El Classico", "source": "docs/longform/REFERENCES.md"},
+    {"id": "Dki5tjN0rDE", "group": "football-made-simple", "title": "The Tactics Of Every Post-Ferguson United Manager", "source": "docs/longform/REFERENCES.md"},
+    {"id": "KRiP6lrk-gQ", "group": "intrcpt", "title": "Penalties Are Ruining Football", "source": "intrcpt-reference-research.md"},
+    {"id": "yEa47CYLALA", "group": "intrcpt", "title": "Why The Premier League Needs Vinicius Jr", "source": "intrcpt-reference-research.md"},
+    {"id": "7ON_R4zJWiU", "group": "intrcpt", "title": "How To Sink A Football Club ft. Manchester United", "source": "intrcpt-reference-research.md"},
+    {"id": "Qb0QNQ_qyzY", "group": "intrcpt", "title": "How To Lose A Ballon d'Or ft. 2024 Jude Bellingham", "source": "intrcpt-reference-research.md"},
+    {"id": "shDKeVwHFmI", "group": "intrcpt", "title": "Could Anyone Score 91 Goals In A Year Ever Again?", "source": "intrcpt-reference-research.md"},
+    {"id": "b1XMvWwJpRs", "group": "intrcpt", "title": "What's the Point Of International Breaks?", "source": "intrcpt-reference-research.md"},
+    {"id": "pxVvXxNCF2I", "group": "intrcpt", "title": "Why Losing Games Might Be Better Than Drawing Them", "source": "intrcpt-reference-research.md"},
+    {"id": "gePZey0fdiQ", "group": "intrcpt", "title": "The One Change The Premier League Desperately Needs", "source": "intrcpt-reference-research.md"},
+    {"id": "gp4cftwGLcQ", "group": "intrcpt", "title": "Why Are Left-Footed Players So Special?", "source": "intrcpt-reference-research.md"},
+    {"id": "BQ7OL0QUutE", "group": "intrcpt", "title": "Why Are Premier League Stadiums So Small?", "source": "intrcpt-reference-research.md"},
+    {"id": "B264MXP1nDc", "group": "paper-pitch", "title": "How Hard Is It To Score 1,000 Goals?", "source": "paperpitch-footballrealm-reference-study.md"},
+    {"id": "0urnhOl8MYY", "group": "paper-pitch", "title": "How To Win the Ballon d'Or?", "source": "paperpitch-footballrealm-reference-study.md"},
+    {"id": "IgszEI2iszk", "group": "paper-pitch", "title": "Could Manchester United Actually Get Relegated?", "source": "paperpitch-footballrealm-reference-study.md"},
+    {"id": "YN31DA3o2Qs", "group": "football-realm", "title": "Jose Mourinho Was Right All Along.", "source": "paperpitch-footballrealm-reference-study.md"}
+  ]
+}
