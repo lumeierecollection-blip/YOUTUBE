@@ -1,0 +1,87 @@
+{
+  "topic_slug": "euclid-space-telescope-360-million-quasar",
+  "strongest_angle": "The European Space Agency's Euclid space telescope detected the most distant and ancient quasar ever seen, powered by a supermassive black hole with 360 million times the mass of the Sun formed 630 million years after the Big Bang.",
+  "key_facts": [
+    {
+      "fact": "The European Space Agency's Euclid space telescope discovered the most distant quasar to date, a 360 million-sun-mass galactic core seen 630 million years after the Big Bang.",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years",
+      "source_name": "European Space Agency",
+      "confidence": "high"
+    },
+    {
+      "fact": "The discovery breaks Euclid's own previous record by peering back in time an additional 40 million years.",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years",
+      "source_name": "European Space Agency",
+      "confidence": "high"
+    },
+    {
+      "fact": "A team of Euclid Consortium astronomers was led by Julien Wolf, a postdoc at the Max Planck Institute for Astronomy in Heidelberg, Germany.",
+      "source_url": "https://euclid-ec.net/science/new-record-quasar",
+      "source_name": "Euclid Consortium",
+      "confidence": "high"
+    },
+    {
+      "fact": "In July 2026, scientists using Euclid data discovered 31 of the most distant quasars.",
+      "source_url": "https://euclid-ec.net/science/new-record-quasar",
+      "source_name": "Euclid Consortium",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Quasar solar mass",
+      "value": 360000000,
+      "unit": "solar masses",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years"
+    },
+    {
+      "label": "Time after Big Bang",
+      "value": 630,
+      "unit": "million years",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years"
+    },
+    {
+      "label": "Record broken by",
+      "value": 40,
+      "unit": "million years",
+      "source_url": "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years"
+    },
+    {
+      "label": "Quasars discovered in July 2026",
+      "value": 31,
+      "unit": "quasars",
+      "source_url": "https://euclid-ec.net/science/new-record-quasar"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Euclid space telescope",
+      "kind": "object"
+    },
+    {
+      "name": "European Space Agency",
+      "kind": "organization"
+    },
+    {
+      "name": "Julien Wolf",
+      "kind": "person"
+    },
+    {
+      "name": "Max Planck Institute for Astronomy",
+      "kind": "organization"
+    },
+    {
+      "name": "Heidelberg",
+      "kind": "place"
+    },
+    {
+      "name": "Germany",
+      "kind": "place"
+    },
+    {
+      "name": "Euclid Consortium",
+      "kind": "organization"
+    }
+  ]
+}

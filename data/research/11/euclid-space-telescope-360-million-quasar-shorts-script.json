@@ -1,0 +1,75 @@
+{
+  "channel_id": "11",
+  "topic_slug": "euclid-space-telescope-360-million-quasar",
+  "format": "shorts",
+  "hook": "A massive object 630 million years after the Big Bang defies expectations.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "A massive object 630 million years after the Big Bang defies expectations.",
+      "visual_cue": "CGI animation of an ancient, glowing quasar emitting intense light against a dark, early universe background.",
+      "sfx_cue": "Deep, resonant space hum transitioning into a sharp, clear chime.",
+      "b_roll": [
+        "CGI visualization of an early universe quasar"
+      ],
+      "text_overlay": {
+        "text": "Ancient Cosmic Mystery"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In July 2026, the European Space Agency's Euclid space telescope detected 31 distant quasars. How did such a giant form so early?",
+      "visual_cue": "Split screen showing the Euclid space telescope logo and a data visualization of the quasar's mass.",
+      "sfx_cue": "Subtle digital data processing sounds.",
+      "b_roll": [
+        "Euclid space telescope official diagram",
+        "Data chart representing 360 million solar masses"
+      ],
+      "text_overlay": {
+        "text": "31 Quasars Discovered"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But this discovery breaks the Euclid space telescope's record by peering back an additional 40 million years.",
+      "visual_cue": "Visual timeline graphic showing the shift in the observation record.",
+      "sfx_cue": "Time-warping sound effect.",
+      "b_roll": [
+        "Timeline graphic of space exploration records"
+      ],
+      "text_overlay": {
+        "text": "40 Million Year Record"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Julien Wolf led Euclid Consortium astronomers at the Max Planck Institute for Astronomy in Heidelberg, Germany. The Euclid space telescope reveals this 360 million solar mass giant defies our current growth models.",
+      "visual_cue": "Portrait of Julien Wolf overlaid with the Max Planck Institute logo and a simulated galactic core.",
+      "sfx_cue": "Orchestral swell, inspiring and deep.",
+      "b_roll": [
+        "Photo of Julien Wolf",
+        "Max Planck Institute building facade",
+        "Computer simulation of a galactic core"
+      ],
+      "text_overlay": {
+        "text": "Challenging Cosmic Growth"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "We are now seeing the universe as it was 630 million years old.",
+      "visual_cue": "Wide-angle cinematic shot of the deep, star-filled cosmos.",
+      "sfx_cue": "Fading atmospheric space ambient sound.",
+      "b_roll": [
+        "Deep field space imagery"
+      ],
+      "text_overlay": {
+        "text": "630 Million Years Old"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.esa.int/articles/about-us/directorates/science/euclid/euclid-breaks-own-quasar-record-by-40-million-years",
+    "https://euclid-ec.net/science/new-record-quasar"
+  ]
+}
