@@ -816,6 +816,7 @@ const SceneShell: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
 
 export const Episode: React.FC<any> = ({ theme, scenes, images, data, audioSrc, fps }) => {
   return (
+    <C.Provider value={{ theme, data, images, dark: false }}>
     <AbsoluteFill style={{ background: theme.paper }}>
       {scenes.map((s: any, i: number) => (
         <Sequence key={s.id} from={Math.round(s.t0 * fps)} durationInFrames={Math.max(1, Math.round((s.t1 - s.t0) * fps))}>
@@ -824,5 +825,6 @@ export const Episode: React.FC<any> = ({ theme, scenes, images, data, audioSrc, 
       ))}
       {audioSrc ? <Audio src={staticFile(audioSrc)} /> : null}
     </AbsoluteFill>
+    </C.Provider>
   );
 };
