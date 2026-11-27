@@ -3,6 +3,7 @@ name: Rival Lines episode
 # A new workflow file cannot be dispatched from a feature branch, so a push to this branch that touches the Rival Lines
 # files runs it. Stills and the gate run on every push. The full video renders only when the head commit message
 # contains "[render]" (or on workflow_dispatch once this file is on the default branch).
+# A render commit without "[upload]" produces the video and thumbnails as an artifact and uploads nothing to YouTube.
 on:
   push:
     branches: [render/short-26-rewrite]
