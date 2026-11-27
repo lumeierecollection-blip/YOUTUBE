@@ -71,6 +71,16 @@ jobs:
         working-directory: channels/rival-lines/render
         run: MODE=stills node render.mjs ../episodes/ronaldo-1000
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cut the player out of the thumbnail photos
+        run: |
+          set -euo pipefail
+          pip install --quiet pillow "rembg[cpu]"
+          python $RL/scripts/cutout.py $EP
+
       - name: Thumbnails
         working-directory: channels/rival-lines/render
         run: MODE=thumbs node render.mjs ../episodes/ronaldo-1000
@@ -139,6 +149,16 @@ jobs:
           node finish.mjs ../episodes/ronaldo-1000 ronaldo-1000
           ffmpeg -v error -i ../episodes/ronaldo-1000/out/ronaldo-1000.mp4 -f null -
           rm -f ../episodes/ronaldo-1000/out/video-raw.mp4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cut the player out of the thumbnail photos
+        run: |
+          set -euo pipefail
+          pip install --quiet pillow "rembg[cpu]"
+          python $RL/scripts/cutout.py $EP
 
       - name: Thumbnails
         working-directory: channels/rival-lines/render

@@ -38,13 +38,15 @@ if (mode === "stills") {
   fs.mkdirSync(dir, { recursive: true });
   const w = props.data.results.wikipedia;
   const dateText = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
-  const fill = (t) => t.replace("{median}", dateText(w.scenarios.hold.median_date)).replace("{needed}", String(w.needed)).replace("{official}", String(props.data.totals.official_goals));
+  const dayMonth = (iso) => new Date(iso.slice(0, 10) + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+  const fill = (t) => t.replace("{median}", dateText(w.scenarios.hold.median_date)).replace("{needed}", String(w.needed)).replace("{official}", String(props.data.totals.official_goals)).replace("{rev}", dayMonth(props.data.baseline.revision_timestamp));
   for (const v of specs) {
-    const thumb = { ...v, note: { ...v.note, text: fill(v.note.text) } };
+    if (!fs.existsSync(path.join(import.meta.dirname, "public", "ep", "images", `cutout-${v.img}.png`))) throw new Error(`cutout-${v.img}.png missing: run scripts/cutout.py first`);
+    const thumb = { ...v, note: fill(v.note) };
     const tprops = { ...props, thumb };
     const tc = await selectComposition({ serveUrl, id: "Thumb", inputProps: tprops });
     await renderStill({ composition: tc, serveUrl, output: path.join(dir, `thumb-${v.id}.png`), inputProps: tprops, frame: 0, imageFormat: "png" });
-    console.log(`thumb ${v.id}: ${thumb.note.text}`);
+    console.log(`thumb ${v.id}: ${thumb.note}`);
   }
 } else if (mode === "chunk") {
   const n = Number(process.env.CHUNKS), i = Number(process.env.CHUNK);
