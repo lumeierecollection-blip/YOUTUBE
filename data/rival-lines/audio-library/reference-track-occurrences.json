@@ -1,0 +1,178 @@
+[
+ {
+  "video": "B264MXP1nDc",
+  "track_key": "credit:anno domini beats:illusions",
+  "title": "Illusions",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "B264MXP1nDc",
+  "track_key": "credit:anno domini beats:stand",
+  "title": "Stand",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "B264MXP1nDc",
+  "track_key": "credit:anno domini beats:shadows",
+  "title": "Shadows",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "0urnhOl8MYY",
+  "track_key": "credit:anno domini beats:illusions",
+  "title": "Illusions",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "0urnhOl8MYY",
+  "track_key": "credit:anno domini beats:stand",
+  "title": "Stand",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "0urnhOl8MYY",
+  "track_key": "credit:anno domini beats:shadows",
+  "title": "Shadows",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "IgszEI2iszk",
+  "track_key": "credit:anno domini beats:illusions",
+  "title": "Illusions",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "IgszEI2iszk",
+  "track_key": "credit:anno domini beats:stand",
+  "title": "Stand",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "IgszEI2iszk",
+  "track_key": "credit:anno domini beats:shadows",
+  "title": "Shadows",
+  "artist": "Anno Domini Beats",
+  "method": "creator_credit_in_description",
+  "confidence": "credited_not_audio_verified",
+  "start_s": null,
+  "end_s": null,
+  "complete_or_excerpt": "unknown",
+  "uncertainty": "The creator lists the tracks but not where they play or whether in full. Track order is not given."
+ },
+ {
+  "video": "N8PZt_9_adI",
+  "track_key": "shazam:infini|tristan barton",
+  "title": "Infini",
+  "artist": "Tristan Barton",
+  "album": "Adamah - Single",
+  "method": "shazam_12s_clip",
+  "confidence": "single_clip",
+  "clip_start_s": [
+   180
+  ],
+  "start_s": 180,
+  "end_s": 192,
+  "complete_or_excerpt": "excerpt",
+  "shazam_url": "https://www.shazam.com/track/677847055/infini",
+  "uncertainty": "Matched on short clips under narration; a hit can be a stock or similar track. Start/end are the matched clip window, not the track's true extent."
+ },
+ {
+  "video": "B264MXP1nDc",
+  "track_key": "shazam:miss me|senpai ru",
+  "title": "Miss Me",
+  "artist": "Senpai Ru",
+  "album": "Senpai's Way 3",
+  "method": "shazam_12s_clip",
+  "confidence": "single_clip_contradicts_credit",
+  "clip_start_s": [
+   204
+  ],
+  "start_s": 204,
+  "end_s": 216,
+  "complete_or_excerpt": "excerpt",
+  "shazam_url": "https://www.shazam.com/track/445353982/miss-me",
+  "uncertainty": "Matched on short clips under narration; a hit can be a stock or similar track. This video credits other tracks in its description, so this hit is unreliable. Start/end are the matched clip window, not the track's true extent."
+ },
+ {
+  "video": "0urnhOl8MYY",
+  "track_key": "shazam:stolen stars|reflective realm retreat",
+  "title": "Stolen Stars",
+  "artist": "Reflective Realm Retreat",
+  "album": "Stolen Stars - Single",
+  "method": "shazam_12s_clip",
+  "confidence": "single_clip_contradicts_credit",
+  "clip_start_s": [
+   90
+  ],
+  "start_s": 90,
+  "end_s": 102,
+  "complete_or_excerpt": "excerpt",
+  "shazam_url": "https://www.shazam.com/track/836928185/stolen-stars",
+  "uncertainty": "Matched on short clips under narration; a hit can be a stock or similar track. This video credits other tracks in its description, so this hit is unreliable. Start/end are the matched clip window, not the track's true extent."
+ },
+ {
+  "video": "0urnhOl8MYY",
+  "track_key": "shazam:miss me|senpai ru",
+  "title": "Miss Me",
+  "artist": "Senpai Ru",
+  "album": "Senpai's Way 3",
+  "method": "shazam_12s_clip",
+  "confidence": "single_clip_contradicts_credit",
+  "clip_start_s": [
+   629
+  ],
+  "start_s": 629,
+  "end_s": 641,
+  "complete_or_excerpt": "excerpt",
+  "shazam_url": "https://www.shazam.com/track/435618717/miss-me",
+  "uncertainty": "Matched on short clips under narration; a hit can be a stock or similar track. This video credits other tracks in its description, so this hit is unreliable. Start/end are the matched clip window, not the track's true extent."
+ }
+]

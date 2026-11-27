@@ -53,6 +53,12 @@ jobs:
       - name: Gate
         run: node $RL/scripts/gate-episode.mjs $EP
 
+      - name: Soundtrack plan (no audio is fetched here)
+        run: |
+          set -euo pipefail
+          node $RL/scripts/pick-audio.mjs $EP
+          node $RL/scripts/gate-soundtrack.mjs $EP
+
       - name: Install Remotion
         working-directory: channels/rival-lines/render
         run: |
@@ -99,6 +105,14 @@ jobs:
       - name: Build plan
         run: STRICT_CUES=1 node $RL/scripts/build-plan.mjs $EP
 
+      - name: Soundtrack (pick beds and effects, mix with the narration, gate)
+        run: |
+          set -euo pipefail
+          node $RL/scripts/pick-audio.mjs $EP
+          node $RL/scripts/mix-audio.mjs $EP
+          node $RL/scripts/gate-soundtrack.mjs $EP
+          STRICT_CUES=1 node $RL/scripts/build-plan.mjs $EP
+
       - name: Install Remotion
         working-directory: channels/rival-lines/render
         run: |
@@ -135,5 +149,7 @@ jobs:
           path: |
             ${{ env.EP }}/out/ronaldo-1000.mp4
             ${{ env.EP }}/out/final-frames/**
+            ${{ env.EP }}/out/soundtrack.json
+            ${{ env.EP }}/out/mix-report.json
           if-no-files-found: warn
           retention-days: 14

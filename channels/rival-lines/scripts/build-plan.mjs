@@ -76,7 +76,11 @@ const pub = path.join(repo, "channels", "rival-lines", "render", "public", "ep")
 fs.rmSync(pub, { recursive: true, force: true });
 fs.mkdirSync(path.join(pub, "images"), { recursive: true });
 for (const f of fs.readdirSync(path.join(ep, "images"))) if (!f.endsWith(".json")) fs.copyFileSync(path.join(ep, "images", f), path.join(pub, "images", f));
+// out/mix.mp3 (scripts/mix-audio.mjs: narration + music beds + effects) replaces the bare narration when it exists.
+const mixFile = path.join(ep, "out", "mix.mp3");
+const hasMix = fs.existsSync(mixFile);
 fs.copyFileSync(path.join(ep, "audio", "narration.mp3"), path.join(pub, "narration.mp3"));
+if (hasMix) fs.copyFileSync(mixFile, path.join(pub, "mix.mp3"));
 
 const c = ch.colors;
 const theme = { paper: c.paper, ink: c.ink, accent: c.accent, accent2: c.accent2, highlight: c.highlight, muted: c.muted, grid: c.grid, font: ch.font };
@@ -90,8 +94,8 @@ const data = {
   matches_needed_at_club_rate: model.matches_needed_at_club_rate,
   totals: { club: wiki.club_total, portugal: wiki.portugal_total, official_goals: wiki.official_goals, official_apps: wiki.official_apps }
 };
-const props = { theme, durationSec: end, fps: 30, audioSrc: "ep/narration.mp3", scenes, images, data };
+const props = { theme, durationSec: end, fps: 30, audioSrc: hasMix ? "ep/mix.mp3" : "ep/narration.mp3", scenes, images, data };
 fs.mkdirSync(path.join(ep, "out"), { recursive: true });
 fs.writeFileSync(path.join(ep, "out", "props.json"), JSON.stringify(props));
-console.log(`plan: ${scenes.length} scenes, ${end.toFixed(1)}s, ${usedImgs.size} photos`);
+console.log(`plan: ${scenes.length} scenes, ${end.toFixed(1)}s, ${usedImgs.size} photos, audio ${hasMix ? "mix.mp3" : "narration only"}`);
 if (warnings.length) { console.log("CUE WARNINGS:\n" + warnings.join("\n")); process.exitCode = process.env.STRICT_CUES ? 1 : 0; }

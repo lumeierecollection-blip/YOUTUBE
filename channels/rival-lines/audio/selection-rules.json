@@ -1,0 +1,236 @@
+{
+  "_note": "Rules for pick-audio.mjs. Targets are estimates, not measurements of taste: they encode how the reference videos are built (few beds, low under voice, sparse effects) and a narrative role for each chapter. Change them here, not in code.",
+  "voice_lufs": -16,
+  "bed_lufs_under_voice": -30,
+  "duck_db_note": "bed_lufs_under_voice is the bed mean level (dB, volumedetect scale) before the sidechain duck; the voice stem is about -19 dB mean. Reference beds measured in speech gaps sit roughly 10 dB under speech level, so -30 (11 dB under) before ducking is a conservative start. Not auditioned.",
+  "final": {
+    "i": -14,
+    "tp": -1.5,
+    "lra": 9
+  },
+  "allowed_licences": [
+    "cc0",
+    "pdm",
+    "by"
+  ],
+  "max_beds": 3,
+  "bed_crossfade_s": 2.5,
+  "roles": {
+    "hook": {
+      "energy": 0.55,
+      "tension": 0.5,
+      "tempo": [
+        95,
+        135
+      ]
+    },
+    "evidence": {
+      "energy": 0.3,
+      "tension": 0.3,
+      "tempo": [
+        70,
+        125
+      ]
+    },
+    "model": {
+      "energy": 0.55,
+      "tension": 0.7,
+      "tempo": [
+        100,
+        145
+      ],
+      "prefer_arc": "builds"
+    },
+    "caveat": {
+      "energy": 0.2,
+      "tension": 0.4,
+      "tempo": [
+        60,
+        110
+      ]
+    },
+    "resolve": {
+      "energy": 0.35,
+      "tension": 0.2,
+      "tempo": [
+        70,
+        120
+      ],
+      "prefer_arc": "fades"
+    }
+  },
+  "role_by_chapter_title": [
+    {
+      "match": "odds|model|simulation|chance|probab",
+      "role": "model"
+    },
+    {
+      "match": "can't see|cannot see|not in|limit|caveat|assum",
+      "role": "caveat"
+    },
+    {
+      "match": "your call|question|answer|where it lands|verdict|conclusion",
+      "role": "resolve"
+    },
+    {
+      "match": "number|headline|open|premise",
+      "role": "hook"
+    }
+  ],
+  "default_role": "evidence",
+  "acts": [
+    {
+      "id": "act1",
+      "roles": [
+        "hook",
+        "evidence"
+      ]
+    },
+    {
+      "id": "act2",
+      "roles": [
+        "model"
+      ]
+    },
+    {
+      "id": "act3",
+      "roles": [
+        "caveat",
+        "resolve"
+      ]
+    }
+  ],
+  "tag_energy": {
+    "energetic": 0.2,
+    "upbeat": 0.2,
+    "driving": 0.2,
+    "fast": 0.2,
+    "happy": 0.1,
+    "calm": -0.2,
+    "ambient": -0.2,
+    "relaxing": -0.2,
+    "slow": -0.2,
+    "soft": -0.15,
+    "sad": -0.2,
+    "pad": -0.1,
+    "speed_verylow": -0.2,
+    "speed_low": -0.1,
+    "speed_high": 0.15,
+    "speed_veryhigh": 0.25,
+    "melancholic": -0.15
+  },
+  "tag_tension": {
+    "dark": 0.3,
+    "dramatic": 0.25,
+    "suspense": 0.35,
+    "tension": 0.35,
+    "epic": 0.2,
+    "mysterious": 0.25,
+    "cinematic": 0.1,
+    "ambient": -0.05,
+    "happy": -0.2,
+    "calm": -0.15
+  },
+  "slot_moods": {
+    "MUSIC_ATMOS_DARK": {
+      "energy": 0.25,
+      "tension": 0.65
+    },
+    "MUSIC_MYSTERY": {
+      "energy": 0.3,
+      "tension": 0.6
+    },
+    "MUSIC_TECH": {
+      "energy": 0.5,
+      "tension": 0.35
+    },
+    "MUSIC_PIANO_1": {
+      "energy": 0.15,
+      "tension": 0.2
+    },
+    "MUSIC_HISTORY_DOC": {
+      "energy": 0.25,
+      "tension": 0.3
+    },
+    "MUSIC_CORPORATE": {
+      "energy": 0.55,
+      "tension": 0.1
+    }
+  },
+  "weights": {
+    "energy": 0.35,
+    "tension": 0.35,
+    "tempo": 0.15,
+    "arc": 0.15
+  },
+  "variety": {
+    "used_in_last_episode": 0.4,
+    "per_prior_use": 0.1,
+    "same_creator_in_episode": 0.15
+  },
+  "sfx": {
+    "max_per_minute": 4,
+    "min_gap_s": 6,
+    "note_reference": "Paper Pitch and INTRCPT detections are about one impact or whoosh candidate every 10 to 20 s, mostly on chapter changes; the cap stays under that so the voice is never competing.",
+    "slots": {
+      "whoosh": {
+        "source": "palette",
+        "file": "whoosh.wav",
+        "peak_db": -16
+      },
+      "whip": {
+        "source": "palette",
+        "file": "whip.wav",
+        "peak_db": -18
+      },
+      "paper": {
+        "source": "palette",
+        "file": "draw-knife.wav",
+        "peak_db": -20
+      },
+      "shutter": {
+        "source": "palette",
+        "file": "shutter.wav",
+        "peak_db": -20
+      },
+      "switch": {
+        "source": "palette",
+        "file": "switch.wav",
+        "peak_db": -20
+      }
+    },
+    "rules": [
+      {
+        "when": "chapter_start",
+        "slot": "whoosh",
+        "purpose": "chapter change",
+        "offset_s": -0.1
+      },
+      {
+        "when": "visual:photo",
+        "slot": "paper",
+        "purpose": "evidence photo placed on the page",
+        "offset_s": 0.1,
+        "max_per_episode": 4
+      },
+      {
+        "when": "visual:collage",
+        "slot": "shutter",
+        "purpose": "a set of photos appears",
+        "offset_s": 0.1
+      },
+      {
+        "when": "visual:curve:first_in_chapter",
+        "slot": "whip",
+        "purpose": "the model curve starts drawing",
+        "offset_s": 0.0
+      },
+      {
+        "when": "visual:icon",
+        "slot": "switch",
+        "purpose": "a limit is marked 'not in the model'",
+        "offset_s": 0.2
+      }
+    ]
+  }
+}

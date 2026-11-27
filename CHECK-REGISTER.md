@@ -322,6 +322,13 @@ below:
 | AUD-07 | Master is −14 LUFS integrated | ffmpeg `ebur128` on a real render | −14 ±0.5 | 3 | MAJOR | 13 | N/B - 2026-08-29 stage 13: UNVERIFIABLE (no compositor/render on this machine); venue = production render + `audio-qa.mjs` ebur128 (stage 16/17) |
 | AUD-08 | VO peaks ≤ −3 dBFS | ffmpeg | ≤ −3 | 3 | MINOR | 13 | N/B - 2026-08-29 stage 13: UNVERIFIABLE (`vo.mp3` is a silent placeholder, measured 73.13 s, byte-identical to the staged file); venue = a real TTS render (stage 16/17) |
 | AUD-09 | Audio track duration â‰¥ video duration | probe | â‰¥ | 3 | BLOCKER | 16 | UNK |
+| AUD-10 | Rival Lines soundtrack: at most 3 music beds, none repeated inside the episode | `channels/rival-lines/scripts/gate-soundtrack.mjs` on `out/soundtrack.json` | <=3, 0 repeats | 1 | MAJOR | RL | NEW 2026-11-27 - written with the Rival Lines audio library; runs in `rival-lines-episode.yml`. Not yet run in CI |
+| AUD-11 | Every Rival Lines bed has an allowed licence (CC0 / PD / CC BY), attribution line, licence URL and source page; licence confirmed at the source page | gate-soundtrack | 100% | 1 | BLOCKER | RL | NEW 2026-11-27 - first three parts PASS locally on episode 1; the source-page confirmation is a WARN (index data is from 2022, `licence_verified_at_source` is false for all 29 candidates). `STRICT_LICENCE=1` makes it a failure and must be set before a public upload |
+| AUD-12 | Beds cover the whole episode with no gap and change only on a chapter start | gate-soundtrack | 0 gaps | 1 | MAJOR | RL | NEW 2026-11-27 - PASS locally on episode 1 |
+| AUD-13 | Rival Lines effects: at most 4 per minute, at least 6 s apart | gate-soundtrack | caps | 1 | MINOR | RL | NEW 2026-11-27 - PASS locally on episode 1 (1.9 per minute). The caps are set below the rate measured on the references, which is a heuristic detection, not a count by ear |
+| AUD-14 | Every Rival Lines effect sits on a scene start and states its purpose | gate-soundtrack | 100% | 1 | MINOR | RL | NEW 2026-11-27 - PASS locally on episode 1 |
+| AUD-15 | Every Rival Lines effect is a CC0 file from the palette in `scripts/sfx-cc0.mjs` | gate-soundtrack | 100% | 1 | BLOCKER | RL | NEW 2026-11-27 - PASS locally on episode 1 |
+| AUD-16 | Rival Lines mix: -14 LUFS +-0.5, true peak <= -1.0 dBTP, music and effects add < 3 LU over the voice stem | gate-soundtrack on `out/mix-report.json` | measured | 3 | MAJOR | RL | NEW 2026-11-27 - measured locally on episode 1: -14.27 LUFS, -1.76 dBTP (measurement only; the mix has not been auditioned by ear) |
 
 ## 3.7 `RND` â€” render, encoder, CI
 
