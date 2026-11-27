@@ -4,6 +4,7 @@
 // Colour comes only from config/channels.json ch-04.realm_colors (SCR-13); props.theme is a copy of it.
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const ep = path.resolve(process.argv[2]);
 const repo = path.resolve(import.meta.dirname, "..", "..", "..");
@@ -31,7 +32,10 @@ function resolveCue(words, token, after) {
 function resolveVisual(v, words, beatId) {
   const out = Array.isArray(v) ? [] : {};
   for (const [k, val] of Object.entries(v)) {
-    if (k === "cue" && typeof val === "string") {
+    if (k === "from" && typeof val === "string") {
+      const t = resolveCue(words, val, 0);
+      if (t == null) { warnings.push(`${beatId}: from "${val}" not found in narration`); out.at = 0; } else out.at = t;
+    } else if (k === "cue" && typeof val === "string") {
       const t = resolveCue(words, val, 0);
       if (t == null) { warnings.push(`${beatId}: cue "${val}" not found in narration`); out[k] = 0.4; } else out[k] = t;
     } else if (k === "cues" && Array.isArray(val)) {
@@ -91,14 +95,18 @@ const footage = {};
 const fpath = path.join(ep, "footage", "footage.json");
 if (fs.existsSync(fpath)) {
   const used = new Set();
-  const grab = (v) => { if (Array.isArray(v)) v.forEach(grab); else if (v && typeof v === "object") for (const [k, val] of Object.entries(v)) { if (k === "clip" && typeof val === "string") used.add(val); else grab(val); } };
+  const grab = (v) => { if (Array.isArray(v)) v.forEach(grab); else if (v && typeof v === "object") for (const [k, val] of Object.entries(v)) { if (k === "shots" && Array.isArray(val)) val.forEach((x) => used.add(x)); else grab(val); } };
   scenes.forEach((s) => grab(s.visual));
+  const fdir = path.join(ep, "footage");
+  const clips = readJson(fpath).clips.filter((c) => used.has(c.id));
+  if (clips.some((c) => !fs.existsSync(path.join(fdir, c.file)))) {
+    if (!process.env.CLIP_KEY) throw new Error("clips are encrypted in the repo and CLIP_KEY is not set");
+    execFileSync(process.execPath, [path.join(import.meta.dirname, "footage-crypt.mjs"), "dec", fdir], { stdio: "inherit" });
+  }
   fs.mkdirSync(path.join(pub, "footage"), { recursive: true });
-  for (const c of readJson(fpath).clips) {
-    if (!used.has(c.id)) continue;
-    const author = String(c.author).replace(/\s+/g, " ").trim();
-    fs.copyFileSync(path.join(ep, "footage", c.file), path.join(pub, "footage", c.file));
-    footage[c.id] = { file: `ep/footage/${c.file}`, w: c.w, h: c.h, dur: c.dur, label: c.label, archive: !!c.archive, author, license: c.license, page: c.page, date: c.date, credit: `${author}, ${c.license}, Wikimedia Commons` };
+  for (const c of clips) {
+    fs.copyFileSync(path.join(fdir, c.file), path.join(pub, "footage", c.file));
+    footage[c.id] = { file: `ep/footage/${c.file}`, w: c.w, h: c.h, dur: c.dur, owner: c.owner, url: c.url, upload_date: c.upload_date, video_title: c.video_title, lower_name: c.lower_name, lower_sub: c.lower_sub };
   }
   for (const id of used) if (!footage[id]) throw new Error(`clip ${id} not in footage.json`);
 }

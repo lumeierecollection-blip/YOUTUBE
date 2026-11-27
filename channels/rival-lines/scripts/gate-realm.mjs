@@ -1,11 +1,12 @@
 // Gate for a Rival Lines "realm" episode. usage: node gate-realm.mjs <episode_dir>
 // Checks: SCR-14 (every sources_used URL appears in the research files), every number spoken in the script traces to a number in
 // research/facts.json or gate-allow.json, every scene has a non-text visual and its own visual signature, every image and clip used has
-// author, licence and page, SCR-13 (no colour literals in the realm render source), every cue found in the narration, closing scene.
+// author, licence and page (photos) or owner, url, date, length and no sound track (clips), SCR-13 (no colour literals in the realm render source), every cue found in the narration, closing scene.
 // Limits, stated plainly: numbers written as words ("three", "ten") are not checked; a number that appears in the facts by
 // coincidence passes; the gate cannot tell whether a sentence says what the cited page says, only that its numbers and URLs exist.
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
 const ep = path.resolve(process.argv[2]);
 const repo = path.resolve(import.meta.dirname, "..", "..", "..");
@@ -44,7 +45,7 @@ for (const b of script.beats) {
   }
 }
 
-const nonText = new Set(["versus", "timeline", "clock", "headlines", "quote", "dots", "coins", "faces", "ladder", "ranking", "ruler", "ballot", "cutout", "cards3", "tiles", "table", "bigstat", "results", "bars", "cards", "footage"]);
+const nonText = new Set(["clip", "circle", "strip", "trio", "seq"]);
 const sigs = new Map();
 const keysOf = (v, out = []) => {
   if (Array.isArray(v)) v.forEach((x) => keysOf(x, out));
@@ -53,7 +54,14 @@ const keysOf = (v, out = []) => {
 };
 for (const s of props.scenes) {
   const v = s.visual;
-  if (!nonText.has(v.type)) fail("VIS", `${s.id}: visual type "${v.type}" is not a graphic or photo scene`);
+  if (!nonText.has(v.type)) fail("VIS", `${s.id}: visual type "${v.type}" is not a footage or photo scene`);
+  if (v.type === "seq") {
+    if (!Array.isArray(v.parts) || v.parts.length < 2) fail("VIS", `${s.id}: seq needs at least two parts`);
+    for (const p of v.parts || []) if (!nonText.has(p.type) || p.type === "seq") fail("VIS", `${s.id}: seq part type "${p.type}" is not a footage or photo scene`);
+    const ats = (v.parts || []).map((p) => p.at).filter((x) => typeof x === "number");
+    if (ats.some((x, i) => i && x <= ats[i - 1])) fail("VIS", `${s.id}: seq parts are not in narration order`);
+  }
+  if (v.type === "clip" && (!Array.isArray(v.shots) || !v.shots.length)) fail("VIS", `${s.id}: clip scene has no shots`);
   const sig = `${v.type}:${keysOf(v).join("|")}`;
   if (sigs.has(sig)) fail("VIS", `${s.id} repeats the visual of ${sigs.get(sig)}`);
   sigs.set(sig, s.id);
@@ -82,11 +90,22 @@ for (const id of used) {
   if (!fs.existsSync(path.join(repo, "channels", "rival-lines", "render", "public", im.file))) fail("IMG", `${id} file missing: ${im.file}`);
 }
 
+// Footage is third-party YouTube video used with commentary. The gate cannot judge fair use; it checks that every clip is short,
+// silent, attributed on screen (owner, dated) and traceable to its source URL.
+const pubDir = path.join(repo, "channels", "rival-lines", "render", "public");
+const hasFfprobe = spawnSync("ffprobe", ["-version"]).status === 0;
+if (!hasFfprobe) warns.push("ffprobe not found: clips were not checked for an audio track");
 for (const [id, c] of Object.entries(props.footage || {})) {
-  if (!c.author || !c.license || !c.page || !c.date) fail("FTG", `clip ${id} lacks author, licence, page or date`);
-  if (!/CC0|CC BY|public domain/i.test(c.license)) fail("FTG", `clip ${id} licence "${c.license}" is not an accepted open licence`);
-  if (!/(19|20)\d\d/.test(c.label)) fail("FTG", `clip ${id} label does not state when it was filmed`);
-  if (!fs.existsSync(path.join(repo, "channels", "rival-lines", "render", "public", c.file))) fail("FTG", `clip ${id} file missing: ${c.file}`);
+  if (!c.owner || !c.url || !c.upload_date || !c.video_title) fail("FTG", `clip ${id} lacks owner, url, upload_date or video_title`);
+  if (!/^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/.test(c.url || "")) fail("FTG", `clip ${id} url is not a YouTube watch url: ${c.url}`);
+  if (!c.lower_name || !/(19|20)\d\d/.test(c.lower_sub || "")) fail("FTG", `clip ${id} on-screen label lacks the owner or a dated line`);
+  if (!(c.dur > 0 && c.dur <= 8)) fail("FTG", `clip ${id} is ${c.dur} s; the limit is 8 s`);
+  const f = path.join(pubDir, c.file);
+  if (!fs.existsSync(f)) { fail("FTG", `clip ${id} file missing: ${c.file}`); continue; }
+  if (hasFfprobe) {
+    const r = spawnSync("ffprobe", ["-v", "error", "-select_streams", "a", "-show_entries", "stream=index", "-of", "csv=p=0", f], { encoding: "utf8" });
+    if (r.stdout.trim()) fail("FTG", `clip ${id} still has an audio track`);
+  }
 }
 
 const colour = /#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(/;

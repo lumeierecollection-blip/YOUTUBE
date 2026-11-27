@@ -28,11 +28,11 @@ if (pkg.tags.join(",").length > 450) fails.push("tags over 450 characters");
 if (fails.length) { console.log(fails.join("\n")); process.exit(1); }
 
 const credits = [...new Set([...used].map((i) => `${props.images[i].credit} (${props.images[i].page})`))];
-const clips = Object.values(props.footage || {}).map((c) => `${c.credit}, "${c.label}" (${c.page})`);
+const clips = Object.values(props.footage || {}).map((c) => `${c.owner}, "${c.video_title}", uploaded ${c.upload_date} (${c.url})`);
 const stPath = path.join(ep, "out", "soundtrack.json");
 const music = fs.existsSync(stPath) ? rj(stPath).beds.map((b) => `${b.attribution} ${b.landing_url}`) : [];
 const src = script.sources_used.map((u) => `- ${u}`);
-const description = [pkg.intro, "", pkg.disclaimer, "", "Sources:", ...src, "", "Photos (Wikimedia Commons, with background removed; credit and licence as listed):", ...credits.map((c) => `- ${c}`), "", ...(clips.length ? ["Video clips (Wikimedia Commons, trimmed, sound removed):", ...clips.map((c) => `- ${c}`), ""] : []), ...(music.length ? ["Music:", ...music.map((c) => `- ${c}`), "Sound effects: CC0 recordings (Remotion SFX library).", ""] : []), "Narration is a computer-generated voice. Facts as of " + (script.as_of || "the date of writing") + "."].join("\n");
+const description = [pkg.intro, "", pkg.disclaimer, "", "Sources:", ...src, "", "Photos (Wikimedia Commons, with background removed; credit and licence as listed):", ...credits.map((c) => `- ${c}`), "", ...(clips.length ? ["Video clips (owners as listed, each trimmed to a few seconds with the sound removed, shown with commentary):", ...clips.map((c) => `- ${c}`), ""] : []), ...(music.length ? ["Music:", ...music.map((c) => `- ${c}`), "Sound effects: CC0 recordings (Remotion SFX library).", ""] : []), "Narration is a computer-generated voice. Facts as of " + (script.as_of || "the date of writing") + "."].join("\n");
 fs.mkdirSync(path.join(ep, "out"), { recursive: true });
 fs.writeFileSync(path.join(ep, "out", "publish.json"), JSON.stringify({ titles: pkg.titles, description, tags: pkg.tags }, null, 1));
 fs.writeFileSync(path.join(ep, "out", "publish.md"), [`# A: ${pkg.titles.a}`, `# B: ${pkg.titles.b}`, "", description, "", "Tags: " + pkg.tags.join(", ")].join("\n"));

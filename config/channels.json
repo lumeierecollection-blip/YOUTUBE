@@ -507,7 +507,9 @@
         "black": "#0A0A0A",
         "white": "#FFFFFF",
         "good": "#5BB381",
-        "bad": "#E5533D"
+        "bad": "#E5533D",
+        "pitch": "#3E8E3C",
+        "pitch_dark": "#2F7430"
       },
       "realm_note": "Colours for the Football Realm-style episodes (channels/rival-lines/episodes/realm-*), measured by eye from the reference frames and thumbnails, not from the channel's brand."
     },

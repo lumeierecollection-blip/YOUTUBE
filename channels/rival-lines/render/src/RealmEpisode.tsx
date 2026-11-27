@@ -3,12 +3,13 @@ import { AbsoluteFill, Audio, Img, Loop, OffthreadVideo, Sequence, staticFile, u
 import { loadFont as loadSans } from "@remotion/google-fonts/InterTight";
 import { loadFont as loadCond } from "@remotion/google-fonts/Anton";
 
-// The Football Realm look, measured from its frames (data/rival-lines/paperpitch-footballrealm-reference-study.md and the frame sheet
-// built from one of its videos): a maroon halftone ground, people cut out of their photos and set in a salmon circle with a thin
-// outline, price-tag cards, short bottom captions with one accent word. Every colour comes from props.theme (channels.json realm_colors).
-// The reference runs press-conference and match footage under all of it. Broadcast footage is not ours to use; the footage scene here
-// plays only clips with a verified open licence (Wikimedia Commons), labelled with what and when they really are. Photos are
-// Wikimedia Commons files with their credit shown on screen.
+// The Football Realm look, read from 60 frames of one of its videos (data/rival-lines/paperpitch-footballrealm-reference-study.md):
+// about 60% of the screen time is real footage (press conferences, interviews, wide match play) under small white uppercase word
+// captions, with a source lowerthird at top left and, now and then, a larger mixed-case caption with one orange italic word. The
+// rest is a few maroon graphics: a person cut out on a salmon circle, a person on a drawn crowd-and-pitch strip, three photo cards
+// with tags, and a short logo sting. Every colour comes from props.theme (channels.json realm_colors).
+// Footage is third-party YouTube video, trimmed to a few seconds, muted, with narration commenting over it and the owner named on
+// screen (see the footage gate in scripts/gate-realm.mjs). Photos are Wikimedia Commons files with their credit shown on screen.
 const sans = loadSans("normal", { weights: ["500", "700", "900"], subsets: ["latin"] }).fontFamily;
 const cond = loadCond("normal", { weights: ["400"], subsets: ["latin"] }).fontFamily;
 
@@ -25,7 +26,6 @@ const useCtx = () => useContext(C);
 const useT = () => { const f = useCurrentFrame(); const { fps } = useVideoConfig(); return f / fps; };
 const shade = (c: string, pctv: number) => `color-mix(in srgb, ${c} ${pctv}%, transparent)`;
 const cue = (v: any, i: number, def: number) => (v.cues && v.cues[i] != null ? v.cues[i] : def);
-const mmn = (n: number) => n.toLocaleString("en-GB");
 
 const outline = (c: string, k = 3) => `drop-shadow(${k}px 0 0 ${c}) drop-shadow(-${k}px 0 0 ${c}) drop-shadow(0 ${k}px 0 ${c}) drop-shadow(0 -${k}px 0 ${c})`;
 
@@ -36,19 +36,8 @@ const Person: React.FC<{ img: string; d: number; ring?: boolean; lift?: number; 
     <div style={{ position: "relative", width: d, height: d, ...style }}>
       <div style={{ position: "absolute", inset: 0, borderRadius: d, background: theme.circle }} />
       <div style={{ position: "absolute", left: -d * 0.25, right: -d * 0.25, top: -d * 0.45, bottom: 0, clipPath: `inset(0 0 0 0)`, display: "flex", alignItems: "flex-end", justifyContent: "center", overflow: "hidden", borderRadius: `0 0 ${d}px ${d}px` }}>
-        <Img src={staticFile(`ep/images/cutout-${img}.png`)} style={{ height: d * lift + d * 0.0, maxWidth: d * 1.45, width: "auto", objectFit: "contain", objectPosition: "center bottom", filter: ring ? outline(theme.outline, 3) : undefined }} />
+        <Img src={staticFile(`ep/images/cutout-${img}.png`)} style={{ height: d * lift, maxWidth: d * 1.45, width: "auto", objectFit: "contain", objectPosition: "center bottom", filter: ring ? outline(theme.outline, 3) : undefined }} />
       </div>
-    </div>
-  );
-};
-
-/* a face only, for rows and avatars */
-const Face: React.FC<{ img?: string; d: number; n?: number; hot?: boolean }> = ({ img, d, n, hot }) => {
-  const { theme } = useCtx();
-  return (
-    <div style={{ width: d, height: d, borderRadius: d, background: hot ? theme.accent_word : theme.circle, overflow: "hidden", position: "relative", flex: "none", border: `3px solid ${theme.outline}` }}>
-      {img ? <Img src={staticFile(`ep/images/cutout-${img}.png`)} style={{ position: "absolute", left: "50%", top: "8%", height: "150%", width: "auto", transform: "translateX(-50%)", objectFit: "cover", objectPosition: "center top" }} />
-        : <div style={{ width: d, height: d, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: d * 0.5, color: theme.card_ink }}>{n}</div>}
     </div>
   );
 };
@@ -64,512 +53,229 @@ const Tag: React.FC<{ value: string; label?: string; size?: number; tilt?: numbe
   );
 };
 
-/* ---------- scenes ---------- */
-const Versus: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const a = pop(t, 0.15), b = pop(t, 0.45);
-  const tagA = pop(t, cue(v, 0, 1.0)), tagB = pop(t, cue(v, 1, 2.0)), mid = pop(t, cue(v, 2, 3.0));
-  const D = 560;
+const TagPop: React.FC<{ v: any }> = ({ v }) => {
+  const t = useT();
+  const p = pop(t, v.cue ?? 1.0);
   return (
-    <>
-      <div style={{ position: "absolute", left: 130, top: 130, transform: `translateX(${(1 - ease(a)) * -300}px)`, opacity: clamp(a) }}><Person img={v.left.img} d={D} /></div>
-      <div style={{ position: "absolute", right: 130, top: 130, transform: `translateX(${(1 - ease(b)) * 300}px)`, opacity: clamp(b) }}><Person img={v.right.img} d={D} /></div>
-      <div style={{ position: "absolute", left: 130, width: D, top: 740, display: "flex", justifyContent: "center", transform: `scale(${clamp(tagA, 0, 1.2)})` }}><Tag value={v.left.value} label={v.left.label} tilt={-3} hot /></div>
-      <div style={{ position: "absolute", right: 130, width: D, top: 740, display: "flex", justifyContent: "center", transform: `scale(${clamp(tagB, 0, 1.2)})` }}><Tag value={v.right.value} label={v.right.label} tilt={3} /></div>
-      {v.mid ? (
-        <div style={{ position: "absolute", left: 710, width: 500, top: 330, textAlign: "center", transform: `scale(${clamp(mid, 0, 1.2)})` }}>
-          <div style={{ fontFamily: cond, fontSize: 250, lineHeight: 1, color: theme.accent_word, textShadow: `0 8px 0 ${shade(theme.black, 40)}` }}>{v.mid}</div>
-          <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 4, color: theme.text }}>POINTS APART</div>
+    <div style={{ position: "absolute", left: v.left, right: v.right, top: v.top ?? 90, transform: `scale(${clamp(p, 0, 1.08)})`, opacity: clamp(p) }}>
+      <Tag value={v.value} label={v.label} size={v.size ?? 84} tilt={v.tilt ?? 2} hot={v.hot !== false} />
+    </div>
+  );
+};
+
+/* a large mixed-case caption; text between *stars* is the orange italic word; "|" breaks a line */
+const BigCap: React.FC<{ v: any; at: number }> = ({ v, at }) => {
+  const { theme } = useCtx(); const t = useT();
+  if (!v) return null;
+  const p = pop(t, v.cue ?? at, 0.35);
+  if (p <= 0.01) return null;
+  const left = v.pos !== "center";
+  const x = v.pos === "right" ? 1000 : 110;
+  return (
+    <div style={{ position: "absolute", left: left ? x : 0, right: left ? undefined : 0, top: v.top ?? 380, textAlign: left ? "left" : "center", transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: left ? "left center" : "center", opacity: clamp(p), textShadow: `0 3px 14px ${shade(theme.black, 75)}` }}>
+      {String(v.text).split("|").map((ln, i) => (
+        <div key={i} style={{ fontFamily: sans, fontWeight: 900, fontSize: v.size ?? 78, lineHeight: 1.08, color: theme.white }}>
+          {ln.split(/(\*[^*]+\*)/).map((part, j) => (part.startsWith("*") ? <span key={j} style={{ color: theme.circle, fontStyle: "italic" }}>{part.slice(1, -1)}</span> : <span key={j}>{part}</span>))}
         </div>
-      ) : null}
+      ))}
+      {v.src ? <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 28, color: theme.white, opacity: 0.85, marginTop: 10 }}>{v.src}</div> : null}
+    </div>
+  );
+};
+
+/* ---------- the footage scene: full-bleed muted clips, a slow push-in, a source lowerthird ---------- */
+const Lower: React.FC<{ clip: any; t: number }> = ({ clip, t }) => {
+  const { theme } = useCtx();
+  if (!clip.lower_name) return null;
+  const a = pg(t, 0.25, 0.4) * (1 - pg(t, 3.4, 0.4));
+  if (a <= 0.01) return null;
+  return (
+    <div style={{ position: "absolute", left: 56, top: 44, display: "flex", gap: 14, opacity: a, transform: `translateX(${(1 - a) * -24}px)` }}>
+      <div style={{ width: 6, background: theme.circle, borderRadius: 3 }} />
+      <div style={{ textShadow: `0 2px 10px ${shade(theme.black, 80)}` }}>
+        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, color: theme.white }}>{clip.lower_name}</div>
+        <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 25, color: theme.white, opacity: 0.88, marginTop: 2 }}>{clip.lower_sub}</div>
+      </div>
+    </div>
+  );
+};
+
+const ClipShot: React.FC<{ id: string; len: number; k: number }> = ({ id, len, k }) => {
+  const { footage, theme } = useCtx(); const t = useT(); const { fps } = useVideoConfig();
+  const clip = footage[id];
+  if (!clip) return null;
+  const z = 1 + 0.06 * clamp(t / Math.max(0.5, len));
+  return (
+    <AbsoluteFill style={{ overflow: "hidden", background: theme.black }}>
+      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: k % 2 ? "35% 55%" : "62% 45%" }}>
+        <Loop durationInFrames={Math.max(1, Math.floor(clip.dur * fps))}>
+          <OffthreadVideo src={staticFile(clip.file)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        </Loop>
+      </AbsoluteFill>
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${shade(theme.black, 55)} 0%, transparent 28%)` }} />
+      <Lower clip={clip} t={t} />
+    </AbsoluteFill>
+  );
+};
+
+const ClipScene: React.FC<{ v: any; dur: number }> = ({ v, dur }) => {
+  const { fps } = useVideoConfig();
+  const n = v.shots.length, each = dur / n;
+  return (
+    <>
+      {v.shots.map((id: string, i: number) => (
+        <Sequence key={i} from={Math.round(i * each * fps)} durationInFrames={Math.max(1, Math.round(each * fps))}>
+          <ClipShot id={id} len={each} k={i} />
+        </Sequence>
+      ))}
+      <BigCap v={v.bigcap} at={0.6} />
+      {v.tag ? <TagPop v={v.tag} /> : null}
     </>
   );
 };
 
-const Timeline: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.items.length, x0 = 260, x1 = 1660;
-  const line = pg(t, 0.2, 1.2);
+/* ---------- graphics, kept to what the reference uses ---------- */
+const Ground: React.FC<{ photo?: string }> = ({ photo }) => {
+  const { theme } = useCtx();
   return (
     <>
-      <div style={{ position: "absolute", left: x0, top: 520, width: (x1 - x0) * line, height: 10, background: theme.circle, borderRadius: 5 }} />
-      {v.items.map((it: any, i: number) => {
-        const x = x0 + ((x1 - x0) * i) / (n - 1);
-        const p = pop(t, cue(v, i, 0.6 + i * 1.2));
-        const up = i % 2 === 0;
-        return (
-          <div key={i} style={{ position: "absolute", left: x - 230, width: 460, top: 0, height: 1080, opacity: clamp(p) }}>
-            <div style={{ position: "absolute", left: 190, top: 490, width: 80, height: 80, borderRadius: 80, background: theme.circle, border: `6px solid ${theme.text}`, transform: `scale(${clamp(p, 0, 1.2)})`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: 46, color: theme.card_ink }}>{i + 1}</div>
-            <div style={{ position: "absolute", left: 0, width: 460, textAlign: "center", top: up ? 190 : 640, transform: `translateY(${(1 - ease(p)) * (up ? 30 : -30)}px)` }}>
-              <div style={{ fontFamily: cond, fontSize: 80, lineHeight: 1, color: theme.accent_word }}>{it.when}</div>
-              <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 2, color: theme.text, marginTop: 12, textTransform: "uppercase" }}>{it.what}</div>
-            </div>
-          </div>
-        );
-      })}
+      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse at 50% 42%, ${theme.bg} 0%, ${theme.bg} 45%, ${theme.bg_dark} 100%)` }} />
+      {photo ? <Img src={staticFile(`ep/images/cutout-${photo}.png`)} style={{ position: "absolute", right: 60, top: -60, height: 1300, width: "auto", filter: "blur(22px)", opacity: 0.32 }} /> : null}
+      <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle, ${shade(theme.halftone, 90)} 2.2px, transparent 2.8px)`, backgroundSize: "15px 15px", WebkitMaskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)", maskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)" }} />
     </>
   );
 };
 
-const Clock: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const [hh, mm] = v.time.split(":").map(Number);
-  const c0 = cue(v, 0, 1.0) - 0.2;
-  const k = pg(t, c0, 1.4);
-  const ha = ((hh % 12) + mm / 60) * 30, ma = mm * 6;
-  const R = 330;
-  const hand = (deg: number, len: number, w: number, col: string) => (
-    <line x1={0} y1={0} x2={Math.sin((deg * Math.PI) / 180) * len} y2={-Math.cos((deg * Math.PI) / 180) * len} stroke={col} strokeWidth={w} strokeLinecap="round" />
-  );
+/* a person on a salmon circle, with an optional price tag and a big caption; two people sit side by side */
+const CircleScene: React.FC<{ v: any }> = ({ v }) => {
+  const t = useT();
+  const two = Array.isArray(v.imgs) && v.imgs.length > 1;
+  const a = pop(t, 0.1, 0.55), b = pop(t, 0.4, 0.55);
   return (
-    <>
-      <svg width={760} height={760} viewBox="-380 -380 760 760" style={{ position: "absolute", left: 180, top: 140 }}>
-        <circle r={R + 20} fill={theme.circle} />
-        <circle r={R} fill={theme.card} stroke={theme.card_ink} strokeWidth={8} />
-        {Array.from({ length: 12 }, (_, i) => <line key={i} x1={Math.sin((i * 30 * Math.PI) / 180) * (R - 14)} y1={-Math.cos((i * 30 * Math.PI) / 180) * (R - 14)} x2={Math.sin((i * 30 * Math.PI) / 180) * (R - 56)} y2={-Math.cos((i * 30 * Math.PI) / 180) * (R - 56)} stroke={theme.card_ink} strokeWidth={i % 3 === 0 ? 12 : 6} />)}
-        {hand(ha * k + (1 - k) * 200, 170, 20, theme.card_ink)}
-        {hand(ma * k + (1 - k) * 720, 260, 12, theme.outline)}
-        <circle r={20} fill={theme.card_ink} />
+    <AbsoluteFill>
+      <Ground photo={v.img || v.imgs?.[0]} />
+      {two ? (
+        <>
+          <div style={{ position: "absolute", left: 300, top: 200, transform: `translateY(${(1 - ease(a)) * 240}px)`, opacity: clamp(a) }}><Person img={v.imgs[0]} d={520} /></div>
+          <div style={{ position: "absolute", left: 960, top: 270, transform: `translateY(${(1 - ease(b)) * 240}px)`, opacity: clamp(b) }}><Person img={v.imgs[1]} d={520} /></div>
+        </>
+      ) : (
+        <div style={{ position: "absolute", left: v.side === "left" ? 190 : 1010, top: 130, transform: `translateY(${(1 - ease(a)) * 260}px)`, opacity: clamp(a) }}><Person img={v.img} d={640} /></div>
+      )}
+      {v.bigcap ? <BigCap v={{ ...v.bigcap, pos: v.bigcap.pos ?? (v.side === "left" ? "right" : "left") }} at={0.8} /> : null}
+      {v.tag ? <TagPop v={{ ...v.tag, left: v.tag.left, right: v.tag.right ?? (two ? 140 : v.side === "left" ? undefined : 150), top: v.tag.top ?? 150, size: v.tag.size ?? 110 }} /> : null}
+    </AbsoluteFill>
+  );
+};
+
+/* a person on a drawn crowd-and-pitch strip, with up to a few text blocks */
+const StripScene: React.FC<{ v: any }> = ({ v }) => {
+  const { theme } = useCtx(); const t = useT();
+  const a = pop(t, 0.1, 0.55);
+  const left = v.side === "left";
+  return (
+    <AbsoluteFill>
+      <svg width={1920} height={1080} style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <pattern id="seat" width={34} height={30} patternUnits="userSpaceOnUse">
+            <path d="M3 28 L17 4 L31 28 Z" fill={theme.text} opacity={0.82} />
+          </pattern>
+        </defs>
+        <rect width={1920} height={1080} fill={theme.red} />
+        <rect width={1920} height={640} fill="url(#seat)" />
+        <rect y={640} width={1920} height={440} fill={theme.pitch} />
+        {Array.from({ length: 6 }, (_, i) => <rect key={i} x={i * 330 - 80} y={640} width={165} height={440} fill={theme.pitch_dark} opacity={0.5} />)}
+        <rect y={630} width={1920} height={12} fill={theme.white} />
       </svg>
-      <div style={{ position: "absolute", left: 1020, top: 330, width: 760, opacity: clamp(k) }}>
-        <div style={{ fontFamily: cond, fontSize: 210, lineHeight: 1, color: theme.accent_word }}>5:15 PM</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 40, letterSpacing: 3, color: theme.text, textTransform: "uppercase", marginTop: 14 }}>{v.label}</div>
-        <div style={{ marginTop: 26, display: "inline-block", fontFamily: sans, fontWeight: 900, fontSize: 32, letterSpacing: 2, color: theme.card_ink, background: theme.card, padding: "8px 20px", transform: "rotate(-1.5deg)" }}>{v.sub}</div>
+      <div style={{ position: "absolute", left: left ? 120 : 1000, bottom: 0, height: 1000, display: "flex", alignItems: "flex-end", transform: `translateY(${(1 - ease(a)) * 300}px)`, opacity: clamp(a) }}>
+        <Img src={staticFile(`ep/images/cutout-${v.img}.png`)} style={{ height: 1000, width: "auto", filter: outline(theme.black, 3) }} />
       </div>
-    </>
-  );
-};
-
-const Headlines: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  return (
-    <>
-      {v.items.map((it: any, i: number) => {
-        const p = pop(t, cue(v, i, 0.5 + i * 1.1));
-        const y = 150 + i * 255;
-        return (
-          <div key={i} style={{ position: "absolute", left: 360, top: y, width: 1200, height: 215, background: theme.card, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, transform: `translateX(${(1 - ease(p)) * (i % 2 ? 500 : -500)}px) rotate(${(i - 1) * 1.2}deg)`, opacity: clamp(p), overflow: "hidden" }}>
-            <div style={{ position: "absolute", left: 24, top: 18, width: 180, height: 180 }}><Face img={it.img} d={180} /></div>
-            <div style={{ position: "absolute", left: 240, top: 24, fontFamily: cond, fontSize: 82, color: theme.card_ink, lineHeight: 1 }}>{String(it.label).toUpperCase()}</div>
-            {[0, 1, 2].map((r) => <div key={r} style={{ position: "absolute", left: 240, top: 118 + r * 28, width: 760 - r * 140, height: 14, borderRadius: 7, background: shade(theme.card_ink, 22) }} />)}
-            <div style={{ position: "absolute", right: 20, top: 20, fontFamily: sans, fontWeight: 900, fontSize: 24, letterSpacing: 2, color: theme.card, background: theme.outline, padding: "6px 14px" }}>BEFORE THE CEREMONY</div>
-          </div>
-        );
-      })}
-    </>
-  );
-};
-
-const Quote: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const p = pop(t, Math.max(0, cue({ cues: [v.cue] }, 0, 0.3) - 0.3), 0.6);
-  return (
-    <>
-      <div style={{ position: "absolute", left: v.img ? 130 : 200, top: 190, width: v.img ? 1000 : 1000, transform: `scale(${clamp(p, 0, 1.05)})`, transformOrigin: "left center", opacity: clamp(p) }}>
-        <div style={{ fontFamily: cond, fontSize: 380, lineHeight: 0.6, color: theme.circle, height: 160 }}>“</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 70, lineHeight: 1.12, color: theme.text }}>{v.text}</div>
-        <div style={{ marginTop: 34, display: "inline-block", fontFamily: sans, fontWeight: 900, fontSize: 32, letterSpacing: 3, color: theme.card_ink, background: theme.accent_word, padding: "8px 20px", textTransform: "uppercase" }}>{v.who}</div>
-      </div>
-      {v.img ? <div style={{ position: "absolute", right: 120, top: 220, opacity: clamp(p), transform: `translateX(${(1 - ease(p)) * 200}px)` }}><Person img={v.img} d={640} /></div> : null}
-      {v.deco === "drafts" ? (
-        <div style={{ position: "absolute", right: 170, top: 230, width: 560, height: 700 }}>
-          {[2, 1, 0].map((i) => {
-            const q = pop(t, 0.5 + (2 - i) * 0.35);
+      {v.lines ? (
+        <div style={{ position: "absolute", left: left ? 820 : 120, top: 170, width: 980 }}>
+          {v.lines.map((ln: string, i: number) => {
+            const p = pop(t, cue(v, i, 0.7 + i * 0.5), 0.35);
             return (
-              <div key={i} style={{ position: "absolute", left: i * 40, top: i * 50, width: 440, height: 560, background: theme.card, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, transform: `rotate(${(i - 1) * 5}deg) scale(${clamp(q, 0, 1.05)})`, opacity: clamp(q) }}>
-                {[0, 1, 2, 3, 4, 5, 6].map((r) => <div key={r} style={{ position: "absolute", left: 40, top: 60 + r * 58, width: 360 - (r % 3) * 70, height: 16, borderRadius: 8, background: shade(theme.card_ink, 22) }} />)}
+              <div key={i} style={{ marginBottom: 20 }}>
+                <span style={{ display: "inline-block", transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: "left center", opacity: clamp(p), background: theme.card, color: theme.card_ink, fontFamily: sans, fontWeight: 900, fontSize: 54, lineHeight: 1.15, padding: "8px 22px", border: `3px solid ${theme.card_ink}`, boxShadow: `6px 8px 0 ${shade(theme.black, 45)}`, textTransform: "uppercase" }}>{ln}</span>
               </div>
             );
           })}
         </div>
       ) : null}
-    </>
+      {v.tag ? <TagPop v={{ ...v.tag, left: v.tag.left, right: v.tag.right ?? (left ? 140 : undefined), top: v.tag.top ?? 90 }} /> : null}
+    </AbsoluteFill>
   );
 };
 
-const Dots: React.FC<{ v: any }> = ({ v }) => {
+/* three photo cards: a small kicker over each, a price-tag figure on it */
+const TrioScene: React.FC<{ v: any }> = ({ v }) => {
   const { theme } = useCtx(); const t = useT();
-  const c0 = cue({ cues: [v.cue] }, 0, 0.8);
-  const cols = 4, size = 190, gap = 34;
+  const n = v.items.length, w = 440, gap = 70, x0 = (1920 - (n * w + (n - 1) * gap)) / 2;
   return (
-    <>
-      <div style={{ position: "absolute", left: 130, top: 230, width: 620 }}>
-        <div style={{ fontFamily: cond, fontSize: 520, lineHeight: 0.9, color: theme.accent_word, textShadow: `0 10px 0 ${shade(theme.black, 40)}`, opacity: pg(t, 0.2, 0.6) }}>{v.count}</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 44, letterSpacing: 3, color: theme.text, textTransform: "uppercase", opacity: pg(t, 0.6, 0.6) }}>{v.label}</div>
-      </div>
-      <div style={{ position: "absolute", left: 890, top: 150 }}>
-        {Array.from({ length: v.count }, (_, i) => {
-          const p = pop(t, c0 - 0.2 + i * 0.12, 0.4);
-          const r = Math.floor(i / cols), c = i % cols;
-          return (
-            <div key={i} style={{ position: "absolute", left: c * (size + gap), top: r * (size + gap), width: size, height: size, borderRadius: size, background: theme.circle, border: `5px solid ${theme.outline}`, overflow: "hidden", transform: `scale(${clamp(p, 0, 1.1)})` }}>
-              <svg width={size} height={size} viewBox="0 0 100 100">
-                <circle cx={50} cy={40} r={18} fill={theme.card_ink} />
-                <path d="M 14 100 Q 14 62 50 62 Q 86 62 86 100 Z" fill={theme.card_ink} />
-              </svg>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-};
-
-const Coins: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const c0 = cue({ cues: [v.cue] }, 0, 0.8);
-  const k = pg(t, c0 - 0.3, 1.8);
-  const target = Number(String(v.value).replace(/,/g, ""));
-  return (
-    <>
-      <svg width={760} height={760} viewBox="0 0 400 400" style={{ position: "absolute", left: 120, top: 150 }}>
-        {Array.from({ length: 14 }, (_, i) => {
-          const p = clamp(k * 14 - i);
-          const x = 70 + (i % 2) * 18, y = 360 - i * 22 - (i > 6 ? 0 : 0);
-          return <g key={i} opacity={p} transform={`translate(0 ${(1 - p) * -30})`}>
-            <ellipse cx={200 + (x - 80)} cy={y + 16} rx={110} ry={34} fill={theme.card_ink} />
-            <ellipse cx={200 + (x - 80)} cy={y} rx={110} ry={34} fill={theme.circle} stroke={theme.card_ink} strokeWidth={5} />
-            <ellipse cx={200 + (x - 80)} cy={y} rx={74} ry={20} fill="none" stroke={theme.card_ink} strokeWidth={4} />
-          </g>;
-        })}
-      </svg>
-      <div style={{ position: "absolute", left: 930, top: 320, width: 900 }}>
-        <div style={{ fontFamily: cond, fontSize: 250, lineHeight: 1, color: theme.accent_word, textShadow: `0 10px 0 ${shade(theme.black, 40)}` }}>€{mmn(Math.round(target * k))}</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 44, letterSpacing: 3, color: theme.text, textTransform: "uppercase", marginTop: 8 }}>{v.unit}</div>
-        <div style={{ marginTop: 30, display: "inline-block", fontFamily: sans, fontWeight: 900, fontSize: 32, letterSpacing: 2, color: theme.card, background: theme.outline, padding: "8px 20px", transform: "rotate(-1.5deg)", opacity: pg(t, c0 + 1.5, 0.5) }}>REPORTED, NOT PROVEN</div>
-      </div>
-    </>
-  );
-};
-
-const Faces: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.imgs.length, D = n <= 3 ? 400 : v.kind === "close" ? 300 : 260, step = D * 0.82;
-  const total = step * (n - 1) + D, x0 = (1920 - total) / 2;
-  return (
-    <>
-      {v.imgs.map((im: string, i: number) => {
-        const p = pop(t, 0.2 + i * 0.18);
-        return <div key={i} style={{ position: "absolute", left: x0 + i * step, top: 250 + (i % 2 ? 40 : 0), transform: `scale(${clamp(p, 0, 1.1)})`, zIndex: i % 2 }}><Person img={im} d={D} /></div>;
-      })}
-      <div style={{ position: "absolute", left: 0, right: 0, top: Math.max(690, 250 + D + 80), textAlign: "center", fontFamily: cond, fontSize: v.kind === "close" ? 190 : 120, lineHeight: 1, color: theme.accent_word, textTransform: "uppercase", textShadow: `0 8px 0 ${shade(theme.black, 40)}`, opacity: pg(t, 0.9, 0.6) }}>{v.caption}</div>
-    </>
-  );
-};
-
-const Ladder: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const max = Math.max(...v.ranks);
-  return (
-    <div style={{ position: "absolute", left: 280, top: 70, width: 1360 }}>
-      {v.ranks.map((pts: number, i: number) => {
-        const p = pg(t, cue(v, i, 0.3 + i * 0.5), 0.45);
-        const hot = i < 3;
+    <AbsoluteFill>
+      <Ground />
+      {v.items.map((it: any, i: number) => {
+        const p = pop(t, cue(v, i, 0.4 + i * 0.7), 0.45);
         return (
-          <div key={i} style={{ display: "flex", alignItems: "center", height: 86, marginBottom: 7, opacity: clamp(p) }}>
-            <div style={{ width: 100, fontFamily: cond, fontSize: 64, color: theme.text }}>{i + 1}</div>
-            <div style={{ flex: 1, height: 64, position: "relative" }}>
-              <div style={{ width: `${(pts / max) * 100 * p}%`, height: 64, background: hot ? theme.accent_word : theme.circle, border: `3px solid ${theme.outline}` }} />
+          <div key={i} style={{ position: "absolute", left: x0 + i * (w + gap), top: 110, width: w, textAlign: "center", transform: `translateY(${(1 - clamp(p)) * 200}px)`, opacity: clamp(p) }}>
+            <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 2, color: theme.text, textTransform: "uppercase", background: theme.bg_dark, display: "inline-block", padding: "6px 18px" }}>{it.kicker}</div>
+            <div style={{ position: "relative", marginTop: 10, height: 680, background: theme.circle, border: `6px solid ${theme.card}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, overflow: "hidden", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+              <Img src={staticFile(`ep/images/cutout-${it.img}.png`)} style={{ height: 660, width: "auto", maxWidth: "100%", objectFit: "contain", objectPosition: "center bottom" }} />
             </div>
-            <div style={{ width: 160, textAlign: "right", fontFamily: cond, fontSize: 68, color: hot ? theme.accent_word : theme.text }}>{pts}</div>
+            <div style={{ position: "absolute", left: 0, right: 0, top: 700, display: "flex", justifyContent: "center", transform: `scale(${clamp(p, 0, 1.1)})` }}><Tag value={it.value} label={it.label} size={80} tilt={(i - (n - 1) / 2) * 3} hot={!!it.hot} /></div>
           </div>
         );
       })}
-    </div>
+    </AbsoluteFill>
   );
 };
 
-const Ranking: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  return (
-    <div style={{ position: "absolute", left: 200, top: 36, width: 1520 }}>
-      {v.rows.map((r: any, i: number) => {
-        const p = pg(t, cue(v, i, 0.3 + i * 0.6), 0.45);
-        const hot = i < 2;
-        return (
-          <div key={i} style={{ display: "flex", alignItems: "center", height: 80, marginBottom: 4, opacity: clamp(p), transform: `translateX(${(1 - p) * -60}px)` }}>
-            <Face img={r.img} d={68} n={i + 1} hot={hot} />
-            <div style={{ width: 330, marginLeft: 20, fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 1, color: theme.text, textTransform: "uppercase" }}>{r.name}</div>
-            <div style={{ flex: 1, height: 52, position: "relative", marginRight: 20 }}>
-              <div style={{ width: `${(r.value / v.max) * 100 * p}%`, height: 52, background: hot ? theme.accent_word : theme.circle, border: `3px solid ${theme.outline}` }} />
-            </div>
-            <div style={{ width: 150, textAlign: "right", fontFamily: cond, fontSize: 64, color: hot ? theme.accent_word : theme.text }}>{mmn(r.value)}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-const Ruler: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const W = 1500, x0 = 210, y = 600, k = pg(t, 0.3, 1.2);
-  const c0 = cue({ cues: [v.cue] }, 0, 1.2);
-  const g = pop(t, c0);
-  const xa = x0 + (v.a.value / v.max) * W, xb = x0 + (v.b.value / v.max) * W;
-  return (
-    <>
-      <div style={{ position: "absolute", left: x0, top: y, width: W, height: 60, background: shade(theme.text, 14), border: `3px solid ${theme.outline}` }} />
-      <div style={{ position: "absolute", left: x0, top: y, width: (xa - x0) * k, height: 60, background: theme.circle }} />
-      <div style={{ position: "absolute", left: xa, top: y, width: (xb - xa) * clamp(g), height: 60, background: theme.accent_word }} />
-      {[0, 250, 500, 750, 1000, 1250, 1500].map((m) => (
-        <div key={m} style={{ position: "absolute", left: x0 + (m / v.max) * W - 40, width: 80, top: y + 78, textAlign: "center", fontFamily: sans, fontWeight: 700, fontSize: 28, color: theme.text, opacity: 0.8 }}>{mmn(m)}</div>
-      ))}
-      <div style={{ position: "absolute", left: xa - 200, width: 200, top: y - 150, textAlign: "right", opacity: pg(t, 0.9, 0.5) }}>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 34, color: theme.text, textTransform: "uppercase" }}>{v.a.label}</div>
-        <div style={{ fontFamily: cond, fontSize: 70, color: theme.text }}>{mmn(v.a.value)}</div>
-      </div>
-      <div style={{ position: "absolute", left: xb + 12, width: 260, top: y - 150, opacity: pg(t, 1.0, 0.5) }}>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 34, color: theme.accent_word, textTransform: "uppercase" }}>{v.b.label}</div>
-        <div style={{ fontFamily: cond, fontSize: 70, color: theme.accent_word }}>{mmn(v.b.value)}</div>
-      </div>
-      <div style={{ position: "absolute", left: (xa + xb) / 2 - 300, width: 600, top: 30, textAlign: "center", transform: `scale(${clamp(g, 0, 1.15)})` }}>
-        <div style={{ fontFamily: cond, fontSize: 260, lineHeight: 1, color: theme.accent_word, textShadow: `0 10px 0 ${shade(theme.black, 40)}` }}>{v.gap}</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 4, color: theme.text }}>POINTS, ON A SCALE OF {mmn(v.max)}</div>
-      </div>
-    </>
-  );
-};
-
-const Ballot: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const known: Record<number, string> = Object.fromEntries(v.rows.map((r: any) => [r.rank, r.name]));
-  const c0 = cue({ cues: [v.cue] }, 0, 3);
-  const p = pop(t, 0.2, 0.6);
-  return (
-    <>
-      <div style={{ position: "absolute", left: 360, top: 50, width: 1200, height: 910, background: theme.card, border: `5px solid ${theme.card_ink}`, boxShadow: `14px 16px 0 ${shade(theme.black, 45)}`, transform: `rotate(-1deg) scale(${clamp(p, 0, 1.03)})`, opacity: clamp(p) }}>
-        <div style={{ position: "absolute", left: 50, top: 24, fontFamily: cond, fontSize: 64, color: theme.card_ink }}>ONE JUROR'S BALLOT</div>
-        <div style={{ position: "absolute", right: 50, top: 40, fontFamily: sans, fontWeight: 700, fontSize: 24, color: theme.card_ink, opacity: 0.7 }}>only the reported rows are filled in</div>
-        {v.points.map((pts: number, i: number) => {
-          const hot = i + 1 === v.mark;
-          const q = pg(t, 0.6 + i * 0.12, 0.4);
-          const rowHot = pg(t, c0 - 0.2, 0.4);
-          return (
-            <div key={i} style={{ position: "absolute", left: 40, right: 40, top: 112 + i * 78, height: 68, display: "flex", alignItems: "center", opacity: clamp(q), background: hot ? shade(theme.accent_word, 85 * rowHot) : "transparent", borderBottom: `3px solid ${shade(theme.card_ink, 30)}` }}>
-              <div style={{ width: 90, fontFamily: cond, fontSize: 52, color: theme.card_ink, paddingLeft: 14 }}>{i + 1}</div>
-              <div style={{ flex: 1, fontFamily: sans, fontWeight: 900, fontSize: 40, color: theme.card_ink, textTransform: "uppercase" }}>{known[i + 1] || ""}</div>
-              <div style={{ width: 200, whiteSpace: "nowrap", textAlign: "right", fontFamily: cond, fontSize: 52, color: theme.card_ink, paddingRight: 14 }}>{pts} pts</div>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
-};
-
-const CutoutScene: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const right = v.side === "right";
-  const p = pop(t, 0.15, 0.6), tg = pop(t, cue({ cues: [v.cue] }, 0, 1.0));
-  return (
-    <>
-      <div style={{ position: "absolute", [right ? "right" : "left"]: 170, top: 90, transform: `translateX(${(1 - ease(p)) * (right ? 300 : -300)}px)`, opacity: clamp(p) }}><Person img={v.img} d={780} /></div>
-      <div style={{ position: "absolute", [right ? "left" : "right"]: 170, top: 360, width: 800, textAlign: right ? "left" : "right", transform: `scale(${clamp(tg, 0, 1.1)})`, transformOrigin: right ? "left center" : "right center" }}>
-        <div style={{ fontFamily: cond, fontSize: 150, lineHeight: 1, color: theme.accent_word, textTransform: "uppercase", textShadow: `0 8px 0 ${shade(theme.black, 40)}` }}>{v.label}</div>
-        <div style={{ marginTop: 20, display: "inline-block", fontFamily: sans, fontWeight: 900, fontSize: 40, letterSpacing: 2, color: theme.card_ink, background: theme.card, padding: "8px 22px", transform: "rotate(-1.5deg)", textTransform: "uppercase" }}>{v.sub}</div>
-      </div>
-    </>
-  );
-};
-
-const Cards3: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const p = pop(t, 0.15, 0.6);
-  return (
-    <>
-      <div style={{ position: "absolute", left: 100, top: 160, transform: `translateX(${(1 - ease(p)) * -300}px)`, opacity: clamp(p) }}><Person img={v.img} d={640} /></div>
-      {v.cards.map((c: any, i: number) => {
-        const q = pop(t, cue(v, i, 0.8 + i * 1.0));
-        return (
-          <div key={i} style={{ position: "absolute", left: 790 + i * 370, top: 250 + (i === 2 ? 60 : 0), width: 340, textAlign: "center", transform: `scale(${clamp(q, 0, 1.1)})` }}>
-            <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 2, color: theme.text, textTransform: "uppercase", marginBottom: 14 }}>{c.label}</div>
-            <div style={{ background: i === 2 ? theme.accent_word : theme.card, color: theme.card_ink, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 45)}`, fontFamily: cond, fontSize: v.size || 210, whiteSpace: "nowrap", lineHeight: 1, padding: "26px 0 8px", transform: `rotate(${(i - 1) * 3}deg)` }}>{c.value}</div>
-          </div>
-        );
-      })}
-      {v.noop ? null : <div style={{ position: "absolute", left: 1075, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 1, 1.8), 0.3) }}>−</div>}
-      {v.noop ? null : <div style={{ position: "absolute", left: 1445, top: 500, fontFamily: cond, fontSize: 120, color: theme.text, opacity: pg(t, cue(v, 2, 2.8), 0.3) }}>=</div>}
-    </>
-  );
-};
-
-const Icon: React.FC<{ kind: string; size: number }> = ({ kind, size }) => {
+/* the short black logo sting over the first moments of a scene */
+const Sting: React.FC<{ t: number }> = ({ t }) => {
   const { theme } = useCtx();
-  const s = { fill: theme.card_ink };
+  if (t > 1.45) return null;
+  const a = 1 - pg(t, 1.1, 0.3);
+  const p = pop(t, 0.1, 0.4);
   return (
-    <svg width={size} height={size} viewBox="0 0 100 100">
-      {kind === "bars" ? <g {...s}><rect x={14} y={50} width={18} height={36} /><rect x={41} y={26} width={18} height={60} /><rect x={68} y={38} width={18} height={48} /></g> : null}
-      {kind === "ballot" ? <g><rect x={20} y={10} width={60} height={80} fill="none" stroke={theme.card_ink} strokeWidth={6} /><path d="M 32 40 L 42 50 L 62 28" fill="none" stroke={theme.card_ink} strokeWidth={7} /><rect x={32} y={62} width={36} height={6} {...s} /><rect x={32} y={74} width={26} height={6} {...s} /></g> : null}
-      {kind === "warn" ? <g><path d="M 50 12 L 92 86 L 8 86 Z" fill="none" stroke={theme.card_ink} strokeWidth={7} strokeLinejoin="round" /><rect x={46} y={36} width={8} height={26} {...s} /><circle cx={50} cy={73} r={5} {...s} /></g> : null}
-      {kind === "person" ? <g {...s}><circle cx={50} cy={34} r={18} /><path d="M 14 92 Q 14 58 50 58 Q 86 58 86 92 Z" /></g> : null}
-      {kind === "page" ? <g><rect x={24} y={10} width={52} height={80} fill="none" stroke={theme.card_ink} strokeWidth={6} /><rect x={34} y={28} width={32} height={6} {...s} /><rect x={34} y={42} width={32} height={6} {...s} /><rect x={34} y={56} width={22} height={6} {...s} /></g> : null}
-    </svg>
+    <AbsoluteFill style={{ background: theme.black, opacity: a, alignItems: "center", justifyContent: "center", display: "flex" }}>
+      <div style={{ transform: `scale(${clamp(p, 0, 1.05)})`, border: `14px solid ${theme.outline}`, borderBottom: "none", padding: "20px 60px 0", fontFamily: cond, fontSize: 280, lineHeight: 1, color: theme.white, textTransform: "lowercase" }}>rl</div>
+    </AbsoluteFill>
   );
 };
 
-const Tiles: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.tiles.length, w = 390, gap = 40, x0 = (1920 - (n * w + (n - 1) * gap)) / 2;
+/* a run of scenes inside one beat: each part starts at its "at" second (the plan resolves "from" words to seconds) */
+const shiftCues = (v: any, at: number): any => {
+  if (Array.isArray(v)) return v.map((x) => shiftCues(x, at));
+  if (v && typeof v === "object") {
+    const o: any = {};
+    for (const [k, val] of Object.entries(v)) o[k] = k === "cue" && typeof val === "number" ? val - at : k === "cues" && Array.isArray(val) ? (val as number[]).map((c) => c - at) : shiftCues(val, at);
+    return o;
+  }
+  return v;
+};
+
+const SeqScene: React.FC<{ v: any; dur: number }> = ({ v, dur }) => {
+  const { fps } = useVideoConfig();
+  const n = v.parts.length;
+  const starts: number[] = v.parts.map((p: any, i: number) => (typeof p.at === "number" ? p.at : (dur * i) / n));
   return (
     <>
-      {v.tiles.map((c: any, i: number) => {
-        const q = pop(t, cue(v, i, 0.6 + i * 1.0));
+      {v.parts.map((p: any, i: number) => {
+        const end = i + 1 < n ? starts[i + 1] : dur;
         return (
-          <div key={i} style={{ position: "absolute", left: x0 + i * (w + gap), top: 200, width: w, height: 620, background: theme.card, border: `5px solid ${theme.card_ink}`, boxShadow: `12px 14px 0 ${shade(theme.black, 45)}`, transform: `translateY(${(1 - clamp(q)) * 200}px) rotate(${(i - 1.5) * 2}deg) scale(${clamp(q, 0, 1.05)})`, opacity: clamp(q), textAlign: "center" }}>
-            <div style={{ marginTop: 34, display: "flex", justifyContent: "center" }}><Icon kind={c.icon} size={150} /></div>
-            <div style={{ fontFamily: cond, fontSize: 250, lineHeight: 1, color: i === 3 ? theme.outline : theme.card_ink }}>{c.value}</div>
-            <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 1, color: theme.card_ink, textTransform: "uppercase", padding: "10px 24px" }}>{c.label}</div>
-          </div>
+          <Sequence key={i} from={Math.round(starts[i] * fps)} durationInFrames={Math.max(1, Math.round((end - starts[i]) * fps))}>
+            <AbsoluteFill style={{ background: "inherit" }}>{renderVisual(shiftCues(p, starts[i]), end - starts[i])}</AbsoluteFill>
+          </Sequence>
         );
       })}
     </>
   );
 };
 
-/* ---------- table, results and big-number scenes used by the Manchester United episode ---------- */
-const Table: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  return (
-    <div style={{ position: "absolute", left: 260, top: 130, width: 1400 }}>
-      {v.rows.map((r: any, i: number) => {
-        const p = pg(t, cue(v, i, 0.2 + i * 0.12), 0.35);
-        const hot = !!r.hot;
-        return (
-          <div key={i} style={{ display: "flex", alignItems: "center", height: 110, marginBottom: 10, opacity: clamp(p), background: hot ? theme.accent_word : shade(theme.text, 8), border: hot ? `3px solid ${theme.outline}` : "none", transform: `translateX(${(1 - p) * 80}px)` }}>
-            <div style={{ width: 110, textAlign: "center", fontFamily: cond, fontSize: 72, color: hot ? theme.card_ink : theme.text }}>{r.pos}</div>
-            <div style={{ flex: 1, fontFamily: sans, fontWeight: 900, fontSize: 52, color: hot ? theme.card_ink : theme.text, textTransform: "uppercase" }}>{r.team}</div>
-            <div style={{ width: 150, textAlign: "center", fontFamily: sans, fontWeight: 700, fontSize: 48, color: hot ? theme.card_ink : theme.text }}>{r.played}</div>
-            <div style={{ width: 190, textAlign: "center", fontFamily: cond, fontSize: 80, color: hot ? theme.card_ink : theme.text }}>{r.points}</div>
-          </div>
-        );
-      })}
-      <div style={{ display: "flex", fontFamily: sans, fontWeight: 700, fontSize: 30, color: theme.text, opacity: 0.8, marginTop: 12 }}>
-        <div style={{ width: 110 }} /><div style={{ flex: 1 }}>{v.note || ""}</div><div style={{ width: 150, textAlign: "center" }}>P</div><div style={{ width: 190, textAlign: "center" }}>PTS</div>
-      </div>
-    </div>
-  );
-};
+const renderVisual = (v: any, dur: number) =>
+  v.type === "clip" ? <ClipScene v={v} dur={dur} /> : v.type === "circle" ? <CircleScene v={v} /> : v.type === "strip" ? <StripScene v={v} /> : v.type === "trio" ? <TrioScene v={v} /> : v.type === "seq" ? <SeqScene v={v} dur={dur} /> : null;
 
-const BigStat: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const p = pop(t, 0.2, 0.6), q = pop(t, cue({ cues: [v.cue] }, 0, 0.9));
-  const target = Number(String(v.value).replace(/[^0-9.]/g, ""));
-  const k = v.count ? pg(t, cue({ cues: [v.cue] }, 0, 0.9) - 0.2, 1.2) : 1;
-  const shown = v.count ? String(v.value).replace(/[0-9,.]+/, mmn(Math.round(target * k))) : v.value;
-  return (
-    <>
-      {v.img ? <div style={{ position: "absolute", left: 120, top: 150, transform: `translateX(${(1 - ease(p)) * -300}px)`, opacity: clamp(p) }}><Person img={v.img} d={700} /></div> : null}
-      <div style={{ position: "absolute", left: v.img ? 900 : 200, top: 260, width: v.img ? 900 : 1520, textAlign: v.img ? "left" : "center", transform: `scale(${clamp(q, 0, 1.08)})`, transformOrigin: v.img ? "left center" : "center" }}>
-        <div style={{ fontFamily: cond, fontSize: v.size || 360, lineHeight: 1, color: theme.accent_word, textShadow: `0 12px 0 ${shade(theme.black, 40)}` }}>{shown}</div>
-        <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 48, letterSpacing: 3, color: theme.text, textTransform: "uppercase" }}>{v.label}</div>
-        {v.sub ? <div style={{ marginTop: 24, display: "inline-block", fontFamily: sans, fontWeight: 900, fontSize: 34, letterSpacing: 2, color: theme.card_ink, background: theme.card, padding: "8px 20px", transform: "rotate(-1.5deg)", textTransform: "uppercase" }}>{v.sub}</div> : null}
-      </div>
-    </>
-  );
-};
-
-const Results: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.items.length, w = 250, gap = 28, perRow = Math.min(n, 5);
-  const rows = Math.ceil(n / perRow);
-  const x0 = (1920 - (perRow * w + (perRow - 1) * gap)) / 2;
-  const col = (r: string) => (r === "W" ? theme.good : r === "L" ? theme.bad : theme.card);
-  return (
-    <>
-      {v.title ? <div style={{ position: "absolute", left: 0, right: 0, top: 70, textAlign: "center", fontFamily: cond, fontSize: 96, color: theme.accent_word, textTransform: "uppercase" }}>{v.title}</div> : null}
-      {v.items.map((it: any, i: number) => {
-        const p = pop(t, cue(v, i, 0.4 + i * 0.35), 0.4);
-        const r = Math.floor(i / perRow), c = i % perRow;
-        return (
-          <div key={i} style={{ position: "absolute", left: x0 + c * (w + gap), top: 240 + r * 330, width: w, height: 290, background: theme.card, border: `4px solid ${theme.card_ink}`, boxShadow: `8px 10px 0 ${shade(theme.black, 45)}`, transform: `scale(${clamp(p, 0, 1.08)})`, opacity: clamp(p), textAlign: "center", overflow: "hidden" }}>
-            <div style={{ background: col(it.r), height: 84, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: 64, color: theme.card_ink, borderBottom: `4px solid ${theme.card_ink}` }}>{it.r}</div>
-            <div style={{ fontFamily: cond, fontSize: 96, lineHeight: 1, color: theme.card_ink, marginTop: 20 }}>{it.score}</div>
-            <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 28, color: theme.card_ink, textTransform: "uppercase", marginTop: 8, padding: "0 10px" }}>{it.vs}</div>
-            <div style={{ fontFamily: sans, fontWeight: 700, fontSize: 22, color: theme.card_ink, opacity: 0.7, marginTop: 4 }}>{it.when}</div>
-          </div>
-        );
-      })}
-      {rows > 0 && v.foot ? <div style={{ position: "absolute", left: 0, right: 0, top: 240 + rows * 330 + 10, textAlign: "center", fontFamily: sans, fontWeight: 900, fontSize: 38, letterSpacing: 2, color: theme.text, textTransform: "uppercase" }}>{v.foot}</div> : null}
-    </>
-  );
-};
-
-const Bars: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.items.length, max = v.max || Math.max(...v.items.map((x: any) => x.value));
-  const bw = Math.min(260, 1300 / n - 30), x0 = (1920 - n * (bw + 30)) / 2;
-  return (
-    <>
-      {v.title ? <div style={{ position: "absolute", left: 0, right: 0, top: 70, textAlign: "center", fontFamily: cond, fontSize: 90, color: theme.accent_word, textTransform: "uppercase" }}>{v.title}</div> : null}
-      {v.items.map((it: any, i: number) => {
-        const p = pg(t, cue(v, i, 0.5 + i * 0.7), 0.7);
-        const h = (it.value / max) * 480 * p;
-        return (
-          <div key={i} style={{ position: "absolute", left: x0 + i * (bw + 30), width: bw, top: 230, height: 700 }}>
-            <div style={{ position: "absolute", bottom: 90, left: 0, width: bw, height: h, background: it.hot ? theme.accent_word : theme.circle, border: `4px solid ${theme.outline}` }} />
-            <div style={{ position: "absolute", bottom: 90 + h + 8, left: 0, width: bw, textAlign: "center", fontFamily: cond, fontSize: 84, color: it.hot ? theme.accent_word : theme.text, opacity: clamp(p) }}>{it.display ?? it.value}</div>
-            <div style={{ position: "absolute", bottom: 0, left: 0, width: bw, textAlign: "center", fontFamily: sans, fontWeight: 900, fontSize: 32, letterSpacing: 1, color: theme.text, textTransform: "uppercase" }}>{it.label}</div>
-          </div>
-        );
-      })}
-    </>
-  );
-};
-
-const Cards: React.FC<{ v: any }> = ({ v }) => {
-  const { theme } = useCtx(); const t = useT();
-  const n = v.items.length, w = 440, gap = 40, x0 = (1920 - (n * w + (n - 1) * gap)) / 2;
-  return (
-    <>
-      {v.items.map((it: any, i: number) => {
-        const p = pop(t, cue(v, i, 0.5 + i * 1.0));
-        return (
-          <div key={i} style={{ position: "absolute", left: x0 + i * (w + gap), top: 130, width: w, textAlign: "center", transform: `translateY(${(1 - clamp(p)) * 180}px) scale(${clamp(p, 0, 1.05)})`, opacity: clamp(p) }}>
-            {it.img ? <div style={{ display: "flex", justifyContent: "center" }}><Person img={it.img} d={w - 60} /></div> : null}
-            <div style={{ marginTop: 26, display: "inline-block" }}><Tag value={it.value} label={it.label} size={92} tilt={(i - (n - 1) / 2) * 3} hot={!!it.hot} /></div>
-            {it.sub ? <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 30, letterSpacing: 2, color: theme.text, marginTop: 20, textTransform: "uppercase" }}>{it.sub}</div> : null}
-          </div>
-        );
-      })}
-    </>
-  );
-};
-
-/* real licensed footage in a framed panel; the label says exactly what the clip is and when it was filmed */
-const Footage: React.FC<{ v: any }> = ({ v }) => {
-  const { theme, footage } = useCtx(); const t = useT(); const { fps } = useVideoConfig();
-  const clip = footage[v.clip];
-  if (!clip) return null;
-  const portrait = clip.h > clip.w;
-  const H = portrait ? 790 : 664, W = portrait ? Math.round((790 * clip.w) / clip.h) : 1180;
-  const left = portrait ? 220 : 150, top = portrait ? 110 : 150;
-  const a = pop(t, 0.1), b = pop(t, cue(v, 0, 1.2)), c = pop(t, cue(v, 1, 2.4));
-  const colX = left + W + 90;
-  return (
-    <>
-      <div style={{ position: "absolute", left, top, width: W, height: H, border: `8px solid ${theme.outline}`, boxShadow: `14px 16px 0 ${shade(theme.black, 55)}`, overflow: "hidden", background: theme.black, transform: `scale(${clamp(a, 0, 1.03)}) rotate(${portrait ? -1.2 : -0.8}deg)`, opacity: clamp(a) }}>
-        <Loop durationInFrames={Math.max(1, Math.floor(clip.dur * fps))}>
-          <OffthreadVideo src={staticFile(clip.file)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        </Loop>
-      </div>
-      <div style={{ position: "absolute", left: colX, top: top + 20, right: 80, display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 34 }}>
-        {v.tag ? <div style={{ transform: `scale(${clamp(b, 0, 1.1)})`, transformOrigin: "left center" }}><Tag value={v.tag.value} label={v.tag.label} size={portrait ? 120 : 84} tilt={2} hot /></div> : null}
-        <div style={{ transform: `scale(${clamp(c, 0, 1.05)})`, transformOrigin: "left center", background: theme.card, color: theme.card_ink, border: `3px solid ${theme.card_ink}`, boxShadow: `6px 8px 0 ${shade(theme.black, 45)}`, padding: "16px 22px", maxWidth: portrait ? 760 : 420 }}>
-          <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 22, letterSpacing: 3, color: theme.red, textTransform: "uppercase" }}>{clip.archive ? "Archive footage" : "Footage"}</div>
-          <div style={{ fontFamily: sans, fontWeight: 700, fontSize: 30, lineHeight: 1.15, marginTop: 4 }}>{clip.label}</div>
-        </div>
-      </div>
-    </>
-  );
-};
-
-const VISUALS: Record<string, React.FC<{ v: any }>> = {
-  versus: Versus, timeline: Timeline, clock: Clock, headlines: Headlines, quote: Quote, dots: Dots, coins: Coins, faces: Faces, ladder: Ladder,
-  ranking: Ranking, ruler: Ruler, ballot: Ballot, cutout: CutoutScene, cards3: Cards3, tiles: Tiles, table: Table, bigstat: BigStat, results: Results, bars: Bars, cards: Cards, footage: Footage,
-};
-
-/* ---------- shell: ground, captions, credit ---------- */
+/* ---------- shell: small word captions, photo credit, sting ---------- */
 const collectImgs = (v: any, out = new Set<string>()): Set<string> => {
   if (!v || typeof v !== "object") return out;
   if (Array.isArray(v)) { v.forEach((x) => (typeof x === "string" ? null : collectImgs(x, out))); return out; }
@@ -594,33 +300,29 @@ const Captions: React.FC<{ scene: any }> = ({ scene }) => {
     else if (/[,;:]$/.test(w.w) && cur.length >= 3) { chunks.push(cur); cur = []; }
   }
   if (cur.length) chunks.push(cur);
-  const off = scene.speechStart - scene.t0;
-  const tt = t - off;
+  const tt = t - (scene.speechStart - scene.t0);
+  if (tt < -0.2) return null;
   let active = chunks[0];
   for (const ch of chunks) if (tt >= ch[0].t0 - 0.05) active = ch;
-  if (tt < -0.2) return null;
   return (
-    <div style={{ position: "absolute", left: 140, right: 140, bottom: 62, textAlign: "center", fontFamily: sans, fontWeight: 900, fontSize: 46, letterSpacing: 2, textTransform: "uppercase", color: theme.text, textShadow: `0 3px 0 ${shade(theme.black, 70)}, 0 0 18px ${shade(theme.black, 60)}` }}>
-      {active.map((w: any, i: number) => <span key={i} style={{ color: acc.has(norm(w.w)) ? theme.accent_word : theme.text }}>{w.w}{i < active.length - 1 ? " " : ""}</span>)}
+    <div style={{ position: "absolute", left: 200, right: 200, bottom: 48, textAlign: "center", fontFamily: sans, fontWeight: 900, fontSize: 36, letterSpacing: 1.5, textTransform: "uppercase", color: theme.white, textShadow: `0 2px 0 ${shade(theme.black, 80)}, 0 0 14px ${shade(theme.black, 70)}` }}>
+      {active.map((w: any, i: number) => <span key={i} style={{ color: acc.has(norm(w.w)) ? theme.circle : theme.white }}>{w.w}{i < active.length - 1 ? " " : ""}</span>)}
     </div>
   );
 };
 
 const SceneShell: React.FC<{ scene: any }> = ({ scene }) => {
-  const { theme, images, footage } = useCtx();
+  const { theme, images } = useCtx();
   const t = useT();
-  const V = VISUALS[scene.visual.type];
-  const imgs = [...collectImgs(scene.visual)];
-  const credit = [...new Set(imgs.map((i) => images[i]?.credit).filter(Boolean))].join("  ·  ");
-  const clipCredit = scene.visual.clip && footage[scene.visual.clip] ? footage[scene.visual.clip].credit : "";
+  const v = scene.visual;
+  const dur = scene.t1 - scene.t0;
+  const credit = [...new Set([...collectImgs(v)].map((i) => images[i]?.credit).filter(Boolean))].join("  ·  ");
   return (
-    <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 42%, ${theme.bg} 0%, ${theme.bg} 45%, ${theme.bg_dark} 100%)`, opacity: ease(t / 0.25) }}>
-      <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle, ${shade(theme.halftone, 90)} 2.2px, transparent 2.8px)`, backgroundSize: "15px 15px", WebkitMaskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)", maskImage: "radial-gradient(ellipse at 50% 45%, transparent 25%, black 100%)" }} />
-      <div style={{ position: "absolute", left: 40, top: 32, width: 70, height: 70, borderRadius: 70, background: theme.card, border: `4px solid ${theme.card_ink}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: cond, fontSize: 36, color: theme.card_ink }}>RL</div>
-      {V ? <V v={scene.visual} /> : null}
-      {credit ? <div style={{ position: "absolute", right: 36, top: 36, maxWidth: 900, textAlign: "right", fontFamily: sans, fontWeight: 500, fontSize: 18, color: theme.text, opacity: 0.6 }}>Photo: {credit}</div> : null}
-      {clipCredit ? <div style={{ position: "absolute", right: 36, top: 36, maxWidth: 900, textAlign: "right", fontFamily: sans, fontWeight: 500, fontSize: 18, color: theme.text, opacity: 0.6 }}>Video: {clipCredit}</div> : null}
+    <AbsoluteFill style={{ background: theme.bg_dark }}>
+      {renderVisual(v, dur)}
+      {credit ? <div style={{ position: "absolute", right: 36, top: 24, maxWidth: 900, textAlign: "right", fontFamily: sans, fontWeight: 500, fontSize: 17, color: theme.white, opacity: 0.55 }}>Photo: {credit}</div> : null}
       <Captions scene={scene} />
+      {v.sting ? <Sting t={t} /> : null}
     </AbsoluteFill>
   );
 };
