@@ -3045,9 +3045,14 @@
           "topic": "AURA Identifies Two Monster Quasars From Dawn of Time",
           "slug": "aura-identifies-two-monster-quasars-dawn-of-time",
           "reserved_at": "2026-11-26T18:37:51.249Z"
+        },
+        {
+          "topic": "Euclid Space Telescope Spots Most Distant Quasar With 360 Million Solar Masses",
+          "slug": "euclid-space-telescope-spots-360-million-solar-mass-quasar",
+          "reserved_at": "2026-11-27T18:28:31.342Z"
         }
       ],
-      "last_generated": "2026-11-26T18:37:51.249Z"
+      "last_generated": "2026-11-27T18:28:31.342Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
