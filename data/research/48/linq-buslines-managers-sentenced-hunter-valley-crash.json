@@ -1,0 +1,98 @@
+{
+  "topic_slug": "linq-buslines-managers-sentenced-hunter-valley-crash",
+  "strongest_angle": "Analyze the November 23, 2026 sentencing of former Linq Buslines managers Rodney and Katie Parker in Gosford Local Court under the Heavy Vehicle National Law following the June 2023 Hunter Valley bus crash.",
+  "key_facts": [
+    {
+      "fact": "Two former Linq Buslines managers, Rodney Parker and Katie Parker, were convicted and fined $7,000 each in Gosford Local Court on November 23, 2026, under the Heavy Vehicle National Law.",
+      "source_url": "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash",
+      "source_name": "National Heavy Vehicle Regulator",
+      "confidence": "high"
+    },
+    {
+      "fact": "The June 2023 Hunter Valley bus crash involving a Linq Buslines vehicle claimed 10 lives and seriously injured 25 people.",
+      "source_url": "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash",
+      "source_name": "National Heavy Vehicle Regulator",
+      "confidence": "high"
+    },
+    {
+      "fact": "Rodney Parker, 42, and Katie Parker, 39, faced a maximum fine of $59,000 before pleading guilty to heavy vehicle safety breaches.",
+      "source_url": "https://www.abc.net.au/news/2026-11-23/bus-managers-fined-over-deadly-hunter-bus-crash/107404110",
+      "source_name": "ABC News",
+      "confidence": "high"
+    },
+    {
+      "fact": "A judge found that Rodney Parker had been flippant and careless during the recruitment process when hiring driver Brett Button using a texted reference check.",
+      "source_url": "https://www.newcastleherald.com.au/story/9396293/greta-bus-crash-two-former-linq-buslines-managers-fined-in-court",
+      "source_name": "Newcastle Herald",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "individual fine amount",
+      "value": 7000,
+      "unit": "dollars",
+      "source_url": "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash"
+    },
+    {
+      "label": "lives lost in crash",
+      "value": 10,
+      "unit": "lives",
+      "source_url": "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash"
+    },
+    {
+      "label": "people seriously injured",
+      "value": 25,
+      "unit": "people",
+      "source_url": "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash"
+    },
+    {
+      "label": "Rodney Parker age",
+      "value": 42,
+      "unit": "years",
+      "source_url": "https://www.abc.net.au/news/2026-11-23/bus-managers-fined-over-deadly-hunter-bus-crash/107404110"
+    },
+    {
+      "label": "Katie Parker age",
+      "value": 39,
+      "unit": "years",
+      "source_url": "https://www.abc.net.au/news/2026-11-23/bus-managers-fined-over-deadly-hunter-bus-crash/107404110"
+    },
+    {
+      "label": "maximum possible fine",
+      "value": 59000,
+      "unit": "dollars",
+      "source_url": "https://www.abc.net.au/news/2026-11-23/bus-managers-fined-over-deadly-hunter-bus-crash/107404110"
+    }
+  ],
+  "named_entities": [
+    {
+      "name": "Linq Buslines",
+      "kind": "organization"
+    },
+    {
+      "name": "Rodney Parker",
+      "kind": "person"
+    },
+    {
+      "name": "Katie Parker",
+      "kind": "person"
+    },
+    {
+      "name": "Gosford Local Court",
+      "kind": "place"
+    },
+    {
+      "name": "Hunter Valley",
+      "kind": "place"
+    },
+    {
+      "name": "Brett Button",
+      "kind": "person"
+    },
+    {
+      "name": "National Heavy Vehicle Regulator",
+      "kind": "organization"
+    }
+  ]
+}

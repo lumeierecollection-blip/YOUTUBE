@@ -1,0 +1,66 @@
+{
+  "channel_id": "48",
+  "topic_slug": "linq-buslines-managers-sentenced-hunter-valley-crash",
+  "format": "shorts",
+  "hook": "Linq Buslines managers were fined $7,000 after 10 lives were lost.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Linq Buslines managers were fined $7,000 after 10 lives were lost.",
+      "b_roll": [
+        "graphic display showing $7,000 fine and 10 lives lost statistic"
+      ],
+      "text_overlay": {
+        "text": "Fined $7,000 | 10 Lives Lost"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In June 2023, a Hunter Valley crash injured 25 people. Rodney Parker, age 42, entered a guilty plea in court. Why did hiring with a texted reference risk a $59,000 fine?",
+      "b_roll": [
+        "map animation of Hunter Valley showing 25 people injured",
+        "graphic card displaying Rodney Parker age 42 court filing",
+        "diagram of texted reference check leading to $59,000 maximum penalty"
+      ],
+      "text_overlay": {
+        "text": "Hunter Valley | June 2023"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, Katie Parker, age 39, also faced a maximum fine of $59,000 before pleading guilty.",
+      "b_roll": [
+        "graphic card displaying Katie Parker age 39 with $59,000 fine counter"
+      ],
+      "text_overlay": {
+        "text": "Katie Parker | Max Fine $59,000"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "On November 23, 2026, Gosford Local Court issued the sentences. Careless driver recruitment directly caused the crash with 10 fatalities. Judges ordered Rodney Parker and Katie Parker to pay $7,000 each.",
+      "b_roll": [
+        "timeline card showing November 23 2026 at Gosford Local Court",
+        "flow diagram linking driver recruitment to 10 fatalities",
+        "split graphic showing $7,000 individual fines for both managers"
+      ],
+      "text_overlay": {
+        "text": "Nov 23, 2026 | Fined $7,000 Each"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The crash left 25 people injured in Hunter Valley.",
+      "b_roll": [
+        "map display of Hunter Valley highlighting 25 people injured"
+      ],
+      "text_overlay": {
+        "text": "25 Injured | Hunter Valley"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.nhvr.gov.au/news/2026/11/24/linq-buslines-managers-sentenced-over-fatal-hunter-valley-crash",
+    "https://www.abc.net.au/news/2026-11-23/bus-managers-fined-over-deadly-hunter-bus-crash/107404110"
+  ]
+}
