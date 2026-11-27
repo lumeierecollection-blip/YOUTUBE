@@ -72,7 +72,7 @@ const BigCap: React.FC<{ v: any; at: number }> = ({ v, at }) => {
   const left = v.pos !== "center";
   const x = v.pos === "right" ? 1000 : 110;
   return (
-    <div style={{ position: "absolute", left: left ? x : 0, right: left ? undefined : 0, top: v.top ?? 380, textAlign: left ? "left" : "center", transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: left ? "left center" : "center", opacity: clamp(p), textShadow: `0 3px 14px ${shade(theme.black, 75)}` }}>
+    <div style={{ position: "absolute", left: left ? x : 0, right: left ? undefined : 0, top: v.top ?? 380, textAlign: left ? "left" : "center", transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: left ? "left center" : "center", opacity: clamp(p), textShadow: `0 3px 14px ${shade(theme.black, 85)}, 0 0 34px ${shade(theme.black, 80)}` }}>
       {String(v.text).split("|").map((ln, i) => (
         <div key={i} style={{ fontFamily: sans, fontWeight: 900, fontSize: v.size ?? 78, lineHeight: 1.08, color: theme.white }}>
           {ln.split(/(\*[^*]+\*)/).map((part, j) => (part.startsWith("*") ? <span key={j} style={{ color: theme.circle, fontStyle: "italic" }}>{part.slice(1, -1)}</span> : <span key={j}>{part}</span>))}
@@ -112,7 +112,7 @@ const ClipShot: React.FC<{ id: string; len: number; k: number }> = ({ id, len, k
           <OffthreadVideo src={staticFile(clip.file)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </Loop>
       </AbsoluteFill>
-      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${shade(theme.black, 55)} 0%, transparent 28%)` }} />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${shade(theme.black, 72)} 0%, ${shade(theme.black, 38)} 40%, transparent 68%)` }} />
       <Lower clip={clip} t={t} />
     </AbsoluteFill>
   );
