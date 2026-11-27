@@ -1,0 +1,56 @@
+name: Moon reference audio analysis
+# Push to research/moon-audio runs it. Each runner downloads a reference's ORIGINAL-language audio itself, analyses it, and uploads ONLY JSON.
+# No third-party audio or video is committed or uploaded (this repository is public). Holds no credentials.
+on:
+  push:
+    branches: ["research/moon-audio"]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: denoland/setup-deno@v2
+      - run: pip install --quiet "yt-dlp[default]"
+      - run: yt-dlp --no-warnings -f "ba[format_note*=original]/ba" -o probe.audio "https://www.youtube.com/watch?v=t5KHnjkfmGo" && ls -la probe.audio && rm probe.audio
+  analyze:
+    needs: probe
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        id: [0fC1uf1vYuA, V1Mt3YJYb2A, jnQBhiipsQM, G1K_p6vYNVE, Rfwa9J2NZKc, Yootr6Vf7E0, cY-fsWjmbFY, 9TkcbSCTzhA, cHdp4iGjVUs, t7STD2ESmWg, v231U-YxDG8, daQAhruFG40, t5KHnjkfmGo, g2YRDX6o8fI, yecZDgWybtc, cX2JONW77hE]
+    env:
+      ID: ${{ matrix.id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: denoland/setup-deno@v2
+      - name: Install
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install --quiet torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet "yt-dlp[default]" demucs==4.0.1 shazamio transformers==4.46.3 librosa soundfile scipy "numpy<2.3"
+      - name: Download audio
+        run: |
+          mkdir -p "v/$ID" "out/$ID"
+          sleep $((RANDOM % 45))
+          yt-dlp --no-warnings -f "ba[format_note*=original]/ba" -o "v/$ID/v.mp4" -- "https://www.youtube.com/watch?v=$ID"
+      - name: Remove voice
+        run: python moon/sep_lite.py 100000 "$ID"
+      - name: Identify music
+        run: python moon/music_id.py "$ID" 15
+      - name: Measure and describe sound
+        run: python moon/analyze.py "$ID"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: moon-${{ matrix.id }}
+          retention-days: 3
+          path: out/**/*.json
+          if-no-files-found: warn
