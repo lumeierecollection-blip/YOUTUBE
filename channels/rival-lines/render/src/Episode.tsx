@@ -66,7 +66,7 @@ const PhotoScene: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   return (
     <Fill>
       <Img src={staticFile(im.file)} style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, objectFit: "cover", filter: "blur(40px) brightness(0.32)", transform: "scale(1.15)" }} />
-      <div style={{ position: "absolute", left, top, width: w, height: h, boxShadow: "0 24px 70px rgba(0,0,0,.55)", overflow: "hidden", background: theme.ink }}>
+      <div style={{ position: "absolute", left, top, width: w, height: h, boxShadow: `0 24px 70px color-mix(in srgb, ${theme.ink} 80%, black)`, overflow: "hidden", background: theme.ink }}>
         <Img src={staticFile(im.file)} style={{ width: "100%", height: "100%", objectFit: "cover", transform: `scale(${1 + 0.06 * (t / dur)})` }} />
       </div>
       {has ? (
@@ -221,7 +221,7 @@ const Cards3: React.FC<{ scene: any }> = ({ scene }) => {
         {v.cards.map((c: any, i: number) => {
           const p = pg(t, c.cue - 0.2, 0.5);
           return (
-            <div key={i} style={{ flex: 1, height: 560, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", background: theme.paper, padding: 36, opacity: p, transform: `translateY(${(1 - p) * 40}px) rotate(${(i - 1) * 0.8}deg)` }}>
+            <div key={i} style={{ flex: 1, height: 560, border: `2px solid ${theme.ink}`, boxShadow: `0 12px 34px color-mix(in srgb, ${theme.ink} 16%, transparent)`, background: theme.paper, padding: 36, opacity: p, transform: `translateY(${(1 - p) * 40}px) rotate(${(i - 1) * 0.8}deg)` }}>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 48 }}>{c.name}</div>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 170, lineHeight: 1.05, marginTop: 20 }}>{c.goals}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 30, opacity: 0.7 }}>official goals</div>
@@ -397,7 +397,7 @@ const Recent4: React.FC<{ scene: any }> = ({ scene }) => {
           const p = pg(t, (v.cues?.[i] ?? i * 2) - 0.25, 0.5);
           const last = i === rows.length - 1;
           return (
-            <div key={r.season} style={{ flex: 1, height: 600, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", padding: 28, opacity: p, transform: `translateY(${(1 - p) * 40}px)` }}>
+            <div key={r.season} style={{ flex: 1, height: 600, border: `2px solid ${theme.ink}`, boxShadow: `0 12px 34px color-mix(in srgb, ${theme.ink} 16%, transparent)`, padding: 28, opacity: p, transform: `translateY(${(1 - p) * 40}px)` }}>
               <div style={{ fontFamily: serif, fontWeight: 600, fontSize: 44 }}>{r.season.replace("–", " to ")}{last ? " so far" : ""}</div>
               <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 190, lineHeight: 1.05, marginTop: 12 }}>{r.goals}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 30, opacity: 0.7 }}>goals in {r.apps} matches</div>
@@ -633,7 +633,7 @@ const Icon: React.FC<{ scene: any }> = ({ scene }) => {
   const sw = 8;
   return (
     <Fill>
-      <div style={{ position: "absolute", left: 160, top: 230, width: 620, height: 620, background: theme.grid, border: `2px solid ${theme.ink}`, boxShadow: "0 12px 34px rgba(31,29,26,.16)", transform: `rotate(-1.5deg) scale(${0.9 + 0.1 * p})`, opacity: p }}>
+      <div style={{ position: "absolute", left: 160, top: 230, width: 620, height: 620, background: theme.grid, border: `2px solid ${theme.ink}`, boxShadow: `0 12px 34px color-mix(in srgb, ${theme.ink} 16%, transparent)`, transform: `rotate(-1.5deg) scale(${0.9 + 0.1 * p})`, opacity: p }}>
         <svg viewBox="0 0 400 400" width={620} height={620}>
           {v.kind === "injury" ? (
             <g transform="rotate(-35 200 200)">
@@ -736,7 +736,7 @@ const Collage: React.FC<{ scene: any }> = ({ scene }) => {
           const col = i % 3;
           const row = Math.floor(i / 3);
           return (
-            <div key={id} style={{ position: "absolute", left: col * 330, top: row * 420 + 20, width: 300, height: 380, background: theme.paper, border: `1px solid ${theme.grid}`, boxShadow: "0 8px 22px rgba(31,29,26,.2)", padding: 12, transform: `rotate(${rot[i]}deg) scale(${0.85 + 0.15 * p})`, opacity: p }}>
+            <div key={id} style={{ position: "absolute", left: col * 330, top: row * 420 + 20, width: 300, height: 380, background: theme.paper, border: `1px solid ${theme.grid}`, boxShadow: `0 8px 22px color-mix(in srgb, ${theme.ink} 20%, transparent)`, padding: 12, transform: `rotate(${rot[i]}deg) scale(${0.85 + 0.15 * p})`, opacity: p }}>
               <Img src={staticFile(im.file)} style={{ width: 274, height: 300, objectFit: "cover" }} />
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 16, marginTop: 8, opacity: 0.7 }}>{im.author.slice(0, 34)}</div>
               <div style={{ fontFamily: sans, fontWeight: 500, fontSize: 16, opacity: 0.7 }}>{im.license}</div>
@@ -779,17 +779,22 @@ const Visual: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
 
 const PaperBg: React.FC = () => {
   const { theme, dark } = useCtx();
+  const vignette = dark
+    ? `radial-gradient(ellipse at 50% 46%, color-mix(in srgb, ${theme.ink} 82%, ${theme.paper}) 0%, ${theme.ink} 55%, color-mix(in srgb, ${theme.ink} 55%, black) 100%)`
+    : `radial-gradient(ellipse at 50% 46%, transparent 55%, color-mix(in srgb, ${theme.muted} 40%, transparent) 100%)`;
   return (
-    <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
-      <defs>
-        <radialGradient id="v" cx="50%" cy="46%" r="75%">
-          {dark ? (<><stop offset="0%" stopColor="#2B2826" /><stop offset="100%" stopColor="#0E0D0C" /></>) : (<><stop offset="55%" stopColor={theme.paper} stopOpacity="0" /><stop offset="100%" stopColor="#B9B0A0" stopOpacity="0.45" /></>)}
-        </radialGradient>
-        <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" /><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.55 0" /></filter>
-      </defs>
-      <rect width={1920} height={1080} fill="url(#v)" />
-      {dark ? null : <rect width={1920} height={1080} filter="url(#n)" opacity={0.28} />}
-    </svg>
+    <>
+      {dark ? <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, background: vignette }} /> : null}
+      {dark ? null : (
+        <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0 }}>
+          <defs>
+            <filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4" /><feColorMatrix values="0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.25  0 0 0 0.55 0" /></filter>
+          </defs>
+          <rect width={1920} height={1080} filter="url(#n)" opacity={0.28} />
+        </svg>
+      )}
+      {dark ? null : <div style={{ position: "absolute", left: 0, top: 0, width: 1920, height: 1080, background: vignette }} />}
+    </>
   );
 };
 
@@ -812,7 +817,7 @@ const SceneShell: React.FC<{ scene: any; idx: number }> = ({ scene, idx }) => {
   const fade = pg(t, 0, 0.3);
   return (
     <C.Provider value={{ theme, data, images, dark }}>
-      <AbsoluteFill style={{ background: dark ? "#0E0D0C" : theme.paper, color: dark ? theme.paper : theme.ink }}>
+      <AbsoluteFill style={{ background: dark ? theme.ink : theme.paper, color: dark ? theme.paper : theme.ink }}>
         <PaperBg />
         <div style={{ opacity: fade }}>
           <Visual scene={scene} idx={idx} />
