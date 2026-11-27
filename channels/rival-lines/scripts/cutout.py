@@ -9,11 +9,26 @@ from rembg import new_session, remove
 ep = os.path.abspath(sys.argv[1])
 rl = os.path.dirname(os.path.dirname(ep))
 props = json.load(open(os.path.join(ep, "out", "props.json"), encoding="utf8"))
-variants = json.load(open(os.path.join(ep, "thumbnails.json"), encoding="utf8"))["variants"]
+tp = os.path.join(ep, "thumbnails.json")
+variants = json.load(open(tp, encoding="utf8"))["variants"] if os.path.exists(tp) else []
 pub = os.path.join(rl, "render", "public")
 session = new_session("isnet-general-use")
-keys = {x["img"] for x in variants}
-keys |= {sc["visual"]["img"] for sc in props["scenes"] if sc["visual"].get("type") == "photo" and sc["visual"].get("stats")}
+def walk(v, out):
+    if isinstance(v, dict):
+        for k, x in v.items():
+            if k == "img" and isinstance(x, str): out.add(x)
+            elif k == "imgs" and isinstance(x, list): out.update(i for i in x if isinstance(i, str))
+            else: walk(x, out)
+    elif isinstance(v, list):
+        for x in v: walk(x, out)
+    return out
+keys = set()
+for x in variants:
+    walk(x, keys)
+if props.get("format") == "realm":
+    for sc in props["scenes"]: walk(sc["visual"], keys)
+else:
+    keys |= {sc["visual"]["img"] for sc in props["scenes"] if sc["visual"].get("type") == "photo" and sc["visual"].get("stats")}
 for img in sorted(keys):
     src = os.path.join(pub, props["images"][img]["file"])
     im = Image.open(src).convert("RGB")

@@ -492,7 +492,24 @@
         "wager",
         "suicide",
         "\\babus"
-      ]
+      ],
+      "realm_colors": {
+        "bg": "#5A1A28",
+        "bg_dark": "#33101A",
+        "halftone": "#7A2A3A",
+        "circle": "#D9775A",
+        "text": "#F4EFE6",
+        "accent_word": "#F2A98C",
+        "card": "#E9E2D4",
+        "card_ink": "#2A1218",
+        "outline": "#E5533D",
+        "red": "#D3122A",
+        "black": "#0A0A0A",
+        "white": "#FFFFFF",
+        "good": "#5BB381",
+        "bad": "#E5533D"
+      },
+      "realm_note": "Colours for the Football Realm-style episodes (channels/rival-lines/episodes/realm-*), measured by eye from the reference frames and thumbnails, not from the channel's brand."
     },
     {
       "id": 5,

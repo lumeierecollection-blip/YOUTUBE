@@ -1,0 +1,71 @@
+{
+  "as_of": "2026-11-27",
+  "note": "Every line was read on the cited page on 2026-11-27 (WebFetch of the page, not a search snippet). Where pages disagree both are kept and the narration avoids the disputed figure.",
+  "sources": [
+    {"url": "https://www.aljazeera.com/sports/2026/11/13/manchester-united-new-manager-mauricio-pochettino-usa-soccer", "title": "Mauricio Pochettino announced as new Manchester United manager (Al Jazeera, 13 Nov 2026)", "fetched": "2026-11-27"},
+    {"url": "https://www.espn.com/soccer/story/_/id/50469660/man-united-mauricio-pochettino-manager-michael-carrick", "title": "Man United confirm Mauricio Pochettino as Michael Carrick replacement (ESPN)", "fetched": "2026-11-27"},
+    {"url": "https://www.france24.com/en/live-news/20261113-pochettino-appointed-as-man-utd-boss-after-carrick-sacking", "title": "Pochettino appointed as Man Utd boss after Carrick sacking (France 24, 13 Nov 2026)", "fetched": "2026-11-27"},
+    {"url": "https://www.espn.com/soccer/report/_/gameId/401878755", "title": "Liverpool 4-0 Man Utd (Nov 22, 2026) Game Analysis (ESPN)", "fetched": "2026-11-27"},
+    {"url": "https://en.wikipedia.org/wiki/2026–27_Premier_League", "title": "2026-27 Premier League (Wikipedia), table as of 23 November 2026", "fetched": "2026-11-27"},
+    {"url": "https://en.wikipedia.org/wiki/2026–27_Manchester_United_F.C._season", "title": "2026-27 Manchester United F.C. season (Wikipedia)", "fetched": "2026-11-27"}
+  ],
+  "carrick": {
+    "sacked": "Thursday 12 November 2026 (Al Jazeera dates it 12 November; ESPN says 'Thursday')",
+    "contract": "two-year contract signed in May (ESPN)",
+    "games": "15 games into the contract (ESPN); three wins from 15 matches across all competitions (Al Jazeera)",
+    "league": "one win and eight points from 10 Premier League games (Al Jazeera)",
+    "disagreement": "Wikipedia's season page says 3 wins from 17 matches at dismissal. The narration uses the Al Jazeera and ESPN 15-game figure only."
+  },
+  "pochettino": {
+    "announced": "13 November 2026 (Al Jazeera and France 24 are dated 13 November)",
+    "contract": "two-and-a-half years, through the end of the 2028/29 season (France 24); ESPN also says 2.5-year contract",
+    "left": "United States men's national team head coach",
+    "start": "ESPN says he begins work at Carrington on Wednesday and takes charge at Liverpool on November 22; Wikipedia says appointed from 18 November",
+    "compensation": "ESPN: a $10 million (£7.5m) release clause triggered by United. France 24: US Soccer reportedly set to receive around $10 million in compensation.",
+    "quote": "Not too many opportunities can happen in your career with a side like Manchester United. That is difficult to turn down when it arrives. (France 24)",
+    "only_candidate": "ESPN: he was the only candidate spoken to directly"
+  },
+  "worst_start": {
+    "al_jazeera": "their worst start to a league campaign in 40 years",
+    "france24": "made their worst start to a domestic campaign in 40 years"
+  },
+  "liverpool_match": {
+    "date": "22 November 2026, Anfield",
+    "score": "Liverpool 4, Manchester United 0",
+    "events": [
+      {"minute": 8, "what": "Leny Yoro sent off for denying a goal-scoring opportunity"},
+      {"minute": 10, "what": "Dominik Szoboszlai scores for Liverpool"},
+      {"minute": 13, "what": "Florian Wirtz scores for Liverpool"},
+      {"minute": 66, "what": "Rio Ngumoha scores for Liverpool"},
+      {"minute": 82, "what": "Víctor Muñoz scores for Liverpool"}
+    ],
+    "context": "Pochettino's first match in charge; nine-game winless Premier League streak (ESPN)",
+    "source": "espn match report"
+  },
+  "table_23_nov": {
+    "as_of": "23 November 2026",
+    "top": [
+      {"pos": 1, "team": "Arsenal", "played": 11, "points": 28},
+      {"pos": 2, "team": "Brighton & Hove Albion", "played": 11, "points": 22},
+      {"pos": 3, "team": "Manchester City", "played": 11, "points": 22},
+      {"pos": 4, "team": "Liverpool", "played": 11, "points": 21}
+    ],
+    "bottom": [
+      {"pos": 15, "team": "Fulham", "played": 11, "points": 11},
+      {"pos": 16, "team": "Ipswich Town", "played": 11, "points": 11},
+      {"pos": 17, "team": "Nottingham Forest", "played": 11, "points": 9},
+      {"pos": 18, "team": "Sunderland", "played": 11, "points": 9},
+      {"pos": 19, "team": "Manchester United", "played": 11, "won": 1, "drawn": 5, "lost": 5, "goals_for": 14, "goals_against": 23, "points": 8},
+      {"pos": 20, "team": "Crystal Palace", "played": 11, "points": 7}
+    ]
+  },
+  "united_season": {
+    "winless": "nine consecutive matches without a win for the first time since the 1988-89 season (Wikipedia, 8 November); ESPN also mentions a nine-game winless Premier League streak at the Liverpool game",
+    "record": "1 win, 5 draws, 5 losses in 11 league games; 14 scored, 23 conceded (Wikipedia table 23 November)"
+  },
+  "derived": {
+    "gap_to_top": "28 - 8 = 20 points behind Arsenal",
+    "gap_to_safety": "Nottingham Forest and Sunderland have 9, United 8: one point",
+    "points_per_game": "8 / 11 = 0.73"
+  }
+}

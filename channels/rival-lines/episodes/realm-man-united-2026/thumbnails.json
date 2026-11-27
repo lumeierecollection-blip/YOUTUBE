@@ -1,0 +1,7 @@
+{
+ "note": "Two Football Realm-formula thumbnails. Every figure is on the cited pages (4-0 and 8 points from 11 games, 19th: ESPN report and Wikipedia table of 23 November).",
+ "variants": [
+  {"id": "a", "kind": "dual", "left": {"img": "carrick2", "words": ["SACKED."], "h": 700}, "right": {"img": "pochettino1", "words": ["HIRED."], "h": 700}, "centre": "THEN LOST 4-0"},
+  {"id": "b", "kind": "bigword", "word": "19TH.", "img": "pochettino1", "size": 420, "card": {"who": "Premier League, 23 November", "text": "8 points from 11 games."}}
+ ]
+}

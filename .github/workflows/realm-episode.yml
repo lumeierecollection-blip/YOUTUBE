@@ -1,0 +1,191 @@
+name: Rival Lines Realm episodes
+
+# The Football Realm-style episodes (channels/rival-lines/episodes/realm-*). Same branch trigger as rival-lines-episode.yml, its own
+# concurrency group, so a push for one does not cancel a render of the other. Stills, thumbnails and the gate run on every push.
+# The full videos render only when the head commit message contains "[render-realm]". Nothing is uploaded unless it also
+# contains "[upload-realm]" (private only, scripts/upload-private.mjs fixes the privacy status).
+on:
+  push:
+    branches: [render/short-26-rewrite]
+    paths:
+      - '.github/workflows/realm-episode.yml'
+      - 'channels/rival-lines/episodes/realm-*/**'
+      - 'channels/rival-lines/render/src/Realm*.tsx'
+      - 'channels/rival-lines/render/render.mjs'
+      - 'channels/rival-lines/scripts/*realm*'
+      - 'channels/rival-lines/scripts/cutout.py'
+      - 'config/channels.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: realm-episode-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  RL: channels/rival-lines
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    outputs:
+      eps: ${{ steps.l.outputs.eps }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: l
+        run: |
+          set -euo pipefail
+          echo "eps=$(ls $RL/episodes | grep '^realm-' | jq -R . | jq -sc .)" >> "$GITHUB_OUTPUT"
+
+  stills:
+    needs: list
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        ep: ${{ fromJson(needs.list.outputs.eps) }}
+    env:
+      EP: channels/rival-lines/episodes/${{ matrix.ep }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: System dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+      - name: Plan and gate
+        run: |
+          set -euo pipefail
+          STRICT_CUES=1 node $RL/scripts/build-realm-plan.mjs $EP
+          node $RL/scripts/gate-realm.mjs $EP
+          node $RL/scripts/build-realm-publish.mjs $EP
+      - name: Install Remotion
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          npm install
+          npx remotion browser ensure
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cut the people out of the photos
+        run: |
+          set -euo pipefail
+          pip install --quiet pillow "rembg[cpu]"
+          python $RL/scripts/cutout.py $EP
+      - name: Stills and thumbnails
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          MODE=stills node render.mjs ../episodes/${{ matrix.ep }}
+          MODE=thumbs node render.mjs ../episodes/${{ matrix.ep }}
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-stills-${{ matrix.ep }}-${{ github.run_number }}
+          overwrite: true
+          path: |
+            ${{ env.EP }}/out/stills/**
+            ${{ env.EP }}/out/thumbs/**
+            ${{ env.EP }}/out/publish.md
+            ${{ env.EP }}/out/contact.png
+          if-no-files-found: warn
+          retention-days: 14
+
+  video:
+    needs: [list, stills]
+    if: ${{ contains(github.event.head_commit.message, '[render-realm]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        ep: ${{ fromJson(needs.list.outputs.eps) }}
+    env:
+      EP: channels/rival-lines/episodes/${{ matrix.ep }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: System dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64 libpangocairo-1.0-0 libpango-1.0-0 libcairo2 fonts-dejavu-core
+      - name: Plan, gate and publish text
+        run: |
+          set -euo pipefail
+          STRICT_CUES=1 node $RL/scripts/build-realm-plan.mjs $EP
+          node $RL/scripts/gate-realm.mjs $EP
+          node $RL/scripts/build-realm-publish.mjs $EP
+      - name: Install Remotion
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          npm install
+          npx remotion browser ensure
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Cut the people out of the photos
+        run: |
+          set -euo pipefail
+          pip install --quiet pillow "rembg[cpu]"
+          python $RL/scripts/cutout.py $EP
+      - name: Render
+        working-directory: channels/rival-lines/render
+        run: MODE=full node render.mjs ../episodes/${{ matrix.ep }}
+      - name: Loudness and verify
+        working-directory: channels/rival-lines/render
+        run: |
+          set -euo pipefail
+          node finish.mjs ../episodes/${{ matrix.ep }} ${{ matrix.ep }}
+          ffmpeg -v error -i ../episodes/${{ matrix.ep }}/out/${{ matrix.ep }}.mp4 -f null -
+          rm -f ../episodes/${{ matrix.ep }}/out/video-raw.mp4
+      - name: Thumbnails
+        working-directory: channels/rival-lines/render
+        run: MODE=thumbs node render.mjs ../episodes/${{ matrix.ep }}
+      - name: Upload to YouTube as private (only when the commit message contains [upload-realm])
+        if: ${{ contains(github.event.head_commit.message, '[upload-realm]') }}
+        env:
+          YT_CLIENT_ID: ${{ secrets.CHANNEL_04_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.CHANNEL_04_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.CHANNEL_04_REFRESH_TOKEN }}
+        run: node $RL/scripts/upload-private.mjs $EP ${{ matrix.ep }}
+      - name: Frames from the final video
+        run: |
+          set -euo pipefail
+          mkdir -p $EP/out/final-frames
+          for t in 3 30 60 90 120 150 180 210 240; do
+            ffmpeg -hide_banner -loglevel error -y -ss $t -i $EP/out/${{ matrix.ep }}.mp4 -frames:v 1 $EP/out/final-frames/t$t.png || true
+          done
+      - name: Upload
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: realm-video-${{ matrix.ep }}-${{ github.run_number }}
+          overwrite: true
+          path: |
+            ${{ env.EP }}/out/${{ matrix.ep }}.mp4
+            ${{ env.EP }}/out/final-frames/**
+            ${{ env.EP }}/out/thumbs/**
+            ${{ env.EP }}/out/publish.md
+            ${{ env.EP }}/out/publish.json
+            ${{ env.EP }}/out/upload-result.json
+          if-no-files-found: warn
+          retention-days: 14

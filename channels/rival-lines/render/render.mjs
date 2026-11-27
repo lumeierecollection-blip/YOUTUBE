@@ -14,9 +14,10 @@ const mode = process.env.MODE || "stills";
 const out = path.join(ep, "out");
 const props = JSON.parse(fs.readFileSync(path.join(out, "props.json"), "utf8"));
 const fps = props.fps;
+const realm = props.format === "realm";
 
 const serveUrl = await bundle({ entryPoint: path.resolve(import.meta.dirname, "src", "index.ts"), publicDir: path.resolve(import.meta.dirname, "public") });
-const comp = await selectComposition({ serveUrl, id: "Episode", inputProps: props });
+const comp = await selectComposition({ serveUrl, id: realm ? "RealmEpisode" : "Episode", inputProps: props });
 console.log(`composition ${comp.width}x${comp.height}, ${comp.durationInFrames} frames at ${comp.fps}`);
 
 if (mode === "stills") {
@@ -36,17 +37,26 @@ if (mode === "stills") {
   const specs = JSON.parse(fs.readFileSync(path.join(ep, "thumbnails.json"), "utf8")).variants;
   const dir = path.join(out, "thumbs");
   fs.mkdirSync(dir, { recursive: true });
-  const w = props.data.results.wikipedia;
-  const dateText = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
-  const dayMonth = (iso) => new Date(iso.slice(0, 10) + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
-  const fill = (t) => t.replace("{median}", dateText(w.scenarios.hold.median_date)).replace("{needed}", String(w.needed)).replace("{official}", String(props.data.totals.official_goals)).replace("{rev}", dayMonth(props.data.baseline.revision_timestamp));
-  for (const v of specs) {
-    if (!fs.existsSync(path.join(import.meta.dirname, "public", "ep", "images", `cutout-${v.img}.png`))) throw new Error(`cutout-${v.img}.png missing: run scripts/cutout.py first`);
-    const thumb = { ...v, note: fill(v.note) };
-    const tprops = { ...props, thumb };
-    const tc = await selectComposition({ serveUrl, id: "Thumb", inputProps: tprops });
-    await renderStill({ composition: tc, serveUrl, output: path.join(dir, `thumb-${v.id}.png`), inputProps: tprops, frame: 0, imageFormat: "png" });
-    console.log(`thumb ${v.id}: ${thumb.note}`);
+  if (realm) {
+    for (const v of specs) {
+      const tprops = { ...props, thumb: v };
+      const tc = await selectComposition({ serveUrl, id: "RealmThumb", inputProps: tprops });
+      await renderStill({ composition: tc, serveUrl, output: path.join(dir, `thumb-${v.id}.png`), inputProps: tprops, frame: 0, imageFormat: "png" });
+      console.log(`thumb ${v.id}`);
+    }
+  } else {
+    const w = props.data.results.wikipedia;
+    const dateText = (iso) => new Date(iso + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+    const dayMonth = (iso) => new Date(iso.slice(0, 10) + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+    const fill = (t) => t.replace("{median}", dateText(w.scenarios.hold.median_date)).replace("{needed}", String(w.needed)).replace("{official}", String(props.data.totals.official_goals)).replace("{rev}", dayMonth(props.data.baseline.revision_timestamp));
+    for (const v of specs) {
+      if (!fs.existsSync(path.join(import.meta.dirname, "public", "ep", "images", `cutout-${v.img}.png`))) throw new Error(`cutout-${v.img}.png missing: run scripts/cutout.py first`);
+      const thumb = { ...v, note: fill(v.note) };
+      const tprops = { ...props, thumb };
+      const tc = await selectComposition({ serveUrl, id: "Thumb", inputProps: tprops });
+      await renderStill({ composition: tc, serveUrl, output: path.join(dir, `thumb-${v.id}.png`), inputProps: tprops, frame: 0, imageFormat: "png" });
+      console.log(`thumb ${v.id}: ${thumb.note}`);
+    }
   }
 } else if (mode === "chunk") {
   const n = Number(process.env.CHUNKS), i = Number(process.env.CHUNK);

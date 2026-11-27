@@ -1,0 +1,65 @@
+{
+ "fetched_at": "2026-11-27T21:06:08+00:00",
+ "images": [
+  {
+   "key": "pochettino",
+   "title": "File:Mauricio Pochettino Belgium v USA 6 July 2026-263.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "author": "Bryan Berlin",
+   "date": "2026-07-06 22:07:49",
+   "description": "Mauricio Pochettino during Belgium v United States at the 2026 FIFA World Cup",
+   "page": "https://commons.wikimedia.org/wiki/File:Mauricio_Pochettino_Belgium_v_USA_6_July_2026-263.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Mauricio_Pochettino_Belgium_v_USA_6_July_2026-263.jpg/1920px-Mauricio_Pochettino_Belgium_v_USA_6_July_2026-263.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3333,
+   "h": 5000,
+   "id": "pochettino1",
+   "file": "files/pochettino1.jpg"
+  },
+  {
+   "key": "carrick",
+   "title": "File:Michael Carrick 12042025 (6).jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "author": "Timmy96",
+   "date": "2025-04-12 17:45:22",
+   "description": "Michael Carrick pictured after the Millwall and Middlesbrough match.",
+   "page": "https://commons.wikimedia.org/wiki/File:Michael_Carrick_12042025_(6).jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/d/df/Michael_Carrick_12042025_%286%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1637,
+   "h": 2307,
+   "id": "carrick2",
+   "file": "files/carrick2.jpg"
+  },
+  {
+   "key": "szoboszlai",
+   "title": "File:Dominik Szoboszlai and Ryan Gravenberch 04012026 (2).jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "author": "Timmy96",
+   "date": "2026-01-04 15:51:54",
+   "description": "The ongoing match between Fulham and Liverpool.",
+   "page": "https://commons.wikimedia.org/wiki/File:Dominik_Szoboszlai_and_Ryan_Gravenberch_04012026_(2).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Dominik_Szoboszlai_and_Ryan_Gravenberch_04012026_%282%29.jpg/1920px-Dominik_Szoboszlai_and_Ryan_Gravenberch_04012026_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2617,
+   "h": 3456,
+   "id": "szoboszlai1",
+   "file": "files/szoboszlai1.jpg"
+  },
+  {
+   "key": "wirtz",
+   "title": "File:Florian Wirtz Ecuador v Germany 25 June 2026-181 (cropped).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "author": "Bryan Berlin",
+   "date": "2026-06-25 17:17:10",
+   "description": "Florian Wirtz during Ecuador v Germany on 25 June 2026 at the 2026 FIFA World Cup",
+   "page": "https://commons.wikimedia.org/wiki/File:Florian_Wirtz_Ecuador_v_Germany_25_June_2026-181_(cropped).jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/7/70/Florian_Wirtz_Ecuador_v_Germany_25_June_2026-181_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1204,
+   "h": 1838,
+   "id": "wirtz2",
+   "file": "files/wirtz2.jpg"
+  }
+ ]
+}

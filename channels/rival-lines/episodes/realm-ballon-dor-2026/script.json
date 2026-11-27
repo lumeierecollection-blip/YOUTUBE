@@ -1,0 +1,477 @@
+{
+ "episode": "realm-ballon-dor-2026",
+ "format": "realm",
+ "title_working": "The Ballon d'Or Is Under Police Investigation.",
+ "as_of": "2026-11-27",
+ "sources_used": [
+  "https://en.wikipedia.org/wiki/2026_Ballon_d%27Or",
+  "https://www.tntsports.co.uk/football/ballon-d-or/2026/voting-criteria-nominees-points-explained-awards_sto23337809/story.shtml",
+  "https://www.beinsports.com/en-us/soccer/articles/did-harry-kane-win-the-2026-ballon-d-or-the-announcement-that-sparked-chaos-2026-10-26",
+  "https://www.goal.com/en/news/the-ballon-d-or-a-glaring-error-by-the-official-website-sparks-controversy-over-the-identity-of-the-winner/blt1074e0fb1608b97a",
+  "https://www.goal.com/en/news/potential-scandal-french-police-investigate-suspicions-over-ballon-d-or-voting/blt1e23865c65cd016f",
+  "https://www.goal.com/en/lists/does-it-shake-the-credibility-of-the-ballon-d-or-journalist-admits-his-voting-error-i-apologise-to-kane/blteeb0d7807521b9fb"
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "accent": [
+    "1,055",
+    "1,027",
+    "28"
+   ],
+   "text": "Harry Kane won the 2026 Ballon d'Or with 1,055 points. Kylian Mbappé finished on 1,027. That is a gap of 28 points, in a vote worth up to 1,500.",
+   "visual": {
+    "type": "versus",
+    "left": {
+     "img": "kane3",
+     "label": "Kane",
+     "value": "1,055"
+    },
+    "right": {
+     "img": "mbappe1",
+     "label": "Mbappé",
+     "value": "1,027"
+    },
+    "mid": "28",
+    "cues": [
+     "Kane",
+     "Mbappé",
+     "gap"
+    ]
+   }
+  },
+  {
+   "id": "b02",
+   "accent": [
+    "police",
+    "investigation"
+   ],
+   "text": "But the margin is not the story. On the day of the ceremony, the official Ballon d'Or website published articles naming a winner, hours before it was supposed to be announced. And now there is a police investigation.",
+   "visual": {
+    "type": "timeline",
+    "items": [
+     {
+      "when": "Late September",
+      "what": "Voting closes"
+     },
+     {
+      "when": "26 October",
+      "what": "Articles go live"
+     },
+     {
+      "when": "9 November",
+      "what": "Police investigation reported"
+     }
+    ],
+    "cues": [
+     "day",
+     "published",
+     "investigation"
+    ]
+   }
+  },
+  {
+   "id": "b03",
+   "accent": [
+    "5:15",
+    "several hours"
+   ],
+   "text": "Voting had closed in late September. On October 26, shortly after 5:15 in the afternoon, London time, articles started circulating. The ceremony, at the London Palladium, was still several hours away.",
+   "visual": {
+    "type": "clock",
+    "time": "17:15",
+    "label": "London, October 26",
+    "sub": "Ceremony: several hours away",
+    "cue": "5:15"
+   }
+  },
+  {
+   "id": "b04",
+   "accent": [
+    "three",
+    "Yamal"
+   ],
+   "text": "And the site did not name one winner. It published articles for several. Harry Kane. Kylian Mbappé. Lamine Yamal. One of them said Mbappé wins the Ballon d'Or thanks to his consistency at the highest levels.",
+   "visual": {
+    "type": "headlines",
+    "items": [
+     {
+      "img": "kane3",
+      "label": "Kane"
+     },
+     {
+      "img": "mbappe1",
+      "label": "Mbappé"
+     },
+     {
+      "img": "yamal1",
+      "label": "Yamal"
+     }
+    ],
+    "cues": [
+     "Harry",
+     "Kylian",
+     "Lamine"
+    ]
+   }
+  },
+  {
+   "id": "b05",
+   "accent": [
+    "in advance",
+    "unclear"
+   ],
+   "text": "One possible explanation, according to the reports, is that the organisers had prepared several articles in advance, ready to publish once the winner was announced. But the same reports say it is unclear how they went live.",
+   "visual": {
+    "type": "quote",
+    "deco": "drafts",
+    "text": "One possible explanation is that the organizers had prepared several articles in advance.",
+    "who": "beIN SPORTS, October 26",
+    "cue": "One"
+   }
+  },
+  {
+   "id": "b06",
+   "accent": [
+    "12",
+    "France Football"
+   ],
+   "text": "Then came the second part. On November 9 it was reported that France Football, the magazine that runs the Ballon d'Or, had filed a complaint. Investigators suspect that the owners of 12 accounts on a predictions platform had got hold of information that was not yet public.",
+   "visual": {
+    "type": "dots",
+    "count": 12,
+    "label": "accounts on a predictions platform",
+    "cue": "12"
+   }
+  },
+  {
+   "id": "b07",
+   "accent": [
+    "200,000",
+    "unproven"
+   ],
+   "text": "Those accounts are reported to have made profits of nearly 200,000 euros net. That is a suspicion. It has not been proven, and the report I read names no juror and no player.",
+   "visual": {
+    "type": "coins",
+    "value": "200,000",
+    "unit": "euros net, reported",
+    "cue": "200,000"
+   }
+  },
+  {
+   "id": "b08",
+   "accent": [
+    "100",
+    "30"
+   ],
+   "text": "So how does the vote work? 100 journalists, one from each of the top 100 national teams in the FIFA rankings. Each picks 10 players from a list of 30, in order.",
+   "visual": {
+    "type": "faces",
+    "caption": "100 jurors, 10 picks each, from a list of 30",
+    "imgs": [
+     "haaland1",
+     "messi1",
+     "yamal1",
+     "mbappe1",
+     "kane3",
+     "dembele2"
+    ],
+    "cue": "100"
+   }
+  },
+  {
+   "id": "b09",
+   "accent": [
+    "15",
+    "12",
+    "10"
+   ],
+   "text": "First place gets 15 points. Second gets 12. Third gets 10. Then 8, 7, 5, 4, 3, 2, and 1 point for tenth place.",
+   "visual": {
+    "type": "ladder",
+    "ranks": [
+     15,
+     12,
+     10,
+     8,
+     7,
+     5,
+     4,
+     3,
+     2,
+     1
+    ],
+    "cues": [
+     "First",
+     "Second",
+     "Third",
+     "Then",
+     "7",
+     "5",
+     "4",
+     "3",
+     "2",
+     "1"
+    ]
+   }
+  },
+  {
+   "id": "b10",
+   "accent": [
+    "1,055",
+    "1,027",
+    "881"
+   ],
+   "text": "That produced this top ten. Kane, 1,055. Mbappé, 1,027. Yamal, 881. Rodri, 726. Messi, 612. Kvaratskhelia, 541. Dembélé, 418. Haaland, 378. Olise, 296. Fabián Ruiz, 201.",
+   "visual": {
+    "type": "ranking",
+    "rows": [
+     {
+      "name": "Kane",
+      "value": 1055,
+      "img": "kane3"
+     },
+     {
+      "name": "Mbappé",
+      "value": 1027,
+      "img": "mbappe1"
+     },
+     {
+      "name": "Yamal",
+      "value": 881,
+      "img": "yamal1"
+     },
+     {
+      "name": "Rodri",
+      "value": 726
+     },
+     {
+      "name": "Messi",
+      "value": 612,
+      "img": "messi1"
+     },
+     {
+      "name": "Kvaratskhelia",
+      "value": 541
+     },
+     {
+      "name": "Dembélé",
+      "value": 418,
+      "img": "dembele2"
+     },
+     {
+      "name": "Haaland",
+      "value": 378,
+      "img": "haaland1"
+     },
+     {
+      "name": "Olise",
+      "value": 296
+     },
+     {
+      "name": "Fabián Ruiz",
+      "value": 201
+     }
+    ],
+    "max": 1500,
+    "cues": [
+     "Kane",
+     "Mbappé",
+     "Yamal",
+     "Rodri",
+     "Messi",
+     "Kvaratskhelia",
+     "Dembélé",
+     "Haaland",
+     "Olise",
+     "Fabián"
+    ]
+   }
+  },
+  {
+   "id": "b11",
+   "accent": [
+    "28",
+    "30"
+   ],
+   "text": "Look at the top two again. 28 points. A first place is worth 15, so the whole race was closer than two first-place votes, which would be 30.",
+   "visual": {
+    "type": "ruler",
+    "max": 1500,
+    "a": {
+     "label": "Mbappé",
+     "value": 1027
+    },
+    "b": {
+     "label": "Kane",
+     "value": 1055
+    },
+    "gap": "28",
+    "cue": "28"
+   }
+  },
+  {
+   "id": "b12",
+   "accent": [
+    "sixth",
+    "mistake"
+   ],
+   "text": "Then there is one juror. Dravko Rijec, a Croatian journalist at Sportske Novosti, has said he made a mistake. On his ballot, Harry Kane was only sixth.",
+   "visual": {
+    "type": "ballot",
+    "rows": [
+     {
+      "rank": 1,
+      "name": "Rodri"
+     },
+     {
+      "rank": 2,
+      "name": "Haaland"
+     },
+     {
+      "rank": 3,
+      "name": "Messi"
+     },
+     {
+      "rank": 6,
+      "name": "Kane"
+     }
+    ],
+    "mark": 6,
+    "points": [
+     15,
+     12,
+     10,
+     8,
+     7,
+     5,
+     4,
+     3,
+     2,
+     1
+    ],
+    "cue": "sixth"
+   }
+  },
+  {
+   "id": "b13",
+   "accent": [
+    "mistake",
+    "responsibility"
+   ],
+   "text": "In his own words: I acknowledge my mistake and take responsibility for it, after I placed him only sixth on the list of the ten players I selected.",
+   "visual": {
+    "type": "quote",
+    "img": "kane3",
+    "text": "I acknowledge my mistake and take responsibility for it.",
+    "who": "Dravko Rijec, Sportske Novosti",
+    "cue": "mistake"
+   }
+  },
+  {
+   "id": "b14",
+   "accent": [
+    "Yamal",
+    "third"
+   ],
+   "text": "He also left Lamine Yamal off his top ten completely, even though Yamal finished third overall. His explanation was that he gave too much weight to World Cup performances, and not enough to club form.",
+   "visual": {
+    "type": "cutout",
+    "img": "yamal1",
+    "label": "Not on his ballot",
+    "sub": "3rd overall, 881 points",
+    "side": "right",
+    "cue": "Yamal"
+   }
+  },
+  {
+   "id": "b15",
+   "accent": [
+    "10",
+    "15",
+    "5"
+   ],
+   "text": "Now the arithmetic. A first place is worth 15 points. A sixth place is worth 5. So on that one ballot, the gap between where Kane was and where he could have been is 10 points.",
+   "visual": {
+    "type": "cards3",
+    "img": "kane3",
+    "cards": [
+     {
+      "value": "15",
+      "label": "first place"
+     },
+     {
+      "value": "5",
+      "label": "sixth place"
+     },
+     {
+      "value": "10",
+      "label": "the gap"
+     }
+    ],
+    "cues": [
+     "15",
+     "5",
+     "10"
+    ]
+   }
+  },
+  {
+   "id": "b16",
+   "accent": [
+    "28",
+    "100"
+   ],
+   "text": "None of the reports I read says the result was wrong. What they do show is a vote decided by 28 points, across 100 ballots, with one admitted mistake, a website that published several winners, and 12 accounts under suspicion.",
+   "visual": {
+    "type": "tiles",
+    "img": "mbappe2",
+    "tiles": [
+     {
+      "value": "28",
+      "label": "point margin"
+     },
+     {
+      "value": "100",
+      "label": "ballots"
+     },
+     {
+      "value": "1",
+      "label": "admitted mistake"
+     },
+     {
+      "value": "12",
+      "label": "accounts under suspicion"
+     }
+    ],
+    "cues": [
+     "28",
+     "100",
+     "admitted",
+     "12"
+    ]
+   }
+  },
+  {
+   "id": "b17",
+   "accent": [
+    "clean",
+    "?"
+   ],
+   "text": "So was the 2026 Ballon d'Or a clean vote? The investigation will decide. Until it does, all anyone can say is what was published, what was admitted, and what has not been proven.",
+   "visual": {
+    "type": "faces",
+    "caption": "Clean vote?",
+    "imgs": [
+     "kane3",
+     "mbappe1",
+     "yamal1",
+     "dembele2",
+     "messi1"
+    ],
+    "cue": "clean",
+    "kind": "close"
+   }
+  }
+ ]
+}

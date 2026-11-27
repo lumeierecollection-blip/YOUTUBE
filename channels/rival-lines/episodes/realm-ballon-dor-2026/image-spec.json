@@ -1,0 +1,11 @@
+{"people":[
+ {"key":"kane","name":"Harry Kane","category":"Category:Harry Kane","queries":["Harry Kane","Harry Kane Bayern Munich","Harry Kane England","Harry Kane 2026"],"must":"harry.?kane|kane,? harry|^file:kane[ _]","n":3},
+ {"key":"mbappe","name":"Kylian Mbappé","category":"Category:Kylian Mbappé","queries":["Kylian Mbappé Real Madrid","Kylian Mbappé France 2026","Mbappé"],"must":"mbapp","n":3,"min_w":700},
+ {"key":"yamal","name":"Lamine Yamal","category":"Category:Lamine Yamal","must":"yamal","n":2},
+ {"key":"dembele","name":"Ousmane Dembélé","category":"Category:Ousmane Dembélé","must":"demb","n":2},
+ {"key":"rodri","name":"Rodri Manchester City","category":"Category:Rodri (footballer, born 1996)","queries":["Rodri Manchester City","Rodri Spain"],"must":"rodri","n":1},
+ {"key":"messi","name":"Lionel Messi","category":"Category:Lionel Messi","queries":["Lionel Messi Inter Miami","Lionel Messi Argentina 2026"],"must":"messi","n":1},
+ {"key":"haaland","name":"Erling Haaland","category":"Category:Erling Haaland","queries":["Erling Haaland Manchester City","Erling Haaland Norway"],"must":"haaland","n":1},
+ {"key":"olise","name":"Michael Olise","category":"Category:Michael Olise","queries":["Michael Olise Bayern"],"must":"olise","n":1},
+ {"key":"kvara","name":"Khvicha Kvaratskhelia","category":"Category:Khvicha Kvaratskhelia","queries":["Khvicha Kvaratskhelia PSG","Kvaratskhelia Georgia"],"must":"kvara","n":1}
+]}

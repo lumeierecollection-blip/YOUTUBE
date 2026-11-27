@@ -1,0 +1,7 @@
+{
+ "note": "Two Football Realm-formula thumbnails. Every figure is on the cited pages. Variant B pairs Kane with a quote about Kane, not with the police or website scenes.",
+ "variants": [
+  {"id": "a", "kind": "dual", "left": {"img": "kane3", "words": ["1,055"], "h": 700}, "right": {"img": "mbappe1", "words": ["1,027"], "h": 700}, "centre": "28 POINTS"},
+  {"id": "b", "kind": "bigword", "word": "SIXTH.", "img": "kane3", "size": 380, "card": {"who": "Dravko Rijec, a juror", "text": "I acknowledge my mistake."}}
+ ]
+}
