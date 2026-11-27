@@ -545,7 +545,7 @@ const Curve: React.FC<{ scene: any }> = ({ scene }) => {
               {mk.m >= 11 ? (
                 <text x={X(mk.m) - 26} y={Y(p) + 70} textAnchor="end" fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
               ) : (
-                <text x={X(mk.m) + 26} y={p < 0.2 ? Y(p) - 26 : Y(p) + 58} fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
+                <text x={p < 0.2 ? X(mk.m) - 26 : X(mk.m) + 26} y={p < 0.2 ? Y(p) - 30 : Y(p) + 58} textAnchor={p < 0.2 ? "end" : "start"} fontFamily={serif} fontWeight={700} fontSize={56} fill={colors[mk.scn]}>{pct(p)}</text>
               )}
             </g>
           );
