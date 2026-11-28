@@ -1,0 +1,83 @@
+{
+  "topic_slug": "bogong-moths-600-mile-migration-stars-earth",
+  "strongest_angle": "Examine how eastern and southern Australian Bogong moths soar across 600 miles (1,000 km) to aestivate in the Australian Alps using both stellar cues and Earth's geomagnetic field.",
+  "key_facts": [
+    {
+      "fact": "Bogong moths migrate biannually up to 1,000 kilometers between their breeding areas in eastern and southern Australia and aestivation sites in the Australian Alps.",
+      "source_url": "https://www.nature.com/articles/s41586-026-11322-9",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Each spring, billions of Bogong moths emerge from the soil across southeast Australia, including south-eastern Queensland and far-western Victoria, traveling to cool caves.",
+      "source_url": "https://www.nature.com/articles/s41586-025-09135-3",
+      "source_name": "Nature",
+      "confidence": "high"
+    },
+    {
+      "fact": "Bogong moths navigate using a stellar compass at night as well as a light-dependent geomagnetic inclination compass to reach ancestral summer caves.",
+      "source_url": "https://theconversation.com/migrating-bogong-moths-use-the-stars-and-earths-magnetic-field-to-find-ancestral-summer-caves-each-year-259361",
+      "source_name": "The Conversation",
+      "confidence": "high"
+    },
+    {
+      "fact": "National Geographic writer Elizabeth Landau reported that a new generation of gray-and-brown Bogong moths soars some 600 miles to converge on crevices and caves in the Australian Alps.",
+      "source_url": "https://www.nationalgeographic.com/animals/article/moths-compass-navigation",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Migration distance in miles",
+      "value": 600,
+      "unit": "miles",
+      "source_url": "https://www.nationalgeographic.com/animals/article/moths-compass-navigation"
+    },
+    {
+      "label": "Migration distance in kilometers",
+      "value": 1000,
+      "unit": "km",
+      "source_url": "https://www.nature.com/articles/s41586-026-11322-9"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Bogong moths",
+      "kind": "object"
+    },
+    {
+      "name": "Australian Alps",
+      "kind": "place"
+    },
+    {
+      "name": "Queensland",
+      "kind": "place"
+    },
+    {
+      "name": "Victoria",
+      "kind": "place"
+    },
+    {
+      "name": "National Geographic",
+      "kind": "organization"
+    },
+    {
+      "name": "Nature",
+      "kind": "organization"
+    },
+    {
+      "name": "The Conversation",
+      "kind": "organization"
+    },
+    {
+      "name": "Elizabeth Landau",
+      "kind": "person"
+    },
+    {
+      "name": "Agrotis infusa",
+      "kind": "object"
+    }
+  ]
+}

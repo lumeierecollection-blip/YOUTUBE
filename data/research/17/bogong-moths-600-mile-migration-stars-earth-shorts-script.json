@@ -1,0 +1,37 @@
+{
+  "channel_id": "17",
+  "topic_slug": "bogong-moths-600-mile-migration-stars-earth",
+  "format": "shorts",
+  "hook": "Billions of moths cross 600 miles of Australia using the stars.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Billions of moths cross 600 miles of Australia using the stars.",
+      "visual_cue": "Macro shot of a Bogong moth resting on a rock surface."
+    },
+    {
+      "id": "setup",
+      "voiceover": "Every spring, these insects emerge from the soil across Queensland and Victoria. How do they navigate such a vast distance?",
+      "visual_cue": "Map showing the migration route from Queensland and Victoria to the Australian Alps."
+    },
+    {
+      "id": "rehook",
+      "voiceover": "These Bogong moths navigate their 600-mile journey using more than just the night stars.",
+      "visual_cue": "Close-up of a moth's antenna against a starry night sky background."
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Research in Nature confirms they use a light-dependent geomagnetic inclination compass to find caves. National Geographic writer Elizabeth Landau reports this dual-system navigation guides moths across 1,000 kilometers.",
+      "visual_cue": "Animated diagram showing magnetic field lines and stars guiding a moth's flight path."
+    },
+    {
+      "id": "close",
+      "voiceover": "Nature confirms this biannual migration covers 1,000 kilometers to reach the Australian Alps.",
+      "visual_cue": "Wide shot of the Australian Alps at dawn."
+    }
+  ],
+  "sources_used": [
+    "https://www.nature.com/articles/s41586-026-11322-9",
+    "https://theconversation.com/migrating-bogong-moths-use-the-stars-and-earths-magnetic-field-to-find-ancestral-summer-caves-each-year-259361"
+  ]
+}
