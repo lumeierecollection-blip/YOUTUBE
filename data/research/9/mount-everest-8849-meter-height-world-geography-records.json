@@ -1,0 +1,85 @@
+{
+  "topic_slug": "mount-everest-8849-meter-height-world-geography-records",
+  "strongest_angle": "Mount Everest's official height was jointly declared at 8,848.86 meters in 2020 by China and Nepal, using advanced GPS and BeiDou navigation technology on the border between Nepal and Tibet.",
+  "key_facts": [
+    {
+      "fact": "Mount Everest has an official elevation of 8,848.86 meters or 29,031.69 feet above sea level, as jointly declared by China and Nepal in 2020.",
+      "source_url": "https://kids.britannica.com/scholars/article/Himalayas/110521",
+      "source_name": "Britannica Kids",
+      "confidence": "high"
+    },
+    {
+      "fact": "The 2020 joint survey by Chinese and Nepalese land surveyors utilized GPS and BeiDou navigation technology to determine the precise elevation of Mount Everest.",
+      "source_url": "https://kids.britannica.com/scholars/article/Himalayas/110521",
+      "source_name": "Britannica Kids",
+      "confidence": "high"
+    },
+    {
+      "fact": "Mount Everest is located on the international border between Solukhumbu District in Koshi Province, Nepal, and Tingri County in the Tibet Autonomous Region, China.",
+      "source_url": "https://en.wikipedia.org/wiki/Mount_Everest",
+      "source_name": "Wikipedia",
+      "confidence": "high"
+    },
+    {
+      "fact": "In the nineteenth century, Mount Everest was named after George Everest, who served as a former Surveyor General of India.",
+      "source_url": "https://education.nationalgeographic.org/resource/mount-everest",
+      "source_name": "National Geographic",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Official Height in Meters",
+      "value": 8848.86,
+      "unit": "meters",
+      "source_url": "https://kids.britannica.com/scholars/article/Himalayas/110521"
+    },
+    {
+      "label": "Official Height in Feet",
+      "value": 29031.69,
+      "unit": "feet",
+      "source_url": "https://kids.britannica.com/scholars/article/Himalayas/110521"
+    },
+    {
+      "label": "Survey Year",
+      "value": 2020,
+      "unit": "year",
+      "source_url": "https://kids.britannica.com/scholars/article/Himalayas/110521"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Mount Everest",
+      "kind": "object"
+    },
+    {
+      "name": "China",
+      "kind": "organization"
+    },
+    {
+      "name": "Nepal",
+      "kind": "organization"
+    },
+    {
+      "name": "George Everest",
+      "kind": "person"
+    },
+    {
+      "name": "Tibet",
+      "kind": "place"
+    },
+    {
+      "name": "Koshi Province",
+      "kind": "place"
+    },
+    {
+      "name": "Solukhumbu District",
+      "kind": "place"
+    },
+    {
+      "name": "Tingri County",
+      "kind": "place"
+    }
+  ]
+}

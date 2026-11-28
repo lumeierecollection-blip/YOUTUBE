@@ -1,0 +1,47 @@
+{
+  "channel_id": "9",
+  "topic_slug": "mount-everest-8849-meter-height-world-geography-records",
+  "format": "shorts",
+  "hook": "Did you know Mount Everest's official height changed to 8,848.86 meters in 2020?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know Mount Everest's official height changed to 8,848.86 meters in 2020?",
+      "text_overlay": {
+        "text": "Mount Everest's New Official Height"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "In 2020, China and Nepal conducted a joint survey of Mount Everest. Chinese and Nepalese land surveyors used GPS and BeiDou navigation technology to measure the summit. How high is the peak now?",
+      "text_overlay": {
+        "text": "2020 Joint Survey: China & Nepal"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "However, this peak sits on the border between Solukhumbu District, Nepal, and Tingri County, Tibet.",
+      "text_overlay": {
+        "text": "Nepal-China Border"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The final result declared the mountain stands at exactly 8,848.86 meters high.",
+      "text_overlay": {
+        "text": "8,848.86 Meters / 29,031.69 Feet"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Surveyor General George Everest remains the namesake for this mountain peak in the nineteenth century.",
+      "text_overlay": {
+        "text": "World's Highest Point"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://kids.britannica.com/scholars/article/Himalayas/110521",
+    "https://en.wikipedia.org/wiki/Mount_Everest"
+  ]
+}
