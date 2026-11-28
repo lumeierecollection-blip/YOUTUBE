@@ -1,0 +1,331 @@
+{
+  "episode": "realm-man-city-2026",
+  "format": "realm",
+  "title_working": "Man City Were Found Guilty On 114 Charges. What Happens Now?",
+  "as_of": "2026-11-28",
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/Manchester_City_F.C._financial_breaches_scandal",
+    "https://www.sportbible.com/football/football-news/man-city/man-city-115-charges-appeal-premier-league-238318-20261113",
+    "https://www.sportbible.com/football/football-news/man-city/man-city-latest-appeal-premier-league-clubs-verdict-901472-20261127",
+    "https://www.skysports.com/football/news/13598124/manchester-city-charges-latest-on-sanctions-hearing-and-appeal-against-guilty-verdict",
+    "https://www.cbssports.com/soccer/news/manchester-city-premier-league-commission-guilty-114-charges/",
+    "https://en.wikipedia.org/wiki/2026–27_Premier_League",
+    "https://en.wikipedia.org/wiki/2026–27_Manchester_City_F.C._season",
+    "https://sports.yahoo.com/articles/manchester-city-appeal-hearing-set-120700011.html",
+    "https://footballtoday.com/2026/09/25/man-city-found-guilty-on-114-of-115-premier-league-charges/",
+    "https://www.thejustice.org/article/2026/10/manchester-city-found-guilty-of-114-of-115-charges",
+    "https://www.youtube.com/watch?v=jGW0vt6rMLM",
+    "https://www.youtube.com/watch?v=HMsCeoinwlA",
+    "https://www.youtube.com/watch?v=WaN91Izyewk",
+    "https://www.youtube.com/watch?v=zOO6NMS1jvw"
+  ],
+  "beats": [
+    {
+      "id": "b01",
+      "accent": [
+        "114",
+        "115"
+      ],
+      "text": "Manchester City have been found guilty on 114 of 115 Premier League charges. It was reported on 25 September, and the league confirmed it on 29 September.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "sky_open",
+          "sky_etihad"
+        ],
+        "tag": {
+          "right": 120,
+          "top": 90,
+          "value": "114/115",
+          "label": "charges proven",
+          "cue": "114"
+        }
+      }
+    },
+    {
+      "id": "b02",
+      "accent": [
+        "54",
+        "35"
+      ],
+      "text": "The 115 charges fall into five groups. 54 for inaccurate financial information. 14 for incomplete payments to players and managers. 7 under the league's profitability rules. 5 under UEFA's financial rules. And 35 for failure to cooperate.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "tifo_all5",
+          "tifo_nums"
+        ],
+        "tag": {
+          "right": 120,
+          "top": 90,
+          "value": "54",
+          "label": "inaccurate financial information",
+          "cue": "54"
+        },
+        "bigcap": {
+          "top": 620,
+          "text": "*35* failure to cooperate",
+          "cue": "35"
+        }
+      }
+    },
+    {
+      "id": "b03",
+      "accent": [
+        "80",
+        "not proven"
+      ],
+      "text": "The commission proved all 80 financial charges, and 34 of the 35 failure-to-cooperate charges. One charge was not proven.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "bbc_etihad",
+          "tifo_title"
+        ],
+        "bigcap": {
+          "top": 620,
+          "text": "*114* proven|*1* not proven",
+          "cue": "One"
+        }
+      }
+    },
+    {
+      "id": "b04",
+      "accent": [
+        "900",
+        "2009"
+      ],
+      "text": "The financial charges cover the seasons 2009 to 2018. The commission found that sponsors paid less than their contracts stated, and the owners made up the difference. That inflated revenue and cut costs by about 900 million pounds in total.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "tifo_emails",
+          "tifo_pounds"
+        ],
+        "tag": {
+          "right": 120,
+          "top": 90,
+          "value": "£900M",
+          "label": "about, in total",
+          "cue": "900"
+        }
+      }
+    },
+    {
+      "id": "b05",
+      "accent": [
+        "false",
+        "accusation"
+      ],
+      "text": "City deny it. Ferran Soriano, quoted by SportBible, said: The whole Premier League case against us is based on a single false accusation.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "sky_stmt"
+        ],
+        "bigcap": {
+          "top": 590,
+          "text": "“The whole Premier League case against us is based on a single false accusation.”",
+          "size": 52,
+          "src": "Ferran Soriano, as reported by SportBible",
+          "cue": "whole"
+        }
+      }
+    },
+    {
+      "id": "b06",
+      "accent": [
+        "unsafe",
+        "evidence"
+      ],
+      "text": "City's lawyers say the commission's opinion contains clear, material errors of law, principle and fact, and that it is unsafe. The club says it has a comprehensive body of irrefutable evidence.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "bbc_studio"
+        ],
+        "bigcap": {
+          "top": 590,
+          "text": "“clear, material errors of law, principle and fact”",
+          "size": 52,
+          "src": "City's lawyers, as reported",
+          "cue": "errors"
+        }
+      }
+    },
+    {
+      "id": "b07",
+      "accent": [
+        "1",
+        "December"
+      ],
+      "text": "City lodged an appeal on 1 October. It goes to a new three-person panel. The hearing is expected in the middle of December, and the appeal judgment in the new year.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "sky_statue"
+        ],
+        "tag": {
+          "right": 120,
+          "top": 90,
+          "value": "DEC",
+          "label": "appeal hearing expected",
+          "cue": "December"
+        }
+      }
+    },
+    {
+      "id": "b08",
+      "accent": [
+        "fines",
+        "expulsion"
+      ],
+      "text": "Sanctions have not been decided. If the appeal fails, the options run from fines and points deductions up to expulsion from the league.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "tifo_sanc"
+        ],
+        "bigcap": {
+          "top": 620,
+          "text": "Fines, points, *expulsion*",
+          "cue": "expulsion"
+        }
+      }
+    },
+    {
+      "id": "b09",
+      "accent": [
+        "May",
+        "years"
+      ],
+      "text": "Sanctions are expected early next year. A punishment can itself be appealed, so the uncertainty could run past the end of the season in May, and reports say it could last for years.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "sky_champ"
+        ],
+        "tag": {
+          "right": 120,
+          "top": 90,
+          "value": "YEARS",
+          "label": "reports say it could last",
+          "cue": "years"
+        }
+      }
+    },
+    {
+      "id": "b10",
+      "accent": [
+        "three",
+        "not a ruling"
+      ],
+      "text": "On 27 November, SportBible, citing BBC Sport, reported that executives at three Premier League clubs believe City's owners should be forced to sell the club if the appeal fails. That is their view. It is not a ruling.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "sky_trophy"
+        ],
+        "bigcap": {
+          "top": 620,
+          "text": "Three clubs' executives:|*not* a ruling",
+          "cue": "executives"
+        }
+      }
+    },
+    {
+      "id": "b11",
+      "accent": [
+        "third",
+        "Maresca"
+      ],
+      "text": "On the pitch, City are third, with 22 points from 11 games, 6 behind Arsenal. Enzo Maresca was appointed on 29 June to succeed Pep Guardiola.",
+      "visual": {
+        "type": "circle",
+        "img": "guardiola2",
+        "side": "left",
+        "tag": {
+          "value": "3RD",
+          "label": "22 points, 11 games",
+          "cue": "third",
+          "right": 150,
+          "top": 150,
+          "size": 110
+        },
+        "bigcap": {
+          "text": "Maresca *replaced* Guardiola",
+          "pos": "right",
+          "top": 820,
+          "size": 64,
+          "cue": "Maresca"
+        }
+      }
+    },
+    {
+      "id": "b12",
+      "accent": [
+        "3-1",
+        "2-2"
+      ],
+      "text": "Recent results: a 3-1 defeat at Nottingham Forest, a 1-1 draw with Fulham, and a 2-2 draw with Napoli in the Champions League.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "forest_a",
+          "ful_a",
+          "nap_a"
+        ],
+        "bigcap": {
+          "top": 620,
+          "text": "Forest *3-1*|Fulham 1-1|Napoli 2-2",
+          "cue": "Forest"
+        }
+      }
+    },
+    {
+      "id": "b13",
+      "accent": [
+        "Arsenal"
+      ],
+      "text": "Next, City play Arsenal, who lead the table.",
+      "visual": {
+        "type": "clip",
+        "shots": [
+          "mar_a"
+        ],
+        "bigcap": {
+          "top": 620,
+          "text": "Next: *Arsenal*",
+          "cue": "Arsenal"
+        }
+      }
+    },
+    {
+      "id": "b14",
+      "accent": [
+        "punished",
+        "appeal"
+      ],
+      "text": "Will City be punished? Nobody can say yet. The appeal comes first, and the judgment is expected in the new year.",
+      "visual": {
+        "type": "circle",
+        "img": "haaland1",
+        "side": "left",
+        "tag": {
+          "value": "NEW YEAR",
+          "label": "appeal judgment expected",
+          "cue": "year",
+          "right": 150,
+          "top": 130,
+          "size": 90
+        },
+        "bigcap": {
+          "text": "*Punished?*",
+          "pos": "right",
+          "top": 480,
+          "cue": "Will"
+        }
+      }
+    }
+  ]
+}

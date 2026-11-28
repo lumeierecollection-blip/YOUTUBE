@@ -1,0 +1,43 @@
+{
+ "note": "Two Football Realm-formula thumbnails (faces / serif). 114 of 115 is on the cited pages (CBS Sports, Football Today). Relegation is a question: the cited reports list expulsion and points deductions among the options; none is decided.",
+ "variants": [
+  {
+   "id": "a",
+   "kind": "faces",
+   "left": {
+    "img": "haaland3",
+    "word": "114",
+    "x": -50,
+    "h": 600,
+    "y": 560
+   },
+   "right": {
+    "img": "guardiola2",
+    "word": "OF 115",
+    "x": -20,
+    "h": 600,
+    "y": 560
+   },
+   "size": 120
+  },
+  {
+   "id": "b",
+   "kind": "serif",
+   "lines": [
+    "114 charges.",
+    "Relegated?"
+   ],
+   "hot": 1,
+   "img": "haaland1",
+   "note": "Appeal in mid-December",
+   "src": "face",
+   "h": 480,
+   "drop": 0,
+   "x": 420,
+   "arrowX": 120,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 560
+  }
+ ]
+}

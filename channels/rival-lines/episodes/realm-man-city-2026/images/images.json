@@ -1,0 +1,55 @@
+{
+ "fetched_at": "2026-11-28T03:03:11+00:00",
+ "images": [
+  {
+   "key": "guardiola",
+   "title": "File:Josep Guardiola 2023-10-04 Fußball, Männer, UEFA Champions League, RB Leipzig - Manchester City FC 1DX 2797 (cropped).jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "author": "Steffen Prößdorf",
+   "date": "2023-10-04",
+   "description": "Fußball, Männer, UEFA Champions League, RB Leipzig - Manchester City FC: Josep \"Pep\" Guardiola Sala (Manchester City, Cheftrainer, head coach) bei der Pressekonferenz; Porträt, Einzelbild",
+   "page": "https://commons.wikimedia.org/wiki/File:Josep_Guardiola_2023-10-04_Fu%C3%9Fball,_M%C3%A4nner,_UEFA_Champions_League,_RB_Leipzig_-_Manchester_City_FC_1DX_2797_(cropped).jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/6/60/Josep_Guardiola_2023-10-04_Fu%C3%9Fball%2C_M%C3%A4nner%2C_UEFA_Champions_League%2C_RB_Leipzig_-_Manchester_City_FC_1DX_2797_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1097,
+   "h": 1419,
+   "id": "guardiola2",
+   "file": "files/guardiola2.jpg",
+   "face": {
+    "w": 1.0,
+    "cx": 0.5,
+    "bottom": 0.8
+   }
+  },
+  {
+   "key": "haaland",
+   "title": "File:Erling Haaland 2023.jpg",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "author": "Jacek Stanislawek",
+   "date": "Taken on 22 February 2023, 22:20:03",
+   "description": "Erling Haaland playing for Manchester City against RB Leipzig in a UEFA Champions League match at the Red Bull Arena, Leipzig on 22 February 2023",
+   "page": "https://commons.wikimedia.org/wiki/File:Erling_Haaland_2023.jpg",
+   "thumb": "https://upload.wikimedia.org/wikipedia/commons/1/10/Erling_Haaland_2023.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+   "w": 1536,
+   "h": 1920,
+   "id": "haaland1",
+   "file": "files/haaland1.jpg"
+  },
+  {
+   "key": "haaland",
+   "title": "File:Erling Braut Haaland Norway.jpg",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0",
+   "author": "Jahrenvisuals",
+   "date": "2026-09-24 20:21:03",
+   "description": "Erling Braut Haaland playing for Norway during nations league 2026/2027.",
+   "page": "https://commons.wikimedia.org/wiki/File:Erling_Braut_Haaland_Norway.jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/Erling_Braut_Haaland_Norway.jpg/1920px-Erling_Braut_Haaland_Norway.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 3384,
+   "h": 4230,
+   "id": "haaland3",
+   "file": "files/haaland3.jpg"
+  }
+ ]
+}

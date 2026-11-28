@@ -1,0 +1,18 @@
+{
+ "people": [
+  {
+   "key": "guardiola",
+   "name": "Pep Guardiola",
+   "category": "Category:Pep Guardiola",
+   "must": "guardiola",
+   "n": 3
+  },
+  {
+   "key": "haaland",
+   "name": "Erling Haaland",
+   "category": "Category:Erling Haaland",
+   "must": "haaland",
+   "n": 3
+  }
+ ]
+}
