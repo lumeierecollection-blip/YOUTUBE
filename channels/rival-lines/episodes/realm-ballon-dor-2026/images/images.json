@@ -14,7 +14,10 @@
    "w": 3333,
    "h": 5000,
    "id": "kane3",
-   "file": "files/kane3.jpg"
+   "file": "files/kane3.jpg",
+   "face": {
+    "bottom": 0.3
+   }
   },
   {
    "key": "mbappe",
@@ -29,7 +32,10 @@
    "w": 1023,
    "h": 1537,
    "id": "mbappe1",
-   "file": "files/mbappe1.png"
+   "file": "files/mbappe1.png",
+   "face": {
+    "bottom": 0.3
+   }
   },
   {
    "key": "mbappe",

@@ -1,7 +1,28 @@
 {
- "note": "Two Football Realm-formula thumbnails. Every figure is on the cited pages. Variant B pairs Kane with a quote about Kane, not with the police or website scenes.",
+ "note": "Two Football Realm-formula thumbnails (faces / serif). Every figure is on the cited pages: Kane 1,055, Mbappe 1,027, 28 points apart.",
  "variants": [
-  {"id": "a", "kind": "dual", "left": {"img": "kane3", "words": ["1,055"], "h": 700}, "right": {"img": "mbappe1", "words": ["1,027"], "h": 700}, "centre": "28 POINTS"},
-  {"id": "b", "kind": "bigword", "word": "SIXTH.", "img": "kane3", "size": 380, "card": {"who": "Dravko Rijec, a juror", "text": "I acknowledge my mistake."}}
+  {
+   "id": "a",
+   "kind": "faces",
+   "left": {
+    "img": "kane3",
+    "word": "1,055"
+   },
+   "right": {
+    "img": "mbappe1",
+    "word": "1,027"
+   }
+  },
+  {
+   "id": "b",
+   "kind": "serif",
+   "lines": [
+    "Won by",
+    "28 points."
+   ],
+   "hot": 1,
+   "img": "kane3",
+   "note": "Kane, 1,055 to 1,027"
+  }
  ]
 }

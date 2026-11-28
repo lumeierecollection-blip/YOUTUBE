@@ -31,6 +31,7 @@ else:
     keys |= {sc["visual"]["img"] for sc in props["scenes"] if sc["visual"].get("type") == "photo" and sc["visual"].get("stats")}
 ij = os.path.join(ep, "images", "images.json")
 masks = {i["id"]: i["mask"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("mask")} if os.path.exists(ij) else {}
+faces = {i["id"]: i["face"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("face")} if os.path.exists(ij) else {}
 for img in sorted(keys):
     src = os.path.join(pub, props["images"][img]["file"])
     im = Image.open(src).convert("RGB")
@@ -45,8 +46,23 @@ for img in sorted(keys):
     # Clean the edge: pull the matte in a few pixels so the old background colour does not show as a fringe, then soften it.
     a = out.getchannel("A").point(lambda v: 255 if v > 128 else 0).filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(2.2))
     out.putalpha(a)
+    # Keep only the largest connected piece, so bits of a second person or the background the model left floating are dropped.
+    import numpy as np
+    from scipy import ndimage
+    arr = np.array(out.getchannel("A"))
+    lab, n = ndimage.label(arr > 40)
+    if n > 1:
+        sizes = ndimage.sum(arr > 40, lab, range(1, n + 1))
+        arr = np.where(lab == 1 + int(np.argmax(sizes)), arr, 0).astype(np.uint8)
+        out.putalpha(Image.fromarray(arr))
     box = out.getchannel("A").point(lambda a: 255 if a > 40 else 0).getbbox()
     out = out.crop(box)
     dst = os.path.join(pub, "ep", "images", f"cutout-{img}.png")
     out.save(dst)
     print("cutout", img, out.size, "->", dst)
+    # Head-and-shoulders crop for the close-up thumbnails: optional "face" {"bottom","cx","w"} per image in images.json, as fractions of the cut-out.
+    fc = faces.get(img, {})
+    W, H = out.size
+    fw = fc.get("w", 0.9) * W
+    x0 = max(0, min(W - fw, fc.get("cx", 0.5) * W - fw / 2))
+    out.crop((int(x0), 0, int(x0 + fw), int(fc.get("bottom", 0.32) * H))).save(os.path.join(pub, "ep", "images", f"face-{img}.png"))

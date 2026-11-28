@@ -4,72 +4,51 @@ import { loadFont as loadCond } from "@remotion/google-fonts/Anton";
 import { loadFont as loadSerif } from "@remotion/google-fonts/PlayfairDisplay";
 import { loadFont as loadSans } from "@remotion/google-fonts/InterTight";
 
-// Three thumbnail formulas read off The Football Realm's own thumbnails (see data/rival-lines/paperpitch-footballrealm-reference-study.md):
-//   dual    two faces cut out on a red vignette, a short italic word either side ("HE / KNEW")
-//   bigword a near-black ground and one huge red condensed word, a cut-out person in front of it ("BETRAYED.")
-//   serif   a white ground, a serif headline and a red arrow pointing at the person
-// Every colour is a token from channels.json realm_colors. Photos are the same licensed Commons files as the video, with the credit printed small.
+// Two thumbnail formulas read off The Football Realm's own recent thumbnails (frame-by-frame in the reference sheet of 30):
+//   faces   two head-and-shoulders crops filling the frame on a red vignette, one short bold italic word either side ("HE / KNEW", "WATCH / HIM"). No outline, no credit line on the image.
+//   serif   a pale ground, a centred serif headline with one bold word, a waist-up cut-out, a red hand-drawn arrow and a small italic note.
+// Every colour is a token from channels.json realm_colors. Photo credits go in the video description (publish.md), not on the thumbnail.
 const cond = loadCond("normal", { weights: ["400"], subsets: ["latin"] }).fontFamily;
-const serif = loadSerif("italic", { weights: ["700", "900"], subsets: ["latin"] }).fontFamily;
+const serif = loadSerif("italic", { weights: ["400", "700", "900"], subsets: ["latin"] }).fontFamily;
+const serifUp = loadSerif("normal", { weights: ["400", "700"], subsets: ["latin"] }).fontFamily;
 const sans = loadSans("normal", { weights: ["700", "900"], subsets: ["latin"] }).fontFamily;
 
-const outline = (c: string, k: number) => `drop-shadow(${k}px 0 0 ${c}) drop-shadow(-${k}px 0 0 ${c}) drop-shadow(0 ${k}px 0 ${c}) drop-shadow(0 -${k}px 0 ${c})`;
 const shade = (c: string, p: number) => `color-mix(in srgb, ${c} ${p}%, transparent)`;
 
-const Cut: React.FC<{ img: string; h: number; style: React.CSSProperties; ring: string; k?: number }> = ({ img, h, style, ring, k = 5 }) => (
-  <Img src={staticFile(`ep/images/cutout-${img}.png`)} style={{ position: "absolute", height: h, width: "auto", filter: `${outline(ring, k)} drop-shadow(0 14px 22px ${"black"})`, ...style }} />
+const Face: React.FC<{ img: string; h: number; side: "left" | "right"; x?: number }> = ({ img, h, side, x = -120 }) => (
+  <Img
+    src={staticFile(`ep/images/face-${img}.png`)}
+    style={{ position: "absolute", height: h, width: "auto", bottom: 0, [side]: x, filter: "drop-shadow(0 0 28px rgba(0,0,0,0.55))" }}
+  />
 );
 
-const Credit: React.FC<{ images: any; ids: string[]; color: string }> = ({ images, ids, color }) => (
-  <div style={{ position: "absolute", right: 14, bottom: 8, fontFamily: sans, fontWeight: 700, fontSize: 13, color, opacity: 0.7, maxWidth: 700, textAlign: "right" }}>
-    Photo: {[...new Set(ids.map((i) => images[i]?.credit).filter(Boolean))].join(" · ")}
-  </div>
+const Word: React.FC<{ children: React.ReactNode; color: string; style: React.CSSProperties; size?: number }> = ({ children, color, style, size = 150 }) => (
+  <div style={{ position: "absolute", fontFamily: cond, fontSize: size, lineHeight: 1, color, letterSpacing: 2, transform: "skewX(-9deg)", textShadow: "0 7px 0 rgba(0,0,0,0.75), 0 0 30px rgba(0,0,0,0.5)", whiteSpace: "nowrap", ...style }}>{children}</div>
 );
 
-export const RealmThumb: React.FC<any> = ({ theme, thumb, images }) => {
+export const RealmThumb: React.FC<any> = ({ theme, thumb }) => {
   const t = thumb;
-  if (t.kind === "dual") {
+  if (t.kind === "faces") {
     return (
-      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 55%, ${theme.red} 0%, ${theme.red} 28%, ${theme.black} 100%)` }}>
-        <Cut img={t.left.img} h={t.left.h || 690} ring={theme.white} style={{ left: t.left.x ?? -30, bottom: 0 }} />
-        <Cut img={t.right.img} h={t.right.h || 690} ring={theme.white} style={{ right: t.right.x ?? -30, bottom: 0 }} />
-        <div style={{ position: "absolute", left: 330, top: 40, fontFamily: serif, fontWeight: 900, fontSize: 130, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
-          {t.left.words.map((w: string, i: number) => <div key={i}>{w}</div>)}
-        </div>
-        <div style={{ position: "absolute", right: 330, top: 210, textAlign: "right", fontFamily: serif, fontWeight: 900, fontSize: 130, lineHeight: 0.95, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 60)}` }}>
-          {t.right.words.map((w: string, i: number) => <div key={i}>{w}</div>)}
-        </div>
-        {t.centre ? <div style={{ position: "absolute", left: 0, right: 0, bottom: 34, textAlign: "center", fontFamily: cond, fontSize: 168, lineHeight: 1, color: theme.white, textShadow: `0 8px 0 ${shade(theme.black, 70)}` }}>{t.centre}</div> : null}
-        <Credit images={images} ids={[t.left.img, t.right.img]} color={theme.white} />
-      </AbsoluteFill>
-    );
-  }
-  if (t.kind === "bigword") {
-    return (
-      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 60% 50%, ${theme.card_ink} 0%, ${theme.black} 75%)` }}>
-        <div style={{ position: "absolute", left: 28, top: 60, fontFamily: cond, fontSize: t.size || 330, lineHeight: 1, color: theme.red, whiteSpace: "nowrap", letterSpacing: 2 }}>{t.word}</div>
-        <Cut img={t.img} h={t.h || 640} ring={theme.white} style={{ right: t.x ?? 40, bottom: 0 }} />
-        {t.card ? (
-          <div style={{ position: "absolute", left: 40, bottom: 56, width: 640, background: theme.card, border: `4px solid ${theme.card_ink}`, boxShadow: `10px 12px 0 ${shade(theme.black, 60)}`, padding: "20px 26px", transform: "rotate(-2deg)" }}>
-            <div style={{ fontFamily: sans, fontWeight: 900, fontSize: 24, letterSpacing: 2, color: theme.red, textTransform: "uppercase" }}>{t.card.who}</div>
-            <div style={{ fontFamily: serif, fontWeight: 700, fontSize: 54, lineHeight: 1.05, color: theme.card_ink, marginTop: 6 }}>{t.card.text}</div>
-          </div>
-        ) : null}
-        <Credit images={images} ids={[t.img]} color={theme.white} />
+      <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 45%, ${theme.red} 0%, ${theme.red} 35%, ${shade(theme.black, 100)} 125%)` }}>
+        <Face img={t.left.img} h={t.left.h || 720} side="left" x={t.left.x} />
+        <Face img={t.right.img} h={t.right.h || 720} side="right" x={t.right.x} />
+        <Word color={theme.white} style={{ left: 36, top: t.left.y ?? 270 }} size={t.size}>{t.left.word}</Word>
+        <Word color={theme.white} style={{ right: 36, top: t.right.y ?? 270 }} size={t.size}>{t.right.word}</Word>
       </AbsoluteFill>
     );
   }
   return (
-    <AbsoluteFill style={{ background: theme.white }}>
-      <div style={{ position: "absolute", left: 50, top: 60, width: 700, fontFamily: serif, fontWeight: 900, fontSize: t.size || 138, lineHeight: 1.0, color: theme.black }}>
-        {t.lines.map((l: string, i: number) => <div key={i} style={{ color: i === t.hot ? theme.red : theme.black }}>{l}</div>)}
+    <AbsoluteFill style={{ background: `linear-gradient(180deg, ${theme.white} 0%, #E9E9EC 100%)` }}>
+      <div style={{ position: "absolute", left: 0, right: 0, top: 26, textAlign: "center", fontFamily: serifUp, fontWeight: 400, fontSize: t.size || 108, lineHeight: 1.04, color: theme.black }}>
+        {t.lines.map((l: string, i: number) => <div key={i} style={i === t.hot ? { fontWeight: 700, color: theme.red } : undefined}>{l}</div>)}
       </div>
-      <svg width={420} height={220} viewBox="0 0 420 220" style={{ position: "absolute", left: 360, top: 470 }}>
-        <path d="M 10 30 C 160 10 280 80 340 170" fill="none" stroke={theme.red} strokeWidth={16} strokeLinecap="round" />
-        <path d="M 340 170 L 300 122 M 340 170 L 392 138" fill="none" stroke={theme.red} strokeWidth={16} strokeLinecap="round" />
+      <Img src={staticFile(`ep/images/cutout-${t.img}.png`)} style={{ position: "absolute", height: t.h || 1020, width: "auto", right: t.x ?? 300, bottom: -(t.drop ?? 330), filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.35))" }} />
+      <svg width={300} height={180} viewBox="0 0 300 180" style={{ position: "absolute", left: t.arrowX ?? 250, top: t.arrowY ?? 330 }}>
+        <path d="M 10 20 C 110 0 200 50 250 130" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
+        <path d="M 250 130 L 214 92 M 250 130 L 290 100" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
       </svg>
-      <Cut img={t.img} h={t.h || 700} ring={theme.card_ink} style={{ right: t.x ?? 20, bottom: 0 }} k={3} />
-      <Credit images={images} ids={[t.img]} color={theme.card_ink} />
+      <div style={{ position: "absolute", left: t.noteX ?? 70, top: t.noteY ?? 400, width: 340, fontFamily: serif, fontWeight: 400, fontSize: 40, lineHeight: 1.1, color: theme.black }}>{t.note}</div>
     </AbsoluteFill>
   );
 };

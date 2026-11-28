@@ -28,7 +28,10 @@
      1,
      0.9
     ]
-   ]
+   ],
+   "face": {
+    "bottom": 0.3
+   }
   },
   {
    "key": "carrick",
@@ -51,7 +54,10 @@
      1,
      1
     ]
-   ]
+   ],
+   "face": {
+    "bottom": 0.5
+   }
   },
   {
    "key": "szoboszlai",
