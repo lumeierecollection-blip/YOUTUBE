@@ -6,12 +6,19 @@
    "kind": "faces",
    "left": {
     "img": "carrick2",
-    "word": "SACKED"
+    "word": "SACKED",
+    "x": 40,
+    "h": 640,
+    "y": 520
    },
    "right": {
     "img": "pochettino1",
-    "word": "HIRED"
-   }
+    "word": "HIRED",
+    "x": 40,
+    "h": 640,
+    "y": 520
+   },
+   "size": 140
   },
   {
    "id": "b",
@@ -22,7 +29,15 @@
    ],
    "hot": 0,
    "img": "pochettino1",
-   "note": "19th, 23 Nov"
+   "note": "19th, 23 Nov",
+   "src": "face",
+   "h": 480,
+   "drop": 0,
+   "x": 420,
+   "arrowX": 250,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 420
   }
  ]
 }

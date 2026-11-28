@@ -6,12 +6,19 @@
    "kind": "faces",
    "left": {
     "img": "kane3",
-    "word": "1,055"
+    "word": "1,055",
+    "x": 40,
+    "h": 640,
+    "y": 520
    },
    "right": {
     "img": "mbappe1",
-    "word": "1,027"
-   }
+    "word": "1,027",
+    "x": 40,
+    "h": 640,
+    "y": 520
+   },
+   "size": 140
   },
   {
    "id": "b",
@@ -22,7 +29,14 @@
    ],
    "hot": 1,
    "img": "kane3",
-   "note": "Kane, 1,055 to 1,027"
+   "note": "Kane, 1,055 to 1,027",
+   "h": 900,
+   "drop": 430,
+   "x": 400,
+   "arrowX": 260,
+   "arrowY": 360,
+   "noteX": 60,
+   "noteY": 440
   }
  ]
 }

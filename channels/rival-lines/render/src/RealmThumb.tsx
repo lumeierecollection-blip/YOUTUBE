@@ -43,12 +43,12 @@ export const RealmThumb: React.FC<any> = ({ theme, thumb }) => {
       <div style={{ position: "absolute", left: 0, right: 0, top: 26, textAlign: "center", fontFamily: serifUp, fontWeight: 400, fontSize: t.size || 108, lineHeight: 1.04, color: theme.black }}>
         {t.lines.map((l: string, i: number) => <div key={i} style={i === t.hot ? { fontWeight: 700, color: theme.red } : undefined}>{l}</div>)}
       </div>
-      <Img src={staticFile(`ep/images/cutout-${t.img}.png`)} style={{ position: "absolute", height: t.h || 1020, width: "auto", right: t.x ?? 300, bottom: -(t.drop ?? 330), filter: `drop-shadow(0 12px 24px ${shade(theme.black, 35)})` }} />
+      <Img src={staticFile(`ep/images/${t.src === "face" ? "face" : "cutout"}-${t.img}.png`)} style={{ position: "absolute", height: t.h || 1020, width: "auto", right: t.x ?? 300, bottom: -(t.drop ?? 330), filter: `drop-shadow(0 12px 24px ${shade(theme.black, 35)})` }} />
       <svg width={300} height={180} viewBox="0 0 300 180" style={{ position: "absolute", left: t.arrowX ?? 250, top: t.arrowY ?? 330 }}>
         <path d="M 10 20 C 110 0 200 50 250 130" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
         <path d="M 250 130 L 214 92 M 250 130 L 290 100" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
       </svg>
-      <div style={{ position: "absolute", left: t.noteX ?? 70, top: t.noteY ?? 400, width: 340, fontFamily: serif, fontWeight: 400, fontSize: 40, lineHeight: 1.1, color: theme.black }}>{t.note}</div>
+      <div style={{ position: "absolute", left: t.noteX ?? 70, top: t.noteY ?? 400, width: 340, fontFamily: serif, fontWeight: 400, fontSize: 46, lineHeight: 1.1, color: theme.black }}>{t.note}</div>
     </AbsoluteFill>
   );
 };
