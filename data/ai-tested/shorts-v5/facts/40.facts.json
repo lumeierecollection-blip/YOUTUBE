@@ -1,0 +1,26 @@
+{
+ "id": "40",
+ "sources": [
+  { "url": "https://github.com/anomalyco/opencode", "fetched": true, "note": "Repo reached via the GitHub API as sst/opencode (redirects to anomalyco/opencode). stargazers_count 229638 and license MIT, read 2026-11-28. README read in full." },
+  { "url": "https://opencode.ai", "fetched": true, "note": "Rendered page read with a browser on 2026-11-28; the free-models and features panels are element captures of this page." },
+  { "url": "https://opencode.ai/docs/providers", "fetched": true, "note": "Fetched via WebFetch (summarised extraction), 2026-11-28." }
+ ],
+ "facts": [
+  { "id": "f1", "claim": "OpenCode is an open source AI coding agent.", "verbatim_support": "The open source AI coding agent.", "url": "https://github.com/anomalyco/opencode" },
+  { "id": "f2", "claim": "The repo has over 229 thousand GitHub stars (229,638 on 2026-11-28).", "verbatim_support": "GitHub API stargazers_count: 229638", "url": "https://github.com/anomalyco/opencode" },
+  { "id": "f3", "claim": "The license is MIT.", "verbatim_support": "GitHub API license spdx_id: MIT", "url": "https://github.com/anomalyco/opencode" },
+  { "id": "f4", "claim": "It runs in the terminal and as a desktop app.", "verbatim_support": "OpenCode is also available as a desktop application.", "url": "https://github.com/anomalyco/opencode" },
+  { "id": "f5", "claim": "It comes with free models and no account is needed.", "verbatim_support": "OpenCode comes with a set of free models. No account needed.", "url": "https://opencode.ai" },
+  { "id": "f6", "claim": "You can bring your own models; 200+ providers through Models.dev, including local models.", "verbatim_support": "200+ LLM providers through Models.dev, including local models", "url": "https://opencode.ai" },
+  { "id": "f7", "claim": "A ChatGPT Plus or Pro plan can be used instead of an OpenAI API key.", "verbatim_support": "Use a ChatGPT Plus or Pro plan instead of an OpenAI API key.", "url": "https://opencode.ai/docs/providers" },
+  { "id": "f8", "claim": "It supports MCP servers, skills (SKILL.md) and custom agents.", "verbatim_support": "MCP servers / Agent skills / Custom agents", "url": "https://opencode.ai" },
+  { "id": "f9", "claim": "Two built-in agents: build has full access, plan is read-only.", "verbatim_support": "build - Default, full-access agent for development work; plan - Read-only agent for analysis and code exploration", "url": "https://github.com/anomalyco/opencode" },
+  { "id": "f10", "claim": "Install with one command: curl -fsSL https://opencode.ai/v2/install | bash.", "verbatim_support": "curl -fsSL https://opencode.ai/v2/install | bash", "url": "https://github.com/anomalyco/opencode" }
+ ],
+ "assets": {
+  "opencode-terminal.png / opencode-desktop-icon.png": "Product images from the OpenCode site/repo, background already transparent.",
+  "models-*.svg": "Provider logos from the models.dev logo set used by opencode.ai.",
+  "octicon-*.svg": "GitHub Octicons (MIT)."
+ },
+ "limits": "Star count and the v2 install URL are as of 2026-11-28 and can change. The comment-for-link call to action is the channel's own: the link is posted by hand as a pinned comment."
+}

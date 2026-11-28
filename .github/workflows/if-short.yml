@@ -51,7 +51,7 @@ jobs:
         working-directory: ${{ env.V5 }}
         run: |
           set -euo pipefail
-          for id in 25 22 24 31 32 33; do
+          for id in 40; do
             IF_ID=$id node if/render-if.mjs
           done
 
@@ -59,7 +59,7 @@ jobs:
         working-directory: ${{ env.V5 }}
         run: |
           set -euo pipefail
-          for id in 25 22 24 31 32 33; do
+          for id in 40; do
             echo "== $id"
             ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,duration -of default=nw=1 if/out/if$id.mp4
             ffmpeg -v error -i if/out/if$id.mp4 -f null -

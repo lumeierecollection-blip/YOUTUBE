@@ -2,9 +2,9 @@ import React from "react";
 import { Composition, CalculateMetadataFunction } from "remotion";
 import { IFShort } from "./IF";
 
-const calcIF: CalculateMetadataFunction<any> = async ({ props }) => ({ durationInFrames: Math.max(30, Math.ceil(((props.audioDurationSec || 30) + 0.5) * 30)), props });
+const calcIF: CalculateMetadataFunction<any> = async ({ props }) => ({ durationInFrames: Math.max(30, Math.ceil(((props.audioDurationSec || 30) + (props.plan?.loop ? 0 : 0.5)) * 30)), props });
 
-const IDS = ["25", "22", "24", "31", "32", "33"];
+const IDS = ["25", "22", "24", "31", "32", "33", "40"];
 
 export const RemotionRoot: React.FC = () => (
   <>

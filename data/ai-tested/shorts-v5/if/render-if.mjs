@@ -45,7 +45,7 @@ if (fs.existsSync(song) && process.env.NO_MUSIC !== "1") {
   const total = parseFloat(probe(["-show_entries", "format=duration", "-of", "default=noprint_wrappers=1:nokey=1", raw]));
   const start = parseFloat(process.env.MUSIC_START || "0"), vol = process.env.MUSIC_VOL || "0.22";
   base = path.join(outDir, `.mix${ID0}.mp4`);
-  const fc = `[1:a]volume=${vol},afade=t=in:d=0.8,afade=t=out:st=${(total - 1.8).toFixed(2)}:d=1.8[m];[0:a]asplit[v][k];[m][k]sidechaincompress=threshold=0.02:ratio=6:attack=15:release=350[md];[v][md]amix=inputs=2:normalize=0:duration=first[a]`;
+  const fc = `[1:a]volume=${vol},${plan.loop ? "anull" : `afade=t=in:d=0.8,afade=t=out:st=${(total - 1.8).toFixed(2)}:d=1.8`}[m];[0:a]asplit[v][k];[m][k]sidechaincompress=threshold=0.02:ratio=6:attack=15:release=350[md];[v][md]amix=inputs=2:normalize=0:duration=first[a]`;
   execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", raw, "-ss", String(start), "-t", total.toFixed(2), "-i", song, "-filter_complex", fc, "-map", "0:v", "-map", "[a]", "-c:v", "copy", "-c:a", "aac", "-b:a", "256k", base], { stdio: "inherit" });
   console.log(`music: bgsong.mp3 from ${start}s, vol ${vol}`);
 }
