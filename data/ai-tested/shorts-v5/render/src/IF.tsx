@@ -199,11 +199,9 @@ const Count: React.FC<{ el: Extract<El, { k: "count" }>; time: number }> = ({ el
 
 const Code: React.FC<{ el: Extract<El, { k: "code" }>; time: number }> = ({ el, time }) => {
   const a = clamp((time - el.t) / 0.4), e = easeOut(a), sz = el.sz ?? 26;
-  const full = el.lines.join("
-");
+  const full = el.lines.join("\n");
   const n = Math.floor(full.length * clamp((time - el.t - 0.3) / el.dur));
-  const shown = full.slice(0, n).split("
-");
+  const shown = full.slice(0, n).split("\n");
   const cursor = Math.floor(time * 2.4) % 2 === 0;
   return (
     <div style={{ position: "absolute", left: (W - el.w) / 2, top: el.y + (1 - e) * 40, width: el.w, opacity: a, borderRadius: 16, background: "#101010", padding: "22px 26px 26px", boxSizing: "border-box", boxShadow: "0 26px 34px -6px rgba(0,0,0,0.38), inset 0 0 0 1px rgba(255,255,255,0.08)" }}>
