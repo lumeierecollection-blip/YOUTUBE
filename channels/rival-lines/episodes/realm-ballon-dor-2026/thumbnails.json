@@ -7,18 +7,23 @@
    "left": {
     "img": "kane3",
     "word": "1,055",
-    "x": 40,
+    "x": -30,
     "h": 640,
     "y": 560
    },
    "right": {
     "img": "mbappe1",
     "word": "1,027",
-    "x": 40,
+    "x": -30,
     "h": 640,
     "y": 560
    },
-   "size": 120
+   "size": 120,
+   "prop": {
+    "img": "trophy1",
+    "h": 470,
+    "bottom": -30
+   }
   },
   {
    "id": "b",
@@ -37,6 +42,24 @@
    "arrowY": 360,
    "noteX": 60,
    "noteY": 440
+  },
+  {
+   "id": "c",
+   "kind": "serif",
+   "lines": [
+    "Kane won it.",
+    "Was it clean?"
+   ],
+   "hot": 1,
+   "img": "trophy1",
+   "h": 930,
+   "drop": 150,
+   "x": 330,
+   "arrowX": 330,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 470,
+   "note": "Police are looking at the vote"
   }
  ]
 }

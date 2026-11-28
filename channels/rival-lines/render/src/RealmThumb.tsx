@@ -33,6 +33,7 @@ export const RealmThumb: React.FC<any> = ({ theme, thumb }) => {
       <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 45%, ${theme.red} 0%, ${theme.red} 35%, ${shade(theme.black, 100)} 125%)` }}>
         <Face ink={theme.black} img={t.left.img} h={t.left.h || 720} side="left" x={t.left.x} />
         <Face ink={theme.black} img={t.right.img} h={t.right.h || 720} side="right" x={t.right.x} />
+        {t.prop && <Img src={staticFile(`ep/images/cutout-${t.prop.img}.png`)} style={{ position: "absolute", height: t.prop.h, width: "auto", left: "50%", bottom: t.prop.bottom ?? 0, transform: `translateX(-50%) rotate(${t.prop.rot ?? 0}deg)`, filter: `drop-shadow(0 14px 30px ${shade(theme.black, 70)})` }} />}
         <Word ink={theme.black} color={theme.white} style={{ left: 36, top: t.left.y ?? 270 }} size={t.size}>{t.left.word}</Word>
         <Word ink={theme.black} color={theme.white} style={{ right: 36, top: t.right.y ?? 270 }} size={t.size}>{t.right.word}</Word>
       </AbsoluteFill>

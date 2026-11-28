@@ -113,6 +113,28 @@
    "h": 1920,
    "id": "haaland1",
    "file": "files/haaland1.jpg"
+  },
+  {
+   "key": "trophy",
+   "title": "File:FIFA Ballon d'Or 2010 – Barcelona Museum.jpg",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "author": "Rafael Curtinaz Severo",
+   "date": "2012-11-12",
+   "description": "FIFA Ballon d'Or 2010 trophy replica, Barcelona museum",
+   "page": "https://commons.wikimedia.org/wiki/File%3AFIFA_Ballon_d%27Or_2010_%E2%80%93_Barcelona_Museum.jpg",
+   "w": 3240,
+   "h": 4320,
+   "id": "trophy1",
+   "file": "files/trophy1.jpg",
+   "mask": [
+    [
+     0,
+     0.69,
+     1,
+     1
+    ]
+   ]
   }
  ]
 }
