@@ -1,0 +1,52 @@
+{
+  "channel_id": "11",
+  "topic_slug": "vera-rubin-observatory-spots-bright-dwarf-planet",
+  "format": "shorts",
+  "hook": "Did you know a mysterious dwarf planet candidate, 2026 ED138, is lurking beyond Pluto?",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Did you know a mysterious dwarf planet candidate, 2026 ED138, is lurking beyond Pluto?",
+      "visual_cue": "Deep space starfield with a faint, distant moving light highlighted.",
+      "text_overlay": {
+        "text": "New Object Beyond Pluto"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On October 27, 2026, the NSF-DOE Vera C. How does 2026 ED138 move through the dark, cold reaches of our solar system?",
+      "visual_cue": "The NSF-DOE Vera C. Rubin Observatory building at night with data streams overlay.",
+      "text_overlay": {
+        "text": "Discovery: 2026 ED138"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "But this object orbits the sun at 46 times the Earth-sun distance, tilted 25 degrees.",
+      "visual_cue": "Diagram showing the vast distance between the Sun and the object.",
+      "text_overlay": {
+        "text": "46x Earth-Sun Distance"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Mario Jurić at the University of Washington identified this unique path using Blanco 4-meter telescope data.",
+      "visual_cue": "Animation of an orbital path tilted 25 degrees relative to the solar plane.",
+      "text_overlay": {
+        "text": "25-Degree Orbital Tilt"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "Check the Minor Planet Center for more updates on the orbit of 2026 ED138.",
+      "visual_cue": "Wide shot of the Milky Way galaxy seen from space.",
+      "text_overlay": {
+        "text": "Uncharted Frontier"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://rubinobservatory.org/news/rubin-first-dwarf-planet-candidate",
+    "https://www.livescience.com/space/planets/bright-object-beyond-pluto-may-be-the-solar-systems-sixth-dwarf-planet"
+  ]
+}

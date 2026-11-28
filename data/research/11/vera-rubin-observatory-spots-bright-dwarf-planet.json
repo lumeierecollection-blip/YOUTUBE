@@ -1,0 +1,79 @@
+{
+  "topic_slug": "vera-rubin-observatory-spots-bright-dwarf-planet",
+  "strongest_angle": "Detailing the discovery of dwarf planet candidate 2026 ED138 by the NSF-DOE Vera C. Rubin Observatory, orbiting at roughly 46 times the Earth-sun distance with a 25-degree orbital tilt.",
+  "key_facts": [
+    {
+      "fact": "The NSF-DOE Vera C. Rubin Observatory discovered dwarf planet candidate 2026 ED138 in the outer reaches of the solar system beyond Pluto, as announced on October 27, 2026.",
+      "source_url": "https://rubinobservatory.org/news/rubin-first-dwarf-planet-candidate",
+      "source_name": "Rubin Observatory",
+      "confidence": "high"
+    },
+    {
+      "fact": "Scientists at the Center for Astrophysics | Harvard & Smithsonian noted that the International Astronomical Union's Minor Planet Center announced the observations of 2026 ED138 on October 27, 2026.",
+      "source_url": "https://www.cfa.harvard.edu/news/new-dwarf-planet-candidate-discovered-our-solar-system",
+      "source_name": "Center for Astrophysics | Harvard & Smithsonian",
+      "confidence": "high"
+    },
+    {
+      "fact": "According to Live Science, the potential dwarf planet 2026 ED138 orbits the sun at roughly 46 times the distance between Earth and the sun with an orbit tilted at a 25-degree angle from the solar system plane.",
+      "source_url": "https://www.livescience.com/space/planets/bright-object-beyond-pluto-may-be-the-solar-systems-sixth-dwarf-planet",
+      "source_name": "Live Science",
+      "confidence": "medium"
+    },
+    {
+      "fact": "Mario Jurić, Rubin’s solar system lead scientist at the University of Washington, combed through Rubin and Blanco 4-meter telescope data leading to the discovery.",
+      "source_url": "https://www.astronomy.com/science/rubin-spots-possible-dwarf-planet",
+      "source_name": "Astronomy.com",
+      "confidence": "medium"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Orbital distance from Earth-sun distance",
+      "value": 46,
+      "unit": "times",
+      "source_url": "https://www.livescience.com/space/planets/bright-object-beyond-pluto-may-be-the-solar-systems-sixth-dwarf-planet"
+    },
+    {
+      "label": "Orbital tilt angle",
+      "value": 25,
+      "unit": "degrees",
+      "source_url": "https://www.livescience.com/space/planets/bright-object-beyond-pluto-may-be-the-solar-systems-sixth-dwarf-planet"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "NSF-DOE Vera C. Rubin Observatory",
+      "kind": "organization"
+    },
+    {
+      "name": "2026 ED138",
+      "kind": "object"
+    },
+    {
+      "name": "Pluto",
+      "kind": "place"
+    },
+    {
+      "name": "Center for Astrophysics | Harvard & Smithsonian",
+      "kind": "organization"
+    },
+    {
+      "name": "International Astronomical Union's Minor Planet Center",
+      "kind": "organization"
+    },
+    {
+      "name": "Mario Jurić",
+      "kind": "person"
+    },
+    {
+      "name": "University of Washington",
+      "kind": "organization"
+    },
+    {
+      "name": "Blanco 4-meter Telescope",
+      "kind": "object"
+    }
+  ]
+}
