@@ -10,9 +10,9 @@ export default function build(T) {
     { i: 0, grid: true, els: [
       TERM,
       { k: "lines", lines: [
-        { y: 650, words: [w(0, "OpenCode", { ...XL, t: -0.5 })] },
-        { y: 740, ...N, words: run(1, ["A", "free", "AI"]) },
-        { y: 810, ...BO, words: [b(4, "Coding"), b(5, "Agent")] },
+        { y: 625, words: [w(0, "OpenCode", { ...XL, t: -0.5 })] },
+        { y: 770, ...N, words: run(1, ["A", "free", "AI"]) },
+        { y: 840, ...BO, words: [b(4, "Coding"), b(5, "Agent")] },
       ] },
     ] },
     { i: 6, els: [
@@ -108,9 +108,9 @@ export default function build(T) {
     { i: 96, grid: true, els: [
       { k: "lines", lines: [
         { y: 130, ...N, words: run(96, ["Install", "it", "with"]) },
-        { y: 690, ...XL, words: [b(99, "One", XL), b(100, "Command", XL)] },
+        { y: 690, sz: 74, wt: 800, words: [b(99, "One", { sz: 74, wt: 800 }), b(100, "Command", { sz: 74, wt: 800 })] },
       ] },
-      { k: "code", y: 230, w: 540, t: T[96], dur: 1.8, sz: 25, lines: ["curl -fsSL", "https://opencode.ai/v2/install", "| bash"] },
+      { k: "code", y: 230, w: 540, t: T[96] - 0.2, dur: 0.85, sz: 25, lines: ["curl -fsSL", "https://opencode.ai/v2/install", "| bash"] },
     ] },
     { i: 101, grid: true, els: [
       { k: "mark", y: 250, t: T[101] },
@@ -130,7 +130,7 @@ export default function build(T) {
     ] },
     { i: 114, grid: true, els: [
       TERM,
-      { k: "lines", lines: [{ y: 650, sz: 84, wt: 800, words: run(114, ["the", "link", "to"]) }] },
+      { k: "lines", lines: [{ y: 625, sz: 84, wt: 800, words: run(114, ["the", "link", "to"]) }] },
     ] },
   ];
   const sfx = [
@@ -140,7 +140,7 @@ export default function build(T) {
     sfxAt(T[14] - 0.05, "sfx2/impact_low.mp3", 0.25, 1.0),
     click(55), click(56), click(57), click(58),
     click(76), click(80), click(82),
-    sfxAt(T[96], "sfx2/keyboard.mp3", 0.14, 2.0),
+    sfxAt(T[96] - 0.1, "sfx2/keyboard.mp3", 0.14, 1.2),
     sfxAt(T[109] - 0.3, "sfx2/keyboard.mp3", 0.12, 0.9),
     sfxAt(T[113], "sfx2/switch_click.mp3", 0.12, 0.4),
   ];
