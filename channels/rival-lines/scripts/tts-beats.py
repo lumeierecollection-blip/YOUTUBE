@@ -43,7 +43,8 @@ def run(*a):
 async def main():
     tmp = tempfile.mkdtemp()
     parts, timing, clock = [], [], 0.0
-    for i, b in enumerate(script["beats"]):
+    BEATS = [b for b in script["beats"] if b.get("text")]
+    for i, b in enumerate(BEATS):
         mp3 = os.path.join(tmp, f"b{i}.mp3")
         ws = await synth(b["text"], mp3)
         lead = max(0.0, ws[0][0] - 0.06)
@@ -54,7 +55,7 @@ async def main():
         timing.append({"id": b["id"], "t0": round(clock, 3), "t1": round(clock + length, 3),
                        "words": [{"t0": round(a - lead, 3), "t1": round(z - lead, 3), "w": w} for a, z, w in ws]})
         clock += length
-        if i < len(script["beats"]) - 1:
+        if i < len(BEATS) - 1:
             sil = os.path.join(tmp, f"g{i}.wav")
             run("-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono", "-t", f"{GAP:.3f}", sil)
             parts.append(sil)

@@ -84,10 +84,10 @@ const BigCap: React.FC<{ v: any; at: number }> = ({ v, at }) => {
 };
 
 /* ---------- the footage scene: full-bleed muted clips, a slow push-in, a source lowerthird ---------- */
-const Lower: React.FC<{ clip: any; t: number }> = ({ clip, t }) => {
+const Lower: React.FC<{ clip: any; t: number; hold?: boolean }> = ({ clip, t, hold }) => {
   const { theme } = useCtx();
   if (!clip.lower_name) return null;
-  const a = pg(t, 0.25, 0.4) * (1 - pg(t, 3.4, 0.4));
+  const a = pg(t, 0.25, 0.4) * (hold ? 1 : 1 - pg(t, 3.4, 0.4));
   if (a <= 0.01) return null;
   return (
     <div style={{ position: "absolute", left: 56, top: 44, display: "flex", gap: 14, opacity: a, transform: `translateX(${(1 - a) * -24}px)` }}>
@@ -102,14 +102,16 @@ const Lower: React.FC<{ clip: any; t: number }> = ({ clip, t }) => {
 
 const ClipShot: React.FC<{ id: string; len: number; k: number }> = ({ id, len, k }) => {
   const { footage, theme } = useCtx(); const t = useT(); const { fps } = useVideoConfig();
-  const clip = footage[id];
+  const [cid, st] = id.split("@");
+  const start = st ? Number(st) : 0;
+  const clip = footage[cid];
   if (!clip) return null;
   const z = 1 + 0.06 * clamp(t / Math.max(0.5, len));
   return (
     <AbsoluteFill style={{ overflow: "hidden", background: theme.black }}>
       <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: k % 2 ? "35% 55%" : "62% 45%" }}>
-        <Loop durationInFrames={Math.max(1, Math.floor(clip.dur * fps))}>
-          <OffthreadVideo src={staticFile(clip.file)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <Loop durationInFrames={Math.max(1, Math.floor((clip.dur - start) * fps))}>
+          <OffthreadVideo src={staticFile(clip.file)} trimBefore={Math.round(start * fps)} muted style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </Loop>
       </AbsoluteFill>
       <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${shade(theme.black, 72)} 0%, ${shade(theme.black, 38)} 40%, transparent 68%)` }} />
@@ -168,6 +170,103 @@ const CircleScene: React.FC<{ v: any }> = ({ v }) => {
   );
 };
 
+/* heavy white text lines that pop in on cues; *stars* mark the orange italic word */
+const TextBlock: React.FC<{ lines: string[]; cues?: number[]; style: React.CSSProperties; size?: number; align?: "left" | "center" }> = ({ lines, cues, style, size = 84, align = "left" }) => {
+  const { theme } = useCtx(); const t = useT();
+  return (
+    <div style={{ textAlign: align, ...style }}>
+      {lines.map((ln, i) => {
+        const p = pop(t, cues && cues[i] != null ? cues[i] : 0.5 + i * 0.5, 0.35);
+        return (
+          <div key={i} style={{ fontFamily: sans, fontWeight: 900, fontSize: size, lineHeight: 1.1, color: theme.white, marginBottom: 14, transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: align === "left" ? "left center" : "center", opacity: clamp(p), textShadow: `0 3px 14px ${shade(theme.black, 70)}` }}>
+            {ln.split(/(\*[^*]+\*)/).map((part, j) => (part.startsWith("*") ? <span key={j} style={{ color: theme.circle, fontStyle: "italic" }}>{part.slice(1, -1)}</span> : <span key={j}>{part}</span>))}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+/* one or two people cut out at natural size on the maroon ground, a block of lines beside (or between) them */
+const PlainScene: React.FC<{ v: any }> = ({ v }) => {
+  const t = useT();
+  const imgs: string[] = v.imgs || [v.img];
+  const two = imgs.length > 1;
+  const a = pop(t, 0.1, 0.6);
+  const h0 = two ? 860 : 980;
+  return (
+    <AbsoluteFill>
+      <Ground />
+      {imgs.map((im, i) => {
+        const onLeft = two ? i === 0 : v.side === "left";
+        const p = i === 0 ? a : pop(t, 0.4, 0.6);
+        const h = v.heights?.[i] ?? h0;
+        return (
+          <div key={i} style={{ position: "absolute", bottom: 0, [onLeft ? "left" : "right"]: two ? 40 : 130, height: h, display: "flex", alignItems: "flex-end", transform: `translateY(${(1 - ease(p)) * 260}px)`, opacity: clamp(p) }}>
+            <Img src={staticFile(`ep/images/cutout-${im}.png`)} style={{ height: h, width: "auto", maxWidth: 760, objectFit: "contain", objectPosition: "center bottom" }} />
+          </div>
+        );
+      })}
+      <TextBlock lines={v.lines || []} cues={v.cues} size={v.size ?? (two ? 84 : 92)} align={two ? "center" : "left"} style={two ? { position: "absolute", left: 640, width: 640, top: 280 } : { position: "absolute", left: v.side === "left" ? 880 : 130, width: 900, top: 330 }} />
+    </AbsoluteFill>
+  );
+};
+
+/* the opening quote: the subject's own words with real sound, big mixed-case subtitles, source label at top left */
+const QuoteScene: React.FC<{ v: any; dur: number }> = ({ v }) => {
+  const { footage, theme } = useCtx(); const t = useT();
+  const clip = footage[v.clip];
+  if (!clip) return null;
+  const words: any[] = clip.words || [];
+  const emph = new Set((clip.emph || []).map((e: string) => norm(e)));
+  const clauses: any[][] = [];
+  let cur: any[] = [];
+  for (const w of words) { cur.push(w); if (/[,.?!]$/.test(w.w)) { clauses.push(cur); cur = []; } }
+  if (cur.length) clauses.push(cur);
+  let active: any[] | null = null;
+  for (const c of clauses) if (t >= c[0].t0 - 0.08) active = c;
+  const half = active ? Math.ceil(active.length / 2) : 0;
+  const lines = active ? [active.slice(0, half), active.slice(half)] : [];
+  const z = 1 + 0.04 * clamp(t / 4);
+  return (
+    <AbsoluteFill style={{ background: theme.black, overflow: "hidden" }}>
+      <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: "50% 40%" }}>
+        <OffthreadVideo src={staticFile(clip.file)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      </AbsoluteFill>
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(to top, ${shade(theme.black, 80)} 0%, ${shade(theme.black, 40)} 30%, transparent 55%)` }} />
+      <Lower clip={clip} t={t} hold />
+      <div style={{ position: "absolute", left: 160, right: 160, bottom: 90, textAlign: "center", fontFamily: sans, fontWeight: 900, fontSize: 74, lineHeight: 1.12, color: theme.white, textShadow: `0 3px 14px ${shade(theme.black, 85)}, 0 0 34px ${shade(theme.black, 70)}` }}>
+        {lines.map((ln, i) => (
+          <div key={i}>
+            {ln.map((w: any, j: number) => <span key={j} style={emph.has(norm(w.w)) ? { color: theme.circle, fontStyle: "italic" } : undefined}>{w.w}{j < ln.length - 1 ? " " : ""}</span>)}
+          </div>
+        ))}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+/* a score card on the maroon ground: the two names and the score build up on the narration's cues (no club crests: none are on Wikimedia Commons) */
+const ScoreScene: React.FC<{ v: any }> = ({ v }) => {
+  const { theme } = useCtx(); const t = useT();
+  const [c0, c1, c2] = [cue(v, 0, 0.4), cue(v, 1, 1.4), cue(v, 2, 2.4)];
+  const name = (txt: string, at: number, side: "left" | "right") => {
+    const p = pop(t, at, 0.45);
+    return (
+      <div style={{ position: "absolute", top: 200, [side]: 90, width: 700, textAlign: "center", fontFamily: cond, fontSize: 130, lineHeight: 1, color: theme.white, textTransform: "uppercase", transform: `scale(${clamp(p, 0, 1.05)})`, opacity: clamp(p), textShadow: `0 6px 0 ${shade(theme.black, 55)}` }}>{txt}</div>
+    );
+  };
+  const ps = pop(t, c1, 0.5);
+  return (
+    <AbsoluteFill>
+      <Ground />
+      {name(v.away, c0, "right")}
+      <div style={{ position: "absolute", left: 0, right: 0, top: 560, textAlign: "center", fontFamily: cond, fontSize: 320, lineHeight: 1, color: theme.circle, transform: `scale(${clamp(ps, 0, 1.06)})`, opacity: clamp(ps), textShadow: `0 10px 0 ${shade(theme.black, 55)}` }}>{v.hs}<span style={{ color: theme.white }}>–</span>{v.as}</div>
+      {name(v.home, c2, "left")}
+    </AbsoluteFill>
+  );
+};
+
 /* a person on a drawn crowd-and-pitch strip, with up to a few text blocks */
 const StripScene: React.FC<{ v: any }> = ({ v }) => {
   const { theme } = useCtx(); const t = useT();
@@ -190,18 +289,7 @@ const StripScene: React.FC<{ v: any }> = ({ v }) => {
       <div style={{ position: "absolute", left: left ? 120 : 1000, bottom: 0, height: 1000, display: "flex", alignItems: "flex-end", transform: `translateY(${(1 - ease(a)) * 300}px)`, opacity: clamp(a) }}>
         <Img src={staticFile(`ep/images/cutout-${v.img}.png`)} style={{ height: 1000, width: "auto", filter: outline(theme.black, 3) }} />
       </div>
-      {v.lines ? (
-        <div style={{ position: "absolute", left: left ? 820 : 120, top: 170, width: 980 }}>
-          {v.lines.map((ln: string, i: number) => {
-            const p = pop(t, cue(v, i, 0.7 + i * 0.5), 0.35);
-            return (
-              <div key={i} style={{ marginBottom: 20 }}>
-                <span style={{ display: "inline-block", transform: `scale(${clamp(p, 0, 1.04)})`, transformOrigin: "left center", opacity: clamp(p), background: theme.card, color: theme.card_ink, fontFamily: sans, fontWeight: 900, fontSize: 54, lineHeight: 1.15, padding: "8px 22px", border: `3px solid ${theme.card_ink}`, boxShadow: `6px 8px 0 ${shade(theme.black, 45)}`, textTransform: "uppercase" }}>{ln}</span>
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
+      {v.lines ? <TextBlock lines={v.lines} cues={v.cues} style={{ position: "absolute", left: left ? 840 : 120, top: 200, width: 960 }} size={78} /> : null}
       {v.tag ? <TagPop v={{ ...v.tag, left: v.tag.left, right: v.tag.right ?? (left ? 140 : undefined), top: v.tag.top ?? 90 }} /> : null}
     </AbsoluteFill>
   );
@@ -273,7 +361,7 @@ const SeqScene: React.FC<{ v: any; dur: number }> = ({ v, dur }) => {
 };
 
 const renderVisual = (v: any, dur: number) =>
-  v.type === "clip" ? <ClipScene v={v} dur={dur} /> : v.type === "circle" ? <CircleScene v={v} /> : v.type === "strip" ? <StripScene v={v} /> : v.type === "trio" ? <TrioScene v={v} /> : v.type === "seq" ? <SeqScene v={v} dur={dur} /> : null;
+  v.type === "clip" ? <ClipScene v={v} dur={dur} /> : v.type === "quote" ? <QuoteScene v={v} dur={dur} /> : v.type === "score" ? <ScoreScene v={v} /> : v.type === "plain" ? <PlainScene v={v} /> : v.type === "circle" ? <CircleScene v={v} /> : v.type === "strip" ? <StripScene v={v} /> : v.type === "trio" ? <TrioScene v={v} /> : v.type === "seq" ? <SeqScene v={v} dur={dur} /> : null;
 
 /* ---------- shell: small word captions, photo credit, sting ---------- */
 const collectImgs = (v: any, out = new Set<string>()): Set<string> => {

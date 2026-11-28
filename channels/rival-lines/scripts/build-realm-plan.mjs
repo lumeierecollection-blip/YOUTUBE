@@ -52,17 +52,30 @@ function resolveVisual(v, words, beatId) {
   return out;
 }
 
+// A "quote" beat has no narration: it is the subject's own clip (with its real sound) and everything else starts after it (the pre-roll).
+const quoteBeat = script.beats.find((b) => b.visual && b.visual.type === "quote");
+const narrBeats = script.beats.filter((b) => b !== quoteBeat);
+let pre = 0;
+let quoteClip = null;
+if (quoteBeat) {
+  const fj = readJson(path.join(ep, "footage", "footage.json"));
+  quoteClip = fj.clips.find((c) => c.id === quoteBeat.visual.clip);
+  if (!quoteClip || !quoteClip.audio || !Array.isArray(quoteClip.words)) throw new Error("quote clip needs audio:true and word timings in footage.json");
+  pre = quoteClip.dur;
+}
+for (const b of timing.beats) { b.t0 += pre; b.words = b.words.map((w) => ({ ...w, t0: w.t0 + pre, t1: w.t1 + pre })); }
 const byId = Object.fromEntries(timing.beats.map((b) => [b.id, b]));
-const end = timing.duration + 1.2;
-const scenes = script.beats.map((b, i) => {
+const end = timing.duration + pre + 1.2;
+const scenes = narrBeats.map((b, i) => {
   const tm = byId[b.id];
   if (!tm) throw new Error(`no timing for ${b.id}`);
-  const next = timing.beats[i + 1];
-  const t0 = i === 0 ? 0 : tm.t0;
+  const next = byId[narrBeats[i + 1]?.id];
+  const t0 = i === 0 ? pre : tm.t0;
   const t1 = next ? next.t0 : end;
   const words = tm.words.map((w) => ({ w: w.w, t0: w.t0 + (tm.t0 - t0), t1: w.t1 + (tm.t0 - t0) }));
   return { id: b.id, t0, t1, speechStart: tm.t0, accent: b.accent || [], words, visual: resolveVisual(b.visual, tm.words, b.id) };
 });
+if (quoteBeat) scenes.unshift({ id: quoteBeat.id, t0: 0, t1: pre, speechStart: 0, accent: [], words: [], visual: { ...quoteBeat.visual } });
 
 const collect = (v, out) => {
   if (Array.isArray(v)) v.forEach((x) => collect(x, out));
@@ -95,7 +108,7 @@ const footage = {};
 const fpath = path.join(ep, "footage", "footage.json");
 if (fs.existsSync(fpath)) {
   const used = new Set();
-  const grab = (v) => { if (Array.isArray(v)) v.forEach(grab); else if (v && typeof v === "object") for (const [k, val] of Object.entries(v)) { if (k === "shots" && Array.isArray(val)) val.forEach((x) => used.add(x)); else grab(val); } };
+  const grab = (v) => { if (Array.isArray(v)) v.forEach(grab); else if (v && typeof v === "object") for (const [k, val] of Object.entries(v)) { if (k === "shots" && Array.isArray(val)) val.forEach((x) => used.add(String(x).split("@")[0])); else if (k === "clip" && typeof val === "string") used.add(val); else grab(val); } };
   scenes.forEach((s) => grab(s.visual));
   const fdir = path.join(ep, "footage");
   const clips = readJson(fpath).clips.filter((c) => used.has(c.id));
@@ -106,7 +119,7 @@ if (fs.existsSync(fpath)) {
   fs.mkdirSync(path.join(pub, "footage"), { recursive: true });
   for (const c of clips) {
     fs.copyFileSync(path.join(fdir, c.file), path.join(pub, "footage", c.file));
-    footage[c.id] = { file: `ep/footage/${c.file}`, w: c.w, h: c.h, dur: c.dur, owner: c.owner, url: c.url, upload_date: c.upload_date, video_title: c.video_title, lower_name: c.lower_name, lower_sub: c.lower_sub };
+    footage[c.id] = { file: `ep/footage/${c.file}`, w: c.w, h: c.h, dur: c.dur, audio: !!c.audio, words: c.words, emph: c.emph, owner: c.owner, url: c.url, upload_date: c.upload_date, video_title: c.video_title, lower_name: c.lower_name, lower_sub: c.lower_sub };
   }
   for (const id of used) if (!footage[id]) throw new Error(`clip ${id} not in footage.json`);
 }
@@ -117,7 +130,8 @@ if (hasMix) fs.copyFileSync(mixFile, path.join(pub, "mix.mp3"));
 
 const theme = { ...ch.realm_colors, font: ch.font };
 delete theme.realm_note;
-const props = { format: "realm", theme, durationSec: end, fps: 30, audioSrc: hasMix ? "ep/mix.mp3" : "ep/narration.mp3", scenes, images, footage };
+if (pre > 0 && !hasMix) console.log("quote pre-roll: out/mix.mp3 not built yet, so this props.json has no narration delay (fine for stills, not for the video)");
+const props = { format: "realm", theme, durationSec: end, prerollSec: pre, fps: 30, audioSrc: hasMix ? "ep/mix.mp3" : "ep/narration.mp3", scenes, images, footage };
 fs.mkdirSync(path.join(ep, "out"), { recursive: true });
 fs.writeFileSync(path.join(ep, "out", "props.json"), JSON.stringify(props));
 console.log(`realm plan: ${scenes.length} scenes, ${end.toFixed(1)}s, ${usedImgs.size} photos, ${Object.keys(footage).length} clips, audio ${hasMix ? "mix.mp3" : "narration only"}`);

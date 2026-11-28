@@ -38,14 +38,14 @@ resFiles.forEach((f) => walk(rj(path.join(resDir, f))));
 const allowPath = path.join(ep, "gate-allow.json");
 if (fs.existsSync(allowPath)) for (const k of Object.keys(rj(allowPath))) allowed.add(k);
 for (const b of script.beats) {
-  for (const m of b.text.matchAll(/\d[\d,]*\.?\d*/g)) {
+  for (const m of (b.text || "").matchAll(/\d[\d,]*\.?\d*/g)) {
     const raw = m[0].replace(/[,.]+$/, "");
     const n = Number(raw.replace(/,/g, ""));
     if (!allowed.has(String(n)) && !allowed.has(raw)) fail("NUM", `${b.id}: "${raw}" in narration is not in the research files or gate-allow.json`);
   }
 }
 
-const nonText = new Set(["clip", "circle", "strip", "trio", "seq"]);
+const nonText = new Set(["clip", "circle", "strip", "trio", "seq", "quote", "score", "plain"]);
 const sigs = new Map();
 const keysOf = (v, out = []) => {
   if (Array.isArray(v)) v.forEach((x) => keysOf(x, out));
@@ -66,7 +66,8 @@ for (const s of props.scenes) {
   if (sigs.has(sig)) fail("VIS", `${s.id} repeats the visual of ${sigs.get(sig)}`);
   sigs.set(sig, s.id);
   if (s.t1 - s.t0 < 2.5) warns.push(`${s.id}: scene is only ${(s.t1 - s.t0).toFixed(1)} s`);
-  if (!s.words.length) fail("PLAN", `${s.id}: no caption words`);
+  if (!s.words.length && v.type !== "quote") fail("PLAN", `${s.id}: no caption words`);
+  if (v.type === "quote" && !(props.footage || {})[v.clip]?.audio) fail("FTG", `${s.id}: quote scene clip ${v.clip} is not a sound clip`);
 }
 const consecutive = props.scenes.filter((s, i) => i && s.visual.type === props.scenes[i - 1].visual.type);
 for (const s of consecutive) warns.push(`${s.id}: same visual type as the scene before (${s.visual.type})`);
@@ -91,7 +92,7 @@ for (const id of used) {
 }
 
 // Footage is third-party YouTube video used with commentary. The gate cannot judge fair use; it checks that every clip is short,
-// silent, attributed on screen (owner, dated) and traceable to its source URL.
+// attributed on screen, silent unless it is a short quote clip whose sound is the point (owner, dated) and traceable to its source URL.
 const pubDir = path.join(repo, "channels", "rival-lines", "render", "public");
 const hasFfprobe = spawnSync("ffprobe", ["-version"]).status === 0;
 if (!hasFfprobe) warns.push("ffprobe not found: clips were not checked for an audio track");
@@ -104,7 +105,11 @@ for (const [id, c] of Object.entries(props.footage || {})) {
   if (!fs.existsSync(f)) { fail("FTG", `clip ${id} file missing: ${c.file}`); continue; }
   if (hasFfprobe) {
     const r = spawnSync("ffprobe", ["-v", "error", "-select_streams", "a", "-show_entries", "stream=index", "-of", "csv=p=0", f], { encoding: "utf8" });
-    if (r.stdout.trim()) fail("FTG", `clip ${id} still has an audio track`);
+    if (r.stdout.trim() && !c.audio) fail("FTG", `clip ${id} still has an audio track`);
+    if (c.audio) {
+      if (!(c.dur <= 6)) fail("FTG", `quote clip ${id} is ${c.dur} s; the limit for a sound clip is 6 s`);
+      if (!Array.isArray(c.words) || !c.words.length) fail("FTG", `quote clip ${id} has no word timings for its subtitles`);
+    }
   }
 }
 

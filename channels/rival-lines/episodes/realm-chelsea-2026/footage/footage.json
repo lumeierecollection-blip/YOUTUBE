@@ -105,6 +105,132 @@
    "trim_start_s": 78,
    "lower_name": "Chelsea Football Club",
    "lower_sub": "Nottingham Forest 3-2 Chelsea · 27 Nov 2026"
+  },
+  {
+   "id": "alonso_q",
+   "file": "alonso_q.mp4",
+   "w": 1280,
+   "h": 720,
+   "dur": 4.16,
+   "audio": true,
+   "source_video": "1ZsnoKzIuxU",
+   "url": "https://www.youtube.com/watch?v=1ZsnoKzIuxU",
+   "owner": "Chelsea Football Club",
+   "video_title": "ALONSO reacts post-Forest | Nottingham Forest 3-2 Chelsea | Premier League 2026/27",
+   "upload_date": "2026-11-28",
+   "trim_start_s": 8.7,
+   "lower_name": "Xabi Alonso",
+   "lower_sub": "Chelsea manager · after Forest 3-2, 27 Nov 2026 · Chelsea FC",
+   "words": [
+    {
+     "w": "We",
+     "t0": 0,
+     "t1": 0.26
+    },
+    {
+     "w": "are",
+     "t0": 0.26,
+     "t1": 0.4
+    },
+    {
+     "w": "feeling",
+     "t0": 0.4,
+     "t1": 0.78
+    },
+    {
+     "w": "a",
+     "t0": 0.78,
+     "t1": 0.94
+    },
+    {
+     "w": "bit",
+     "t0": 0.94,
+     "t1": 1.06
+    },
+    {
+     "w": "low",
+     "t0": 1.06,
+     "t1": 1.32
+    },
+    {
+     "w": "of",
+     "t0": 1.32,
+     "t1": 1.5
+    },
+    {
+     "w": "confidence,",
+     "t0": 1.5,
+     "t1": 1.88
+    },
+    {
+     "w": "not",
+     "t0": 2.26,
+     "t1": 2.48
+    },
+    {
+     "w": "many",
+     "t0": 2.48,
+     "t1": 2.9
+    },
+    {
+     "w": "things",
+     "t0": 2.9,
+     "t1": 3.1
+    },
+    {
+     "w": "are",
+     "t0": 3.1,
+     "t1": 3.26
+    },
+    {
+     "w": "going",
+     "t0": 3.26,
+     "t1": 3.44
+    },
+    {
+     "w": "our",
+     "t0": 3.44,
+     "t1": 3.64
+    },
+    {
+     "w": "way.",
+     "t0": 3.64,
+     "t1": 3.94
+    }
+   ],
+   "emph": [
+    "confidence"
+   ]
+  },
+  {
+   "id": "alo_b",
+   "file": "alo_b.mp4",
+   "w": 960,
+   "h": 540,
+   "dur": 6,
+   "source_video": "1ZsnoKzIuxU",
+   "url": "https://www.youtube.com/watch?v=1ZsnoKzIuxU",
+   "owner": "Chelsea Football Club",
+   "video_title": "ALONSO reacts post-Forest | Nottingham Forest 3-2 Chelsea | Premier League 2026/27",
+   "upload_date": "2026-11-28",
+   "trim_start_s": 13.4,
+   "lower_name": "Xabi Alonso",
+   "lower_sub": "Chelsea manager · after Forest 3-2, 27 Nov 2026"
+  },
+  {
+   "id": "alo_c",
+   "file": "alo_c.mp4",
+   "w": 960,
+   "h": 540,
+   "dur": 6,
+   "source_video": "1ZsnoKzIuxU",
+   "url": "https://www.youtube.com/watch?v=1ZsnoKzIuxU",
+   "owner": "Chelsea Football Club",
+   "video_title": "ALONSO reacts post-Forest | Nottingham Forest 3-2 Chelsea | Premier League 2026/27",
+   "upload_date": "2026-11-28",
+   "trim_start_s": 69.3,
+   "lower_name": "Xabi Alonso",
+   "lower_sub": "Chelsea manager · after Forest 3-2, 27 Nov 2026"
   }
  ]
 }

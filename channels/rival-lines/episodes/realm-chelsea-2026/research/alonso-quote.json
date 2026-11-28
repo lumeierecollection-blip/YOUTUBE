@@ -1,0 +1,10 @@
+{
+ "note": "Alonso's post-match interview on Chelsea FC's official YouTube channel, fetched with yt-dlp and transcribed locally with faster-whisper (base) on 2026-11-28. The transcript is machine speech-to-text, checked against the on-screen footage (Alonso is on camera speaking) but not by a second listener. Only the single quote below is used in the video.",
+ "video": "https://www.youtube.com/watch?v=1ZsnoKzIuxU",
+ "title": "ALONSO reacts post-Forest | Nottingham Forest 3-2 Chelsea | Premier League 2026/27",
+ "owner": "Chelsea Football Club",
+ "uploaded": "2026-11-28",
+ "quote": "We are feeling a bit low of confidence, not many things are going our way.",
+ "quote_start_s": 8.9,
+ "quote_end_s": 12.7
+}

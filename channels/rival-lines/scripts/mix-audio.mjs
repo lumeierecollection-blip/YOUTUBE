@@ -41,7 +41,7 @@ function maxVolume(file) {
 // 1 voice stem
 const voiceT = { i: rules.voice_lufs, tp: -2, lra: 7 };
 const vo = path.join(work, "vo.wav");
-ff(["-i", narration, "-af", `${norm(loud(narration, voiceT), voiceT)},apad=whole_dur=${plan.duration_s}`, "-ar", "48000", "-ac", "2", vo]);
+ff(["-i", narration, "-af", `${norm(loud(narration, voiceT), voiceT)},adelay=${Math.round((plan.preroll_s || 0) * 1000)}|${Math.round((plan.preroll_s || 0) * 1000)},apad=whole_dur=${plan.duration_s}`, "-ar", "48000", "-ac", "2", vo]);
 
 // 2 inputs: beds, then effects
 const inputs = [vo]; const chains = []; const mixLabels = ["vo", "duck"]; const xf = rules.bed_crossfade_s;

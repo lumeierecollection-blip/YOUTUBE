@@ -12,9 +12,18 @@
   "https://www.rte.ie/sport/soccer/2026/1127/1600967-forest-condemn-chelsea-to-third-successive-league-defeat/",
   "https://www.youtube.com/watch?v=7apAiRSv8bw",
   "https://www.youtube.com/watch?v=yD6SLduQ1PA",
-  "https://en.wikipedia.org/wiki/Emanuel_Emegha"
+  "https://en.wikipedia.org/wiki/Emanuel_Emegha",
+  "https://www.youtube.com/watch?v=1ZsnoKzIuxU"
  ],
  "beats": [
+  {
+   "id": "b00",
+   "accent": [],
+   "visual": {
+    "type": "quote",
+    "clip": "alonso_q"
+   }
+  },
   {
    "id": "b01",
    "accent": [
@@ -23,18 +32,34 @@
    ],
    "text": "On 27 November Chelsea lost 3-2 at Nottingham Forest. It was their third league defeat in a row.",
    "visual": {
-    "type": "clip",
-    "shots": [
-     "fst_a",
-     "fst_c"
-    ],
-    "tag": {
-     "right": 120,
-     "top": 90,
-     "value": "3rd",
-     "label": "league defeat in a row",
-     "cue": "third"
-    }
+    "type": "seq",
+    "parts": [
+     {
+      "type": "score",
+      "home": "Nottingham Forest",
+      "away": "Chelsea",
+      "hs": 3,
+      "as": 2,
+      "cues": [
+       "Chelsea",
+       "3-2",
+       "Forest"
+      ]
+     },
+     {
+      "type": "clip",
+      "from": "It",
+      "shots": [
+       "fst_a@0",
+       "fst_c@0"
+      ],
+      "bigcap": {
+       "top": 620,
+       "text": "*3rd* league defeat|in a row",
+       "cue": "third"
+      }
+     }
+    ]
    }
   },
   {
@@ -45,18 +70,23 @@
    ],
    "text": "Igor Jesus scored for Forest, and Morgan Gibbs-White scored twice, once from a penalty. Emmanuel Emegha scored twice for Chelsea.",
    "visual": {
-    "type": "circle",
+    "type": "plain",
     "imgs": [
      "gibbs3",
      "emegha2"
     ],
-    "bigcap": {
-     "text": "Gibbs-White *2*|Emegha *2*",
-     "pos": "center",
-     "top": 820,
-     "size": 90,
-     "cue": "twice"
-    }
+    "heights": [
+     860,
+     640
+    ],
+    "lines": [
+     "Gibbs-White *2*",
+     "Emegha *2*"
+    ],
+    "cues": [
+     "Gibbs-White",
+     "Emegha"
+    ]
    }
   },
   {
@@ -69,7 +99,8 @@
    "visual": {
     "type": "clip",
     "shots": [
-     "fst_b"
+     "fst_b@0",
+     "fst_b@3"
     ],
     "bigcap": {
      "top": 620,
@@ -109,9 +140,11 @@
    "visual": {
     "type": "clip",
     "shots": [
-     "lee_a",
-     "lee_b",
-     "lee_c"
+     "lee_a@0",
+     "lee_b@0",
+     "lee_c@0",
+     "lee_a@3",
+     "lee_b@3"
     ],
     "bigcap": {
      "top": 620,
@@ -128,13 +161,14 @@
    ],
    "text": "Xabi Alonso is the manager, on a four-year contract, according to Wikipedia. RTÉ reports that the Forest defeat adds to the pressure on him.",
    "visual": {
-    "type": "circle",
-    "img": "alonso2",
-    "side": "left",
+    "type": "clip",
+    "shots": [
+     "alo_b@0",
+     "alo_c@0"
+    ],
     "bigcap": {
+     "top": 620,
      "text": "*Pressure* on Alonso|RTÉ, 27 Nov",
-     "pos": "right",
-     "top": 520,
      "cue": "pressure"
     }
    }
@@ -168,15 +202,19 @@
    ],
    "text": "Wikipedia's Chelsea page lists a fee of 117 million pounds for Morgan Rogers, 100 million for Moisés Caicedo and 55 million for João Pedro.",
    "visual": {
-    "type": "circle",
+    "type": "plain",
     "img": "rogers2",
     "side": "left",
-    "bigcap": {
-     "text": "Rogers *£117m*|Caicedo *£100m*",
-     "pos": "right",
-     "top": 520,
-     "cue": "117"
-    }
+    "lines": [
+     "Rogers *£117m*",
+     "Caicedo *£100m*",
+     "João Pedro *£55m*"
+    ],
+    "cues": [
+     "117",
+     "100",
+     "55"
+    ]
    }
   },
   {
@@ -208,18 +246,17 @@
    ],
    "text": "Chelsea are twelve points behind leaders Arsenal, who have played one game fewer. Liverpool, in fourth, have 21 points from 11 games, five more.",
    "visual": {
-    "type": "circle",
-    "imgs": [
-     "emegha1",
-     "alonso4"
+    "type": "plain",
+    "img": "alonso4",
+    "side": "right",
+    "lines": [
+     "*12* behind Arsenal",
+     "*5* behind 4th"
     ],
-    "bigcap": {
-     "text": "*12* behind Arsenal|*5* behind 4th",
-     "pos": "center",
-     "top": 820,
-     "size": 90,
-     "cue": "twelve"
-    }
+    "cues": [
+     "twelve",
+     "five"
+    ]
    }
   },
   {
@@ -232,7 +269,8 @@
    "visual": {
     "type": "clip",
     "shots": [
-     "fst_d"
+     "fst_d@0",
+     "fst_d@3"
     ],
     "bigcap": {
      "top": 620,

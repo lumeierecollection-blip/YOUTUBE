@@ -23,8 +23,9 @@ const m = lib.licensed_measurements.find((x) => x.id === c.id);
 if (!m) throw new Error(`no measurement for "${pick.bed}"`);
 
 const dur = props.durationSec;
+const pre = props.prerollSec || 0;
 const bed = {
-  act: "realm", t0: 0, t1: dur, roles: ["whole episode"], track_id: c.id, title: c.title, creator: c.creator,
+  act: "realm", t0: pre, t1: dur, roles: ["whole episode"], track_id: c.id, title: c.title, creator: c.creator,
   licence: `CC ${c.license.toUpperCase()} ${c.license_version}`, licence_url: c.license_url, landing_url: c.landing_url, download_url: c.download_url,
   attribution: c.attribution, licence_verified_at_source: true,
   measured: { tempo_bpm: m.tempo_bpm_est, arc: m.arc, duration_s: m.duration_s, mean_db: m.mean_db },
@@ -49,7 +50,7 @@ const minutes = dur / 60;
 while (kept.length / minutes > cfg.sfx_max_per_minute) { const [d] = kept.splice(kept.length - 1, 1); dropped.push({ ...d, reason: "over max per minute" }); }
 
 const out = {
-  episode: name, duration_s: dur, rules_version: "realm-audio.json", beds: [bed], sfx: kept, sfx_dropped: dropped, credits: [bed.attribution],
+  episode: name, duration_s: dur, preroll_s: pre, rules_version: "realm-audio.json", beds: [bed], sfx: kept, sfx_dropped: dropped, credits: [bed.attribution],
   sfx_note: "SFX are CC0 recordings from Remotion's SFX library (per-file source in scripts/sfx-cc0.mjs); no credit required.",
   limits: ["The bed is a judgement call, not auditioned by ear.", "No impact recording is held, so none is played; the Football Realm reference has impacts about 3.5 times a minute.", "Licence version comes from the Openverse index; Jamendo's page shows the cc-by badge only."],
 };
