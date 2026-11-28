@@ -1,0 +1,245 @@
+{
+ "episode": "realm-chelsea-2026",
+ "format": "realm",
+ "title_working": "Chelsea Have Lost Three League Games In A Row. Can Alonso Stop The Slide?",
+ "as_of": "2026-11-28",
+ "sources_used": [
+  "https://en.wikipedia.org/wiki/2026–27_Premier_League",
+  "https://en.wikipedia.org/wiki/2026–27_Chelsea_F.C._season",
+  "https://www.completesports.com/epl-emeghas-brace-not-enough-as-chelsea-suffer-third-straight-defeat-after-3-2-loss-at-forest/",
+  "https://www.espn.com/soccer/report/_/gameId/401879225",
+  "https://www.espn.com/soccer/report/_/gameId/401879236",
+  "https://www.rte.ie/sport/soccer/2026/1127/1600967-forest-condemn-chelsea-to-third-successive-league-defeat/",
+  "https://www.youtube.com/watch?v=7apAiRSv8bw",
+  "https://www.youtube.com/watch?v=yD6SLduQ1PA",
+  "https://en.wikipedia.org/wiki/Emanuel_Emegha"
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "accent": [
+    "3-2",
+    "third"
+   ],
+   "text": "On 27 November Chelsea lost 3-2 at Nottingham Forest. It was their third league defeat in a row.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "fst_a",
+     "fst_c"
+    ],
+    "tag": {
+     "right": 120,
+     "top": 90,
+     "value": "3rd",
+     "label": "league defeat in a row",
+     "cue": "third"
+    }
+   }
+  },
+  {
+   "id": "b02",
+   "accent": [
+    "twice",
+    "Emegha"
+   ],
+   "text": "Igor Jesus scored for Forest, and Morgan Gibbs-White scored twice, once from a penalty. Emmanuel Emegha scored twice for Chelsea.",
+   "visual": {
+    "type": "circle",
+    "imgs": [
+     "gibbs3",
+     "emegha2"
+    ],
+    "bigcap": {
+     "text": "Gibbs-White *2*|Emegha *2*",
+     "pos": "center",
+     "top": 820,
+     "size": 90,
+     "cue": "twice"
+    }
+   }
+  },
+  {
+   "id": "b03",
+   "accent": [
+    "Forest",
+    "fourteenth"
+   ],
+   "text": "That left Forest in fourteenth place on twelve points, four points behind Chelsea.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "fst_b"
+    ],
+    "bigcap": {
+     "top": 620,
+     "text": "Forest *3*|Chelsea 2",
+     "cue": "Forest"
+    }
+   }
+  },
+  {
+   "id": "b04",
+   "accent": [
+    "eighth",
+    "16"
+   ],
+   "text": "Chelsea are eighth on 16 points from 12 games. They have won five, drawn one and lost six.",
+   "visual": {
+    "type": "strip",
+    "img": "alonso3",
+    "side": "left",
+    "lines": [
+     "8TH: 16 POINTS",
+     "5 WON, 1 DRAWN, 6 LOST"
+    ],
+    "cues": [
+     "eighth",
+     "won"
+    ]
+   }
+  },
+  {
+   "id": "b05",
+   "accent": [
+    "1-4",
+    "Leeds"
+   ],
+   "text": "The defeat before that was 1-4 at home to Leeds on 21 November. Emmanuel Emegha scored for Chelsea. Noah Okafor scored twice for Leeds, Dominic Calvert-Lewin added a penalty, and Brenden Aaronson scored a late fourth.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "lee_a",
+     "lee_b",
+     "lee_c"
+    ],
+    "bigcap": {
+     "top": 620,
+     "text": "Chelsea *1*|Leeds 4",
+     "cue": "Leeds"
+    }
+   }
+  },
+  {
+   "id": "b06",
+   "accent": [
+    "Alonso",
+    "pressure"
+   ],
+   "text": "Xabi Alonso is the manager, on a four-year contract, according to Wikipedia. RTÉ reports that the Forest defeat adds to the pressure on him.",
+   "visual": {
+    "type": "circle",
+    "img": "alonso2",
+    "side": "left",
+    "bigcap": {
+     "text": "*Pressure* on Alonso|RTÉ, 27 Nov",
+     "pos": "right",
+     "top": 520,
+     "cue": "pressure"
+    }
+   }
+  },
+  {
+   "id": "b07",
+   "accent": [
+    "22",
+    "23"
+   ],
+   "text": "Chelsea have scored 22 league goals and conceded 23. Only Crystal Palace, with 27, have conceded more.",
+   "visual": {
+    "type": "strip",
+    "img": "rogers3",
+    "side": "right",
+    "lines": [
+     "22 SCORED",
+     "23 CONCEDED"
+    ],
+    "cues": [
+     "scored",
+     "conceded"
+    ]
+   }
+  },
+  {
+   "id": "b08",
+   "accent": [
+    "117",
+    "100"
+   ],
+   "text": "Wikipedia's Chelsea page lists a fee of 117 million pounds for Morgan Rogers, 100 million for Moisés Caicedo and 55 million for João Pedro.",
+   "visual": {
+    "type": "circle",
+    "img": "rogers2",
+    "side": "left",
+    "bigcap": {
+     "text": "Rogers *£117m*|Caicedo *£100m*",
+     "pos": "right",
+     "top": 520,
+     "cue": "117"
+    }
+   }
+  },
+  {
+   "id": "b09",
+   "accent": [
+    "five",
+    "nine"
+   ],
+   "text": "Their top league scorers are João Pedro and Morgan Rogers, with five each. Neither is in the league's top five, led by Erling Haaland with nine.",
+   "visual": {
+    "type": "strip",
+    "img": "rogers1",
+    "side": "right",
+    "lines": [
+     "5 GOALS EACH",
+     "HAALAND LEADS WITH 9"
+    ],
+    "cues": [
+     "five",
+     "nine"
+    ]
+   }
+  },
+  {
+   "id": "b10",
+   "accent": [
+    "twelve",
+    "five"
+   ],
+   "text": "Chelsea are twelve points behind leaders Arsenal, who have played one game fewer. Liverpool, in fourth, have 21 points from 11 games, five more.",
+   "visual": {
+    "type": "circle",
+    "imgs": [
+     "emegha1",
+     "alonso4"
+    ],
+    "bigcap": {
+     "text": "*12* behind Arsenal|*5* behind 4th",
+     "pos": "center",
+     "top": 820,
+     "size": 90,
+     "cue": "twelve"
+    }
+   }
+  },
+  {
+   "id": "b11",
+   "accent": [
+    "three",
+    "eighth"
+   ],
+   "text": "So Chelsea are eighth after three league defeats in a row. Can Alonso stop the run?",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "fst_d"
+    ],
+    "bigcap": {
+     "top": 620,
+     "text": "*3* defeats|Stop the run?",
+     "cue": "three"
+    }
+   }
+  }
+ ]
+}

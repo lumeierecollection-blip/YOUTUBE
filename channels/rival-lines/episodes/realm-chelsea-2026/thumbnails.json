@@ -1,0 +1,43 @@
+{
+ "note": "Two Football Realm-formula thumbnails (faces / serif). 3 is Chelsea's consecutive league defeats (Complete Sports, RTE) and 8th is their league position (Wikipedia table as of 27 November 2026). Both are questions, not predictions.",
+ "variants": [
+  {
+   "id": "a",
+   "kind": "faces",
+   "left": {
+    "img": "alonso2",
+    "word": "3 LOSSES",
+    "x": 0,
+    "h": 640,
+    "y": 560
+   },
+   "right": {
+    "img": "rogers3",
+    "word": "8TH?",
+    "x": -60,
+    "h": 640,
+    "y": 560
+   },
+   "size": 120
+  },
+  {
+   "id": "b",
+   "kind": "serif",
+   "lines": [
+    "Two goals.",
+    "Still lost."
+   ],
+   "hot": 1,
+   "img": "emegha2",
+   "note": "3rd defeat in a row",
+   "src": "face",
+   "h": 400,
+   "drop": 0,
+   "x": 330,
+   "arrowX": 120,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 560
+  }
+ ]
+}

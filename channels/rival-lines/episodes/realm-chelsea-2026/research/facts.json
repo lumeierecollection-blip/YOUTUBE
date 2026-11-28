@@ -1,0 +1,136 @@
+{
+ "as_of": "2026-11-28",
+ "note": "Every figure was read on a page fetched on 2026-11-28. The table is Wikipedia's 2026-27 Premier League table as of 27 November 2026 (Chelsea 12 played, most others 11). Only the Leeds (21 Nov) and Forest (27 Nov) results are used as match results. NOT used: goal minutes (ESPN, RTE and Complete Sports disagree on them); any quote from Alonso (ESPN's summary and RTE disagree on whether he was quoted); Chelsea's earlier results (the ESPN results table has a home/away and score orientation that disagrees with Wikipedia on Brentford and Bournemouth, so none of those are used); the identity of the first of the three defeats (no fetched page names it); 'four defeats in five' (one page only); Leeds' first win at Stamford Bridge since 1999, boos, and 'third defeat in four games' (search snippets only, not on any fetched page). Venue is used only for the Leeds game (Stamford Bridge). The fees come from Wikipedia's Chelsea season page as extracted by a page summariser. The video does not predict a result or say whether the manager will stay.",
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_Premier_League",
+   "title": "2026-27 Premier League (Wikipedia): table as of 27 November 2026, top scorers",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_Chelsea_F.C._season",
+   "title": "2026-27 Chelsea season (Wikipedia): manager, fees, top scorers",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.completesports.com/epl-emeghas-brace-not-enough-as-chelsea-suffer-third-straight-defeat-after-3-2-loss-at-forest/",
+   "title": "Complete Sports: Emegha's brace not enough as Chelsea suffer third straight defeat after 3-2 loss at Forest",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.espn.com/soccer/report/_/gameId/401879225",
+   "title": "ESPN: Nottm Forest 3-2 Chelsea (27 Nov 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.espn.com/soccer/report/_/gameId/401879236",
+   "title": "ESPN: Chelsea 1-4 Leeds (21 Nov 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.rte.ie/sport/soccer/2026/1127/1600967-forest-condemn-chelsea-to-third-successive-league-defeat/",
+   "title": "RTE: Forest condemn Chelsea to third successive league defeat",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=7apAiRSv8bw",
+   "title": "Chelsea Football Club (YouTube): Nottingham Forest 3-2 Chelsea highlights, source of the Forest clips; the on-screen score graphic shows the match",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=yD6SLduQ1PA",
+   "title": "Chelsea Football Club (YouTube): Chelsea 1-4 Leeds United highlights, source of the Leeds clips",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/Emanuel_Emegha",
+   "title": "Emmanuel Emegha (Wikipedia): spelling, Sturm Graz photo caption",
+   "fetched": "2026-11-28"
+  }
+ ],
+ "table": {
+  "chelsea": {
+   "pos": 8,
+   "played": 12,
+   "won": 5,
+   "drawn": 1,
+   "lost": 6,
+   "gf": 22,
+   "ga": 23,
+   "gd": -1,
+   "pts": 16
+  },
+  "arsenal": {
+   "pos": 1,
+   "played": 11,
+   "pts": 28
+  },
+  "liverpool": {
+   "pos": 4,
+   "played": 11,
+   "pts": 21
+  },
+  "forest": {
+   "pos": 14,
+   "played": 12,
+   "pts": 12
+  },
+  "crystal_palace_ga": 27,
+  "top_scorers": [
+   "Haaland 9",
+   "Isak 7",
+   "Barry 6",
+   "Evanilson 6",
+   "Jackson 6"
+  ],
+  "source": "Wikipedia 2026-27 Premier League"
+ },
+ "forest": {
+  "score": "Nottingham Forest 3-2 Chelsea",
+  "date": "2026-11-27",
+  "forest_scorers": [
+   "Igor Jesus",
+   "Morgan Gibbs-White (penalty)",
+   "Morgan Gibbs-White"
+  ],
+  "chelsea_scorers": [
+   "Emmanuel Emegha",
+   "Emmanuel Emegha"
+  ],
+  "third_straight_league_defeat": true,
+  "source": "Complete Sports, ESPN, RTE"
+ },
+ "leeds": {
+  "score": "Chelsea 1-4 Leeds United",
+  "date": "2026-11-21",
+  "venue": "Stamford Bridge",
+  "chelsea_scorers": [
+   "Emmanuel Emegha"
+  ],
+  "leeds_scorers": [
+   "Noah Okafor",
+   "Noah Okafor",
+   "Dominic Calvert-Lewin (penalty)",
+   "Brenden Aaronson"
+  ],
+  "source": "ESPN (RTE confirms a 4-1 defeat to Leeds the weekend before Forest)"
+ },
+ "manager": {
+  "name": "Xabi Alonso",
+  "contract": "four years, appointed before the season",
+  "pressure": "RTE: the loss mounts the pressure on boss Xavi Alonso",
+  "source": "Wikipedia Chelsea season page, RTE"
+ },
+ "fees": {
+  "Morgan Rogers": "£117m",
+  "Moisés Caicedo": "£100m",
+  "João Pedro": "£55m",
+  "source": "Wikipedia Chelsea season page ('stated figures' list)"
+ },
+ "chelsea_top_league_scorers": {
+  "João Pedro": 5,
+  "Morgan Rogers": 5,
+  "source": "Wikipedia Chelsea season page"
+ },
+ "limits": "The first of the three defeats is not named because no fetched page names it. Chelsea's goals against (23) is level with Manchester United's; only Crystal Palace (27) is higher, which matches Complete Sports. The fee list comes from a summarised extraction of one Wikipedia page and is attributed to Wikipedia on screen and in the description. No expected-goals figures were found, so none are used. Emegha's photo is the only Commons photo found of him and shows him in a Sturm Graz shirt in 2023; no photo of any of these players in a Chelsea shirt was found on Commons, so none is used."
+}

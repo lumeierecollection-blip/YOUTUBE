@@ -1,0 +1,37 @@
+{
+ "people": [
+  {
+   "key": "alonso",
+   "name": "Xabi Alonso",
+   "category": "Category:Xabi Alonso",
+   "must": "alonso",
+   "n": 4
+  },
+  {
+   "key": "emegha",
+   "name": "Emmanuel Emegha",
+   "category": "Category:Emmanuel Emegha",
+   "must": "emegha",
+   "queries": [
+    "Emegha"
+   ],
+   "min_w": 300,
+   "min_h": 300,
+   "n": 3
+  },
+  {
+   "key": "rogers",
+   "name": "Morgan Rogers",
+   "category": "Category:Morgan Rogers",
+   "must": "rogers",
+   "n": 3
+  },
+  {
+   "key": "gibbs",
+   "name": "Morgan Gibbs-White",
+   "category": "Category:Morgan Gibbs-White",
+   "must": "gibbs",
+   "n": 3
+  }
+ ]
+}
