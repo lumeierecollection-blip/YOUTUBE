@@ -52,14 +52,15 @@
    ],
    "hot": 1,
    "img": "trophy1",
-   "h": 930,
-   "drop": 150,
-   "x": 330,
-   "arrowX": 330,
-   "arrowY": 330,
+   "h": 470,
+   "drop": 0,
+   "x": 430,
+   "arrowX": 300,
+   "arrowY": 300,
    "noteX": 60,
-   "noteY": 470,
-   "note": "Police are looking at the vote"
+   "noteY": 430,
+   "note": "Police are looking at the vote",
+   "size": 96
   }
  ]
 }
