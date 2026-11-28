@@ -3477,9 +3477,14 @@
           "topic": "HS2 Tunnel Boring Machines Reach Halfway Milestone on Euston Route",
           "slug": "hs2-euston-tunnel-boring-machines-halfway",
           "reserved_at": "2026-11-27T18:37:15.613Z"
+        },
+        {
+          "topic": "Development Bureau Investigation Report on Queen Mary Hospital Faulty Lifts",
+          "slug": "queen-mary-hospital-faulty-lifts-development-bureau-report",
+          "reserved_at": "2026-11-28T17:21:37.172Z"
         }
       ],
-      "last_generated": "2026-11-27T18:37:15.613Z"
+      "last_generated": "2026-11-28T17:21:37.173Z"
     },
     "22": {
       "channel_name": "Panel Pulse",
