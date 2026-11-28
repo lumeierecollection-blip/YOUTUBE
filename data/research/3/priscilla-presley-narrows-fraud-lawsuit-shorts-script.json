@@ -1,0 +1,48 @@
+{
+  "channel_id": "3",
+  "topic_slug": "priscilla-presley-narrows-fraud-lawsuit",
+  "format": "shorts",
+  "hook": "Former business advisers filed a $50 million lawsuit against Priscilla Presley, but she won a dismissal.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Former business advisers filed a $50 million lawsuit against Priscilla Presley, but she won a dismissal.",
+      "text_overlay": {
+        "text": "$50 Million Lawsuit"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "How many of the 21 initial claims remain active against Priscilla Presley after this court ruling?",
+      "text_overlay": {
+        "text": "November 16, 2026: Ruling Issued"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "Judge Mark Epstein kept disputed passages about Elvis Presley and Lisa Marie Presley in the filings.",
+      "text_overlay": {
+        "text": "Disputed Passages Remain"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Priscilla Presley successfully argued to drop counts involving her cosmetics agreement and likeness rights. Legal action continues on the remaining 17 claims filed by her former business advisers.",
+      "text_overlay": {
+        "text": "17 Claims Still Active"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "The court records confirm 17 of 21 claims remain active.",
+      "text_overlay": {
+        "text": "17 of 21 Claims Remain"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://www.lawcommentary.com/articles/priscilla-presley-50-million-lawsuit-partial-dismissal",
+    "https://allaboutlawyer.com/priscilla-presley-business-advisers-lawsuit",
+    "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+  ]
+}

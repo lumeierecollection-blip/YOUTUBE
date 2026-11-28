@@ -1,0 +1,67 @@
+{
+  "topic_slug": "priscilla-presley-narrows-fraud-lawsuit",
+  "strongest_angle": "Priscilla Presley secured a partial legal victory in Los Angeles County Superior Court on November 16, 2026, when Judge Mark Epstein dismissed four out of twenty-one claims in a $50 million lawsuit filed by her former business advisers.",
+  "key_facts": [
+    {
+      "fact": "On November 16, 2026, Los Angeles County Superior Court Judge Mark Epstein issued a ruling dismissing four out of 21 claims in a $50 million lawsuit against Priscilla Presley.",
+      "source_url": "https://www.lawcommentary.com/articles/priscilla-presley-50-million-lawsuit-partial-dismissal",
+      "source_name": "Law Commentary",
+      "confidence": "high"
+    },
+    {
+      "fact": "Priscilla Presley successfully persuaded the court to dismiss four claims involving a cosmetics agreement and the use of her own name, image, and likeness.",
+      "source_url": "https://www.lawcommentary.com/articles/priscilla-presley-50-million-lawsuit-partial-dismissal",
+      "source_name": "Law Commentary",
+      "confidence": "high"
+    },
+    {
+      "fact": "Los Angeles County Superior Court Judge Mark Epstein refused Priscilla Presley's request to strike disputed passages regarding Elvis Presley and Lisa Marie Presley from the legal filings.",
+      "source_url": "https://allaboutlawyer.com/priscilla-presley-business-advisers-lawsuit",
+      "source_name": "All About Lawyer",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Lawsuit value",
+      "value": 50,
+      "unit": "million dollars",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    },
+    {
+      "label": "Total initial claims",
+      "value": 21,
+      "unit": "claims",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    },
+    {
+      "label": "Dismissed claims count",
+      "value": 4,
+      "unit": "claims",
+      "source_url": "https://www.rollingstone.com/music/music-news/priscilla-presley-fraud-lawsuit-lisa-marie-death-1235659137"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Priscilla Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Mark Epstein",
+      "kind": "person"
+    },
+    {
+      "name": "Elvis Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Lisa Marie Presley",
+      "kind": "person"
+    },
+    {
+      "name": "Los Angeles County Superior Court",
+      "kind": "organization"
+    }
+  ]
+}
