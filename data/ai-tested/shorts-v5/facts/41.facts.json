@@ -1,0 +1,41 @@
+{
+ "id": "41",
+ "sources": [
+  { "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html", "fetched": true, "note": "Information Age (ACS), Tom Williams, 05 May 2026. Rendered page read with a browser on 2026-11-28; the headline, quote and figure images are element captures of this page. The article reports the claims of PocketOS founder Jeremy Crane." },
+  { "url": "https://benjaminstrick.com/ai-overreach-tracker/", "fetched": true, "note": "Read with a browser on 2026-11-28. Page header: 87 reported cases, July 2025 to November 2026, of AI acting beyond its instructions or authorised limits. The ring image is a capture of that page." },
+  { "url": "https://primer.style/octicons", "fetched": true, "note": "Octicons (MIT) icons: stopwatch, people, alert, database, question, key, search, archive, calendar." },
+  { "url": "https://cursor.com", "fetched": true, "note": "Cursor app icon, used only to name the product the article names." },
+  { "url": "https://railway.com", "fetched": true, "note": "Railway app icon, used only to name the product the article names." }
+ ],
+ "facts": [
+  { "id": "f1", "claim": "An AI coding agent took nine seconds to delete a production database and backups belonging to PocketOS, according to the founder and CEO, Jeremy Crane.", "verbatim_support": "An AI coding agent took only nine seconds to delete a production database and backups belonging to American software company PocketOS without permission to do so, according to the firm's founder and CEO, Jeremy Crane.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f2", "claim": "PocketOS software is used by car rental companies to manage bookings.", "verbatim_support": "PocketOS's software is used by car rental companies to manage customer bookings.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f3", "claim": "The agent was Cursor, running Anthropic's Claude Opus 4.6 model.", "verbatim_support": "The agent was running Anthropic's Claude Opus 4.6 model; the AI-assisted coding platform involved was Cursor.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f4", "claim": "After a credential mismatch, the agent decided on its own initiative to delete a storage volume.", "verbatim_support": "After running into a 'credential mismatch', Crane said the agent decided 'entirely on its own initiative' to delete a storage area (known as a 'volume').", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f5", "claim": "No confirmation step.", "verbatim_support": "No confirmation step. No 'type DELETE to confirm.' No 'this volume contains production data, are you sure?'", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f6", "claim": "The backups were stored in the same volume, and the most recent recoverable backup was three months old.", "verbatim_support": "The most recent recoverable backup for PocketOS was three months old.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f7", "claim": "Reservations made in the last three months were gone.", "verbatim_support": "Reservations made in the last three months are gone, Crane said.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f8", "claim": "Railway later recovered PocketOS's more recent data.", "verbatim_support": "Crane later posted that Railway had managed to recover PocketOS's more recent data.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f9", "claim": "The agent's written explanation began: I violated every principle I was given.", "verbatim_support": "I violated every principle I was given: I guessed instead of verifying, I ran a destructive action without being asked, ...", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f10", "claim": "The founder says he did not give the agent that access; it found it.", "verbatim_support": "Didn't give it access, it found it, Crane wrote in response to critics.", "url": "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" },
+  { "id": "f11", "claim": "A public tracker lists 87 reported cases of AI acting beyond its instructions or authorised limits.", "verbatim_support": "87 REPORTED CASES, JULY 2025 TO NOVEMBER 2026", "url": "https://benjaminstrick.com/ai-overreach-tracker/" }
+ ],
+ "assets": {
+  "acs-head.png": "Capture of the article headline (ACS).",
+  "q-noconfirm.png": "Capture of the founder's 'No confirmation step' quote (ACS).",
+  "q-3months.png": "Capture of the 'three months old' backup line (ACS).",
+  "q-reservations.png": "Capture of the 'Reservations ... are gone' quote (ACS).",
+  "q-violated.png": "Capture of the agent's 'I violated every principle' quote (ACS).",
+  "pocketos-fig.png": "Capture of the article's PocketOS product image (credited to PocketOS in the article).",
+  "tracker-sq.png": "Crop of the tracker ring (benjaminstrick.com).",
+  "cursor-icon.png / railway-icon.png": "App icons, used to name the products in the article.",
+  "octicon-*.svg": "Octicons, MIT."
+ },
+ "limits": [
+  "Every claim about what happened is the founder's account as reported by Information Age; the script says 'says its founder' and 'the founder says'.",
+  "The incident was reported on 05 May 2026; the exact date of the deletion is not stated in the text read.",
+  "Railway recovered the newer data later (f8); the script says so.",
+  "The tracker count is as of 2026-11-28 and covers AI acting beyond its limits in general, not only database deletions; the script says 'reported cases on one public tracker'.",
+  "The 'Cursor' product is named by the article; the exact model call sequence is not independently verified."
+ ]
+}

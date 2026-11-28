@@ -4,7 +4,7 @@ import { IFShort } from "./IF";
 
 const calcIF: CalculateMetadataFunction<any> = async ({ props }) => ({ durationInFrames: Math.max(30, Math.ceil(((props.audioDurationSec || 30) + (props.plan?.loop ? 0 : 0.5)) * 30)), props });
 
-const IDS = ["25", "22", "24", "31", "32", "33", "40"];
+const IDS = ["25", "22", "24", "31", "32", "33", "40", "41"];
 
 export const RemotionRoot: React.FC = () => (
   <>
