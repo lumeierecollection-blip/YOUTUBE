@@ -7,8 +7,8 @@
    "left": {
     "img": "haaland1",
     "word": "114",
-    "x": -40,
-    "h": 600,
+    "x": 0,
+    "h": 640,
     "y": 560
    },
    "right": {
@@ -31,9 +31,9 @@
    "img": "haaland1",
    "note": "Appeal in mid-December",
    "src": "face",
-   "h": 480,
+   "h": 520,
    "drop": 0,
-   "x": 190,
+   "x": 300,
    "arrowX": 120,
    "arrowY": 330,
    "noteX": 60,
