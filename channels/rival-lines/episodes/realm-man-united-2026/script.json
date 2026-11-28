@@ -47,7 +47,7 @@
         "parts": [
           {
             "type": "circle",
-            "img": "carrick2",
+            "img": "carrick3",
             "side": "left",
             "tag": {
               "value": "12 NOV",
@@ -133,7 +133,7 @@
         "items": [
           {
             "kicker": "CARRICK",
-            "img": "carrick2",
+            "img": "carrick3",
             "value": "12 NOV",
             "label": "sacked"
           },

@@ -107,6 +107,34 @@
    "h": 1838,
    "id": "wirtz2",
    "file": "files/wirtz2.jpg"
+  },
+  {
+   "key": "carrick",
+   "title": "File:Michael Carrick 12042025 (5).jpg",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "author": "Timmy96",
+   "date": "2025-04-12 17:45:21",
+   "description": "Michael Carrick pictured after the Millwall and Middlesbrough match.",
+   "page": "https://commons.wikimedia.org/wiki/File:Michael_Carrick_12042025_(5).jpg",
+   "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Michael_Carrick_12042025_%285%29.jpg/1920px-Michael_Carrick_12042025_%285%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+   "w": 2101,
+   "h": 3145,
+   "id": "carrick3",
+   "file": "files/carrick3.jpg",
+   "mask": [
+    [
+     0.86,
+     0.19,
+     0.95,
+     0.25
+    ]
+   ],
+   "face": {
+    "w": 0.84,
+    "cx": 0.52,
+    "bottom": 0.5
+   }
   }
  ]
 }

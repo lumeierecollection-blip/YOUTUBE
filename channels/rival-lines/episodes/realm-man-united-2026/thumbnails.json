@@ -5,10 +5,10 @@
    "id": "a",
    "kind": "faces",
    "left": {
-    "img": "carrick2",
+    "img": "carrick3",
     "word": "SACKED",
-    "x": -60,
-    "h": 560,
+    "x": -50,
+    "h": 600,
     "y": 560
    },
    "right": {
