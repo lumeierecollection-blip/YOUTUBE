@@ -1,0 +1,41 @@
+{
+  "channel_id": "4",
+  "topic_slug": "gawain-jones-vasyl-ivanchuk-london-chess-tactics",
+  "format": "shorts",
+  "hook": "Chess legends don't usually lose by spending 26 minutes on one move.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Chess legends don't usually lose by spending 26 minutes on one move."
+    },
+    {
+      "id": "setup",
+      "voiceover": "At the November 2026 London Chess Classic, Vasyl Ivanchuk faced Gawain Jones in round 2. Why did Ivanchuk burn 26 minutes on move 10?",
+      "text_overlay": {
+        "text": "London Chess Classic 2026"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "That King's Indian Defense move 10 forced the 2635-rated Ivanchuk into a deep, time-consuming calculation.",
+      "text_overlay": {
+        "text": "King's Indian Defense"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "Jones exploited the clock pressure to force a win in 35 moves against the Ukrainian legend. Gawain Jones secured the victory after the 2635-rated Ivanchuk failed to recover from his time trouble.",
+      "text_overlay": {
+        "text": "35 moves total"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "That 26-minute think time shifted the London Chess Classic standings."
+    }
+  ],
+  "sources_used": [
+    "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb",
+    "https://chessbotbuddies.org/news/ivanchuk-jones-2026"
+  ]
+}

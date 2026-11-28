@@ -1,0 +1,75 @@
+{
+  "topic_slug": "gawain-jones-vasyl-ivanchuk-london-chess-tactics",
+  "strongest_angle": "English Grandmaster Gawain Jones defeated Ukrainian legend Vasyl Ivanchuk in a 35-move King's Indian Defense battle at the November 2026 London Chess Classic, where Ivanchuk spent 26 crucial minutes on move 10.",
+  "key_facts": [
+    {
+      "fact": "English Grandmaster Gawain Jones defeated Vasyl Ivanchuk in 35 moves during round 2 of the London Chess Classic Masters in November 2026.",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb",
+      "source_name": "ChessBinder",
+      "confidence": "high"
+    },
+    {
+      "fact": "During round 2 of the November 2026 London Chess Classic, Vasyl Ivanchuk spent about 26 minutes thinking on move 10 against Gawain Jones.",
+      "source_url": "https://chessbotbuddies.org/news/ivanchuk-jones-2026",
+      "source_name": "ChessBotBuddies",
+      "confidence": "high"
+    },
+    {
+      "fact": "Gawain Maroroa Jones entered the November 2026 London Chess Classic Masters with a FIDE rating of 2630.",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb",
+      "source_name": "ChessBinder",
+      "confidence": "high"
+    },
+    {
+      "fact": "Vasyl Ivanchuk entered the round 2 game at the London Chess Classic Masters with a FIDE rating of 2635.",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb",
+      "source_name": "ChessBinder",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Game length in moves",
+      "value": 35,
+      "unit": "moves",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb"
+    },
+    {
+      "label": "Ivanchuk thought time on move 10",
+      "value": 26,
+      "unit": "minutes",
+      "source_url": "https://chessbotbuddies.org/news/ivanchuk-jones-2026"
+    },
+    {
+      "label": "Gawain Jones rating",
+      "value": 2630,
+      "unit": "Elo rating",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb"
+    },
+    {
+      "label": "Vasyl Ivanchuk rating",
+      "value": 2635,
+      "unit": "Elo rating",
+      "source_url": "https://chessbinder.com/events/xtx-markets-london-chess-classic-2026-masters/game/AVBdB7nb"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Gawain Jones",
+      "kind": "person"
+    },
+    {
+      "name": "Vasyl Ivanchuk",
+      "kind": "person"
+    },
+    {
+      "name": "London",
+      "kind": "place"
+    },
+    {
+      "name": "London Chess Classic",
+      "kind": "organization"
+    }
+  ]
+}
