@@ -3060,9 +3060,14 @@
           "topic": "Euclid Space Telescope Discovers 360 Million Solar Mass Quasar",
           "slug": "euclid-space-telescope-360-million-quasar",
           "reserved_at": "2026-11-27T19:17:09.365Z"
+        },
+        {
+          "topic": "ALMA Measures Gravitational Reach of Early Universe Black Hole Mass",
+          "slug": "alma-early-universe-black-hole-mass",
+          "reserved_at": "2026-11-28T17:10:34.278Z"
         }
       ],
-      "last_generated": "2026-11-27T19:17:09.366Z"
+      "last_generated": "2026-11-28T17:10:34.278Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
