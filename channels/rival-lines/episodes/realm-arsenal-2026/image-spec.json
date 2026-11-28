@@ -1,0 +1,9 @@
+{
+ "people": [
+  {"key": "arteta", "name": "Mikel Arteta", "category": "Category:Mikel Arteta", "must": "arteta", "n": 3},
+  {"key": "raya", "name": "David Raya", "category": "Category:David Raya", "must": "raya", "n": 3},
+  {"key": "havertz", "name": "Kai Havertz", "category": "Category:Kai Havertz", "must": "havertz", "n": 3},
+  {"key": "saka", "name": "Bukayo Saka", "category": "Category:Bukayo Saka", "must": "saka", "n": 3},
+  {"key": "haaland", "name": "Erling Haaland", "category": "Category:Erling Haaland", "must": "haaland", "n": 3}
+ ]
+}

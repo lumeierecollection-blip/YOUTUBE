@@ -1,0 +1,43 @@
+{
+ "note": "Two Football Realm-formula thumbnails (faces / serif). 6 is Arsenal's lead in points and 17 their goals scored (the fewest of the top six), both from the cited Wikipedia table as of 27 November 2026. Both are questions, not predictions.",
+ "variants": [
+  {
+   "id": "a",
+   "kind": "faces",
+   "left": {
+    "img": "arteta1",
+    "word": "6 UP",
+    "x": 0,
+    "h": 640,
+    "y": 560
+   },
+   "right": {
+    "img": "haaland3",
+    "word": "CITY?",
+    "x": -60,
+    "h": 640,
+    "y": 560
+   },
+   "size": 130
+  },
+  {
+   "id": "b",
+   "kind": "serif",
+   "lines": [
+    "Six points clear.",
+    "17 goals."
+   ],
+   "hot": 1,
+   "img": "arteta1",
+   "note": "Can 1-0 last?",
+   "src": "face",
+   "h": 400,
+   "drop": 0,
+   "x": 330,
+   "arrowX": 120,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 560
+  }
+ ]
+}

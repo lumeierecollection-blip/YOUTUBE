@@ -1,0 +1,90 @@
+{
+ "as_of": "2026-11-28",
+ "note": "Every figure was read on the cited page on 2026-11-28. The league table is Wikipedia's 2026-27 Premier League table after 11 matches each (as of 27 November 2026). Arsenal's match list is from footballwebpages.co.uk and agrees with the table (17 scored, 7 conceded, 9 wins, 1 draw, 1 defeat). Venues are NOT used except Anfield: the sources contradict each other on the home and away label of several league games. No kick-off time or date for the City game is used, because the only place it appeared was a search-result summary, not a fetched page. The video does not predict the result against Manchester City or the title.",
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_Premier_League",
+   "title": "2026-27 Premier League (Wikipedia): table as of 27 November 2026, top scorers, clean sheets",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_Arsenal_F.C._season",
+   "title": "2026-27 Arsenal F.C. season (Wikipedia): results",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/2025–26_Arsenal_F.C._season",
+   "title": "2025-26 Arsenal F.C. season (Wikipedia): title clinched 19 May 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://dailycannon.com/2026/11/arsenals-win-at-anfield-takes-them-to-the-top-of-the-2026-27-table/",
+   "title": "Arsenal's Win at Anfield takes them to the top of the 2026/27 table (The Daily Cannon, November 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.footballwebpages.co.uk/premier-league/fixtures-results",
+   "title": "Premier League fixtures and results (footballwebpages.co.uk): Arsenal's 11 league results",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://khelnow.com/football/arsenal-vs-manchester-city-preview-premier-league-202611",
+   "title": "Arsenal vs Manchester City preview (Khelnow, November 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=Zt1VugPdwFw",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=5jq0WWOQr-U",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=i4eXftEkNAc",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=ssrF69WCu5g",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=a9pbKXyZZC4",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=s8sBXEo2l94",
+   "title": "Official YouTube match highlights (clip source; owner and date in footage/footage.json)",
+   "fetched": "2026-11-28"
+  }
+ ],
+ "table": {
+  "arsenal": "Premier League table as of 27 November 2026, after 11 matches each (Wikipedia, 2026-27 Premier League): Arsenal 9 wins, 1 draw, 1 defeat, 17 goals for, 7 against, goal difference +10, 28 points. Brighton & Hove Albion 22 points, 26 goals for, 9 against. Manchester City 22 points, 22 goals for, 14 against. Liverpool 21 points, 18 goals for. Bournemouth 18 points, 18 goals for. Brentford 17 points, 20 goals for. Arsenal lead by 6 points, have the fewest goals against (7) and the fewest goals for (17) of the top six.",
+  "scorers": "Top scorer in the league: Erling Haaland, Manchester City, 9 goals; Isak is next with 7 goals (Wikipedia, 2026-27 Premier League).",
+  "clean_sheets": "David Raya has 7 clean sheets, the most in the league (Wikipedia, 2026-27 Premier League)."
+ },
+ "results": {
+  "arsenal_league": "Arsenal's 11 league results (footballwebpages.co.uk): 21 Aug Coventry City 3-0 win; 31 Aug Aston Villa 1-0 win; 6 Sep Chelsea 2-1 win; 12 Sep Sunderland 2-0 win; 19 Sep Brighton & Hove Albion 0-3 defeat; 10 Oct Leeds United 2-1 win; 18 Oct Nottingham Forest 1-0 win; 24 Oct Everton 2-0 win; 1 Nov Liverpool 1-0 win; 7 Nov Hull City 1-0 win; 21 Nov Newcastle United 2-2 draw. Six of the nine wins were by one goal (Aston Villa, Chelsea, Leeds, Nottingham Forest, Liverpool, Hull City). Seven were clean sheets. After the Brighton defeat Arsenal won five league games and drew one.",
+  "anfield": "1 November 2026: Liverpool 0, Arsenal 1 at Anfield. Kai Havertz scored in the 16th minute. Liverpool had 17 attempts with zero shots on target. It was Arsenal's first win at Anfield since September 2012 (The Daily Cannon).",
+  "brighton": "19 September 2026: Brighton 3, Arsenal 0 (footballwebpages.co.uk; the Arsenal and Brighton YouTube highlights are titled Brighton 3-0 Arsenal, 19 September 2026).",
+  "newcastle": "21 November 2026: Newcastle United 2, Arsenal 2. The Arsenal highlights video is titled 'EZE AND MADUEKE SCORE IN A BATTLING DRAW | Newcastle United vs Arsenal (2-2)'."
+ },
+ "title": {
+  "champions": "Arsenal won the 2025-26 Premier League: the title was clinched on 19 May 2026, their first league title since the 2003-04 season (Wikipedia, 2025-26 Arsenal F.C. season)."
+ },
+ "city": {
+  "form": "Manchester City have 22 points. Their last four league matches: consecutive defeats against Aston Villa, Brighton and Nottingham Forest, then a 1-1 draw at home to Fulham (Khelnow). If Arsenal win, the gap to City is 9 points (28 + 3 = 31 against 22).",
+  "raya": "David Raya is not yet confirmed to be part of the squad because of a lack of fitness (Khelnow).",
+  "lead": "Arsenal have a six-point lead over second place and are unbeaten in their last five games (Khelnow)."
+ },
+ "limits": {
+  "venues": "Home and away labels for several league games differ between sources, so only the Anfield game is placed at a venue.",
+  "analytics": "No verified expected-goals, shots or chances-created figures for Arsenal were found in the cited sources, so none are used.",
+  "prediction": "Nothing here predicts the match against Manchester City or the title."
+ }
+}

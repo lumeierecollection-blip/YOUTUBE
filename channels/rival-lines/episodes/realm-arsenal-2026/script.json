@@ -1,0 +1,286 @@
+{
+ "episode": "realm-arsenal-2026",
+ "format": "realm",
+ "title_working": "Arsenal Have Scored The Fewest Goals In The Top Six. Can They Keep Winning 1-0?",
+ "as_of": "2026-11-28",
+ "sources_used": [
+  "https://en.wikipedia.org/wiki/2026–27_Premier_League",
+  "https://en.wikipedia.org/wiki/2026–27_Arsenal_F.C._season",
+  "https://en.wikipedia.org/wiki/2025–26_Arsenal_F.C._season",
+  "https://dailycannon.com/2026/11/arsenals-win-at-anfield-takes-them-to-the-top-of-the-2026-27-table/",
+  "https://www.footballwebpages.co.uk/premier-league/fixtures-results",
+  "https://khelnow.com/football/arsenal-vs-manchester-city-preview-premier-league-202611",
+  "https://www.youtube.com/watch?v=Zt1VugPdwFw",
+  "https://www.youtube.com/watch?v=5jq0WWOQr-U",
+  "https://www.youtube.com/watch?v=i4eXftEkNAc",
+  "https://www.youtube.com/watch?v=ssrF69WCu5g",
+  "https://www.youtube.com/watch?v=a9pbKXyZZC4",
+  "https://www.youtube.com/watch?v=s8sBXEo2l94"
+ ],
+ "beats": [
+  {
+   "id": "b01",
+   "accent": [
+    "28",
+    "22"
+   ],
+   "text": "Arsenal lead the Premier League with 28 points from 11 games. Brighton and Manchester City are next on 22. That is a six-point gap.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "evr_a",
+     "hul_a"
+    ],
+    "tag": {
+     "right": 120,
+     "top": 90,
+     "value": "28",
+     "label": "points after 11 games",
+     "cue": "28"
+    }
+   }
+  },
+  {
+   "id": "b02",
+   "accent": [
+    "seven",
+    "clean sheets"
+   ],
+   "text": "They have won nine, drawn one and lost one. Arsenal have conceded seven goals, the fewest of the top six. David Raya has kept seven clean sheets, the most in the league.",
+   "visual": {
+    "type": "strip",
+    "img": "raya2",
+    "side": "left",
+    "lines": [
+     "7 GOALS CONCEDED",
+     "7 CLEAN SHEETS"
+    ],
+    "cues": [
+     "conceded",
+     "clean"
+    ]
+   }
+  },
+  {
+   "id": "b03",
+   "accent": [
+    "17",
+    "fewest"
+   ],
+   "text": "But they have scored only 17 goals, the fewest of the top six. Brighton have 26, City 22, Brentford 20, and Liverpool and Bournemouth 18.",
+   "visual": {
+    "type": "circle",
+    "img": "arteta1",
+    "side": "left",
+    "bigcap": {
+     "text": "*17* goals|fewest of the top six",
+     "pos": "right",
+     "top": 520,
+     "cue": "17"
+    }
+   }
+  },
+  {
+   "id": "b04",
+   "accent": [
+    "Six",
+    "one goal"
+   ],
+   "text": "Six of their nine wins were by one goal. Aston Villa 1-0, Chelsea 2-1, Leeds 2-1, Nottingham Forest 1-0, Liverpool 1-0 and Hull 1-0.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "for_a",
+     "for_b",
+     "hul_b"
+    ],
+    "tag": {
+     "right": 120,
+     "top": 90,
+     "value": "6 of 9",
+     "label": "wins by one goal",
+     "cue": "Six"
+    },
+    "bigcap": {
+     "top": 620,
+     "text": "Hull 0|Arsenal *1*",
+     "cue": "Hull"
+    }
+   }
+  },
+  {
+   "id": "b05",
+   "accent": [
+    "Anfield",
+    "2012"
+   ],
+   "text": "On 1 November they won 1-0 at Anfield. Kai Havertz scored in the 16th minute. It was Arsenal's first win at Anfield since September 2012. Liverpool had 17 attempts and none were on target.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "liv_a",
+     "liv_b",
+     "liv_c"
+    ],
+    "tag": {
+     "right": 120,
+     "top": 90,
+     "value": "2012",
+     "label": "first Anfield win since",
+     "cue": "2012"
+    },
+    "bigcap": {
+     "top": 620,
+     "text": "Liverpool 0|Arsenal *1*",
+     "cue": "scored"
+    }
+   }
+  },
+  {
+   "id": "b06",
+   "accent": [
+    "0-3",
+    "19 September"
+   ],
+   "text": "Their one defeat was 0-3 at Brighton on 19 September. Since then they have won five league games and drawn one.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "bri_a",
+     "bri_b",
+     "bri_c"
+    ],
+    "bigcap": {
+     "top": 620,
+     "text": "Brighton *3*|Arsenal 0",
+     "cue": "defeat"
+    }
+   }
+  },
+  {
+   "id": "b07",
+   "accent": [
+    "2-2",
+    "Raya"
+   ],
+   "text": "On 21 November they drew 2-2 at Newcastle, with goals from Eze and Madueke. David Raya is not yet confirmed for the City game because of a lack of fitness.",
+   "visual": {
+    "type": "clip",
+    "shots": [
+     "new_a",
+     "new_b",
+     "new_c"
+    ],
+    "bigcap": {
+     "top": 620,
+     "text": "Newcastle *2-2* Arsenal",
+     "cue": "drew"
+    }
+   }
+  },
+  {
+   "id": "b08",
+   "accent": [
+    "champions",
+    "2003"
+   ],
+   "text": "They are the reigning champions. They clinched the 2025-26 title on 19 May 2026, their first league title since 2003-04.",
+   "visual": {
+    "type": "circle",
+    "img": "arteta3",
+    "side": "right",
+    "bigcap": {
+     "text": "Champions|*first* title since 2003-04",
+     "pos": "left",
+     "top": 520,
+     "cue": "clinched"
+    }
+   }
+  },
+  {
+   "id": "b09",
+   "accent": [
+    "City",
+    "defeats"
+   ],
+   "text": "Next is Manchester City. They have 22 points, after defeats against Aston Villa, Brighton and Nottingham Forest, and then a 1-1 draw at home to Fulham.",
+   "visual": {
+    "type": "strip",
+    "img": "haaland1",
+    "side": "right",
+    "lines": [
+     "CITY: 22 POINTS",
+     "3 DEFEATS, THEN A DRAW"
+    ],
+    "cues": [
+     "City",
+     "defeats"
+    ]
+   }
+  },
+  {
+   "id": "b10",
+   "accent": [
+    "nine",
+    "Haaland"
+   ],
+   "text": "City's Erling Haaland leads the league with nine goals. If Arsenal win, the gap to City will be nine points.",
+   "visual": {
+    "type": "circle",
+    "imgs": [
+     "raya3",
+     "haaland3"
+    ],
+    "bigcap": {
+     "text": "*9* goals|*7* clean sheets",
+     "pos": "center",
+     "top": 820,
+     "size": 90,
+     "cue": "nine"
+    }
+   }
+  },
+  {
+   "id": "b11",
+   "accent": [
+    "verified"
+   ],
+   "text": "One thing is missing. Our sources have no verified expected-goals or shots figures for Arsenal, so none are used here.",
+   "visual": {
+    "type": "strip",
+    "img": "arteta1",
+    "side": "right",
+    "lines": [
+     "NO VERIFIED",
+     "EXPECTED GOALS"
+    ],
+    "cues": [
+     "missing",
+     "verified"
+    ]
+   }
+  },
+  {
+   "id": "b12",
+   "accent": [
+    "six",
+    "one goal"
+   ],
+   "text": "So Arsenal are six points clear, with the fewest goals conceded and the fewest scored of the top six. Can they keep winning by one goal against City?",
+   "visual": {
+    "type": "circle",
+    "imgs": [
+     "arteta1",
+     "haaland3"
+    ],
+    "bigcap": {
+     "text": "*Six* points|Again 1-0?",
+     "pos": "center",
+     "top": 820,
+     "size": 90,
+     "cue": "six"
+    }
+   }
+  }
+ ]
+}

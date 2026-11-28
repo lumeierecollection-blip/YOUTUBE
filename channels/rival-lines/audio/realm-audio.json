@@ -4,7 +4,8 @@
     "realm-ballon-dor-2026": { "bed": "Driving in the rain", "why": "117 bpm, energetic, 346 s: longer than the 312 s episode, so it never loops; closest to the reference's 112-129 bpm upbeat sections" },
     "realm-man-united-2026": { "bed": "Status Quo", "why": "dark cinematic, builds, 144 bpm: suits a club in a slump; 165 s so it loops once over 204 s" },
     "realm-man-city-2026": {"bed": "Dramatic Ending", "why": "CC BY 3.0, licence verified at source 2026-11-27; dramatic, sad, very slow synthesiser pad: a serious tone for a legal verdict. Not auditioned by ear."},
-    "realm-barcelona-2026": { "bed": "Rising Phoenix", "why": "CC BY 3.0, licence verified at source; steady, driving, 161 bpm, 236 s, longer than the 149 s episode so it never loops; title-race energy. Not auditioned by ear." }
+    "realm-barcelona-2026": { "bed": "Rising Phoenix", "why": "CC BY 3.0, licence verified at source; steady, driving, 161 bpm, 236 s, longer than the 149 s episode so it never loops; title-race energy. Not auditioned by ear." },
+    "realm-arsenal-2026": { "bed": "Rising Phoenix", "why": "CC BY 3.0, licence verified at source; steady, driving, 161 bpm, 236 s, longer than the 133 s episode so it never loops; title-race energy. Same bed as the Barcelona episode because no second bed in the library is verified for this mood. Not auditioned by ear." }
   },
   "bed_lufs_under_voice": -30,
   "sfx_max_per_minute": 5,
