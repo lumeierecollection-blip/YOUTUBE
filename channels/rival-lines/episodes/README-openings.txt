@@ -1,0 +1,4 @@
+Opening status per Realm episode (2026-11-28).
+Only realm-chelsea-2026 opens on the subject's own quote clip (beat b00, clip alonso_q).
+The other five episodes have no sourced on-camera quote clip yet, so they open on their existing first beat.
+A quote opening needs a real, sourced clip of the subject speaking; none is invented.
