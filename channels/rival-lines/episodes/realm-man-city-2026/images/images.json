@@ -34,7 +34,12 @@
    "w": 1536,
    "h": 1920,
    "id": "haaland1",
-   "file": "files/haaland1.jpg"
+   "file": "files/haaland1.jpg",
+   "face": {
+    "w": 0.85,
+    "cx": 0.5,
+    "bottom": 0.45
+   }
   },
   {
    "key": "haaland",

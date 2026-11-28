@@ -5,17 +5,17 @@
    "id": "a",
    "kind": "faces",
    "left": {
-    "img": "haaland3",
+    "img": "haaland1",
     "word": "114",
-    "x": -50,
+    "x": -40,
     "h": 600,
     "y": 560
    },
    "right": {
     "img": "guardiola2",
     "word": "OF 115",
-    "x": -20,
-    "h": 600,
+    "x": -60,
+    "h": 560,
     "y": 560
    },
    "size": 120
@@ -33,7 +33,7 @@
    "src": "face",
    "h": 480,
    "drop": 0,
-   "x": 420,
+   "x": 190,
    "arrowX": 120,
    "arrowY": 330,
    "noteX": 60,
