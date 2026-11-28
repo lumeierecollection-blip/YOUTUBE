@@ -1,0 +1,81 @@
+{
+  "topic_slug": "queen-mary-hospital-faulty-lifts-development-bureau-report",
+  "strongest_angle": "The Hong Kong Development Bureau published a 116-page investigation report on November 13, 2026, revealing that all 28 lifts in the Queen Mary Hospital new clinical block experienced severe installation deficiencies, including tilted lift shafts and structural deviations across contractors and government departments.",
+  "key_facts": [
+    {
+      "fact": "The Development Bureau submitted a 116-page investigation report to the Legislative Council on November 13, 2026, regarding faulty construction work and tilted lift shafts at Queen Mary Hospital.",
+      "source_url": "https://hongkongfp.com/2026/11/13/hong-kong-probe-uncovers-deficiencies-possible-illegal-acts-in-queen-mary-hospital-lift-scandal",
+      "source_name": "Hong Kong Free Press",
+      "confidence": "high"
+    },
+    {
+      "fact": "All 28 lifts in the new clinical block at Queen Mary Hospital experienced installation problems and frequent breakdowns to varying degrees across contractors and government departments.",
+      "source_url": "https://news.rthk.hk/rthk/en/component/k2/1877595-20261112.htm",
+      "source_name": "RTHK",
+      "confidence": "high"
+    },
+    {
+      "fact": "Chief Executive John Lee ordered an investigation in September 2026 after most of the 28 lifts in the 34-storey clinical tower at Queen Mary Hospital were sealed off.",
+      "source_url": "https://news.rthk.hk/rthk/en/component/k2/1877595-20261112.htm",
+      "source_name": "RTHK",
+      "confidence": "high"
+    },
+    {
+      "fact": "The Development Bureau report identified four main causes of lift malfunctions, including lift shaft wall size and verticality deviations, guide rail verticality deviations, and unbalanced lift car centers.",
+      "source_url": "https://gbcode.rthk.hk/TuniS/newsprd.rthk.hk/rthk/ch/component/k2/1877571-20261112.htm",
+      "source_name": "RTHK",
+      "confidence": "high"
+    }
+  ],
+  "numbers": [
+    {
+      "label": "Total lifts investigated",
+      "value": 28,
+      "unit": "lifts",
+      "source_url": "https://news.rthk.hk/rthk/en/component/k2/1877595-20261112.htm"
+    },
+    {
+      "label": "Report page count",
+      "value": 116,
+      "unit": "pages",
+      "source_url": "https://hongkongfp.com/2026/11/13/hong-kong-probe-uncovers-deficiencies-possible-illegal-acts-in-queen-mary-hospital-lift-scandal"
+    },
+    {
+      "label": "Clinical tower height",
+      "value": 34,
+      "unit": "storeys",
+      "source_url": "https://news.rthk.hk/rthk/en/component/k2/1877595-20261112.htm"
+    }
+  ],
+  "quotes": [],
+  "named_entities": [
+    {
+      "name": "Queen Mary Hospital",
+      "kind": "place"
+    },
+    {
+      "name": "Development Bureau",
+      "kind": "organization"
+    },
+    {
+      "name": "Legislative Council",
+      "kind": "organization"
+    },
+    {
+      "name": "John Lee",
+      "kind": "person"
+    },
+    {
+      "name": "Architectural Services Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Electrical and Mechanical Services Department",
+      "kind": "organization"
+    },
+    {
+      "name": "Pok Fu Lam",
+      "kind": "place"
+    }
+  ]
+}

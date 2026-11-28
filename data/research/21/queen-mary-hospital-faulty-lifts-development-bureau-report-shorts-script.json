@@ -1,0 +1,74 @@
+{
+  "channel_id": "21",
+  "topic_slug": "queen-mary-hospital-faulty-lifts-development-bureau-report",
+  "format": "shorts",
+  "hook": "Every single one of the 28 lifts at Queen Mary Hospital failed.",
+  "sections": [
+    {
+      "id": "hook",
+      "voiceover": "Every single one of the 28 lifts at Queen Mary Hospital failed.",
+      "visual_cue": "Close-up of a static, out-of-order lift indicator at a hospital.",
+      "sfx_cue": "Mechanical clicking followed by a heavy digital silence.",
+      "b_roll": [
+        "Exterior shot of the Queen Mary Hospital clinical block"
+      ],
+      "text_overlay": {
+        "text": "28 Lifts Failed"
+      }
+    },
+    {
+      "id": "setup",
+      "voiceover": "On November 13, 2026, the Development Bureau submitted a 116-page report to the Legislative Council. What caused the lift shaft wall size and verticality deviations in this 34-storey clinical tower?",
+      "visual_cue": "A document page flip transition showing architectural diagrams.",
+      "sfx_cue": "Sound of paper rustling and turning.",
+      "b_roll": [
+        "Close up of 116-page investigation report document",
+        "Wide shot of Legislative Council building"
+      ],
+      "text_overlay": {
+        "text": "116-page Investigation Report"
+      }
+    },
+    {
+      "id": "rehook",
+      "voiceover": "The report confirms these structural deviations spanned multiple contractors and various government departments in Hong Kong.",
+      "visual_cue": "Split screen showing multiple construction site errors in a grid.",
+      "sfx_cue": "Low-frequency thrumming sound.",
+      "b_roll": [
+        "Graphics highlighting lift shaft verticality deviations"
+      ],
+      "text_overlay": {
+        "text": "Multiple Contractors Involved"
+      }
+    },
+    {
+      "id": "payoff",
+      "voiceover": "The investigation identified four main causes, including guide rail verticality deviations and unbalanced lift cars. Chief Executive John Lee ordered this probe after officials sealed off the 28 lifts in September.",
+      "visual_cue": "Animated diagram showing a tilted lift shaft versus a straight one.",
+      "sfx_cue": "Electrical sparking sound effect.",
+      "b_roll": [
+        "Diagram of unbalanced lift car centers",
+        "Empty hospital corridor with lift doors closed"
+      ],
+      "text_overlay": {
+        "text": "Tilted Lift Shafts"
+      }
+    },
+    {
+      "id": "close",
+      "voiceover": "All 28 lifts remain under scrutiny after these systemic errors.",
+      "visual_cue": "Wide shot of the Queen Mary Hospital clinical tower at dusk.",
+      "sfx_cue": "Wind ambient sound.",
+      "b_roll": [
+        "Queen Mary Hospital tower exterior"
+      ],
+      "text_overlay": {
+        "text": "28 Lifts Under Scrutiny"
+      }
+    }
+  ],
+  "sources_used": [
+    "https://hongkongfp.com/2026/11/13/hong-kong-probe-uncovers-deficiencies-possible-illegal-acts-in-queen-mary-hospital-lift-scandal",
+    "https://news.rthk.hk/rthk/en/component/k2/1877595-20261112.htm"
+  ]
+}
