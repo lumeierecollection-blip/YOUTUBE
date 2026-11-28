@@ -3075,9 +3075,14 @@
           "topic": "Euclid Space Telescope Discovers 360 Million Solar Mass Quasar",
           "slug": "euclid-space-telescope-360-million-quasar",
           "reserved_at": "2026-11-27T19:17:09.365Z"
+        },
+        {
+          "topic": "Vera C. Rubin Observatory Spots Bright Dwarf Planet Beyond Pluto",
+          "slug": "vera-rubin-observatory-spots-bright-dwarf-planet",
+          "reserved_at": "2026-11-28T18:03:05.458Z"
         }
       ],
-      "last_generated": "2026-11-28T17:10:34.278Z"
+      "last_generated": "2026-11-28T18:03:05.458Z"
     },
     "12": {
       "channel_name": "Abyssal Archive",
