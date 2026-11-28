@@ -31,6 +31,7 @@ else:
     keys |= {sc["visual"]["img"] for sc in props["scenes"] if sc["visual"].get("type") == "photo" and sc["visual"].get("stats")}
 ij = os.path.join(ep, "images", "images.json")
 masks = {i["id"]: i["mask"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("mask")} if os.path.exists(ij) else {}
+lights = {i["id"]: i["light"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("light")} if os.path.exists(ij) else {}
 faces = {i["id"]: i["face"] for i in json.load(open(ij, encoding="utf8"))["images"] if i.get("face")} if os.path.exists(ij) else {}
 for img in sorted(keys):
     src = os.path.join(pub, props["images"][img]["file"])
@@ -38,23 +39,34 @@ for img in sorted(keys):
     im.thumbnail((1800, 1800))
     out = remove(im, session=session)
     # Optional per-image "mask" in images.json: fractional boxes [x0,y0,x1,y1] cleared after the cut, for a second person the model kept.
-    if img in masks:
-        from PIL import ImageDraw
-        al = out.getchannel("A"); dr = ImageDraw.Draw(al); W, H = out.size
-        for x0, y0, x1, y1 in masks[img]: dr.rectangle([x0 * W, y0 * H, x1 * W, y1 * H], fill=0)
-        out.putalpha(al)
-    # Clean the edge: pull the matte in a few pixels so the old background colour does not show as a fringe, then soften it.
-    a = out.getchannel("A").point(lambda v: 255 if v > 128 else 0).filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(2.2))
-    out.putalpha(a)
-    # Keep only the largest connected piece, so bits of a second person or the background the model left floating are dropped.
+    # Optional "light": [x0,y0,x1,y1,lum] clears large bright blobs (a sky or awning the model kept) inside that box, never small hair highlights.
     import numpy as np
     from scipy import ndimage
-    arr = np.array(out.getchannel("A"))
-    lab, n = ndimage.label(arr > 40)
+    from PIL import ImageDraw
+    W, H = out.size
+    al = out.getchannel("A"); dr = ImageDraw.Draw(al)
+    for x0, y0, x1, y1 in masks.get(img, []): dr.rectangle([x0 * W, y0 * H, x1 * W, y1 * H], fill=0)
+    a = np.array(al).astype(np.float32)
+    rgb = np.array(out.convert("RGB")).astype(np.float32)
+    lum = rgb.mean(axis=2)
+    for x0, y0, x1, y1, lv in lights.get(img, []):
+        sub = (slice(int(y0 * H), int(y1 * H)), slice(int(x0 * W), int(x1 * W)))
+        lab, n = ndimage.label((lum[sub] > lv) & (a[sub] > 0))
+        for i in range(1, n + 1):
+            comp = lab == i
+            if comp.sum() > 400: a[sub][ndimage.binary_dilation(comp, iterations=4)] = 0
+    # Soft matte: push the semi-transparent fringe inward, keep the largest piece, fill holes, anti-alias lightly.
+    a = np.clip((a - 90) * 255 / 145, 0, 255)
+    m = ndimage.binary_opening(a > 40, iterations=2)
+    lab, n = ndimage.label(m)
     if n > 1:
-        sizes = ndimage.sum(arr > 40, lab, range(1, n + 1))
-        arr = np.where(lab == 1 + int(np.argmax(sizes)), arr, 0).astype(np.uint8)
-        out.putalpha(Image.fromarray(arr))
+        sizes = ndimage.sum(m, lab, range(1, n + 1)); m = lab == 1 + int(np.argmax(sizes))
+    m = ndimage.binary_fill_holes(m)
+    a = ndimage.gaussian_filter(ndimage.grey_erosion(np.where(m, a, 0), size=(3, 3)), 1.1)
+    # Edge pixels take their colour from the nearest solid pixel, so the old background does not show as a fringe.
+    idx = ndimage.distance_transform_edt(~(a > 250), return_distances=False, return_indices=True)
+    rgb = np.where((a < 250)[..., None], rgb[idx[0], idx[1]], rgb)
+    out = Image.fromarray(np.dstack([rgb, a]).astype(np.uint8), "RGBA")
     box = out.getchannel("A").point(lambda a: 255 if a > 40 else 0).getbbox()
     out = out.crop(box)
     dst = os.path.join(pub, "ep", "images", f"cutout-{img}.png")

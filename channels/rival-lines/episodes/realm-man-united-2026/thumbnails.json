@@ -7,15 +7,15 @@
    "left": {
     "img": "carrick2",
     "word": "SACKED",
-    "x": -90,
-    "h": 620,
+    "x": -60,
+    "h": 560,
     "y": 560
    },
    "right": {
     "img": "pochettino1",
     "word": "HIRED",
-    "x": -30,
-    "h": 640,
+    "x": -20,
+    "h": 600,
     "y": 560
    },
    "size": 120
