@@ -194,7 +194,15 @@
    "w": 2136,
    "h": 3456,
    "id": "gibbs3",
-   "file": "files/gibbs3.jpg"
+   "file": "files/gibbs3.jpg",
+   "mask": [
+    [
+     0,
+     0.38,
+     0.15,
+     1.0
+    ]
+   ]
   }
  ]
 }

@@ -194,6 +194,7 @@ const PlainScene: React.FC<{ v: any }> = ({ v }) => {
   const two = imgs.length > 1;
   const a = pop(t, 0.1, 0.6);
   const h0 = two ? 860 : 980;
+  const fade = "linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(to top, transparent 0, #000 9%)";
   return (
     <AbsoluteFill>
       <Ground />
@@ -203,7 +204,7 @@ const PlainScene: React.FC<{ v: any }> = ({ v }) => {
         const h = v.heights?.[i] ?? h0;
         return (
           <div key={i} style={{ position: "absolute", bottom: 0, [onLeft ? "left" : "right"]: two ? 40 : 130, height: h, display: "flex", alignItems: "flex-end", transform: `translateY(${(1 - ease(p)) * 260}px)`, opacity: clamp(p) }}>
-            <Img src={staticFile(`ep/images/cutout-${im}.png`)} style={{ height: h, width: "auto", maxWidth: 760, objectFit: "contain", objectPosition: "center bottom" }} />
+            <Img src={staticFile(`ep/images/cutout-${im}.png`)} style={{ height: h, width: "auto", maxWidth: two ? 640 : 820, objectFit: "contain", objectPosition: "center bottom", WebkitMaskImage: fade, WebkitMaskComposite: "source-in", maskImage: fade, maskComposite: "intersect" }} />
           </div>
         );
       })}
@@ -287,9 +288,9 @@ const StripScene: React.FC<{ v: any }> = ({ v }) => {
         <rect y={630} width={1920} height={12} fill={theme.white} />
       </svg>
       <div style={{ position: "absolute", left: left ? 120 : 1000, bottom: 0, height: 1000, display: "flex", alignItems: "flex-end", transform: `translateY(${(1 - ease(a)) * 300}px)`, opacity: clamp(a) }}>
-        <Img src={staticFile(`ep/images/cutout-${v.img}.png`)} style={{ height: 1000, width: "auto", filter: outline(theme.black, 3) }} />
+        <Img src={staticFile(`ep/images/cutout-${v.img}.png`)} style={{ height: 1000, width: "auto", maxWidth: 820, objectFit: "contain", objectPosition: "center bottom", filter: outline(theme.black, 3) }} />
       </div>
-      {v.lines ? <TextBlock lines={v.lines} cues={v.cues} style={{ position: "absolute", left: left ? 840 : 120, top: 200, width: 960 }} size={78} /> : null}
+      {v.lines ? <TextBlock lines={v.lines} cues={v.cues} style={{ position: "absolute", left: left ? 980 : 120, top: 220, width: 840 }} size={74} /> : null}
       {v.tag ? <TagPop v={{ ...v.tag, left: v.tag.left, right: v.tag.right ?? (left ? 140 : undefined), top: v.tag.top ?? 90 }} /> : null}
     </AbsoluteFill>
   );
