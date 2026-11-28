@@ -23,8 +23,9 @@ const licOk = plan.beds.every((b) => rules.allowed_licences.some((l) => b.licenc
 check("AUD-11", licOk && plan.beds.every((b) => b.attribution && b.landing_url && b.licence_url), "every bed has an allowed licence, an attribution line, a licence URL and a source page");
 check("AUD-11", plan.beds.every((b) => b.licence_verified_at_source), `licence checked at the source page for every bed (${plan.beds.filter((b) => !b.licence_verified_at_source).length} not yet; index data is from 2022)`, process.env.STRICT_LICENCE !== "1");
 const sorted = [...plan.beds].sort((a, b) => a.t0 - b.t0);
-const covers = Math.abs(sorted[0].t0 - 0) < 0.5 && Math.abs(sorted[sorted.length - 1].t1 - props.durationSec) < 1.5 && sorted.every((b, i) => i === 0 || Math.abs(b.t0 - sorted[i - 1].t1) < 0.5);
-check("AUD-12", covers, "the beds cover the whole episode with no gap");
+const preroll = props.prerollSec || 0;
+const covers = Math.abs(sorted[0].t0 - preroll) < 0.5 && Math.abs(sorted[sorted.length - 1].t1 - props.durationSec) < 1.5 && sorted.every((b, i) => i === 0 || Math.abs(b.t0 - sorted[i - 1].t1) < 0.5);
+check("AUD-12", covers, "the beds cover the whole episode with no gap (after any quote pre-roll, which keeps the clip's own sound and carries no bed)");
 const chapterStarts = props.scenes.filter((s) => s.chapter).map((s) => s.t0);
 check("AUD-12", sorted.slice(1).every((b) => chapterStarts.some((c) => Math.abs(c - b.t0) < 0.5)), "every bed change falls on a chapter start");
 const minutes = props.durationSec / 60;
