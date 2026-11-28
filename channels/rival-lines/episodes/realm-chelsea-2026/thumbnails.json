@@ -7,8 +7,8 @@
    "left": {
     "img": "alonso2",
     "word": "3 LOSSES",
-    "x": 0,
-    "h": 640,
+    "x": -20,
+    "h": 600,
     "y": 560
    },
    "right": {
@@ -31,9 +31,9 @@
    "img": "emegha2",
    "note": "3rd defeat in a row",
    "src": "face",
-   "h": 400,
+   "h": 380,
    "drop": 0,
-   "x": 330,
+   "x": 340,
    "arrowX": 120,
    "arrowY": 330,
    "noteX": 60,
