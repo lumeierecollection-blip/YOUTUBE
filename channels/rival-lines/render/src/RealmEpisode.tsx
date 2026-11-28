@@ -194,7 +194,7 @@ const PlainScene: React.FC<{ v: any }> = ({ v }) => {
   const two = imgs.length > 1;
   const a = pop(t, 0.1, 0.6);
   const h0 = two ? 860 : 980;
-  const fade = "linear-gradient(to right, transparent 0, #000 7%, #000 93%, transparent 100%), linear-gradient(to top, transparent 0, #000 9%)";
+  const fade = "linear-gradient(to right, transparent 0, black 7%, black 93%, transparent 100%), linear-gradient(to top, transparent 0, black 9%)";
   return (
     <AbsoluteFill>
       <Ground />
