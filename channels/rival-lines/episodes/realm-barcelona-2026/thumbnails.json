@@ -1,0 +1,28 @@
+{
+ "note": "Two Football Realm-formula thumbnails (faces / serif). 15 and 13 are the La Liga top-scorer totals (Raphinha for Barcelona, Mbappé for Real Madrid) on the cited Wikipedia page; 36 and 33 are the points after 13 matches. Both are questions or comparisons, not predictions.",
+ "variants": [
+  {
+   "id": "a",
+   "kind": "faces",
+   "left": { "img": "raphinha3", "word": "15", "x": 0, "h": 640, "y": 560 },
+   "right": { "img": "mbappe1", "word": "13", "x": -60, "h": 640, "y": 560 },
+   "size": 150
+  },
+  {
+   "id": "b",
+   "kind": "serif",
+   "lines": ["Barcelona 36.", "Madrid 33."],
+   "hot": 0,
+   "img": "flick3",
+   "note": "Over already?",
+   "src": "face",
+   "h": 400,
+   "drop": 0,
+   "x": 330,
+   "arrowX": 120,
+   "arrowY": 330,
+   "noteX": 60,
+   "noteY": 560
+  }
+ ]
+}

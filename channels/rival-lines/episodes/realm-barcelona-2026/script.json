@@ -1,0 +1,154 @@
+{
+  "episode": "realm-barcelona-2026",
+  "format": "realm",
+  "title_working": "Barcelona Lost Once In 13 Games. Is The La Liga Title Race Already Over?",
+  "as_of": "2026-11-28",
+  "sources_used": [
+    "https://en.wikipedia.org/wiki/2026–27_La_Liga",
+    "https://en.wikipedia.org/wiki/2026–27_FC_Barcelona_season",
+    "https://khelnow.com/football/barcelona-villarreal-key-takeaways-laliga-202611",
+    "https://www.thedailystar.net/sports/football/news/barcelona-stage-stunning-comeback-beat-villarreal-3-2-4330541",
+    "https://www.footballpress.net/2026/10/hansi-flicks-high-line-pressing-at.html",
+    "https://www.youtube.com/watch?v=Ngrd58fZSVA",
+    "https://www.youtube.com/watch?v=VzRr1zWFl8U",
+    "https://www.youtube.com/watch?v=wdtYGRqHv-M",
+    "https://www.youtube.com/watch?v=H3KClYYb2AM",
+    "https://www.youtube.com/watch?v=cYMIsxPkeZo",
+    "https://www.youtube.com/watch?v=ZJom79fRhv0",
+    "https://www.youtube.com/watch?v=bo9g36xT5UA"
+  ],
+  "beats": [
+    {
+      "id": "b01",
+      "accent": ["36", "33"],
+      "text": "Barcelona have 36 points after 13 games in La Liga. Real Madrid have 33, and Atlético Madrid have 31.",
+      "visual": {
+        "type": "clip",
+        "shots": ["sev_a", "rac_b"],
+        "tag": { "right": 120, "top": 90, "value": "36", "label": "points after 13 games", "cue": "36" }
+      }
+    },
+    {
+      "id": "b02",
+      "accent": ["12", "51"],
+      "text": "They have won 12 of those 13 games. They have scored 51 goals and conceded 15.",
+      "visual": {
+        "type": "clip",
+        "shots": ["rac_a", "ala_a"],
+        "tag": { "right": 120, "top": 90, "value": "12/13", "label": "league games won", "cue": "12" },
+        "bigcap": { "top": 620, "text": "*51* scored|15 conceded", "cue": "51" }
+      }
+    },
+    {
+      "id": "b03",
+      "accent": ["nine", "1968"],
+      "text": "They won their first nine league games. That equalled Real Madrid's record start from 1968-69. The ninth was a 5-2 win at Betis on 17 October.",
+      "visual": {
+        "type": "clip",
+        "shots": ["bet_a", "bet_b"],
+        "tag": { "right": 120, "top": 90, "value": "9", "label": "league wins in a row to start", "cue": "nine" },
+        "bigcap": { "top": 620, "text": "Betis 2|Barcelona *5*", "cue": "ninth" }
+      }
+    },
+    {
+      "id": "b04",
+      "accent": ["25 October", "2-1"],
+      "text": "Then came Real Madrid at home on 25 October. Mbappé scored in the 41st minute and again in the 87th. Raphinha scored for Barcelona in the 61st. Real Madrid won 2-1.",
+      "visual": {
+        "type": "clip",
+        "shots": ["cla_mbp1", "cla_raph", "cla_mbp2"],
+        "bigcap": { "top": 620, "text": "Barcelona 1|Real Madrid *2*", "cue": "won" }
+      }
+    },
+    {
+      "id": "b05",
+      "accent": ["6-1", "2-1"],
+      "text": "They have won three league games since. Alavés, 6-1 at home. Atlético, 2-1 away, with two goals from Fermín López. And Villarreal.",
+      "visual": {
+        "type": "clip",
+        "shots": ["ala_b", "atl_fer1", "atl_fer2"],
+        "bigcap": { "top": 620, "text": "Alavés *6-1*|Atlético 1-2 Barcelona", "cue": "Alav" }
+      }
+    },
+    {
+      "id": "b06",
+      "accent": ["2-0", "3-2"],
+      "text": "Against Villarreal on 22 November, Barcelona were 2-0 down after seven minutes. Yamal's penalty hit the post. Then Gerard Martín scored in the 57th minute, Fermín López in the 61st, and a Villarreal own goal in the 67th won it 3-2. Real Madrid had drawn level on points the day before, so the win put Barcelona three points clear again.",
+      "visual": {
+        "type": "clip",
+        "shots": ["vil_buch", "vil_olu", "vil_pen", "vil_mar", "vil_own"],
+        "tag": { "right": 120, "top": 90, "value": "0-2", "label": "down after 7 minutes", "cue": "seven" },
+        "bigcap": { "top": 620, "text": "Barcelona *3-2* Villarreal", "cue": "own" }
+      }
+    },
+    {
+      "id": "b07",
+      "accent": ["Cubarsí", "de Jong"],
+      "text": "They did it with a thin defence. Cubarsí and Christensen were injured, so Frenkie de Jong played as an emergency centre-back.",
+      "visual": {
+        "type": "strip",
+        "img": "flick3",
+        "side": "left",
+        "lines": ["TWO CENTRE-BACKS INJURED", "DE JONG IN DEFENCE"],
+        "cues": ["Cubars", "Frenkie"]
+      }
+    },
+    {
+      "id": "b08",
+      "accent": ["15", "13", "10"],
+      "text": "Raphinha leads the league scoring table with 15 goals. Kylian Mbappé of Real Madrid has 13. Lamine Yamal has 10.",
+      "visual": {
+        "type": "trio",
+        "cues": ["Raphinha", "Mbapp", "Yamal"],
+        "items": [
+          { "kicker": "1ST", "img": "raphinha3", "value": "15", "label": "Raphinha", "hot": true },
+          { "kicker": "2ND", "img": "mbappe1", "value": "13", "label": "Mbappé" },
+          { "kicker": "4TH", "img": "yamal1", "value": "10", "label": "Yamal" }
+        ]
+      }
+    },
+    {
+      "id": "b09",
+      "accent": ["four", "8 December"],
+      "text": "In the Champions League they have won four and lost one. The defeat was 4-2 at Paris Saint-Germain on 20 October. Next is Manchester City at the Camp Nou on 8 December.",
+      "visual": {
+        "type": "circle",
+        "img": "raphinha3",
+        "side": "left",
+        "tag": { "value": "8 DEC", "label": "Man City at Camp Nou", "cue": "December", "right": 150, "top": 150, "size": 100 },
+        "bigcap": { "text": "Champions League|*4* wins, *1* defeat", "pos": "right", "top": 520, "cue": "four" }
+      }
+    },
+    {
+      "id": "b10",
+      "accent": ["9 May", "Clásico"],
+      "text": "In the league they visit Deportivo on 29 November, host Celta on 6 December, and visit Málaga on 13 December. The return Clásico is at the Bernabéu on 9 May 2027.",
+      "visual": {
+        "type": "clip",
+        "shots": ["cla_open", "cla_cucu"],
+        "tag": { "right": 120, "top": 90, "value": "9 MAY", "label": "return Clásico, Bernabéu", "cue": "Clásico" }
+      }
+    },
+    {
+      "id": "b11",
+      "accent": ["verified"],
+      "text": "One thing is missing. We looked for numbers on Barcelona's high defensive line and offsides. The one article we found removed its own figures because they could not be traced to a source. So there are none here.",
+      "visual": {
+        "type": "circle",
+        "img": "flick3",
+        "side": "right",
+        "bigcap": { "text": "No *verified*|tactical numbers", "pos": "left", "top": 520, "cue": "removed" }
+      }
+    },
+    {
+      "id": "b12",
+      "accent": ["three", "title"],
+      "text": "So Barcelona are three points clear of Real Madrid, and the Clásico at the Bernabéu is still to come. Is this title race already over?",
+      "visual": {
+        "type": "circle",
+        "imgs": ["raphinha3", "mbappe1"],
+        "bigcap": { "text": "*Three* points|Over?", "pos": "center", "top": 820, "size": 90, "cue": "three" }
+      }
+    }
+  ]
+}

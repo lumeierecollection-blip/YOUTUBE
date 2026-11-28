@@ -1,0 +1,8 @@
+{
+ "people": [
+  {"key": "raphinha", "name": "Raphinha", "category": "Category:Raphinha", "must": "raphinha", "n": 3},
+  {"key": "yamal", "name": "Lamine Yamal", "category": "Category:Lamine Yamal", "must": "yamal", "n": 3},
+  {"key": "flick", "name": "Hansi Flick", "category": "Category:Hansi Flick", "must": "flick", "n": 3},
+  {"key": "mbappe", "name": "Kylian Mbappé", "category": "Category:Kylian Mbappé", "must": "mbapp", "n": 3}
+ ]
+}

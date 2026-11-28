@@ -1,0 +1,93 @@
+{
+ "as_of": "2026-11-28",
+ "note": "Every line was read on the cited page on 2026-11-28 (page fetch, not a search snippet). The league figures are from Wikipedia's 2026-27 La Liga table after 13 matches (Barcelona's win over Villarreal on 22 November). Real Madrid's and Barcelona's results are also on the cited match reports. The tactical angle (high defensive line, offside figures) is NOT used: the only article found on it states that it removed statistics it could not trace to a verifiable data source, so the video says it has no verified tactical numbers. The video does not predict the title.",
+ "sources": [
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_La_Liga",
+   "title": "2026-27 La Liga (Wikipedia): table after 13 matches, top goalscorers (La Liga stats, accessed 23 November 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://en.wikipedia.org/wiki/2026–27_FC_Barcelona_season",
+   "title": "2026-27 FC Barcelona season (Wikipedia): match results, Champions League record, fixtures",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://khelnow.com/football/barcelona-villarreal-key-takeaways-laliga-202611",
+   "title": "Barcelona v Villarreal key takeaways (Khelnow, 22 Nov 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.thedailystar.net/sports/football/news/barcelona-stage-stunning-comeback-beat-villarreal-3-2-4330541",
+   "title": "Barcelona stage stunning comeback to beat Villarreal 3-2 (The Daily Star, 22 Nov 2026)",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.footballpress.net/2026/10/hansi-flicks-high-line-pressing-at.html",
+   "title": "Hansi Flick's High-Line Pressing at Barcelona: Risk vs Reward (Footballpress.net, 14 Oct 2026). Editor's note, updated November 2026: statistics that could not be traced to a verifiable data source were removed. Used only to say that no verified tactical figures were found.",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=Ngrd58fZSVA",
+   "title": "FC Barcelona 3-2 Villarreal CF, LALIGA EA SPORTS highlights, 22 Nov 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=VzRr1zWFl8U",
+   "title": "FC Barcelona 1-2 Real Madrid, LALIGA EA SPORTS highlights, 25 Oct 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=wdtYGRqHv-M",
+   "title": "Atlético de Madrid 1-2 FC Barcelona, LALIGA EA SPORTS highlights, 8 Nov 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=H3KClYYb2AM",
+   "title": "FC Barcelona 6-1 Deportivo Alavés, LALIGA EA SPORTS highlights, 31 Oct 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=cYMIsxPkeZo",
+   "title": "Real Betis 2-5 FC Barcelona, LALIGA EA SPORTS highlights, 17 Oct 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=ZJom79fRhv0",
+   "title": "Sevilla FC 1-3 FC Barcelona, LALIGA EA SPORTS highlights, 19 Sep 2026",
+   "fetched": "2026-11-28"
+  },
+  {
+   "url": "https://www.youtube.com/watch?v=bo9g36xT5UA",
+   "title": "FC Barcelona 7-2 R. Racing Club, LALIGA EA SPORTS highlights, 16 Sep 2026",
+   "fetched": "2026-11-28"
+  }
+ ],
+ "table": {
+  "after_13": "La Liga table after 13 matches (Wikipedia, 2026-27 La Liga): Barcelona 36 points (12 wins, 0 draws, 1 defeat, 51 goals for, 15 against, goal difference +36); Real Madrid 33 points (11 wins, 0 draws, 2 defeats, 33 goals for, 11 against); Atlético Madrid 31 points; Real Betis 27 points; Real Sociedad 22 points. Barcelona lead Real Madrid by 3 points.",
+  "champions": "Barcelona are the defending champions (Wikipedia, 2026-27 La Liga and Barcelona season pages)."
+ },
+ "scorers": {
+  "top": "La Liga top goalscorers (La Liga stats via Wikipedia, accessed 23 November 2026): 1st Raphinha, Barcelona, 15 goals; 2nd Kylian Mbappé, Real Madrid, 13; 3rd Yassir Zabiri, Racing Santander, 11; 4th Lamine Yamal, Barcelona, 10; 5th Ante Budimir, Osasuna, 9; 6th Fermín López, Barcelona, 8."
+ },
+ "run": {
+  "start": "Barcelona won their first nine league matches. The win at Real Betis on 17 October (Betis 2, Barcelona 5) was the ninth consecutive league win and matched Real Madrid's record for the best start to a La Liga season, set in 1968-69 (Wikipedia, 2026-27 FC Barcelona season, citing FC Barcelona).",
+  "clasico": "On 25 October 2026 Barcelona lost 1-2 at home to Real Madrid in El Clásico, their first league defeat of the season. Kylian Mbappé scored in the 41st and 87th minutes and Raphinha scored for Barcelona in the 61st minute (Wikipedia, 2026-27 FC Barcelona season and LALIGA highlights).",
+  "after": "Barcelona then beat Deportivo Alavés 6-1 at home on 31 October and won 2-1 away at Atlético Madrid on 8 November, with Fermín López scoring in the 45th and 66th minutes (Wikipedia, 2026-27 FC Barcelona season; LALIGA highlights)."
+ },
+ "villarreal": {
+  "result": "On 22 November 2026 Barcelona beat Villarreal 3-2 after trailing 2-0. Buchanan scored for Villarreal in the 5th minute and Oluwaseyi in the 7th. A Yamal penalty hit the post. Gerard Martín scored in the 57th minute, Fermín López in the 61st, and a Pau Navarro own goal in the 67th gave Barcelona the lead (Khelnow, The Daily Star, LALIGA highlights).",
+  "gap": "Real Madrid beat Celta 2-1 on Saturday 21 November and drew level with Barcelona on points; Barcelona's win the next day restored a 3-point lead (The Daily Star).",
+  "defence": "Cubarsí and Christensen were injured, so Frenkie de Jong played as an emergency centre-back against Villarreal (Khelnow)."
+ },
+ "europe": {
+  "champions_league": "After 5 Champions League matches Barcelona had 4 wins and 1 defeat, with 18 goals for and 7 against. The defeat was 2-4 away at Paris Saint-Germain on 20 October. Next is Manchester City at home, at the Camp Nou, on 8 December 2026 (Wikipedia, 2026-27 FC Barcelona season)."
+ },
+ "fixtures": {
+  "league": "Barcelona's next league matches: Deportivo A Coruña away on 29 November; Celta at home on 6 December; Málaga away on 13 December (Wikipedia, 2026-27 FC Barcelona season). The return Clásico is at Real Madrid's Santiago Bernabéu on 9 May 2027."
+ },
+ "limits": {
+  "tactics": "No verified figures were found for Barcelona's high defensive line or offsides. The one article found says it removed statistics that could not be traced to a verifiable data source (Footballpress.net editor's note, November 2026), so none are used.",
+  "title": "Nothing here predicts the title. The table is after 13 of the season's matches."
+ }
+}
