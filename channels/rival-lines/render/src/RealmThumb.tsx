@@ -15,15 +15,15 @@ const sans = loadSans("normal", { weights: ["700", "900"], subsets: ["latin"] })
 
 const shade = (c: string, p: number) => `color-mix(in srgb, ${c} ${p}%, transparent)`;
 
-const Face: React.FC<{ img: string; h: number; side: "left" | "right"; x?: number }> = ({ img, h, side, x = -120 }) => (
+const Face: React.FC<{ img: string; h: number; side: "left" | "right"; x?: number; ink: string }> = ({ img, h, side, x = -120, ink }) => (
   <Img
     src={staticFile(`ep/images/face-${img}.png`)}
-    style={{ position: "absolute", height: h, width: "auto", bottom: 0, [side]: x, filter: "drop-shadow(0 0 28px rgba(0,0,0,0.55))" }}
+    style={{ position: "absolute", height: h, width: "auto", bottom: 0, [side]: x, filter: `drop-shadow(0 0 28px ${shade(ink, 55)})` }}
   />
 );
 
-const Word: React.FC<{ children: React.ReactNode; color: string; style: React.CSSProperties; size?: number }> = ({ children, color, style, size = 150 }) => (
-  <div style={{ position: "absolute", fontFamily: cond, fontSize: size, lineHeight: 1, color, letterSpacing: 2, transform: "skewX(-9deg)", textShadow: "0 7px 0 rgba(0,0,0,0.75), 0 0 30px rgba(0,0,0,0.5)", whiteSpace: "nowrap", ...style }}>{children}</div>
+const Word: React.FC<{ children: React.ReactNode; color: string; ink: string; style: React.CSSProperties; size?: number }> = ({ children, color, ink, style, size = 150 }) => (
+  <div style={{ position: "absolute", fontFamily: cond, fontSize: size, lineHeight: 1, color, letterSpacing: 2, transform: "skewX(-9deg)", textShadow: `0 7px 0 ${shade(ink, 75)}, 0 0 30px ${shade(ink, 50)}`, whiteSpace: "nowrap", ...style }}>{children}</div>
 );
 
 export const RealmThumb: React.FC<any> = ({ theme, thumb }) => {
@@ -31,19 +31,19 @@ export const RealmThumb: React.FC<any> = ({ theme, thumb }) => {
   if (t.kind === "faces") {
     return (
       <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 45%, ${theme.red} 0%, ${theme.red} 35%, ${shade(theme.black, 100)} 125%)` }}>
-        <Face img={t.left.img} h={t.left.h || 720} side="left" x={t.left.x} />
-        <Face img={t.right.img} h={t.right.h || 720} side="right" x={t.right.x} />
-        <Word color={theme.white} style={{ left: 36, top: t.left.y ?? 270 }} size={t.size}>{t.left.word}</Word>
-        <Word color={theme.white} style={{ right: 36, top: t.right.y ?? 270 }} size={t.size}>{t.right.word}</Word>
+        <Face ink={theme.black} img={t.left.img} h={t.left.h || 720} side="left" x={t.left.x} />
+        <Face ink={theme.black} img={t.right.img} h={t.right.h || 720} side="right" x={t.right.x} />
+        <Word ink={theme.black} color={theme.white} style={{ left: 36, top: t.left.y ?? 270 }} size={t.size}>{t.left.word}</Word>
+        <Word ink={theme.black} color={theme.white} style={{ right: 36, top: t.right.y ?? 270 }} size={t.size}>{t.right.word}</Word>
       </AbsoluteFill>
     );
   }
   return (
-    <AbsoluteFill style={{ background: `linear-gradient(180deg, ${theme.white} 0%, #E9E9EC 100%)` }}>
+    <AbsoluteFill style={{ background: `linear-gradient(180deg, ${theme.white} 0%, color-mix(in srgb, ${theme.white} 90%, ${theme.black}) 100%)` }}>
       <div style={{ position: "absolute", left: 0, right: 0, top: 26, textAlign: "center", fontFamily: serifUp, fontWeight: 400, fontSize: t.size || 108, lineHeight: 1.04, color: theme.black }}>
         {t.lines.map((l: string, i: number) => <div key={i} style={i === t.hot ? { fontWeight: 700, color: theme.red } : undefined}>{l}</div>)}
       </div>
-      <Img src={staticFile(`ep/images/cutout-${t.img}.png`)} style={{ position: "absolute", height: t.h || 1020, width: "auto", right: t.x ?? 300, bottom: -(t.drop ?? 330), filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.35))" }} />
+      <Img src={staticFile(`ep/images/cutout-${t.img}.png`)} style={{ position: "absolute", height: t.h || 1020, width: "auto", right: t.x ?? 300, bottom: -(t.drop ?? 330), filter: `drop-shadow(0 12px 24px ${shade(theme.black, 35)})` }} />
       <svg width={300} height={180} viewBox="0 0 300 180" style={{ position: "absolute", left: t.arrowX ?? 250, top: t.arrowY ?? 330 }}>
         <path d="M 10 20 C 110 0 200 50 250 130" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
         <path d="M 250 130 L 214 92 M 250 130 L 290 100" fill="none" stroke={theme.red} strokeWidth={9} strokeLinecap="round" />
