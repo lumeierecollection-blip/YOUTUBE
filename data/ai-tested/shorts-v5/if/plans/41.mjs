@@ -24,10 +24,12 @@ export default function build(T) {
       { k: "card", img: R + "acs-head.png", y: 200, w: 560, h: 229, t: T[2] },
     ] },
     { i: 17, grid: true, els: [
-      { k: "cut", img: R + "octicon-people.svg", y: 300, w: 230, h: 230, t: T[18] },
+      { k: "cut", img: R + "octicon-person.svg", y: 215, w: 190, h: 190, t: T[18] },
+      { k: "chip", img: R + "octicon-person.svg", label: "Jeremy Crane", y: 355, t: T[19] - 0.2 },
+      { k: "chip", img: R + "octicon-briefcase.svg", label: "Founder and CEO, PocketOS", y: 425, t: T[19] },
       { k: "lines", lines: [
-        { y: 500, ...N, words: run(17, ["says", "its"]) },
-        { y: 625, ...XL, words: [b(19, "founder", XL)] },
+        { y: 540, ...N, words: run(17, ["says", "its"]) },
+        { y: 650, ...XL, words: [b(19, "founder", XL)] },
       ] },
     ] },
     { i: 20, els: [
